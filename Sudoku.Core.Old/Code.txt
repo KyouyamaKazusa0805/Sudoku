@@ -1,0 +1,60 @@
+﻿//var sb = new System.Text.StringBuilder("int[,][] table = new int[81, 80][]");
+//sb.AppendLine();
+//sb.AppendLine("{");
+//for (int i = 0; i < 81; i++)
+//{
+//	var cell = new Sudoku.Data.Meta.Cell(i / 9, i % 9);
+//	sb.AppendLine("    {");
+//	for (int j = 0; j < 80; j++)
+//	{
+//		var cell2 = new Sudoku.Data.Meta.Cell(j / 9, j % 9);
+//		sb.Append("        new[] { ");
+//		foreach (var peer in cell & cell2)
+//		{
+//			sb.Append(peer.Row * 9 + peer.Column);
+//			sb.Append(", ");
+//		}
+//
+//		sb.Remove(sb.Length - 2, 2);
+//		sb.AppendLine($" }}{(j != 79 ? "," : "")}");
+//	}
+//	sb.AppendLine($"    }}{(i != 80 ? "," : "")}");
+//}
+//sb.AppendLine("}");
+////System.Console.WriteLine(sb);
+//var sw = new System.IO.StreamWriter(@"C:\Users\张齐天\Desktop\helloworld.txt");
+//try
+//{
+//	sw.Write(sb.ToString());
+//
+//	System.Console.WriteLine("Success!");
+//}
+//catch
+//{
+//	System.Console.WriteLine("Failed!");
+//}
+//finally
+//{
+//	sw?.Dispose();
+//}
+
+//var sb = new System.Text.StringBuilder("int[][] table = new int[81][]");
+//sb.AppendLine();
+//sb.AppendLine("{");
+//for (int i = 0; i < 81; i++)
+//{
+//	var cell = new Sudoku.Data.Meta.Cell(i / 9, i % 9);
+//	sb.Append("    new[] { ");
+//	foreach (var peer in cell.Peers)
+//	{
+//		sb.Append(peer.Row * 9 + peer.Column);
+//		sb.Append(", ");
+//	}
+//	sb.Remove(sb.Length - 2, 2);
+//	sb.AppendLine(" }, ");
+//}
+//sb.Remove(sb.Length - 4, 4);
+//sb.AppendLine();
+//sb.Append("};");
+//
+//System.Console.WriteLine(sb.ToString());

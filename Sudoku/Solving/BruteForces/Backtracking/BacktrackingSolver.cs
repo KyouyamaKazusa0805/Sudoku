@@ -1,0 +1,132 @@
+﻿using System;
+using System.Diagnostics;
+using Sudoku.Data.Meta;
+using Sudoku.Runtime;
+using Sudoku.Solving.Utils;
+
+namespace Sudoku.Solving.BruteForces.Backtracking
+{
+	public sealed class BacktrackingSolver : Solver
+	{
+		public override string SolverName => "Backtracking";
+
+
+		public override AnalysisResult Solve(Grid grid)
+		{
+			int[] gridValues = grid.ToArray();
+			int[]? result = null;
+			int solutionsCount = 0;
+			var stopwatch = new Stopwatch();
+
+			try
+			{
+				stopwatch.Start();
+				BacktrackinglySolve(ref solutionsCount, ref result, gridValues, 0);
+				stopwatch.Stop();
+
+				return new AnalysisResult(
+					solverName: SolverName,
+					hasSolved: true,
+					solution: Grid.CreateInstance(result ?? throw new NoSolutionException()),
+					elapsedTime: stopwatch.Elapsed,
+					solvingList: null,
+					additional: null);
+			}
+			catch (Exception ex)
+			{
+				if (stopwatch.IsRunning)
+				{
+					stopwatch.Stop();
+				}
+
+				return new AnalysisResult(
+					solverName: SolverName,
+					hasSolved: false,
+					solution: null,
+					elapsedTime: stopwatch.Elapsed,
+					solvingList: null,
+					additional: ex.Message);
+			}
+		}
+
+
+		private static void BacktrackinglySolve(
+			ref int solutionsCount, ref int[]? result, int[] gridValues, int finishedCellsCount)
+		{
+			if (finishedCellsCount == 81)
+			{
+				// Solution found.
+				if (++solutionsCount > 1)
+				{
+					throw new MultipleSolutionsException();
+				}
+				else // solutionCount <= 1
+				{
+					// We should catch the result.
+					// If we use normal assignment, we well get the
+					// initial grid rather a solution, because
+					// this is a recursive function!!!
+					result = (int[])gridValues.Clone();
+					return; // Exit the recursion.
+				}
+			}
+
+			int r = finishedCellsCount / 9, c = finishedCellsCount % 9;
+			if (gridValues[CellUtils.GetOffset(r, c)] != 0)
+			{
+				BacktrackinglySolve(
+					ref solutionsCount, ref result, gridValues, finishedCellsCount + 1);
+			}
+			else
+			{
+				// Here may try 9 times.
+				// Of course, you can add a new variable to save
+				// all candidates to let the algorithm run faster.
+				for (int i = 0; i < 9; i++)
+				{
+					gridValues[CellUtils.GetOffset(r, c)]++; // Only use value increment operator.
+					if (IsValid(gridValues, r, c))
+					{
+						BacktrackinglySolve(
+							ref solutionsCount, ref result, gridValues, finishedCellsCount + 1);
+					}
+				}
+
+				// All values are wrong, which means the value before
+				// we calculate is already wrong.
+				// Backtracking the cell...
+				gridValues[CellUtils.GetOffset(r, c)] = 0;
+			}
+		}
+
+		private static bool IsValid(int[] gridValues, int r, int c)
+		{
+			int number = gridValues[CellUtils.GetOffset(r, c)];
+
+			// Check lines.
+			for (int i = 0; i < 9; i++)
+			{
+				if (i != r && gridValues[CellUtils.GetOffset(i, c)] == number
+					|| i != c && gridValues[CellUtils.GetOffset(r, i)] == number)
+				{
+					return false;
+				}
+			}
+
+			// Check blocks.
+			for (int ii = r / 3 * 3, i = ii; i < ii + 3; i++)
+			{
+				for (int jj = c / 3 * 3, j = jj; j < jj + 3; j++)
+				{
+					if ((i != r || j != c) && gridValues[CellUtils.GetOffset(i, j)] == number)
+					{
+						return false;
+					}
+				}
+			}
+
+			// All region are checked and passed, return true.
+			return true;
+		}
+	}
+}
