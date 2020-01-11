@@ -18,16 +18,20 @@ Clone this repo, and you can take all codes!
 You can write code like this:
 
 ```csharp
+using System;
+using Sudoku.Data.Meta;
+using Sudoku.Solving.Manual;
+
 internal static class Project
 {
-   private static void Main(string[] args)
-   {
-      var grid = Grid.Parse("800190030190007600002000000000301504000050000704906000000000900008700051040069007");
-      var solver = new ManualSolver();
-      var analysisResult = solver.Solve(grid);
-      
-      Console.WriteLine(analysisResult);
-   }
+    private static void Main(string[] args)
+    {
+        var grid = Grid.Parse("800190030190007600002000000000301504000050000704906000000000900008700051040069007");
+        var solver = new ManualSolver();
+        var analysisResult = solver.Solve(grid);
+        
+        Console.WriteLine(analysisResult);
+    }
 }
 ```
 
@@ -110,11 +114,11 @@ All examples are shown at the end of this part.
 
 If you want to output pencil marked grid (PM grid), you should use options below:
 
-| Options | Meaning                           |
-| ------- | --------------------------------- |
-| `@`     | Default PM grid character.        |
-| `*`     | Simple output option.             |
-| `!`     | Treat-modifiable-as-given option. |
+| Format string | Meaning                           |
+| ------------- | --------------------------------- |
+| `@`           | Default PM grid character.        |
+| `*`           | Simple output option.             |
+| `!`           | Treat-modifiable-as-given option. |
 
 These option are same or similar as normal grid (Susser format) output, so I don't give an introduction about those characters. Learn them from examples at the end of this part.
 
