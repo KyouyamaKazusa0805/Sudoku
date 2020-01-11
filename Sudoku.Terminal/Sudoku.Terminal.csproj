@@ -13,4 +13,8 @@
 		<None Include="..\.editorconfig" Link=".editorconfig" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Sudoku\Sudoku.Core.csproj" />
+	</ItemGroup>
+
 </Project>
