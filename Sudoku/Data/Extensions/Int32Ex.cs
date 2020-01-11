@@ -22,7 +22,7 @@ namespace Sudoku.Data.Extensions
 		{
 			int x = @this & -@this;
 			int a = x <= 0xffff ? (x <= 0xff ? 0 : 8) : (x <= 0xffffff ? 16 : 24);
-			return Table[x >> a] + a;
+			return Table[x >> a] + a - 1;
 		}
 	}
 }

@@ -221,24 +221,10 @@ namespace Sudoku.Data.Meta
 				sb.Append(" ");
 				for (int i = start; i <= end; i++)
 				{
-					short value = valuesByRow[i];
 					// Get digit.
-					int digit = -1;
+					short value = valuesByRow[i];
 					var cellStatus = GetCellStatus(value);
-					if (cellStatus != CellStatus.Empty)
-					{
-						short mask = (short)~(value & 511);
-						if ((mask & (mask - 1)) == 0)
-						{
-							for (int tryTime = 0, temp = value & 511; tryTime < 9; tryTime++, temp >>= 1)
-							{
-								if ((temp & 1) != 0)
-								{
-									digit = tryTime;
-								}
-							}
-						}
-					}
+					int digit = cellStatus != CellStatus.Empty ? (~value).FindFirstSet() : -1;
 
 					sb.Append(cellStatus switch
 					{

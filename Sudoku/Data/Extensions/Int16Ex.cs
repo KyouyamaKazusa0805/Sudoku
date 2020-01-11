@@ -7,7 +7,7 @@ namespace Sudoku.Data.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static int FindFirstSet(this short @this)
 		{
-			return Int32Ex.FindFirstSet(@this) - 1;
+			return Int32Ex.FindFirstSet(@this);
 
 			#region Deprecated Code
 			//if (@this == 0)
