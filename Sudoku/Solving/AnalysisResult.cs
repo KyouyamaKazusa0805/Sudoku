@@ -114,7 +114,7 @@ namespace Sudoku.Solving
 
 		public override string ToString()
 		{
-			var sb = new StringBuilder($"Initial grid: {InitialGrid:.+:}{Environment.NewLine}");
+			var sb = new StringBuilder($"Initial grid: {InitialGrid:#}{Environment.NewLine}");
 			sb.AppendLine($"Solving tool: {SolverName}");
 			if (SolvingSteps is null)
 			{
