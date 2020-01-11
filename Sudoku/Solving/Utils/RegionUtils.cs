@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace Sudoku.Solving.Utils
@@ -25,6 +26,17 @@ namespace Sudoku.Solving.Utils
 					(regionOffset / 3 * 3 + relativePos / 3) * 9 + regionOffset % 3 * 3 + relativePos % 3,
 				_ when regionOffset < 18 => (regionOffset - 9) * 9 + relativePos,
 				_ => relativePos * 9 + (regionOffset - 18)
+			};
+		}
+
+		public static int GetRegionOffset(string regionString)
+		{
+			return regionString[0] switch
+			{
+				'b' => regionString[1] - '1',
+				'r' => regionString[1] - '1' + 9,
+				'c' => regionString[1] - '1' + 18,
+				_ => throw new ArgumentException(nameof(regionString))
 			};
 		}
 

@@ -9,5 +9,9 @@ namespace Sudoku.Solving.Utils
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static string ToString(int cellOffset) => $"r{cellOffset / 9 + 1}c{cellOffset % 9 + 1}";
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static string ToFullString(int cellOffset) =>
+			$"r{cellOffset / 9 + 1}c{cellOffset % 9 + 1}b{cellOffset / 3 * 3 + cellOffset % 3 + 1}";
 	}
 }

@@ -10,7 +10,7 @@
 				EnableFullHouse = true,
 				EnableLastDigit = true
 			};
-			var grid = Sudoku.Data.Meta.Grid.Parse("073004000950067000004000000028900100069473280007002940000000300000320091000600420");
+			var grid = Sudoku.Data.Meta.Grid.Parse("003060000001005400860004072000000005035090140100000000680300054002600300000050200");
 			var analysisResult = solver.Solve(grid);
 			System.Console.WriteLine(analysisResult);
 		}
