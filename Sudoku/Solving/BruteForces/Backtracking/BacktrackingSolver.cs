@@ -25,6 +25,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 				stopwatch.Stop();
 
 				return new AnalysisResult(
+					initialGrid: grid,
 					solverName: SolverName,
 					hasSolved: true,
 					solution: Grid.CreateInstance(result ?? throw new NoSolutionException()),
@@ -40,6 +41,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 				}
 
 				return new AnalysisResult(
+					initialGrid: grid,
 					solverName: SolverName,
 					hasSolved: false,
 					solution: null,

@@ -25,6 +25,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				return count switch
 				{
 					0 => new AnalysisResult(
+						initialGrid: grid,
 						solverName: SolverName,
 						hasSolved: false,
 						solution: null,
@@ -32,6 +33,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						solvingList: null,
 						additional: null),
 					1 => new AnalysisResult(
+						initialGrid: grid,
 						solverName: SolverName,
 						hasSolved: true,
 						solution: Grid.Parse(sb.ToString()),
@@ -39,6 +41,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						solvingList: null,
 						additional: null),
 					_ => new AnalysisResult(
+						initialGrid: grid,
 						solverName: SolverName,
 						hasSolved: false,
 						solution: Grid.Parse(sb.ToString()),
@@ -55,6 +58,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					return count switch
 					{
 						0 => new AnalysisResult(
+							initialGrid: grid,
 							solverName: SolverName,
 							hasSolved: false,
 							solution: null,
@@ -62,6 +66,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 							solvingList: null,
 							additional: null),
 						1 => new AnalysisResult(
+							initialGrid: grid,
 							solverName: SolverName,
 							hasSolved: true,
 							solution: Grid.Parse(sb.ToString()),
@@ -69,6 +74,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 							solvingList: null,
 							additional: null),
 						_ => new AnalysisResult(
+							initialGrid: grid,
 							solverName: SolverName,
 							hasSolved: false,
 							solution: Grid.Parse(sb.ToString()),
@@ -80,6 +86,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				catch (Exception ex2)
 				{
 					return new AnalysisResult(
+						initialGrid: grid,
 						solverName: SolverName,
 						hasSolved: false,
 						solution: null,

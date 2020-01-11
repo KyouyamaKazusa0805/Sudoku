@@ -11,11 +11,11 @@ namespace Sudoku.Solving
 	public sealed class AnalysisResult
 	{
 		public AnalysisResult(
-			string solverName, bool hasSolved, Grid? solution,
+			Grid initialGrid, string solverName, bool hasSolved, Grid? solution,
 			TimeSpan elapsedTime, IList<TechniqueInfo>? solvingList, string? additional)
 		{
-			(SolverName, HasSolved, Solution, SolvingSteps, ElapsedTime, Additional) =
-				(solverName, hasSolved, solution, solvingList, elapsedTime, additional);
+			(InitialGrid, SolverName, HasSolved, Solution, SolvingSteps, ElapsedTime, Additional) =
+				(initialGrid, solverName, hasSolved, solution, solvingList, elapsedTime, additional);
 		}
 
 
@@ -91,6 +91,8 @@ namespace Sudoku.Solving
 			}
 		}
 
+		public Grid InitialGrid { get; }
+
 		[PropertyNotNullWhen(nameof(HasSolved), true)]
 		public Grid? Solution { get; }
 
@@ -112,7 +114,8 @@ namespace Sudoku.Solving
 
 		public override string ToString()
 		{
-			var sb = new StringBuilder($"Solving tool: {SolverName}{Environment.NewLine}");
+			var sb = new StringBuilder($"Initial grid: {InitialGrid:.+:}{Environment.NewLine}");
+			sb.AppendLine($"Solving tool: {SolverName}");
 			if (SolvingSteps is null)
 			{
 				sb.AppendLine($"Puzzle has {(HasSolved ? "" : "not ")}been solved.");

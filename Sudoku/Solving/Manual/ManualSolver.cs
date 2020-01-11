@@ -57,6 +57,7 @@ namespace Sudoku.Solving.Manual
 						}
 
 						return new AnalysisResult(
+							initialGrid: grid,
 							solverName: SolverName,
 							hasSolved: true,
 							solution: cloneation,
@@ -82,6 +83,7 @@ namespace Sudoku.Solving.Manual
 			}
 
 			return new AnalysisResult(
+				initialGrid: grid,
 				solverName: SolverName,
 				hasSolved: false,
 				solution: null,

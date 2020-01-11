@@ -22,6 +22,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 			return results.Count switch
 			{
 				1 => new AnalysisResult(
+					initialGrid: grid,
 					solverName: SolverName,
 					hasSolved: true,
 					solution: Grid.Parse(results[0]),
@@ -29,6 +30,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 					solvingList: null,
 					additional: null),
 				_ => new AnalysisResult(
+					initialGrid: grid,
 					solverName: SolverName,
 					hasSolved: false,
 					solution: null,
