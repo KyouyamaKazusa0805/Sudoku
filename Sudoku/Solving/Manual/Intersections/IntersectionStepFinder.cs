@@ -7,7 +7,7 @@ using static Sudoku.Solving.Utils.RegionUtils;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
-	public sealed class IntersectionsStepFinder : StepFinder
+	public sealed class IntersectionStepFinder : StepFinder
 	{
 		private static readonly int[,] IntersectionSegments = new int[9, 4]
 		{

@@ -6,12 +6,12 @@ using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Singles
 {
-	public sealed class SinglesStepFinder : StepFinder
+	public sealed class SingleStepFinder : StepFinder
 	{
 		private readonly bool _enableFullHouse, _enableLastDigit;
 
 
-		public SinglesStepFinder(bool enableFullHouse, bool enableLastDigit) =>
+		public SingleStepFinder(bool enableFullHouse, bool enableLastDigit) =>
 			(_enableFullHouse, _enableLastDigit) = (enableFullHouse, enableLastDigit);
 
 

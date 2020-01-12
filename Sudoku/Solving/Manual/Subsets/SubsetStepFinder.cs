@@ -7,7 +7,7 @@ using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Subsets
 {
-	public sealed class SubsetsStepFinder : StepFinder
+	public sealed class SubsetStepFinder : StepFinder
 	{
 		public override IList<TechniqueInfo> TakeAll(Grid grid)
 		{

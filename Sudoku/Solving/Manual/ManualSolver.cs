@@ -22,9 +22,9 @@ namespace Sudoku.Solving.Manual
 			// Enable all step finders.
 			var stepFinders = new List<StepFinder>()
 			{
-				new SinglesStepFinder(EnableFullHouse, EnableLastDigit),
-				new IntersectionsStepFinder(),
-				new SubsetsStepFinder()
+				new SingleStepFinder(EnableFullHouse, EnableLastDigit),
+				new IntersectionStepFinder(),
+				new SubsetStepFinder()
 			};
 
 			// Start time recording and solving.
