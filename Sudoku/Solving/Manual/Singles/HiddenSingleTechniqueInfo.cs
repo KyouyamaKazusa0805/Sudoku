@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		public override string Name =>
-			EnableAndIsLastDigit ? "Last Digit" : $"Hidden Single in {RegionUtils.GetRegionName(RegionOffset)}";
+			EnableAndIsLastDigit ? "Last Digit" : $"Hidden Single (In {RegionUtils.GetRegionName(RegionOffset)})";
 
 		public override decimal Difficulty => EnableAndIsLastDigit ? 1.1m : RegionOffset < 9 ? 1.2m : 1.5m;
 
