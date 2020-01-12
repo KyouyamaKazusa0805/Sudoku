@@ -12,6 +12,6 @@ namespace Sudoku.Solving.Manual.Singles
 		}
 
 
-		public override DifficultyLevels DifficultyLevel => DifficultyLevels.Easy;
+		public sealed override DifficultyLevels DifficultyLevel => DifficultyLevels.Easy;
 	}
 }

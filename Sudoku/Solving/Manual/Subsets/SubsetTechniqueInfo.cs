@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Drawing;
+using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Subsets
 {
@@ -7,15 +8,19 @@ namespace Sudoku.Solving.Manual.Subsets
 	{
 		protected SubsetTechniqueInfo(
 			ICollection<Conclusion> conclusions, ICollection<View> views,
-			int regionOffset, ICollection<int> cellOffsets)
+			int regionOffset, ICollection<int> cellOffsets, ICollection<int> digits)
 			: base(conclusions, views) =>
-			(RegionOffset, CellOffsets) = (regionOffset, cellOffsets);
+			(RegionOffset, CellOffsets, Digits) = (regionOffset, cellOffsets, digits);
 
 
 		public int RegionOffset { get; }
 
+		public ICollection<int> Digits { get; }
+
 		public ICollection<int> CellOffsets { get; }
 
-		public override DifficultyLevels DifficultyLevel => DifficultyLevels.Moderate;
+		public override string Name => SubsetUtils.GetNameBy(Digits.Count);
+
+		public sealed override DifficultyLevels DifficultyLevel => DifficultyLevels.Moderate;
 	}
 }

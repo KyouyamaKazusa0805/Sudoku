@@ -4,6 +4,7 @@ using System.Linq;
 using Sudoku.Data.Meta;
 using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.Singles;
+using Sudoku.Solving.Manual.Subsets;
 
 namespace Sudoku.Solving.Manual
 {
@@ -22,7 +23,8 @@ namespace Sudoku.Solving.Manual
 			var stepFinders = new List<StepFinder>()
 			{
 				new SinglesStepFinder(EnableFullHouse, EnableLastDigit),
-				new IntersectionsStepFinder()
+				new IntersectionsStepFinder(),
+				new SubsetsStepFinder()
 			};
 
 			// Start time recording and solving.
