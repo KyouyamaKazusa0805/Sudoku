@@ -11,7 +11,7 @@ namespace Sudoku.Data.Meta
 {
 	public partial struct GridMap : IEnumerable<bool>, IEquatable<GridMap>
 	{
-		public int _low, _mid, _high;
+		private int _low, _mid, _high;
 
 
 		public GridMap(int offset) : this(PeerTable[offset])
@@ -49,25 +49,7 @@ namespace Sudoku.Data.Meta
 		}
 
 
-		public readonly int Count
-		{
-			get
-			{
-				static void OnCounting(int value, ref int count)
-				{
-					while (value != 0)
-					{
-						value &= value - 1;
-						count++;
-					}
-				}
-				int count = 0;
-				OnCounting(_low, ref count);
-				OnCounting(_mid, ref count);
-				OnCounting(_high, ref count);
-				return count;
-			}
-		}
+		public readonly int Count => _low.CountSet() + _mid.CountSet() + _high.CountSet();
 
 		public readonly IEnumerable<int> Offsets
 		{
