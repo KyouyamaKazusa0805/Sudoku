@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Linq;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
 using Sudoku.Drawing;
@@ -20,7 +22,8 @@ namespace Sudoku.Solving.Manual.Subsets
 			return result;
 		}
 
-		private static IList<SubsetTechniqueInfo> TakeAllNakedSubsetsBySize(Grid grid, int size)
+		private static IList<SubsetTechniqueInfo> TakeAllNakedSubsetsBySize(
+			Grid grid, int size)
 		{
 			Contract.Requires(size >= 2 && size <= 4);
 
@@ -64,7 +67,9 @@ namespace Sudoku.Solving.Manual.Subsets
 								{
 									// Gather this conclusion.
 									GatherConclusion(
-										grid, result, region, digits, offsets, conclusions);
+										grid, result, region, digits,
+										offsets, conclusions,
+										CheckLocked(grid, offsets, digits));
 								}
 							}
 						}
@@ -95,7 +100,9 @@ namespace Sudoku.Solving.Manual.Subsets
 										{
 											// Gather this conclusion.
 											GatherConclusion(
-												grid, result, region, digits, offsets, conclusions);
+												grid, result, region, digits,
+												offsets, conclusions,
+												CheckLocked(grid, offsets, digits));
 										}
 									}
 								}
@@ -125,16 +132,18 @@ namespace Sudoku.Solving.Manual.Subsets
 											{
 												// Gather this conclusion.
 												GatherConclusion(
-													grid, result, region, digits, offsets, conclusions);
+													grid, result, region, digits,
+													offsets, conclusions,
+													CheckLocked(grid, offsets, digits));
 											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
+										} // if 9 - mask.CountSet() == 4
+									} // for i4 (i3 + 1)..9
+								} // else (if size == 3)
+							} // for i3 (i2 + 1)..(12 - size)
+						} // else (if size == 2)
+					} // for i2 (i1 + 1)..(11 - size)
+				} // for i1 0..(10 - size)
+			} // for region 0..27
 
 			return result;
 		}
@@ -142,7 +151,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		private static void GatherConclusion(
 			Grid grid, IList<SubsetTechniqueInfo> result, int region,
 			IReadOnlyList<int> digits, IReadOnlyList<int> offsets,
-			IReadOnlyList<Conclusion> conclusions)
+			IReadOnlyList<Conclusion> conclusions, bool? isLocked)
 		{
 			result.Add(
 				new NakedSubsetTechniqueInfo(
@@ -160,31 +169,52 @@ namespace Sudoku.Solving.Manual.Subsets
 					},
 					regionOffset: region,
 					cellOffsets: offsets,
-				digits));
+					digits,
+					isLocked));
 		}
 
 		private static IReadOnlyList<Conclusion> GetNakedSubsetConclusions(
-			Grid grid, IList<int> offsets, IReadOnlyList<int> digits)
+			Grid grid, IReadOnlyList<int> offsets, IReadOnlyList<int> digits)
 		{
 			var result = new List<Conclusion>();
-			var map = new GridMap(offsets[0]);
-			for (int i = 1; i < offsets.Count; i++)
+			
+			for (int i = 0; i < digits.Count; i++)
 			{
-				// Get intersections (in order to find eliminations).
-				map &= new GridMap(offsets[i]);
-			}
-			foreach (int offset in offsets)
-			{
-				// Set bit 'false' on themselves (do not regard them as eliminations).
-				map[offset] = false;
-			}
-
-			// Get all eliminations.
-			foreach (int offset in map.Offsets)
-			{
-				if (grid.GetCellStatus(offset) == CellStatus.Empty)
+				// Get first offset whose value has been set.
+				int digit = digits[i];
+				int firstOffset = offsets[0], firstOffsetIndex = 0;
+				for (int j = 0; j < offsets.Count; j++)
 				{
-					foreach (int digit in digits)
+					int offset = offsets[j];
+					if (!grid[offset, digit])
+					{
+						firstOffset = offset;
+						firstOffsetIndex = j;
+						break;
+					}
+				}
+
+				// Get intersection by each digit.
+				var tempMap = new GridMap(firstOffset);
+				for (int j = firstOffsetIndex + 1; j < offsets.Count; j++)
+				{
+					int offset = offsets[j];
+					if (!grid[offset, digit])
+					{
+						tempMap &= new GridMap(offset);
+					}
+				}
+
+				// Set bit 'false' on themselves (do not regard them as eliminations).
+				foreach (int offset in offsets)
+				{
+					tempMap[offset] = false;
+				}
+
+				// Add eliminations by each digit.
+				foreach (int offset in tempMap.Offsets)
+				{
+					if (grid.GetCellStatus(offset) == CellStatus.Empty)
 					{
 						if (!grid[offset, digit])
 						{
@@ -195,6 +225,30 @@ namespace Sudoku.Solving.Manual.Subsets
 			}
 
 			return result;
+		}
+
+		private static bool? CheckLocked(
+			Grid grid, IReadOnlyList<int> offsets, IReadOnlyList<int> digits)
+		{
+			int count = digits.Count;
+			bool[] locked = new bool[count];
+			for (int i = 0; i < count; i++)
+			{
+				int digit = digits[i];
+				var tempMap = new GridMap(offsets[0]);
+				for (int j = 1; j < offsets.Count; j++)
+				{
+					int offset = offsets[j];
+					if (!grid[offset, digit])
+					{
+						tempMap &= new GridMap(offset);
+					}
+				}
+
+				locked[i] = tempMap.Count > 9;
+			}
+			static bool lockedJudger(bool v) => v;
+			return locked.Any(lockedJudger) ? locked.All(lockedJudger) : (bool?)null;
 		}
 
 		private static IReadOnlyList<(int, int)> GetNakedSubsetsHighlightedCandidateOffsets(
