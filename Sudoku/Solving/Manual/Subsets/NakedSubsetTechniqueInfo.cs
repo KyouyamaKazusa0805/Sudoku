@@ -8,8 +8,8 @@ namespace Sudoku.Solving.Manual.Subsets
 	public sealed class NakedSubsetTechniqueInfo : SubsetTechniqueInfo
 	{
 		public NakedSubsetTechniqueInfo(
-			ICollection<Conclusion> conclusions, ICollection<View> views,
-			int regionOffset, ICollection<int> cellOffsets, ICollection<int> digits)
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
+			int regionOffset, IReadOnlyList<int> cellOffsets, IReadOnlyList<int> digits)
 			: base(conclusions, views, regionOffset, cellOffsets, digits)
 		{
 		}

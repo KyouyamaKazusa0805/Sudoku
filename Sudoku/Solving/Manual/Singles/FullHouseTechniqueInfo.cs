@@ -7,7 +7,7 @@ namespace Sudoku.Solving.Manual.Singles
 	public sealed class FullHouseTechniqueInfo : SingleTechniqueInfo
 	{
 		public FullHouseTechniqueInfo(
-			ICollection<Conclusion> conclusions, ICollection<View> views,
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			int cellOffset, int digit)
 			: base(conclusions, views) => (CellOffset, Digit) = (cellOffset, digit);
 

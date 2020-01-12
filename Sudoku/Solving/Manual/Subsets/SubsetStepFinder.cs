@@ -58,26 +58,13 @@ namespace Sudoku.Solving.Manual.Subsets
 								// Naked pair found.
 								var digits = new List<int>((511 & ~mask2).GetAllSets());
 								var offsets = new List<int> { pos1, pos2 };
-								var conclusions = GetNakedSubsetConclusions(grid, offsets, digits);
+								var conclusions =
+									GetNakedSubsetConclusions(grid, offsets, digits);
 								if (conclusions.Count != 0)
 								{
-									result.Add(
-										new NakedSubsetTechniqueInfo(
-											conclusions,
-											views: new List<View>
-											{
-												new View(
-													cellOffsets: null,
-													candidateOffsets: GetNakedSubsetsHighlightedCandidateOffsets(grid, offsets, digits),
-													regionOffsets: new List<(int, int)>
-													{
-														(0, region)
-													},
-													linkMasks: null)
-											},
-											regionOffset: region,
-											cellOffsets: offsets,
-											digits));
+									// Gather this conclusion.
+									GatherConclusion(
+										grid, result, region, digits, offsets, conclusions);
 								}
 							}
 						}
@@ -102,26 +89,13 @@ namespace Sudoku.Solving.Manual.Subsets
 										// Naked triple found.
 										var digits = new List<int>((511 & ~mask3).GetAllSets());
 										var offsets = new List<int> { pos1, pos2, pos3 };
-										var conclusions = GetNakedSubsetConclusions(grid, offsets, digits);
+										var conclusions =
+											GetNakedSubsetConclusions(grid, offsets, digits);
 										if (conclusions.Count != 0)
 										{
-											result.Add(
-												new NakedSubsetTechniqueInfo(
-													conclusions,
-													views: new List<View>
-													{
-														new View(
-															cellOffsets: null,
-															candidateOffsets: GetNakedSubsetsHighlightedCandidateOffsets(grid, offsets, digits),
-															regionOffsets: new List<(int, int)>
-															{
-																(0, region)
-															},
-															linkMasks: null)
-													},
-													regionOffset: region,
-													cellOffsets: offsets,
-													digits));
+											// Gather this conclusion.
+											GatherConclusion(
+												grid, result, region, digits, offsets, conclusions);
 										}
 									}
 								}
@@ -145,26 +119,13 @@ namespace Sudoku.Solving.Manual.Subsets
 											// Naked triple found.
 											var digits = new List<int>((511 & ~mask4).GetAllSets());
 											var offsets = new List<int> { pos1, pos2, pos3, pos4 };
-											var conclusions = GetNakedSubsetConclusions(grid, offsets, digits);
+											var conclusions =
+												GetNakedSubsetConclusions(grid, offsets, digits);
 											if (conclusions.Count != 0)
 											{
-												result.Add(
-													new NakedSubsetTechniqueInfo(
-														conclusions,
-														views: new List<View>
-														{
-															new View(
-																cellOffsets: null,
-																candidateOffsets: GetNakedSubsetsHighlightedCandidateOffsets(grid, offsets, digits),
-																regionOffsets: new List<(int, int)>
-																{
-																	(0, region)
-																},
-																linkMasks: null)
-														},
-														regionOffset: region,
-														cellOffsets: offsets,
-														digits));
+												// Gather this conclusion.
+												GatherConclusion(
+													grid, result, region, digits, offsets, conclusions);
 											}
 										}
 									}
@@ -178,8 +139,32 @@ namespace Sudoku.Solving.Manual.Subsets
 			return result;
 		}
 
-		private static ICollection<Conclusion> GetNakedSubsetConclusions(
-			Grid grid, IList<int> offsets, ICollection<int> digits)
+		private static void GatherConclusion(
+			Grid grid, IList<SubsetTechniqueInfo> result, int region,
+			IReadOnlyList<int> digits, IReadOnlyList<int> offsets,
+			IReadOnlyList<Conclusion> conclusions)
+		{
+			result.Add(
+				new NakedSubsetTechniqueInfo(
+					conclusions,
+					views: new List<View>
+					{
+						new View(
+							cellOffsets: null,
+							candidateOffsets: GetNakedSubsetsHighlightedCandidateOffsets(grid, offsets, digits),
+							regionOffsets: new List<(int, int)>
+							{
+								(0, region)
+							},
+							linkMasks: null)
+					},
+					regionOffset: region,
+					cellOffsets: offsets,
+				digits));
+		}
+
+		private static IReadOnlyList<Conclusion> GetNakedSubsetConclusions(
+			Grid grid, IList<int> offsets, IReadOnlyList<int> digits)
 		{
 			var result = new List<Conclusion>();
 			var map = new GridMap(offsets[0]);
@@ -213,7 +198,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		}
 
 		private static IReadOnlyList<(int, int)> GetNakedSubsetsHighlightedCandidateOffsets(
-			Grid grid, ICollection<int> offsets, ICollection<int> digits)
+			Grid grid, IReadOnlyList<int> offsets, IReadOnlyList<int> digits)
 		{
 			var result = new List<(int, int)>();
 			foreach (int offset in offsets)

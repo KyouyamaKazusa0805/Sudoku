@@ -7,7 +7,7 @@ namespace Sudoku.Solving.Manual.Intersections
 	public sealed class IntersectionTechniqueInfo : TechniqueInfo
 	{
 		public IntersectionTechniqueInfo(
-			ICollection<Conclusion> conclusions, ICollection<View> views,
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			int digit, int baseRegion)
 			: base(conclusions, views) =>
 			(Digit, BaseRegion) = (digit, baseRegion);

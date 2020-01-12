@@ -7,7 +7,7 @@ namespace Sudoku.Solving.Manual.Singles
 	public sealed class HiddenSingleTechniqueInfo : SingleTechniqueInfo
 	{
 		public HiddenSingleTechniqueInfo(
-			ICollection<Conclusion> conclusions, ICollection<View> views,
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			int regionOffset, int cellOffset, int digit, bool enableAndIsLastDigit)
 			: base(conclusions, views) =>
 			(RegionOffset, CellOffset, Digit, EnableAndIsLastDigit) = (regionOffset, cellOffset, digit, enableAndIsLastDigit);

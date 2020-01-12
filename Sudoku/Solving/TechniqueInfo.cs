@@ -6,7 +6,8 @@ namespace Sudoku.Solving
 {
 	public abstract class TechniqueInfo
 	{
-		protected TechniqueInfo(ICollection<Conclusion> conclusions, ICollection<View> views) =>
+		protected TechniqueInfo(
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views) =>
 			(Conclusions, Views) = (conclusions, views);
 
 
@@ -16,9 +17,9 @@ namespace Sudoku.Solving
 
 		public abstract DifficultyLevels DifficultyLevel { get; }
 
-		public ICollection<Conclusion> Conclusions { get; }
+		public IReadOnlyList<Conclusion> Conclusions { get; }
 
-		public ICollection<View> Views { get; }
+		public IReadOnlyList<View> Views { get; }
 
 
 		public void ApplyTo(Grid grid)
