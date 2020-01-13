@@ -1,21 +1,35 @@
 # Sudoku
 
+标题：*数独*
+
 A sudoku solver using brute forces and logical techniques (Update files gradually).
+
+一个使用暴力破解和普通逻辑算法解题的数独分析解题工具包（逐渐更新）。
 
 
 
 ## C# Version and IDE using
 
+标题：*C# 版本和 IDE 使用情况*
+
 * C# version: 8.0
+  C# 版本：8.0
 * IDE using: Visual Studio 2019 V16.4
+  IDE 使用：Visual Studio 2019 V16.4
 
 
 
 ## How to use
 
+标题：*如何使用*
+
 Clone this repo, and you can take all codes!
 
+只需要你克隆这个仓库就可以带走所有的代码了！
+
 You can write code like this:
+
+你可以在你的机器上使用这样的代码：
 
 ```csharp
 namespace Sudoku.Debugging
@@ -40,6 +54,8 @@ namespace Sudoku.Debugging
 ```
 
 And the puzzle solution and analysis result will be displayed on console screen, like this!
+
+然后答案和分析结果都会在你的控制台界面呈现出来，就像这样！
 
 ```
 Initial grid: 5.....482.3...7.........3.969..85.......2.......97..351.2.........1...5.764.....8
@@ -135,12 +151,16 @@ Puzzle rating: 5.1/1.2/1.2
 
 ## Intro to Solution Folders
 
+标题：*解决方案文件夹介绍*
+
 Here displays the introduction to all folders in this whole solution.
+
+这里陈列出所有本解决方案会使用到的文件夹的所有介绍。
 
 * `Sudoku.Core.Old`
     * The implementation of the sudoku meta data, such as sudoku [grid](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core.Old/Data/Meta/Grid.cs) class and so on. Also provides some extension methods in this project, such as [string.Match([Pattern] string)](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core.Old/Data/Extensions/StringEx.cs#L10).
 * `Sudoku`
-    * The newer implementation of sudoku meta data. Different than `Sudoku.Core.Old`, all files are re-implemented by newer logic. For example, older implementation of grid class uses `CellInfo` struct to describe all information in a cell, which is a "vivid" description; while newer one uses bitwise operations (using 12 bits to represent a cell information, 3 bits for cell status and other 9 bits are candidates status).
+    * The newer implementation of sudoku meta data. Different than `Sudoku.Core.Old`, all files are re-implemented by newer logic. For example, older implementation of grid class uses `CellInfo` struct to describe all information in a cell; while newer one uses bitwise operations (using 12 bits to represent a cell information, 3 bits for cell status and other 9 bits are candidates status).
 * `Sudoku.Debugging`
     * The console program aiming to debugging codes logic of other projects.
 * `Sudoku.Diagnostics`
@@ -154,9 +174,30 @@ Here displays the introduction to all folders in this whole solution.
 
 
 
+* `Sudoku.Core.Old`
+    * 数独的基本数据的实现，比如[数独盘面](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core.Old/Data/Meta/Grid.cs)类和其它的。当然也为项目添加了大量的扩展方法，比如[string.Match([Pattern] string)](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core.Old/Data/Extensions/StringEx.cs#L10)。
+* `Sudoku`
+    * 新的项目，和 `Sudoku.Core.Old` 一样但更新。所有的代码都被重新以新的逻辑实现过。比如，以前的盘面类使用的是 `CellInfo` 结构来描述的单元格信息，不过新的实现使用的是处理起来更快的二进制比特序列来表示的（使用 12 个比特表示一个单元格，末尾 9 个比特表示单元格数字 1 到 9 的填数情况，而高 3 比特位则是单元格状态）。
+* `Sudoku.Debugging`
+    * 旨在解决这整个解决方案里其它项目的 bug 和调试操作的项目。
+* `Sudoku.Diagnostics`
+    * 控制整个解决方案执行行为和编译期间行为的项目。另外，所有的文件都会依赖于我自己实现的分析器和代码修补工具（不过这一部分代码不属于项目，所以我没有上传）。
+* `Sudoku.IO`
+    * 控制数独文件流处理的项目（不过这个项目尚未实现）。
+* `Sudoku.Solving.Bf.Bitwise`
+    * 项目解题期间使用的位运算爆破算法（JCZSolver）的源代码。
+* `Sudoku.Terminal`
+    * 这整个解决方案里的终端控制部分。你可以在控制台输入比如 `--solve` 来完成对一道题的分析和解题。
+
+
+
 ## Intro to Files
 
+标题：*文件介绍*
+
 Here displays the introduction to files in root folder.
+
+这里陈列出根目录下的文件的基本说明。
 
 * `.editorconfig`
     * Editor configuration file.
@@ -165,27 +206,48 @@ Here displays the introduction to files in root folder.
 
 
 
+* `.editorconfig`
+    * 用户配置文件（项目整体控制编译器错误等信息的控制信息，以及控制成员名称规范的信息）。
+* `Priority of operators.txt`
+    * C# 语言里的运算符的优先级表。（我也不知道为啥我要上传它，可能它很重要？）
+
+
+
 ## Grid Format and Parsing format
+
+标题：*盘面格式和解析为盘面的字符串样式*
 
 If you has known the whole outline of this solution, you want to know how to use grid format. First of all, I will give you some characters you should use.
 
-| Format string | Meaning                                           |
-| ------------- | ------------------------------------------------- |
-| `.` and `0`   | Placeholder option.                               |
-| `+`           | Modifiable values option.                         |
-| `!`           | Modifiable values will be regarded as given ones. |
-| `:`           | Candidates-has-been-eliminated option.            |
-| `#`           | Intelligent output option.                        |
+如果你对这个项目有所了解的话，你肯定想知道数独盘面的输入的具体格式。首先我会给你一个表，陈列的各种字符就是你需要用到的。
+
+| Format string<br/>格式化字符 | Meaning<br/>意思                                                                   |
+| --------------------------- | ---------------------------------------------------------------------------------- |
+| `.` and `0`                 | Placeholder option.<br/>占位符选项。                                                |
+| `+`                         | Modifiable values option.<br/>显示可修改的数值选项。                                |
+| `!`                         | Modifiable values will be regarded as given ones.<br/>把可修改数值视为提示数的选项。 |
+| `:`                         | Candidates-has-been-eliminated option.<br/>显示盘面已删除的候选数的选项。            |
+| `#`                         | Intelligent output option.<br/>智能输出选项。                                       |
 
 If you write `grid.ToString("0")`, all empty cells will be replaced by character `'0'`; but if you write `grid.ToString(".")`, empty cells will be shown by `'.'`.
 
-If you add modifiable-value option `'+'`, all modifiable values (if exists) will be shown by `+digit` (In default case, modifiable values will not be output). In addition, if you write `'+'` rather than `'!'`, all modifiable values will be treated as given ones, so output will not be with plus symbol (i.e. `digit` rather than `'+digit'`). **Note that you should write either `'+'` or `'!'`**. Both characters written will generate a runtime exception.
+如果你写的是 `grid.ToString("0")` 的话，所有的空格都会使用字符 `'0'` 所占据；而如果你写的是 `grid.ToString(".")` 的话，就会是 `'.'` 字符填充空格了。
+
+If you add modifiable-value option `'+'`, all modifiable values (if exists) will be shown by `+digit` (In default case, modifiable values will not be output). In addition, if you write `'!'` rather than `'+'`, all modifiable values will be treated as given ones, so output will not be with plus symbol (i.e. `digit` rather than `'+digit'`). **Note that you should write either `'+'` or `'!'`**. Both characters written will generate a runtime exception.
+
+如果你使用了可修改数值的选项 `'+'` 的话，所有可修改的数值（如果存在的话）都会以 `'+数字'` 的形式被显示在盘面里（在默认情况下，这些数字都是不会显示出来的）。另外，如果你写的是 `'!'` 而不是 `'+'` 的话，所有可修改的数值都会被当作提示数看待，输出的时候不会带有 `+` 符号。注意**这两个符号不要同时使用**。同时使用它们会产生一个运行时异常。
 
 If you want to show candidates which have been eliminated before, you should add `':'` at the tail of the format string, which means all candidates that have been eliminated before current grid status can be also displayed in the output. However, **you should add this option `':'` at the tail position only**; otherwise, generating a runtime exception.
 
-If you cannot rise a decision, you can try intelligent output option `'#'`, which will be output intelligently.
+如果你想展示盘面当前情况下的候选数被删除的样子的话，你可以在整个格式化字符串的末尾添加 `':'` 字符，这表示所有当前盘面下被删除的候选数也会被显示出来。但是，**你只能把这个字符放在整个格式化字符串的末尾**，否则它会生成一个运行时异常。
 
-All options above can be used with other ones. For examples, if you write:
+If you cannot raise a decision, you can try intelligent output option `'#'`, which will be output intelligently.
+
+如果你无法作出决定，你可以使用 `'#'` 字符作为格式化字符串，来表示输出智能化处理（检测到有候选数排除的情况会被显示出来；检测到如果有填入的数字也会被呈现出来）。
+
+For examples, if you write:
+
+比如你这么写代码：
 
 ```csharp
 grid.ToString("0+");
@@ -193,7 +255,11 @@ grid.ToString("0+");
 
 This format `"0+"` means that all empty cells will be shown as digit 0, givens will be shown with digit 1 to 9, and modifiable values will be shown.
 
+这个格式化字符串 `"0+"` 表示你的空格是用 `'0'` 字符表示的，并且还会显示所有可修改的数字；而提示数则直接使用 1 到 9 显示。
+
 And another example:
+
+另外一个例子：
 
 ```csharp
 grid.ToString(".+:");
@@ -201,23 +267,39 @@ grid.ToString(".+:");
 
 Output will treat:
 
+输出：
+
 * empty cells as `'.'` character,
 * modifiable values as `'+digit'`,
-* candidates as `'candidateList'`.
+* candidates as `':candidateList'`.
+
+
+
+* 空格用 `'.'` 占位；
+* 可修改数值用 `'+数字'` 形式显示；
+* 候选数使用 `:候选数序列` 形式显示。
 
 All examples are shown at the end of this part.
 
+上面所有解释在最后都会给出例子集，可以对照。
+
 If you want to output pencil marked grid (PM grid), you should use options below:
 
-| Format string | Meaning                           |
-| ------------- | --------------------------------- |
-| `@`           | Default PM grid character.        |
-| `*`           | Simple output option.             |
-| `!`           | Treat-modifiable-as-given option. |
+另外，如果你要输出这个题目的候选数盘面的话，你可以使用下面的选项：
+
+| Format string<br/>格式化字符 | Meaning<br/>意思                                                       |
+| --------------------------- | ---------------------------------------------------------------------- |
+| `@`                         | Default PM grid character.<br/>默认的候选数盘面输出的格式化字符。        |
+| `*`                         | Simple output option.<br/>普通格线字符输出选项。                        |
+| `!`                         | Treat-modifiable-as-given option.<br/>把填入的数字视为提示数的选项。     |
 
 These option are same or similar as normal grid (Susser format) output, so I don't give an introduction about those characters. Learn them from examples at the end of this part.
 
-By the way, character `*` is for simple output. If the format has not followed by this option, the grid outline will be handled subtly. You can find the difference between two outputs:
+这些选项都和普通盘面输出样式的输出模式差不多，所以我就不给出解释了。你可以在例子集里找到这些东西的详细用法。
+
+By the way, character `'*'` is for simple output. If the format has not followed by this option, the grid outline will be handled subtly. You can find the difference between two outputs:
+
+当然了，字符 `'*'` 用作简单格线的输出。如果你的格式化字符串没有这个选项的话，那么格线看起来就没有那么“圆润”。你可以对比下面两个示例，看看区别。
 
 ```
 .---------------.---------------.------------------.
@@ -253,13 +335,15 @@ By the way, character `*` is for simple output. If the format has not followed b
 
 Examples:
 
+示例：
+
 ![](pic/P1.png)
 
 ```
-Format:
+Format（格式）:
 "0"
 
-Output:
+Output（输出结果）:
 800190030190007600002000000000301504000050000704906000000000900008700051040069007
 ```
 
@@ -268,18 +352,18 @@ Output:
 ![](pic/P2.png)
 
 ```
-Format:
+Format（格式）:
 "0+"
 
-Output:
+Output（输出结果）:
 000090+40+6+90340+600556+4207900802+6+5+90400750+4+869+2+64+9+7005080+5180406920+60+7130+4+400060000
 
 ---
 
-Format:
+Format（格式）:
 ".!"
 
-Output:
+Output（输出结果）:
 ....9.4.69.34.6..55642.79..8.2659.4..75.486926497..5.8.518.4.692.6.713.44...6....
 ```
 
@@ -288,10 +372,10 @@ Output:
 ![](pic/P3.png)
 
 ```
-Format:
+Format（格式）:
 "0+:"
 
-Output:
+Output（输出结果）:
 320009+100+40000+150006130040004903+6+801+60+3812+90+48+10090360004008210+106000+70000010+3+649:515 615 724 825 228 229 731 235 738 748 563 972 574 882 484 584 792 295
 ```
 
@@ -300,10 +384,10 @@ Output:
 ![](pic/P1.png)
 
 ```
-Format:
+Format（格式）:
 "@"
 
-Output:
+Output（输出结果）:
 .---------------------.--------------------.----------------------.
 | <8>   567     567   | <1>   <9>    245   | 247    <3>     25    |
 | <1>   <9>     35    | 2458  2348   <7>   | <6>    248     258   |
@@ -324,10 +408,10 @@ Output:
 ![](pic/P2.png)
 
 ```
-Format:
+Format（格式）:
 "@*"
 
-Output:
+Output（输出结果）:
 +---------------+---------------+------------------+
 | 17   128  78  | 135  <9>  35  | *4*   12378  *6* |
 | *9*  128  <3> | <4>  18   *6* | 1278  1278   <5> |
@@ -348,10 +432,10 @@ Output:
 ![](pic/P3.png)
 
 ```
-Format:
+Format（格式）:
 "@!"
 
-Output:
+Output（输出结果）:
 .----------------.----------------.-----------------.
 | <3>  <2>  578  | 4567  478  <9> | <1>  78    678  |
 | <4>  789  78   | 26    267  <1> | <5>  3789  3678 |
@@ -371,4 +455,8 @@ Output:
 
 ## Author
 
+标题：*作者*
+
 Sunnie, from Chengdu, is an original undergraduate.
+
+小向，来自成都的一名普通大学生。
