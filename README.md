@@ -18,24 +18,119 @@ Clone this repo, and you can take all codes!
 You can write code like this:
 
 ```csharp
-using System;
-using Sudoku.Data.Meta;
-using Sudoku.Solving.Manual;
-
-internal static class Project
+namespace Sudoku.Debugging
 {
-    private static void Main(string[] args)
-    {
-        var grid = Grid.Parse("800190030190007600002000000000301504000050000704906000000000900008700051040069007");
-        var solver = new ManualSolver();
-        var analysisResult = solver.Solve(grid);
-        
-        Console.WriteLine(analysisResult);
-    }
+	internal static class Program
+	{
+		private static void Main()
+		{
+			var solver = new Sudoku.Solving.Manual.ManualSolver
+			{
+				OptimizedApplyingOrder = true,
+				EnableFullHouse = true,
+				EnableLastDigit = true
+			};
+			var grid = Sudoku.Data.Meta.Grid.Parse(
+				"500000482030007000000000309690085000000020000000970035102000000000100050764000008");
+			var analysisResult = solver.Solve(grid);
+			System.Console.WriteLine(analysisResult);
+		}
+	}
 }
 ```
 
 And the puzzle solution and analysis result will be displayed on console screen!
+
+```
+Initial grid: 5.....482.3...7.........3.969..85.......2.......97..351.2.........1...5.764.....8
+Solving tool: Manual
+(1.2) Hidden Single (In Block): r2c7 = 5 in b3
+(1.2) Hidden Single (In Block): r7c2 = 5 in b7
+(1.2) Hidden Single (In Block): r5c3 = 5 in b4
+(1.2) Hidden Single (In Block): r3c8 = 7 in b3
+(1.2) Hidden Single (In Block): r7c4 = 7 in b8
+(1.5) Hidden Single (In Row): r7c6 = 8 in r7
+(2.3) Naked single: r8c2 = 8
+(2.8) Claiming: 1 in r2 => r2c3 <> 1, r2c5 <> 1
+(2.8) Claiming: 6 in r2 => r2c3 <> 6, r2c4 <> 6, r2c5 <> 6
+(2.8) Claiming: 2 in r6 => r6c7 <> 2
+(2.8) Claiming: 3 in r8 => r8c5 <> 3, r8c6 <> 3, r8c9 <> 3
+(1.2) Hidden Single (In Block): r7c9 = 3 in b9
+(2.8) Claiming: 9 in r8 => r8c5 <> 9, r8c6 <> 9, r8c7 <> 9
+(2.8) Claiming: 1 in c6 => r1c6 <> 1, r3c6 <> 1
+(3.7) Naked Triple (+): 3, 4, 6 in c4 => r9c4 <> 3, r2c4 <> 4, r3c4 <> 4, r5c6 <> 4, r6c6 <> 4, r3c4 <> 6
+(3.4) Hidden Pair: 2, 4 in r6 => r6c1 <> 8, r6c2 <> 1
+(2.0) Locked Pair: 2, 4 in b4 => r5c1 <> 4, r5c2 <> 4
+(3.0) Naked Pair: 1, 7 in c2 => r3c2 <> 1
+(3.7) Naked Triple (+): 4, 6, 9 in c5 => r3c5 <> 4, r1c5 <> 6, r3c5 <> 6, r8c6 <> 6, r1c5 <> 9, r9c5 <> 9
+(5.1) Naked Quadruple (+): 2, 4, 8, 9 in b1 => r3c3 <> 8, r1c3 <> 9, r2c5 <> 9
+(1.2) Hidden Single (In Block): r1c6 = 9 in b2
+(1.2) Hidden Single (In Block): r7c5 = 9 in b8
+(1.2) Hidden Single (In Block): r8c5 = 6 in b8
+(1.2) Hidden Single (In Block): r8c6 = 4 in b8
+(1.2) Hidden Single (In Block): r2c5 = 4 in b2
+(1.2) Hidden Single (In Block): r7c8 = 4 in b9
+(1.0) Full House: r7c7 = 6
+(1.5) Hidden Single (In Row): r8c7 = 2 in r8
+(1.2) Hidden Single (In Block): r4c8 = 2 in b6
+(1.2) Hidden Single (In Block): r8c9 = 7 in b9
+(1.5) Hidden Single (In Row): r6c6 = 6 in r6
+(1.2) Hidden Single (In Block): r5c6 = 1 in b5
+(1.2) Hidden Single (In Block): r1c4 = 6 in b2
+(1.2) Hidden Single (In Block): r1c5 = 3 in b2
+(1.2) Hidden Single (In Block): r3c5 = 1 in b2
+(1.0) Full House: r9c5 = 5
+(1.1) Last Digit: r3c4 = 5
+(1.2) Hidden Single (In Block): r9c6 = 3 in b8
+(1.0) Full House: r9c4 = 2
+(1.0) Full House: r3c6 = 2
+(1.0) Full House: r2c4 = 8
+(1.2) Hidden Single (In Block): r2c1 = 2 in b1
+(1.1) Last Digit: r6c2 = 2
+(1.2) Hidden Single (In Block): r6c1 = 4 in b4
+(1.2) Hidden Single (In Block): r3c2 = 4 in b1
+(1.2) Hidden Single (In Block): r3c3 = 6 in b1
+(1.0) Full House: r3c1 = 8
+(1.2) Hidden Single (In Block): r6c3 = 8 in b4
+(1.0) Full House: r6c7 = 1
+(1.1) Last Digit: r5c7 = 8
+(1.2) Hidden Single (In Block): r4c3 = 1 in b4
+(1.2) Hidden Single (In Block): r1c2 = 1 in b1
+(1.0) Full House: r1c3 = 7
+(1.0) Full House: r2c3 = 9
+(1.0) Full House: r5c2 = 7
+(1.0) Full House: r5c1 = 3
+(1.0) Full House: r8c1 = 9
+(1.0) Full House: r8c3 = 3
+(1.1) Last Digit: r4c4 = 3
+(1.0) Full House: r5c4 = 4
+(1.1) Last Digit: r4c9 = 4
+(1.0) Full House: r4c7 = 7
+(1.0) Full House: r9c7 = 9
+(1.0) Full House: r9c8 = 1
+(1.1) Last Digit: r2c9 = 1
+(1.0) Full House: r2c8 = 6
+(1.0) Full House: r5c8 = 9
+(1.0) Full House: r5c9 = 6
+Puzzle has been solved.
+Puzzle solution: 517639482239847561846512379691385724375421896428976135152798643983164257764253918
+Time elapsed: 00:00.00.102
+Technique used:
+20 * Full House
+6 * Last Digit
+26 * Hidden Single (In Block)
+3 * Hidden Single (In Row)
+1 * Locked Pair
+1 * Naked single
+6 * Claiming
+1 * Naked Pair
+1 * Hidden Pair
+2 * Naked Triple (+)
+1 * Naked Quadruple (+)
+Total solving steps count: 68
+Difficulty total: 102.3
+Puzzle rating: 5.1/1.2/1.2
+```
 
 
 ## Intro to Solution Folders
