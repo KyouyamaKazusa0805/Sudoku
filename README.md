@@ -12,10 +12,8 @@ A sudoku solver using brute forces and logical techniques (Update files graduall
 
 标题：*C# 版本和 IDE 使用情况*
 
-* C# version: 8.0
-  C# 版本：8.0
-* IDE using: Visual Studio 2019 V16.4
-  IDE 使用：Visual Studio 2019 V16.4
+* C# version: 8.0<br/>C# 版本：8.0
+* IDE using: Visual Studio 2019 V16.4<br/>IDE 使用：Visual Studio 2019 V16.4
 
 
 
