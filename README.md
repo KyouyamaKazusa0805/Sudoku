@@ -39,7 +39,7 @@ namespace Sudoku.Debugging
 }
 ```
 
-And the puzzle solution and analysis result will be displayed on console screen!
+And the puzzle solution and analysis result will be displayed on console screen, like this!
 
 ```
 Initial grid: 5.....482.3...7.........3.969..85.......2.......97..351.2.........1...5.764.....8
