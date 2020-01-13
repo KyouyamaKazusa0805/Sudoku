@@ -1,6 +1,6 @@
 # Sudoku
 
-A sudoku solver through brute forces and logical techniques (Update files gradually).
+A sudoku solver using brute forces and logical techniques (Update files gradually).
 
 
 
@@ -55,7 +55,7 @@ Here displays the introduction to all folders in this whole solution.
 * `Sudoku.Solving.Bf.Bitwise`
     * The bitwise brute force solver to a sudoku puzzle.
 * `Sudoku.Terminal`
-    * The terminal of this project. You can use console arguments (such as `--solve` to solve a grid). However, this project has not been implemented also.
+    * The terminal of this project. You can use console arguments (such as `--solve` to solve a grid).
 
 
 
@@ -276,4 +276,4 @@ Output:
 
 ## Author
 
-Sunnie, a student from Chengdu, China... An original undergraduate.
+Sunnie, from Chengdu, is an original undergraduate.
