@@ -52,5 +52,15 @@ namespace Sudoku.Data.Extensions
 				}
 			}
 		}
+		
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void ReverseBits(this ref int @this)
+		{
+			@this = ((@this >> 1) & 0x55555555) | ((@this & 0x55555555) << 1);
+			@this = ((@this >> 2) & 0x33333333) | ((@this & 0x33333333) << 2);
+			@this = ((@this >> 4) & 0x0f0f0f0f) | ((@this & 0x0f0f0f0f) << 4);
+			@this = ((@this >> 8) & 0x00ff00ff) | ((@this & 0x00ff00ff) << 8);
+			@this = (@this >> 16) | (@this << 16);
+		}
 	}
 }

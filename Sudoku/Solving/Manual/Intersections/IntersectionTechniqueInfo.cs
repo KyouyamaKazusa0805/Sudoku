@@ -25,6 +25,6 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		public override string ToString() =>
-			$"{Name}: {Digit + 1} (In {RegionUtils.ToString(BaseRegion)}) => {ConclusionCollection.ToString(Conclusions)}";
+			$"{Name}: {Digit + 1} in {RegionUtils.ToString(BaseRegion)} => {ConclusionCollection.ToString(Conclusions)}";
 	}
 }
