@@ -158,36 +158,19 @@ Here displays the introduction to all folders in this whole solution.
 这里陈列出所有本解决方案会使用到的文件夹的所有介绍。
 
 * `Sudoku.Core.Old`
-    * The implementation of the sudoku meta data, such as sudoku [grid](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core.Old/Data/Meta/Grid.cs) class and so on. Also provides some extension methods in this project, such as [string.Match([Pattern] string)](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core.Old/Data/Extensions/StringEx.cs#L10).
+    * The implementation of the sudoku meta data, such as sudoku [grid](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core.Old/Data/Meta/Grid.cs) class and so on. Also provides some extension methods in this project, such as [string.Match([Pattern] string)](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core.Old/Data/Extensions/StringEx.cs#L10).<br/>数独的基本数据的实现，比如[数独盘面](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core.Old/Data/Meta/Grid.cs)类和其它的。当然也为项目添加了大量的扩展方法，比如[string.Match([Pattern] string)](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core.Old/Data/Extensions/StringEx.cs#L10)。
 * `Sudoku`
-    * The newer implementation of sudoku meta data. Different than `Sudoku.Core.Old`, all files are re-implemented by newer logic. For example, older implementation of grid class uses `CellInfo` struct to describe all information in a cell; while newer one uses bitwise operations (using 12 bits to represent a cell information, 3 bits for cell status and other 9 bits are candidates status).
+    * The newer implementation of sudoku meta data. Different than `Sudoku.Core.Old`, all files are re-implemented by newer logic. For example, older implementation of grid class uses `CellInfo` struct to describe all information in a cell; while newer one uses bitwise operations (using 12 bits to represent a cell information, 3 bits for cell status and other 9 bits are candidates status).<br/>新的项目，和 `Sudoku.Core.Old` 一样但更新。所有的代码都被重新以新的逻辑实现过。比如，以前的盘面类使用的是 `CellInfo` 结构来描述的单元格信息，不过新的实现使用的是处理起来更快的二进制比特序列来表示的（使用 12 个比特表示一个单元格，末尾 9 个比特表示单元格数字 1 到 9 的填数情况，而高 3 比特位则是单元格状态）。
 * `Sudoku.Debugging`
-    * The console program aiming to debugging codes logic of other projects.
+    * The console program aiming to debugging codes logic of other projects.<br/>旨在解决这整个解决方案里其它项目的 bug 和调试操作的项目。
 * `Sudoku.Diagnostics`
-    * The diagnostic controlling through all over the solution. In addition, those files are used with my own custom code analyzer and fixer (But this analyzer is not included in this solution. Therefore codes has not been uploaded).
+    * The diagnostic controlling through all over the solution. In addition, those files are used with my own custom code analyzer and fixer (But this analyzer is not included in this solution. Therefore codes has not been uploaded).<br/>控制整个解决方案执行行为和编译期间行为的项目。另外，所有的文件都会依赖于我自己实现的分析器和代码修补工具（不过这一部分代码不属于项目，所以我没有上传）。
 * `Sudoku.IO`
-    * I/O operations to sudoku data (This project has not been implemented).
+    * I/O operations to sudoku data (This project has not been implemented).<br/>控制数独文件流处理的项目（不过这个项目尚未实现）。
 * `Sudoku.Solving.Bf.Bitwise`
-    * The bitwise brute force solver to a sudoku puzzle.
+    * The bitwise brute force solver to a sudoku puzzle.<br/>项目解题期间使用的位运算爆破算法（JCZSolver）的源代码。
 * `Sudoku.Terminal`
-    * The terminal of this project. You can use console arguments (such as `--solve` to solve a grid).
-
-
-
-* `Sudoku.Core.Old`
-    * 数独的基本数据的实现，比如[数独盘面](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core.Old/Data/Meta/Grid.cs)类和其它的。当然也为项目添加了大量的扩展方法，比如[string.Match([Pattern] string)](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core.Old/Data/Extensions/StringEx.cs#L10)。
-* `Sudoku`
-    * 新的项目，和 `Sudoku.Core.Old` 一样但更新。所有的代码都被重新以新的逻辑实现过。比如，以前的盘面类使用的是 `CellInfo` 结构来描述的单元格信息，不过新的实现使用的是处理起来更快的二进制比特序列来表示的（使用 12 个比特表示一个单元格，末尾 9 个比特表示单元格数字 1 到 9 的填数情况，而高 3 比特位则是单元格状态）。
-* `Sudoku.Debugging`
-    * 旨在解决这整个解决方案里其它项目的 bug 和调试操作的项目。
-* `Sudoku.Diagnostics`
-    * 控制整个解决方案执行行为和编译期间行为的项目。另外，所有的文件都会依赖于我自己实现的分析器和代码修补工具（不过这一部分代码不属于项目，所以我没有上传）。
-* `Sudoku.IO`
-    * 控制数独文件流处理的项目（不过这个项目尚未实现）。
-* `Sudoku.Solving.Bf.Bitwise`
-    * 项目解题期间使用的位运算爆破算法（JCZSolver）的源代码。
-* `Sudoku.Terminal`
-    * 这整个解决方案里的终端控制部分。你可以在控制台输入比如 `--solve` 来完成对一道题的分析和解题。
+    * The terminal of this project. You can use console arguments (such as `--solve` to solve a grid).<br/>这整个解决方案里的终端控制部分。你可以在控制台输入比如 `--solve` 来完成对一道题的分析和解题。
 
 
 
@@ -200,16 +183,9 @@ Here displays the introduction to files in root folder.
 这里陈列出根目录下的文件的基本说明。
 
 * `.editorconfig`
-    * Editor configuration file.
+    * Editor configuration file.<br/>用户配置文件（项目整体控制编译器错误等信息的控制信息，以及控制成员名称规范的信息）。
 * `Priority of operators.txt`
-    * Operators priority through C# language. (P.S. I don't know why I will upload this file, maybe of vital importance?)
-
-
-
-* `.editorconfig`
-    * 用户配置文件（项目整体控制编译器错误等信息的控制信息，以及控制成员名称规范的信息）。
-* `Priority of operators.txt`
-    * C# 语言里的运算符的优先级表。（我也不知道为啥我要上传它，可能它很重要？）
+    * Operators priority through C# language. (P.S. I don't know why I will upload this file, maybe of vital importance?)<br/>C# 语言里的运算符的优先级表。（我也不知道为啥我要上传它，可能它很重要？）
 
 
 
@@ -269,15 +245,11 @@ Output will treat:
 
 输出：
 
-* empty cells as `'.'` character,
-* modifiable values as `'+digit'`,
-* candidates as `':candidateList'`.
+* empty cells as `'.'` character,<br/>空格用 `'.'` 占位；
+* modifiable values as `'+digit'`,<br/>可修改数值用 `'+数字'` 形式显示；
+* candidates as `':candidateList'`.<br/>候选数使用 `:候选数序列` 形式显示。
 
 
-
-* 空格用 `'.'` 占位；
-* 可修改数值用 `'+数字'` 形式显示；
-* 候选数使用 `:候选数序列` 形式显示。
 
 All examples are shown at the end of this part.
 
