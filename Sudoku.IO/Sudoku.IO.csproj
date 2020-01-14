@@ -5,4 +5,8 @@
 		<Nullable>Enable</Nullable>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Sudoku\Sudoku.Core.csproj" />
+	</ItemGroup>
+
 </Project>
