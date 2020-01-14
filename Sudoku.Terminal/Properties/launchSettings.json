@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Sudoku.Terminal": {
+      "commandName": "Project",
+      "commandLineArgs": "--solve 006000020800074090900800700000010305090000040102080000001009008040620001080000200 --using dlx"
+    }
+  }
+}
