@@ -71,23 +71,39 @@ namespace Sudoku.Solving
 		{
 			get
 			{
-				return HasSolved
-					? MaxDifficulty switch
+				var maxLevel = DifficultyLevels.Unknown;
+				if (HasSolved && !(SolvingSteps is null))
+				{
+					foreach (var step in SolvingSteps)
 					{
-						_ when MaxDifficulty >= 1.0m && MaxDifficulty <= 1.2m => DifficultyLevels.VeryEasy,
-						_ when MaxDifficulty > 1.2m && MaxDifficulty <= 1.5m => DifficultyLevels.Easy,
-						_ when MaxDifficulty > 1.5m && MaxDifficulty <= 2.3m => DifficultyLevels.Moderate,
-						_ when MaxDifficulty > 2.3m && MaxDifficulty <= 2.8m => DifficultyLevels.Advanced,
-						_ when MaxDifficulty > 2.8m && MaxDifficulty <= 3.4m => DifficultyLevels.Hard,
-						_ when MaxDifficulty > 3.4m && MaxDifficulty <= 4.4m => DifficultyLevels.VeryHard,
-						_ when MaxDifficulty > 4.5m && MaxDifficulty <= 6.2m => DifficultyLevels.Fiendish,
-						_ when MaxDifficulty > 6.2m && MaxDifficulty <= 7.6m => DifficultyLevels.Diabolical,
-						_ when MaxDifficulty > 7.6m && MaxDifficulty <= 8.9m => DifficultyLevels.Crazy,
-						_ when MaxDifficulty > 8.9m && MaxDifficulty <= 10.0m => DifficultyLevels.Nightmare,
-						_ when MaxDifficulty > 10.0m && MaxDifficulty <= 12.0m => DifficultyLevels.BeyondNightmare,
-						_ => DifficultyLevels.Unknown
+						if (step.DifficultyLevel > maxLevel)
+						{
+							maxLevel = step.DifficultyLevel;
+						}
 					}
-					: DifficultyLevels.Unknown;
+				}
+
+				return maxLevel;
+
+				#region Deprecated code
+				//return HasSolved
+				//	? MaxDifficulty switch
+				//	{
+				//		_ when MaxDifficulty >= 1.0m && MaxDifficulty <= 1.2m => DifficultyLevels.VeryEasy,
+				//		_ when MaxDifficulty > 1.2m && MaxDifficulty <= 1.5m => DifficultyLevels.Easy,
+				//		_ when MaxDifficulty > 1.5m && MaxDifficulty <= 2.3m => DifficultyLevels.Moderate,
+				//		_ when MaxDifficulty > 2.3m && MaxDifficulty <= 2.8m => DifficultyLevels.Advanced,
+				//		_ when MaxDifficulty > 2.8m && MaxDifficulty <= 3.4m => DifficultyLevels.Hard,
+				//		_ when MaxDifficulty > 3.4m && MaxDifficulty <= 4.4m => DifficultyLevels.VeryHard,
+				//		_ when MaxDifficulty > 4.5m && MaxDifficulty <= 6.2m => DifficultyLevels.Fiendish,
+				//		_ when MaxDifficulty > 6.2m && MaxDifficulty <= 7.6m => DifficultyLevels.Diabolical,
+				//		_ when MaxDifficulty > 7.6m && MaxDifficulty <= 8.9m => DifficultyLevels.Crazy,
+				//		_ when MaxDifficulty > 8.9m && MaxDifficulty <= 10.0m => DifficultyLevels.Nightmare,
+				//		_ when MaxDifficulty > 10.0m && MaxDifficulty <= 12.0m => DifficultyLevels.BeyondNightmare,
+				//		_ => DifficultyLevels.Unknown
+				//	}
+				//	: DifficultyLevels.Unknown;
+				#endregion
 			}
 		}
 

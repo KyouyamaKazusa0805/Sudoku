@@ -108,7 +108,9 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// You should pass the value by a positive integer at least 1.
 		/// </param>
 		/// <returns>The solution count of the puzzle.</returns>
-		[DllImport("Sudoku.BitwiseSolver (x86).dll", EntryPoint = "Solve", CharSet = CharSet.Unicode)]
+		[DllImport("Sudoku.BitwiseSolver (x86).dll",
+			EntryPoint = "Solve", CharSet = CharSet.Unicode,
+			CallingConvention = CallingConvention.StdCall)]
 		private static extern int Solve32(
 			[MarshalAs(UnmanagedType.LPWStr)] string puzzle,
 			[MarshalAs(UnmanagedType.LPWStr)] StringBuilder solution,
@@ -124,7 +126,9 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// You should pass the value by a positive integer at least 1.
 		/// </param>
 		/// <returns>The solution count of the puzzle.</returns>
-		[DllImport("Sudoku.BitwiseSolver (x64).dll", EntryPoint = "Solve", CharSet = CharSet.Unicode)]
+		[DllImport("Sudoku.BitwiseSolver (x64).dll",
+			EntryPoint = "Solve", CharSet = CharSet.Unicode,
+			CallingConvention = CallingConvention.StdCall)]
 		private static extern int Solve64(
 			[MarshalAs(UnmanagedType.LPWStr)] string puzzle,
 			[MarshalAs(UnmanagedType.LPWStr)] StringBuilder solution,

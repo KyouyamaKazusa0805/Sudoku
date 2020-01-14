@@ -36,7 +36,7 @@ namespace Sudoku.Solving
 
 		public bool Equals(Conclusion other) => GetHashCode() == other.GetHashCode();
 
-		public override int GetHashCode() => CellOffset * 9 + Digit;
+		public override int GetHashCode() => ((int)Type + 1) * (CellOffset * 9 + Digit);
 
 		public override string ToString()
 		{

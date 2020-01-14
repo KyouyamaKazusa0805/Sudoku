@@ -72,8 +72,9 @@ namespace Sudoku.Data.Meta
 						}
 
 						int curDigit, peerDigit;
-						if ((curDigit = this[i]) != -1)
+						if (GetCellStatus(i) != CellStatus.Empty)
 						{
+							curDigit = this[i];
 							foreach (int peerOffset in new GridMap(i).Offsets)
 							{
 								if (peerOffset == i)
@@ -559,8 +560,9 @@ namespace Sudoku.Data.Meta
 					int value = gridValues[i, j];
 					if (value != 0)
 					{
-						result[i * 9 + j] = value - 1;
-						result.SetCellStatus(i, CellStatus.Given);
+						int pos = i * 9 + j;
+						result[pos] = value - 1;
+						result.SetCellStatus(pos, CellStatus.Given);
 					}
 				}
 			}
