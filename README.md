@@ -2,9 +2,9 @@
 
 标题：*数独*
 
-A sudoku solver using brute forces and logical techniques (Update files gradually).
+A sudoku handling SDK using brute forces and logical techniques (Update files gradually).
 
-一个使用暴力破解和普通逻辑算法解题的数独分析解题工具包（逐渐更新）。
+一个使用暴力破解和普通逻辑算法解题的数独分析解题 SDK（逐渐更新）。
 
 
 
@@ -25,28 +25,25 @@ Clone this repo, and you can take all codes!
 
 只需要你克隆这个仓库就可以带走所有的代码了！
 
-You can write code like this:
+You can write code in your computer like this:
 
 你可以在你的机器上使用这样的代码：
 
 ```csharp
-namespace Sudoku.Debugging
+internal static class Program
 {
-    internal static class Program
+    private static void Main()
     {
-        private static void Main()
+        var solver = new Sudoku.Solving.Manual.ManualSolver
         {
-            var solver = new Sudoku.Solving.Manual.ManualSolver
-            {
-                OptimizedApplyingOrder = true,
-                EnableFullHouse = true,
-                EnableLastDigit = true
-            };
-            var grid = Sudoku.Data.Meta.Grid.Parse(
-                "500000482030007000000000309690085000000020000000970035102000000000100050764000008");
-            var analysisResult = solver.Solve(grid);
-            System.Console.WriteLine(analysisResult);
-        }
+            OptimizedApplyingOrder = true,
+            EnableFullHouse = true,
+            EnableLastDigit = true
+        };
+        var grid = Sudoku.Data.Meta.Grid.Parse(
+            "500000482030007000000000309690085000000020000000970035102000000000100050764000008");
+        var analysisResult = solver.Solve(grid);
+        System.Console.WriteLine(analysisResult);
     }
 }
 ```
