@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
-using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
 using Sudoku.Runtime;
 
@@ -10,9 +10,6 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 {
 	public sealed class DancingLinksSolver : Solver
 	{
-		private readonly StringBuilder _debuggingInfoStringBuilder = new StringBuilder();
-
-
 		public override string SolverName => "Dancing links";
 
 
@@ -47,26 +44,48 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 				var list = new TorodialDoubleLinkedList<bool>(9 * 9 << 2);
 				list.ProcessMatrix(booleanList);
 
-				var results = DancingLinks(list);
-				if (results is null)
+				#region Deprecated code
+				//var results = DancingLinks(list);
+				//if (results is null)
+				//{
+				//	throw new NoSolutionException();
+				//}
+				//else
+				//{
+				//	sb.AppendLine("Linking IDs (For debugging):");
+				//	sb.AppendLine(_debuggingInfoStringBuilder);
+				//	sb.AppendLine("Filling steps:");
+				//	foreach (var result in results)
+				//	{
+				//		var (r, c, v) = rcvList[result.Index];
+				//
+				//		sb.AppendLine($"r{r + 1}c{c + 1} = {v};");
+				//		s.Values[r, c] = v;
+				//	}
+				//
+				//	return new AnalysisResult(
+				//		initialGrid: Grid.CreateInstance(gridValues),
+				//		solverName: SolverName,
+				//		hasSolved: true,
+				//		solution: Grid.CreateInstance(s.Values),
+				//		elapsedTime: stopwatch.Elapsed,
+				//		solvingList: null,
+				//		additional: sb.ToString());
+				//}
+				#endregion
+
+				var resultSeries = Search(list);
+				var grid = Grid.CreateInstance(gridValues);
+				if (resultSeries.Count == 1)
 				{
-					throw new NoSolutionException();
-				}
-				else
-				{
-					sb.AppendLine("Linking IDs (For debugging):");
-					sb.AppendLine(_debuggingInfoStringBuilder);
-					sb.AppendLine("Filling steps:");
-					foreach (var result in results)
+					foreach (var result in resultSeries[0])
 					{
 						var (r, c, v) = rcvList[result.Index];
-
-						sb.AppendLine($"r{r + 1}c{c + 1} = {v};");
 						s.Values[r, c] = v;
 					}
 
 					return new AnalysisResult(
-						initialGrid: Grid.CreateInstance(gridValues),
+						initialGrid: grid,
 						solverName: SolverName,
 						hasSolved: true,
 						solution: Grid.CreateInstance(s.Values),
@@ -74,8 +93,16 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 						solvingList: null,
 						additional: sb.ToString());
 				}
+				else if (resultSeries.Count == 0)
+				{
+					throw new NoSolutionException(grid);
+				}
+				else
+				{
+					throw new MultipleSolutionsException(grid);
+				}
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
 				if (stopwatch.IsRunning)
 				{
@@ -89,23 +116,21 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 					solution: null,
 					elapsedTime: stopwatch.Elapsed,
 					solvingList: null,
-					additional: sb.ToString());
+					additional: $"{ex.Message}{Environment.NewLine}{sb}");
 			}
 		}
 
-		private IList<Node<bool>>? DancingLinks(TorodialDoubleLinkedList<bool> list) =>
-			Search(list, new List<Node<bool>>());
+		[Obsolete]
+		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
+		private IReadOnlyList<Node<bool>>? Search_Older(TorodialDoubleLinkedList<bool> list) =>
+			SearchRecursively(list, new List<Node<bool>>());
 
-		private IList<Node<bool>>? Search(TorodialDoubleLinkedList<bool> list, List<Node<bool>> solutions)
+		[Obsolete]
+		private IReadOnlyList<Node<bool>>? SearchRecursively(
+			TorodialDoubleLinkedList<bool> list, List<Node<bool>> solutions)
 		{
 			if (ReferenceEquals(list.Head.Right, list.Head))
 			{
-				foreach (var result in solutions)
-				{
-					_debuggingInfoStringBuilder.AppendLine((result.ColumnNode.Id, result.Index));
-				}
-
-				_debuggingInfoStringBuilder.AppendLine();
 				return solutions;
 			}
 			else
@@ -130,7 +155,7 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 							Cover(rightNode);
 						}
 
-						var result = Search(list, solutions);
+						var result = SearchRecursively(list, solutions);
 
 						if (!(result is null))
 						{
@@ -155,6 +180,62 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 			}
 
 			return null;
+		}
+
+		private static IReadOnlyList<IReadOnlyList<Node<bool>>> Search(
+			TorodialDoubleLinkedList<bool> list)
+		{
+			var resultNodeSeries = new List<List<Node<bool>>>();
+			SearchRecursively1(list, new List<Node<bool>>(), resultNodeSeries);
+			return resultNodeSeries;
+		}
+
+		private static void SearchRecursively1(
+			TorodialDoubleLinkedList<bool> list, List<Node<bool>> solutions,
+			List<List<Node<bool>>> resultNodeSeries)
+		{
+			if (ReferenceEquals(list.Head.Right, list.Head))
+			{
+				resultNodeSeries.Add(new List<Node<bool>>(solutions));
+			}
+
+			var tempColumn = GetNextColumn(list);
+			if (!(tempColumn is null))
+			{
+				Cover(tempColumn);
+				Node<bool> rowNode = tempColumn;
+				while (!ReferenceEquals(rowNode.Down, tempColumn))
+				{
+					rowNode = rowNode.Down;
+
+					solutions.Add(rowNode);
+
+					var rightNode = rowNode;
+
+					while (!ReferenceEquals(rightNode.Right, rowNode))
+					{
+						rightNode = rightNode.Right;
+
+						Cover(rightNode);
+					}
+
+					SearchRecursively1(list, solutions, resultNodeSeries);
+
+					solutions.Remove(rowNode);
+					tempColumn = rowNode.ColumnNode;
+
+					var leftNode = rowNode;
+
+					while (!ReferenceEquals(leftNode.Left, rowNode))
+					{
+						leftNode = leftNode.Left;
+
+						Uncover(leftNode);
+					}
+				}
+
+				Uncover(tempColumn);
+			}
 		}
 
 		private static ColumnNode<bool>? GetNextColumn(TorodialDoubleLinkedList<bool> list)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Sudoku.Data.Meta;
+using Sudoku.Runtime;
 
 namespace Sudoku.Solving.BruteForces.Linqing
 {
@@ -21,6 +22,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 
 			return results.Count switch
 			{
+				0 => throw new NoSolutionException(grid),
 				1 => new AnalysisResult(
 					initialGrid: grid,
 					solverName: SolverName,
@@ -29,14 +31,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 					elapsedTime: stopwatch.Elapsed,
 					solvingList: null,
 					additional: null),
-				_ => new AnalysisResult(
-					initialGrid: grid,
-					solverName: SolverName,
-					hasSolved: false,
-					solution: null,
-					elapsedTime: stopwatch.Elapsed,
-					solvingList: null,
-					additional: null),
+				_ => throw new MultipleSolutionsException(grid)
 			};
 		}
 

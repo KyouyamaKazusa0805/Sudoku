@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 using Sudoku.Data.Meta;
+using Sudoku.Runtime;
 
 namespace Sudoku.Solving.BruteForces.Bitwise
 {
@@ -22,16 +23,10 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				stopwatch.Start();
 				int count = Solve32(str, sb, 2);
 				stopwatch.Stop();
+
 				return count switch
 				{
-					0 => new AnalysisResult(
-						initialGrid: grid,
-						solverName: SolverName,
-						hasSolved: false,
-						solution: null,
-						elapsedTime: stopwatch.Elapsed,
-						solvingList: null,
-						additional: null),
+					0 => throw new NoSolutionException(grid),
 					1 => new AnalysisResult(
 						initialGrid: grid,
 						solverName: SolverName,
@@ -40,31 +35,20 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						elapsedTime: stopwatch.Elapsed,
 						solvingList: null,
 						additional: null),
-					_ => new AnalysisResult(
-						initialGrid: grid,
-						solverName: SolverName,
-						hasSolved: false,
-						solution: Grid.Parse(sb.ToString()),
-						elapsedTime: stopwatch.Elapsed,
-						solvingList: null,
-						additional: null),
+					_ => throw new MultipleSolutionsException(grid)
 				};
 			}
 			catch (Exception ex1)
 			{
 				try
 				{
+					stopwatch.Restart();
 					int count = Solve64(str, sb, 2);
+					stopwatch.Stop();
+
 					return count switch
 					{
-						0 => new AnalysisResult(
-							initialGrid: grid,
-							solverName: SolverName,
-							hasSolved: false,
-							solution: null,
-							elapsedTime: stopwatch.Elapsed,
-							solvingList: null,
-							additional: null),
+						0 => throw new NoSolutionException(grid),
 						1 => new AnalysisResult(
 							initialGrid: grid,
 							solverName: SolverName,
@@ -73,14 +57,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 							elapsedTime: stopwatch.Elapsed,
 							solvingList: null,
 							additional: null),
-						_ => new AnalysisResult(
-							initialGrid: grid,
-							solverName: SolverName,
-							hasSolved: false,
-							solution: Grid.Parse(sb.ToString()),
-							elapsedTime: stopwatch.Elapsed,
-							solvingList: null,
-							additional: null),
+						_ => throw new MultipleSolutionsException(grid)
 					};
 				}
 				catch (Exception ex2)
@@ -90,9 +67,9 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						solverName: SolverName,
 						hasSolved: false,
 						solution: null,
-						elapsedTime: TimeSpan.Zero,
+						elapsedTime: stopwatch.Elapsed,
 						solvingList: null,
-						additional: $"{ex1}{Environment.NewLine}{ex2}");
+						additional: $"{ex1.Message}{Environment.NewLine}{ex2.Message}");
 				}
 			}
 		}

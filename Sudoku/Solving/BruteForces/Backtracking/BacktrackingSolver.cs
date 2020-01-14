@@ -8,11 +8,16 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 {
 	public sealed class BacktrackingSolver : Solver
 	{
+		private Grid _grid = null!;
+
+
 		public override string SolverName => "Backtracking";
 
 
 		public override AnalysisResult Solve(Grid grid)
 		{
+			_grid = grid;
+
 			int[] gridValues = grid.ToArray();
 			int[]? result = null;
 			int solutionsCount = 0;
@@ -28,7 +33,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 					initialGrid: grid,
 					solverName: SolverName,
 					hasSolved: true,
-					solution: Grid.CreateInstance(result ?? throw new NoSolutionException()),
+					solution: Grid.CreateInstance(result ?? throw new NoSolutionException(grid)),
 					elapsedTime: stopwatch.Elapsed,
 					solvingList: null,
 					additional: null);
@@ -52,7 +57,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 		}
 
 
-		private static void BacktrackinglySolve(
+		private void BacktrackinglySolve(
 			ref int solutionsCount, ref int[]? result, int[] gridValues, int finishedCellsCount)
 		{
 			if (finishedCellsCount == 81)
@@ -60,7 +65,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 				// Solution found.
 				if (++solutionsCount > 1)
 				{
-					throw new MultipleSolutionsException();
+					throw new MultipleSolutionsException(_grid);
 				}
 				else // solutionCount <= 1
 				{
@@ -100,6 +105,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 				gridValues[CellUtils.GetOffset(r, c)] = 0;
 			}
 		}
+
 
 		private static bool IsValid(int[] gridValues, int r, int c)
 		{
