@@ -17,7 +17,7 @@ namespace Sudoku.Data.Extensions
 			return @this;
 		}
 
-		public static StringBuilder RemoveFromLast(this StringBuilder @this, int length) =>
+		public static StringBuilder RemoveFromEnd(this StringBuilder @this, int length) =>
 			@this.Remove(@this.Length - length, length);
 
 		public static StringBuilder AppendLine(this StringBuilder @this, char value)

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data.Extensions;
 using Sudoku.Solving.Checking;
@@ -139,14 +140,48 @@ namespace Sudoku.Data.Meta
 				}
 				else if (value == -1)
 				{
-					// If 'value' is -1, we should re-compute all candidates and
-					// check the grid is valid or not.
-					// Note that reset candidates does not need to trigger the event.
-					var tempGrid = CreateInstance(ToArray());
-					for (int i = 0; i < 81; i++)
+					// If 'value' is -1, we should re-compute all candidates.
+					// Note that reset candidates may not trigger the event.
+#if I_DONT_KNOW_WHY_GENERATING_BUG
+					if (GetCellStatus(offset) == CellStatus.Modifiable)
 					{
-						_masks[i] = tempGrid.GetMask(i);
+						short resultMask = (int)CellStatus.Empty << 9;
+						foreach (int peerOffset in new GridMap(offset).Offsets)
+						{
+							if (peerOffset == offset)
+							{
+								continue;
+							}
+					
+							// Check the digit in its peer cells aiming to re-computing
+							// the candidates in the cell with offset 'offset'.
+							if (GetCellStatus(peerOffset) != CellStatus.Empty)
+							{
+								resultMask |= (short)(1 << this[peerOffset]);
+								continue;
+							}
+					
+							// Then modify peer cells mask.
+							int digit = this[offset];
+							if (new GridMap(peerOffset).Offsets.All(
+								o => o == peerOffset || GetCellStatus(o) == CellStatus.Empty || this[o] != digit))
+							{
+								_masks[peerOffset] &= (short)~(1 << digit);
+							}
+						}
+					
+						_masks[offset] = resultMask;
 					}
+#else
+					if (GetCellStatus(offset) == CellStatus.Modifiable)
+					{
+						var tempGrid = Parse(ToString("."));
+						for (int i = 0; i < 81; i++)
+						{
+							_masks[i] = tempGrid.GetMask(i);
+						}
+					}
+#endif
 				}
 			}
 		}

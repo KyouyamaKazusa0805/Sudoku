@@ -35,7 +35,7 @@ namespace Sudoku.Drawing
 				{
 					sb.Append($"r{cellOffset / 9 + 1}c{cellOffset % 9 + 1}{separator}");
 				}
-				sb.RemoveFromLast(separator.Length);
+				sb.RemoveFromEnd(separator.Length);
 				sb.AppendLine();
 			}
 			if (!(CandidateOffsets is null))
@@ -46,7 +46,7 @@ namespace Sudoku.Drawing
 				{
 					sb.Append($"r{candidateOffset / 81 + 1}{candidateOffset % 81 / 9 + 1}({candidateOffset % 9 + 1}){separator}");
 				}
-				sb.RemoveFromLast(separator.Length);
+				sb.RemoveFromEnd(separator.Length);
 				sb.AppendLine();
 			}
 			if (!(RegionOffsets is null))
@@ -63,7 +63,7 @@ namespace Sudoku.Drawing
 						_ => throw new Exception("Never.")
 					}}{regionOffset % 9}{separator}");
 				}
-				sb.RemoveFromLast(separator.Length);
+				sb.RemoveFromEnd(separator.Length);
 				sb.AppendLine();
 			}
 			if (!(LinkMasks is null))
@@ -78,7 +78,7 @@ namespace Sudoku.Drawing
 					sb.Append($"r{baseCandidate / 81 + 1}{baseCandidate % 81 / 9 + 1}({baseCandidate % 9 + 1}) -> ");
 					sb.Append($"r{targetCandidate / 81 + 1}{targetCandidate % 81 / 9 + 1}({targetCandidate % 9 + 1}){separator}");
 				}
-				sb.RemoveFromLast(separator.Length);
+				sb.RemoveFromEnd(separator.Length);
 				sb.AppendLine();
 			}
 

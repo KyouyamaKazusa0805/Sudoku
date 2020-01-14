@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Utils
 			foreach (var conslusion in conclusions)
 				sb.Append($"{conslusion}{separator}");
 
-			sb.RemoveFromLast(separator.Length);
+			sb.RemoveFromEnd(separator.Length);
 			return sb.ToString();
 		}
 	}

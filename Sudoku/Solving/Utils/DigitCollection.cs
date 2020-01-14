@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Utils
 			{
 				sb.Append($"{digit + 1}{separator}");
 			}
-			sb.RemoveFromLast(separator.Length);
+			sb.RemoveFromEnd(separator.Length);
 
 			return sb.ToString();
 		}

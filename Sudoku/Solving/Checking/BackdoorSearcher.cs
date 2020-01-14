@@ -1,12 +1,17 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
 using Sudoku.Solving.Manual;
 
 namespace Sudoku.Solving.Checking
 {
-	public sealed class BackdoorSearcher
+	public sealed class BackdoorSearcher : IEnumerable<IReadOnlyList<Conclusion>>
 	{
+		private readonly List<List<Conclusion>> _result = new List<List<Conclusion>>();
+
 		private static readonly ManualSolver TestSolver = new ManualSolver
 		{
 			OptimizedApplyingOrder = false,
@@ -15,25 +20,80 @@ namespace Sudoku.Solving.Checking
 		};
 
 
-		public BackdoorSearcher(int depth)
+		public BackdoorSearcher(Grid grid, int depth)
 		{
-			Depth = depth > 0 && depth <= 3
+			Depth = depth >= 0 && depth <= 3
 				? depth
 				: throw new ArgumentOutOfRangeException(nameof(depth));
+
+			FindBackdoors(grid);
 		}
 
 
 		public int Depth { get; }
 
 
-		public IReadOnlyList<IReadOnlyList<Conclusion>> FindBackdoors(Grid grid)
+		public override string ToString()
+		{
+			const string separator = ", ";
+			var sb = new StringBuilder();
+
+			foreach (var eachConclusionList in _result)
+			{
+				foreach (var conclusion in eachConclusionList)
+				{
+					sb.Append($"{conclusion}{separator}");
+				}
+
+				sb.RemoveFromEnd(separator.Length);
+				sb.AppendLine();
+			}
+
+			return sb.ToString();
+		}
+
+		public IEnumerator<IReadOnlyList<Conclusion>> GetEnumerator() =>
+			_result.GetEnumerator();
+
+		IEnumerator IEnumerable.GetEnumerator() => _result.GetEnumerator();
+
+		private void FindBackdoors(Grid grid)
 		{
 			if (!grid.IsUnique(out var solution))
 			{
 				throw new InvalidOperationException("The puzzle does not have unique solution.");
 			}
 
-			// Store all incorrect candidates.
+			var tempGrid = grid.Clone();
+
+			// Search backdoors (Assignments).
+			for (int cellOffset = 0; cellOffset < 81; cellOffset++)
+			{
+				if (tempGrid.GetCellStatus(cellOffset) != CellStatus.Empty)
+				{
+					continue;
+				}
+
+				int digit = solution[cellOffset];
+				tempGrid[cellOffset] = digit;
+
+				var analysisResult = TestSolver.Solve(tempGrid);
+				if (analysisResult.HasSolved
+					&& analysisResult.DifficultyLevel == DifficultyLevels.Easy)
+				{
+					// Solve successfully.
+					_result.Add(new List<Conclusion>
+					{
+						new Conclusion(ConclusionType.Assignment, cellOffset, digit)
+					});
+				}
+
+				// Restore data.
+				// Simply assigning to trigger the event to re-compute all candidates.
+				tempGrid[cellOffset] = -1;
+			}
+
+			// Store all incorrect candidates to prepare for search elimination backdoors.
 			var incorrectCandidates = new IList<int>[81];
 			for (int cellOffset = 0; cellOffset < 81; cellOffset++)
 			{
@@ -55,10 +115,8 @@ namespace Sudoku.Solving.Checking
 				}
 			}
 
-			// Search backdoors.
-			var result = new List<IReadOnlyList<Conclusion>>();
+			// Search backdoors (Eliminations).
 			var tempList = new List<Conclusion>();
-			var tempGrid = grid.Clone();
 			for (int c1 = 0; c1 < 82 - Depth; c1++)
 			{
 				if (tempGrid.GetCellStatus(c1) != CellStatus.Empty)
@@ -121,7 +179,7 @@ namespace Sudoku.Solving.Checking
 													{
 														// Solve successfully.
 														// Note this condition.
-														result.Add(new List<Conclusion>(tempList));
+														_result.Add(new List<Conclusion>(tempList));
 													}
 
 													tempGrid[c3, d3] = false;
@@ -133,7 +191,7 @@ namespace Sudoku.Solving.Checking
 									else
 									{
 										// Solve successfully.
-										result.Add(new List<Conclusion>(tempList));
+										_result.Add(new List<Conclusion>(tempList));
 										tempList.RemoveAt(tempList.Count - 1);
 									}
 
@@ -146,7 +204,7 @@ namespace Sudoku.Solving.Checking
 					else
 					{
 						// Solve successfully.
-						result.Add(new List<Conclusion>(tempList));
+						_result.Add(new List<Conclusion>(tempList));
 						tempList.RemoveAt(tempList.Count - 1);
 					}
 
@@ -154,9 +212,6 @@ namespace Sudoku.Solving.Checking
 					tempList.Clear();
 				} // foreach cand1 in incorrectCandidates[c1]
 			} // for c1 0..(82 - Depth)
-
-			// Return the value.
-			return result;
 		}
 	}
 }
