@@ -6,7 +6,7 @@ using Sudoku.Solving.BruteForces.DancingLinks;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Utils;
 
-namespace Sudoku.Solving.Checking
+namespace Sudoku.Checking
 {
 	public static class PuzzleAttributeChecker
 	{

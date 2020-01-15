@@ -20,13 +20,13 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{1f7f41df-92ec-4b50-a23d-dbab0275c12e}</ProjectGuid>
-    <RootNamespace>Sudoku_Solving_Bf_Bitwise</RootNamespace>
+    <ProjectGuid>{703b7fe8-f11e-47a0-bcd4-18a495b24c3a}</ProjectGuid>
+    <RootNamespace>Sudoku_Solving_BruteForces_Bitwise</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -126,11 +126,11 @@
     <ClCompile Include="BitwiseSolver.c" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sudoku.BitwiseSolver (x64).dll" />
-    <None Include="Sudoku.BitwiseSolver (x86).dll" />
+    <ClInclude Include="BitwiseSolver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BitwiseSolver.h" />
+    <None Include="Sudoku.BitwiseSolver (x64).dll" />
+    <None Include="Sudoku.BitwiseSolver (x86).dll" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

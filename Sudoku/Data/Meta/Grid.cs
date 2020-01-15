@@ -2,10 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data.Extensions;
-using Sudoku.Solving.Checking;
 
 namespace Sudoku.Data.Meta
 {
@@ -96,8 +94,6 @@ namespace Sudoku.Data.Meta
 				return SimplyValidate();
 			}
 		}
-
-		public bool HasUniqueSolution => this.IsUnique(out _);
 
 
 		public int this[int offset]

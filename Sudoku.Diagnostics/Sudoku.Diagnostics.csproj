@@ -5,8 +5,10 @@
 		<Nullable>Enable</Nullable>
 		<Authors>Sunnie</Authors>
 		<Company>Sunnie</Company>
-		<Description>Diagnostic utility (Code analysis attributes) in this whole project.
-These are always used for both programmers and code analyzer and fixer.</Description>
+		<Description>
+			Diagnostic utility (Code analysis attributes) in this whole project.
+			These are always used for both programmers and code analyzer and fixer.
+		</Description>
 	</PropertyGroup>
 
 </Project>

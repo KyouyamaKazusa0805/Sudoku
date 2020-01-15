@@ -15,14 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sudoku.BitwiseSolver (x64).dll">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Sudoku.BitwiseSolver (x86).dll">
-      <Filter>Resource Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="BitwiseSolver.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -31,5 +23,13 @@
     <ClInclude Include="BitwiseSolver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sudoku.BitwiseSolver (x64).dll">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Sudoku.BitwiseSolver (x86).dll">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

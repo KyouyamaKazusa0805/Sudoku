@@ -9,6 +9,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Compile Remove="Solving\**" />
+		<EmbeddedResource Remove="Solving\**" />
+		<None Remove="Solving\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Diagnostics\Sudoku.Diagnostics.csproj" />
 	</ItemGroup>
 

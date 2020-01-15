@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.Text;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
+using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 
-namespace Sudoku.Solving.Checking
+namespace Sudoku.Checking
 {
 	public sealed class BackdoorSearcher : IEnumerable<IReadOnlyList<Conclusion>>
 	{

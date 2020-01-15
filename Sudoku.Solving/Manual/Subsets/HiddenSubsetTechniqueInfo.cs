@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Subsets
 				};
 			}
 		}
-		
+
 		public int Size => Digits.Count;
 
 		public override string Name => $"Hidden {base.Name}";

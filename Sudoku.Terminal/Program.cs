@@ -5,7 +5,7 @@ using Sudoku.Solving.BruteForces.Backtracking;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.BruteForces.DancingLinks;
 using Sudoku.Solving.BruteForces.Linqing;
-using Sudoku.Solving.Checking;
+using Sudoku.Checking;
 
 namespace Sudoku.Terminal
 {
