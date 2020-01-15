@@ -477,7 +477,7 @@ This solution uses conditional compilation symbols, only one, but two in project
 本项目使用了条件编译符号。目前只有一个，但项目里出现了 2 个。
 
 * `LAZY_CODE`
-    * This part of codes is only written for simple logic. However these are always complex and diffcult to maintain.<br/>这部分的代码纯粹是为了写起来更快，不需要思考而搞定的（俗称懒惰环境下完成的代码书写）。这部分代码一般都比较复杂，而且很难维护，只是因为这部分代码逻辑很好思考。
+    * This part of codes is only written by simple logic. However these are always complex and diffcult to maintain.<br/>这部分的代码纯粹是为了写起来更快，不需要思考而搞定的（俗称懒惰环境下完成的代码书写）。这部分代码一般都比较复杂，而且很难维护，只是因为这部分代码逻辑很好思考。
 * `I_DONT_KNOW_WHY_GENERATING_BUG`
     * This part of codes is ones which will always generate a bug that I cannot fix it. If you can solve this problem, you can add this symbol in your project and enable to compile them.
     * 这部分的代码一般都会产生 bug，而且这个 bug 我目前还没有修复。如果你能解决这个问题，你可以为你的项目加上这个符号来编译启用这部分代码。
