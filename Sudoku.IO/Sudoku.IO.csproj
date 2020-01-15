@@ -3,6 +3,9 @@
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<Nullable>Enable</Nullable>
+		<Authors>Sunnie</Authors>
+		<Description>Provides all I/O operations in sudoku.</Description>
+		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
 	</PropertyGroup>
 
 	<ItemGroup>

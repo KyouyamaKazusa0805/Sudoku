@@ -5,6 +5,9 @@
 		<Nullable>Enable</Nullable>
 		<RootNamespace>Sudoku</RootNamespace>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<Authors>Sunnie</Authors>
+		<Description>Provides all core implementations of sudokus, such as a grid.</Description>
+		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
 	</PropertyGroup>
 
 	<ItemGroup>

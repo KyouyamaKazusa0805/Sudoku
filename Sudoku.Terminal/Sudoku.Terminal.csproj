@@ -5,8 +5,8 @@
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<Nullable>Enable</Nullable>
 		<Authors>Sunnie</Authors>
-		<Description>Sudoku Analysis Tools (SAT) terminal part.</Description>
-		<Copyright />
+		<Description>Provides an interface of terminal of this solution.</Description>
+		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
 	</PropertyGroup>
 
 	<ItemGroup>

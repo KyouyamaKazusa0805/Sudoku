@@ -4,6 +4,9 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<Nullable>Enable</Nullable>
+		<Authors>Sunnie</Authors>
+		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
+		<Description>Provides a console program used for debugging.</Description>
 	</PropertyGroup>
 
 	<ItemGroup>

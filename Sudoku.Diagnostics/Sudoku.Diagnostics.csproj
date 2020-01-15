@@ -5,10 +5,8 @@
 		<Nullable>Enable</Nullable>
 		<Authors>Sunnie</Authors>
 		<Company>Sunnie</Company>
-		<Description>
-			Diagnostic utility (Code analysis attributes) in this whole project.
-			These are always used for both programmers and code analyzer and fixer.
-		</Description>
+		<Description>Provides some attributes that impacts code fixers and analyzers, which is helpful during coding and finding potential bugs.</Description>
+		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
 	</PropertyGroup>
 
 </Project>

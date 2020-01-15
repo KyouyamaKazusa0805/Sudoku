@@ -3,9 +3,10 @@
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<RootNamespace>Sudoku</RootNamespace>
-		<Description>Sudoku Analysis Tool (SAT) core classes and structs.</Description>
+		<Description>Provides all sudoku implementations using older implementation logic.</Description>
 		<Authors>Sunnie</Authors>
 		<Nullable>Enable</Nullable>
+		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
