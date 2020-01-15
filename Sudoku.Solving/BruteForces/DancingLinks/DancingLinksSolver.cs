@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Text;
 using Sudoku.Data.Meta;
 using Sudoku.Runtime;
 
@@ -18,7 +17,6 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 		public AnalysisResult Solve(int[] gridValues)
 		{
 			var stopwatch = new Stopwatch();
-			var sb = new StringBuilder();
 
 			try
 			{
@@ -44,36 +42,6 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 				var list = new TorodialDoubleLinkedList<bool>(9 * 9 << 2);
 				list.ProcessMatrix(booleanList);
 
-				#region Deprecated code
-				//var results = DancingLinks(list);
-				//if (results is null)
-				//{
-				//	throw new NoSolutionException();
-				//}
-				//else
-				//{
-				//	sb.AppendLine("Linking IDs (For debugging):");
-				//	sb.AppendLine(_debuggingInfoStringBuilder);
-				//	sb.AppendLine("Filling steps:");
-				//	foreach (var result in results)
-				//	{
-				//		var (r, c, v) = rcvList[result.Index];
-				//
-				//		sb.AppendLine($"r{r + 1}c{c + 1} = {v};");
-				//		s.Values[r, c] = v;
-				//	}
-				//
-				//	return new AnalysisResult(
-				//		initialGrid: Grid.CreateInstance(gridValues),
-				//		solverName: SolverName,
-				//		hasSolved: true,
-				//		solution: Grid.CreateInstance(s.Values),
-				//		elapsedTime: stopwatch.Elapsed,
-				//		solvingList: null,
-				//		additional: sb.ToString());
-				//}
-				#endregion
-
 				var resultSeries = Search(list);
 				var grid = Grid.CreateInstance(gridValues);
 				if (resultSeries.Count == 1)
@@ -91,7 +59,7 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 						solution: Grid.CreateInstance(s.Values),
 						elapsedTime: stopwatch.Elapsed,
 						solvingList: null,
-						additional: sb.ToString());
+						additional: null);
 				}
 				else if (resultSeries.Count == 0)
 				{
@@ -116,7 +84,7 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 					solution: null,
 					elapsedTime: stopwatch.Elapsed,
 					solvingList: null,
-					additional: $"{ex.Message}{Environment.NewLine}{sb}");
+					additional: $"{ex.Message}");
 			}
 		}
 
