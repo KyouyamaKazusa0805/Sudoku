@@ -156,14 +156,20 @@ Here displays the introduction to all folders in this whole solution.
     * The implementation of the sudoku meta data, such as sudoku [grid](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core.Old/Data/Meta/Grid.cs) class and so on. Also provides some extension methods in this project, such as [string.Match([Pattern] string)](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core.Old/Data/Extensions/StringEx.cs#L10).<br/>数独的基本数据的实现，比如[数独盘面](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core.Old/Data/Meta/Grid.cs)类和其它的。当然也为项目添加了大量的扩展方法，比如[string.Match([Pattern] string)](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core.Old/Data/Extensions/StringEx.cs#L10)。
 * `Sudoku`
     * The newer implementation of sudoku meta data. Different than `Sudoku.Core.Old`, all files are re-implemented by newer logic. For example, older implementation of grid class uses `CellInfo` struct to describe all information in a cell; while newer one uses bitwise operations (using 12 bits to represent a cell information, 3 bits for cell status and other 9 bits are candidates status).<br/>新的项目，和 `Sudoku.Core.Old` 一样但更新。所有的代码都被重新以新的逻辑实现过。比如，以前的盘面类使用的是 `CellInfo` 结构来描述的单元格信息，不过新的实现使用的是处理起来更快的二进制比特序列来表示的（使用 12 个比特表示一个单元格，末尾 9 个比特表示单元格数字 1 到 9 的填数情况，而高 3 比特位则是单元格状态）。
-* `Sudoku.Debugging`
-    * The console program aiming to debugging codes logic of other projects.<br/>旨在解决这整个解决方案里其它项目的 bug 和调试操作的项目。
+* `Sudoku.Checking`
+    * The checking module aiming to a sudoku grid, such as checking pearl puzzle, minimal puzzle, backdoors and so on.<br/>检测数独盘面的一些指定额外特性的模块，例如检测一个题目是否是珍珠题、最小题，或者是检测一个题目存在的所有后门（和魔术格）等信息。
+* `Sudoku.Solving`
+    * Solving module of this whole solution.<br/>控制整个解决方案完成解题操作的所有内容的模块。
+* `Sudoku.Drawing`
+    * Painting module of this solution, which is used for GDI+.<br/>控制整个解决方案有关绘制图形的模块，一般用于 GDI+ 上。
 * `Sudoku.Diagnostics`
     * The diagnostic controlling through all over the solution. In addition, those files are used with my own custom code analyzer and fixer (But this analyzer is not included in this solution. Therefore codes has not been uploaded).<br/>控制整个解决方案执行行为和编译期间行为的项目。另外，所有的文件都会依赖于我自己实现的分析器和代码修补工具（不过这一部分代码不属于项目，所以我没有上传）。
 * `Sudoku.IO`
     * I/O operations to sudoku data.<br/>控制数独文件流处理的项目。
-* `Sudoku.Solving.Bf.Bitwise`
+* `Sudoku.Solving.BruteForces.Bitwise`
     * The bitwise brute force solver to a sudoku puzzle.<br/>项目解题期间使用的位运算爆破算法（JCZSolver）的源代码。
+* `Sudoku.Debugging`
+    * The console program aiming to debugging codes logic of other projects.<br/>旨在解决这整个解决方案里其它项目的 bug 和调试操作的项目。
 * `Sudoku.Terminal`
     * The terminal of this project. You can use console arguments (such as `--solve` to solve a grid).<br/>这整个解决方案里的终端控制部分。你可以在控制台输入比如 `--solve` 来完成对一道题的分析和解题。
 
