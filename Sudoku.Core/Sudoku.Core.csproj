@@ -3,10 +3,12 @@
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<Nullable>Enable</Nullable>
+		<RootNamespace>Sudoku</RootNamespace>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+	  <ProjectReference Include="..\Sudoku.Diagnostics\Sudoku.Diagnostics.csproj" />
 	</ItemGroup>
 
 </Project>

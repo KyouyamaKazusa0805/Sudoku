@@ -4,7 +4,7 @@
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<Nullable>Enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<AssemblyName>Sudoku.Core</AssemblyName>
+		<AssemblyName>Sudoku</AssemblyName>
 		<RootNamespace>Sudoku</RootNamespace>
 	</PropertyGroup>
 

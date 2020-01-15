@@ -14,9 +14,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Sudoku.Checking\Sudoku.Checking.csproj" />
-	  <ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />
-	  <ProjectReference Include="..\Sudoku\Sudoku.Core.csproj" />
+		<ProjectReference Include="..\Sudoku.Checking\Sudoku.Checking.csproj" />
+		<ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />
+		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
 	</ItemGroup>
 
 </Project>
