@@ -298,6 +298,13 @@ namespace Sudoku.Data.Meta
 			{
 				if (format.Contains('#'))
 				{
+					if (format.Contains('@'))
+					{
+						throw new FormatException(
+							message: "The specified format is invalid.",
+							innerException: new Exception(
+								message: "Intelligence option character '#' is not allowed with multiline option character'@'."));
+					}
 					if (!format.StartsWith('#'))
 					{
 						throw new FormatException(
@@ -320,14 +327,14 @@ namespace Sudoku.Data.Meta
 						innerException: new Exception(
 							message: "Placeholder character '0' and '.' cannot appear both."));
 				}
-				else if (format.Contains('+') && format.Contains('!'))
+				else if (!format.Contains('@') && format.Contains('+') && format.Contains('!'))
 				{
 					throw new FormatException(
 						message: "The specified format is invalid.",
 						innerException: new Exception(
 							message: "Cell status character '+' and '!' cannot appear both."));
 				}
-				else if (format.Contains(':') && !format.EndsWith(':'))
+				else if (!format.Contains('@') && format.Contains(':') && !format.EndsWith(':'))
 				{
 					throw new FormatException(
 						message: "The specified format is invalid.",
@@ -342,6 +349,13 @@ namespace Sudoku.Data.Meta
 							message: "The specified format is invalid.",
 							innerException: new Exception(
 								message: "Multiline identifier '@' must be at the first place."));
+					}
+					else if ((format.Contains('0') || format.Contains('.')) && format.Contains(':'))
+					{
+						throw new FormatException(
+							message: "The specified format is invalid.",
+							innerException: new Exception(
+								message: "In multiline environment, '0' and '.' cannot appear with ':' together."));
 					}
 					else if (format.IsMatch(@"\@[^0\!\*\.\:]+"))
 					{
@@ -380,7 +394,7 @@ namespace Sudoku.Data.Meta
 				{
 					return new GridFormatter(this, false)
 					{
-						WithEliminations = true
+						WithCandidates = true
 					}.ToString().Match(@"(?<=\:)(\d{3}\s+)*\d{3}").NullableToString();
 				}
 				case "!":
@@ -405,7 +419,7 @@ namespace Sudoku.Data.Meta
 				{
 					return new GridFormatter(this, false)
 					{
-						WithEliminations = true
+						WithCandidates = true
 					}.ToString();
 				}
 				case "0:":
@@ -413,7 +427,7 @@ namespace Sudoku.Data.Meta
 					return new GridFormatter(this, false)
 					{
 						Placeholder = '0',
-						WithEliminations = true
+						WithCandidates = true
 					}.ToString();
 				}
 				case "0+":
@@ -432,7 +446,7 @@ namespace Sudoku.Data.Meta
 					return new GridFormatter(this, false)
 					{
 						WithModifiables = true,
-						WithEliminations = true
+						WithCandidates = true
 					}.ToString();
 				}
 				case "0+:":
@@ -442,7 +456,7 @@ namespace Sudoku.Data.Meta
 					{
 						Placeholder = '0',
 						WithModifiables = true,
-						WithEliminations = true
+						WithCandidates = true
 					}.ToString();
 				}
 				case ".!:":
@@ -535,81 +549,29 @@ namespace Sudoku.Data.Meta
 					}.ToString();
 				}
 				case "@:":
-				case "@.:":
-				case "@:.":
 				{
 					return new GridFormatter(this, true)
 					{
-						WithEliminations = true,
-						SubtleGridLines = true
-					}.ToString();
-				}
-				case "@0:":
-				case "@:0":
-				{
-					return new GridFormatter(this, true)
-					{
-						Placeholder = '0',
-						WithEliminations = true,
+						WithCandidates = true,
 						SubtleGridLines = true
 					}.ToString();
 				}
 				case "@:!":
 				case "@!:":
-				case "@.:!":
-				case "@.!:":
-				case "@!.:":
-				case "@:.!":
-				case "@!:.":
-				case "@:!.":
 				{
 					return new GridFormatter(this, true)
 					{
-						WithEliminations = true,
-						TreatValueAsGiven = true,
-						SubtleGridLines = true
-					}.ToString();
-				}
-				case "@0:!":
-				case "@0!:":
-				case "@!0:":
-				case "@:0!":
-				case "@!:0":
-				case "@:!0":
-				{
-					return new GridFormatter(this, true)
-					{
-						Placeholder = '0',
-						WithEliminations = true,
+						WithCandidates = true,
 						TreatValueAsGiven = true,
 						SubtleGridLines = true
 					}.ToString();
 				}
 				case "@*:":
 				case "@:*":
-				case "@.:*":
-				case "@.*:":
-				case "@:.*":
-				case "@*.:":
-				case "@:*.":
-				case "@*:.":
 				{
 					return new GridFormatter(this, true)
 					{
-						WithEliminations = true
-					}.ToString();
-				}
-				case "@0:*":
-				case "@0*:":
-				case "@:0*":
-				case "@*0:":
-				case "@:*0":
-				case "@*:0":
-				{
-					return new GridFormatter(this, true)
-					{
-						Placeholder = '0',
-						WithEliminations = true
+						WithCandidates = true
 					}.ToString();
 				}
 				case "@!*:":
@@ -618,66 +580,10 @@ namespace Sudoku.Data.Meta
 				case "@*:!":
 				case "@:!*":
 				case "@:*!":
-				case "@.!*:":
-				case "@.*!:":
-				case "@.!:*":
-				case "@.*:!":
-				case "@.:!*":
-				case "@.:*!":
-				case "@!.*:":
-				case "@*.!:":
-				case "@!.:*":
-				case "@*.:!":
-				case "@:.!*":
-				case "@:.*!":
-				case "@!*.:":
-				case "@*!.:":
-				case "@!:.*":
-				case "@*:.!":
-				case "@:!.*":
-				case "@:*.!":
-				case "@!*:.":
-				case "@*!:.":
-				case "@!:*.":
-				case "@*:!.":
-				case "@:!*.":
-				case "@:*!.":
 				{
 					return new GridFormatter(this, true)
 					{
-						WithEliminations = true,
-						TreatValueAsGiven = true
-					}.ToString();
-				}
-				case "@0!*:":
-				case "@0*!:":
-				case "@0!:*":
-				case "@0*:!":
-				case "@0:!*":
-				case "@0:*!":
-				case "@!0*:":
-				case "@*0!:":
-				case "@!0:*":
-				case "@*0:!":
-				case "@:0!*":
-				case "@:0*!":
-				case "@!*0:":
-				case "@*!0:":
-				case "@!:0*":
-				case "@*:0!":
-				case "@:!0*":
-				case "@:*0!":
-				case "@!*:0":
-				case "@*!:0":
-				case "@!:*0":
-				case "@*:!0":
-				case "@:!*0":
-				case "@:*!0":
-				{
-					return new GridFormatter(this, true)
-					{
-						Placeholder = '0',
-						WithEliminations = true,
+						WithCandidates = true,
 						TreatValueAsGiven = true
 					}.ToString();
 				}

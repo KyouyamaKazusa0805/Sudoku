@@ -18,7 +18,7 @@ namespace Sudoku.Data.Meta
 
 		public bool WithModifiables { get; set; }
 
-		public bool WithEliminations { get; set; }
+		public bool WithCandidates { get; set; }
 
 		public bool TreatValueAsGiven { get; set; }
 
@@ -30,7 +30,7 @@ namespace Sudoku.Data.Meta
 		public override string ToString()
 		{
 			return Multiline
-				? WithEliminations
+				? WithCandidates
 					? ToMultiLineStringCore()
 					: ToMultiLineSimpleGridCore()
 				: ToSingleLineStringCore();
@@ -68,7 +68,7 @@ namespace Sudoku.Data.Meta
 			var sb = new StringBuilder();
 			var elims = new StringBuilder();
 			Grid tempGrid = null!; // This assignment is very dangerous (Non-nullable is assigned null)!
-			if (WithEliminations)
+			if (WithCandidates)
 			{
 				// Get a temp grid only used for checking.
 				tempGrid = Grid.Parse(Grid.ToString(".+"));
@@ -81,7 +81,7 @@ namespace Sudoku.Data.Meta
 				{
 					case CellStatus.Empty:
 					{
-						if (WithEliminations)
+						if (WithCandidates)
 						{
 							for (int i = 0, temp = value; i < 9; i++, temp >>= 1)
 							{

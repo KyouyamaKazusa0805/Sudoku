@@ -200,7 +200,11 @@ If you has known the whole outline of this solution, you want to know how to use
 
 如果你对这个项目有所了解的话，你肯定想知道数独盘面的输入的具体格式。首先我会给你一个表，陈列的各种字符就是你需要用到的。
 
-| Format string<br/>格式化字符 | Meaning<br/>意思                                                                   |
+### Single Line format characters
+
+标题：*单行输出模式下的格式化字符*
+
+| Format chararcters<br/>格式化字符 | Meanings<br/>意思                                                                  |
 | --------------------------- | ---------------------------------------------------------------------------------- |
 | `.` and `0`                 | Placeholder option.<br/>占位符选项。                                                |
 | `+`                         | Modifiable values option.<br/>显示可修改的数值选项。                                |
@@ -258,19 +262,27 @@ All examples are shown at the end of this part.
 
 上面所有解释在最后都会给出例子集，可以对照。
 
+
+
+### Multiline format characters
+
+标题：*多行输出模式下的格式化字符*
+
 If you want to output pencil marked grid (PM grid), you should use options below:
 
 另外，如果你要输出这个题目的候选数盘面的话，你可以使用下面的选项：
 
-| Format string<br/>格式化字符 | Meaning<br/>意思                                                       |
+| Format chararcters<br/>格式化字符 | Meanings<br/>意思                                                      |
 | --------------------------- | ---------------------------------------------------------------------- |
 | `@`                         | Default PM grid character.<br/>默认的候选数盘面输出的格式化字符。        |
+| `0` and `.` | Placeholders.<br/>占位符。 |
+| `:` | Candidates option.<br/>输出候选数选项。 |
 | `*`                         | Simple output option.<br/>普通格线字符输出选项。                        |
 | `!`                         | Treat-modifiable-as-given option.<br/>把填入的数字视为提示数的选项。     |
 
-These option are same or similar as normal grid (Susser format) output, so I don't give an introduction about those characters. Learn them from examples at the end of this part.
+These option are same or similar as normal grid (Susser format) output, so I don't give an introduction about those characters. Learn them from examples at the end of this part. I wanna introduce `'*'` option which is not mentioned above however.
 
-这些选项都和普通盘面输出样式的输出模式差不多，所以我就不给出解释了。你可以在例子集里找到这些东西的详细用法。
+这些选项都和普通盘面输出样式的输出模式差不多，所以我就不给出解释了。你可以在例子集里找到这些东西的详细用法。不过我需要提一下上文没有介绍过的 `'*'` 字符。
 
 By the way, character `'*'` is for simple output. If the format has not followed by this option, the grid outline will be handled subtly. You can find the difference between two outputs:
 
@@ -306,11 +318,19 @@ By the way, character `'*'` is for simple output. If the format has not followed
 +---------------+---------------+------------------+
 ```
 
+Multiline output environment will be more relaxed when ordering different options than single line output one.
+
+多行输出环境下的格式化字符顺序要在单行输出环境下的要求更宽松一些。
+
+Note that in multiline output environment, placeholder characters `'0'` or `'.'` cannot appear with candidates option `':'` together, because placeholders may not appear when outputing all candidates.
+
+唯一需要注意的地方是，占位符 `'0'` 和 `'.'` 不允许和 `':'` 一起出现，因为需要输出候选数情况时，是不可能出现占位符的。
 
 
-Examples:
 
-示例：
+### Examples
+
+标题：*示例*
 
 ![](pic/P1.png)
 
@@ -320,47 +340,11 @@ Format（格式）:
 
 Output（输出结果）:
 800190030190007600002000000000301504000050000704906000000000900008700051040069007
-```
-
-
-
-![](pic/P2.png)
-
-```
-Format（格式）:
-"0+"
-
-Output（输出结果）:
-000090+40+6+90340+600556+4207900802+6+5+90400750+4+869+2+64+9+7005080+5180406920+60+7130+4+400060000
 
 ---
 
 Format（格式）:
-".!"
-
-Output（输出结果）:
-....9.4.69.34.6..55642.79..8.2659.4..75.486926497..5.8.518.4.692.6.713.44...6....
-```
-
-
-
-![](pic/P3.png)
-
-```
-Format（格式）:
-"0+:"
-
-Output（输出结果）:
-320009+100+40000+150006130040004903+6+801+60+3812+90+48+10090360004008210+106000+70000010+3+649:515 615 724 825 228 229 731 235 738 748 563 972 574 882 484 584 792 295
-```
-
-
-
-![](pic/P1.png)
-
-```
-Format（格式）:
-"@"
+"@:"
 
 Output（输出结果）:
 .---------------------.--------------------.----------------------.
@@ -384,7 +368,35 @@ Output（输出结果）:
 
 ```
 Format（格式）:
-"@*"
+"0+"
+
+Output（输出结果）:
+000090+40+6+90340+600556+4207900802+6+5+90400750+4+869+2+64+9+7005080+5180406920+60+7130+4+400060000
+
+---
+
+Format（格式）:
+"@"
+
+Output（输出结果）:
+.-------+-------+-------.
+| . . . | . 9 . | . . . |
+| . . 3 | 4 . . | . . 5 |
+| 5 6 . | 2 . 7 | 9 . . |
+:-------+-------+-------:
+| 8 . 2 | . . . | . 4 . |
+| . 7 5 | . . . | 6 9 . |
+| . 4 . | . . . | 5 . 8 |
+:-------+-------+-------:
+| . . 1 | 8 . 4 | . 6 9 |
+| 2 . . | . . 1 | 3 . . |
+| . . . | . 6 . | . . . |
+'-------+-------+-------'
+
+---
+
+Format（格式）:
+"@*:"
 
 Output（输出结果）:
 +---------------+---------------+------------------+
@@ -408,6 +420,34 @@ Output（输出结果）:
 
 ```
 Format（格式）:
+"0+:"
+
+Output（输出结果）:
+320009+100+40000+150006130040004903+6+801+60+3812+90+48+10090360004008210+106000+70000010+3+649:515 615 724 825 228 229 731 235 738 748 563 972 574 882 484 584 792 295
+
+---
+
+Format（格式）:
+"@:!"
+
+Output（输出结果）:
+.----------------.----------------.-----------------.
+| <3>  <2>  578  | 4567  478  <9> | <1>  78    678  |
+| <4>  789  78   | 26    267  <1> | <5>  3789  3678 |
+| 59   <6>  <1>  | <3>   578  57  | <4>  289   278  |
+:----------------+----------------+-----------------:
+| 257  <4>  <9>  | 57    <3>  <6> | <8>  25    <1>  |
+| <6>  57   <3>  | <8>   <1>  <2> | <9>  57    <4>  |
+| <8>  <1>  27   | 457   <9>  457 | <3>  <6>   257  |
+:----------------+----------------+-----------------:
+| 579  357  <4>  | 679   567  <8> | <2>  <1>   35   |
+| <1>  359  <6>  | 29    245  45  | <7>  358   358  |
+| 257  58   2578 | <1>   57   <3> | <6>  <4>   <9>  |
+'----------------'----------------'-----------------'
+
+---
+
+Format（格式）:
 "@!"
 
 Output（输出结果）:
@@ -425,6 +465,22 @@ Output（输出结果）:
 | 257  58   2578 | <1>   57   <3> | <6>  <4>   <9>  |
 '----------------'----------------'-----------------'
 ```
+
+
+
+## Conditional Compilation Symbols
+
+标题：*条件编译符号*
+
+This solution uses conditional compilation symbols, only one, but two in project.
+
+本项目使用了条件编译符号。目前只有一个，但项目里出现了 2 个。
+
+* `LAZY_CODE`
+    * This part of codes is only written for simple logic. However these are always complex and diffcult to maintain.<br/>这部分的代码纯粹是为了写起来更快，不需要思考而搞定的（俗称懒惰环境下完成的代码书写）。这部分代码一般都比较复杂，而且很难维护，只是因为这部分代码逻辑很好思考。
+* `I_DONT_KNOW_WHY_GENERATING_BUG`
+    * This part of codes is ones which will always generate a bug that I cannot fix it. If you can solve this problem, you can add this symbol in your project and enable to compile them.
+    * 这部分的代码一般都会产生 bug，而且这个 bug 我目前还没有修复。如果你能解决这个问题，你可以为你的项目加上这个符号来编译启用这部分代码。
 
 
 
