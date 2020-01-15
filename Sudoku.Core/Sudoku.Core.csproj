@@ -10,6 +10,10 @@
 		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <DefineConstants>TRACE;LAZY_CODE</DefineConstants>
+	</PropertyGroup>
+
 	<ItemGroup>
 	  <ProjectReference Include="..\Sudoku.Diagnostics\Sudoku.Diagnostics.csproj" />
 	</ItemGroup>

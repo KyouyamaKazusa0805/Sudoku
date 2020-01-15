@@ -15,17 +15,41 @@ namespace Sudoku.Data.Meta
 		{
 			Grid? grid;
 			if (!((grid = OnParsingSusser()) is null)
+				|| !((grid = OnParsingSimpleMultilineGrid()) is null)
 				|| !((grid = OnParsingPencilMarked(false)) is null)
 				|| !((grid = OnParsingPencilMarked(true)) is null))
 			{
 				return grid;
 			}
 
-			// All ways to parse are failed, so we cannot find a way to parse.
+			// All ways are failed, therefore we cannot find a way to parse.
 			// Throw an exception to report this error.
 			throw new ArgumentException(
 				message: $"Argument cannot be parsed and converted to target type {typeof(Grid)}.",
 				paramName: nameof(ParsingValue));
+		}
+
+		private Grid? OnParsingSimpleMultilineGrid()
+		{
+			string[] matches = ParsingValue.MatchAll(@"[\d\.]");
+			int length = matches.Length;
+			if (length != 81 && length != 83)
+			{
+				// Subtle grid outline will bring 2 '.'s on first line of the grid.
+				return null;
+			}
+
+			var result = Grid.Empty.Clone();
+			for (int i = 0; i < 81; i++)
+			{
+				char match = matches[length == 81 ? i : i + 2][0];
+				if (match != '.' && match != '0')
+				{
+					result[i] = match - '1';
+				}
+			}
+
+			return result;
 		}
 
 		private Grid? OnParsingPencilMarked(bool treatSingleValueAsGiven)

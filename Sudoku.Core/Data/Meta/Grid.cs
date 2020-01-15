@@ -343,12 +343,12 @@ namespace Sudoku.Data.Meta
 							innerException: new Exception(
 								message: "Multiline identifier '@' must be at the first place."));
 					}
-					else if (format.IsMatch(@"\@[^\!\*]+"))
+					else if (format.IsMatch(@"\@[^0\!\*\.\:]+"))
 					{
 						throw new FormatException(
 							message: "The specified format is invalid.",
 							innerException: new Exception(
-								message: "Multiline identifier '@' must follow only character '!' or '*'."));
+								message: "Multiline identifier '@' must follow only character '!', '*', '0', '.' or ':'."));
 					}
 				}
 			}
@@ -477,21 +477,53 @@ namespace Sudoku.Data.Meta
 					goto case "0+:";
 				}
 				case "@":
-				{
-					return new GridFormatter(this, true).ToString();
-				}
-				case "@!":
+				case "@.":
 				{
 					return new GridFormatter(this, true)
 					{
-						TreatValueAsGiven = true
+						SubtleGridLines = true
+					}.ToString();
+				}
+				case "@0":
+				{
+					return new GridFormatter(this, true)
+					{
+						Placeholder = '0',
+						SubtleGridLines = true
+					}.ToString();
+				}
+				case "@!":
+				case "@.!":
+				case "@!.":
+				{
+					return new GridFormatter(this, true)
+					{
+						TreatValueAsGiven = true,
+						SubtleGridLines = true
+					}.ToString();
+				}
+				case "@0!":
+				case "@!0":
+				{
+					return new GridFormatter(this, true)
+					{
+						Placeholder = '0',
+						TreatValueAsGiven = true,
+						SubtleGridLines = true
 					}.ToString();
 				}
 				case "@*":
+				case "@.*":
+				case "@*.":
+				{
+					return new GridFormatter(this, true).ToString();
+				}
+				case "@0*":
+				case "@*0":
 				{
 					return new GridFormatter(this, true)
 					{
-						SimpleOutputMode = true
+						Placeholder = '0'
 					}.ToString();
 				}
 				case "@!*":
@@ -499,7 +531,153 @@ namespace Sudoku.Data.Meta
 				{
 					return new GridFormatter(this, true)
 					{
-						SimpleOutputMode = true,
+						TreatValueAsGiven = true
+					}.ToString();
+				}
+				case "@:":
+				case "@.:":
+				case "@:.":
+				{
+					return new GridFormatter(this, true)
+					{
+						WithEliminations = true,
+						SubtleGridLines = true
+					}.ToString();
+				}
+				case "@0:":
+				case "@:0":
+				{
+					return new GridFormatter(this, true)
+					{
+						Placeholder = '0',
+						WithEliminations = true,
+						SubtleGridLines = true
+					}.ToString();
+				}
+				case "@:!":
+				case "@!:":
+				case "@.:!":
+				case "@.!:":
+				case "@!.:":
+				case "@:.!":
+				case "@!:.":
+				case "@:!.":
+				{
+					return new GridFormatter(this, true)
+					{
+						WithEliminations = true,
+						TreatValueAsGiven = true,
+						SubtleGridLines = true
+					}.ToString();
+				}
+				case "@0:!":
+				case "@0!:":
+				case "@!0:":
+				case "@:0!":
+				case "@!:0":
+				case "@:!0":
+				{
+					return new GridFormatter(this, true)
+					{
+						Placeholder = '0',
+						WithEliminations = true,
+						TreatValueAsGiven = true,
+						SubtleGridLines = true
+					}.ToString();
+				}
+				case "@*:":
+				case "@:*":
+				case "@.:*":
+				case "@.*:":
+				case "@:.*":
+				case "@*.:":
+				case "@:*.":
+				case "@*:.":
+				{
+					return new GridFormatter(this, true)
+					{
+						WithEliminations = true
+					}.ToString();
+				}
+				case "@0:*":
+				case "@0*:":
+				case "@:0*":
+				case "@*0:":
+				case "@:*0":
+				case "@*:0":
+				{
+					return new GridFormatter(this, true)
+					{
+						Placeholder = '0',
+						WithEliminations = true
+					}.ToString();
+				}
+				case "@!*:":
+				case "@*!:":
+				case "@!:*":
+				case "@*:!":
+				case "@:!*":
+				case "@:*!":
+				case "@.!*:":
+				case "@.*!:":
+				case "@.!:*":
+				case "@.*:!":
+				case "@.:!*":
+				case "@.:*!":
+				case "@!.*:":
+				case "@*.!:":
+				case "@!.:*":
+				case "@*.:!":
+				case "@:.!*":
+				case "@:.*!":
+				case "@!*.:":
+				case "@*!.:":
+				case "@!:.*":
+				case "@*:.!":
+				case "@:!.*":
+				case "@:*.!":
+				case "@!*:.":
+				case "@*!:.":
+				case "@!:*.":
+				case "@*:!.":
+				case "@:!*.":
+				case "@:*!.":
+				{
+					return new GridFormatter(this, true)
+					{
+						WithEliminations = true,
+						TreatValueAsGiven = true
+					}.ToString();
+				}
+				case "@0!*:":
+				case "@0*!:":
+				case "@0!:*":
+				case "@0*:!":
+				case "@0:!*":
+				case "@0:*!":
+				case "@!0*:":
+				case "@*0!:":
+				case "@!0:*":
+				case "@*0:!":
+				case "@:0!*":
+				case "@:0*!":
+				case "@!*0:":
+				case "@*!0:":
+				case "@!:0*":
+				case "@*:0!":
+				case "@:!0*":
+				case "@:*0!":
+				case "@!*:0":
+				case "@*!:0":
+				case "@!:*0":
+				case "@*:!0":
+				case "@:!*0":
+				case "@:*!0":
+				{
+					return new GridFormatter(this, true)
+					{
+						Placeholder = '0',
+						WithEliminations = true,
 						TreatValueAsGiven = true
 					}.ToString();
 				}

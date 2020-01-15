@@ -12,11 +12,9 @@ namespace Sudoku.Data.Meta
 		public GridFormatter(Grid grid, bool multiline) => (Grid, Multiline) = (grid, multiline);
 
 
-		public bool Multiline { get; }
-
-		public Grid Grid { get; }
-
 		public char Placeholder { get; set; } = '.';
+
+		public bool Multiline { get; }
 
 		public bool WithModifiables { get; set; }
 
@@ -24,11 +22,19 @@ namespace Sudoku.Data.Meta
 
 		public bool TreatValueAsGiven { get; set; }
 
-		public bool SimpleOutputMode { get; set; }
+		public bool SubtleGridLines { get; set; }
+
+		public Grid Grid { get; }
 
 
-		public override string ToString() =>
-			Multiline ? ToMultiLineStringCore() : ToSingleLineStringCore();
+		public override string ToString()
+		{
+			return Multiline
+				? WithEliminations
+					? ToMultiLineStringCore()
+					: ToMultiLineSimpleGridCore()
+				: ToSingleLineStringCore();
+		}
 
 		private string ToSingleLineStringCore()
 		{
@@ -119,6 +125,31 @@ namespace Sudoku.Data.Meta
 
 			string elimsStr = elims.ToString();
 			return $"{sb}{(string.IsNullOrEmpty(elimsStr) ? string.Empty : $":{elimsStr}")}";
+		}
+
+		private string ToMultiLineSimpleGridCore()
+		{
+#if LAZY_CODE
+			string temp = Grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : $"{Placeholder}");
+			var sb = new StringBuilder();
+			sb.AppendLine(SubtleGridLines ? ".-------+-------+-------." : "+-------+-------+-------+");
+			sb.AppendLine($"| {temp[0]} {temp[1]} {temp[2]} | {temp[3]} {temp[4]} {temp[5]} | {temp[6]} {temp[7]} {temp[8]} |");
+			sb.AppendLine($"| {temp[9]} {temp[10]} {temp[11]} | {temp[12]} {temp[13]} {temp[14]} | {temp[15]} {temp[16]} {temp[17]} |");
+			sb.AppendLine($"| {temp[18]} {temp[19]} {temp[20]} | {temp[21]} {temp[22]} {temp[23]} | {temp[24]} {temp[25]} {temp[26]} |");
+			sb.AppendLine(SubtleGridLines ? ":-------+-------+-------:" : "+-------+-------+-------+");
+			sb.AppendLine($"| {temp[27]} {temp[28]} {temp[29]} | {temp[30]} {temp[31]} {temp[32]} | {temp[33]} {temp[34]} {temp[35]} |");
+			sb.AppendLine($"| {temp[36]} {temp[37]} {temp[38]} | {temp[39]} {temp[40]} {temp[41]} | {temp[42]} {temp[43]} {temp[44]} |");
+			sb.AppendLine($"| {temp[45]} {temp[46]} {temp[47]} | {temp[48]} {temp[49]} {temp[50]} | {temp[51]} {temp[52]} {temp[53]} |");
+			sb.AppendLine(SubtleGridLines ? ":-------+-------+-------:" : "+-------+-------+-------+");
+			sb.AppendLine($"| {temp[54]} {temp[55]} {temp[56]} | {temp[57]} {temp[58]} {temp[59]} | {temp[60]} {temp[61]} {temp[62]} |");
+			sb.AppendLine($"| {temp[63]} {temp[64]} {temp[65]} | {temp[66]} {temp[67]} {temp[68]} | {temp[69]} {temp[70]} {temp[71]} |");
+			sb.AppendLine($"| {temp[72]} {temp[73]} {temp[74]} | {temp[75]} {temp[76]} {temp[77]} | {temp[78]} {temp[79]} {temp[80]} |");
+			sb.AppendLine(SubtleGridLines ? "'-------+-------+-------'" : "+-------+-------+-------+");
+
+			return sb.ToString();
+#else
+			throw new NotImplementedException();
+#endif
 		}
 
 		[SuppressMessage("", "IDE0004")]
@@ -268,38 +299,38 @@ namespace Sudoku.Data.Meta
 				{
 					case 0: // Print tabs of the first line.
 					{
-						if (SimpleOutputMode)
+						if (SubtleGridLines)
 						{
-							PrintTabLines('+', '+', '-');
+							PrintTabLines('.', '.', '-');
 						}
 						else
 						{
-							PrintTabLines('.', '.', '-');
+							PrintTabLines('+', '+', '-');
 						}
 						break;
 					}
 					case 4:
 					case 8: // Print tabs of mediate lines.
 					{
-						if (SimpleOutputMode)
+						if (SubtleGridLines)
 						{
-							PrintTabLines('+', '+', '-');
+							PrintTabLines(':', '+', '-');
 						}
 						else
 						{
-							PrintTabLines(':', '+', '-');
+							PrintTabLines('+', '+', '-');
 						}
 						break;
 					}
 					case 12: // Print tabs of the foot line.
 					{
-						if (SimpleOutputMode)
+						if (SubtleGridLines)
 						{
-							PrintTabLines('+', '+', '-');
+							PrintTabLines('\'', '\'', '-');
 						}
 						else
 						{
-							PrintTabLines('\'', '\'', '-');
+							PrintTabLines('+', '+', '-');
 						}
 						break;
 					}
