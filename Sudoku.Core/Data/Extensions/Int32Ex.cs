@@ -33,8 +33,7 @@ namespace Sudoku.Data.Extensions
 			int a = x <= 0xffff ? (x <= 0xff ? 0 : 8) : (x <= 0xffffff ? 16 : 24);
 			return Table[x >> a] + a - 1;
 		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		
 		public static int CountSet(this int @this)
 		{
 			int count;

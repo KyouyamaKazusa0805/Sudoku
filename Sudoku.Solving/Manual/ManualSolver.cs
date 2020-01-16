@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using Sudoku.Data.Meta;
+using Sudoku.Solving.Manual.Fishes.Basic;
 using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.Singles;
 using Sudoku.Solving.Manual.Subsets;
@@ -24,7 +25,8 @@ namespace Sudoku.Solving.Manual
 			{
 				new SingleStepFinder(EnableFullHouse, EnableLastDigit),
 				new IntersectionStepFinder(),
-				new SubsetStepFinder()
+				new SubsetStepFinder(),
+				new BasicFishStepFinder()
 			};
 
 			// Start time recording and solving.

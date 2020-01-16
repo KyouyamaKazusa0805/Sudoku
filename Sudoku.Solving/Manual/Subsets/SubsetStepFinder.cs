@@ -30,6 +30,7 @@ namespace Sudoku.Solving.Manual.Subsets
 			return result;
 		}
 
+
 		#region Naked Subsets utils
 		private static IList<NakedSubsetTechniqueInfo> TakeAllNakedSubsetsBySize(
 			Grid grid, int size)
@@ -269,21 +270,29 @@ namespace Sudoku.Solving.Manual.Subsets
 			{
 				for (int d1 = 0; d1 < 10 - size; d1++)
 				{
-					short mask1 = grid.GetDigitAppearingMask(d1, region);
+					if (grid.HasDigitValue(d1, region))
+					{
+						continue;
+					}
+
+					short mask = grid.GetDigitAppearingMask(d1, region);
 					for (int d2 = d1 + 1; d2 < 11 - size; d2++)
 					{
-						short mask2 = grid.GetDigitAppearingMask(d2, region);
-						if (mask1 != 0 && mask2 != 0 && size == 2)
+						if (grid.HasDigitValue(d2, region))
 						{
-							// Check hidden pair.
-							short mask = (short)(mask1 | mask2);
-							if (mask.CountSet() == 2)
+							continue;
+						}
+
+						short mask2 = (short)(grid.GetDigitAppearingMask(d2, region) | mask);
+						if (size == 2)
+						{
+							if (mask2.CountSet() == 2)
 							{
 								// Hidden pair found.
 								var digits = new List<int> { d1, d2 };
 								var conclusions =
 									GetHiddenSubsetsConclusions(
-										grid, region, mask, digits, out var cellOffsets,
+										grid, region, mask2, digits, out var cellOffsets,
 										out var highlightedCandidates);
 								if (conclusions.Count != 0)
 								{
@@ -311,18 +320,21 @@ namespace Sudoku.Solving.Manual.Subsets
 						{
 							for (int d3 = d2 + 1; d3 < 12 - size; d3++)
 							{
-								short mask3 = grid.GetDigitAppearingMask(d3, region);
-								if (mask1 != 0 && mask2 != 0 && mask3 != 0 && size == 3)
+								if (grid.HasDigitValue(d3, region))
 								{
-									// Check hidden triple.
-									short mask = (short)(mask3 | (short)(mask2 | mask1));
-									if (mask.CountSet() == 3)
+									continue;
+								}
+
+								short mask3 = (short)(grid.GetDigitAppearingMask(d3, region) | mask2);
+								if (size == 3)
+								{
+									if (mask3.CountSet() == 3)
 									{
 										// Hidden triple found.
 										var digits = new List<int> { d1, d2, d3 };
 										var conclusions =
 											GetHiddenSubsetsConclusions(
-												grid, region, mask, digits, out var cellOffsets,
+												grid, region, mask3, digits, out var cellOffsets,
 												out var highlightedCandidates);
 										if (conclusions.Count != 0)
 										{
@@ -350,17 +362,21 @@ namespace Sudoku.Solving.Manual.Subsets
 								{
 									for (int d4 = d3 + 1; d4 < 9; d4++)
 									{
-										short mask4 = grid.GetDigitAppearingMask(d4, region);
-										// Size == 4 always. Now check hidden quadruple.
-										short mask = (short)(mask4 | (short)(mask3 | (short)(mask2 | mask1)));
-										if (mask1 != 0 && mask2 != 0 && mask3 != 0 && mask4 != 0
-											&& mask.CountSet() == 4)
+										if (grid.HasDigitValue(d4, region))
+										{
+											continue;
+										}
+
+										// 'size == 4' is always true.
+										// Now check hidden quadruple.
+										short mask4 = (short)(grid.GetDigitAppearingMask(d4, region) | mask3);
+										if (mask4.CountSet() == 4)
 										{
 											// Hidden quadruple found.
 											var digits = new List<int> { d1, d2, d3, d4 };
 											var conclusions =
 												GetHiddenSubsetsConclusions(
-													grid, region, mask, digits, out var cellOffsets,
+													grid, region, mask4, digits, out var cellOffsets,
 													out var highlightedCandidates);
 											if (conclusions.Count != 0)
 											{
@@ -382,11 +398,11 @@ namespace Sudoku.Solving.Manual.Subsets
 														cellOffsets,
 														digits));
 											}
-										} // if mask4 != 0 && mask.CountSet() == 4
+										} // if mask.CountSet() == 4
 									} // for d4 (d3 + 1)..9
-								} // else (if mask3 != 0 && size == 3)
+								} // else (if size == 3 && mask3.CountSet() == 3)
 							} // for d3 (d2 + 1)..(12 - size)
-						} // else (if mask1 != 0 && mask2 != 0 && size == 2)
+						} // else (if size == 2 && mask2.CountSet() == 2)
 					} // for d2 (d1 + 1)..(11 - size)
 				} // for d1 0..(10 - size)
 			} // for region 0..27
