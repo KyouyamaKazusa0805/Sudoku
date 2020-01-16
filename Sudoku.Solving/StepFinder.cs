@@ -12,7 +12,7 @@ namespace Sudoku.Solving
 
 		public TechniqueInfo? TakeOne(Grid grid) => TakeAll(grid).FirstOrDefault();
 
-		public IList<TechniqueInfo> Take(Grid grid, int count)
+		public IReadOnlyList<TechniqueInfo> Take(Grid grid, int count)
 		{
 			Contract.Assume(count >= 1);
 
@@ -21,6 +21,6 @@ namespace Sudoku.Solving
 			return TakeAll(grid).Take(count).ToList();
 		}
 
-		public abstract IList<TechniqueInfo> TakeAll(Grid grid);
+		public abstract IReadOnlyList<TechniqueInfo> TakeAll(Grid grid);
 	}
 }

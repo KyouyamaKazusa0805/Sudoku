@@ -10,7 +10,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 {
 	public sealed class BasicFishStepFinder : FishStepFinder
 	{
-		public override IList<TechniqueInfo> TakeAll(Grid grid)
+		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
 			var result = new List<TechniqueInfo>();
 
@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 		}
 
 
-		private static IList<BasicFishTechniqueInfo> TakeAllBasicFishBySize(
+		private static IReadOnlyList<BasicFishTechniqueInfo> TakeAllBasicFishBySize(
 			Grid grid, int size, bool searchRow)
 		{
 			Contract.Requires(size >= 2 && size <= 4);

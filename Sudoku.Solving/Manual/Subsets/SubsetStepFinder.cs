@@ -11,7 +11,7 @@ namespace Sudoku.Solving.Manual.Subsets
 {
 	public sealed class SubsetStepFinder : StepFinder
 	{
-		public override IList<TechniqueInfo> TakeAll(Grid grid)
+		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
 			var result = new List<TechniqueInfo>();
 
@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Subsets
 
 
 		#region Naked Subsets utils
-		private static IList<NakedSubsetTechniqueInfo> TakeAllNakedSubsetsBySize(
+		private static IReadOnlyList<NakedSubsetTechniqueInfo> TakeAllNakedSubsetsBySize(
 			Grid grid, int size)
 		{
 			Contract.Requires(size >= 2 && size <= 4);
@@ -261,7 +261,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		#endregion
 
 		#region Hidden Subsets utils
-		private static IList<HiddenSubsetTechniqueInfo> TakeAllHiddenSubsetsBySize(
+		private static IReadOnlyList<HiddenSubsetTechniqueInfo> TakeAllHiddenSubsetsBySize(
 			Grid grid, int size)
 		{
 			var result = new List<HiddenSubsetTechniqueInfo>();

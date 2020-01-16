@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Singles
 			(_enableFullHouse, _enableLastDigit) = (enableFullHouse, enableLastDigit);
 
 
-		public override IList<TechniqueInfo> TakeAll(Grid grid)
+		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
 			var result = new List<TechniqueInfo>();
 
