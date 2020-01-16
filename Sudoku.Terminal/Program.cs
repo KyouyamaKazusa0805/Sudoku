@@ -156,7 +156,8 @@ namespace Sudoku.Terminal
 			Console.WriteLine("    * backtracking,");
 			Console.WriteLine("    * bitwise,");
 			Console.WriteLine("    * dlx (default option)");
-			Console.WriteLine("    * linqing");
+			Console.WriteLine("    * linqing,");
+			Console.WriteLine("    * manual.");
 			Console.WriteLine("  --version: Show version of this program.");
 			Console.WriteLine();
 
