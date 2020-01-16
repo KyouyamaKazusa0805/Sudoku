@@ -296,52 +296,7 @@ namespace Sudoku.Data.Meta
 			// Format checking.
 			if (!(format is null))
 			{
-				if (format.Contains('#'))
-				{
-					if (format.Contains('@'))
-					{
-						throw new FormatException(
-							message: "The specified format is invalid.",
-							innerException: new Exception(
-								message: "Intelligence option character '#' is not allowed with multiline option character'@'."));
-					}
-					if (!format.StartsWith('#'))
-					{
-						throw new FormatException(
-							message: "The specified format is invalid.",
-							innerException: new Exception(
-								message: "Intelligence option character '#' must be at the first place."));
-					}
-					else if (format.IsMatch(@"\#[^\.0]+"))
-					{
-						throw new FormatException(
-							message: "The specified format is invalid.",
-							innerException: new Exception(
-								message: "Intelligence option character '#' must be with placeholder '0' or '.'."));
-					}
-				}
-				else if (format.Contains('0') && format.Contains('.'))
-				{
-					throw new FormatException(
-						message: "The specified format is invalid.",
-						innerException: new Exception(
-							message: "Placeholder character '0' and '.' cannot appear both."));
-				}
-				else if (!format.Contains('@') && format.Contains('+') && format.Contains('!'))
-				{
-					throw new FormatException(
-						message: "The specified format is invalid.",
-						innerException: new Exception(
-							message: "Cell status character '+' and '!' cannot appear both."));
-				}
-				else if (!format.Contains('@') && format.Contains(':') && !format.EndsWith(':'))
-				{
-					throw new FormatException(
-						message: "The specified format is invalid.",
-						innerException: new Exception(
-							message: "Candidate leading character ':' must be at the last place."));
-				}
-				else if (format.Contains('@'))
+				if (format.Contains('@'))
 				{
 					if (!format.StartsWith('@'))
 					{
@@ -363,6 +318,50 @@ namespace Sudoku.Data.Meta
 							message: "The specified format is invalid.",
 							innerException: new Exception(
 								message: "Multiline identifier '@' must follow only character '!', '*', '0', '.' or ':'."));
+					}
+				}
+				else
+				{
+					if (format.Contains('#'))
+					{
+						if (!format.StartsWith('#'))
+						{
+							throw new FormatException(
+								message: "The specified format is invalid.",
+								innerException: new Exception(
+									message: "Intelligence option character '#' must be at the first place."));
+						}
+						else if (format.IsMatch(@"\#[^\.0]+"))
+						{
+							throw new FormatException(
+								message: "The specified format is invalid.",
+								innerException: new Exception(
+									message: "Intelligence option character '#' must be with placeholder '0' or '.'."));
+						}
+					}
+					else
+					{
+						if (format.Contains('0') && format.Contains('.'))
+						{
+							throw new FormatException(
+								message: "The specified format is invalid.",
+								innerException: new Exception(
+									message: "Placeholder character '0' and '.' cannot appear both."));
+						}
+						else if (format.Contains('+') && format.Contains('!'))
+						{
+							throw new FormatException(
+								message: "The specified format is invalid.",
+								innerException: new Exception(
+									message: "Cell status character '+' and '!' cannot appear both."));
+						}
+						else if (format.Contains(':') && !format.EndsWith(':'))
+						{
+							throw new FormatException(
+								message: "The specified format is invalid.",
+								innerException: new Exception(
+									message: "Candidate leading character ':' must be at the last place."));
+						}
 					}
 				}
 			}
