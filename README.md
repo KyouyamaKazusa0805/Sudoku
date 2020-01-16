@@ -74,8 +74,8 @@ Solving tool: Manual
 (2.0) Locked Pair: 2, 4 in b4 => r5c1 <> 4, r5c2 <> 4
 (3.0) Naked Pair: 1, 7 in c2 => r3c2 <> 1
 (3.7) Naked Triple (+): 4, 6, 9 in c5 => r3c5 <> 4, r1c5 <> 6, r3c5 <> 6, r8c6 <> 6, r1c5 <> 9, r9c5 <> 9
-(5.1) Naked Quadruple (+): 2, 4, 8, 9 in b1 => r3c3 <> 8, r1c3 <> 9, r2c5 <> 9
-(1.2) Hidden Single (In Block): r1c6 = 9 in b2
+(4.0) Hidden Triple: 1, 6, 7 in b1 => r1c3 <> 9, r3c3 <> 8
+(1.5) Hidden Single (In Row): r1c6 = 9 in r1
 (1.2) Hidden Single (In Block): r7c5 = 9 in b8
 (1.2) Hidden Single (In Block): r8c5 = 6 in b8
 (1.2) Hidden Single (In Block): r8c6 = 4 in b8
@@ -125,22 +125,22 @@ Solving tool: Manual
 (1.0) Full House: r5c9 = 6
 Puzzle has been solved.
 Puzzle solution: 517639482239847561846512379691385724375421896428976135152798643983164257764253918
-Time elapsed: 00:00.00.102
+Time elapsed: 00:00.00.125
 Technique used:
 20 * Full House
 6 * Last Digit
-26 * Hidden Single (In Block)
-3 * Hidden Single (In Row)
+25 * Hidden Single (In Block)
+4 * Hidden Single (In Row)
 1 * Locked Pair
 1 * Naked single
 6 * Claiming
 1 * Naked Pair
 1 * Hidden Pair
 2 * Naked Triple (+)
-1 * Naked Quadruple (+)
+1 * Hidden Triple
 Total solving steps count: 68
-Difficulty total: 102.3
-Puzzle rating: 5.1/1.2/1.2
+Difficulty total: 101.5
+Puzzle rating: 4.0/1.2/1.2
 ```
 
 
