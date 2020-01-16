@@ -6,6 +6,7 @@ using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.BruteForces.DancingLinks;
 using Sudoku.Solving.BruteForces.Linqing;
 using Sudoku.Checking;
+using Sudoku.Solving.Manual;
 
 namespace Sudoku.Terminal
 {
@@ -114,6 +115,11 @@ namespace Sudoku.Terminal
 					case "linqing":
 					{
 						Console.WriteLine(new OneLineLinqSolver().Solve(grid));
+						return 0;
+					}
+					case "manual":
+					{
+						Console.WriteLine(new ManualSolver().Solve(grid));
 						return 0;
 					}
 					default:
