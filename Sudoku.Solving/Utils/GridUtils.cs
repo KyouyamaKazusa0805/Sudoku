@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Utils
 			// Now should reverse all bits. Note that this extension method
 			// will be passed a ref value ('ref int', not 'int').
 			result.ReverseBits();
-			return (short)(result >> 23); // 23 == 32 - 9
+			return (short)(result >> 23 & 511); // 23 == 32 - 9
 		}
 	}
 }
