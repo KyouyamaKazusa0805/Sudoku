@@ -8,9 +8,9 @@ namespace Sudoku.Solving.Manual.Intersections
 	{
 		public IntersectionTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int digit, int baseRegion)
+			int digit, int baseRegion, int coverRegion)
 			: base(conclusions, views) =>
-			(Digit, BaseRegion) = (digit, baseRegion);
+			(Digit, BaseRegion, CoverRegion) = (digit, baseRegion, coverRegion);
 
 
 		public override string Name => BaseRegion < 9 ? "Pointing" : "Claiming";
@@ -23,8 +23,10 @@ namespace Sudoku.Solving.Manual.Intersections
 
 		public int BaseRegion { get; }
 
+		public int CoverRegion { get; }
+
 
 		public override string ToString() =>
-			$"{Name}: {Digit + 1} in {RegionUtils.ToString(BaseRegion)} => {ConclusionCollection.ToString(Conclusions)}";
+			$@"{Name}: {Digit + 1} in {RegionUtils.ToString(BaseRegion)}\{RegionUtils.ToString(CoverRegion)} => {ConclusionCollection.ToString(Conclusions)}";
 	}
 }

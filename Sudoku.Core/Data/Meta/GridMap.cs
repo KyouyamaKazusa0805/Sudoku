@@ -18,10 +18,7 @@ namespace Sudoku.Data.Meta
 		{
 		}
 
-		private GridMap(int high, int mid, int low) =>
-			(_high, _mid, _low) = (high, mid, low);
-
-		private GridMap(IEnumerable<int> offsets)
+		public GridMap(IEnumerable<int> offsets)
 		{
 			(_low, _mid, _high) = (0, 0, 0);
 
@@ -47,6 +44,9 @@ namespace Sudoku.Data.Meta
 			}
 #endif
 		}
+
+		private GridMap(int high, int mid, int low) =>
+			(_high, _mid, _low) = (high, mid, low);
 
 
 		public readonly int Count => _low.CountSet() + _mid.CountSet() + _high.CountSet();
@@ -179,6 +179,12 @@ namespace Sudoku.Data.Meta
 		}
 
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public void Add(int offset) => this[offset] = true;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public void Remove(int offset) => this[offset] = false;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void SetPeersTrue(int offset) => UnionWith(new GridMap(offset));
