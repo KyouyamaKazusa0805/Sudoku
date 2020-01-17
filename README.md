@@ -32,19 +32,19 @@ You can write code in your computer like this:
 ```csharp
 internal static class Program
 {
-    private static void Main()
-    {
-        var solver = new Sudoku.Solving.Manual.ManualSolver
-        {
-            OptimizedApplyingOrder = true,
-            EnableFullHouse = true,
-            EnableLastDigit = true
-        };
-        var grid = Sudoku.Data.Meta.Grid.Parse(
-            "500000482030007000000000309690085000000020000000970035102000000000100050764000008");
-        var analysisResult = solver.Solve(grid);
-        System.Console.WriteLine(analysisResult);
-    }
+	private static void Main()
+	{
+		var solver = new Sudoku.Solving.Manual.ManualSolver
+		{
+			OptimizedApplyingOrder = true,
+			EnableFullHouse = true,
+			EnableLastDigit = true
+		};
+		var grid = Sudoku.Data.Meta.Grid.Parse(
+			"500000482030007000000000309690085000000020000000970035102000000000100050764000008");
+		var analysisResult = solver.Solve(grid);
+		System.Console.WriteLine(analysisResult);
+	}
 }
 ```
 
@@ -160,6 +160,8 @@ Here displays the introduction to all folders in this whole solution.
     * The checking module aiming to a sudoku grid, such as checking pearl puzzle, minimal puzzle, backdoors and so on.<br/>检测数独盘面的一些指定额外特性的模块，例如检测一个题目是否是珍珠题、最小题，或者是检测一个题目存在的所有后门（和魔术格）等信息。
 * `Sudoku.Solving`
     * Solving module of this whole solution.<br/>控制整个解决方案完成解题操作的所有内容的模块。
+* `Sudoku.Generating`
+	* Provides generating operations of sudoku.<br/>为整个数独项目提供出题的模块。
 * `Sudoku.Drawing`
     * Painting module of this solution, which is used for GDI+.<br/>控制整个解决方案有关绘制图形的模块，一般用于 GDI+ 上。
 * `Sudoku.Diagnostics`
