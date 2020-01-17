@@ -275,12 +275,12 @@ If you want to output pencil marked grid (PM grid), you should use options below
 另外，如果你要输出这个题目的候选数盘面的话，你可以使用下面的选项：
 
 | Format chararcters<br/>格式化字符 | Meanings<br/>意思                                                      |
-| --------------------------- | ---------------------------------------------------------------------- |
-| `@`                         | Default PM grid character.<br/>默认的候选数盘面输出的格式化字符。        |
-| `0` and `.` | Placeholders.<br/>占位符。 |
-| `:` | Candidates option.<br/>输出候选数选项。 |
-| `*`                         | Simple output option.<br/>普通格线字符输出选项。                        |
-| `!`                         | Treat-modifiable-as-given option.<br/>把填入的数字视为提示数的选项。     |
+| -------------------------------- | ---------------------------------------------------------------------- |
+| `@`                              | Default PM grid character.<br/>默认的候选数盘面输出的格式化字符。        |
+| `0` and `.`                      | Placeholders.<br/>占位符。                                             |
+| `:`                              | Candidates option.<br/>输出候选数选项。                                 |
+| `*`                              | Simple output option.<br/>普通格线字符输出选项。                        |
+| `!`                              | Treat-modifiable-as-given option.<br/>把填入的数字视为提示数的选项。     |
 
 These option are same or similar as normal grid (Susser format) output, so I don't give an introduction about those characters. Learn them from examples at the end of this part. I wanna introduce `'*'` option which is not mentioned above however.
 
