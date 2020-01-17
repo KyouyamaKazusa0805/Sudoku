@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<Nullable>Enable</Nullable>
+		<Authors>Sunnie</Authors>
+		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
+		<Description>Provides generating operations of the solution.</Description>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+		<ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />
+	</ItemGroup>
+
+</Project>

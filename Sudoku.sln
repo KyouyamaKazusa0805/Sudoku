@@ -27,9 +27,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Checking", "Sudoku.C
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sudoku.Solving.BruteForces.Bitwise", "Sudoku.Solving.BruteForces.Bitwise\Sudoku.Solving.BruteForces.Bitwise.vcxproj", "{703B7FE8-F11E-47A0-BCD4-18A495B24C3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Runtime", "Sudoku.Runtime\Sudoku.Runtime.csproj", "{54AF5E2D-C58A-409B-B511-91F369F6A3C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Runtime", "Sudoku.Runtime\Sudoku.Runtime.csproj", "{54AF5E2D-C58A-409B-B511-91F369F6A3C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Core", "Sudoku.Core\Sudoku.Core.csproj", "{FCD247BE-77B3-4091-BDB5-1EEB768938B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Core", "Sudoku.Core\Sudoku.Core.csproj", "{FCD247BE-77B3-4091-BDB5-1EEB768938B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Generating", "Sudoku.Generating\Sudoku.Generating.csproj", "{E69492F9-51EE-4BB7-AFB9-E2A57F00F9B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -171,6 +173,18 @@ Global
 		{FCD247BE-77B3-4091-BDB5-1EEB768938B7}.Release|x64.Build.0 = Release|Any CPU
 		{FCD247BE-77B3-4091-BDB5-1EEB768938B7}.Release|x86.ActiveCfg = Release|Any CPU
 		{FCD247BE-77B3-4091-BDB5-1EEB768938B7}.Release|x86.Build.0 = Release|Any CPU
+		{E69492F9-51EE-4BB7-AFB9-E2A57F00F9B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E69492F9-51EE-4BB7-AFB9-E2A57F00F9B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E69492F9-51EE-4BB7-AFB9-E2A57F00F9B9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E69492F9-51EE-4BB7-AFB9-E2A57F00F9B9}.Debug|x64.Build.0 = Debug|Any CPU
+		{E69492F9-51EE-4BB7-AFB9-E2A57F00F9B9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E69492F9-51EE-4BB7-AFB9-E2A57F00F9B9}.Debug|x86.Build.0 = Debug|Any CPU
+		{E69492F9-51EE-4BB7-AFB9-E2A57F00F9B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E69492F9-51EE-4BB7-AFB9-E2A57F00F9B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E69492F9-51EE-4BB7-AFB9-E2A57F00F9B9}.Release|x64.ActiveCfg = Release|Any CPU
+		{E69492F9-51EE-4BB7-AFB9-E2A57F00F9B9}.Release|x64.Build.0 = Release|Any CPU
+		{E69492F9-51EE-4BB7-AFB9-E2A57F00F9B9}.Release|x86.ActiveCfg = Release|Any CPU
+		{E69492F9-51EE-4BB7-AFB9-E2A57F00F9B9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
