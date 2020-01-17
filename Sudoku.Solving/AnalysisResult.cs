@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Sudoku.Data.Meta;
+using Sudoku.Diagnostics.CodeAnalysis;
 using Sudoku.Diagnostics.CodeAnalysis.Nullability;
 using Sudoku.Solving.Manual.Singles;
 
@@ -12,9 +13,9 @@ namespace Sudoku.Solving
 	{
 		public AnalysisResult(
 			Grid initialGrid, string solverName, bool hasSolved, Grid? solution,
-			TimeSpan elapsedTime, IList<TechniqueInfo>? solvingList, string? additional)
+			TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? solvingList, string? additional)
 		{
-			(InitialGrid, SolverName, HasSolved, Solution, SolvingSteps, ElapsedTime, Additional) =
+			(Puzzle, SolverName, HasSolved, Solution, SolvingSteps, ElapsedTime, Additional) =
 				(initialGrid, solverName, hasSolved, solution, solvingList, elapsedTime, additional);
 		}
 
@@ -84,38 +85,19 @@ namespace Sudoku.Solving
 				}
 
 				return maxLevel;
-
-				#region Deprecated code
-				//return HasSolved
-				//	? MaxDifficulty switch
-				//	{
-				//		_ when MaxDifficulty >= 1.0m && MaxDifficulty <= 1.2m => DifficultyLevels.VeryEasy,
-				//		_ when MaxDifficulty > 1.2m && MaxDifficulty <= 1.5m => DifficultyLevels.Easy,
-				//		_ when MaxDifficulty > 1.5m && MaxDifficulty <= 2.3m => DifficultyLevels.Moderate,
-				//		_ when MaxDifficulty > 2.3m && MaxDifficulty <= 2.8m => DifficultyLevels.Advanced,
-				//		_ when MaxDifficulty > 2.8m && MaxDifficulty <= 3.4m => DifficultyLevels.Hard,
-				//		_ when MaxDifficulty > 3.4m && MaxDifficulty <= 4.4m => DifficultyLevels.VeryHard,
-				//		_ when MaxDifficulty > 4.5m && MaxDifficulty <= 6.2m => DifficultyLevels.Fiendish,
-				//		_ when MaxDifficulty > 6.2m && MaxDifficulty <= 7.6m => DifficultyLevels.Diabolical,
-				//		_ when MaxDifficulty > 7.6m && MaxDifficulty <= 8.9m => DifficultyLevels.Crazy,
-				//		_ when MaxDifficulty > 8.9m && MaxDifficulty <= 10.0m => DifficultyLevels.Nightmare,
-				//		_ when MaxDifficulty > 10.0m && MaxDifficulty <= 12.0m => DifficultyLevels.BeyondNightmare,
-				//		_ => DifficultyLevels.Unknown
-				//	}
-				//	: DifficultyLevels.Unknown;
-				#endregion
 			}
 		}
 
-		public Grid InitialGrid { get; }
+		public Grid Puzzle { get; }
 
 		[PropertyNotNullWhen(nameof(HasSolved), true)]
 		public Grid? Solution { get; }
 
 		[PropertyNotNullWhen(nameof(HasSolved), true)]
-		public IList<TechniqueInfo>? SolvingSteps { get; }
+		public IReadOnlyList<TechniqueInfo>? SolvingSteps { get; }
 
-		public IEnumerable<IGrouping<string, TechniqueInfo>>? SolvingStepsGrouped
+		[PropertyNotNullWhen(nameof(HasSolved), true)]
+		private IEnumerable<IGrouping<string, TechniqueInfo>>? SolvingStepsGrouped
 		{
 			get
 			{
@@ -128,9 +110,31 @@ namespace Sudoku.Solving
 		}
 
 
+		[OnDeconstruction]
+		public void Deconstruct(
+			out int? solvingStepsCount, out IReadOnlyList<TechniqueInfo>? solvingSteps) =>
+			(solvingStepsCount, solvingSteps) = (SolvingStepsCount == 0 ? (int?)null : SolvingStepsCount, SolvingSteps);
+
+		[OnDeconstruction]
+		public void Deconstruct(
+			out string solverName, out bool hasSolved, out string? additional) =>
+			(solverName, hasSolved, additional) = (SolverName, HasSolved, Additional);
+
+		[OnDeconstruction]
+		public void Deconstruct(
+			out decimal? total, out decimal? max,
+			out decimal? pearl, out decimal? diamond) =>
+			(total, max, pearl, diamond) = (TotalDifficulty, MaxDifficulty == 20 ? (decimal?)null : MaxDifficulty, PearlDifficulty, DiamondDifficulty);
+
+		[OnDeconstruction]
+		public void Deconstruct(
+			out Grid puzzle, out bool hasSolved, out TimeSpan elapsedTime,
+			out Grid? solution, out DifficultyLevels difficultyLevel) =>
+			(puzzle, hasSolved, elapsedTime, solution, difficultyLevel) = (Puzzle, HasSolved, ElapsedTime, Solution, DifficultyLevel);
+
 		public override string ToString()
 		{
-			var sb = new StringBuilder($"Initial grid: {InitialGrid:#}{Environment.NewLine}");
+			var sb = new StringBuilder($"Puzzle: {Puzzle:#}{Environment.NewLine}");
 			sb.AppendLine($"Solving tool: {SolverName}");
 			if (SolvingSteps is null)
 			{

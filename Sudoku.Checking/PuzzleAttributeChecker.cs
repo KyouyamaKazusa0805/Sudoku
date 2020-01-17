@@ -12,10 +12,10 @@ namespace Sudoku.Checking
 	{
 		public static bool IsUnique(this Grid @this, [NotNullWhen(true)] out Grid? solutionIfUnique)
 		{
-			var result = new DancingLinksSolver().Solve(@this);
-			if (result.HasSolved)
+			(_, bool hasSolved, _, var solution, _) = new DancingLinksSolver().Solve(@this);
+			if (hasSolved)
 			{
-				solutionIfUnique = result.Solution;
+				solutionIfUnique = solution;
 				return true;
 			}
 			else
@@ -51,7 +51,11 @@ namespace Sudoku.Checking
 			}
 
 			var solver = new DancingLinksSolver();
-			return tempArrays.All(gridValues => !solver.Solve(gridValues).HasSolved);
+			return tempArrays.All(gridValues =>
+			{
+				(_, bool hasSolved, _, _, _) = solver.Solve(gridValues);
+				return !hasSolved;
+			});
 		}
 
 		public static bool IsPearl(this Grid @this)

@@ -14,8 +14,6 @@ namespace Sudoku.Generating.Basic
 
 		public override Grid Generate()
 		{
-			AnalysisResult analysisResult;
-
 			static bool[] GetMask(out int count)
 			{
 				bool[] result = new bool[81];
@@ -33,6 +31,7 @@ namespace Sudoku.Generating.Basic
 				return result;
 			}
 
+			bool hasSolved;
 			bool[] pattern = GetMask(out int count);
 			int[] series = new int[81];
 			do
@@ -47,8 +46,8 @@ namespace Sudoku.Generating.Basic
 					}
 				}
 
-				analysisResult = Solver.Solve(series);
-			} while (!analysisResult.HasSolved);
+				(_, hasSolved, _) = Solver.Solve(series);
+			} while (!hasSolved);
 
 			return Grid.CreateInstance(series);
 		}
