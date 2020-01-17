@@ -207,12 +207,12 @@ If you has known the whole outline of this solution, you want to know how to use
 标题：*单行输出模式下的格式化字符*
 
 | Format chararcters<br/>格式化字符 | Meanings<br/>意思                                                                  |
-| --------------------------- | ---------------------------------------------------------------------------------- |
-| `.` and `0`                 | Placeholder option.<br/>占位符选项。                                                |
-| `+`                         | Modifiable values option.<br/>显示可修改的数值选项。                                |
-| `!`                         | Modifiable values will be regarded as given ones.<br/>把可修改数值视为提示数的选项。 |
-| `:`                         | Candidates-has-been-eliminated option.<br/>显示盘面已删除的候选数的选项。            |
-| `#`                         | Intelligent output option.<br/>智能输出选项。                                       |
+| -------------------------------- | ---------------------------------------------------------------------------------- |
+| `.` and `0`                      | Placeholder option.<br/>占位符选项。                                                |
+| `+`                              | Modifiable values option.<br/>显示可修改的数值选项。                                |
+| `!`                              | Modifiable values will be regarded as given ones.<br/>把可修改数值视为提示数的选项。 |
+| `:`                              | Candidates-has-been-eliminated option.<br/>显示盘面已删除的候选数的选项。            |
+| `#`                              | Intelligent output option.<br/>智能输出选项。                                       |
 
 If you write `grid.ToString("0")`, all empty cells will be replaced by character `'0'`; but if you write `grid.ToString(".")`, empty cells will be shown by `'.'`.
 
@@ -275,12 +275,12 @@ If you want to output pencil marked grid (PM grid), you should use options below
 另外，如果你要输出这个题目的候选数盘面的话，你可以使用下面的选项：
 
 | Format chararcters<br/>格式化字符 | Meanings<br/>意思                                                      |
-| --------------------------- | ---------------------------------------------------------------------- |
-| `@`                         | Default PM grid character.<br/>默认的候选数盘面输出的格式化字符。        |
-| `0` and `.` | Placeholders.<br/>占位符。 |
-| `:` | Candidates option.<br/>输出候选数选项。 |
-| `*`                         | Simple output option.<br/>普通格线字符输出选项。                        |
-| `!`                         | Treat-modifiable-as-given option.<br/>把填入的数字视为提示数的选项。     |
+| -------------------------------- | ---------------------------------------------------------------------- |
+| `@`                              | Default PM grid character.<br/>默认的候选数盘面输出的格式化字符。        |
+| `0` and `.`                      | Placeholders.<br/>占位符。                                             |
+| `:`                              | Candidates option.<br/>输出候选数选项。                                 |
+| `*`                              | Simple output option.<br/>普通格线字符输出选项。                        |
+| `!`                              | Treat-modifiable-as-given option.<br/>把填入的数字视为提示数的选项。     |
 
 These option are same or similar as normal grid (Susser format) output, so I don't give an introduction about those characters. Learn them from examples at the end of this part. I wanna introduce `'*'` option which is not mentioned above however.
 
