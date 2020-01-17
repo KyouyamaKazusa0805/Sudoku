@@ -207,12 +207,12 @@ If you has known the whole outline of this solution, you want to know how to use
 标题：*单行输出模式下的格式化字符*
 
 | Format chararcters<br/>格式化字符 | Meanings<br/>意思                                                                  |
-| --------------------------- | ---------------------------------------------------------------------------------- |
-| `.` and `0`                 | Placeholder option.<br/>占位符选项。                                                |
-| `+`                         | Modifiable values option.<br/>显示可修改的数值选项。                                |
-| `!`                         | Modifiable values will be regarded as given ones.<br/>把可修改数值视为提示数的选项。 |
-| `:`                         | Candidates-has-been-eliminated option.<br/>显示盘面已删除的候选数的选项。            |
-| `#`                         | Intelligent output option.<br/>智能输出选项。                                       |
+| -------------------------------- | ---------------------------------------------------------------------------------- |
+| `.` and `0`                      | Placeholder option.<br/>占位符选项。                                                |
+| `+`                              | Modifiable values option.<br/>显示可修改的数值选项。                                |
+| `!`                              | Modifiable values will be regarded as given ones.<br/>把可修改数值视为提示数的选项。 |
+| `:`                              | Candidates-has-been-eliminated option.<br/>显示盘面已删除的候选数的选项。            |
+| `#`                              | Intelligent output option.<br/>智能输出选项。                                       |
 
 If you write `grid.ToString("0")`, all empty cells will be replaced by character `'0'`; but if you write `grid.ToString(".")`, empty cells will be shown by `'.'`.
 
