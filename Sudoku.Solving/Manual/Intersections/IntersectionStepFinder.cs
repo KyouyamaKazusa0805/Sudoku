@@ -8,19 +8,11 @@ namespace Sudoku.Solving.Manual.Intersections
 {
 	public sealed class IntersectionStepFinder : StepFinder
 	{
-		//private static readonly int[,] IntersectionSegments = new int[9, 4]
-		//{
-		//	{ 1, 2, 3, 6 }, { 0, 2, 4, 7 }, { 0, 1, 5, 8 },
-		//	{ 4, 5, 0, 6 }, { 3, 5, 1, 7 }, { 3, 4, 2, 8 },
-		//	{ 7, 8, 0, 3 }, { 6, 8, 1, 4 }, { 6, 7, 2, 5 }
-		//};
-
-		private static readonly (int _base, int _cover, GridMap _left, GridMap _right)[,] IntersectionSeries = new (int, int, GridMap, GridMap)[18, 3];
+		private static readonly (int, int, GridMap, GridMap)[,] IntersectionSeries = new (int, int, GridMap, GridMap)[18, 3];
 
 
 		static IntersectionStepFinder()
 		{
-			int[] zz = { 0, 3, 6, 1, 4, 7, 2, 5, 8 };
 			for (int i = 0; i < 18; i++)
 			{
 				for (int j = 0; j < 3; j++)
@@ -28,7 +20,7 @@ namespace Sudoku.Solving.Manual.Intersections
 					int baseSet = i + 9;
 					int coverSet = i < 9
 						? i / 3 * 3 + j
-						: zz[(i - 9) / 3 * 3 + j];
+						: ((i - 9) / 3 * 3 + j) * 3 % 8;
 					IntersectionSeries[i, j] = (
 						baseSet, coverSet,
 						new GridMap(GetCellOffsets(baseSet)), new GridMap(GetCellOffsets(coverSet)));
