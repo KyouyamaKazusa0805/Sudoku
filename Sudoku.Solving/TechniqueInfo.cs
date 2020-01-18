@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data.Meta;
+using Sudoku.Diagnostics.CodeAnalysis;
 using Sudoku.Drawing;
 
 namespace Sudoku.Solving
@@ -21,6 +22,27 @@ namespace Sudoku.Solving
 
 		public IReadOnlyList<View> Views { get; }
 
+
+		[OnDeconstruction]
+		public void Deconstruct(out string name, out decimal difficulty) =>
+			(name, difficulty) = (Name, Difficulty);
+
+		[OnDeconstruction]
+		public void Deconstruct(
+			out string name, out decimal difficulty, out DifficultyLevels difficultyLevel) =>
+			(name, difficulty, difficultyLevel) = (Name, Difficulty, DifficultyLevel);
+
+		[OnDeconstruction]
+		public void Deconstruct(
+			out string name, out decimal difficulty, out DifficultyLevels difficultyLevel,
+			out IReadOnlyList<Conclusion> conclusions) =>
+			(name, difficulty, difficultyLevel, conclusions) = (Name, Difficulty, DifficultyLevel, Conclusions);
+		
+		[OnDeconstruction]
+		public void Deconstruct(
+			out string name, out decimal difficulty, out DifficultyLevels difficultyLevel,
+			out IReadOnlyList<Conclusion> conclusions, out IReadOnlyList<View> views) =>
+			(name, difficulty, difficultyLevel, conclusions, views) = (Name, Difficulty, DifficultyLevel, Conclusions, Views);
 
 		public void ApplyTo(Grid grid)
 		{

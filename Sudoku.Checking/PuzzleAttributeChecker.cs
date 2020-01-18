@@ -125,16 +125,16 @@ namespace Sudoku.Checking
 		public static bool IsIttoRyu(this Grid @this)
 		{
 			var cloneation = @this.Clone();
-			var result = new ManualSolver
+			var (_, hasSolved, _, _, difficultyLevel, _, steps) = new ManualSolver
 			{
 				IttoRyuWhenPossible = true,
 				EnableFullHouse = false,
 				EnableLastDigit = false
 			}.Solve(cloneation);
-			if (result.HasSolved && result.DifficultyLevel == DifficultyLevels.Easy)
+			if (hasSolved && difficultyLevel == DifficultyLevels.Easy)
 			{
 				int digit = 0;
-				foreach (var step in result.SolvingSteps!)
+				foreach (var step in steps!)
 				{
 					int checkDigit = step.Conclusions[0].Digit;
 					if (checkDigit == digit)

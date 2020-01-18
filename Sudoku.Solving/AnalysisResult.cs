@@ -132,6 +132,13 @@ namespace Sudoku.Solving
 			out Grid? solution, out DifficultyLevels difficultyLevel) =>
 			(puzzle, hasSolved, elapsedTime, solution, difficultyLevel) = (Puzzle, HasSolved, ElapsedTime, Solution, DifficultyLevel);
 
+		[OnDeconstruction]
+		public void Deconstruct(
+			out Grid puzzle, out bool hasSolved, out TimeSpan elapsedTime,
+			out Grid? solution, out DifficultyLevels difficultyLevel,
+			out int? solvingStepsCount, out IReadOnlyList<TechniqueInfo>? solvingSteps) =>
+			(puzzle, hasSolved, elapsedTime, solution, difficultyLevel, solvingStepsCount, solvingSteps) = (Puzzle, HasSolved, ElapsedTime, Solution, DifficultyLevel, SolvingStepsCount == 0 ? (int?)null : SolvingStepsCount, SolvingSteps);
+
 		public override string ToString()
 		{
 			var sb = new StringBuilder($"Puzzle: {Puzzle:#}{Environment.NewLine}");
