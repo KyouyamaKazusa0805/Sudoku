@@ -24,7 +24,7 @@ namespace Sudoku.Checking
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool IsUnique(this Grid @this, [NotNullWhen(true)] out Grid? solutionIfUnique)
 		{
-			(_, bool hasSolved, _, var solution, _) = new DancingLinksSolver().Solve(@this);
+			var (_, hasSolved, _, solution, _) = new DancingLinksSolver().Solve(@this);
 			if (hasSolved)
 			{
 				solutionIfUnique = solution;
@@ -70,7 +70,7 @@ namespace Sudoku.Checking
 			var solver = new DancingLinksSolver();
 			return tempArrays.All(gridValues =>
 			{
-				(_, bool hasSolved, _, _, _) = solver.Solve(gridValues);
+				var (_, hasSolved, _, _, _) = solver.Solve(gridValues);
 				return !hasSolved;
 			});
 		}
