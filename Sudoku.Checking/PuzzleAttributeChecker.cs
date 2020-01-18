@@ -124,7 +124,13 @@ namespace Sudoku.Checking
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool IsIttoRyu(this Grid @this)
 		{
-			var result = new ManualSolver().Solve(@this);
+			var cloneation = @this.Clone();
+			var result = new ManualSolver
+			{
+				IttoRyuWhenPossible = true,
+				EnableFullHouse = false,
+				EnableLastDigit = false
+			}.Solve(cloneation);
 			if (result.HasSolved && result.DifficultyLevel == DifficultyLevels.Easy)
 			{
 				int digit = 0;

@@ -30,40 +30,35 @@ namespace Sudoku.Solving.Manual
 			};
 
 			// Start time recording and solving.
-			int digit = 0;
-			decimal min = decimal.MaxValue;
-			TechniqueInfo? minInfo = null, firstInfo = null, ittoRyuInfo = null;
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
 		Label_StartSolving:
-			foreach (var stepFinder in stepFinders)
+			for (int i = 0; i < stepFinders.Count; i++)
 			{
-				var infos = stepFinder.TakeAll(cloneation);
-				foreach (var info in infos)
-				{
-					if (!OptimizedApplyingOrder)
-					{
-						firstInfo = info;
-						break;
-					}
-					if (OptimizedApplyingOrder && info.Difficulty < min)
-					{
-						min = info.Difficulty;
-						minInfo = info;
-					}
+				var stepFinder = stepFinders[i];
 
-					var conclusion = info.Conclusions[0];
-					int curDigit = conclusion.Digit;
-					if (conclusion.Type == ConclusionType.Assignment
-						&& (curDigit == (digit + 1) % 9 || curDigit == digit))
+				int digit = 0;
+				var ittoRyuInfo = (TechniqueInfo?)null;
+				var infos = stepFinder.TakeAll(cloneation);
+				if (IttoRyuWhenPossible && i == 0) // 'i == 0' stands for single step finder.
+				{
+					foreach (var info in infos)
 					{
-						ittoRyuInfo = info;
+						var conclusion = info.Conclusions[0];
+						int curDigit = conclusion.Digit;
+						if (conclusion.Type == ConclusionType.Assignment
+							&& (curDigit == (digit + 1) % 9 || curDigit == digit))
+						{
+							ittoRyuInfo = info;
+						}
 					}
 				}
 
 				var step = IttoRyuWhenPossible
-					? ittoRyuInfo is null ? firstInfo : ittoRyuInfo
-					: OptimizedApplyingOrder ? minInfo : firstInfo;
+					? ittoRyuInfo is null ? infos.FirstOrDefault() : ittoRyuInfo
+					: OptimizedApplyingOrder
+						? infos.GetElementByMinSelector(info => info.Difficulty)
+						: infos.FirstOrDefault();
 
 				if (step is null)
 				{
