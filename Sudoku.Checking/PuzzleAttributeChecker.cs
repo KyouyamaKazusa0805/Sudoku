@@ -134,9 +134,9 @@ namespace Sudoku.Checking
 			if (hasSolved && difficultyLevel == DifficultyLevels.Easy)
 			{
 				int digit = 0;
-				foreach (var step in steps!)
+				foreach (var (_, _, _, conclusions) in steps!)
 				{
-					int checkDigit = step.Conclusions[0].Digit;
+					int checkDigit = conclusions[0].Digit;
 					if (checkDigit == digit)
 					{
 						continue;
