@@ -2,14 +2,26 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data.Meta;
+using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.DancingLinks;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Checking
 {
+	/// <summary>
+	/// Provides some puzzle attributes validation operations.
+	/// </summary>
 	public static class PuzzleAttributeChecker
 	{
+		/// <summary>
+		/// To check if a puzzle has only one solution or not.
+		/// </summary>
+		/// <param name="this">The puzzle to check.</param>
+		/// <param name="solutionIfUnique">
+		/// (out parameter) The solution if the puzzle is unique; otherwise, <c>null</c>.
+		/// </param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool IsUnique(this Grid @this, [NotNullWhen(true)] out Grid? solutionIfUnique)
 		{
 			(_, bool hasSolved, _, var solution, _) = new DancingLinksSolver().Solve(@this);
@@ -25,10 +37,15 @@ namespace Sudoku.Checking
 			}
 		}
 
+		/// <summary>
+		/// To check if the puzzle is minimal or not.
+		/// </summary>
+		/// <param name="this">The puzzle to check.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool IsMinimal(this Grid @this)
 		{
 			int hintCount = 0;
-			var array = @this.ToArray();
+			int[] array = @this.ToArray();
 			var valueList = new Queue<(int, int)>();
 			for (int i = 0; i < 9; i++)
 			{
@@ -42,7 +59,7 @@ namespace Sudoku.Checking
 				}
 			}
 
-			var tempArrays = new int[hintCount][];
+			int[][] tempArrays = new int[hintCount][];
 			for (int i = 0; i < hintCount; i++)
 			{
 				var (r, c) = valueList.Dequeue();
@@ -58,6 +75,11 @@ namespace Sudoku.Checking
 			});
 		}
 
+		/// <summary>
+		/// To check if the puzzle is pearl or not.
+		/// </summary>
+		/// <param name="this">The puzzle to check.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool IsPearl(this Grid @this)
 		{
 			// Using a faster solver to check the grid is unique or not.
@@ -74,6 +96,11 @@ namespace Sudoku.Checking
 			}
 		}
 
+		/// <summary>
+		/// To check if the puzzle is diamond or not.
+		/// </summary>
+		/// <param name="this">The puzzle to check.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool IsDiamond(this Grid @this)
 		{
 			// Using a faster solver to check the grid is unique or not.
@@ -86,6 +113,42 @@ namespace Sudoku.Checking
 			else
 			{
 				// The puzzle does not have unique solution, neither pearl nor diamond one.
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// To check if the puzzle is itto ryu or not.
+		/// </summary>
+		/// <param name="this">The puzzle to check.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		public static bool IsIttoRyu(this Grid @this)
+		{
+			var result = new ManualSolver().Solve(@this);
+			if (result.HasSolved && result.DifficultyLevel == DifficultyLevels.Easy)
+			{
+				int digit = 0;
+				foreach (var step in result.SolvingSteps!)
+				{
+					int checkDigit = step.Conclusions[0].Digit;
+					if (checkDigit == digit)
+					{
+						continue;
+					}
+
+					if (checkDigit == (digit + 1) % 9)
+					{
+						digit = checkDigit;
+						continue;
+					}
+
+					return false;
+				}
+
+				return true;
+			}
+			else
+			{
 				return false;
 			}
 		}

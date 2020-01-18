@@ -9,10 +9,24 @@ using Sudoku.Solving.Manual;
 
 namespace Sudoku.Checking
 {
+	/// <summary>
+	/// Provides a backdoor searcher.
+	/// </summary>
+	/// <remarks>
+	/// <b>Backdoor</b>s are <see cref="Conclusion"/>s making the difficulty of
+	/// a puzzle decrease sharply after they are applied to a grid.
+	/// </remarks>
+	/// <seealso cref="Conclusion"/>
 	public sealed class BackdoorSearcher : IEnumerable<IReadOnlyList<Conclusion>>
 	{
+		/// <summary>
+		/// The result list.
+		/// </summary>
 		private readonly List<List<Conclusion>> _result = new List<List<Conclusion>>();
 
+		/// <summary>
+		/// The temporary test solver used in this searcher.
+		/// </summary>
 		private static readonly ManualSolver TestSolver = new ManualSolver
 		{
 			OptimizedApplyingOrder = false,
@@ -21,6 +35,15 @@ namespace Sudoku.Checking
 		};
 
 
+		/// <summary>
+		/// Initializes an instance with a grid and searching depth.
+		/// </summary>
+		/// <param name="grid">The sudoku grid to search backdoors.</param>
+		/// <param name="depth">The maximum depth to search. No more than 3.</param>
+		/// <exception cref="ArgumentOutOfRangeException">
+		/// Throws when <paramref name="depth"/> is greater than 3.
+		/// </exception>
+		/// <seealso cref="Depth"/>
 		public BackdoorSearcher(Grid grid, int depth)
 		{
 			Depth = depth >= 0 && depth <= 3
@@ -31,9 +54,13 @@ namespace Sudoku.Checking
 		}
 
 
+		/// <summary>
+		/// The maximum depth to search.
+		/// </summary>
 		public int Depth { get; }
 
 
+		/// <inheritdoc/>
 		public override string ToString()
 		{
 			const string separator = ", ";
@@ -53,11 +80,17 @@ namespace Sudoku.Checking
 			return sb.ToString();
 		}
 
+		/// <inheritdoc/>
 		public IEnumerator<IReadOnlyList<Conclusion>> GetEnumerator() =>
 			_result.GetEnumerator();
 
+		/// <inheritdoc/>
 		IEnumerator IEnumerable.GetEnumerator() => _result.GetEnumerator();
 
+		/// <summary>
+		/// To find all backdoors in a sudoku grid.
+		/// </summary>
+		/// <param name="grid">A sudoku grid to search backdoors.</param>
 		private void FindBackdoors(Grid grid)
 		{
 			if (!grid.IsUnique(out var solution))

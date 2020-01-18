@@ -6,12 +6,13 @@
 		{
 			var solver = new Sudoku.Solving.Manual.ManualSolver
 			{
-				OptimizedApplyingOrder = true,
-				EnableFullHouse = true,
-				EnableLastDigit = true
+				IttoRyuWhenPossible = true,
+				//OptimizedApplyingOrder = true,
+				EnableFullHouse = false,
+				EnableLastDigit = false
 			};
 			var grid = Sudoku.Data.Meta.Grid.Parse(
-				"300270000008010000715000000004000010030746090060000300000000872000090600000067005");
+				"206000140000000000410000020005030200000000004000816300000302601004051703150070000");
 			var analysisResult = solver.Solve(grid);
 			System.Console.WriteLine(analysisResult);
 		}

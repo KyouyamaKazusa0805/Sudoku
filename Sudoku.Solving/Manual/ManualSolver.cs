@@ -30,14 +30,40 @@ namespace Sudoku.Solving.Manual
 			};
 
 			// Start time recording and solving.
+			int digit = 0;
+			decimal min = decimal.MaxValue;
+			TechniqueInfo? minInfo = null, firstInfo = null, ittoRyuInfo = null;
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
 		Label_StartSolving:
 			foreach (var stepFinder in stepFinders)
 			{
-				var step = OptimizedApplyingOrder
-					? stepFinder.TakeAll(cloneation).GetElementByMinSelector(info => info.Difficulty)
-					: stepFinder.TakeOne(cloneation);
+				var infos = stepFinder.TakeAll(cloneation);
+				foreach (var info in infos)
+				{
+					if (!OptimizedApplyingOrder)
+					{
+						firstInfo = info;
+						break;
+					}
+					if (OptimizedApplyingOrder && info.Difficulty < min)
+					{
+						min = info.Difficulty;
+						minInfo = info;
+					}
+
+					var conclusion = info.Conclusions[0];
+					int curDigit = conclusion.Digit;
+					if (conclusion.Type == ConclusionType.Assignment
+						&& (curDigit == (digit + 1) % 9 || curDigit == digit))
+					{
+						ittoRyuInfo = info;
+					}
+				}
+
+				var step = IttoRyuWhenPossible
+					? ittoRyuInfo is null ? firstInfo : ittoRyuInfo
+					: OptimizedApplyingOrder ? minInfo : firstInfo;
 
 				if (step is null)
 				{

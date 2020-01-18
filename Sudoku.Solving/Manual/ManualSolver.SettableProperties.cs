@@ -7,5 +7,7 @@
 		public bool EnableFullHouse { get; set; } = true;
 
 		public bool EnableLastDigit { get; set; } = true;
+
+		public bool IttoRyuWhenPossible { get; set; } = false;
 	}
 }
