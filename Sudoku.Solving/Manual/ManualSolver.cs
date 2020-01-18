@@ -33,12 +33,11 @@ namespace Sudoku.Solving.Manual
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
 		Label_StartSolving:
+			int digit = 0;
+			var ittoRyuInfo = (TechniqueInfo?)null;
 			for (int i = 0; i < stepFinders.Count; i++)
 			{
 				var stepFinder = stepFinders[i];
-
-				int digit = 0;
-				var ittoRyuInfo = (TechniqueInfo?)null;
 				var infos = stepFinder.TakeAll(cloneation);
 				if (IttoRyuWhenPossible && i == 0) // 'i == 0' stands for single step finder.
 				{
@@ -50,6 +49,12 @@ namespace Sudoku.Solving.Manual
 							&& (curDigit == (digit + 1) % 9 || curDigit == digit))
 						{
 							ittoRyuInfo = info;
+							if (curDigit == (digit + 1) % 9)
+							{
+								digit = (digit + 1) % 9;
+							}
+
+							break;
 						}
 					}
 				}
