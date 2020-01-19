@@ -2,6 +2,9 @@
 {
 	partial struct GridMap
 	{
+		/// <summary>
+		/// The peer table used in intersection.
+		/// </summary>
 		private static readonly int[][] PeerTable = new int[][]
 		{
 			new[] { 9, 18, 27, 36, 45, 54, 63, 72, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 19, 20 },
@@ -87,6 +90,9 @@
 			new[] { 8, 17, 26, 35, 44, 53, 62, 71, 72, 73, 74, 75, 76, 77, 78, 79, 60, 61, 69, 70 }
 		};
 
+		/// <summary>
+		/// The region mask table used in getting all cells in the specified region.
+		/// </summary>
 		private static readonly int[][] RegionsMaskTable = new int[][]
 		{
 			// Blocks.

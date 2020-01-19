@@ -1,0 +1,367 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Data.Extensions.CollectionEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.ICollection`1"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.CollectionEx.AddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Adds the elements of the specified collection to the end of the
+            <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The collection.</param>
+            <param name="values">
+            The values you want to add to the end of the collection.
+            </param>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.Int16Ex">
+            <summary>
+            Provides extension methods on <see cref="T:System.Int16"/>.
+            </summary>
+            <seealso cref="T:System.Int16"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int16Ex.FindFirstSet(System.Int16)">
+            <summary>
+            Find the first offset of set bit of the binary representation of the specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
+            <seealso cref="M:Sudoku.Data.Extensions.Int32Ex.FindFirstSet(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int16Ex.CountSet(System.Int16)">
+            <summary>
+            Get the total number of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
+            <seealso cref="M:Sudoku.Data.Extensions.Int32Ex.CountSet(System.Int32)"/>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.Int32Ex">
+            <summary>
+            Provides extension methods on <see cref="T:System.Int32"/>.
+            </summary>
+            <seealso cref="T:System.Int32"/>
+        </member>
+        <member name="F:Sudoku.Data.Extensions.Int32Ex.Table">
+            <summary>
+            The return value table used in <see cref="M:Sudoku.Data.Extensions.Int32Ex.FindFirstSet(System.Int32)"/>.
+            </summary>
+            <seealso cref="M:Sudoku.Data.Extensions.Int32Ex.FindFirstSet(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int32Ex.FindFirstSet(System.Int32)">
+            <summary>
+            Find the first offset of set bit of the binary representation of the specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int32Ex.CountSet(System.Int32)">
+            <summary>
+            Get the total number of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int32Ex.GetAllSets(System.Int32)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int32Ex.ReverseBits(System.Int32@)">
+            <summary>
+            Reverse all bits in a specified value.
+            </summary>
+            <param name="this">(ref parameter) The value.</param>
+            <remarks>
+            Note that the value is passed by reference though the
+            method is an extension method, and returns nothing.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.ObjectEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Object"/>.
+            </summary>
+            <seealso cref="T:System.Object"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ObjectEx.NullableToString(System.Object)">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current object
+            though the object is <c>null</c>.
+            </summary>
+            <param name="this">The object.</param>
+            <returns>
+            A <see cref="T:System.String"/> represents the current object.
+            If the current object is <c>null</c>, this value will be
+            <see cref="F:System.String.Empty"/>. Therefore, this method will never throw.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ObjectEx.NullableToString(System.Object,System.String)">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current object
+            though the object is <c>null</c>.
+            </summary>
+            <param name="this">The object.</param>
+            <param name="defaultValue">
+            The default return value when the current object is <c>null</c>.
+            </param>
+            <returns>
+            A <see cref="T:System.String"/> represents the current object.
+            If the current object is <c>null</c>, this value will be
+            <paramref name="defaultValue"/>. Therefore, this method will never throw.
+            </returns>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.StringBuilderEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <seealso cref="T:System.Text.StringBuilder"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringBuilderEx.Reverse(System.Text.StringBuilder)">
+            <summary>
+            Reverse all characters in a specified string builder instance.
+            </summary>
+            <param name="this">The instance to reverse all characters.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringBuilderEx.RemoveFromEnd(System.Text.StringBuilder,System.Int32)">
+            <summary>
+            Remove the specified number of characters from the end of the string builder
+            instance.
+            </summary>
+            <param name="this">The instance to remove characters.</param>
+            <param name="length">The number of characters you want to remove.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringBuilderEx.AppendLine(System.Text.StringBuilder,System.Char)">
+            <summary>
+            Append a character to the end of the specified string builder instance,
+            and then append a <see cref="P:System.Environment.NewLine"/>.
+            </summary>
+            <param name="this">The instance.</param>
+            <param name="value">The character you want to append.</param>
+            <returns>The reference of the current instance.</returns>
+            <remarks>
+            The extension method is used in order to avoid implicit conversion from
+            <see cref="T:System.Char"/> to <see cref="T:System.Int32"/>. If you want to append everything,
+            please use the method <see cref="M:Sudoku.Data.Extensions.StringBuilderEx.AppendLine(System.Text.StringBuilder,System.Object)"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Data.Extensions.StringBuilderEx.AppendLine(System.Text.StringBuilder,System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringBuilderEx.AppendLine(System.Text.StringBuilder,System.Object)">
+            <summary>
+            Append a <see cref="T:System.String"/> representation of an object
+            to the end of the specified string builder instance,
+            and then append a <see cref="P:System.Environment.NewLine"/>.
+            </summary>
+            <param name="this">The instance.</param>
+            <param name="obj">
+            The <see cref="T:System.String"/> representation of an object you want to append.
+            </param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.StringEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.String"/>.
+            </summary>
+            <seealso cref="T:System.String"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringEx.SatisfyPattern(System.String,System.String)">
+            <summary>
+            Check whether the specified string instance is satisfied
+            the specified regular expression pattern or not.
+            </summary>
+            <param name="this">The value to check.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringEx.IsMatch(System.String,System.String)">
+            <summary>
+            Check whether the specified string instance can match the value
+            using the specified regular expression pattern or not.
+            </summary>
+            <param name="this">The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.IsMatch(System.String,System.String)"/>.
+            </remarks>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.IsMatch(System.String,System.String)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringEx.Match(System.String,System.String)">
+            <summary>
+            Searches the specified input string for the first occurrence of
+            the specified regular expression pattern.
+            </summary>
+            <param name="this">The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <returns>
+            The value after matching. If failed to match,
+            the value will be <c>null</c>.
+            </returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String)"/>.
+            </remarks>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringEx.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
+            <summary>
+            Searches the input string for the first occurrence of the specified regular
+            expression, using the specified matching options.
+            </summary>
+            <param name="this">The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <param name="regexOption">The matching options.</param>
+            <returns>
+            The matched string value. If failed to match,
+            the value will be <c>null</c>.
+            </returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>.
+            </remarks>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringEx.MatchAll(System.String,System.String)">
+            <summary>
+            Searches the specified input string for all occurrences of a
+            specified regular expression pattern.
+            </summary>
+            <param name="this">The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <returns>
+            The result after matching. If failed to match,
+            the returning array will be an empty string array (has no elements).
+            </returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String)"/>.
+            </remarks>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringEx.MatchAll(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
+            <summary>
+            Searches the specified input string for all occurrences of a
+            specified regular expression pattern, using the specified matching
+            options.
+            </summary>
+            <param name="this">The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <param name="regexOption">The matching options.</param>
+            <returns>
+            The result after matching. If failed to match,
+            the returning array will be an empty string array (has no elements).
+            </returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>.
+            </remarks>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringEx.IsRegexPattern(System.String)">
+            <summary>
+            To check if the current string value is a valid regular
+            expression pattern or not.
+            </summary>
+            <param name="this">The value to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Data.Meta.CellStatus">
+            <summary>
+            Represents a cell status.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.CellStatus.Empty">
+            <summary>
+            Indicates that the cell is empty.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.CellStatus.Modifiable">
+            <summary>
+            Indicates that the cell has already filled a value,
+            but the value does not exist when the puzzle begins.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.CellStatus.Given">
+            <summary>
+            Indicates that the cell has already filled a value,
+            and the value does exist when the puzzle begins. In
+            other words, the value is a given (or a hint, clue, etc.).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.CellStatus.All">
+            <summary>
+            Indicates all cases of cell statuses.
+            </summary>
+            <remarks>
+            You had better use this field on cases when processing
+            the bitwise operations in a sudoku <see cref="T:Sudoku.Data.Meta.Grid"/>.
+            This field is not used to process cell status comparsion.
+            </remarks>
+            <seealso cref="M:Sudoku.Data.Meta.Grid.GetCellStatus(System.Int32)"/>
+        </member>
+        <member name="T:Sudoku.Data.ValueChangedEventArgs">
+            <summary>
+            Provides the data for the event 'ValueChanged'.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.ValueChangedEventArgs.#ctor(System.Int32,System.Int16,System.Int16,System.Int32)">
+            <summary>
+            Initializes the instance with some data.
+            </summary>
+            <param name="cellOffset">The cell offset. Must be in range 0 to 80.</param>
+            <param name="oldMask">The old mask before modified.</param>
+            <param name="newMask">The mask to modify the cell.</param>
+            <param name="setValue">
+            The value to set on the cell. If the action is deletion,
+            this argument should be -1.
+            </param>
+        </member>
+        <member name="P:Sudoku.Data.ValueChangedEventArgs.CellOffset">
+            <summary>
+            The cell offset. Must be in range 0 to 80.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ValueChangedEventArgs.OldMask">
+            <summary>
+            The old mask before modified.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ValueChangedEventArgs.NewMask">
+            <summary>
+            The new mask after modified.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ValueChangedEventArgs.SetValue">
+            <summary>
+            The value. -1 when this value is not required.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.ValueChangedEventArgs.Deconstruct(System.Int32@,System.Int16@,System.Int16@,System.Int32@)">
+            <summary>
+            Deconstruct the instance to four values.
+            </summary>
+            <param name="cellOffset">(out parameter) The cell offset.</param>
+            <param name="oldMask">(out parameter) The old mask.</param>
+            <param name="newMask">(out parameter) The new mask.</param>
+            <param name="setValue">(out parameter) the set value.</param>
+        </member>
+        <member name="T:Sudoku.Data.ValueChangedEventHandler">
+            <summary>
+            The event handler of value changed.
+            </summary>
+            <param name="sender">The object triggering the event.</param>
+            <param name="e">The data while triggering.</param>
+        </member>
+    </members>
+</doc>

@@ -18,7 +18,8 @@ namespace Sudoku.Data
 		/// The value to set on the cell. If the action is deletion,
 		/// this argument should be -1.
 		/// </param>
-		public ValueChangedEventArgs(int cellOffset, short oldMask, short newMask, int setValue) =>
+		public ValueChangedEventArgs(
+			int cellOffset, short oldMask, short newMask, int setValue) =>
 			(CellOffset, OldMask, NewMask, SetValue) = (cellOffset, oldMask, newMask, setValue);
 
 

@@ -10,8 +10,27 @@ using Sudoku.Solving.Manual;
 
 namespace Sudoku.Terminal
 {
+	/// <summary>
+	/// The class handling all program-level actions.
+	/// </summary>
 	internal static class Program
 	{
+		/// <summary>
+		/// The main function, the main entry point of the program.
+		/// </summary>
+		/// <param name="args">
+		/// <para>The arguments passed from console.</para>
+		/// <para>
+		/// Note that the arguments does not
+		/// include the program name string. The first string of the array is the
+		/// real argument.
+		/// </para>
+		/// </param>
+		/// <returns>
+		/// An <see cref="int"/> value used for diagnostics.
+		/// When the program is executed successfully without any bugs and errors,
+		/// this value will be 0; otherwise, a non-zero value.
+		/// </returns>
 		private static int Main(string[] args)
 		{
 			args[0] = args[0].ToLower();
@@ -44,6 +63,12 @@ namespace Sudoku.Terminal
 			};
 		}
 
+		/// <summary>
+		/// To check the puzzle.
+		/// </summary>
+		/// <param name="puzzle">The puzzle string.</param>
+		/// <param name="checkingType">The checking type.</param>
+		/// <returns>The diagnostic value.</returns>
 		private static int CheckPuzzle(string puzzle, string checkingType)
 		{
 			try
@@ -90,6 +115,12 @@ namespace Sudoku.Terminal
 			}
 		}
 
+		/// <summary>
+		/// To solve the puzzle using the specified solver.
+		/// </summary>
+		/// <param name="puzzleStr">The puzzle string.</param>
+		/// <param name="solverName">The solver name.</param>
+		/// <returns>The diagnostic value.</returns>
 		private static int SolvePuzzle(string puzzleStr, string solverName)
 		{
 			try
@@ -137,6 +168,10 @@ namespace Sudoku.Terminal
 			}
 		}
 
+		/// <summary>
+		/// To print the helper text on the screen of the console.
+		/// </summary>
+		/// <returns>The diagnostic value.</returns>
 		private static int PrintHelp()
 		{
 			Console.WriteLine("If you want to show this helping text, please input '--help', '-?' or '/?' option.");
@@ -164,6 +199,10 @@ namespace Sudoku.Terminal
 			return 0;
 		}
 
+		/// <summary>
+		/// To print the title of the program and the version.
+		/// </summary>
+		/// <returns>The diagnostic value.</returns>
 		private static int PrintTitle()
 		{
 			Console.WriteLine(".---------------------------.");
