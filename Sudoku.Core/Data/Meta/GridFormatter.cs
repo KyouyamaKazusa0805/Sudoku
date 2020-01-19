@@ -7,26 +7,77 @@ using Sudoku.Data.Extensions;
 
 namespace Sudoku.Data.Meta
 {
+	/// <summary>
+	/// Provides operations for grid formatting.
+	/// </summary>
 	internal sealed class GridFormatter
 	{
-		public GridFormatter(Grid grid, bool multiline) => (Grid, Multiline) = (grid, multiline);
+		/// <summary>
+		/// Initializes an instance with grid and is-multiline <see cref="bool"/> value.
+		/// </summary>
+		/// <param name="grid">A grid.</param>
+		/// <param name="multiline">
+		/// The multiline identifier. If the value is <c>true</c>, the output will
+		/// be multiline.
+		/// </param>
+		public GridFormatter(Grid grid, bool multiline) =>
+			(Grid, Multiline) = (grid, multiline);
 
 
+		/// <summary>
+		/// The place holder.
+		/// </summary>
 		public char Placeholder { get; set; } = '.';
 
+		/// <summary>
+		/// Indicates whether the output should be multiline.
+		/// </summary>
 		public bool Multiline { get; }
 
+		/// <summary>
+		/// Indicates the output should be with modifiable values.
+		/// </summary>
 		public bool WithModifiables { get; set; }
 
+		/// <summary>
+		/// <para>
+		/// Indicates the output should be with candidates.
+		/// If the output is single line, the candidates will indicate
+		/// the candidates-have-eliminated before the current grid status;
+		/// if the output is multiline, the candidates will indicate
+		/// the real candidate at the current grid status.
+		/// </para>
+		/// <para>
+		/// If the output is single line, the output will append the candidates
+		/// value at the tail of the string in ':candidate list'. In addtition,
+		/// candidates will be represented as 'digit', 'row offset' and
+		/// 'column offset' in order.
+		/// </para>
+		/// </summary>
 		public bool WithCandidates { get; set; }
 
+		/// <summary>
+		/// Indicates the output will treat modifiable values as given ones.
+		/// If the output is single line, the output will remove all plus marks '+'.
+		/// If the output is multiline, the output will use '&lt;digit&gt;' instead
+		/// of '*digit*'.
+		/// </summary>
 		public bool TreatValueAsGiven { get; set; }
 
+		/// <summary>
+		/// Indicates whether need to handle all grid outlines when outputing.
+		/// See <a href="https://github.com/Sunnie-Shine/Sudoku#multiline-format-characters">this link</a>
+		/// for more information.
+		/// </summary>
 		public bool SubtleGridLines { get; set; }
 
+		/// <summary>
+		/// The grid.
+		/// </summary>
 		public Grid Grid { get; }
 
 
+		/// <inheritdoc/>
 		public override string ToString()
 		{
 			return Multiline
@@ -36,6 +87,10 @@ namespace Sudoku.Data.Meta
 				: ToSingleLineStringCore();
 		}
 
+		/// <summary>
+		/// To single line string.
+		/// </summary>
+		/// <returns>The result.</returns>
 		private string ToSingleLineStringCore()
 		{
 			static int GetFirstFalseCandidate(short value)
@@ -127,6 +182,10 @@ namespace Sudoku.Data.Meta
 			return $"{sb}{(string.IsNullOrEmpty(elimsStr) ? string.Empty : $":{elimsStr}")}";
 		}
 
+		/// <summary>
+		/// To multiline normal grid string without any candidates.
+		/// </summary>
+		/// <returns>The result.</returns>
 		private string ToMultiLineSimpleGridCore()
 		{
 #if LAZY_CODE
@@ -152,6 +211,10 @@ namespace Sudoku.Data.Meta
 #endif
 		}
 
+		/// <summary>
+		/// To multiline string with candidates.
+		/// </summary>
+		/// <returns>The result.</returns>
 		[SuppressMessage("", "IDE0004")]
 		private string ToMultiLineStringCore()
 		{
@@ -353,6 +416,11 @@ namespace Sudoku.Data.Meta
 			#endregion
 		}
 
+		/// <summary>
+		/// Get cell status for a value.
+		/// </summary>
+		/// <param name="value">The value.</param>
+		/// <returns>The cell status.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static CellStatus GetCellStatus(short value) =>
 			(CellStatus)(value >> 9 & (int)CellStatus.All);

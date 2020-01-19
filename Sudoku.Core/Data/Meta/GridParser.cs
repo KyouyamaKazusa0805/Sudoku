@@ -3,14 +3,31 @@ using Sudoku.Data.Extensions;
 
 namespace Sudoku.Data.Meta
 {
+	/// <summary>
+	/// Encapsulates a grid parser.
+	/// </summary>
 	internal sealed class GridParser
 	{
+		/// <summary>
+		/// Initializes an instance with parsing data.
+		/// </summary>
+		/// <param name="parsingValue">The string to parse.</param>
 		public GridParser(string parsingValue) => ParsingValue = parsingValue;
 
 
+		/// <summary>
+		/// The value to parse.
+		/// </summary>
 		public string ParsingValue { get; }
 
 
+		/// <summary>
+		/// To parse the value.
+		/// </summary>
+		/// <returns>The grid.</returns>
+		/// <exception cref="ArgumentException">
+		/// Throws when failed to parse.
+		/// </exception>
 		public Grid Parse()
 		{
 			Grid? grid;
@@ -29,6 +46,10 @@ namespace Sudoku.Data.Meta
 				paramName: nameof(ParsingValue));
 		}
 
+		/// <summary>
+		/// Parse the value using multiline simple grid (without any candidates).
+		/// </summary>
+		/// <returns>The result.</returns>
 		private Grid? OnParsingSimpleMultilineGrid()
 		{
 			string[] matches = ParsingValue.MatchAll(@"[\d\.]");
@@ -52,6 +73,14 @@ namespace Sudoku.Data.Meta
 			return result;
 		}
 
+		/// <summary>
+		/// Parse the PM grid.
+		/// </summary>
+		/// <param name="treatSingleValueAsGiven">
+		/// The value indicating whether the parsing should treat
+		/// the modifiable values as given ones.
+		/// </param>
+		/// <returns>The result.</returns>
 		private Grid? OnParsingPencilMarked(bool treatSingleValueAsGiven)
 		{
 			string[] matches = ParsingValue.MatchAll(@"(\<\d\>|\*\d\*|\d{1,9})");
@@ -184,6 +213,10 @@ namespace Sudoku.Data.Meta
 			return result;
 		}
 
+		/// <summary>
+		/// Parse the susser format string.
+		/// </summary>
+		/// <returns>The result.</returns>
 		private Grid? OnParsingSusser()
 		{
 			string? match = ParsingValue.Match(@"[\d\.\+]{81,}(\:(\d{3}\s+)*\d{3})?");
