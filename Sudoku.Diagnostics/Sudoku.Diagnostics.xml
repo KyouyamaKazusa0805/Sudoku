@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Diagnostics</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.DisableDefaultConstructorAttribute">
+            <summary>
+            To disable using default constructor in structs.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.DisableDefaultConstructorAttribute.AccessLevel">
+            <summary>
+            The access level.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.DisableDefaultConstructorAttribute.IsError">
+            <summary>
+            Specifies an action when calling the default constructor
+            in structs. If the value is <c>true</c>, it will report
+            a compiling error; otherwise, a warning.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.DiscardAttribute">
+            <summary>
+            To mark on a parameter, which means the parameter is always a discard.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Nullability.PropertyNotNullWhenAttribute">
+            <summary>
+            To mark on a property, means the value is not null when
+            another <see cref="T:System.Boolean"/>-type property holds the specified
+            value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Nullability.PropertyNotNullWhenAttribute.#ctor(System.String,System.Boolean)">
+            <summary>
+            Initializes an instance with property name and its value.
+            </summary>
+            <param name="propertyName">The property name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Nullability.PropertyNotNullWhenAttribute.PropertyName">
+            <summary>
+            Indicates the property name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Nullability.PropertyNotNullWhenAttribute.Value">
+            <summary>
+            Indicates the value.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.ObsoleteAssemblyAttribute">
+            <summary>
+            To mark on an assembly, it means that the whole assembly is already obsolete.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.OnAddingAttribute">
+            <summary>
+            To mark on the method, it means that the method is used for add elements
+            in this current collection.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.OnDeconstructionAttribute">
+            <summary>
+            It means the method marked this attribute is only used for deconstruction
+            to <see cref="T:System.ValueTuple"/>s.
+            </summary>
+            <seealso cref="T:System.ValueTuple"/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.ParameterizedObjectAttribute">
+            <summary>
+            Represents the type is only used for parameterized object.
+            You may regard the type as anonymous inner classes (or structs).
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.PatternAttribute">
+            <summary>
+            It means the parameter marked this attribute is a regular expressino pattern.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContractAttribute">
+            <summary>
+            <para>
+            Marks members which are only used for completing syntax-based
+            contract.
+            </para>
+            <para>
+            For example, C# will allow users to use 'Collection Initialization'
+            syntax to initialize any collections if the target collection object
+            is confirmed that it has <c>Add</c> method to add new elements.
+            <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContractAttribute"/> suggests you that you should add
+            <see cref="T:Sudoku.Diagnostics.CodeAnalysis.OnAddingAttribute"/> on <c>Add</c> method.
+            </para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.Permissions.AccessLevel">
+            <summary>
+            Provides an access level.
+            </summary>
+        </member>
+    </members>
+</doc>
