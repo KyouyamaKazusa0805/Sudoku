@@ -5,25 +5,83 @@ using Sudoku.Data.Extensions;
 
 namespace Sudoku.Drawing
 {
+	/// <summary>
+	/// Encapsulates a view when displaying the information on forms.
+	/// </summary>
 	public sealed class View
 	{
+		/// <summary>
+		/// Initializes an instance with information.
+		/// </summary>
+		/// <param name="cellOffsets">
+		/// The list of pairs of identifier and cell offset.
+		/// </param>
+		/// <param name="candidateOffsets">
+		/// The list of pairs of identifier and candidate offset.
+		/// </param>
+		/// <param name="regionOffsets">
+		/// The list of pairs of identifier and region offset.
+		/// </param>
+		/// <param name="linkMasks">The list of link masks.</param>
 		public View(
 			IReadOnlyList<(int, int)>? cellOffsets, IReadOnlyList<(int, int)>? candidateOffsets,
 			IReadOnlyList<(int, int)>? regionOffsets, IReadOnlyList<int>? linkMasks) =>
 			(CellOffsets, CandidateOffsets, RegionOffsets, LinkMasks) = (cellOffsets, candidateOffsets, regionOffsets, linkMasks);
 
 
-		public IReadOnlyList<(int _id, int _cellGlobalOffset)>? CellOffsets { get; }
+		/// <summary>
+		/// All cell offsets.
+		/// </summary>
+		/// <remarks>
+		/// This property is a list of pairs of identifier and cell offsets,
+		/// where the identifier is an <see cref="int"/> value that can tell
+		/// all cell offsets' colors.
+		/// </remarks>
+		public IReadOnlyList<(int _id, int _cellOffset)>? CellOffsets { get; }
 
-		public IReadOnlyList<(int _id, int _candidateGlobalOffset)>? CandidateOffsets { get; }
+		/// <summary>
+		/// All candidate offsets.
+		/// </summary>
+		/// <remarks>
+		/// This property is a list of pairs of identifier and candidate offsets,
+		/// where the identifier is an <see cref="int"/> value that can tell
+		/// all cell offsets' colors.
+		/// </remarks>
+		public IReadOnlyList<(int _id, int _candidateOffset)>? CandidateOffsets { get; }
 
-		public IReadOnlyList<(int _id, int _regionGlobalOffset)>? RegionOffsets { get; }
+		/// <summary>
+		/// All region offsets.
+		/// </summary>
+		/// <remarks>
+		/// This property is a list of pairs of identifier and region offsets,
+		/// where the identifier is an <see cref="int"/> value that can tell
+		/// all cell offsets' colors.
+		/// </remarks>
+		public IReadOnlyList<(int _id, int _regionOffset)>? RegionOffsets { get; }
 
+		/// <summary>
+		/// All link masks.
+		/// </summary>
+		/// <remarks>
+		/// This property is a list of masks.
+		/// All mask is regarded as 22 bits, 10 bits for base candidate offset,
+		/// another 10 bits for target candidate offset and 2 bits for link type,
+		/// where the value is:
+		/// <list type="table">
+		/// <item>
+		/// <term>0b00</term><description><c>false</c> -&gt; <c>false</c>.</description>
+		/// <term>0b01</term><description><c>false</c> -&gt; <c>true</c>.</description>
+		/// <term>0b10</term><description><c>true</c> -&gt; <c>false</c>.</description>
+		/// <term>0b11</term><description><c>true</c> -&gt; <c>true</c>.</description>
+		/// </item>
+		/// </list>
+		/// </remarks>
 		public IReadOnlyList<int>? LinkMasks { get; }
 
-#if DEBUG
+		/// <inheritdoc/>
 		public override string ToString()
 		{
+#if DEBUG
 			const string separator = ", ";
 			var sb = new StringBuilder();
 
@@ -84,6 +142,8 @@ namespace Sudoku.Drawing
 
 			return sb.ToString();
 		}
+#else
+		return base.ToString() ?? string.Empty;
 #endif
 	}
 }
