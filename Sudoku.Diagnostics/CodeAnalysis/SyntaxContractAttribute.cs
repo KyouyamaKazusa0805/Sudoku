@@ -8,7 +8,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 	/// contract.
 	/// </para>
 	/// <para>
-	/// For example, C# will allow users to use <b>Collection Initialization</b>
+	/// For example, C# will allow users to use 'Collection Initialization'
 	/// syntax to initialize any collections if the target collection object
 	/// is confirmed that it has <c>Add</c> method to add new elements.
 	/// <see cref="SyntaxContractAttribute"/> suggests you that you should add

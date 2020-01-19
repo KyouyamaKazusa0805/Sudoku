@@ -9,4 +9,8 @@
 		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <DocumentationFile>P:\Projects\Common\Sudoku\Sudoku.Diagnostics\Sudoku.Diagnostics.xml</DocumentationFile>
+	</PropertyGroup>
+
 </Project>
