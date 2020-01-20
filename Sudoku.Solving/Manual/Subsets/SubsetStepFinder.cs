@@ -205,13 +205,13 @@ namespace Sudoku.Solving.Manual.Subsets
 				}
 
 				// Get intersection by each digit.
-				var tempMap = new GridMap(firstOffset);
+				var tempMap = new NewerGridMap(firstOffset);
 				for (int j = firstOffsetIndex + 1; j < offsets.Count; j++)
 				{
 					int offset = offsets[j];
 					if (!grid[offset, digit])
 					{
-						tempMap &= new GridMap(offset);
+						tempMap &= new NewerGridMap(offset);
 					}
 				}
 				series[i] = tempMap.Count > 9;

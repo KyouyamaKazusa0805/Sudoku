@@ -14,7 +14,7 @@ namespace Sudoku.Data.Meta
 	/// <c>true</c> is for the cell having digit, and the <c>false</c>
 	/// value is for empty cell.
 	/// </summary>
-	[Obsolete("Use 'NewerGridMap' instead.")]
+	[Obsolete("Use 'NewerGridMap' instead.", true)]
 	public partial struct GridMap : IEnumerable<bool>, IEquatable<GridMap>
 	{
 		/// <summary>

@@ -78,6 +78,12 @@ namespace Sudoku.Data.Meta
 
 
 		/// <summary>
+		/// Indicates the total number of cells where the corresponding
+		/// value are set <c>true</c>.
+		/// </summary>
+		public readonly int Count => _low.CountSet() + _high.CountSet();
+
+		/// <summary>
 		/// Indicates all cell offsets whose corresponding value
 		/// are set <c>true</c>.
 		/// </summary>

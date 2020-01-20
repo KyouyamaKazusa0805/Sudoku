@@ -8,7 +8,7 @@ namespace Sudoku.Solving.Manual.Intersections
 {
 	public sealed class IntersectionStepFinder : StepFinder
 	{
-		private static readonly (int, int, GridMap, GridMap)[,] IntersectionSeries = new (int, int, GridMap, GridMap)[18, 3];
+		private static readonly (int, int, NewerGridMap, NewerGridMap)[,] IntersectionSeries = new (int, int, NewerGridMap, NewerGridMap)[18, 3];
 
 
 		static IntersectionStepFinder()
@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Intersections
 						: ((i - 9) / 3 * 3 + j) * 3 % 8;
 					IntersectionSeries[i, j] = (
 						baseSet, coverSet,
-						new GridMap(GetCellOffsets(baseSet)), new GridMap(GetCellOffsets(coverSet)));
+						new NewerGridMap(GetCellOffsets(baseSet)), new NewerGridMap(GetCellOffsets(coverSet)));
 				}
 			}
 		}
@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual.Intersections
 			{
 				for (int j = 0; j < 3; j++)
 				{
-					short BitwiseAndMasks(GridMap map)
+					short BitwiseAndMasks(NewerGridMap map)
 					{
 						short mask = 511;
 						foreach (int offset in map.Offsets)

@@ -99,5 +99,35 @@
             Provides an access level.
             </summary>
         </member>
+        <member name="F:Sudoku.Diagnostics.Permissions.AccessLevel.Private">
+            <summary>
+            The private modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.Permissions.AccessLevel.PrivateProtected">
+            <summary>
+            The private protected modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.Permissions.AccessLevel.Protected">
+            <summary>
+            The protected modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.Permissions.AccessLevel.Internal">
+            <summary>
+            The internal modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.Permissions.AccessLevel.ProtectedInternal">
+            <summary>
+            The protected internal modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.Permissions.AccessLevel.Public">
+            <summary>
+            The public modifier.
+            </summary>
+        </member>
     </members>
 </doc>

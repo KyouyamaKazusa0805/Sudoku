@@ -123,7 +123,7 @@ namespace Sudoku.Data.Meta
 						if (GetCellStatus(i) != CellStatus.Empty)
 						{
 							curDigit = this[i];
-							foreach (int peerOffset in new GridMap(i).Offsets)
+							foreach (int peerOffset in new NewerGridMap(i).Offsets)
 							{
 								if (peerOffset == i)
 								{
@@ -749,7 +749,7 @@ namespace Sudoku.Data.Meta
 			var (offset, _, _, setValue) = e;
 			if (setValue != -1)
 			{
-				foreach (int peerOffset in new GridMap(offset).Offsets)
+				foreach (int peerOffset in new NewerGridMap(offset).Offsets)
 				{
 					if (peerOffset == offset)
 					{
