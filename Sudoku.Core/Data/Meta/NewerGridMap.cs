@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data.Extensions;
@@ -14,13 +13,17 @@ namespace Sudoku.Data.Meta
 	/// <c>true</c> is for the cell having digit, and the <c>false</c>
 	/// value is for empty cell.
 	/// </summary>
-	[Obsolete("Use 'NewerGridMap' instead.")]
-	public partial struct GridMap : IEnumerable<bool>, IEquatable<GridMap>
+	public partial struct NewerGridMap : IEnumerable<bool>, IEquatable<NewerGridMap>
 	{
+		/// <summary>
+		/// The value used for shifting.
+		/// </summary>
+		private const int Shifting = 41;
+
 		/// <summary>
 		/// Inner binary representation values.
 		/// </summary>
-		private int _low, _mid, _high;
+		private long _high, _low;
 
 
 		/// <summary>
@@ -28,7 +31,7 @@ namespace Sudoku.Data.Meta
 		/// (Sets itself and all peers).
 		/// </summary>
 		/// <param name="offset">The cell offset.</param>
-		public GridMap(int offset) : this(PeerTable[offset])
+		public NewerGridMap(int offset) : this(PeerTable[offset])
 		{
 		}
 
@@ -40,27 +43,26 @@ namespace Sudoku.Data.Meta
 		/// Note that all offsets will be set <c>true</c>, but their own peers
 		/// will not be set <c>true</c>.
 		/// </remarks>
-		public GridMap(IEnumerable<int> offsets)
+		public NewerGridMap(IEnumerable<int> offsets)
 		{
-			(_low, _mid, _high) = (0, 0, 0);
+			(_low, _high) = (0, 0);
 
-#if I_DONT_KNOW_WHY_GENERATING_BUG
-			var series = (Span<int>)stackalloc[] { _low, _mid, _high };
+#if !I_DONT_KNOW_WHY_GENERATING_BUG
+			var series = (Span<long>)stackalloc[] { _low, _high };
 			foreach (int offset in offsets)
 			{
-				ref int valueToModify = ref series[offset / 27];
-				valueToModify |= 1 << offset % 27;
+				ref long valueToModify = ref series[offset / Shifting];
+				valueToModify |= 1L << offset % Shifting;
 			}
 #else
-			// We should get along with pointers extremely carefully.
 			unsafe
 			{
-				fixed (int* a = &_low, b = &_mid, c = &_high)
+				fixed (long* a = &_low, b = &_high)
 				{
-					int** series = stackalloc[] { a, b, c };
+					long** series = stackalloc[] { a, b };
 					foreach (int offset in offsets)
 					{
-						*series[offset / 27] |= 1 << offset % 27;
+						*series[offset / Shifting] |= 1L << offset % Shifting;
 					}
 				}
 			}
@@ -70,18 +72,10 @@ namespace Sudoku.Data.Meta
 		/// <summary>
 		/// Initializes an instance with three binary value.
 		/// </summary>
-		/// <param name="high">Higher 32 bits.</param>
-		/// <param name="mid">Middle 32 bits.</param>
-		/// <param name="low">Lower 32 bits.</param>
-		private GridMap(int high, int mid, int low) =>
-			(_high, _mid, _low) = (high, mid, low);
+		/// <param name="high">Higher 40 bits.</param>
+		/// <param name="low">Lower 41 bits.</param>
+		private NewerGridMap(long high, long low) => (_high, _low) = (high, low);
 
-
-		/// <summary>
-		/// Indicates the total number of cells where the corresponding
-		/// value are set <c>true</c>.
-		/// </summary>
-		public readonly int Count => _low.CountSet() + _mid.CountSet() + _high.CountSet();
 
 		/// <summary>
 		/// Indicates all cell offsets whose corresponding value
@@ -91,15 +85,9 @@ namespace Sudoku.Data.Meta
 		{
 			get
 			{
-				int value, i;
-				for (value = _low, i = 0; i < 27; i++, value >>= 1)
-				{
-					if ((value & 1) != 0)
-					{
-						yield return i;
-					}
-				}
-				for (value = _mid; i < 54; i++, value >>= 1)
+				long value;
+				int i;
+				for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
 				{
 					if ((value & 1) != 0)
 					{
@@ -116,7 +104,6 @@ namespace Sudoku.Data.Meta
 			}
 		}
 
-
 		/// <summary>
 		/// Gets or sets a <see cref="bool"/> value on the specified cell
 		/// offset.
@@ -131,18 +118,18 @@ namespace Sudoku.Data.Meta
 		public bool this[int offset]
 		{
 			readonly get =>
-				(((stackalloc[] { _low, _mid, _high })[offset / 27] >> offset % 27) & 1) != 0;
+				(((stackalloc[] { _low, _high })[offset / Shifting] >> offset % Shifting) & 1) != 0;
 			set
 			{
 #if I_DONT_KNOW_WHY_GENERATING_BUG
-				ref int valueToModify = ref (stackalloc[] { _low, _mid, _high })[offset / 27];
+				ref int valueToModify = ref (stackalloc[] { _low, _high })[offset / Shifting];
 				if (value)
 				{
-					valueToModify |= 1 << offset % 27;
+					valueToModify |= 1 << offset % Shifting;
 				}
 				else
 				{
-					valueToModify &= ~(1 << offset % 27);
+					valueToModify &= ~(1 << offset % Shifting);
 				}
 #else
 				// We should get along with pointers extremely carefully.
@@ -153,17 +140,17 @@ namespace Sudoku.Data.Meta
 						throw new ArgumentOutOfRangeException(nameof(offset));
 					}
 
-					fixed (int* a = &_low, b = &_mid, c = &_high)
+					fixed (long* a = &_low, b = &_high)
 					{
-						int** series = stackalloc[] { a, b, c };
-						int* valueToModify = series[offset / 27];
+						long** series = stackalloc[] { a, b };
+						long* valueToModify = series[offset / Shifting];
 						if (value)
 						{
-							*valueToModify |= 1 << offset % 27;
+							*valueToModify |= 1L << offset % Shifting;
 						}
 						else
 						{
-							*valueToModify &= ~(1 << offset % 27);
+							*valueToModify &= ~(1 << offset % Shifting);
 						}
 					}
 				}
@@ -175,16 +162,15 @@ namespace Sudoku.Data.Meta
 		/// <summary>
 		/// Deconstruct the instance.
 		/// </summary>
-		/// <param name="high">(out parameter) Higher 32 bits.</param>
-		/// <param name="mid">(out parameter) Middle 32 bits.</param>
-		/// <param name="low">(out parameter) Lower 32 bits.</param>
+		/// <param name="high">(out parameter) Higher 40 bits.</param>
+		/// <param name="low">(out parameter) Lower 41 bits.</param>
 		[OnDeconstruction]
-		public readonly void Deconstruct(out int high, out int mid, out int low) =>
-			(high, mid, low) = (_high, _mid, _low);
+		public readonly void Deconstruct(out long high, out long low) =>
+			(high, low) = (_high, _low);
 
 		/// <inheritdoc/>
 		public override readonly bool Equals(object? obj) =>
-			obj is GridMap comparer && Equals(comparer);
+			obj is NewerGridMap comparer && Equals(comparer);
 
 		/// <summary>
 		/// Indicates whether the current object has the same value with the other one.
@@ -194,23 +180,17 @@ namespace Sudoku.Data.Meta
 		/// The result of this comparsion. <c>true</c> if two instances hold a same
 		/// value; otherwise, <c>false</c>.
 		/// </returns>
-		public readonly bool Equals(GridMap other) =>
-			_high == other._high && _mid == other._mid && _low == other._low;
+		public readonly bool Equals(NewerGridMap other) =>
+			_high == other._high && _low == other._low;
 
 		/// <inheritdoc/>
 		public readonly IEnumerator<bool> GetEnumerator()
 		{
-			int h = _high, m = _mid, l = _low;
+			long h = _high, l = _low;
 			while (l != 0)
 			{
 				yield return (l & 1) != 0;
 				l >>= 1;
-			}
-
-			while (m != 0)
-			{
-				yield return (m & 1) != 0;
-				m >>= 1;
 			}
 
 			while (h != 0)
@@ -222,7 +202,7 @@ namespace Sudoku.Data.Meta
 
 		/// <inheritdoc/>
 		public override readonly int GetHashCode() =>
-			GetType().GetHashCode() ^ _low ^ _mid ^ _high;
+			GetType().GetHashCode() ^ (int)((_low ^ _high) & int.MaxValue);
 
 		/// <summary>
 		/// Returns a string that represents the current object.
@@ -230,20 +210,18 @@ namespace Sudoku.Data.Meta
 		/// <returns>A string that represents the current object.</returns>
 		public override readonly string ToString()
 		{
-			static void OnOutputing(StringBuilder sb, int value)
+			static void OnOutputing(StringBuilder sb, int shifts, long value)
 			{
-				for (int i = 0; i < 27; i++, value >>= 1)
+				for (int i = 0; i < shifts; i++, value >>= 1)
 				{
 					sb.Append(value & 1);
 				}
 			}
 
 			var sb = new StringBuilder();
-			OnOutputing(sb, _low);
+			OnOutputing(sb, Shifting, _low);
 			sb.Append(" ");
-			OnOutputing(sb, _mid);
-			sb.Append(" ");
-			OnOutputing(sb, _high);
+			OnOutputing(sb, Shifting - 1, _high);
 			return sb.Reverse().ToString();
 		}
 
@@ -263,57 +241,57 @@ namespace Sudoku.Data.Meta
 		/// <param name="offset">The cell offset.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Remove(int offset) => this[offset] = false;
-		
+
 		/// <summary>
 		/// Set all peers as <c>true</c> value.
 		/// </summary>
 		/// <param name="offset">The cell offset.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void SetPeersTrue(int offset) => UnionWith(new GridMap(offset));
+		public void SetPeersTrue(int offset) => UnionWith(new NewerGridMap(offset));
 
 		/// <summary>
 		/// Set all peers as <c>false</c> value.
 		/// </summary>
 		/// <param name="offset">The cell offset.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void SetPeersFalse(int offset) => IntersectWith(new GridMap(offset));
+		public void SetPeersFalse(int offset) => IntersectWith(new NewerGridMap(offset));
 
 		/// <summary>
 		/// Negate all peers' value.
 		/// </summary>
 		/// <param name="offset">The cell offset.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void NegatePeers(int offset) => SymmetricalExceptWith(new GridMap(offset));
+		public void NegatePeers(int offset) => SymmetricalExceptWith(new NewerGridMap(offset));
 
 		/// <summary>
 		/// Intersect with the other instance.
 		/// </summary>
 		/// <param name="other">The other instance.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void IntersectWith(GridMap other) =>
-			(_low, _mid, _high) = (_low & other._low, _mid & other._mid, _high & other._high);
+		public void IntersectWith(NewerGridMap other) =>
+			(_low, _high) = (_low & other._low, _high & other._high);
 
 		/// <summary>
 		/// Union with the other instance.
 		/// </summary>
 		/// <param name="other">The other instance.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void UnionWith(GridMap other) =>
-			(_low, _mid, _high) = (_low | other._low, _mid | other._mid, _high | other._high);
+		public void UnionWith(NewerGridMap other) =>
+			(_low, _high) = (_low | other._low, _high | other._high);
 
 		/// <summary>
 		/// Symmetrical except with the other instance.
 		/// </summary>
 		/// <param name="other">The other instance.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void SymmetricalExceptWith(GridMap other) =>
-			(_low, _mid, _high) = (_low ^ other._low, _mid ^ other._mid, _high ^ other._high);
+		public void SymmetricalExceptWith(NewerGridMap other) =>
+			(_low, _high) = (_low ^ other._low, _high ^ other._high);
 
 		/// <summary>
 		/// Negate all values.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void Negate() => (_low, _mid, _high) = (~_low, ~_mid, ~_high);
+		public void Negate() => (_low, _high) = (~_low, ~_high);
 
 
 		/// <summary>
@@ -322,7 +300,7 @@ namespace Sudoku.Data.Meta
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
-		public static bool operator ==(GridMap left, GridMap right) => left.Equals(right);
+		public static bool operator ==(NewerGridMap left, NewerGridMap right) => left.Equals(right);
 
 		/// <summary>
 		/// Indicates whether two instances have two different values.
@@ -330,15 +308,15 @@ namespace Sudoku.Data.Meta
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
-		public static bool operator !=(GridMap left, GridMap right) => !(left == right);
+		public static bool operator !=(NewerGridMap left, NewerGridMap right) => !(left == right);
 
 		/// <summary>
 		/// Negate all values.
 		/// </summary>
 		/// <param name="gridMap">The instance to negate.</param>
 		/// <returns>The negative result.</returns>
-		public static GridMap operator ~(GridMap gridMap) =>
-			new GridMap(~gridMap._high, ~gridMap._mid, ~gridMap._low);
+		public static NewerGridMap operator ~(NewerGridMap gridMap) =>
+			new NewerGridMap(~gridMap._high, ~gridMap._low);
 
 		/// <summary>
 		/// Intersect among two values.
@@ -346,8 +324,8 @@ namespace Sudoku.Data.Meta
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
 		/// <returns>The intersection result.</returns>
-		public static GridMap operator &(GridMap left, GridMap right) =>
-			new GridMap(left._high & right._high, left._mid & right._mid, left._low & right._low);
+		public static NewerGridMap operator &(NewerGridMap left, NewerGridMap right) =>
+			new NewerGridMap(left._high & right._high, left._low & right._low);
 
 		/// <summary>
 		/// Union among two values.
@@ -355,8 +333,8 @@ namespace Sudoku.Data.Meta
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
 		/// <returns>The union result.</returns>
-		public static GridMap operator |(GridMap left, GridMap right) =>
-			new GridMap(left._high | right._high, left._mid | right._mid, left._low | right._low);
+		public static NewerGridMap operator |(NewerGridMap left, NewerGridMap right) =>
+			new NewerGridMap(left._high | right._high, left._low | right._low);
 
 		/// <summary>
 		/// Symmetrical except among two values.
@@ -364,7 +342,7 @@ namespace Sudoku.Data.Meta
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
 		/// <returns>The result.</returns>
-		public static GridMap operator ^(GridMap left, GridMap right) =>
-			new GridMap(left._high ^ right._high, left._mid ^ right._mid, left._low ^ right._low);
+		public static NewerGridMap operator ^(NewerGridMap left, NewerGridMap right) =>
+			new NewerGridMap(left._high ^ right._high, left._low ^ right._low);
 	}
 }
