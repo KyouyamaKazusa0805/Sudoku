@@ -1,17 +1,26 @@
 ﻿using System;
 using Sudoku.Data.Meta;
-using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.DancingLinks;
 
 namespace Sudoku.Generating.Basic
 {
+	/// <summary>
+	/// Provides a basic puzzle generator.
+	/// </summary>
 	public class BasicPuzzleGenerator : PuzzleGenerator
 	{
+		/// <summary>
+		/// The random number generator (RNG).
+		/// </summary>
 		private static readonly Random Rng = new Random();
 
+		/// <summary>
+		/// The solver when checking whether the puzzle is unique.
+		/// </summary>
 		private static readonly DancingLinksSolver Solver = new DancingLinksSolver();
 
 
+		/// <inheritdoc/>
 		public override Grid Generate()
 		{
 			static bool[] GetMask(out int count)

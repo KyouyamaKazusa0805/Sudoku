@@ -8,6 +8,10 @@
 		<Description>Provides generating operations of the solution.</Description>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <DocumentationFile>P:\Projects\Common\Sudoku\Sudoku.Generating\Sudoku.Generating.xml</DocumentationFile>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
 		<ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Generating</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Generating.Basic.BasicPuzzleGenerator">
+            <summary>
+            Provides a basic puzzle generator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Basic.BasicPuzzleGenerator.Rng">
+            <summary>
+            The random number generator (RNG).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Basic.BasicPuzzleGenerator.Solver">
+            <summary>
+            The solver when checking whether the puzzle is unique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Basic.BasicPuzzleGenerator.Generate">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Generating.PuzzleGenerator">
+            <summary>
+            Provides data for all derived puzzle generators.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.PuzzleGenerator.Generate">
+            <summary>
+            Generates a puzzle.
+            </summary>
+            <returns>The puzzle.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.PuzzleGenerator.GenerateAsync(System.Boolean)">
+            <summary>
+            Generate a puzzle asynchronizedly.
+            </summary>
+            <param name="continueOnCapturedContext">
+            <c>true</c> to attempt to marshal the continuation back to
+            the original context captured; otherwise, <c>false</c>.
+            </param>
+            <returns>The task of generating puzzle.</returns>
+        </member>
+    </members>
+</doc>

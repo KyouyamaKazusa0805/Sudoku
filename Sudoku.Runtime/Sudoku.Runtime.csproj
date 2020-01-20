@@ -8,6 +8,10 @@
 		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <DocumentationFile>P:\Projects\Common\Sudoku\Sudoku.Runtime\Sudoku.Runtime.xml</DocumentationFile>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
 	</ItemGroup>
