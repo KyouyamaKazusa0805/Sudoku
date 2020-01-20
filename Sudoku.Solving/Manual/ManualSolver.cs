@@ -59,11 +59,14 @@ namespace Sudoku.Solving.Manual
 					}
 				}
 
+				var selection = OptimizedApplyingOrder
+					? infos.GetElementByMinSelector(info => info.Difficulty)
+					: infos.FirstOrDefault();
 				var step = IttoRyuWhenPossible
-					? ittoRyuInfo is null ? infos.FirstOrDefault() : ittoRyuInfo
-					: OptimizedApplyingOrder
-						? infos.GetElementByMinSelector(info => info.Difficulty)
-						: infos.FirstOrDefault();
+					? ittoRyuInfo is null
+						? selection
+						: ittoRyuInfo
+					: selection;
 
 				if (step is null)
 				{
