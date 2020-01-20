@@ -47,7 +47,7 @@ namespace Sudoku.Data.Meta
 		{
 			(_low, _high) = (0, 0);
 
-#if !I_DONT_KNOW_WHY_GENERATING_BUG
+#if I_DONT_KNOW_WHY_GENERATING_BUG
 			var series = (Span<long>)stackalloc[] { _low, _high };
 			foreach (int offset in offsets)
 			{
@@ -210,18 +210,28 @@ namespace Sudoku.Data.Meta
 		/// <returns>A string that represents the current object.</returns>
 		public override readonly string ToString()
 		{
-			static void OnOutputing(StringBuilder sb, int shifts, long value)
+			var sb = new StringBuilder();
+			int i;
+			long value = _low;
+			for (i = 0; i < 27; i++, value >>= 1)
 			{
-				for (int i = 0; i < shifts; i++, value >>= 1)
-				{
-					sb.Append(value & 1);
-				}
+				sb.Append(value & 1);
+			}
+			sb.Append(" ");
+			for (; i < 41; i++, value >>= 1)
+			{
+				sb.Append(value & 1);
+			}
+			for (value = _high; i < 54; i++, value >>= 1)
+			{
+				sb.Append(value & 1);
+			}
+			sb.Append(" ");
+			for (; i < 81; i++, value >>= 1)
+			{
+				sb.Append(value & 1);
 			}
 
-			var sb = new StringBuilder();
-			OnOutputing(sb, Shifting, _low);
-			sb.Append(" ");
-			OnOutputing(sb, Shifting - 1, _high);
 			return sb.Reverse().ToString();
 		}
 
