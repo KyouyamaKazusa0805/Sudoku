@@ -7,11 +7,16 @@ using Sudoku.Runtime;
 
 namespace Sudoku.Solving.BruteForces.Bitwise
 {
+	/// <summary>
+	/// Provides a solver using bitwise method.
+	/// </summary>
 	public sealed class BitwiseSolver : Solver
 	{
+		/// <inheritdoc/>
 		public override string SolverName => "Bitwise";
 
-
+		
+		/// <inheritdoc/>
 		public override AnalysisResult Solve(Grid grid)
 		{
 			var str = grid.ToString(".");

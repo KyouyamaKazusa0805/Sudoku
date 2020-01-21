@@ -17,7 +17,7 @@
 				EnableLastDigit = true
 			};
 			var grid = Sudoku.Data.Meta.Grid.Parse(
-				"006500008005100007240000000000008910600030004018200000000000031900004200500002700");
+				"2....358.....2...1...4.56.....9.4.68..5.1.9..61.8.2.....15.8...3...4.....263....4");
 			var analysisResult = solver.Solve(grid);
 			System.Console.WriteLine(analysisResult);
 		}

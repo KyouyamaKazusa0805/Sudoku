@@ -8,8 +8,12 @@ using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Fishes.Basic
 {
+	/// <summary>
+	/// Encapsulates a basic fish step finder in solving in <see cref="ManualSolver"/>.
+	/// </summary>
 	public sealed class BasicFishStepFinder : FishStepFinder
 	{
+		/// <inheritdoc/>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
 			var result = new List<TechniqueInfo>();
@@ -25,6 +29,17 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 		}
 
 
+		/// <summary>
+		/// Searches all basic fish of the specified size.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="size">The size.</param>
+		/// <param name="searchRow">
+		/// Indicates the method is searched row or column.
+		/// <c>true</c> is for searching rows and <c>false</c>
+		/// is for searching columns.
+		/// </param>
+		/// <returns>All technique information searched.</returns>
 		private static IReadOnlyList<BasicFishTechniqueInfo> TakeAllBasicFishBySize(
 			Grid grid, int size, bool searchRow)
 		{
@@ -189,9 +204,22 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 			return result;
 		}
 
+		/// <summary>
+		/// Get cover sets from the specified mask.
+		/// </summary>
+		/// <param name="mask">The mask.</param>
+		/// <param name="searchRow">Indicates the method is searched rows or columns.</param>
+		/// <returns>All cover set region offsets.</returns>
 		private static IReadOnlyList<int> GetCoverSets(short mask, bool searchRow) =>
 			new List<int>(from pos in FindSets(mask) select 9 + (searchRow ? pos + 9 : pos));
 
+		/// <summary>
+		/// Get all highlighted candidate offsets.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="digit">The digit.</param>
+		/// <param name="baseSets">The base sets.</param>
+		/// <returns>All highlighted candidate offsets and their IDs.</returns>
 		private static IReadOnlyList<(int, int)> GetHighlightedCandidates(
 			Grid grid, int digit, params int[] baseSets)
 		{
@@ -213,6 +241,15 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 			return result;
 		}
 
+		/// <summary>
+		/// Get conclusions after searched a fish.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="digit">The digit.</param>
+		/// <param name="mask">The mask.</param>
+		/// <param name="searchRow">Indicates the method is searched rows or columns.</param>
+		/// <param name="baseSets">All base sets.</param>
+		/// <returns>All conclusions.</returns>
 		private static IReadOnlyList<Conclusion> GetConclusions(
 			Grid grid, int digit, short mask, bool searchRow, params int[] baseSets)
 		{
@@ -238,6 +275,12 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 			return result;
 		}
 
+		/// <summary>
+		/// Find all set bits in a <see cref="short"/> value
+		/// (only iterating for 9 times).
+		/// </summary>
+		/// <param name="value">The value.</param>
+		/// <returns>The set bits.</returns>
 		private static IEnumerable<int> FindSets(short value)
 		{
 			for (int i = 0; i < 9; i++, value >>= 1)

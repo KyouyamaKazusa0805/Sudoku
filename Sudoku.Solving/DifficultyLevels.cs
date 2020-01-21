@@ -2,6 +2,9 @@
 
 namespace Sudoku.Solving
 {
+	/// <summary>
+	/// Provides a difficulty kind for a puzzle.
+	/// </summary>
 	[Flags]
 	public enum DifficultyLevels : short
 	{

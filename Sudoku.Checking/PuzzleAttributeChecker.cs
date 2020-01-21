@@ -125,7 +125,7 @@ namespace Sudoku.Checking
 		public static bool IsIttoRyu(this Grid @this)
 		{
 			var cloneation = @this.Clone();
-			var (_, hasSolved, _, _, difficultyLevel, _, steps) = new ManualSolver
+			var (_, hasSolved, _, _, difficultyLevel, _, steps, _) = new ManualSolver
 			{
 				IttoRyuWhenPossible = true,
 				EnableFullHouse = false,

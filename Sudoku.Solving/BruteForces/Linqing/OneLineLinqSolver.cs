@@ -7,11 +7,16 @@ using Sudoku.Runtime;
 
 namespace Sudoku.Solving.BruteForces.Linqing
 {
+	/// <summary>
+	/// Provides a solver using LINQ method.
+	/// </summary>
 	public sealed class OneLineLinqSolver : Solver
 	{
+		/// <inheritdoc/>
 		public override string SolverName => "One line LINQ";
 
 
+		/// <inheritdoc/>
 		public override AnalysisResult Solve(Grid grid)
 		{
 			var stopwatch = new Stopwatch();

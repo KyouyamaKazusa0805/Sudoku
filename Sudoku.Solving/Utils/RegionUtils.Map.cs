@@ -2,6 +2,11 @@
 {
 	partial class RegionUtils
 	{
+		/// <summary>
+		/// The map of all cell offsets in its specified region.
+		/// For example, 'Map[0]' means that all cell offsets
+		/// in the region 0 (block 1).
+		/// </summary>
 		private static readonly int[][] Map = new int[][]
 		{
 			new[] { 0, 1, 2, 9, 10, 11, 18, 19, 20 },

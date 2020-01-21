@@ -4,29 +4,53 @@ using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
+	/// <summary>
+	/// Provides a usage of ilocked candidates.
+	/// </summary>
 	public sealed class IntersectionTechniqueInfo : TechniqueInfo
 	{
+		/// <summary>
+		/// Initializes an instance with information.
+		/// </summary>
+		/// <param name="conclusions">The conclusions.</param>
+		/// <param name="views">The views.</param>
+		/// <param name="digit">The digit.</param>
+		/// <param name="baseSet">The base set.</param>
+		/// <param name="coverSet">The cover set.</param>
 		public IntersectionTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int digit, int baseRegion, int coverRegion)
+			int digit, int baseSet, int coverSet)
 			: base(conclusions, views) =>
-			(Digit, BaseRegion, CoverRegion) = (digit, baseRegion, coverRegion);
+			(Digit, BaseSet, CoverSet) = (digit, baseSet, coverSet);
 
 
-		public override string Name => BaseRegion < 9 ? "Pointing" : "Claiming";
+		/// <inheritdoc/>
+		public override string Name => BaseSet < 9 ? "Pointing" : "Claiming";
 
-		public override decimal Difficulty => BaseRegion < 9 ? 2.6m : 2.8m;
+		/// <inheritdoc/>
+		public override decimal Difficulty => BaseSet < 9 ? 2.6m : 2.8m;
 
+		/// <inheritdoc/>
 		public override DifficultyLevels DifficultyLevel => DifficultyLevels.Moderate;
 
+		/// <summary>
+		/// Indicates the digit.
+		/// </summary>
 		public int Digit { get; }
 
-		public int BaseRegion { get; }
+		/// <summary>
+		/// Indicates the base set.
+		/// </summary>
+		public int BaseSet { get; }
 
-		public int CoverRegion { get; }
+		/// <summary>
+		/// Indicates the cover set.
+		/// </summary>
+		public int CoverSet { get; }
 
 
+		/// <inheritdoc/>
 		public override string ToString() =>
-			$@"{Name}: {Digit + 1} in {RegionUtils.ToString(BaseRegion)}\{RegionUtils.ToString(CoverRegion)} => {ConclusionCollection.ToString(Conclusions)}";
+			$@"{Name}: {Digit + 1} in {RegionUtils.ToString(BaseSet)}\{RegionUtils.ToString(CoverSet)} => {ConclusionCollection.ToString(Conclusions)}";
 	}
 }

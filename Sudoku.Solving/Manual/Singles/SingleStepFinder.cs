@@ -6,15 +6,32 @@ using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Singles
 {
+	/// <summary>
+	/// Encapsulates a single technique step finder
+	/// that used in <see cref="ManualSolver"/>.
+	/// </summary>
 	public sealed class SingleStepFinder : StepFinder
 	{
+		/// <summary>
+		/// Indicates the solver enables these options.
+		/// </summary>
 		private readonly bool _enableFullHouse, _enableLastDigit;
 
 
+		/// <summary>
+		/// Initializes an instance with enable options.
+		/// </summary>
+		/// <param name="enableFullHouse">
+		/// Indicates whether the solver enables full house.
+		/// </param>
+		/// <param name="enableLastDigit">
+		/// Indicates whether the solver enables last digit.
+		/// </param>
 		public SingleStepFinder(bool enableFullHouse, bool enableLastDigit) =>
 			(_enableFullHouse, _enableLastDigit) = (enableFullHouse, enableLastDigit);
 
 
+		/// <inheritdoc/>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
 			var result = new List<TechniqueInfo>();

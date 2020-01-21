@@ -6,12 +6,24 @@ using Sudoku.Data.Extensions;
 
 namespace Sudoku.Solving.BruteForces.DancingLinks
 {
-	internal sealed class TorodialDoubleLinkedList<T> where T : notnull
+	/// <summary>
+	/// Provides a torodial doubly linked list (also called
+	/// circular doubly linked list).
+	/// </summary>
+	/// <typeparam name="T">The type of the element.</typeparam>
+	internal sealed class TorodialDoublyLinkedList<T> where T : notnull
 	{
+		/// <summary>
+		/// All columns.
+		/// </summary>
 		private readonly IList<ColumnNode<T>> _columns = new List<ColumnNode<T>>();
 
 
-		public TorodialDoubleLinkedList(int noColumns)
+		/// <summary>
+		/// Initializes an instance with column number.
+		/// </summary>
+		/// <param name="noColumns">The column number.</param>
+		public TorodialDoublyLinkedList(int noColumns)
 		{
 			_columns.AddRange(from i in Enumerable.Range(0, noColumns) select new ColumnNode<T>(i));
 
@@ -28,9 +40,16 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 		}
 
 
+		/// <summary>
+		/// Indicates the head node.
+		/// </summary>
 		public ColumnNode<T> Head { get; } = new ColumnNode<T>(-1);
 
 
+		/// <summary>
+		/// Process the matrix.
+		/// </summary>
+		/// <param name="matrix">The matrix.</param>
 		public void ProcessMatrix(bool[,] matrix)
 		{
 			for (int y = 0; y < matrix.GetLength(0); y++)
@@ -49,6 +68,10 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 			}
 		}
 
+		/// <summary>
+		/// Process the matrix.
+		/// </summary>
+		/// <param name="matrix">The matrix.</param>
 		public void ProcessMatrix(List<bool[]> matrix)
 		{
 			for (int y = 0; y < matrix.Count; y++)
@@ -67,6 +90,11 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 			}
 		}
 
+		/// <summary>
+		/// Add the specified node to the specified index in column.
+		/// </summary>
+		/// <param name="index">The index.</param>
+		/// <param name="node">The node.</param>
 		public void AddToColumn(int index, Node<T> node)
 		{
 			var lowestNode = _columns[index].Up;
@@ -81,6 +109,7 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 		}
 
 #if DEBUG
+		/// <inheritdoc/>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -146,16 +175,26 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 		}
 #endif
 
-		private void InsertAt(int index, IList<byte> list, byte val)
+		/// <summary>
+		/// Insert the specified value into the list.
+		/// </summary>
+		/// <param name="index">The index.</param>
+		/// <param name="list">The list.</param>
+		/// <param name="value">The value.</param>
+		private void InsertAt(int index, IList<byte> list, byte value)
 		{
 			while (list.Count < index)
 			{
 				list.Add(0);
 			}
 
-			list.Add(val);
+			list.Add(value);
 		}
 
+		/// <summary>
+		/// Process the matrix row.
+		/// </summary>
+		/// <param name="nodes">All nodes.</param>
 		private void ProcessMatrixRow(List<(int _id, Node<T> _nodeList)> nodes)
 		{
 			for (int i = 0; i < nodes.Count; i++)
@@ -168,8 +207,14 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 		}
 
 
+		/// <summary>
+		/// Wraps the index.
+		/// </summary>
+		/// <param name="value">The value.</param>
+		/// <param name="length">The length.</param>
+		/// <returns>The new index.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static int WrapIndex(int val, int length) =>
-			val >= length ? val - length : val < 0 ? val + length : val;
+		private static int WrapIndex(int value, int length) =>
+			value >= length ? value - length : value < 0 ? value + length : value;
 	}
 }

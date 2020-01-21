@@ -6,11 +6,21 @@ using static Sudoku.Solving.Utils.RegionUtils;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
+	/// <summary>
+	/// Encapsulates a locked candidates step finder
+	/// used in solving in <see cref="ManualSolver"/>.
+	/// </summary>
 	public sealed class IntersectionStepFinder : StepFinder
 	{
+		/// <summary>
+		/// All intersection series.
+		/// </summary>
 		private static readonly (int, int, NewerGridMap, NewerGridMap)[,] IntersectionSeries = new (int, int, NewerGridMap, NewerGridMap)[18, 3];
 
 
+		/// <summary>
+		/// The static initializer of <see cref="IntersectionStepFinder"/>.
+		/// </summary>
 		static IntersectionStepFinder()
 		{
 			for (int i = 0; i < 18; i++)
@@ -29,6 +39,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		}
 
 
+		/// <inheritdoc/>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
 			var result = new List<TechniqueInfo>();
@@ -135,8 +146,8 @@ namespace Sudoku.Solving.Manual.Intersections
 													linkMasks: null)
 											},
 											digit,
-											baseRegion: lockedRegions[0],
-											coverRegion: lockedRegions[1]));
+											baseSet: lockedRegions[0],
+											coverSet: lockedRegions[1]));
 								}
 							}
 						}

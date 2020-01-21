@@ -1,0 +1,1468 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Solving</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Solving.AnalysisResult">
+            <summary>
+            Provides an analysis result after a puzzle solved.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.#ctor(Sudoku.Data.Meta.Grid,System.String,System.Boolean,Sudoku.Data.Meta.Grid,System.TimeSpan,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo},System.String)">
+            <summary>
+            Initializes an instance with some information.
+            </summary>
+            <param name="initialGrid">The initial grid.</param>
+            <param name="solverName">The name of the solver.</param>
+            <param name="hasSolved">Indicates whether the puzzle has been solved.</param>
+            <param name="solution">The solution grid.</param>
+            <param name="elapsedTime">The elapsed time while solving.</param>
+            <param name="solvingList">All steps produced in solving.</param>
+            <param name="additional">The additional message.</param>
+        </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.HasSolved">
+            <summary>
+            <para>Indicates whether the puzzle has been solved.</para>
+            <para>
+            If the puzzle has multiple solutions or no solution,
+            this value will be always <c>false</c>.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.MaxDifficulty">
+            <summary>
+            <para>Indicates the maximum difficulty of the puzzle.</para>
+            <para>
+            When the puzzle is solved by <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>,
+            the value will be the maximum value among all difficulty
+            ratings in solving steps. If the puzzle has not been solved,
+            or else the puzzle is solved by other solvers, this value will
+            be always 20.0m.
+            </para>
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
+        </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.TotalDifficulty">
+            <summary>
+            <para>Indicates the total difficulty rating of the puzzle.</para>
+            <para>
+            When the puzzle is solved by <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>,
+            the value will be the sum of all difficulty ratings of steps. If
+            the puzzle has not been solved, the value will be the sum of all
+            difficulty ratings of steps recorded in <see cref="P:Sudoku.Solving.AnalysisResult.SolvingSteps"/>.
+            However, if the puzzle is solved by other solvers, this value will
+            be 0.
+            </para>
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
+            <seealso cref="P:Sudoku.Solving.AnalysisResult.SolvingSteps"/>
+        </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.PearlDifficulty">
+            <summary>
+            <para>
+            Indicates the pearl difficulty rating of the puzzle, calculated
+            during only by <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
+            </para>
+            <para>
+            When the puzzle is solved, the value will be the difficulty rating
+            of the first solving step. If the puzzle has not solved or
+            the puzzle is solved by other solvers, this value will be always 0.
+            </para>
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
+        </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.DiamondDifficulty">
+            <summary>
+            <para>
+            Indicates the pearl difficulty rating of the puzzle, calculated
+            during only by <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
+            </para>
+            <para>
+            When the puzzle is solved, the value will be the difficulty rating
+            of the first step before the first one whose conclusion is
+            <see cref="F:Sudoku.Solving.ConclusionType.Assignment"/>. If the puzzle has not solved
+            or solved by other solvers, this value will be 20.0m.
+            </para>
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
+            <seealso cref="T:Sudoku.Solving.ConclusionType"/>
+        </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.SolvingStepsCount">
+            <summary>
+            Indicates the number of all solving steps recorded.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.SolverName">
+            <summary>
+            Indicates the solver's name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.Additional">
+            <summary>
+            Indicates the additional message during solving, which
+            can be the message from an exception, or the debugging information.
+            If this instance does not need to have this one, the value
+            will be <c>null</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.ElapsedTime">
+            <summary>
+            Indicates the solving elapsed time.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.DifficultyLevel">
+            <summary>
+            Indicates the difficulty level of the puzzle.
+            If the puzzle has not solved or solved by other
+            solvers, this value will be <see cref="F:Sudoku.Solving.DifficultyLevels.Unknown"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.Puzzle">
+            <summary>
+            Indicates the initial puzzle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.Solution">
+            <summary>
+            Indicates the solution grid. If and only if the puzzle
+            is not solved, this value will be <c>null</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.SolvingSteps">
+            <summary>
+            Indicates the solving steps during solving. If the puzzle is not
+            solved and the manual solver cannot find out any steps, or else
+            the puzzle is solved by other solvers, this value will be <c>null</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.SolvingStepsGrouped">
+            <summary>
+            Indicates all groups that grouped by solving steps during solving.
+            If and only if <see cref="P:Sudoku.Solving.AnalysisResult.SolvingSteps"/> is <c>null</c>, this value
+            will be <c>null</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.String@,System.Boolean@)">
+            <summary>
+            Deconstruct this instance.
+            </summary>
+            <param name="solverName">(out parameter) The solver's name.</param>
+            <param name="hasSolved">
+            (out parameter) Indicates whether the puzzle has been solved.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.Boolean@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo}@)">
+            <summary>
+            Deconstruct this instance.
+            </summary>
+            <param name="hasSolved">
+            (out parameter) Indicates whether the puzzle has been solved.
+            </param>
+            <param name="solvingStepsCount">
+            (out parameter) The total number of all solving steps.
+            </param>
+            <param name="solvingSteps">(out parameter) The all solving steps.</param>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.Nullable{System.Decimal}@,System.Decimal@,System.Nullable{System.Decimal}@,System.Nullable{System.Decimal}@)">
+            <summary>
+            Deconstruct this instance.
+            </summary>
+            <param name="total">(out parameter) The total difficulty.</param>
+            <param name="max">(out parameter) The maximum difficulty.</param>
+            <param name="pearl">(out parameter) The pearl difficulty.</param>
+            <param name="diamond">(out parameter) The diamond difficulty.</param>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.Meta.Grid@,System.Boolean@,System.TimeSpan@,Sudoku.Data.Meta.Grid@,Sudoku.Solving.DifficultyLevels@)">
+            <summary>
+            Deconstruct this instance.
+            </summary>
+            <param name="puzzle">(out parameter) The initial puzzle.</param>
+            <param name="hasSolved">
+            (out parameter) Indicates whether the puzzle has been solved.
+            </param>
+            <param name="elapsedTime">
+            (out parameter) The elapsed time during solving.
+            </param>
+            <param name="solution">(out parameter) The solution.</param>
+            <param name="difficultyLevel">(out parameter) The difficulty level.</param>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.Meta.Grid@,System.Boolean@,System.TimeSpan@,Sudoku.Data.Meta.Grid@,Sudoku.Solving.DifficultyLevels@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo}@,System.String@)">
+            <summary>
+            Deconstruct this instance.
+            </summary>
+            <param name="puzzle">(out parameter) The initial puzzle.</param>
+            <param name="hasSolved">
+            (out parameter) Indicates whether the puzzle has solved.
+            </param>
+            <param name="elapsedTime">
+            (out parameter) The elapsed time during solving.
+            </param>
+            <param name="solution">(out parameter) The solution.</param>
+            <param name="difficultyLevel">(out parameter) The difficulty level.</param>
+            <param name="solvingStepsCount">
+            (out parameter) The number of solving steps recorded.
+            </param>
+            <param name="solvingSteps">(out parameter) All solving steps.</param>
+            <param name="additionalMessage">
+            (out parameter) The additional message.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver">
+            <summary>
+            Provides a solver using backtracking method.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver._grid">
+            <summary>
+            The temporary grid to solve.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver.SolverName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver.Solve(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver">
+            <summary>
+            Provides a solver using bitwise method.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.SolverName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve32(System.String,System.Text.StringBuilder,System.Int32)">
+            <summary>
+            The core function of solving the puzzle based on x86 platform.
+            </summary>
+            <param name="puzzle">The puzzle Susser format string.</param>
+            <param name="solution">The solution.</param>
+            <param name="limit">
+            The limit count in solving the puzzle.
+            You should pass the value by a positive integer at least 1.
+            </param>
+            <returns>The solution count of the puzzle.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve64(System.String,System.Text.StringBuilder,System.Int32)">
+            <summary>
+            The core function of solving the puzzle based on x64 platform.
+            </summary>
+            <param name="puzzle">The puzzle Susser format string.</param>
+            <param name="solution">The solution.</param>
+            <param name="limit">
+            The limit count in solving the puzzle.
+            You should pass the value by a positive integer at least 1.
+            </param>
+            <returns>The solution count of the puzzle.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.BruteForces.DancingLinks.ColumnNode`1">
+            <summary>
+            Provides a column node.
+            </summary>
+            <typeparam name="T">The element type.</typeparam>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.ColumnNode`1.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance with an ID.
+            </summary>
+            <param name="id">The ID.</param>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.ColumnNode`1.Id">
+            <summary>
+            The ID.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.ColumnNode`1.Size">
+            <summary>
+            The size of this column.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.ColumnNode`1.IncSize">
+            <summary>
+            Increase the property <see cref="P:Sudoku.Solving.BruteForces.DancingLinks.ColumnNode`1.Size"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.ColumnNode`1.DecSize">
+            <summary>
+            Decrease the property <see cref="P:Sudoku.Solving.BruteForces.DancingLinks.ColumnNode`1.Size"/>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.BruteForces.DancingLinks.DancingLinksSolver">
+            <summary>
+            Provides a solver using dancing links (DLX) algorithm.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.DancingLinksSolver.SolverName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.DancingLinksSolver.Solve(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.DancingLinksSolver.Solve(System.Int32[])">
+            <summary>
+            Solves the specified grid.
+            </summary>
+            <param name="gridValues">The grid values.</param>
+            <returns>The analysis result.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.BruteForces.DancingLinks.Node`1">
+            <summary>
+            Provides a node in a torodial doubly linked list.
+            </summary>
+            <typeparam name="T">The type of element.</typeparam>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.Node`1.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance with the specified index.
+            </summary>
+            <param name="index">The index.</param>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.Node`1.Index">
+            <summary>
+            The index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.Node`1.Value">
+            <summary>
+            The data.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.Node`1.Left">
+            <summary>
+            The left node of this current node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.Node`1.Right">
+            <summary>
+            The right node of this current node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.Node`1.Up">
+            <summary>
+            The up node of this current node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.Node`1.Down">
+            <summary>
+            The down node of this current node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.Node`1.ColumnNode">
+            <summary>
+            The column node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.Node`1.RemoveVertical">
+            <summary>
+            Remove the vertical node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.Node`1.RemoveHorizontal">
+            <summary>
+            Remove the horizontal node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.Node`1.ReplaceVertical">
+            <summary>
+            Replace the vertical node with 'this'.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.Node`1.ReplaceHorizontal">
+            <summary>
+            Replace the horizontal node with 'this'.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.BruteForces.DancingLinks.SudokuValueList">
+            <summary>
+            Provides a sudoku value list.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.SudokuValueList.#ctor">
+            <summary>
+            Initializes an instance in a default way.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.SudokuValueList.Values">
+            <summary>
+            The values.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.SudokuValueList.SetRow(System.Int32[],System.Int32)">
+            <summary>
+            Add a row into this instance.
+            </summary>
+            <param name="row">The row.</param>
+            <param name="index">The index.</param>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.SudokuValueList.CalculateMatrix">
+            <summary>
+            Calculate the matrix.
+            </summary>
+            <returns>The pair of matrix information.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.SudokuValueList.SetMatrixValues(System.Boolean[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Set values in the specified matrix row.
+            </summary>
+            <param name="matrixRow">The matrix row.</param>
+            <param name="row">The row index.</param>
+            <param name="column">The column index.</param>
+            <param name="value">The digit.</param>
+        </member>
+        <member name="T:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1">
+            <summary>
+            Provides a torodial doubly linked list (also called
+            circular doubly linked list).
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1._columns">
+            <summary>
+            All columns.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance with column number.
+            </summary>
+            <param name="noColumns">The column number.</param>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1.Head">
+            <summary>
+            Indicates the head node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1.ProcessMatrix(System.Boolean[0:,0:])">
+            <summary>
+            Process the matrix.
+            </summary>
+            <param name="matrix">The matrix.</param>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1.ProcessMatrix(System.Collections.Generic.List{System.Boolean[]})">
+            <summary>
+            Process the matrix.
+            </summary>
+            <param name="matrix">The matrix.</param>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1.AddToColumn(System.Int32,Sudoku.Solving.BruteForces.DancingLinks.Node{`0})">
+            <summary>
+            Add the specified node to the specified index in column.
+            </summary>
+            <param name="index">The index.</param>
+            <param name="node">The node.</param>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1.InsertAt(System.Int32,System.Collections.Generic.IList{System.Byte},System.Byte)">
+            <summary>
+            Insert the specified value into the list.
+            </summary>
+            <param name="index">The index.</param>
+            <param name="list">The list.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1.ProcessMatrixRow(System.Collections.Generic.List{System.ValueTuple{System.Int32,Sudoku.Solving.BruteForces.DancingLinks.Node{`0}}})">
+            <summary>
+            Process the matrix row.
+            </summary>
+            <param name="nodes">All nodes.</param>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1.WrapIndex(System.Int32,System.Int32)">
+            <summary>
+            Wraps the index.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="length">The length.</param>
+            <returns>The new index.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver">
+            <summary>
+            Provides a solver using LINQ method.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver.SolverName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver.Solve(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Conclusion">
+            <summary>
+            Encapsulates a conclusion representation while solving in logic.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.#ctor(Sudoku.Solving.ConclusionType,System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance with a conclusion type, a cell offset and a digit.
+            </summary>
+            <param name="conclusionType">The conclusion type.</param>
+            <param name="cellOffset">The cell offset.</param>
+            <param name="digit">The digit.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Conclusion.CellOffset">
+            <summary>
+            The cell offset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Conclusion.Digit">
+            <summary>
+            The digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Conclusion.Type">
+            <summary>
+            The conclusion type to control the action of applying.
+            If the type is <see cref="F:Sudoku.Solving.ConclusionType.Assignment"/>,
+            this conclusion will be set value (Set a digit into a cell);
+            otherwise, a candidate will be removed.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.ApplyTo(Sudoku.Data.Meta.Grid)">
+            <summary>
+            Put this instance into the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.Equals(Sudoku.Solving.Conclusion)">
+            <summary>
+            Indicates whether the current object has the same value with the other one.
+            </summary>
+            <param name="other">The other value to compare.</param>
+            <returns>
+            The result of this comparsion. <c>true</c> if two instances hold a same
+            value; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.op_Equality(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
+            <summary>
+            Indicates whether two instances have a same value.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.op_Inequality(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
+            <summary>
+            Indicates whether two instances have two different values.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.ConclusionType">
+            <summary>
+            Provides a conclusion type.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.DifficultyLevels">
+            <summary>
+            Provides a difficulty kind for a puzzle.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Fishes.Basic.BasicFishStepFinder">
+            <summary>
+            Encapsulates a basic fish step finder in solving in <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishStepFinder.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishStepFinder.TakeAllBasicFishBySize(Sudoku.Data.Meta.Grid,System.Int32,System.Boolean)">
+            <summary>
+            Searches all basic fish of the specified size.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="size">The size.</param>
+            <param name="searchRow">
+            Indicates the method is searched row or column.
+            <c>true</c> is for searching rows and <c>false</c>
+            is for searching columns.
+            </param>
+            <returns>All technique information searched.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishStepFinder.GetCoverSets(System.Int16,System.Boolean)">
+            <summary>
+            Get cover sets from the specified mask.
+            </summary>
+            <param name="mask">The mask.</param>
+            <param name="searchRow">Indicates the method is searched rows or columns.</param>
+            <returns>All cover set region offsets.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishStepFinder.GetHighlightedCandidates(Sudoku.Data.Meta.Grid,System.Int32,System.Int32[])">
+            <summary>
+            Get all highlighted candidate offsets.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="baseSets">The base sets.</param>
+            <returns>All highlighted candidate offsets and their IDs.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishStepFinder.GetConclusions(Sudoku.Data.Meta.Grid,System.Int32,System.Int16,System.Boolean,System.Int32[])">
+            <summary>
+            Get conclusions after searched a fish.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="mask">The mask.</param>
+            <param name="searchRow">Indicates the method is searched rows or columns.</param>
+            <param name="baseSets">All base sets.</param>
+            <returns>All conclusions.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishStepFinder.FindSets(System.Int16)">
+            <summary>
+            Find all set bits in a <see cref="T:System.Int16"/> value
+            (only iterating for 9 times).
+            </summary>
+            <param name="value">The value.</param>
+            <returns>The set bits.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Fishes.Basic.BasicFishTechniqueInfo">
+            <summary>
+            Provides a usage of basic fish technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.Basic.BasicFishTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.Basic.BasicFishTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.Basic.BasicFishTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Fishes.FishStepFinder">
+            <summary>
+            Encapsulates a fish technique step finder in solving in <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo">
+            <summary>
+            Provides a usage of fish technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Provides passing data when initializing an instance of derived types.
+            </summary>
+            <param name="conclusions">The conclusions.</param>
+            <param name="views">The views of this solving step.</param>
+            <param name="digit">The digit.</param>
+            <param name="baseSets">The base sets.</param>
+            <param name="coverSets">The cover sets.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo.Digit">
+            <summary>
+            Indicates the digit of this fish instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo.Size">
+            <summary>
+            Indicates the size of this fish instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo.Rank">
+            <summary>
+            Indicates the rank of the fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo.BaseSets">
+            <summary>
+            All base sets.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo.CoverSets">
+            <summary>
+            All cover sets.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Intersections.IntersectionStepFinder">
+            <summary>
+            Encapsulates a locked candidates step finder
+            used in solving in <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Intersections.IntersectionStepFinder.IntersectionSeries">
+            <summary>
+            All intersection series.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionStepFinder.#cctor">
+            <summary>
+            The static initializer of <see cref="T:Sudoku.Solving.Manual.Intersections.IntersectionStepFinder"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionStepFinder.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo">
+            <summary>
+            Provides a usage of ilocked candidates.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance with information.
+            </summary>
+            <param name="conclusions">The conclusions.</param>
+            <param name="views">The views.</param>
+            <param name="digit">The digit.</param>
+            <param name="baseSet">The base set.</param>
+            <param name="coverSet">The cover set.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo.BaseSet">
+            <summary>
+            Indicates the base set.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo.CoverSet">
+            <summary>
+            Indicates the cover set.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.ManualSolver">
+            <summary>
+            Provides a solver that use logical methods to solve a specified sudoku puzzle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.SolverName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder">
+            <summary>
+            <para>Indicates the solver will optimizes the applying order.</para>
+            <para>
+            When the value is <c>true</c>, the result to apply to
+            the grid will be the one which has the minimum difficulty
+            rating; otherwise, the applying step will be the first one
+            of all steps found.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.EnableFullHouse">
+            <summary>
+            Indicates whether the solver will record the step
+            whose name or kind is full house.
+            </summary>
+            <remarks>
+            Full houses are the techniques that used in a single
+            region. When the specified region has only one empty cell,
+            the full house will be found at this empty cell (the last
+            value in this region).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.EnableLastDigit">
+            <summary>
+            Indicates whether the solver will record the step
+            whose name or kind is last digit.
+            </summary>
+            <remarks>
+            Last digits are the techniques that used in a single
+            digit. When the whole grid has 8 same digits, the last
+            one will be always found and set in the last position,
+            which is last digit.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.IttoRyuWhenPossible">
+            <summary>
+            Indicates whether the solver will be forced to find all
+            assigment conclusions with value 1 to 9 in order.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo">
+            <summary>
+            Indicates a usage of full house technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance with information.
+            </summary>
+            <param name="conclusions">The conclusion.</param>
+            <param name="views">The views.</param>
+            <param name="cellOffset">The cell offset.</param>
+            <param name="digit">The digit.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.CellOffset">
+            <summary>
+            Indicates the cell offset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo">
+            <summary>
+            Indicates a using of hidden single technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Initializes an instance with information.
+            </summary>
+            <param name="conclusions">The conclusions.</param>
+            <param name="views">The views.</param>
+            <param name="regionOffset">The region offset.</param>
+            <param name="cellOffset">The cell offset.</param>
+            <param name="digit">The digit.</param>
+            <param name="enableAndIsLastDigit">
+            Indicates whether the solver enables last digit.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.RegionOffset">
+            <summary>
+            Indicates the region offset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.CellOffset">
+            <summary>
+            Indicates the cell offset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.EnableAndIsLastDigit">
+            <summary>
+            Indicates whether the solver enables last digit technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo">
+            <summary>
+            Indicates a usage of naked single technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance with information.
+            </summary>
+            <param name="conclusions">The conclusions.</param>
+            <param name="views">The views.</param>
+            <param name="cellOffset">The cell offset.</param>
+            <param name="digit">The digit.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.CellOffset">
+            <summary>
+            Indicates the cell offset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Singles.SingleStepFinder">
+            <summary>
+            Encapsulates a single technique step finder
+            that used in <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Singles.SingleStepFinder._enableFullHouse">
+            <summary>
+            Indicates the solver enables these options.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Singles.SingleStepFinder._enableLastDigit">
+            <summary>
+            Indicates the solver enables these options.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Singles.SingleStepFinder.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            Initializes an instance with enable options.
+            </summary>
+            <param name="enableFullHouse">
+            Indicates whether the solver enables full house.
+            </param>
+            <param name="enableLastDigit">
+            Indicates whether the solver enables last digit.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Singles.SingleStepFinder.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Singles.SingleTechniqueInfo">
+            <summary>
+            Provides a usage of single technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.SingleTechniqueInfo.DifficultyLevel">
+            <summary>
+            Indicates the difficulty level.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo">
+            <summary>
+            Provides a usage of hidden subset technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo.Size">
+            <summary>
+            Indicates the size of this instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo">
+            <summary>
+            Provides a usage of naked subset technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean})">
+            <summary>
+            Provides passing data when initializing an instance of derived types.
+            </summary>
+            <param name="conclusions">The conclusions.</param>
+            <param name="views">The views of this solving step.</param>
+            <param name="regionOffset">The region offset.</param>
+            <param name="cellOffsets">The cell offsets.</param>
+            <param name="digits">The digits.</param>
+            <param name="isLocked">Indicates whether the technique is locked. </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.IsLocked">
+            <summary>
+            Represents a value for this technique is a locked,
+            partial locked or normal subset.
+            The technique is one when the value is:
+            <list type="table">
+            <item><term><c>true</c></term><description>Locked subset,</description></item>
+            <item><term><c>false</c></term><description>Partial locked subset,</description></item>
+            <item><term><c>null</c></term><description>Normal subset.</description></item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.Size">
+            <summary>
+            Indicates the size of this instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Subsets.SubsetStepFinder">
+            <summary>
+            Encapsulates a subset technique step finder that used in solving in <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepFinder.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepFinder.TakeAllNakedSubsetsBySize(Sudoku.Data.Meta.Grid,System.Int32)">
+            <summary>
+            Get all naked subsets technique information, for searching the specified size.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="size">The size.</param>
+            <returns>All technique information searched.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepFinder.GatherConclusion(Sudoku.Data.Meta.Grid,System.Collections.Generic.IList{Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Nullable{System.Boolean})">
+            <summary>
+            To gather a conclusion with essential information.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="result">The information instances searched.</param>
+            <param name="region">The region offset.</param>
+            <param name="digits">All digits.</param>
+            <param name="offsets">The cell offsets.</param>
+            <param name="conclusions">All conclusions.</param>
+            <param name="isLocked">Indicates whether the subset is locked.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepFinder.GetNakedSubsetConclusions(Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean}@)">
+            <summary>
+            Get conclusions after searched a subset technique.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="offsets">All cell offsets.</param>
+            <param name="digits">All digits.</param>
+            <param name="isLocked">
+            (out parameter) Indicates whether the subset is locked.
+            </param>
+            <returns>All conclusions.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepFinder.GetNakedSubsetsHighlightedCandidateOffsets(Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Get all candidate offsets highlighted in a specified naked subset technique.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="offsets">All cell offsets.</param>
+            <param name="digits">All digits.</param>
+            <returns>All candidate offsets and its ID.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepFinder.TakeAllHiddenSubsetsBySize(Sudoku.Data.Meta.Grid,System.Int32)">
+            <summary>
+            Get all hidden subsets technique information, for searching the specified size.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="size">The size.</param>
+            <returns>All technique information searched.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepFinder.GetHiddenSubsetsConclusions(Sudoku.Data.Meta.Grid,System.Int32,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32}@,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}}@)">
+            <summary>
+            Get conclusions after a hidden subset searched.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="region">The region offset.</param>
+            <param name="mask">
+            The mask that calculated in <see cref="M:Sudoku.Solving.Manual.Subsets.SubsetStepFinder.TakeAllHiddenSubsetsBySize(Sudoku.Data.Meta.Grid,System.Int32)"/>.
+            </param>
+            <param name="digits">All digits.</param>
+            <param name="cellOffsetList">(out parameter) All cell offsets.</param>
+            <param name="highlightedCandidates">
+            (out parameter) All highlighted candidate offsets.
+            </param>
+            <returns>All conclusions.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Subsets.SubsetTechniqueInfo">
+            <summary>
+            Provides a usage of subset technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Provides passing data when initializing an instance of derived types.
+            </summary>
+            <param name="conclusions">The conclusions.</param>
+            <param name="views">The views of this solving step.</param>
+            <param name="regionOffset">The region offset.</param>
+            <param name="cellOffsets">The cell offsets.</param>
+            <param name="digits">The digits.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Subsets.SubsetTechniqueInfo.RegionOffset">
+            <summary>
+            The region offset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Subsets.SubsetTechniqueInfo.Digits">
+            <summary>
+            All digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Subsets.SubsetTechniqueInfo.CellOffsets">
+            <summary>
+            All cell offsets.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Subsets.SubsetTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Subsets.SubsetTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Solver">
+            <summary>
+            Indicates an instance used for solving a sudoku puzzle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Solver.SolverName">
+            <summary>
+            The name of this solver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Solver.Solve(Sudoku.Data.Meta.Grid)">
+            <summary>
+            Solves the specified puzzle.
+            </summary>
+            <param name="grid">The puzzle.</param>
+            <returns>
+            An <see cref="T:Sudoku.Solving.AnalysisResult"/> displaying all information of solving.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Solver.SolveAsync(Sudoku.Data.Meta.Grid,System.Boolean)">
+            <summary>
+            Solves the specified puzzle asynchronizedly.
+            </summary>
+            <param name="grid">The puzzle.</param>
+            <param name="continueOnCapturedContext">
+            <c>true</c> to attempt to marshal the continuation back to
+            the original context captured; otherwise, <c>false</c>.
+            </param>
+            <returns>The solving task.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.StepFinder">
+            <summary>
+            Encapsulates a step finder that used in solving in
+            <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.StepFinder.TakeOne(Sudoku.Data.Meta.Grid)">
+            <summary>
+            Take a step after searched all solving steps.
+            </summary>
+            <param name="grid">The grid to search steps.</param>
+            <returns>A technique information.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.StepFinder.Take(Sudoku.Data.Meta.Grid,System.Int32)">
+            <summary>
+            Take the specified number of steps.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="count">The number of steps you want to take.</param>
+            <returns>The specified number of technique information instances.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.StepFinder.TakeAll(Sudoku.Data.Meta.Grid)">
+            <summary>
+            Take all technique steps after searched.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The list of all steps found.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.TechniqueInfo">
+            <summary>
+            Encapsulates all information after searched a solving step,
+            which include the conclusion, the difficulty and so on.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+            <summary>
+            Provides passing data when initializing an instance of derived types.
+            </summary>
+            <param name="conclusions">The conclusions.</param>
+            <param name="views">The views of this solving step.</param>
+        </member>
+        <member name="P:Sudoku.Solving.TechniqueInfo.Name">
+            <summary>
+            The name of the technique step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.TechniqueInfo.Difficulty">
+            <summary>
+            The difficulty or this step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.TechniqueInfo.DifficultyLevel">
+            <summary>
+            The difficulty level of this step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.TechniqueInfo.Conclusions">
+            <summary>
+            All conclusions found in this technique step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.TechniqueInfo.Views">
+            <summary>
+            All views to display on the GUI.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@)">
+            <summary>
+            Deconstruct this instance.
+            </summary>
+            <param name="name">(out parameter) The name.</param>
+            <param name="difficulty">(out parameter) The difficulty.</param>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevels@)">
+            <summary>
+            Deconstruct this instance.
+            </summary>
+            <param name="name">(out parameter) The name.</param>
+            <param name="difficulty">(out parameter) The difficulty.</param>
+            <param name="difficultyLevel">(out parameter) The difficulty level.</param>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevels@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion}@)">
+            <summary>
+            Deconstruct this instance.
+            </summary>
+            <param name="name">(out parameter) The name.</param>
+            <param name="difficulty">(out parameter) The difficulty.</param>
+            <param name="difficultyLevel">(out parameter) The difficulty level.</param>
+            <param name="conclusions">(out parameter) All conclusions.</param>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevels@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion}@,System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View}@)">
+            <summary>
+            Deconstruct this instance.
+            </summary>
+            <param name="name">(out parameter) The name.</param>
+            <param name="difficulty">(out parameter) The difficulty.</param>
+            <param name="difficultyLevel">(out parameter) The difficulty level.</param>
+            <param name="conclusions">(out parameter) All conclusions.</param>
+            <param name="views">(out parameter) All views.</param>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueInfo.ApplyTo(Sudoku.Data.Meta.Grid)">
+            <summary>
+            Put this instance into the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Utils.CellUtils">
+            <summary>
+            Provides extension method used for cell offsets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.CellUtils.GetOffset(System.Int32,System.Int32)">
+            <summary>
+            Get the cell offset with specified row and column index.
+            </summary>
+            <param name="row">The row index.</param>
+            <param name="column">The column index.</param>
+            <returns>The cell offset.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.CellUtils.ToString(System.Int32)">
+            <summary>
+            Get the output string of the specified cell offset.
+            </summary>
+            <param name="cellOffset">The cell offset.</param>
+            <returns>The output string described as 'r_c_'.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.CellUtils.ToFullString(System.Int32)">
+            <summary>
+            Get the full string of the specified cell offset.
+            </summary>
+            <param name="cellOffset">The cell offset.</param>
+            <returns>The output string described as 'r_c_b_'.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Utils.ConclusionCollection">
+            <summary>
+            Provides extension methods of conclusion collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.ConclusionCollection.ToString(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
+            <summary>
+            Get a string consists of all conclusion text.
+            </summary>
+            <param name="conclusions">The conclusions.</param>
+            <returns>The string.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Utils.DigitCollection">
+            <summary>
+            Provides extension methods of digit collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.DigitCollection.ToString(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Get a string consists of digits' text.
+            </summary>
+            <param name="digits">The digits.</param>
+            <returns>The string.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Utils.FishUtils">
+            <summary>
+            Provides extension method used for fish technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Utils.FishUtils.FishNames">
+            <summary>
+            All fish names.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.FishUtils.GetNameBy(System.Int32)">
+            <summary>
+            Get the fish by its size.
+            </summary>
+            <param name="size">The size.</param>
+            <returns>The name.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Utils.GridUtils">
+            <summary>
+            Provides extension method used for grid calculating.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.GridUtils.HasDigitValue(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)">
+            <summary>
+            Checks whether the specified digit has given or modifiable values in
+            the specified region.
+            </summary>
+            <param name="this">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="regionOffset">The region.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.GridUtils.GetDigitAppearingMask(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)">
+            <summary>
+            Gets a mask of digit appearing in the specified region offset.
+            </summary>
+            <param name="this">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="regionOffset">The region.</param>
+            <returns>
+            The mask. This value consists of 9 bits, which represents all nine cells
+            in a specified region. The mask uses 1 to make the cell 'have this digit',
+            and 0 to make the cell 'does not have this digit'.
+            </returns>
+        </member>
+        <member name="T:Sudoku.Solving.Utils.RegionCollection">
+            <summary>
+            Provides extension methods of region collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.RegionCollection.ToString(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Get a string consists of all texts of region offsets.
+            </summary>
+            <param name="regionOffsets">The region offsets.</param>
+            <returns>The string text.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Utils.RegionUtils">
+            <summary>
+            Provides extension method used for region offsets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.RegionUtils.GetRegionLabel(System.Int32)">
+            <summary>
+            Gets the label ('r', 'c' or 'b') of the specified region.
+            </summary>
+            <param name="regionOffset">The region offset.</param>
+            <returns>The label.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.RegionUtils.ToString(System.Int32)">
+            <summary>
+            Gets a string of a region.
+            </summary>
+            <param name="regionOffset">The region offset.</param>
+            <returns>The string.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.RegionUtils.GetRegionName(System.Int32)">
+            <summary>
+            Get the region name ('row', 'column' or 'block') of the specified
+            region.
+            </summary>
+            <param name="regionOffset">The region offset.</param>
+            <returns>The string.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.RegionUtils.GetCellOffset(System.Int32,System.Int32)">
+            <summary>
+            Get the cell offset of the relative position in the specified
+            region.
+            </summary>
+            <param name="regionOffset">The region offset.</param>
+            <param name="relativePos">The relative position.</param>
+            <returns>The cell offset.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.RegionUtils.GetRegionOffset(System.String)">
+            <summary>
+            Get the region offset from a string text.
+            </summary>
+            <param name="regionString">The text of region.</param>
+            <returns>The region offset.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.RegionUtils.GetCellOffsets(System.Int32)">
+            <summary>
+            Get all cell offsets in the specified region.
+            </summary>
+            <param name="regionOffset">The region offset.</param>
+            <returns>All cell offsets.</returns>
+        </member>
+        <member name="F:Sudoku.Solving.Utils.RegionUtils.Map">
+            <summary>
+            The map of all cell offsets in its specified region.
+            For example, 'Map[0]' means that all cell offsets
+            in the region 0 (block 1).
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Utils.SubsetUtils">
+            <summary>
+            Provides extension method used for subset (hidden or naked) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Utils.SubsetUtils.SubsetNames">
+            <summary>
+            All subset names.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.SubsetUtils.GetNameBy(System.Int32)">
+            <summary>
+            Gets the name by its size.
+            </summary>
+            <param name="size">The size.</param>
+            <returns>The name.</returns>
+        </member>
+    </members>
+</doc>

@@ -5,8 +5,12 @@ using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Subsets
 {
+	/// <summary>
+	/// Provides a usage of hidden subset technique.
+	/// </summary>
 	public sealed class HiddenSubsetTechniqueInfo : SubsetTechniqueInfo
 	{
+		/// <inheritdoc/>
 		public HiddenSubsetTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			int regionOffset, IReadOnlyList<int> cellOffsets, IReadOnlyList<int> digits)
@@ -15,6 +19,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		}
 
 
+		/// <inheritdoc/>
 		public override decimal Difficulty
 		{
 			get
@@ -29,11 +34,16 @@ namespace Sudoku.Solving.Manual.Subsets
 			}
 		}
 
+		/// <summary>
+		/// Indicates the size of this instance.
+		/// </summary>
 		public int Size => Digits.Count;
 
+		/// <inheritdoc/>
 		public override string Name => $"Hidden {base.Name}";
 
 
+		/// <inheritdoc/>
 		public override string ToString() =>
 			$"{Name}: {DigitCollection.ToString(Digits)} in {RegionUtils.ToString(RegionOffset)} => {ConclusionCollection.ToString(Conclusions)}";
 	}

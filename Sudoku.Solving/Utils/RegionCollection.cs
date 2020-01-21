@@ -5,8 +5,16 @@ using System.Text;
 
 namespace Sudoku.Solving.Utils
 {
+	/// <summary>
+	/// Provides extension methods of region collection.
+	/// </summary>
 	public static class RegionCollection
 	{
+		/// <summary>
+		/// Get a string consists of all texts of region offsets.
+		/// </summary>
+		/// <param name="regionOffsets">The region offsets.</param>
+		/// <returns>The string text.</returns>
 		public static string ToString(IEnumerable<int> regionOffsets)
 		{
 			var sb = new StringBuilder();

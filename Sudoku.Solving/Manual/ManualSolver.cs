@@ -9,11 +9,16 @@ using Sudoku.Solving.Manual.Subsets;
 
 namespace Sudoku.Solving.Manual
 {
+	/// <summary>
+	/// Provides a solver that use logical methods to solve a specified sudoku puzzle.
+	/// </summary>
 	public sealed partial class ManualSolver : Solver
 	{
+		/// <inheritdoc/>
 		public override string SolverName => "Manual";
 
 
+		/// <inheritdoc/>
 		public override AnalysisResult Solve(Grid grid)
 		{
 			// Initialization.

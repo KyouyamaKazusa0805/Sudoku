@@ -6,14 +6,22 @@ using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.BruteForces.Backtracking
 {
+	/// <summary>
+	/// Provides a solver using backtracking method.
+	/// </summary>
 	public sealed class BacktrackingSolver : Solver
 	{
+		/// <summary>
+		/// The temporary grid to solve.
+		/// </summary>
 		private Grid _grid = null!;
 
 
+		/// <inheritdoc/>
 		public override string SolverName => "Backtracking";
 
 
+		/// <inheritdoc/>
 		public override AnalysisResult Solve(Grid grid)
 		{
 			_grid = grid;

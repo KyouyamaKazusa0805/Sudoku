@@ -9,8 +9,12 @@ using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Subsets
 {
+	/// <summary>
+	/// Encapsulates a subset technique step finder that used in solving in <see cref="ManualSolver"/>.
+	/// </summary>
 	public sealed class SubsetStepFinder : StepFinder
 	{
+		/// <inheritdoc/>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
 			var result = new List<TechniqueInfo>();
@@ -32,6 +36,12 @@ namespace Sudoku.Solving.Manual.Subsets
 
 
 		#region Naked Subsets utils
+		/// <summary>
+		/// Get all naked subsets technique information, for searching the specified size.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="size">The size.</param>
+		/// <returns>All technique information searched.</returns>
 		private static IReadOnlyList<NakedSubsetTechniqueInfo> TakeAllNakedSubsetsBySize(
 			Grid grid, int size)
 		{
@@ -156,6 +166,16 @@ namespace Sudoku.Solving.Manual.Subsets
 			return result;
 		}
 
+		/// <summary>
+		/// To gather a conclusion with essential information.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="result">The information instances searched.</param>
+		/// <param name="region">The region offset.</param>
+		/// <param name="digits">All digits.</param>
+		/// <param name="offsets">The cell offsets.</param>
+		/// <param name="conclusions">All conclusions.</param>
+		/// <param name="isLocked">Indicates whether the subset is locked.</param>
 		private static void GatherConclusion(
 			Grid grid, IList<NakedSubsetTechniqueInfo> result, int region,
 			IReadOnlyList<int> digits, IReadOnlyList<int> offsets,
@@ -181,6 +201,16 @@ namespace Sudoku.Solving.Manual.Subsets
 					isLocked));
 		}
 
+		/// <summary>
+		/// Get conclusions after searched a subset technique.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="offsets">All cell offsets.</param>
+		/// <param name="digits">All digits.</param>
+		/// <param name="isLocked">
+		/// (out parameter) Indicates whether the subset is locked.
+		/// </param>
+		/// <returns>All conclusions.</returns>
 		private static IReadOnlyList<Conclusion> GetNakedSubsetConclusions(
 			Grid grid, IReadOnlyList<int> offsets,
 			IReadOnlyList<int> digits, out bool? isLocked)
@@ -239,6 +269,13 @@ namespace Sudoku.Solving.Manual.Subsets
 			return result;
 		}
 
+		/// <summary>
+		/// Get all candidate offsets highlighted in a specified naked subset technique.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="offsets">All cell offsets.</param>
+		/// <param name="digits">All digits.</param>
+		/// <returns>All candidate offsets and its ID.</returns>
 		private static IReadOnlyList<(int, int)> GetNakedSubsetsHighlightedCandidateOffsets(
 			Grid grid, IReadOnlyList<int> offsets, IReadOnlyList<int> digits)
 		{
@@ -261,6 +298,12 @@ namespace Sudoku.Solving.Manual.Subsets
 		#endregion
 
 		#region Hidden Subsets utils
+		/// <summary>
+		/// Get all hidden subsets technique information, for searching the specified size.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="size">The size.</param>
+		/// <returns>All technique information searched.</returns>
 		private static IReadOnlyList<HiddenSubsetTechniqueInfo> TakeAllHiddenSubsetsBySize(
 			Grid grid, int size)
 		{
@@ -410,8 +453,22 @@ namespace Sudoku.Solving.Manual.Subsets
 			return result;
 		}
 
+		/// <summary>
+		/// Get conclusions after a hidden subset searched.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="region">The region offset.</param>
+		/// <param name="mask">
+		/// The mask that calculated in <see cref="TakeAllHiddenSubsetsBySize(Grid, int)"/>.
+		/// </param>
+		/// <param name="digits">All digits.</param>
+		/// <param name="cellOffsetList">(out parameter) All cell offsets.</param>
+		/// <param name="highlightedCandidates">
+		/// (out parameter) All highlighted candidate offsets.
+		/// </param>
+		/// <returns>All conclusions.</returns>
 		private static IReadOnlyList<Conclusion> GetHiddenSubsetsConclusions(
-			Grid grid, int region, int mask, IReadOnlyList<int> digits,
+			Grid grid, int region, short mask, IReadOnlyList<int> digits,
 			out IReadOnlyList<int> cellOffsetList,
 			out IReadOnlyList<(int, int)> highlightedCandidates)
 		{

@@ -7,13 +7,23 @@ using Sudoku.Runtime;
 
 namespace Sudoku.Solving.BruteForces.DancingLinks
 {
+	/// <summary>
+	/// Provides a solver using dancing links (DLX) algorithm.
+	/// </summary>
 	public sealed class DancingLinksSolver : Solver
 	{
+		/// <inheritdoc/>
 		public override string SolverName => "Dancing links";
 
 
+		/// <inheritdoc/>
 		public override AnalysisResult Solve(Grid grid) => Solve(grid.ToArray());
 
+		/// <summary>
+		/// Solves the specified grid.
+		/// </summary>
+		/// <param name="gridValues">The grid values.</param>
+		/// <returns>The analysis result.</returns>
 		public AnalysisResult Solve(int[] gridValues)
 		{
 			var stopwatch = new Stopwatch();
@@ -39,7 +49,7 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 				// Processes the value list.
 				var (booleanList, rcvList) = s.CalculateMatrix();
 
-				var list = new TorodialDoubleLinkedList<bool>(9 * 9 << 2);
+				var list = new TorodialDoublyLinkedList<bool>(9 * 9 << 2);
 				list.ProcessMatrix(booleanList);
 
 				var resultSeries = Search(list);
@@ -90,12 +100,12 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 
 		[Obsolete]
 		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-		private IReadOnlyList<Node<bool>>? Search_Older(TorodialDoubleLinkedList<bool> list) =>
+		private IReadOnlyList<Node<bool>>? Search_Older(TorodialDoublyLinkedList<bool> list) =>
 			SearchRecursively(list, new List<Node<bool>>());
 
 		[Obsolete]
 		private IReadOnlyList<Node<bool>>? SearchRecursively(
-			TorodialDoubleLinkedList<bool> list, List<Node<bool>> solutions)
+			TorodialDoublyLinkedList<bool> list, List<Node<bool>> solutions)
 		{
 			if (ReferenceEquals(list.Head.Right, list.Head))
 			{
@@ -151,7 +161,7 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 		}
 
 		private static IReadOnlyList<IReadOnlyList<Node<bool>>> Search(
-			TorodialDoubleLinkedList<bool> list)
+			TorodialDoublyLinkedList<bool> list)
 		{
 			var resultNodeSeries = new List<List<Node<bool>>>();
 			SearchRecursively1(list, new List<Node<bool>>(), resultNodeSeries);
@@ -159,7 +169,7 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 		}
 
 		private static void SearchRecursively1(
-			TorodialDoubleLinkedList<bool> list, List<Node<bool>> solutions,
+			TorodialDoublyLinkedList<bool> list, List<Node<bool>> solutions,
 			List<List<Node<bool>>> resultNodeSeries)
 		{
 			if (ReferenceEquals(list.Head.Right, list.Head))
@@ -206,7 +216,7 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 			}
 		}
 
-		private static ColumnNode<bool>? GetNextColumn(TorodialDoubleLinkedList<bool> list)
+		private static ColumnNode<bool>? GetNextColumn(TorodialDoublyLinkedList<bool> list)
 		{
 			var node = list.Head;
 			ColumnNode<bool>? chosenNode = null;
