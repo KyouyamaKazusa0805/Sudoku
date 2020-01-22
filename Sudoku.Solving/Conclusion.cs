@@ -17,6 +17,16 @@ namespace Sudoku.Solving
 		public Conclusion(ConclusionType conclusionType, int cellOffset, int digit) =>
 			(Type, CellOffset, Digit) = (conclusionType, cellOffset, digit);
 
+		/// <summary>
+		/// Initializes an instance with a conclusion type and a candidate offset.
+		/// </summary>
+		/// <param name="conclusionType">The conclusion type.</param>
+		/// <param name="candidateOffset">The candidate offset.</param>
+		public Conclusion(ConclusionType conclusionType, int candidateOffset)
+			: this(conclusionType, candidateOffset / 9, candidateOffset % 9)
+		{
+		}
+
 
 		/// <summary>
 		/// The cell offset.
