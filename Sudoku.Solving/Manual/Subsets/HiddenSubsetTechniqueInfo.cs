@@ -29,7 +29,7 @@ namespace Sudoku.Solving.Manual.Subsets
 					2 => 3.4m,
 					3 => 4.0m,
 					4 => 5.4m,
-					_ => throw new InvalidOperationException($"{nameof(Size)} is out of valid range.")
+					_ => throw new NotSupportedException($"{nameof(Size)} is out of valid range.")
 				};
 			}
 		}
@@ -44,7 +44,11 @@ namespace Sudoku.Solving.Manual.Subsets
 
 
 		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: {DigitCollection.ToString(Digits)} in {RegionUtils.ToString(RegionOffset)} => {ConclusionCollection.ToString(Conclusions)}";
+		public override string ToString()
+		{
+			return $"{Name}: {DigitCollection.ToString(Digits)} in"
+				+ $" {RegionUtils.ToString(RegionOffset)}"
+				+ $" => {ConclusionCollection.ToString(Conclusions)}";
+		}
 	}
 }

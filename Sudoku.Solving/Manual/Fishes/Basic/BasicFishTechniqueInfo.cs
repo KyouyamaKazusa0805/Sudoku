@@ -8,6 +8,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 	/// <summary>
 	/// Provides a usage of basic fish technique.
 	/// </summary>
+	[Obsolete("Please use 'NormalFishTechniqueInfo'.")]
 	public sealed class BasicFishTechniqueInfo : FishTechniqueInfo
 	{
 		/// <inheritdoc/>
@@ -42,7 +43,11 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 
 
 		/// <inheritdoc/>
-		public override string ToString() =>
-			$@"{Name}: {Digit + 1} in {RegionCollection.ToString(BaseSets)}\{RegionCollection.ToString(CoverSets)} => {ConclusionCollection.ToString(Conclusions)}";
+		public override string ToString()
+		{
+			return $@"{Name}: {Digit + 1} in {RegionCollection.ToString(BaseSets)}\"
+				+ $"{RegionCollection.ToString(CoverSets)} =>"
+				+ $" {ConclusionCollection.ToString(Conclusions)}";
+		}
 	}
 }

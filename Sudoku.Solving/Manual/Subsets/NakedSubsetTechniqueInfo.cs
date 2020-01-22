@@ -63,12 +63,13 @@ namespace Sudoku.Solving.Manual.Subsets
 		{
 			get
 			{
+				var ex = new NotSupportedException($"{nameof(Size)} is out of valid range.");
 				return Size switch
 				{
 					2 => 3.0m,
 					3 => 3.6m,
 					4 => 5.0m,
-					_ => throw new InvalidOperationException($"{nameof(Size)} is out of valid range.")
+					_ => throw ex
 				} + IsLocked switch
 				{
 					null => 0,
@@ -76,7 +77,7 @@ namespace Sudoku.Solving.Manual.Subsets
 					{
 						2 => -1.0m,
 						3 => -1.1m,
-						_ => throw new Exception("No valid 'Locked Subset'(size > 4) in 9-block sudoku.")
+						_ => throw ex
 					},
 					false => 0.1m
 				};
@@ -85,7 +86,11 @@ namespace Sudoku.Solving.Manual.Subsets
 
 
 		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: {DigitCollection.ToString(Digits)} in {RegionUtils.ToString(RegionOffset)} => {ConclusionCollection.ToString(Conclusions)}";
+		public override string ToString()
+		{
+			return $"{Name}: {DigitCollection.ToString(Digits)} in"
+				+ $" {RegionUtils.ToString(RegionOffset)} =>"
+				+ $" {ConclusionCollection.ToString(Conclusions)}";
+		}
 	}
 }

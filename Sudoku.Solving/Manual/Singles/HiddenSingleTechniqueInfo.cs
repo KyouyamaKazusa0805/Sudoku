@@ -60,7 +60,8 @@ namespace Sudoku.Solving.Manual.Singles
 		{
 			return EnableAndIsLastDigit
 				? $"{Name}: {CellUtils.ToString(CellOffset)} = {Digit + 1}"
-				: $"{Name}: {CellUtils.ToString(CellOffset)} = {Digit + 1} in {RegionUtils.ToString(RegionOffset)}";
+				: $"{Name}: {CellUtils.ToString(CellOffset)} = {Digit + 1} in"
+					+ $" {RegionUtils.ToString(RegionOffset)}";
 		}
 	}
 }

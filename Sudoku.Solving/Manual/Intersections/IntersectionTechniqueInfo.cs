@@ -50,7 +50,11 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		/// <inheritdoc/>
-		public override string ToString() =>
-			$@"{Name}: {Digit + 1} in {RegionUtils.ToString(BaseSet)}\{RegionUtils.ToString(CoverSet)} => {ConclusionCollection.ToString(Conclusions)}";
+		public override string ToString()
+		{
+			return $@"{Name}: {Digit + 1} in {RegionUtils.ToString(BaseSet)}\"
+				+ $"{RegionUtils.ToString(CoverSet)} =>"
+				+ $" {ConclusionCollection.ToString(Conclusions)}";
+		}
 	}
 }

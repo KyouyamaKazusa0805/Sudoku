@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using Sudoku.Data.Extensions;
@@ -11,6 +12,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 	/// <summary>
 	/// Encapsulates a basic fish step finder in solving in <see cref="ManualSolver"/>.
 	/// </summary>
+	[Obsolete("Please use 'NormalFishStepFinder'.")]
 	public sealed class BasicFishStepFinder : FishStepFinder
 	{
 		/// <inheritdoc/>

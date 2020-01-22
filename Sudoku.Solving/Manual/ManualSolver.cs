@@ -46,6 +46,9 @@ namespace Sudoku.Solving.Manual
 				var infos = stepFinder.TakeAll(cloneation);
 				if (IttoRyuWhenPossible && i == 0) // 'i == 0' stands for single step finder.
 				{
+					// TODO: To check whether the puzzle has that digit.
+					// TODO: _ If the digit does not exist, we should skip this digit
+					// TODO: _ and find the next digit, until the conclusion found.
 					foreach (var info in infos)
 					{
 						var conclusion = info.Conclusions[0];
