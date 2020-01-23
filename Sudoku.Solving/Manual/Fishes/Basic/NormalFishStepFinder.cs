@@ -20,18 +20,12 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 		{
 			var result = new List<TechniqueInfo>();
 
-			result.AddRange(TakeAllBySizeAndFinChecks(grid, 2, searchRow: false, searchFin: false));
-			result.AddRange(TakeAllBySizeAndFinChecks(grid, 2, searchRow: false, searchFin: true));
-			result.AddRange(TakeAllBySizeAndFinChecks(grid, 2, searchRow: true, searchFin: false));
-			result.AddRange(TakeAllBySizeAndFinChecks(grid, 2, searchRow: true, searchFin: true));
-			result.AddRange(TakeAllBySizeAndFinChecks(grid, 3, searchRow: false, searchFin: false));
-			result.AddRange(TakeAllBySizeAndFinChecks(grid, 3, searchRow: false, searchFin: true));
-			result.AddRange(TakeAllBySizeAndFinChecks(grid, 3, searchRow: true, searchFin: false));
-			result.AddRange(TakeAllBySizeAndFinChecks(grid, 3, searchRow: true, searchFin: true));
-			result.AddRange(TakeAllBySizeAndFinChecks(grid, 4, searchRow: false, searchFin: false));
-			result.AddRange(TakeAllBySizeAndFinChecks(grid, 4, searchRow: false, searchFin: true));
-			result.AddRange(TakeAllBySizeAndFinChecks(grid, 4, searchRow: true, searchFin: false));
-			result.AddRange(TakeAllBySizeAndFinChecks(grid, 4, searchRow: true, searchFin: true));
+			result.AddRange(TakeAllBySizeAndFinChecks(grid, 2, false));
+			result.AddRange(TakeAllBySizeAndFinChecks(grid, 2, true));
+			result.AddRange(TakeAllBySizeAndFinChecks(grid, 3, false));
+			result.AddRange(TakeAllBySizeAndFinChecks(grid, 3, true));
+			result.AddRange(TakeAllBySizeAndFinChecks(grid, 4, false));
+			result.AddRange(TakeAllBySizeAndFinChecks(grid, 4, true));
 
 			return result;
 		}
@@ -46,10 +40,9 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 		/// <param name="searchRow">
 		/// Indicates the solver will searching rows or columns.
 		/// </param>
-		/// <param name="searchFin">Indicates the solver will searching fins.</param>
 		/// <returns>The result.</returns>
 		private static IReadOnlyList<NormalFishTechniqueInfo> TakeAllBySizeAndFinChecks(
-			Grid grid, int size, bool searchRow, bool searchFin)
+			Grid grid, int size, bool searchRow)
 		{
 			Contract.Requires(size >= 2 && size <= 4);
 
@@ -80,7 +73,8 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 						if (size == 2)
 						{
 							short baseMask = (short)(baseMask1 | baseMask2);
-							if (baseMask.CountSet() >= 5)
+							int finAndBodyCount = baseMask.CountSet();
+							if (finAndBodyCount >= 5)
 							{
 								continue;
 							}
@@ -89,7 +83,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 							for (int cs1 = coverSetStart, i = 0; cs1 < coverSetStart + 8; cs1++, i++)
 							{
 								// Check whether this cover set has 'digit'.
-								if (((baseMask >> i) & 1) == 0)
+								if ((baseMask >> i & 1) == 0)
 								{
 									continue;
 								}
@@ -97,27 +91,34 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 								for (int cs2 = cs1 + 1, j = 0; cs2 < coverSetStart + 9; cs2++, j++)
 								{
 									// Check whether this cover set has 'digit'.
-									if (((baseMask >> j) & 1) == 0)
+									if ((baseMask >> j & 1) == 0)
 									{
 										continue;
 									}
 
 									// Confirm all elimination cells.
+									var baseSets = new[] { bs1, bs2 };
+									var coverSets = new[] { cs1, cs2 };
+									var bodyMap = new NewerGridMap();
 									var elimMap = new NewerGridMap();
-									var tempMap = new NewerGridMap();
-									elimMap |= new NewerGridMap(RegionUtils.GetCellOffsets(cs1));
-									elimMap |= new NewerGridMap(RegionUtils.GetCellOffsets(cs2));
-									tempMap |= new NewerGridMap(RegionUtils.GetCellOffsets(bs1));
-									tempMap |= new NewerGridMap(RegionUtils.GetCellOffsets(bs2));
-									tempMap &= elimMap;
-									elimMap &= ~tempMap;
-									
+									GetGridMap(ref bodyMap, baseSets);
+									GetGridMap(ref elimMap, coverSets);
+									bodyMap &= elimMap;
+									elimMap &= ~bodyMap;
+
+									// Check the existence of fin.
+									var finCells = (List<int>?)null;
+									if (finAndBodyCount == 2) // size == 2
+									{
+										goto Label_CheckWhetherTheNumberOfIntersectionCellsIsNotZero;
+									}
+
 									// Get the fin mask.
 									short finMask = (short)(baseMask & ~(1 << i | 1 << j) & 511);
 
 									// Confirm all fin cells.
-									var finCells = new List<int>();
-									foreach (int baseSet in stackalloc[] { bs1, bs2 })
+									finCells = new List<int>();
+									foreach (int baseSet in baseSets)
 									{
 										for (int x = 0, temp = finMask; x < 9; x++, temp >>= 1)
 										{
@@ -133,12 +134,22 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 										}
 									}
 
+									// Check the number of fins is less than 3.
+									// and all fins do not lie on any cover sets.
+									if (finCells.Count > 2
+										|| !finCells.All(
+											c => !coverSets.Contains(searchRow ? c % 9 + 18 : c / 9 + 9)))
+									{
+										continue;
+									}
+
 									// Get intersection.
 									foreach (int finCell in finCells)
 									{
 										elimMap &= new NewerGridMap(finCell);
 									}
 
+								Label_CheckWhetherTheNumberOfIntersectionCellsIsNotZero:
 									// Check whether the number of intersection cells is not 0.
 									if (elimMap.Count != 0)
 									{
@@ -157,11 +168,29 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 										if (elimList.Count != 0)
 										{
 											// Eliminations does exist.
-											// TODO: Check all highlighted candidates.
-											var highlightCandidates = new List<(int, int)>();
+											// Check all highlighted candidates.
+											var highlightCandidates = new List<(int, int)>(
+												from cellOffset in bodyMap.Offsets
+												select (0, cellOffset));
 
-											// TODO: Check the fish is sashimi, normal finned or normal.
+											// Check the fish is sashimi, normal finned or normal.
 											bool? isSashimi = null;
+											if (!(finCells is null))
+											{
+												int finCell = finCells[0];
+												int block = finCell / 9 / 3 * 3 + finCell % 9 % 3;
+												foreach (int offset in bodyMap.Offsets)
+												{
+													if (offset / 9 / 3 * 3 + offset % 9 % 3 == block)
+													{
+														isSashimi =
+															grid.GetCellStatus(offset) != CellStatus.Empty
+															|| grid[offset, digit];
+
+														break;
+													}
+												}
+											}
 
 											// Add to 'result'.
 											result.Add(
@@ -184,8 +213,8 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 															linkMasks: null)
 													},
 													digit,
-													baseSets: new List<int> { bs1, bs2 },
-													coverSets: new List<int> { cs1, cs2 },
+													baseSets: new List<int>(baseSets),
+													coverSets: new List<int>(coverSets),
 													finCellOffsets: finCells,
 													isSashimi));
 										}
@@ -241,6 +270,19 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 			}
 
 			return result;
+		}
+
+		/// <summary>
+		/// Record all cells in the all regions to a <see cref="NewerGridMap"/> instance.
+		/// </summary>
+		/// <param name="map">The map.</param>
+		/// <param name="regionOffsets">All region offsets.</param>
+		private static void GetGridMap(ref NewerGridMap map, int[] regionOffsets)
+		{
+			foreach (int regionOffset in regionOffsets)
+			{
+				map |= new NewerGridMap(RegionUtils.GetCellOffsets(regionOffset));
+			}
 		}
 	}
 }

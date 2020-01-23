@@ -13,7 +13,7 @@
 		public static string ToString(int candidateOffset)
 		{
 			int cell = candidateOffset / 81;
-			return $"r{cell / 9}c{cell % 9}({candidateOffset % 9})";
+			return $"r{cell / 9 + 1}c{cell % 9 + 1}({candidateOffset % 9 + 1})";
 		}
 	}
 }

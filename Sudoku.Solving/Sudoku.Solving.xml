@@ -507,6 +507,13 @@
             <param name="cellOffset">The cell offset.</param>
             <param name="digit">The digit.</param>
         </member>
+        <member name="M:Sudoku.Solving.Conclusion.#ctor(Sudoku.Solving.ConclusionType,System.Int32)">
+            <summary>
+            Initializes an instance with a conclusion type and a candidate offset.
+            </summary>
+            <param name="conclusionType">The conclusion type.</param>
+            <param name="candidateOffset">The candidate offset.</param>
+        </member>
         <member name="P:Sudoku.Solving.Conclusion.CellOffset">
             <summary>
             The cell offset.
@@ -654,6 +661,87 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Fishes.Basic.NormalFishStepFinder">
+            <summary>
+            Encapsulates a normal fish technique step finder in solving
+            in <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishStepFinder.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishStepFinder.TakeAllBySizeAndFinChecks(Sudoku.Data.Meta.Grid,System.Int32,System.Boolean)">
+            <summary>
+            Searches all basic fish of the specified size and
+            fin checking <see cref="T:System.Boolean"/> value.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="size">The size.</param>
+            <param name="searchRow">
+            Indicates the solver will searching rows or columns.
+            </param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishStepFinder.GetGridMap(Sudoku.Data.Meta.NewerGridMap@,System.Int32[])">
+            <summary>
+            Record all cells in the all regions to a <see cref="T:Sudoku.Data.Meta.NewerGridMap"/> instance.
+            </summary>
+            <param name="map">The map.</param>
+            <param name="regionOffsets">All region offsets.</param>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo">
+            <summary>
+            Provides a usage of normal fish technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean})">
+            <summary>
+            Initializes an instance with information.
+            </summary>
+            <param name="conclusions">The concluisons.</param>
+            <param name="views">The views.</param>
+            <param name="digit">The digit.</param>
+            <param name="baseSets">The base sets.</param>
+            <param name="coverSets">The cover sets.</param>
+            <param name="finCellOffsets">All candidate offsets of fins' position.</param>
+            <param name="isSashimi">
+            Indicates whether the fish instance is sashimi.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo.IsSashimi">
+            <summary>
+            Indicates whether the fish instance is sashimi.
+            The value can be:
+            <list type="table">
+            <item>
+            <term><c>true</c></term><description>Sashimi finned fish.</description>
+            </item>
+            <item>
+            <term><c>false</c></term><description>Normal finned fish.</description>
+            </item>
+            <item>
+            <term><c>null</c></term><description>Normal fish.</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo.FinCellOffsets">
+            <summary>
+            Indicates all fin candidates in this fish information instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.FishStepFinder">
@@ -1281,6 +1369,42 @@
         </member>
         <member name="M:Sudoku.Solving.TechniqueInfo.ToString">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Utils.CandidateCollection">
+            <summary>
+            Provides extension methods of candidate collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.CandidateCollection.ToString(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Get a string consists of all candidate text.
+            </summary>
+            <param name="candidateOffsets">The candidate offsets.</param>
+            <returns>A string.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Utils.CandidateUtils">
+            <summary>
+            Provides extension methods for candidates.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.CandidateUtils.ToString(System.Int32)">
+            <summary>
+            Get a candidate text representation.
+            </summary>
+            <param name="candidateOffset">The candidate offset.</param>
+            <returns>A string text.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Utils.CellCollection">
+            <summary>
+            Provides extension methods of cell collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.CellCollection.ToString(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Get a string consists of all cell text.
+            </summary>
+            <param name="cellOffsets">The cell offsets.</param>
+            <returns>The string.</returns>
         </member>
         <member name="T:Sudoku.Solving.Utils.CellUtils">
             <summary>

@@ -25,9 +25,9 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 		public NormalFishTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			int digit, IReadOnlyList<int> baseSets, IReadOnlyList<int> coverSets,
-			IReadOnlyList<int> finCellOffsets, bool? isSashimi)
+			IReadOnlyList<int>? finCellOffsets, bool? isSashimi)
 			: base(conclusions, views, digit, baseSets, coverSets) =>
-			(IsSashimi, FinCandidateOffsets) = (isSashimi, finCellOffsets);
+			(IsSashimi, FinCellOffsets) = (isSashimi, finCellOffsets);
 
 
 		/// <summary>
@@ -50,11 +50,21 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 		/// <summary>
 		/// Indicates all fin candidates in this fish information instance.
 		/// </summary>
-		public IReadOnlyList<int> FinCandidateOffsets { get; }
+		public IReadOnlyList<int>? FinCellOffsets { get; }
 
 		/// <inheritdoc/>
-		public override string Name =>
-			$"{(FinCandidateOffsets.Count != 0 ? "Finned " : string.Empty)}{FishUtils.GetNameBy(Size)}";
+		public override string Name
+		{
+			get
+			{
+				return $@"{IsSashimi switch
+				{
+					null => "",
+					true => "Sashimi ",
+					false => "Finned "
+				}}{FishUtils.GetNameBy(Size)}";
+			}
+		}
 
 		/// <inheritdoc/>
 		public override decimal Difficulty
@@ -103,9 +113,9 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 		{
 			return $"{Name}: {Digit + 1} in {RegionCollection.ToString(BaseSets)}"
 				+ $@"\{RegionCollection.ToString(CoverSets)}"
-				+ $@"{(FinCandidateOffsets.Count == 0
-					? string.Empty
-					: $"(With fin(s): {CandidateCollection.ToString(FinCandidateOffsets)})")}"
+				+ $@"{(!(FinCellOffsets is null) && FinCellOffsets.Count != 0
+					? $"(With fin(s): {CellCollection.ToString(FinCellOffsets)})"
+					: string.Empty)}"
 				+ $" => {ConclusionCollection.ToString(Conclusions)}";
 		}
 	}

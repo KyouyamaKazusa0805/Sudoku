@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 	/// <summary>
 	/// Encapsulates a basic fish step finder in solving in <see cref="ManualSolver"/>.
 	/// </summary>
-	[Obsolete("Please use 'NormalFishStepFinder'.")]
+	[Obsolete("Please use 'NormalFishStepFinder', because this finder cannot search finned fishes.")]
 	public sealed class BasicFishStepFinder : FishStepFinder
 	{
 		/// <inheritdoc/>

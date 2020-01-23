@@ -31,7 +31,8 @@ namespace Sudoku.Solving.Manual
 				new SingleStepFinder(EnableFullHouse, EnableLastDigit),
 				new IntersectionStepFinder(),
 				new SubsetStepFinder(),
-				new BasicFishStepFinder()
+				//new BasicFishStepFinder(),
+				new NormalFishStepFinder(),
 			};
 
 			// Start time recording and solving.
