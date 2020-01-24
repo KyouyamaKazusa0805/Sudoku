@@ -8,7 +8,7 @@ A sudoku handling SDK using brute forces and logical techniques (Update files gr
 
 
 
-## C# Version and IDE using
+## C# Version and IDE
 
 标题：**C# 版本和 IDE 使用情况**
 
@@ -168,6 +168,8 @@ Here displays the introduction to all folders in this whole solution.
 	* Provides generating operations of sudoku.<br/>为整个数独项目提供出题的模块。
 * `Sudoku.Drawing`
     * Painting module of this solution, which is used for GDI+.<br/>控制整个解决方案有关绘制图形的模块，一般用于 GDI+ 上。
+* `Sudoku.Forms`
+    * Provides all UI forms and controls.<br/>提供所有程序使用的 UI 界面和控件。
 * `Sudoku.Diagnostics`
     * The diagnostic controlling through all over the solution. In addition, those files are used with my own custom code analyzer and fixer (But this analyzer is not included in this solution. Therefore codes has not been uploaded).<br/>控制整个解决方案执行行为和编译期间行为的项目。另外，所有的文件都会依赖于我自己实现的分析器和代码修补工具（不过这一部分代码不属于项目，所以我没有上传）。
 * `Sudoku.IO`
