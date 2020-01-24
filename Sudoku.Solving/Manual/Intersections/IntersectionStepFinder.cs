@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <summary>
 		/// All intersection series.
 		/// </summary>
-		private static readonly (int, int, NewerGridMap, NewerGridMap)[,] IntersectionSeries = new (int, int, NewerGridMap, NewerGridMap)[18, 3];
+		private static readonly (int, int, GridMap, GridMap)[,] IntersectionSeries = new (int, int, GridMap, GridMap)[18, 3];
 
 
 		/// <summary>
@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Manual.Intersections
 						: ((i - 9) / 3 * 3 + j) * 3 % 8;
 					IntersectionSeries[i, j] = (
 						baseSet, coverSet,
-						new NewerGridMap(GetCellOffsets(baseSet)), new NewerGridMap(GetCellOffsets(coverSet)));
+						new GridMap(GetCellOffsets(baseSet)), new GridMap(GetCellOffsets(coverSet)));
 				}
 			}
 		}
@@ -48,7 +48,7 @@ namespace Sudoku.Solving.Manual.Intersections
 			{
 				for (int j = 0; j < 3; j++)
 				{
-					short BitwiseAndMasks(NewerGridMap map)
+					short BitwiseAndMasks(GridMap map)
 					{
 						short mask = 511;
 						foreach (int offset in map.Offsets)

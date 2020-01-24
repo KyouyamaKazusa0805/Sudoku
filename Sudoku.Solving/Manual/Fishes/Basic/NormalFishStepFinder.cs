@@ -99,8 +99,8 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 									// Confirm all elimination cells.
 									var baseSets = new[] { bs1, bs2 };
 									var coverSets = new[] { cs1, cs2 };
-									var bodyMap = new NewerGridMap();
-									var elimMap = new NewerGridMap();
+									var bodyMap = new GridMap();
+									var elimMap = new GridMap();
 									GetGridMap(ref bodyMap, baseSets);
 									GetGridMap(ref elimMap, coverSets);
 									bodyMap &= elimMap;
@@ -146,7 +146,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 									// Get intersection.
 									foreach (int finCell in finCells)
 									{
-										elimMap &= new NewerGridMap(finCell);
+										elimMap &= new GridMap(finCell);
 									}
 
 								Label_CheckWhetherTheNumberOfIntersectionCellsIsNotZero:
@@ -273,15 +273,15 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 		}
 
 		/// <summary>
-		/// Record all cells in the all regions to a <see cref="NewerGridMap"/> instance.
+		/// Record all cells in the all regions to a <see cref="GridMap"/> instance.
 		/// </summary>
 		/// <param name="map">The map.</param>
 		/// <param name="regionOffsets">All region offsets.</param>
-		private static void GetGridMap(ref NewerGridMap map, int[] regionOffsets)
+		private static void GetGridMap(ref GridMap map, int[] regionOffsets)
 		{
 			foreach (int regionOffset in regionOffsets)
 			{
-				map |= new NewerGridMap(RegionUtils.GetCellOffsets(regionOffset));
+				map |= new GridMap(RegionUtils.GetCellOffsets(regionOffset));
 			}
 		}
 	}
