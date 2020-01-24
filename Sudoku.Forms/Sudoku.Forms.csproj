@@ -5,6 +5,9 @@
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<Nullable>Enable</Nullable>
 		<UseWindowsForms>true</UseWindowsForms>
+		<Authors>Sunnie</Authors>
+		<Description>Provides all forms and controls in this whole sudoku solution.</Description>
+		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
 	</PropertyGroup>
 
 </Project>
