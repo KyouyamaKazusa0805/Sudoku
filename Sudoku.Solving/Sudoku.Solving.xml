@@ -672,10 +672,9 @@
         <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishStepFinder.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishStepFinder.TakeAllBySizeAndFinChecks(Sudoku.Data.Meta.Grid,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishStepFinder.TakeAllBySize(Sudoku.Data.Meta.Grid,System.Int32,System.Boolean)">
             <summary>
-            Searches all basic fish of the specified size and
-            fin checking <see cref="T:System.Boolean"/> value.
+            Searches all basic fish of the specified size.
             </summary>
             <param name="grid">The grid.</param>
             <param name="size">The size.</param>
@@ -684,9 +683,9 @@
             </param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishStepFinder.GetGridMap(Sudoku.Data.Meta.NewerGridMap@,System.Int32[])">
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishStepFinder.GetGridMap(Sudoku.Data.Meta.GridMap@,System.Int32[])">
             <summary>
-            Record all cells in the all regions to a <see cref="T:Sudoku.Data.Meta.NewerGridMap"/> instance.
+            Record all cells in the all regions to a <see cref="T:Sudoku.Data.Meta.GridMap"/> instance.
             </summary>
             <param name="map">The map.</param>
             <param name="regionOffsets">All region offsets.</param>

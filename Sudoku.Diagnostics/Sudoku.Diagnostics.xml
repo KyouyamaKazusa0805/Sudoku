@@ -9,11 +9,6 @@
             To disable using default constructor in structs.
             </summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.DisableDefaultConstructorAttribute.AccessLevel">
-            <summary>
-            The access level.
-            </summary>
-        </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.DisableDefaultConstructorAttribute.IsError">
             <summary>
             Specifies an action when calling the default constructor
@@ -92,41 +87,6 @@
             <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContractAttribute"/> suggests you that you should add
             <see cref="T:Sudoku.Diagnostics.CodeAnalysis.OnAddingAttribute"/> on <c>Add</c> method.
             </para>
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.Permissions.AccessLevel">
-            <summary>
-            Provides an access level.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.Permissions.AccessLevel.Private">
-            <summary>
-            The private modifier.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.Permissions.AccessLevel.PrivateProtected">
-            <summary>
-            The private protected modifier.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.Permissions.AccessLevel.Protected">
-            <summary>
-            The protected modifier.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.Permissions.AccessLevel.Internal">
-            <summary>
-            The internal modifier.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.Permissions.AccessLevel.ProtectedInternal">
-            <summary>
-            The protected internal modifier.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.Permissions.AccessLevel.Public">
-            <summary>
-            The public modifier.
             </summary>
         </member>
     </members>

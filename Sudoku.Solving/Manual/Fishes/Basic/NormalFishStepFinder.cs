@@ -20,20 +20,19 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 		{
 			var result = new List<TechniqueInfo>();
 
-			result.AddRange(TakeAllBySizeAndFinChecks(grid, 2, false));
-			result.AddRange(TakeAllBySizeAndFinChecks(grid, 2, true));
-			result.AddRange(TakeAllBySizeAndFinChecks(grid, 3, false));
-			result.AddRange(TakeAllBySizeAndFinChecks(grid, 3, true));
-			result.AddRange(TakeAllBySizeAndFinChecks(grid, 4, false));
-			result.AddRange(TakeAllBySizeAndFinChecks(grid, 4, true));
+			result.AddRange(TakeAllBySize(grid, 2, false));
+			result.AddRange(TakeAllBySize(grid, 2, true));
+			result.AddRange(TakeAllBySize(grid, 3, false));
+			result.AddRange(TakeAllBySize(grid, 3, true));
+			result.AddRange(TakeAllBySize(grid, 4, false));
+			result.AddRange(TakeAllBySize(grid, 4, true));
 
 			return result;
 		}
 
 
 		/// <summary>
-		/// Searches all basic fish of the specified size and
-		/// fin checking <see cref="bool"/> value.
+		/// Searches all basic fish of the specified size.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <param name="size">The size.</param>
@@ -41,7 +40,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 		/// Indicates the solver will searching rows or columns.
 		/// </param>
 		/// <returns>The result.</returns>
-		private static IReadOnlyList<NormalFishTechniqueInfo> TakeAllBySizeAndFinChecks(
+		private static IReadOnlyList<NormalFishTechniqueInfo> TakeAllBySize(
 			Grid grid, int size, bool searchRow)
 		{
 			Contract.Requires(size >= 2 && size <= 4);

@@ -13,8 +13,15 @@ namespace Sudoku.Data.Meta
 	/// <c>true</c> is for the cell having digit, and the <c>false</c>
 	/// value is for empty cell.
 	/// </summary>
+	[DisableDefaultConstructor]
 	public partial struct GridMap : IEnumerable<bool>, IEquatable<GridMap>
 	{
+		/// <summary>
+		/// Indicates an empty instance (without any modify).
+		/// </summary>
+		public static readonly GridMap Empty = new GridMap();
+
+
 		/// <summary>
 		/// The value used for shifting.
 		/// </summary>

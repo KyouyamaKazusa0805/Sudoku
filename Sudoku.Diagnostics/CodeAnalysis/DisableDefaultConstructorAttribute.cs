@@ -1,5 +1,4 @@
 ﻿using System;
-using Sudoku.Diagnostics.Permissions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis
 {
@@ -9,11 +8,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 	[AttributeUsage(AttributeTargets.Struct)]
 	public sealed class DisableDefaultConstructorAttribute : Attribute
 	{
-		/// <summary>
-		/// The access level.
-		/// </summary>
-		public AccessLevel AccessLevel { get; set; } = AccessLevel.Private;
-
 		/// <summary>
 		/// Specifies an action when calling the default constructor
 		/// in structs. If the value is <c>true</c>, it will report

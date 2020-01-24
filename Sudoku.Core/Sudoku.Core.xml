@@ -666,17 +666,22 @@
             value is for empty cell.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.GridMap._low">
+        <member name="F:Sudoku.Data.Meta.GridMap.Empty">
             <summary>
-            Inner binary representation values.
+            Indicates an empty instance (without any modify).
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.GridMap._mid">
+        <member name="F:Sudoku.Data.Meta.GridMap.Shifting">
             <summary>
-            Inner binary representation values.
+            The value used for shifting.
             </summary>
         </member>
         <member name="F:Sudoku.Data.Meta.GridMap._high">
+            <summary>
+            Inner binary representation values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.GridMap._low">
             <summary>
             Inner binary representation values.
             </summary>
@@ -698,13 +703,12 @@
             will not be set <c>true</c>.
             </remarks>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.#ctor(System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Data.Meta.GridMap.#ctor(System.Int64,System.Int64)">
             <summary>
             Initializes an instance with three binary value.
             </summary>
-            <param name="high">Higher 32 bits.</param>
-            <param name="mid">Middle 32 bits.</param>
-            <param name="low">Lower 32 bits.</param>
+            <param name="high">Higher 40 bits.</param>
+            <param name="low">Lower 41 bits.</param>
         </member>
         <member name="P:Sudoku.Data.Meta.GridMap.Count">
             <summary>
@@ -731,13 +735,12 @@
             A <see cref="T:System.Boolean"/> value indicating whether the cell has digit.
             </returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.Deconstruct(System.Int32@,System.Int32@,System.Int32@)">
+        <member name="M:Sudoku.Data.Meta.GridMap.Deconstruct(System.Int64@,System.Int64@)">
             <summary>
             Deconstruct the instance.
             </summary>
-            <param name="high">(out parameter) Higher 32 bits.</param>
-            <param name="mid">(out parameter) Middle 32 bits.</param>
-            <param name="low">(out parameter) Lower 32 bits.</param>
+            <param name="high">(out parameter) Higher 40 bits.</param>
+            <param name="low">(out parameter) Lower 41 bits.</param>
         </member>
         <member name="M:Sudoku.Data.Meta.GridMap.Equals(System.Object)">
             <inheritdoc/>
@@ -923,222 +926,6 @@
             Parse the susser format string.
             </summary>
             <returns>The result.</returns>
-        </member>
-        <member name="T:Sudoku.Data.Meta.NewerGridMap">
-            <summary>
-            Encapsulates a binary series of cell status table.
-            <c>true</c> is for the cell having digit, and the <c>false</c>
-            value is for empty cell.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Meta.NewerGridMap.Shifting">
-            <summary>
-            The value used for shifting.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Meta.NewerGridMap._high">
-            <summary>
-            Inner binary representation values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Meta.NewerGridMap._low">
-            <summary>
-            Inner binary representation values.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.#ctor(System.Int32)">
-            <summary>
-            Initializes an instance with the specified cell offset
-            (Sets itself and all peers).
-            </summary>
-            <param name="offset">The cell offset.</param>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Initializes an instance with a series of cell offsets.
-            </summary>
-            <param name="offsets">cell offsets.</param>
-            <remarks>
-            Note that all offsets will be set <c>true</c>, but their own peers
-            will not be set <c>true</c>.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.#ctor(System.Int64,System.Int64)">
-            <summary>
-            Initializes an instance with three binary value.
-            </summary>
-            <param name="high">Higher 40 bits.</param>
-            <param name="low">Lower 41 bits.</param>
-        </member>
-        <member name="P:Sudoku.Data.Meta.NewerGridMap.Count">
-            <summary>
-            Indicates the total number of cells where the corresponding
-            value are set <c>true</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Meta.NewerGridMap.Offsets">
-            <summary>
-            Indicates all cell offsets whose corresponding value
-            are set <c>true</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Meta.NewerGridMap.Item(System.Int32)">
-            <summary>
-            Gets or sets a <see cref="T:System.Boolean"/> value on the specified cell
-            offset.
-            </summary>
-            <param name="offset">The cell offset.</param>
-            <value>
-            A <see cref="T:System.Boolean"/> value on assignment.
-            </value>
-            <returns>
-            A <see cref="T:System.Boolean"/> value indicating whether the cell has digit.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.Deconstruct(System.Int64@,System.Int64@)">
-            <summary>
-            Deconstruct the instance.
-            </summary>
-            <param name="high">(out parameter) Higher 40 bits.</param>
-            <param name="low">(out parameter) Lower 41 bits.</param>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.Equals(Sudoku.Data.Meta.NewerGridMap)">
-            <summary>
-            Indicates whether the current object has the same value with the other one.
-            </summary>
-            <param name="other">The other value to compare.</param>
-            <returns>
-            The result of this comparsion. <c>true</c> if two instances hold a same
-            value; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.ToString">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <returns>A string that represents the current object.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.Add(System.Int32)">
-            <summary>
-            Set the specified cell as <c>true</c> value.
-            </summary>
-            <param name="offset">The cell offset.</param>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.Remove(System.Int32)">
-            <summary>
-            Set the specified cell as <c>false</c> value.
-            </summary>
-            <param name="offset">The cell offset.</param>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.SetPeersTrue(System.Int32)">
-            <summary>
-            Set all peers as <c>true</c> value.
-            </summary>
-            <param name="offset">The cell offset.</param>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.SetPeersFalse(System.Int32)">
-            <summary>
-            Set all peers as <c>false</c> value.
-            </summary>
-            <param name="offset">The cell offset.</param>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.NegatePeers(System.Int32)">
-            <summary>
-            Negate all peers' value.
-            </summary>
-            <param name="offset">The cell offset.</param>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.IntersectWith(Sudoku.Data.Meta.NewerGridMap)">
-            <summary>
-            Intersect with the other instance.
-            </summary>
-            <param name="other">The other instance.</param>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.UnionWith(Sudoku.Data.Meta.NewerGridMap)">
-            <summary>
-            Union with the other instance.
-            </summary>
-            <param name="other">The other instance.</param>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.SymmetricalExceptWith(Sudoku.Data.Meta.NewerGridMap)">
-            <summary>
-            Symmetrical except with the other instance.
-            </summary>
-            <param name="other">The other instance.</param>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.Negate">
-            <summary>
-            Negate all values.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.op_Equality(Sudoku.Data.Meta.NewerGridMap,Sudoku.Data.Meta.NewerGridMap)">
-            <summary>
-            Indicates whether two instances have a same value.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.op_Inequality(Sudoku.Data.Meta.NewerGridMap,Sudoku.Data.Meta.NewerGridMap)">
-            <summary>
-            Indicates whether two instances have two different values.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.op_OnesComplement(Sudoku.Data.Meta.NewerGridMap)">
-            <summary>
-            Negate all values.
-            </summary>
-            <param name="gridMap">The instance to negate.</param>
-            <returns>The negative result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.op_BitwiseAnd(Sudoku.Data.Meta.NewerGridMap,Sudoku.Data.Meta.NewerGridMap)">
-            <summary>
-            Intersect among two values.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The intersection result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.op_BitwiseOr(Sudoku.Data.Meta.NewerGridMap,Sudoku.Data.Meta.NewerGridMap)">
-            <summary>
-            Union among two values.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The union result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Meta.NewerGridMap.op_ExclusiveOr(Sudoku.Data.Meta.NewerGridMap,Sudoku.Data.Meta.NewerGridMap)">
-            <summary>
-            Symmetrical except among two values.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="F:Sudoku.Data.Meta.NewerGridMap.PeerTable">
-            <summary>
-            The peer table used in intersection.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Meta.NewerGridMap.RegionsMaskTable">
-            <summary>
-            The region mask table used in getting all cells in the specified region.
-            </summary>
         </member>
         <member name="T:Sudoku.Data.ValueChangedEventArgs">
             <summary>
