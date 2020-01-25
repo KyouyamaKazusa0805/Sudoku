@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Runtime.CompilerServices;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
 
@@ -9,6 +10,54 @@ namespace Sudoku.Solving.Utils
 	/// </summary>
 	public static class GridUtils
 	{
+		/// <summary>
+		/// <para>
+		/// Indicates whether the specified grid contains the candidate.
+		/// Note that given and modifiable values always make this method
+		/// return <c>false</c>.
+		/// </para>
+		/// <para>
+		/// If you want to check the reversal case, please use the method
+		/// <see cref="CandidateDoesNotExist(Grid, int, int)"/> instead
+		/// of '<c>!grid.CandidateExists</c>'.
+		/// </para>
+		/// </summary>
+		/// <param name="this">The grid.</param>
+		/// <param name="cellOffset">The cell offset.</param>
+		/// <param name="digit">The digit.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		/// <seealso cref="CandidateDoesNotExist(Grid, int, int)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool CandidateExists(this Grid @this, int cellOffset, int digit)
+		{
+			return @this.GetCellStatus(cellOffset) == CellStatus.Empty
+				&& !@this[cellOffset, digit];
+		}
+
+		/// <summary>
+		/// <para>
+		/// Indicates whether the specified grid <b>does not</b> contains the candidate.
+		/// Note that given and modifiable values always make this method
+		/// return <c>false</c>.
+		/// </para>
+		/// <para>
+		/// If you want to check the reversal case, please use the method
+		/// <see cref="CandidateExists(Grid, int, int)"/> instead
+		/// of '<c>!grid.CandidateDoesNotExist</c>'.
+		/// </para>
+		/// </summary>
+		/// <param name="this">The grid.</param>
+		/// <param name="cellOffset">The cell offset.</param>
+		/// <param name="digit">The digit.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		/// <seealso cref="CandidateExists(Grid, int, int)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool CandidateDoesNotExist(this Grid @this, int cellOffset, int digit)
+		{
+			return @this.GetCellStatus(cellOffset) == CellStatus.Empty
+				&& @this[cellOffset, digit];
+		}
+
 		/// <summary>
 		/// Checks whether the specified digit has given or modifiable values in
 		/// the specified region.
@@ -39,10 +88,7 @@ namespace Sudoku.Solving.Utils
 			int result = 0, i = 0;
 			foreach (int cellOffset in RegionUtils.GetCellOffsets(regionOffset))
 			{
-				result +=
-					@this.GetCellStatus(cellOffset) == CellStatus.Empty && !@this[cellOffset, digit]
-						? 1
-						: 0;
+				result += @this.CandidateExists(cellOffset, digit) ? 1 : 0;
 
 				if (i++ != 8)
 				{

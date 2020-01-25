@@ -9,15 +9,15 @@ using Sudoku.Diagnostics.CodeAnalysis;
 namespace Sudoku.Data.Meta
 {
 	/// <summary>
-	/// Encapsulates a binary series of cell status table.
-	/// <c>true</c> is for the cell having digit, and the <c>false</c>
-	/// value is for empty cell.
+	/// Encapsulates a binary series of cell status table consisting of 81 bits,
+	/// where <c>true</c> bit (1) is for the cell having digit,
+	/// and the <c>false</c> bit (0) is for empty cell. Sometimes for other usages.
 	/// </summary>
 	[DisableDefaultConstructor]
 	public partial struct GridMap : IEnumerable<bool>, IEquatable<GridMap>
 	{
 		/// <summary>
-		/// Indicates an empty instance (without any modify).
+		/// Indicates an empty instance (making no changes).
 		/// </summary>
 		public static readonly GridMap Empty = new GridMap();
 
@@ -173,7 +173,7 @@ namespace Sudoku.Data.Meta
 
 
 		/// <summary>
-		/// Deconstruct the instance.
+		/// Deconstruct this instance.
 		/// </summary>
 		/// <param name="high">(out parameter) Higher 40 bits.</param>
 		/// <param name="low">(out parameter) Lower 41 bits.</param>
@@ -334,7 +334,7 @@ namespace Sudoku.Data.Meta
 		public static bool operator !=(GridMap left, GridMap right) => !(left == right);
 
 		/// <summary>
-		/// Negate all values.
+		/// Negate all bits.
 		/// </summary>
 		/// <param name="gridMap">The instance to negate.</param>
 		/// <returns>The negative result.</returns>
@@ -342,7 +342,7 @@ namespace Sudoku.Data.Meta
 			new GridMap(~gridMap._high, ~gridMap._low);
 
 		/// <summary>
-		/// Intersect among two values.
+		/// Intersect two <see cref="GridMap"/>s.
 		/// </summary>
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
@@ -351,7 +351,7 @@ namespace Sudoku.Data.Meta
 			new GridMap(left._high & right._high, left._low & right._low);
 
 		/// <summary>
-		/// Union among two values.
+		/// Union two <see cref="GridMap"/>s.
 		/// </summary>
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
@@ -360,7 +360,7 @@ namespace Sudoku.Data.Meta
 			new GridMap(left._high | right._high, left._low | right._low);
 
 		/// <summary>
-		/// Symmetrical except among two values.
+		/// Symmetrical except two <see cref="GridMap"/>s.
 		/// </summary>
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>

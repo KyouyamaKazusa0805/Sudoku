@@ -33,7 +33,8 @@ namespace Sudoku.Solving.Manual.Intersections
 						: ((i - 9) / 3 * 3 + j) * 3 % 8;
 					IntersectionSeries[i, j] = (
 						baseSet, coverSet,
-						new GridMap(GetCellOffsets(baseSet)), new GridMap(GetCellOffsets(coverSet)));
+						new GridMap(GetCellOffsets(baseSet)),
+						new GridMap(GetCellOffsets(coverSet)));
 				}
 			}
 		}

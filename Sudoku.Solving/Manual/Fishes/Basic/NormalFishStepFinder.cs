@@ -20,12 +20,13 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 		{
 			var result = new List<TechniqueInfo>();
 
-			result.AddRange(TakeAllBySize(grid, 2, false));
-			result.AddRange(TakeAllBySize(grid, 2, true));
-			result.AddRange(TakeAllBySize(grid, 3, false));
-			result.AddRange(TakeAllBySize(grid, 3, true));
-			result.AddRange(TakeAllBySize(grid, 4, false));
-			result.AddRange(TakeAllBySize(grid, 4, true));
+			for (int size = 2; size <= 4; size++)
+			{
+				foreach (bool value in new[] { false, true })
+				{
+					result.AddRange(TakeAllBySize(grid, size, value));
+				}
+			}
 
 			return result;
 		}
@@ -55,7 +56,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 				{
 					// Get the appearing mask of 'digit' in 'bs1'.
 					short baseMask1 = grid.GetDigitAppearingMask(digit, bs1);
-					if (baseMask1.CountSet() == 0)
+					if (baseMask1.CountSet() < 2)
 					{
 						continue;
 					}
@@ -64,7 +65,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 					{
 						// Get the appearing mask of 'digit' in 'bs2'.
 						short baseMask2 = grid.GetDigitAppearingMask(digit, bs2);
-						if (baseMask2.CountSet() == 0)
+						if (baseMask2.CountSet() < 2)
 						{
 							continue;
 						}
@@ -87,7 +88,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 									continue;
 								}
 
-								for (int cs2 = cs1 + 1, j = 0; cs2 < coverSetStart + 9; cs2++, j++)
+								for (int cs2 = cs1 + 1, j = i + 1; cs2 < coverSetStart + 9; cs2++, j++)
 								{
 									// Check whether this cover set has 'digit'.
 									if ((baseMask >> j & 1) == 0)
@@ -98,8 +99,8 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 									// Confirm all elimination cells.
 									var baseSets = new[] { bs1, bs2 };
 									var coverSets = new[] { cs1, cs2 };
-									var bodyMap = new GridMap();
-									var elimMap = new GridMap();
+									var bodyMap = GridMap.Empty;
+									var elimMap = GridMap.Empty;
 									GetGridMap(ref bodyMap, baseSets);
 									GetGridMap(ref elimMap, coverSets);
 									bodyMap &= elimMap;
@@ -124,8 +125,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 											if ((temp & 1) != 0)
 											{
 												int possibleFinCellOffset = RegionUtils.GetCellOffset(baseSet, x);
-												if (grid.GetCellStatus(possibleFinCellOffset) == CellStatus.Empty
-													&& !grid[possibleFinCellOffset, digit])
+												if (grid.CandidateExists(possibleFinCellOffset, digit))
 												{
 													finCells.Add(possibleFinCellOffset);
 												}
@@ -135,9 +135,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 
 									// Check the number of fins is less than 3.
 									// and all fins do not lie on any cover sets.
-									if (finCells.Count > 2
-										|| !finCells.All(
-											c => !coverSets.Contains(searchRow ? c % 9 + 18 : c / 9 + 9)))
+									if (finCells.Count > 2 || finCells.Any(c => coverSets.Contains(searchRow ? c % 9 + 18 : c / 9 + 9)))
 									{
 										continue;
 									}
@@ -157,8 +155,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 										var elimList = new List<int>();
 										foreach (int offset in elimMap.Offsets)
 										{
-											if (grid.GetCellStatus(offset) == CellStatus.Empty
-												&& !grid[offset, digit])
+											if (grid.CandidateExists(offset, digit))
 											{
 												elimList.Add(offset * 9 + digit);
 											}
@@ -170,22 +167,22 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 											// Check all highlighted candidates.
 											var highlightCandidates = new List<(int, int)>(
 												from cellOffset in bodyMap.Offsets
+												where grid.CandidateExists(cellOffset, digit)
 												select (0, cellOffset));
 
 											// Check the fish is sashimi, normal finned or normal.
 											bool? isSashimi = null;
 											if (!(finCells is null))
 											{
+												isSashimi = true;
 												int finCell = finCells[0];
-												int block = finCell / 9 / 3 * 3 + finCell % 9 % 3;
+												int block = finCell / 9 / 3 * 3 + finCell % 9 / 3;
 												foreach (int offset in bodyMap.Offsets)
 												{
-													if (offset / 9 / 3 * 3 + offset % 9 % 3 == block)
+													if (offset / 9 / 3 * 3 + offset % 9 / 3 == block
+														&& grid.CandidateExists(offset, digit))
 													{
-														isSashimi =
-															grid.GetCellStatus(offset) != CellStatus.Empty
-															|| grid[offset, digit];
-
+														isSashimi = false;
 														break;
 													}
 												}
@@ -227,7 +224,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 							{
 								// Get the appearing mask of 'digit' in 'bs3'.
 								short baseMask3 = grid.GetDigitAppearingMask(digit, bs3);
-								if (baseMask3.CountSet() == 0)
+								if (baseMask3.CountSet() < 2)
 								{
 									continue;
 								}
@@ -235,12 +232,161 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 								if (size == 3)
 								{
 									short baseMask = (short)((short)(baseMask1 | baseMask2) | baseMask3);
-									if (baseMask.CountSet() >= 6)
+									int finAndBodyCount = baseMask.CountSet();
+									if (finAndBodyCount >= 6)
 									{
 										continue;
 									}
 
-									// TODO: Search (Finned) (Sashimi) Swordfish.
+									// Search (Finned) (Sashimi) Swordfish.
+									for (int cs1 = coverSetStart, i = 0; cs1 < coverSetStart + 7; cs1++, i++)
+									{
+										// Check whether this cover set has 'digit'.
+										if ((baseMask >> i & 1) == 0)
+										{
+											continue;
+										}
+
+										for (int cs2 = cs1 + 1, j = i + 1; cs2 < coverSetStart + 8; cs2++, j++)
+										{
+											// Check whether this cover set has 'digit'.
+											if ((baseMask >> j & 1) == 0)
+											{
+												continue;
+											}
+
+											for (int cs3 = cs2 + 1, k = j + 1; cs3 < coverSetStart + 9; cs3++, k++)
+											{
+												// Check whether this cover set has 'digit'.
+												if ((baseMask >> k & 1) == 0)
+												{
+													continue;
+												}
+
+												// Confirm all elimination cells.
+												var baseSets = new[] { bs1, bs2, bs3 };
+												var coverSets = new[] { cs1, cs2, cs3 };
+												var bodyMap = GridMap.Empty;
+												var elimMap = GridMap.Empty;
+												GetGridMap(ref bodyMap, baseSets);
+												GetGridMap(ref elimMap, coverSets);
+												bodyMap &= elimMap;
+												elimMap &= ~bodyMap;
+
+												// Check the existence of fin.
+												var finCells = (List<int>?)null;
+												if (finAndBodyCount == 3) // size == 3
+												{
+													goto Label_CheckWhetherTheNumberOfIntersectionCellsIsNotZero;
+												}
+
+												// Get the fin mask.
+												short finMask = (short)(baseMask & ~(1 << i | 1 << j | 1 << k) & 511);
+
+												// Confirm all fin cells.
+												finCells = new List<int>();
+												foreach (int baseSet in baseSets)
+												{
+													for (int x = 0, temp = finMask; x < 9; x++, temp >>= 1)
+													{
+														if ((temp & 1) != 0)
+														{
+															int possibleFinCellOffset = RegionUtils.GetCellOffset(baseSet, x);
+															if (grid.CandidateExists(possibleFinCellOffset, digit))
+															{
+																finCells.Add(possibleFinCellOffset);
+															}
+														}
+													}
+												}
+
+												// Check the number of fins is less than 4.
+												// and all fins do not lie on any cover sets.
+												if (finCells.Count > 5 || finCells.Any(c => coverSets.Contains(searchRow ? c % 9 + 18 : c / 9 + 9)))
+												{
+													continue;
+												}
+
+												// Get intersection.
+												foreach (int finCell in finCells)
+												{
+													elimMap &= new GridMap(finCell);
+												}
+
+											Label_CheckWhetherTheNumberOfIntersectionCellsIsNotZero:
+												// Check whether the number of intersection cells is not 0.
+												if (elimMap.Count != 0)
+												{
+													// Finned/Sashimi X-Wing found.
+													// Check eliminations.
+													var elimList = new List<int>();
+													foreach (int offset in elimMap.Offsets)
+													{
+														if (grid.CandidateExists(offset, digit))
+														{
+															elimList.Add(offset * 9 + digit);
+														}
+													}
+
+													if (elimList.Count != 0)
+													{
+														// Eliminations does exist.
+														// Check all highlighted candidates.
+														var highlightCandidates = new List<(int, int)>(
+															from cellOffset in bodyMap.Offsets
+															where grid.CandidateExists(cellOffset, digit)
+															select (0, cellOffset));
+
+														// Check the fish is sashimi, normal finned or normal.
+														bool? isSashimi = null;
+														if (!(finCells is null))
+														{
+															isSashimi = true;
+															int finCell = finCells[0];
+															int block = finCell / 9 / 3 * 3 + finCell % 9 / 3;
+															foreach (int offset in bodyMap.Offsets)
+															{
+																if (offset / 9 / 3 * 3 + offset % 9 / 3 == block
+																	&& grid.CandidateExists(offset, digit))
+																{
+																	isSashimi = false;
+																	break;
+																}
+															}
+														}
+
+														// Add to 'result'.
+														result.Add(
+															new NormalFishTechniqueInfo(
+																conclusions: new List<Conclusion>(
+																	from cand in elimList
+																	select new Conclusion(ConclusionType.Elimination, cand)),
+																views: new List<View>
+																{
+																	new View(
+																		cellOffsets: null,
+																		candidateOffsets: highlightCandidates,
+																		regionOffsets: new List<(int, int)>
+																		{
+																			(0, bs1),
+																			(0, bs2),
+																			(0, bs3),
+																			(1, cs1),
+																			(1, cs2),
+																			(1, cs3)
+																		},
+																		linkMasks: null)
+																},
+																digit,
+																baseSets: new List<int>(baseSets),
+																coverSets: new List<int>(coverSets),
+																finCellOffsets: finCells,
+																isSashimi));
+													}
+												}
+											}
+										}
+									}
 								}
 								else // size == 4
 								{
@@ -248,18 +394,178 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 									{
 										// Get the appearing mask of 'digit' in 'bs4'.
 										short baseMask4 = grid.GetDigitAppearingMask(digit, bs4);
-										if (baseMask4.CountSet() == 0)
+										if (baseMask4.CountSet() < 2)
 										{
 											continue;
 										}
 
 										short baseMask = (short)((short)((short)(baseMask1 | baseMask2) | baseMask3) | baseMask4);
-										if (baseMask.CountSet() >= 7)
+										int finAndBodyCount = baseMask.CountSet();
+										if (finAndBodyCount >= 7)
 										{
 											continue;
 										}
 
-										// TODO: Search (Finned) (Sashimi) Jellyfish.
+										// Search (Finned) (Sashimi) Jellyfish.
+										for (int cs1 = coverSetStart, i = 0; cs1 < coverSetStart + 6; cs1++, i++)
+										{
+											// Check whether this cover set has 'digit'.
+											if ((baseMask >> i & 1) == 0)
+											{
+												continue;
+											}
+
+											for (int cs2 = cs1 + 1, j = i + 1; cs2 < coverSetStart + 7; cs2++, j++)
+											{
+												// Check whether this cover set has 'digit'.
+												if ((baseMask >> j & 1) == 0)
+												{
+													continue;
+												}
+
+												for (int cs3 = cs2 + 1, k = j + 1; cs3 < coverSetStart + 8; cs3++, k++)
+												{
+													// Check whether this cover set has 'digit'.
+													if ((baseMask >> k & 1) == 0)
+													{
+														continue;
+													}
+
+													for (int cs4 = cs3 + 1, l = k + 1; cs4 < coverSetStart + 9; cs4++, l++)
+													{
+														// Check whether this cover set has 'digit'.
+														if ((baseMask >> l & 1) == 0)
+														{
+															continue;
+														}
+
+														// Confirm all elimination cells.
+														var baseSets = new[] { bs1, bs2, bs3, bs4 };
+														var coverSets = new[] { cs1, cs2, cs3, cs4 };
+														var bodyMap = GridMap.Empty;
+														var elimMap = GridMap.Empty;
+														GetGridMap(ref bodyMap, baseSets);
+														GetGridMap(ref elimMap, coverSets);
+														bodyMap &= elimMap;
+														elimMap &= ~bodyMap;
+
+														// Check the existence of fin.
+														var finCells = (List<int>?)null;
+														if (finAndBodyCount == 4) // size == 4
+														{
+															goto Label_CheckWhetherTheNumberOfIntersectionCellsIsNotZero;
+														}
+
+														// Get the fin mask.
+														short finMask = (short)(baseMask & ~(1 << i | 1 << j | 1 << k | 1 << l) & 511);
+
+														// Confirm all fin cells.
+														finCells = new List<int>();
+														foreach (int baseSet in baseSets)
+														{
+															for (int x = 0, temp = finMask; x < 9; x++, temp >>= 1)
+															{
+																if ((temp & 1) != 0)
+																{
+																	int possibleFinCellOffset = RegionUtils.GetCellOffset(baseSet, x);
+																	if (grid.CandidateExists(possibleFinCellOffset, digit))
+																	{
+																		finCells.Add(possibleFinCellOffset);
+																	}
+																}
+															}
+														}
+
+														// Check the number of fins is less than 4.
+														// and all fins do not lie on any cover sets.
+														if (finCells.Count > 5 || finCells.Any(c => coverSets.Contains(searchRow ? c % 9 + 18 : c / 9 + 9)))
+														{
+															continue;
+														}
+
+														// Get intersection.
+														foreach (int finCell in finCells)
+														{
+															elimMap &= new GridMap(finCell);
+														}
+
+													Label_CheckWhetherTheNumberOfIntersectionCellsIsNotZero:
+														// Check whether the number of intersection cells is not 0.
+														if (elimMap.Count != 0)
+														{
+															// Finned/Sashimi X-Wing found.
+															// Check eliminations.
+															var elimList = new List<int>();
+															foreach (int offset in elimMap.Offsets)
+															{
+																if (grid.CandidateExists(offset, digit))
+																{
+																	elimList.Add(offset * 9 + digit);
+																}
+															}
+
+															if (elimList.Count != 0)
+															{
+																// Eliminations does exist.
+																// Check all highlighted candidates.
+																var highlightCandidates = new List<(int, int)>(
+																	from cellOffset in bodyMap.Offsets
+																	where grid.CandidateExists(cellOffset, digit)
+																	select (0, cellOffset));
+
+																// Check the fish is sashimi, normal finned or normal.
+																bool? isSashimi = null;
+																if (!(finCells is null))
+																{
+																	isSashimi = true;
+																	int finCell = finCells[0];
+																	int block = finCell / 9 / 3 * 3 + finCell % 9 / 3;
+																	foreach (int offset in bodyMap.Offsets)
+																	{
+																		if (offset / 9 / 3 * 3 + offset % 9 / 3 == block
+																			&& grid.CandidateExists(offset, digit))
+																		{
+																			isSashimi = false;
+																			break;
+																		}
+																	}
+																}
+
+																// Add to 'result'.
+																result.Add(
+																	new NormalFishTechniqueInfo(
+																		conclusions: new List<Conclusion>(
+																			from cand in elimList
+																			select new Conclusion(ConclusionType.Elimination, cand)),
+																		views: new List<View>
+																		{
+																			new View(
+																				cellOffsets: null,
+																				candidateOffsets: highlightCandidates,
+																				regionOffsets: new List<(int, int)>
+																				{
+																					(0, bs1),
+																					(0, bs2),
+																					(0, bs3),
+																					(0, bs4),
+																					(1, cs1),
+																					(1, cs2),
+																					(1, cs3),
+																					(1, cs4)
+																				},
+																				linkMasks: null)
+																		},
+																		digit,
+																		baseSets: new List<int>(baseSets),
+																		coverSets: new List<int>(coverSets),
+																		finCellOffsets: finCells,
+																		isSashimi));
+															}
+														}
+													}
+												}
+											}
+										}
 									}
 								}
 							}
@@ -271,6 +577,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 			return result;
 		}
 
+		#region Fish utils
 		/// <summary>
 		/// Record all cells in the all regions to a <see cref="GridMap"/> instance.
 		/// </summary>
@@ -283,5 +590,6 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 				map |= new GridMap(RegionUtils.GetCellOffsets(regionOffset));
 			}
 		}
+		#endregion
 	}
 }

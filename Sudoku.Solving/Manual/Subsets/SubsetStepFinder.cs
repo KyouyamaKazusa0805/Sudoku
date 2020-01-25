@@ -19,17 +19,17 @@ namespace Sudoku.Solving.Manual.Subsets
 		{
 			var result = new List<TechniqueInfo>();
 
-			#region Naked subset
-			result.AddRange(TakeAllNakedSubsetsBySize(grid, 2));
-			result.AddRange(TakeAllNakedSubsetsBySize(grid, 3));
-			result.AddRange(TakeAllNakedSubsetsBySize(grid, 4));
-			#endregion
-
-			#region Hidden subset
-			result.AddRange(TakeAllHiddenSubsetsBySize(grid, 2));
-			result.AddRange(TakeAllHiddenSubsetsBySize(grid, 3));
-			result.AddRange(TakeAllHiddenSubsetsBySize(grid, 4));
-			#endregion
+			for (int size = 2; size <= 4; size++)
+			{
+				foreach (var func in new Func<Grid, int, IReadOnlyList<SubsetTechniqueInfo>>[]
+				{
+					TakeAllNakedSubsetsBySize,
+					TakeAllHiddenSubsetsBySize
+				})
+				{
+					result.AddRange(func(grid, size));
+				}
+			}
 
 			return result;
 		}
@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// <param name="grid">The grid.</param>
 		/// <param name="size">The size.</param>
 		/// <returns>All technique information searched.</returns>
-		private static IReadOnlyList<NakedSubsetTechniqueInfo> TakeAllNakedSubsetsBySize(
+		private static IReadOnlyList<SubsetTechniqueInfo> TakeAllNakedSubsetsBySize(
 			Grid grid, int size)
 		{
 			Contract.Requires(size >= 2 && size <= 4);
@@ -304,7 +304,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// <param name="grid">The grid.</param>
 		/// <param name="size">The size.</param>
 		/// <returns>All technique information searched.</returns>
-		private static IReadOnlyList<HiddenSubsetTechniqueInfo> TakeAllHiddenSubsetsBySize(
+		private static IReadOnlyList<SubsetTechniqueInfo> TakeAllHiddenSubsetsBySize(
 			Grid grid, int size)
 		{
 			var result = new List<HiddenSubsetTechniqueInfo>();

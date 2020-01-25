@@ -661,14 +661,14 @@
         </member>
         <member name="T:Sudoku.Data.Meta.GridMap">
             <summary>
-            Encapsulates a binary series of cell status table.
-            <c>true</c> is for the cell having digit, and the <c>false</c>
-            value is for empty cell.
+            Encapsulates a binary series of cell status table consisting of 81 bits,
+            where <c>true</c> bit (1) is for the cell having digit,
+            and the <c>false</c> bit (0) is for empty cell. Sometimes for other usages.
             </summary>
         </member>
         <member name="F:Sudoku.Data.Meta.GridMap.Empty">
             <summary>
-            Indicates an empty instance (without any modify).
+            Indicates an empty instance (making no changes).
             </summary>
         </member>
         <member name="F:Sudoku.Data.Meta.GridMap.Shifting">
@@ -737,7 +737,7 @@
         </member>
         <member name="M:Sudoku.Data.Meta.GridMap.Deconstruct(System.Int64@,System.Int64@)">
             <summary>
-            Deconstruct the instance.
+            Deconstruct this instance.
             </summary>
             <param name="high">(out parameter) Higher 40 bits.</param>
             <param name="low">(out parameter) Lower 41 bits.</param>
@@ -841,14 +841,14 @@
         </member>
         <member name="M:Sudoku.Data.Meta.GridMap.op_OnesComplement(Sudoku.Data.Meta.GridMap)">
             <summary>
-            Negate all values.
+            Negate all bits.
             </summary>
             <param name="gridMap">The instance to negate.</param>
             <returns>The negative result.</returns>
         </member>
         <member name="M:Sudoku.Data.Meta.GridMap.op_BitwiseAnd(Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)">
             <summary>
-            Intersect among two values.
+            Intersect two <see cref="T:Sudoku.Data.Meta.GridMap"/>s.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
@@ -856,7 +856,7 @@
         </member>
         <member name="M:Sudoku.Data.Meta.GridMap.op_BitwiseOr(Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)">
             <summary>
-            Union among two values.
+            Union two <see cref="T:Sudoku.Data.Meta.GridMap"/>s.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
@@ -864,7 +864,7 @@
         </member>
         <member name="M:Sudoku.Data.Meta.GridMap.op_ExclusiveOr(Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)">
             <summary>
-            Symmetrical except among two values.
+            Symmetrical except two <see cref="T:Sudoku.Data.Meta.GridMap"/>s.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>

@@ -1478,6 +1478,44 @@
             Provides extension method used for grid calculating.
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.Utils.GridUtils.CandidateExists(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)">
+            <summary>
+            <para>
+            Indicates whether the specified grid contains the candidate.
+            Note that given and modifiable values always make this method
+            return <c>false</c>.
+            </para>
+            <para>
+            If you want to check the reversal case, please use the method
+            <see cref="M:Sudoku.Solving.Utils.GridUtils.CandidateDoesNotExist(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)"/> instead
+            of '<c>!grid.CandidateExists</c>'.
+            </para>
+            </summary>
+            <param name="this">The grid.</param>
+            <param name="cellOffset">The cell offset.</param>
+            <param name="digit">The digit.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <seealso cref="M:Sudoku.Solving.Utils.GridUtils.CandidateDoesNotExist(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.GridUtils.CandidateDoesNotExist(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)">
+            <summary>
+            <para>
+            Indicates whether the specified grid <b>does not</b> contains the candidate.
+            Note that given and modifiable values always make this method
+            return <c>false</c>.
+            </para>
+            <para>
+            If you want to check the reversal case, please use the method
+            <see cref="M:Sudoku.Solving.Utils.GridUtils.CandidateExists(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)"/> instead
+            of '<c>!grid.CandidateDoesNotExist</c>'.
+            </para>
+            </summary>
+            <param name="this">The grid.</param>
+            <param name="cellOffset">The cell offset.</param>
+            <param name="digit">The digit.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <seealso cref="M:Sudoku.Solving.Utils.GridUtils.CandidateExists(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)"/>
+        </member>
         <member name="M:Sudoku.Solving.Utils.GridUtils.HasDigitValue(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)">
             <summary>
             Checks whether the specified digit has given or modifiable values in

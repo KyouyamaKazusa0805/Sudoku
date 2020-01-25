@@ -114,8 +114,9 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 			return $"{Name}: {Digit + 1} in {RegionCollection.ToString(BaseSets)}"
 				+ $@"\{RegionCollection.ToString(CoverSets)}"
 				+ $@"{(!(FinCellOffsets is null) && FinCellOffsets.Count != 0
-					? $"(With fin(s): {CellCollection.ToString(FinCellOffsets)})"
-					: string.Empty)}"
+					? $"(With {(FinCellOffsets.Count == 1 ? "a fin cell" : "fin cells")}:"
+						+ $" {CellCollection.ToString(FinCellOffsets)})"
+					: "")}"
 				+ $" => {ConclusionCollection.ToString(Conclusions)}";
 		}
 	}

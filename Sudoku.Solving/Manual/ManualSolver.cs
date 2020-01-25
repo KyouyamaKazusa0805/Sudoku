@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual
 				new SingleStepFinder(EnableFullHouse, EnableLastDigit),
 				new IntersectionStepFinder(),
 				new SubsetStepFinder(),
-				//new BasicFishStepFinder(),
+				//new BasicFishStepFinder(), // Only normal fish (without fin).
 				new NormalFishStepFinder(),
 			};
 
