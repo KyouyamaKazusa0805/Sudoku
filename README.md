@@ -45,7 +45,7 @@ internal static class Program
             EnableLastDigit = true
         };
         var grid = Grid.Parse(
-            "500000482030007000000000309690085000000020000000970035102000000000100050764000008");
+            "090008001300010708002007069706000083900000000003020000000000000000005020080030615");
         var analysisResult = solver.Solve(grid);
         Console.WriteLine(analysisResult);
     }
