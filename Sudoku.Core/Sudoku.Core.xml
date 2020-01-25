@@ -1051,20 +1051,5 @@
         <member name="M:System.ICloneable`1.System#ICloneable#Clone">
             <inheritdoc/>
         </member>
-        <member name="T:System.LanguageTypes">
-            <summary>
-            Indicates a language.
-            </summary>
-        </member>
-        <member name="F:System.LanguageTypes.Chinese">
-            <summary>
-            Indidates the Chinese language.
-            </summary>
-        </member>
-        <member name="F:System.LanguageTypes.English">
-            <summary>
-            Indicates the English language.
-            </summary>
-        </member>
     </members>
 </doc>

@@ -21,30 +21,6 @@
             To mark on a parameter, which means the parameter is always a discard.
             </summary>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Nullability.PropertyNotNullWhenAttribute">
-            <summary>
-            To mark on a property, means the value is not null when
-            another <see cref="T:System.Boolean"/>-type property holds the specified
-            value.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Nullability.PropertyNotNullWhenAttribute.#ctor(System.String,System.Boolean)">
-            <summary>
-            Initializes an instance with property name and its value.
-            </summary>
-            <param name="propertyName">The property name.</param>
-            <param name="value">The value.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Nullability.PropertyNotNullWhenAttribute.PropertyName">
-            <summary>
-            Indicates the property name.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Nullability.PropertyNotNullWhenAttribute.Value">
-            <summary>
-            Indicates the value.
-            </summary>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.ObsoleteAssemblyAttribute">
             <summary>
             To mark on an assembly, it means that the whole assembly is already obsolete.

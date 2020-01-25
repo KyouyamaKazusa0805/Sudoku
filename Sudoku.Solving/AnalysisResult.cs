@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using Sudoku.Data.Meta;
 using Sudoku.Diagnostics.CodeAnalysis;
-using Sudoku.Diagnostics.CodeAnalysis.Nullability;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Singles;
 
@@ -189,7 +188,6 @@ namespace Sudoku.Solving
 		/// Indicates the solution grid. If and only if the puzzle
 		/// is not solved, this value will be <c>null</c>.
 		/// </summary>
-		[PropertyNotNullWhen(nameof(HasSolved), true)]
 		public Grid? Solution { get; }
 
 		/// <summary>
