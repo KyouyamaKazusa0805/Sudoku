@@ -1278,7 +1278,7 @@
         </member>
         <member name="P:Sudoku.Solving.TechniqueInfo.Name">
             <summary>
-            The name of the technique step.
+            Indicates the technique name.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.TechniqueInfo.Difficulty">

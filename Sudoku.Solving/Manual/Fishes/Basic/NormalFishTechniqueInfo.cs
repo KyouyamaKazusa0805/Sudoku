@@ -111,13 +111,17 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			return $"{Name}: {Digit + 1} in {RegionCollection.ToString(BaseSets)}"
-				+ $@"\{RegionCollection.ToString(CoverSets)}"
-				+ $@"{(!(FinCellOffsets is null) && FinCellOffsets.Count != 0
-					? $" (With {(FinCellOffsets.Count == 1 ? "a fin cell" : "fin cells")}:"
-						+ $" {CellCollection.ToString(FinCellOffsets)})"
+			int value = Digit + 1;
+			string baseSetStr = RegionCollection.ToString(BaseSets);
+			string coverSetStr = RegionCollection.ToString(CoverSets);
+			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string? finCellStr = FinCellOffsets is null ? null : CellCollection.ToString(FinCellOffsets);
+			bool condition = !(FinCellOffsets is null) && FinCellOffsets.Count != 0;
+			return $@"{Name}: {value} in {baseSetStr}\{coverSetStr}"
+				+ $@"{(condition
+					? $" (With {(FinCellOffsets!.Count == 1 ? "a fin cell" : "fin cells")}: {finCellStr})"
 					: "")}"
-				+ $" => {ConclusionCollection.ToString(Conclusions)}";
+				+ $" => {elimStr}";
 		}
 	}
 }

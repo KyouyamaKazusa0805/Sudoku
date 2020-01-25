@@ -301,7 +301,8 @@ namespace Sudoku.Solving
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			var sb = new StringBuilder($"Puzzle: {Puzzle:#}{Environment.NewLine}");
+			var sb = new StringBuilder();
+			sb.AppendLine($"Puzzle: {Puzzle:#}");
 			sb.AppendLine($"Solving tool: {SolverName}");
 			if (SolvingSteps is null)
 			{
@@ -316,7 +317,7 @@ namespace Sudoku.Solving
 			{
 				foreach (var info in SolvingSteps)
 				{
-					sb.AppendLine($"({info.Difficulty}) {info}");
+					sb.AppendLine($"{$"({info.Difficulty}",4:0.0}) {info}");
 				}
 
 				sb.AppendLine($"Puzzle has {(HasSolved ? "" : "not ")}been solved.");

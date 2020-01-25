@@ -46,9 +46,10 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			return $"{Name}: {DigitCollection.ToString(Digits)} in"
-				+ $" {RegionUtils.ToString(RegionOffset)}"
-				+ $" => {ConclusionCollection.ToString(Conclusions)}";
+			string digitsStr = DigitCollection.ToString(Digits);
+			string regionStr = RegionUtils.ToString(RegionOffset);
+			string elimStr = ConclusionCollection.ToString(Conclusions);
+			return $"{Name}: {digitsStr} in {regionStr} => {elimStr}";
 		}
 	}
 }

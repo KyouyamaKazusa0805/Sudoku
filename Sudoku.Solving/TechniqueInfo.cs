@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using Sudoku.Data.Meta;
 using Sudoku.Diagnostics.CodeAnalysis;
 using Sudoku.Drawing;
@@ -22,7 +24,7 @@ namespace Sudoku.Solving
 
 
 		/// <summary>
-		/// The name of the technique step.
+		/// Indicates the technique name.
 		/// </summary>
 		public abstract string Name { get; }
 

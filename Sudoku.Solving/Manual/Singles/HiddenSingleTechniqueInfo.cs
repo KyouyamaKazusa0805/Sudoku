@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -32,7 +33,8 @@ namespace Sudoku.Solving.Manual.Singles
 			EnableAndIsLastDigit ? "Last Digit" : $"Hidden Single (In {RegionUtils.GetRegionName(RegionOffset)})";
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => EnableAndIsLastDigit ? 1.1m : RegionOffset < 9 ? 1.2m : 1.5m;
+		public override decimal Difficulty =>
+			EnableAndIsLastDigit ? 1.1m : RegionOffset < 9 ? 1.2m : 1.5m;
 
 		/// <summary>
 		/// Indicates the region offset.
@@ -58,10 +60,12 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <inheritdoc/>
 		public override string ToString()
 		{
+			string cellStr = CellUtils.ToString(CellOffset);
+			string regionStr = RegionUtils.ToString(RegionOffset);
+			int value = Digit + 1;
 			return EnableAndIsLastDigit
-				? $"{Name}: {CellUtils.ToString(CellOffset)} = {Digit + 1}"
-				: $"{Name}: {CellUtils.ToString(CellOffset)} = {Digit + 1} in"
-					+ $" {RegionUtils.ToString(RegionOffset)}";
+				? $"{Name}: {cellStr} = {value}"
+				: $"{Name}: {cellStr} = {value} in {regionStr}";
 		}
 	}
 }

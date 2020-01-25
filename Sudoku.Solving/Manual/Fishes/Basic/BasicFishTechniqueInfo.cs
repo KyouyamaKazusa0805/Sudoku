@@ -48,9 +48,11 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			return $@"{Name}: {Digit + 1} in {RegionCollection.ToString(BaseSets)}\"
-				+ $"{RegionCollection.ToString(CoverSets)} =>"
-				+ $" {ConclusionCollection.ToString(Conclusions)}";
+			int value = Digit + 1;
+			string baseSetStr = RegionCollection.ToString(BaseSets);
+			string coverSetStr = RegionCollection.ToString(CoverSets);
+			string elimStr = ConclusionCollection.ToString(Conclusions);
+			return $@"{Name}: {value} in {baseSetStr}\{coverSetStr} => {elimStr}";
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -52,9 +53,11 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			return $@"{Name}: {Digit + 1} in {RegionUtils.ToString(BaseSet)}\"
-				+ $"{RegionUtils.ToString(CoverSet)} =>"
-				+ $" {ConclusionCollection.ToString(Conclusions)}";
+			int value = Digit + 1;
+			string baseSetStr = RegionUtils.ToString(BaseSet);
+			string coverSetStr = RegionUtils.ToString(CoverSet);
+			string elimStr = ConclusionCollection.ToString(Conclusions);
+			return $@"{Name}: {value} in {baseSetStr}\{coverSetStr} => {elimStr}";
 		}
 	}
 }
