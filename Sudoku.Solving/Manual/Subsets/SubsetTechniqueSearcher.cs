@@ -10,9 +10,9 @@ using Sudoku.Solving.Utils;
 namespace Sudoku.Solving.Manual.Subsets
 {
 	/// <summary>
-	/// Encapsulates a subset technique step finder that used in solving in <see cref="ManualSolver"/>.
+	/// Encapsulates a subset technique searcher.
 	/// </summary>
-	public sealed class SubsetStepFinder : StepFinder
+	public sealed class SubsetTechniqueSearcher : TechniqueSearcher
 	{
 		/// <inheritdoc/>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)

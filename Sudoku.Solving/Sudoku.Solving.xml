@@ -586,67 +586,13 @@
             Provides a difficulty kind for a puzzle.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Fishes.Basic.BasicFishStepFinder">
-            <summary>
-            Encapsulates a basic fish step finder in solving in <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishStepFinder.TakeAll(Sudoku.Data.Meta.Grid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishStepFinder.TakeAllBasicFishBySize(Sudoku.Data.Meta.Grid,System.Int32,System.Boolean)">
-            <summary>
-            Searches all basic fish of the specified size.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="size">The size.</param>
-            <param name="searchRow">
-            Indicates the method is searched row or column.
-            <c>true</c> is for searching rows and <c>false</c>
-            is for searching columns.
-            </param>
-            <returns>All technique information searched.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishStepFinder.GetCoverSets(System.Int16,System.Boolean)">
-            <summary>
-            Get cover sets from the specified mask.
-            </summary>
-            <param name="mask">The mask.</param>
-            <param name="searchRow">Indicates the method is searched rows or columns.</param>
-            <returns>All cover set region offsets.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishStepFinder.GetHighlightedCandidates(Sudoku.Data.Meta.Grid,System.Int32,System.Int32[])">
-            <summary>
-            Get all highlighted candidate offsets.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="baseSets">The base sets.</param>
-            <returns>All highlighted candidate offsets and their IDs.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishStepFinder.GetConclusions(Sudoku.Data.Meta.Grid,System.Int32,System.Int16,System.Boolean,System.Int32[])">
-            <summary>
-            Get conclusions after searched a fish.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="mask">The mask.</param>
-            <param name="searchRow">Indicates the method is searched rows or columns.</param>
-            <param name="baseSets">All base sets.</param>
-            <returns>All conclusions.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishStepFinder.FindSets(System.Int16)">
-            <summary>
-            Find all set bits in a <see cref="T:System.Int16"/> value
-            (only iterating for 9 times).
-            </summary>
-            <param name="value">The value.</param>
-            <returns>The set bits.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.Basic.BasicFishTechniqueInfo">
             <summary>
-            Provides a usage of basic fish technique.
+            Provides a usage of basic fish technique, same as
+            <see cref="T:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo"/>, but this type
+            can only be used for normal fishes without any fins.
             </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <inheritdoc/>
@@ -663,32 +609,65 @@
         <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Fishes.Basic.NormalFishStepFinder">
+        <member name="T:Sudoku.Solving.Manual.Fishes.Basic.BasicFishTechniqueSearcher">
             <summary>
-            Encapsulates a normal fish technique step finder in solving
-            in <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
+            Encapsulates a normal fish technique searcher, same as
+            <see cref="T:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueSearcher"/>, but this searcher only
+            searches basic fish (without any fins).
             </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueSearcher"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishStepFinder.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishStepFinder.TakeAllBySize(Sudoku.Data.Meta.Grid,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishTechniqueSearcher.TakeAllBasicFishBySize(Sudoku.Data.Meta.Grid,System.Int32,System.Boolean)">
             <summary>
             Searches all basic fish of the specified size.
             </summary>
             <param name="grid">The grid.</param>
             <param name="size">The size.</param>
             <param name="searchRow">
-            Indicates the solver will searching rows or columns.
+            Indicates the method is searched row or column.
+            <c>true</c> is for searching rows and <c>false</c>
+            is for searching columns.
             </param>
-            <returns>The result.</returns>
+            <returns>All technique information searched.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishStepFinder.GetGridMap(Sudoku.Data.Meta.GridMap@,System.Int32[])">
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishTechniqueSearcher.GetCoverSets(System.Int16,System.Boolean)">
             <summary>
-            Record all cells in the all regions to a <see cref="T:Sudoku.Data.Meta.GridMap"/> instance.
+            Get cover sets from the specified mask.
             </summary>
-            <param name="map">The map.</param>
-            <param name="regionOffsets">All region offsets.</param>
+            <param name="mask">The mask.</param>
+            <param name="searchRow">Indicates the method is searched rows or columns.</param>
+            <returns>All cover set region offsets.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishTechniqueSearcher.GetHighlightedCandidates(Sudoku.Data.Meta.Grid,System.Int32,System.Int32[])">
+            <summary>
+            Get all highlighted candidate offsets.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="baseSets">The base sets.</param>
+            <returns>All highlighted candidate offsets and their IDs.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishTechniqueSearcher.GetConclusions(Sudoku.Data.Meta.Grid,System.Int32,System.Int16,System.Boolean,System.Int32[])">
+            <summary>
+            Get conclusions after searched a fish.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="mask">The mask.</param>
+            <param name="searchRow">Indicates the method is searched rows or columns.</param>
+            <param name="baseSets">All base sets.</param>
+            <returns>All conclusions.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.BasicFishTechniqueSearcher.FindSets(System.Int16)">
+            <summary>
+            Find all set bits in a <see cref="T:System.Int16"/> value
+            (only iterating for 9 times).
+            </summary>
+            <param name="value">The value.</param>
+            <returns>The set bits.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo">
             <summary>
@@ -743,10 +722,31 @@
         <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Fishes.FishStepFinder">
+        <member name="T:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueSearcher">
             <summary>
-            Encapsulates a fish technique step finder in solving in <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
+            Encapsulates a normal fish technique searcher.
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueSearcher.TakeAllBySize(Sudoku.Data.Meta.Grid,System.Int32,System.Boolean)">
+            <summary>
+            Searches all basic fish of the specified size.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="size">The size.</param>
+            <param name="searchRow">
+            Indicates the solver will searching rows or columns.
+            </param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueSearcher.GetGridMap(Sudoku.Data.Meta.GridMap@,System.Int32[])">
+            <summary>
+            Record all cells in the all regions to a <see cref="T:Sudoku.Data.Meta.GridMap"/> instance.
+            </summary>
+            <param name="map">The map.</param>
+            <param name="regionOffsets">All region offsets.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo">
             <summary>
@@ -788,24 +788,10 @@
             All cover sets.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Intersections.IntersectionStepFinder">
+        <member name="T:Sudoku.Solving.Manual.Fishes.FishTechniqueSearcher">
             <summary>
-            Encapsulates a locked candidates step finder
-            used in solving in <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
+            Encapsulates a fish technique searcher.
             </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Intersections.IntersectionStepFinder.IntersectionSeries">
-            <summary>
-            All intersection series.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionStepFinder.#cctor">
-            <summary>
-            The static initializer of <see cref="T:Sudoku.Solving.Manual.Intersections.IntersectionStepFinder"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionStepFinder.TakeAll(Sudoku.Data.Meta.Grid)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo">
             <summary>
@@ -847,6 +833,24 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueSearcher">
+            <summary>
+            Encapsulates a locked candidates technique searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueSearcher.IntersectionSeries">
+            <summary>
+            All intersection series.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueSearcher.#cctor">
+            <summary>
+            The static initializer of <see cref="T:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueSearcher"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.ManualSolver">
@@ -1014,36 +1018,6 @@
         <member name="M:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Singles.SingleStepFinder">
-            <summary>
-            Encapsulates a single technique step finder
-            that used in <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Singles.SingleStepFinder._enableFullHouse">
-            <summary>
-            Indicates the solver enables these options.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Singles.SingleStepFinder._enableLastDigit">
-            <summary>
-            Indicates the solver enables these options.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.SingleStepFinder.#ctor(System.Boolean,System.Boolean)">
-            <summary>
-            Initializes an instance with enable options.
-            </summary>
-            <param name="enableFullHouse">
-            Indicates whether the solver enables full house.
-            </param>
-            <param name="enableLastDigit">
-            Indicates whether the solver enables last digit.
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.SingleStepFinder.TakeAll(Sudoku.Data.Meta.Grid)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Singles.SingleTechniqueInfo">
             <summary>
             Provides a usage of single technique.
@@ -1056,6 +1030,35 @@
             <summary>
             Indicates the difficulty level.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher">
+            <summary>
+            Encapsulates a single technique searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher._enableFullHouse">
+            <summary>
+            Indicates the solver enables these options.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher._enableLastDigit">
+            <summary>
+            Indicates the solver enables these options.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            Initializes an instance with enable options.
+            </summary>
+            <param name="enableFullHouse">
+            Indicates whether the solver enables full house.
+            </param>
+            <param name="enableLastDigit">
+            Indicates whether the solver enables last digit.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo">
             <summary>
@@ -1121,79 +1124,6 @@
         <member name="M:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Subsets.SubsetStepFinder">
-            <summary>
-            Encapsulates a subset technique step finder that used in solving in <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepFinder.TakeAll(Sudoku.Data.Meta.Grid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepFinder.TakeAllNakedSubsetsBySize(Sudoku.Data.Meta.Grid,System.Int32)">
-            <summary>
-            Get all naked subsets technique information, for searching the specified size.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="size">The size.</param>
-            <returns>All technique information searched.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepFinder.GatherConclusion(Sudoku.Data.Meta.Grid,System.Collections.Generic.IList{Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Nullable{System.Boolean})">
-            <summary>
-            To gather a conclusion with essential information.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="result">The information instances searched.</param>
-            <param name="region">The region offset.</param>
-            <param name="digits">All digits.</param>
-            <param name="offsets">The cell offsets.</param>
-            <param name="conclusions">All conclusions.</param>
-            <param name="isLocked">Indicates whether the subset is locked.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepFinder.GetNakedSubsetConclusions(Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean}@)">
-            <summary>
-            Get conclusions after searched a subset technique.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="offsets">All cell offsets.</param>
-            <param name="digits">All digits.</param>
-            <param name="isLocked">
-            (out parameter) Indicates whether the subset is locked.
-            </param>
-            <returns>All conclusions.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepFinder.GetNakedSubsetsHighlightedCandidateOffsets(Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
-            <summary>
-            Get all candidate offsets highlighted in a specified naked subset technique.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="offsets">All cell offsets.</param>
-            <param name="digits">All digits.</param>
-            <returns>All candidate offsets and its ID.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepFinder.TakeAllHiddenSubsetsBySize(Sudoku.Data.Meta.Grid,System.Int32)">
-            <summary>
-            Get all hidden subsets technique information, for searching the specified size.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="size">The size.</param>
-            <returns>All technique information searched.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepFinder.GetHiddenSubsetsConclusions(Sudoku.Data.Meta.Grid,System.Int32,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32}@,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}}@)">
-            <summary>
-            Get conclusions after a hidden subset searched.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="region">The region offset.</param>
-            <param name="mask">
-            The mask that calculated in <see cref="M:Sudoku.Solving.Manual.Subsets.SubsetStepFinder.TakeAllHiddenSubsetsBySize(Sudoku.Data.Meta.Grid,System.Int32)"/>.
-            </param>
-            <param name="digits">All digits.</param>
-            <param name="cellOffsetList">(out parameter) All cell offsets.</param>
-            <param name="highlightedCandidates">
-            (out parameter) All highlighted candidate offsets.
-            </param>
-            <returns>All conclusions.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Subsets.SubsetTechniqueInfo">
             <summary>
             Provides a usage of subset technique.
@@ -1230,6 +1160,79 @@
         <member name="P:Sudoku.Solving.Manual.Subsets.SubsetTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher">
+            <summary>
+            Encapsulates a subset technique searcher.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.TakeAllNakedSubsetsBySize(Sudoku.Data.Meta.Grid,System.Int32)">
+            <summary>
+            Get all naked subsets technique information, for searching the specified size.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="size">The size.</param>
+            <returns>All technique information searched.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GatherConclusion(Sudoku.Data.Meta.Grid,System.Collections.Generic.IList{Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Nullable{System.Boolean})">
+            <summary>
+            To gather a conclusion with essential information.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="result">The information instances searched.</param>
+            <param name="region">The region offset.</param>
+            <param name="digits">All digits.</param>
+            <param name="offsets">The cell offsets.</param>
+            <param name="conclusions">All conclusions.</param>
+            <param name="isLocked">Indicates whether the subset is locked.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetNakedSubsetConclusions(Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean}@)">
+            <summary>
+            Get conclusions after searched a subset technique.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="offsets">All cell offsets.</param>
+            <param name="digits">All digits.</param>
+            <param name="isLocked">
+            (out parameter) Indicates whether the subset is locked.
+            </param>
+            <returns>All conclusions.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetNakedSubsetsHighlightedCandidateOffsets(Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Get all candidate offsets highlighted in a specified naked subset technique.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="offsets">All cell offsets.</param>
+            <param name="digits">All digits.</param>
+            <returns>All candidate offsets and its ID.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.TakeAllHiddenSubsetsBySize(Sudoku.Data.Meta.Grid,System.Int32)">
+            <summary>
+            Get all hidden subsets technique information, for searching the specified size.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="size">The size.</param>
+            <returns>All technique information searched.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetHiddenSubsetsConclusions(Sudoku.Data.Meta.Grid,System.Int32,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32}@,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}}@)">
+            <summary>
+            Get conclusions after a hidden subset searched.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="region">The region offset.</param>
+            <param name="mask">
+            The mask that calculated in <see cref="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.TakeAllHiddenSubsetsBySize(Sudoku.Data.Meta.Grid,System.Int32)"/>.
+            </param>
+            <param name="digits">All digits.</param>
+            <param name="cellOffsetList">(out parameter) All cell offsets.</param>
+            <param name="highlightedCandidates">
+            (out parameter) All highlighted candidate offsets.
+            </param>
+            <returns>All conclusions.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Solver">
             <summary>
             Indicates an instance used for solving a sudoku puzzle.
@@ -1259,34 +1262,6 @@
             the original context captured; otherwise, <c>false</c>.
             </param>
             <returns>The solving task.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.StepFinder">
-            <summary>
-            Encapsulates a step finder that used in solving in
-            <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.StepFinder.TakeOne(Sudoku.Data.Meta.Grid)">
-            <summary>
-            Take a step after searched all solving steps.
-            </summary>
-            <param name="grid">The grid to search steps.</param>
-            <returns>A technique information.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.StepFinder.Take(Sudoku.Data.Meta.Grid,System.Int32)">
-            <summary>
-            Take the specified number of steps.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="count">The number of steps you want to take.</param>
-            <returns>The specified number of technique information instances.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.StepFinder.TakeAll(Sudoku.Data.Meta.Grid)">
-            <summary>
-            Take all technique steps after searched.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>The list of all steps found.</returns>
         </member>
         <member name="T:Sudoku.Solving.TechniqueInfo">
             <summary>
@@ -1368,6 +1343,34 @@
         </member>
         <member name="M:Sudoku.Solving.TechniqueInfo.ToString">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.TechniqueSearcher">
+            <summary>
+            Encapsulates a step finder that used in solving in
+            <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueSearcher.TakeOne(Sudoku.Data.Meta.Grid)">
+            <summary>
+            Take a step after searched all solving steps.
+            </summary>
+            <param name="grid">The grid to search steps.</param>
+            <returns>A technique information.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueSearcher.Take(Sudoku.Data.Meta.Grid,System.Int32)">
+            <summary>
+            Take the specified number of steps.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="count">The number of steps you want to take.</param>
+            <returns>The specified number of technique information instances.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+            <summary>
+            Take all technique steps after searched.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The list of all steps found.</returns>
         </member>
         <member name="T:Sudoku.Solving.Utils.CandidateCollection">
             <summary>

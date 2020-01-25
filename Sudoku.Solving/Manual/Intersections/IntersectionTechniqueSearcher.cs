@@ -7,10 +7,9 @@ using static Sudoku.Solving.Utils.RegionUtils;
 namespace Sudoku.Solving.Manual.Intersections
 {
 	/// <summary>
-	/// Encapsulates a locked candidates step finder
-	/// used in solving in <see cref="ManualSolver"/>.
+	/// Encapsulates a locked candidates technique searcher.
 	/// </summary>
-	public sealed class IntersectionStepFinder : StepFinder
+	public sealed class IntersectionTechniqueSearcher : TechniqueSearcher
 	{
 		/// <summary>
 		/// All intersection series.
@@ -19,9 +18,9 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		/// <summary>
-		/// The static initializer of <see cref="IntersectionStepFinder"/>.
+		/// The static initializer of <see cref="IntersectionTechniqueSearcher"/>.
 		/// </summary>
-		static IntersectionStepFinder()
+		static IntersectionTechniqueSearcher()
 		{
 			for (int i = 0; i < 18; i++)
 			{

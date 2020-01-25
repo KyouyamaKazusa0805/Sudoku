@@ -9,7 +9,7 @@ namespace Sudoku.Solving
 	/// Encapsulates a step finder that used in solving in
 	/// <see cref="Manual.ManualSolver"/>.
 	/// </summary>
-	public abstract class StepFinder
+	public abstract class TechniqueSearcher
 	{
 		/// <summary>
 		/// Take a step after searched all solving steps.

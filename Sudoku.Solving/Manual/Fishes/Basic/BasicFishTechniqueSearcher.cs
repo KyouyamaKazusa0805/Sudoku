@@ -10,10 +10,13 @@ using Sudoku.Solving.Utils;
 namespace Sudoku.Solving.Manual.Fishes.Basic
 {
 	/// <summary>
-	/// Encapsulates a basic fish step finder in solving in <see cref="ManualSolver"/>.
+	/// Encapsulates a normal fish technique searcher, same as
+	/// <see cref="NormalFishTechniqueSearcher"/>, but this searcher only
+	/// searches basic fish (without any fins).
 	/// </summary>
-	[Obsolete("Please use 'NormalFishStepFinder', because this finder cannot search finned fishes.")]
-	public sealed class BasicFishStepFinder : FishStepFinder
+	/// <seealso cref="NormalFishTechniqueSearcher"/>
+	[Obsolete("We suggest you to use 'NormalFishTechniqueSearcher'.")]
+	public sealed class BasicFishTechniqueSearcher : FishTechniqueSearcher
 	{
 		/// <inheritdoc/>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)

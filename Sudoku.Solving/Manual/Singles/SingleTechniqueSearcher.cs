@@ -7,10 +7,9 @@ using Sudoku.Solving.Utils;
 namespace Sudoku.Solving.Manual.Singles
 {
 	/// <summary>
-	/// Encapsulates a single technique step finder
-	/// that used in <see cref="ManualSolver"/>.
+	/// Encapsulates a single technique searcher.
 	/// </summary>
-	public sealed class SingleStepFinder : StepFinder
+	public sealed class SingleTechniqueSearcher : TechniqueSearcher
 	{
 		/// <summary>
 		/// Indicates the solver enables these options.
@@ -27,7 +26,7 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <param name="enableLastDigit">
 		/// Indicates whether the solver enables last digit.
 		/// </param>
-		public SingleStepFinder(bool enableFullHouse, bool enableLastDigit) =>
+		public SingleTechniqueSearcher(bool enableFullHouse, bool enableLastDigit) =>
 			(_enableFullHouse, _enableLastDigit) = (enableFullHouse, enableLastDigit);
 
 

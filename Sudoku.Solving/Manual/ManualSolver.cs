@@ -26,13 +26,12 @@ namespace Sudoku.Solving.Manual
 			var steps = new List<TechniqueInfo>();
 
 			// Enable all step finders.
-			var stepFinders = new List<StepFinder>()
+			var stepFinders = new List<TechniqueSearcher>()
 			{
-				new SingleStepFinder(EnableFullHouse, EnableLastDigit),
-				new IntersectionStepFinder(),
-				new SubsetStepFinder(),
-				//new BasicFishStepFinder(), // Only normal fish (without fin).
-				new NormalFishStepFinder(),
+				new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit),
+				new IntersectionTechniqueSearcher(),
+				new SubsetTechniqueSearcher(),
+				new NormalFishTechniqueSearcher(),
 			};
 
 			// Start time recording and solving.

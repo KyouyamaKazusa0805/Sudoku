@@ -10,10 +10,9 @@ using Sudoku.Solving.Utils;
 namespace Sudoku.Solving.Manual.Fishes.Basic
 {
 	/// <summary>
-	/// Encapsulates a normal fish technique step finder in solving
-	/// in <see cref="ManualSolver"/>.
+	/// Encapsulates a normal fish technique searcher.
 	/// </summary>
-	public sealed class NormalFishStepFinder : FishStepFinder
+	public sealed class NormalFishTechniqueSearcher : FishTechniqueSearcher
 	{
 		/// <inheritdoc/>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)

@@ -6,8 +6,11 @@ using Sudoku.Solving.Utils;
 namespace Sudoku.Solving.Manual.Fishes.Basic
 {
 	/// <summary>
-	/// Provides a usage of basic fish technique.
+	/// Provides a usage of basic fish technique, same as
+	/// <see cref="NormalFishTechniqueInfo"/>, but this type
+	/// can only be used for normal fishes without any fins.
 	/// </summary>
+	/// <seealso cref="NormalFishTechniqueInfo"/>
 	[Obsolete("Please use 'NormalFishTechniqueInfo'.")]
 	public sealed class BasicFishTechniqueInfo : FishTechniqueInfo
 	{
