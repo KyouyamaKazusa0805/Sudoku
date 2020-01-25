@@ -57,94 +57,89 @@ And the puzzle solution and analysis result will be displayed on console screen,
 然后答案和分析结果都会在你的控制台界面呈现出来，就像这样！
 
 ```
-Initial grid: 5.....482.3...7.........3.969..85.......2.......97..351.2.........1...5.764.....8
+Puzzle: .9...8..13...1.7.8..2..7.697.6....839..........3.2..................5.2..8..3.615
 Solving tool: Manual
-(1.2) Hidden Single (In Block): r2c7 = 5 in b3
-(1.2) Hidden Single (In Block): r7c2 = 5 in b7
-(1.2) Hidden Single (In Block): r5c3 = 5 in b4
-(1.2) Hidden Single (In Block): r3c8 = 7 in b3
-(1.2) Hidden Single (In Block): r7c4 = 7 in b8
-(1.5) Hidden Single (In Row): r7c6 = 8 in r7
-(2.3) Naked single: r8c2 = 8
-(2.8) Claiming: 1 in r2 => r2c3 <> 1, r2c5 <> 1
-(2.8) Claiming: 6 in r2 => r2c3 <> 6, r2c4 <> 6, r2c5 <> 6
-(2.8) Claiming: 2 in r6 => r6c7 <> 2
-(2.8) Claiming: 3 in r8 => r8c5 <> 3, r8c6 <> 3, r8c9 <> 3
-(1.2) Hidden Single (In Block): r7c9 = 3 in b9
-(2.8) Claiming: 9 in r8 => r8c5 <> 9, r8c6 <> 9, r8c7 <> 9
-(2.8) Claiming: 1 in c6 => r1c6 <> 1, r3c6 <> 1
-(3.7) Naked Triple (+): 3, 4, 6 in c4 => r9c4 <> 3, r2c4 <> 4, r3c4 <> 4, r5c6 <> 4, r6c6 <> 4, r3c4 <> 6
-(3.4) Hidden Pair: 2, 4 in r6 => r6c1 <> 8, r6c2 <> 1
-(2.0) Locked Pair: 2, 4 in b4 => r5c1 <> 4, r5c2 <> 4
-(3.0) Naked Pair: 1, 7 in c2 => r3c2 <> 1
-(3.7) Naked Triple (+): 4, 6, 9 in c5 => r3c5 <> 4, r1c5 <> 6, r3c5 <> 6, r8c6 <> 6, r1c5 <> 9, r9c5 <> 9
-(4.0) Hidden Triple: 1, 6, 7 in b1 => r1c3 <> 9, r3c3 <> 8
-(1.5) Hidden Single (In Row): r1c6 = 9 in r1
-(1.2) Hidden Single (In Block): r7c5 = 9 in b8
-(1.2) Hidden Single (In Block): r8c5 = 6 in b8
-(1.2) Hidden Single (In Block): r8c6 = 4 in b8
-(1.2) Hidden Single (In Block): r2c5 = 4 in b2
-(1.2) Hidden Single (In Block): r7c8 = 4 in b9
-(1.0) Full House: r7c7 = 6
-(1.5) Hidden Single (In Row): r8c7 = 2 in r8
-(1.2) Hidden Single (In Block): r4c8 = 2 in b6
-(1.2) Hidden Single (In Block): r8c9 = 7 in b9
-(1.5) Hidden Single (In Row): r6c6 = 6 in r6
-(1.2) Hidden Single (In Block): r5c6 = 1 in b5
-(1.2) Hidden Single (In Block): r1c4 = 6 in b2
-(1.2) Hidden Single (In Block): r1c5 = 3 in b2
-(1.2) Hidden Single (In Block): r3c5 = 1 in b2
-(1.0) Full House: r9c5 = 5
-(1.1) Last Digit: r3c4 = 5
-(1.2) Hidden Single (In Block): r9c6 = 3 in b8
-(1.0) Full House: r9c4 = 2
-(1.0) Full House: r3c6 = 2
-(1.0) Full House: r2c4 = 8
-(1.2) Hidden Single (In Block): r2c1 = 2 in b1
-(1.1) Last Digit: r6c2 = 2
-(1.2) Hidden Single (In Block): r6c1 = 4 in b4
-(1.2) Hidden Single (In Block): r3c2 = 4 in b1
-(1.2) Hidden Single (In Block): r3c3 = 6 in b1
-(1.0) Full House: r3c1 = 8
-(1.2) Hidden Single (In Block): r6c3 = 8 in b4
-(1.0) Full House: r6c7 = 1
-(1.1) Last Digit: r5c7 = 8
-(1.2) Hidden Single (In Block): r4c3 = 1 in b4
-(1.2) Hidden Single (In Block): r1c2 = 1 in b1
-(1.0) Full House: r1c3 = 7
-(1.0) Full House: r2c3 = 9
-(1.0) Full House: r5c2 = 7
-(1.0) Full House: r5c1 = 3
-(1.0) Full House: r8c1 = 9
-(1.0) Full House: r8c3 = 3
-(1.1) Last Digit: r4c4 = 3
-(1.0) Full House: r5c4 = 4
-(1.1) Last Digit: r4c9 = 4
-(1.0) Full House: r4c7 = 7
-(1.0) Full House: r9c7 = 9
-(1.0) Full House: r9c8 = 1
-(1.1) Last Digit: r2c9 = 1
-(1.0) Full House: r2c8 = 6
-(1.0) Full House: r5c8 = 9
-(1.0) Full House: r5c9 = 6
+ (1.2) Hidden Single (In Block): r1c7 = 2 in b3
+ (1.2) Hidden Single (In Block): r5c9 = 2 in b6
+ (1.2) Hidden Single (In Block): r4c2 = 2 in b4
+ (1.2) Hidden Single (In Block): r6c9 = 6 in b6
+ (1.2) Hidden Single (In Block): r1c3 = 7 in b1
+ (1.2) Hidden Single (In Block): r3c1 = 8 in b1
+ (1.2) Hidden Single (In Block): r3c2 = 1 in b1
+ (1.2) Hidden Single (In Block): r5c3 = 8 in b4
+ (1.2) Hidden Single (In Block): r6c1 = 1 in b4
+ (1.2) Hidden Single (In Block): r6c4 = 8 in b5
+ (1.5) Hidden Single (In Column): r5c6 = 3 in c6
+ (1.5) Hidden Single (In Row): r6c8 = 7 in r6
+ (1.5) Hidden Single (In Row): r9c4 = 7 in r9
+ (1.2) Hidden Single (In Block): r5c5 = 7 in b5
+ (1.2) Hidden Single (In Block): r5c4 = 6 in b5
+ (1.5) Hidden Single (In Row): r5c7 = 1 in r5
+ (1.5) Hidden Single (In Column): r7c8 = 9 in c8
+ (1.5) Hidden Single (In Column): r1c8 = 3 in c8
+ (1.2) Hidden Single (In Block): r3c4 = 3 in b2
+ (2.6) Pointing: 5 in b5\r4 => r4c7 <> 5
+ (2.6) Pointing: 4 in b4\c2 => r2c2 <> 4, r7c2 <> 4, r8c2 <> 4
+ (2.6) Pointing: 5 in b4\c2 => r2c2 <> 5, r7c2 <> 5
+ (2.3) Naked single: r2c2 = 6
+ (1.2) Hidden Single (In Block): r1c5 = 6 in b2
+ (1.2) Hidden Single (In Block): r7c6 = 6 in b8
+ (1.1) Last Digit: r8c1 = 6
+ (1.5) Hidden Single (In Column): r4c6 = 1 in c6
+ (2.0) Locked Pair: 4, 7 in b9 => r7c7 <> 4, r8c7 <> 4
+ (3.0) Naked Pair: 4, 5 in b2 => r2c4 <> 4, r2c6 <> 4, r2c4 <> 5
+ (4.0) Hidden Triple: 1, 2, 5 in r7 => r7c1 <> 4, r7c3 <> 4, r7c4 <> 4
+ (5.4) Finned Jellyfish: 4 in c2368\r2569 (With a fin cell: r8c3) => r9c1 <> 4
+ (1.5) Hidden Single (In Column): r1c1 = 4 in c1
+ (1.0) Full House: r2c3 = 5
+ (1.0) Full House: r1c4 = 5
+ (1.2) Hidden Single (In Block): r3c5 = 4 in b2
+ (1.0) Full House: r3c7 = 5
+ (1.0) Full House: r2c8 = 4
+ (1.0) Full House: r5c8 = 5
+ (1.0) Full House: r5c2 = 4
+ (1.0) Full House: r6c2 = 5
+ (1.2) Hidden Single (In Block): r4c5 = 5 in b5
+ (1.1) Last Digit: r7c1 = 5
+ (1.0) Full House: r9c1 = 2
+ (1.2) Hidden Single (In Block): r7c4 = 2 in b8
+ (1.1) Last Digit: r2c6 = 2
+ (1.0) Full House: r2c4 = 9
+ (1.2) Hidden Single (In Block): r8c4 = 1 in b8
+ (1.0) Full House: r4c4 = 4
+ (1.0) Full House: r6c6 = 9
+ (1.0) Full House: r4c7 = 9
+ (1.0) Full House: r6c7 = 4
+ (1.0) Full House: r9c6 = 4
+ (1.0) Full House: r9c3 = 9
+ (1.1) Last Digit: r7c3 = 1
+ (1.0) Full House: r8c3 = 4
+ (1.1) Last Digit: r7c9 = 4
+ (1.0) Full House: r8c9 = 7
+ (1.1) Last Digit: r7c2 = 7
+ (1.0) Full House: r8c2 = 3
+ (1.1) Last Digit: r7c7 = 3
+ (1.0) Full House: r8c7 = 8
+ (1.0) Full House: r7c5 = 8
+ (1.0) Full House: r8c5 = 9
 Puzzle has been solved.
-Puzzle solution: 517639482239847561846512379691385724375421896428976135152798643983164257764253918
-Time elapsed: 00:00.00.125
+Puzzle solution: 497568231365912748812347569726451983948673152153829476571286394634195827289734615
+Time elapsed: 00:00.00.115
 Technique used:
-20 * Full House
-6 * Last Digit
-25 * Hidden Single (In Block)
-4 * Hidden Single (In Row)
+21 * Full House
+7 * Last Digit
+19 * Hidden Single (In Block)
+5 * Hidden Single (In Column)
+3 * Hidden Single (In Row)
 1 * Locked Pair
 1 * Naked single
-6 * Claiming
+3 * Pointing
 1 * Naked Pair
-1 * Hidden Pair
-2 * Naked Triple (+)
 1 * Hidden Triple
-Total solving steps count: 68
-Difficulty total: 101.5
-Puzzle rating: 4.0/1.2/1.2
+1 * Finned Jellyfish
+Total solving steps count: 63
+Difficulty total: 88.0
+Puzzle rating: 5.4/1.2/1.2
 ```
 
 
