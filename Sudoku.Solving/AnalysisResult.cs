@@ -27,11 +27,8 @@ namespace Sudoku.Solving
 		/// <param name="additional">The additional message.</param>
 		public AnalysisResult(
 			Grid initialGrid, string solverName, bool hasSolved, Grid? solution,
-			TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? solvingList, string? additional)
-		{
-			(Puzzle, SolverName, HasSolved, Solution, SolvingSteps, ElapsedTime, Additional) =
-				(initialGrid, solverName, hasSolved, solution, solvingList, elapsedTime, additional);
-		}
+			TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? solvingList, string? additional) =>
+			(Puzzle, SolverName, HasSolved, Solution, SolvingSteps, ElapsedTime, Additional) = (initialGrid, solverName, hasSolved, solution, solvingList, elapsedTime, additional);
 
 
 		/// <summary>
@@ -54,8 +51,15 @@ namespace Sudoku.Solving
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
-		public decimal MaxDifficulty =>
-			SolvingSteps is null || !SolvingSteps.Any() ? 20 : SolvingSteps.Max(info => info.Difficulty);
+		public decimal MaxDifficulty
+		{
+			get
+			{
+				return SolvingSteps is null || !SolvingSteps.Any()
+					? 20
+					: SolvingSteps.Max(info => info.Difficulty);
+			}
+		}
 
 		/// <summary>
 		/// <para>Indicates the total difficulty rating of the puzzle.</para>
@@ -317,7 +321,7 @@ namespace Sudoku.Solving
 			{
 				foreach (var info in SolvingSteps)
 				{
-					sb.AppendLine($"{$"({info.Difficulty}",4:0.0}) {info}");
+					sb.AppendLine($"{$"({info.Difficulty}",5:0.0}) {info}");
 				}
 
 				sb.AppendLine($"Puzzle has {(HasSolved ? "" : "not ")}been solved.");
