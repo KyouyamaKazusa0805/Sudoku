@@ -9,7 +9,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <DocumentationFile>P:\Projects\Common\Sudoku\Sudoku.Runtime\Sudoku.Runtime.xml</DocumentationFile>
+		<DocumentationFile>P:\Projects\Common\Sudoku\Sudoku.Runtime\Sudoku.Runtime.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Core", "Sudoku.Core\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Generating", "Sudoku.Generating\Sudoku.Generating.csproj", "{E69492F9-51EE-4BB7-AFB9-E2A57F00F9B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Forms", "Sudoku.Forms\Sudoku.Forms.csproj", "{C58A279B-CB2D-4261-9977-FC8FCDE2CA3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Forms", "Sudoku.Forms\Sudoku.Forms.csproj", "{C58A279B-CB2D-4261-9977-FC8FCDE2CA3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

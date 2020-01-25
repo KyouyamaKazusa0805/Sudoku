@@ -581,9 +581,85 @@
             Provides a conclusion type.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.ConclusionType.Assignment">
+            <summary>
+            Indicates the conclusion is a value filling into a cell.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.ConclusionType.Elimination">
+            <summary>
+            Indicates the conclusion is a candidate being remove from a cell.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.DifficultyLevels">
             <summary>
             Provides a difficulty kind for a puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DifficultyLevels.Unknown">
+            <summary>
+            Indicates the difficulty level is unknown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DifficultyLevels.VeryEasy">
+            <summary>
+            Indicates the difficulty is very easy.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DifficultyLevels.Easy">
+            <summary>
+            Indicates the difficulty is easy.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DifficultyLevels.Moderate">
+            <summary>
+            Indicates the difficulty is moderate.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DifficultyLevels.Advanced">
+            <summary>
+            Indicates the difficulty is advanced.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DifficultyLevels.Hard">
+            <summary>
+            Indicates the difficulty is hard.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DifficultyLevels.VeryHard">
+            <summary>
+            Indicates the difficulty is very hard.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DifficultyLevels.Fiendish">
+            <summary>
+            Indicates the difficulty is fiendish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DifficultyLevels.Diabolical">
+            <summary>
+            Indicates the difficulty is diabolical.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DifficultyLevels.Crazy">
+            <summary>
+            Indicates the difficulty is crazy.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DifficultyLevels.Nightmare">
+            <summary>
+            Indicates the difficulty is nightmare.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DifficultyLevels.BeyondNightmare">
+            <summary>
+            Indicates the difficulty is beyond nightmare.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DifficultyLevels.LastResort">
+            <summary>
+            Indicates the puzzle cannot be solved
+            unless using last resort methods.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.Basic.BasicFishTechniqueInfo">

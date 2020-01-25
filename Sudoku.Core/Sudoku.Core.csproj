@@ -11,12 +11,12 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <DefineConstants>TRACE;LAZY_CODE</DefineConstants>
-	  <DocumentationFile>P:\Projects\Common\Sudoku\Sudoku.Core\Sudoku.Core.xml</DocumentationFile>
+		<DefineConstants>TRACE;LAZY_CODE</DefineConstants>
+		<DocumentationFile>P:\Projects\Common\Sudoku\Sudoku.Core\Sudoku.Core.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Sudoku.Diagnostics\Sudoku.Diagnostics.csproj" />
+		<ProjectReference Include="..\Sudoku.Diagnostics\Sudoku.Diagnostics.csproj" />
 	</ItemGroup>
 
 </Project>
