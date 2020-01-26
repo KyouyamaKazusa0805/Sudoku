@@ -55,6 +55,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		}
 
 
+		#region Regular wing utils
 		/// <summary>
 		/// Take all technique steps by the specified size.
 		/// </summary>
@@ -92,7 +93,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 
 				var pivotPeersMap = new GridMap(pivot) { [pivot] = false };
 				var intersection = bivalueCellsMap._map & pivotPeersMap;
-				if (intersection.Count < size)
+				if (intersection.Count < size - 1)
 				{
 					goto Label_ContinueLoop;
 				}
@@ -108,20 +109,18 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 						if (size == 3)
 						{
 							// Record all values.
-							short pivotMask = (short)(grid.GetMask(pivot) & 511);
 							int[] cells = new[] { c1, c2 };
-							short inter = 511, union = 0;
-							for (int i = 0; i < 2; i++)
+							if (CheckWhetherBivalueCellsAreSame(grid, cells))
 							{
-								short tempMask = (short)(grid.GetMask(cells[i]) & 511);
-								inter &= tempMask;
-								union |= tempMask;
+								continue;
 							}
-							short interWithoutPivot = inter;
-							short unionWithoutPivot = union;
-							inter &= pivotMask;
-							union |= pivotMask;
 
+							RecordValues(
+								grid, pivot, cells, out short pivotMask,
+								out short inter, out short union,
+								out short interWithoutPivot, out short unionWithoutPivot);
+
+							// Check.
 							if ((~inter & 511).CountSet() == 3)
 							{
 								// Check whether incompleted.
@@ -131,20 +130,14 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 									continue;
 								}
 
+								bool isIncompleted =
+									(~unionWithoutPivot & 511).CountSet() == 1
+									&& (~union & 511).CountSet() == 0;
+
 								// Regular wings found.
 								// Check and find all eliminations.
-								bool isIncompleted = typeCount == 0;
-								int firstCell = cells[0];
-								var map = new GridMap(firstCell) { [firstCell] = false };
-								for (int i = 1; i < cells.Length; i++)
-								{
-									int cell = cells[i];
-									map &= new GridMap(cell) { [cell] = false };
-								}
-								if (!isIncompleted)
-								{
-									map &= pivotPeersMap;
-								}
+								CheckAndSearchEliminations(
+									pivotPeersMap, cells, isIncompleted, out var map);
 
 								if (map.Count == 0)
 								{
@@ -153,53 +146,144 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 								}
 
 								// Check eliminations.
-								var conclusions = new List<Conclusion>();
-								int zDigit = (isIncompleted ? ~unionWithoutPivot & 511 : ~union & 511).FindFirstSet();
-								foreach (int offset in map.Offsets)
-								{
-									if (grid.CandidateExists(offset, zDigit))
-									{
-										conclusions.Add(
-											new Conclusion(
-												ConclusionType.Elimination, offset, zDigit));
-									}
-								}
+								var conclusions = GetConclusions(
+									grid, union, unionWithoutPivot, isIncompleted, map);
 
 								if (conclusions.Count != 0)
 								{
 									// Add to 'result'.
-									result.Add(
-										new RegularWingTechniqueInfo(
-											conclusions,
-											views: new List<View>
-											{
-												new View(
-													cellOffsets:
-														new List<(int, int)>(
-															from cell in cells
-															select (0, cell)),
-													candidateOffsets:
-														new List<(int, int)>((
-															from digit in Enumerable.Range(0, 9)
-															from cell in cells
-															where !grid[cell, digit]
-															select (0, cell * 9 + digit)).Concat(
-															from digit in Enumerable.Range(0, 9)
-															where !grid[pivot, digit]
-															select (0, pivot * 9 + digit))),
-													regionOffsets: null,
-													linkMasks: null)
-											},
-											pivot,
-											pivotCandidatesCount: (~pivotMask & 511).CountSet(),
-											digits: (~inter & 511).GetAllSets().ToArray(),
-											cellOffsets: cells));
+									GatherConclusion(
+										grid, result, pivot, cells,
+										pivotMask, inter, conclusions);
 								}
 							}
 						}
 						else // size > 3
 						{
+							for (int i3 = i2 + 1; i3 < length - size + 4; i3++)
+							{
+								int c3 = offsets[i3];
+								if (size == 4)
+								{
+									// Record all values.
+									int[] cells = new[] { c1, c2, c3 };
+									if (CheckWhetherBivalueCellsAreSame(grid, cells))
+									{
+										continue;
+									}
 
+									RecordValues(
+										grid, pivot, cells, out short pivotMask,
+										out short inter, out short union,
+										out short interWithoutPivot, out short unionWithoutPivot);
+
+									// Check.
+									if ((~inter & 511).CountSet() == 4)
+									{
+										// Check whether incompleted.
+										int typeCount = (~union & 511).CountSet();
+										if (typeCount != 0 && typeCount != 1)
+										{
+											continue;
+										}
+
+										bool isIncompleted =
+											(~unionWithoutPivot & 511).CountSet() == 1
+											&& (~union & 511).CountSet() == 0;
+
+										// Regular wings found.
+										// Check and find all eliminations.
+										CheckAndSearchEliminations(
+											pivotPeersMap, cells, isIncompleted, out var map);
+
+										if (map.Count == 0)
+										{
+											// None of cells can be found and eliminated.
+											continue;
+										}
+
+										// Check eliminations.
+										var conclusions = GetConclusions(
+											grid, union, unionWithoutPivot, isIncompleted, map);
+
+										if (conclusions.Count != 0)
+										{
+											// Add to 'result'.
+											GatherConclusion(
+												grid, result, pivot, cells,
+												pivotMask, inter, conclusions);
+										}
+									}
+								}
+								else // size > 4
+								{
+									for (int i4 = i3 + 1; i4 < length - size + 5; i4++)
+									{
+										int c4 = offsets[i4];
+										if (size == 5)
+										{
+											// Record all values.
+											int[] cells = new[] { c1, c2, c3, c4 };
+											if (CheckWhetherBivalueCellsAreSame(grid, cells))
+											{
+												continue;
+											}
+
+											RecordValues(
+												grid, pivot, cells, out short pivotMask,
+												out short inter, out short union,
+												out short interWithoutPivot, out short unionWithoutPivot);
+
+											// Check.
+											if ((~inter & 511).CountSet() == 5)
+											{
+												// Check whether incompleted.
+												int typeCount = (~union & 511).CountSet();
+												if (typeCount != 0 && typeCount != 1)
+												{
+													continue;
+												}
+
+												bool isIncompleted =
+													(~unionWithoutPivot & 511).CountSet() == 1
+													&& (~union & 511).CountSet() == 0;
+
+												// Regular wings found.
+												// Check and find all eliminations.
+												CheckAndSearchEliminations(
+													pivotPeersMap, cells,
+													isIncompleted, out var map);
+
+												if (map.Count == 0)
+												{
+													// None of cells can be found and eliminated.
+													continue;
+												}
+
+												// Check eliminations.
+												var conclusions = GetConclusions(
+													grid, union, unionWithoutPivot,
+													isIncompleted, map);
+
+												if (conclusions.Count != 0)
+												{
+													// Add to 'result'.
+													GatherConclusion(
+														grid, result, pivot, cells,
+														pivotMask, inter, conclusions);
+												}
+											}
+										}
+										else // size > 5
+										{
+											throw new NotSupportedException(
+												"Because of the searching is too deep " +
+												"so I do not write code for the case " +
+												"when size is greater than 5.");
+										}
+									}
+								}
+							}
 						}
 					}
 				}
@@ -210,5 +294,169 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 
 			return result;
 		}
+
+		/// <summary>
+		/// Check whether the two of all bivalue cells has whole same candidates.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="cells">The cells to check.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		private static bool CheckWhetherBivalueCellsAreSame(Grid grid, int[] cells)
+		{
+			for (int i = 0, length = cells.Length; i < length - 1; i++)
+			{
+				for (int j = i + 1; j < length; j++)
+				{
+					if (grid.GetMask(cells[i]) == grid.GetMask(cells[j]))
+					{
+						return true;
+					}
+				}
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Check and search eliminations.
+		/// </summary>
+		/// <param name="pivotPeersMap">
+		/// The grid map for the peers of the pivot cell.
+		/// </param>
+		/// <param name="cells">All body cells.</param>
+		/// <param name="isIncompleted">
+		/// (out parameter) Indicates whether the technique is incompleted.
+		/// </param>
+		/// <param name="map">
+		/// (out parameter) The result grid intersection map.
+		/// </param>
+		private static void CheckAndSearchEliminations(
+			GridMap pivotPeersMap, int[] cells, bool isIncompleted, out GridMap map)
+		{
+			// TODO: Pivot cell may be recorded into the 'map'.
+			int firstCell = cells[0];
+			map = new GridMap(firstCell) { [firstCell] = false };
+			for (int i = 1; i < cells.Length; i++)
+			{
+				int cell = cells[i];
+				map &= new GridMap(cell) { [cell] = false };
+			}
+			if (!isIncompleted)
+			{
+				map &= pivotPeersMap;
+			}
+		}
+
+		/// <summary>
+		/// Gather the conclusion.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="result">The result.</param>
+		/// <param name="pivot">The pivot cell.</param>
+		/// <param name="cells">All body cells.</param>
+		/// <param name="pivotMask">The mask of the pivot cell.</param>
+		/// <param name="inter">The intersection mask.</param>
+		/// <param name="conclusions">The conclusions.</param>
+		private static void GatherConclusion(
+			Grid grid, IList<RegularWingTechniqueInfo> result,
+			int pivot, int[] cells, short pivotMask,
+			short inter, IReadOnlyList<Conclusion> conclusions)
+		{
+			result.Add(
+				new RegularWingTechniqueInfo(
+					conclusions,
+					views: new List<View>
+					{
+						new View(
+							cellOffsets:
+								new List<(int, int)>(
+									from cell in cells
+									select (0, cell)),
+							candidateOffsets:
+								new List<(int, int)>((
+									from digit in Enumerable.Range(0, 9)
+									from cell in cells
+									where !grid[cell, digit]
+									select (0, cell * 9 + digit)).Concat(
+									from digit in Enumerable.Range(0, 9)
+									where !grid[pivot, digit]
+									select (0, pivot * 9 + digit))),
+							regionOffsets: null,
+							linkMasks: null)
+					},
+					pivot,
+					pivotCandidatesCount: (~pivotMask & 511).CountSet(),
+					digits: (~inter & 511).GetAllSets().ToArray(),
+					cellOffsets: cells));
+		}
+
+		/// <summary>
+		/// Get all conclusions.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="union">The union mask.</param>
+		/// <param name="unionWithoutPivot">The union mask without using pivot mask.</param>
+		/// <param name="isIncompleted">
+		/// Indicates whether the technique is incompleted.
+		/// </param>
+		/// <param name="map">The intersection grid map.</param>
+		/// <returns>The conclusions.</returns>
+		private static IReadOnlyList<Conclusion> GetConclusions(
+			Grid grid, short union, short unionWithoutPivot,
+			bool isIncompleted, GridMap map)
+		{
+			var conclusions = new List<Conclusion>();
+			int valueToCheck = isIncompleted ? unionWithoutPivot : union;
+			int zDigit = (~valueToCheck & 511).FindFirstSet();
+			if (zDigit == -1)
+			{
+				// No possible value to eliminate.
+				return conclusions;
+			}
+			foreach (int offset in map.Offsets)
+			{
+				if (grid.CandidateExists(offset, zDigit))
+				{
+					conclusions.Add(new Conclusion(ConclusionType.Elimination, offset, zDigit));
+				}
+			}
+
+			return conclusions;
+		}
+
+		/// <summary>
+		/// Record all values.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="pivot">The pivot cell.</param>
+		/// <param name="cells">All body cells.</param>
+		/// <param name="pivotMask">
+		/// (out parameter) The mask of the pivot cell.
+		/// </param>
+		/// <param name="inter">(out parameter) The intersection mask.</param>
+		/// <param name="union">(out parameter) The union mask.</param>
+		/// <param name="interWithoutPivot">
+		/// (out parameter) The intersection mask without pivot mask.
+		/// </param>
+		/// <param name="unionWithoutPivot">
+		/// (out parameter) The union mask without pivot mask.
+		/// </param>
+		private static void RecordValues(
+			Grid grid, int pivot, int[] cells, out short pivotMask,
+			out short inter, out short union,
+			out short interWithoutPivot, out short unionWithoutPivot)
+		{
+			(pivotMask, inter, union) = ((short)(grid.GetMask(pivot) & 511), 511, 0);
+			for (int i = 0, length = cells.Length; i < length; i++)
+			{
+				short tempMask = (short)(grid.GetMask(cells[i]) & 511);
+				inter &= tempMask;
+				union |= tempMask;
+			}
+			(interWithoutPivot, unionWithoutPivot) = (inter, union);
+			inter &= pivotMask;
+			union |= pivotMask;
+		}
+		#endregion
 	}
 }

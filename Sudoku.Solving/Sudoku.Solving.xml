@@ -992,6 +992,11 @@
             Indicates all regular wings with the size less than
             or equals to this specified value.
             </summary>
+            <remarks>
+            In fact this value can be 9 at most (i.e. <c>value &gt;&#61; 3
+            &amp;&amp; value &lt;&#61; 9</c>), however the searching
+            is too low so I do not allow them.
+            </remarks>
         </member>
         <member name="T:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo">
             <summary>
@@ -1408,6 +1413,73 @@
             be modified because the instance is a pair of values, passed by
             reference can make the value passing more simple.
             </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.CheckWhetherBivalueCellsAreSame(Sudoku.Data.Meta.Grid,System.Int32[])">
+            <summary>
+            Check whether the two of all bivalue cells has whole same candidates.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cells">The cells to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.CheckAndSearchEliminations(Sudoku.Data.Meta.GridMap,System.Int32[],System.Boolean,Sudoku.Data.Meta.GridMap@)">
+            <summary>
+            Check and search eliminations.
+            </summary>
+            <param name="pivotPeersMap">
+            The grid map for the peers of the pivot cell.
+            </param>
+            <param name="cells">All body cells.</param>
+            <param name="isIncompleted">
+            (out parameter) Indicates whether the technique is incompleted.
+            </param>
+            <param name="map">
+            (out parameter) The result grid intersection map.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.GatherConclusion(Sudoku.Data.Meta.Grid,System.Collections.Generic.IList{Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo},System.Int32,System.Int32[],System.Int16,System.Int16,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion})">
+            <summary>
+            Gather the conclusion.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="result">The result.</param>
+            <param name="pivot">The pivot cell.</param>
+            <param name="cells">All body cells.</param>
+            <param name="pivotMask">The mask of the pivot cell.</param>
+            <param name="inter">The intersection mask.</param>
+            <param name="conclusions">The conclusions.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.GetConclusions(Sudoku.Data.Meta.Grid,System.Int16,System.Int16,System.Boolean,Sudoku.Data.Meta.GridMap)">
+            <summary>
+            Get all conclusions.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="union">The union mask.</param>
+            <param name="unionWithoutPivot">The union mask without using pivot mask.</param>
+            <param name="isIncompleted">
+            Indicates whether the technique is incompleted.
+            </param>
+            <param name="map">The intersection grid map.</param>
+            <returns>The conclusions.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.RecordValues(Sudoku.Data.Meta.Grid,System.Int32,System.Int32[],System.Int16@,System.Int16@,System.Int16@,System.Int16@,System.Int16@)">
+            <summary>
+            Record all values.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="pivot">The pivot cell.</param>
+            <param name="cells">All body cells.</param>
+            <param name="pivotMask">
+            (out parameter) The mask of the pivot cell.
+            </param>
+            <param name="inter">(out parameter) The intersection mask.</param>
+            <param name="union">(out parameter) The union mask.</param>
+            <param name="interWithoutPivot">
+            (out parameter) The intersection mask without pivot mask.
+            </param>
+            <param name="unionWithoutPivot">
+            (out parameter) The union mask without pivot mask.
+            </param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Wings.WingTechniqueInfo">
             <summary>

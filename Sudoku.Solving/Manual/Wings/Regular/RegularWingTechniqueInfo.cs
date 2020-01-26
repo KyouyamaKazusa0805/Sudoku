@@ -83,7 +83,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			{
 				var values = (Span<decimal>)stackalloc[]
 				{
-					0, 0, 0, 4.4m, 4.6m, 4.8m, 5.1m, 5.4m, 5.7m, 6m
+					0, 0, 0, 0, 4.6m, 4.8m, 5.1m, 5.4m, 5.7m, 6m
 				};
 				bool isImcompleted = Size == PivotCellCandidatesCount + 1;
 				return Size switch

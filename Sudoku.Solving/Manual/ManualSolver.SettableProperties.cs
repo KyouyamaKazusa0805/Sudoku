@@ -54,10 +54,15 @@
 		/// Indicates all regular wings with the size less than
 		/// or equals to this specified value.
 		/// </summary>
+		/// <remarks>
+		/// In fact this value can be 9 at most (i.e. <c>value &gt;&#61; 3
+		/// &amp;&amp; value &lt;&#61; 9</c>), however the searching
+		/// is too low so I do not allow them.
+		/// </remarks>
 		public int CheckRegularWingSize
 		{
 			get => _checkRegularWingSize;
-			set => _checkRegularWingSize = value >= 3 && value <= 9 ? value : 5;
+			set => _checkRegularWingSize = value >= 3 && value <= 5 ? value : 5;
 		}
 	}
 }
