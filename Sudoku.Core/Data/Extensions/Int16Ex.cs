@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace Sudoku.Data.Extensions
 {
@@ -25,5 +26,21 @@ namespace Sudoku.Data.Extensions
 		/// <seealso cref="Int32Ex.CountSet(int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static int CountSet(this short @this) => Int32Ex.CountSet(@this);
+
+		/// <summary>
+		/// Find all offsets of set bits of the binary representation of a specified value.
+		/// </summary>
+		/// <param name="this">The value.</param>
+		/// <returns>All offsets.</returns>
+		public static IEnumerable<int> GetAllSets(this short @this)
+		{
+			for (int i = 0; i < 16; i++, @this >>= 1)
+			{
+				if ((@this & 1) != 0)
+				{
+					yield return i;
+				}
+			}
+		}
 	}
 }

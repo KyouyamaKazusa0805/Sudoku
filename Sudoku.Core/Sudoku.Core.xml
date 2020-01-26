@@ -43,6 +43,13 @@
             <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
             <seealso cref="M:Sudoku.Data.Extensions.Int32Ex.CountSet(System.Int32)"/>
         </member>
+        <member name="M:Sudoku.Data.Extensions.Int16Ex.GetAllSets(System.Int16)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All offsets.</returns>
+        </member>
         <member name="T:Sudoku.Data.Extensions.Int32Ex">
             <summary>
             Provides extension methods on <see cref="T:System.Int32"/>.
@@ -99,6 +106,13 @@
             </summary>
             <param name="this">The value.</param>
             <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int64Ex.GetAllSets(System.Int64)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All offsets.</returns>
         </member>
         <member name="T:Sudoku.Data.Extensions.ObjectEx">
             <summary>
@@ -754,6 +768,12 @@
             The result of this comparsion. <c>true</c> if two instances hold a same
             value; otherwise, <c>false</c>.
             </returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridMap.ToArray">
+            <summary>
+            Get all cell offsets whose bits are set <c>true</c>.
+            </summary>
+            <returns>An array of cell offsets.</returns>
         </member>
         <member name="M:Sudoku.Data.Meta.GridMap.GetEnumerator">
             <inheritdoc/>

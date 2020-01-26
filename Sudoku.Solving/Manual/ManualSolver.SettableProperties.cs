@@ -42,5 +42,22 @@
 		/// assigment conclusions with value 1 to 9 in order.
 		/// </summary>
 		public bool IttoRyuWhenPossible { get; set; } = false;
+
+
+		/// <summary>
+		/// The field bound with <see cref="CheckRegularWingSize"/>.
+		/// </summary>
+		/// <seealso cref="CheckRegularWingSize"/>
+		private int _checkRegularWingSize;
+
+		/// <summary>
+		/// Indicates all regular wings with the size less than
+		/// or equals to this specified value.
+		/// </summary>
+		public int CheckRegularWingSize
+		{
+			get => _checkRegularWingSize;
+			set => _checkRegularWingSize = value >= 3 && value <= 9 ? value : 5;
+		}
 	}
 }

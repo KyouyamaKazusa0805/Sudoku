@@ -981,6 +981,18 @@
             assigment conclusions with value 1 to 9 in order.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.ManualSolver._checkRegularWingSize">
+            <summary>
+            The field bound with <see cref="P:Sudoku.Solving.Manual.ManualSolver.CheckRegularWingSize"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.CheckRegularWingSize"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckRegularWingSize">
+            <summary>
+            Indicates all regular wings with the size less than
+            or equals to this specified value.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo">
             <summary>
             Indicates a usage of full house technique.
@@ -1309,6 +1321,107 @@
             </param>
             <returns>All conclusions.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo">
+            <summary>
+            Provides a usage of regular wing technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Initializes an instance with the information.
+            </summary>
+            <param name="conclusions">The conclusions.</param>
+            <param name="views">The views.</param>
+            <param name="pivot">The pivot cell offset.</param>
+            <param name="pivotCandidatesCount">
+            The number of candidates in pivot cell.
+            </param>
+            <param name="digits">The digits used.</param>
+            <param name="cellOffsets">The cell offsets used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.Size">
+            <summary>
+            Indicates the size of this regular wing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.PivotCellOffset">
+            <summary>
+            Indicates the pivot cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.PivotCellCandidatesCount">
+            <summary>
+            Indicates the number of candidates in the pivot cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.Digits">
+            <summary>
+            Indicates all digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.CellOffsets">
+            <summary>
+            Indicates all cell offsets used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher">
+            <summary>
+            Encapsulates a regular wing technique solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher._size">
+            <summary>
+            The size.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance with the specified size.
+            </summary>
+            <param name="size">The size.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.TakeAllBySize(Sudoku.Data.Meta.Grid,System.ValueTuple{Sudoku.Data.Meta.GridMap,System.Int32}@,System.Int32)">
+            <summary>
+            Take all technique steps by the specified size.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="bivalueCellsMap">(in parameter) bivalue cell information pair.</param>
+            <param name="size">The size.</param>
+            <returns>All technique steps.</returns>
+            <remarks>
+            Parameter <paramref name="bivalueCellsMap"/> is passed by reference and cannot 
+            be modified because the instance is a pair of values, passed by
+            reference can make the value passing more simple.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Wings.WingTechniqueInfo">
+            <summary>
+            Provides a usage of wing technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Wings.WingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Wings.WingTechniqueSearcher">
+            <summary>
+            Encapsulates a wing technique solver.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Solver">
             <summary>
             Indicates an instance used for solving a sudoku puzzle.
@@ -1617,6 +1730,19 @@
             in a specified region. The mask uses 1 to make the cell 'have this digit',
             and 0 to make the cell 'does not have this digit'.
             </returns>
+        </member>
+        <member name="T:Sudoku.Solving.Utils.MaskDeconstruction">
+            <summary>
+            Provides a deconstruction method for grid mask (<see cref="T:System.Int16"/> value).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.MaskDeconstruction.Deconstruct(System.Int16,Sudoku.Data.Meta.CellStatus@,System.Int16@)">
+            <summary>
+            Deconstruct the value to candidates and the cell status.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="cellStatus">(out parameter) The cell status.</param>
+            <param name="candidatesMask">(out parameter) The candidates.</param>
         </member>
         <member name="T:Sudoku.Solving.Utils.RegionCollection">
             <summary>

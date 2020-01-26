@@ -54,8 +54,8 @@ namespace Sudoku.Data.Extensions
 		/// <returns>An <see cref="int"/> value indicating that.</returns>
 		public static int CountSet(this int @this)
 		{
-			int count;
-			for (count = 0; @this != 0; @this &= @this - 1, count++) ;
+			int count = 0;
+			for (; @this != 0; @this &= @this - 1, count++) ;
 			return count;
 		}
 

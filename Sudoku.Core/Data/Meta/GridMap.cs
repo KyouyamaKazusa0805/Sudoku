@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data.Extensions;
@@ -195,6 +196,12 @@ namespace Sudoku.Data.Meta
 		/// </returns>
 		public readonly bool Equals(GridMap other) =>
 			_high == other._high && _low == other._low;
+
+		/// <summary>
+		/// Get all cell offsets whose bits are set <c>true</c>.
+		/// </summary>
+		/// <returns>An array of cell offsets.</returns>
+		public readonly int[] ToArray() => Offsets.ToArray();
 
 		/// <inheritdoc/>
 		public readonly IEnumerator<bool> GetEnumerator()
