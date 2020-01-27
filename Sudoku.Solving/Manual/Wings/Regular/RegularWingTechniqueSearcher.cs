@@ -137,7 +137,8 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 								// Regular wings found.
 								// Check and find all eliminations.
 								CheckAndSearchEliminations(
-									pivotPeersMap, cells, isIncompleted, out var map);
+									pivotPeersMap, cells, pivot,
+									isIncompleted, out var map);
 
 								if (map.Count == 0)
 								{
@@ -194,7 +195,8 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 										// Regular wings found.
 										// Check and find all eliminations.
 										CheckAndSearchEliminations(
-											pivotPeersMap, cells, isIncompleted, out var map);
+											pivotPeersMap, cells, pivot,
+											isIncompleted, out var map);
 
 										if (map.Count == 0)
 										{
@@ -251,7 +253,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 												// Regular wings found.
 												// Check and find all eliminations.
 												CheckAndSearchEliminations(
-													pivotPeersMap, cells,
+													pivotPeersMap, cells, pivot,
 													isIncompleted, out var map);
 
 												if (map.Count == 0)
@@ -324,6 +326,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// The grid map for the peers of the pivot cell.
 		/// </param>
 		/// <param name="cells">All body cells.</param>
+		/// <param name="pivot">The pivot cell.</param>
 		/// <param name="isIncompleted">
 		/// (out parameter) Indicates whether the technique is incompleted.
 		/// </param>
@@ -331,9 +334,9 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// (out parameter) The result grid intersection map.
 		/// </param>
 		private static void CheckAndSearchEliminations(
-			GridMap pivotPeersMap, int[] cells, bool isIncompleted, out GridMap map)
+			GridMap pivotPeersMap, int[] cells,
+			int pivot, bool isIncompleted, out GridMap map)
 		{
-			// TODO: Pivot cell may be recorded into the 'map'.
 			int firstCell = cells[0];
 			map = new GridMap(firstCell) { [firstCell] = false };
 			for (int i = 1; i < cells.Length; i++)
@@ -345,6 +348,9 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			{
 				map &= pivotPeersMap;
 			}
+
+			// Pivot cell may be recorded into the 'map'.
+			map[pivot] = false;
 		}
 
 		/// <summary>

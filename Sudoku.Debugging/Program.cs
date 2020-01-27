@@ -12,7 +12,6 @@
 		{
 			var solver = new Sudoku.Solving.Manual.ManualSolver
 			{
-				CheckRegularWingSize = 5,
 				OptimizedApplyingOrder = true,
 				EnableFullHouse = true,
 				EnableLastDigit = true
