@@ -52,11 +52,12 @@
 
 		/// <summary>
 		/// Indicates all regular wings with the size less than
-		/// or equals to this specified value.
+		/// or equals to this specified value. This value should
+		/// be between 3 and 5.
 		/// </summary>
 		/// <remarks>
 		/// In fact this value can be 9 at most (i.e. <c>value &gt;&#61; 3
-		/// &amp;&amp; value &lt;&#61; 9</c>), however the searching
+		/// &amp;&amp; value &lt;&#61; 9</c>) theoretically, however the searching
 		/// is too low so I do not allow them.
 		/// </remarks>
 		public int CheckRegularWingSize
