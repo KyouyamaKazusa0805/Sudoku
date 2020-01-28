@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual
 			var steps = new List<TechniqueInfo>();
 
 			// Enable all step finders.
-			var stepFinders = new List<TechniqueSearcher>()
+			var searchers = new TechniqueSearcher[]
 			{
 				new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit),
 				new IntersectionTechniqueSearcher(),
@@ -42,43 +42,13 @@ namespace Sudoku.Solving.Manual
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
 		Label_StartSolving:
-			int digit = 0;
-			var ittoRyuInfo = (TechniqueInfo?)null;
-			for (int i = 0; i < stepFinders.Count; i++)
+			for (int i = 0, length = searchers.Length; i < length; i++)
 			{
-				var stepFinder = stepFinders[i];
-				var infos = stepFinder.TakeAll(cloneation);
-				if (IttoRyuWhenPossible && i == 0) // 'i == 0' stands for single step finder.
-				{
-					// TODO: To check whether the puzzle has that digit.
-					// TODO: _ If the digit does not exist, we should skip this digit
-					// TODO: _ and find the next digit, until the conclusion found.
-					foreach (var info in infos)
-					{
-						var conclusion = info.Conclusions[0];
-						int curDigit = conclusion.Digit;
-						if (conclusion.Type == ConclusionType.Assignment
-							&& (curDigit == (digit + 1) % 9 || curDigit == digit))
-						{
-							ittoRyuInfo = info;
-							if (curDigit == (digit + 1) % 9)
-							{
-								digit = (digit + 1) % 9;
-							}
-
-							break;
-						}
-					}
-				}
-
-				var selection = OptimizedApplyingOrder
+				var searcher = searchers[i];
+				var infos = searcher.TakeAll(cloneation);
+				var step = OptimizedApplyingOrder
 					? infos.GetElementByMinSelector(info => info.Difficulty)
 					: infos.FirstOrDefault();
-				var step = IttoRyuWhenPossible
-					? ittoRyuInfo is null
-						? selection
-						: ittoRyuInfo
-					: selection;
 
 				if (step is null)
 				{

@@ -116,47 +116,5 @@ namespace Sudoku.Checking
 				return false;
 			}
 		}
-
-		/// <summary>
-		/// To check if the puzzle is itto ryu or not.
-		/// </summary>
-		/// <param name="this">The puzzle to check.</param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public static bool IsIttoRyu(this Grid @this)
-		{
-			var cloneation = @this.Clone();
-			var (_, hasSolved, _, _, difficultyLevel, _, steps, _) = new ManualSolver
-			{
-				IttoRyuWhenPossible = true,
-				EnableFullHouse = false,
-				EnableLastDigit = false
-			}.Solve(cloneation);
-			if (hasSolved && difficultyLevel == DifficultyLevels.Easy)
-			{
-				int digit = 0;
-				foreach (var (_, _, _, conclusions) in steps!)
-				{
-					int checkDigit = conclusions[0].Digit;
-					if (checkDigit == digit)
-					{
-						continue;
-					}
-
-					if (checkDigit == (digit + 1) % 9)
-					{
-						digit = checkDigit;
-						continue;
-					}
-
-					return false;
-				}
-
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
 	}
 }

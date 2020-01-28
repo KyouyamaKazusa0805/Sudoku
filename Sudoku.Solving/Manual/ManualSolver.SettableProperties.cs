@@ -37,12 +37,6 @@
 		/// </remarks>
 		public bool EnableLastDigit { get; set; } = true;
 
-		/// <summary>
-		/// Indicates whether the solver will be forced to find all
-		/// assigment conclusions with value 1 to 9 in order.
-		/// </summary>
-		public bool IttoRyuWhenPossible { get; set; } = false;
-
 
 		/// <summary>
 		/// The field bound with <see cref="CheckRegularWingSize"/>.
