@@ -8,7 +8,7 @@
 		/// When the value is <c>true</c>, the result to apply to
 		/// the grid will be the one which has the minimum difficulty
 		/// rating; otherwise, the applying step will be the first one
-		/// of all steps found.
+		/// of all steps being searched.
 		/// </para>
 		/// </summary>
 		public bool OptimizedApplyingOrder { get; set; } = false;
@@ -18,7 +18,7 @@
 		/// whose name or kind is full house.
 		/// </summary>
 		/// <remarks>
-		/// Full houses are the techniques that used in a single
+		/// <b>Full house</b>s are the techniques that used in a single
 		/// region. When the specified region has only one empty cell,
 		/// the full house will be found at this empty cell (the last
 		/// value in this region).
@@ -30,7 +30,7 @@
 		/// whose name or kind is last digit.
 		/// </summary>
 		/// <remarks>
-		/// Last digits are the techniques that used in a single
+		/// <b>Last digit</b>s are the techniques that used in a single
 		/// digit. When the whole grid has 8 same digits, the last
 		/// one will be always found and set in the last position,
 		/// which is last digit.
