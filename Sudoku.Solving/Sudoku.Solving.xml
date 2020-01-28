@@ -1045,12 +1045,6 @@
             which is last digit.
             </remarks>
         </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.IttoRyuWhenPossible">
-            <summary>
-            Indicates whether the solver will be forced to find all
-            assigment conclusions with value 1 to 9 in order.
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.Manual.ManualSolver._checkRegularWingSize">
             <summary>
             The field bound with <see cref="P:Sudoku.Solving.Manual.ManualSolver.CheckRegularWingSize"/>.
