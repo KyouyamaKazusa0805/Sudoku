@@ -10,12 +10,16 @@
 		/// rating; otherwise, the applying step will be the first one
 		/// of all steps being searched.
 		/// </para>
+		/// <para>The value is <c>false</c> in default case.</para>
 		/// </summary>
 		public bool OptimizedApplyingOrder { get; set; } = false;
 
 		/// <summary>
+		/// <para>
 		/// Indicates whether the solver will record the step
 		/// whose name or kind is full house.
+		/// </para>
+		/// <para>The value is <c>true</c> in default case.</para>
 		/// </summary>
 		/// <remarks>
 		/// <b>Full house</b>s are the techniques that used in a single
@@ -26,8 +30,11 @@
 		public bool EnableFullHouse { get; set; } = true;
 
 		/// <summary>
+		/// <para>
 		/// Indicates whether the solver will record the step
 		/// whose name or kind is last digit.
+		/// </para>
+		/// <para>The value is <c>true</c> in default case.</para>
 		/// </summary>
 		/// <remarks>
 		/// <b>Last digit</b>s are the techniques that used in a single
@@ -45,9 +52,12 @@
 		private int _checkRegularWingSize;
 
 		/// <summary>
+		/// <para>
 		/// Indicates all regular wings with the size less than
 		/// or equals to this specified value. This value should
 		/// be between 3 and 5.
+		/// </para>
+		/// <para>The value is <c>5</c> in default case.</para>
 		/// </summary>
 		/// <remarks>
 		/// In fact this value can be 9 at most (i.e. <c>value &gt;&#61; 3
