@@ -44,6 +44,29 @@
 		/// </remarks>
 		public bool EnableLastDigit { get; set; } = true;
 
+		/// <summary>
+		/// <para>
+		/// Indicates whether the solver should check
+		/// incompleted uniqueness patterns.
+		/// </para>
+		/// <para>The value is <c>false</c> in default case.</para>
+		/// </summary>
+		/// <example>
+		/// For example, An basic UR pattern should be
+		/// <code>
+		/// ab ab
+		/// ab abc
+		/// </code>
+		/// But sometimes, some digits will be missed in the pattern
+		/// like this:
+		/// <code>
+		/// ab ab
+		/// ab ac
+		/// </code>
+		/// The candidate <c>a</c> is also can be eliminated.
+		/// </example>
+		public bool CheckIncompletedUniquenessPatterns { get; set; } = false;
+
 
 		/// <summary>
 		/// The field bound with <see cref="CheckRegularWingSize"/>.

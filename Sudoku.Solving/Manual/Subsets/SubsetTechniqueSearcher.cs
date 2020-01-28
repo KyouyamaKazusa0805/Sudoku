@@ -270,7 +270,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		}
 
 		/// <summary>
-		/// Get all candidate offsets highlighted in a specified naked subset technique.
+		/// Get all candidate offsets highlight in a specified naked subset technique.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <param name="offsets">All cell offsets.</param>
@@ -287,7 +287,7 @@ namespace Sudoku.Solving.Manual.Subsets
 					if (!grid[offset, digit])
 					{
 						// The candidate does exist in the current grid,
-						// which should be highlighted.
+						// which should be highlight.
 						result.Add((0, offset));
 					}
 				}
@@ -464,7 +464,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// <param name="digits">All digits.</param>
 		/// <param name="cellOffsetList">(out parameter) All cell offsets.</param>
 		/// <param name="highlightedCandidates">
-		/// (out parameter) All highlighted candidate offsets.
+		/// (out parameter) All highlight candidate offsets.
 		/// </param>
 		/// <returns>All conclusions.</returns>
 		private static IReadOnlyList<Conclusion> GetHiddenSubsetsConclusions(
@@ -489,7 +489,7 @@ namespace Sudoku.Solving.Manual.Subsets
 							if (digits.Contains(digit))
 							{
 								// Contains in the list.
-								// These candidates are highlighted candidates.
+								// These candidates are highlight candidates.
 								tempCandList.Add((0, offset * 9 + digit));
 							}
 							else

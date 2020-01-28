@@ -219,12 +219,12 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 			new List<int>(from pos in FindSets(mask) select 9 + (searchRow ? pos + 9 : pos));
 
 		/// <summary>
-		/// Get all highlighted candidate offsets.
+		/// Get all highlight candidate offsets.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <param name="digit">The digit.</param>
 		/// <param name="baseSets">The base sets.</param>
-		/// <returns>All highlighted candidate offsets and their IDs.</returns>
+		/// <returns>All highlight candidate offsets and their IDs.</returns>
 		private static IReadOnlyList<(int, int)> GetHighlightedCandidates(
 			Grid grid, int digit, params int[] baseSets)
 		{

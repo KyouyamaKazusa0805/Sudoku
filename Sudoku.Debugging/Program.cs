@@ -18,7 +18,7 @@ namespace Sudoku.Debugging
 			{
 				OptimizedApplyingOrder = true
 			};
-			var grid = Grid.Parse("503092000000007985000000000005008160640000092039600700000000000482700000000180407");
+			var grid = Grid.Parse("130070000008001000700000304080519600000040000009726080607000002000900500000080061");
 			var analysisResult = solver.Solve(grid);
 			Console.WriteLine(analysisResult);
 		}

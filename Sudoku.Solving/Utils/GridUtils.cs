@@ -14,13 +14,13 @@ namespace Sudoku.Solving.Utils
 		/// <summary>
 		/// <para>
 		/// Indicates whether the specified grid contains the candidate.
-		/// Note that given and modifiable values always make this method
-		/// return <c>false</c>.
 		/// </para>
 		/// <para>
 		/// If you want to check the reversal case, please use the method
 		/// <see cref="CandidateDoesNotExist(Grid, int, int)"/> instead
 		/// of '<c>!grid.CandidateExists</c>'.
+		/// Note that given and modifiable values always make this method
+		/// return <c>false</c>.
 		/// </para>
 		/// </summary>
 		/// <param name="this">The grid.</param>
@@ -38,13 +38,13 @@ namespace Sudoku.Solving.Utils
 		/// <summary>
 		/// <para>
 		/// Indicates whether the specified grid <b>does not</b> contains the candidate.
-		/// Note that given and modifiable values always make this method
-		/// return <c>false</c>.
 		/// </para>
 		/// <para>
 		/// If you want to check the reversal case, please use the method
 		/// <see cref="CandidateExists(Grid, int, int)"/> instead
 		/// of '<c>!grid.CandidateDoesNotExist</c>'.
+		/// Note that given and modifiable values always make this method
+		/// return <c>false</c>.
 		/// </para>
 		/// </summary>
 		/// <param name="this">The grid.</param>

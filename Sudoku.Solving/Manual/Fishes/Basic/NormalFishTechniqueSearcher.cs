@@ -163,7 +163,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 										if (elimList.Count != 0)
 										{
 											// Eliminations does exist.
-											// Check all highlighted candidates.
+											// Check all highlight candidates.
 											var highlightCandidates = new List<(int, int)>(
 												from cellOffset in bodyMap.Offsets
 												where grid.CandidateExists(cellOffset, digit)
@@ -330,7 +330,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 													if (elimList.Count != 0)
 													{
 														// Eliminations does exist.
-														// Check all highlighted candidates.
+														// Check all highlight candidates.
 														var highlightCandidates = new List<(int, int)>(
 															from cellOffset in bodyMap.Offsets
 															where grid.CandidateExists(cellOffset, digit)
@@ -506,7 +506,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 															if (elimList.Count != 0)
 															{
 																// Eliminations does exist.
-																// Check all highlighted candidates.
+																// Check all highlight candidates.
 																var highlightCandidates = new List<(int, int)>(
 																	from cellOffset in bodyMap.Offsets
 																	where grid.CandidateExists(cellOffset, digit)
