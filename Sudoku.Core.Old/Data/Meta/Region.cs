@@ -23,7 +23,6 @@ namespace Sudoku.Data.Meta
 
 		public int Index { get; }
 
-		[SuppressMessage("", "CS8509")]
 		public Region[] CrossRegions
 		{
 			get
@@ -59,7 +58,8 @@ namespace Sudoku.Data.Meta
 					(Block, 5) => new[] { Parse("r4"), Parse("r5"), Parse("r6"), Parse("c7"), Parse("c8"), Parse("c9") },
 					(Block, 6) => new[] { Parse("r7"), Parse("r8"), Parse("r9"), Parse("c1"), Parse("c2"), Parse("c3") },
 					(Block, 7) => new[] { Parse("r7"), Parse("r8"), Parse("r9"), Parse("c4"), Parse("c5"), Parse("c6") },
-					(Block, 8) => new[] { Parse("r7"), Parse("r8"), Parse("r9"), Parse("c7"), Parse("c8"), Parse("c9") }
+					(Block, 8) => new[] { Parse("r7"), Parse("r8"), Parse("r9"), Parse("c7"), Parse("c8"), Parse("c9") },
+					_ => throw new Exception($"Impossible case ({nameof(RegionType)} is out of range).")
 				};
 			}
 		}

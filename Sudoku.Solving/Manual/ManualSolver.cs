@@ -6,6 +6,7 @@ using Sudoku.Solving.Manual.Fishes.Basic;
 using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.Singles;
 using Sudoku.Solving.Manual.Subsets;
+using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 
 namespace Sudoku.Solving.Manual
@@ -34,6 +35,7 @@ namespace Sudoku.Solving.Manual
 				new SubsetTechniqueSearcher(),
 				new NormalFishTechniqueSearcher(),
 				new RegularWingTechniqueSearcher(CheckRegularWingSize),
+				new IrregularWingTechniqueSearcher(),
 			};
 
 			// Start time recording and solving.

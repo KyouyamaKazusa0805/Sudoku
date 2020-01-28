@@ -29,7 +29,8 @@ namespace System.Linq
 		/// </returns>
 		[return: MaybeNull]
 		public static TElement GetElementByMinSelector<TElement, TComparable>(
-			this IEnumerable<TElement> elements, Func<TElement, IComparable<TComparable>> selector) =>
+			this IEnumerable<TElement> elements, Func<TElement, IComparable<TComparable>> selector)
+			where TElement : notnull =>
 			(from element in elements orderby selector(element) select element).FirstOrDefault();
 
 		/// <summary>
@@ -41,6 +42,7 @@ namespace System.Linq
 		/// <returns>The total number.</returns>
 		public static int Count<TElement>(
 			this IEnumerable<TElement> elements, Func<TElement, int> countingFormula)
+			where TElement : notnull
 		{
 			int count = 0;
 			foreach (var element in elements)
@@ -62,6 +64,7 @@ namespace System.Linq
 		public static int Count<TElement>(
 			this IEnumerable<TElement> elements, Predicate<TElement> selector,
 			Func<TElement, int> countingFormula)
+			where TElement : notnull
 		{
 			int count = 0;
 			foreach (var element in elements)
@@ -73,6 +76,23 @@ namespace System.Linq
 			}
 
 			return count;
+		}
+
+		/// <summary>
+		/// Convert the collection into a read-only list.
+		/// </summary>
+		/// <typeparam name="TElement">The type of the element.</typeparam>
+		/// <param name="elements">All elements.</param>
+		/// <returns>The read-only list.</returns>
+		public static IReadOnlyList<TElement> ToReadOnlyList<TElement>(
+			this IEnumerable<TElement> elements)
+			where TElement : notnull
+		{
+			return elements switch
+			{
+				IList<TElement> list => (IReadOnlyList<TElement>)list,
+				_ => new List<TElement>(elements)
+			};
 		}
 	}
 }

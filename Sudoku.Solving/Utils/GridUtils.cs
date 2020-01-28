@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
@@ -100,6 +101,61 @@ namespace Sudoku.Solving.Utils
 			// will be passed a ref value ('ref int', not 'int').
 			result.ReverseBits();
 			return (short)(result >> 23 & 511); // 23 == 32 - 9
+		}
+
+		/// <summary>
+		/// Find all bivalue cells displaying with a <see cref="GridMap"/>.
+		/// </summary>
+		/// <param name="this">The grid.</param>
+		/// <param name="count">
+		/// (out parameter) The number of bivalue cells.
+		/// This parameter is only used for quickening the code running.
+		/// </param>
+		/// <returns>The grid map.</returns>
+		public static GridMap GetBivalueCellsMap(this Grid @this, out int count)
+		{
+			var bivalueCellsMap = new GridMap();
+			count = 0;
+			int i = 0;
+			foreach (var (status, mask) in @this)
+			{
+				if (status == CellStatus.Empty && (~mask & 511).CountSet() == 2)
+				{
+					bivalueCellsMap[i] = true;
+					count++;
+				}
+
+				i++;
+			}
+
+			return bivalueCellsMap;
+		}
+
+		/// <summary>
+		/// Find all conjugate pairs in a grid.
+		/// </summary>
+		/// <param name="this">The grid.</param>
+		/// <returns>All conjugate pairs.</returns>
+		public static IReadOnlyList<ConjugatePair> GetAllConjugatePairs(this Grid @this)
+		{
+			var list = new List<ConjugatePair>();
+			for (int region = 0; region < 27; region++)
+			{
+				for (int digit = 0; digit < 9; digit++)
+				{
+					short mask = @this.GetDigitAppearingMask(digit, region);
+					if (mask.CountSet() == 2)
+					{
+						// Conjugate pair found.
+						int[] z = mask.GetAllSets().ToArray();
+						int p1 = RegionUtils.GetCellOffset(region, z[0]);
+						int p2 = RegionUtils.GetCellOffset(region, z[1]);
+						list.Add(new ConjugatePair(p1, p2, digit));
+					}
+				}
+			}
+
+			return list;
 		}
 	}
 }

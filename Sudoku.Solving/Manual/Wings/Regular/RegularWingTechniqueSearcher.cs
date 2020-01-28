@@ -31,19 +31,9 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		{
 			var result = new List<RegularWingTechniqueInfo>();
 
-			// Check all bivalue cells.
-			(GridMap _map, int _count) pair = (new GridMap(), 0);
-			int i = 0;
-			foreach (var (status, mask) in grid)
-			{
-				if (status == CellStatus.Empty && (~mask & 511).CountSet() == 2)
-				{
-					pair._map[i] = true;
-					pair._count++; // 'count' is only used for quickening the code running.
-				}
-
-				i++;
-			}
+			// Search for all bivalue cells.
+			var map = grid.GetBivalueCellsMap(out int count);
+			var pair = (map, count);
 
 			// Iterates on size.
 			for (int size = 3; size <= _size; size++)

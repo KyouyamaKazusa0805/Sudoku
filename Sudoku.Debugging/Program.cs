@@ -15,7 +15,7 @@
 				OptimizedApplyingOrder = true
 			};
 			var grid = Sudoku.Data.Meta.Grid.Parse(
-				".....246.....6.871...7.......4.38..261..5..848..69.5.......5...245.1.....674.....");
+				"503092000000007985000000000005008160640000092039600700000000000482700000000180407");
 			var analysisResult = solver.Solve(grid);
 			System.Console.WriteLine(analysisResult);
 		}

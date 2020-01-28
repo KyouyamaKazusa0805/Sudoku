@@ -22,7 +22,8 @@ namespace Sudoku.Solving.Utils
 		/// <param name="cellOffset">The cell offset.</param>
 		/// <returns>The output string described as 'r_c_'.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static string ToString(int cellOffset) => $"r{cellOffset / 9 + 1}c{cellOffset % 9 + 1}";
+		public static string ToString(int cellOffset) =>
+			$"r{cellOffset / 9 + 1}c{cellOffset % 9 + 1}";
 
 		/// <summary>
 		/// Get the full string of the specified cell offset.
@@ -30,7 +31,32 @@ namespace Sudoku.Solving.Utils
 		/// <param name="cellOffset">The cell offset.</param>
 		/// <returns>The output string described as 'r_c_b_'.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static string ToFullString(int cellOffset) =>
-			$"r{cellOffset / 9 + 1}c{cellOffset % 9 + 1}b{cellOffset / 3 * 3 + cellOffset % 3 + 1}";
+		public static string ToFullString(int cellOffset)
+		{
+			var (r, c, b) = GetRegion(cellOffset);
+			return $"r{r + 1}c{c + 1}b{b + 1}";
+		}
+
+		/// <summary>
+		/// Get the row, column and block index of the specified cell.
+		/// </summary>
+		/// <param name="cellOffset">The cell offset.</param>
+		/// <returns>The row, column and block index triplet.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static (int _row, int _column, int _block) GetRegion(int cellOffset) =>
+			(cellOffset / 9, cellOffset % 9, cellOffset / 9 / 3 * 3 + cellOffset % 9 / 3);
+
+		/// <summary>
+		/// Check two cells have different row, column and block.
+		/// </summary>
+		/// <param name="cell1">The cell offset 1.</param>
+		/// <param name="cell2">The cell offset 2.</param>
+		/// <returns>A <see cref="bool"/> indicating that.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool IsSameRegion(int cell1, int cell2)
+		{
+			var ((r1, c1, b1), (r2, c2, b2)) = (GetRegion(cell1), GetRegion(cell2));
+			return r1 == r2 || c1 == c2 || b1 == b2;
+		}
 	}
 }

@@ -1045,6 +1045,14 @@
             <param name="countingFormula">The formula used in counting.</param>
             <returns>The total number.</returns>
         </member>
+        <member name="M:System.Linq.EnumerableEx.ToReadOnlyList``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Convert the collection into a read-only list.
+            </summary>
+            <typeparam name="TElement">The type of the element.</typeparam>
+            <param name="elements">All elements.</param>
+            <returns>The read-only list.</returns>
+        </member>
         <member name="T:System.ICloneable`1">
             <summary>
             Supports cloning, which creates a new instance of a class with the same value
