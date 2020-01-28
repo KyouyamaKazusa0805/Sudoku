@@ -1,4 +1,8 @@
-﻿namespace Sudoku.Debugging
+﻿using System;
+using Sudoku.Data.Meta;
+using Sudoku.Solving.Manual;
+
+namespace Sudoku.Debugging
 {
 	/// <summary>
 	/// The class handling all program-level actions.
@@ -10,14 +14,13 @@
 		/// </summary>
 		private static void Main()
 		{
-			var solver = new Sudoku.Solving.Manual.ManualSolver
+			var solver = new ManualSolver
 			{
 				OptimizedApplyingOrder = true
 			};
-			var grid = Sudoku.Data.Meta.Grid.Parse(
-				"503092000000007985000000000005008160640000092039600700000000000482700000000180407");
+			var grid = Grid.Parse("503092000000007985000000000005008160640000092039600700000000000482700000000180407");
 			var analysisResult = solver.Solve(grid);
-			System.Console.WriteLine(analysisResult);
+			Console.WriteLine(analysisResult);
 		}
 	}
 }
