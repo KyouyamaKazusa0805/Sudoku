@@ -59,36 +59,33 @@ namespace Sudoku.Solving.Manual
 					// continue solving puzzle.
 					continue;
 				}
+
+				step.ApplyTo(cloneation);
+				steps.Add(step);
+				if (cloneation.HasSolved)
+				{
+					// The puzzle has been solved.
+					// :)
+					if (stopwatch.IsRunning)
+					{
+						stopwatch.Stop();
+					}
+
+					return new AnalysisResult(
+						initialGrid: grid,
+						solverName: SolverName,
+						hasSolved: true,
+						solution: cloneation,
+						elapsedTime: stopwatch.Elapsed,
+						solvingList: steps,
+						additional: null);
+				}
 				else
 				{
-					step.ApplyTo(cloneation);
-					steps.Add(step);
-
-					if (cloneation.HasSolved)
-					{
-						// The puzzle has been solved.
-						// :)
-						if (stopwatch.IsRunning)
-						{
-							stopwatch.Stop();
-						}
-
-						return new AnalysisResult(
-							initialGrid: grid,
-							solverName: SolverName,
-							hasSolved: true,
-							solution: cloneation,
-							elapsedTime: stopwatch.Elapsed,
-							solvingList: steps,
-							additional: null);
-					}
-					else
-					{
-						// The puzzle has not been finished,
-						// we should turn to the first step finder
-						// to continue solving puzzle.
-						goto Label_StartSolving;
-					}
+					// The puzzle has not been finished,
+					// we should turn to the first step finder
+					// to continue solving puzzle.
+					goto Label_StartSolving;
 				}
 			}
 

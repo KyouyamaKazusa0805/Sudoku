@@ -72,7 +72,7 @@
 		/// The field bound with <see cref="CheckRegularWingSize"/>.
 		/// </summary>
 		/// <seealso cref="CheckRegularWingSize"/>
-		private int _checkRegularWingSize;
+		private int _checkRegularWingSize = 5;
 
 		/// <summary>
 		/// <para>

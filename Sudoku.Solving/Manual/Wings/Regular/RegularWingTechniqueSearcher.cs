@@ -88,7 +88,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 					goto Label_ContinueLoop;
 				}
 
-				// Start awful 8-layer for loop.
+				// Start awful 'for' loop.
 				int[] offsets = intersection.ToArray();
 				for (int i1 = 0, length = offsets.Length; i1 < length - size + 2; i1++)
 				{
