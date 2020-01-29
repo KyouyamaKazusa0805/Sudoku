@@ -191,6 +191,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 							}
 						}
 					}
+					foreach (int cell in extraCells)
+					{
+						foreach (int digit in digits)
+						{
+							if (grid.CandidateExists(cell, digit))
+							{
+								candidateOffsets.Add((1, cell * 9 + digit));
+							}
+						}
+					}
 
 					// Check whether elimination cells exist.
 					var (a, b) = (extraCells[0], extraCells[1]);
