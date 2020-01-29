@@ -131,7 +131,7 @@ namespace Sudoku.Solving.Manual.Intersections
 										}
 									}
 								}
-								
+
 								if (conclusions.Count != 0)
 								{
 									result.Add(

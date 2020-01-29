@@ -198,7 +198,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 														new View(
 															cellOffsets: null,
 															candidateOffsets: highlightCandidates,
-															regionOffsets: new List<(int, int)>
+															regionOffsets: new[]
 															{
 																(0, bs1),
 																(0, bs2),
@@ -365,7 +365,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 																	new View(
 																		cellOffsets: null,
 																		candidateOffsets: highlightCandidates,
-																		regionOffsets: new List<(int, int)>
+																		regionOffsets: new[]
 																		{
 																			(0, bs1),
 																			(0, bs2),
@@ -541,7 +541,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 																			new View(
 																				cellOffsets: null,
 																				candidateOffsets: highlightCandidates,
-																				regionOffsets: new List<(int, int)>
+																				regionOffsets: new[]
 																				{
 																					(0, bs1),
 																					(0, bs2),
