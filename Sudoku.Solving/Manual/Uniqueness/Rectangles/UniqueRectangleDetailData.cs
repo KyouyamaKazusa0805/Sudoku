@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 {
 	/// <summary>
-	/// Provides all unique rectangle in detail.
+	/// Provides all data for unique rectangles (basic and extended types).
 	/// </summary>
 	public abstract class UniqueRectangleDetailData
 	{

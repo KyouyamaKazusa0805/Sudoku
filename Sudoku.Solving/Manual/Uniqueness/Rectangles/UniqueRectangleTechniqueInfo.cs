@@ -24,7 +24,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 		/// <inheritdoc/>
 		public override string Name =>
-			$"Unique Rectangle Type {DetailData.Type}";
+			$"Unique Rectangle (Type {DetailData.Type})";
 
 		/// <inheritdoc/>
 		public override decimal Difficulty
@@ -35,7 +35,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 				{
 					1 => 4.5m,
 					2 => 4.6m,
-					3 => throw new NotImplementedException("I have no Type 3 detail data class."),
+					3 => throw new NotImplementedException("I don't have Type 3 detail data class."),
 					4 => 4.6m,
 					5 => 4.6m,
 					6 => 4.7m,

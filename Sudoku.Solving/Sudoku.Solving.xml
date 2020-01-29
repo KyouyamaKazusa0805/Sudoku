@@ -1426,7 +1426,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleDetailData">
             <summary>
-            Provides all unique rectangle in detail.
+            Provides all data for unique rectangles (basic and extended types).
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleDetailData.#ctor(System.Int32[],System.Int32[])">
@@ -1571,6 +1571,39 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType1DetailData.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType2DetailData">
+            <summary>
+            Indicates the detail data of UR type 2.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType2DetailData.#ctor(System.Int32[],System.Int32[],System.Int32,System.Boolean)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="cells">All cells.</param>
+            <param name="digits">All digits.</param>
+            <param name="extraDigit">The extra digit.</param>
+            <param name="isType5">
+            Indicates whether this type is the variant of type 2.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType2DetailData.ExtraDigit">
+            <summary>
+            Indicates the extra digit in this pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType2DetailData.IsType5">
+            <summary>
+            Indicates whether this type is the variant of type 2
+            (pattern with diagonal extra digits).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType2DetailData.Type">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType2DetailData.ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo">

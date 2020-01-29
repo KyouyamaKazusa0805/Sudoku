@@ -4,6 +4,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
+using UrType1 = Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType1DetailData;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 {
@@ -35,59 +36,52 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 			foreach (int[] cells in TraversingTable)
 			{
-				// TODO: Consider the pattern below:
-				// a b
-				// b -ac
-				// , where '-ac' means digit 'a' and 'c' can be eliminated,
-				// which is a incompleted pattern.
-
-				var bivalueCells = new List<int>();
-				var extraCells = new List<int>();
-				foreach (int cell in cells)
+				if (cells.Any(c => grid.GetCellStatus(c) != CellStatus.Empty))
 				{
-					short cellMask = (short)(grid.GetMask(cell) & 511);
-					if (cellMask.CountSet() == 7)
-					{
-						bivalueCells.Add(cell);
-					}
-					else
-					{
-						extraCells.Add(cell);
-					}
+					continue;
 				}
 
-				short bivalueCellsMask = 0;
-				foreach (int cell in bivalueCells)
+				var cellTriplets = new int[4][]
 				{
-					bivalueCellsMask |= grid.GetMask(cell);
-				}
-				bivalueCellsMask &= 511;
+					new[] { cells[1], cells[2], cells[3] }, // 0
+					new[] { cells[0], cells[2], cells[3] }, // 1
+					new[] { cells[0], cells[1], cells[3] }, // 2
+					new[] { cells[0], cells[1], cells[2] }, // 3
+				};
+				var cellPairs = new int[6][]
+				{
+					new[] { cells[0], cells[1] }, // 2, 3
+					new[] { cells[0], cells[2] }, // 1, 3
+					new[] { cells[0], cells[3] }, // 1, 2
+					new[] { cells[1], cells[2] }, // 0, 3
+					new[] { cells[1], cells[3] }, // 0, 2
+					new[] { cells[2], cells[3] }, // 0, 1
+				};
 
-				int z = ~bivalueCellsMask & 511;
-				if (extraCells.Count == 1 && z.CountSet() == 2)
+				// Traverse on 'cellTriplets'.
+				// Check type 1.
+				for (int i = 0; i < 4; i++)
 				{
-					// UR type 1 found.
-					var conclusions = new List<Conclusion>();
-					var digits = z.GetAllSets();
-					foreach (int digit in digits)
+					int[] cellTriplet = cellTriplets[i];
+					short mask = 511;
+					foreach (int cell in cellTriplet)
 					{
-						int extraCell = extraCells[0];
-						if (grid.CandidateExists(extraCell, digit))
-						{
-							conclusions.Add(
-								new Conclusion(
-									ConclusionType.Elimination, extraCell * 9 + digit));
-						}
+						mask &= grid.GetMask(cell);
 					}
 
-					int elimCount = conclusions.Count;
-					if (elimCount != 0 && (
-						_checkIncompleted && elimCount == 1
-						|| !_checkIncompleted && elimCount == 2))
+					if (mask.CountSet() == 7)
 					{
-						// Add all highlight candidates.
+						// Pattern found:
+						// a(b) (a)b
+						// (a)b a(b)+
+
+						// The index is 'i', which also represents the index of the extra cell.
+						int extraCell = cells[i];
+
+						// Record all highlight candidates.
 						var candidateOffsets = new List<(int, int)>();
-						foreach (int cell in bivalueCells)
+						var digits = (~grid.GetMask(cellTriplet[0]) & 511).GetAllSets();
+						foreach (int cell in cellTriplet)
 						{
 							foreach (int digit in digits)
 							{
@@ -97,10 +91,28 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 								}
 							}
 						}
-						var displayCells = new List<int>();
-						displayCells.AddRange(bivalueCells);
-						displayCells.Add(extraCells[0]);
 
+						// Record all eliminations.
+						var conclusions = new List<Conclusion>();
+						foreach (int digit in (~grid.GetMask(extraCell) & 511).GetAllSets())
+						{
+							if (grid.CandidateExists(extraCell, digit) && digits.Contains(digit))
+							{
+								conclusions.Add(
+									new Conclusion(
+										ConclusionType.Elimination, extraCell * 9 + digit));
+							}
+						}
+
+						// Check the number of candidates and eliminations.
+						int elimCount = conclusions.Count;
+						if (!_checkIncompleted && (candidateOffsets.Count != 6 || elimCount != 2)
+							|| _checkIncompleted && elimCount != 0)
+						{
+							continue;
+						}
+
+						// Type 1 found.
 						result.Add(
 							new UniqueRectangleTechniqueInfo(
 								conclusions,
@@ -112,11 +124,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										regionOffsets: null,
 										linkMasks: null)
 								},
-								detailData: new UniqueRectangleType1DetailData(
-									cells: displayCells.ToArray(),
-									digits: digits.ToArray())));
+								detailData: new UrType1(cells, digits.ToArray())));
 					}
 				}
+
+				// Traverse on 'cellPairs'.
+				// Check type 2.
+				//for (int i = 0; i < 6; i++)
+				//{
+				//	int[] cellPair = cellPairs[i];
+				//
+				//}
 			}
 
 			return result;

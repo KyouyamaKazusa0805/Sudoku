@@ -12,7 +12,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// </summary>
 		/// <param name="cells">Cells.</param>
 		/// <param name="digits">Digits.</param>
-		public UniqueRectangleType1DetailData(int[] cells, int[] digits) : base(cells, digits)
+		public UniqueRectangleType1DetailData(
+			int[] cells, int[] digits) : base(cells, digits)
 		{
 		}
 
