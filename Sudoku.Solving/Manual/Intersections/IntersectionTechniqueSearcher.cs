@@ -137,7 +137,7 @@ namespace Sudoku.Solving.Manual.Intersections
 									result.Add(
 										new IntersectionTechniqueInfo(
 											conclusions,
-											views: new List<View>
+											views: new[]
 											{
 												new View(
 													cellOffsets: null,

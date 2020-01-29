@@ -19,7 +19,7 @@ namespace Sudoku.Debugging
 			{
 				OptimizedApplyingOrder = true
 			};
-			var grid = Grid.Parse("...3..1.8.5.4...9.39..6...7.342..............96..3...1..871...5.....2....4.6.8...");
+			var grid = Grid.Parse(".9...2...6..4....3..5..628....8....4.1...........27........341...65.43.2..9.1..76");
 			var analysisResult = solver.Solve(grid);
 			Console.WriteLine(analysisResult);
 		}

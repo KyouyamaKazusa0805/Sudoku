@@ -80,7 +80,7 @@ namespace Sudoku.Solving.Manual.Subsets
 							{
 								// Naked pair found.
 								var digits = new List<int>((511 & ~mask2).GetAllSets());
-								var offsets = new List<int> { pos1, pos2 };
+								var offsets = new[] { pos1, pos2 };
 								var conclusions =
 									GetNakedSubsetConclusions(
 										grid, offsets, digits, out bool? isLocked);
@@ -113,7 +113,7 @@ namespace Sudoku.Solving.Manual.Subsets
 									{
 										// Naked triple found.
 										var digits = new List<int>((511 & ~mask3).GetAllSets());
-										var offsets = new List<int> { pos1, pos2, pos3 };
+										var offsets = new[] { pos1, pos2, pos3 };
 										var conclusions =
 											GetNakedSubsetConclusions(
 												grid, offsets, digits, out bool? isLocked);
@@ -144,7 +144,7 @@ namespace Sudoku.Solving.Manual.Subsets
 										{
 											// Naked triple found.
 											var digits = new List<int>((511 & ~mask4).GetAllSets());
-											var offsets = new List<int> { pos1, pos2, pos3, pos4 };
+											var offsets = new[]{ pos1, pos2, pos3, pos4 };
 											var conclusions =
 												GetNakedSubsetConclusions(
 													grid, offsets, digits, out bool? isLocked);
@@ -184,12 +184,14 @@ namespace Sudoku.Solving.Manual.Subsets
 			result.Add(
 				new NakedSubsetTechniqueInfo(
 					conclusions,
-					views: new List<View>
+					views: new[]
 					{
 						new View(
 							cellOffsets: null,
-							candidateOffsets: GetNakedSubsetsHighlightedCandidateOffsets(grid, offsets, digits),
-							regionOffsets: new List<(int, int)>
+							candidateOffsets:
+								GetNakedSubsetsHighlightedCandidateOffsets(
+									grid, offsets, digits),
+							regionOffsets: new[]
 							{
 								(0, region)
 							},
@@ -332,7 +334,7 @@ namespace Sudoku.Solving.Manual.Subsets
 							if (mask2.CountSet() == 2)
 							{
 								// Hidden pair found.
-								var digits = new List<int> { d1, d2 };
+								var digits = new[] { d1, d2 };
 								var conclusions =
 									GetHiddenSubsetsConclusions(
 										grid, region, mask2, digits, out var cellOffsets,
@@ -342,12 +344,12 @@ namespace Sudoku.Solving.Manual.Subsets
 									result.Add(
 										new HiddenSubsetTechniqueInfo(
 											conclusions,
-											views: new List<View>
+											views: new[]
 											{
 												new View(
 													cellOffsets: null,
 													candidateOffsets: highlightedCandidates,
-													regionOffsets: new List<(int, int)>
+													regionOffsets: new[]
 													{
 														(0, region)
 													},
@@ -374,7 +376,7 @@ namespace Sudoku.Solving.Manual.Subsets
 									if (mask3.CountSet() == 3)
 									{
 										// Hidden triple found.
-										var digits = new List<int> { d1, d2, d3 };
+										var digits = new[] { d1, d2, d3 };
 										var conclusions =
 											GetHiddenSubsetsConclusions(
 												grid, region, mask3, digits, out var cellOffsets,
@@ -384,12 +386,12 @@ namespace Sudoku.Solving.Manual.Subsets
 											result.Add(
 												new HiddenSubsetTechniqueInfo(
 													conclusions,
-													views: new List<View>
+													views: new[]
 													{
 														new View(
 															cellOffsets: null,
 															candidateOffsets: highlightedCandidates,
-															regionOffsets: new List<(int, int)>
+															regionOffsets: new[]
 															{
 																(0, region)
 															},
@@ -416,7 +418,7 @@ namespace Sudoku.Solving.Manual.Subsets
 										if (mask4.CountSet() == 4)
 										{
 											// Hidden quadruple found.
-											var digits = new List<int> { d1, d2, d3, d4 };
+											var digits = new[] { d1, d2, d3, d4 };
 											var conclusions =
 												GetHiddenSubsetsConclusions(
 													grid, region, mask4, digits, out var cellOffsets,
@@ -426,12 +428,12 @@ namespace Sudoku.Solving.Manual.Subsets
 												result.Add(
 													new HiddenSubsetTechniqueInfo(
 														conclusions,
-														views: new List<View>
+														views: new[]
 														{
 															new View(
 																cellOffsets: null,
 																candidateOffsets: highlightedCandidates,
-																regionOffsets: new List<(int, int)>
+																regionOffsets: new[]
 																{
 																	(0, region)
 																},

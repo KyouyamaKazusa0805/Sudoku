@@ -158,7 +158,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 							result.Add(
 								new WWingTechniqueInfo(
 									conclusions,
-									views: new List<View>
+									views: new[]
 									{
 										new View(
 											cellOffsets: null,

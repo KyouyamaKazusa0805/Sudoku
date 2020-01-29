@@ -193,7 +193,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 													conclusions: new List<Conclusion>(
 														from cand in elimList
 														select new Conclusion(ConclusionType.Elimination, cand)),
-													views: new List<View>
+													views: new[]
 													{
 														new View(
 															cellOffsets: null,
@@ -360,7 +360,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 																conclusions: new List<Conclusion>(
 																	from cand in elimList
 																	select new Conclusion(ConclusionType.Elimination, cand)),
-																views: new List<View>
+																views: new[]
 																{
 																	new View(
 																		cellOffsets: null,
@@ -536,7 +536,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 																		conclusions: new List<Conclusion>(
 																			from cand in elimList
 																			select new Conclusion(ConclusionType.Elimination, cand)),
-																		views: new List<View>
+																		views: new[]
 																		{
 																			new View(
 																				cellOffsets: null,

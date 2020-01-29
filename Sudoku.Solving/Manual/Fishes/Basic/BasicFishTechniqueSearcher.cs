@@ -84,7 +84,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 									result.Add(
 										new BasicFishTechniqueInfo(
 											conclusions,
-											views: new List<View>
+											views: new[]
 											{
 											new View(
 												cellOffsets: null,
@@ -128,7 +128,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 											result.Add(
 												new BasicFishTechniqueInfo(
 													conclusions,
-													views: new List<View>
+													views: new[]
 													{
 													new View(
 														cellOffsets: null,
@@ -173,7 +173,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 												result.Add(
 													new BasicFishTechniqueInfo(
 														conclusions,
-														views: new List<View>
+														views: new[]
 														{
 															new View(
 																cellOffsets: null,

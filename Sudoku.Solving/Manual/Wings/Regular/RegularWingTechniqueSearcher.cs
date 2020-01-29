@@ -361,7 +361,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			result.Add(
 				new RegularWingTechniqueInfo(
 					conclusions,
-					views: new List<View>
+					views: new[]
 					{
 						new View(
 							cellOffsets:

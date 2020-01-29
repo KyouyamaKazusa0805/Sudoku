@@ -78,22 +78,20 @@ namespace Sudoku.Solving.Manual.Singles
 						int digit = ((short)(511 & ~cands)).FindFirstSet();
 						result.Add(
 							new FullHouseTechniqueInfo(
-								conclusions: new List<Conclusion>
+								conclusions: new[]
 								{
-									new Conclusion(ConclusionType.Assignment, fullHouseCellOffset, digit)
+									new Conclusion(
+										ConclusionType.Assignment, fullHouseCellOffset, digit)
 								},
-								views: new List<View>
+								views: new[]
 								{
 									new View(
 										cellOffsets: null,
-										candidateOffsets: new List<(int, int)>
+										candidateOffsets: new[]
 										{
 											(0, fullHouseCellOffset * 9 + digit)
 										},
-										regionOffsets: new List<(int, int)>
-										{
-											(0, region)
-										},
+										regionOffsets: new[] { (0, region) },
 										linkMasks: null)
 								},
 								cellOffset: fullHouseCellOffset,
@@ -149,11 +147,11 @@ namespace Sudoku.Solving.Manual.Singles
 
 						result.Add(
 							new HiddenSingleTechniqueInfo(
-								conclusions: new List<Conclusion>
+								conclusions: new[]
 								{
 									new Conclusion(ConclusionType.Assignment, hiddenSingleCellOffset, digit)
 								},
-								views: new List<View>
+								views: new[]
 								{
 									new View(
 										cellOffsets: null,
@@ -187,11 +185,11 @@ namespace Sudoku.Solving.Manual.Singles
 					int digit = mask.FindFirstSet();
 					result.Add(
 						new NakedSingleTechniqueInfo(
-							conclusions: new List<Conclusion>
+							conclusions: new[]
 							{
 								new Conclusion(ConclusionType.Assignment, i, digit)
 							},
-							views: new List<View>
+							views: new[]
 							{
 								new View(
 									cellOffsets: null,
