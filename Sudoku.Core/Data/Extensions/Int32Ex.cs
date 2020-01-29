@@ -76,13 +76,13 @@ namespace Sudoku.Data.Extensions
 		}
 
 		/// <summary>
-		/// Reverse all bits in a specified value.
+		/// <para>Reverse all bits in a specified value.</para>
+		/// <para>
+		/// Note that the value is passed by <b>reference</b> though the
+		/// method is an extension method, and returns nothing.
+		/// </para>
 		/// </summary>
 		/// <param name="this">(ref parameter) The value.</param>
-		/// <remarks>
-		/// Note that the value is passed by reference though the
-		/// method is an extension method, and returns nothing.
-		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void ReverseBits(this ref int @this)
 		{

@@ -50,6 +50,16 @@
             <param name="this">The value.</param>
             <returns>All offsets.</returns>
         </member>
+        <member name="M:Sudoku.Data.Extensions.Int16Ex.ReverseBits(System.Int16@)">
+            <summary>
+            <para>Reverse all bits in a specified value.</para>
+            <para>
+            Note that the value is passed by <b>reference</b> though the
+            method is an extension method, and returns nothing.
+            </para>
+            </summary>
+            <param name="this">(ref parameter) The value.</param>
+        </member>
         <member name="T:Sudoku.Data.Extensions.Int32Ex">
             <summary>
             Provides extension methods on <see cref="T:System.Int32"/>.
@@ -85,13 +95,13 @@
         </member>
         <member name="M:Sudoku.Data.Extensions.Int32Ex.ReverseBits(System.Int32@)">
             <summary>
-            Reverse all bits in a specified value.
+            <para>Reverse all bits in a specified value.</para>
+            <para>
+            Note that the value is passed by <b>reference</b> though the
+            method is an extension method, and returns nothing.
+            </para>
             </summary>
             <param name="this">(ref parameter) The value.</param>
-            <remarks>
-            Note that the value is passed by reference though the
-            method is an extension method, and returns nothing.
-            </remarks>
         </member>
         <member name="T:Sudoku.Data.Extensions.Int64Ex">
             <summary>

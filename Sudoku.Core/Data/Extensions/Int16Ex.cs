@@ -42,5 +42,21 @@ namespace Sudoku.Data.Extensions
 				}
 			}
 		}
+
+		/// <summary>
+		/// <para>Reverse all bits in a specified value.</para>
+		/// <para>
+		/// Note that the value is passed by <b>reference</b> though the
+		/// method is an extension method, and returns nothing.
+		/// </para>
+		/// </summary>
+		/// <param name="this">(ref parameter) The value.</param>
+		public static void ReverseBits(this ref short @this)
+		{
+			@this = (short)(((@this >> 1) & 0x5555) | ((@this & 0x5555) << 1));
+			@this = (short)(((@this >> 2) & 0x3333) | ((@this & 0x3333) << 2));
+			@this = (short)(((@this >> 4) & 0x0f0f) | ((@this & 0x0f0f) << 4));
+			@this = (short)((@this >> 8) | (@this << 8));
+		}
 	}
 }
