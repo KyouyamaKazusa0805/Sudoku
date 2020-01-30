@@ -1606,6 +1606,42 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType2DetailData.ToString">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType3DetailData">
+            <summary>
+            Indicates the detail data of UR type 3.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType3DetailData.#ctor(System.Int32[],System.Int32[],System.Int32[],System.Int32[],System.Boolean)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="cells">All cells.</param>
+            <param name="digits">All digits.</param>
+            <param name="subsetDigits">All subset digits.</param>
+            <param name="subsetCells">All subset cells.</param>
+            <param name="isNaked">Indicates whether the subset is naked or not.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType3DetailData.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType3DetailData.SubsetDigits">
+            <summary>
+            Indicates all subset digits in this pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType3DetailData.SubsetCells">
+            <summary>
+            Indicates all subset cells in this pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType3DetailData.IsNaked">
+            <summary>
+            Indicates whether this subset is naked or not.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType3DetailData.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType4DetailData">
             <summary>
             Indicates the detail data of UR type 4.

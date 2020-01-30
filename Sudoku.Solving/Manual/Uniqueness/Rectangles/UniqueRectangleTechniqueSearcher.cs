@@ -6,9 +6,10 @@ using Sudoku.Data.Meta;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 using UrType1 = Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType1DetailData;
-using UrType2 = Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType2DetailData;
+using UrType3 = Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType3DetailData;
 using UrType4 = Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType4DetailData;
 using UrType6 = Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType6DetailData;
+using UrType2Or5 = Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType2DetailData;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 {
@@ -65,13 +66,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 				};
 
 				CheckType15(result, grid, cells, cellTriplets);
-				CheckType2456(result, grid, cells, cellPairs);
+				CheckType23456(result, grid, cells, cellPairs);
 			}
 
 			return result;
 		}
 
-		private void CheckType2456(
+		private void CheckType23456(
 			IList<UniquenessTechniqueInfo> result, Grid grid, int[] cells, int[][] cellPairs)
 		{
 			// Traverse on 'cellPairs'.
@@ -113,6 +114,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 				}
 				short totalMask = (short)(extraCellMask & cellPairMask);
 				var digits = (~grid.GetMask(cellPair[0]) & 511).GetAllSets();
+
 				if (totalMask.CountSet() == 6)
 				{
 					// Type 2 / 5 found.
@@ -185,7 +187,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 									regionOffsets: null,
 									linkMasks: null)
 							},
-							detailData: new UrType2(cells, digits.ToArray(), extraDigit, isType5)));
+							detailData: new UrType2Or5(cells, digits.ToArray(), extraDigit, isType5)));
 				}
 
 				// Then check type 4 / 6.
@@ -195,7 +197,546 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 				}
 				else
 				{
+					// Check type 4.
 					CheckType4(result, grid, cells, cellPair, extraCells, digits);
+
+					// Check type 3.
+					var (r1, c1, b1) = CellUtils.GetRegion(cells[0]);
+					var (r2, c2, b2) = CellUtils.GetRegion(cells[3]);
+					var regions = new[] { r1 + 9, r2 + 9, c1 + 18, c2 + 18, b1, b2 };
+					for (int size = 1; size <= 3; size++)
+					{
+						CheckType3Naked(result, grid, cells, cellPair, extraCells, digits, regions, size);
+						CheckType3Hidden(result, grid, cells, cellPair, extraCells, digits, regions, size);
+					}
+				}
+			}
+		}
+
+		private void CheckType3Naked(
+			IList<UniquenessTechniqueInfo> result, Grid grid, int[] cells,
+			int[] cellPair, int[] extraCells, IEnumerable<int> digits,
+			int[] regions, int size)
+		{
+			for (int i = 0; i < 6; i++)
+			{
+				int region = regions[i];
+				int[] cellsToTraverse = RegionUtils.GetCellOffsets(region).ToArray();
+				var (urCellsByIndex, extraCellsByIndex) = (i switch
+				{
+					0 => new[] { cellPair[0], cellPair[1] },
+					1 => new[] { extraCells[0], extraCells[1] },
+					2 => new[] { cellPair[0], extraCells[0] },
+					3 => new[] { cellPair[1], extraCells[1] },
+					4 => new[] { cellPair[0], extraCells[0] },
+					5 => new[] { cellPair[1], extraCells[1] },
+					_ => throw new Exception("Impossible case.")
+				}, i switch
+				{
+					0 => new[] { extraCells[0], extraCells[1] },
+					1 => new[] { cellPair[0], cellPair[1] },
+					2 => new[] { cellPair[1], extraCells[1] },
+					3 => new[] { cellPair[0], extraCells[0] },
+					4 => new[] { cellPair[1], extraCells[1] },
+					5 => new[] { cellPair[0], extraCells[0] },
+					_ => throw new Exception("Impossible case.")
+				});
+				for (int i1 = 0; i1 < 10 - size; i1++)
+				{
+					int c1 = cellsToTraverse[i1];
+					if (cells.Contains(c1) || grid.GetCellStatus(c1) != CellStatus.Empty)
+					{
+						continue;
+					}
+
+					short mask1 = grid.GetMask(c1);
+					if (size == 1)
+					{
+						// Check light naked pair.
+						short mask = (short)(~mask1 & 511);
+						var allCells = new List<int>(cells) { c1 };
+						short otherDigitMask = GetOtherDigitMask(
+							grid, allCells, digits, out short digitKindsMask);
+						if (mask.CountSet() == 2 && otherDigitMask == mask)
+						{
+							// Type 3 (+ naked) found.
+							// Record all highlight candidates.
+							var candidateOffsets = new List<(int, int)>();
+							foreach (int cell in allCells)
+							{
+								for (int x = 0, temp = otherDigitMask; x < 9; x++, temp >>= 1)
+								{
+									if ((temp & 1) != 0 && grid.CandidateExists(cell, x))
+									{
+										candidateOffsets.Add((1, cell * 9 + x));
+									}
+								}
+								for (int x = 0, temp = digitKindsMask & ~otherDigitMask; x < 9; x++, temp >>= 1)
+								{
+									if ((temp & 1) != 0 && grid.CandidateExists(cell, x))
+									{
+										candidateOffsets.Add((0, cell * 9 + x));
+									}
+								}
+							}
+
+							// Record all eliminations.
+							var conclusions = new List<Conclusion>();
+							for (int digit = 0, temp = otherDigitMask; digit < 9; digit++, temp >>= 1)
+							{
+								if ((temp & 1) != 0)
+								{
+									GridMap elimMap = default;
+									for (int y = 0, count = 0; y < 5; y++)
+									{
+										int cell = allCells[y];
+										if (grid.CandidateExists(cell, digit))
+										{
+											if (count++ == 0)
+											{
+												elimMap = new GridMap(cell) { [cell] = false };
+											}
+											else
+											{
+												elimMap &= new GridMap(cell) { [cell] = false };
+											}
+										}
+									}
+
+									foreach (int cell in elimMap.Offsets)
+									{
+										if (grid.CandidateExists(cell, digit))
+										{
+											conclusions.Add(
+												new Conclusion(
+													ConclusionType.Elimination, cell * 9 + digit));
+										}
+									}
+								}
+							}
+
+							if (conclusions.Count == 0
+								|| !_checkIncompleted && candidateOffsets.Count(c =>
+								{
+									var (type, _) = c;
+									return type == 0;
+								}) != 8)
+							{
+								continue;
+							}
+
+							result.Add(
+								new UniqueRectangleTechniqueInfo(
+									conclusions,
+									views: new[]
+									{
+										new View(
+											cellOffsets: null,
+											candidateOffsets,
+											regionOffsets: null,
+											linkMasks: null)
+									},
+									detailData: new UrType3(
+										cells,
+										digits: digits.ToArray(),
+										subsetDigits: otherDigitMask.GetAllSets().ToArray(),
+										subsetCells: new[] { c1 },
+										true)));
+						}
+					}
+					else // size > 1
+					{
+						for (int i2 = i1 + 1; i2 < 11 - size; i2++)
+						{
+							int c2 = cellsToTraverse[i2];
+							if (cells.Contains(c2) || grid.GetCellStatus(c2) != CellStatus.Empty)
+							{
+								continue;
+							}
+
+							short mask2 = grid.GetMask(c2);
+							if (size == 2)
+							{
+								// Check light naked triple.
+								short mask = (short)((~mask1 & 511) | (~mask2 & 511));
+								var allCells = new List<int>(cells) { c1, c2 };
+								short otherDigitMask = GetOtherDigitMask(
+									grid, allCells, digits, out short digitKindsMask);
+								if (mask.CountSet() == 3 && otherDigitMask == mask)
+								{
+									// Type 3 (+ naked) found.
+									// Record all highlight candidates.
+									var candidateOffsets = new List<(int, int)>();
+									foreach (int cell in allCells)
+									{
+										for (int x = 0, temp = otherDigitMask; x < 9; x++, temp >>= 1)
+										{
+											if ((temp & 1) != 0 && grid.CandidateExists(cell, x))
+											{
+												candidateOffsets.Add((1, cell * 9 + x));
+											}
+										}
+										for (int x = 0, temp = digitKindsMask & ~otherDigitMask; x < 9; x++, temp >>= 1)
+										{
+											if ((temp & 1) != 0 && grid.CandidateExists(cell, x))
+											{
+												candidateOffsets.Add((0, cell * 9 + x));
+											}
+										}
+									}
+
+									// Record all eliminations.
+									var conclusions = new List<Conclusion>();
+									for (int digit = 0, temp = otherDigitMask; digit < 9; digit++, temp >>= 1)
+									{
+										if ((temp & 1) != 0)
+										{
+											GridMap elimMap = default;
+											for (int y = 0, count = 0; y < 6; y++)
+											{
+												int cell = allCells[y];
+												if (grid.CandidateExists(cell, digit))
+												{
+													if (count++ == 0)
+													{
+														elimMap = new GridMap(cell) { [cell] = false };
+													}
+													else
+													{
+														elimMap &= new GridMap(cell) { [cell] = false };
+													}
+												}
+											}
+
+											foreach (int cell in elimMap.Offsets)
+											{
+												if (grid.CandidateExists(cell, digit))
+												{
+													conclusions.Add(
+														new Conclusion(
+															ConclusionType.Elimination, cell * 9 + digit));
+												}
+											}
+										}
+									}
+
+									if (conclusions.Count == 0
+										|| !_checkIncompleted && candidateOffsets.Count(c =>
+										{
+											var (type, _) = c;
+											return type == 0;
+										}) != 8)
+									{
+										continue;
+									}
+
+									result.Add(
+										new UniqueRectangleTechniqueInfo(
+											conclusions,
+											views: new[]
+											{
+												new View(
+													cellOffsets: null,
+													candidateOffsets,
+													regionOffsets: null,
+													linkMasks: null)
+											},
+											detailData: new UrType3(
+												cells,
+												digits: digits.ToArray(),
+												subsetDigits: otherDigitMask.GetAllSets().ToArray(),
+												subsetCells: new[] { c1, c2 },
+												true)));
+								}
+							}
+							else // size == 3
+							{
+								for (int i3 = i2 + 1; i3 < 9; i3++)
+								{
+									int c3 = cellsToTraverse[i3];
+									if (cells.Contains(c3) || grid.GetCellStatus(c3) != CellStatus.Empty)
+									{
+										continue;
+									}
+
+									// Check light naked quadruple.
+									short mask3 = grid.GetMask(c3);
+									short mask = (short)(((~mask1 & 511) | (~mask2 & 511) | (~mask3 & 511)) & 511);
+									var allCells = new List<int>(cells) { c1, c2, c3 };
+									short otherDigitMask = GetOtherDigitMask(
+										grid, allCells, digits, out short digitKindsMask);
+									if (mask.CountSet() == 4 && otherDigitMask == mask)
+									{
+										// Type 3 (+ naked) found.
+										// Record all highlight candidates.
+										var candidateOffsets = new List<(int, int)>();
+										foreach (int cell in allCells)
+										{
+											for (int x = 0, temp = otherDigitMask; x < 9; x++, temp >>= 1)
+											{
+												if ((temp & 1) != 0 && grid.CandidateExists(cell, x))
+												{
+													candidateOffsets.Add((1, cell * 9 + x));
+												}
+											}
+											for (int x = 0, temp = digitKindsMask & ~otherDigitMask; x < 9; x++, temp >>= 1)
+											{
+												if ((temp & 1) != 0 && grid.CandidateExists(cell, x))
+												{
+													candidateOffsets.Add((0, cell * 9 + x));
+												}
+											}
+										}
+
+										// Record all eliminations.
+										var conclusions = new List<Conclusion>();
+										for (int digit = 0, temp = otherDigitMask; digit < 9; digit++, temp >>= 1)
+										{
+											if ((temp & 1) != 0)
+											{
+												GridMap elimMap = default;
+												for (int y = 0, count = 0; y < 7; y++)
+												{
+													int cell = allCells[y];
+													if (grid.CandidateExists(cell, digit))
+													{
+														if (count++ == 0)
+														{
+															elimMap = new GridMap(cell) { [cell] = false };
+														}
+														else
+														{
+															elimMap &= new GridMap(cell) { [cell] = false };
+														}
+													}
+												}
+
+												foreach (int cell in elimMap.Offsets)
+												{
+													if (grid.CandidateExists(cell, digit))
+													{
+														conclusions.Add(
+															new Conclusion(
+																ConclusionType.Elimination, cell * 9 + digit));
+													}
+												}
+											}
+										}
+
+										if (conclusions.Count == 0
+											|| !_checkIncompleted && candidateOffsets.Count(c =>
+											{
+												var (type, _) = c;
+												return type == 0;
+											}) != 8)
+										{
+											continue;
+										}
+
+										result.Add(
+											new UniqueRectangleTechniqueInfo(
+												conclusions,
+												views: new[]
+												{
+													new View(
+														cellOffsets: null,
+														candidateOffsets,
+														regionOffsets: null,
+														linkMasks: null)
+												},
+												detailData: new UrType3(
+													cells,
+													digits: digits.ToArray(),
+													subsetDigits: otherDigitMask.GetAllSets().ToArray(),
+													subsetCells: new[] { c1, c2, c3 },
+													true)));
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		private static short GetOtherDigitMask(
+			Grid grid, IEnumerable<int> allCells, IEnumerable<int> digits,
+			out short digitKindsMask)
+		{
+			digitKindsMask = 511;
+			foreach (int cell in allCells)
+			{
+				digitKindsMask &= grid.GetMask(cell);
+			}
+			digitKindsMask = (short)(~digitKindsMask & 511);
+			short tempMask = 0;
+			foreach (int digit in digits)
+			{
+				tempMask |= (short)(1 << digit);
+			}
+
+			return (short)(digitKindsMask & ~tempMask);
+		}
+
+		private void CheckType3Hidden(
+			IList<UniquenessTechniqueInfo> result, Grid grid, int[] cells,
+			int[] cellPair, int[] extraCells, IEnumerable<int> digits,
+			int[] regions, int size)
+		{
+
+		}
+
+		private void CheckType15(
+			IList<UniquenessTechniqueInfo> result, Grid grid, int[] cells, int[][] cellTriplets)
+		{
+			// Traverse on 'cellTriplets'.
+			for (int i = 0; i < 4; i++)
+			{
+				int[] cellTriplet = cellTriplets[i];
+				short totalMask = 511;
+				foreach (int cell in cellTriplet)
+				{
+					totalMask &= grid.GetMask(cell);
+				}
+
+				// The index is 'i', which also represents the index of the extra cell.
+				int extraCell = cells[i];
+
+				// Check all different value kinds are no more than 3.
+				int totalMaskCount = totalMask.CountSet();
+				if (totalMaskCount == 6)
+				{
+					// Pattern found:
+					// abc abc
+					// abc ab+
+					// Now check the last cell has only two candidates and
+					// they should be 'a' and 'b'.
+					short extraCellMask = (short)(grid.GetMask(extraCell) & 511);
+					short finalMask = (short)(totalMask & extraCellMask);
+					if (extraCellMask.CountSet() == 7 && finalMask.CountSet() == 6)
+					{
+						// The extra cell is a bivalue cell and the final mask
+						// has 2 different digits, which means the pattern should
+						// be this:
+						// abc abc
+						// abc ab
+						// Therefore, type 5 found.
+
+						// Record all highlight candidates.
+						var candidateOffsets = new List<(int, int)>();
+						int cellInTripletMask = ~grid.GetMask(cellTriplet[0]) & 511;
+						var digits = (~extraCellMask & 511).GetAllSets();
+						int extraDigit = cellInTripletMask.GetAllSets().First(i => !digits.Contains(i));
+						foreach (int cell in cells)
+						{
+							foreach (int digit in digits)
+							{
+								if (grid.CandidateExists(cell, digit))
+								{
+									candidateOffsets.Add((0, cell * 9 + digit));
+								}
+							}
+
+							if (grid.CandidateExists(cell, extraDigit))
+							{
+								candidateOffsets.Add((1, cell * 9 + extraDigit));
+							}
+						}
+
+						// Record all eliminations.
+						var conclusions = new List<Conclusion>();
+						var elimMap = new GridMap(cellTriplet[0])
+							& new GridMap(cellTriplet[1])
+							& new GridMap(cellTriplet[2]);
+						foreach (int cell in elimMap.Offsets)
+						{
+							if (grid.CandidateExists(cell, extraDigit))
+							{
+								conclusions.Add(
+									new Conclusion(
+										ConclusionType.Elimination, cell * 9 + extraDigit));
+							}
+						}
+
+						// Check if worth.
+						if (conclusions.Count == 0 || !_checkIncompleted && candidateOffsets.Count != 11)
+						{
+							continue;
+						}
+
+						// Type 5.
+						result.Add(
+							new UniqueRectangleTechniqueInfo(
+								conclusions,
+								views: new[]
+								{
+									new View(
+										cellOffsets: null,
+										candidateOffsets,
+										regionOffsets: null,
+										linkMasks: null)
+								},
+								detailData: new UrType2Or5(cells, digits.ToArray(), extraDigit, true)));
+					}
+				}
+				else if (totalMaskCount == 7)
+				{
+					// Pattern found:
+					// ab ab
+					// ab ab+
+
+					// Record all highlight candidates.
+					var candidateOffsets = new List<(int, int)>();
+					var digits = (~grid.GetMask(cellTriplet[0]) & 511).GetAllSets();
+					foreach (int cell in cellTriplet)
+					{
+						foreach (int digit in digits)
+						{
+							if (grid.CandidateExists(cell, digit))
+							{
+								candidateOffsets.Add((0, cell * 9 + digit));
+							}
+						}
+					}
+
+					// Record all eliminations.
+					var conclusions = new List<Conclusion>();
+					foreach (int digit in (~grid.GetMask(extraCell) & 511).GetAllSets())
+					{
+						if (grid.CandidateExists(extraCell, digit) && digits.Contains(digit))
+						{
+							conclusions.Add(
+								new Conclusion(
+									ConclusionType.Elimination, extraCell * 9 + digit));
+						}
+					}
+
+					// Check the number of candidates and eliminations.
+					int elimCount = conclusions.Count;
+					if (!_checkIncompleted && (candidateOffsets.Count != 6 || elimCount != 2)
+						|| _checkIncompleted && elimCount == 0)
+					{
+						continue;
+					}
+
+					// Type 1.
+					result.Add(
+						new UniqueRectangleTechniqueInfo(
+							conclusions,
+							views: new[]
+							{
+								new View(
+									cellOffsets: null,
+									candidateOffsets,
+									regionOffsets: null,
+									linkMasks: null)
+							},
+							detailData: new UrType1(cells, digits.ToArray())));
+				}
+				else
+				{
+					// Neither type 1 nor 5.
+					continue;
 				}
 			}
 		}
@@ -358,178 +899,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			}
 		}
 
-		private static short GetRegionAppearingMask(int region, int[] cells)
-		{
-			short mask = 0;
-			for (int temp = 0; temp < 9; temp++)
-			{
-				mask += (short)(cells.Contains(RegionUtils.GetCellOffset(region, temp)) ? 1 : 0);
-
-				if (temp != 8)
-				{
-					mask <<= 1;
-				}
-			}
-			mask.ReverseBits();
-			return (short)(mask >> 7 & 511);
-		}
-
-		private void CheckType15(
-			IList<UniquenessTechniqueInfo> result, Grid grid, int[] cells, int[][] cellTriplets)
-		{
-			// Traverse on 'cellTriplets'.
-			for (int i = 0; i < 4; i++)
-			{
-				int[] cellTriplet = cellTriplets[i];
-				short totalMask = 511;
-				foreach (int cell in cellTriplet)
-				{
-					totalMask &= grid.GetMask(cell);
-				}
-
-				// The index is 'i', which also represents the index of the extra cell.
-				int extraCell = cells[i];
-
-				// Check all different value kinds are no more than 3.
-				int totalMaskCount = totalMask.CountSet();
-				if (totalMaskCount == 6)
-				{
-					// Pattern found:
-					// abc abc
-					// abc ab+
-					// Now check the last cell has only two candidates and
-					// they should be 'a' and 'b'.
-					short extraCellMask = (short)(grid.GetMask(extraCell) & 511);
-					short finalMask = (short)(totalMask & extraCellMask);
-					if (extraCellMask.CountSet() == 7 && finalMask.CountSet() == 6)
-					{
-						// The extra cell is a bivalue cell and the final mask
-						// has 2 different digits, which means the pattern should
-						// be this:
-						// abc abc
-						// abc ab
-						// Therefore, type 5 found.
-
-						// Record all highlight candidates.
-						var candidateOffsets = new List<(int, int)>();
-						int cellInTripletMask = ~grid.GetMask(cellTriplet[0]) & 511;
-						var digits = (~extraCellMask & 511).GetAllSets();
-						int extraDigit = cellInTripletMask.GetAllSets().First(i => !digits.Contains(i));
-						foreach (int cell in cells)
-						{
-							foreach (int digit in digits)
-							{
-								if (grid.CandidateExists(cell, digit))
-								{
-									candidateOffsets.Add((0, cell * 9 + digit));
-								}
-							}
-
-							if (grid.CandidateExists(cell, extraDigit))
-							{
-								candidateOffsets.Add((1, cell * 9 + extraDigit));
-							}
-						}
-
-						// Record all eliminations.
-						var conclusions = new List<Conclusion>();
-						var elimMap = new GridMap(cellTriplet[0])
-							& new GridMap(cellTriplet[1])
-							& new GridMap(cellTriplet[2]);
-						foreach (int cell in elimMap.Offsets)
-						{
-							if (grid.CandidateExists(cell, extraDigit))
-							{
-								conclusions.Add(
-									new Conclusion(
-										ConclusionType.Elimination, cell * 9 + extraDigit));
-							}
-						}
-
-						// Check if worth.
-						if (conclusions.Count == 0
-							|| !_checkIncompleted && candidateOffsets.Count != 11)
-						{
-							continue;
-						}
-
-						// Type 5.
-						result.Add(
-							new UniqueRectangleTechniqueInfo(
-								conclusions,
-								views: new[]
-								{
-									new View(
-										cellOffsets: null,
-										candidateOffsets,
-										regionOffsets: null,
-										linkMasks: null)
-								},
-								detailData: new UrType2(cells, digits.ToArray(), extraDigit, true)));
-					}
-				}
-				else if (totalMaskCount == 7)
-				{
-					// Pattern found:
-					// ab ab
-					// ab ab+
-
-					// Record all highlight candidates.
-					var candidateOffsets = new List<(int, int)>();
-					var digits = (~grid.GetMask(cellTriplet[0]) & 511).GetAllSets();
-					foreach (int cell in cellTriplet)
-					{
-						foreach (int digit in digits)
-						{
-							if (grid.CandidateExists(cell, digit))
-							{
-								candidateOffsets.Add((0, cell * 9 + digit));
-							}
-						}
-					}
-
-					// Record all eliminations.
-					var conclusions = new List<Conclusion>();
-					foreach (int digit in (~grid.GetMask(extraCell) & 511).GetAllSets())
-					{
-						if (grid.CandidateExists(extraCell, digit) && digits.Contains(digit))
-						{
-							conclusions.Add(
-								new Conclusion(
-									ConclusionType.Elimination, extraCell * 9 + digit));
-						}
-					}
-
-					// Check the number of candidates and eliminations.
-					int elimCount = conclusions.Count;
-					if (!_checkIncompleted && (candidateOffsets.Count != 6 || elimCount != 2)
-						|| _checkIncompleted && elimCount == 0)
-					{
-						continue;
-					}
-
-					// Type 1.
-					result.Add(
-						new UniqueRectangleTechniqueInfo(
-							conclusions,
-							views: new[]
-							{
-								new View(
-									cellOffsets: null,
-									candidateOffsets,
-									regionOffsets: null,
-									linkMasks: null)
-							},
-							detailData: new UrType1(cells, digits.ToArray())));
-				}
-				else
-				{
-					// Neither type 1 nor 5.
-					continue;
-				}
-			}
-		}
-
 		private void CheckType4(
 			IList<UniquenessTechniqueInfo> result, Grid grid, int[] cells,
 			int[] cellPair, int[] extraCells, IEnumerable<int> digits)
@@ -617,6 +986,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					}
 				}
 			}
+		}
+
+
+		private static short GetRegionAppearingMask(int region, int[] cells)
+		{
+			short mask = 0;
+			for (int temp = 0; temp < 9; temp++)
+			{
+				mask += (short)(cells.Contains(RegionUtils.GetCellOffset(region, temp)) ? 1 : 0);
+
+				if (temp != 8)
+				{
+					mask <<= 1;
+				}
+			}
+			mask.ReverseBits();
+			return (short)(mask >> 7 & 511);
 		}
 	}
 }
