@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Diagnostics;
+using System.Text;
 
 namespace Sudoku.Data.Extensions
 {
@@ -6,6 +7,7 @@ namespace Sudoku.Data.Extensions
 	/// Provides extension methods on <see cref="StringBuilder"/>.
 	/// </summary>
 	/// <seealso cref="StringBuilder"/>
+	[DebuggerStepThrough]
 	public static class StringBuilderEx
 	{
 		/// <summary>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 namespace Sudoku.Data.Extensions
@@ -7,6 +8,7 @@ namespace Sudoku.Data.Extensions
 	/// Provides extension methods on <see cref="int"/>.
 	/// </summary>
 	/// <seealso cref="int"/>
+	[DebuggerStepThrough]
 	public static class Int32Ex
 	{
 		/// <summary>

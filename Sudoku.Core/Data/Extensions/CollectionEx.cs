@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Sudoku.Data.Extensions
 {
@@ -6,6 +7,7 @@ namespace Sudoku.Data.Extensions
 	/// Provides extension methods on <see cref="ICollection{T}"/>.
 	/// </summary>
 	/// <seealso cref="ICollection{T}"/>
+	[DebuggerStepThrough]
 	public static class CollectionEx
 	{
 		/// <summary>

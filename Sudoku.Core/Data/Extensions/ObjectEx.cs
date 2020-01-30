@@ -1,9 +1,12 @@
-﻿namespace Sudoku.Data.Extensions
+﻿using System.Diagnostics;
+
+namespace Sudoku.Data.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="object"/>.
 	/// </summary>
 	/// <seealso cref="object"/>
+	[DebuggerStepThrough]
 	public static class ObjectEx
 	{
 		/// <summary>

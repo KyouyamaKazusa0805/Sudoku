@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Sudoku.Data.Extensions
 {
@@ -6,6 +7,7 @@ namespace Sudoku.Data.Extensions
 	/// Provides extension methods on <see cref="long"/>.
 	/// </summary>
 	/// <seealso cref="long"/>
+	[DebuggerStepThrough]
 	public static class Int64Ex
 	{
 		/// <summary>

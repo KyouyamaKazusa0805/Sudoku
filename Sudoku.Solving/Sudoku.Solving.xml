@@ -1630,6 +1630,30 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType4DetailData.ToString">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType6DetailData">
+            <summary>
+            Indicates the detail data of UR type 6.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType6DetailData.#ctor(System.Int32[],System.Int32[],Sudoku.Solving.ConjugatePair[])">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="cells">All cells.</param>
+            <param name="digits">All digits.</param>
+            <param name="conjugatePairs">The conjugate pairs.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType6DetailData.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType6DetailData.ConjugatePairs">
+            <summary>
+            Indicates all conjugate pairs.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType6DetailData.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo">
             <summary>
             Provides a usage of uniqueness technique.
