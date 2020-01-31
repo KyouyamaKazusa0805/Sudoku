@@ -10,8 +10,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <summary>
 		/// Provides passing data when initializing an instance of derived types.
 		/// </summary>
-		/// <param name="cells">Cells.</param>
-		/// <param name="digits">Digits.</param>
+		/// <param name="cells">All cells.</param>
+		/// <param name="digits">All digits.</param>
 		protected UniqueRectangleDetailData(IReadOnlyList<int> cells, IReadOnlyList<int> digits) =>
 			(Cells, Digits) = (cells, digits);
 

@@ -15,7 +15,10 @@ namespace Sudoku.Data.Extensions
 		/// Find the first offset of set bit of the binary representation of the specified value.
 		/// </summary>
 		/// <param name="this">The value.</param>
-		/// <returns>An <see cref="int"/> value indicating that.</returns>
+		/// <returns>
+		/// An <see cref="int"/> value indicating that. If the value is 0, this method
+		/// will always return 0.
+		/// </returns>
 		/// <seealso cref="Int32Ex.FindFirstSet(int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static int FindFirstSet(this short @this) => Int32Ex.FindFirstSet(@this);

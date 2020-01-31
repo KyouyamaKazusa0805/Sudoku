@@ -40,9 +40,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					4 => 4.6m,
 					5 => 4.6m,
 					6 => 4.7m,
-					7 => 4.8m,
-					8 => 4.9m,
-					9 => 5m,
+					7 => 4.8m, // Reserved.
+					8 => 4.9m, // Reserved.
+					9 => 5m, // Reserved.
 					_ => throw new NotSupportedException($"The specified {nameof(DetailData.Type)} is out of range.")
 				};
 			}

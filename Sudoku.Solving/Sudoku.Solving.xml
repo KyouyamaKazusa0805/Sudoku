@@ -1424,6 +1424,53 @@
             </param>
             <returns>All conclusions.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenRectangleTechniqueInfo">
+            <summary>
+            Provides a usage of hidden rectangle technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenRectangleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{Sudoku.Solving.ConjugatePair})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="cells">All cells.</param>
+            <param name="digits">All digits.</param>
+            <param name="conjugatePairs">All conjugate pairs.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenRectangleTechniqueInfo.Cells">
+            <summary>
+            Indicates all cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenRectangleTechniqueInfo.Digits">
+            <summary>
+            Indicates all digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenRectangleTechniqueInfo.Digit">
+            <summary>
+            Indicates the digit used in all conjugate pairs.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenRectangleTechniqueInfo.ConjugatePairs">
+            <summary>
+            Indicates all conjugate pairs.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenRectangleTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenRectangleTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenRectangleTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenRectangleTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleDetailData">
             <summary>
             Provides all data for unique rectangles (basic and extended types).
@@ -1433,8 +1480,8 @@
             <summary>
             Provides passing data when initializing an instance of derived types.
             </summary>
-            <param name="cells">Cells.</param>
-            <param name="digits">Digits.</param>
+            <param name="cells">All cells.</param>
+            <param name="digits">All digits.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleDetailData.Type">
             <summary>
