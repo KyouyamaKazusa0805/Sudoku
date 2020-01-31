@@ -1,4 +1,5 @@
-﻿using Sudoku.Solving.Utils;
+﻿using System.Collections.Generic;
+using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 {
@@ -17,7 +18,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// Indicates whether this type is the variant of type 2.
 		/// </param>
 		public UniqueRectangleType2DetailData(
-			int[] cells, int[] digits, int extraDigit, bool isType5) : base(cells, digits) =>
+			IReadOnlyList<int> cells, IReadOnlyList<int> digits, int extraDigit, bool isType5)
+			: base(cells, digits) =>
 			(ExtraDigit, IsType5) = (extraDigit, isType5);
 
 

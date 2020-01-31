@@ -34,7 +34,7 @@ namespace Sudoku.Solving
 		/// <para>Indicates whether the puzzle has been solved.</para>
 		/// <para>
 		/// If the puzzle has multiple solutions or no solution,
-		/// this value will be always <c>false</c>.
+		/// this value will be always <see langword="false"/>.
 		/// </para>
 		/// </summary>
 		public bool HasSolved { get; }
@@ -145,7 +145,7 @@ namespace Sudoku.Solving
 		/// Indicates the additional message during solving, which
 		/// can be the message from an exception, or the debugging information.
 		/// If this instance does not need to have this one, the value
-		/// will be <c>null</c>.
+		/// will be <see langword="null"/>.
 		/// </summary>
 		public string? Additional { get; }
 
@@ -186,21 +186,21 @@ namespace Sudoku.Solving
 
 		/// <summary>
 		/// Indicates the solution grid. If and only if the puzzle
-		/// is not solved, this value will be <c>null</c>.
+		/// is not solved, this value will be <see langword="null"/>.
 		/// </summary>
 		public Grid? Solution { get; }
 
 		/// <summary>
 		/// Indicates the solving steps during solving. If the puzzle is not
 		/// solved and the manual solver cannot find out any steps, or else
-		/// the puzzle is solved by other solvers, this value will be <c>null</c>.
+		/// the puzzle is solved by other solvers, this value will be <see langword="null"/>.
 		/// </summary>
 		public IReadOnlyList<TechniqueInfo>? SolvingSteps { get; }
 
 		/// <summary>
 		/// Indicates all groups that grouped by solving steps during solving.
-		/// If and only if <see cref="SolvingSteps"/> is <c>null</c>, this value
-		/// will be <c>null</c>.
+		/// If and only if <see cref="SolvingSteps"/> is <see langword="null"/>, this value
+		/// will be <see langword="null"/>.
 		/// </summary>
 		private IEnumerable<IGrouping<string, TechniqueInfo>>? SolvingStepsGrouped
 		{

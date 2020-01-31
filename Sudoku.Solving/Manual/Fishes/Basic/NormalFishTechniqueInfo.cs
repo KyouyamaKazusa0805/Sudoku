@@ -35,13 +35,13 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 		/// The value can be:
 		/// <list type="table">
 		/// <item>
-		/// <term><c>true</c></term><description>Sashimi finned fish.</description>
+		/// <term><see langword="true"/></term><description>Sashimi finned fish.</description>
 		/// </item>
 		/// <item>
-		/// <term><c>false</c></term><description>Normal finned fish.</description>
+		/// <term><see langword="false"/></term><description>Normal finned fish.</description>
 		/// </item>
 		/// <item>
-		/// <term><c>null</c></term><description>Normal fish.</description>
+		/// <term><see langword="null"/></term><description>Normal fish.</description>
 		/// </item>
 		/// </list>
 		/// </summary>

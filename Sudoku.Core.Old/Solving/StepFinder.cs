@@ -58,7 +58,7 @@ namespace Sudoku.Solving
 		/// </param>
 		/// <returns>
 		/// A single step. If the step doesn't exist,
-		/// the return value will be <c>null</c>.
+		/// the return value will be <see langword="null"/>.
 		/// </returns>
 		public TechniqueInfo? TakeOne(Grid grid)
 		{

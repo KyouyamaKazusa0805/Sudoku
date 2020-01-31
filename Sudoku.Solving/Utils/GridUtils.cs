@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Utils
 		/// <see cref="CandidateDoesNotExist(Grid, int, int)"/> instead
 		/// of '<c>!grid.CandidateExists</c>'.
 		/// Note that given and modifiable values always make this method
-		/// return <c>false</c>.
+		/// return <see langword="false"/>.
 		/// </para>
 		/// </summary>
 		/// <param name="this">The grid.</param>
@@ -44,7 +44,7 @@ namespace Sudoku.Solving.Utils
 		/// <see cref="CandidateExists(Grid, int, int)"/> instead
 		/// of '<c>!grid.CandidateDoesNotExist</c>'.
 		/// Note that given and modifiable values always make this method
-		/// return <c>false</c>.
+		/// return <see langword="false"/>.
 		/// </para>
 		/// </summary>
 		/// <param name="this">The grid.</param>
@@ -74,7 +74,13 @@ namespace Sudoku.Solving.Utils
 		}
 
 		/// <summary>
+		/// <para>
 		/// Gets a mask of digit appearing in the specified region offset.
+		/// </para>
+		/// <para>
+		/// Note that given and modifiable values always make this method
+		/// return <see langword="true"/>.
+		/// </para>
 		/// </summary>
 		/// <param name="this">The grid.</param>
 		/// <param name="digit">The digit.</param>

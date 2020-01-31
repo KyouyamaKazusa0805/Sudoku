@@ -5,12 +5,12 @@
 		/// <summary>
 		/// <para>Indicates the solver will optimizes the applying order.</para>
 		/// <para>
-		/// When the value is <c>true</c>, the result to apply to
+		/// When the value is <see langword="true"/>, the result to apply to
 		/// the grid will be the one which has the minimum difficulty
 		/// rating; otherwise, the applying step will be the first one
 		/// of all steps being searched.
 		/// </para>
-		/// <para>The value is <c>false</c> in default case.</para>
+		/// <para>The value is <see langword="false"/> in default case.</para>
 		/// </summary>
 		public bool OptimizedApplyingOrder { get; set; } = false;
 
@@ -19,7 +19,7 @@
 		/// Indicates whether the solver will record the step
 		/// whose name or kind is full house.
 		/// </para>
-		/// <para>The value is <c>true</c> in default case.</para>
+		/// <para>The value is <see langword="true"/> in default case.</para>
 		/// </summary>
 		/// <remarks>
 		/// <b>Full house</b>s are the techniques that used in a single
@@ -34,7 +34,7 @@
 		/// Indicates whether the solver will record the step
 		/// whose name or kind is last digit.
 		/// </para>
-		/// <para>The value is <c>true</c> in default case.</para>
+		/// <para>The value is <see langword="true"/> in default case.</para>
 		/// </summary>
 		/// <remarks>
 		/// <b>Last digit</b>s are the techniques that used in a single
@@ -49,7 +49,7 @@
 		/// Indicates whether the solver should check
 		/// incompleted uniqueness patterns.
 		/// </para>
-		/// <para>The value is <c>false</c> in default case.</para>
+		/// <para>The value is <see langword="false"/> in default case.</para>
 		/// </summary>
 		/// <example>
 		/// For example, An basic UR pattern should be

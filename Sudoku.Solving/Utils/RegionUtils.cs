@@ -77,6 +77,6 @@ namespace Sudoku.Solving.Utils
 		/// <param name="regionOffset">The region offset.</param>
 		/// <returns>All cell offsets.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IEnumerable<int> GetCellOffsets(int regionOffset) => Map[regionOffset];
+		public static int[] GetCellOffsets(int regionOffset) => Map[regionOffset];
 	}
 }

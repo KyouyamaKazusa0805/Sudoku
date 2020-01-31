@@ -21,7 +21,7 @@ namespace System
 		/// <returns>
 		/// The instance having the same type with the base one. Because the type is
 		/// used and defined before using this method, so the return type will be
-		/// never <c>null</c>.
+		/// never <see langword="null"/>.
 		/// </returns>
 		[return: NotNull]
 		new T Clone();

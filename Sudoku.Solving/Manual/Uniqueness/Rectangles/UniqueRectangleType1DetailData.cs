@@ -1,4 +1,5 @@
-﻿using Sudoku.Solving.Utils;
+﻿using System.Collections.Generic;
+using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 {
@@ -12,7 +13,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// </summary>
 		/// <param name="cells">Cells.</param>
 		/// <param name="digits">Digits.</param>
-		public UniqueRectangleType1DetailData(int[] cells, int[] digits) : base(cells, digits)
+		public UniqueRectangleType1DetailData(
+			IReadOnlyList<int> cells, IReadOnlyList<int> digits) : base(cells, digits)
 		{
 		}
 

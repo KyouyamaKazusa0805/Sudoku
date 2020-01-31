@@ -66,7 +66,7 @@
             </summary>
             <param name="this">The puzzle to check.</param>
             <param name="solutionIfUnique">
-            (out parameter) The solution if the puzzle is unique; otherwise, <c>null</c>.
+            (out parameter) The solution if the puzzle is unique; otherwise, <see langword="null"/>.
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>

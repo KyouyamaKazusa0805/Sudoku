@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace Sudoku.Solving.Utils
 {
@@ -51,12 +52,18 @@ namespace Sudoku.Solving.Utils
 		/// </summary>
 		/// <param name="cell1">The cell offset 1.</param>
 		/// <param name="cell2">The cell offset 2.</param>
+		/// <param name="sameRegions">(out parameter) All same regions of two cells.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsSameRegion(int cell1, int cell2)
+		public static bool IsSameRegion(int cell1, int cell2, out int[] sameRegions)
 		{
+			var temp = new List<int>(3);
 			var ((r1, c1, b1), (r2, c2, b2)) = (GetRegion(cell1), GetRegion(cell2));
-			return r1 == r2 || c1 == c2 || b1 == b2;
+			if (r1 == r2) temp.Add(r1 + 9);
+			if (c1 == c2) temp.Add(c1 + 18);
+			if (b1 == b2) temp.Add(b1);
+			sameRegions = temp.ToArray();
+			return temp.Count != 0;
 		}
 	}
 }

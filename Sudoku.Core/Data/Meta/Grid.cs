@@ -27,7 +27,7 @@ namespace Sudoku.Data.Meta
 		/// There are 81 cells in a sudoku grid, so this data structure uses
 		/// an array of size 81. Each element is a <see cref="short"/> value,
 		/// where the lower 9 bits indicates if the digit 1 to 9 exists or not.
-		/// If the value is <c>true</c> (i.e. binary is for 1), this digit will
+		/// If the value is <see langword="true"/> (i.e. binary is for 1), this digit will
 		/// <b>not</b> be exist. The higher 3 bits indicates the cell status. The
 		/// cases are below:
 		/// <list type="table">
@@ -94,8 +94,8 @@ namespace Sudoku.Data.Meta
 
 
 		/// <summary>
-		/// Indicates the grid has already solved. If the value is <c>true</c>,
-		/// the grid is solved; otherwise, <c>false</c>.
+		/// Indicates the grid has already solved. If the value is <see langword="true"/>,
+		/// the grid is solved; otherwise, <see langword="false"/>.
 		/// </summary>
 		public bool HasSolved
 		{
@@ -254,8 +254,8 @@ namespace Sudoku.Data.Meta
 		/// <param name="offset">The cell offset between 0 and 80.</param>
 		/// <param name="digit">The digit between 0 and 8.</param>
 		/// <value>
-		/// The case you want to set. <c>true</c> means that this candidate
-		/// does not exist in this current sudoku grid; otherwise, <c>false</c>.
+		/// The case you want to set. <see langword="true"/> means that this candidate
+		/// does not exist in this current sudoku grid; otherwise, <see langword="false"/>.
 		/// </value>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public bool this[int offset, int digit]
@@ -355,8 +355,8 @@ namespace Sudoku.Data.Meta
 		/// </summary>
 		/// <param name="other">The other value to compare.</param>
 		/// <returns>
-		/// The result of this comparsion. <c>true</c> if two instances hold a same
-		/// value; otherwise, <c>false</c>.
+		/// The result of this comparsion. <see langword="true"/> if two instances hold a same
+		/// value; otherwise, <see langword="false"/>.
 		/// </returns>
 		public bool Equals(Grid other) => GetHashCode() == other.GetHashCode();
 
@@ -782,7 +782,7 @@ namespace Sudoku.Data.Meta
 		/// <param name="str">The string.</param>
 		/// <param name="result">
 		/// (out parameter) The result parsed. If the conversion is failed,
-		/// this argument will be <c>null</c>.
+		/// this argument will be <see langword="null"/>.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool TryParse(string str, [NotNullWhen(true)] out Grid? result)

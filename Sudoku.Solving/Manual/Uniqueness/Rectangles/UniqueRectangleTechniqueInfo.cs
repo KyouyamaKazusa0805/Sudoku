@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
+using UrType3 = Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType3DetailData;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 {
@@ -35,8 +36,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 				{
 					1 => 4.5m,
 					2 => 4.6m,
-					3 => (((UniqueRectangleType3DetailData)DetailData).IsNaked ? 4.5m : 4.6m)
-						+ ((UniqueRectangleType3DetailData)DetailData).SubsetCells.Length * 0.1m,
+					3 => (((UrType3)DetailData).IsNaked ? 4.5m : 4.6m) + ((UrType3)DetailData).SubsetCells.Count * 0.1m,
 					4 => 4.6m,
 					5 => 4.6m,
 					6 => 4.7m,

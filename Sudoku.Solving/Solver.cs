@@ -28,8 +28,8 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <param name="grid">The puzzle.</param>
 		/// <param name="continueOnCapturedContext">
-		/// <c>true</c> to attempt to marshal the continuation back to
-		/// the original context captured; otherwise, <c>false</c>.
+		/// <see langword="true"/> to attempt to marshal the continuation back to
+		/// the original context captured; otherwise, <see langword="false"/>.
 		/// </param>
 		/// <returns>The solving task.</returns>
 		public virtual async Task<AnalysisResult> SolveAsync(Grid grid, bool continueOnCapturedContext) =>

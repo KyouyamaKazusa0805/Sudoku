@@ -65,10 +65,10 @@
             where the value is:
             <list type="table">
             <item>
-            <term>0b00</term><description><c>false</c> -&gt; <c>false</c>.</description>
-            <term>0b01</term><description><c>false</c> -&gt; <c>true</c>.</description>
-            <term>0b10</term><description><c>true</c> -&gt; <c>false</c>.</description>
-            <term>0b11</term><description><c>true</c> -&gt; <c>true</c>.</description>
+            <term>0b00</term><description><see langword="false"/> -&gt; <see langword="false"/>.</description>
+            <term>0b01</term><description><see langword="false"/> -&gt; <see langword="true"/>.</description>
+            <term>0b10</term><description><see langword="true"/> -&gt; <see langword="false"/>.</description>
+            <term>0b11</term><description><see langword="true"/> -&gt; <see langword="true"/>.</description>
             </item>
             </list>
             </remarks>

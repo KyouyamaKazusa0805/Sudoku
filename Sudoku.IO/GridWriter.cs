@@ -45,8 +45,8 @@ namespace Sudoku.IO
 		/// </summary>
 		/// <param name="grid">The grid to write.</param>
 		/// <param name="continueOnCapturedContext">
-		/// <c>true</c> to attempt to marshal the continuation back to the
-		/// original context captured; otherwise, <c>false</c>.
+		/// <see langword="true"/> to attempt to marshal the continuation back to the
+		/// original context captured; otherwise, <see langword="false"/>.
 		/// </param>
 		/// <returns>The task.</returns>
 		public async Task WriteAsync(Grid grid, bool continueOnCapturedContext = false)
@@ -58,8 +58,8 @@ namespace Sudoku.IO
 		/// <param name="grid">The grid to write.</param>
 		/// <param name="format">The format.</param>
 		/// <param name="continueOnCapturedContext">
-		/// <c>true</c> to attempt to marshal the continuation back to the
-		/// original context captured; otherwise, <c>false</c>.
+		/// <see langword="true"/> to attempt to marshal the continuation back to the
+		/// original context captured; otherwise, <see langword="false"/>.
 		/// </param>
 		/// <returns>The task.</returns>
 		public async Task WriteAsync(

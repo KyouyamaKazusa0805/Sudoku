@@ -29,7 +29,7 @@
             </summary>
             <returns>
             The result after parsed. If failed to parse, the value will be
-            <c>null</c>.
+            <see langword="null"/>.
             </returns>
         </member>
         <member name="M:Sudoku.IO.GridReader.ReadToEnd">
@@ -38,7 +38,7 @@
             </summary>
             <returns>
             The result after parsed. If failed to parsem the value will be
-            <c>null</c>.
+            <see langword="null"/>.
             </returns>
         </member>
         <member name="M:Sudoku.IO.GridReader.ReadLineAsync(System.Boolean)">
@@ -46,8 +46,8 @@
             Read a line of all text, and parse it to grid in an asynchronized way.
             </summary>
             <param name="continueOnCapturedContext">
-            <c>true</c> to attempt to marshal the continuation back to the
-            original context captured; otherwise, <c>false</c>.
+            <see langword="true"/> to attempt to marshal the continuation back to the
+            original context captured; otherwise, <see langword="false"/>.
             </param>
             <returns>The task.</returns>
         </member>
@@ -56,8 +56,8 @@
             Read all text in a file, and parse it to grid in an asynchronized way.
             </summary>
             <param name="continueOnCapturedContext">
-            <c>true</c> to attempt to marshal the continuation back to the
-            original context captured; otherwise, <c>false</c>.
+            <see langword="true"/> to attempt to marshal the continuation back to the
+            original context captured; otherwise, <see langword="false"/>.
             </param>
             <returns>The task.</returns>
         </member>
@@ -99,8 +99,8 @@
             </summary>
             <param name="grid">The grid to write.</param>
             <param name="continueOnCapturedContext">
-            <c>true</c> to attempt to marshal the continuation back to the
-            original context captured; otherwise, <c>false</c>.
+            <see langword="true"/> to attempt to marshal the continuation back to the
+            original context captured; otherwise, <see langword="false"/>.
             </param>
             <returns>The task.</returns>
         </member>
@@ -111,8 +111,8 @@
             <param name="grid">The grid to write.</param>
             <param name="format">The format.</param>
             <param name="continueOnCapturedContext">
-            <c>true</c> to attempt to marshal the continuation back to the
-            original context captured; otherwise, <c>false</c>.
+            <see langword="true"/> to attempt to marshal the continuation back to the
+            original context captured; otherwise, <see langword="false"/>.
             </param>
             <returns>The task.</returns>
         </member>

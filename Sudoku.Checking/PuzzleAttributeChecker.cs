@@ -19,7 +19,7 @@ namespace Sudoku.Checking
 		/// </summary>
 		/// <param name="this">The puzzle to check.</param>
 		/// <param name="solutionIfUnique">
-		/// (out parameter) The solution if the puzzle is unique; otherwise, <c>null</c>.
+		/// (out parameter) The solution if the puzzle is unique; otherwise, <see langword="null"/>.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool IsUnique(this Grid @this, [NotNullWhen(true)] out Grid? solutionIfUnique)

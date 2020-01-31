@@ -1,4 +1,5 @@
-﻿using Sudoku.Solving.Utils;
+﻿using System.Collections.Generic;
+using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 {
@@ -14,7 +15,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <param name="digits">All digits.</param>
 		/// <param name="conjugatePairs">The conjugate pairs.</param>
 		public UniqueRectangleType6DetailData(
-			int[] cells, int[] digits, ConjugatePair[] conjugatePairs) : base(cells, digits) =>
+			IReadOnlyList<int> cells, IReadOnlyList<int> digits, ConjugatePair[] conjugatePairs)
+			: base(cells, digits) =>
 			ConjugatePairs = conjugatePairs;
 
 

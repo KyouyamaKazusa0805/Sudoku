@@ -31,7 +31,7 @@ namespace Sudoku.IO
 		/// </summary>
 		/// <returns>
 		/// The result after parsed. If failed to parse, the value will be
-		/// <c>null</c>.
+		/// <see langword="null"/>.
 		/// </returns>
 		public Grid? ReadLine()
 		{
@@ -44,7 +44,7 @@ namespace Sudoku.IO
 		/// </summary>
 		/// <returns>
 		/// The result after parsed. If failed to parsem the value will be
-		/// <c>null</c>.
+		/// <see langword="null"/>.
 		/// </returns>
 		public Grid? ReadToEnd()
 		{
@@ -56,8 +56,8 @@ namespace Sudoku.IO
 		/// Read a line of all text, and parse it to grid in an asynchronized way.
 		/// </summary>
 		/// <param name="continueOnCapturedContext">
-		/// <c>true</c> to attempt to marshal the continuation back to the
-		/// original context captured; otherwise, <c>false</c>.
+		/// <see langword="true"/> to attempt to marshal the continuation back to the
+		/// original context captured; otherwise, <see langword="false"/>.
 		/// </param>
 		/// <returns>The task.</returns>
 		public async Task<Grid?> ReadLineAsync(bool continueOnCapturedContext = false) =>
@@ -67,8 +67,8 @@ namespace Sudoku.IO
 		/// Read all text in a file, and parse it to grid in an asynchronized way.
 		/// </summary>
 		/// <param name="continueOnCapturedContext">
-		/// <c>true</c> to attempt to marshal the continuation back to the
-		/// original context captured; otherwise, <c>false</c>.
+		/// <see langword="true"/> to attempt to marshal the continuation back to the
+		/// original context captured; otherwise, <see langword="false"/>.
 		/// </param>
 		/// <returns>The task.</returns>
 		public async Task<Grid?> ReadToEndAsync(bool continueOnCapturedContext = false) =>

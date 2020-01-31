@@ -18,8 +18,8 @@ namespace Sudoku.Generating
 		/// Generate a puzzle asynchronizedly.
 		/// </summary>
 		/// <param name="continueOnCapturedContext">
-		/// <c>true</c> to attempt to marshal the continuation back to
-		/// the original context captured; otherwise, <c>false</c>.
+		/// <see langword="true"/> to attempt to marshal the continuation back to
+		/// the original context captured; otherwise, <see langword="false"/>.
 		/// </param>
 		/// <returns>The task of generating puzzle.</returns>
 		public virtual async Task<Grid> GenerateAsync(bool continueOnCapturedContext = false)

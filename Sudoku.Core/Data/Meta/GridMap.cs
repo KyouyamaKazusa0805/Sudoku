@@ -11,8 +11,8 @@ namespace Sudoku.Data.Meta
 {
 	/// <summary>
 	/// Encapsulates a binary series of cell status table consisting of 81 bits,
-	/// where <c>true</c> bit (1) is for the cell having digit,
-	/// and the <c>false</c> bit (0) is for empty cell. Sometimes for other usages.
+	/// where <see langword="true"/> bit (1) is for the cell having digit,
+	/// and the <see langword="false"/> bit (0) is for empty cell. Sometimes for other usages.
 	/// </summary>
 	[DisableDefaultConstructor]
 	public partial struct GridMap : IEnumerable<bool>, IEquatable<GridMap>
@@ -48,8 +48,8 @@ namespace Sudoku.Data.Meta
 		/// </summary>
 		/// <param name="offsets">cell offsets.</param>
 		/// <remarks>
-		/// Note that all offsets will be set <c>true</c>, but their own peers
-		/// will not be set <c>true</c>.
+		/// Note that all offsets will be set <see langword="true"/>, but their own peers
+		/// will not be set <see langword="true"/>.
 		/// </remarks>
 		public GridMap(IEnumerable<int> offsets)
 		{
@@ -87,13 +87,13 @@ namespace Sudoku.Data.Meta
 
 		/// <summary>
 		/// Indicates the total number of cells where the corresponding
-		/// value are set <c>true</c>.
+		/// value are set <see langword="true"/>.
 		/// </summary>
 		public readonly int Count => _low.CountSet() + _high.CountSet();
 
 		/// <summary>
 		/// Indicates all cell offsets whose corresponding value
-		/// are set <c>true</c>.
+		/// are set <see langword="true"/>.
 		/// </summary>
 		public readonly IEnumerable<int> Offsets
 		{
@@ -191,14 +191,14 @@ namespace Sudoku.Data.Meta
 		/// </summary>
 		/// <param name="other">The other value to compare.</param>
 		/// <returns>
-		/// The result of this comparsion. <c>true</c> if two instances hold a same
-		/// value; otherwise, <c>false</c>.
+		/// The result of this comparsion. <see langword="true"/> if two instances hold a same
+		/// value; otherwise, <see langword="false"/>.
 		/// </returns>
 		public readonly bool Equals(GridMap other) =>
 			_high == other._high && _low == other._low;
 
 		/// <summary>
-		/// Get all cell offsets whose bits are set <c>true</c>.
+		/// Get all cell offsets whose bits are set <see langword="true"/>.
 		/// </summary>
 		/// <returns>An array of cell offsets.</returns>
 		public readonly int[] ToArray() => Offsets.ToArray();
@@ -259,28 +259,28 @@ namespace Sudoku.Data.Meta
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 		/// <summary>
-		/// Set the specified cell as <c>true</c> value.
+		/// Set the specified cell as <see langword="true"/> value.
 		/// </summary>
 		/// <param name="offset">The cell offset.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Add(int offset) => this[offset] = true;
 
 		/// <summary>
-		/// Set the specified cell as <c>false</c> value.
+		/// Set the specified cell as <see langword="false"/> value.
 		/// </summary>
 		/// <param name="offset">The cell offset.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Remove(int offset) => this[offset] = false;
 
 		/// <summary>
-		/// Set all peers as <c>true</c> value.
+		/// Set all peers as <see langword="true"/> value.
 		/// </summary>
 		/// <param name="offset">The cell offset.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void SetPeersTrue(int offset) => UnionWith(new GridMap(offset));
 
 		/// <summary>
-		/// Set all peers as <c>false</c> value.
+		/// Set all peers as <see langword="false"/> value.
 		/// </summary>
 		/// <param name="offset">The cell offset.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

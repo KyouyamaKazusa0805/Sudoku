@@ -26,7 +26,7 @@
             <para>Indicates whether the puzzle has been solved.</para>
             <para>
             If the puzzle has multiple solutions or no solution,
-            this value will be always <c>false</c>.
+            this value will be always <see langword="false"/>.
             </para>
             </summary>
         </member>
@@ -103,7 +103,7 @@
             Indicates the additional message during solving, which
             can be the message from an exception, or the debugging information.
             If this instance does not need to have this one, the value
-            will be <c>null</c>.
+            will be <see langword="null"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.AnalysisResult.ElapsedTime">
@@ -126,21 +126,21 @@
         <member name="P:Sudoku.Solving.AnalysisResult.Solution">
             <summary>
             Indicates the solution grid. If and only if the puzzle
-            is not solved, this value will be <c>null</c>.
+            is not solved, this value will be <see langword="null"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.AnalysisResult.SolvingSteps">
             <summary>
             Indicates the solving steps during solving. If the puzzle is not
             solved and the manual solver cannot find out any steps, or else
-            the puzzle is solved by other solvers, this value will be <c>null</c>.
+            the puzzle is solved by other solvers, this value will be <see langword="null"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.AnalysisResult.SolvingStepsGrouped">
             <summary>
             Indicates all groups that grouped by solving steps during solving.
-            If and only if <see cref="P:Sudoku.Solving.AnalysisResult.SolvingSteps"/> is <c>null</c>, this value
-            will be <c>null</c>.
+            If and only if <see cref="P:Sudoku.Solving.AnalysisResult.SolvingSteps"/> is <see langword="null"/>, this value
+            will be <see langword="null"/>.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.String@,System.Boolean@)">
@@ -547,8 +547,8 @@
             </summary>
             <param name="other">The other value to compare.</param>
             <returns>
-            The result of this comparsion. <c>true</c> if two instances hold a same
-            value; otherwise, <c>false</c>.
+            The result of this comparsion. <see langword="true"/> if two instances hold a same
+            value; otherwise, <see langword="false"/>.
             </returns>
         </member>
         <member name="M:Sudoku.Solving.Conclusion.GetHashCode">
@@ -774,7 +774,7 @@
             <param name="size">The size.</param>
             <param name="searchRow">
             Indicates the method is searched row or column.
-            <c>true</c> is for searching rows and <c>false</c>
+            <see langword="true"/> is for searching rows and <see langword="false"/>
             is for searching columns.
             </param>
             <returns>All technique information searched.</returns>
@@ -840,13 +840,13 @@
             The value can be:
             <list type="table">
             <item>
-            <term><c>true</c></term><description>Sashimi finned fish.</description>
+            <term><see langword="true"/></term><description>Sashimi finned fish.</description>
             </item>
             <item>
-            <term><c>false</c></term><description>Normal finned fish.</description>
+            <term><see langword="false"/></term><description>Normal finned fish.</description>
             </item>
             <item>
-            <term><c>null</c></term><description>Normal fish.</description>
+            <term><see langword="null"/></term><description>Normal fish.</description>
             </item>
             </list>
             </summary>
@@ -1014,12 +1014,12 @@
             <summary>
             <para>Indicates the solver will optimizes the applying order.</para>
             <para>
-            When the value is <c>true</c>, the result to apply to
+            When the value is <see langword="true"/>, the result to apply to
             the grid will be the one which has the minimum difficulty
             rating; otherwise, the applying step will be the first one
             of all steps being searched.
             </para>
-            <para>The value is <c>false</c> in default case.</para>
+            <para>The value is <see langword="false"/> in default case.</para>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.EnableFullHouse">
@@ -1028,7 +1028,7 @@
             Indicates whether the solver will record the step
             whose name or kind is full house.
             </para>
-            <para>The value is <c>true</c> in default case.</para>
+            <para>The value is <see langword="true"/> in default case.</para>
             </summary>
             <remarks>
             <b>Full house</b>s are the techniques that used in a single
@@ -1043,7 +1043,7 @@
             Indicates whether the solver will record the step
             whose name or kind is last digit.
             </para>
-            <para>The value is <c>true</c> in default case.</para>
+            <para>The value is <see langword="true"/> in default case.</para>
             </summary>
             <remarks>
             <b>Last digit</b>s are the techniques that used in a single
@@ -1058,7 +1058,7 @@
             Indicates whether the solver should check
             incompleted uniqueness patterns.
             </para>
-            <para>The value is <c>false</c> in default case.</para>
+            <para>The value is <see langword="false"/> in default case.</para>
             </summary>
             <example>
             For example, An basic UR pattern should be
@@ -1295,9 +1295,9 @@
             partial locked or normal subset.
             The technique is one when the value is:
             <list type="table">
-            <item><term><c>true</c></term><description>Locked subset,</description></item>
-            <item><term><c>false</c></term><description>Partial locked subset,</description></item>
-            <item><term><c>null</c></term><description>Normal subset.</description></item>
+            <item><term><see langword="true"/></term><description>Locked subset,</description></item>
+            <item><term><see langword="false"/></term><description>Partial locked subset,</description></item>
+            <item><term><see langword="null"/></term><description>Normal subset.</description></item>
             </list>
             </summary>
         </member>
@@ -1429,7 +1429,7 @@
             Provides all data for unique rectangles (basic and extended types).
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleDetailData.#ctor(System.Int32[],System.Int32[])">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleDetailData.#ctor(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides passing data when initializing an instance of derived types.
             </summary>
@@ -1560,7 +1560,7 @@
             Indicates the detail data of UR type 1.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType1DetailData.#ctor(System.Int32[],System.Int32[])">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType1DetailData.#ctor(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Initializes an instance with cells.
             </summary>
@@ -1578,7 +1578,7 @@
             Indicates the detail data of UR type 2.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType2DetailData.#ctor(System.Int32[],System.Int32[],System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType2DetailData.#ctor(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32,System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -1611,7 +1611,7 @@
             Indicates the detail data of UR type 3.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType3DetailData.#ctor(System.Int32[],System.Int32[],System.Int32[],System.Int32[],System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType3DetailData.#ctor(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -1647,7 +1647,7 @@
             Indicates the detail data of UR type 4.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType4DetailData.#ctor(System.Int32[],System.Int32[],Sudoku.Solving.ConjugatePair)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType4DetailData.#ctor(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Solving.ConjugatePair)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -1671,7 +1671,7 @@
             Indicates the detail data of UR type 6.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType6DetailData.#ctor(System.Int32[],System.Int32[],Sudoku.Solving.ConjugatePair[])">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType6DetailData.#ctor(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Solving.ConjugatePair[])">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -1963,8 +1963,8 @@
             </summary>
             <param name="grid">The puzzle.</param>
             <param name="continueOnCapturedContext">
-            <c>true</c> to attempt to marshal the continuation back to
-            the original context captured; otherwise, <c>false</c>.
+            <see langword="true"/> to attempt to marshal the continuation back to
+            the original context captured; otherwise, <see langword="false"/>.
             </param>
             <returns>The solving task.</returns>
         </member>
@@ -2147,12 +2147,13 @@
             <param name="cellOffset">The cell offset.</param>
             <returns>The row, column and block index triplet.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Utils.CellUtils.IsSameRegion(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Utils.CellUtils.IsSameRegion(System.Int32,System.Int32,System.Int32[]@)">
             <summary>
             Check two cells have different row, column and block.
             </summary>
             <param name="cell1">The cell offset 1.</param>
             <param name="cell2">The cell offset 2.</param>
+            <param name="sameRegions">(out parameter) All same regions of two cells.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Utils.ConclusionCollection">
@@ -2211,7 +2212,7 @@
             <see cref="M:Sudoku.Solving.Utils.GridUtils.CandidateDoesNotExist(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)"/> instead
             of '<c>!grid.CandidateExists</c>'.
             Note that given and modifiable values always make this method
-            return <c>false</c>.
+            return <see langword="false"/>.
             </para>
             </summary>
             <param name="this">The grid.</param>
@@ -2230,7 +2231,7 @@
             <see cref="M:Sudoku.Solving.Utils.GridUtils.CandidateExists(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)"/> instead
             of '<c>!grid.CandidateDoesNotExist</c>'.
             Note that given and modifiable values always make this method
-            return <c>false</c>.
+            return <see langword="false"/>.
             </para>
             </summary>
             <param name="this">The grid.</param>
@@ -2251,7 +2252,13 @@
         </member>
         <member name="M:Sudoku.Solving.Utils.GridUtils.GetDigitAppearingMask(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)">
             <summary>
+            <para>
             Gets a mask of digit appearing in the specified region offset.
+            </para>
+            <para>
+            Note that given and modifiable values always make this method
+            return <see langword="true"/>.
+            </para>
             </summary>
             <param name="this">The grid.</param>
             <param name="digit">The digit.</param>

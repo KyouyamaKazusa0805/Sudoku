@@ -17,7 +17,7 @@ namespace Sudoku.Data.Meta
 		/// </summary>
 		/// <param name="grid">A grid.</param>
 		/// <param name="multiline">
-		/// The multiline identifier. If the value is <c>true</c>, the output will
+		/// The multiline identifier. If the value is <see langword="true"/>, the output will
 		/// be multiline.
 		/// </param>
 		public GridFormatter(Grid grid, bool multiline) =>

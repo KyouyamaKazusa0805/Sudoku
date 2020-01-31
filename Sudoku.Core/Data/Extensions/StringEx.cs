@@ -56,7 +56,7 @@ namespace Sudoku.Data.Extensions
 		/// <param name="pattern">The regular expression pattern.</param>
 		/// <returns>
 		/// The value after matching. If failed to match,
-		/// the value will be <c>null</c>.
+		/// the value will be <see langword="null"/>.
 		/// </returns>
 		/// <remarks>
 		/// This method is a syntactic sugar of the calling
@@ -75,7 +75,7 @@ namespace Sudoku.Data.Extensions
 		/// <param name="regexOption">The matching options.</param>
 		/// <returns>
 		/// The matched string value. If failed to match,
-		/// the value will be <c>null</c>.
+		/// the value will be <see langword="null"/>.
 		/// </returns>
 		/// <remarks>
 		/// This method is a syntactic sugar of the calling

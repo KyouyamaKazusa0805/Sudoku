@@ -75,8 +75,8 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <param name="other">The other value to compare.</param>
 		/// <returns>
-		/// The result of this comparsion. <c>true</c> if two instances hold a same
-		/// value; otherwise, <c>false</c>.
+		/// The result of this comparsion. <see langword="true"/> if two instances hold a same
+		/// value; otherwise, <see langword="false"/>.
 		/// </returns>
 		public bool Equals(Conclusion other) => GetHashCode() == other.GetHashCode();
 

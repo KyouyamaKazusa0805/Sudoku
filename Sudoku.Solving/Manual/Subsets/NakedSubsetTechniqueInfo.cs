@@ -32,9 +32,9 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// partial locked or normal subset.
 		/// The technique is one when the value is:
 		/// <list type="table">
-		/// <item><term><c>true</c></term><description>Locked subset,</description></item>
-		/// <item><term><c>false</c></term><description>Partial locked subset,</description></item>
-		/// <item><term><c>null</c></term><description>Normal subset.</description></item>
+		/// <item><term><see langword="true"/></term><description>Locked subset,</description></item>
+		/// <item><term><see langword="false"/></term><description>Partial locked subset,</description></item>
+		/// <item><term><see langword="null"/></term><description>Normal subset.</description></item>
 		/// </list>
 		/// </summary>
 		public bool? IsLocked { get; }

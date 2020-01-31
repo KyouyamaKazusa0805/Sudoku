@@ -170,8 +170,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					// Check if the type number is 2 or 5.
 					bool isType5 = i switch
 					{
-						0 => false, 1 => false, 4 => false, 5 => false,
-						2 => true, 3 => true,
+						0 => false,
+						1 => false,
+						4 => false,
+						5 => false,
+						2 => true,
+						3 => true,
 						_ => throw new Exception("Impossible case.")
 					};
 
@@ -201,13 +205,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					CheckType4(result, grid, cells, cellPair, extraCells, digits);
 
 					// Check type 3.
-					var (r1, c1, b1) = CellUtils.GetRegion(cells[0]);
-					var (r2, c2, b2) = CellUtils.GetRegion(cells[3]);
-					var regions = new[] { r1 + 9, r2 + 9, c1 + 18, c2 + 18, b1, b2 };
+					CellUtils.IsSameRegion(extraCells[0], extraCells[1], out int[] regions);
 					for (int size = 1; size <= 3; size++)
 					{
-						CheckType3Naked(result, grid, cells, cellPair, extraCells, digits, regions, size);
-						CheckType3Hidden(result, grid, cells, cellPair, extraCells, digits, regions, size);
+						CheckType3Naked(result, grid, cells, digits, regions, size);
+						CheckType3Hidden(result, grid, cells, extraCells, digits, regions, size);
 					}
 				}
 			}
@@ -215,32 +217,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 		private void CheckType3Naked(
 			IList<UniquenessTechniqueInfo> result, Grid grid, int[] cells,
-			int[] cellPair, int[] extraCells, IEnumerable<int> digits,
-			int[] regions, int size)
+			IEnumerable<int> digits, int[] regions, int size)
 		{
-			for (int i = 0; i < 6; i++)
+			for (int i = 0, length = regions.Length; i < length; i++)
 			{
 				int region = regions[i];
-				int[] cellsToTraverse = RegionUtils.GetCellOffsets(region).ToArray();
-				var (urCellsByIndex, extraCellsByIndex) = (i switch
-				{
-					0 => new[] { cellPair[0], cellPair[1] },
-					1 => new[] { extraCells[0], extraCells[1] },
-					2 => new[] { cellPair[0], extraCells[0] },
-					3 => new[] { cellPair[1], extraCells[1] },
-					4 => new[] { cellPair[0], extraCells[0] },
-					5 => new[] { cellPair[1], extraCells[1] },
-					_ => throw new Exception("Impossible case.")
-				}, i switch
-				{
-					0 => new[] { extraCells[0], extraCells[1] },
-					1 => new[] { cellPair[0], cellPair[1] },
-					2 => new[] { cellPair[1], extraCells[1] },
-					3 => new[] { cellPair[0], extraCells[0] },
-					4 => new[] { cellPair[1], extraCells[1] },
-					5 => new[] { cellPair[0], extraCells[0] },
-					_ => throw new Exception("Impossible case.")
-				});
+				int[] cellsToTraverse = RegionUtils.GetCellOffsets(region);
 				for (int i1 = 0; i1 < 10 - size; i1++)
 				{
 					int c1 = cellsToTraverse[i1];
@@ -559,31 +541,319 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			}
 		}
 
-		private static short GetOtherDigitMask(
-			Grid grid, IEnumerable<int> allCells, IEnumerable<int> digits,
-			out short digitKindsMask)
-		{
-			digitKindsMask = 511;
-			foreach (int cell in allCells)
-			{
-				digitKindsMask &= grid.GetMask(cell);
-			}
-			digitKindsMask = (short)(~digitKindsMask & 511);
-			short tempMask = 0;
-			foreach (int digit in digits)
-			{
-				tempMask |= (short)(1 << digit);
-			}
-
-			return (short)(digitKindsMask & ~tempMask);
-		}
-
 		private void CheckType3Hidden(
 			IList<UniquenessTechniqueInfo> result, Grid grid, int[] cells,
-			int[] cellPair, int[] extraCells, IEnumerable<int> digits,
-			int[] regions, int size)
+			int[] extraCells, IEnumerable<int> digits, int[] regions, int size)
 		{
+			for (int i = 0, length = regions.Length; i < length; i++)
+			{
+				int region = regions[i];
+				for (int d1 = 0; d1 < 10 - size; d1++)
+				{
+					short mask1 = grid.GetDigitAppearingMask(d1, region);
+					if (mask1 == 0 || !digits.Contains(d1))
+					{
+						continue;
+					}
 
+					for (int d2 = d1 + 1; d2 < 11 - size; d2++)
+					{
+						short mask2 = grid.GetDigitAppearingMask(d2, region);
+						if (mask2 == 0 || !digits.Contains(d2))
+						{
+							continue;
+						}
+
+						if (size == 1)
+						{
+							// Check light hidden pair.
+							short mask = (short)(mask1 | mask2);
+							if (mask.CountSet() == 3)
+							{
+								// Type 3 (+ hidden) found.
+								// Record all highlight candidates and eliminations.
+								var candidateOffsets = new List<(int, int)>();
+								var conclusions = new List<Conclusion>();
+								var otherDigits = new List<int>();
+								var otherCells = new List<int>();
+								int[] subsetDigits = new[] { d1, d2 };
+								int[] cellsToTraverse = RegionUtils.GetCellOffsets(region);
+								foreach (int cell in cells)
+								{
+									foreach (int digit in digits)
+									{
+										if (grid.CandidateExists(cell, digit))
+										{
+											candidateOffsets.Add((0, cell * 9 + digit));
+										}
+									}
+								}
+								for (int x = 0, temp = mask; x < 9; x++, temp >>= 1)
+								{
+									if ((temp & 1) != 0)
+									{
+										int cell = cellsToTraverse[x];
+										if (!cells.Contains(cell))
+										{
+											otherCells.Add(cell);
+											if (grid.CandidateExists(cell, d1))
+											{
+												candidateOffsets.Add((1, cell * 9 + d1));
+											}
+											if (grid.CandidateExists(cell, d2))
+											{
+												candidateOffsets.Add((1, cell * 9 + d2));
+											}
+
+											for (int elimDigit = 0; elimDigit < 9; elimDigit++)
+											{
+												if (!subsetDigits.Contains(elimDigit))
+												{
+													otherDigits.Add(elimDigit);
+													if (grid.CandidateExists(cell, elimDigit))
+													{
+														conclusions.Add(
+															new Conclusion(
+																ConclusionType.Elimination, cell * 9 + elimDigit));
+													}
+												}
+											}
+										}
+									}
+								}
+
+								if (conclusions.Count == 0
+									|| !_checkIncompleted && candidateOffsets.Count(c =>
+									{
+										var (type, _) = c;
+										return type == 0;
+									}) != 8)
+								{
+									continue;
+								}
+
+								// Type 3 (+ hidden).
+								result.Add(
+									new UniqueRectangleTechniqueInfo(
+										conclusions,
+										views: new[]
+										{
+											new View(
+												cellOffsets: null,
+												candidateOffsets,
+												regionOffsets: null,
+												linkMasks: null)
+										},
+										detailData: new UrType3(
+											cells,
+											digits: digits.ToArray(),
+											subsetDigits: subsetDigits,
+											subsetCells: otherCells,
+											isNaked: false)));
+							}
+						}
+						else // size > 1
+						{
+							for (int d3 = d2 + 1; d3 < 12 - size; d3++)
+							{
+								short mask3 = grid.GetDigitAppearingMask(d3, region);
+								if (mask3 == 0)
+								{
+									continue;
+								}
+
+								if (size == 2)
+								{
+									// Check light hidden triple.
+									short mask = (short)((short)(mask1 | mask2) | mask3);
+									if (mask.CountSet() == 4
+										&& extraCells.All(c => grid.CandidateDoesNotExist(c, d3)))
+									{
+										// Type 3 (+ hidden) found.
+										// Record all highlight candidates and eliminations.
+										var candidateOffsets = new List<(int, int)>();
+										var conclusions = new List<Conclusion>();
+										var otherDigits = new List<int>();
+										var otherCells = new List<int>();
+										int[] subsetDigits = new[] { d1, d2, d3 };
+										int[] cellsToTraverse = RegionUtils.GetCellOffsets(region);
+										foreach (int cell in cells)
+										{
+											foreach (int digit in digits)
+											{
+												if (grid.CandidateExists(cell, digit))
+												{
+													candidateOffsets.Add((0, cell * 9 + digit));
+												}
+											}
+										}
+										for (int x = 0, temp = mask; x < 9; x++, temp >>= 1)
+										{
+											if ((temp & 1) != 0)
+											{
+												int cell = cellsToTraverse[x];
+												if (!cells.Contains(cell))
+												{
+													otherCells.Add(cell);
+													if (grid.CandidateExists(cell, d1))
+													{
+														candidateOffsets.Add((1, cell * 9 + d1));
+													}
+													if (grid.CandidateExists(cell, d2))
+													{
+														candidateOffsets.Add((1, cell * 9 + d2));
+													}
+
+													for (int elimDigit = 0; elimDigit < 9; elimDigit++)
+													{
+														if (!subsetDigits.Contains(elimDigit))
+														{
+															otherDigits.Add(elimDigit);
+															if (grid.CandidateExists(cell, elimDigit))
+															{
+																conclusions.Add(
+																	new Conclusion(
+																		ConclusionType.Elimination, cell * 9 + elimDigit));
+															}
+														}
+													}
+												}
+											}
+										}
+
+										if (conclusions.Count == 0
+											|| !_checkIncompleted && candidateOffsets.Count(c =>
+											{
+												var (type, _) = c;
+												return type == 0;
+											}) != 8)
+										{
+											continue;
+										}
+
+										// Type 3 (+ hidden).
+										result.Add(
+											new UniqueRectangleTechniqueInfo(
+												conclusions,
+												views: new[]
+												{
+													new View(
+														cellOffsets: null,
+														candidateOffsets,
+														regionOffsets: null,
+														linkMasks: null)
+												},
+												detailData: new UrType3(
+													cells,
+													digits: digits.ToArray(),
+													subsetDigits: subsetDigits,
+													subsetCells: otherCells,
+													isNaked: false)));
+									}
+								}
+								else // size == 3
+								{
+									for (int d4 = d3 + 1; d4 < 9; d4++)
+									{
+										short mask4 = grid.GetDigitAppearingMask(d4, region);
+										if (mask4 == 0)
+										{
+											continue;
+										}
+
+										// Check light hidden quadruple.
+										short mask = (short)((short)((short)(mask1 | mask2) | mask3) | mask4);
+										if (mask.CountSet() == 5
+											&& extraCells.All(c => grid.CandidateDoesNotExist(c, d3) && grid.CandidateDoesNotExist(c, d4)))
+										{
+											// Type 3 (+ hidden) found.
+											// Record all highlight candidates and eliminations.
+											var candidateOffsets = new List<(int, int)>();
+											var conclusions = new List<Conclusion>();
+											var otherDigits = new List<int>();
+											var otherCells = new List<int>();
+											int[] subsetDigits = new[] { d1, d2, d3, d4 };
+											int[] cellsToTraverse = RegionUtils.GetCellOffsets(region);
+											foreach (int cell in cells)
+											{
+												foreach (int digit in digits)
+												{
+													if (grid.CandidateExists(cell, digit))
+													{
+														candidateOffsets.Add((0, cell * 9 + digit));
+													}
+												}
+											}
+											for (int x = 0, temp = mask; x < 9; x++, temp >>= 1)
+											{
+												if ((temp & 1) != 0)
+												{
+													int cell = cellsToTraverse[x];
+													if (!cells.Contains(cell))
+													{
+														otherCells.Add(cell);
+														if (grid.CandidateExists(cell, d1))
+														{
+															candidateOffsets.Add((1, cell * 9 + d1));
+														}
+														if (grid.CandidateExists(cell, d2))
+														{
+															candidateOffsets.Add((1, cell * 9 + d2));
+														}
+
+														for (int elimDigit = 0; elimDigit < 9; elimDigit++)
+														{
+															if (!subsetDigits.Contains(elimDigit))
+															{
+																otherDigits.Add(elimDigit);
+																if (grid.CandidateExists(cell, elimDigit))
+																{
+																	conclusions.Add(
+																		new Conclusion(
+																			ConclusionType.Elimination, cell * 9 + elimDigit));
+																}
+															}
+														}
+													}
+												}
+											}
+
+											if (conclusions.Count == 0
+												|| !_checkIncompleted && candidateOffsets.Count(c =>
+												{
+													var (type, _) = c;
+													return type == 0;
+												}) != 8)
+											{
+												continue;
+											}
+
+											// Type 3 (+ hidden).
+											result.Add(
+												new UniqueRectangleTechniqueInfo(
+													conclusions,
+													views: new[]
+													{
+														new View(
+															cellOffsets: null,
+															candidateOffsets,
+															regionOffsets: null,
+															linkMasks: null)
+													},
+													detailData: new UrType3(
+														cells,
+														digits: digits.ToArray(),
+														subsetDigits: subsetDigits,
+														subsetCells: otherCells,
+														isNaked: false)));
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 
 		private void CheckType15(
@@ -988,6 +1258,25 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			}
 		}
 
+
+		private static short GetOtherDigitMask(
+			Grid grid, IEnumerable<int> allCells, IEnumerable<int> digits,
+			out short digitKindsMask)
+		{
+			digitKindsMask = 511;
+			foreach (int cell in allCells)
+			{
+				digitKindsMask &= grid.GetMask(cell);
+			}
+			digitKindsMask = (short)(~digitKindsMask & 511);
+			short tempMask = 0;
+			foreach (int digit in digits)
+			{
+				tempMask |= (short)(1 << digit);
+			}
+
+			return (short)(digitKindsMask & ~tempMask);
+		}
 
 		private static short GetRegionAppearingMask(int region, int[] cells)
 		{

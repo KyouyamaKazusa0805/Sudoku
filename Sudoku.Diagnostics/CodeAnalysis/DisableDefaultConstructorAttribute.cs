@@ -10,7 +10,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 	{
 		/// <summary>
 		/// Specifies an action when calling the default constructor
-		/// in structs. If the value is <c>true</c>, it will report
+		/// in structs. If the value is <see langword="true"/>, it will report
 		/// a compiling error; otherwise, a warning.
 		/// </summary>
 		public bool IsError { get; set; } = false;

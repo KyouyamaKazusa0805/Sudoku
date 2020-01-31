@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 		/// <param name="size">The size.</param>
 		/// <param name="searchRow">
 		/// Indicates the method is searched row or column.
-		/// <c>true</c> is for searching rows and <c>false</c>
+		/// <see langword="true"/> is for searching rows and <see langword="false"/>
 		/// is for searching columns.
 		/// </param>
 		/// <returns>All technique information searched.</returns>

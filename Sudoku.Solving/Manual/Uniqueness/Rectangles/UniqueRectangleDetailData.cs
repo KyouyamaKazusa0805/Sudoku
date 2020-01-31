@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
+﻿using System.Collections.Generic;
+
+namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 {
 	/// <summary>
 	/// Provides all data for unique rectangles (basic and extended types).
@@ -10,7 +12,7 @@
 		/// </summary>
 		/// <param name="cells">Cells.</param>
 		/// <param name="digits">Digits.</param>
-		protected UniqueRectangleDetailData(int[] cells, int[] digits) =>
+		protected UniqueRectangleDetailData(IReadOnlyList<int> cells, IReadOnlyList<int> digits) =>
 			(Cells, Digits) = (cells, digits);
 
 
@@ -67,12 +69,12 @@
 		/// <summary>
 		/// Indicates the digits.
 		/// </summary>
-		public int[] Digits { get; }
+		public IReadOnlyList<int> Digits { get; }
 
 		/// <summary>
 		/// Indicates all cell of the whole structure.
 		/// </summary>
-		public int[] Cells { get; }
+		public IReadOnlyList<int> Cells { get; }
 
 
 		/// <inheritdoc/>
