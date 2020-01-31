@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using Sudoku.Data.Meta;
+using Sudoku.Diagnostics;
 using Sudoku.Solving.Manual;
 
 namespace Sudoku.Debugging
@@ -15,13 +17,19 @@ namespace Sudoku.Debugging
 		/// </summary>
 		private static void Main()
 		{
-			var solver = new ManualSolver
-			{
-				OptimizedApplyingOrder = true
-			};
-			var grid = Grid.Parse("000910860000084002000007010406500300000070000003008709010400000300820000048039000");
-			var analysisResult = solver.Solve(grid);
-			Console.WriteLine(analysisResult);
+			// Manual solver tester.
+			//var solver = new ManualSolver
+			//{
+			//	OptimizedApplyingOrder = true
+			//};
+			//var grid = Grid.Parse("290800000030120040000000300370400500049080130006007094008000000060059010000008069");
+			//var analysisResult = solver.Solve(grid);
+			//Console.WriteLine(analysisResult);
+
+			// Line counter.
+			string solutionFolder = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName;
+			var codeCounter = new CodeCounter(solutionFolder, @".*\.cs$");
+			Console.WriteLine(codeCounter.CountCodeLines());
 		}
 	}
 }

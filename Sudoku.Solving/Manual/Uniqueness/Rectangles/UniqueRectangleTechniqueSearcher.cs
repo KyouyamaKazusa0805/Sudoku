@@ -6,10 +6,10 @@ using Sudoku.Data.Meta;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 using UrType1 = Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType1DetailData;
+using UrType2Or5 = Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType2DetailData;
 using UrType3 = Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType3DetailData;
 using UrType4 = Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType4DetailData;
 using UrType6 = Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType6DetailData;
-using UrType2Or5 = Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType2DetailData;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 {
@@ -48,14 +48,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 				}
 
 				// Initalize the data.
-				var cellTriplets = new int[4][]
+				int[][] cellTriplets = new int[4][]
 				{
 					new[] { cells[1], cells[2], cells[3] }, // 0
 					new[] { cells[0], cells[2], cells[3] }, // 1
 					new[] { cells[0], cells[1], cells[3] }, // 2
 					new[] { cells[0], cells[1], cells[2] }, // 3
 				};
-				var cellPairs = new int[6][]
+				int[][] cellPairs = new int[6][]
 				{
 					new[] { cells[2], cells[3] }, // 0, 1
 					new[] { cells[1], cells[3] }, // 0, 2
@@ -73,6 +73,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		}
 
 		#region Unique rectangle utils
+		/// <summary>
+		/// Check basic type and generalized locked candidates type.
+		/// </summary>
+		/// <param name="result">The result accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="cells">All UR cells.</param>
+		/// <param name="cellTriplets">Cell triplets to use.</param>
 		private void CheckType15AndHidden(
 			IList<UniquenessTechniqueInfo> result, Grid grid, int[] cells, int[][] cellTriplets)
 		{
@@ -240,6 +247,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			}
 		}
 
+		/// <summary>
+		/// Check hidden rectangle.
+		/// </summary>
+		/// <param name="result">The result accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="regions">All regions used.</param>
+		/// <param name="conjugatePairsSeries">All conjugate pairs used.</param>
+		/// <param name="elimCell">The cell whose candidate will be eliminated.</param>
+		/// <param name="cellTriple">Cell triple.</param>
+		/// <param name="extraCell">The extra cell.</param>
+		/// <param name="cells">All cells.</param>
 		private void CheckHiddenRectangle(
 			IList<UniquenessTechniqueInfo> result, Grid grid, int[] regions,
 			Span<int> conjugatePairsSeries, int elimCell, int[] cellTriple,
@@ -339,6 +357,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			}
 		}
 
+		/// <summary>
+		/// Check type 2 to 6.
+		/// </summary>
+		/// <param name="result">The result accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="cells">All cells.</param>
+		/// <param name="cellPairs">Cell pairs.</param>
 		private void CheckType23456(
 			IList<UniquenessTechniqueInfo> result, Grid grid, int[] cells, int[][] cellPairs)
 		{
@@ -482,6 +507,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			}
 		}
 
+		/// <summary>
+		/// Check type 3 (with naked subset).
+		/// </summary>
+		/// <param name="result">The result accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="cells">All cells.</param>
+		/// <param name="digits">All digits.</param>
+		/// <param name="regions">All regions.</param>
+		/// <param name="size">The size to check.</param>
 		private void CheckType3Naked(
 			IList<UniquenessTechniqueInfo> result, Grid grid, int[] cells,
 			IEnumerable<int> digits, int[] regions, int size)
@@ -808,6 +842,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			}
 		}
 
+		/// <summary>
+		/// Check type 3 (with hidden subset).
+		/// </summary>
+		/// <param name="result">The result accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="cells">All cells.</param>
+		/// <param name="extraCells">All extra cells.</param>
+		/// <param name="digits">All digits.</param>
+		/// <param name="regions">All regions.</param>
+		/// <param name="size">The size to check.</param>
 		private void CheckType3Hidden(
 			IList<UniquenessTechniqueInfo> result, Grid grid, int[] cells,
 			int[] extraCells, IEnumerable<int> digits, int[] regions, int size)
@@ -1123,6 +1167,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			}
 		}
 
+		/// <summary>
+		/// Check type 6.
+		/// </summary>
+		/// <param name="result">The result accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="cells">All cells.</param>
+		/// <param name="cellPair">The cell pair.</param>
+		/// <param name="extraCells">All extra cells.</param>
+		/// <param name="digits">All digits.</param>
 		private void CheckType6(
 			IList<UniquenessTechniqueInfo> result, Grid grid, int[] cells,
 			int[] cellPair, int[] extraCells, IEnumerable<int> digits)
@@ -1137,17 +1190,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			short mask2 = GetRegionAppearingMask(r2, new[] { cellPair[1], extraCells[1] });
 			short mask3 = GetRegionAppearingMask(c1, new[] { cellPair[0], extraCells[1] });
 			short mask4 = GetRegionAppearingMask(c2, new[] { cellPair[1], extraCells[0] });
-			var digitsArray = digits.ToArray();
+			int[] digitsArray = digits.ToArray();
 			for (int i = 0; i < 2; i++)
 			{
 				int digit = digitsArray[i];
 				int otherDigit = digitsArray[i == 0 ? 1 : 0];
 
 				// Check whether row conjugate pairs form X-Wing.
-				var r1Mask = grid.GetDigitAppearingMask(digit, r1);
-				var r2Mask = grid.GetDigitAppearingMask(digit, r2);
-				var c1Mask = grid.GetDigitAppearingMask(digit, c1);
-				var c2Mask = grid.GetDigitAppearingMask(digit, c2);
+				short r1Mask = grid.GetDigitAppearingMask(digit, r1);
+				short r2Mask = grid.GetDigitAppearingMask(digit, r2);
+				short c1Mask = grid.GetDigitAppearingMask(digit, c1);
+				short c2Mask = grid.GetDigitAppearingMask(digit, c2);
 				if (mask1 == r1Mask && r1Mask.CountSet() == 2
 					&& mask2 == r2Mask && r2Mask.CountSet() == 2)
 				{
@@ -1281,6 +1334,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			}
 		}
 
+		/// <summary>
+		/// Check type 4.
+		/// </summary>
+		/// <param name="result">The result accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="cells">All cells.</param>
+		/// <param name="cellPair">The cell pair.</param>
+		/// <param name="extraCells">All extra cells.</param>
+		/// <param name="digits">All digits.</param>
 		private void CheckType4(
 			IList<UniquenessTechniqueInfo> result, Grid grid, int[] cells,
 			int[] cellPair, int[] extraCells, IEnumerable<int> digits)
@@ -1301,7 +1363,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 				}
 
 				short maskComparer = GetRegionAppearingMask(regionOffset, extraCells);
-				var digitsArray = digits.ToArray();
+				int[] digitsArray = digits.ToArray();
 				for (int index = 0; index < 2; index++)
 				{
 					int digit = digitsArray[index];
@@ -1371,6 +1433,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		}
 
 
+		/// <summary>
+		/// Get other digit mask used in type 3 with naked subset.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="allCells">All cells.</param>
+		/// <param name="digits">All digits.</param>
+		/// <param name="digitKindsMask">(out parameter) The digit kind mask.</param>
+		/// <returns>The result mask.</returns>
 		private static short GetOtherDigitMask(
 			Grid grid, IEnumerable<int> allCells, IEnumerable<int> digits,
 			out short digitKindsMask)
@@ -1390,6 +1460,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			return (short)(digitKindsMask & ~tempMask);
 		}
 
+		/// <summary>
+		/// Get the appearing mask in a region.
+		/// </summary>
+		/// <param name="region">The region.</param>
+		/// <param name="cells">All cells to check.</param>
+		/// <returns>The result mask.</returns>
 		private static short GetRegionAppearingMask(int region, int[] cells)
 		{
 			short mask = 0;

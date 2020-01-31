@@ -176,6 +176,7 @@ The program supports technique below at present:
         * Type 4<br/>共轭对类型
         * Type 5<br/>广义区块类型
         * Type 6<br/>二链列类型
+        * Hidden Rectangle<br/>隐性唯一矩形
 
 
 

@@ -65,5 +65,50 @@
             </para>
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeCounter">
+            <summary>
+            Encapsulates a code line counter.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeCounter._root">
+            <summary>
+            The root directory of the project.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeCounter._pattern">
+            <summary>
+            The filter pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeCounter._fileList">
+            <summary>
+            All file paths at this root directory.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeCounter.#ctor(System.String)">
+            <summary>
+            Initializes an instance with the specified root directory.
+            </summary>
+            <param name="root">The directory.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeCounter.#ctor(System.String,System.String)">
+            <summary>
+            Initializes an instance with the specified root directory and the filter pattern.
+            </summary>
+            <param name="root">The root directory.</param>
+            <param name="filterPattern">The filter pattern.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeCounter.CountCodeLines">
+            <summary>
+            Count on code lines in all files in the specified root directory.
+            </summary>
+            <returns>The number of lines.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeCounter.GetAllFilesRecursively(System.IO.DirectoryInfo)">
+            <summary>
+            Get all files in the specified directory recursively.
+            </summary>
+            <param name="directory">The directory information instance.</param>
+        </member>
     </members>
 </doc>
