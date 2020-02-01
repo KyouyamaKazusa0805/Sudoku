@@ -108,7 +108,6 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 			_columns[index].IncSize();
 		}
 
-#if DEBUG
 		/// <inheritdoc/>
 		public override string ToString()
 		{
@@ -173,7 +172,6 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 
 			return builder.ToString();
 		}
-#endif
 
 		/// <summary>
 		/// Insert the specified value into the list.

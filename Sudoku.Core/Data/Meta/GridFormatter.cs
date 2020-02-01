@@ -188,7 +188,6 @@ namespace Sudoku.Data.Meta
 		/// <returns>The result.</returns>
 		private string ToMultiLineSimpleGridCore()
 		{
-#if LAZY_CODE
 			string temp = Grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : $"{Placeholder}");
 			var sb = new StringBuilder();
 			sb.AppendLine(SubtleGridLines ? ".-------+-------+-------." : "+-------+-------+-------+");
@@ -206,9 +205,6 @@ namespace Sudoku.Data.Meta
 			sb.AppendLine(SubtleGridLines ? "'-------+-------+-------'" : "+-------+-------+-------+");
 
 			return sb.ToString();
-#else
-			throw new NotImplementedException();
-#endif
 		}
 
 		/// <summary>

@@ -26,7 +26,7 @@ namespace Sudoku.Debugging
 			var analysisResult = solver.Solve(grid);
 			Console.WriteLine(analysisResult);
 
-			// Line counter.
+			//Line counter.
 			//string solutionFolder = Solution.PathRoot;
 			//var codeCounter = new CodeCounter(solutionFolder, @".*\.cs$");
 			//Console.WriteLine(codeCounter.CountCodeLines());

@@ -65,30 +65,17 @@ namespace Sudoku.Data.Meta
 		/// Note that all offsets will be set <see langword="true"/>, but their own peers
 		/// will not be set <see langword="true"/>.
 		/// </remarks>
-		public GridMap(IEnumerable<int> offsets)
+		public unsafe GridMap(IEnumerable<int> offsets)
 		{
 			(_low, _high) = (0, 0);
-
-#if I_DONT_KNOW_WHY_GENERATING_BUG
-			var series = (Span<long>)stackalloc[] { _low, _high };
-			foreach (int offset in offsets)
+			fixed (long* a = &_low, b = &_high)
 			{
-				ref long valueToModify = ref series[offset / Shifting];
-				valueToModify |= 1L << offset % Shifting;
-			}
-#else
-			unsafe
-			{
-				fixed (long* a = &_low, b = &_high)
+				long** series = stackalloc[] { a, b };
+				foreach (int offset in offsets)
 				{
-					long** series = stackalloc[] { a, b };
-					foreach (int offset in offsets)
-					{
-						*series[offset / Shifting] |= 1L << offset % Shifting;
-					}
+					*series[offset / Shifting] |= 1L << offset % Shifting;
 				}
 			}
-#endif
 		}
 
 		/// <summary>
@@ -146,20 +133,9 @@ namespace Sudoku.Data.Meta
 		public bool this[int offset]
 		{
 			readonly get =>
-				(((stackalloc[] { _low, _high })[offset / Shifting] >> offset % Shifting) & 1) != 0;
+				((stackalloc[] { _low, _high }[offset / Shifting] >> offset % Shifting) & 1) != 0;
 			set
 			{
-#if I_DONT_KNOW_WHY_GENERATING_BUG
-				ref int valueToModify = ref (stackalloc[] { _low, _high })[offset / Shifting];
-				if (value)
-				{
-					valueToModify |= 1 << offset % Shifting;
-				}
-				else
-				{
-					valueToModify &= ~(1 << offset % Shifting);
-				}
-#else
 				// We should get along with pointers extremely carefully.
 				unsafe
 				{
@@ -182,7 +158,6 @@ namespace Sudoku.Data.Meta
 						}
 					}
 				}
-#endif
 			}
 		}
 

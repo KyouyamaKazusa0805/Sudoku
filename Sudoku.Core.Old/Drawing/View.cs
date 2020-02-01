@@ -43,7 +43,6 @@ namespace Sudoku.Drawing
 		public override int GetHashCode() =>
 			GetType().GetHashCode() ^ ToString().GetHashCode(StringComparison.Ordinal);
 
-#if DEBUG
 		public override string ToString()
 		{
 			const string separator = ", ";
@@ -89,6 +88,5 @@ namespace Sudoku.Drawing
 
 			return sb.ToString();
 		}
-#endif
 	}
 }

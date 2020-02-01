@@ -20,16 +20,9 @@ namespace Sudoku.Data.Extensions
 			for (int i = 0, length = @this.Length >> 1; i < length; i++)
 			{
 				int z = i + 1;
-#if !LAZY_CODE
-				checked
-				{
-					@this[i] ^= @this[^z] ^= @this[i] ^= @this[^z];
-				}
-#else
 				char temp = @this[i];
 				@this[i] = @this[^z];
 				@this[^z] = temp;
-#endif
 			}
 
 			return @this;

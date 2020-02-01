@@ -49,6 +49,13 @@ namespace Sudoku.Data.Meta
 		/// <seealso cref="CellStatus"/>
 		private readonly short[] _masks;
 
+		/// <summary>
+		/// Same as <see cref="_masks"/>, but this field stores the all masks at
+		/// the initial grid. The field will not be modified until this instance
+		/// destructs.
+		/// </summary>
+		private readonly short[] _initialMasks;
+
 
 		/// <summary>
 		/// Initializes an instance with the binary mask array.
@@ -67,6 +74,7 @@ namespace Sudoku.Data.Meta
 			}
 
 			_masks = masks;
+			_initialMasks = (short[])masks.Clone();
 
 			ValueChanged += OnValueChanged;
 		}
@@ -83,6 +91,7 @@ namespace Sudoku.Data.Meta
 			{
 				_masks[i] = (short)CellStatus.Empty << 9;
 			}
+			_initialMasks = (short[])_masks.Clone();
 
 			// Initializes the event handler.
 			// Note that the default event initialization hides the back delegate field,
@@ -202,48 +211,12 @@ namespace Sudoku.Data.Meta
 				}
 				else if (value == -1)
 				{
-					// If 'value' is -1, we should re-compute all candidates.
+					// If 'value' is -1, we should reset the grid.
 					// Note that reset candidates may not trigger the event.
-#if I_DONT_KNOW_WHY_GENERATING_BUG
 					if (GetCellStatus(offset) == CellStatus.Modifiable)
 					{
-						short resultMask = (int)CellStatus.Empty << 9;
-						foreach (int peerOffset in new GridMap(offset).Offsets)
-						{
-							if (peerOffset == offset)
-							{
-								continue;
-							}
-					
-							// Check the digit in its peer cells aiming to re-computing
-							// the candidates in the cell with offset 'offset'.
-							if (GetCellStatus(peerOffset) != CellStatus.Empty)
-							{
-								resultMask |= (short)(1 << this[peerOffset]);
-								continue;
-							}
-					
-							// Then modify peer cells mask.
-							int digit = this[offset];
-							if (new GridMap(peerOffset).Offsets.All(
-								o => o == peerOffset || GetCellStatus(o) == CellStatus.Empty || this[o] != digit))
-							{
-								_masks[peerOffset] &= (short)~(1 << digit);
-							}
-						}
-					
-						_masks[offset] = resultMask;
+						Reset();
 					}
-#else
-					if (GetCellStatus(offset) == CellStatus.Modifiable)
-					{
-						var tempGrid = Parse(ToString("."));
-						for (int i = 0; i < 81; i++)
-						{
-							_masks[i] = tempGrid.GetMask(i);
-						}
-					}
-#endif
 				}
 			}
 		}
@@ -290,7 +263,7 @@ namespace Sudoku.Data.Meta
 		/// To fix a grid, which means all modifiable values will be changed
 		/// to given ones.
 		/// </summary>
-		public void FixGrid()
+		public void Fix()
 		{
 			for (int i = 0; i < 81; i++)
 			{
@@ -305,7 +278,7 @@ namespace Sudoku.Data.Meta
 		/// To unfix a grid, which means all given values will be changed
 		/// to modifiable ones.
 		/// </summary>
-		public void UnfixGrid()
+		public void Unfix()
 		{
 			for (int i = 0; i < 81; i++)
 			{
@@ -315,6 +288,11 @@ namespace Sudoku.Data.Meta
 				}
 			}
 		}
+
+		/// <summary>
+		/// To reset the grid.
+		/// </summary>
+		public void Reset() => Array.Copy(_initialMasks, _masks, 81);
 
 		/// <summary>
 		/// Set the status in a cell.

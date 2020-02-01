@@ -81,7 +81,6 @@ namespace Sudoku.Drawing
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-#if DEBUG
 			const string separator = ", ";
 			var sb = new StringBuilder();
 
@@ -142,8 +141,5 @@ namespace Sudoku.Drawing
 
 			return sb.ToString();
 		}
-#else
-		return base.ToString() ?? string.Empty;
-#endif
 	}
 }
