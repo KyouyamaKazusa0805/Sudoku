@@ -27,7 +27,7 @@ namespace Sudoku.Debugging
 			Console.WriteLine(analysisResult);
 
 			// Line counter.
-			//string solutionFolder = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName;
+			//string solutionFolder = Solution.PathRoot;
 			//var codeCounter = new CodeCounter(solutionFolder, @".*\.cs$");
 			//Console.WriteLine(codeCounter.CountCodeLines());
 		}

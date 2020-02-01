@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using Sudoku.Data.Meta;
@@ -12,7 +14,7 @@ namespace Sudoku.Solving
 	/// <summary>
 	/// Provides an analysis result after a puzzle solved.
 	/// </summary>
-	public sealed class AnalysisResult
+	public sealed class AnalysisResult : IEnumerable<TechniqueInfo>
 	{
 		/// <summary>
 		/// Initializes an instance with some information.
@@ -300,6 +302,16 @@ namespace Sudoku.Solving
 			out string? additionalMessage) =>
 			(puzzle, hasSolved, elapsedTime, solution, difficultyLevel, solvingStepsCount, solvingSteps, additionalMessage) = (Puzzle, HasSolved, ElapsedTime, Solution, DifficultyLevel, SolvingStepsCount, SolvingSteps, Additional);
 
+		/// <summary>
+		/// <para>Returns an enumerator that iterates through the collection.</para>
+		/// <para>Note that this method will not return <see langword="null"/> anytime.</para>
+		/// </summary>
+		/// <returns>
+		/// An enumerator that can be used to iterate through the collection.
+		/// </returns>
+		public IEnumerator<TechniqueInfo> GetEnumerator() =>
+			(SolvingSteps ?? Array.Empty<TechniqueInfo>()).GetEnumerator();
+
 		/// <inheritdoc/>
 		public override string ToString()
 		{
@@ -349,5 +361,8 @@ namespace Sudoku.Solving
 
 			return sb.ToString();
 		}
+
+		/// <inheritdoc/>
+		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 	}
 }
