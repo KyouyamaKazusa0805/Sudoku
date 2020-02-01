@@ -435,7 +435,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 					// Check whether elimination cells exist.
 					var (a, b) = (extraCells[0], extraCells[1]);
-					var elimMap = new GridMap(a) { [a] = false } & new GridMap(b) { [b] = false };
+					var elimMap = new GridMap(a, false) & new GridMap(b, false);
 					if (elimMap.Count == 0)
 					{
 						continue;
@@ -577,11 +577,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										{
 											if (count++ == 0)
 											{
-												elimMap = new GridMap(cell) { [cell] = false };
+												elimMap = new GridMap(cell, false);
 											}
 											else
 											{
-												elimMap &= new GridMap(cell) { [cell] = false };
+												elimMap &= new GridMap(cell, false);
 											}
 										}
 									}
@@ -682,11 +682,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 												{
 													if (count++ == 0)
 													{
-														elimMap = new GridMap(cell) { [cell] = false };
+														elimMap = new GridMap(cell, false);
 													}
 													else
 													{
-														elimMap &= new GridMap(cell) { [cell] = false };
+														elimMap &= new GridMap(cell, false);
 													}
 												}
 											}
@@ -785,11 +785,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 													{
 														if (count++ == 0)
 														{
-															elimMap = new GridMap(cell) { [cell] = false };
+															elimMap = new GridMap(cell, false);
 														}
 														else
 														{
-															elimMap &= new GridMap(cell) { [cell] = false };
+															elimMap &= new GridMap(cell, false);
 														}
 													}
 												}

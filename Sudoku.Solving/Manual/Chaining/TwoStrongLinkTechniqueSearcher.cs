@@ -85,7 +85,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						head = cells1[headIndex];
 						tail = cells2[tailIndex];
 						var conclusions = new List<Conclusion>();
-						var gridMap = new GridMap(head) { [head] = false } & new GridMap(tail) { [tail] = false };
+						var gridMap = new GridMap(head, false) & new GridMap(tail, false);
 						if (gridMap.Count == 0)
 						{
 							continue;

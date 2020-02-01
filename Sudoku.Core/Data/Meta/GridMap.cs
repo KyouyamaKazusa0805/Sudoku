@@ -39,9 +39,23 @@ namespace Sudoku.Data.Meta
 		/// (Sets itself and all peers).
 		/// </summary>
 		/// <param name="offset">The cell offset.</param>
-		public GridMap(int offset) : this(PeerTable[offset])
+		public GridMap(int offset) : this(offset, true)
 		{
 		}
+
+		/// <summary>
+		/// Initializes an instance with the specified cell offset.
+		/// This will set all bits of all peers of this cell. Another
+		/// <see cref="bool"/> value indicates whether this initialization
+		/// will set the bit of itself.
+		/// </summary>
+		/// <param name="offset">The cell offset.</param>
+		/// <param name="setItself">
+		/// A <see cref="bool"/> value indicating whether this initialization
+		/// will set the bit of itself.
+		/// </param>
+		public GridMap(int offset, bool setItself) : this(PeerTable[offset]) =>
+			this[offset] = setItself;
 
 		/// <summary>
 		/// Initializes an instance with a series of cell offsets.

@@ -81,7 +81,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 					goto Label_ContinueLoop;
 				}
 
-				var pivotPeersMap = new GridMap(pivot) { [pivot] = false };
+				var pivotPeersMap = new GridMap(pivot, false);
 				var intersection = bivalueCellsMap._map & pivotPeersMap;
 				if (intersection.Count < size - 1)
 				{
@@ -328,11 +328,11 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			int pivot, bool isIncompleted, out GridMap map)
 		{
 			int firstCell = cells[0];
-			map = new GridMap(firstCell) { [firstCell] = false };
+			map = new GridMap(firstCell, false);
 			for (int i = 1; i < cells.Length; i++)
 			{
 				int cell = cells[i];
-				map &= new GridMap(cell) { [cell] = false };
+				map &= new GridMap(cell, false);
 			}
 			if (!isIncompleted)
 			{
