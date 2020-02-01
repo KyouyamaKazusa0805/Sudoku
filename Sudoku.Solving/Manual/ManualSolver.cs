@@ -30,6 +30,13 @@ namespace Sudoku.Solving.Manual
 				: SolveNaively(grid, grid.Clone(), new List<TechniqueInfo>());
 		}
 
+		/// <summary>
+		/// Solve the puzzle with <see cref="CheckMinimumDifficultyStrictly"/> option.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="cloneation">The cloneation grid to calculate.</param>
+		/// <param name="steps">All steps found.</param>
+		/// <returns>The analysis result.</returns>
 		private AnalysisResult SolveWithStrictDifficultyRating(
 			Grid grid, Grid cloneation, List<TechniqueInfo> steps)
 		{
@@ -114,6 +121,13 @@ namespace Sudoku.Solving.Manual
 				additional: null);
 		}
 
+		/// <summary>
+		/// Solve naively.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="cloneation">The cloneation grid to calculate.</param>
+		/// <param name="steps">All steps found.</param>
+		/// <returns>The analysis result.</returns>
 		private AnalysisResult SolveNaively(
 			Grid grid, Grid cloneation, List<TechniqueInfo> steps)
 		{
