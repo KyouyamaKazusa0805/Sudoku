@@ -469,23 +469,6 @@ Output（输出结果）:
 
 
 
-## Conditional Compilation Symbols
-
-标题：**条件编译符号**
-
-This solution uses conditional compilation symbols. I will introduce all of them.
-
-本项目使用了条件编译符号。我将会为你介绍它们。
-
-* `CODE_ANALYSIS_EXTENDED_BLOCK`
-	* The code block is used to replace my own code analyzer and fixer. Above the introduction in project folders, I have told that all attributes in the [`Sudoku.Diagnostics`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Diagnostics) project is only used and does work with my own code analyzer but the analyzer is not any part of the code in this whole sudoku solution. Therefore, this symbol is used when the analyzer does not work, all code surrounded with `#if CODE_ANALYSIS_EXTENDED_BLOCK` block will work. For example, the code analyzer will check the validity of a string marked on `PatternAttribute`, which is finished at compilation time, so the runtime, all values marked on this attribute will be guaranteed that they are valid regular expression patterns. However, the code analyzer does not work somehow, this block will check the pattern using `Contract.Requires(pattern.IsRegexPattern());` to check the value is valid one. If this code block does not work and the pattern is invalid, we will get a runtime exception that the pattern is invalid.<br/>这个代码块用来代替我自己的代码分析器和修补工具。在前文介绍文件夹的时候我提到过，所有位于 [`Sudoku.Diagnostics`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Diagnostics) 项目下的特性均需要配合我自己设计的代码分析器才能正常工作。但这个分析器的代码并不属于整个项目的任何一个部分，所以我没有上传上来。所以，这个预编译符号就起作用了：如果我们把 `CODE_ANALYSIS_EXTENDED_BLOCK` 启用起来的话，整个项目就可以正常工作了。举个例子，代码分析器会验证标注了 `PatternAttribute` 特性的字符串是否是一个合法的正则表达式的模式串，这一点将在编译期就完成处理（如果不是的话会立刻报错，防止错误留到运行时）。如果我们不启用这个代码块的话，如果传入的这个参数标记了这个特性，却不是一个合法模式串的话，我们就会在运行时获得一个异常。而整个被这个预编译符号包裹起来的代码块里写的就是验证这个字符串是否是合法模式串的代码（`Contract.Requires(pattern.IsRegexPattern());`）。
-* `LAZY_CODE`
-	* This part of codes is only written by purely simple logic. However these are always complex and diffcult to maintain.<br/>这部分的代码纯粹是为了写起来更快，不需要思考而搞定的（俗称懒惰环境下完成的代码书写）。这部分代码一般都比较复杂，而且很难维护，只是因为这部分代码逻辑很好思考。
-* `I_DONT_KNOW_WHY_GENERATING_BUG`
-	* This part of codes is ones which will always generate a bug that I cannot fix it. If you can solve this problem, you can add this symbol in your project and enable to compile them, in order to fix the bugs.<br/>这部分的代码一般都会产生 bug，而且这个 bug 我目前还没有修复。如果你能解决这个问题，你可以为你的项目加上这个符号来编译启用这部分代码，来修复 bug。
-
-
-
 ## Author
 
 标题：**作者**

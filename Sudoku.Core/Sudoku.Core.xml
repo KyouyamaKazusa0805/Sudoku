@@ -395,6 +395,13 @@
             </remarks>
             <seealso cref="T:Sudoku.Data.Meta.CellStatus"/>
         </member>
+        <member name="F:Sudoku.Data.Meta.Grid._initialMasks">
+            <summary>
+            Same as <see cref="F:Sudoku.Data.Meta.Grid._masks"/>, but this field stores the all masks at
+            the initial grid. The field will not be modified until this instance
+            destructs.
+            </summary>
+        </member>
         <member name="M:Sudoku.Data.Meta.Grid.#ctor(System.Int16[])">
             <summary>
             Initializes an instance with the binary mask array.
@@ -450,16 +457,21 @@
             Indicates the event when the mask in a certain cell has changed.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.FixGrid">
+        <member name="M:Sudoku.Data.Meta.Grid.Fix">
             <summary>
             To fix a grid, which means all modifiable values will be changed
             to given ones.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.UnfixGrid">
+        <member name="M:Sudoku.Data.Meta.Grid.Unfix">
             <summary>
             To unfix a grid, which means all given values will be changed
             to modifiable ones.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Meta.Grid.Reset">
+            <summary>
+            To reset the grid.
             </summary>
         </member>
         <member name="M:Sudoku.Data.Meta.Grid.SetCellStatus(System.Int32,Sudoku.Data.Meta.CellStatus)">

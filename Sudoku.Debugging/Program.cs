@@ -29,7 +29,7 @@ namespace Sudoku.Debugging
 			//Line counter.
 			//string solutionFolder = Solution.PathRoot;
 			//var codeCounter = new CodeCounter(solutionFolder, @".*\.cs$");
-			//Console.WriteLine(codeCounter.CountCodeLines());
+			//Console.WriteLine($"{codeCounter.CountCodeLines()} lines.");
 		}
 	}
 }
