@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Collections.Generic;
 using Sudoku.Data.Meta;
 using Sudoku.Diagnostics.CodeAnalysis;
 using Sudoku.Drawing;

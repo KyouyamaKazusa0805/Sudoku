@@ -152,31 +152,13 @@ The program supports technique below at present:
 
 目前程序支持如下的技巧项：
 
-* Hidden Single (Last Digit)<br/>排除（同数剩余）
-* Naked Single (Full House)<br/>唯一余数（同区剩余）
-* Locked Candidates<br/>区块
-    * Pointing<br/>宫区块
-    * Claiming<br/>行列区块
-* Subset<br/>数组
-    * Naked Subset (Locked Subset & Partial Locked Subset)<br/>显性数组（死锁数组和区块数组）
-    * Hidden Subset<br/>隐性数组
-* Wings<br/>Wing 结构
-    * Regular Wing<br/>规则 Wing 结构（分支匹配）
-        * XY-Wing
-        * XYZ-Wing
-        * (Incompleted) WXYZ-Wing<br/>（残缺）WXYZ-Wing
-        * (Incompleted) VWXYZ-Wing<br/>（残缺）VWXYZ-Wing
-    * Irregular Wing<br/>不规则 Wing 结构（三强两弱定式链结构）
-        * W-Wing
-* Uniqueness<br/>唯一性技巧
-    * Unique Rectangle<br/>唯一矩形
-        * Type 1<br/>标准类型
-        * Type 2<br/>区块类型
-        * Type 3<br/>数组类型
-        * Type 4<br/>共轭对类型
-        * Type 5<br/>广义区块类型
-        * Type 6<br/>二链列类型
-        * Hidden Rectangle<br/>隐性唯一矩形
+* Direct techniques: Hidden Single (Last Digit), Naked Single (Full House)<br/>直观技巧：排除（同数剩余）、唯一余数（同区剩余）
+
+* Locked Candidates: Pointing, Claiming<br/>区块：宫区块、行列区块
+* Subset: Naked Subset (Locked Subset & Partial Locked Subset), Hidden Subset<br/>数组：显性数组（死锁数组和区块数组）、隐性数组
+* Wings: XY-Wing, XYZ-Wing, (Incompleted) WXYZ-Wing, (Incompleted) VWXYZ-Wing, W-Wing<br/>Wing 结构：XY-Wing、XYZ-Wing、（残缺）WXYZ-Wing、（残缺）VWXYZ-Wing、W-Wing
+* Uniqueness: Unique Rectangle (Type 1 to 6), Hidden Rectangle<br/>唯一性技巧：唯一矩形（类型 1 到 6）、隐性唯一矩形
+* Two Strong Links (Turbot Fishes): Skyscraper, Two-string Kite, Turbot Fish<br/>双强链技巧：摩天楼、双线风筝、多宝鱼
 
 
 
