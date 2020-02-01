@@ -19,7 +19,7 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Initializes an instance with some information.
 		/// </summary>
-		/// <param name="initialGrid">The initial grid.</param>
+		/// <param name="puzzle">The puzzle.</param>
 		/// <param name="solverName">The name of the solver.</param>
 		/// <param name="hasSolved">Indicates whether the puzzle has been solved.</param>
 		/// <param name="solution">The solution grid.</param>
@@ -27,9 +27,9 @@ namespace Sudoku.Solving
 		/// <param name="solvingList">All steps produced in solving.</param>
 		/// <param name="additional">The additional message.</param>
 		public AnalysisResult(
-			Grid initialGrid, string solverName, bool hasSolved, Grid? solution,
+			Grid puzzle, string solverName, bool hasSolved, Grid? solution,
 			TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? solvingList, string? additional) =>
-			(Puzzle, SolverName, HasSolved, Solution, SolvingSteps, ElapsedTime, Additional) = (initialGrid, solverName, hasSolved, solution, solvingList, elapsedTime, additional);
+			(Puzzle, SolverName, HasSolved, Solution, SolvingSteps, ElapsedTime, Additional) = (puzzle, solverName, hasSolved, solution, solvingList, elapsedTime, additional);
 
 
 		/// <summary>
@@ -315,34 +315,26 @@ namespace Sudoku.Solving
 		/// <inheritdoc/>
 		public override string ToString()
 		{
+			string separator = new string('-', 10);
 			var sb = new StringBuilder();
+
 			sb.AppendLine($"Puzzle: {Puzzle:#}");
 			sb.AppendLine($"Solving tool: {SolverName}");
-			if (SolvingSteps is null)
+			if (HasSolved)
 			{
-				sb.AppendLine($"Puzzle has {(HasSolved ? "" : "not ")}been solved.");
-				if (!(Solution is null))
+				if (!(SolvingSteps is null))
 				{
-					sb.AppendLine($"Puzzle solution: {Solution:!}");
-				}
-				sb.AppendLine($"Time elapsed: {ElapsedTime:hh':'mm'.'ss'.'fff}");
-			}
-			else
-			{
-				foreach (var info in SolvingSteps)
-				{
-					sb.AppendLine($"{$"({info.Difficulty}",5:0.0}) {info}");
+					sb.AppendLine("Solving steps:");
+					foreach (var info in SolvingSteps)
+					{
+						sb.AppendLine($"{$"({info.Difficulty}",5:0.0}) {info}");
+					}
 				}
 
-				sb.AppendLine($"Puzzle has {(HasSolved ? "" : "not ")}been solved.");
-				if (!(Solution is null))
-				{
-					sb.AppendLine($"Puzzle solution: {Solution:!}");
-				}
-				sb.AppendLine($"Time elapsed: {ElapsedTime:hh':'mm'.'ss'.'fff}");
-				sb.AppendLine("Technique used:");
+				sb.AppendLine(separator);
 				if (!(SolvingStepsGrouped is null))
 				{
+					sb.AppendLine("Technique used:");
 					foreach (var solvingStepsGroup in SolvingStepsGrouped)
 					{
 						sb.AppendLine($"{solvingStepsGroup.Count()} * {solvingStepsGroup.Key}");
@@ -352,10 +344,15 @@ namespace Sudoku.Solving
 				sb.AppendLine($"Difficulty total: {TotalDifficulty}");
 				sb.AppendLine($"Puzzle rating: {MaxDifficulty:0.0}/{PearlDifficulty:0.0}/{DiamondDifficulty:0.0}");
 			}
-
+			if (!(Solution is null))
+			{
+				sb.AppendLine($"Puzzle solution: {Solution:!}");
+			}
+			sb.AppendLine($"Puzzle has {(HasSolved ? "" : "not ")}been solved.");
+			sb.AppendLine($"Time elapsed: {ElapsedTime:hh':'mm'.'ss'.'fff}");
 			if (!(Additional is null))
 			{
-				sb.AppendLine(new string('-', 10));
+				sb.AppendLine(separator);
 				sb.AppendLine(Additional);
 			}
 

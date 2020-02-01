@@ -120,7 +120,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						var candidateOffsets = new List<(int, int)>();
 						int cellInTripletMask = ~grid.GetMask(cellTriplet[0]) & 511;
 						var digits = (~extraCellMask & 511).GetAllSets();
-						int extraDigit = cellInTripletMask.GetAllSets().First(i => !digits.Contains(i));
+						int? extraDigit = cellInTripletMask.GetAllSets()
+							.FirstOrDefault(i => !digits.Contains(i));
+
+						if (extraDigit == null)
+						{
+							continue;
+						}
+
+						int extraDigitReal = (int)extraDigit;
 						foreach (int cell in cells)
 						{
 							foreach (int digit in digits)
@@ -131,9 +139,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 								}
 							}
 
-							if (grid.CandidateExists(cell, extraDigit))
+							if (grid.CandidateExists(cell, extraDigitReal))
 							{
-								candidateOffsets.Add((1, cell * 9 + extraDigit));
+								candidateOffsets.Add((1, cell * 9 + extraDigitReal));
 							}
 						}
 
@@ -144,11 +152,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 							& new GridMap(cellTriplet[2]);
 						foreach (int cell in elimMap.Offsets)
 						{
-							if (grid.CandidateExists(cell, extraDigit))
+							if (grid.CandidateExists(cell, extraDigitReal))
 							{
 								conclusions.Add(
 									new Conclusion(
-										ConclusionType.Elimination, cell * 9 + extraDigit));
+										ConclusionType.Elimination, cell * 9 + extraDigitReal));
 							}
 						}
 
@@ -170,7 +178,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										regionOffsets: null,
 										linkMasks: null)
 								},
-								detailData: new UrType2Or5(cells, digits.ToArray(), extraDigit, true)));
+								detailData: new UrType2Or5(cells, digits.ToArray(), extraDigitReal, true)));
 					}
 				}
 				else if (totalMaskCount == 7)

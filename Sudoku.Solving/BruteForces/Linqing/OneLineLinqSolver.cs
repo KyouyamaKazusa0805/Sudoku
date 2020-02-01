@@ -29,7 +29,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 			{
 				0 => throw new NoSolutionException(grid),
 				1 => new AnalysisResult(
-					initialGrid: grid,
+					puzzle: grid,
 					solverName: SolverName,
 					hasSolved: true,
 					solution: Grid.Parse(results[0]),

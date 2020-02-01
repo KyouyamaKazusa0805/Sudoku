@@ -25,11 +25,98 @@ namespace Sudoku.Solving.Manual
 		/// <inheritdoc/>
 		public override AnalysisResult Solve(Grid grid)
 		{
-			// Initialization.
-			var cloneation = grid.Clone();
-			var steps = new List<TechniqueInfo>();
+			return CheckMinimumDifficultyStrictly
+				? SolveWithStrictDifficultyRating(grid, grid.Clone(), new List<TechniqueInfo>())
+				: SolveNaively(grid, grid.Clone(), new List<TechniqueInfo>());
+		}
 
-			// Enable all step finders.
+		private AnalysisResult SolveWithStrictDifficultyRating(
+			Grid grid, Grid cloneation, List<TechniqueInfo> steps)
+		{
+			var searchers = new TechniqueSearcher[][]
+			{
+				new[] { new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit) },
+				new[] { new IntersectionTechniqueSearcher() },
+				new TechniqueSearcher[]
+				{
+					new SubsetTechniqueSearcher(),
+					new NormalFishTechniqueSearcher(),
+					new RegularWingTechniqueSearcher(CheckRegularWingSize),
+					new IrregularWingTechniqueSearcher(),
+					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
+					new TwoStrongLinksTechniqueSearcher(),
+				},
+			};
+
+			var stopwatch = new Stopwatch();
+			stopwatch.Start();
+		Label_StartSolving:
+			foreach (var searcherListGroup in searchers)
+			{
+				var collection = new List<TechniqueInfo>();
+				foreach (var searcher in searcherListGroup)
+				{
+					collection.AddRange(searcher.TakeAll(cloneation));
+				}
+
+				var step = collection.GetElementByMinSelector(info => info.Difficulty);
+				if (step is null)
+				{
+					// If current step cannot find any steps,
+					// we will turn to the next step finder to
+					// continue solving puzzle.
+					continue;
+				}
+
+				step.ApplyTo(cloneation);
+				steps.Add(step);
+				if (cloneation.HasSolved)
+				{
+					// The puzzle has been solved.
+					// :)
+					if (stopwatch.IsRunning)
+					{
+						stopwatch.Stop();
+					}
+
+					return new AnalysisResult(
+						puzzle: grid,
+						solverName: SolverName,
+						hasSolved: true,
+						solution: cloneation,
+						elapsedTime: stopwatch.Elapsed,
+						solvingList: steps,
+						additional: null);
+				}
+				else
+				{
+					// The puzzle has not been finished,
+					// we should turn to the first step finder
+					// to continue solving puzzle.
+					goto Label_StartSolving;
+				}
+			}
+
+			// All solver cannot finish the puzzle...
+			// :(
+			if (stopwatch.IsRunning)
+			{
+				stopwatch.Stop();
+			}
+
+			return new AnalysisResult(
+				puzzle: grid,
+				solverName: SolverName,
+				hasSolved: false,
+				solution: null,
+				elapsedTime: stopwatch.Elapsed,
+				solvingList: steps,
+				additional: null);
+		}
+
+		private AnalysisResult SolveNaively(
+			Grid grid, Grid cloneation, List<TechniqueInfo> steps)
+		{
 			var searchers = new TechniqueSearcher[]
 			{
 				new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit),
@@ -39,10 +126,9 @@ namespace Sudoku.Solving.Manual
 				new RegularWingTechniqueSearcher(CheckRegularWingSize),
 				new IrregularWingTechniqueSearcher(),
 				new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
-				new TwoStrongLinkTechniqueSearcher()
+				new TwoStrongLinksTechniqueSearcher(),
 			};
 
-			// Start time recording and solving.
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
 		Label_StartSolving:
@@ -74,7 +160,7 @@ namespace Sudoku.Solving.Manual
 					}
 
 					return new AnalysisResult(
-						initialGrid: grid,
+						puzzle: grid,
 						solverName: SolverName,
 						hasSolved: true,
 						solution: cloneation,
@@ -99,7 +185,7 @@ namespace Sudoku.Solving.Manual
 			}
 
 			return new AnalysisResult(
-				initialGrid: grid,
+				puzzle: grid,
 				solverName: SolverName,
 				hasSolved: false,
 				solution: null,

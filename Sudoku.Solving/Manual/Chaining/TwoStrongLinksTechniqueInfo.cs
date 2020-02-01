@@ -6,9 +6,9 @@ using Sudoku.Solving.Utils;
 namespace Sudoku.Solving.Manual.Chaining
 {
 	/// <summary>
-	/// Provides a usage of two strong link technique.
+	/// Provides a usage of two strong links technique.
 	/// </summary>
-	public sealed class TwoStrongLinkTechniqueInfo : TechniqueInfo
+	public sealed class TwoStrongLinksTechniqueInfo : TechniqueInfo
 	{
 		/// <summary>
 		/// Initializes an instance with the specified information.
@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="digit">The digit.</param>
 		/// <param name="baseRegion">The base region.</param>
 		/// <param name="targetRegion">The target region.</param>
-		public TwoStrongLinkTechniqueInfo(
+		public TwoStrongLinksTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			int digit, int baseRegion, int targetRegion)
 			: base(conclusions, views) =>

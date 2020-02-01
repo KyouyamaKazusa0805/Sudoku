@@ -13,7 +13,7 @@
             <summary>
             Initializes an instance with some information.
             </summary>
-            <param name="initialGrid">The initial grid.</param>
+            <param name="puzzle">The puzzle.</param>
             <param name="solverName">The name of the solver.</param>
             <param name="hasSolved">Indicates whether the puzzle has been solved.</param>
             <param name="solution">The solution grid.</param>
@@ -208,7 +208,19 @@
             (out parameter) The additional message.
             </param>
         </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.GetEnumerator">
+            <summary>
+            <para>Returns an enumerator that iterates through the collection.</para>
+            <para>Note that this method will not return <see langword="null"/> anytime.</para>
+            </summary>
+            <returns>
+            An enumerator that can be used to iterate through the collection.
+            </returns>
+        </member>
         <member name="M:Sudoku.Solving.AnalysisResult.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver">
@@ -732,12 +744,12 @@
             unless using last resort methods.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueInfo">
+        <member name="T:Sudoku.Solving.Manual.Chaining.TwoStrongLinksTechniqueInfo">
             <summary>
-            Provides a usage of two strong link technique.
+            Provides a usage of two strong links technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.TwoStrongLinksTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -747,39 +759,39 @@
             <param name="baseRegion">The base region.</param>
             <param name="targetRegion">The target region.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueInfo.Digit">
+        <member name="P:Sudoku.Solving.Manual.Chaining.TwoStrongLinksTechniqueInfo.Digit">
             <summary>
             Indicates the digit.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueInfo.BaseRegion">
+        <member name="P:Sudoku.Solving.Manual.Chaining.TwoStrongLinksTechniqueInfo.BaseRegion">
             <summary>
             Indicates the base region.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueInfo.TargetRegion">
+        <member name="P:Sudoku.Solving.Manual.Chaining.TwoStrongLinksTechniqueInfo.TargetRegion">
             <summary>
             Indicates the target region.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueInfo.Name">
+        <member name="P:Sudoku.Solving.Manual.Chaining.TwoStrongLinksTechniqueInfo.Name">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueInfo.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Chaining.TwoStrongLinksTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueInfo.DifficultyLevel">
+        <member name="P:Sudoku.Solving.Manual.Chaining.TwoStrongLinksTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueInfo.ToString">
+        <member name="M:Sudoku.Solving.Manual.Chaining.TwoStrongLinksTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueSearcher">
+        <member name="T:Sudoku.Solving.Manual.Chaining.TwoStrongLinksTechniqueSearcher">
             <summary>
-            Encapsulates a turbot fish technique searcher.
+            Encapsulates a two strong links technique searcher.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.TwoStrongLinksTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.Basic.BasicFishTechniqueInfo">
@@ -1071,6 +1083,34 @@
             </para>
             <para>The value is <see langword="false"/> in default case.</para>
             </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.ManualSolver._checkMinimumDifficultyStrictly">
+            <summary>
+            The field bound with <see cref="P:Sudoku.Solving.Manual.ManualSolver.CheckMinimumDifficultyStrictly"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.CheckMinimumDifficultyStrictly"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckMinimumDifficultyStrictly">
+            <summary>
+            <para>
+            Indicates whether the solver should check all technique
+            information using the strict technique searchers order.
+            </para>
+            <para>
+            If the value is <see langword="true"/>, all technique searchers
+            will be enabled calculation in order. It ensures the strictness
+            of difficulty rating that the maximum difficulty searched in
+            one searcher should be no more than the minimum one searched in
+            the searcher behind the previous one.
+            </para>
+            <para>
+            The value is <see langword="false"/> in default case. In addition,
+            if this value is <see langword="true"/>, the option
+            <see cref="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder"/> will be set <see langword="true"/>
+            at the same time.
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.EnableFullHouse">
             <summary>

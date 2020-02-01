@@ -723,6 +723,19 @@
             </summary>
             <param name="offset">The cell offset.</param>
         </member>
+        <member name="M:Sudoku.Data.Meta.GridMap.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Initializes an instance with the specified cell offset.
+            This will set all bits of all peers of this cell. Another
+            <see cref="T:System.Boolean"/> value indicates whether this initialization
+            will set the bit of itself.
+            </summary>
+            <param name="offset">The cell offset.</param>
+            <param name="setItself">
+            A <see cref="T:System.Boolean"/> value indicating whether this initialization
+            will set the bit of itself.
+            </param>
+        </member>
         <member name="M:Sudoku.Data.Meta.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
             Initializes an instance with a series of cell offsets.
@@ -909,11 +922,6 @@
         <member name="F:Sudoku.Data.Meta.GridMap.PeerTable">
             <summary>
             The peer table used in intersection.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Meta.GridMap.RegionsMaskTable">
-            <summary>
-            The region mask table used in getting all cells in the specified region.
             </summary>
         </member>
         <member name="T:Sudoku.Data.Meta.GridParser">

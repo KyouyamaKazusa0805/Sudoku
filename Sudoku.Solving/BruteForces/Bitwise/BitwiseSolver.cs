@@ -33,7 +33,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				{
 					0 => throw new NoSolutionException(grid),
 					1 => new AnalysisResult(
-						initialGrid: grid,
+						puzzle: grid,
 						solverName: SolverName,
 						hasSolved: true,
 						solution: Grid.Parse(sb.ToString()),
@@ -55,7 +55,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					{
 						0 => throw new NoSolutionException(grid),
 						1 => new AnalysisResult(
-							initialGrid: grid,
+							puzzle: grid,
 							solverName: SolverName,
 							hasSolved: true,
 							solution: Grid.Parse(sb.ToString()),
@@ -68,7 +68,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 				catch (Exception ex2)
 				{
 					return new AnalysisResult(
-						initialGrid: grid,
+						puzzle: grid,
 						solverName: SolverName,
 						hasSolved: false,
 						solution: null,

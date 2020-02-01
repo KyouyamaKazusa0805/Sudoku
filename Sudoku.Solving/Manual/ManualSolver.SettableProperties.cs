@@ -14,6 +14,49 @@
 		/// </summary>
 		public bool OptimizedApplyingOrder { get; set; } = false;
 
+		#region CheckMinimumDifficultyStrictly
+		/// <summary>
+		/// The field bound with <see cref="CheckMinimumDifficultyStrictly"/>.
+		/// </summary>
+		/// <seealso cref="CheckMinimumDifficultyStrictly"/>
+		private bool _checkMinimumDifficultyStrictly = false;
+
+		/// <summary>
+		/// <para>
+		/// Indicates whether the solver should check all technique
+		/// information using the strict technique searchers order.
+		/// </para>
+		/// <para>
+		/// If the value is <see langword="true"/>, all technique searchers
+		/// will be enabled calculation in order. It ensures the strictness
+		/// of difficulty rating that the maximum difficulty searched in
+		/// one searcher should be no more than the minimum one searched in
+		/// the searcher behind the previous one.
+		/// </para>
+		/// <para>
+		/// The value is <see langword="false"/> in default case. In addition,
+		/// if this value is <see langword="true"/>, the option
+		/// <see cref="OptimizedApplyingOrder"/> will be set <see langword="true"/>
+		/// at the same time. Note that the calculation will be much slower
+		/// than normal case (this value is <see langword="false"/>).
+		/// </para>
+		/// </summary>
+		/// <seealso cref="OptimizedApplyingOrder"/>
+		public bool CheckMinimumDifficultyStrictly
+		{
+			get => _checkMinimumDifficultyStrictly;
+			set
+			{
+				if (value)
+				{
+					OptimizedApplyingOrder = true;
+				}
+
+				_checkMinimumDifficultyStrictly = value;
+			}
+		}
+		#endregion
+
 		/// <summary>
 		/// <para>
 		/// Indicates whether the solver will record the step
@@ -67,7 +110,7 @@
 		/// </example>
 		public bool CheckIncompletedUniquenessPatterns { get; set; } = false;
 
-
+		#region CheckRegularWingSize
 		/// <summary>
 		/// The field bound with <see cref="CheckRegularWingSize"/>.
 		/// </summary>
@@ -92,5 +135,6 @@
 			get => _checkRegularWingSize;
 			set => _checkRegularWingSize = value >= 3 && value <= 5 ? value : 5;
 		}
+		#endregion
 	}
 }

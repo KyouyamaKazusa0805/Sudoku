@@ -84,13 +84,16 @@ namespace Sudoku.Solving.Manual.Subsets
 								var conclusions =
 									GetNakedSubsetConclusions(
 										grid, offsets, digits, out bool? isLocked);
-								if (conclusions.Count != 0)
+
+								if (conclusions.Count == 0)
 								{
-									// Gather this conclusion.
-									GatherConclusion(
-										grid, result, region, digits,
-										offsets, conclusions, isLocked);
+									continue;
 								}
+
+								// Gather this conclusion.
+								GatherConclusion(
+									grid, result, region, digits,
+									offsets, conclusions, isLocked);
 							}
 						}
 						else // size > 2
@@ -117,12 +120,15 @@ namespace Sudoku.Solving.Manual.Subsets
 										var conclusions =
 											GetNakedSubsetConclusions(
 												grid, offsets, digits, out bool? isLocked);
-										if (conclusions.Count != 0)
+
+										if (conclusions.Count == 0)
 										{
-											GatherConclusion(
-												grid, result, region, digits,
-												offsets, conclusions, isLocked);
+											continue;
 										}
+										
+										GatherConclusion(
+											grid, result, region, digits,
+											offsets, conclusions, isLocked);
 									}
 								}
 								else // size == 4
@@ -144,24 +150,27 @@ namespace Sudoku.Solving.Manual.Subsets
 										{
 											// Naked triple found.
 											var digits = new List<int>((511 & ~mask4).GetAllSets());
-											var offsets = new[]{ pos1, pos2, pos3, pos4 };
+											var offsets = new[] { pos1, pos2, pos3, pos4 };
 											var conclusions =
 												GetNakedSubsetConclusions(
 													grid, offsets, digits, out bool? isLocked);
-											if (conclusions.Count != 0)
+
+											if (conclusions.Count == 0)
 											{
-												GatherConclusion(
-													grid, result, region, digits,
-													offsets, conclusions, isLocked);
+												continue;
 											}
-										} // if 9 - mask.CountSet() == 4
-									} // for i4 (i3 + 1)..9
-								} // else (if size == 3)
-							} // for i3 (i2 + 1)..(12 - size)
-						} // else (if size == 2)
-					} // for i2 (i1 + 1)..(11 - size)
-				} // for i1 0..(10 - size)
-			} // for region 0..27
+
+											GatherConclusion(
+												grid, result, region, digits,
+												offsets, conclusions, isLocked);
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 
 			return result;
 		}
@@ -189,12 +198,8 @@ namespace Sudoku.Solving.Manual.Subsets
 						new View(
 							cellOffsets: null,
 							candidateOffsets:
-								GetNakedSubsetsHighlightedCandidateOffsets(
-									grid, offsets, digits),
-							regionOffsets: new[]
-							{
-								(0, region)
-							},
+								GetNakedSubsetsHighlightedCandidateOffsets(grid, offsets, digits),
+							regionOffsets: new[] { (0, region) },
 							linkMasks: null)
 					},
 					regionOffset: region,
@@ -237,13 +242,13 @@ namespace Sudoku.Solving.Manual.Subsets
 				}
 
 				// Get intersection by each digit.
-				var tempMap = new GridMap(firstOffset);
+				var tempMap = new GridMap(firstOffset, false);
 				for (int j = firstOffsetIndex + 1; j < offsets.Count; j++)
 				{
 					int offset = offsets[j];
 					if (!grid[offset, digit])
 					{
-						tempMap &= new GridMap(offset);
+						tempMap &= new GridMap(offset, false);
 					}
 				}
 				series[i] = tempMap.Count > 9;

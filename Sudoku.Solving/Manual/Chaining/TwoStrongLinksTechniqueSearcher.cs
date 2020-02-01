@@ -8,14 +8,14 @@ using Sudoku.Solving.Utils;
 namespace Sudoku.Solving.Manual.Chaining
 {
 	/// <summary>
-	/// Encapsulates a turbot fish technique searcher.
+	/// Encapsulates a two strong links technique searcher.
 	/// </summary>
-	public sealed class TwoStrongLinkTechniqueSearcher : TechniqueSearcher
+	public sealed class TwoStrongLinksTechniqueSearcher : TechniqueSearcher
 	{
 		/// <inheritdoc/>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
-			var result = new List<TwoStrongLinkTechniqueInfo>();
+			var result = new List<TwoStrongLinksTechniqueInfo>();
 
 			for (int digit = 0; digit < 9; digit++)
 			{
@@ -105,7 +105,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						}
 
 						result.Add(
-							new TwoStrongLinkTechniqueInfo(
+							new TwoStrongLinksTechniqueInfo(
 								conclusions,
 								views: new[]
 								{

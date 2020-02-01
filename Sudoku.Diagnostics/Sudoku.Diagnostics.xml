@@ -118,5 +118,15 @@
             </summary>
             <param name="directory">The directory information instance.</param>
         </member>
+        <member name="T:Sudoku.Diagnostics.Solution">
+            <summary>
+            Provides the solution constant values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.Solution.PathRoot">
+            <summary>
+            The root path of this whole solution.
+            </summary>
+        </member>
     </members>
 </doc>

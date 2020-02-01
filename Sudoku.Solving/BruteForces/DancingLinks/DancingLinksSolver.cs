@@ -63,7 +63,7 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 					}
 
 					return new AnalysisResult(
-						initialGrid: grid,
+						puzzle: grid,
 						solverName: SolverName,
 						hasSolved: true,
 						solution: Grid.CreateInstance(s.Values),
@@ -88,7 +88,7 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 				}
 
 				return new AnalysisResult(
-					initialGrid: Grid.CreateInstance(gridValues),
+					puzzle: Grid.CreateInstance(gridValues),
 					solverName: SolverName,
 					hasSolved: false,
 					solution: null,
