@@ -732,6 +732,56 @@
             unless using last resort methods.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueInfo">
+            <summary>
+            Provides a usage of two strong link technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="digit">The digit.</param>
+            <param name="baseRegion">The base region.</param>
+            <param name="targetRegion">The target region.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueInfo.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueInfo.BaseRegion">
+            <summary>
+            Indicates the base region.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueInfo.TargetRegion">
+            <summary>
+            Indicates the target region.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueSearcher">
+            <summary>
+            Encapsulates a turbot fish technique searcher.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.TwoStrongLinkTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.Basic.BasicFishTechniqueInfo">
             <summary>
             Provides a usage of basic fish technique, same as

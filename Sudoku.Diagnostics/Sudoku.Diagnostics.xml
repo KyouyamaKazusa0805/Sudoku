@@ -104,6 +104,14 @@
             </summary>
             <returns>The number of lines.</returns>
         </member>
+        <member name="M:Sudoku.Diagnostics.CodeCounter.SatisfyPattern(System.String,System.String)">
+            <summary>
+            Check the string is whether satisfied the specified pattern strictly.
+            </summary>
+            <param name="str">The string to check.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Diagnostics.CodeCounter.GetAllFilesRecursively(System.IO.DirectoryInfo)">
             <summary>
             Get all files in the specified directory recursively.

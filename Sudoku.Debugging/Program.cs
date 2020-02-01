@@ -18,18 +18,18 @@ namespace Sudoku.Debugging
 		private static void Main()
 		{
 			// Manual solver tester.
-			//var solver = new ManualSolver
-			//{
-			//	OptimizedApplyingOrder = true
-			//};
-			//var grid = Grid.Parse("290800000030120040000000300370400500049080130006007094008000000060059010000008069");
-			//var analysisResult = solver.Solve(grid);
-			//Console.WriteLine(analysisResult);
+			var solver = new ManualSolver
+			{
+				OptimizedApplyingOrder = true
+			};
+			var grid = Grid.Parse("800000050740500900002897000000001400090070020005400000000246100008009063010000004");
+			var analysisResult = solver.Solve(grid);
+			Console.WriteLine(analysisResult);
 
 			// Line counter.
-			string solutionFolder = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName;
-			var codeCounter = new CodeCounter(solutionFolder, @".*\.cs$");
-			Console.WriteLine(codeCounter.CountCodeLines());
+			//string solutionFolder = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName;
+			//var codeCounter = new CodeCounter(solutionFolder, @".*\.cs$");
+			//Console.WriteLine(codeCounter.CountCodeLines());
 		}
 	}
 }

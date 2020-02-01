@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using Sudoku.Data.Meta;
+using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.Fishes.Basic;
 using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.Singles;
@@ -38,6 +39,7 @@ namespace Sudoku.Solving.Manual
 				new RegularWingTechniqueSearcher(CheckRegularWingSize),
 				new IrregularWingTechniqueSearcher(),
 				new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
+				new TwoStrongLinkTechniqueSearcher()
 			};
 
 			// Start time recording and solving.
