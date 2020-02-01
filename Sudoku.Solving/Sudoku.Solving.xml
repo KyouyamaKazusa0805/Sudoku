@@ -1072,6 +1072,24 @@
         <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo})">
+            <summary>
+            Solve the puzzle with <see cref="P:Sudoku.Solving.Manual.ManualSolver.CheckMinimumDifficultyStrictly"/> option.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cloneation">The cloneation grid to calculate.</param>
+            <param name="steps">All steps found.</param>
+            <returns>The analysis result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo})">
+            <summary>
+            Solve naively.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cloneation">The cloneation grid to calculate.</param>
+            <param name="steps">All steps found.</param>
+            <returns>The analysis result.</returns>
+        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder">
             <summary>
             <para>Indicates the solver will optimizes the applying order.</para>
@@ -1107,7 +1125,8 @@
             The value is <see langword="false"/> in default case. In addition,
             if this value is <see langword="true"/>, the option
             <see cref="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder"/> will be set <see langword="true"/>
-            at the same time.
+            at the same time. Note that the calculation will be much slower
+            than normal case (this value is <see langword="false"/>).
             </para>
             </summary>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder"/>

@@ -340,6 +340,8 @@ namespace Sudoku.Solving
 						sb.AppendLine($"{solvingStepsGroup.Count()} * {solvingStepsGroup.Key}");
 					}
 				}
+
+				sb.AppendLine(separator);
 				sb.AppendLine($"Total solving steps count: {SolvingStepsCount}");
 				sb.AppendLine($"Difficulty total: {TotalDifficulty}");
 				sb.AppendLine($"Puzzle rating: {MaxDifficulty:0.0}/{PearlDifficulty:0.0}/{DiamondDifficulty:0.0}");
