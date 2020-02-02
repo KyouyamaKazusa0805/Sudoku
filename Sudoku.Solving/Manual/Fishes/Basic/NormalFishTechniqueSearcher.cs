@@ -580,13 +580,13 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 		/// <summary>
 		/// Record all cells in the all regions to a <see cref="GridMap"/> instance.
 		/// </summary>
-		/// <param name="map">The map.</param>
+		/// <param name="map">(ref parameter) The map.</param>
 		/// <param name="regionOffsets">All region offsets.</param>
 		private static void GetGridMap(ref GridMap map, int[] regionOffsets)
 		{
 			foreach (int regionOffset in regionOffsets)
 			{
-				map |= new GridMap(RegionUtils.GetCellOffsets(regionOffset));
+				map |= GridMap.CreateInstance(regionOffset);
 			}
 		}
 		#endregion

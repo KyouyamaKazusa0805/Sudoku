@@ -69,6 +69,16 @@
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether the solver should add brute force technique information
+		/// when the puzzle has a unique solution but cannot be found any manual
+		/// techniques.
+		/// </para>
+		/// <para>The value is <see langword="true"/> in default case.</para>
+		/// </summary>
+		public bool EnableBruteForce { get; set; } = true;
+
+		/// <summary>
+		/// <para>
 		/// Indicates whether the solver should check
 		/// incompleted uniqueness patterns.
 		/// </para>

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data.Meta;
 using Sudoku.Solving.BruteForces.DancingLinks;
+using Sudoku.Solving.Manual.AlmostSubsets;
 using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.Fishes.Basic;
 using Sudoku.Solving.Manual.Intersections;
@@ -60,21 +61,38 @@ namespace Sudoku.Solving.Manual
 		private AnalysisResult SolveWithStrictDifficultyRating(
 			Grid grid, Grid cloneation, List<TechniqueInfo> steps, Grid solution)
 		{
-			var searchers = new TechniqueSearcher[][]
-			{
-				new[] { new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit) },
-				new[] { new IntersectionTechniqueSearcher() },
-				new TechniqueSearcher[]
+			var searchers = EnableBruteForce
+				? new TechniqueSearcher[][]
 				{
-					new SubsetTechniqueSearcher(),
-					new NormalFishTechniqueSearcher(),
-					new RegularWingTechniqueSearcher(CheckRegularWingSize),
-					new IrregularWingTechniqueSearcher(),
-					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
-					new TwoStrongLinksTechniqueSearcher(),
-				},
-				new[] { new BruteForceTechniqueSearcher(solution) }
-			};
+					new[] { new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit) },
+					new[] { new IntersectionTechniqueSearcher() },
+					new TechniqueSearcher[]
+					{
+						new SubsetTechniqueSearcher(),
+						new NormalFishTechniqueSearcher(),
+						new RegularWingTechniqueSearcher(CheckRegularWingSize),
+						new IrregularWingTechniqueSearcher(),
+						new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
+						new TwoStrongLinksTechniqueSearcher(),
+						new AlmostLockedCandidatesTechniqueSearcher(),
+					},
+					new[] { new BruteForceTechniqueSearcher(solution) }
+				}
+				: new TechniqueSearcher[][] // Does not have brute force.
+				{
+					new[] { new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit) },
+					new[] { new IntersectionTechniqueSearcher() },
+					new TechniqueSearcher[]
+					{
+						new SubsetTechniqueSearcher(),
+						new NormalFishTechniqueSearcher(),
+						new RegularWingTechniqueSearcher(CheckRegularWingSize),
+						new IrregularWingTechniqueSearcher(),
+						new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
+						new TwoStrongLinksTechniqueSearcher(),
+						new AlmostLockedCandidatesTechniqueSearcher(),
+					}
+				};
 
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
@@ -153,18 +171,32 @@ namespace Sudoku.Solving.Manual
 		private AnalysisResult SolveNaively(
 			Grid grid, Grid cloneation, List<TechniqueInfo> steps, Grid solution)
 		{
-			var searchers = new TechniqueSearcher[]
-			{
-				new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit),
-				new IntersectionTechniqueSearcher(),
-				new SubsetTechniqueSearcher(),
-				new NormalFishTechniqueSearcher(),
-				new RegularWingTechniqueSearcher(CheckRegularWingSize),
-				new IrregularWingTechniqueSearcher(),
-				new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
-				new TwoStrongLinksTechniqueSearcher(),
-				new BruteForceTechniqueSearcher(solution)
-			};
+			var searchers = EnableBruteForce
+				? new TechniqueSearcher[]
+				{
+					new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit),
+					new IntersectionTechniqueSearcher(),
+					new SubsetTechniqueSearcher(),
+					new NormalFishTechniqueSearcher(),
+					new RegularWingTechniqueSearcher(CheckRegularWingSize),
+					new IrregularWingTechniqueSearcher(),
+					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
+					new TwoStrongLinksTechniqueSearcher(),
+					new AlmostLockedCandidatesTechniqueSearcher(),
+					new BruteForceTechniqueSearcher(solution),
+				}
+				: new TechniqueSearcher[] // Does not have brute force.
+				{
+					new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit),
+					new IntersectionTechniqueSearcher(),
+					new SubsetTechniqueSearcher(),
+					new NormalFishTechniqueSearcher(),
+					new RegularWingTechniqueSearcher(CheckRegularWingSize),
+					new IrregularWingTechniqueSearcher(),
+					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
+					new TwoStrongLinksTechniqueSearcher(),
+					new AlmostLockedCandidatesTechniqueSearcher(),
+				};
 
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();

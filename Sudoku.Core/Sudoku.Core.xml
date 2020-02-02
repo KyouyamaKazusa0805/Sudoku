@@ -884,6 +884,21 @@
             Negate all values.
             </summary>
         </member>
+        <member name="M:Sudoku.Data.Meta.GridMap.GetCellsIn(System.Int32)">
+            <summary>
+            Get all cell offsets in the specified region.
+            </summary>
+            <param name="regionOffset">The region offset.</param>
+            <returns>All cell offsets.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridMap.CreateInstance(System.Int32)">
+            <summary>
+            Create a <see cref="T:Sudoku.Data.Meta.GridMap"/> instance with the specified region offset.
+            This will set all bits <see langword="true"/> in this region.
+            </summary>
+            <param name="regionOffset">The region offset.</param>
+            <returns>The grid map.</returns>
+        </member>
         <member name="M:Sudoku.Data.Meta.GridMap.op_Equality(Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)">
             <summary>
             Indicates whether two instances have a same value.
@@ -934,6 +949,13 @@
         <member name="F:Sudoku.Data.Meta.GridMap.PeerTable">
             <summary>
             The peer table used in intersection.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.GridMap.RegionTable">
+            <summary>
+            The map of all cell offsets in its specified region.
+            For example, 'Map[0]' means that all cell offsets
+            in the region 0 (block 1).
             </summary>
         </member>
         <member name="T:Sudoku.Data.Meta.GridParser">

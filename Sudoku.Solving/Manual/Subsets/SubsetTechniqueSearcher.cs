@@ -448,14 +448,14 @@ namespace Sudoku.Solving.Manual.Subsets
 														cellOffsets,
 														digits));
 											}
-										} // if mask.CountSet() == 4
-									} // for d4 (d3 + 1)..9
-								} // else (if size == 3 && mask3.CountSet() == 3)
-							} // for d3 (d2 + 1)..(12 - size)
-						} // else (if size == 2 && mask2.CountSet() == 2)
-					} // for d2 (d1 + 1)..(11 - size)
-				} // for d1 0..(10 - size)
-			} // for region 0..27
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 
 			return result;
 		}
@@ -482,7 +482,7 @@ namespace Sudoku.Solving.Manual.Subsets
 			var tempCellList = new List<int>();
 			var tempCandList = new List<(int, int)>();
 			var result = new List<Conclusion>();
-			var offsets = RegionUtils.GetCellOffsets(region);
+			var offsets = GridMap.GetCellsIn(region);
 			int i = 0;
 			foreach (int offset in offsets)
 			{

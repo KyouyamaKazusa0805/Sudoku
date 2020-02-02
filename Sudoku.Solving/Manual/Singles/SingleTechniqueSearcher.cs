@@ -109,7 +109,7 @@ namespace Sudoku.Solving.Manual.Singles
 				for (int region = 0; region < 27; region++)
 				{
 					int hiddenSingleCellOffset = 0, count = 0;
-					foreach (int cellOffset in RegionUtils.GetCellOffsets(region))
+					foreach (int cellOffset in GridMap.GetCellsIn(region))
 					{
 						if (grid.GetCellStatus(cellOffset) == CellStatus.Empty && !grid[cellOffset, digit])
 						{

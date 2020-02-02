@@ -26,7 +26,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public override string Name => "Brute Force";
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 20m;
+		public override decimal Difficulty => 20.0m;
 
 		/// <inheritdoc/>
 		public override DifficultyLevels DifficultyLevel => DifficultyLevels.Unknown;

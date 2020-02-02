@@ -314,6 +314,32 @@ namespace Sudoku.Data.Meta
 
 
 		/// <summary>
+		/// Get all cell offsets in the specified region.
+		/// </summary>
+		/// <param name="regionOffset">The region offset.</param>
+		/// <returns>All cell offsets.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static int[] GetCellsIn(int regionOffset) => RegionTable[regionOffset];
+
+		/// <summary>
+		/// Create a <see cref="GridMap"/> instance with the specified region offset.
+		/// This will set all bits <see langword="true"/> in this region.
+		/// </summary>
+		/// <param name="regionOffset">The region offset.</param>
+		/// <returns>The grid map.</returns>
+		public static GridMap CreateInstance(int regionOffset)
+		{
+			var result = Empty;
+			foreach (int cell in RegionTable[regionOffset])
+			{
+				result[cell] = true;
+			}
+
+			return result;
+		}
+
+
+		/// <summary>
 		/// Indicates whether two instances have a same value.
 		/// </summary>
 		/// <param name="left">The left instance.</param>

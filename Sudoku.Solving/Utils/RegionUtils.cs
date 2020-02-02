@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using Sudoku.Data.Meta;
 
 namespace Sudoku.Solving.Utils
 {
 	/// <summary>
 	/// Provides extension method used for region offsets.
 	/// </summary>
-	public static partial class RegionUtils
+	public static class RegionUtils
 	{
 		/// <summary>
 		/// Gets the label ('r', 'c' or 'b') of the specified region.
@@ -70,13 +71,5 @@ namespace Sudoku.Solving.Utils
 				_ => throw new ArgumentException(nameof(regionString))
 			};
 		}
-
-		/// <summary>
-		/// Get all cell offsets in the specified region.
-		/// </summary>
-		/// <param name="regionOffset">The region offset.</param>
-		/// <returns>All cell offsets.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int[] GetCellOffsets(int regionOffset) => Map[regionOffset];
 	}
 }

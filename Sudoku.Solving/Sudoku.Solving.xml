@@ -744,6 +744,100 @@
             unless using last resort methods.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueInfo">
+            <summary>
+            Provides a usage of almost locked candidates (ALC) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="digits">The digits.</param>
+            <param name="baseCells">The base cells.</param>
+            <param name="targetCells">The target cells.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueInfo.Digits">
+            <summary>
+            Indicates the digits the technique used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueInfo.BaseCells">
+            <summary>
+            Indicates the base cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueInfo.TargetCells">
+            <summary>
+            Indicates the target cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueSearcher">
+            <summary>
+            Encapsulates an almost locked candidates (ALC) technique searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueSearcher.IntersectionSeries">
+            <summary>
+            All intersection series.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueSearcher.#cctor">
+            <summary>
+            The static initializer of <see cref="T:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueSearcher"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueSearcher.TakeAllBySize(Sudoku.Data.Meta.Grid,System.Int32)">
+            <summary>
+            Take all by size.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="size">The size.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueSearcher.Process(Sudoku.Data.Meta.Grid,System.Collections.Generic.IList{Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueInfo},System.Int32,System.Int32,System.Int32,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)">
+            <summary>
+            Process the calculation.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="result">The result.</param>
+            <param name="size">The size.</param>
+            <param name="baseSet">The base set.</param>
+            <param name="coverSet">The cover set.</param>
+            <param name="left">The left grid map.</param>
+            <param name="right">The right grid map.</param>
+            <param name="intersection">The intersection.</param>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.AlmostSubsets.AlmostSubsetTechniqueInfo">
+            <summary>
+            Provides a usage of almost subset (ALS) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.AlmostSubsets.AlmostSubsetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.AlmostSubsets.AlmostSubsetTechniqueSearcher">
+            <summary>
+            Encapsulates an almost subset technique searcher.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.TwoStrongLinksTechniqueInfo">
             <summary>
             Provides a usage of two strong links technique.
@@ -953,7 +1047,7 @@
             <summary>
             Record all cells in the all regions to a <see cref="T:Sudoku.Data.Meta.GridMap"/> instance.
             </summary>
-            <param name="map">The map.</param>
+            <param name="map">(ref parameter) The map.</param>
             <param name="regionOffsets">All region offsets.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo">
@@ -1060,6 +1154,14 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueSearcher.BitwiseAndMasks(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.GridMap)">
+            <summary>
+            Bitwise and all masks.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="map">The grid map.</param>
+            <returns>The result.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueInfo">
             <summary>
@@ -1181,12 +1283,6 @@
             <para>The value is <see langword="false"/> in default case.</para>
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.ManualSolver._checkMinimumDifficultyStrictly">
-            <summary>
-            The field bound with <see cref="P:Sudoku.Solving.Manual.ManualSolver.CheckMinimumDifficultyStrictly"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.CheckMinimumDifficultyStrictly"/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckMinimumDifficultyStrictly">
             <summary>
             <para>
@@ -1239,6 +1335,16 @@
             one will be always found and set in the last position,
             which is last digit.
             </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.EnableBruteForce">
+            <summary>
+            <para>
+            Indicates whether the solver should add brute force technique information
+            when the puzzle has a unique solution but cannot be found any manual
+            techniques.
+            </para>
+            <para>The value is <see langword="true"/> in default case.</para>
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckIncompletedUniquenessPatterns">
             <summary>
@@ -2586,12 +2692,34 @@
             </para>
             <para>
             Note that given and modifiable values always make this method
-            return <see langword="true"/>.
+            return <see langword="false"/>.
             </para>
             </summary>
             <param name="this">The grid.</param>
             <param name="digit">The digit.</param>
             <param name="regionOffset">The region.</param>
+            <returns>
+            The mask. This value consists of 9 bits, which represents all nine cells
+            in a specified region. The mask uses 1 to make the cell 'have this digit',
+            and 0 to make the cell 'does not have this digit'.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.GridUtils.GetDigitAppearingMask(Sudoku.Data.Meta.Grid,System.Int32,System.Int32,Sudoku.Data.Meta.GridMap)">
+            <summary>
+            <para>
+            Gets a mask of digit appearing in the specified region offset.
+            If the cell is not in <paramref name="map"/>, its mask will
+            not calculated to the result.
+            </para>
+            <para>
+            Note that given and modifiable values always make this method
+            return <see langword="false"/>.
+            </para>
+            </summary>
+            <param name="this">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="regionOffset">The region offset.</param>
+            <param name="map">The grid map.</param>
             <returns>
             The mask. This value consists of 9 bits, which represents all nine cells
             in a specified region. The mask uses 1 to make the cell 'have this digit',
@@ -2703,20 +2831,6 @@
             </summary>
             <param name="regionString">The text of region.</param>
             <returns>The region offset.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.RegionUtils.GetCellOffsets(System.Int32)">
-            <summary>
-            Get all cell offsets in the specified region.
-            </summary>
-            <param name="regionOffset">The region offset.</param>
-            <returns>All cell offsets.</returns>
-        </member>
-        <member name="F:Sudoku.Solving.Utils.RegionUtils.Map">
-            <summary>
-            The map of all cell offsets in its specified region.
-            For example, 'Map[0]' means that all cell offsets
-            in the region 0 (block 1).
-            </summary>
         </member>
         <member name="T:Sudoku.Solving.Utils.SubsetUtils">
             <summary>

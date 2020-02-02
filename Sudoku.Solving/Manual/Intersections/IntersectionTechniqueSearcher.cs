@@ -2,7 +2,6 @@
 using System.Linq;
 using Sudoku.Data.Meta;
 using Sudoku.Drawing;
-using static Sudoku.Solving.Utils.RegionUtils;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
@@ -27,13 +26,10 @@ namespace Sudoku.Solving.Manual.Intersections
 				for (int j = 0; j < 3; j++)
 				{
 					int baseSet = i + 9;
-					int coverSet = i < 9
-						? i / 3 * 3 + j
-						: ((i - 9) / 3 * 3 + j) * 3 % 8;
+					int coverSet = i < 9 ? i / 3 * 3 + j : ((i - 9) / 3 * 3 + j) * 3 % 8;
 					IntersectionSeries[i, j] = (
-						baseSet, coverSet,
-						new GridMap(GetCellOffsets(baseSet)),
-						new GridMap(GetCellOffsets(coverSet)));
+						baseSet, coverSet, GridMap.CreateInstance(baseSet),
+						GridMap.CreateInstance(coverSet));
 				}
 			}
 		}
@@ -48,17 +44,6 @@ namespace Sudoku.Solving.Manual.Intersections
 			{
 				for (int j = 0; j < 3; j++)
 				{
-					short BitwiseAndMasks(GridMap map)
-					{
-						short mask = 511;
-						foreach (int offset in map.Offsets)
-						{
-							mask &= grid.GetMask(offset);
-						}
-
-						return mask;
-					}
-
 					var (baseSet, coverSet, left, right) = IntersectionSeries[i, j];
 					var intersection = left & right;
 					if (intersection.Offsets.All(o => grid.GetCellStatus(o) != CellStatus.Empty))
@@ -68,9 +53,9 @@ namespace Sudoku.Solving.Manual.Intersections
 
 					var a = left ^ intersection;
 					var b = right ^ intersection;
-					short mask1 = BitwiseAndMasks(a);
-					short mask2 = BitwiseAndMasks(b);
-					short mask3 = BitwiseAndMasks(intersection);
+					short mask1 = BitwiseAndMasks(grid, a);
+					short mask2 = BitwiseAndMasks(grid, b);
+					short mask3 = BitwiseAndMasks(grid, intersection);
 					short mask = (short)((short)(mask3 | (short)~(mask1 ^ mask2)) & 511);
 					if (mask != 511)
 					{
@@ -157,5 +142,24 @@ namespace Sudoku.Solving.Manual.Intersections
 
 			return result;
 		}
+
+		#region Intersection utils
+		/// <summary>
+		/// Bitwise and all masks.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="map">The grid map.</param>
+		/// <returns>The result.</returns>
+		private static short BitwiseAndMasks(Grid grid, GridMap map)
+		{
+			short mask = 511;
+			foreach (int offset in map.Offsets)
+			{
+				mask &= grid.GetMask(offset);
+			}
+
+			return mask;
+		}
+		#endregion
 	}
 }

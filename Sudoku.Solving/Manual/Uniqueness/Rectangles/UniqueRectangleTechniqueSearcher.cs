@@ -531,7 +531,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			for (int i = 0, length = regions.Length; i < length; i++)
 			{
 				int region = regions[i];
-				int[] cellsToTraverse = RegionUtils.GetCellOffsets(region);
+				int[] cellsToTraverse = GridMap.GetCellsIn(region);
 				for (int i1 = 0; i1 < 10 - size; i1++)
 				{
 					int c1 = cellsToTraverse[i1];
@@ -896,7 +896,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 								var otherDigits = new List<int>();
 								var otherCells = new List<int>();
 								int[] subsetDigits = new[] { d1, d2 };
-								int[] cellsToTraverse = RegionUtils.GetCellOffsets(region);
+								int[] cellsToTraverse = GridMap.GetCellsIn(region);
 								foreach (int cell in cells)
 								{
 									foreach (int digit in digits)
@@ -995,7 +995,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										var otherDigits = new List<int>();
 										var otherCells = new List<int>();
 										int[] subsetDigits = new[] { d1, d2, d3 };
-										int[] cellsToTraverse = RegionUtils.GetCellOffsets(region);
+										int[] cellsToTraverse = GridMap.GetCellsIn(region);
 										foreach (int cell in cells)
 										{
 											foreach (int digit in digits)
@@ -1092,7 +1092,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 											var otherDigits = new List<int>();
 											var otherCells = new List<int>();
 											int[] subsetDigits = new[] { d1, d2, d3, d4 };
-											int[] cellsToTraverse = RegionUtils.GetCellOffsets(region);
+											int[] cellsToTraverse = GridMap.GetCellsIn(region);
 											foreach (int cell in cells)
 											{
 												foreach (int digit in digits)
