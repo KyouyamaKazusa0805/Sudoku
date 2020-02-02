@@ -174,8 +174,6 @@ Here displays the introduction to all folders in this whole solution.
     * The implementation of all core data in sudoku, such as a sudoku [grid](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core/Data/Meta/Grid.cs). All extension method in use is also in here.<br/>对于数独里所有核心部件的主要实现，比如[数独盘面类](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core/Data/Meta/Grid.cs)。当然，所有在项目里使用到的扩展方法也都在这里。
 * `Sudoku.Core.Old`
     * Same as [`Sudoku.Core`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Core) project, but use older implementation logic. For example, this project uses LINQ to implement all SSTS (Standard sudoku technique set) step finder, and uses very simple information to describe all information in a grid, which is reduced efficiency of calculation. One of implementations of step finders is [here](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core.Old/Solving/Subsets/SubsetStepFinder.cs#L27).<br/>和 [`Sudoku.Core`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Core) 项目一样，不过这个项目里的所有部件都采用了很老旧的实现方式。举个例子，这个项目使用的是 LINQ 来实现的四大基本数独技巧（排除、唯一余数、区块、数组）的查找，而使用了人类一眼就能看明白的、很简单的信息表示手段来存储一个盘面的每一个细节信息，这样就会降低计算效率。其中一个使用 LINQ 实现的步骤搜索类的执行思路可以点击[此链接](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core.Old/Solving/Subsets/SubsetStepFinder.cs#L27)查看。
-* `Sudoku.Checking`
-    * The checking module aiming to a sudoku grid, such as checking pearl puzzle, minimal puzzle, backdoors and so on.<br/>检测数独盘面的一些指定额外特性的模块，例如检测一个题目是否是珍珠题、最小题，或者是检测一个题目存在的所有后门（和魔术格）等信息。
 * `Sudoku.Solving`
     * Solving module of this whole solution.<br/>控制整个解决方案完成解题操作的所有内容的模块。
 * `Sudoku.Generating`
@@ -188,8 +186,6 @@ Here displays the introduction to all folders in this whole solution.
     * The diagnostic controlling through all over the solution. In addition, those files are used with my own custom code analyzer and fixer (But this analyzer is not included in this solution. Therefore codes has not been uploaded).<br/>控制整个解决方案执行行为和编译期间行为的项目。另外，所有的文件都会依赖于我自己实现的分析器和代码修补工具（不过这一部分代码不属于项目，所以我没有上传）。
 * `Sudoku.IO`
     * I/O operations to sudoku data.<br/>控制数独文件流处理的项目。
-* `Sudoku.Runtime`
-    * Provides all custom runtime exceptions in this solution.<br/>为整个解决方案提供所有的自定义运行时异常类。
 * `Sudoku.Solving.BruteForces.Bitwise`
     * The bitwise brute force solver to a sudoku puzzle.<br/>项目解题期间使用的位运算爆破算法（JCZSolver）的源代码。
 * `Sudoku.Debugging`
