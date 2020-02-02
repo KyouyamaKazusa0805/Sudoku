@@ -23,8 +23,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Solving", "Sudoku.So
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Drawing", "Sudoku.Drawing\Sudoku.Drawing.csproj", "{33CF3E11-B08E-4D29-B3EF-CE9BD666A8D7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Checking", "Sudoku.Checking\Sudoku.Checking.csproj", "{0D4C94E7-CEE4-4D43-8E30-F4EDE5921CD7}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sudoku.Solving.BruteForces.Bitwise", "Sudoku.Solving.BruteForces.Bitwise\Sudoku.Solving.BruteForces.Bitwise.vcxproj", "{703B7FE8-F11E-47A0-BCD4-18A495B24C3A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Runtime", "Sudoku.Runtime\Sudoku.Runtime.csproj", "{54AF5E2D-C58A-409B-B511-91F369F6A3C4}"
@@ -129,18 +127,6 @@ Global
 		{33CF3E11-B08E-4D29-B3EF-CE9BD666A8D7}.Release|x64.Build.0 = Release|Any CPU
 		{33CF3E11-B08E-4D29-B3EF-CE9BD666A8D7}.Release|x86.ActiveCfg = Release|Any CPU
 		{33CF3E11-B08E-4D29-B3EF-CE9BD666A8D7}.Release|x86.Build.0 = Release|Any CPU
-		{0D4C94E7-CEE4-4D43-8E30-F4EDE5921CD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D4C94E7-CEE4-4D43-8E30-F4EDE5921CD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D4C94E7-CEE4-4D43-8E30-F4EDE5921CD7}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{0D4C94E7-CEE4-4D43-8E30-F4EDE5921CD7}.Debug|x64.Build.0 = Debug|Any CPU
-		{0D4C94E7-CEE4-4D43-8E30-F4EDE5921CD7}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0D4C94E7-CEE4-4D43-8E30-F4EDE5921CD7}.Debug|x86.Build.0 = Debug|Any CPU
-		{0D4C94E7-CEE4-4D43-8E30-F4EDE5921CD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D4C94E7-CEE4-4D43-8E30-F4EDE5921CD7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0D4C94E7-CEE4-4D43-8E30-F4EDE5921CD7}.Release|x64.ActiveCfg = Release|Any CPU
-		{0D4C94E7-CEE4-4D43-8E30-F4EDE5921CD7}.Release|x64.Build.0 = Release|Any CPU
-		{0D4C94E7-CEE4-4D43-8E30-F4EDE5921CD7}.Release|x86.ActiveCfg = Release|Any CPU
-		{0D4C94E7-CEE4-4D43-8E30-F4EDE5921CD7}.Release|x86.Build.0 = Release|Any CPU
 		{703B7FE8-F11E-47A0-BCD4-18A495B24C3A}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{703B7FE8-F11E-47A0-BCD4-18A495B24C3A}.Debug|x64.ActiveCfg = Debug|x64
 		{703B7FE8-F11E-47A0-BCD4-18A495B24C3A}.Debug|x64.Build.0 = Debug|x64

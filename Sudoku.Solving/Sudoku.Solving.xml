@@ -506,6 +506,93 @@
         <member name="M:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver.Solve(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Checking.BackdoorSearcher">
+            <summary>
+            Provides a backdoor searcher.
+            </summary>
+            <remarks>
+            <b>Backdoor</b>s are <see cref="T:Sudoku.Solving.Conclusion"/>s making the difficulty of
+            a puzzle decrease sharply after they are applied to a grid.
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Conclusion"/>
+        </member>
+        <member name="F:Sudoku.Solving.Checking.BackdoorSearcher._result">
+            <summary>
+            The result list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Checking.BackdoorSearcher.TestSolver">
+            <summary>
+            The temporary test solver used in this searcher.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.#ctor(Sudoku.Data.Meta.Grid,System.Int32)">
+            <summary>
+            Initializes an instance with a grid and searching depth.
+            </summary>
+            <param name="grid">The sudoku grid to search backdoors.</param>
+            <param name="depth">The maximum depth to search. No more than 3.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when <paramref name="depth"/> is greater than 3.
+            </exception>
+            <seealso cref="P:Sudoku.Solving.Checking.BackdoorSearcher.Depth"/>
+        </member>
+        <member name="P:Sudoku.Solving.Checking.BackdoorSearcher.Depth">
+            <summary>
+            The maximum depth to search.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.FindBackdoors(Sudoku.Data.Meta.Grid)">
+            <summary>
+            To find all backdoors in a sudoku grid.
+            </summary>
+            <param name="grid">A sudoku grid to search backdoors.</param>
+        </member>
+        <member name="T:Sudoku.Solving.Checking.PuzzleAttributeChecker">
+            <summary>
+            Provides some puzzle attributes validation operations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsUnique(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid@)">
+            <summary>
+            To check if a puzzle has only one solution or not.
+            </summary>
+            <param name="this">The puzzle to check.</param>
+            <param name="solutionIfUnique">
+            (out parameter) The solution if the puzzle is unique; otherwise, <see langword="null"/>.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsMinimal(Sudoku.Data.Meta.Grid)">
+            <summary>
+            To check if the puzzle is minimal or not.
+            </summary>
+            <param name="this">The puzzle to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsPearl(Sudoku.Data.Meta.Grid)">
+            <summary>
+            To check if the puzzle is pearl or not.
+            </summary>
+            <param name="this">The puzzle to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsDiamond(Sudoku.Data.Meta.Grid)">
+            <summary>
+            To check if the puzzle is diamond or not.
+            </summary>
+            <param name="this">The puzzle to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Conclusion">
             <summary>
             Encapsulates a conclusion representation while solving in logic.

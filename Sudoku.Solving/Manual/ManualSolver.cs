@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Sudoku.Data.Meta;
-using Sudoku.Solving.BruteForces.DancingLinks;
+using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.AlmostSubsets;
 using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.Fishes.Basic;
@@ -31,7 +29,7 @@ namespace Sudoku.Solving.Manual
 		/// <inheritdoc/>
 		public override AnalysisResult Solve(Grid grid)
 		{
-			if (CheckUniquePuzzle(grid, out var solution))
+			if (grid.IsUnique(out var solution))
 			{
 				return CheckMinimumDifficultyStrictly
 					? SolveWithStrictDifficultyRating(grid, grid.Clone(), new List<TechniqueInfo>(), solution)
@@ -261,35 +259,6 @@ namespace Sudoku.Solving.Manual
 				elapsedTime: stopwatch.Elapsed,
 				solvingList: steps,
 				additional: null);
-		}
-
-
-		/// <summary>
-		/// Check whether the puzzle has unique solution.
-		/// If the puzzle has multiple solutions or no solution, the return value
-		/// will be <see langword="false"/>, and the out parameter
-		/// <paramref name="solutionIfUnique"/> will be <see langword="null"/>.
-		/// </summary>
-		/// <param name="grid">The grid to check.</param>
-		/// <param name="solutionIfUnique">
-		/// (out parameter) The solution if the puzzle is unique. If the puzzle has
-		/// multiple solutions and no solution, this value will be <see langword="null"/>.
-		/// </param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static bool CheckUniquePuzzle(Grid grid, [NotNullWhen(true)] out Grid? solutionIfUnique)
-		{
-			var (_, hasSolved, _, solution, _) = new DancingLinksSolver().Solve(grid);
-			if (hasSolved)
-			{
-				solutionIfUnique = solution;
-				return true;
-			}
-			else
-			{
-				solutionIfUnique = null;
-				return false;
-			}
 		}
 	}
 }
