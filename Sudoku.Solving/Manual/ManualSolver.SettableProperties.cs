@@ -14,13 +14,6 @@
 		/// </summary>
 		public bool OptimizedApplyingOrder { get; set; } = false;
 
-		#region CheckMinimumDifficultyStrictly
-		/// <summary>
-		/// The field bound with <see cref="CheckMinimumDifficultyStrictly"/>.
-		/// </summary>
-		/// <seealso cref="CheckMinimumDifficultyStrictly"/>
-		private bool _checkMinimumDifficultyStrictly = false;
-
 		/// <summary>
 		/// <para>
 		/// Indicates whether the solver should check all technique
@@ -42,20 +35,7 @@
 		/// </para>
 		/// </summary>
 		/// <seealso cref="OptimizedApplyingOrder"/>
-		public bool CheckMinimumDifficultyStrictly
-		{
-			get => _checkMinimumDifficultyStrictly;
-			set
-			{
-				if (value)
-				{
-					OptimizedApplyingOrder = true;
-				}
-
-				_checkMinimumDifficultyStrictly = value;
-			}
-		}
-		#endregion
+		public bool CheckMinimumDifficultyStrictly { get; set; } = false;
 
 		/// <summary>
 		/// <para>
