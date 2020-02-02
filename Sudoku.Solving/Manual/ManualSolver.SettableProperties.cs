@@ -36,9 +36,9 @@
 		/// <para>
 		/// The value is <see langword="false"/> in default case. In addition,
 		/// if this value is <see langword="true"/>, the option
-		/// <see cref="OptimizedApplyingOrder"/> will be set <see langword="true"/>
-		/// at the same time. Note that the calculation will be much slower
-		/// than normal case (this value is <see langword="false"/>).
+		/// <see cref="OptimizedApplyingOrder"/> will be disabled.
+		/// However, the time of calculation with this value <see langword="true"/>
+		/// will be much slower than that with the value is <see langword="false"/>.
 		/// </para>
 		/// </summary>
 		/// <seealso cref="OptimizedApplyingOrder"/>

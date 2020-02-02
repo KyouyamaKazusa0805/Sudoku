@@ -1061,6 +1061,69 @@
         <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueInfo">
+            <summary>
+            Provides a usage of brute force technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher">
+            <summary>
+            Encapsulates a brute force technique searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher._solution">
+            <summary>
+            The solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.TryAndErrorOrder">
+            <summary>
+            The order of cell offsets to get values.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.#ctor(Sudoku.Data.Meta.Grid)">
+            <summary>
+            A trick. Initializes an instance with the solution grid.
+            This searcher will try to extract a value from the
+            solution.
+            </summary>
+            <param name="solution">The solution.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.LastResorts.LastResortTechniqueSearcher">
+            <summary>
+            Encapsulates a last resort technique searcher.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.LastResorts.LastResortTechniuqeInfo">
+            <summary>
+            Provides a usage of last resort.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.LastResortTechniuqeInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.ManualSolver">
             <summary>
             Provides a solver that use logical methods to solve a specified sudoku puzzle.
@@ -1072,23 +1135,39 @@
         <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo})">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Meta.Grid)">
             <summary>
             Solve the puzzle with <see cref="P:Sudoku.Solving.Manual.ManualSolver.CheckMinimumDifficultyStrictly"/> option.
             </summary>
             <param name="grid">The grid.</param>
             <param name="cloneation">The cloneation grid to calculate.</param>
             <param name="steps">All steps found.</param>
+            <param name="solution">The solution.</param>
             <returns>The analysis result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo})">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Meta.Grid)">
             <summary>
             Solve naively.
             </summary>
             <param name="grid">The grid.</param>
             <param name="cloneation">The cloneation grid to calculate.</param>
             <param name="steps">All steps found.</param>
+            <param name="solution">The solution.</param>
             <returns>The analysis result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.CheckUniquePuzzle(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid@)">
+            <summary>
+            Check whether the puzzle has unique solution.
+            If the puzzle has multiple solutions or no solution, the return value
+            will be <see langword="false"/>, and the out parameter
+            <paramref name="solutionIfUnique"/> will be <see langword="null"/>.
+            </summary>
+            <param name="grid">The grid to check.</param>
+            <param name="solutionIfUnique">
+            (out parameter) The solution if the puzzle is unique. If the puzzle has
+            multiple solutions and no solution, this value will be <see langword="null"/>.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder">
             <summary>
@@ -1124,9 +1203,9 @@
             <para>
             The value is <see langword="false"/> in default case. In addition,
             if this value is <see langword="true"/>, the option
-            <see cref="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder"/> will be set <see langword="true"/>
-            at the same time. Note that the calculation will be much slower
-            than normal case (this value is <see langword="false"/>).
+            <see cref="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder"/> will be disabled.
+            However, the time of calculation with this value <see langword="true"/>
+            will be much slower than that with the value is <see langword="false"/>.
             </para>
             </summary>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder"/>

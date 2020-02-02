@@ -152,12 +152,12 @@ The program supports technique below at present:
 目前程序支持如下的技巧项：
 
 * Direct techniques: Hidden Single (Last Digit), Naked Single (Full House)<br/>直观技巧：排除（同数剩余）、唯一余数（同区剩余）
-
 * Locked Candidates: Pointing, Claiming<br/>区块：宫区块、行列区块
 * Subset: Naked Subset (Locked Subset & Partial Locked Subset), Hidden Subset<br/>数组：显性数组（死锁数组和区块数组）、隐性数组
 * Wings: XY-Wing, XYZ-Wing, (Incompleted) WXYZ-Wing, (Incompleted) VWXYZ-Wing, W-Wing<br/>Wing 结构：XY-Wing、XYZ-Wing、（残缺）WXYZ-Wing、（残缺）VWXYZ-Wing、W-Wing
 * Uniqueness: Unique Rectangle (Type 1 to 6), Hidden Rectangle<br/>唯一性技巧：唯一矩形（类型 1 到 6）、隐性唯一矩形
 * Two Strong Links (Turbot Fishes): Skyscraper, Two-string Kite, Turbot Fish<br/>双强链技巧：摩天楼、双线风筝、多宝鱼
+* Brute Force<br/>计算机试数
 
 
 
