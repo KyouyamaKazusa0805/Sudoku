@@ -1344,20 +1344,6 @@
             <param name="solution">The solution.</param>
             <returns>The analysis result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.CheckUniquePuzzle(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid@)">
-            <summary>
-            Check whether the puzzle has unique solution.
-            If the puzzle has multiple solutions or no solution, the return value
-            will be <see langword="false"/>, and the out parameter
-            <paramref name="solutionIfUnique"/> will be <see langword="null"/>.
-            </summary>
-            <param name="grid">The grid to check.</param>
-            <param name="solutionIfUnique">
-            (out parameter) The solution if the puzzle is unique. If the puzzle has
-            multiple solutions and no solution, this value will be <see langword="null"/>.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder">
             <summary>
             <para>Indicates the solver will optimizes the applying order.</para>
@@ -1386,9 +1372,11 @@
             <para>
             The value is <see langword="false"/> in default case. In addition,
             if this value is <see langword="true"/>, the option
-            <see cref="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder"/> will be disabled.
-            However, the time of calculation with this value <see langword="true"/>
-            will be much slower than that with the value is <see langword="false"/>.
+            <see cref="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder"/> will be disabled. In other
+            words, this option does not work while solving when the condition
+            above is true. However, the time of calculation with this value
+            <see langword="true"/> will be much slower than that with the
+            value is <see langword="false"/>.
             </para>
             </summary>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder"/>
