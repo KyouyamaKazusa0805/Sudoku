@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Linq;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using Sudoku.Data.Meta;
 
 namespace Sudoku.Solving.Utils
 {
 	/// <summary>
 	/// Provides extension method used for region offsets.
 	/// </summary>
+	[DebuggerStepThrough]
 	public static class RegionUtils
 	{
 		/// <summary>

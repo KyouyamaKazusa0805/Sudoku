@@ -1,4 +1,5 @@
-﻿using Sudoku.Data.Meta;
+﻿using System.Diagnostics;
+using Sudoku.Data.Meta;
 using Sudoku.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Solving.Utils
@@ -6,6 +7,7 @@ namespace Sudoku.Solving.Utils
 	/// <summary>
 	/// Provides a deconstruction method for grid mask (<see cref="short"/> value).
 	/// </summary>
+	[DebuggerStepThrough]
 	public static class MaskDeconstruction
 	{
 		/// <summary>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 namespace Sudoku.Solving.Utils
@@ -6,6 +7,7 @@ namespace Sudoku.Solving.Utils
 	/// <summary>
 	/// Provides extension method used for cell offsets.
 	/// </summary>
+	[DebuggerStepThrough]
 	public static class CellUtils
 	{
 		/// <summary>

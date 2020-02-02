@@ -1,10 +1,12 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace Sudoku.Solving.Utils
 {
 	/// <summary>
 	/// Provides extension method used for link masks.
 	/// </summary>
+	[DebuggerStepThrough]
 	public static class LinkMaskUtils
 	{
 		/// <summary>

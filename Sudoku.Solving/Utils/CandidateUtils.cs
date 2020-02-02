@@ -1,8 +1,11 @@
-﻿namespace Sudoku.Solving.Utils
+﻿using System.Diagnostics;
+
+namespace Sudoku.Solving.Utils
 {
 	/// <summary>
 	/// Provides extension methods for candidates.
 	/// </summary>
+	[DebuggerStepThrough]
 	public static class CandidateUtils
 	{
 		/// <summary>

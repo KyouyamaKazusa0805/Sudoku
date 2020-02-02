@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using Sudoku.Data.Extensions;
 
@@ -7,6 +8,7 @@ namespace Sudoku.Solving.Utils
 	/// <summary>
 	/// Provides extension methods of cell collection.
 	/// </summary>
+	[DebuggerStepThrough]
 	public static class CellCollection
 	{
 		/// <summary>

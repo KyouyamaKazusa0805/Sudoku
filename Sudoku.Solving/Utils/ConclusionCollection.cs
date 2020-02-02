@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using Sudoku.Data.Extensions;
 
@@ -14,6 +15,7 @@ namespace Sudoku.Solving.Utils
 		/// </summary>
 		/// <param name="conclusions">The conclusions.</param>
 		/// <returns>The string.</returns>
+		[DebuggerStepThrough]
 		public static string ToString(IEnumerable<Conclusion> conclusions)
 		{
 			const string separator = ", ";
