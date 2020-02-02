@@ -1,10 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Sudoku.Data.Meta;
+using Sudoku.Solving.BruteForces.DancingLinks;
 using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.Fishes.Basic;
 using Sudoku.Solving.Manual.Intersections;
+using Sudoku.Solving.Manual.LastResorts;
 using Sudoku.Solving.Manual.Singles;
 using Sudoku.Solving.Manual.Subsets;
 using Sudoku.Solving.Manual.Uniqueness.Rectangles;
@@ -25,9 +30,23 @@ namespace Sudoku.Solving.Manual
 		/// <inheritdoc/>
 		public override AnalysisResult Solve(Grid grid)
 		{
-			return CheckMinimumDifficultyStrictly
-				? SolveWithStrictDifficultyRating(grid, grid.Clone(), new List<TechniqueInfo>())
-				: SolveNaively(grid, grid.Clone(), new List<TechniqueInfo>());
+			if (CheckUniquePuzzle(grid, out var solution))
+			{
+				return CheckMinimumDifficultyStrictly
+					? SolveWithStrictDifficultyRating(grid, grid.Clone(), new List<TechniqueInfo>(), solution)
+					: SolveNaively(grid, grid.Clone(), new List<TechniqueInfo>(), solution);
+			}
+			else
+			{
+				return new AnalysisResult(
+					puzzle: grid,
+					solverName: SolverName,
+					hasSolved: false,
+					solution: null,
+					elapsedTime: TimeSpan.Zero,
+					solvingList: null,
+					additional: "The puzzle does not have a unique solution (multiple solutions or no solution).");
+			}
 		}
 
 		/// <summary>
@@ -36,9 +55,10 @@ namespace Sudoku.Solving.Manual
 		/// <param name="grid">The grid.</param>
 		/// <param name="cloneation">The cloneation grid to calculate.</param>
 		/// <param name="steps">All steps found.</param>
+		/// <param name="solution">The solution.</param>
 		/// <returns>The analysis result.</returns>
 		private AnalysisResult SolveWithStrictDifficultyRating(
-			Grid grid, Grid cloneation, List<TechniqueInfo> steps)
+			Grid grid, Grid cloneation, List<TechniqueInfo> steps, Grid solution)
 		{
 			var searchers = new TechniqueSearcher[][]
 			{
@@ -53,6 +73,7 @@ namespace Sudoku.Solving.Manual
 					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 					new TwoStrongLinksTechniqueSearcher(),
 				},
+				new[] { new BruteForceTechniqueSearcher(solution) }
 			};
 
 			var stopwatch = new Stopwatch();
@@ -127,9 +148,10 @@ namespace Sudoku.Solving.Manual
 		/// <param name="grid">The grid.</param>
 		/// <param name="cloneation">The cloneation grid to calculate.</param>
 		/// <param name="steps">All steps found.</param>
+		/// <param name="solution">The solution.</param>
 		/// <returns>The analysis result.</returns>
 		private AnalysisResult SolveNaively(
-			Grid grid, Grid cloneation, List<TechniqueInfo> steps)
+			Grid grid, Grid cloneation, List<TechniqueInfo> steps, Grid solution)
 		{
 			var searchers = new TechniqueSearcher[]
 			{
@@ -141,6 +163,7 @@ namespace Sudoku.Solving.Manual
 				new IrregularWingTechniqueSearcher(),
 				new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 				new TwoStrongLinksTechniqueSearcher(),
+				new BruteForceTechniqueSearcher(solution)
 			};
 
 			var stopwatch = new Stopwatch();
@@ -206,6 +229,35 @@ namespace Sudoku.Solving.Manual
 				elapsedTime: stopwatch.Elapsed,
 				solvingList: steps,
 				additional: null);
+		}
+
+
+		/// <summary>
+		/// Check whether the puzzle has unique solution.
+		/// If the puzzle has multiple solutions or no solution, the return value
+		/// will be <see langword="false"/>, and the out parameter
+		/// <paramref name="solutionIfUnique"/> will be <see langword="null"/>.
+		/// </summary>
+		/// <param name="grid">The grid to check.</param>
+		/// <param name="solutionIfUnique">
+		/// (out parameter) The solution if the puzzle is unique. If the puzzle has
+		/// multiple solutions and no solution, this value will be <see langword="null"/>.
+		/// </param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private static bool CheckUniquePuzzle(Grid grid, [NotNullWhen(true)] out Grid? solutionIfUnique)
+		{
+			var (_, hasSolved, _, solution, _) = new DancingLinksSolver().Solve(grid);
+			if (hasSolved)
+			{
+				solutionIfUnique = solution;
+				return true;
+			}
+			else
+			{
+				solutionIfUnique = null;
+				return false;
+			}
 		}
 	}
 }
