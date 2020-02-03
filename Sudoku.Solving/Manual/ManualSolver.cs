@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using Sudoku.Data.Meta;
 using Sudoku.Solving.Checking;
-using Sudoku.Solving.Manual.AlmostSubsets;
 using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.Fishes.Basic;
 using Sudoku.Solving.Manual.Intersections;

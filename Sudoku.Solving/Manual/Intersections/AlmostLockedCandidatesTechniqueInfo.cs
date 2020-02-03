@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
-namespace Sudoku.Solving.Manual.AlmostSubsets
+namespace Sudoku.Solving.Manual.Intersections
 {
 	/// <summary>
 	/// Provides a usage of almost locked candidates (ALC) technique.

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Drawing;
 
-namespace Sudoku.Solving.Manual.AlmostSubsets
+namespace Sudoku.Solving.Manual.Intersections
 {
 	/// <summary>
 	/// Provides a usage of almost subset (ALS) technique.
