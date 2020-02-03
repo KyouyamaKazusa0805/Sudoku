@@ -17,8 +17,4 @@
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Manual\AlmostSubsets\" />
-	</ItemGroup>
-
 </Project>

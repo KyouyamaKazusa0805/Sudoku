@@ -49,12 +49,16 @@ namespace Sudoku.Diagnostics
 		/// <summary>
 		/// Count on code lines in all files in the specified root directory.
 		/// </summary>
+		/// <param name="filesCount">
+		/// (out parameter) The number of files searched.
+		/// </param>
 		/// <returns>The number of lines.</returns>
-		public int CountCodeLines()
+		public int CountCodeLines(out int filesCount)
 		{
 			GetAllFilesRecursively(new DirectoryInfo(_root));
 
 			int count = 0;
+			int result = 0;
 			foreach (string fileName in from fileName in _fileList
 										where SatisfyPattern(fileName, _pattern)
 										select fileName)
@@ -68,14 +72,16 @@ namespace Sudoku.Diagnostics
 						temp++;
 					}
 
-					count += temp;
+					result += temp;
+					count++;
 				}
 				catch
 				{
 				}
 			}
 
-			return count;
+			filesCount = count;
+			return result;
 		}
 
 		/// <summary>

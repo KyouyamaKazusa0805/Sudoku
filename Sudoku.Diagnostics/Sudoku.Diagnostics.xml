@@ -16,16 +16,6 @@
             a compiling error; otherwise, a warning.
             </summary>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.DiscardAttribute">
-            <summary>
-            To mark on a parameter, which means the parameter is always a discard.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.ObsoleteAssemblyAttribute">
-            <summary>
-            To mark on an assembly, it means that the whole assembly is already obsolete.
-            </summary>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.OnAddingAttribute">
             <summary>
             To mark on the method, it means that the method is used for add elements
@@ -98,10 +88,13 @@
             <param name="root">The root directory.</param>
             <param name="filterPattern">The filter pattern.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeCounter.CountCodeLines">
+        <member name="M:Sudoku.Diagnostics.CodeCounter.CountCodeLines(System.Int32@)">
             <summary>
             Count on code lines in all files in the specified root directory.
             </summary>
+            <param name="filesCount">
+            (out parameter) The number of files searched.
+            </param>
             <returns>The number of lines.</returns>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeCounter.SatisfyPattern(System.String,System.String)">

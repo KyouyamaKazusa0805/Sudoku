@@ -922,6 +922,15 @@
             <param name="gridMap">The instance to negate.</param>
             <returns>The negative result.</returns>
         </member>
+        <member name="M:Sudoku.Data.Meta.GridMap.op_Subtraction(Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)">
+            <summary>
+            Get a <see cref="T:Sudoku.Data.Meta.GridMap"/> that contains all <paramref name="left"/> cells
+            but not in <paramref name="right"/> cells.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="M:Sudoku.Data.Meta.GridMap.op_BitwiseAnd(Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)">
             <summary>
             Intersect two <see cref="T:Sudoku.Data.Meta.GridMap"/>s.

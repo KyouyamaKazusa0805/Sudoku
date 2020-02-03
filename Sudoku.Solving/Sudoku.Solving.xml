@@ -831,100 +831,6 @@
             unless using last resort methods.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueInfo">
-            <summary>
-            Provides a usage of almost locked candidates (ALC) technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
-            <param name="digits">The digits.</param>
-            <param name="baseCells">The base cells.</param>
-            <param name="targetCells">The target cells.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueInfo.Digits">
-            <summary>
-            Indicates the digits the technique used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueInfo.BaseCells">
-            <summary>
-            Indicates the base cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueInfo.TargetCells">
-            <summary>
-            Indicates the target cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueInfo.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueSearcher">
-            <summary>
-            Encapsulates an almost locked candidates (ALC) technique searcher.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueSearcher.IntersectionSeries">
-            <summary>
-            All intersection series.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueSearcher.#cctor">
-            <summary>
-            The static initializer of <see cref="T:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueSearcher"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueSearcher.TakeAllBySize(Sudoku.Data.Meta.Grid,System.Int32)">
-            <summary>
-            Take all by size.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="size">The size.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueSearcher.Process(Sudoku.Data.Meta.Grid,System.Collections.Generic.IList{Sudoku.Solving.Manual.AlmostSubsets.AlmostLockedCandidatesTechniqueInfo},System.Int32,System.Int32,System.Int32,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)">
-            <summary>
-            Process the calculation.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="result">The result.</param>
-            <param name="size">The size.</param>
-            <param name="baseSet">The base set.</param>
-            <param name="coverSet">The cover set.</param>
-            <param name="left">The left grid map.</param>
-            <param name="right">The right grid map.</param>
-            <param name="intersection">The intersection.</param>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.AlmostSubsets.AlmostSubsetTechniqueInfo">
-            <summary>
-            Provides a usage of almost subset (ALS) technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.AlmostSubsets.AlmostSubsetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.AlmostSubsets.AlmostSubsetTechniqueSearcher">
-            <summary>
-            Encapsulates an almost subset technique searcher.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.TwoStrongLinksTechniqueInfo">
             <summary>
             Provides a usage of two strong links technique.
@@ -1182,6 +1088,101 @@
             Encapsulates a fish technique searcher.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueInfo">
+            <summary>
+            Provides a usage of almost locked candidates (ALC) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="digits">The digits.</param>
+            <param name="baseCells">The base cells.</param>
+            <param name="targetCells">The target cells.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueInfo.Digits">
+            <summary>
+            Indicates the digits the technique used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueInfo.BaseCells">
+            <summary>
+            Indicates the base cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueInfo.TargetCells">
+            <summary>
+            Indicates the target cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueSearcher">
+            <summary>
+            Encapsulates an almost locked candidates (ALC) technique searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueSearcher._intersection">
+            <summary>
+            All intersection series.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueSearcher.#ctor(System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap}[0:,0:])">
+            <summary>
+            Initializes an instance with the intersection table.
+            </summary>
+            <param name="intersection">The intersection table.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueSearcher.TakeAllBySize(Sudoku.Data.Meta.Grid,System.Int32)">
+            <summary>
+            Take all by size.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="size">The size.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueSearcher.Process(Sudoku.Data.Meta.Grid,System.Collections.Generic.IList{Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueInfo},System.Int32,System.Int32,System.Int32,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)">
+            <summary>
+            Process the calculation.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="result">The result.</param>
+            <param name="size">The size.</param>
+            <param name="baseSet">The base set.</param>
+            <param name="coverSet">The cover set.</param>
+            <param name="left">The left grid map.</param>
+            <param name="right">The right grid map.</param>
+            <param name="intersection">The intersection.</param>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Intersections.AlmostSubsetTechniqueInfo">
+            <summary>
+            Provides a usage of almost subset (ALS) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlmostSubsetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Intersections.AlmostSubsetTechniqueSearcher">
+            <summary>
+            Encapsulates an almost subset technique searcher.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo">
             <summary>
             Provides a usage of ilocked candidates.
@@ -1229,15 +1230,16 @@
             Encapsulates a locked candidates technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueSearcher.IntersectionSeries">
+        <member name="F:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueSearcher._intersection">
             <summary>
             All intersection series.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueSearcher.#cctor">
+        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueSearcher.#ctor(System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap}[0:,0:])">
             <summary>
-            The static initializer of <see cref="T:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueSearcher"/>.
+            Initializes an instance with the specified intersection table.
             </summary>
+            <param name="intersection">The intersection table.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
@@ -1324,7 +1326,7 @@
         <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Meta.Grid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap}[0:,0:])">
             <summary>
             Solve the puzzle with <see cref="P:Sudoku.Solving.Manual.ManualSolver.CheckMinimumDifficultyStrictly"/> option.
             </summary>
@@ -1332,9 +1334,10 @@
             <param name="cloneation">The cloneation grid to calculate.</param>
             <param name="steps">All steps found.</param>
             <param name="solution">The solution.</param>
+            <param name="intersection">The intersection table.</param>
             <returns>The analysis result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Meta.Grid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap}[0:,0:])">
             <summary>
             Solve naively.
             </summary>
@@ -1342,6 +1345,7 @@
             <param name="cloneation">The cloneation grid to calculate.</param>
             <param name="steps">All steps found.</param>
             <param name="solution">The solution.</param>
+            <param name="intersection">Intersection table.</param>
             <returns>The analysis result.</returns>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder">

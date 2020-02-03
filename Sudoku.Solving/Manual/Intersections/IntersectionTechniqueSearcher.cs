@@ -2,6 +2,7 @@
 using System.Linq;
 using Sudoku.Data.Meta;
 using Sudoku.Drawing;
+using Intersection = System.ValueTuple<int, int, Sudoku.Data.Meta.GridMap, Sudoku.Data.Meta.GridMap>;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
@@ -13,26 +14,15 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <summary>
 		/// All intersection series.
 		/// </summary>
-		private static readonly (int, int, GridMap, GridMap)[,] IntersectionSeries = new (int, int, GridMap, GridMap)[18, 3];
+		private readonly Intersection[,] _intersection;
 
 
 		/// <summary>
-		/// The static initializer of <see cref="IntersectionTechniqueSearcher"/>.
+		/// Initializes an instance with the specified intersection table.
 		/// </summary>
-		static IntersectionTechniqueSearcher()
-		{
-			for (int i = 0; i < 18; i++)
-			{
-				for (int j = 0; j < 3; j++)
-				{
-					int baseSet = i + 9;
-					int coverSet = i < 9 ? i / 3 * 3 + j : ((i - 9) / 3 * 3 + j) * 3 % 8;
-					IntersectionSeries[i, j] = (
-						baseSet, coverSet, GridMap.CreateInstance(baseSet),
-						GridMap.CreateInstance(coverSet));
-				}
-			}
-		}
+		/// <param name="intersection">The intersection table.</param>
+		public IntersectionTechniqueSearcher(Intersection[,] intersection) =>
+			_intersection = intersection;
 
 
 		/// <inheritdoc/>
@@ -44,7 +34,7 @@ namespace Sudoku.Solving.Manual.Intersections
 			{
 				for (int j = 0; j < 3; j++)
 				{
-					var (baseSet, coverSet, left, right) = IntersectionSeries[i, j];
+					var (baseSet, coverSet, left, right) = _intersection[i, j];
 					var intersection = left & right;
 					if (intersection.Offsets.All(o => grid.GetCellStatus(o) != CellStatus.Empty))
 					{

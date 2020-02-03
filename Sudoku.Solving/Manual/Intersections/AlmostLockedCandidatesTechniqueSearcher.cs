@@ -5,6 +5,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
+using Intersection = System.ValueTuple<int, int, Sudoku.Data.Meta.GridMap, Sudoku.Data.Meta.GridMap>;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
@@ -16,24 +17,15 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <summary>
 		/// All intersection series.
 		/// </summary>
-		private static readonly (int, int, GridMap, GridMap)[,] IntersectionSeries = new (int, int, GridMap, GridMap)[18, 3];
+		private readonly Intersection[,] _intersection;
 
 
 		/// <summary>
-		/// The static initializer of <see cref="AlmostLockedCandidatesTechniqueSearcher"/>.
+		/// Initializes an instance with the intersection table.
 		/// </summary>
-		static AlmostLockedCandidatesTechniqueSearcher()
-		{
-			for (int i = 0; i < 18; i++)
-				for (int j = 0; j < 3; j++)
-				{
-					int baseSet = i + 9;
-					int coverSet = i < 9 ? i / 3 * 3 + j : ((i - 9) / 3 * 3 + j) * 3 % 8;
-					IntersectionSeries[i, j] = (
-						baseSet, coverSet, GridMap.CreateInstance(baseSet),
-						GridMap.CreateInstance(coverSet));
-				}
-		}
+		/// <param name="intersection">The intersection table.</param>
+		public AlmostLockedCandidatesTechniqueSearcher(Intersection[,] intersection) =>
+			_intersection = intersection;
 
 
 		/// <inheritdoc/>
@@ -42,7 +34,9 @@ namespace Sudoku.Solving.Manual.Intersections
 			var result = new List<AlmostLockedCandidatesTechniqueInfo>();
 
 			for (int size = 2; size <= 3; size++)
+			{
 				result.AddRange(TakeAllBySize(grid, size));
+			}
 
 			return result;
 		}
@@ -55,7 +49,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <param name="grid">The grid.</param>
 		/// <param name="size">The size.</param>
 		/// <returns>The result.</returns>
-		private static IReadOnlyList<AlmostLockedCandidatesTechniqueInfo> TakeAllBySize(
+		private IReadOnlyList<AlmostLockedCandidatesTechniqueInfo> TakeAllBySize(
 			Grid grid, int size)
 		{
 			Contract.Requires(size >= 2 && size <= 4);
@@ -63,20 +57,25 @@ namespace Sudoku.Solving.Manual.Intersections
 			var result = new List<AlmostLockedCandidatesTechniqueInfo>();
 
 			for (int i = 0; i < 18; i++)
+			{
 				for (int j = 0; j < 3; j++)
 				{
-					var (baseSet, coverSet, left, right) = IntersectionSeries[i, j];
+					var (baseSet, coverSet, left, right) = _intersection[i, j];
 					var intersection = left & right;
 					if (intersection.Offsets.All(o => grid.GetCellStatus(o) != CellStatus.Empty))
+					{
 						continue;
+					}
 
 					// Process for 2 cases.
 					Process(grid, result, size, baseSet, coverSet, left, right, intersection);
 					Process(grid, result, size, coverSet, baseSet, right, left, intersection);
 				}
+			}
 
 			return result;
 		}
+
 
 		/// <summary>
 		/// Process the calculation.
@@ -104,17 +103,25 @@ namespace Sudoku.Solving.Manual.Intersections
 					// Check almost locked pair.
 					var digits = mask1.GetAllSets();
 					if (mask1.CountSet() != 2 || digits.Any(digit => grid.HasDigitValue(digit, coverSet)))
+					{
 						continue;
+					}
 
 					var maskList = new List<short>();
 					foreach (int digit in digits)
+					{
 						maskList.Add(grid.GetDigitAppearingMask(digit, coverSet, b));
+					}
 
 					short ahsMask = 0;
 					foreach (short mask in maskList)
+					{
 						ahsMask |= mask;
+					}
 					if (ahsMask.CountSet() != 1)
+					{
 						continue;
+					}
 
 					// Almost locked pair found.
 					int ahsCell = RegionUtils.GetCellOffset(coverSet, ahsMask.FindFirstSet());
@@ -122,36 +129,61 @@ namespace Sudoku.Solving.Manual.Intersections
 					// Record all highlight candidates.
 					var candidateOffsets = new List<(int, int)>();
 					foreach (int digit in digits)
+					{
 						if (grid.CandidateExists(c1, digit))
+						{
 							candidateOffsets.Add((0, c1 * 9 + digit));
+						}
+					}
 					foreach (int cell in intersection.Offsets)
+					{
 						foreach (int digit in digits)
+						{
 							if (grid.CandidateExists(cell, digit))
+							{
 								candidateOffsets.Add((0, cell * 9 + digit));
+							}
+						}
+					}
 					foreach (int digit in digits)
+					{
 						if (grid.CandidateExists(ahsCell, digit))
+						{
 							candidateOffsets.Add((0, ahsCell * 9 + digit));
+						}
+					}
 
 					// Record all eliminations.
 					var conclusions = new List<Conclusion>();
 					foreach (int aCell in a.Offsets)
 					{
 						if (aCell == c1)
+						{
 							continue;
+						}
 
 						foreach (int digit in digits)
+						{
 							if (grid.CandidateExists(aCell, digit))
+							{
 								conclusions.Add(
 									new Conclusion(ConclusionType.Elimination, aCell * 9 + digit));
+							}
+						}
 					}
 
 					short ahsElimMask = (short)(~(grid.GetMask(ahsCell) | mask1) & 511);
 					for (int digit = 0, temp = ahsElimMask; digit < 9; digit++, temp >>= 1)
+					{
 						if ((temp & 1) != 0 && grid.CandidateExists(ahsCell, digit))
+						{
 							conclusions.Add(
 								new Conclusion(ConclusionType.Elimination, ahsCell * 9 + digit));
+						}
+					}
 
 					if (conclusions.Count != 0)
+					{
 						result.Add(
 							new AlmostLockedCandidatesTechniqueInfo(
 								conclusions,
@@ -166,8 +198,10 @@ namespace Sudoku.Solving.Manual.Intersections
 								digits: digits.ToArray(),
 								baseCells: new[] { c1 },
 								targetCells: new[] { ahsCell }));
+					}
 				}
 				else // size > 2
+				{
 					for (int i2 = i1 + 1; i2 < 9 - size; i2++)
 					{
 						int c2 = aCells[i2];
@@ -178,18 +212,25 @@ namespace Sudoku.Solving.Manual.Intersections
 							short m = (short)(mask1 | mask2);
 							var digits = m.GetAllSets();
 							if (m.CountSet() != 3 || digits.Any(digit => grid.HasDigitValue(digit, coverSet)))
+							{
 								continue;
+							}
 
 							var maskList = new List<short>();
 							foreach (int digit in digits)
+							{
 								maskList.Add(grid.GetDigitAppearingMask(digit, coverSet, b));
-
+							}
 							short ahsMask = 0;
 							foreach (short mask in maskList)
+							{
 								ahsMask |= mask;
+							}
 
 							if (ahsMask.CountSet() != 2)
+							{
 								continue;
+							}
 
 							// Almost locked pair found.
 							int[] ahsCellPositions = ahsMask.GetAllSets().ToArray();
@@ -201,20 +242,34 @@ namespace Sudoku.Solving.Manual.Intersections
 							foreach (int digit in digits)
 							{
 								if (grid.CandidateExists(c1, digit))
+								{
 									candidateOffsets.Add((0, c1 * 9 + digit));
+								}
 								if (grid.CandidateExists(c2, digit))
+								{
 									candidateOffsets.Add((0, c2 * 9 + digit));
+								}
 							}
 							foreach (int cell in intersection.Offsets)
+							{
 								foreach (int digit in digits)
+								{
 									if (grid.CandidateExists(cell, digit))
+									{
 										candidateOffsets.Add((0, cell * 9 + digit));
+									}
+								}
+							}
 							foreach (int digit in digits)
 							{
 								if (grid.CandidateExists(ahsCell1, digit))
+								{
 									candidateOffsets.Add((0, ahsCell1 * 9 + digit));
+								}
 								if (grid.CandidateExists(ahsCell2, digit))
+								{
 									candidateOffsets.Add((0, ahsCell2 * 9 + digit));
+								}
 							}
 
 							// Record all eliminations.
@@ -222,29 +277,42 @@ namespace Sudoku.Solving.Manual.Intersections
 							foreach (int aCell in a.Offsets)
 							{
 								if (aCell == c1 || aCell == c2)
+								{
 									continue;
+								}
 
 								foreach (int digit in digits)
+								{
 									if (grid.CandidateExists(aCell, digit))
+									{
 										conclusions.Add(
 											new Conclusion(ConclusionType.Elimination, aCell * 9 + digit));
+									}
+								}
 							}
 
 							short ahsElimMask = (short)(~((short)(grid.GetMask(ahsCell1) | mask1) | mask2) & 511);
 							for (int digit = 0, temp = ahsElimMask; digit < 9; digit++, temp >>= 1)
+							{
 								if ((temp & 1) != 0)
 								{
 									if (grid.CandidateExists(ahsCell1, digit))
+									{
 										conclusions.Add(
 											new Conclusion(
 												ConclusionType.Elimination, ahsCell1 * 9 + digit));
+									}
 									if (grid.CandidateExists(ahsCell2, digit))
+									{
 										conclusions.Add(
 											new Conclusion(
 												ConclusionType.Elimination, ahsCell2 * 9 + digit));
+									}
 								}
+							}
 
 							if (conclusions.Count != 0)
+							{
 								result.Add(
 									new AlmostLockedCandidatesTechniqueInfo(
 										conclusions,
@@ -259,8 +327,10 @@ namespace Sudoku.Solving.Manual.Intersections
 										digits: digits.ToArray(),
 										baseCells: new[] { c1, c2 },
 										targetCells: new[] { ahsCell1, ahsCell2 }));
+							}
 						}
 						else // size == 4
+						{
 							for (int i3 = i2 + 1; i3 < 6; i3++)
 							{
 								int c3 = aCells[i3];
@@ -270,18 +340,26 @@ namespace Sudoku.Solving.Manual.Intersections
 								short m = (short)((short)(mask1 | mask2) | mask3);
 								var digits = m.GetAllSets();
 								if (m.CountSet() != 4 || digits.Any(digit => grid.HasDigitValue(digit, coverSet)))
+								{
 									continue;
+								}
 
 								var maskList = new List<short>();
 								foreach (int digit in digits)
+								{
 									maskList.Add(grid.GetDigitAppearingMask(digit, coverSet, b));
+								}
 
 								short ahsMask = 0;
 								foreach (short mask in maskList)
+								{
 									ahsMask |= mask;
+								}
 
 								if (ahsMask.CountSet() != 3)
+								{
 									continue;
+								}
 
 								// Almost locked pair found.
 								int[] ahsCellPositions = ahsMask.GetAllSets().ToArray();
@@ -294,24 +372,42 @@ namespace Sudoku.Solving.Manual.Intersections
 								foreach (int digit in digits)
 								{
 									if (grid.CandidateExists(c1, digit))
+									{
 										candidateOffsets.Add((0, c1 * 9 + digit));
+									}
 									if (grid.CandidateExists(c2, digit))
+									{
 										candidateOffsets.Add((0, c2 * 9 + digit));
+									}
 									if (grid.CandidateExists(c3, digit))
+									{
 										candidateOffsets.Add((0, c3 * 9 + digit));
+									}
 								}
 								foreach (int cell in intersection.Offsets)
+								{
 									foreach (int digit in digits)
+									{
 										if (grid.CandidateExists(cell, digit))
+										{
 											candidateOffsets.Add((0, cell * 9 + digit));
+										}
+									}
+								}
 								foreach (int digit in digits)
 								{
 									if (grid.CandidateExists(ahsCell1, digit))
+									{
 										candidateOffsets.Add((0, ahsCell1 * 9 + digit));
+									}
 									if (grid.CandidateExists(ahsCell2, digit))
+									{
 										candidateOffsets.Add((0, ahsCell2 * 9 + digit));
+									}
 									if (grid.CandidateExists(ahsCell3, digit))
+									{
 										candidateOffsets.Add((0, ahsCell3 * 9 + digit));
+									}
 								}
 
 								// Record all eliminations.
@@ -319,33 +415,48 @@ namespace Sudoku.Solving.Manual.Intersections
 								foreach (int aCell in a.Offsets)
 								{
 									if (aCell == c1 || aCell == c2 || aCell == c3)
+									{
 										continue;
+									}
 
 									foreach (int digit in digits)
+									{
 										if (grid.CandidateExists(aCell, digit))
+										{
 											conclusions.Add(
-												new Conclusion(ConclusionType.Elimination, aCell * 9 + digit));
+												  new Conclusion(ConclusionType.Elimination, aCell * 9 + digit));
+										}
+									}
 								}
 
 								short ahsElimMask = (short)(~((short)(grid.GetMask(ahsCell1) | mask1) | mask2) & 511);
 								for (int digit = 0, temp = ahsElimMask; digit < 9; digit++, temp >>= 1)
+								{
 									if ((temp & 1) != 0)
 									{
 										if (grid.CandidateExists(ahsCell1, digit))
+										{
 											conclusions.Add(
 												new Conclusion(
 													ConclusionType.Elimination, ahsCell1 * 9 + digit));
+										}
 										if (grid.CandidateExists(ahsCell2, digit))
+										{
 											conclusions.Add(
 												new Conclusion(
 													ConclusionType.Elimination, ahsCell2 * 9 + digit));
+										}
 										if (grid.CandidateExists(ahsCell3, digit))
+										{
 											conclusions.Add(
 												new Conclusion(
 													ConclusionType.Elimination, ahsCell3 * 9 + digit));
+										}
 									}
+								}
 
 								if (conclusions.Count != 0)
+								{
 									result.Add(
 										new AlmostLockedCandidatesTechniqueInfo(
 											conclusions,
@@ -360,8 +471,11 @@ namespace Sudoku.Solving.Manual.Intersections
 											digits: digits.ToArray(),
 											baseCells: new[] { c1, c2, c3 },
 											targetCells: new[] { ahsCell1, ahsCell2, ahsCell3 }));
+								}
 							}
+						}
 					}
+				}
 			}
 		}
 		#endregion

@@ -23,14 +23,15 @@ namespace Sudoku.Debugging
 				CheckMinimumDifficultyStrictly = true,
 				EnableBruteForce = false
 			};
-			var grid = Grid.Parse("300009742000500600000000010000000061109860000000003000001020030040005007500000028");
+			var grid = Grid.Parse(".1.....49..9315.68......5......96......4...2..3........6...78......4...67.5.3...4");
 			var analysisResult = solver.Solve(grid);
 			Console.WriteLine(analysisResult);
 
 			//Line counter.
 			//string solutionFolder = Solution.PathRoot;
 			//var codeCounter = new CodeCounter(solutionFolder, @".*\.cs$");
-			//Console.WriteLine($"{codeCounter.CountCodeLines()} lines.");
+			//int linesCount = codeCounter.CountCodeLines(out int filesCount);
+			//Console.WriteLine($"Found {filesCount} files, {linesCount} lines.");
 		}
 	}
 }

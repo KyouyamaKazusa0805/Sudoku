@@ -137,13 +137,13 @@ namespace Sudoku.Data.Meta
 			set
 			{
 				// We should get along with pointers extremely carefully.
+				if (offset < 0 || offset >= 81)
+				{
+					throw new ArgumentOutOfRangeException(nameof(offset));
+				}
+
 				unsafe
 				{
-					if (offset < 0 || offset >= 81)
-					{
-						throw new ArgumentOutOfRangeException(nameof(offset));
-					}
-
 					fixed (long* a = &_low, b = &_high)
 					{
 						long** series = stackalloc[] { a, b };
@@ -362,6 +362,15 @@ namespace Sudoku.Data.Meta
 		/// <returns>The negative result.</returns>
 		public static GridMap operator ~(GridMap gridMap) =>
 			new GridMap(~gridMap._high, ~gridMap._low);
+
+		/// <summary>
+		/// Get a <see cref="GridMap"/> that contains all <paramref name="left"/> cells
+		/// but not in <paramref name="right"/> cells.
+		/// </summary>
+		/// <param name="left">The left instance.</param>
+		/// <param name="right">The right instance.</param>
+		/// <returns>The result.</returns>
+		public static GridMap operator -(GridMap left, GridMap right) => ~left & right;
 
 		/// <summary>
 		/// Intersect two <see cref="GridMap"/>s.

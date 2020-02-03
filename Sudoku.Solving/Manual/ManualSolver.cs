@@ -13,6 +13,7 @@ using Sudoku.Solving.Manual.Subsets;
 using Sudoku.Solving.Manual.Uniqueness.Rectangles;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
+using Intersection = System.ValueTuple<int, int, Sudoku.Data.Meta.GridMap, Sudoku.Data.Meta.GridMap>;
 
 namespace Sudoku.Solving.Manual
 {
@@ -30,9 +31,26 @@ namespace Sudoku.Solving.Manual
 		{
 			if (grid.IsUnique(out var solution))
 			{
+				// Get intersection table in order to run faster in intersection technique searchers.
+				var intersectionTable = new Intersection[18, 3];
+				for (int i = 0; i < 18; i++)
+				{
+					for (int j = 0; j < 3; j++)
+					{
+						int baseSet = i + 9;
+						int coverSet = i < 9 ? i / 3 * 3 + j : ((i - 9) / 3 * 3 + j) * 3 % 8;
+						intersectionTable[i, j] = (
+							baseSet, coverSet, GridMap.CreateInstance(baseSet),
+							GridMap.CreateInstance(coverSet));
+					}
+				}
+
+				// Solve the puzzle.
 				return CheckMinimumDifficultyStrictly
-					? SolveWithStrictDifficultyRating(grid, grid.Clone(), new List<TechniqueInfo>(), solution)
-					: SolveNaively(grid, grid.Clone(), new List<TechniqueInfo>(), solution);
+					? SolveWithStrictDifficultyRating(
+						grid, grid.Clone(), new List<TechniqueInfo>(), solution, intersectionTable)
+					: SolveNaively(
+						grid, grid.Clone(), new List<TechniqueInfo>(), solution, intersectionTable);
 			}
 			else
 			{
@@ -54,15 +72,17 @@ namespace Sudoku.Solving.Manual
 		/// <param name="cloneation">The cloneation grid to calculate.</param>
 		/// <param name="steps">All steps found.</param>
 		/// <param name="solution">The solution.</param>
+		/// <param name="intersection">The intersection table.</param>
 		/// <returns>The analysis result.</returns>
 		private AnalysisResult SolveWithStrictDifficultyRating(
-			Grid grid, Grid cloneation, List<TechniqueInfo> steps, Grid solution)
+			Grid grid, Grid cloneation, List<TechniqueInfo> steps,
+			Grid solution, Intersection[,] intersection)
 		{
 			var searchers = EnableBruteForce
 				? new TechniqueSearcher[][]
 				{
 					new[] { new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit) },
-					new[] { new IntersectionTechniqueSearcher() },
+					new[] { new IntersectionTechniqueSearcher(intersection) },
 					new TechniqueSearcher[]
 					{
 						new SubsetTechniqueSearcher(),
@@ -71,14 +91,14 @@ namespace Sudoku.Solving.Manual
 						new IrregularWingTechniqueSearcher(),
 						new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 						new TwoStrongLinksTechniqueSearcher(),
-						new AlmostLockedCandidatesTechniqueSearcher(),
+						new AlmostLockedCandidatesTechniqueSearcher(intersection),
 					},
 					new[] { new BruteForceTechniqueSearcher(solution) }
 				}
 				: new TechniqueSearcher[][] // Does not have brute force.
 				{
 					new[] { new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit) },
-					new[] { new IntersectionTechniqueSearcher() },
+					new[] { new IntersectionTechniqueSearcher(intersection) },
 					new TechniqueSearcher[]
 					{
 						new SubsetTechniqueSearcher(),
@@ -87,7 +107,7 @@ namespace Sudoku.Solving.Manual
 						new IrregularWingTechniqueSearcher(),
 						new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 						new TwoStrongLinksTechniqueSearcher(),
-						new AlmostLockedCandidatesTechniqueSearcher(),
+						new AlmostLockedCandidatesTechniqueSearcher(intersection),
 					}
 				};
 
@@ -164,35 +184,37 @@ namespace Sudoku.Solving.Manual
 		/// <param name="cloneation">The cloneation grid to calculate.</param>
 		/// <param name="steps">All steps found.</param>
 		/// <param name="solution">The solution.</param>
+		/// <param name="intersection">Intersection table.</param>
 		/// <returns>The analysis result.</returns>
 		private AnalysisResult SolveNaively(
-			Grid grid, Grid cloneation, List<TechniqueInfo> steps, Grid solution)
+			Grid grid, Grid cloneation, List<TechniqueInfo> steps,
+			Grid solution, Intersection[,] intersection)
 		{
 			var searchers = EnableBruteForce
 				? new TechniqueSearcher[]
 				{
 					new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit),
-					new IntersectionTechniqueSearcher(),
+					new IntersectionTechniqueSearcher(intersection),
 					new SubsetTechniqueSearcher(),
 					new NormalFishTechniqueSearcher(),
 					new RegularWingTechniqueSearcher(CheckRegularWingSize),
 					new IrregularWingTechniqueSearcher(),
 					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 					new TwoStrongLinksTechniqueSearcher(),
-					new AlmostLockedCandidatesTechniqueSearcher(),
+					new AlmostLockedCandidatesTechniqueSearcher(intersection),
 					new BruteForceTechniqueSearcher(solution),
 				}
 				: new TechniqueSearcher[] // Does not have brute force.
 				{
 					new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit),
-					new IntersectionTechniqueSearcher(),
+					new IntersectionTechniqueSearcher(intersection),
 					new SubsetTechniqueSearcher(),
 					new NormalFishTechniqueSearcher(),
 					new RegularWingTechniqueSearcher(CheckRegularWingSize),
 					new IrregularWingTechniqueSearcher(),
 					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 					new TwoStrongLinksTechniqueSearcher(),
-					new AlmostLockedCandidatesTechniqueSearcher(),
+					new AlmostLockedCandidatesTechniqueSearcher(intersection),
 				};
 
 			var stopwatch = new Stopwatch();
