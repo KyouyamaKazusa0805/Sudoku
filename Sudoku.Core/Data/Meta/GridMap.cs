@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -14,7 +15,7 @@ namespace Sudoku.Data.Meta
 	/// where <see langword="true"/> bit (1) is for the cell having digit,
 	/// and the <see langword="false"/> bit (0) is for empty cell. Sometimes for other usages.
 	/// </summary>
-	[DisableDefaultConstructor]
+	[DisableDefaultConstructor, DebuggerStepThrough]
 	public partial struct GridMap : IEnumerable<bool>, IEquatable<GridMap>
 	{
 		/// <summary>
@@ -53,6 +54,11 @@ namespace Sudoku.Data.Meta
 		/// <param name="setItself">
 		/// A <see cref="bool"/> value indicating whether this initialization
 		/// will set the bit of itself.
+		/// If the value is <see langword="false"/>, it will be equivalent
+		/// to below:
+		/// <code>
+		/// GridMap map = new GridMap(offset) { [offset] = false };
+		/// </code>
 		/// </param>
 		public GridMap(int offset, bool setItself) : this(PeerTable[offset]) =>
 			this[offset] = setItself;
@@ -370,7 +376,7 @@ namespace Sudoku.Data.Meta
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
 		/// <returns>The result.</returns>
-		public static GridMap operator -(GridMap left, GridMap right) => ~left & right;
+		public static GridMap operator -(GridMap left, GridMap right) => left & ~right;
 
 		/// <summary>
 		/// Intersect two <see cref="GridMap"/>s.

@@ -21,6 +21,35 @@
             The values you want to add to the end of the collection.
             </param>
         </member>
+        <member name="M:Sudoku.Data.Extensions.CollectionEx.AddIfDoesNotContain``1(System.Collections.Generic.ICollection{``0},``0)">
+            <summary>
+            Adds an object to the end of the <see cref="T:System.Collections.Generic.ICollection`1"/> when
+            the specified list does not contain the specified element.
+            </summary>
+            <typeparam name="T">The type of all elements.</typeparam>
+            <param name="this">The list.</param>
+            <param name="item">The item to add.</param>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.DictionaryEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.IDictionary`2"/>
+            </summary>
+            <seealso cref="T:System.Collections.Generic.IDictionary`2"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.DictionaryEx.AddIfDoesNotContain``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+            <summary>
+            Adds an element with the provided key and value to the
+            <see cref="T:System.Collections.Generic.IDictionary`2"/> when the key does
+            not contain in the dictionary.
+            </summary>
+            <typeparam name="TKey">
+            The type of keys. The key should be not <see langword="null"/>.
+            </typeparam>
+            <typeparam name="TValue">The type of elements.</typeparam>
+            <param name="this">The dictionary.</param>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+        </member>
         <member name="T:Sudoku.Data.Extensions.Int16Ex">
             <summary>
             Provides extension methods on <see cref="T:System.Int16"/>.
@@ -746,6 +775,11 @@
             <param name="setItself">
             A <see cref="T:System.Boolean"/> value indicating whether this initialization
             will set the bit of itself.
+            If the value is <see langword="false"/>, it will be equivalent
+            to below:
+            <code>
+            GridMap map = new GridMap(offset) { [offset] = false };
+            </code>
             </param>
         </member>
         <member name="M:Sudoku.Data.Meta.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">

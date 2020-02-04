@@ -41,10 +41,15 @@ namespace Sudoku.Solving.Utils
 		}
 
 		/// <summary>
-		/// Get the row, column and block index of the specified cell.
+		/// <para>Get the row, column and block index of the specified cell.</para>
+		/// <para>
+		/// Note that all row, column and block indices are always between 0 to 8.
+		/// </para>
 		/// </summary>
 		/// <param name="cellOffset">The cell offset.</param>
-		/// <returns>The row, column and block index triplet.</returns>
+		/// <returns>
+		/// The row, column and block index triplet.
+		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static (int _row, int _column, int _block) GetRegion(int cellOffset) =>
 			(cellOffset / 9, cellOffset % 9, cellOffset / 9 / 3 * 3 + cellOffset % 9 / 3);

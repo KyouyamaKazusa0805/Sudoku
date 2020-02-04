@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using Sudoku.Data.Extensions;
 
@@ -21,9 +22,16 @@ namespace Sudoku.Solving.Utils
 			const string separator = ", ";
 			var sb = new StringBuilder();
 
-			foreach (var cellOffset in cellOffsets)
+			foreach (var cellByRowGroup in from cell in cellOffsets group cell by cell / 9)
 			{
-				sb.Append($"{CellUtils.ToString(cellOffset)}{separator}");
+				int row = cellByRowGroup.Key;
+				sb.Append($"r{row + 1}c");
+				foreach (int cell in cellByRowGroup)
+				{
+					sb.Append(cell % 9 + 1);
+				}
+
+				sb.Append(separator);
 			}
 
 			sb.RemoveFromEnd(separator.Length);

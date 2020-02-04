@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -10,6 +11,7 @@ namespace Sudoku.Data.Meta
 	/// <summary>
 	/// Provides operations for grid formatting.
 	/// </summary>
+	[DebuggerStepThrough]
 	internal sealed class GridFormatter
 	{
 		/// <summary>

@@ -23,7 +23,7 @@ namespace Sudoku.Debugging
 				CheckMinimumDifficultyStrictly = true,
 				EnableBruteForce = false
 			};
-			var grid = Grid.Parse(".1.....49..9315.68......5......96......4...2..3........6...78......4...67.5.3...4");
+			var grid = Grid.Parse("003056000007000+306+642003+5100+3089+20+50+29040+50300050+30002060+50000+3000320001+3+21009005:917 918 428 928 971 981 697 698");
 			var analysisResult = solver.Solve(grid);
 			Console.WriteLine(analysisResult);
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data.Extensions;
@@ -9,6 +10,7 @@ namespace Sudoku.Solving.Utils
 	/// <summary>
 	/// Provides extension method used for grid calculating.
 	/// </summary>
+	[DebuggerStepThrough]
 	public static class GridUtils
 	{
 		/// <summary>

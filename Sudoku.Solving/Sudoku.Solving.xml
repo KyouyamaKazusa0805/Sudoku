@@ -2656,10 +2656,15 @@
         </member>
         <member name="M:Sudoku.Solving.Utils.CellUtils.GetRegion(System.Int32)">
             <summary>
-            Get the row, column and block index of the specified cell.
+            <para>Get the row, column and block index of the specified cell.</para>
+            <para>
+            Note that all row, column and block indices are always between 0 to 8.
+            </para>
             </summary>
             <param name="cellOffset">The cell offset.</param>
-            <returns>The row, column and block index triplet.</returns>
+            <returns>
+            The row, column and block index triplet.
+            </returns>
         </member>
         <member name="M:Sudoku.Solving.Utils.CellUtils.IsSameRegion(System.Int32,System.Int32,System.Int32[]@)">
             <summary>
@@ -2854,7 +2859,7 @@
             </summary>
             <param name="this">The value.</param>
             <param name="cellStatus">(out parameter) The cell status.</param>
-            <param name="candidatesMask">(out parameter) The candidates.</param>
+            <param name="candidatesMask">(out parameter) The candidate mask.</param>
         </member>
         <member name="T:Sudoku.Solving.Utils.RegionCollection">
             <summary>

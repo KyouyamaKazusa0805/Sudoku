@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Sudoku.Data.Extensions;
 
 namespace Sudoku.Data.Meta
@@ -6,6 +7,7 @@ namespace Sudoku.Data.Meta
 	/// <summary>
 	/// Encapsulates a grid parser.
 	/// </summary>
+	[DebuggerStepThrough]
 	internal sealed class GridParser
 	{
 		/// <summary>

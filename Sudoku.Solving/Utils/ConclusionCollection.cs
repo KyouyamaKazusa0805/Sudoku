@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using Sudoku.Data.Extensions;
 
@@ -21,12 +22,35 @@ namespace Sudoku.Solving.Utils
 			const string separator = ", ";
 			var sb = new StringBuilder();
 
-			foreach (var conslusion in conclusions)
+			foreach (var conclusionGroupByType in
+				from conclusion in conclusions
+				group conclusion by conclusion.Type)
 			{
-				sb.Append($"{conslusion}{separator}");
+				var type = conclusionGroupByType.Key;
+				foreach (var conclusionGroupByDigit in
+					from conclusion in conclusionGroupByType
+					orderby conclusion.Digit
+					group conclusion by conclusion.Digit)
+				{
+					int digit = conclusionGroupByDigit.Key;
+					foreach (var conclusionGroupByCellRow in
+						from conclusion in conclusionGroupByDigit
+						group conclusion by conclusion.CellOffset / 9)
+					{
+						int row = conclusionGroupByCellRow.Key;
+						sb.Append($"r{row + 1}c");
+						foreach (var conclusion in conclusionGroupByCellRow)
+						{
+							sb.Append($"{conclusion.CellOffset % 9 + 1}");
+						}
+
+						sb.Append($"{(type == ConclusionType.Elimination ? " <> " : " = ")}{digit + 1}{separator}");
+					}
+				}
+
+				sb.RemoveFromEnd(separator.Length);
 			}
 
-			sb.RemoveFromEnd(separator.Length);
 			return sb.ToString();
 		}
 	}

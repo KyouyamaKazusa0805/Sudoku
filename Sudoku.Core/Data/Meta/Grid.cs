@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using Sudoku.Data.Extensions;
@@ -10,6 +11,7 @@ namespace Sudoku.Data.Meta
 	/// <summary>
 	/// Encapsulates a sudoku grid.
 	/// </summary>
+	[DebuggerStepThrough]
 	public sealed class Grid : ICloneable<Grid>, IEnumerable<short>, IEquatable<Grid>, IFormattable
 	{
 		/// <summary>

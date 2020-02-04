@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Utils
 		/// </summary>
 		/// <param name="this">The value.</param>
 		/// <param name="cellStatus">(out parameter) The cell status.</param>
-		/// <param name="candidatesMask">(out parameter) The candidates.</param>
+		/// <param name="candidatesMask">(out parameter) The candidate mask.</param>
 		[OnDeconstruction]
 		public static void Deconstruct(
 			this short @this, out CellStatus cellStatus, out short candidatesMask) =>

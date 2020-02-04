@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace Sudoku.Data.Extensions
 {
@@ -24,6 +25,22 @@ namespace Sudoku.Data.Extensions
 			foreach (var value in values)
 			{
 				@this.Add(value);
+			}
+		}
+
+		/// <summary>
+		/// Adds an object to the end of the <see cref="ICollection{T}"/> when
+		/// the specified list does not contain the specified element.
+		/// </summary>
+		/// <typeparam name="T">The type of all elements.</typeparam>
+		/// <param name="this">The list.</param>
+		/// <param name="item">The item to add.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void AddIfDoesNotContain<T>(this ICollection<T> @this, T item)
+		{
+			if (!@this.Contains(item))
+			{
+				@this.Add(item);
 			}
 		}
 	}
