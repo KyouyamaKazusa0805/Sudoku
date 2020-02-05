@@ -90,7 +90,7 @@
             method is an extension method, and returns nothing.
             </para>
             </summary>
-            <param name="this">(extension method main parameter) (ref parameter) The value.</param>
+            <param name="this">(ref extension method main parameter) The value.</param>
         </member>
         <member name="T:Sudoku.Data.Extensions.Int32Ex">
             <summary>
