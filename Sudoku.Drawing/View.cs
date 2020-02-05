@@ -101,7 +101,7 @@ namespace Sudoku.Drawing
 				sb.Append("    ");
 				foreach (var (_, candidateOffset) in CandidateOffsets)
 				{
-					sb.Append($"r{candidateOffset / 81 + 1}{candidateOffset % 81 / 9 + 1}({candidateOffset % 9 + 1}){separator}");
+					sb.Append($"r{candidateOffset / 81 + 1}c{candidateOffset % 81 / 9 + 1}({candidateOffset % 9 + 1}){separator}");
 				}
 				sb.RemoveFromEnd(separator.Length);
 				sb.AppendLine();
@@ -117,7 +117,7 @@ namespace Sudoku.Drawing
 						0 => "b",
 						1 => "r",
 						2 => "c",
-						_ => throw new Exception("Never.")
+						_ => throw new Exception("Impossible case.")
 					}}{regionOffset % 9}{separator}");
 				}
 				sb.RemoveFromEnd(separator.Length);
