@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Utils
 		/// </summary>
 		private static readonly string[] FishNames =
 		{
-			string.Empty, "Cyclopsfish", "X-Wing", "Swordfish", "Jellyfish",
+			"", "Cyclopsfish", "X-Wing", "Swordfish", "Jellyfish",
 			"Squirmbag", "Whale", "Leviathan"
 		};
 

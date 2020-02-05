@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Utils
 		/// </summary>
 		private static readonly string[] SubsetNames =
 		{
-			string.Empty, "Single", "Pair", "Triple", "Quadruple",
+			"", "Single", "Pair", "Triple", "Quadruple",
 			"Quintuple", "Sextuple", "Septuple", "Octuple", "Nonuple"
 		};
 

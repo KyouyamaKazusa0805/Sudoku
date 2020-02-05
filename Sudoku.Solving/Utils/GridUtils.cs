@@ -31,11 +31,8 @@ namespace Sudoku.Solving.Utils
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <seealso cref="CandidateDoesNotExist(Grid, int, int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool CandidateExists(this Grid @this, int cellOffset, int digit)
-		{
-			return @this.GetCellStatus(cellOffset) == CellStatus.Empty
-				&& !@this[cellOffset, digit];
-		}
+		public static bool CandidateExists(this Grid @this, int cellOffset, int digit) =>
+			@this.GetCellStatus(cellOffset) == CellStatus.Empty && !@this[cellOffset, digit];
 
 		/// <summary>
 		/// <para>
@@ -55,11 +52,8 @@ namespace Sudoku.Solving.Utils
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <seealso cref="CandidateExists(Grid, int, int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool CandidateDoesNotExist(this Grid @this, int cellOffset, int digit)
-		{
-			return @this.GetCellStatus(cellOffset) == CellStatus.Empty
-				&& @this[cellOffset, digit];
-		}
+		public static bool CandidateDoesNotExist(this Grid @this, int cellOffset, int digit) =>
+			@this.GetCellStatus(cellOffset) == CellStatus.Empty && @this[cellOffset, digit];
 
 		/// <summary>
 		/// Checks whether the specified digit has given or modifiable values in
