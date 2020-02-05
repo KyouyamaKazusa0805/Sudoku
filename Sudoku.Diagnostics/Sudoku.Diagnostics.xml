@@ -37,7 +37,7 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.PatternAttribute">
             <summary>
-            It means the parameter marked this attribute is a regular expressino pattern.
+            It means the parameter marked this attribute is a regular expression pattern.
             </summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContractAttribute">

@@ -549,6 +549,21 @@
             <param name="offset">The cell offset you want to get.</param>
             <returns>The mask.</returns>
         </member>
+        <member name="M:Sudoku.Data.Meta.Grid.GetCandidates(System.Int32)">
+            <summary>
+            Get the candidate mask part of the specified cell.
+            </summary>
+            <param name="offset">The cell offset you want to get.</param>
+            <returns>The candidate mask.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.Grid.GetCandidatesReversal(System.Int32)">
+            <summary>
+            Get the candidate mask after reversed all bits mask part
+            of the specified cell.
+            </summary>
+            <param name="offset">The cell offset you want to get.</param>
+            <returns>The candidate mask.</returns>
+        </member>
         <member name="M:Sudoku.Data.Meta.Grid.ToString">
             <inheritdoc/>
         </member>
