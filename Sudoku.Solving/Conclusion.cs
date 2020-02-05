@@ -56,13 +56,19 @@ namespace Sudoku.Solving
 			switch (Type)
 			{
 				case ConclusionType.Assignment:
+				{
 					grid[CellOffset] = Digit;
 					break;
+				}
 				case ConclusionType.Elimination:
+				{
 					grid[CellOffset, Digit] = true;
 					break;
+				}
 				default:
+				{
 					throw new InvalidOperationException("Cannot apply to grid due to invalid conclusion type.");
+				}
 			}
 		}
 

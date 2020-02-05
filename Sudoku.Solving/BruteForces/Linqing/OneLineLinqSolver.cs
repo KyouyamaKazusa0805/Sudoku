@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using Sudoku.Data.Meta;
 using Sudoku.Runtime;
+using static System.Math;
 
 namespace Sudoku.Solving.BruteForces.Linqing
 {
@@ -58,7 +59,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 						from i in Enumerable.Range(0, 9)
 						let inRow = solution[index - column + i] == value
 						let inColumn = solution[column + i * 9] == value
-						let inBlock = solution[block + i % 3 + (int)Math.Floor(i / 3f) * 9] == value
+						let inBlock = solution[block + i % 3 + (int)Floor(i / 3f) * 9] == value
 						where inRow || inColumn || inBlock
 						select i).Any()
 					select $"{solution.Substring(0, index)}{value}{solution.Substring(index + 1)}");

@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using Sudoku.Data.Meta;
 using Sudoku.Runtime;
-using Sudoku.Solving.Utils;
+using static Sudoku.Solving.Utils.CellUtils;
 
 namespace Sudoku.Solving.BruteForces.Backtracking
 {
@@ -87,7 +87,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 			}
 
 			int r = finishedCellsCount / 9, c = finishedCellsCount % 9;
-			if (gridValues[CellUtils.GetOffset(r, c)] != 0)
+			if (gridValues[GetOffset(r, c)] != 0)
 			{
 				BacktrackinglySolve(
 					ref solutionsCount, ref result, gridValues, finishedCellsCount + 1);
@@ -99,7 +99,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 				// all candidates to let the algorithm run faster.
 				for (int i = 0; i < 9; i++)
 				{
-					gridValues[CellUtils.GetOffset(r, c)]++; // Only use value increment operator.
+					gridValues[GetOffset(r, c)]++; // Only use value increment operator.
 					if (IsValid(gridValues, r, c))
 					{
 						BacktrackinglySolve(
@@ -110,20 +110,20 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 				// All values are wrong, which means the value before
 				// we calculate is already wrong.
 				// Backtracking the cell...
-				gridValues[CellUtils.GetOffset(r, c)] = 0;
+				gridValues[GetOffset(r, c)] = 0;
 			}
 		}
 
 
 		private static bool IsValid(int[] gridValues, int r, int c)
 		{
-			int number = gridValues[CellUtils.GetOffset(r, c)];
+			int number = gridValues[GetOffset(r, c)];
 
 			// Check lines.
 			for (int i = 0; i < 9; i++)
 			{
-				if (i != r && gridValues[CellUtils.GetOffset(i, c)] == number
-					|| i != c && gridValues[CellUtils.GetOffset(r, i)] == number)
+				if (i != r && gridValues[GetOffset(i, c)] == number
+					|| i != c && gridValues[GetOffset(r, i)] == number)
 				{
 					return false;
 				}
@@ -134,7 +134,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 			{
 				for (int jj = c / 3 * 3, j = jj; j < jj + 3; j++)
 				{
-					if ((i != r || j != c) && gridValues[CellUtils.GetOffset(i, j)] == number)
+					if ((i != r || j != c) && gridValues[GetOffset(i, j)] == number)
 					{
 						return false;
 					}

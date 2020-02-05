@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using Sudoku.Data.Meta;
 
@@ -26,8 +25,6 @@ namespace Sudoku.Solving
 		/// <returns>The specified number of technique information instances.</returns>
 		public IReadOnlyList<TechniqueInfo> Take(Grid grid, int count)
 		{
-			Contract.Assume(count >= 1);
-
 			// 'Take' method will never throw exceptions when
 			// count is greater than the step count of the list.
 			return TakeAll(grid).Take(count).ToList();
