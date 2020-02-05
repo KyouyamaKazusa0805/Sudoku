@@ -97,7 +97,7 @@ namespace Sudoku.Solving.Manual.Intersections
 			for (int i1 = 0; i1 < 8 - size; i1++)
 			{
 				int c1 = aCells[i1];
-				short mask1 = (short)(~grid.GetMask(c1) & 511);
+				short mask1 = grid.GetCandidatesReversal(c1);
 				if (size == 2)
 				{
 					// Check almost locked pair.
@@ -205,7 +205,7 @@ namespace Sudoku.Solving.Manual.Intersections
 					for (int i2 = i1 + 1; i2 < 9 - size; i2++)
 					{
 						int c2 = aCells[i2];
-						short mask2 = (short)(~grid.GetMask(c2) & 511);
+						short mask2 = grid.GetCandidatesReversal(c2);
 						if (size == 3)
 						{
 							// Check almost locked triple.
@@ -334,7 +334,7 @@ namespace Sudoku.Solving.Manual.Intersections
 							for (int i3 = i2 + 1; i3 < 6; i3++)
 							{
 								int c3 = aCells[i3];
-								short mask3 = (short)(~grid.GetMask(c3) & 511);
+								short mask3 = grid.GetCandidatesReversal(c3);
 
 								// Check almost locked quadruple.
 								short m = (short)((short)(mask1 | mask2) | mask3);

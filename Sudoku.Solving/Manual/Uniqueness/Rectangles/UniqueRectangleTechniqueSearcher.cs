@@ -105,7 +105,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					// abc ab+
 					// Now check the last cell has only two candidates and
 					// they should be 'a' and 'b'.
-					short extraCellMask = (short)(grid.GetMask(extraCell) & 511);
+					short extraCellMask = grid.GetCandidates(extraCell);
 					short finalMask = (short)(totalMask & extraCellMask);
 					if (extraCellMask.CountSet() == 7 && finalMask.CountSet() == 6)
 					{
@@ -118,7 +118,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 						// Record all highlight candidates.
 						var candidateOffsets = new List<(int, int)>();
-						int cellInTripletMask = ~grid.GetMask(cellTriplet[0]) & 511;
+						short cellInTripletMask = grid.GetCandidatesReversal(cellTriplet[0]);
 						var digits = (~extraCellMask & 511).GetAllSets();
 						int? extraDigit = cellInTripletMask.GetAllSets()
 							.FirstOrDefault(i => !digits.Contains(i));
@@ -189,7 +189,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 					// Record all highlight candidates.
 					var candidateOffsets = new List<(int, int)>();
-					var digits = (~grid.GetMask(cellTriplet[0]) & 511).GetAllSets();
+					var digits = grid.GetCandidatesReversal(cellTriplet[0]).GetAllSets();
 					foreach (int cell in cellTriplet)
 					{
 						foreach (int digit in digits)
@@ -203,7 +203,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 					// Record all eliminations.
 					var conclusions = new List<Conclusion>();
-					foreach (int digit in (~grid.GetMask(extraCell) & 511).GetAllSets())
+					foreach (int digit in grid.GetCandidatesReversal(extraCell).GetAllSets())
 					{
 						if (grid.CandidateExists(extraCell, digit) && digits.Contains(digit))
 						{
@@ -298,7 +298,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 				if (list.Count == 3 && list.All(c => cells.Contains(c)))
 				{
-					short bivalueMask = (short)(grid.GetMask(extraCell) & 511);
+					short bivalueMask = grid.GetCandidates(extraCell);
 					if (bivalueMask.CountSet() == 7 && (bivalueMask >> digit & 1) == 0)
 					{
 						// Hidden rectangle found.
@@ -413,7 +413,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					extraCellMask &= grid.GetMask(cell);
 				}
 				short totalMask = (short)(extraCellMask & cellPairMask);
-				var digits = (~grid.GetMask(cellPair[0]) & 511).GetAllSets();
+				var digits = grid.GetCandidatesReversal(cellPair[0]).GetAllSets();
 
 				if (totalMask.CountSet() == 6)
 				{

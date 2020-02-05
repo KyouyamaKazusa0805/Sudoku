@@ -381,6 +381,23 @@ namespace Sudoku.Data.Meta
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public short GetMask(int offset) => _masks[offset];
 
+		/// <summary>
+		/// Get the candidate mask part of the specified cell.
+		/// </summary>
+		/// <param name="offset">The cell offset you want to get.</param>
+		/// <returns>The candidate mask.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public short GetCandidates(int offset) => (short)(_masks[offset] & 511);
+
+		/// <summary>
+		/// Get the candidate mask after reversed all bits mask part
+		/// of the specified cell.
+		/// </summary>
+		/// <param name="offset">The cell offset you want to get.</param>
+		/// <returns>The candidate mask.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public short GetCandidatesReversal(int offset) => (short)(~_masks[offset] & 511);
+
 		/// <inheritdoc/>
 		public override string ToString() => ToString(null, null);
 

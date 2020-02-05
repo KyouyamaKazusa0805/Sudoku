@@ -179,7 +179,7 @@ namespace Sudoku.Solving.Manual.Singles
 			#region Naked single
 			for (int i = 0; i < 81; i++)
 			{
-				short mask = (short)(511 & ~grid.GetMask(i));
+				short mask = grid.GetCandidatesReversal(i);
 				if (grid.GetCellStatus(i) == CellStatus.Empty && (mask & (mask - 1)) == 0)
 				{
 					int digit = mask.FindFirstSet();

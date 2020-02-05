@@ -442,10 +442,10 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			out short inter, out short union,
 			out short interWithoutPivot, out short unionWithoutPivot)
 		{
-			(pivotMask, inter, union) = ((short)(grid.GetMask(pivot) & 511), 511, 0);
+			(pivotMask, inter, union) = (grid.GetCandidates(pivot), 511, 0);
 			for (int i = 0, length = cells.Length; i < length; i++)
 			{
-				short tempMask = (short)(grid.GetMask(cells[i]) & 511);
+				short tempMask = grid.GetCandidates(cells[i]);
 				inter &= tempMask;
 				union |= tempMask;
 			}

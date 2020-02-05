@@ -60,12 +60,12 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 				}
 
 				// Iterate on each cells which are not peers in 'c1'.
-				int[] digits = (~grid.GetMask(c1) & 511).GetAllSets().ToArray();
+				int[] digits = grid.GetCandidatesReversal(c1).GetAllSets().ToArray();
 				foreach (int c2 in (~new GridMap(c1)).Offsets)
 				{
 					if (c2 <= c1
 						|| grid.GetCellStatus(c2) != CellStatus.Empty
-						|| (grid.GetMask(c1) & 511) != (grid.GetMask(c2) & 511))
+						|| grid.GetCandidates(c1) != grid.GetCandidates(c2))
 					{
 						continue;
 					}
