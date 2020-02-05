@@ -55,7 +55,7 @@ namespace Sudoku.Data.Extensions
 		/// method is an extension method, and returns nothing.
 		/// </para>
 		/// </summary>
-		/// <param name="this">(extension method main parameter) (ref parameter) The value.</param>
+		/// <param name="this">(ref extension method main parameter) The value.</param>
 		public static void ReverseBits(this ref short @this)
 		{
 			@this = (short)(((@this >> 1) & 0x5555) | ((@this & 0x5555) << 1));

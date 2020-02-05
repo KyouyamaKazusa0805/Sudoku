@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.Contracts;
 using System.Text.RegularExpressions;
 using Sudoku.Diagnostics.CodeAnalysis;
 
@@ -23,8 +22,6 @@ namespace Sudoku.Data.Extensions
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool SatisfyPattern(this string @this, [Pattern] string pattern)
 		{
-			Contract.Assume(pattern.IsRegexPattern());
-
 			string? match = @this.Match(pattern);
 			return !(match is null) && match == @this;
 		}
@@ -41,12 +38,8 @@ namespace Sudoku.Data.Extensions
 		/// method <see cref="Regex.IsMatch(string, string)"/>.
 		/// </remarks>
 		/// <seealso cref="Regex.IsMatch(string, string)"/>
-		public static bool IsMatch(this string @this, [Pattern] string pattern)
-		{
-			Contract.Assume(pattern.IsRegexPattern());
-
-			return Regex.IsMatch(@this, pattern);
-		}
+		public static bool IsMatch(this string @this, [Pattern] string pattern) =>
+			Regex.IsMatch(@this, pattern);
 
 		/// <summary>
 		/// Searches the specified input string for the first occurrence of
@@ -85,8 +78,6 @@ namespace Sudoku.Data.Extensions
 		public static string? Match(
 			this string @this, [Pattern] string pattern, RegexOptions regexOption)
 		{
-			Contract.Assume(pattern.IsRegexPattern());
-
 			var match = Regex.Match(@this, pattern, regexOption);
 			return match.Success ? match.Value : null;
 		}
@@ -129,8 +120,6 @@ namespace Sudoku.Data.Extensions
 		public static string[] MatchAll(
 			this string @this, [Pattern] string pattern, RegexOptions regexOption)
 		{
-			Contract.Assume(pattern.IsRegexPattern());
-
 			var matches = Regex.Matches(@this, pattern, regexOption);
 			var result = new List<string>();
 			foreach (Match? match in matches) // Do not use 'var' ('var' is 'object?').
@@ -150,7 +139,7 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <param name="this">(extension method main parameter) The value to check.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
-		private static bool IsRegexPattern(this string @this)
+		public static bool IsRegexPattern(this string @this)
 		{
 			try
 			{
