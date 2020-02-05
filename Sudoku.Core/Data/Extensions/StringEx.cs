@@ -18,7 +18,7 @@ namespace Sudoku.Data.Extensions
 		/// Check whether the specified string instance is satisfied
 		/// the specified regular expression pattern or not.
 		/// </summary>
-		/// <param name="this">The value to check.</param>
+		/// <param name="this">(extension method main parameter) The value to check.</param>
 		/// <param name="pattern">The regular expression pattern.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool SatisfyPattern(this string @this, [Pattern] string pattern)
@@ -33,7 +33,7 @@ namespace Sudoku.Data.Extensions
 		/// Check whether the specified string instance can match the value
 		/// using the specified regular expression pattern or not.
 		/// </summary>
-		/// <param name="this">The value to match.</param>
+		/// <param name="this">(extension method main parameter) The value to match.</param>
 		/// <param name="pattern">The regular expression pattern.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
 		/// <remarks>
@@ -52,7 +52,7 @@ namespace Sudoku.Data.Extensions
 		/// Searches the specified input string for the first occurrence of
 		/// the specified regular expression pattern.
 		/// </summary>
-		/// <param name="this">The value to match.</param>
+		/// <param name="this">(extension method main parameter) The value to match.</param>
 		/// <param name="pattern">The regular expression pattern.</param>
 		/// <returns>
 		/// The value after matching. If failed to match,
@@ -70,7 +70,7 @@ namespace Sudoku.Data.Extensions
 		/// Searches the input string for the first occurrence of the specified regular
 		/// expression, using the specified matching options.
 		/// </summary>
-		/// <param name="this">The value to match.</param>
+		/// <param name="this">(extension method main parameter) The value to match.</param>
 		/// <param name="pattern">The regular expression pattern.</param>
 		/// <param name="regexOption">The matching options.</param>
 		/// <returns>
@@ -95,7 +95,7 @@ namespace Sudoku.Data.Extensions
 		/// Searches the specified input string for all occurrences of a
 		/// specified regular expression pattern.
 		/// </summary>
-		/// <param name="this">The value to match.</param>
+		/// <param name="this">(extension method main parameter) The value to match.</param>
 		/// <param name="pattern">The regular expression pattern.</param>
 		/// <returns>
 		/// The result after matching. If failed to match,
@@ -114,7 +114,7 @@ namespace Sudoku.Data.Extensions
 		/// specified regular expression pattern, using the specified matching
 		/// options.
 		/// </summary>
-		/// <param name="this">The value to match.</param>
+		/// <param name="this">(extension method main parameter) The value to match.</param>
 		/// <param name="pattern">The regular expression pattern.</param>
 		/// <param name="regexOption">The matching options.</param>
 		/// <returns>
@@ -148,7 +148,7 @@ namespace Sudoku.Data.Extensions
 		/// To check if the current string value is a valid regular
 		/// expression pattern or not.
 		/// </summary>
-		/// <param name="this">The value to check.</param>
+		/// <param name="this">(extension method main parameter) The value to check.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
 		private static bool IsRegexPattern(this string @this)
 		{

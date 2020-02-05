@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Utils
 		/// return <see langword="false"/>.
 		/// </para>
 		/// </summary>
-		/// <param name="this">The grid.</param>
+		/// <param name="this">(extension method main parameter) The grid.</param>
 		/// <param name="cellOffset">The cell offset.</param>
 		/// <param name="digit">The digit.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
@@ -46,7 +46,7 @@ namespace Sudoku.Solving.Utils
 		/// return <see langword="false"/>.
 		/// </para>
 		/// </summary>
-		/// <param name="this">The grid.</param>
+		/// <param name="this">(extension method main parameter) The grid.</param>
 		/// <param name="cellOffset">The cell offset.</param>
 		/// <param name="digit">The digit.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
@@ -59,7 +59,7 @@ namespace Sudoku.Solving.Utils
 		/// Checks whether the specified digit has given or modifiable values in
 		/// the specified region.
 		/// </summary>
-		/// <param name="this">The grid.</param>
+		/// <param name="this">(extension method main parameter) The grid.</param>
 		/// <param name="digit">The digit.</param>
 		/// <param name="regionOffset">The region.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
@@ -79,7 +79,7 @@ namespace Sudoku.Solving.Utils
 		/// return <see langword="false"/>.
 		/// </para>
 		/// </summary>
-		/// <param name="this">The grid.</param>
+		/// <param name="this">(extension method main parameter) The grid.</param>
 		/// <param name="digit">The digit.</param>
 		/// <param name="regionOffset">The region.</param>
 		/// <returns>
@@ -117,7 +117,7 @@ namespace Sudoku.Solving.Utils
 		/// return <see langword="false"/>.
 		/// </para>
 		/// </summary>
-		/// <param name="this">The grid.</param>
+		/// <param name="this">(extension method main parameter) The grid.</param>
 		/// <param name="digit">The digit.</param>
 		/// <param name="regionOffset">The region offset.</param>
 		/// <param name="map">The grid map.</param>
@@ -147,7 +147,7 @@ namespace Sudoku.Solving.Utils
 		/// <summary>
 		/// Find all bivalue cells displaying with a <see cref="GridMap"/>.
 		/// </summary>
-		/// <param name="this">The grid.</param>
+		/// <param name="this">(extension method main parameter) The grid.</param>
 		/// <param name="count">
 		/// (out parameter) The number of bivalue cells.
 		/// This parameter is only used for quickening the code running.
@@ -175,7 +175,7 @@ namespace Sudoku.Solving.Utils
 		/// <summary>
 		/// Find all conjugate pairs in a grid.
 		/// </summary>
-		/// <param name="this">The grid.</param>
+		/// <param name="this">(extension method main parameter) The grid.</param>
 		/// <returns>All conjugate pairs.</returns>
 		public static IReadOnlyList<ConjugatePair> GetAllConjugatePairs(this Grid @this)
 		{

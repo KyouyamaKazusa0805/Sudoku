@@ -20,7 +20,7 @@ namespace Sudoku.Data.Extensions
 		/// The type of keys. The key should be not <see langword="null"/>.
 		/// </typeparam>
 		/// <typeparam name="TValue">The type of elements.</typeparam>
-		/// <param name="this">The dictionary.</param>
+		/// <param name="this">(extension method main parameter) The dictionary.</param>
 		/// <param name="key">The key.</param>
 		/// <param name="value">The value.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

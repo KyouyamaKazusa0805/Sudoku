@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Utils
 		/// <summary>
 		/// Deconstruct the value to candidates and the cell status.
 		/// </summary>
-		/// <param name="this">The value.</param>
+		/// <param name="this">(extension method main parameter) The value.</param>
 		/// <param name="cellStatus">(out parameter) The cell status.</param>
 		/// <param name="candidatesMask">(out parameter) The candidate mask.</param>
 		[OnDeconstruction]

@@ -566,7 +566,7 @@
             <summary>
             To check if a puzzle has only one solution or not.
             </summary>
-            <param name="this">The puzzle to check.</param>
+            <param name="this">(extension method main parameter) The puzzle to check.</param>
             <param name="solutionIfUnique">
             (out parameter) The solution if the puzzle is unique; otherwise, <see langword="null"/>.
             </param>
@@ -576,21 +576,21 @@
             <summary>
             To check if the puzzle is minimal or not.
             </summary>
-            <param name="this">The puzzle to check.</param>
+            <param name="this">(extension method main parameter) The puzzle to check.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsPearl(Sudoku.Data.Meta.Grid)">
             <summary>
             To check if the puzzle is pearl or not.
             </summary>
-            <param name="this">The puzzle to check.</param>
+            <param name="this">(extension method main parameter) The puzzle to check.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsDiamond(Sudoku.Data.Meta.Grid)">
             <summary>
             To check if the puzzle is diamond or not.
             </summary>
-            <param name="this">The puzzle to check.</param>
+            <param name="this">(extension method main parameter) The puzzle to check.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Conclusion">
@@ -2734,7 +2734,7 @@
             return <see langword="false"/>.
             </para>
             </summary>
-            <param name="this">The grid.</param>
+            <param name="this">(extension method main parameter) The grid.</param>
             <param name="cellOffset">The cell offset.</param>
             <param name="digit">The digit.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
@@ -2753,7 +2753,7 @@
             return <see langword="false"/>.
             </para>
             </summary>
-            <param name="this">The grid.</param>
+            <param name="this">(extension method main parameter) The grid.</param>
             <param name="cellOffset">The cell offset.</param>
             <param name="digit">The digit.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
@@ -2764,7 +2764,7 @@
             Checks whether the specified digit has given or modifiable values in
             the specified region.
             </summary>
-            <param name="this">The grid.</param>
+            <param name="this">(extension method main parameter) The grid.</param>
             <param name="digit">The digit.</param>
             <param name="regionOffset">The region.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
@@ -2779,7 +2779,7 @@
             return <see langword="false"/>.
             </para>
             </summary>
-            <param name="this">The grid.</param>
+            <param name="this">(extension method main parameter) The grid.</param>
             <param name="digit">The digit.</param>
             <param name="regionOffset">The region.</param>
             <returns>
@@ -2800,7 +2800,7 @@
             return <see langword="false"/>.
             </para>
             </summary>
-            <param name="this">The grid.</param>
+            <param name="this">(extension method main parameter) The grid.</param>
             <param name="digit">The digit.</param>
             <param name="regionOffset">The region offset.</param>
             <param name="map">The grid map.</param>
@@ -2814,7 +2814,7 @@
             <summary>
             Find all bivalue cells displaying with a <see cref="T:Sudoku.Data.Meta.GridMap"/>.
             </summary>
-            <param name="this">The grid.</param>
+            <param name="this">(extension method main parameter) The grid.</param>
             <param name="count">
             (out parameter) The number of bivalue cells.
             This parameter is only used for quickening the code running.
@@ -2825,7 +2825,7 @@
             <summary>
             Find all conjugate pairs in a grid.
             </summary>
-            <param name="this">The grid.</param>
+            <param name="this">(extension method main parameter) The grid.</param>
             <returns>All conjugate pairs.</returns>
         </member>
         <member name="T:Sudoku.Solving.Utils.LinkMaskUtils">
@@ -2857,7 +2857,7 @@
             <summary>
             Deconstruct the value to candidates and the cell status.
             </summary>
-            <param name="this">The value.</param>
+            <param name="this">(extension method main parameter) The value.</param>
             <param name="cellStatus">(out parameter) The cell status.</param>
             <param name="candidatesMask">(out parameter) The candidate mask.</param>
         </member>

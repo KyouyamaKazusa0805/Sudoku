@@ -14,7 +14,7 @@ namespace Sudoku.Data.Extensions
 		/// Get the total number of set bits of the binary representation
 		/// of the specified value.
 		/// </summary>
-		/// <param name="this">The value.</param>
+		/// <param name="this">(extension method main parameter) The value.</param>
 		/// <returns>An <see cref="int"/> value indicating that.</returns>
 		public static int CountSet(this long @this)
 		{
@@ -26,7 +26,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Find all offsets of set bits of the binary representation of a specified value.
 		/// </summary>
-		/// <param name="this">The value.</param>
+		/// <param name="this">(extension method main parameter) The value.</param>
 		/// <returns>All offsets.</returns>
 		public static IEnumerable<int> GetAllSets(this long @this)
 		{

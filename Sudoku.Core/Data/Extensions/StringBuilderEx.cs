@@ -13,7 +13,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Reverse all characters in a specified string builder instance.
 		/// </summary>
-		/// <param name="this">The instance to reverse all characters.</param>
+		/// <param name="this">(extension method main parameter) The instance to reverse all characters.</param>
 		/// <returns>The reference of the current instance.</returns>
 		public static StringBuilder Reverse(this StringBuilder @this)
 		{
@@ -32,7 +32,7 @@ namespace Sudoku.Data.Extensions
 		/// Remove the specified number of characters from the end of the string builder
 		/// instance.
 		/// </summary>
-		/// <param name="this">The instance to remove characters.</param>
+		/// <param name="this">(extension method main parameter) The instance to remove characters.</param>
 		/// <param name="length">The number of characters you want to remove.</param>
 		/// <returns>The reference of the current instance.</returns>
 		public static StringBuilder RemoveFromEnd(this StringBuilder @this, int length) =>
@@ -42,7 +42,7 @@ namespace Sudoku.Data.Extensions
 		/// Append a character to the end of the specified string builder instance,
 		/// and then append a <see cref="System.Environment.NewLine"/>.
 		/// </summary>
-		/// <param name="this">The instance.</param>
+		/// <param name="this">(extension method main parameter) The instance.</param>
 		/// <param name="value">The character you want to append.</param>
 		/// <returns>The reference of the current instance.</returns>
 		/// <remarks>
@@ -64,7 +64,7 @@ namespace Sudoku.Data.Extensions
 		/// to the end of the specified string builder instance,
 		/// and then append a <see cref="System.Environment.NewLine"/>.
 		/// </summary>
-		/// <param name="this">The instance.</param>
+		/// <param name="this">(extension method main parameter) The instance.</param>
 		/// <param name="obj">
 		/// The <see cref="string"/> representation of an object you want to append.
 		/// </param>
