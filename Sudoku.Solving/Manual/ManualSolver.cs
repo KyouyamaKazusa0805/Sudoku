@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Sudoku.Data.Meta;
+using Sudoku.Runtime;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.Fishes.Basic;
@@ -46,11 +47,25 @@ namespace Sudoku.Solving.Manual
 				}
 
 				// Solve the puzzle.
-				return CheckMinimumDifficultyStrictly
-					? SolveWithStrictDifficultyRating(
-						grid, grid.Clone(), new List<TechniqueInfo>(), solution, intersectionTable)
-					: SolveNaively(
-						grid, grid.Clone(), new List<TechniqueInfo>(), solution, intersectionTable);
+				try
+				{
+					return CheckMinimumDifficultyStrictly
+						? SolveWithStrictDifficultyRating(
+							grid, grid.Clone(), new List<TechniqueInfo>(), solution, intersectionTable)
+						: SolveNaively(
+							grid, grid.Clone(), new List<TechniqueInfo>(), solution, intersectionTable);
+				}
+				catch (WrongHandlingException ex)
+				{
+					return new AnalysisResult(
+						puzzle: grid,
+						solverName: SolverName,
+						hasSolved: false,
+						solution: null,
+						elapsedTime: TimeSpan.Zero,
+						solvingList: null,
+						additional: ex.Message);
+				}
 			}
 			else
 			{
@@ -74,6 +89,9 @@ namespace Sudoku.Solving.Manual
 		/// <param name="solution">The solution.</param>
 		/// <param name="intersection">The intersection table.</param>
 		/// <returns>The analysis result.</returns>
+		/// <exception cref="WrongHandlingException">
+		/// Throws when the solver cannot solved due to wrong handling.
+		/// </exception>
 		private AnalysisResult SolveWithStrictDifficultyRating(
 			Grid grid, Grid cloneation, List<TechniqueInfo> steps,
 			Grid solution, Intersection[,] intersection)
@@ -131,32 +149,39 @@ namespace Sudoku.Solving.Manual
 					continue;
 				}
 
-				step.ApplyTo(cloneation);
-				steps.Add(step);
-				if (cloneation.HasSolved)
+				if (CheckEliminations(solution, step.Conclusions))
 				{
-					// The puzzle has been solved.
-					// :)
-					if (stopwatch.IsRunning)
+					step.ApplyTo(cloneation);
+					steps.Add(step);
+					if (cloneation.HasSolved)
 					{
-						stopwatch.Stop();
-					}
+						// The puzzle has been solved.
+						// :)
+						if (stopwatch.IsRunning)
+						{
+							stopwatch.Stop();
+						}
 
-					return new AnalysisResult(
-						puzzle: grid,
-						solverName: SolverName,
-						hasSolved: true,
-						solution: cloneation,
-						elapsedTime: stopwatch.Elapsed,
-						solvingList: steps,
-						additional: null);
+						return new AnalysisResult(
+							puzzle: grid,
+							solverName: SolverName,
+							hasSolved: true,
+							solution: cloneation,
+							elapsedTime: stopwatch.Elapsed,
+							solvingList: steps,
+							additional: null);
+					}
+					else
+					{
+						// The puzzle has not been finished,
+						// we should turn to the first step finder
+						// to continue solving puzzle.
+						goto Label_StartSolving;
+					}
 				}
 				else
 				{
-					// The puzzle has not been finished,
-					// we should turn to the first step finder
-					// to continue solving puzzle.
-					goto Label_StartSolving;
+					throw new WrongHandlingException(grid);
 				}
 			}
 
@@ -186,6 +211,9 @@ namespace Sudoku.Solving.Manual
 		/// <param name="solution">The solution.</param>
 		/// <param name="intersection">Intersection table.</param>
 		/// <returns>The analysis result.</returns>
+		/// <exception cref="WrongHandlingException">
+		/// Throws when the solver cannot solved due to wrong handling.
+		/// </exception>
 		private AnalysisResult SolveNaively(
 			Grid grid, Grid cloneation, List<TechniqueInfo> steps,
 			Grid solution, Intersection[,] intersection)
@@ -236,32 +264,39 @@ namespace Sudoku.Solving.Manual
 					continue;
 				}
 
-				step.ApplyTo(cloneation);
-				steps.Add(step);
-				if (cloneation.HasSolved)
+				if (CheckEliminations(solution, step.Conclusions))
 				{
-					// The puzzle has been solved.
-					// :)
-					if (stopwatch.IsRunning)
+					step.ApplyTo(cloneation);
+					steps.Add(step);
+					if (cloneation.HasSolved)
 					{
-						stopwatch.Stop();
-					}
+						// The puzzle has been solved.
+						// :)
+						if (stopwatch.IsRunning)
+						{
+							stopwatch.Stop();
+						}
 
-					return new AnalysisResult(
-						puzzle: grid,
-						solverName: SolverName,
-						hasSolved: true,
-						solution: cloneation,
-						elapsedTime: stopwatch.Elapsed,
-						solvingList: steps,
-						additional: null);
+						return new AnalysisResult(
+							puzzle: grid,
+							solverName: SolverName,
+							hasSolved: true,
+							solution: cloneation,
+							elapsedTime: stopwatch.Elapsed,
+							solvingList: steps,
+							additional: null);
+					}
+					else
+					{
+						// The puzzle has not been finished,
+						// we should turn to the first step finder
+						// to continue solving puzzle.
+						goto Label_StartSolving;
+					}
 				}
 				else
 				{
-					// The puzzle has not been finished,
-					// we should turn to the first step finder
-					// to continue solving puzzle.
-					goto Label_StartSolving;
+					throw new WrongHandlingException(grid);
 				}
 			}
 
@@ -280,6 +315,45 @@ namespace Sudoku.Solving.Manual
 				elapsedTime: stopwatch.Elapsed,
 				solvingList: steps,
 				additional: null);
+		}
+
+		/// <summary>
+		/// To check the validity of all conclusions.
+		/// </summary>
+		/// <param name="solution">The solution.</param>
+		/// <param name="conclusions">The conclusions.</param>
+		/// <returns>A <see cref="bool"/> indicating that.</returns>
+		private static bool CheckEliminations(Grid solution, IEnumerable<Conclusion> conclusions)
+		{
+			foreach (var conclusion in conclusions)
+			{
+				int digit = solution[conclusion.CellOffset];
+				switch (conclusion.Type)
+				{
+					case ConclusionType.Assignment:
+					{
+						if (digit != conclusion.Digit)
+						{
+							return false;
+						}
+						break;
+					}
+					case ConclusionType.Elimination:
+					{
+						if (digit == conclusion.Digit)
+						{
+							return false;
+						}
+						break;
+					}
+					default:
+					{
+						return false;
+					}
+				}
+			}
+
+			return true;
 		}
 	}
 }

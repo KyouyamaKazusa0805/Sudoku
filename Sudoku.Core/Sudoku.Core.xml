@@ -1206,6 +1206,50 @@
             The grid.
             </summary>
         </member>
+        <member name="T:Sudoku.Runtime.WrongHandlingException">
+            <summary>
+            Represents an error that the puzzle has wrong handling while solving with
+            manual logic tools.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Meta.Grid)">
+            <summary>
+            Initializes an instance with a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Meta.Grid,System.String)">
+            <summary>
+            Initializes an instance with a grid and an error message.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Meta.Grid,System.String,System.Exception)">
+            <summary>
+            Initialzes an instance with a grid, an error message and an inner exception.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="message">The error message.</param>
+            <param name="inner">The inner exception.</param>
+        </member>
+        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Meta.Grid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes an instance with a grid, a serialization information instance and
+            a streaming context instance.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="info">The streaming information.</param>
+            <param name="context">The streaming context.</param>
+        </member>
+        <member name="P:Sudoku.Runtime.WrongHandlingException.Grid">
+            <summary>
+            The grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.WrongHandlingException.Message">
+            <inheritdoc/>
+        </member>
         <member name="T:System.Linq.EnumerableEx">
             <summary>
             Provides a set of static methods for querying objects that implement

@@ -1253,6 +1253,9 @@
             <param name="solution">The solution.</param>
             <param name="intersection">The intersection table.</param>
             <returns>The analysis result.</returns>
+            <exception cref="T:Sudoku.Runtime.WrongHandlingException">
+            Throws when the solver cannot solved due to wrong handling.
+            </exception>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Meta.Grid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap}[0:,0:])">
             <summary>
@@ -1264,6 +1267,17 @@
             <param name="solution">The solution.</param>
             <param name="intersection">Intersection table.</param>
             <returns>The analysis result.</returns>
+            <exception cref="T:Sudoku.Runtime.WrongHandlingException">
+            Throws when the solver cannot solved due to wrong handling.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.CheckEliminations(Sudoku.Data.Meta.Grid,System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
+            <summary>
+            To check the validity of all conclusions.
+            </summary>
+            <param name="solution">The solution.</param>
+            <param name="conclusions">The conclusions.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder">
             <summary>
