@@ -43,7 +43,7 @@ namespace Sudoku.Solving.Utils
 		/// <summary>
 		/// <para>Get the row, column and block index of the specified cell.</para>
 		/// <para>
-		/// Note that all row, column and block indices are always between 0 to 8.
+		/// Note that all row, column and block indices are always between 0 and 8.
 		/// </para>
 		/// </summary>
 		/// <param name="cellOffset">The cell offset.</param>

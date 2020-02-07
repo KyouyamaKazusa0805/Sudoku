@@ -29,13 +29,13 @@ namespace Sudoku.Solving.Utils
 				int digit = candidateGroupByDigit.Key;
 				foreach (var candidateGroupByCellRow in
 					from candidate in candidateGroupByDigit
-					group candidate by candidate / 9)
+					group candidate by candidate / 81)
 				{
 					int cellRow = candidateGroupByCellRow.Key;
 					sb.Append($"r{cellRow + 1}c");
 					foreach (int cell in candidateGroupByCellRow)
 					{
-						sb.Append($"{cell % 9 + 1}");
+						sb.Append($"{cell / 9 % 9 + 1}");
 					}
 				}
 

@@ -557,6 +557,65 @@
             </summary>
             <param name="grid">A sudoku grid to search backdoors.</param>
         </member>
+        <member name="T:Sudoku.Solving.Checking.BugChecker">
+            <summary>
+            Encapsulates a BUG technique checker.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Checking.BugChecker.#ctor(Sudoku.Data.Meta.Grid)">
+            <summary>
+            Initializes an instance with the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Checking.BugChecker.Grid">
+            <summary>
+            The grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Checking.BugChecker.GetAllTrueCandidates">
+            <summary>
+            Get all true candidates.
+            </summary>
+            <returns>All true candidates.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Checking.BugChecker.GetBivalueCellsMap">
+            <summary>
+            Get the grid map instance with all bivalue cells
+            set <see langword="true"/>.
+            </summary>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Checking.BugChecker.GetEmptyCellsGridMap">
+            <summary>
+            Get the grid map instance with all empty cells set
+            <see langword="true"/>.
+            </summary>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Checking.BugChecker.GetAllDigitDistributionMaps">
+            <summary>
+            Get 9 grid maps representing all digits' distributions.
+            </summary>
+            <returns>All grid maps.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Checking.BugChecker.GetAllCombinations(System.Int16,System.Int32)">
+            <summary>
+            Get all combinations of a specified mask.
+            </summary>
+            <param name="mask">The mask.</param>
+            <param name="oneCount">
+            The number of <see langword="true"/> bits.
+            </param>
+            <returns>All combinations.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Checking.BugChecker.GetAllRegionMaps">
+            <summary>
+            Get all grid maps about all regions (all cells lie on
+            specified region will be set <see langword="true"/>).
+            </summary>
+            <returns>The grid maps.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Checking.PuzzleAttributeChecker">
             <summary>
             Provides some puzzle attributes validation operations.
@@ -2589,7 +2648,7 @@
             <summary>
             <para>Get the row, column and block index of the specified cell.</para>
             <para>
-            Note that all row, column and block indices are always between 0 to 8.
+            Note that all row, column and block indices are always between 0 and 8.
             </para>
             </summary>
             <param name="cellOffset">The cell offset.</param>
