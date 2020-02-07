@@ -102,10 +102,9 @@ namespace Sudoku.Solving.Checking
 				{
 					@continue = true;
 					mask = pairs[pt - 1, i];
-					for (int j = 0; j < 2; j++)
+					for (int j = 1; j <= 2; j++)
 					{
-						int digit = mask.GetAllSets().ToArray()[j];
-						var temp = stack[pt - 1, digit];
+						var temp = stack[pt - 1, mask.GetSetBitIndex(j)];
 						temp[ps] = true;
 						var (r, c, b) = CellUtils.GetRegion(ps);
 						var span = (Span<int>)stackalloc[] { r + 9, c + 18, b };
@@ -118,16 +117,10 @@ namespace Sudoku.Solving.Checking
 							}
 						}
 
-						if (!@continue)
-						{
-							break;
-						}
+						if (!@continue) break;
 					}
 
-					if (@continue)
-					{
-						break;
-					}
+					if (@continue) break;
 				}
 
 				if (@continue)
@@ -138,9 +131,9 @@ namespace Sudoku.Solving.Checking
 					}
 
 					chosen[pt] = i;
-					int[] digits = mask.GetAllSets().ToArray();
-					stack[pt, digits[0]][ps] = true;
-					stack[pt, digits[1]][ps] = true;
+					var digits = mask.GetAllSets();
+					stack[pt, digits.ElementAt(0)][ps] = true;
+					stack[pt, digits.ElementAt(1)][ps] = true;
 					if (pt == multivalueCellsCount)
 					{
 						for (int k = 0; k < 9; k++)

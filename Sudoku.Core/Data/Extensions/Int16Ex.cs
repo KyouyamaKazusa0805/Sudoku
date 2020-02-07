@@ -33,6 +33,46 @@ namespace Sudoku.Data.Extensions
 		public static int CountSet(this short @this) => Int32Ex.CountSet(@this);
 
 		/// <summary>
+		/// Find a index of the binary representation of a value
+		/// after the specified index, whose bit is set <see langword="true"/>.
+		/// </summary>
+		/// <param name="this">(extension method main parameter) The value.</param>
+		/// <param name="index">The index.</param>
+		/// <returns>The index.</returns>
+		public static int GetNextSetBit(this short @this, int index)
+		{
+			for (int i = index; i < 16; i++)
+			{
+				if ((@this & (1 << i)) != 0)
+				{
+					return i;
+				}
+			}
+
+			return -1;
+		}
+
+		/// <summary>
+		/// Get an <see cref="int"/> value, indicating that the absolute position of
+		/// all set bits with the specified set bit order.
+		/// </summary>
+		/// <param name="this">(extension method main parameter) The value.</param>
+		/// <param name="order">The number of the order of set bits.</param>
+		/// <returns>The position.</returns>
+		public static int GetSetBitIndex(this short @this, int order)
+		{
+			for (int i = 0, count = 0; i < 16; i++, @this >>= 1)
+			{
+				if ((@this & 1) != 0 && ++count == order)
+				{
+					return i;
+				}
+			}
+
+			return -1;
+		}
+
+		/// <summary>
 		/// Find all offsets of set bits of the binary representation of a specified value.
 		/// </summary>
 		/// <param name="this">(extension method main parameter) The value.</param>
