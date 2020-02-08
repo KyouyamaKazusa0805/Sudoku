@@ -562,11 +562,38 @@
             Encapsulates a BUG technique checker.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Checking.BugChecker._emptyCellsDistribution">
+            <summary>
+            The distribution of all empty cells.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Checking.BugChecker._bivalueCellsDistribution">
+            <summary>
+            The distribution of all bivalue cells.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Checking.BugChecker._digitsDistributions">
+            <summary>
+            The distribution of all digits.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Checking.BugChecker.#ctor(Sudoku.Data.Meta.Grid)">
             <summary>
             Initializes an instance with the specified grid.
             </summary>
             <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Checking.BugChecker.#ctor(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap[])">
+            <summary>
+            Initializes an instance with the specified grid and all grid maps information.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="empty">The distribution of all empty cells.</param>
+            <param name="bivalue">The distribution of all bivalue cells.</param>
+            <param name="digits">The distribution of all single digits.</param>
+            <remarks>
+            The constructor is only called and used for reducting the redundant calculations.
+            </remarks>
         </member>
         <member name="P:Sudoku.Solving.Checking.BugChecker.IsBugPattern">
             <summary>
@@ -588,26 +615,6 @@
             Get all true candidates.
             </summary>
             <returns>All true candidates.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Checking.BugChecker.GetBivalueCellsMap">
-            <summary>
-            Get the grid map instance with all bivalue cells
-            set <see langword="true"/>.
-            </summary>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Checking.BugChecker.GetEmptyCellsGridMap">
-            <summary>
-            Get the grid map instance with all empty cells set
-            <see langword="true"/>.
-            </summary>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Checking.BugChecker.GetAllDigitDistributionMaps">
-            <summary>
-            Get 9 grid maps representing all digits' distributions.
-            </summary>
-            <returns>All grid maps.</returns>
         </member>
         <member name="M:Sudoku.Solving.Checking.BugChecker.GetAllCombinations(System.Int16,System.Int32)">
             <summary>
@@ -899,6 +906,50 @@
             Indicates the puzzle cannot be solved
             unless using last resort methods.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Extensions.GridEx">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Data.Meta.Grid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Meta.Grid"/>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.GridEx.Deconstruct(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.GridMap@,Sudoku.Data.Meta.GridMap@,Sudoku.Data.Meta.GridMap[]@)">
+            <summary>
+            Deconstruct the grid.
+            </summary>
+            <param name="this">(extension method main parameter) The grid.</param>
+            <param name="emptyCells">
+            (out parameter) The distribution of all empty cells.
+            </param>
+            <param name="bivalueCells">
+            (out parameter) The distributions of all bivalue cells.
+            </param>
+            <param name="digitsDistributions">
+            (out parameter) The distributions of all digits.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.GridEx.GetBivalueCellsMap(Sudoku.Data.Meta.Grid)">
+            <summary>
+            Get the grid map instance with all bivalue cells
+            set <see langword="true"/>.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.GridEx.GetEmptyCellsGridMap(Sudoku.Data.Meta.Grid)">
+            <summary>
+            Get the grid map instance with all empty cells set
+            <see langword="true"/>.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.GridEx.GetAllDigitDistributionMaps(Sudoku.Data.Meta.Grid)">
+            <summary>
+            Get 9 grid maps representing all digits' distributions.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>All grid maps.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.TwoStrongLinksTechniqueInfo">
             <summary>

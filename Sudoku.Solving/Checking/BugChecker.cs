@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
+using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Checking
@@ -13,6 +14,22 @@ namespace Sudoku.Solving.Checking
 	public sealed partial class BugChecker
 	{
 		/// <summary>
+		/// The distribution of all empty cells.
+		/// </summary>
+		private readonly GridMap _emptyCellsDistribution;
+
+		/// <summary>
+		/// The distribution of all bivalue cells.
+		/// </summary>
+		private readonly GridMap _bivalueCellsDistribution;
+
+		/// <summary>
+		/// The distribution of all digits.
+		/// </summary>
+		private readonly GridMap[] _digitsDistributions;
+
+
+		/// <summary>
 		/// Initializes an instance with the specified grid.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
@@ -21,6 +38,32 @@ namespace Sudoku.Solving.Checking
 			if (grid.IsUnique(out _))
 			{
 				Grid = grid;
+				(_emptyCellsDistribution, _bivalueCellsDistribution, _digitsDistributions) = grid;
+			}
+			else
+			{
+				throw new ArgumentException(
+					"The specified grid does not have a unique solution.", nameof(grid));
+			}
+		}
+
+		/// <summary>
+		/// Initializes an instance with the specified grid and all grid maps information.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="empty">The distribution of all empty cells.</param>
+		/// <param name="bivalue">The distribution of all bivalue cells.</param>
+		/// <param name="digits">The distribution of all single digits.</param>
+		/// <remarks>
+		/// The constructor is only called and used for reducting the redundant calculations.
+		/// </remarks>
+		internal BugChecker(Grid grid, GridMap empty, GridMap bivalue, GridMap[] digits)
+		{
+			if (grid.IsUnique(out _))
+			{
+				Grid = grid;
+				(_emptyCellsDistribution, _bivalueCellsDistribution, _digitsDistributions) =
+					(empty, bivalue, digits);
 			}
 			else
 			{
@@ -52,11 +95,8 @@ namespace Sudoku.Solving.Checking
 		/// <returns>All true candidates.</returns>
 		private IReadOnlyList<int> GetAllTrueCandidates()
 		{
-			var emptyCellsMap = GetEmptyCellsGridMap();
-			var bivalueCellsMap = GetBivalueCellsMap();
-			var digitDistributions = GetAllDigitDistributionMaps();
 			var allRegionsMap = GetAllRegionMaps();
-			int[] array = emptyCellsMap.ToArray();
+			int[] array = _emptyCellsDistribution.ToArray();
 
 			// Get the number of multivalue cells.
 			int multivalueCellsCount = 0;
@@ -76,9 +116,9 @@ namespace Sudoku.Solving.Checking
 
 			// Store all bivalue cells.
 			var stack = new GridMap[multivalueCellsCount + 1, 9];
-			if (bivalueCellsMap.Count > 0)
+			if (_bivalueCellsDistribution.Count > 0)
 			{
-				int[] bivalueCells = bivalueCellsMap.ToArray();
+				int[] bivalueCells = _bivalueCellsDistribution.ToArray();
 				foreach (int bivalueCell in bivalueCells)
 				{
 					int[] digits = Grid.GetCandidatesReversal(bivalueCell).GetAllSets().ToArray();
@@ -104,7 +144,7 @@ namespace Sudoku.Solving.Checking
 			// Store all multivalue cells.
 			short mask = default;
 			short[,] pairs = new short[multivalueCellsCount, 37];
-			int[] multivalueCellsMap = (emptyCellsMap - bivalueCellsMap).ToArray();
+			int[] multivalueCellsMap = (_emptyCellsDistribution - _bivalueCellsDistribution).ToArray();
 			for (int i = 0; i < multivalueCellsMap.Length; i++)
 			{
 				mask = Grid.GetCandidatesReversal(multivalueCellsMap[i]);
@@ -167,7 +207,7 @@ namespace Sudoku.Solving.Checking
 						for (int k = 0; k < 9; k++)
 						{
 							ref var map = ref resultMap[k];
-							map = digitDistributions[k] - stack[pt, k];
+							map = _digitsDistributions[k] - stack[pt, k];
 							foreach (int cell in map.Offsets)
 							{
 								result.Add(cell * 9 + k);
@@ -185,70 +225,6 @@ namespace Sudoku.Solving.Checking
 					pt--;
 				}
 			} while (pt > 0);
-
-			return result;
-		}
-
-		/// <summary>
-		/// Get the grid map instance with all bivalue cells
-		/// set <see langword="true"/>.
-		/// </summary>
-		/// <returns>The result.</returns>
-		private GridMap GetBivalueCellsMap()
-		{
-			var result = GridMap.Empty;
-			for (int cell = 0; cell < 81; cell++)
-			{
-				var (status, candidates) = Grid.GetMask(cell);
-				if (status == CellStatus.Empty && candidates.CountSet() == 7)
-				{
-					result[cell] = true;
-				}
-			}
-
-			return result;
-		}
-
-		/// <summary>
-		/// Get the grid map instance with all empty cells set
-		/// <see langword="true"/>.
-		/// </summary>
-		/// <returns>The result.</returns>
-		private GridMap GetEmptyCellsGridMap()
-		{
-			var result = GridMap.Empty;
-			for (int cell = 0; cell < 81; cell++)
-			{
-				(var status, _) = Grid.GetMask(cell);
-				if (status == CellStatus.Empty)
-				{
-					result[cell] = true;
-				}
-			}
-
-			return result;
-		}
-
-		/// <summary>
-		/// Get 9 grid maps representing all digits' distributions.
-		/// </summary>
-		/// <returns>All grid maps.</returns>
-		private GridMap[] GetAllDigitDistributionMaps()
-		{
-			var result = new GridMap[9];
-			for (int i = 0; i < 9; i++)
-			{
-				ref var map = ref result[i];
-				map = new GridMap();
-
-				for (int cell = 0; cell < 81; cell++)
-				{
-					if (Grid.CandidateExists(cell, i))
-					{
-						map[cell] = true;
-					}
-				}
-			}
 
 			return result;
 		}

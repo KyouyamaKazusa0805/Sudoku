@@ -52,9 +52,11 @@ namespace Sudoku.Solving.Manual
 				{
 					return CheckMinimumDifficultyStrictly
 						? SolveWithStrictDifficultyRating(
-							grid, grid.Clone(), new List<TechniqueInfo>(), solution, intersectionTable)
+							grid, grid.Clone(), new List<TechniqueInfo>(), solution,
+							intersectionTable)
 						: SolveNaively(
-							grid, grid.Clone(), new List<TechniqueInfo>(), solution, intersectionTable);
+							grid, grid.Clone(), new List<TechniqueInfo>(), solution,
+							intersectionTable);
 				}
 				catch (WrongHandlingException ex)
 				{
