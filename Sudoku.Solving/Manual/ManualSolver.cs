@@ -11,6 +11,7 @@ using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.LastResorts;
 using Sudoku.Solving.Manual.Singles;
 using Sudoku.Solving.Manual.Subsets;
+using Sudoku.Solving.Manual.Uniqueness.Bugs;
 using Sudoku.Solving.Manual.Uniqueness.Rectangles;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
@@ -110,6 +111,7 @@ namespace Sudoku.Solving.Manual
 						new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 						new TwoStrongLinksTechniqueSearcher(),
 						new AlmostLockedCandidatesTechniqueSearcher(intersection),
+						new BivalueUniversalGraveTechniqueSearcher(),
 					},
 					new[] { new BruteForceTechniqueSearcher(solution) }
 				}
@@ -126,6 +128,7 @@ namespace Sudoku.Solving.Manual
 						new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 						new TwoStrongLinksTechniqueSearcher(),
 						new AlmostLockedCandidatesTechniqueSearcher(intersection),
+						new BivalueUniversalGraveTechniqueSearcher(),
 					}
 				};
 
@@ -230,6 +233,7 @@ namespace Sudoku.Solving.Manual
 					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 					new TwoStrongLinksTechniqueSearcher(),
 					new AlmostLockedCandidatesTechniqueSearcher(intersection),
+					new BivalueUniversalGraveTechniqueSearcher(),
 					new BruteForceTechniqueSearcher(solution),
 				}
 				: new TechniqueSearcher[] // Does not have brute force.
@@ -243,6 +247,7 @@ namespace Sudoku.Solving.Manual
 					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 					new TwoStrongLinksTechniqueSearcher(),
 					new AlmostLockedCandidatesTechniqueSearcher(intersection),
+					new BivalueUniversalGraveTechniqueSearcher(),
 				};
 
 			var stopwatch = new Stopwatch();

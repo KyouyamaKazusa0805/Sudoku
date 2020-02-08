@@ -568,9 +568,19 @@
             </summary>
             <param name="grid">The grid.</param>
         </member>
+        <member name="P:Sudoku.Solving.Checking.BugChecker.IsBugPattern">
+            <summary>
+            Indicates the current grid is a BUG+n pattern.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Checking.BugChecker.Grid">
             <summary>
             The grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Checking.BugChecker.TrueCandidates">
+            <summary>
+            Indicates all true candidates (non-BUG candidates).
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Checking.BugChecker.GetAllTrueCandidates">
@@ -1786,6 +1796,38 @@
             (out parameter) All highlight candidate offsets.
             </param>
             <returns>All conclusions.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueInfo">
+            <summary>
+            Provides a usage of bivalue universal grave (BUG) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher">
+            <summary>
+            Encapsulates a bivalue universal grave (BUG) technique searcher.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenRectangleTechniqueInfo">
             <summary>

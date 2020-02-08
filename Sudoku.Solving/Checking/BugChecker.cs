@@ -16,20 +16,41 @@ namespace Sudoku.Solving.Checking
 		/// Initializes an instance with the specified grid.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
-		public BugChecker(Grid grid) => Grid = grid;
+		public BugChecker(Grid grid)
+		{
+			if (grid.IsUnique(out _))
+			{
+				Grid = grid;
+			}
+			else
+			{
+				throw new ArgumentException(
+					"The specified grid does not have a unique solution.", nameof(grid));
+			}
+		}
 
+
+		/// <summary>
+		/// Indicates the current grid is a BUG+n pattern.
+		/// </summary>
+		public bool IsBugPattern => GetAllTrueCandidates().Count != 0;
 
 		/// <summary>
 		/// The grid.
 		/// </summary>
 		public Grid Grid { get; }
 
+		/// <summary>
+		/// Indicates all true candidates (non-BUG candidates).
+		/// </summary>
+		public IReadOnlyList<int> TrueCandidates => GetAllTrueCandidates();
+
 
 		/// <summary>
 		/// Get all true candidates.
 		/// </summary>
 		/// <returns>All true candidates.</returns>
-		public IReadOnlyList<int> GetAllTrueCandidates()
+		private IReadOnlyList<int> GetAllTrueCandidates()
 		{
 			var emptyCellsMap = GetEmptyCellsGridMap();
 			var bivalueCellsMap = GetBivalueCellsMap();
@@ -53,8 +74,8 @@ namespace Sudoku.Solving.Checking
 				}
 			}
 
+			// Store all bivalue cells.
 			var stack = new GridMap[multivalueCellsCount + 1, 9];
-			int[] chosen = new int[multivalueCellsCount + 1];
 			if (bivalueCellsMap.Count > 0)
 			{
 				int[] bivalueCells = bivalueCellsMap.ToArray();
@@ -64,13 +85,14 @@ namespace Sudoku.Solving.Checking
 					for (int j = 0; j < 2; j++)
 					{
 						int digit = digits[j];
-						stack[0, digit][bivalueCell] = true;
+						ref var map = ref stack[0, digit];
+						map[bivalueCell] = true;
 
 						var (r, c, b) = CellUtils.GetRegion(bivalueCell);
 						var span = (Span<int>)stackalloc[] { r + 9, c + 18, b };
 						for (int k = 0; k < 3; k++)
 						{
-							if ((stack[0, digit] & allRegionsMap[span[k]]).Count > 2)
+							if ((map & allRegionsMap[span[k]]).Count > 2)
 							{
 								return Array.Empty<int>();
 							}
@@ -79,6 +101,7 @@ namespace Sudoku.Solving.Checking
 				}
 			}
 
+			// Store all multivalue cells.
 			short mask = default;
 			short[,] pairs = new short[multivalueCellsCount, 37];
 			int[] multivalueCellsMap = (emptyCellsMap - bivalueCellsMap).ToArray();
@@ -87,10 +110,15 @@ namespace Sudoku.Solving.Checking
 				mask = Grid.GetCandidatesReversal(multivalueCellsMap[i]);
 				short[] list = GetAllCombinations(mask, 2);
 				pairs[i, 0] = (short)list.Length;
-				pairs[i, 1] = list[0];
+
+				for (int z = 1; z <= list.Length; z++)
+				{
+					pairs[i, z] = list[z - 1];
+				}
 			}
 
 			int pt = 1;
+			int[] chosen = new int[multivalueCellsCount + 1];
 			var resultMap = new GridMap[9];
 			var result = new List<int>();
 			do
@@ -98,7 +126,7 @@ namespace Sudoku.Solving.Checking
 				int i;
 				int ps = multivalueCellsMap[pt - 1];
 				bool @continue = false;
-				for (i = chosen[pt] + 1; i < pairs[pt - 1, 0] + 1; i++)
+				for (i = chosen[pt] + 1; i <= pairs[pt - 1, 0]; i++)
 				{
 					@continue = true;
 					mask = pairs[pt - 1, i];
@@ -107,7 +135,7 @@ namespace Sudoku.Solving.Checking
 						var temp = stack[pt - 1, mask.GetSetBitIndex(j)];
 						temp[ps] = true;
 						var (r, c, b) = CellUtils.GetRegion(ps);
-						var span = (Span<int>)stackalloc[] { r + 9, c + 18, b };
+						var span = (Span<int>)stackalloc[] { b, r + 9, c + 18 };
 						for (int k = 0; k < 3; k++)
 						{
 							if ((temp & allRegionsMap[span[k]]).Count > 2)
@@ -125,7 +153,7 @@ namespace Sudoku.Solving.Checking
 
 				if (@continue)
 				{
-					for (int z = 0; z < 9; z++)
+					for (int z = 0; z < stack.GetLength(1); z++)
 					{
 						stack[pt, z] = stack[pt - 1, z];
 					}
