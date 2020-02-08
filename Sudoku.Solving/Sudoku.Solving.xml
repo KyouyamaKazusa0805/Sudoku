@@ -1848,6 +1848,41 @@
             </param>
             <returns>All conclusions.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveMultipleTrueCandidatesTechniqueInfo">
+            <summary>
+            Provides a usage of BUG+n technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveMultipleTrueCandidatesTechniqueInfo.DifficultyExtra">
+            <summary>
+            The table of extra difficulty values.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveMultipleTrueCandidatesTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="candidates">All candidates.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveMultipleTrueCandidatesTechniqueInfo.Candidates">
+            <summary>
+            Indicates all candidates used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveMultipleTrueCandidatesTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveMultipleTrueCandidatesTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveMultipleTrueCandidatesTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveMultipleTrueCandidatesTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueInfo">
             <summary>
             Provides a usage of bivalue universal grave (BUG) technique.
@@ -1878,6 +1913,73 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+            <exception cref="T:Sudoku.Runtime.WrongHandlingException">
+            Throws when the number of true candidates is naught.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.CheckMultiple(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Check BUG+n.
+            </summary>
+            <param name="result">The result list.</param>
+            <param name="grid">The grid.</param>
+            <param name="trueCandidates">All true candidates.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Check type 2.
+            </summary>
+            <param name="result">The result list.</param>
+            <param name="grid">The grid.</param>
+            <param name="trueCandidates">All true candidates.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.CheckSingleDigit(System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Check whether all candidates in the list has same digit value.
+            </summary>
+            <param name="list">The list of all true candidates.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType2TechniqueInfo">
+            <summary>
+            Provides a usage of bivalue universal grave (BUG) type 2 technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType2TechniqueInfo.DifficultyExtra">
+            <summary>
+            The table of extra difficulty values.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="digit">The digit.</param>
+            <param name="cells">All cell offsets.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType2TechniqueInfo.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType2TechniqueInfo.Cells">
+            <summary>
+            Indicates the cell offsets.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType2TechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType2TechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType2TechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType2TechniqueInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenRectangleTechniqueInfo">

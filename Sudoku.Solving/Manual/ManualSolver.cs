@@ -22,6 +22,7 @@ namespace Sudoku.Solving.Manual
 	/// <summary>
 	/// Provides a solver that use logical methods to solve a specified sudoku puzzle.
 	/// </summary>
+	[DebuggerStepThrough]
 	public sealed partial class ManualSolver : Solver
 	{
 		/// <inheritdoc/>

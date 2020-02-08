@@ -437,6 +437,237 @@
             </remarks>
             <seealso cref="M:Sudoku.Data.Meta.Grid.GetCellStatus(System.Int32)"/>
         </member>
+        <member name="T:Sudoku.Data.Meta.FullGridMap">
+            <summary>
+            Encapsulates a binary series of candidate status table consisting of 729 bits,
+            where <see langword="true"/> bit (1) is for the cell having digit,
+            and the <see langword="false"/> bit (0) is for empty cell. Sometimes for other usages.
+            </summary>
+            <remarks>
+            Alghough more than 144 bits.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Data.Meta.FullGridMap.Empty">
+            <summary>
+            Indicates an empty instance (making no changes).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.FullGridMap._line1">
+            <summary>
+            All bits map.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.FullGridMap._line2">
+            <summary>
+            All bits map.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.FullGridMap._line3">
+            <summary>
+            All bits map.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.FullGridMap._line4">
+            <summary>
+            All bits map.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.FullGridMap._line5">
+            <summary>
+            All bits map.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.FullGridMap._line6">
+            <summary>
+            All bits map.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.FullGridMap._line7">
+            <summary>
+            All bits map.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.FullGridMap._line8">
+            <summary>
+            All bits map.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.FullGridMap._line9">
+            <summary>
+            All bits map.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Meta.FullGridMap.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance with the specified candidate offset
+            (Sets itself and all peers).
+            </summary>
+            <param name="offset">The candidate offset.</param>
+        </member>
+        <member name="M:Sudoku.Data.Meta.FullGridMap.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Initializes an instance with the specified candidate offset.
+            This will set all bits of all peers of this candidate. Another
+            <see cref="T:System.Boolean"/> value indicates whether this initialization
+            will set the bit of itself.
+            </summary>
+            <param name="offset">The candidate offset.</param>
+            <param name="setItself">
+            A <see cref="T:System.Boolean"/> value indicating whether this initialization
+            will set the bit of itself.
+            If the value is <see langword="false"/>, it will be equivalent
+            to below:
+            <code>
+            var map = new FullGridMap(offset) { [offset] = false };
+            </code>
+            </param>
+        </member>
+        <member name="M:Sudoku.Data.Meta.FullGridMap.#ctor(Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)">
+            <summary>
+            Initializes an instance with three binary value.
+            </summary>
+            <param name="line1">Line 1 grid map.</param>
+            <param name="line2">Line 2 grid map.</param>
+            <param name="line3">Line 3 grid map.</param>
+            <param name="line4">Line 4 grid map.</param>
+            <param name="line5">Line 5 grid map.</param>
+            <param name="line6">Line 6 grid map.</param>
+            <param name="line7">Line 7 grid map.</param>
+            <param name="line8">Line 8 grid map.</param>
+            <param name="line9">Line 9 grid map.</param>
+        </member>
+        <member name="P:Sudoku.Data.Meta.FullGridMap.Count">
+            <summary>
+            Indicates the total number of cells where the corresponding
+            value are set <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Meta.FullGridMap.Offsets">
+            <summary>
+            Indicates all candidate offsets whose corresponding value
+            are set <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Meta.FullGridMap.Item(System.Int32)">
+            <summary>
+            Gets or sets a <see cref="T:System.Boolean"/> value on the specified candidate
+            offset.
+            </summary>
+            <param name="offset">The candidate offset.</param>
+            <value>
+            A <see cref="T:System.Boolean"/> value on assignment.
+            </value>
+            <returns>
+            A <see cref="T:System.Boolean"/> value indicating whether the candidate has digit.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.FullGridMap.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Meta.FullGridMap.Equals(Sudoku.Data.Meta.FullGridMap)">
+            <summary>
+            Indicates whether the current object has the same value with the other one.
+            </summary>
+            <param name="other">The other value to compare.</param>
+            <returns>
+            The result of this comparsion. <see langword="true"/> if two instances hold a same
+            value; otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.FullGridMap.ToArray">
+            <summary>
+            Get all candidate offsets whose bits are set <see langword="true"/>.
+            </summary>
+            <returns>An array of candidate offsets.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.FullGridMap.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Meta.FullGridMap.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.FullGridMap.op_True(Sudoku.Data.Meta.FullGridMap)">
+            <summary>
+            Check whether the specified map has at least one <see langword="true"/> bits.
+            </summary>
+            <param name="map">The grid map.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.FullGridMap.op_False(Sudoku.Data.Meta.FullGridMap)">
+            <summary>
+            Check whether the specified grid map has no <see langword="true"/> bits.
+            </summary>
+            <param name="map">The grid map.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.FullGridMap.op_LogicalNot(Sudoku.Data.Meta.FullGridMap)">
+            <summary>
+            Check whether the specified grid map has no <see langword="true"/> bits.
+            Same as <see cref="M:Sudoku.Data.Meta.FullGridMap.op_False(Sudoku.Data.Meta.FullGridMap)"/>.
+            </summary>
+            <param name="map">The grid map.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <seealso cref="M:Sudoku.Data.Meta.FullGridMap.op_False(Sudoku.Data.Meta.FullGridMap)"/>
+        </member>
+        <member name="M:Sudoku.Data.Meta.FullGridMap.op_Equality(Sudoku.Data.Meta.FullGridMap,Sudoku.Data.Meta.FullGridMap)">
+            <summary>
+            Indicates whether two instances have a same value.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.FullGridMap.op_Inequality(Sudoku.Data.Meta.FullGridMap,Sudoku.Data.Meta.FullGridMap)">
+            <summary>
+            Indicates whether two instances have two different values.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.FullGridMap.op_OnesComplement(Sudoku.Data.Meta.FullGridMap)">
+            <summary>
+            Negate all bits.
+            </summary>
+            <param name="map">The instance to negate.</param>
+            <returns>The negative result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.FullGridMap.op_Subtraction(Sudoku.Data.Meta.FullGridMap,Sudoku.Data.Meta.FullGridMap)">
+            <summary>
+            Get a <see cref="T:Sudoku.Data.Meta.FullGridMap"/> that contains all <paramref name="left"/> cells
+            but not in <paramref name="right"/> cells.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.FullGridMap.op_BitwiseAnd(Sudoku.Data.Meta.FullGridMap,Sudoku.Data.Meta.FullGridMap)">
+            <summary>
+            Intersect two <see cref="T:Sudoku.Data.Meta.FullGridMap"/>s.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The intersection result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.FullGridMap.op_BitwiseOr(Sudoku.Data.Meta.FullGridMap,Sudoku.Data.Meta.FullGridMap)">
+            <summary>
+            Union two <see cref="T:Sudoku.Data.Meta.FullGridMap"/>s.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The union result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.FullGridMap.op_ExclusiveOr(Sudoku.Data.Meta.FullGridMap,Sudoku.Data.Meta.FullGridMap)">
+            <summary>
+            Symmetrical except two <see cref="T:Sudoku.Data.Meta.FullGridMap"/>s.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="T:Sudoku.Data.Meta.Grid">
             <summary>
             Encapsulates a sudoku grid.
@@ -847,7 +1078,7 @@
             If the value is <see langword="false"/>, it will be equivalent
             to below:
             <code>
-            GridMap map = new GridMap(offset) { [offset] = false };
+            var map = new GridMap(offset) { [offset] = false };
             </code>
             </param>
         </member>
@@ -1001,6 +1232,29 @@
             </summary>
             <param name="regionOffset">The region offset.</param>
             <returns>The grid map.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridMap.op_True(Sudoku.Data.Meta.GridMap)">
+            <summary>
+            Check whether the specified map has at least one <see langword="true"/> bits.
+            </summary>
+            <param name="map">The grid map.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridMap.op_False(Sudoku.Data.Meta.GridMap)">
+            <summary>
+            Check whether the specified grid map has no <see langword="true"/> bits.
+            </summary>
+            <param name="map">The grid map.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridMap.op_LogicalNot(Sudoku.Data.Meta.GridMap)">
+            <summary>
+            Check whether the specified grid map has no <see langword="true"/> bits.
+            Same as <see cref="M:Sudoku.Data.Meta.GridMap.op_False(Sudoku.Data.Meta.GridMap)"/>.
+            </summary>
+            <param name="map">The grid map.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <seealso cref="M:Sudoku.Data.Meta.GridMap.op_False(Sudoku.Data.Meta.GridMap)"/>.
         </member>
         <member name="M:Sudoku.Data.Meta.GridMap.op_Equality(Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)">
             <summary>

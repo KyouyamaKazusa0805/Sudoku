@@ -57,7 +57,7 @@ namespace Sudoku.Data.Meta
 		/// If the value is <see langword="false"/>, it will be equivalent
 		/// to below:
 		/// <code>
-		/// GridMap map = new GridMap(offset) { [offset] = false };
+		/// var map = new GridMap(offset) { [offset] = false };
 		/// </code>
 		/// </param>
 		public GridMap(int offset, bool setItself) : this(PeerTable[offset]) =>
@@ -344,6 +344,29 @@ namespace Sudoku.Data.Meta
 			return result;
 		}
 
+
+		/// <summary>
+		/// Check whether the specified map has at least one <see langword="true"/> bits.
+		/// </summary>
+		/// <param name="map">The grid map.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
+		public static bool operator true(GridMap map) => map._low != 0 || map._high != 0;
+
+		/// <summary>
+		/// Check whether the specified grid map has no <see langword="true"/> bits.
+		/// </summary>
+		/// <param name="map">The grid map.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
+		public static bool operator false(GridMap map) => map._low == 0 && map._high == 0;
+
+		/// <summary>
+		/// Check whether the specified grid map has no <see langword="true"/> bits.
+		/// Same as <see cref="operator false(GridMap)"/>.
+		/// </summary>
+		/// <param name="map">The grid map.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
+		/// <seealso cref="operator false(GridMap)"/>.
+		public static bool operator !(GridMap map) => !(map._low != 0 || map._high != 0);
 
 		/// <summary>
 		/// Indicates whether two instances have a same value.

@@ -22,7 +22,7 @@ namespace Sudoku.Debugging
 				CheckMinimumDifficultyStrictly = true,
 				EnableBruteForce = false
 			};
-			var grid = Grid.Parse("7+1+9+2+36+548+3+58001+6+29+26+40001+738+70+50+3490+9+40080+3+50+5230+60+7+814+37000+96+51+8+56002+3+469+2300+8+17");
+			var grid = Grid.Parse("918+40000+560+4+95+800+7+50+7600+4890527+90+80+308+6532+970+7+9+3+80425037+5+2+89000+2+6+9+14+5+7+38+8+4+1+300592");
 			var analysisResult = solver.Solve(grid);
 			Console.WriteLine(analysisResult);
 
