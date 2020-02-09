@@ -84,11 +84,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						for (int size = 2; size <= 5; size++)
 						{
 							CheckType3Naked(result, grid, trueCandidates, size);
-							if (size != 2)
-							{
-								// BUG type 3 with a hidden pair does not exist.
-								CheckType3Hidden(result, grid, trueCandidates, size);
-							}
+							//if (size != 2)
+							//{
+							//	// BUG type 3 with a hidden pair does not exist.
+							//	CheckType3Hidden(result, grid, trueCandidates, size);
+							//}
 						}
 					}
 
@@ -112,7 +112,187 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			IList<UniquenessTechniqueInfo> result, Grid grid,
 			IReadOnlyList<int> trueCandidates, int size)
 		{
+			// Check whether all true candidates lie on a same region.
+			var candsGroupByCell = from cand in trueCandidates group cand by cand / 9;
+			var trueCandidateCells = from candGroupByCell in candsGroupByCell
+									 select candGroupByCell.Key;
+			int trueCandidateCellsCount = 0;
+			var map = default(GridMap);
+			foreach (int cell in trueCandidateCells)
+			{
+				if (trueCandidateCellsCount++ == 0)
+				{
+					map = new GridMap(cell);
+				}
+				else
+				{
+					map &= new GridMap(cell);
+				}
+			}
+			if (map.Count != 9 || trueCandidateCellsCount >= size)
+			{
+				return;
+			}
 
+			foreach (var candGroupByCell in candsGroupByCell)
+			{
+				// Get the region.
+				int region = default;
+				for (int i = 0; i < 27; i++)
+				{
+					if (_regionMaps[i] == map)
+					{
+						region = i;
+						break;
+					}
+				}
+
+				var trueCandidateDigits = (
+					from cand in trueCandidates
+					orderby cand
+					select cand % 9).Distinct();
+				short maskInTrueCandidateCells = 0;
+				foreach (int cand in trueCandidates)
+				{
+					maskInTrueCandidateCells |= (short)(1 << cand % 9);
+				}
+				maskInTrueCandidateCells = (short)(~maskInTrueCandidateCells & 511);
+
+				for (int d1 = 0; d1 < 10 - size; d1++)
+				{
+					if (grid.HasDigitValue(d1, region) || trueCandidateDigits.Contains(d1))
+					{
+						continue;
+					}
+
+					short mask1 = grid.GetDigitAppearingMask(d1, region);
+					for (int d2 = d1 + 1; d2 < 11 - size; d2++)
+					{
+						if (grid.HasDigitValue(d2, region) || trueCandidateDigits.Contains(d2))
+						{
+							continue;
+						}
+
+						short mask2 = grid.GetDigitAppearingMask(d2, region);
+						for (int d3 = d2 + 1; d3 < 12 - size; d3++)
+						{
+							if (grid.HasDigitValue(d3, region) || trueCandidateDigits.Contains(d3))
+							{
+								continue;
+							}
+
+							short mask3 = grid.GetDigitAppearingMask(d3, region);
+							if (size == 3)
+							{
+								// Check hidden triple.
+								short mask = (short)((short)(mask1 | mask2) | mask3);
+								if (mask.CountSet() - trueCandidateCellsCount == 2)
+								{
+									// Hidden triple found.
+									int[] digits = new[] { d1, d2, d3 };
+
+									// Record all lighlight candidates.
+									var cells = new List<int>();
+									var candidateOffsets = new List<(int, int)>(
+										from cand in trueCandidates select (0, cand));
+									foreach (int cell in map.Offsets)
+									{
+										foreach (int digit in digits)
+										{
+											if (grid.CandidateExists(cell, digit))
+											{
+												candidateOffsets.Add((1, cell * 9 + digit));
+											}
+										}
+
+										cells.Add(cell);
+									}
+
+									// Record eliminations.
+									var conclusions = new List<Conclusion>();
+									foreach (int cell in trueCandidateCells)
+									{
+										map[cell] = false;
+									}
+									foreach (int cell in map.Offsets)
+									{
+										for (int digit = 0; digit < 9; digit++)
+										{
+											if (digits.Contains(digit))
+											{
+												continue;
+											}
+
+											if (grid.CandidateExists(cell, digit))
+											{
+												conclusions.Add(
+													new Conclusion(
+														ConclusionType.Elimination, cell * 9 + digit));
+											}
+										}
+									}
+
+									if (conclusions.Count == 0)
+									{
+										continue;
+									}
+
+									// Hidden triple.
+									result.Add(
+										new BugType3(
+											conclusions,
+											views: new[]
+											{
+												new View(
+													cellOffsets: null,
+													candidateOffsets,
+													regionOffsets: new[] { (0, region) },
+													linkMasks: null)
+											},
+											trueCandidates,
+											digits,
+											cells,
+											isNaked: false));
+								}
+							}
+							else // size > 3
+							{
+								for (int d4 = d3 + 1; d4 < 13 - size; d4++)
+								{
+									if (grid.HasDigitValue(d4, region)
+										|| trueCandidateDigits.Contains(d4))
+									{
+										continue;
+									}
+
+									short mask4 = grid.GetDigitAppearingMask(d4, region);
+									if (size == 4)
+									{
+										// TODO: Check hidden quadruple.
+
+									}
+									else // size == 5
+									{
+										for (int d5 = d4 + 1; d5 < 9; d5++)
+										{
+											if (grid.HasDigitValue(d5, region)
+												|| trueCandidateDigits.Contains(d5))
+											{
+												continue;
+											}
+
+											short mask5 = grid.GetDigitAppearingMask(d5, region);
+
+											// TODO: Check hidden quintuple.
+
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 
 		/// <summary>
@@ -128,7 +308,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		{
 			// Check whether all true candidates lie on a same region.
 			var candsGroupByCell = from cand in trueCandidates group cand by cand / 9;
-
 			var trueCandidateCells = from candGroupByCell in candsGroupByCell
 									 select candGroupByCell.Key;
 			int trueCandidateCellsCount = 0;
@@ -162,7 +341,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					}
 				}
 
-				// Ensures that the last cells may form a naked subset.
 				int[] cells = GridMap.GetCellsIn(region);
 				if (cells.Count(c => grid.GetCellStatus(c) == CellStatus.Empty)
 					- trueCandidateCellsCount <= size - 1)

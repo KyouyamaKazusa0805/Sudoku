@@ -1931,18 +1931,18 @@
             Throws when the number of true candidates is naught.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.CheckType3Hidden(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
             <summary>
-            Check type 3 (with naked subsets).
+            Check type 3 (with hidden subsets).
             </summary>
             <param name="result">The result.</param>
             <param name="grid">The grid.</param>
             <param name="trueCandidates">All true candidates.</param>
             <param name="size">The size.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.CheckType3Hidden(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
             <summary>
-            Check type 3 (with hidden subsets).
+            Check type 3 (with naked subsets).
             </summary>
             <param name="result">The result.</param>
             <param name="grid">The grid.</param>
