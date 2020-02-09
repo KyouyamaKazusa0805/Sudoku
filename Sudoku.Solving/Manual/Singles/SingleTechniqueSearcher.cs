@@ -87,10 +87,7 @@ namespace Sudoku.Solving.Manual.Singles
 								{
 									new View(
 										cellOffsets: null,
-										candidateOffsets: new[]
-										{
-											(0, fullHouseCellOffset * 9 + digit)
-										},
+										candidateOffsets: new[] { (0, fullHouseCellOffset * 9 + digit) },
 										regionOffsets: new[] { (0, region) },
 										linkMasks: null)
 								},
@@ -155,14 +152,8 @@ namespace Sudoku.Solving.Manual.Singles
 								{
 									new View(
 										cellOffsets: null,
-										candidateOffsets: new List<(int, int)>
-										{
-											(0, hiddenSingleCellOffset * 9 + digit)
-										},
-										regionOffsets: new List<(int, int)>
-										{
-											(0, region)
-										},
+										candidateOffsets: new[] { (0, hiddenSingleCellOffset * 9 + digit) },
+										regionOffsets: new[] { (0, region) },
 										linkMasks: null)
 								},
 								regionOffset: region,
@@ -185,18 +176,12 @@ namespace Sudoku.Solving.Manual.Singles
 					int digit = mask.FindFirstSet();
 					result.Add(
 						new NakedSingleTechniqueInfo(
-							conclusions: new[]
-							{
-								new Conclusion(ConclusionType.Assignment, i, digit)
-							},
+							conclusions: new[] { new Conclusion(ConclusionType.Assignment, i, digit) },
 							views: new[]
 							{
 								new View(
 									cellOffsets: null,
-									candidateOffsets: new List<(int, int)>
-									{
-										(0, i * 9 + digit)
-									},
+									candidateOffsets: new[] { (0, i * 9 + digit) },
 									regionOffsets: null,
 									linkMasks: null)
 							},

@@ -76,25 +76,27 @@ namespace Sudoku.Solving.Manual.Subsets
 						{
 							// Check if is naked pair or not.
 							int mask = mask2 & 511;
-							if (mask.CountSet() == 7)
+							if (mask.CountSet() != 7)
 							{
-								// Naked pair found.
-								var digits = new List<int>((511 & ~mask2).GetAllSets());
-								var offsets = new[] { pos1, pos2 };
-								var conclusions =
-									GetNakedSubsetConclusions(
-										grid, offsets, digits, out bool? isLocked);
-
-								if (conclusions.Count == 0)
-								{
-									continue;
-								}
-
-								// Gather this conclusion.
-								GatherConclusion(
-									grid, result, region, digits,
-									offsets, conclusions, isLocked);
+								continue;
 							}
+
+							// Naked pair found.
+							var digits = new List<int>((511 & ~mask2).GetAllSets());
+							var offsets = new[] { pos1, pos2 };
+							var conclusions =
+								GetNakedSubsetConclusions(
+									grid, offsets, digits, out bool? isLocked);
+
+							if (conclusions.Count == 0)
+							{
+								continue;
+							}
+
+							// Gather this conclusion.
+							GatherConclusion(
+								grid, result, region, digits,
+								offsets, conclusions, isLocked);
 						}
 						else // size > 2
 						{
@@ -112,24 +114,26 @@ namespace Sudoku.Solving.Manual.Subsets
 								{
 									// Check if is naked triple or not.
 									int mask = mask3 & 511;
-									if (mask.CountSet() == 6)
+									if (mask.CountSet() != 6)
 									{
-										// Naked triple found.
-										var digits = new List<int>((511 & ~mask3).GetAllSets());
-										var offsets = new[] { pos1, pos2, pos3 };
-										var conclusions =
-											GetNakedSubsetConclusions(
-												grid, offsets, digits, out bool? isLocked);
-
-										if (conclusions.Count == 0)
-										{
-											continue;
-										}
-										
-										GatherConclusion(
-											grid, result, region, digits,
-											offsets, conclusions, isLocked);
+										continue;
 									}
+
+									// Naked triple found.
+									var digits = new List<int>((511 & ~mask3).GetAllSets());
+									var offsets = new[] { pos1, pos2, pos3 };
+									var conclusions =
+										GetNakedSubsetConclusions(
+											grid, offsets, digits, out bool? isLocked);
+
+									if (conclusions.Count == 0)
+									{
+										continue;
+									}
+
+									GatherConclusion(
+										grid, result, region, digits,
+										offsets, conclusions, isLocked);
 								}
 								else // size == 4
 								{
@@ -146,24 +150,26 @@ namespace Sudoku.Solving.Manual.Subsets
 
 										// Check if is naked quadruple or not.
 										int mask = mask4 & 511;
-										if (mask.CountSet() == 5)
+										if (mask.CountSet() != 5)
 										{
-											// Naked triple found.
-											var digits = new List<int>((511 & ~mask4).GetAllSets());
-											var offsets = new[] { pos1, pos2, pos3, pos4 };
-											var conclusions =
-												GetNakedSubsetConclusions(
-													grid, offsets, digits, out bool? isLocked);
-
-											if (conclusions.Count == 0)
-											{
-												continue;
-											}
-
-											GatherConclusion(
-												grid, result, region, digits,
-												offsets, conclusions, isLocked);
+											continue;
 										}
+
+										// Naked triple found.
+										var digits = new List<int>((511 & ~mask4).GetAllSets());
+										var offsets = new[] { pos1, pos2, pos3, pos4 };
+										var conclusions =
+											GetNakedSubsetConclusions(
+												grid, offsets, digits, out bool? isLocked);
+
+										if (conclusions.Count == 0)
+										{
+											continue;
+										}
+
+										GatherConclusion(
+											grid, result, region, digits,
+											offsets, conclusions, isLocked);
 									}
 								}
 							}
@@ -262,12 +268,9 @@ namespace Sudoku.Solving.Manual.Subsets
 				// Add eliminations by each digit.
 				foreach (int offset in tempMap.Offsets)
 				{
-					if (grid.GetCellStatus(offset) == CellStatus.Empty)
+					if (grid.GetCellStatus(offset) == CellStatus.Empty && !grid[offset, digit])
 					{
-						if (!grid[offset, digit])
-						{
-							result.Add(new Conclusion(ConclusionType.Elimination, offset, digit));
-						}
+						result.Add(new Conclusion(ConclusionType.Elimination, offset, digit));
 					}
 				}
 			}
@@ -336,16 +339,70 @@ namespace Sudoku.Solving.Manual.Subsets
 						short mask2 = (short)(grid.GetDigitAppearingMask(d2, region) | mask);
 						if (size == 2)
 						{
-							if (mask2.CountSet() == 2)
+							if (mask2.CountSet() != 2)
 							{
-								// Hidden pair found.
-								var digits = new[] { d1, d2 };
-								var conclusions =
-									GetHiddenSubsetsConclusions(
-										grid, region, mask2, digits, out var cellOffsets,
-										out var highlightedCandidates);
-								if (conclusions.Count != 0)
+								continue;
+							}
+
+							// Hidden pair found.
+							var digits = new[] { d1, d2 };
+							var conclusions =
+								GetHiddenSubsetsConclusions(
+									grid, region, mask2, digits, out var cellOffsets,
+									out var highlightedCandidates);
+
+							if (conclusions.Count == 0)
+							{
+								continue;
+							}
+
+							result.Add(
+								new HiddenSubsetTechniqueInfo(
+									conclusions,
+									views: new[]
+									{
+										new View(
+											cellOffsets: null,
+											candidateOffsets: highlightedCandidates,
+											regionOffsets: new[]
+											{
+												(0, region)
+											},
+											linkMasks: null)
+									},
+									regionOffset: region,
+									cellOffsets,
+									digits));
+						}
+						else // size > 2
+						{
+							for (int d3 = d2 + 1; d3 < 12 - size; d3++)
+							{
+								if (grid.HasDigitValue(d3, region))
 								{
+									continue;
+								}
+
+								short mask3 = (short)(grid.GetDigitAppearingMask(d3, region) | mask2);
+								if (size == 3)
+								{
+									if (mask3.CountSet() != 3)
+									{
+										continue;
+									}
+
+									// Hidden triple found.
+									var digits = new[] { d1, d2, d3 };
+									var conclusions =
+										GetHiddenSubsetsConclusions(
+											grid, region, mask3, digits, out var cellOffsets,
+											out var highlightedCandidates);
+
+									if (conclusions.Count == 0)
+									{
+										continue;
+									}
+
 									result.Add(
 										new HiddenSubsetTechniqueInfo(
 											conclusions,
@@ -364,50 +421,6 @@ namespace Sudoku.Solving.Manual.Subsets
 											cellOffsets,
 											digits));
 								}
-							}
-						}
-						else // size > 2
-						{
-							for (int d3 = d2 + 1; d3 < 12 - size; d3++)
-							{
-								if (grid.HasDigitValue(d3, region))
-								{
-									continue;
-								}
-
-								short mask3 = (short)(grid.GetDigitAppearingMask(d3, region) | mask2);
-								if (size == 3)
-								{
-									if (mask3.CountSet() == 3)
-									{
-										// Hidden triple found.
-										var digits = new[] { d1, d2, d3 };
-										var conclusions =
-											GetHiddenSubsetsConclusions(
-												grid, region, mask3, digits, out var cellOffsets,
-												out var highlightedCandidates);
-										if (conclusions.Count != 0)
-										{
-											result.Add(
-												new HiddenSubsetTechniqueInfo(
-													conclusions,
-													views: new[]
-													{
-														new View(
-															cellOffsets: null,
-															candidateOffsets: highlightedCandidates,
-															regionOffsets: new[]
-															{
-																(0, region)
-															},
-															linkMasks: null)
-													},
-													regionOffset: region,
-													cellOffsets,
-													digits));
-										}
-									}
-								}
 								else
 								{
 									for (int d4 = d3 + 1; d4 < 9; d4++)
@@ -420,35 +433,40 @@ namespace Sudoku.Solving.Manual.Subsets
 										// 'size == 4' is always true.
 										// Now check hidden quadruple.
 										short mask4 = (short)(grid.GetDigitAppearingMask(d4, region) | mask3);
-										if (mask4.CountSet() == 4)
+										if (mask4.CountSet() != 4)
 										{
-											// Hidden quadruple found.
-											var digits = new[] { d1, d2, d3, d4 };
-											var conclusions =
-												GetHiddenSubsetsConclusions(
-													grid, region, mask4, digits, out var cellOffsets,
-													out var highlightedCandidates);
-											if (conclusions.Count != 0)
-											{
-												result.Add(
-													new HiddenSubsetTechniqueInfo(
-														conclusions,
-														views: new[]
-														{
-															new View(
-																cellOffsets: null,
-																candidateOffsets: highlightedCandidates,
-																regionOffsets: new[]
-																{
-																	(0, region)
-																},
-																linkMasks: null)
-														},
-														regionOffset: region,
-														cellOffsets,
-														digits));
-											}
+											continue;
 										}
+
+										// Hidden quadruple found.
+										var digits = new[] { d1, d2, d3, d4 };
+										var conclusions =
+											GetHiddenSubsetsConclusions(
+												grid, region, mask4, digits, out var cellOffsets,
+												out var highlightedCandidates);
+
+										if (conclusions.Count == 0)
+										{
+											continue;
+										}
+
+										result.Add(
+											new HiddenSubsetTechniqueInfo(
+												conclusions,
+												views: new[]
+												{
+													new View(
+														cellOffsets: null,
+														candidateOffsets: highlightedCandidates,
+														regionOffsets: new[]
+														{
+															(0, region)
+														},
+														linkMasks: null)
+												},
+												regionOffset: region,
+												cellOffsets,
+												digits));
 									}
 								}
 							}

@@ -47,85 +47,97 @@ namespace Sudoku.Solving.Manual.Intersections
 					short mask2 = BitwiseAndMasks(grid, b);
 					short mask3 = BitwiseAndMasks(grid, intersection);
 					short mask = (short)((short)(mask3 | (short)~(mask1 ^ mask2)) & 511);
-					if (mask != 511)
+					if (mask == 511)
 					{
-						// Locked candidates found.
-						var candidatesList = new List<(int, int)>();
-						short temp = mask;
-						for (int digit = 0; digit < 9; digit++, temp >>= 1)
+						continue;
+					}
+
+					// Locked candidates found.
+					var candidatesList = new List<(int, int)>();
+					short temp = mask;
+					for (int digit = 0; digit < 9; digit++, temp >>= 1)
+					{
+						if ((temp & 1) != 0)
 						{
-							if ((temp & 1) == 0)
+							continue;
+						}
+
+						// 'digit' is locked number.
+						foreach (int offset in intersection.Offsets)
+						{
+							if (grid.GetCellStatus(offset) != CellStatus.Empty
+								|| grid[offset, digit])
 							{
-								// 'digit' is locked number.
-								foreach (int offset in intersection.Offsets)
+								continue;
+							}
+
+							candidatesList.Add((0, offset * 9 + digit));
+						}
+
+						var conclusions = new List<Conclusion>();
+						int[] lockedRegions = new int[2];
+						bool isClaiming = true;
+						foreach (int offset in a.Offsets)
+						{
+							if (grid.GetCellStatus(offset) != CellStatus.Empty
+								|| grid[offset, digit])
+							{
+								continue;
+							}
+
+							// Pointing.
+							if (isClaiming)
+							{
+								lockedRegions[0] = coverSet;
+								lockedRegions[1] = baseSet;
+								isClaiming = !isClaiming;
+							}
+							conclusions.Add(
+								new Conclusion(
+									conclusionType: ConclusionType.Elimination,
+									cellOffset: offset,
+									digit));
+						}
+						if (isClaiming)
+						{
+							// Claiming.
+							lockedRegions[0] = baseSet;
+							lockedRegions[1] = coverSet;
+							foreach (int offset in b.Offsets)
+							{
+								if (grid.GetCellStatus(offset) != CellStatus.Empty
+									|| grid[offset, digit])
 								{
-									if (grid.GetCellStatus(offset) == CellStatus.Empty
-										&& !grid[offset, digit])
-									{
-										candidatesList.Add((0, offset * 9 + digit));
-									}
+									continue;
 								}
 
-								var conclusions = new List<Conclusion>();
-								int[] lockedRegions = new int[2];
-								bool isClaiming = true;
-								foreach (int offset in a.Offsets)
-								{
-									if (grid.GetCellStatus(offset) == CellStatus.Empty
-										&& !grid[offset, digit])
-									{
-										// Pointing.
-										if (isClaiming)
-										{
-											lockedRegions[0] = coverSet;
-											lockedRegions[1] = baseSet;
-											isClaiming = !isClaiming;
-										}
-										conclusions.Add(
-											new Conclusion(
-												conclusionType: ConclusionType.Elimination,
-												cellOffset: offset,
-												digit));
-									}
-								}
-								if (isClaiming)
-								{
-									// Claiming.
-									lockedRegions[0] = baseSet;
-									lockedRegions[1] = coverSet;
-									foreach (int offset in b.Offsets)
-									{
-										if (grid.GetCellStatus(offset) == CellStatus.Empty
-											&& !grid[offset, digit])
-										{
-											conclusions.Add(
-												new Conclusion(
-													conclusionType: ConclusionType.Elimination,
-													cellOffset: offset,
-													digit));
-										}
-									}
-								}
-
-								if (conclusions.Count != 0)
-								{
-									result.Add(
-										new IntersectionTechniqueInfo(
-											conclusions,
-											views: new[]
-											{
-												new View(
-													cellOffsets: null,
-													candidateOffsets: candidatesList,
-													regionOffsets: null,
-													linkMasks: null)
-											},
-											digit,
-											baseSet: lockedRegions[0],
-											coverSet: lockedRegions[1]));
-								}
+								conclusions.Add(
+									new Conclusion(
+										conclusionType: ConclusionType.Elimination,
+										cellOffset: offset,
+										digit));
 							}
 						}
+
+						if (conclusions.Count == 0)
+						{
+							continue;
+						}
+
+						result.Add(
+							new IntersectionTechniqueInfo(
+								conclusions,
+								views: new[]
+								{
+									new View(
+										cellOffsets: null,
+										candidateOffsets: candidatesList,
+										regionOffsets: null,
+										linkMasks: null)
+								},
+								digit,
+								baseSet: lockedRegions[0],
+								coverSet: lockedRegions[1]));
 					}
 				}
 			}
