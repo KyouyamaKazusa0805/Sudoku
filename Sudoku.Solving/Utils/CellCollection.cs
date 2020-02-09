@@ -21,8 +21,14 @@ namespace Sudoku.Solving.Utils
 		{
 			const string separator = ", ";
 			var sb = new StringBuilder();
+			var group = from cell in cellOffsets group cell by cell / 9;
+			int cellGroupCount = group.Count();
+			if (cellGroupCount >= 2)
+			{
+				sb.Append("{ ");
+			}
 
-			foreach (var cellByRowGroup in from cell in cellOffsets group cell by cell / 9)
+			foreach (var cellByRowGroup in group)
 			{
 				int row = cellByRowGroup.Key;
 				sb.Append($"r{row + 1}c");
@@ -35,6 +41,11 @@ namespace Sudoku.Solving.Utils
 			}
 
 			sb.RemoveFromEnd(separator.Length);
+			if (cellGroupCount >= 2)
+			{
+				sb.Append(" }");
+			}
+
 			return sb.ToString();
 		}
 	}

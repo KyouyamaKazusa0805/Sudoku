@@ -38,7 +38,7 @@
             the value will be the maximum value among all difficulty
             ratings in solving steps. If the puzzle has not been solved,
             or else the puzzle is solved by other solvers, this value will
-            be always 20.0m.
+            be always <c>20.0m</c>.
             </para>
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
@@ -52,7 +52,7 @@
             the puzzle has not been solved, the value will be the sum of all
             difficulty ratings of steps recorded in <see cref="P:Sudoku.Solving.AnalysisResult.SolvingSteps"/>.
             However, if the puzzle is solved by other solvers, this value will
-            be 0.
+            be <c>0</c>.
             </para>
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
@@ -67,7 +67,7 @@
             <para>
             When the puzzle is solved, the value will be the difficulty rating
             of the first solving step. If the puzzle has not solved or
-            the puzzle is solved by other solvers, this value will be always 0.
+            the puzzle is solved by other solvers, this value will be always <c>0</c>.
             </para>
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
@@ -82,7 +82,7 @@
             When the puzzle is solved, the value will be the difficulty rating
             of the first step before the first one whose conclusion is
             <see cref="F:Sudoku.Solving.ConclusionType.Assignment"/>. If the puzzle has not solved
-            or solved by other solvers, this value will be 20.0m.
+            or solved by other solvers, this value will be <c>20.0m</c>.
             </para>
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>

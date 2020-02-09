@@ -27,9 +27,14 @@ namespace Sudoku.Solving.Utils
 				group candidate by candidate % 9)
 			{
 				int digit = candidateGroupByDigit.Key;
-				foreach (var candidateGroupByCellRow in
-					from candidate in candidateGroupByDigit
-					group candidate by candidate / 81)
+				var group = from candidate in candidateGroupByDigit
+							group candidate by candidate / 81;
+				int cellGroupCount = group.Count();
+				if (cellGroupCount >= 2)
+				{
+					sb.Append("{ ");
+				}
+				foreach (var candidateGroupByCellRow in group)
 				{
 					int cellRow = candidateGroupByCellRow.Key;
 					sb.Append($"r{cellRow + 1}c");
@@ -37,8 +42,15 @@ namespace Sudoku.Solving.Utils
 					{
 						sb.Append($"{cell / 9 % 9 + 1}");
 					}
+
+					sb.Append(separator);
 				}
 
+				sb.RemoveFromEnd(separator.Length);
+				if (cellGroupCount >= 2)
+				{
+					sb.Append(" }");
+				}
 				sb.Append($"({digit + 1}){separator}");
 			}
 
