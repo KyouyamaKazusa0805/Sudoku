@@ -47,7 +47,7 @@ namespace Sudoku.Solving
 		/// the value will be the maximum value among all difficulty
 		/// ratings in solving steps. If the puzzle has not been solved,
 		/// or else the puzzle is solved by other solvers, this value will
-		/// be always 20.0m.
+		/// be always <c>20.0m</c>.
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
@@ -69,7 +69,7 @@ namespace Sudoku.Solving
 		/// the puzzle has not been solved, the value will be the sum of all
 		/// difficulty ratings of steps recorded in <see cref="SolvingSteps"/>.
 		/// However, if the puzzle is solved by other solvers, this value will
-		/// be 0.
+		/// be <c>0</c>.
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
@@ -84,7 +84,7 @@ namespace Sudoku.Solving
 		/// <para>
 		/// When the puzzle is solved, the value will be the difficulty rating
 		/// of the first solving step. If the puzzle has not solved or
-		/// the puzzle is solved by other solvers, this value will be always 0.
+		/// the puzzle is solved by other solvers, this value will be always <c>0</c>.
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
@@ -99,7 +99,7 @@ namespace Sudoku.Solving
 		/// When the puzzle is solved, the value will be the difficulty rating
 		/// of the first step before the first one whose conclusion is
 		/// <see cref="ConclusionType.Assignment"/>. If the puzzle has not solved
-		/// or solved by other solvers, this value will be 20.0m.
+		/// or solved by other solvers, this value will be <c>20.0m</c>.
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
@@ -317,40 +317,50 @@ namespace Sudoku.Solving
 			string separator = new string('-', 10);
 			var sb = new StringBuilder();
 
+			// Print header.
 			sb.AppendLine($"Puzzle: {Puzzle:#}");
 			sb.AppendLine($"Solving tool: {SolverName}");
-			if (HasSolved)
+
+			// Print solving steps.
+			if (!(SolvingSteps is null))
 			{
-				if (!(SolvingSteps is null))
+				sb.AppendLine("Solving steps:");
+				foreach (var info in SolvingSteps)
 				{
-					sb.AppendLine("Solving steps:");
-					foreach (var info in SolvingSteps)
-					{
-						sb.AppendLine($"{$"({info.Difficulty}",5:0.0}) {info}");
-					}
+					sb.AppendLine($"{$"({info.Difficulty}",5:0.0}) {info}");
 				}
-
-				sb.AppendLine(separator);
-				if (!(SolvingStepsGrouped is null))
-				{
-					sb.AppendLine("Technique used:");
-					foreach (var solvingStepsGroup in SolvingStepsGrouped)
-					{
-						sb.AppendLine($"{solvingStepsGroup.Count()} * {solvingStepsGroup.Key}");
-					}
-				}
-
-				sb.AppendLine(separator);
-				sb.AppendLine($"Total solving steps count: {SolvingStepsCount}");
-				sb.AppendLine($"Difficulty total: {TotalDifficulty}");
-				sb.AppendLine($"Puzzle rating: {MaxDifficulty:0.0}/{PearlDifficulty:0.0}/{DiamondDifficulty:0.0}");
 			}
+
+			sb.AppendLine(separator);
+
+			// Print solving step statistics.
+			if (!(SolvingStepsGrouped is null))
+			{
+				sb.AppendLine("Technique used:");
+				foreach (var solvingStepsGroup in SolvingStepsGrouped)
+				{
+					sb.AppendLine($"{solvingStepsGroup.Count()} * {solvingStepsGroup.Key}");
+				}
+			}
+
+			sb.AppendLine(separator);
+
+			// Print detail data.
+			sb.AppendLine($"Total solving steps count: {SolvingStepsCount}");
+			sb.AppendLine($"Difficulty total: {TotalDifficulty}");
+			sb.AppendLine($"Puzzle rating: {MaxDifficulty:0.0}/{PearlDifficulty:0.0}/{DiamondDifficulty:0.0}");
+
+			// Print the solution (if not null).
 			if (!(Solution is null))
 			{
 				sb.AppendLine($"Puzzle solution: {Solution:!}");
 			}
+
+			// Print the elapsed time.
 			sb.AppendLine($"Puzzle has {(HasSolved ? "" : "not ")}been solved.");
 			sb.AppendLine($"Time elapsed: {ElapsedTime:hh':'mm'.'ss'.'fff}");
+
+			// Print the additional information.
 			if (!(Additional is null))
 			{
 				sb.AppendLine(separator);
