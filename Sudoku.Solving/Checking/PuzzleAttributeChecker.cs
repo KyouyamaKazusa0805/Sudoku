@@ -115,5 +115,22 @@ namespace Sudoku.Solving.Checking
 				return false;
 			}
 		}
+
+		/// <summary>
+		/// To check whether the puzzle can be solved using only simple sudoku technique set.
+		/// </summary>
+		/// <param name="this">(extension method main parameter) The puzzle.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		public static bool CanBeSolvedUsingOnlySsts(this Grid @this)
+		{
+			if (!@this.IsUnique(out _))
+			{
+				return false;
+			}
+
+			var solver = new ManualSolver();
+			var (_, _, _, _, level) = solver.Solve(@this);
+			return level <= DifficultyLevels.Advanced;
+		}
 	}
 }
