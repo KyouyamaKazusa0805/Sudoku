@@ -8,7 +8,9 @@ using Sudoku.Solving.Checking;
 using Sudoku.Solving.Utils;
 using BugType1 = Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueInfo;
 using BugType2 = Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType2TechniqueInfo;
+using BugType4 = Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType4TechniqueInfo;
 using BugMultiple = Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveMultipleTrueCandidatesTechniqueInfo;
+using Sudoku.Data.Extensions;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {
@@ -63,6 +65,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					else
 					{
 						CheckMultiple(result, grid, trueCandidates);
+						CheckType4(result, grid, trueCandidates);
 					}
 
 					break;
@@ -74,6 +77,127 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 
 		#region BUG utils
+		/// <summary>
+		/// Check type 4.
+		/// </summary>
+		/// <param name="result">The result.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="trueCandidates">All true candidates.</param>
+		private static void CheckType4(
+			IList<UniquenessTechniqueInfo> result, Grid grid, IReadOnlyList<int> trueCandidates)
+		{
+			// Conjugate pairs should lie on two cells.
+			var candsGroupByCell = from cand in trueCandidates group cand by cand / 9;
+			if (candsGroupByCell.Count() != 2)
+			{
+				return;
+			}
+
+			// Check two cell has same region.
+			var cells = new List<int>();
+			foreach (var candGroupByCell in candsGroupByCell)
+			{
+				cells.Add(candGroupByCell.Key);
+			}
+			if (!CellUtils.IsSameRegion(cells.ElementAt(0), cells.ElementAt(1), out int[] regions))
+			{
+				return;
+			}
+
+			// Check for each region.
+			foreach (int region in regions)
+			{
+				// Add up all digits.
+				var digits = new HashSet<int>();
+				foreach (var candGroupByCell in candsGroupByCell)
+				{
+					foreach (var cand in candGroupByCell)
+					{
+						digits.Add(cand % 9);
+					}
+				}
+
+				// Check whether exists a conjugate pair in this region.
+				for (int conjuagtePairDigit = 0; conjuagtePairDigit < 9; conjuagtePairDigit++)
+				{
+					// Check whether forms a conjugate pair.
+					short mask = grid.GetDigitAppearingMask(conjuagtePairDigit, region);
+					if (mask.CountSet() != 2)
+					{
+						continue;
+					}
+
+					// Check whether the conjuagte pair lies on current two cells.
+					int c1 = RegionUtils.GetCellOffset(region, mask.GetSetBitIndex(1));
+					int c2 = RegionUtils.GetCellOffset(region, mask.GetSetBitIndex(2));
+					if (c1 != cells[0] || c2 != cells[1])
+					{
+						continue;
+					}
+
+					// Check whether all digits contain that digit.
+					if (digits.Contains(conjuagtePairDigit))
+					{
+						continue;
+					}
+
+					// BUG type 4 found.
+					// Now add up all eliminations.
+					var conclusions = new List<Conclusion>();
+					foreach (var candGroupByCell in candsGroupByCell)
+					{
+						int cell = candGroupByCell.Key;
+						short digitMask = 0;
+						foreach (int cand in candGroupByCell)
+						{
+							digitMask |= (short)(1 << cand % 9);
+						}
+
+						// Bitwise not.
+						digitMask = (short)(~digitMask & 511);
+						foreach (int d in digitMask.GetAllSets())
+						{
+							if (conjuagtePairDigit == d || grid.CandidateDoesNotExist(cell, d))
+							{
+								continue;
+							}
+
+							conclusions.Add(
+								new Conclusion(
+									ConclusionType.Elimination, cell * 9 + d));
+						}
+					}
+
+					// Check eliminations.
+					if (conclusions.Count == 0)
+					{
+						continue;
+					}
+
+					// BUG type 4.
+					result.Add(
+						new BugType4(
+							conclusions,
+							views: new[]
+							{
+								new View(
+									cellOffsets: null,
+									candidateOffsets:
+										new List<(int, int)>(from cand in trueCandidates select (0, cand))
+										{
+											(1, c1 * 9 + conjuagtePairDigit),
+											(1, c2 * 9 + conjuagtePairDigit)
+										},
+									regionOffsets: new[] { (0, region) },
+									linkMasks: null)
+							},
+							digits.ToList(),
+							cells,
+							conjugatePair: new ConjugatePair(c1, c2, conjuagtePairDigit)));
+				}
+			}
+		}
+
 		/// <summary>
 		/// Check BUG+n.
 		/// </summary>

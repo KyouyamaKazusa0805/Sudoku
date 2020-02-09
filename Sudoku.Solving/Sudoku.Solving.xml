@@ -1918,6 +1918,14 @@
             Throws when the number of true candidates is naught.
             </exception>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Check type 4.
+            </summary>
+            <param name="result">The result.</param>
+            <param name="grid">The grid.</param>
+            <param name="trueCandidates">All true candidates.</param>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.CheckMultiple(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Check BUG+n.
@@ -1980,6 +1988,48 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType2TechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType4TechniqueInfo">
+            <summary>
+            Provides a usage of bivalue universal grave (BUG) type 4 technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType4TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Solving.ConjugatePair)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="digits">All digits.</param>
+            <param name="cells">All cells.</param>
+            <param name="conjugatePair">The conjugate pair.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType4TechniqueInfo.Digits">
+            <summary>
+            Indicates all digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType4TechniqueInfo.Cells">
+            <summary>
+            Indicates all cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType4TechniqueInfo.ConjugatePair">
+            <summary>
+            Indicates the conjugate pair.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType4TechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType4TechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType4TechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType4TechniqueInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenRectangleTechniqueInfo">

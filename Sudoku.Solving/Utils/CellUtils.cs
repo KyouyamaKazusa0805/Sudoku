@@ -66,9 +66,9 @@ namespace Sudoku.Solving.Utils
 		{
 			var temp = new List<int>(3);
 			var ((r1, c1, b1), (r2, c2, b2)) = (GetRegion(cell1), GetRegion(cell2));
+			if (b1 == b2) temp.Add(b1);
 			if (r1 == r2) temp.Add(r1 + 9);
 			if (c1 == c2) temp.Add(c1 + 18);
-			if (b1 == b2) temp.Add(b1);
 			sameRegions = temp.ToArray();
 			return temp.Count != 0;
 		}
