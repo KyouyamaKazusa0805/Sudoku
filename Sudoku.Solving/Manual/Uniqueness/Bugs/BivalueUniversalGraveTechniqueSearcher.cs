@@ -102,6 +102,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 		#region BUG utils
 		/// <summary>
+		/// Check type 3 (with hidden subsets).
+		/// </summary>
+		/// <param name="result">The result.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="trueCandidates">All true candidates.</param>
+		/// <param name="size">The size.</param>
+		private void CheckType3Hidden(
+			IList<UniquenessTechniqueInfo> result, Grid grid,
+			IReadOnlyList<int> trueCandidates, int size)
+		{
+
+		}
+
+		/// <summary>
 		/// Check type 3 (with naked subsets).
 		/// </summary>
 		/// <param name="result">The result.</param>
@@ -478,20 +492,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					}
 				}
 			}
-		}
-
-		/// <summary>
-		/// Check type 3 (with hidden subsets).
-		/// </summary>
-		/// <param name="result">The result.</param>
-		/// <param name="grid">The grid.</param>
-		/// <param name="trueCandidates">All true candidates.</param>
-		/// <param name="size">The size.</param>
-		private static void CheckType3Hidden(
-			IList<UniquenessTechniqueInfo> result, Grid grid,
-			IReadOnlyList<int> trueCandidates, int size)
-		{
-
 		}
 
 		/// <summary>
