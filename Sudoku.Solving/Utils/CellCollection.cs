@@ -20,8 +20,13 @@ namespace Sudoku.Solving.Utils
 		public static string ToString(IEnumerable<int> cellOffsets)
 		{
 			const string separator = ", ";
+
 			var sb = new StringBuilder();
-			var group = from cell in cellOffsets group cell by cell / 9;
+			var group = from cell in
+							from cell in cellOffsets
+							orderby cell
+							select cell
+						group cell by cell / 9;
 			int cellGroupCount = group.Count();
 			if (cellGroupCount >= 2)
 			{

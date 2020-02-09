@@ -48,16 +48,23 @@ namespace Sudoku.Solving.Manual
 					}
 				}
 
+				// Get all region maps.
+				var regionMaps = new GridMap[27];
+				for (int i = 0; i < 27; i++)
+				{
+					regionMaps[i] = GridMap.CreateInstance(i);
+				}
+
 				// Solve the puzzle.
 				try
 				{
 					return CheckMinimumDifficultyStrictly
 						? SolveWithStrictDifficultyRating(
 							grid, grid.Clone(), new List<TechniqueInfo>(), solution,
-							intersectionTable)
+							intersectionTable, regionMaps)
 						: SolveNaively(
 							grid, grid.Clone(), new List<TechniqueInfo>(), solution,
-							intersectionTable);
+							intersectionTable, regionMaps);
 				}
 				catch (WrongHandlingException ex)
 				{
@@ -92,13 +99,14 @@ namespace Sudoku.Solving.Manual
 		/// <param name="steps">All steps found.</param>
 		/// <param name="solution">The solution.</param>
 		/// <param name="intersection">The intersection table.</param>
+		/// <param name="regionMaps">All region maps.</param>
 		/// <returns>The analysis result.</returns>
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the solver cannot solved due to wrong handling.
 		/// </exception>
 		private AnalysisResult SolveWithStrictDifficultyRating(
 			Grid grid, Grid cloneation, List<TechniqueInfo> steps,
-			Grid solution, Intersection[,] intersection)
+			Grid solution, Intersection[,] intersection, GridMap[] regionMaps)
 		{
 			var searchers = EnableBruteForce
 				? new TechniqueSearcher[][]
@@ -114,7 +122,7 @@ namespace Sudoku.Solving.Manual
 						new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 						new TwoStrongLinksTechniqueSearcher(),
 						new AlmostLockedCandidatesTechniqueSearcher(intersection),
-						new BivalueUniversalGraveTechniqueSearcher(),
+						new BivalueUniversalGraveTechniqueSearcher(regionMaps),
 					},
 					new[] { new BruteForceTechniqueSearcher(solution) }
 				}
@@ -131,7 +139,7 @@ namespace Sudoku.Solving.Manual
 						new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 						new TwoStrongLinksTechniqueSearcher(),
 						new AlmostLockedCandidatesTechniqueSearcher(intersection),
-						new BivalueUniversalGraveTechniqueSearcher(),
+						new BivalueUniversalGraveTechniqueSearcher(regionMaps),
 					}
 				};
 
@@ -216,13 +224,14 @@ namespace Sudoku.Solving.Manual
 		/// <param name="steps">All steps found.</param>
 		/// <param name="solution">The solution.</param>
 		/// <param name="intersection">Intersection table.</param>
+		/// <param name="regionMaps">All region maps.</param>
 		/// <returns>The analysis result.</returns>
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the solver cannot solved due to wrong handling.
 		/// </exception>
 		private AnalysisResult SolveNaively(
 			Grid grid, Grid cloneation, List<TechniqueInfo> steps,
-			Grid solution, Intersection[,] intersection)
+			Grid solution, Intersection[,] intersection, GridMap[] regionMaps)
 		{
 			var searchers = EnableBruteForce
 				? new TechniqueSearcher[]
@@ -236,7 +245,7 @@ namespace Sudoku.Solving.Manual
 					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 					new TwoStrongLinksTechniqueSearcher(),
 					new AlmostLockedCandidatesTechniqueSearcher(intersection),
-					new BivalueUniversalGraveTechniqueSearcher(),
+					new BivalueUniversalGraveTechniqueSearcher(regionMaps),
 					new BruteForceTechniqueSearcher(solution),
 				}
 				: new TechniqueSearcher[] // Does not have brute force.
@@ -250,7 +259,7 @@ namespace Sudoku.Solving.Manual
 					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 					new TwoStrongLinksTechniqueSearcher(),
 					new AlmostLockedCandidatesTechniqueSearcher(intersection),
-					new BivalueUniversalGraveTechniqueSearcher(),
+					new BivalueUniversalGraveTechniqueSearcher(regionMaps),
 				};
 
 			var stopwatch = new Stopwatch();

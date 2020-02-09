@@ -10,6 +10,7 @@ using Sudoku.Solving.Utils;
 using BugMultiple = Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveMultipleTrueCandidatesTechniqueInfo;
 using BugType1 = Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueInfo;
 using BugType2 = Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType2TechniqueInfo;
+using BugType3 = Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType3TechniqueInfo;
 using BugType4 = Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType4TechniqueInfo;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs
@@ -19,6 +20,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// </summary>
 	public sealed class BivalueUniversalGraveTechniqueSearcher : UniquenessTechniqueSearcher
 	{
+		/// <summary>
+		/// All region maps.
+		/// </summary>
+		private readonly GridMap[] _regionMaps;
+
+
+		/// <summary>
+		/// Initializes an instance with the region maps.
+		/// </summary>
+		/// <param name="regionMaps"></param>
+		public BivalueUniversalGraveTechniqueSearcher(GridMap[] regionMaps) =>
+			_regionMaps = regionMaps;
+
+
 		/// <inheritdoc/>
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the number of true candidates is naught.
@@ -66,6 +81,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					{
 						CheckMultiple(result, grid, trueCandidates);
 						CheckType4(result, grid, trueCandidates);
+						for (int size = 2; size <= 5; size++)
+						{
+							CheckType3Naked(result, grid, trueCandidates, size);
+							if (size != 2)
+							{
+								// BUG type 3 with a hidden pair does not exist.
+								CheckType3Hidden(result, grid, trueCandidates, size);
+							}
+						}
 					}
 
 					break;
@@ -77,6 +101,399 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 
 		#region BUG utils
+		/// <summary>
+		/// Check type 3 (with naked subsets).
+		/// </summary>
+		/// <param name="result">The result.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="trueCandidates">All true candidates.</param>
+		/// <param name="size">The size.</param>
+		private void CheckType3Naked(
+			IList<UniquenessTechniqueInfo> result, Grid grid,
+			IReadOnlyList<int> trueCandidates, int size)
+		{
+			// Check whether all true candidates lie on a same region.
+			var candsGroupByCell = from cand in trueCandidates group cand by cand / 9;
+
+			var trueCandidateCells = from candGroupByCell in candsGroupByCell
+									 select candGroupByCell.Key;
+			int trueCandidateCellsCount = 0;
+			var map = default(GridMap);
+			foreach (int cell in trueCandidateCells)
+			{
+				if (trueCandidateCellsCount++ == 0)
+				{
+					map = new GridMap(cell);
+				}
+				else
+				{
+					map &= new GridMap(cell);
+				}
+			}
+			if (map.Count != 9)
+			{
+				return;
+			}
+
+			foreach (var candGroupByCell in candsGroupByCell)
+			{
+				// Get the region.
+				int region = default;
+				for (int i = 0; i < 27; i++)
+				{
+					if (_regionMaps[i] == map)
+					{
+						region = i;
+						break;
+					}
+				}
+
+				// Ensures that the last cells may form a naked subset.
+				int[] cells = GridMap.GetCellsIn(region);
+				if (cells.Count(c => grid.GetCellStatus(c) == CellStatus.Empty)
+					- trueCandidateCellsCount <= size - 1)
+				{
+					continue;
+				}
+
+				short maskInTrueCandidateCells = 0;
+				foreach (int cand in trueCandidates)
+				{
+					maskInTrueCandidateCells |= (short)(1 << cand % 9);
+				}
+
+				for (int i1 = 0; i1 < 11 - size; i1++)
+				{
+					int c1 = RegionUtils.GetCellOffset(region, i1);
+					short mask1 = grid.GetCandidatesReversal(c1);
+					if (size == 2)
+					{
+						// Check naked pair.
+						short mask = (short)(mask1 | maskInTrueCandidateCells);
+						if (mask.CountSet() != 2)
+						{
+							continue;
+						}
+
+						// Naked pair found.
+						var digits = mask.GetAllSets();
+
+						// Record all eliminations.
+						var conclusions = new List<Conclusion>();
+						foreach (int cell in cells)
+						{
+							if (trueCandidateCells.Contains(cell) || c1 == cell)
+							{
+								continue;
+							}
+
+							foreach (int digit in digits)
+							{
+								if (grid.CandidateExists(cell, digit))
+								{
+									conclusions.Add(
+										new Conclusion(
+											ConclusionType.Elimination, cell * 9 + digit));
+								}
+							}
+						}
+
+						if (conclusions.Count == 0)
+						{
+							continue;
+						}
+
+						// Record all highlight candidates.
+						var candidateOffsets = new List<(int, int)>();
+						foreach (int cand in candGroupByCell)
+						{
+							candidateOffsets.Add((0, cand));
+						}
+						var digitsInCell1 = grid.GetCandidatesReversal(c1).GetAllSets();
+						foreach (int digit in digitsInCell1)
+						{
+							candidateOffsets.Add((1, c1 * 9 + digit));
+						}
+
+						// BUG type 3 (with naked pair).
+						result.Add(
+							new BugType3(
+								conclusions,
+								views: new[]
+								{
+									new View(
+										cellOffsets: null,
+										candidateOffsets,
+										regionOffsets: new[] { (0, region) },
+										linkMasks: null)
+								},
+								trueCandidates,
+								digits: digits.ToArray(),
+								cells: new[] { c1 },
+								isNaked: true));
+					}
+					else // size > 2
+					{
+						for (int i2 = i1 + 1; i2 < 12 - size; i2++)
+						{
+							int c2 = RegionUtils.GetCellOffset(region, i2);
+							short mask2 = grid.GetCandidatesReversal(c2);
+							if (size == 3)
+							{
+								// Check naked triple.
+								short mask = (short)((short)(mask1 | mask2) | maskInTrueCandidateCells);
+								if (mask.CountSet() != 3)
+								{
+									continue;
+								}
+
+								// Naked triple found.
+								var digits = mask.GetAllSets();
+
+								// Record all eliminations.
+								var conclusions = new List<Conclusion>();
+								foreach (int cell in cells)
+								{
+									if (trueCandidateCells.Contains(cell) || c1 == cell || c2 == cell)
+									{
+										continue;
+									}
+
+									foreach (int digit in digits)
+									{
+										if (grid.CandidateExists(cell, digit))
+										{
+											conclusions.Add(
+												new Conclusion(
+													ConclusionType.Elimination, cell * 9 + digit));
+										}
+									}
+								}
+
+								if (conclusions.Count == 0)
+								{
+									continue;
+								}
+
+								// Record all highlight candidates.
+								var candidateOffsets = new List<(int, int)>();
+								foreach (int cand in candGroupByCell)
+								{
+									candidateOffsets.Add((0, cand));
+								}
+								foreach (int digit in grid.GetCandidatesReversal(c1).GetAllSets())
+								{
+									candidateOffsets.Add((1, c1 * 9 + digit));
+								}
+								foreach (int digit in grid.GetCandidatesReversal(c2).GetAllSets())
+								{
+									candidateOffsets.Add((1, c2 * 9 + digit));
+								}
+
+								// BUG type 3 (with naked triple).
+								result.Add(
+									new BugType3(
+										conclusions,
+										views: new[]
+										{
+											new View(
+												cellOffsets: null,
+												candidateOffsets,
+												regionOffsets: new[] { (0, region) },
+												linkMasks: null)
+										},
+										trueCandidates,
+										digits: digits.ToArray(),
+										cells: new[] { c1, c2 },
+										isNaked: true));
+							}
+							else // size > 3
+							{
+								for (int i3 = i2 + 1; i3 < 13 - size; i3++)
+								{
+									int c3 = RegionUtils.GetCellOffset(region, i3);
+									short mask3 = grid.GetCandidatesReversal(c3);
+									if (size == 4)
+									{
+										// Check naked quadruple.
+										short mask = (short)((short)((short)(mask1 | mask2) | mask3) | maskInTrueCandidateCells);
+										if (mask.CountSet() != 4)
+										{
+											continue;
+										}
+
+										// Naked quadruple found.
+										var digits = mask.GetAllSets();
+
+										// Record all eliminations.
+										var conclusions = new List<Conclusion>();
+										foreach (int cell in cells)
+										{
+											if (trueCandidateCells.Contains(cell)
+												|| c1 == cell || c2 == cell || c3 == cell)
+											{
+												continue;
+											}
+
+											foreach (int digit in digits)
+											{
+												if (grid.CandidateExists(cell, digit))
+												{
+													conclusions.Add(
+														new Conclusion(
+															ConclusionType.Elimination, cell * 9 + digit));
+												}
+											}
+										}
+
+										if (conclusions.Count == 0)
+										{
+											continue;
+										}
+
+										// Record all highlight candidates.
+										var candidateOffsets = new List<(int, int)>();
+										foreach (int cand in candGroupByCell)
+										{
+											candidateOffsets.Add((0, cand));
+										}
+										foreach (int digit in grid.GetCandidatesReversal(c1).GetAllSets())
+										{
+											candidateOffsets.Add((1, c1 * 9 + digit));
+										}
+										foreach (int digit in grid.GetCandidatesReversal(c2).GetAllSets())
+										{
+											candidateOffsets.Add((1, c2 * 9 + digit));
+										}
+										foreach (int digit in grid.GetCandidatesReversal(c3).GetAllSets())
+										{
+											candidateOffsets.Add((1, c3 * 9 + digit));
+										}
+
+										// BUG type 3 (with naked quadruple).
+										result.Add(
+											new BugType3(
+												conclusions,
+												views: new[]
+												{
+													new View(
+														cellOffsets: null,
+														candidateOffsets,
+														regionOffsets: new[] { (0, region) },
+														linkMasks: null)
+												},
+												trueCandidates,
+												digits: digits.ToArray(),
+												cells: new[] { c1, c2, c3 },
+												isNaked: true));
+									}
+									else // size == 5
+									{
+										for (int i4 = i3 + 1; i4 < 9; i4++)
+										{
+											int c4 = RegionUtils.GetCellOffset(region, i4);
+											short mask4 = grid.GetCandidatesReversal(c4);
+
+											// Check naked quintuple.
+											short mask = (short)((short)((short)((short)
+												(mask1 | mask2) | mask3) | mask4) | maskInTrueCandidateCells);
+											if (mask.CountSet() != 5)
+											{
+												continue;
+											}
+
+											// Naked quintuple found.
+											var digits = mask.GetAllSets();
+
+											// Record all eliminations.
+											var conclusions = new List<Conclusion>();
+											foreach (int cell in cells)
+											{
+												if (trueCandidateCells.Contains(cell)
+													|| c1 == cell || c2 == cell || c3 == cell || c4 == cell)
+												{
+													continue;
+												}
+
+												foreach (int digit in digits)
+												{
+													if (grid.CandidateExists(cell, digit))
+													{
+														conclusions.Add(
+															new Conclusion(
+																ConclusionType.Elimination, cell * 9 + digit));
+													}
+												}
+											}
+
+											if (conclusions.Count == 0)
+											{
+												continue;
+											}
+
+											// Record all highlight candidates.
+											var candidateOffsets = new List<(int, int)>();
+											foreach (int cand in candGroupByCell)
+											{
+												candidateOffsets.Add((0, cand));
+											}
+											foreach (int digit in grid.GetCandidatesReversal(c1).GetAllSets())
+											{
+												candidateOffsets.Add((1, c1 * 9 + digit));
+											}
+											foreach (int digit in grid.GetCandidatesReversal(c2).GetAllSets())
+											{
+												candidateOffsets.Add((1, c2 * 9 + digit));
+											}
+											foreach (int digit in grid.GetCandidatesReversal(c3).GetAllSets())
+											{
+												candidateOffsets.Add((1, c3 * 9 + digit));
+											}
+											foreach (int digit in grid.GetCandidatesReversal(c4).GetAllSets())
+											{
+												candidateOffsets.Add((1, c4 * 9 + digit));
+											}
+
+											// BUG type 3 (with naked quintuple).
+											result.Add(
+												new BugType3(
+													conclusions,
+													views: new[]
+													{
+														new View(
+															cellOffsets: null,
+															candidateOffsets,
+															regionOffsets: new[] { (0, region) },
+															linkMasks: null)
+													},
+													trueCandidates,
+													digits: digits.ToArray(),
+													cells: new[] { c1, c2, c3, c4 },
+													isNaked: true));
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Check type 3 (with hidden subsets).
+		/// </summary>
+		/// <param name="result">The result.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="trueCandidates">All true candidates.</param>
+		/// <param name="size">The size.</param>
+		private static void CheckType3Hidden(
+			IList<UniquenessTechniqueInfo> result, Grid grid,
+			IReadOnlyList<int> trueCandidates, int size)
+		{
+
+		}
+
 		/// <summary>
 		/// Check type 4.
 		/// </summary>
