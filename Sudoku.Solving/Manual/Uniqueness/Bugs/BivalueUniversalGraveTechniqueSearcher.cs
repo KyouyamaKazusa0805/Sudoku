@@ -262,40 +262,45 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					}
 				}
 
-				if (map.Count != 0)
+				if (map.Count == 0)
 				{
-					// BUG + n found.
-					// Check eliminations.
-					var conclusions = new List<Conclusion>();
-					foreach (int candidate in map.Offsets)
-					{
-						if (grid.CandidateExists(candidate / 9, candidate % 9))
-						{
-							conclusions.Add(
-								new Conclusion(
-									ConclusionType.Elimination, candidate));
-						}
-					}
+					return;
+				}
 
-					if (conclusions.Count != 0)
+
+				// BUG + n found.
+				// Check eliminations.
+				var conclusions = new List<Conclusion>();
+				foreach (int candidate in map.Offsets)
+				{
+					if (grid.CandidateExists(candidate / 9, candidate % 9))
 					{
-						// BUG + n.
-						result.Add(
-							new BugMultiple(
-								conclusions,
-								views: new[]
-								{
-									new View(
-										cellOffsets: null,
-										candidateOffsets:
-											new List<(int, int)>(
-												from cand in trueCandidates select (0, cand)),
-										regionOffsets: null,
-										linkMasks: null)
-								},
-								candidates: trueCandidates));
+						conclusions.Add(
+							new Conclusion(
+								ConclusionType.Elimination, candidate));
 					}
 				}
+
+				if (conclusions.Count == 0)
+				{
+					return;
+				}
+
+				// BUG + n.
+				result.Add(
+					new BugMultiple(
+						conclusions,
+						views: new[]
+						{
+							new View(
+								cellOffsets: null,
+								candidateOffsets:
+									new List<(int, int)>(
+										from cand in trueCandidates select (0, cand)),
+								regionOffsets: null,
+								linkMasks: null)
+						},
+						candidates: trueCandidates));
 			}
 			else
 			{
@@ -330,24 +335,26 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						}
 					}
 
-					if (conclusions.Count != 0)
+					if (conclusions.Count == 0)
 					{
-						// BUG type 2 (or BUG + n, but special).
-						result.Add(
-							new BugMultiple(
-								conclusions,
-								views: new[]
-								{
-									new View(
-										cellOffsets: null,
-										candidateOffsets:
-											new List<(int, int)>(
-												from cand in trueCandidates select (0, cand)),
-										regionOffsets: null,
-										linkMasks: null)
-								},
-								candidates: trueCandidates));
+						return;
 					}
+
+					// BUG type 2 (or BUG + n, but special).
+					result.Add(
+						new BugMultiple(
+							conclusions,
+							views: new[]
+							{
+								new View(
+									cellOffsets: null,
+									candidateOffsets:
+										new List<(int, int)>(
+											from cand in trueCandidates select (0, cand)),
+									regionOffsets: null,
+									linkMasks: null)
+							},
+							candidates: trueCandidates));
 				}
 			}
 		}
@@ -375,42 +382,46 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				}
 			}
 
-			if (map.Count != 0)
+			if (map.Count == 0)
 			{
-				// BUG type 2 found.
-				// Check eliminations.
-				var conclusions = new List<Conclusion>();
-				int digit = trueCandidates[0] % 9;
-				foreach (int cell in map.Offsets)
-				{
-					if (grid.CandidateExists(cell, digit))
-					{
-						conclusions.Add(
-							new Conclusion(
-								ConclusionType.Elimination, cell * 9 + digit));
-					}
-				}
+				return;
+			}
 
-				if (conclusions.Count != 0)
+			// BUG type 2 found.
+			// Check eliminations.
+			var conclusions = new List<Conclusion>();
+			int digit = trueCandidates[0] % 9;
+			foreach (int cell in map.Offsets)
+			{
+				if (grid.CandidateExists(cell, digit))
 				{
-					// BUG type 2.
-					result.Add(
-						new BugType2(
-							conclusions,
-							views: new[]
-							{
-								new View(
-									cellOffsets: null,
-									candidateOffsets:
-										new List<(int, int)>(
-											from cand in trueCandidates select (0, cand)),
-									regionOffsets: null,
-									linkMasks: null)
-							},
-							digit,
-							cells: trueCandidates));
+					conclusions.Add(
+						new Conclusion(
+							ConclusionType.Elimination, cell * 9 + digit));
 				}
 			}
+
+			if (conclusions.Count == 0)
+			{
+				return;
+			}
+
+			// BUG type 2.
+			result.Add(
+				new BugType2(
+					conclusions,
+					views: new[]
+					{
+						new View(
+							cellOffsets: null,
+							candidateOffsets:
+								new List<(int, int)>(
+									from cand in trueCandidates select (0, cand)),
+							regionOffsets: null,
+							linkMasks: null)
+					},
+					digit,
+					cells: trueCandidates));
 		}
 
 		/// <summary>
