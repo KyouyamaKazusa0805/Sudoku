@@ -322,7 +322,7 @@ namespace Sudoku.Solving
 			sb.AppendLine($"Solving tool: {SolverName}");
 
 			// Print solving steps.
-			if (!(SolvingSteps is null))
+			if (!(SolvingSteps is null) && SolvingSteps.Count != 0)
 			{
 				sb.AppendLine("Solving steps:");
 				foreach (var info in SolvingSteps)
@@ -334,7 +334,7 @@ namespace Sudoku.Solving
 			sb.AppendLine(separator);
 
 			// Print solving step statistics.
-			if (!(SolvingStepsGrouped is null))
+			if (!(SolvingStepsGrouped is null) && SolvingStepsGrouped.Count() != 0)
 			{
 				sb.AppendLine("Technique used:");
 				foreach (var solvingStepsGroup in SolvingStepsGrouped)
