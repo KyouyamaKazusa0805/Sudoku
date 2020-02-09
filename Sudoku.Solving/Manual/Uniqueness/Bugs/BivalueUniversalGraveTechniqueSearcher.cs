@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
 using Sudoku.Drawing;
 using Sudoku.Runtime;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Utils;
+using BugMultiple = Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveMultipleTrueCandidatesTechniqueInfo;
 using BugType1 = Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueInfo;
 using BugType2 = Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType2TechniqueInfo;
 using BugType4 = Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveType4TechniqueInfo;
-using BugMultiple = Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveMultipleTrueCandidatesTechniqueInfo;
-using Sudoku.Data.Extensions;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {
@@ -111,7 +111,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				var digits = new HashSet<int>();
 				foreach (var candGroupByCell in candsGroupByCell)
 				{
-					foreach (var cand in candGroupByCell)
+					foreach (int cand in candGroupByCell)
 					{
 						digits.Add(cand % 9);
 					}
