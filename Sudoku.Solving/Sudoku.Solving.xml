@@ -669,6 +669,13 @@
             <param name="this">(extension method main parameter) The puzzle to check.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.CanBeSolvedUsingOnlySsts(Sudoku.Data.Meta.Grid)">
+            <summary>
+            To check whether the puzzle can be solved using only simple sudoku technique set.
+            </summary>
+            <param name="this">(extension method main parameter) The puzzle.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Conclusion">
             <summary>
             Encapsulates a conclusion representation while solving in logic.
@@ -2876,6 +2883,12 @@
         </member>
         <member name="M:Sudoku.Solving.TechniqueInfo.ToString">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueInfo.ToSimpleString">
+            <summary>
+            Returns a string that only contains the name and the conclusions.
+            </summary>
+            <returns>The string instance.</returns>
         </member>
         <member name="T:Sudoku.Solving.TechniqueSearcher">
             <summary>
