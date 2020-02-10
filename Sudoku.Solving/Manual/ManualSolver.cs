@@ -5,10 +5,10 @@ using System.Linq;
 using Sudoku.Data.Meta;
 using Sudoku.Runtime;
 using Sudoku.Solving.Checking;
-using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.Fishes.Basic;
 using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.LastResorts;
+using Sudoku.Solving.Manual.SingleDigitPatterns;
 using Sudoku.Solving.Manual.Singles;
 using Sudoku.Solving.Manual.Subsets;
 using Sudoku.Solving.Manual.Uniqueness.Bugs;
@@ -22,7 +22,6 @@ namespace Sudoku.Solving.Manual
 	/// <summary>
 	/// Provides a solver that use logical methods to solve a specified sudoku puzzle.
 	/// </summary>
-	[DebuggerStepThrough]
 	public sealed partial class ManualSolver : Solver
 	{
 		/// <inheritdoc/>
@@ -121,6 +120,7 @@ namespace Sudoku.Solving.Manual
 						new IrregularWingTechniqueSearcher(),
 						new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 						new TwoStrongLinksTechniqueSearcher(),
+						new EmptyRectangleTechniqueSearcher(regionMaps),
 						new AlmostLockedCandidatesTechniqueSearcher(intersection),
 						new BivalueUniversalGraveTechniqueSearcher(regionMaps),
 					},
@@ -138,6 +138,7 @@ namespace Sudoku.Solving.Manual
 						new IrregularWingTechniqueSearcher(),
 						new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 						new TwoStrongLinksTechniqueSearcher(),
+						new EmptyRectangleTechniqueSearcher(regionMaps),
 						new AlmostLockedCandidatesTechniqueSearcher(intersection),
 						new BivalueUniversalGraveTechniqueSearcher(regionMaps),
 					}
@@ -244,6 +245,7 @@ namespace Sudoku.Solving.Manual
 					new IrregularWingTechniqueSearcher(),
 					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 					new TwoStrongLinksTechniqueSearcher(),
+					new EmptyRectangleTechniqueSearcher(regionMaps),
 					new AlmostLockedCandidatesTechniqueSearcher(intersection),
 					new BivalueUniversalGraveTechniqueSearcher(regionMaps),
 					new BruteForceTechniqueSearcher(solution),
@@ -258,6 +260,7 @@ namespace Sudoku.Solving.Manual
 					new IrregularWingTechniqueSearcher(),
 					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 					new TwoStrongLinksTechniqueSearcher(),
+					new EmptyRectangleTechniqueSearcher(regionMaps),
 					new AlmostLockedCandidatesTechniqueSearcher(intersection),
 					new BivalueUniversalGraveTechniqueSearcher(regionMaps),
 				};

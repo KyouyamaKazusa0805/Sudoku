@@ -93,6 +93,66 @@ namespace Sudoku.Data.Meta
 
 
 		/// <summary>
+		/// Indicates the mask of block.
+		/// </summary>
+		public readonly short BlockMask
+		{
+			get
+			{
+				short result = 0;
+				for (int i = 0; i < 9; i++)
+				{
+					if (this & CreateInstance(i))
+					{
+						result |= (short)(1 << i);
+					}
+				}
+
+				return result;
+			}
+		}
+
+		/// <summary>
+		/// Indicates the mask of row.
+		/// </summary>
+		public readonly short RowMask
+		{
+			get
+			{
+				short result = 0;
+				for (int i = 9; i < 18; i++)
+				{
+					if (this & CreateInstance(i))
+					{
+						result |= (short)(1 << i);
+					}
+				}
+
+				return result;
+			}
+		}
+
+		/// <summary>
+		/// Indicates the mask of column.
+		/// </summary>
+		public readonly short ColumnMask
+		{
+			get
+			{
+				short result = 0;
+				for (int i = 18; i < 27; i++)
+				{
+					if (this & CreateInstance(i))
+					{
+						result |= (short)(1 << i);
+					}
+				}
+
+				return result;
+			}
+		}
+
+		/// <summary>
 		/// Indicates the total number of cells where the corresponding
 		/// value are set <see langword="true"/>.
 		/// </summary>
@@ -350,7 +410,7 @@ namespace Sudoku.Data.Meta
 		/// </summary>
 		/// <param name="map">The grid map.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		public static bool operator true(GridMap map) => map._low != 0 || map._high != 0;
+		public static bool operator true(GridMap map) => !(map._low == 0 && map._high == 0);
 
 		/// <summary>
 		/// Check whether the specified grid map has no <see langword="true"/> bits.
@@ -366,7 +426,7 @@ namespace Sudoku.Data.Meta
 		/// <param name="map">The grid map.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
 		/// <seealso cref="operator false(GridMap)"/>.
-		public static bool operator !(GridMap map) => !(map._low != 0 || map._high != 0);
+		public static bool operator !(GridMap map) => map._low == 0 && map._high == 0;
 
 		/// <summary>
 		/// Indicates whether two instances have a same value.

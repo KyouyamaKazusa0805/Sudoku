@@ -1102,6 +1102,21 @@
             <param name="high">Higher 40 bits.</param>
             <param name="low">Lower 41 bits.</param>
         </member>
+        <member name="P:Sudoku.Data.Meta.GridMap.BlockMask">
+            <summary>
+            Indicates the mask of block.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Meta.GridMap.RowMask">
+            <summary>
+            Indicates the mask of row.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Meta.GridMap.ColumnMask">
+            <summary>
+            Indicates the mask of column.
+            </summary>
+        </member>
         <member name="P:Sudoku.Data.Meta.GridMap.Count">
             <summary>
             Indicates the total number of cells where the corresponding

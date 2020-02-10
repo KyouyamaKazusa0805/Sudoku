@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
-namespace Sudoku.Solving.Manual.Chaining
+namespace Sudoku.Solving.Manual.SingleDigitPatterns
 {
 	/// <summary>
 	/// Provides a usage of two strong links technique.
 	/// </summary>
-	public sealed class TwoStrongLinksTechniqueInfo : TechniqueInfo
+	public sealed class TwoStrongLinksTechniqueInfo : SingleDigitPatternTechniqueInfo
 	{
 		/// <summary>
 		/// Initializes an instance with the specified information.
@@ -21,14 +21,9 @@ namespace Sudoku.Solving.Manual.Chaining
 		public TwoStrongLinksTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			int digit, int baseRegion, int targetRegion)
-			: base(conclusions, views) =>
+			: base(conclusions, views, digit) =>
 			(Digit, BaseRegion, TargetRegion) = (digit, baseRegion, targetRegion);
 
-
-		/// <summary>
-		/// Indicates the digit.
-		/// </summary>
-		public int Digit { get; }
 
 		/// <summary>
 		/// Indicates the base region.

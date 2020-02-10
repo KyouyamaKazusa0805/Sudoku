@@ -89,7 +89,6 @@ namespace Sudoku.Solving.Extensions
 			for (int i = 0; i < 9; i++)
 			{
 				ref var map = ref result[i];
-				map = new GridMap();
 
 				for (int cell = 0; cell < 81; cell++)
 				{

@@ -5,12 +5,12 @@ using Sudoku.Data.Meta;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
-namespace Sudoku.Solving.Manual.Chaining
+namespace Sudoku.Solving.Manual.SingleDigitPatterns
 {
 	/// <summary>
 	/// Encapsulates a two strong links technique searcher.
 	/// </summary>
-	public sealed class TwoStrongLinksTechniqueSearcher : TechniqueSearcher
+	public sealed class TwoStrongLinksTechniqueSearcher : SingleDigitPatternTechniqueSearcher
 	{
 		/// <inheritdoc/>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
