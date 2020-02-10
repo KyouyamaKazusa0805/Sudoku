@@ -8,7 +8,7 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// <summary>
 	/// Provides a usage of almost locked candidates (ALC) technique.
 	/// </summary>
-	public sealed class AlmostLockedCandidatesTechniqueInfo : AlmostSubsetTechniqueInfo
+	public sealed class AlmostLockedCandidatesTechniqueInfo : TechniqueInfo
 	{
 		/// <summary>
 		/// Initializes an instance with the specified information.
