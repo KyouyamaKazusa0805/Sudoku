@@ -50,7 +50,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		public override string Name => "Bivalue Universal Grave (Type 3)";
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 5.5m + Digits.Count * .1m + (IsNaked ? 0 : .1m);
+		public override decimal Difficulty => 5.6m + Digits.Count * .1m + (IsNaked ? 0 : .1m);
 
 		/// <inheritdoc/>
 		public override DifficultyLevels DifficultyLevel => DifficultyLevels.VeryHard;
