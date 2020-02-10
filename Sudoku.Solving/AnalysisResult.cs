@@ -327,11 +327,11 @@ namespace Sudoku.Solving
 				sb.AppendLine("Solving steps:");
 				foreach (var info in SolvingSteps)
 				{
-					sb.AppendLine($"{$"({info.Difficulty}",5:0.0}) {info}");
+					sb.AppendLine($"{$"({info.Difficulty}",5:0.0}) {info.ToSimpleString()}");
 				}
-			}
 
-			sb.AppendLine(separator);
+				sb.AppendLine(separator);
+			}
 
 			// Print solving step statistics.
 			if (!(SolvingStepsGrouped is null) && SolvingStepsGrouped.Count() != 0)
@@ -341,9 +341,9 @@ namespace Sudoku.Solving
 				{
 					sb.AppendLine($"{solvingStepsGroup.Count()} * {solvingStepsGroup.Key}");
 				}
-			}
 
-			sb.AppendLine(separator);
+				sb.AppendLine(separator);
+			}
 
 			// Print detail data.
 			sb.AppendLine($"Total solving steps count: {SolvingStepsCount}");
