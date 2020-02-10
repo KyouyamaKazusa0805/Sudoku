@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
@@ -108,6 +109,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
 		/// <param name="size">The size.</param>
+		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 		private void CheckType3Hidden(
 			IList<UniquenessTechniqueInfo> result, Grid grid,
 			IReadOnlyList<int> trueCandidates, int size)
