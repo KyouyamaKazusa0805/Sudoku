@@ -2,6 +2,7 @@
 using Sudoku.Data.Meta;
 using Sudoku.Diagnostics.CodeAnalysis;
 using Sudoku.Drawing;
+using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving
 {
@@ -108,5 +109,11 @@ namespace Sudoku.Solving
 
 		/// <inheritdoc/>
 		public abstract override string ToString();
+
+		/// <summary>
+		/// Returns a string that only contains the name and the conclusions.
+		/// </summary>
+		/// <returns>The string instance.</returns>
+		public virtual string ToSimpleString() => $"{Name} => {ConclusionCollection.ToString(Conclusions)}";
 	}
 }
