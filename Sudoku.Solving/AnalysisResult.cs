@@ -13,7 +13,7 @@ namespace Sudoku.Solving
 	/// <summary>
 	/// Provides an analysis result after a puzzle solved.
 	/// </summary>
-	public sealed class AnalysisResult : IEnumerable<TechniqueInfo>
+	public sealed class AnalysisResult : IEnumerable<TechniqueInfo>, IFormattable
 	{
 		/// <summary>
 		/// Initializes an instance with some information.
@@ -312,8 +312,24 @@ namespace Sudoku.Solving
 			(SolvingSteps ?? Array.Empty<TechniqueInfo>()).GetEnumerator();
 
 		/// <inheritdoc/>
-		public override string ToString()
+		public override string ToString() => ToString(null, null);
+
+		/// <summary>
+		/// Returns a string that represents the current object with a specified format.
+		/// </summary>
+		/// <param name="format">The format.</param>
+		/// <returns>The string instance.</returns>
+		public string ToString(string format) => ToString(format, null);
+
+		/// <inheritdoc/>
+		public string ToString(string? format, IFormatProvider? formatProvider)
 		{
+			if (formatProvider?.GetFormat(GetType()) is ICustomFormatter customFormatter)
+			{
+				return customFormatter.Format(format, this, formatProvider);
+			}
+
+			string? formatLower = format?.ToLower();
 			string separator = new string('-', 10);
 			var sb = new StringBuilder();
 
@@ -327,7 +343,8 @@ namespace Sudoku.Solving
 				sb.AppendLine("Solving steps:");
 				foreach (var info in SolvingSteps)
 				{
-					sb.AppendLine($"{$"({info.Difficulty}",5:0.0}) {info.ToSimpleString()}");
+					string infoStr = formatLower?.Contains('s') ?? false ? info.ToSimpleString() : info.ToString();
+					sb.AppendLine($"{$"({info.Difficulty}",5:0.0}) {infoStr}");
 				}
 
 				sb.AppendLine(separator);

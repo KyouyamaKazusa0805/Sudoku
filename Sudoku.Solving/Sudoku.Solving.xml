@@ -220,6 +220,16 @@
         <member name="M:Sudoku.Solving.AnalysisResult.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.ToString(System.String)">
+            <summary>
+            Returns a string that represents the current object with a specified format.
+            </summary>
+            <param name="format">The format.</param>
+            <returns>The string instance.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.AnalysisResult.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>

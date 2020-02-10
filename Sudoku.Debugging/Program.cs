@@ -24,7 +24,7 @@ namespace Sudoku.Debugging
 			};
 			var grid = Grid.Parse("000000000004305800020907010078000650000000000051000430010203090003608700000000000");
 			var analysisResult = solver.Solve(grid);
-			Console.WriteLine(analysisResult);
+			Console.WriteLine($"{analysisResult:s}");
 
 			//Line counter.
 			//string solutionFolder = Solution.PathRoot;
