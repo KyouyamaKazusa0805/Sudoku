@@ -12,7 +12,10 @@ namespace Sudoku.Data.Meta
 	/// and the <see langword="false"/> bit (0) is for empty cell. Sometimes for other usages.
 	/// </summary>
 	/// <remarks>
-	/// Alghough more than 144 bits.
+	/// This data structure use at least 144 bytes, which has outnumbered the number of
+	/// the threshold of value types via Microsoft C# language designation team (Every instance
+	/// of value type should be no more than 64 bytes). Therefore, we should use
+	/// <see cref="GridMap"/> instead of this data structure as much as possible.
 	/// </remarks>
 	[DisableDefaultConstructor, DebuggerStepThrough]
 	public struct FullGridMap : IEquatable<FullGridMap>
