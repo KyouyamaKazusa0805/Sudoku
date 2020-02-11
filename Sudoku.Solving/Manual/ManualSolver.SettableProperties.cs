@@ -37,7 +37,7 @@
 		/// </para>
 		/// </summary>
 		/// <seealso cref="OptimizedApplyingOrder"/>
-		public bool CheckMinimumDifficultyStrictly { get; set; } = false;
+		public bool AnalyzeDifficultyStrictly { get; set; } = false;
 
 		/// <summary>
 		/// <para>

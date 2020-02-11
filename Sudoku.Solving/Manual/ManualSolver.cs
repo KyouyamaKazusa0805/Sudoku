@@ -57,7 +57,7 @@ namespace Sudoku.Solving.Manual
 				// Solve the puzzle.
 				try
 				{
-					return CheckMinimumDifficultyStrictly
+					return AnalyzeDifficultyStrictly
 						? SolveWithStrictDifficultyRating(
 							grid, grid.Clone(), new List<TechniqueInfo>(), solution,
 							intersectionTable, regionMaps)
@@ -91,7 +91,7 @@ namespace Sudoku.Solving.Manual
 		}
 
 		/// <summary>
-		/// Solve the puzzle with <see cref="CheckMinimumDifficultyStrictly"/> option.
+		/// Solve the puzzle with <see cref="AnalyzeDifficultyStrictly"/> option.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <param name="cloneation">The cloneation grid to calculate.</param>
