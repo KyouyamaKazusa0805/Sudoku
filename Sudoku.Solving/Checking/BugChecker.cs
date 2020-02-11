@@ -47,31 +47,6 @@ namespace Sudoku.Solving.Checking
 			}
 		}
 
-		/// <summary>
-		/// Initializes an instance with the specified grid and all grid maps information.
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <param name="empty">The distribution of all empty cells.</param>
-		/// <param name="bivalue">The distribution of all bivalue cells.</param>
-		/// <param name="digits">The distribution of all single digits.</param>
-		/// <remarks>
-		/// The constructor is only called and used for reducting the redundant calculations.
-		/// </remarks>
-		internal BugChecker(Grid grid, GridMap empty, GridMap bivalue, GridMap[] digits)
-		{
-			if (grid.IsUnique(out _))
-			{
-				Grid = grid;
-				(_emptyCellsDistribution, _bivalueCellsDistribution, _digitsDistributions) =
-					(empty, bivalue, digits);
-			}
-			else
-			{
-				throw new ArgumentException(
-					"The specified grid does not have a unique solution.", nameof(grid));
-			}
-		}
-
 
 		/// <summary>
 		/// Indicates the current grid is a BUG+n pattern.
