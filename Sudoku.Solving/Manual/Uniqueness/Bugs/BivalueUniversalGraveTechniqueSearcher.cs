@@ -22,6 +22,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	public sealed class BivalueUniversalGraveTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>
+		/// Indicates whether the searcher should call the extended BUG checker
+		/// to find all true candidates.
+		/// </summary>
+		private readonly bool _extended;
+
+		/// <summary>
 		/// All region maps.
 		/// </summary>
 		private readonly GridMap[] _regionMaps;
@@ -30,9 +36,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <summary>
 		/// Initializes an instance with the region maps.
 		/// </summary>
-		/// <param name="regionMaps"></param>
-		public BivalueUniversalGraveTechniqueSearcher(GridMap[] regionMaps) =>
-			_regionMaps = regionMaps;
+		/// <param name="regionMaps">The region map.</param>
+		/// <param name="extended">
+		/// A <see cref="bool"/> value indicating whether the searcher should call
+		/// the extended BUG checker to search for all true candidates no matter how
+		/// difficult searching.
+		/// </param>
+		public BivalueUniversalGraveTechniqueSearcher(GridMap[] regionMaps, bool extended) =>
+			(_regionMaps, _extended) = (regionMaps, extended);
 
 
 		/// <inheritdoc/>
@@ -41,8 +52,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// </exception>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
-			var checker = new BugChecker(grid);
-			var trueCandidates = checker.TrueCandidates;
+			IReadOnlyList<int> trueCandidates;
+			if (_extended)
+			{
+				var checker = new BugChecker(grid);
+				trueCandidates = checker.TrueCandidates;
+			}
+			else
+			{
+				trueCandidates = GetTrueCandidatesSimply(grid);
+			}
+
 			if (trueCandidates.Count == 0)
 			{
 				return Array.Empty<UniquenessTechniqueInfo>();
@@ -80,7 +100,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					}
 					else
 					{
-						CheckMultiple(result, grid, trueCandidates);
+						if (_extended)
+						{
+							CheckMultiple(result, grid, trueCandidates);
+						}
+
 						CheckType4(result, grid, trueCandidates);
 						for (int size = 2; size <= 5; size++)
 						{
@@ -1019,6 +1043,130 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					},
 					digit,
 					cells: trueCandidates));
+		}
+
+		/// <summary>
+		/// To get true candidates (but simple mode).
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <returns>All true candidates searched.</returns>
+		private IReadOnlyList<int> GetTrueCandidatesSimply(Grid grid)
+		{
+			var tempGrid = grid.Clone();
+			var bugCells = new List<int>();
+			var bugValues = new Dictionary<int, short>();
+			short allBugValues = 0;
+			var commonCells = default(GridMap);
+			int t = 0;
+			for (int region = 0; region < 27; region++)
+			{
+				for (int digit = 0; digit < 9; digit++)
+				{
+					// Possible positions of a value in a region.
+					short positions = tempGrid.GetDigitAppearingMask(digit, region);
+					int cardinality = positions.CountSet();
+					if (cardinality != 0 && cardinality != 2)
+					{
+						// The value does not have zero or two positions
+						// in the region.
+						// Look for BUG cells.
+						var newBugCells = new List<int>();
+						foreach (int i in positions.GetAllSets())
+						{
+							int cell = RegionUtils.GetCellOffset(region, i);
+							int cellCardinality = tempGrid.GetCandidatesReversal(cell).CountSet();
+							if (cellCardinality >= 3)
+							{
+								newBugCells.Add(cell);
+							}
+						}
+
+						// If there're two or more positions falling in a BUG cell,
+						// we cannot decide which one is the BUG-gy one. Just do
+						// nothing because another region will capture the correct
+						// cell.
+						if (newBugCells.Count == 1)
+						{
+							// A new BUG cell has been found (BUG value == 'value').
+							int cell = newBugCells[0];
+							bugCells.AddIfDoesNotContain(cell);
+							bugValues.AddIfKeyDoesNotContain(cell, (short)0);
+							short mask = (short)(1 << digit);
+							bugValues[cell] |= mask;
+							allBugValues |= mask;
+							tempGrid[cell, digit] = true;
+
+							if (t++ == 0)
+							{
+								commonCells = new GridMap(cell);
+							}
+							else
+							{
+								commonCells &= new GridMap(cell);
+							}
+
+							foreach (int bugCell in bugCells)
+							{
+								commonCells[bugCell] = false;
+							}
+
+							if (bugCells.Count > 1 && allBugValues.CountSet() > 1 && !commonCells)
+							{
+								// None of type 1, 2 or 3.
+								return Array.Empty<int>();
+							}
+						}
+
+						if (newBugCells.Count == 0)
+						{
+							// A value appear more than twice, but no cell has more
+							// than two values, which means that the specified pattern
+							// is not a BUG pattern.
+							return Array.Empty<int>();
+						}
+					}
+				}
+			}
+
+			// When BUG values have been removed, all remaining empty cells must
+			// have exactly two potential values. Now check it.
+			for (int cell = 0; cell < 81; cell++)
+			{
+				if (tempGrid.GetCellStatus(cell) == CellStatus.Empty
+					&& tempGrid.GetCandidatesReversal(cell).CountSet() != 2)
+				{
+					// Not a BUG.
+					return Array.Empty<int>();
+				}
+			}
+
+			// When BUG values have been removed, all remaining candidates must have
+			// two positions in each region.
+			for (int region = 0; region < 27; region++)
+			{
+				for (int digit = 0; digit < 9; digit++)
+				{
+					short mask = tempGrid.GetDigitAppearingMask(digit, region);
+					int count = mask.CountSet();
+					if (count != 0 && count != 2)
+					{
+						// Not a BUG.
+						return Array.Empty<int>();
+					}
+				}
+			}
+
+			// Record the result.
+			var result = new List<int>();
+			foreach (var (cell, digitsMask) in bugValues)
+			{
+				foreach (int digit in digitsMask.GetAllSets())
+				{
+					result.Add(cell * 9 + digit);
+				}
+			}
+
+			return result;
 		}
 
 		/// <summary>

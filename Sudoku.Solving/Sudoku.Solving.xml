@@ -1393,6 +1393,16 @@
             </summary>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder"/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.UseExtendedBugSearcher">
+            <summary>
+            <para>
+            Indicates whether the solver should use extended BUG checker
+            to searcher for all true candidates no matter how difficult
+            the true candidates looking for.
+            </para>
+            <para>The value is <see langword="false"/> in default case.</para>
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.EnableFullHouse">
             <summary>
             <para>
@@ -2014,16 +2024,27 @@
             Encapsulates a bivalue universal grave (BUG) technique searcher.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher._extended">
+            <summary>
+            Indicates whether the searcher should call the extended BUG checker
+            to find all true candidates.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher._regionMaps">
             <summary>
             All region maps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.#ctor(Sudoku.Data.Meta.GridMap[])">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.#ctor(Sudoku.Data.Meta.GridMap[],System.Boolean)">
             <summary>
             Initializes an instance with the region maps.
             </summary>
-            <param name="regionMaps"></param>
+            <param name="regionMaps">The region map.</param>
+            <param name="extended">
+            A <see cref="T:System.Boolean"/> value indicating whether the searcher should call
+            the extended BUG checker to search for all true candidates no matter how
+            difficult searching.
+            </param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
@@ -2072,6 +2093,13 @@
             <param name="result">The result list.</param>
             <param name="grid">The grid.</param>
             <param name="trueCandidates">All true candidates.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.GetTrueCandidatesSimply(Sudoku.Data.Meta.Grid)">
+            <summary>
+            To get true candidates (but simple mode).
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>All true candidates searched.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.CheckSingleDigit(System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
@@ -3214,6 +3242,18 @@
             <summary>
             Provides extension method used for grid calculating.
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.GridUtils.IsBivalueCell(Sudoku.Data.Meta.Grid,System.Int32)">
+            <summary>
+            <para>Indicates whether the specified cell is a bivalue cell.</para>
+            <para>
+            Note that given and modifiable values always make this method
+            return <see langword="false"/>.
+            </para>
+            </summary>
+            <param name="this">(extension method main parameter) The grid.</param>
+            <param name="cellOffset">The cell offset.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Solving.Utils.GridUtils.CandidateExists(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)">
             <summary>

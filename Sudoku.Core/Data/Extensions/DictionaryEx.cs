@@ -24,7 +24,7 @@ namespace Sudoku.Data.Extensions
 		/// <param name="key">The key.</param>
 		/// <param name="value">The value.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void AddIfDoesNotContain<TKey, TValue>(
+		public static void AddIfKeyDoesNotContain<TKey, TValue>(
 			this IDictionary<TKey, TValue> @this, TKey key, TValue value)
 			where TKey : notnull
 		{

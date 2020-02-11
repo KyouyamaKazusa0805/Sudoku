@@ -14,6 +14,23 @@ namespace Sudoku.Solving.Utils
 	public static class GridUtils
 	{
 		/// <summary>
+		/// <para>Indicates whether the specified cell is a bivalue cell.</para>
+		/// <para>
+		/// Note that given and modifiable values always make this method
+		/// return <see langword="false"/>.
+		/// </para>
+		/// </summary>
+		/// <param name="this">(extension method main parameter) The grid.</param>
+		/// <param name="cellOffset">The cell offset.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool IsBivalueCell(this Grid @this, int cellOffset)
+		{
+			return @this.GetCellStatus(cellOffset) == CellStatus.Empty
+				&& @this.GetCandidatesReversal(cellOffset).CountSet() == 2;
+		}
+
+		/// <summary>
 		/// <para>
 		/// Indicates whether the specified grid contains the candidate.
 		/// </para>

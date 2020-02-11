@@ -41,6 +41,16 @@
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether the solver should use extended BUG checker
+		/// to searcher for all true candidates no matter how difficult
+		/// the true candidates looking for.
+		/// </para>
+		/// <para>The value is <see langword="false"/> in default case.</para>
+		/// </summary>
+		public bool UseExtendedBugSearcher { get; set; } = false;
+
+		/// <summary>
+		/// <para>
 		/// Indicates whether the solver will record the step
 		/// whose name or kind is full house.
 		/// </para>

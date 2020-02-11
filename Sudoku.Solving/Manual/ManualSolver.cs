@@ -122,7 +122,7 @@ namespace Sudoku.Solving.Manual
 						new TwoStrongLinksTechniqueSearcher(),
 						new EmptyRectangleTechniqueSearcher(regionMaps),
 						new AlmostLockedCandidatesTechniqueSearcher(intersection),
-						new BivalueUniversalGraveTechniqueSearcher(regionMaps),
+						new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
 					},
 					new[] { new BruteForceTechniqueSearcher(solution) }
 				}
@@ -140,7 +140,7 @@ namespace Sudoku.Solving.Manual
 						new TwoStrongLinksTechniqueSearcher(),
 						new EmptyRectangleTechniqueSearcher(regionMaps),
 						new AlmostLockedCandidatesTechniqueSearcher(intersection),
-						new BivalueUniversalGraveTechniqueSearcher(regionMaps),
+						new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
 					}
 				};
 
@@ -247,7 +247,7 @@ namespace Sudoku.Solving.Manual
 					new TwoStrongLinksTechniqueSearcher(),
 					new EmptyRectangleTechniqueSearcher(regionMaps),
 					new AlmostLockedCandidatesTechniqueSearcher(intersection),
-					new BivalueUniversalGraveTechniqueSearcher(regionMaps),
+					new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
 					new BruteForceTechniqueSearcher(solution),
 				}
 				: new TechniqueSearcher[] // Does not have brute force.
@@ -262,7 +262,7 @@ namespace Sudoku.Solving.Manual
 					new TwoStrongLinksTechniqueSearcher(),
 					new EmptyRectangleTechniqueSearcher(regionMaps),
 					new AlmostLockedCandidatesTechniqueSearcher(intersection),
-					new BivalueUniversalGraveTechniqueSearcher(regionMaps),
+					new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
 				};
 
 			var stopwatch = new Stopwatch();

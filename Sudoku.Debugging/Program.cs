@@ -19,11 +19,10 @@ namespace Sudoku.Debugging
 			// Manual solver tester.
 			var solver = new ManualSolver
 			{
-				//CheckMinimumDifficultyStrictly = true,
-				OptimizedApplyingOrder = true,
-				EnableBruteForce = false
+				CheckMinimumDifficultyStrictly = true,
+				EnableBruteForce = false,
 			};
-			var grid = Grid.Parse("000009810000013900000600002000005407047060530903700000300002000008370000091400000");
+			var grid = Grid.Parse("005300400003002069070090020080000000300107004000000030090010050750600300002009600");
 			var analysisResult = solver.Solve(grid);
 			Console.WriteLine($"{analysisResult}");
 
