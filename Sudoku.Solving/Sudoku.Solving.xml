@@ -593,18 +593,6 @@
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Solving.Checking.BugChecker.#ctor(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap[])">
-            <summary>
-            Initializes an instance with the specified grid and all grid maps information.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="empty">The distribution of all empty cells.</param>
-            <param name="bivalue">The distribution of all bivalue cells.</param>
-            <param name="digits">The distribution of all single digits.</param>
-            <remarks>
-            The constructor is only called and used for reducting the redundant calculations.
-            </remarks>
-        </member>
         <member name="P:Sudoku.Solving.Checking.BugChecker.IsBugPattern">
             <summary>
             Indicates the current grid is a BUG+n pattern.
@@ -1174,25 +1162,25 @@
             <param name="right">The right grid map.</param>
             <param name="intersection">The intersection.</param>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Intersections.AlmostSubsetTechniqueInfo">
-            <summary>
-            Provides a usage of almost subset (ALS) technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.AlmostSubsetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Intersections.AlmostSubsetTechniqueSearcher">
-            <summary>
-            Encapsulates an almost subset technique searcher.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo">
             <summary>
-            Provides a usage of ilocked candidates.
+            Provides a usage of intersection technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueSearcher">
+            <summary>
+            Encapsulates an intersection technique searcher.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Intersections.LockedCandidatesTechniqueInfo">
+            <summary>
+            Provides a usage of locked candidates technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Intersections.LockedCandidatesTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32)">
             <summary>
             Initializes an instance with information.
             </summary>
@@ -1202,53 +1190,53 @@
             <param name="baseSet">The base set.</param>
             <param name="coverSet">The cover set.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo.Name">
+        <member name="P:Sudoku.Solving.Manual.Intersections.LockedCandidatesTechniqueInfo.Name">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Intersections.LockedCandidatesTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo.DifficultyLevel">
+        <member name="P:Sudoku.Solving.Manual.Intersections.LockedCandidatesTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo.Digit">
+        <member name="P:Sudoku.Solving.Manual.Intersections.LockedCandidatesTechniqueInfo.Digit">
             <summary>
             Indicates the digit.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo.BaseSet">
+        <member name="P:Sudoku.Solving.Manual.Intersections.LockedCandidatesTechniqueInfo.BaseSet">
             <summary>
             Indicates the base set.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo.CoverSet">
+        <member name="P:Sudoku.Solving.Manual.Intersections.LockedCandidatesTechniqueInfo.CoverSet">
             <summary>
             Indicates the cover set.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo.ToString">
+        <member name="M:Sudoku.Solving.Manual.Intersections.LockedCandidatesTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueSearcher">
+        <member name="T:Sudoku.Solving.Manual.Intersections.LockedCandidatesTechniqueSearcher">
             <summary>
             Encapsulates a locked candidates technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueSearcher._intersection">
+        <member name="F:Sudoku.Solving.Manual.Intersections.LockedCandidatesTechniqueSearcher._intersection">
             <summary>
             All intersection series.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueSearcher.#ctor(System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap}[0:,0:])">
+        <member name="M:Sudoku.Solving.Manual.Intersections.LockedCandidatesTechniqueSearcher.#ctor(System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap}[0:,0:])">
             <summary>
             Initializes an instance with the specified intersection table.
             </summary>
             <param name="intersection">The intersection table.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.LockedCandidatesTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueSearcher.BitwiseAndMasks(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.LockedCandidatesTechniqueSearcher.BitwiseAndMasks(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.GridMap)">
             <summary>
             Bitwise and all masks.
             </summary>
