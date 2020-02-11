@@ -3025,6 +3025,66 @@
             <param name="grid">The grid.</param>
             <returns>The list of all steps found.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Utils.BitCombinationGenerator">
+            <summary>
+            Encapsulates a bit combination generator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Utils.BitCombinationGenerator._mask">
+            <summary>
+            The mask.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Utils.BitCombinationGenerator._value">
+            <summary>
+            The value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Utils.BitCombinationGenerator._isLast">
+            <summary>
+            Indicates whether that the value is the last one.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.BitCombinationGenerator.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance with the specified number of bits
+            and <see langword="true"/> bits.
+            </summary>
+            <param name="bitCount">The number of bits.</param>
+            <param name="oneCount">The number of <see langword="true"/> bits.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Utils.BitCombinationGenerator.BitCount">
+            <summary>
+            Indicates how many bits should be generated.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Utils.BitCombinationGenerator.OneCount">
+            <summary>
+            Indicates how many <see langword="true"/> bits (1) are in
+            the number.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.BitCombinationGenerator.HasNext">
+            <summary>
+            Indicates whether the generator has the next combination number to iterate.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.BitCombinationGenerator.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.BitCombinationGenerator.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.BitCombinationGenerator.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.BitCombinationGenerator.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.BitCombinationGenerator.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Utils.CandidateCollection">
             <summary>
             Provides extension methods of candidate collection.
