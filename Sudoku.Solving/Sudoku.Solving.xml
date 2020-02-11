@@ -2655,6 +2655,20 @@
             <param name="pair">(in parameter) bivalue cell information pair.</param>
             <returns>All technique information instances.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.SearchWWingByRegions(System.Collections.Generic.IList{Sudoku.Solving.Manual.Wings.Irregular.WWingTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Int32,System.Int32,System.Int32,System.ValueTuple{System.Int32,System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32,System.Int32}@,Sudoku.Data.Meta.GridMap)">
+            <summary>
+            Searches W-Wing technique by region.
+            </summary>
+            <param name="result">The result.</param>
+            <param name="grid">The grid.</param>
+            <param name="digits">The digits.</param>
+            <param name="region">The region.</param>
+            <param name="c1">Cell 1.</param>
+            <param name="c2">Cell 2.</param>
+            <param name="triplet1">The triplet 1.</param>
+            <param name="triplet2">The triplet 2.</param>
+            <param name="intersection">The intersection.</param>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Wings.Irregular.WWingTechniqueInfo">
             <summary>
             Provides a usage of W-Wing technique.
