@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// <summary>
 	/// Encapsulates an almost locked candidates (ALC) technique searcher.
 	/// </summary>
-	public sealed class AlmostLockedCandidatesTechniqueSearcher : TechniqueSearcher
+	public sealed class AlmostLockedCandidatesTechniqueSearcher : IntersectionTechniqueSearcher
 	{
 		/// <summary>
 		/// All intersection series.

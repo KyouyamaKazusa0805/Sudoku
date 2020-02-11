@@ -111,7 +111,7 @@ namespace Sudoku.Solving.Manual
 				? new TechniqueSearcher[][]
 				{
 					new[] { new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit) },
-					new[] { new IntersectionTechniqueSearcher(intersection) },
+					new[] { new LockedCandidatesTechniqueSearcher(intersection) },
 					new TechniqueSearcher[]
 					{
 						new SubsetTechniqueSearcher(),
@@ -129,7 +129,7 @@ namespace Sudoku.Solving.Manual
 				: new TechniqueSearcher[][] // Does not have brute force.
 				{
 					new[] { new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit) },
-					new[] { new IntersectionTechniqueSearcher(intersection) },
+					new[] { new LockedCandidatesTechniqueSearcher(intersection) },
 					new TechniqueSearcher[]
 					{
 						new SubsetTechniqueSearcher(),
@@ -238,7 +238,7 @@ namespace Sudoku.Solving.Manual
 				? new TechniqueSearcher[]
 				{
 					new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit),
-					new IntersectionTechniqueSearcher(intersection),
+					new LockedCandidatesTechniqueSearcher(intersection),
 					new SubsetTechniqueSearcher(),
 					new NormalFishTechniqueSearcher(),
 					new RegularWingTechniqueSearcher(CheckRegularWingSize),
@@ -253,7 +253,7 @@ namespace Sudoku.Solving.Manual
 				: new TechniqueSearcher[] // Does not have brute force.
 				{
 					new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit),
-					new IntersectionTechniqueSearcher(intersection),
+					new LockedCandidatesTechniqueSearcher(intersection),
 					new SubsetTechniqueSearcher(),
 					new NormalFishTechniqueSearcher(),
 					new RegularWingTechniqueSearcher(CheckRegularWingSize),
