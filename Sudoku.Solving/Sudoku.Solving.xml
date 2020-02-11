@@ -1320,7 +1320,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Meta.Grid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap}[0:,0:],Sudoku.Data.Meta.GridMap[])">
             <summary>
-            Solve the puzzle with <see cref="P:Sudoku.Solving.Manual.ManualSolver.CheckMinimumDifficultyStrictly"/> option.
+            Solve the puzzle with <see cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/> option.
             </summary>
             <param name="grid">The grid.</param>
             <param name="cloneation">The cloneation grid to calculate.</param>
@@ -1365,10 +1365,15 @@
             rating; otherwise, the applying step will be the first one
             of all steps being searched.
             </para>
-            <para>The value is <see langword="false"/> in default case.</para>
+            <para>
+            The value is <see langword="false"/> in default case. If the value
+            is <see langword="true"/>, the option <see cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/>
+            will be disabled.
+            </para>
             </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckMinimumDifficultyStrictly">
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly">
             <summary>
             <para>
             Indicates whether the solver should check all technique

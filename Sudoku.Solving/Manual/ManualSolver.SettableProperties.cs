@@ -10,8 +10,13 @@
 		/// rating; otherwise, the applying step will be the first one
 		/// of all steps being searched.
 		/// </para>
-		/// <para>The value is <see langword="false"/> in default case.</para>
+		/// <para>
+		/// The value is <see langword="false"/> in default case. If the value
+		/// is <see langword="true"/>, the option <see cref="AnalyzeDifficultyStrictly"/>
+		/// will be disabled.
+		/// </para>
 		/// </summary>
+		/// <seealso cref="AnalyzeDifficultyStrictly"/>
 		public bool OptimizedApplyingOrder { get; set; } = false;
 
 		/// <summary>
