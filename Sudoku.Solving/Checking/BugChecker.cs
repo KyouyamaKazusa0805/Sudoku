@@ -11,7 +11,7 @@ namespace Sudoku.Solving.Checking
 	/// <summary>
 	/// Encapsulates a BUG technique checker.
 	/// </summary>
-	public sealed partial class BugChecker
+	public sealed class BugChecker
 	{
 		/// <summary>
 		/// The distribution of all empty cells.
@@ -216,7 +216,7 @@ namespace Sudoku.Solving.Checking
 		private static short[] GetAllCombinations(short mask, int oneCount)
 		{
 			var result = new List<short>();
-			foreach (short z in new BitEnumerator(9, oneCount))
+			foreach (short z in new BitCombinationGenerator(9, oneCount))
 			{
 				if ((mask | z) == mask)
 				{
