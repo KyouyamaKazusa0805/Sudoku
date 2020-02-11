@@ -35,6 +35,8 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 			return result;
 		}
 
+
+		#region Irregular wing utils
 		/// <summary>
 		/// Search for all W-Wings.
 		/// </summary>
@@ -112,6 +114,18 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 			return result;
 		}
 
+		/// <summary>
+		/// Searches W-Wing technique by region.
+		/// </summary>
+		/// <param name="result">The result.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="digits">The digits.</param>
+		/// <param name="region">The region.</param>
+		/// <param name="c1">Cell 1.</param>
+		/// <param name="c2">Cell 2.</param>
+		/// <param name="triplet1">The triplet 1.</param>
+		/// <param name="triplet2">The triplet 2.</param>
+		/// <param name="intersection">The intersection.</param>
 		private static void SearchWWingByRegions(
 			IList<WWingTechniqueInfo> result, Grid grid, int[] digits, int region,
 			int c1, int c2, in (int _row, int _column, int _block) triplet1,
@@ -182,5 +196,6 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 				}
 			}
 		}
+		#endregion
 	}
 }
