@@ -211,11 +211,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 									for (int size = 2; size <= 4; size++)
 									{
 										CheckType3Naked(
-											result, grid, extraDigitMask, extraCells,
-											digits, loop, regions, size);
+											result, grid, extraDigitMask, digits,
+											loop, regions, size);
 										CheckType3Hidden(
-											result, grid, extraDigitMask, extraCells,
-											digits, loop, regions, size);
+											result, grid, extraCells, digits,
+											loop, regions, size);
 									}
 								}
 
@@ -311,15 +311,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="result">The result.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="extraDigits">The extra digits.</param>
-		/// <param name="extraCells">The extra cells.</param>
 		/// <param name="digits">All digits.</param>
 		/// <param name="loop">The loop.</param>
 		/// <param name="regions">All regions.</param>
 		/// <param name="size">The size.</param>
 		private void CheckType3Naked(
 			IList<UniqueLoopTechniqueInfo> result, Grid grid,
-			short extraDigits, IReadOnlyList<int> extraCells,
-			int[] digits, IReadOnlyList<int> loop, int[] regions, int size)
+			short extraDigits, int[] digits,
+			IReadOnlyList<int> loop, int[] regions, int size)
 		{
 			foreach (int region in regions)
 			{
@@ -585,7 +584,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// </summary>
 		/// <param name="result">The result.</param>
 		/// <param name="grid">The grid.</param>
-		/// <param name="extraDigits">The extra digits.</param>
 		/// <param name="extraCells">The extra cells.</param>
 		/// <param name="digits">All digits.</param>
 		/// <param name="loop">The loop.</param>
@@ -593,10 +591,324 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="size">The size.</param>
 		private void CheckType3Hidden(
 			IList<UniqueLoopTechniqueInfo> result, Grid grid,
-			short extraDigits, IReadOnlyList<int> extraCells,
-			int[] digits, IReadOnlyList<int> loop, int[] regions, int size)
+			IReadOnlyList<int> extraCells, int[] digits,
+			IReadOnlyList<int> loop, int[] regions, int size)
 		{
+			foreach (int region in regions)
+			{
+				for (int d1 = 0; d1 < 10 - size; d1++)
+				{
+					if (!digits.Contains(d1))
+					{
+						continue;
+					}
 
+					short m1 = grid.GetDigitAppearingMask(d1, region);
+					for (int d2 = d1 + 1; d2 < 11 - size; d2++)
+					{
+						if (!digits.Contains(d2))
+						{
+							continue;
+						}
+
+						short m2 = grid.GetDigitAppearingMask(d2, region);
+						if (size == 2)
+						{
+							// Check hidden pair.
+							short mask = (short)(m1 | m2);
+							if (mask.CountSet() == 3)
+							{
+								// Hidden pair found.
+								// Record all elimination cells.
+								var elimCells = new List<int>();
+								foreach (int pos in mask.GetAllSets())
+								{
+									elimCells.Add(RegionUtils.GetCellOffset(region, pos));
+								}
+
+								// Record all eliminations.
+								var subsetCells = new List<int>();
+								var conclusions = new List<Conclusion>();
+								foreach (int cell in elimCells)
+								{
+									for (int digit = 0; digit < 9; digit++)
+									{
+										if (!loop.Contains(cell)
+											&& !digits.Contains(digit)
+											&& grid.CandidateExists(cell, digit))
+										{
+											subsetCells.Add(cell);
+											conclusions.Add(
+												new Conclusion(
+													ConclusionType.Elimination, cell * 9 + digit));
+										}
+									}
+								}
+
+								if (conclusions.Count == 0)
+								{
+									continue;
+								}
+
+								// Record all highlight candidates.
+								var candidateOffsets = new List<(int, int)>();
+								foreach (int cell in loop)
+								{
+									if (extraCells.Contains(cell))
+									{
+										candidateOffsets.Add((1, cell * 9 + digits[0]));
+										candidateOffsets.Add((1, cell * 9 + digits[1]));
+									}
+									else
+									{
+										candidateOffsets.Add((0, cell * 9 + digits[0]));
+										candidateOffsets.Add((0, cell * 9 + digits[1]));
+									}
+								}
+								foreach (int cell in GridMap.GetCellsIn(region))
+								{
+									if (loop.Contains(cell))
+									{
+										continue;
+									}
+
+									if (grid.CandidateExists(cell, d1))
+									{
+										candidateOffsets.Add((1, cell * 9 + d1));
+									}
+									if (grid.CandidateExists(cell, d2))
+									{
+										candidateOffsets.Add((1, cell * 9 + d2));
+									}
+								}
+
+								// Type 3 (with hidden subset).
+								result.Add(
+									new UniqueLoopTechniqueInfo(
+										conclusions,
+										views: new[]
+										{
+											new View(
+												cellOffsets: null,
+												candidateOffsets,
+												regionOffsets: new[] { (0, region) },
+												linkMasks: null)
+										},
+										detailData: new UlType3(
+											cells: loop,
+											digits,
+											subsetDigits: new[] { d1, d2 },
+											subsetCells,
+											isNaked: false)));
+							}
+						}
+						else // size > 2
+						{
+							for (int d3 = d2 + 1; d3 < 12 - size; d3++)
+							{
+								short m3 = grid.GetDigitAppearingMask(d3, region);
+								if (size == 3)
+								{
+									// Check hidden triple.
+									short mask = (short)((short)(m1 | m2) | m3);
+									if (mask.CountSet() == 4)
+									{
+										// Hidden pair found.
+										// Record all elimination cells.
+										var elimCells = new List<int>();
+										foreach (int pos in mask.GetAllSets())
+										{
+											elimCells.Add(RegionUtils.GetCellOffset(region, pos));
+										}
+
+										// Record all eliminations.
+										var subsetCells = new List<int>();
+										var conclusions = new List<Conclusion>();
+										foreach (int cell in elimCells)
+										{
+											for (int digit = 0; digit < 9; digit++)
+											{
+												if (!loop.Contains(cell)
+													&& !digits.Contains(digit)
+													&& grid.CandidateExists(cell, digit))
+												{
+													subsetCells.Add(cell);
+													conclusions.Add(
+														new Conclusion(
+															ConclusionType.Elimination, cell * 9 + digit));
+												}
+											}
+										}
+
+										if (conclusions.Count == 0)
+										{
+											continue;
+										}
+
+										// Record all highlight candidates.
+										var candidateOffsets = new List<(int, int)>();
+										foreach (int cell in loop)
+										{
+											if (extraCells.Contains(cell))
+											{
+												candidateOffsets.Add((1, cell * 9 + digits[0]));
+												candidateOffsets.Add((1, cell * 9 + digits[1]));
+											}
+											else
+											{
+												candidateOffsets.Add((0, cell * 9 + digits[0]));
+												candidateOffsets.Add((0, cell * 9 + digits[1]));
+											}
+										}
+										foreach (int cell in GridMap.GetCellsIn(region))
+										{
+											if (loop.Contains(cell))
+											{
+												continue;
+											}
+
+											if (grid.CandidateExists(cell, d1))
+											{
+												candidateOffsets.Add((1, cell * 9 + d1));
+											}
+											if (grid.CandidateExists(cell, d2))
+											{
+												candidateOffsets.Add((1, cell * 9 + d2));
+											}
+											if (grid.CandidateExists(cell, d3))
+											{
+												candidateOffsets.Add((1, cell * 9 + d3));
+											}
+										}
+
+										// Type 3 (with hidden subset).
+										result.Add(
+											new UniqueLoopTechniqueInfo(
+												conclusions,
+												views: new[]
+												{
+													new View(
+														cellOffsets: null,
+														candidateOffsets,
+														regionOffsets: new[] { (0, region) },
+														linkMasks: null)
+												},
+												detailData: new UlType3(
+													cells: loop,
+													digits,
+													subsetDigits: new[] { d1, d2, d3 },
+													subsetCells,
+													isNaked: false)));
+									}
+								}
+								else // size > 3
+								{
+									for (int d4 = d3 + 1; d4 < 9; d4++)
+									{
+										short m4 = grid.GetDigitAppearingMask(d4, region);
+
+										// Check hidden quadruple.
+										short mask = (short)((short)((short)(m1 | m2) | m3) | m4);
+										if (mask.CountSet() == 5)
+										{
+											// Hidden pair found.
+											// Record all elimination cells.
+											var elimCells = new List<int>();
+											foreach (int pos in mask.GetAllSets())
+											{
+												elimCells.Add(RegionUtils.GetCellOffset(region, pos));
+											}
+
+											// Record all eliminations.
+											var subsetCells = new List<int>();
+											var conclusions = new List<Conclusion>();
+											foreach (int cell in elimCells)
+											{
+												for (int digit = 0; digit < 9; digit++)
+												{
+													if (!loop.Contains(cell)
+														&& !digits.Contains(digit)
+														&& grid.CandidateExists(cell, digit))
+													{
+														subsetCells.Add(cell);
+														conclusions.Add(
+															new Conclusion(
+																ConclusionType.Elimination, cell * 9 + digit));
+													}
+												}
+											}
+
+											if (conclusions.Count == 0)
+											{
+												continue;
+											}
+
+											// Record all highlight candidates.
+											var candidateOffsets = new List<(int, int)>();
+											foreach (int cell in loop)
+											{
+												if (extraCells.Contains(cell))
+												{
+													candidateOffsets.Add((1, cell * 9 + digits[0]));
+													candidateOffsets.Add((1, cell * 9 + digits[1]));
+												}
+												else
+												{
+													candidateOffsets.Add((0, cell * 9 + digits[0]));
+													candidateOffsets.Add((0, cell * 9 + digits[1]));
+												}
+											}
+											foreach (int cell in GridMap.GetCellsIn(region))
+											{
+												if (loop.Contains(cell))
+												{
+													continue;
+												}
+
+												if (grid.CandidateExists(cell, d1))
+												{
+													candidateOffsets.Add((1, cell * 9 + d1));
+												}
+												if (grid.CandidateExists(cell, d2))
+												{
+													candidateOffsets.Add((1, cell * 9 + d2));
+												}
+												if (grid.CandidateExists(cell, d3))
+												{
+													candidateOffsets.Add((1, cell * 9 + d3));
+												}
+												if (grid.CandidateExists(cell, d4))
+												{
+													candidateOffsets.Add((1, cell * 9 + d4));
+												}
+											}
+
+											// Type 3 (with hidden subset).
+											result.Add(
+												new UniqueLoopTechniqueInfo(
+													conclusions,
+													views: new[]
+													{
+														new View(
+															cellOffsets: null,
+															candidateOffsets,
+															regionOffsets: new[] { (0, region) },
+															linkMasks: null)
+													},
+													detailData: new UlType3(
+														cells: loop,
+														digits,
+														subsetDigits: new[] { d1, d2, d3, d4 },
+														subsetCells,
+														isNaked: false)));
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 
 		/// <summary>

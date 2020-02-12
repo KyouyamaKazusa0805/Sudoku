@@ -2344,26 +2344,24 @@
             <param name="digits">All digits.</param>
             <param name="loop">The loop.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int16,System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Int32)">
             <summary>
             Check type 3 (with naked subsets).
             </summary>
             <param name="result">The result.</param>
             <param name="grid">The grid.</param>
             <param name="extraDigits">The extra digits.</param>
-            <param name="extraCells">The extra cells.</param>
             <param name="digits">All digits.</param>
             <param name="loop">The loop.</param>
             <param name="regions">All regions.</param>
             <param name="size">The size.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckType3Hidden(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckType3Hidden(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueInfo},Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Int32)">
             <summary>
             Check type 3 (with hidden subsets).
             </summary>
             <param name="result">The result.</param>
             <param name="grid">The grid.</param>
-            <param name="extraDigits">The extra digits.</param>
             <param name="extraCells">The extra cells.</param>
             <param name="digits">All digits.</param>
             <param name="loop">The loop.</param>

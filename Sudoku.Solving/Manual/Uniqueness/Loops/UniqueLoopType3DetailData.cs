@@ -49,8 +49,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			string digitsStr = DigitCollection.ToString(Digits);
 			string subsetDigitsStr = DigitCollection.ToString(SubsetDigits);
 			string subsetCellsStr = CellCollection.ToString(SubsetCells);
-			string subsetType = IsNaked ? "Naked" : "Hidden";
-			string subsetName = SubsetUtils.GetNameBy(SubsetCells.Count + 1);
+			string subsetType = IsNaked ? "naked" : "hidden";
+			string subsetName = SubsetUtils.GetNameBy(SubsetCells.Count + 1).ToLower();
 			return $"{digitsStr} in cells {cellsStr} with {subsetType} {subsetName}: digits {subsetDigitsStr} in cells {subsetCellsStr}";
 		}
 	}

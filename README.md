@@ -162,7 +162,7 @@ The program supports technique below at present:
 * Subset: Naked Subset (Locked Subset & Partial Locked Subset), Hidden Subset<br/>数组：显性数组（死锁数组和区块数组）、隐性数组
 * Fishes: (Finned, Sashimi) X-Wing, Swordfish, Jellyfish<br/>鱼：（带鱼鳍、退化）二链列、三链列和四链列
 * Wings: XY-Wing, XYZ-Wing, (Incompleted) WXYZ-Wing, (Incompleted) VWXYZ-Wing, W-Wing<br/>Wing 结构：XY-Wing、XYZ-Wing、（残缺）WXYZ-Wing、（残缺）VWXYZ-Wing、W-Wing
-* Uniqueness: Unique Rectangle (Type 1 to 6), Hidden Rectangle, Bivalue Universal Grave (Type 1 to 4 and BUG + n)<br/>唯一性：唯一矩形（类型 1 到 6）、隐性唯一矩形、全双值格致死解法（类型 1 到 4 和 BUG + n）
+* Uniqueness: Unique Rectangle (Type 1 to 6), Hidden Rectangle, Unique Loop (Type 1 to 4), Bivalue Universal Grave (Type 1 to 4 and BUG + n)<br/>唯一性：唯一矩形（类型 1 到 6）、唯一环（类型 1 到 4）、隐性唯一矩形、全双值格致死解法（类型 1 到 4 和 BUG + n）
 * Single Digit Patterns: Skyscraper, Two-string Kite, Turbot Fish, Empty Rectangle<br/>双强链：摩天楼、双线风筝、多宝鱼、空矩形
 * Almost Locked Set Techniques: Almost Locked Candidates<br/>待定数组：欠一数组
 * Brute Force<br/>计算机试数
