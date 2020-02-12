@@ -1,25 +1,26 @@
 ﻿using System.Collections.Generic;
 
-namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
+namespace Sudoku.Solving.Manual.Uniqueness.Loops
 {
 	/// <summary>
-	/// Provides all data for unique rectangles (basic and extended types).
+	/// Provides all data for unique loops (basic and extended types).
 	/// </summary>
-	public abstract class UniqueRectangleDetailData
+	public abstract class UniqueLoopDetailData
 	{
 		/// <summary>
 		/// Provides passing data when initializing an instance of derived types.
 		/// </summary>
 		/// <param name="cells">All cells.</param>
 		/// <param name="digits">All digits.</param>
-		protected UniqueRectangleDetailData(IReadOnlyList<int> cells, IReadOnlyList<int> digits) =>
+		protected UniqueLoopDetailData(IReadOnlyList<int> cells, IReadOnlyList<int> digits) =>
 			(Cells, Digits) = (cells, digits);
+
 
 
 		/// <summary>
 		/// <para>
-		/// Indicates the type of the unique rectangle,
-		/// where the value is between 1 to 6.
+		/// Indicates the type of the unique loop,
+		/// where the value is between 1 to 4.
 		/// </para>
 		/// <para>
 		/// You can find all types in detail in 'remarks' part of this page.
@@ -42,30 +43,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <item>Type 4<term></term>
 		/// <description>Conjugate pair type.</description>
 		/// </item>
-		/// <item>Type 5<term></term>
-		/// <description>
-		/// Type-2 extended type (with three additional same digit).
-		/// </description>
-		/// </item>
-		/// <item>Type 6<term></term>
-		/// <description>
-		/// Type-4 extended type (with two parallel conjugate pairs,
-		/// and they hold a same digit).
-		/// </description>
-		/// </item>
 		/// </list>
 		/// </remarks>
 		public abstract int Type { get; }
 
 		/// <summary>
-		/// Indicates the digits.
-		/// </summary>
-		public IReadOnlyList<int> Digits { get; }
-
-		/// <summary>
-		/// Indicates all cell of the whole structure.
+		/// Indicates all cells used.
 		/// </summary>
 		public IReadOnlyList<int> Cells { get; }
+
+		/// <summary>
+		/// Indicates all digits used.
+		/// </summary>
+		public IReadOnlyList<int> Digits { get; }
 
 
 		/// <inheritdoc/>

@@ -12,6 +12,7 @@ using Sudoku.Solving.Manual.SingleDigitPatterns;
 using Sudoku.Solving.Manual.Singles;
 using Sudoku.Solving.Manual.Subsets;
 using Sudoku.Solving.Manual.Uniqueness.Bugs;
+using Sudoku.Solving.Manual.Uniqueness.Loops;
 using Sudoku.Solving.Manual.Uniqueness.Rectangles;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
@@ -118,8 +119,9 @@ namespace Sudoku.Solving.Manual
 						new NormalFishTechniqueSearcher(),
 						new RegularWingTechniqueSearcher(CheckRegularWingSize),
 						new IrregularWingTechniqueSearcher(),
-						new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 						new TwoStrongLinksTechniqueSearcher(),
+						new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
+						new UniqueLoopTechniqueSearcher(),
 						new EmptyRectangleTechniqueSearcher(regionMaps),
 						new AlmostLockedCandidatesTechniqueSearcher(intersection),
 						new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
@@ -136,8 +138,9 @@ namespace Sudoku.Solving.Manual
 						new NormalFishTechniqueSearcher(),
 						new RegularWingTechniqueSearcher(CheckRegularWingSize),
 						new IrregularWingTechniqueSearcher(),
-						new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 						new TwoStrongLinksTechniqueSearcher(),
+						new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
+						new UniqueLoopTechniqueSearcher(),
 						new EmptyRectangleTechniqueSearcher(regionMaps),
 						new AlmostLockedCandidatesTechniqueSearcher(intersection),
 						new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
@@ -243,8 +246,9 @@ namespace Sudoku.Solving.Manual
 					new NormalFishTechniqueSearcher(),
 					new RegularWingTechniqueSearcher(CheckRegularWingSize),
 					new IrregularWingTechniqueSearcher(),
-					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 					new TwoStrongLinksTechniqueSearcher(),
+					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
+					new UniqueLoopTechniqueSearcher(),
 					new EmptyRectangleTechniqueSearcher(regionMaps),
 					new AlmostLockedCandidatesTechniqueSearcher(intersection),
 					new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
@@ -258,8 +262,9 @@ namespace Sudoku.Solving.Manual
 					new NormalFishTechniqueSearcher(),
 					new RegularWingTechniqueSearcher(CheckRegularWingSize),
 					new IrregularWingTechniqueSearcher(),
-					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 					new TwoStrongLinksTechniqueSearcher(),
+					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
+					new UniqueLoopTechniqueSearcher(),
 					new EmptyRectangleTechniqueSearcher(regionMaps),
 					new AlmostLockedCandidatesTechniqueSearcher(intersection),
 					new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),

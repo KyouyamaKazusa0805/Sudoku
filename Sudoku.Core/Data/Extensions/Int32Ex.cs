@@ -73,7 +73,7 @@ namespace Sudoku.Data.Extensions
 		/// <returns>The index.</returns>
 		public static int GetNextSetBit(this int @this, int index)
 		{
-			for (int i = index; i < 32; i++)
+			for (int i = index + 1; i < 32; i++)
 			{
 				if ((@this & (1 << i)) != 0)
 				{
