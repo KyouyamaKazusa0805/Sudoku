@@ -132,6 +132,7 @@ namespace Sudoku.Solving.Checking
 				}
 			}
 
+			var playground = (Span<int>)stackalloc[] { 0, 0, 0 };
 			int pt = 1;
 			int[] chosen = new int[multivalueCellsCount + 1];
 			var resultMap = new GridMap[9];
@@ -150,10 +151,15 @@ namespace Sudoku.Solving.Checking
 						var temp = stack[pt - 1, mask.GetSetBitIndex(j)];
 						temp[ps] = true;
 						var (r, c, b) = CellUtils.GetRegion(ps);
-						var span = (Span<int>)stackalloc[] { b, r + 9, c + 18 };
+
+						// Use 'stackalloc' frequently may destroy the call stack.
+						// So we should use a playground is OK.
+						playground[0] = b;
+						playground[1] = r + 9;
+						playground[2] = c + 18;
 						for (int k = 0; k < 3; k++)
 						{
-							if ((temp & allRegionsMap[span[k]]).Count > 2)
+							if ((temp & allRegionsMap[playground[k]]).Count > 2)
 							{
 								@continue = false;
 								break;

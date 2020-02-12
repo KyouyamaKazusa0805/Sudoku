@@ -71,15 +71,24 @@ namespace Sudoku.Data.Meta
 		/// Note that all offsets will be set <see langword="true"/>, but their own peers
 		/// will not be set <see langword="true"/>.
 		/// </remarks>
-		public unsafe GridMap(IEnumerable<int> offsets)
+		public GridMap(IEnumerable<int> offsets)
 		{
 			(_low, _high) = (0, 0);
-			fixed (long* a = &_low, b = &_high)
+			ref long a = ref _low, b = ref _high;
+			foreach (int offset in offsets)
 			{
-				long** series = stackalloc[] { a, b };
-				foreach (int offset in offsets)
+				switch (offset / Shifting)
 				{
-					*series[offset / Shifting] |= 1L << offset % Shifting;
+					case 0:
+					{
+						a |= 1L << offset % Shifting;
+						break;
+					}
+					case 1:
+					{
+						b |= 1L << offset % Shifting;
+						break;
+					}
 				}
 			}
 		}
@@ -202,28 +211,35 @@ namespace Sudoku.Data.Meta
 				((stackalloc[] { _low, _high }[offset / Shifting] >> offset % Shifting) & 1) != 0;
 			set
 			{
-				// We should get along with pointers extremely carefully.
-				if (offset < 0 || offset >= 81)
+				ref long a = ref _low, b = ref _high;
+				switch (offset / Shifting)
 				{
-					throw new ArgumentOutOfRangeException(nameof(offset));
-				}
-
-				unsafe
-				{
-					fixed (long* a = &_low, b = &_high)
+					case 0:
 					{
-						long** series = stackalloc[] { a, b };
-						long* valueToModify = series[offset / Shifting];
 						if (value)
 						{
-							*valueToModify |= 1L << offset % Shifting;
+							a |= 1L << offset % Shifting;
 						}
 						else
 						{
-							*valueToModify &= ~(1 << offset % Shifting);
+							a &= ~(1L << offset % Shifting);
 						}
+						break;
+					}
+					case 1:
+					{
+						if (value)
+						{
+							b |= 1L << offset % Shifting;
+						}
+						else
+						{
+							b &= ~(1L << offset % Shifting);
+						}
+						break;
 					}
 				}
+				
 			}
 		}
 
