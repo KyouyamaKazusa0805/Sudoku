@@ -179,43 +179,52 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							}
 							else
 							{
-								if (extraCells.Count == 2)
+								if (extraCells.Count != 2)
 								{
-									int c1 = extraCells[0];
-									int c2 = extraCells[1];
-									short extraDigitMask = (short)(grid.GetCandidatesReversal(c1)
-										| grid.GetCandidatesReversal(c2));
-									extraDigitMask &= (short)~((1 << d1) | (1 << d2));
-									int count = extraDigitMask.CountSet();
-									if (count == 1)
-									{
-										CheckType2(
-											result, grid, extraDigitMask.FindFirstSet(),
-											extraCells, digits, loop);
-									}
-									else if (count >= 2)
-									{
-										if (!CellUtils.IsSameRegion(
-											extraCells[0], extraCells[1], out int[] regions))
-										{
-											// Extra cells lie on different regions,
-											// neither type 3 nor 4.
-											return result;
-										}
+									// None of type 2 to 4 patterns can satisfy the condition.
+									continue;
+								}
 
-										for (int size = 2; size <= 4; size++)
-										{
-											CheckType3Naked(
-												result, grid, extraDigitMask, extraCells,
-												digits, loop, regions, size);
-											CheckType3Hidden(
-												result, grid, extraDigitMask, extraCells,
-												digits, loop, regions, size);
-										}
+								bool hasSameRegion = CellUtils.IsSameRegion(
+									extraCells[0], extraCells[1], out int[] regions);
+								int c1 = extraCells[0];
+								int c2 = extraCells[1];
+								short extraDigitMask = (short)(grid.GetCandidatesReversal(c1)
+									| grid.GetCandidatesReversal(c2));
+								extraDigitMask &= (short)~((1 << d1) | (1 << d2));
+								int count = extraDigitMask.CountSet();
+								if (count == 1)
+								{
+									CheckType2(
+										result, grid, extraDigitMask.FindFirstSet(),
+										extraCells, digits, loop);
+								}
+								else if (count >= 2)
+								{
+									if (!hasSameRegion)
+									{
+										// Extra cells lie on different regions,
+										// neither type 3 nor 4.
+										continue;
+									}
+
+									for (int size = 2; size <= 4; size++)
+									{
+										CheckType3Naked(
+											result, grid, extraDigitMask, extraCells,
+											digits, loop, regions, size);
+										CheckType3Hidden(
+											result, grid, extraDigitMask, extraCells,
+											digits, loop, regions, size);
 									}
 								}
 
-								CheckType4(result, grid, extraCells, digits, loop);
+								if (!hasSameRegion)
+								{
+									continue;
+								}
+
+								CheckType4(result, grid, extraCells, digits, regions, loop);
 							}
 						}
 					}
@@ -597,12 +606,76 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="grid">The grid.</param>
 		/// <param name="extraCells">The extra cells.</param>
 		/// <param name="digits">The digits.</param>
+		/// <param name="regions">All regions.</param>
 		/// <param name="loop">The loop.</param>
 		private void CheckType4(
 			IList<UniqueLoopTechniqueInfo> result, Grid grid,
-			IReadOnlyList<int> extraCells, int[] digits, IReadOnlyList<int> loop)
+			IReadOnlyList<int> extraCells, int[] digits, int[] regions,
+			IReadOnlyList<int> loop)
 		{
+			foreach (int region in regions)
+			{
+				for (int i = 0; i < 2; i++)
+				{
+					int digit = digits[i];
+					short mask = grid.GetDigitAppearingMask(digit, region);
+					if (mask.CountSet() == 2 && mask.GetAllSets().All(
+						i => loop.Contains(RegionUtils.GetCellOffset(region, i))))
+					{
+						// Type 4 found.
+						int elimDigit = i == 0 ? digits[1] : digits[0];
 
+						// Record all eliminations.
+						var conclusions = new List<Conclusion>();
+						foreach (int cell in extraCells)
+						{
+							if (grid.CandidateExists(cell, elimDigit))
+							{
+								conclusions.Add(
+									new Conclusion(
+										ConclusionType.Elimination, cell * 9 + elimDigit));
+							}
+						}
+
+						if (conclusions.Count == 0)
+						{
+							continue;
+						}
+
+						// Record all highlight candidates.
+						var candidateOffsets = new List<(int, int)>();
+						foreach (int cell in loop)
+						{
+							if (extraCells.Contains(cell))
+							{
+								candidateOffsets.Add((1, cell * 9 + digit));
+							}
+							else
+							{
+								candidateOffsets.Add((0, cell * 9 + digits[0]));
+								candidateOffsets.Add((0, cell * 9 + digits[1]));
+							}
+						}
+
+						// Type 4.
+						result.Add(
+							new UniqueLoopTechniqueInfo(
+								conclusions,
+								views: new[]
+								{
+									new View(
+										cellOffsets: null,
+										candidateOffsets,
+										regionOffsets: new[] { (0, region) },
+										linkMasks: null)
+								},
+								detailData: new UlType4(
+									cells: loop,
+									digits,
+									conjugatePair: new ConjugatePair(extraCells[0], extraCells[1], digit))));
+					}
+				}
+			}
 		}
 
 

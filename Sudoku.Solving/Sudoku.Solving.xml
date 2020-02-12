@@ -2370,7 +2370,7 @@
             <param name="regions">All regions.</param>
             <param name="size">The size.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueInfo},Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueInfo},Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Check type 4.
             </summary>
@@ -2378,6 +2378,7 @@
             <param name="grid">The grid.</param>
             <param name="extraCells">The extra cells.</param>
             <param name="digits">The digits.</param>
+            <param name="regions">All regions.</param>
             <param name="loop">The loop.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.IsValidLoop(Sudoku.Data.Meta.Grid,System.Collections.Generic.IList{System.Int32})">
