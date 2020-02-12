@@ -103,7 +103,7 @@ namespace Sudoku.Solving.Manual.SingleDigitPatterns
 							continue;
 						}
 
-						// Record all lighlight candidates.
+						// Record all highlight candidates.
 						var candidateOffsets = new List<(int, int)>();
 						var cpCells = new List<int>(2);
 						foreach (int cell in GridMap.GetCellsIn(block))

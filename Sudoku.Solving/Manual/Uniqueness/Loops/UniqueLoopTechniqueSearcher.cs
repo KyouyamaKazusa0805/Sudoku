@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 using UlType1 = Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopType1DetailData;
+using UlType2 = Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopType2DetailData;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops
 {
@@ -29,6 +31,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					short mask = grid.GetCandidatesReversal(cell);
 					int d1 = mask.GetNextSetBit(-1);
 					int d2 = mask.GetNextSetBit(d1);
+					int[] digits = new[] { d1, d2 };
 
 					var tempLoop = new List<int>();
 					var loops = new List<List<int>>();
@@ -57,21 +60,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								// Type 1 found.
 								int extraCell = extraCells[0];
 
-								// Record all highlight candidates.
-								var candidateOffsets = new List<(int, int)>();
-								foreach (int loopCell in loop)
-								{
-									if (loopCell == extraCell)
-									{
-										// Skip the extra cell in the loop.
-										continue;
-									}
-
-									candidateOffsets.Add((0, loopCell * 9 + d1));
-									candidateOffsets.Add((0, loopCell * 9 + d2));
-								}
-
-								// Eliminations.
+								// Record all eiminations.
 								var conclusions = new List<Conclusion>();
 								if (!grid[extraCell, d1])
 								{
@@ -91,6 +80,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 									continue;
 								}
 
+								// Record all highlight candidates.
+								var candidateOffsets = new List<(int, int)>();
+								foreach (int loopCell in loop)
+								{
+									if (loopCell == extraCell)
+									{
+										// Skip the extra cell in the loop.
+										continue;
+									}
+
+									candidateOffsets.Add((0, loopCell * 9 + d1));
+									candidateOffsets.Add((0, loopCell * 9 + d2));
+								}
+
 								// UL type 1.
 								result.Add(
 									new UniqueLoopTechniqueInfo(
@@ -105,11 +108,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 										},
 										detailData: new UlType1(
 											cells: loop,
-											digits: new[] { d1, d2 })));
+											digits)));
 							}
 							else if (extraCells.Count > 2)
 							{
-								// Type 2 found.
+								// Type 2 (has more than 2 extra cells) found.
 								short extraDigitMask = 0;
 								foreach (int extraCell in extraCells)
 								{
@@ -118,7 +121,63 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								extraDigitMask &= (short)~((1 << d1) | (1 << d2));
 								int extraDigit = extraDigitMask.FindFirstSet();
 
-								// TODO: Process UL type 2.
+								// Record all eliminations.
+								var conclusions = new List<Conclusion>();
+								var elimMap = default(GridMap);
+								for (int i = 0; i < extraCells.Count; i++)
+								{
+									if (i == 0)
+									{
+										elimMap = new GridMap(extraCells[i], false);
+									}
+									else
+									{
+										elimMap &= new GridMap(extraCells[i], false);
+									}
+								}
+								foreach (int elimCell in elimMap.Offsets)
+								{
+									if (grid.CandidateExists(elimCell, extraDigit))
+									{
+										conclusions.Add(
+											new Conclusion(
+												ConclusionType.Elimination, elimCell * 9 + extraDigit));
+									}
+								}
+
+								if (conclusions.Count == 0)
+								{
+									continue;
+								}
+
+								// Record all highlight candidates.
+								var candidateOffsets = new List<(int, int)>();
+								foreach (int loopCell in loop)
+								{
+									candidateOffsets.Add((0, loopCell * 9 + d1));
+									candidateOffsets.Add((0, loopCell * 9 + d2));
+								}
+								foreach (int extraCell in extraCells)
+								{
+									candidateOffsets.Add((1, extraCell * 9 + extraDigit));
+								}
+
+								// UL type 2.
+								result.Add(
+									new UniqueLoopTechniqueInfo(
+										conclusions,
+										views: new[]
+										{
+											new View(
+												cellOffsets: null,
+												candidateOffsets,
+												regionOffsets: null,
+												linkMasks: null)
+										},
+										detailData: new UlType2(
+											cells: loop,
+											digits,
+											extraDigit)));
 							}
 							else
 							{
@@ -132,7 +191,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 									int count = resultMask.CountSet();
 									if (count == 1)
 									{
-										// Type 2.
+										CheckType2(
+											result, grid, resultMask.FindFirstSet(),
+											extraCells, digits, loop);
 									}
 									else if (count >= 2)
 									{
@@ -148,6 +209,66 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			}
 
 			return result;
+		}
+
+		private static void CheckType2(
+			IList<UniqueLoopTechniqueInfo> result, Grid grid,
+			int extraDigit, IReadOnlyList<int> extraCells, int[] digits, IReadOnlyList<int> loop)
+		{
+			// Record all eliminations.
+			var conclusions = new List<Conclusion>();
+			var elimMap = default(GridMap);
+			for (int i = 0; i < 2; i++)
+			{
+				int extraCell = extraCells[i];
+				if (i == 0)
+				{
+					elimMap = new GridMap(extraCell, false);
+				}
+				else
+				{
+					elimMap &= new GridMap(extraCell, false);
+				}
+			}
+
+			foreach (int cell in elimMap.Offsets)
+			{
+				if (grid.CandidateExists(cell, extraDigit))
+				{
+					conclusions.Add(new Conclusion(ConclusionType.Elimination, cell * 9 + extraDigit));
+				}
+			}
+
+			if (conclusions.Count == 0)
+			{
+				return;
+			}
+
+			// UL type 2.
+			// Record all highlight candidates.
+			var candidateOffsets = new List<(int, int)>();
+			foreach (int cell in loop)
+			{
+				candidateOffsets.Add((0, cell * 9 + digits[0]));
+				candidateOffsets.Add((0, cell * 9 + digits[1]));
+			}
+			foreach (int extraCell in extraCells)
+			{
+				candidateOffsets.Add((1, extraCell * 9 + extraDigit));
+			}
+
+			result.Add(
+				new UniqueLoopTechniqueInfo(
+					conclusions,
+					views: new[]
+					{
+						new View(
+							cellOffsets: null,
+							candidateOffsets,
+							regionOffsets: null,
+							linkMasks: null)
+					},
+					detailData: new UlType2(loop, digits, extraDigit)));
 		}
 
 		private static bool IsValidLoop(Grid grid, IList<int> loop)
