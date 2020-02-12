@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
@@ -16,11 +15,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	public sealed class UniqueLoopTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid) => TakeAllCore(grid);
-
-
-		#region UL utils
-		private static IReadOnlyList<UniqueLoopTechniqueInfo> TakeAllCore(Grid grid)
+		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
 			var result = new List<UniqueLoopTechniqueInfo>();
 
@@ -211,6 +206,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			return result;
 		}
 
+
+		#region UL utils
+		/// <summary>
+		/// Check for type 2 (with two extra cells).
+		/// </summary>
+		/// <param name="result">The result.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="extraDigit">The extra digit.</param>
+		/// <param name="extraCells">All extra cells.</param>
+		/// <param name="digits">All digits.</param>
+		/// <param name="loop">The loop.</param>
 		private static void CheckType2(
 			IList<UniqueLoopTechniqueInfo> result, Grid grid,
 			int extraDigit, IReadOnlyList<int> extraCells, int[] digits, IReadOnlyList<int> loop)
@@ -271,6 +277,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					detailData: new UlType2(loop, digits, extraDigit)));
 		}
 
+		/// <summary>
+		/// Check whether the loop is valid.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="loop">The loop to check.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
 		private static bool IsValidLoop(Grid grid, IList<int> loop)
 		{
 			var visitedOdd = new HashSet<int>();
@@ -315,6 +327,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				&& visitedEven.All(c => visitedOdd.Contains(c));
 		}
 
+		/// <summary>
+		/// Check the validity of the unique loop recursively.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="cell">The cell to check.</param>
+		/// <param name="d1">The digit 1.</param>
+		/// <param name="d2">The digit 2.</param>
+		/// <param name="loop">The loop.</param>
+		/// <param name="allowedExtraCellsCount">The number of allowed extra cells.</param>
+		/// <param name="exDigitsMask">The extra digits mask.</param>
+		/// <param name="lastRegionType">The last region type.</param>
+		/// <param name="loops">All loops.</param>
 		private static void CheckForLoopsRecursively(
 			Grid grid, int cell, int d1, int d2, IList<int> loop,
 			int allowedExtraCellsCount, short exDigitsMask,
@@ -374,7 +398,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				}
 			}
 
-			// Roll back.
+			// Backtracking.
 			loop.RemoveAt(loop.Count - 1);
 		}
 		#endregion
