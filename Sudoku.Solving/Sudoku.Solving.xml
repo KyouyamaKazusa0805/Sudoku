@@ -1294,18 +1294,18 @@
         <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.LastResorts.LastResortTechniqueSearcher">
-            <summary>
-            Encapsulates a last resort technique searcher.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.LastResorts.LastResortTechniuqeInfo">
+        <member name="T:Sudoku.Solving.Manual.LastResorts.LastResortTechniqueInfo">
             <summary>
             Provides a usage of last resort.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.LastResortTechniuqeInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.LastResortTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.LastResorts.LastResortTechniqueSearcher">
+            <summary>
+            Encapsulates a last resort technique searcher.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo">
             <summary>

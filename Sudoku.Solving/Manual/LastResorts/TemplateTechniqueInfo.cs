@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public override string Name => $"Template {(IsTemplateDeletion ? "Delete" : "Set")}";
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 8.0m;
+		public override decimal Difficulty => 8.5m;
 
 		/// <inheritdoc/>
 		public override DifficultyLevels DifficultyLevel => DifficultyLevels.LastResort;
