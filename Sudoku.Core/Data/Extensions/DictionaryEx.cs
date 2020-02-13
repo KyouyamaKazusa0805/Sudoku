@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
@@ -26,7 +27,7 @@ namespace Sudoku.Data.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void AddIfKeyDoesNotContain<TKey, TValue>(
 			this IDictionary<TKey, TValue> @this, TKey key, TValue value)
-			where TKey : notnull
+			where TKey : notnull, IEquatable<TKey>
 		{
 			if (!@this.ContainsKey(key))
 			{
