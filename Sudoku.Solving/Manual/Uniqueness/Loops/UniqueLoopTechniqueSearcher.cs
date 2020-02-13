@@ -93,7 +93,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								}
 
 								// UL type 1.
-								result.Add(
+								result.AddIfDoesNotContain(
 									new UniqueLoopTechniqueInfo(
 										conclusions,
 										views: new[]
@@ -161,7 +161,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								}
 
 								// UL type 2.
-								result.Add(
+								result.AddIfDoesNotContain(
 									new UniqueLoopTechniqueInfo(
 										conclusions,
 										views: new[]
@@ -291,7 +291,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			}
 
 			// UL type 2.
-			result.Add(
+			result.AddIfDoesNotContain(
 				new UniqueLoopTechniqueInfo(
 					conclusions,
 					views: new[]
@@ -383,7 +383,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						}
 
 						// UL type 3 (with naked subset).
-						result.Add(
+						result.AddIfDoesNotContain(
 							new UniqueLoopTechniqueInfo(
 								conclusions,
 								views: new[]
@@ -467,7 +467,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								}
 
 								// UL type 3 (with naked subset).
-								result.Add(
+								result.AddIfDoesNotContain(
 									new UniqueLoopTechniqueInfo(
 										conclusions,
 										views: new[]
@@ -554,7 +554,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 									}
 
 									// UL type 3 (with naked subset).
-									result.Add(
+									result.AddIfDoesNotContain(
 										new UniqueLoopTechniqueInfo(
 											conclusions,
 											views: new[]
@@ -604,6 +604,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					}
 
 					short m1 = grid.GetDigitAppearingMask(d1, region);
+					if (m1 == 0)
+					{
+						continue;
+					}
+
 					for (int d2 = d1 + 1; d2 < 11 - size; d2++)
 					{
 						if (!digits.Contains(d2))
@@ -612,6 +617,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						}
 
 						short m2 = grid.GetDigitAppearingMask(d2, region);
+						if (m2 == 0)
+						{
+							continue;
+						}
+
 						if (size == 2)
 						{
 							// Check hidden pair.
@@ -623,7 +633,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								var elimCells = new List<int>();
 								foreach (int pos in mask.GetAllSets())
 								{
-									elimCells.Add(RegionUtils.GetCellOffset(region, pos));
+									int cell = RegionUtils.GetCellOffset(region, pos);
+									if (loop.Contains(cell))
+									{
+										continue;
+									}
+
+									elimCells.Add(cell);
 								}
 
 								// Record all eliminations.
@@ -631,13 +647,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								var conclusions = new List<Conclusion>();
 								foreach (int cell in elimCells)
 								{
+									if (!loop.Contains(cell))
+									{
+										subsetCells.Add(cell);
+									}
+
 									for (int digit = 0; digit < 9; digit++)
 									{
 										if (!loop.Contains(cell)
 											&& !digits.Contains(digit)
 											&& grid.CandidateExists(cell, digit))
 										{
-											subsetCells.Add(cell);
 											conclusions.Add(
 												new Conclusion(
 													ConclusionType.Elimination, cell * 9 + digit));
@@ -683,7 +703,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								}
 
 								// Type 3 (with hidden subset).
-								result.Add(
+								result.AddIfDoesNotContain(
 									new UniqueLoopTechniqueInfo(
 										conclusions,
 										views: new[]
@@ -707,6 +727,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							for (int d3 = d2 + 1; d3 < 12 - size; d3++)
 							{
 								short m3 = grid.GetDigitAppearingMask(d3, region);
+								if (m3 == 0)
+								{
+									continue;
+								}
+
 								if (size == 3)
 								{
 									// Check hidden triple.
@@ -718,7 +743,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 										var elimCells = new List<int>();
 										foreach (int pos in mask.GetAllSets())
 										{
-											elimCells.Add(RegionUtils.GetCellOffset(region, pos));
+											int cell = RegionUtils.GetCellOffset(region, pos);
+											if (loop.Contains(cell))
+											{
+												continue;
+											}
+
+											elimCells.Add(cell);
 										}
 
 										// Record all eliminations.
@@ -726,13 +757,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 										var conclusions = new List<Conclusion>();
 										foreach (int cell in elimCells)
 										{
+											if (!loop.Contains(cell))
+											{
+												subsetCells.Add(cell);
+											}
+
 											for (int digit = 0; digit < 9; digit++)
 											{
 												if (!loop.Contains(cell)
 													&& !digits.Contains(digit)
 													&& grid.CandidateExists(cell, digit))
 												{
-													subsetCells.Add(cell);
 													conclusions.Add(
 														new Conclusion(
 															ConclusionType.Elimination, cell * 9 + digit));
@@ -782,7 +817,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 										}
 
 										// Type 3 (with hidden subset).
-										result.Add(
+										result.AddIfDoesNotContain(
 											new UniqueLoopTechniqueInfo(
 												conclusions,
 												views: new[]
@@ -806,6 +841,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 									for (int d4 = d3 + 1; d4 < 9; d4++)
 									{
 										short m4 = grid.GetDigitAppearingMask(d4, region);
+										if (m4 == 0)
+										{
+											continue;
+										}
 
 										// Check hidden quadruple.
 										short mask = (short)((short)((short)(m1 | m2) | m3) | m4);
@@ -816,7 +855,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 											var elimCells = new List<int>();
 											foreach (int pos in mask.GetAllSets())
 											{
-												elimCells.Add(RegionUtils.GetCellOffset(region, pos));
+												int cell = RegionUtils.GetCellOffset(region, pos);
+												if (loop.Contains(cell))
+												{
+													continue;
+												}
+
+												elimCells.Add(cell);
 											}
 
 											// Record all eliminations.
@@ -824,13 +869,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 											var conclusions = new List<Conclusion>();
 											foreach (int cell in elimCells)
 											{
+												if (!loop.Contains(cell))
+												{
+													subsetCells.Add(cell);
+												}
+
 												for (int digit = 0; digit < 9; digit++)
 												{
 													if (!loop.Contains(cell)
 														&& !digits.Contains(digit)
 														&& grid.CandidateExists(cell, digit))
 													{
-														subsetCells.Add(cell);
 														conclusions.Add(
 															new Conclusion(
 																ConclusionType.Elimination, cell * 9 + digit));
@@ -884,7 +933,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 											}
 
 											// Type 3 (with hidden subset).
-											result.Add(
+											result.AddIfDoesNotContain(
 												new UniqueLoopTechniqueInfo(
 													conclusions,
 													views: new[]
@@ -970,7 +1019,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						}
 
 						// Type 4.
-						result.Add(
+						result.AddIfDoesNotContain(
 							new UniqueLoopTechniqueInfo(
 								conclusions,
 								views: new[]

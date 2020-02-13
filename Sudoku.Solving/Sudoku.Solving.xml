@@ -2287,8 +2287,33 @@
             Indicates all digits used.
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopDetailData.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopDetailData.Equals(Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopDetailData)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopDetailData.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopDetailData.ToString">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopDetailData.op_Equality(Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopDetailData,Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopDetailData)">
+            <summary>
+            Indicates whether two instances have a same value.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopDetailData.op_Inequality(Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopDetailData,Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopDetailData)">
+            <summary>
+            Indicates whether two instances have two different values.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueInfo">
             <summary>
@@ -2321,6 +2346,9 @@
             <summary>
             The data of the specified unique rectangle type.
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueInfo.Equals(Sudoku.Solving.TechniqueInfo)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueInfo.ToString">
             <inheritdoc/>
@@ -2495,6 +2523,9 @@
             <summary>
             Indicates the conjugate pair used.
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopType4DetailData.Equals(Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopDetailData)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopType4DetailData.ToString">
             <inheritdoc/>
@@ -3267,6 +3298,15 @@
             </summary>
             <param name="grid">The grid.</param>
         </member>
+        <member name="M:Sudoku.Solving.TechniqueInfo.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueInfo.Equals(Sudoku.Solving.TechniqueInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueInfo.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.TechniqueInfo.ToString">
             <inheritdoc/>
         </member>
@@ -3275,6 +3315,22 @@
             Returns a string that only contains the name and the conclusions.
             </summary>
             <returns>The string instance.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueInfo.op_Equality(Sudoku.Solving.TechniqueInfo,Sudoku.Solving.TechniqueInfo)">
+            <summary>
+            Indicates whether two instances have a same value.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueInfo.op_Inequality(Sudoku.Solving.TechniqueInfo,Sudoku.Solving.TechniqueInfo)">
+            <summary>
+            Indicates whether two instances have two different values.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.TechniqueSearcher">
             <summary>

@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops
 {
 	/// <summary>
 	/// Provides all data for unique loops (basic and extended types).
 	/// </summary>
-	public abstract class UniqueLoopDetailData
+	public abstract class UniqueLoopDetailData : IEquatable<UniqueLoopDetailData>
 	{
 		/// <summary>
 		/// Provides passing data when initializing an instance of derived types.
@@ -14,7 +15,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="digits">All digits.</param>
 		protected UniqueLoopDetailData(IReadOnlyList<int> cells, IReadOnlyList<int> digits) =>
 			(Cells, Digits) = (cells, digits);
-
 
 
 		/// <summary>
@@ -57,8 +57,37 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// </summary>
 		public IReadOnlyList<int> Digits { get; }
 
+		/// <inheritdoc/>
+		public sealed override bool Equals(object? obj) =>
+			obj is UniqueLoopDetailData comparer && Equals(comparer);
+
+		/// <inheritdoc/>
+		public virtual bool Equals(UniqueLoopDetailData other) =>
+			ToString() == other.ToString();
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ToString().GetHashCode();
 
 		/// <inheritdoc/>
 		public abstract override string ToString();
+
+
+		/// <summary>
+		/// Indicates whether two instances have a same value.
+		/// </summary>
+		/// <param name="left">The left instance.</param>
+		/// <param name="right">The right instance.</param>
+		/// <returns>A <see cref="bool"/> result indicating that.</returns>
+		public static bool operator ==(UniqueLoopDetailData left, UniqueLoopDetailData right) =>
+			left.Equals(right);
+
+		/// <summary>
+		/// Indicates whether two instances have two different values.
+		/// </summary>
+		/// <param name="left">The left instance.</param>
+		/// <param name="right">The right instance.</param>
+		/// <returns>A <see cref="bool"/> result indicating that.</returns>
+		public static bool operator !=(UniqueLoopDetailData left, UniqueLoopDetailData right) =>
+			!(left == right);
 	}
 }

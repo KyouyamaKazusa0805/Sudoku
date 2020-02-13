@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Data.Meta;
 using Sudoku.Diagnostics.CodeAnalysis;
 using Sudoku.Drawing;
@@ -10,7 +11,7 @@ namespace Sudoku.Solving
 	/// Encapsulates all information after searched a solving step,
 	/// which include the conclusion, the difficulty and so on.
 	/// </summary>
-	public abstract class TechniqueInfo
+	public abstract class TechniqueInfo : IEquatable<TechniqueInfo>
 	{
 		/// <summary>
 		/// Provides passing data when initializing an instance of derived types.
@@ -108,12 +109,43 @@ namespace Sudoku.Solving
 		}
 
 		/// <inheritdoc/>
+		public sealed override bool Equals(object? obj) =>
+			obj is TechniqueInfo comparer && Equals(comparer);
+
+		/// <inheritdoc/>
+		public virtual bool Equals(TechniqueInfo other) =>
+			ToString() == other.ToString();
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ToString().GetHashCode();
+
+		/// <inheritdoc/>
 		public abstract override string ToString();
 
 		/// <summary>
 		/// Returns a string that only contains the name and the conclusions.
 		/// </summary>
 		/// <returns>The string instance.</returns>
-		public virtual string ToSimpleString() => $"{Name} => {ConclusionCollection.ToString(Conclusions)}";
+		public virtual string ToSimpleString() =>
+			$"{Name} => {ConclusionCollection.ToString(Conclusions)}";
+
+
+		/// <summary>
+		/// Indicates whether two instances have a same value.
+		/// </summary>
+		/// <param name="left">The left instance.</param>
+		/// <param name="right">The right instance.</param>
+		/// <returns>A <see cref="bool"/> result indicating that.</returns>
+		public static bool operator ==(TechniqueInfo left, TechniqueInfo right) =>
+			left.Equals(right);
+
+		/// <summary>
+		/// Indicates whether two instances have two different values.
+		/// </summary>
+		/// <param name="left">The left instance.</param>
+		/// <param name="right">The right instance.</param>
+		/// <returns>A <see cref="bool"/> result indicating that.</returns>
+		public static bool operator !=(TechniqueInfo left, TechniqueInfo right) =>
+			!(left == right);
 	}
 }

@@ -59,6 +59,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// </summary>
 		public UniqueLoopDetailData DetailData { get; }
 
+		/// <inheritdoc/>
+		public override bool Equals(TechniqueInfo other)
+		{
+			return other is UniqueLoopTechniqueInfo comparer
+				&& DetailData.Equals(comparer.DetailData);
+		}
 
 		/// <inheritdoc/>
 		public override string ToString()

@@ -30,6 +30,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 
 		/// <inheritdoc/>
+		public override bool Equals(UniqueLoopDetailData other)
+		{
+			return other is UniqueLoopType4DetailData comparer
+				&& ConjugatePair == comparer.ConjugatePair;
+		}
+
+		/// <inheritdoc/>
 		public override string ToString()
 		{
 			string digitsStr = DigitCollection.ToString(Digits);
