@@ -1327,6 +1327,11 @@
             Indicates whether this technique is template deletion.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo.Name">
             <inheritdoc/>
         </member>

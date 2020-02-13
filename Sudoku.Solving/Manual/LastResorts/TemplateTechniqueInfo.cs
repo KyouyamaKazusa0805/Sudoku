@@ -28,6 +28,11 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// </summary>
 		public bool IsTemplateDeletion { get; }
 
+		/// <summary>
+		/// Indicates the digit.
+		/// </summary>
+		public int Digit => Conclusions[0].Digit;
+
 		/// <inheritdoc/>
 		public override string Name => $"Template {(IsTemplateDeletion ? "Delete" : "Set")}";
 
@@ -42,7 +47,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public override string ToString()
 		{
 			string conclusionsStr = ConclusionCollection.ToString(Conclusions);
-			return $"{Name} => {conclusionsStr}";
+			int digit = Digit + 1;
+			return $"{Name}: Digit {digit} => {conclusionsStr}";
 		}
 	}
 }
