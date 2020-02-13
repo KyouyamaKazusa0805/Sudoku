@@ -8,7 +8,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// <summary>
 	/// Provides a usage of brute force technique.
 	/// </summary>
-	public sealed class BruteForceTechniqueInfo : LastResortTechniuqeInfo
+	public sealed class BruteForceTechniqueInfo : LastResortTechniqueInfo
 	{
 		/// <summary>
 		/// Initializes an instance with the specified information.

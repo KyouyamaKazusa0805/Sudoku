@@ -7,7 +7,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// <summary>
 	/// Provides a usage of template technique.
 	/// </summary>
-	public sealed class TemplateTechniqueInfo : LastResortTechniuqeInfo
+	public sealed class TemplateTechniqueInfo : LastResortTechniqueInfo
 	{
 		/// <summary>
 		/// Initializes an instance with the specified information.
