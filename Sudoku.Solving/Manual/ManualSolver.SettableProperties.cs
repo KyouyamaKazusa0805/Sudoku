@@ -120,6 +120,20 @@
 		public bool EnableLastDigit { get; set; } = true;
 
 		/// <summary>
+		/// <para>
+		/// Indicates whether the step accumulator only records templete delete,
+		/// and template set will not be in this collection (if necessary).
+		/// </para>
+		/// <para>
+		/// If the value is <see langword="true"/>, and the solver has checked
+		/// all template steps, only template deletes in these steps will be
+		/// recorded into the step accumulator.
+		/// </para>
+		/// <para>The value is <see langword="true"/> in default case.</para>
+		/// </summary>
+		public bool OnlyRecordTemplateDelete { get; set; } = true;
+
+		/// <summary>
 		/// <para>Indicates the solver will optimizes the applying order.</para>
 		/// <para>
 		/// When the value is <see langword="true"/>, the result to apply to

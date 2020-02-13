@@ -13,6 +13,22 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// </summary>
 	public sealed class TemplateTechniqueSearcher : LastResortTechniqueSearcher
 	{
+		/// <summary>
+		/// Indicates whether the seacher checks template deletes.
+		/// </summary>
+		private readonly bool _templateDeleteOnly;
+
+
+		/// <summary>
+		/// Initalizes an instance with the specified <see cref="bool"/> value.
+		/// </summary>
+		/// <param name="templateDeleteOnly">
+		/// Indicates whether the technique searcher checks template deletes.
+		/// </param>
+		public TemplateTechniqueSearcher(bool templateDeleteOnly) =>
+			_templateDeleteOnly = templateDeleteOnly;
+
+
 		/// <inheritdoc/>
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the puzzle is not unique.
@@ -24,7 +40,10 @@ namespace Sudoku.Solving.Manual.LastResorts
 				var result = new List<TemplateTechniqueInfo>();
 
 				(_, _, var digitDistributions) = grid;
-				GetAllTemplateSet(result, solution, digitDistributions);
+				if (!_templateDeleteOnly)
+				{
+					GetAllTemplateSet(result, solution, digitDistributions);
+				}
 				GetAllTemplateDelete(result, solution, digitDistributions);
 
 				return result;
