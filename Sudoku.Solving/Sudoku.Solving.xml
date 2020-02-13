@@ -1544,6 +1544,20 @@
             which is last digit.
             </remarks>
         </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.EnableTemplate">
+            <summary>
+            <para>
+            Indicates whether the solver will record template techniques
+            if worth.
+            </para>
+            <para>
+            The value is <see langword="true"/> in default case. In addition,
+            if the value is <see langword="false"/>, the option
+            <see cref="P:Sudoku.Solving.Manual.ManualSolver.OnlyRecordTemplateDelete"/> will be disabled.
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.OnlyRecordTemplateDelete"/>.
+        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.OnlyRecordTemplateDelete">
             <summary>
             <para>
