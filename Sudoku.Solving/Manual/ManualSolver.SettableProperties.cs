@@ -2,22 +2,7 @@
 {
 	partial class ManualSolver
 	{
-		/// <summary>
-		/// <para>Indicates the solver will optimizes the applying order.</para>
-		/// <para>
-		/// When the value is <see langword="true"/>, the result to apply to
-		/// the grid will be the one which has the minimum difficulty
-		/// rating; otherwise, the applying step will be the first one
-		/// of all steps being searched.
-		/// </para>
-		/// <para>
-		/// The value is <see langword="false"/> in default case. If the value
-		/// is <see langword="true"/>, the option <see cref="AnalyzeDifficultyStrictly"/>
-		/// will be disabled.
-		/// </para>
-		/// </summary>
-		/// <seealso cref="AnalyzeDifficultyStrictly"/>
-		public bool OptimizedApplyingOrder { get; set; } = false;
+		
 
 		/// <summary>
 		/// <para>
@@ -43,56 +28,6 @@
 		/// </summary>
 		/// <seealso cref="OptimizedApplyingOrder"/>
 		public bool AnalyzeDifficultyStrictly { get; set; } = false;
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether the solver should use extended BUG checker
-		/// to searcher for all true candidates no matter how difficult
-		/// the true candidates looking for.
-		/// </para>
-		/// <para>The value is <see langword="false"/> in default case.</para>
-		/// </summary>
-		public bool UseExtendedBugSearcher { get; set; } = false;
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether the solver will record the step
-		/// whose name or kind is full house.
-		/// </para>
-		/// <para>The value is <see langword="true"/> in default case.</para>
-		/// </summary>
-		/// <remarks>
-		/// <b>Full house</b>s are the techniques that used in a single
-		/// region. When the specified region has only one empty cell,
-		/// the full house will be found at this empty cell (the last
-		/// value in this region).
-		/// </remarks>
-		public bool EnableFullHouse { get; set; } = true;
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether the solver will record the step
-		/// whose name or kind is last digit.
-		/// </para>
-		/// <para>The value is <see langword="true"/> in default case.</para>
-		/// </summary>
-		/// <remarks>
-		/// <b>Last digit</b>s are the techniques that used in a single
-		/// digit. When the whole grid has 8 same digits, the last
-		/// one will be always found and set in the last position,
-		/// which is last digit.
-		/// </remarks>
-		public bool EnableLastDigit { get; set; } = true;
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether the solver should add brute force technique information
-		/// when the puzzle has a unique solution but cannot be found any manual
-		/// techniques.
-		/// </para>
-		/// <para>The value is <see langword="true"/> in default case.</para>
-		/// </summary>
-		public bool EnableBruteForce { get; set; } = true;
 
 		/// <summary>
 		/// <para>
@@ -143,5 +78,72 @@
 			set => _checkRegularWingSize = value >= 3 && value <= 5 ? value : 5;
 		}
 		#endregion
+
+		/// <summary>
+		/// <para>
+		/// Indicates whether the solver should add brute force technique information
+		/// when the puzzle has a unique solution but cannot be found any manual
+		/// techniques.
+		/// </para>
+		/// <para>The value is <see langword="true"/> in default case.</para>
+		/// </summary>
+		public bool EnableBruteForce { get; set; } = true;
+
+		/// <summary>
+		/// <para>
+		/// Indicates whether the solver will record the step
+		/// whose name or kind is full house.
+		/// </para>
+		/// <para>The value is <see langword="true"/> in default case.</para>
+		/// </summary>
+		/// <remarks>
+		/// <b>Full house</b>s are the techniques that used in a single
+		/// region. When the specified region has only one empty cell,
+		/// the full house will be found at this empty cell (the last
+		/// value in this region).
+		/// </remarks>
+		public bool EnableFullHouse { get; set; } = true;
+
+		/// <summary>
+		/// <para>
+		/// Indicates whether the solver will record the step
+		/// whose name or kind is last digit.
+		/// </para>
+		/// <para>The value is <see langword="true"/> in default case.</para>
+		/// </summary>
+		/// <remarks>
+		/// <b>Last digit</b>s are the techniques that used in a single
+		/// digit. When the whole grid has 8 same digits, the last
+		/// one will be always found and set in the last position,
+		/// which is last digit.
+		/// </remarks>
+		public bool EnableLastDigit { get; set; } = true;
+
+		/// <summary>
+		/// <para>Indicates the solver will optimizes the applying order.</para>
+		/// <para>
+		/// When the value is <see langword="true"/>, the result to apply to
+		/// the grid will be the one which has the minimum difficulty
+		/// rating; otherwise, the applying step will be the first one
+		/// of all steps being searched.
+		/// </para>
+		/// <para>
+		/// The value is <see langword="false"/> in default case. If the value
+		/// is <see langword="true"/>, the option <see cref="AnalyzeDifficultyStrictly"/>
+		/// will be disabled.
+		/// </para>
+		/// </summary>
+		/// <seealso cref="AnalyzeDifficultyStrictly"/>
+		public bool OptimizedApplyingOrder { get; set; } = false;
+
+		/// <summary>
+		/// <para>
+		/// Indicates whether the solver should use extended BUG checker
+		/// to searcher for all true candidates no matter how difficult
+		/// the true candidates looking for.
+		/// </para>
+		/// <para>The value is <see langword="false"/> in default case.</para>
+		/// </summary>
+		public bool UseExtendedBugSearcher { get; set; } = false;
 	}
 }
