@@ -6,7 +6,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data.Extensions;
-using Sudoku.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Data.Meta
 {
@@ -15,7 +14,7 @@ namespace Sudoku.Data.Meta
 	/// where <see langword="true"/> bit (1) is for the cell having digit,
 	/// and the <see langword="false"/> bit (0) is for empty cell. Sometimes for other usages.
 	/// </summary>
-	[DisableDefaultConstructor, DebuggerStepThrough]
+	[DebuggerStepThrough]
 	public partial struct GridMap : IEnumerable<bool>, IEquatable<GridMap>
 	{
 		/// <summary>
@@ -249,7 +248,6 @@ namespace Sudoku.Data.Meta
 		/// </summary>
 		/// <param name="high">(out parameter) Higher 40 bits.</param>
 		/// <param name="low">(out parameter) Lower 41 bits.</param>
-		[OnDeconstruction]
 		public readonly void Deconstruct(out long high, out long low) =>
 			(high, low) = (_high, _low);
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using Sudoku.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Data
 {
@@ -51,7 +50,6 @@ namespace Sudoku.Data
 		/// <param name="oldMask">(out parameter) The old mask.</param>
 		/// <param name="newMask">(out parameter) The new mask.</param>
 		/// <param name="setValue">(out parameter) the set value.</param>
-		[OnDeconstruction]
 		public void Deconstruct(
 			out int cellOffset, out short oldMask, out short newMask, out int setValue) =>
 			(cellOffset, oldMask, newMask, setValue) = (CellOffset, OldMask, NewMask, SetValue);

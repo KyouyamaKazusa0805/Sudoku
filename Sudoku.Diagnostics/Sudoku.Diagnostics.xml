@@ -4,57 +4,6 @@
         <name>Sudoku.Diagnostics</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.DisableDefaultConstructorAttribute">
-            <summary>
-            To disable using default constructor in structs.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.DisableDefaultConstructorAttribute.IsError">
-            <summary>
-            Specifies an action when calling the default constructor
-            in structs. If the value is <see langword="true"/>, it will report
-            a compiling error; otherwise, a warning.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.OnAddingAttribute">
-            <summary>
-            To mark on the method, it means that the method is used for add elements
-            in this current collection.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.OnDeconstructionAttribute">
-            <summary>
-            It means the method marked this attribute is only used for deconstruction
-            to <see cref="T:System.ValueTuple"/>s.
-            </summary>
-            <seealso cref="T:System.ValueTuple"/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.ParameterizedObjectAttribute">
-            <summary>
-            Represents the type is only used for parameterized object.
-            You may regard the type as anonymous inner classes (or structs).
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.PatternAttribute">
-            <summary>
-            It means the parameter marked this attribute is a regular expression pattern.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContractAttribute">
-            <summary>
-            <para>
-            Marks members which are only used for completing syntax-based
-            contract.
-            </para>
-            <para>
-            For example, C# will allow users to use 'Collection Initialization'
-            syntax to initialize any collections if the target collection object
-            is confirmed that it has <c>Add</c> method to add new elements.
-            <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContractAttribute"/> suggests you that you should add
-            <see cref="T:Sudoku.Diagnostics.CodeAnalysis.OnAddingAttribute"/> on <c>Add</c> method.
-            </para>
-            </summary>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeCounter">
             <summary>
             Encapsulates a code line counter.

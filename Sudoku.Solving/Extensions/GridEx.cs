@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
-using Sudoku.Diagnostics.CodeAnalysis;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Extensions
@@ -26,7 +25,6 @@ namespace Sudoku.Solving.Extensions
 		/// <param name="digitsDistributions">
 		/// (out parameter) The distributions of all digits.
 		/// </param>
-		[OnDeconstruction]
 		public static void Deconstruct(
 			this Grid @this, out GridMap emptyCells,
 			out GridMap bivalueCells, out GridMap[] digitsDistributions)

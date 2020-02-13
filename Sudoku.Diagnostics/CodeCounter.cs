@@ -3,7 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Sudoku.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Diagnostics
 {
@@ -41,8 +40,7 @@ namespace Sudoku.Diagnostics
 		/// </summary>
 		/// <param name="root">The root directory.</param>
 		/// <param name="filterPattern">The filter pattern.</param>
-		[SuppressMessage("", "regex001")]
-		public CodeCounter(string root, [Pattern] string filterPattern) =>
+		public CodeCounter(string root, string filterPattern) =>
 			(_root, _pattern) = (root, filterPattern);
 
 
@@ -59,9 +57,10 @@ namespace Sudoku.Diagnostics
 
 			int count = 0;
 			int result = 0;
-			foreach (string fileName in from fileName in _fileList
-										where SatisfyPattern(fileName, _pattern)
-										select fileName)
+			foreach (string fileName in
+				from fileName in _fileList
+				where SatisfyPattern(fileName, _pattern)
+				select fileName)
 			{
 				try
 				{

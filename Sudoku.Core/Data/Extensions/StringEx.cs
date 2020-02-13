@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-using Sudoku.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Data.Extensions
 {
@@ -20,7 +19,7 @@ namespace Sudoku.Data.Extensions
 		/// <param name="this">(extension method main parameter) The value to check.</param>
 		/// <param name="pattern">The regular expression pattern.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public static bool SatisfyPattern(this string @this, [Pattern] string pattern)
+		public static bool SatisfyPattern(this string @this, string pattern)
 		{
 			string? match = @this.Match(pattern);
 			return !(match is null) && match == @this;
@@ -38,7 +37,7 @@ namespace Sudoku.Data.Extensions
 		/// method <see cref="Regex.IsMatch(string, string)"/>.
 		/// </remarks>
 		/// <seealso cref="Regex.IsMatch(string, string)"/>
-		public static bool IsMatch(this string @this, [Pattern] string pattern) =>
+		public static bool IsMatch(this string @this, string pattern) =>
 			Regex.IsMatch(@this, pattern);
 
 		/// <summary>
@@ -56,7 +55,7 @@ namespace Sudoku.Data.Extensions
 		/// method <see cref="Regex.Match(string, string)"/>.
 		/// </remarks>
 		/// <seealso cref="Regex.Match(string, string)"/>
-		public static string? Match(this string @this, [Pattern] string pattern) =>
+		public static string? Match(this string @this, string pattern) =>
 			@this.Match(pattern, RegexOptions.None);
 
 		/// <summary>
@@ -76,7 +75,7 @@ namespace Sudoku.Data.Extensions
 		/// </remarks>
 		/// <seealso cref="Regex.Match(string, string, RegexOptions)"/>
 		public static string? Match(
-			this string @this, [Pattern] string pattern, RegexOptions regexOption)
+			this string @this, string pattern, RegexOptions regexOption)
 		{
 			var match = Regex.Match(@this, pattern, regexOption);
 			return match.Success ? match.Value : null;
@@ -97,7 +96,7 @@ namespace Sudoku.Data.Extensions
 		/// method <see cref="Regex.Matches(string, string)"/>.
 		/// </remarks>
 		/// <seealso cref="Regex.Matches(string, string)"/>
-		public static string[] MatchAll(this string @this, [Pattern] string pattern) =>
+		public static string[] MatchAll(this string @this, string pattern) =>
 			@this.MatchAll(pattern, RegexOptions.None);
 
 		/// <summary>
@@ -118,7 +117,7 @@ namespace Sudoku.Data.Extensions
 		/// </remarks>
 		/// <seealso cref="Regex.Matches(string, string, RegexOptions)"/>
 		public static string[] MatchAll(
-			this string @this, [Pattern] string pattern, RegexOptions regexOption)
+			this string @this, string pattern, RegexOptions regexOption)
 		{
 			var matches = Regex.Matches(@this, pattern, regexOption);
 			var result = new List<string>();

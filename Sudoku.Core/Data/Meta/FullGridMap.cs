@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Sudoku.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Data.Meta
 {
@@ -17,7 +16,7 @@ namespace Sudoku.Data.Meta
 	/// of value type should be no more than 64 bytes). Therefore, we should use
 	/// <see cref="GridMap"/> instead of this data structure as much as possible.
 	/// </remarks>
-	[DisableDefaultConstructor, DebuggerStepThrough]
+	[DebuggerStepThrough]
 	public struct FullGridMap : IEquatable<FullGridMap>
 	{
 		/// <summary>
