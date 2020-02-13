@@ -418,6 +418,38 @@ namespace Sudoku.Data.Meta
 			return result;
 		}
 
+		/// <summary>
+		/// Create a <see cref="GridMap"/> instance with the specified solution.
+		/// If the puzzle has been solved, this method will create a gridmap of
+		/// distribution of a single digit in this solution.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="digit">The digit to search.</param>
+		/// <returns>
+		/// The grid map that contains all cells of a digit appearing
+		/// in the solution.
+		/// </returns>
+		/// <exception cref="ArgumentException">
+		/// Throws when the puzzle has not been solved.
+		/// </exception>
+		public static GridMap CreateInstance(Grid grid, int digit)
+		{
+			if (!grid.HasSolved)
+			{
+				throw new ArgumentException($"The specified sudoku grid has not been solved.");
+			}
+
+			var result = Empty;
+			for (int cell = 0; cell < 81; cell++)
+			{
+				if (grid[cell] == digit)
+				{
+					result[cell] = true;
+				}
+			}
+			return result;
+		}
+
 
 		/// <summary>
 		/// Check whether the specified map has at least one <see langword="true"/> bits.

@@ -1255,6 +1255,22 @@
             <param name="regionOffset">The region offset.</param>
             <returns>The grid map.</returns>
         </member>
+        <member name="M:Sudoku.Data.Meta.GridMap.CreateInstance(Sudoku.Data.Meta.Grid,System.Int32)">
+            <summary>
+            Create a <see cref="T:Sudoku.Data.Meta.GridMap"/> instance with the specified solution.
+            If the puzzle has been solved, this method will create a gridmap of
+            distribution of a single digit in this solution.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit to search.</param>
+            <returns>
+            The grid map that contains all cells of a digit appearing
+            in the solution.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the puzzle has not been solved.
+            </exception>
+        </member>
         <member name="M:Sudoku.Data.Meta.GridMap.op_True(Sudoku.Data.Meta.GridMap)">
             <summary>
             Check whether the specified map has at least one <see langword="true"/> bits.

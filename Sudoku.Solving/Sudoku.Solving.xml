@@ -1307,6 +1307,67 @@
         <member name="M:Sudoku.Solving.Manual.LastResorts.LastResortTechniuqeInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo">
+            <summary>
+            Provides a usage of template technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Boolean)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="isTemplateDeletion">
+            Indicates whether this technique is template deletion.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo.IsTemplateDeletion">
+            <summary>
+            Indicates whether this technique is template deletion.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher">
+            <summary>
+            Encapsulates a template technique searcher.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+            <exception cref="T:Sudoku.Runtime.WrongHandlingException">
+            Throws when the puzzle is not unique.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.GetAllTemplateSet(System.Collections.Generic.IList{Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo},Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.GridMap[])">
+            <summary>
+            Get all template sets.
+            </summary>
+            <param name="result">The result.</param>
+            <param name="solution">The solution.</param>
+            <param name="digitDistributions">All digit distributions.</param>
+            <returns>All template sets.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.GetAllTemplateDelete(System.Collections.Generic.IList{Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo},Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.GridMap[])">
+            <summary>
+            Get all template deletes.
+            </summary>
+            <param name="result">The result.</param>
+            <param name="solution">The solution.</param>
+            <param name="digitDistributions">All digit distributions.</param>
+            <returns>All template deletes.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.ManualSolver">
             <summary>
             Provides a solver that use logical methods to solve a specified sudoku puzzle.

@@ -165,7 +165,7 @@ The program supports technique below at present:
 * Uniqueness: Unique Rectangle (Type 1 to 6), Hidden Rectangle, Unique Loop (Type 1 to 4), Bivalue Universal Grave (Type 1 to 4 and BUG + n)<br/>唯一性：唯一矩形（类型 1 到 6）、唯一环（类型 1 到 4）、隐性唯一矩形、全双值格致死解法（类型 1 到 4 和 BUG + n）
 * Single Digit Patterns: Skyscraper, Two-string Kite, Turbot Fish, Empty Rectangle<br/>双强链：摩天楼、双线风筝、多宝鱼、空矩形
 * Almost Locked Set Techniques: Almost Locked Candidates<br/>待定数组：欠一数组
-* Brute Force<br/>计算机试数
+* Last Resorts: Template, Brute Force<br/>爆破技巧：模板、计算机试数
 
 
 

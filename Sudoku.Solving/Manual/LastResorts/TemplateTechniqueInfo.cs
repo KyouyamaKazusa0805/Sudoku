@@ -1,0 +1,48 @@
+﻿using System.Collections.Generic;
+using Sudoku.Drawing;
+using Sudoku.Solving.Utils;
+
+namespace Sudoku.Solving.Manual.LastResorts
+{
+	/// <summary>
+	/// Provides a usage of template technique.
+	/// </summary>
+	public sealed class TemplateTechniqueInfo : LastResortTechniuqeInfo
+	{
+		/// <summary>
+		/// Initializes an instance with the specified information.
+		/// </summary>
+		/// <param name="conclusions">All conclusions.</param>
+		/// <param name="views">All views.</param>
+		/// <param name="isTemplateDeletion">
+		/// Indicates whether this technique is template deletion.
+		/// </param>
+		public TemplateTechniqueInfo(
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
+			bool isTemplateDeletion)
+			: base(conclusions, views) => IsTemplateDeletion = isTemplateDeletion;
+
+
+		/// <summary>
+		/// Indicates whether this technique is template deletion.
+		/// </summary>
+		public bool IsTemplateDeletion { get; }
+
+		/// <inheritdoc/>
+		public override string Name => $"Template {(IsTemplateDeletion ? "Delete" : "Set")}";
+
+		/// <inheritdoc/>
+		public override decimal Difficulty => 8.0m;
+
+		/// <inheritdoc/>
+		public override DifficultyLevels DifficultyLevel => DifficultyLevels.LastResort;
+
+
+		/// <inheritdoc/>
+		public override string ToString()
+		{
+			string conclusionsStr = ConclusionCollection.ToString(Conclusions);
+			return $"{Name} => {conclusionsStr}";
+		}
+	}
+}
