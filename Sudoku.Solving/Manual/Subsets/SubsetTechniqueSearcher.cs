@@ -275,7 +275,10 @@ namespace Sudoku.Solving.Manual.Subsets
 				}
 			}
 			static bool lockedJudger(bool v) => v;
-			isLocked = series.Any(lockedJudger) ? series.All(lockedJudger) : (bool?)null;
+			bool? isLockedTemp = series.Any(lockedJudger) ? series.All(lockedJudger) : (bool?)null;
+			isLocked = digits.Count == 4
+				? isLockedTemp != true ? isLockedTemp : false
+				: isLockedTemp;
 			return result;
 		}
 

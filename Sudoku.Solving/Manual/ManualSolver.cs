@@ -108,52 +108,39 @@ namespace Sudoku.Solving.Manual
 			Grid grid, Grid cloneation, List<TechniqueInfo> steps,
 			Grid solution, Intersection[,] intersection, GridMap[] regionMaps)
 		{
-			var searchers = EnableBruteForce
-				? new TechniqueSearcher[][]
+			var searchers = new TechniqueSearcher[][]
+			{
+				new[] { new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit) },
+				new[] { new LockedCandidatesTechniqueSearcher(intersection) },
+				new TechniqueSearcher[]
 				{
-					new[] { new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit) },
-					new[] { new LockedCandidatesTechniqueSearcher(intersection) },
-					new TechniqueSearcher[]
-					{
-						new SubsetTechniqueSearcher(),
-						new NormalFishTechniqueSearcher(),
-						new RegularWingTechniqueSearcher(CheckRegularWingSize),
-						new IrregularWingTechniqueSearcher(),
-						new TwoStrongLinksTechniqueSearcher(),
-						new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
-						new UniqueLoopTechniqueSearcher(),
-						new EmptyRectangleTechniqueSearcher(regionMaps),
-						new AlmostLockedCandidatesTechniqueSearcher(intersection),
-						new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
-					},
-					new[] { new TemplateTechniqueSearcher(OnlyRecordTemplateDelete) },
-					new[] { new BruteForceTechniqueSearcher(solution) }
-				}
-				: new TechniqueSearcher[][] // Does not have brute force.
-				{
-					new[] { new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit) },
-					new[] { new LockedCandidatesTechniqueSearcher(intersection) },
-					new TechniqueSearcher[]
-					{
-						new SubsetTechniqueSearcher(),
-						new NormalFishTechniqueSearcher(),
-						new RegularWingTechniqueSearcher(CheckRegularWingSize),
-						new IrregularWingTechniqueSearcher(),
-						new TwoStrongLinksTechniqueSearcher(),
-						new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
-						new UniqueLoopTechniqueSearcher(),
-						new EmptyRectangleTechniqueSearcher(regionMaps),
-						new AlmostLockedCandidatesTechniqueSearcher(intersection),
-						new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
-						new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
-					}
-				};
+					new SubsetTechniqueSearcher(),
+					new NormalFishTechniqueSearcher(),
+					new RegularWingTechniqueSearcher(CheckRegularWingSize),
+					new IrregularWingTechniqueSearcher(),
+					new TwoStrongLinksTechniqueSearcher(),
+					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
+					new UniqueLoopTechniqueSearcher(),
+					new EmptyRectangleTechniqueSearcher(regionMaps),
+					new AlmostLockedCandidatesTechniqueSearcher(intersection),
+					new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
+				},
+				new[] { new TemplateTechniqueSearcher(OnlyRecordTemplateDelete) },
+				new[] { new BruteForceTechniqueSearcher(solution) }
+			};
 
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
 		Label_StartSolving:
+			int currentIndex = 0;
 			foreach (var searcherListGroup in searchers)
 			{
+				if (!EnableBruteForce && currentIndex == searchers.Length - 1)
+				{
+					// Failed to solve.
+					goto Label_FailedToSolve;
+				}
+
 				var collection = new List<TechniqueInfo>();
 				foreach (var searcher in searcherListGroup)
 				{
@@ -166,6 +153,7 @@ namespace Sudoku.Solving.Manual
 					// If current step cannot find any steps,
 					// we will turn to the next step finder to
 					// continue solving puzzle.
+					currentIndex++;
 					continue;
 				}
 
@@ -205,6 +193,7 @@ namespace Sudoku.Solving.Manual
 				}
 			}
 
+		Label_FailedToSolve:
 			// All solver cannot finish the puzzle...
 			// :(
 			if (stopwatch.IsRunning)
@@ -239,46 +228,35 @@ namespace Sudoku.Solving.Manual
 			Grid grid, Grid cloneation, List<TechniqueInfo> steps,
 			Grid solution, Intersection[,] intersection, GridMap[] regionMaps)
 		{
-			var searchers = EnableBruteForce
-				? new TechniqueSearcher[]
-				{
-					new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit),
-					new LockedCandidatesTechniqueSearcher(intersection),
-					new SubsetTechniqueSearcher(),
-					new NormalFishTechniqueSearcher(),
-					new RegularWingTechniqueSearcher(CheckRegularWingSize),
-					new IrregularWingTechniqueSearcher(),
-					new TwoStrongLinksTechniqueSearcher(),
-					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
-					new UniqueLoopTechniqueSearcher(),
-					new EmptyRectangleTechniqueSearcher(regionMaps),
-					new AlmostLockedCandidatesTechniqueSearcher(intersection),
-					new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
-					new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
-					new BruteForceTechniqueSearcher(solution),
-				}
-				: new TechniqueSearcher[] // Does not have brute force.
-				{
-					new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit),
-					new LockedCandidatesTechniqueSearcher(intersection),
-					new SubsetTechniqueSearcher(),
-					new NormalFishTechniqueSearcher(),
-					new RegularWingTechniqueSearcher(CheckRegularWingSize),
-					new IrregularWingTechniqueSearcher(),
-					new TwoStrongLinksTechniqueSearcher(),
-					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
-					new UniqueLoopTechniqueSearcher(),
-					new EmptyRectangleTechniqueSearcher(regionMaps),
-					new AlmostLockedCandidatesTechniqueSearcher(intersection),
-					new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
-					new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
-				};
+			var searchers = new TechniqueSearcher[]
+			{
+				new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit),
+				new LockedCandidatesTechniqueSearcher(intersection),
+				new SubsetTechniqueSearcher(),
+				new NormalFishTechniqueSearcher(),
+				new RegularWingTechniqueSearcher(CheckRegularWingSize),
+				new IrregularWingTechniqueSearcher(),
+				new TwoStrongLinksTechniqueSearcher(),
+				new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
+				new UniqueLoopTechniqueSearcher(),
+				new EmptyRectangleTechniqueSearcher(regionMaps),
+				new AlmostLockedCandidatesTechniqueSearcher(intersection),
+				new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
+				new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
+				new BruteForceTechniqueSearcher(solution),
+			};
 
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
 		Label_StartSolving:
 			for (int i = 0, length = searchers.Length; i < length; i++)
 			{
+				if (!EnableBruteForce && i == length - 1)
+				{
+					// Failed to solve.
+					goto Label_FailedToSolve;
+				}
+
 				var searcher = searchers[i];
 				var infos = searcher.TakeAll(cloneation);
 				var step = OptimizedApplyingOrder
@@ -329,6 +307,7 @@ namespace Sudoku.Solving.Manual
 				}
 			}
 
+		Label_FailedToSolve:
 			// All solver cannot finish the puzzle...
 			// :(
 			if (stopwatch.IsRunning)
