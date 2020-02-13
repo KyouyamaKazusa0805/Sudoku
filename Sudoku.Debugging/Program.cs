@@ -21,9 +21,8 @@ namespace Sudoku.Debugging
 			{
 				AnalyzeDifficultyStrictly = true,
 				EnableBruteForce = false,
-				EnableTemplate = false,
 			};
-			var grid = Grid.Parse(".1.....49..9315.68......5......96......4...2..3........6...78......4...67.5.3...4");
+			var grid = Grid.Parse(".3.174...6..........4...3.....61.27...1.9...8..9.........8..5.42.8....37....5..92");
 			var analysisResult = solver.Solve(grid);
 			Console.WriteLine($"{analysisResult}");
 

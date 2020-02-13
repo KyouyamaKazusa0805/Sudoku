@@ -281,22 +281,22 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 				}
 
 				var list = new HashSet<int>();
-				for (int i = 0, temp = mask1; i < 9; i++, temp >>= 1)
+				for (int i = 0, temp = mask1, region = regions[0]; i < 9; i++, temp >>= 1)
 				{
 					if ((temp & 1) != 0)
 					{
-						list.Add(RegionUtils.GetCellOffset(regions[0], i));
+						list.Add(RegionUtils.GetCellOffset(region, i));
 					}
 				}
-				for (int i = 0, temp = mask2; i < 9; i++, temp >>= 1)
+				for (int i = 0, temp = mask2, region = regions[1]; i < 9; i++, temp >>= 1)
 				{
 					if ((temp & 1) != 0)
 					{
-						list.Add(RegionUtils.GetCellOffset(regions[1], i));
+						list.Add(RegionUtils.GetCellOffset(region, i));
 					}
 				}
 
-				if (list.Count == 3 && list.All(c => cells.Contains(c)))
+				if (list.Count == 3 && list.All(c => cells.Contains(c) && c != extraCell))
 				{
 					short bivalueMask = grid.GetCandidates(extraCell);
 					if (bivalueMask.CountSet() == 7 && (bivalueMask >> digit & 1) == 0)
