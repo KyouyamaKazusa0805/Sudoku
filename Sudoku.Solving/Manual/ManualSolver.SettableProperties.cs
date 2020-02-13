@@ -121,6 +121,20 @@
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether the solver will record template techniques
+		/// if worth.
+		/// </para>
+		/// <para>
+		/// The value is <see langword="true"/> in default case. In addition,
+		/// if the value is <see langword="false"/>, the option
+		/// <see cref="OnlyRecordTemplateDelete"/> will be disabled.
+		/// </para>
+		/// </summary>
+		/// <seealso cref="OnlyRecordTemplateDelete"/>.
+		public bool EnableTemplate { get; set; } = true;
+
+		/// <summary>
+		/// <para>
 		/// Indicates whether the step accumulator only records templete delete,
 		/// and template set will not be in this collection (if necessary).
 		/// </para>

@@ -135,6 +135,12 @@ namespace Sudoku.Solving.Manual
 			int currentIndex = 0;
 			foreach (var searcherListGroup in searchers)
 			{
+				if (!EnableTemplate && searcherListGroup[0] is TemplateTechniqueSearcher)
+				{
+					currentIndex++;
+					continue;
+				}
+
 				if (!EnableBruteForce && currentIndex == searchers.Length - 1)
 				{
 					// Failed to solve.
@@ -251,6 +257,11 @@ namespace Sudoku.Solving.Manual
 		Label_StartSolving:
 			for (int i = 0, length = searchers.Length; i < length; i++)
 			{
+				if (!EnableTemplate && searchers[i] is TemplateTechniqueSearcher)
+				{
+					continue;
+				}
+
 				if (!EnableBruteForce && i == length - 1)
 				{
 					// Failed to solve.
