@@ -187,12 +187,8 @@ Here displays the introduction to all folders in this whole solution.
 	* Provides generating operations of sudoku.<br/>为整个数独项目提供出题的模块。
 * `Sudoku.Drawing`
     * Painting module of this solution, which is used for GDI+.<br/>控制整个解决方案有关绘制图形的模块，一般用于 GDI+ 上。
-* `Sudoku.Forms`
-    * Provides all UI forms and controls.<br/>提供所有程序使用的 UI 界面和控件。
 * `Sudoku.Diagnostics`
-    * The diagnostic controlling through all over the solution. In addition, those files are used with my own custom code analyzer and fixer (But this analyzer is not included in this solution. Therefore codes has not been uploaded).<br/>控制整个解决方案执行行为和编译期间行为的项目。另外，所有的文件都会依赖于我自己实现的分析器和代码修补工具（不过这一部分代码不属于项目，所以我没有上传）。
-* `Sudoku.IO`
-    * I/O operations to sudoku data.<br/>控制数独文件流处理的项目。
+    * The diagnostic controlling through all over the solution.<br/>控制整个解决方案执行或调试行为的项目。
 * `Sudoku.Solving.BruteForces.Bitwise`
     * The bitwise brute force solver to a sudoku puzzle.<br/>项目解题期间使用的位运算爆破算法（JCZSolver）的源代码。
 * `Sudoku.Debugging`
