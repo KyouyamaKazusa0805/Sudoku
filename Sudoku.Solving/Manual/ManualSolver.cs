@@ -142,18 +142,9 @@ namespace Sudoku.Solving.Manual
 				var collection = new List<TechniqueInfo>();
 				foreach (var searcher in searcherListGroup)
 				{
-					if (!EnablePatternOverlayMethod
-					   && searcher is PatternOverlayMethodTechniqueSearcher)
-					{
-						continue;
-					}
-
-					if (!EnableTemplate && searcher is TemplateTechniqueSearcher)
-					{
-						continue;
-					}
-
-					if (!EnableBruteForce && searcher is BruteForceTechniqueSearcher)
+					if (!EnablePatternOverlayMethod && searcher is PatternOverlayMethodTechniqueSearcher
+						|| !EnableTemplate && searcher is TemplateTechniqueSearcher
+						|| !EnableBruteForce && searcher is BruteForceTechniqueSearcher)
 					{
 						continue;
 					}
@@ -266,17 +257,9 @@ namespace Sudoku.Solving.Manual
 			{
 				var searcher = searchers[i];
 
-				if (!EnablePatternOverlayMethod && searcher is PatternOverlayMethodTechniqueSearcher)
-				{
-					continue;
-				}
-
-				if (!EnableTemplate && searcher is TemplateTechniqueSearcher)
-				{
-					continue;
-				}
-
-				if (!EnableBruteForce && searcher is BruteForceTechniqueSearcher)
+				if (!EnablePatternOverlayMethod && searcher is PatternOverlayMethodTechniqueSearcher
+					|| !EnableTemplate && searcher is TemplateTechniqueSearcher
+					|| !EnableBruteForce && searcher is BruteForceTechniqueSearcher)
 				{
 					continue;
 				}
