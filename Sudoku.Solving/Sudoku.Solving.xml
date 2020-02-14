@@ -3766,6 +3766,18 @@
             <param name="sameRegions">(out parameter) All same regions of two cells.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Utils.ChainingDifficultyRatingUtils">
+            <summary>
+            Provides extension methods of rating a chain.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.ChainingDifficultyRatingUtils.GetExtraDifficultyByLength(System.Int32)">
+            <summary>
+            Get extra difficulty rating.
+            </summary>
+            <param name="length">The length.</param>
+            <returns>The difficulty.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Utils.ConclusionCollection">
             <summary>
             Provides extension methods of conclusion collection.
