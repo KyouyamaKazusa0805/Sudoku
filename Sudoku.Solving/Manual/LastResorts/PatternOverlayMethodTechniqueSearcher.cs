@@ -2,7 +2,6 @@
 using System.Linq;
 using Sudoku.Data.Meta;
 using Sudoku.Drawing;
-using Sudoku.Solving.Extensions;
 using static Sudoku.Solving.Utils.PatternOverlayMethodUtils;
 
 namespace Sudoku.Solving.Manual.LastResorts
