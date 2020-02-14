@@ -95,10 +95,5 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 			return result;
 		}
-
-
-		#region Pom utils
-
-		#endregion
 	}
 }
