@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
+using static Sudoku.Solving.Utils.ChainingDifficultyRatingUtils;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {
@@ -30,7 +31,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public override string Name => "Bowman Bingo";
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 8.5m;
+		public override decimal Difficulty =>
+			8.0m + GetExtraDifficultyByLength(ContradictionSeries.Count);
 
 		/// <inheritdoc/>
 		public override DifficultyLevels DifficultyLevel => DifficultyLevels.LastResort;
