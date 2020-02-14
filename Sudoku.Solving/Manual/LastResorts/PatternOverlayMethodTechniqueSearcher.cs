@@ -17,11 +17,9 @@ namespace Sudoku.Solving.Manual.LastResorts
 		{
 			var result = new List<TechniqueInfo>();
 
-			(_, _, var digitDistributions) = grid;
 			for (int digit = 0; digit < 9; digit++)
 			{
 				int count = 0;
-				var digitDistribution = digitDistributions[digit];
 				var valueCells = new List<int>();
 				for (int cell = 0; cell < 81; cell++)
 				{
