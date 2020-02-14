@@ -1307,6 +1307,43 @@
             Encapsulates a last resort technique searcher.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.LastResorts.PatternOverlayMethodTechniqueInfo">
+            <summary>
+            Provides a usage of pattern overlay method (POM) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.PatternOverlayMethodTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.PatternOverlayMethodTechniqueInfo.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.PatternOverlayMethodTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.PatternOverlayMethodTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.PatternOverlayMethodTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.PatternOverlayMethodTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.LastResorts.PatternOverlayMethodTechniqueSearcher">
+            <summary>
+            Encapsulates a pattern overlay method (POM) technique searcher.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.PatternOverlayMethodTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo">
             <summary>
             Provides a usage of template technique.
@@ -1544,6 +1581,15 @@
             which is last digit.
             </remarks>
         </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.EnablePatternOverlayMethod">
+            <summary>
+            <para>
+            Indicates whether the solver will record all pattern overlay
+            method technique steps.
+            </para>
+            <para>The value is <see langword="true"/> in default case.</para>
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.EnableTemplate">
             <summary>
             <para>
@@ -1551,8 +1597,8 @@
             if worth.
             </para>
             <para>
-            The value is <see langword="true"/> in default case. In addition,
-            if the value is <see langword="false"/>, the option
+            The value is <see langword="false"/> in default case. In addition,
+            if the value is <see langword="true"/>, the option
             <see cref="P:Sudoku.Solving.Manual.ManualSolver.OnlyRecordTemplateDelete"/> will be disabled.
             </para>
             </summary>
@@ -3808,6 +3854,24 @@
             <param name="this">(extension method main parameter) The value.</param>
             <param name="cellStatus">(out parameter) The cell status.</param>
             <param name="candidatesMask">(out parameter) The candidate mask.</param>
+        </member>
+        <member name="T:Sudoku.Solving.Utils.PatternOverlayMethodUtils">
+            <summary>
+            Provides extension method used for pattern overlay method (POM).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Utils.PatternOverlayMethodUtils.Templates">
+            <summary>
+            The templates of all placement cases of a single digit.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.PatternOverlayMethodUtils.GenerateMapsRecursively(System.Collections.Generic.IList{Sudoku.Data.Meta.GridMap},Sudoku.Data.Meta.GridMap,System.Int32)">
+            <summary>
+            Generate maps recursively.
+            </summary>
+            <param name="templates">All templates.</param>
+            <param name="template">The current template.</param>
+            <param name="count">The current count.</param>
         </member>
         <member name="T:Sudoku.Solving.Utils.RegionCollection">
             <summary>

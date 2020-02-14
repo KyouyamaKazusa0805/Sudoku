@@ -125,31 +125,39 @@ namespace Sudoku.Solving.Manual
 					new AlmostLockedCandidatesTechniqueSearcher(intersection),
 					new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
 				},
-				new[] { new TemplateTechniqueSearcher(OnlyRecordTemplateDelete) },
+				new TechniqueSearcher[]
+				{
+					new PatternOverlayMethodTechniqueSearcher(),
+					new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
+				},
 				new[] { new BruteForceTechniqueSearcher(solution) }
 			};
 
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
 		Label_StartSolving:
-			int currentIndex = 0;
-			foreach (var searcherListGroup in searchers)
+			for (int i = 0, length = searchers.Length; i < length; i++)
 			{
-				if (!EnableTemplate && searcherListGroup[0] is TemplateTechniqueSearcher)
-				{
-					currentIndex++;
-					continue;
-				}
-
-				if (!EnableBruteForce && currentIndex == searchers.Length - 1)
-				{
-					// Failed to solve.
-					goto Label_FailedToSolve;
-				}
-
+				var searcherListGroup = searchers[i];
 				var collection = new List<TechniqueInfo>();
 				foreach (var searcher in searcherListGroup)
 				{
+					if (!EnablePatternOverlayMethod
+					   && searcher is PatternOverlayMethodTechniqueSearcher)
+					{
+						continue;
+					}
+
+					if (!EnableTemplate && searcher is TemplateTechniqueSearcher)
+					{
+						continue;
+					}
+
+					if (!EnableBruteForce && searcher is BruteForceTechniqueSearcher)
+					{
+						continue;
+					}
+
 					collection.AddRange(searcher.TakeAll(cloneation));
 				}
 
@@ -159,7 +167,6 @@ namespace Sudoku.Solving.Manual
 					// If current step cannot find any steps,
 					// we will turn to the next step finder to
 					// continue solving puzzle.
-					currentIndex++;
 					continue;
 				}
 
@@ -199,7 +206,6 @@ namespace Sudoku.Solving.Manual
 				}
 			}
 
-		Label_FailedToSolve:
 			// All solver cannot finish the puzzle...
 			// :(
 			if (stopwatch.IsRunning)
@@ -248,6 +254,7 @@ namespace Sudoku.Solving.Manual
 				new EmptyRectangleTechniqueSearcher(regionMaps),
 				new AlmostLockedCandidatesTechniqueSearcher(intersection),
 				new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
+				new PatternOverlayMethodTechniqueSearcher(),
 				new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
 				new BruteForceTechniqueSearcher(solution),
 			};
@@ -257,18 +264,23 @@ namespace Sudoku.Solving.Manual
 		Label_StartSolving:
 			for (int i = 0, length = searchers.Length; i < length; i++)
 			{
-				if (!EnableTemplate && searchers[i] is TemplateTechniqueSearcher)
+				var searcher = searchers[i];
+
+				if (!EnablePatternOverlayMethod && searcher is PatternOverlayMethodTechniqueSearcher)
 				{
 					continue;
 				}
 
-				if (!EnableBruteForce && i == length - 1)
+				if (!EnableTemplate && searcher is TemplateTechniqueSearcher)
 				{
-					// Failed to solve.
-					goto Label_FailedToSolve;
+					continue;
 				}
 
-				var searcher = searchers[i];
+				if (!EnableBruteForce && searcher is BruteForceTechniqueSearcher)
+				{
+					continue;
+				}
+
 				var infos = searcher.TakeAll(cloneation);
 				var step = OptimizedApplyingOrder
 					? infos.GetElementByMinSelector(info => info.Difficulty)
@@ -318,7 +330,6 @@ namespace Sudoku.Solving.Manual
 				}
 			}
 
-		Label_FailedToSolve:
 			// All solver cannot finish the puzzle...
 			// :(
 			if (stopwatch.IsRunning)

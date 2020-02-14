@@ -121,17 +121,26 @@
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether the solver will record all pattern overlay
+		/// method technique steps.
+		/// </para>
+		/// <para>The value is <see langword="true"/> in default case.</para>
+		/// </summary>
+		public bool EnablePatternOverlayMethod { get; set; } = true;
+
+		/// <summary>
+		/// <para>
 		/// Indicates whether the solver will record template techniques
 		/// if worth.
 		/// </para>
 		/// <para>
-		/// The value is <see langword="true"/> in default case. In addition,
-		/// if the value is <see langword="false"/>, the option
+		/// The value is <see langword="false"/> in default case. In addition,
+		/// if the value is <see langword="true"/>, the option
 		/// <see cref="OnlyRecordTemplateDelete"/> will be disabled.
 		/// </para>
 		/// </summary>
 		/// <seealso cref="OnlyRecordTemplateDelete"/>.
-		public bool EnableTemplate { get; set; } = true;
+		public bool EnableTemplate { get; set; } = false;
 
 		/// <summary>
 		/// <para>
