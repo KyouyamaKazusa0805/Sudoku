@@ -127,6 +127,7 @@ namespace Sudoku.Solving.Manual
 				},
 				new TechniqueSearcher[]
 				{
+					new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 					new PatternOverlayMethodTechniqueSearcher(),
 					new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
 				},
@@ -144,7 +145,8 @@ namespace Sudoku.Solving.Manual
 				{
 					if (!EnablePatternOverlayMethod && searcher is PatternOverlayMethodTechniqueSearcher
 						|| !EnableTemplate && searcher is TemplateTechniqueSearcher
-						|| !EnableBruteForce && searcher is BruteForceTechniqueSearcher)
+						|| !EnableBruteForce && searcher is BruteForceTechniqueSearcher
+						|| !EnableBowmanBingo && searcher is BowmanBingoTechniqueSearcher)
 					{
 						continue;
 					}
@@ -245,6 +247,7 @@ namespace Sudoku.Solving.Manual
 				new EmptyRectangleTechniqueSearcher(regionMaps),
 				new AlmostLockedCandidatesTechniqueSearcher(intersection),
 				new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
+				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 				new PatternOverlayMethodTechniqueSearcher(),
 				new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
 				new BruteForceTechniqueSearcher(solution),
@@ -259,7 +262,8 @@ namespace Sudoku.Solving.Manual
 
 				if (!EnablePatternOverlayMethod && searcher is PatternOverlayMethodTechniqueSearcher
 					|| !EnableTemplate && searcher is TemplateTechniqueSearcher
-					|| !EnableBruteForce && searcher is BruteForceTechniqueSearcher)
+					|| !EnableBruteForce && searcher is BruteForceTechniqueSearcher
+					|| !EnableBowmanBingo && searcher is BowmanBingoTechniqueSearcher)
 				{
 					continue;
 				}

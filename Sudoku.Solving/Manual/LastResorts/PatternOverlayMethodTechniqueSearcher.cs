@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <inheritdoc/>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
-			var result = new List<TechniqueInfo>();
+			var result = new List<PatternOverlayMethodTechniqueInfo>();
 
 			for (int digit = 0; digit < 9; digit++)
 			{

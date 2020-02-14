@@ -24,8 +24,8 @@ namespace Sudoku.Solving.Manual.Singles
 		public HiddenSingleTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			int regionOffset, int cellOffset, int digit, bool enableAndIsLastDigit)
-			: base(conclusions, views) =>
-			(RegionOffset, CellOffset, Digit, EnableAndIsLastDigit) = (regionOffset, cellOffset, digit, enableAndIsLastDigit);
+			: base(conclusions, views, cellOffset, digit) =>
+			(RegionOffset, EnableAndIsLastDigit) = (regionOffset, enableAndIsLastDigit);
 
 
 		/// <inheritdoc/>
@@ -40,16 +40,6 @@ namespace Sudoku.Solving.Manual.Singles
 		/// Indicates the region offset.
 		/// </summary>
 		public int RegionOffset { get; }
-
-		/// <summary>
-		/// Indicates the cell offset.
-		/// </summary>
-		public int CellOffset { get; }
-
-		/// <summary>
-		/// Indicates the digit.
-		/// </summary>
-		public int Digit { get; }
 
 		/// <summary>
 		/// Indicates whether the solver enables last digit technique.

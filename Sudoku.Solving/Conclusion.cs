@@ -72,6 +72,23 @@ namespace Sudoku.Solving
 			}
 		}
 
+		/// <summary>
+		/// Deconstruct an instance.
+		/// </summary>
+		/// <param name="conclusionType">(out parameter) The type of this conclusion.</param>
+		/// <param name="candidate">(out parameter) The candidate.</param>
+		public void Deconstruct(out ConclusionType conclusionType, out int candidate) =>
+			(conclusionType, candidate) = (Type, CellOffset * 9 + Digit);
+
+		/// <summary>
+		/// Deconstruct an instance.
+		/// </summary>
+		/// <param name="conclusionType">(out parameter) The type of this conclusion.</param>
+		/// <param name="cell">(out parameter) The cell.</param>
+		/// <param name="digit">(out parameter) The digit.</param>
+		public void Deconstruct(out ConclusionType conclusionType, out int cell, out int digit) =>
+			(conclusionType, cell, digit) = (Type, CellOffset, Digit);
+
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) =>
 			obj is Conclusion comparer && Equals(comparer);

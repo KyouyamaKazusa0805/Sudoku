@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -20,7 +19,9 @@ namespace Sudoku.Solving.Manual.Singles
 		public NakedSingleTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			int cellOffset, int digit)
-			: base(conclusions, views) => (CellOffset, Digit) = (cellOffset, digit);
+			: base(conclusions, views, cellOffset, digit)
+		{ 
+		}
 
 
 		/// <inheritdoc/>
@@ -28,16 +29,6 @@ namespace Sudoku.Solving.Manual.Singles
 
 		/// <inheritdoc/>
 		public override decimal Difficulty => 2.3m;
-
-		/// <summary>
-		/// Indicates the cell offset.
-		/// </summary>
-		public int CellOffset { get; }
-
-		/// <summary>
-		/// Indicates the digit.
-		/// </summary>
-		public int Digit { get; }
 
 
 		/// <inheritdoc/>

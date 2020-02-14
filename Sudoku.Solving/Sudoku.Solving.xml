@@ -718,6 +718,21 @@
             </summary>
             <param name="grid">The grid.</param>
         </member>
+        <member name="M:Sudoku.Solving.Conclusion.Deconstruct(Sudoku.Solving.ConclusionType@,System.Int32@)">
+            <summary>
+            Deconstruct an instance.
+            </summary>
+            <param name="conclusionType">(out parameter) The type of this conclusion.</param>
+            <param name="candidate">(out parameter) The candidate.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.Deconstruct(Sudoku.Solving.ConclusionType@,System.Int32@,System.Int32@)">
+            <summary>
+            Deconstruct an instance.
+            </summary>
+            <param name="conclusionType">(out parameter) The type of this conclusion.</param>
+            <param name="cell">(out parameter) The cell.</param>
+            <param name="digit">(out parameter) The digit.</param>
+        </member>
         <member name="M:Sudoku.Solving.Conclusion.Equals(System.Object)">
             <inheritdoc/>
         </member>
@@ -1244,6 +1259,92 @@
             <param name="map">The grid map.</param>
             <returns>The result.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueInfo">
+            <summary>
+            Provides a usage of bowman bingo technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="contradictionSeries">The contradiction series.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueInfo.ContradictionSeries">
+            <summary>
+            Indicates all conclusions that occurs a contradict.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher">
+            <summary>
+            Encapsulates a bowman bingo technique searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher._length">
+            <summary>
+            Indicates the length to find.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher._searcher">
+            <summary>
+            The singles searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher._tempConclusions">
+            <summary>
+            All temporary conclusions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance with the specified length.
+            </summary>
+            <param name="length">The length.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.RecordUndoInfo(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)">
+            <summary>
+            Record all information to be used in undo grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.UndoGrid(Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32,System.Int16)">
+            <summary>
+            Undo the grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="list">The list.</param>
+            <param name="cell">The cell.</param>
+            <param name="mask">The mask.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.IsValidGrid(Sudoku.Data.Meta.Grid,System.Int32)">
+            <summary>
+            To check the specified cell has a same digit filled in a cell
+            which is same region with the current one.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueInfo">
             <summary>
             Provides a usage of brute force technique.
@@ -1497,6 +1598,20 @@
             </summary>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder"/>
         </member>
+        <member name="F:Sudoku.Solving.Manual.ManualSolver._bowmanBingoMaximumLength">
+            <summary>
+            The field bound with <see cref="P:Sudoku.Solving.Manual.ManualSolver.BowmanBingoMaximumLength"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.BowmanBingoMaximumLength"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.BowmanBingoMaximumLength">
+            <summary>
+            <para>
+            Indicates the number of nodes to be searched for in bowman bingos.
+            </para>
+            <para>The value is <c>10</c> in default case.</para>
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckIncompletedUniquenessPatterns">
             <summary>
             <para>
@@ -1540,6 +1655,14 @@
             &amp;&amp; value &lt;&#61; 9</c>) theoretically, however the searching
             is too low so I do not allow them.
             </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.EnableBowmanBingo">
+            <summary>
+            <para>
+            Indicates whether the solver should check all bowman bingos.
+            </para>
+            <para>The value is <see langword="true"/> in default case.</para>
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.EnableBruteForce">
             <summary>
@@ -1810,16 +1933,6 @@
         <member name="P:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.CellOffset">
-            <summary>
-            Indicates the cell offset.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.Digit">
-            <summary>
-            Indicates the digit.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
@@ -1852,16 +1965,6 @@
             Indicates the region offset.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.CellOffset">
-            <summary>
-            Indicates the cell offset.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.Digit">
-            <summary>
-            Indicates the digit.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.EnableAndIsLastDigit">
             <summary>
             Indicates whether the solver enables last digit technique.
@@ -1890,16 +1993,6 @@
         <member name="P:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.CellOffset">
-            <summary>
-            Indicates the cell offset.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.Digit">
-            <summary>
-            Indicates the digit.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
@@ -1908,8 +2001,24 @@
             Provides a usage of single technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
-            <inheritdoc/>
+        <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32)">
+            <summary>
+            Provides passing data when initializing an instance of derived types.
+            </summary>
+            <param name="conclusions">The conclusions.</param>
+            <param name="views">The views of this solving step.</param>
+            <param name="cellOffset">The cell offset.</param>
+            <param name="digit">The digit.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.SingleTechniqueInfo.CellOffset">
+            <summary>
+            Indicates the cell offset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.SingleTechniqueInfo.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Singles.SingleTechniqueInfo.DifficultyLevel">
             <summary>
@@ -3669,6 +3778,14 @@
             <param name="conclusions">The conclusions.</param>
             <returns>The string.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Utils.ConclusionCollection.ToSimpleString(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion},System.String)">
+            <summary>
+            Get a simple string consists of all conclusion text.
+            </summary>
+            <param name="conclusions">The conclusions.</param>
+            <param name="separator">The string separator.</param>
+            <returns>The string.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Utils.DigitCollection">
             <summary>
             Provides extension methods of digit collection.
@@ -3737,7 +3854,7 @@
         <member name="M:Sudoku.Solving.Utils.GridUtils.CandidateDoesNotExist(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)">
             <summary>
             <para>
-            Indicates whether the specified grid <b>does not</b> contains the candidate.
+            Indicates whether the specified grid <b>does not</b> contain the candidate.
             </para>
             <para>
             If you want to check the reversal case, please use the method

@@ -18,9 +18,10 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <param name="cellOffset">The cell offset.</param>
 		/// <param name="digit">The digit.</param>
 		public FullHouseTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int cellOffset, int digit)
-			: base(conclusions, views) => (CellOffset, Digit) = (cellOffset, digit);
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int cellOffset, int digit)
+			: base(conclusions, views, cellOffset, digit)
+		{
+		}
 
 
 		/// <inheritdoc/>
@@ -28,16 +29,6 @@ namespace Sudoku.Solving.Manual.Singles
 
 		/// <inheritdoc/>
 		public override decimal Difficulty => 1.0m;
-
-		/// <summary>
-		/// Indicates the cell offset.
-		/// </summary>
-		public int CellOffset { get; }
-
-		/// <summary>
-		/// Indicates the digit.
-		/// </summary>
-		public int Digit { get; }
 
 
 		/// <inheritdoc/>

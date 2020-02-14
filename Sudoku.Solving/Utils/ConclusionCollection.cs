@@ -9,6 +9,7 @@ namespace Sudoku.Solving.Utils
 	/// <summary>
 	/// Provides extension methods of conclusion collection.
 	/// </summary>
+	[DebuggerStepThrough]
 	public static class ConclusionCollection
 	{
 		/// <summary>
@@ -16,7 +17,6 @@ namespace Sudoku.Solving.Utils
 		/// </summary>
 		/// <param name="conclusions">The conclusions.</param>
 		/// <returns>The string.</returns>
-		[DebuggerStepThrough]
 		public static string ToString(IEnumerable<Conclusion> conclusions)
 		{
 			const string separator = ", ";
@@ -52,6 +52,24 @@ namespace Sudoku.Solving.Utils
 			}
 
 			return sb.ToString();
+		}
+
+		/// <summary>
+		/// Get a simple string consists of all conclusion text.
+		/// </summary>
+		/// <param name="conclusions">The conclusions.</param>
+		/// <param name="separator">The string separator.</param>
+		/// <returns>The string.</returns>
+		public static string ToSimpleString(IEnumerable<Conclusion> conclusions, string separator = ", ")
+		{
+			var sb = new StringBuilder();
+
+			foreach (var conclusion in conclusions)
+			{
+				sb.Append($"{conclusion}{separator}");
+			}
+
+			return sb.RemoveFromEnd(separator.Length).ToString();
 		}
 	}
 }

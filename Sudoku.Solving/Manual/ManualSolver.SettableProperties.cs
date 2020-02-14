@@ -29,6 +29,32 @@
 		/// <seealso cref="OptimizedApplyingOrder"/>
 		public bool AnalyzeDifficultyStrictly { get; set; } = false;
 
+		#region BowmanBingoMaximumLength
+		/// <summary>
+		/// The field bound with <see cref="BowmanBingoMaximumLength"/>.
+		/// </summary>
+		/// <seealso cref="BowmanBingoMaximumLength"/>
+		private int _bowmanBingoMaximumLength = 10;
+
+		/// <summary>
+		/// <para>
+		/// Indicates the number of nodes to be searched for in bowman bingos.
+		/// </para>
+		/// <para>The value is <c>10</c> in default case.</para>
+		/// </summary>
+		public int BowmanBingoMaximumLength
+		{
+			get => _bowmanBingoMaximumLength;
+			set
+			{
+				if (value > 0 && value < 576)
+				{
+					_bowmanBingoMaximumLength = value;
+				}
+			}
+		}
+		#endregion
+
 		/// <summary>
 		/// <para>
 		/// Indicates whether the solver should check
@@ -78,6 +104,14 @@
 			set => _checkRegularWingSize = value >= 3 && value <= 5 ? value : 5;
 		}
 		#endregion
+
+		/// <summary>
+		/// <para>
+		/// Indicates whether the solver should check all bowman bingos.
+		/// </para>
+		/// <para>The value is <see langword="true"/> in default case.</para>
+		/// </summary>
+		public bool EnableBowmanBingo { get; set; } = true;
 
 		/// <summary>
 		/// <para>

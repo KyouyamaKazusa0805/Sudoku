@@ -217,6 +217,19 @@
             <param name="order">The number of the order of set bits.</param>
             <returns>The position.</returns>
         </member>
+        <member name="T:Sudoku.Data.Extensions.ListEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.IList`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.IList`1"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ListEx.RemoveLastElement``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            Remove the last element of the specified list.
+            </summary>
+            <typeparam name="T">The type of this element.</typeparam>
+            <param name="this">(extension method main parameter) The list.</param>
+        </member>
         <member name="T:Sudoku.Data.Extensions.ObjectEx">
             <summary>
             Provides extension methods on <see cref="T:System.Object"/>.

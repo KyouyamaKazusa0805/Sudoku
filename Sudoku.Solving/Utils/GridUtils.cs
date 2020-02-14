@@ -53,7 +53,7 @@ namespace Sudoku.Solving.Utils
 
 		/// <summary>
 		/// <para>
-		/// Indicates whether the specified grid <b>does not</b> contains the candidate.
+		/// Indicates whether the specified grid <b>does not</b> contain the candidate.
 		/// </para>
 		/// <para>
 		/// If you want to check the reversal case, please use the method
