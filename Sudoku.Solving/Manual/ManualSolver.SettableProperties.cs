@@ -158,9 +158,14 @@
 		/// Indicates whether the solver will record all pattern overlay
 		/// method technique steps.
 		/// </para>
-		/// <para>The value is <see langword="true"/> in default case.</para>
+		/// <para>
+		/// The value is <see langword="false"/> in default case. Note that
+		/// this option makes the solver search single-digit patterns
+		/// much more slower because it will use enumeration to iterate on
+		/// all possible patterns of a single digit (46656 patterns in total).
+		/// </para>
 		/// </summary>
-		public bool EnablePatternOverlayMethod { get; set; } = true;
+		public bool EnablePatternOverlayMethod { get; set; } = false;
 
 		/// <summary>
 		/// <para>
