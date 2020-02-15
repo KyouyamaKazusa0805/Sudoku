@@ -263,6 +263,30 @@
             <paramref name="defaultValue"/>. Therefore, this method will never throw.
             </returns>
         </member>
+        <member name="T:Sudoku.Data.Extensions.SpanEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Span`1"/>.
+            </summary>
+            <seealso cref="T:System.Span`1"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.SpanEx.CountWhen``1(System.Span{``0},System.Predicate{``0})">
+            <summary>
+            Returns a number that represents how many elements in the specified
+            <see cref="T:System.Span`1"/> sequence satisfy a condition.
+            </summary>
+            <typeparam name="T">The element of the span instance.</typeparam>
+            <param name="this">(extension method main parameter) The span.</param>
+            <param name="predicate">The condition to satisfy.</param>
+            <returns>The number of elements satisfying the condition.</returns>
+            <remarks>
+            This method is provides because <see cref="T:System.Span`1"/> cannot support
+            <see cref="T:System.Collections.Generic.IEnumerable`1"/> interface but can be used in <see langword="foreach"/>
+            loop. If the span has implemented <see cref="T:System.Collections.Generic.IEnumerable`1"/>,
+            all span instance can use <see langword="foreach"/> loop or use extension method
+            <see cref="M:System.Linq.Enumerable.Count``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>.
+            </remarks>
+            <seealso cref="M:System.Linq.Enumerable.Count``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
+        </member>
         <member name="T:Sudoku.Data.Extensions.StringBuilderEx">
             <summary>
             Provides extension methods on <see cref="T:System.Text.StringBuilder"/>.
@@ -1142,9 +1166,17 @@
         </member>
         <member name="P:Sudoku.Data.Meta.GridMap.Offsets">
             <summary>
+            <para>
             Indicates all cell offsets whose corresponding value
             are set <see langword="true"/>.
+            </para>
+            <para>
+            If you want to make an array of them, please use method
+            <see cref="M:Sudoku.Data.Meta.GridMap.ToArray"/> instead of code
+            '<c><see cref="P:Sudoku.Data.Meta.GridMap.Offsets"/>.ToArray()</c>'.
+            </para>
             </summary>
+            <seealso cref="M:Sudoku.Data.Meta.GridMap.ToArray"/>
         </member>
         <member name="P:Sudoku.Data.Meta.GridMap.Item(System.Int32)">
             <summary>
@@ -1178,6 +1210,13 @@
             The result of this comparsion. <see langword="true"/> if two instances hold a same
             value; otherwise, <see langword="false"/>.
             </returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridMap.ElementAt(System.Int32)">
+            <summary>
+            Get the specified index of <see langword="true"/> bits in this instance.
+            </summary>
+            <param name="index">The true bit index order.</param>
+            <returns>The real index.</returns>
         </member>
         <member name="M:Sudoku.Data.Meta.GridMap.ToArray">
             <summary>

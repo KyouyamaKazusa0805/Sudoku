@@ -5,6 +5,7 @@ using System.Linq;
 using Sudoku.Data.Meta;
 using Sudoku.Runtime;
 using Sudoku.Solving.Checking;
+using Sudoku.Solving.Manual.AlmostLockedSets;
 using Sudoku.Solving.Manual.Fishes.Basic;
 using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.LastResorts;
@@ -123,6 +124,7 @@ namespace Sudoku.Solving.Manual
 					new UniqueLoopTechniqueSearcher(),
 					new EmptyRectangleTechniqueSearcher(regionMaps),
 					new AlmostLockedCandidatesTechniqueSearcher(intersection),
+					new SueDeCoqTechniqueSearcher(regionMaps),
 					new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
 				},
 				new TechniqueSearcher[]
@@ -246,6 +248,7 @@ namespace Sudoku.Solving.Manual
 				new UniqueLoopTechniqueSearcher(),
 				new EmptyRectangleTechniqueSearcher(regionMaps),
 				new AlmostLockedCandidatesTechniqueSearcher(intersection),
+				new SueDeCoqTechniqueSearcher(regionMaps),
 				new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
 				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 				new PatternOverlayMethodTechniqueSearcher(),

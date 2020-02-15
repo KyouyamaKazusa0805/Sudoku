@@ -132,7 +132,7 @@ namespace Sudoku.Data.Meta
 				{
 					if (this & CreateInstance(i))
 					{
-						result |= (short)(1 << i);
+						result |= (short)(1 << i - 9);
 					}
 				}
 
@@ -152,7 +152,7 @@ namespace Sudoku.Data.Meta
 				{
 					if (this & CreateInstance(i))
 					{
-						result |= (short)(1 << i);
+						result |= (short)(1 << i - 18);
 					}
 				}
 
@@ -167,9 +167,17 @@ namespace Sudoku.Data.Meta
 		public readonly int Count => _low.CountSet() + _high.CountSet();
 
 		/// <summary>
+		/// <para>
 		/// Indicates all cell offsets whose corresponding value
 		/// are set <see langword="true"/>.
+		/// </para>
+		/// <para>
+		/// If you want to make an array of them, please use method
+		/// <see cref="ToArray"/> instead of code
+		/// '<c><see cref="Offsets"/>.ToArray()</c>'.
+		/// </para>
 		/// </summary>
+		/// <seealso cref="ToArray"/>
 		public readonly IEnumerable<int> Offsets
 		{
 			get
@@ -265,6 +273,13 @@ namespace Sudoku.Data.Meta
 		/// </returns>
 		public readonly bool Equals(GridMap other) =>
 			_high == other._high && _low == other._low;
+
+		/// <summary>
+		/// Get the specified index of <see langword="true"/> bits in this instance.
+		/// </summary>
+		/// <param name="index">The true bit index order.</param>
+		/// <returns>The real index.</returns>
+		public readonly int ElementAt(int index) => Offsets.ElementAt(index);
 
 		/// <summary>
 		/// Get all cell offsets whose bits are set <see langword="true"/>.

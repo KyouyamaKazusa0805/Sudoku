@@ -971,6 +971,98 @@
             <param name="grid">The grid.</param>
             <returns>All grid maps.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.AlmostLockedSets.AlmostLockedSetTechniqueInfo">
+            <summary>
+            Provides a usage of almost locked set (ALS) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.AlmostLockedSets.AlmostLockedSetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.AlmostLockedSets.AlmostLockedSetTechniqueSearcher">
+            <summary>
+            Encapsulates an almost locked set (ALS) technique searcher.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo">
+            <summary>
+            Provides a usage of sue de coq (SdC) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="als1Cells">ALS 1 cells.</param>
+            <param name="als1Digits">ALS 1 digits.</param>
+            <param name="als2Cells">ALS 2 cells.</param>
+            <param name="als2Digits">ALS 2 digits.</param>
+            <param name="interCells">Intersection cells.</param>
+            <param name="allDigits">All digits.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.Als1Cells">
+            <summary>
+            Indicates all cells in ALS 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.Als2Cells">
+            <summary>
+            Indicates all cells in ALS 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.Als1Digits">
+            <summary>
+            Indicates all digits in ALS 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.Als2Digits">
+            <summary>
+            Indicates all digits in ALS 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.IntersectionCells">
+            <summary>
+            Indicates all intersection cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.AllDigits">
+            <summary>
+            Indicates all digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueSearcher">
+            <summary>
+            Encapsulates a sue de coq (SdC) technique searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueSearcher._regionMaps">
+            <summary>
+            All region maps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueSearcher.#ctor(Sudoku.Data.Meta.GridMap[])">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="regionMaps">All regions grid maps.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo">
             <summary>
             Provides a usage of normal fish technique.
@@ -3811,6 +3903,13 @@
         <member name="M:Sudoku.Solving.Utils.DigitCollection.ToString(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
             Get a string consists of digits' text.
+            </summary>
+            <param name="digits">The digits.</param>
+            <returns>The string.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.DigitCollection.ToSimpleString(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Get a simple string consists of digits' text.
             </summary>
             <param name="digits">The digits.</param>
             <returns>The string.</returns>
