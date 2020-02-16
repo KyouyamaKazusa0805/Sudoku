@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		public override decimal Difficulty => BaseSet < 9 ? 2.6m : 2.8m;
 
 		/// <inheritdoc/>
-		public override DifficultyLevels DifficultyLevel => DifficultyLevels.Moderate;
+		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Moderate;
 
 		/// <summary>
 		/// Indicates the digit.

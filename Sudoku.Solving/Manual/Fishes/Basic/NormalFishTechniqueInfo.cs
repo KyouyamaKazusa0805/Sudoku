@@ -94,15 +94,15 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 		}
 
 		/// <inheritdoc/>
-		public override DifficultyLevels DifficultyLevel
+		public override DifficultyLevel DifficultyLevel
 		{
 			get
 			{
 				return IsSashimi switch
 				{
-					null => DifficultyLevels.Hard,
-					true => DifficultyLevels.VeryHard,
-					false => Size < 3 ? DifficultyLevels.Hard : DifficultyLevels.VeryHard
+					null => DifficultyLevel.Hard,
+					true => DifficultyLevel.VeryHard,
+					false => Size < 3 ? DifficultyLevel.Hard : DifficultyLevel.VeryHard
 				};
 			}
 		}

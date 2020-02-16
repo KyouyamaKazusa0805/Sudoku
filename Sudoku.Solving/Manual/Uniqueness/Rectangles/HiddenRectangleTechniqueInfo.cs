@@ -52,7 +52,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		public override decimal Difficulty => 4.8m;
 
 		/// <inheritdoc/>
-		public override DifficultyLevels DifficultyLevel => DifficultyLevels.Hard;
+		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 
 		/// <inheritdoc/>

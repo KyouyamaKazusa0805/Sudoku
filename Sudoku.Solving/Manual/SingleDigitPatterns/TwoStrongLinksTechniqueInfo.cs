@@ -69,7 +69,7 @@ namespace Sudoku.Solving.Manual.SingleDigitPatterns
 		}
 
 		/// <inheritdoc/>
-		public override DifficultyLevels DifficultyLevel => DifficultyLevels.VeryHard;
+		public override DifficultyLevel DifficultyLevel => DifficultyLevel.VeryHard;
 
 
 		/// <inheritdoc/>

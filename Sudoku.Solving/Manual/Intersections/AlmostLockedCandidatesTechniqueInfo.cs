@@ -59,7 +59,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		}
 
 		/// <inheritdoc/>
-		public override DifficultyLevels DifficultyLevel => DifficultyLevels.Hard;
+		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 
 		/// <inheritdoc/>

@@ -132,7 +132,7 @@ namespace Sudoku.Solving.Checking
 
 			var solver = new ManualSolver();
 			var (_, _, _, _, level) = solver.Solve(@this);
-			return level <= DifficultyLevels.Advanced;
+			return level <= DifficultyLevel.Advanced;
 		}
 	}
 }

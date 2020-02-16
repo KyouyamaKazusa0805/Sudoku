@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Provides a difficulty kind for a puzzle.
 	/// </summary>
-	public enum DifficultyLevels : short
+	public enum DifficultyLevel : short
 	{
 		/// <summary>
 		/// Indicates the difficulty level is unknown.

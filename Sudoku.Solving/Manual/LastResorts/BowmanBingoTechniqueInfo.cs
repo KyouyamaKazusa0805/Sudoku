@@ -35,7 +35,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			8.0m + GetExtraDifficultyByLength(ContradictionSeries.Count);
 
 		/// <inheritdoc/>
-		public override DifficultyLevels DifficultyLevel => DifficultyLevels.LastResort;
+		public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
 
 
 		/// <inheritdoc/>

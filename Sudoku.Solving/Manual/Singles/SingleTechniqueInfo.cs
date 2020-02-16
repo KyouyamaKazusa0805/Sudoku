@@ -34,6 +34,6 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <summary>
 		/// Indicates the difficulty level.
 		/// </summary>
-		public sealed override DifficultyLevels DifficultyLevel => DifficultyLevels.Easy;
+		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Easy;
 	}
 }

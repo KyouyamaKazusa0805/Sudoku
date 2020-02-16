@@ -44,6 +44,6 @@ namespace Sudoku.Solving.Manual.Subsets
 		public override string Name => SubsetUtils.GetNameBy(Digits.Count);
 
 		/// <inheritdoc/>
-		public sealed override DifficultyLevels DifficultyLevel => DifficultyLevels.Moderate;
+		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Moderate;
 	}
 }

@@ -35,7 +35,7 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// The difficulty level of this step.
 		/// </summary>
-		public abstract DifficultyLevels DifficultyLevel { get; }
+		public abstract DifficultyLevel DifficultyLevel { get; }
 
 		/// <summary>
 		/// All conclusions found in this technique step.
@@ -63,7 +63,7 @@ namespace Sudoku.Solving
 		/// <param name="difficulty">(out parameter) The difficulty.</param>
 		/// <param name="difficultyLevel">(out parameter) The difficulty level.</param>
 		public void Deconstruct(
-			out string name, out decimal difficulty, out DifficultyLevels difficultyLevel) =>
+			out string name, out decimal difficulty, out DifficultyLevel difficultyLevel) =>
 			(name, difficulty, difficultyLevel) = (Name, Difficulty, DifficultyLevel);
 
 		/// <summary>
@@ -74,7 +74,7 @@ namespace Sudoku.Solving
 		/// <param name="difficultyLevel">(out parameter) The difficulty level.</param>
 		/// <param name="conclusions">(out parameter) All conclusions.</param>
 		public void Deconstruct(
-			out string name, out decimal difficulty, out DifficultyLevels difficultyLevel,
+			out string name, out decimal difficulty, out DifficultyLevel difficultyLevel,
 			out IReadOnlyList<Conclusion> conclusions) =>
 			(name, difficulty, difficultyLevel, conclusions) = (Name, Difficulty, DifficultyLevel, Conclusions);
 
@@ -87,7 +87,7 @@ namespace Sudoku.Solving
 		/// <param name="conclusions">(out parameter) All conclusions.</param>
 		/// <param name="views">(out parameter) All views.</param>
 		public void Deconstruct(
-			out string name, out decimal difficulty, out DifficultyLevels difficultyLevel,
+			out string name, out decimal difficulty, out DifficultyLevel difficultyLevel,
 			out IReadOnlyList<Conclusion> conclusions, out IReadOnlyList<View> views) =>
 			(name, difficulty, difficultyLevel, conclusions, views) = (Name, Difficulty, DifficultyLevel, Conclusions, Views);
 

@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		public override decimal Difficulty => 5.6m;
 
 		/// <inheritdoc/>
-		public override DifficultyLevels DifficultyLevel => DifficultyLevels.Hard;
+		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 
 		/// <inheritdoc/>

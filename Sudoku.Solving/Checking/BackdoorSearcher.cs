@@ -101,7 +101,7 @@ namespace Sudoku.Solving.Checking
 
 			// Search backdoors (Assignments).
 			bool hasSolved;
-			DifficultyLevels difficultyLevel;
+			DifficultyLevel difficultyLevel;
 			for (int cellOffset = 0; cellOffset < 81; cellOffset++)
 			{
 				if (tempGrid.GetCellStatus(cellOffset) != CellStatus.Empty)
@@ -113,7 +113,7 @@ namespace Sudoku.Solving.Checking
 				tempGrid[cellOffset] = digit;
 
 				(_, hasSolved, _, _, difficultyLevel) = TestSolver.Solve(tempGrid);
-				if (hasSolved && difficultyLevel == DifficultyLevels.Easy)
+				if (hasSolved && difficultyLevel == DifficultyLevel.Easy)
 				{
 					// Solve successfully.
 					_result.Add(new List<Conclusion>
@@ -166,7 +166,7 @@ namespace Sudoku.Solving.Checking
 					tempList.Add(new Conclusion(ConclusionType.Elimination, c1, d1));
 
 					(_, hasSolved, _, _, difficultyLevel) = TestSolver.Solve(tempGrid);
-					if (!hasSolved || difficultyLevel != DifficultyLevels.Easy)
+					if (!hasSolved || difficultyLevel != DifficultyLevel.Easy)
 					{
 						// Fail to solve.
 						if (Depth > 1)
@@ -186,7 +186,7 @@ namespace Sudoku.Solving.Checking
 									tempList.Add(new Conclusion(ConclusionType.Elimination, c2, d2));
 
 									(_, hasSolved, _, _, difficultyLevel) = TestSolver.Solve(tempGrid);
-									if (!hasSolved || difficultyLevel != DifficultyLevels.Easy)
+									if (!hasSolved || difficultyLevel != DifficultyLevel.Easy)
 									{
 										// Fail to solve.
 										if (Depth > 2)
@@ -206,7 +206,7 @@ namespace Sudoku.Solving.Checking
 													tempList.Add(new Conclusion(ConclusionType.Elimination, c3, d3));
 
 													(_, hasSolved, _, _, difficultyLevel) = TestSolver.Solve(tempGrid);
-													if (hasSolved && difficultyLevel == DifficultyLevels.Easy)
+													if (hasSolved && difficultyLevel == DifficultyLevel.Easy)
 													{
 														// Solve successfully.
 														// Note this condition.

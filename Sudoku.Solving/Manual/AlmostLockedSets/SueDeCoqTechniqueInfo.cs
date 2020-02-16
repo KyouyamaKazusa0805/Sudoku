@@ -73,7 +73,7 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 		public override decimal Difficulty => IntersectionCells.Count == 2 ? 5.0m : 5.1m;
 
 		/// <inheritdoc/>
-		public override DifficultyLevels DifficultyLevel => DifficultyLevels.VeryHard;
+		public override DifficultyLevel DifficultyLevel => DifficultyLevel.VeryHard;
 
 
 		/// <inheritdoc/>

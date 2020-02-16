@@ -157,13 +157,13 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Indicates the difficulty level of the puzzle.
 		/// If the puzzle has not solved or solved by other
-		/// solvers, this value will be <see cref="DifficultyLevels.Unknown"/>.
+		/// solvers, this value will be <see cref="DifficultyLevel.Unknown"/>.
 		/// </summary>
-		public DifficultyLevels DifficultyLevel
+		public DifficultyLevel DifficultyLevel
 		{
 			get
 			{
-				var maxLevel = DifficultyLevels.Unknown;
+				var maxLevel = DifficultyLevel.Unknown;
 				if (HasSolved && !(SolvingSteps is null))
 				{
 					foreach (var step in SolvingSteps)
@@ -266,7 +266,7 @@ namespace Sudoku.Solving
 		/// <param name="difficultyLevel">(out parameter) The difficulty level.</param>
 		public void Deconstruct(
 			out Grid puzzle, out bool hasSolved, out TimeSpan elapsedTime,
-			out Grid? solution, out DifficultyLevels difficultyLevel) =>
+			out Grid? solution, out DifficultyLevel difficultyLevel) =>
 			(puzzle, hasSolved, elapsedTime, solution, difficultyLevel) = (Puzzle, HasSolved, ElapsedTime, Solution, DifficultyLevel);
 
 		/// <summary>
@@ -290,7 +290,7 @@ namespace Sudoku.Solving
 		/// </param>
 		public void Deconstruct(
 			out Grid puzzle, out bool hasSolved, out TimeSpan elapsedTime,
-			out Grid? solution, out DifficultyLevels difficultyLevel,
+			out Grid? solution, out DifficultyLevel difficultyLevel,
 			out int solvingStepsCount, out IReadOnlyList<TechniqueInfo>? solvingSteps,
 			out string? additionalMessage) =>
 			(puzzle, hasSolved, elapsedTime, solution, difficultyLevel, solvingStepsCount, solvingSteps, additionalMessage) = (Puzzle, HasSolved, ElapsedTime, Solution, DifficultyLevel, SolvingStepsCount, SolvingSteps, Additional);

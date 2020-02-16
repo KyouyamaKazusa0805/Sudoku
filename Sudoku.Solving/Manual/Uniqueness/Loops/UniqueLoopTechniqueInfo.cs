@@ -52,7 +52,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		}
 
 		/// <inheritdoc/>
-		public override DifficultyLevels DifficultyLevel => DifficultyLevels.Hard;
+		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <summary>
 		/// The data of the specified unique rectangle type.

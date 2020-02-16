@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public override decimal Difficulty => 9.0m;
 
 		/// <inheritdoc/>
-		public override DifficultyLevels DifficultyLevel => DifficultyLevels.LastResort;
+		public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
 
 
 		/// <inheritdoc/>

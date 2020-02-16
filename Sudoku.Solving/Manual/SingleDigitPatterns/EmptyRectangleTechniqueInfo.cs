@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual.SingleDigitPatterns
 		public override decimal Difficulty => 4.6m;
 
 		/// <inheritdoc/>
-		public override DifficultyLevels DifficultyLevel => DifficultyLevels.Hard;
+		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 
 		/// <inheritdoc/>
