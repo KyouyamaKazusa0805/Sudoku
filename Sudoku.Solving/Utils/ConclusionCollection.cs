@@ -24,7 +24,7 @@ namespace Sudoku.Solving.Utils
 
 			foreach (var conclusionGroupByType in
 				from conclusion in conclusions
-				group conclusion by conclusion.Type)
+				group conclusion by conclusion.ConclusionType)
 			{
 				var type = conclusionGroupByType.Key;
 				foreach (var conclusionGroupByDigit in

@@ -15,7 +15,7 @@ namespace Sudoku.Solving
 		/// <param name="cellOffset">The cell offset.</param>
 		/// <param name="digit">The digit.</param>
 		public Conclusion(ConclusionType conclusionType, int cellOffset, int digit) =>
-			(Type, CellOffset, Digit) = (conclusionType, cellOffset, digit);
+			(ConclusionType, CellOffset, Digit) = (conclusionType, cellOffset, digit);
 
 		/// <summary>
 		/// Initializes an instance with a conclusion type and a candidate offset.
@@ -44,7 +44,7 @@ namespace Sudoku.Solving
 		/// this conclusion will be set value (Set a digit into a cell);
 		/// otherwise, a candidate will be removed.
 		/// </summary>
-		public ConclusionType Type { get; }
+		public ConclusionType ConclusionType { get; }
 
 
 		/// <summary>
@@ -53,7 +53,7 @@ namespace Sudoku.Solving
 		/// <param name="grid">The grid.</param>
 		public void ApplyTo(Grid grid)
 		{
-			switch (Type)
+			switch (ConclusionType)
 			{
 				case ConclusionType.Assignment:
 				{
@@ -78,7 +78,7 @@ namespace Sudoku.Solving
 		/// <param name="conclusionType">(out parameter) The type of this conclusion.</param>
 		/// <param name="candidate">(out parameter) The candidate.</param>
 		public void Deconstruct(out ConclusionType conclusionType, out int candidate) =>
-			(conclusionType, candidate) = (Type, CellOffset * 9 + Digit);
+			(conclusionType, candidate) = (ConclusionType, CellOffset * 9 + Digit);
 
 		/// <summary>
 		/// Deconstruct an instance.
@@ -87,7 +87,7 @@ namespace Sudoku.Solving
 		/// <param name="cell">(out parameter) The cell.</param>
 		/// <param name="digit">(out parameter) The digit.</param>
 		public void Deconstruct(out ConclusionType conclusionType, out int cell, out int digit) =>
-			(conclusionType, cell, digit) = (Type, CellOffset, Digit);
+			(conclusionType, cell, digit) = (ConclusionType, CellOffset, Digit);
 
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) =>
@@ -104,7 +104,7 @@ namespace Sudoku.Solving
 		public bool Equals(Conclusion other) => GetHashCode() == other.GetHashCode();
 
 		/// <inheritdoc/>
-		public override int GetHashCode() => ((int)Type + 1) * (CellOffset * 9 + Digit);
+		public override int GetHashCode() => ((int)ConclusionType + 1) * (CellOffset * 9 + Digit);
 
 		/// <summary>
 		/// Returns a string that represents the current object.
@@ -112,7 +112,7 @@ namespace Sudoku.Solving
 		/// <returns>A string that represents the current object.</returns>
 		public override string ToString()
 		{
-			return $@"r{CellOffset / 9 + 1}c{CellOffset % 9 + 1} {Type switch
+			return $@"r{CellOffset / 9 + 1}c{CellOffset % 9 + 1} {ConclusionType switch
 			{
 				ConclusionType.Assignment => "=",
 				ConclusionType.Elimination => "<>",

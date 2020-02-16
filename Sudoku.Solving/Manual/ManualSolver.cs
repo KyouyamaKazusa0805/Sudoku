@@ -348,7 +348,7 @@ namespace Sudoku.Solving.Manual
 			foreach (var conclusion in conclusions)
 			{
 				int digit = solution[conclusion.CellOffset];
-				switch (conclusion.Type)
+				switch (conclusion.ConclusionType)
 				{
 					case ConclusionType.Assignment:
 					{

@@ -1,6 +1,5 @@
 ﻿using System;
 using Sudoku.Data.Meta;
-using Sudoku.Diagnostics;
 using Sudoku.Solving.Manual;
 
 namespace Sudoku.Debugging
