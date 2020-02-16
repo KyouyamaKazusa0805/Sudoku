@@ -45,7 +45,7 @@
 			get => _bowmanBingoMaximumLength;
 			set
 			{
-				if (value > 0 && value < 576)
+				if (value > 0 && value <= 64)
 				{
 					_bowmanBingoMaximumLength = value;
 				}
