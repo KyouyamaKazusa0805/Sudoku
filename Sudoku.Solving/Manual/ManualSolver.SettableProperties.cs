@@ -2,8 +2,6 @@
 {
 	partial class ManualSolver
 	{
-		
-
 		/// <summary>
 		/// <para>
 		/// Indicates whether the solver should check all technique
