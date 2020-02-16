@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public IReadOnlyList<Conclusion> ContradictionSeries { get; }
 
 		/// <inheritdoc/>
-		public override string Name => "Bowman Bingo";
+		public override string Name => "Bowman's Bingo";
 
 		/// <inheritdoc/>
 		public override decimal Difficulty =>
