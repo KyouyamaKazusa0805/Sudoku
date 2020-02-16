@@ -126,6 +126,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						// abc abc
 						// abc ab
 						// Therefore, type 5 found.
+						if (!urMode && (
+							grid.GetCellStatus(extraCell) == CellStatus.Empty
+							|| cellTriplet.Any(cell => grid.GetCellStatus(cell) != CellStatus.Empty)))
+						{
+							continue;
+						}
 
 						// Record all highlight candidates.
 						var candidateOffsets = new List<(int, int)>();
@@ -134,7 +140,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						int? extraDigit = cellInTripletMask.GetAllSets()
 							.FirstOrDefault(i => !digits.Contains(i));
 
-						if (extraDigit == null)
+						if (extraDigit is null)
 						{
 							continue;
 						}
@@ -142,11 +148,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						int extraDigitReal = (int)extraDigit;
 						foreach (int cell in cells)
 						{
-							foreach (int digit in digits)
+							if (urMode
+								|| !urMode && grid.GetCellStatus(cell) == CellStatus.Empty)
 							{
-								if (grid.CandidateExists(cell, digit))
+								foreach (int digit in digits)
 								{
-									candidateOffsets.Add((0, cell * 9 + digit));
+									if (grid.CandidateExists(cell, digit))
+									{
+										candidateOffsets.Add((0, cell * 9 + digit));
+									}
 								}
 							}
 
@@ -196,7 +206,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 								views: new[]
 								{
 									new View(
-										cellOffsets: null,
+										cellOffsets:
+											new List<(int, int)>(
+												from cell in cells
+												select (0, cell)),
 										candidateOffsets,
 										regionOffsets: null,
 										linkMasks: null)
@@ -209,17 +222,24 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					// Pattern found:
 					// ab ab
 					// ab ab+
+					if (!urMode && cellTriplet.Any(cell => grid.GetCellStatus(cell) == CellStatus.Empty))
+					{
+						continue;
+					}
 
 					// Record all highlight candidates.
 					var candidateOffsets = new List<(int, int)>();
 					var digits = grid.GetCandidatesReversal(cellTriplet[0]).GetAllSets();
-					foreach (int cell in cellTriplet)
+					if (urMode)
 					{
-						foreach (int digit in digits)
+						foreach (int cell in cellTriplet)
 						{
-							if (grid.CandidateExists(cell, digit))
+							foreach (int digit in digits)
 							{
-								candidateOffsets.Add((0, cell * 9 + digit));
+								if (grid.CandidateExists(cell, digit))
+								{
+									candidateOffsets.Add((0, cell * 9 + digit));
+								}
 							}
 						}
 					}
@@ -262,8 +282,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 							views: new[]
 							{
 								new View(
-									cellOffsets: null,
-									candidateOffsets,
+									cellOffsets:
+										new List<(int, int)>(
+											from cell in cells
+											select (0, cell)),
+									candidateOffsets: null,
 									regionOffsets: null,
 									linkMasks: null)
 							},
@@ -311,6 +334,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		{
 			for (int digit = 0; digit < 9; digit++)
 			{
+				if (!urMode && (
+					grid.GetCellStatus(extraCell) == CellStatus.Empty
+					|| cellTriple.Any(cell => grid.GetCellStatus(cell) != CellStatus.Empty)))
+				{
+					continue;
+				}
+
 				short mask1 = grid.GetDigitAppearingMask(digit, regions[0]);
 				short mask2 = grid.GetDigitAppearingMask(digit, regions[1]);
 				if (mask1 == 0 || mask2 == 0)
@@ -364,7 +394,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 								candidateOffsets.Add((0, extraCell * 9 + d));
 							}
 						}
-
+						
 						// Record all eliminations.
 						var conclusions = new List<Conclusion>();
 						if (grid.CandidateExists(elimCell, elimDigit))
@@ -388,7 +418,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 									new View(
 										cellOffsets: null,
 										candidateOffsets,
-										regionOffsets: (from r in regions select (0, r)).ToArray(),
+										regionOffsets:
+											new List<(int, int)>(
+												from r in regions select (0, r)),
 										linkMasks: null)
 								},
 								cells,
@@ -403,9 +435,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 								views: new[]
 								{
 									new View(
-										cellOffsets: null,
+										cellOffsets:
+											new List<(int, int)>(
+												from cell in cells select (0, cell)),
 										candidateOffsets,
-										regionOffsets: (from r in regions select (0, r)).ToArray(),
+										regionOffsets:
+											new List<(int, int)>(
+												from r in regions select (0, r)),
 										linkMasks: null)
 								},
 								cells,
@@ -477,6 +513,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 				if (totalMask.CountSet() == 6)
 				{
+					if (!urMode && cellPair.Any(cell => grid.GetCellStatus(cell) == CellStatus.Empty))
+					{
+						continue;
+					}
+
 					// Type 2 / 5 found.
 					// Record all highlight candidates.
 					var candidateOffsets = new List<(int, int)>();
@@ -484,12 +525,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					{
 						foreach (int digit in digits)
 						{
-							if (grid.CandidateExists(cell, digit))
+							if (urMode
+								|| !urMode && grid.GetCellStatus(cell) == CellStatus.Empty)
 							{
-								candidateOffsets.Add((0, cell * 9 + digit));
+								if (grid.CandidateExists(cell, digit))
+								{
+									candidateOffsets.Add((0, cell * 9 + digit));
+								}
 							}
 						}
 					}
+					
 					foreach (int cell in extraCells)
 					{
 						foreach (int digit in digits)
@@ -558,7 +604,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 							views: new[]
 							{
 								new View(
-									cellOffsets: null,
+									cellOffsets:
+										new List<(int, int)>(
+											from cell in cells
+											select (0, cell)),
 									candidateOffsets,
 									regionOffsets: null,
 									linkMasks: null)
@@ -583,6 +632,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					}
 
 					// Check type 3.
+					if (!urMode && (
+						cellPair.Any(cell => grid.GetCellStatus(cell) == CellStatus.Empty)
+						|| extraCells.Any(cell => grid.GetCellStatus(cell) != CellStatus.Empty)))
+					{
+						continue;
+					}
+
 					CellUtils.IsSameRegion(extraCells[0], extraCells[1], out int[] regions);
 					for (int size = 1; size <= 3; size++)
 					{
@@ -644,11 +700,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										candidateOffsets.Add((1, cell * 9 + x));
 									}
 								}
-								for (int x = 0, temp = digitKindsMask & ~otherDigitMask; x < 9; x++, temp >>= 1)
+								if (urMode
+									|| !urMode && grid.GetCellStatus(cell) == CellStatus.Empty)
 								{
-									if ((temp & 1) != 0 && grid.CandidateExists(cell, x))
+									for (int x = 0, temp = digitKindsMask & ~otherDigitMask; x < 9; x++, temp >>= 1)
 									{
-										candidateOffsets.Add((0, cell * 9 + x));
+										if ((temp & 1) != 0 && grid.CandidateExists(cell, x))
+										{
+											candidateOffsets.Add((0, cell * 9 + x));
+										}
 									}
 								}
 							}
@@ -720,7 +780,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 									views: new[]
 									{
 										new View(
-											cellOffsets: null,
+											cellOffsets:
+												new List<(int, int)>(
+													from cell in cells
+													select (0, cell)),
 											candidateOffsets,
 											regionOffsets: null,
 											linkMasks: null)
@@ -765,11 +828,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 												candidateOffsets.Add((1, cell * 9 + x));
 											}
 										}
-										for (int x = 0, temp = digitKindsMask & ~otherDigitMask; x < 9; x++, temp >>= 1)
+										if (urMode
+											|| !urMode && grid.GetCellStatus(cell) == CellStatus.Empty)
 										{
-											if ((temp & 1) != 0 && grid.CandidateExists(cell, x))
+											for (int x = 0, temp = digitKindsMask & ~otherDigitMask; x < 9; x++, temp >>= 1)
 											{
-												candidateOffsets.Add((0, cell * 9 + x));
+												if ((temp & 1) != 0 && grid.CandidateExists(cell, x))
+												{
+													candidateOffsets.Add((0, cell * 9 + x));
+												}
 											}
 										}
 									}
@@ -841,7 +908,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 											views: new[]
 											{
 												new View(
-													cellOffsets: null,
+													cellOffsets:
+														new List<(int, int)>(
+															from cell in cells
+															select (0, cell)),
 													candidateOffsets,
 													regionOffsets: null,
 													linkMasks: null)
@@ -884,11 +954,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 													candidateOffsets.Add((1, cell * 9 + x));
 												}
 											}
-											for (int x = 0, temp = digitKindsMask & ~otherDigitMask; x < 9; x++, temp >>= 1)
+											if (urMode
+												|| !urMode && grid.GetCellStatus(cell) == CellStatus.Empty)
 											{
-												if ((temp & 1) != 0 && grid.CandidateExists(cell, x))
+												for (int x = 0, temp = digitKindsMask & ~otherDigitMask; x < 9; x++, temp >>= 1)
 												{
-													candidateOffsets.Add((0, cell * 9 + x));
+													if ((temp & 1) != 0 && grid.CandidateExists(cell, x))
+													{
+														candidateOffsets.Add((0, cell * 9 + x));
+													}
 												}
 											}
 										}
@@ -960,7 +1034,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 												views: new[]
 												{
 													new View(
-														cellOffsets: null,
+														cellOffsets:
+															new List<(int, int)>(
+																from cell in cells
+																select (0, cell)),
 														candidateOffsets,
 														regionOffsets: null,
 														linkMasks: null)
@@ -1036,9 +1113,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 								{
 									foreach (int digit in digits)
 									{
-										if (grid.CandidateExists(cell, digit))
+										if (urMode
+											|| !urMode && grid.GetCellStatus(cell) == CellStatus.Empty)
 										{
-											candidateOffsets.Add((0, cell * 9 + digit));
+											if (grid.CandidateExists(cell, digit))
+											{
+												candidateOffsets.Add((0, cell * 9 + digit));
+											}
 										}
 									}
 								}
@@ -1109,7 +1190,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										views: new[]
 										{
 											new View(
-												cellOffsets: null,
+												cellOffsets:
+													new List<(int, int)>(
+														from cell in cells
+														select (0, cell)),
 												candidateOffsets,
 												regionOffsets: null,
 												linkMasks: null)
@@ -1151,9 +1235,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										{
 											foreach (int digit in digits)
 											{
-												if (grid.CandidateExists(cell, digit))
+												if (urMode
+													|| !urMode && grid.GetCellStatus(cell) == CellStatus.Empty)
 												{
-													candidateOffsets.Add((0, cell * 9 + digit));
+													if (grid.CandidateExists(cell, digit))
+													{
+														candidateOffsets.Add((0, cell * 9 + digit));
+													}
 												}
 											}
 										}
@@ -1224,7 +1312,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 												views: new[]
 												{
 													new View(
-														cellOffsets: null,
+														cellOffsets:
+															new List<(int, int)>(
+																from cell in cells
+																select (0, cell)),
 														candidateOffsets,
 														regionOffsets: null,
 														linkMasks: null)
@@ -1264,9 +1355,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 											{
 												foreach (int digit in digits)
 												{
-													if (grid.CandidateExists(cell, digit))
+													if (urMode
+														|| !urMode && grid.GetCellStatus(cell) == CellStatus.Empty)
 													{
-														candidateOffsets.Add((0, cell * 9 + digit));
+														if (grid.CandidateExists(cell, digit))
+														{
+															candidateOffsets.Add((0, cell * 9 + digit));
+														}
 													}
 												}
 											}
@@ -1337,7 +1432,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 													views: new[]
 													{
 														new View(
-															cellOffsets: null,
+															cellOffsets:
+																new List<(int, int)>(
+																	from cell in cells
+																	select (0, cell)),
 															candidateOffsets,
 															regionOffsets: null,
 															linkMasks: null)
