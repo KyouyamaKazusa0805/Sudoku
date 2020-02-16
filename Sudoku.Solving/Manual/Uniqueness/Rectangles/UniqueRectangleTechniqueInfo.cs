@@ -19,8 +19,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <param name="detailData">The data of details.</param>
 		public UniqueRectangleTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			UniqueRectangleDetailData detailData)
-			: base(conclusions, views) => DetailData = detailData;
+			IRectangleDetailData detailData)
+			: base(conclusions, views, detailData)
+		{ 
+		}
 
 
 		/// <inheritdoc/>
@@ -50,11 +52,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-		/// <summary>
-		/// The data of the specified unique rectangle type.
-		/// </summary>
-		public override IRectangleDetailData DetailData { get; }
 
 
 		/// <inheritdoc/>

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -23,7 +21,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			IReadOnlyList<int> cells, IReadOnlyList<int> digits,
 			IReadOnlyList<ConjugatePair> conjugatePairs)
-			: base(conclusions, views) =>
+			: base(conclusions, views, null!) =>
 			(Cells, Digits, ConjugatePairs) = (cells, digits, conjugatePairs);
 
 
@@ -55,11 +53,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-		/// <inheritdoc/>
-		[DebuggerHidden]
-		public override IRectangleDetailData DetailData =>
-			throw new NotSupportedException("Hidden rectangles does not required to implement this instance.");
 
 
 		/// <inheritdoc/>
