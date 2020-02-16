@@ -7,9 +7,9 @@ using Sudoku.Solving.Utils;
 namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 {
 	/// <summary>
-	/// Provides a usage of hidden rectangle technique.
+	/// Provides a usage of hidden avoidable rectangle technique.
 	/// </summary>
-	public sealed class HiddenRectangleTechniqueInfo : RectangleTechniqueInfo
+	public sealed class HiddenAvoidableRectangleTechniqueInfo : RectangleTechniqueInfo
 	{
 		/// <summary>
 		/// Initializes an instance with the specified information.
@@ -19,14 +19,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <param name="cells">All cells.</param>
 		/// <param name="digits">All digits.</param>
 		/// <param name="conjugatePairs">All conjugate pairs.</param>
-		public HiddenRectangleTechniqueInfo(
+		public HiddenAvoidableRectangleTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			IReadOnlyList<int> cells, IReadOnlyList<int> digits,
 			IReadOnlyList<ConjugatePair> conjugatePairs)
 			: base(conclusions, views) =>
 			(Cells, Digits, ConjugatePairs) = (cells, digits, conjugatePairs);
 
-
+		
 		/// <summary>
 		/// Indicates all cells.
 		/// </summary>
@@ -48,10 +48,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		public IReadOnlyList<ConjugatePair> ConjugatePairs { get; }
 
 		/// <inheritdoc/>
-		public override string Name => "Hidden Rectangle";
+		public override string Name => "Hidden Avoidable Rectangle";
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 4.8m;
+		public override decimal Difficulty => 4.9m;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
@@ -59,7 +59,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <inheritdoc/>
 		[DebuggerHidden]
 		public override IRectangleDetailData DetailData =>
-			throw new NotSupportedException("Hidden rectangles does not required to implement this instance.");
+			throw new NotSupportedException("Hidden avoidable rectangles does not required to implement this instance.");
 
 
 		/// <inheritdoc/>

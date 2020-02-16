@@ -5,7 +5,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 	/// <summary>
 	/// Provides all data for unique rectangles (basic and extended types).
 	/// </summary>
-	public abstract class AvoidableRectangleDetailData
+	public abstract class AvoidableRectangleDetailData : IRectangleDetailData
 	{
 		/// <summary>
 		/// Provides passing data when initializing an instance of derived types.
@@ -44,14 +44,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// </remarks>
 		public abstract int Type { get; }
 
-		/// <summary>
-		/// Indicates the digits.
-		/// </summary>
+		/// <inheritdoc/>
 		public IReadOnlyList<int> Digits { get; }
 
-		/// <summary>
-		/// Indicates all cell of the whole structure.
-		/// </summary>
+		/// <inheritdoc/>
 		public IReadOnlyList<int> Cells { get; }
 
 

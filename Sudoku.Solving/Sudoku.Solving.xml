@@ -2929,14 +2929,10 @@
             </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleDetailData.Digits">
-            <summary>
-            Indicates the digits.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleDetailData.Cells">
-            <summary>
-            Indicates all cell of the whole structure.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleDetailData.ToString">
             <inheritdoc/>
@@ -2970,47 +2966,6 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleTechniqueInfo.ToString">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleTechniqueSearcher">
-            <summary>
-            Encapsulates an avoidable rectangle (AR) technique searcher.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Collections.Generic.IEnumerable{System.Int32},System.Int32[],System.Int32)">
-            <summary>
-            Check type 3 (with naked subset).
-            </summary>
-            <param name="result">The result accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="cells">All cells.</param>
-            <param name="digits">All digits.</param>
-            <param name="regions">All regions.</param>
-            <param name="size">The size to check.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleTechniqueSearcher.CheckType3Hidden(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Int32[],System.Collections.Generic.IEnumerable{System.Int32},System.Int32[],System.Int32)">
-            <summary>
-            Check type 3 (with hidden subset).
-            </summary>
-            <param name="result">The result accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="cells">All cells.</param>
-            <param name="extraCells">All extra cells.</param>
-            <param name="digits">All digits.</param>
-            <param name="regions">All regions.</param>
-            <param name="size">The size to check.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleTechniqueSearcher.GetOtherDigitMask(Sudoku.Data.Meta.Grid,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Int16@)">
-            <summary>
-            Get other digit mask used in type 3 with naked subset.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="allCells">All cells.</param>
-            <param name="digits">All digits.</param>
-            <param name="digitKindsMask">(out parameter) The digit kind mask.</param>
-            <returns>The result mask.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleType1DetailData">
             <summary>
@@ -3090,6 +3045,56 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleType3DetailData.ToString">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenAvoidableRectangleTechniqueInfo">
+            <summary>
+            Provides a usage of hidden avoidable rectangle technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenAvoidableRectangleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{Sudoku.Solving.ConjugatePair})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="cells">All cells.</param>
+            <param name="digits">All digits.</param>
+            <param name="conjugatePairs">All conjugate pairs.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenAvoidableRectangleTechniqueInfo.Cells">
+            <summary>
+            Indicates all cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenAvoidableRectangleTechniqueInfo.Digits">
+            <summary>
+            Indicates all digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenAvoidableRectangleTechniqueInfo.Digit">
+            <summary>
+            Indicates the digit used in all conjugate pairs.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenAvoidableRectangleTechniqueInfo.ConjugatePairs">
+            <summary>
+            Indicates all conjugate pairs.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenAvoidableRectangleTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenAvoidableRectangleTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenAvoidableRectangleTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenAvoidableRectangleTechniqueInfo.DetailData">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenAvoidableRectangleTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenRectangleTechniqueInfo">
             <summary>
             Provides a usage of hidden rectangle technique.
@@ -3134,8 +3139,58 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenRectangleTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenRectangleTechniqueInfo.DetailData">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenRectangleTechniqueInfo.ToString">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.IRectangleDetailData">
+            <summary>
+            Provides a rectangle detail data model.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.IRectangleDetailData.Type">
+            <summary>
+            Indicates the type of the rectangle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.IRectangleDetailData.Cells">
+            <summary>
+            Indicates all cells that forms a UR or an AR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.IRectangleDetailData.Digits">
+            <summary>
+            Indicates all digits that forms a UR or an AR.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.IRectangleDetailData.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo">
+            <summary>
+            Provides a usage of rectangle technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo.DetailData">
+            <summary>
+            The detail data of the technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueSearcher">
+            <summary>
+            Encapsulates a rectangle technique searcher.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleDetailData">
             <summary>
@@ -3191,14 +3246,10 @@
             </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleDetailData.Digits">
-            <summary>
-            Indicates the digits.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleDetailData.Cells">
-            <summary>
-            Indicates all cell of the whole structure.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleDetailData.ToString">
             <inheritdoc/>
@@ -3254,7 +3305,7 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType15AndHidden(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Int32[][])">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType15AndHidden(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Int32[][],System.Boolean)">
             <summary>
             Check basic type and generalized locked candidates type.
             </summary>
@@ -3262,8 +3313,12 @@
             <param name="grid">The grid.</param>
             <param name="cells">All UR cells.</param>
             <param name="cellTriplets">Cell triplets to use.</param>
+            <param name="urMode">
+            Indicates whether the current searching is for UR. <see langword="true"/>
+            is for UR, <see langword="false"/> is for AR.
+            </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckHiddenRectangle(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Span{System.Int32},System.Int32,System.Int32[],System.Int32,System.Int32[])">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckHiddenRectangle(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Span{System.Int32},System.Int32,System.Int32[],System.Int32,System.Int32[],System.Boolean)">
             <summary>
             Check hidden rectangle.
             </summary>
@@ -3275,8 +3330,12 @@
             <param name="cellTriple">Cell triple.</param>
             <param name="extraCell">The extra cell.</param>
             <param name="cells">All cells.</param>
+            <param name="urMode">
+            Indicates whether the current searching is for UR. <see langword="true"/>
+            is for UR, <see langword="false"/> is for AR.
+            </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType23456(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Int32[][])">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType23456(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Int32[][],System.Boolean)">
             <summary>
             Check type 2 to 6.
             </summary>
@@ -3284,8 +3343,12 @@
             <param name="grid">The grid.</param>
             <param name="cells">All cells.</param>
             <param name="cellPairs">Cell pairs.</param>
+            <param name="urMode">
+            Indicates whether the current searching is for UR. <see langword="true"/>
+            is for UR, <see langword="false"/> is for AR.
+            </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Collections.Generic.IEnumerable{System.Int32},System.Int32[],System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Collections.Generic.IEnumerable{System.Int32},System.Int32[],System.Int32,System.Boolean)">
             <summary>
             Check type 3 (with naked subset).
             </summary>
@@ -3295,8 +3358,12 @@
             <param name="digits">All digits.</param>
             <param name="regions">All regions.</param>
             <param name="size">The size to check.</param>
+            <param name="urMode">
+            Indicates whether the current searching is for UR. <see langword="true"/>
+            is for UR, <see langword="false"/> is for AR.
+            </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType3Hidden(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Int32[],System.Collections.Generic.IEnumerable{System.Int32},System.Int32[],System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType3Hidden(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Int32[],System.Collections.Generic.IEnumerable{System.Int32},System.Int32[],System.Int32,System.Boolean)">
             <summary>
             Check type 3 (with hidden subset).
             </summary>
@@ -3307,8 +3374,12 @@
             <param name="digits">All digits.</param>
             <param name="regions">All regions.</param>
             <param name="size">The size to check.</param>
+            <param name="urMode">
+            Indicates whether the current searching is for UR. <see langword="true"/>
+            is for UR, <see langword="false"/> is for AR.
+            </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType6(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Int32[],System.Int32[],System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType6(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Int32[],System.Int32[],System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
             Check type 6.
             </summary>
@@ -3319,7 +3390,7 @@
             <param name="extraCells">All extra cells.</param>
             <param name="digits">All digits.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Int32[],System.Int32[],System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Int32[],System.Int32[],System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
             Check type 4.
             </summary>

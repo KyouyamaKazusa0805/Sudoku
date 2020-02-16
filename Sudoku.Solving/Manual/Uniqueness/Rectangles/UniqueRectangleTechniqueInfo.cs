@@ -9,7 +9,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 	/// <summary>
 	/// Provides a usage of unique rectangle technique.
 	/// </summary>
-	public sealed class UniqueRectangleTechniqueInfo : UniquenessTechniqueInfo
+	public sealed class UniqueRectangleTechniqueInfo : RectangleTechniqueInfo
 	{
 		/// <summary>
 		/// Initializes an instance with the information.
@@ -54,7 +54,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <summary>
 		/// The data of the specified unique rectangle type.
 		/// </summary>
-		public UniqueRectangleDetailData DetailData { get; }
+		public override IRectangleDetailData DetailData { get; }
 
 
 		/// <inheritdoc/>

@@ -9,7 +9,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 	/// <summary>
 	/// Provides a usage of avoidable rectangle (AR) technique.
 	/// </summary>
-	public sealed class AvoidableRectangleTechniqueInfo : UniquenessTechniqueInfo
+	public sealed class AvoidableRectangleTechniqueInfo : RectangleTechniqueInfo
 	{
 		/// <summary>
 		/// Initializes an instance with the information.
@@ -47,7 +47,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <summary>
 		/// The data of the specified avoidable rectangle type.
 		/// </summary>
-		public AvoidableRectangleDetailData DetailData { get; }
+		public override IRectangleDetailData DetailData { get; }
 
 
 		/// <inheritdoc/>

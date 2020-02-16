@@ -5,6 +5,9 @@ using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
+using ArType1 = Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleType1DetailData;
+using ArType2 = Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleType2DetailData;
+using ArType3 = Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleType3DetailData;
 using UrType1 = Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType1DetailData;
 using UrType2Or5 = Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType2DetailData;
 using UrType3 = Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleType3DetailData;
@@ -37,38 +40,41 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <inheritdoc/>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
-			var result = new List<UniquenessTechniqueInfo>();
+			var result = new List<RectangleTechniqueInfo>();
 
-			foreach (int[] cells in TraversingTable)
+			foreach (bool urMode in new[] { true, false })
 			{
-				// Check if one cell of all is not empty.
-				if (cells.Any(c => grid.GetCellStatus(c) != CellStatus.Empty))
+				foreach (int[] cells in TraversingTable)
 				{
-					continue;
+					if (urMode && cells.Any(c => grid.GetCellStatus(c) != CellStatus.Empty)
+						|| !urMode && cells.Any(c => grid.GetCellStatus(c) == CellStatus.Given))
+					{
+						continue;
+					}
+
+					// Initalize the data.
+					int[][] cellTriplets = new int[4][]
+					{
+						new[] { cells[1], cells[2], cells[3] }, // 0
+						new[] { cells[0], cells[2], cells[3] }, // 1
+						new[] { cells[0], cells[1], cells[3] }, // 2
+						new[] { cells[0], cells[1], cells[2] }, // 3
+					};
+					int[][] cellPairs = new int[6][]
+					{
+						new[] { cells[2], cells[3] }, // 0, 1
+						new[] { cells[1], cells[3] }, // 0, 2
+						new[] { cells[1], cells[2] }, // 0, 3
+						new[] { cells[0], cells[3] }, // 1, 2
+						new[] { cells[0], cells[2] }, // 1, 3
+						new[] { cells[0], cells[1] }, // 2, 3
+					};
+
+					CheckType15AndHidden(result, grid, cells, cellTriplets, urMode);
+					CheckType23456(result, grid, cells, cellPairs, urMode);
 				}
-
-				// Initalize the data.
-				int[][] cellTriplets = new int[4][]
-				{
-					new[] { cells[1], cells[2], cells[3] }, // 0
-					new[] { cells[0], cells[2], cells[3] }, // 1
-					new[] { cells[0], cells[1], cells[3] }, // 2
-					new[] { cells[0], cells[1], cells[2] }, // 3
-				};
-				int[][] cellPairs = new int[6][]
-				{
-					new[] { cells[2], cells[3] }, // 0, 1
-					new[] { cells[1], cells[3] }, // 0, 2
-					new[] { cells[1], cells[2] }, // 0, 3
-					new[] { cells[0], cells[3] }, // 1, 2
-					new[] { cells[0], cells[2] }, // 1, 3
-					new[] { cells[0], cells[1] }, // 2, 3
-				};
-
-				CheckType15AndHidden(result, grid, cells, cellTriplets);
-				CheckType23456(result, grid, cells, cellPairs);
 			}
-
+			
 			return result;
 		}
 
@@ -80,8 +86,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <param name="grid">The grid.</param>
 		/// <param name="cells">All UR cells.</param>
 		/// <param name="cellTriplets">Cell triplets to use.</param>
+		/// <param name="urMode">
+		/// Indicates whether the current searching is for UR. <see langword="true"/>
+		/// is for UR, <see langword="false"/> is for AR.
+		/// </param>
 		private void CheckType15AndHidden(
-			IList<UniquenessTechniqueInfo> result, Grid grid, int[] cells, int[][] cellTriplets)
+			IList<RectangleTechniqueInfo> result, Grid grid,
+			int[] cells, int[][] cellTriplets, bool urMode)
 		{
 			// Traverse on 'cellTriplets'.
 			for (int i = 0; i < 4; i++)
@@ -161,14 +172,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						}
 
 						// Check if worth.
-						if (conclusions.Count == 0 || !_checkIncompleted && candidateOffsets.Count != 11)
+						if (conclusions.Count == 0
+							|| urMode && !_checkIncompleted && candidateOffsets.Count != 11)
 						{
 							continue;
 						}
 
 						// Type 5.
-						result.Add(
-							new UniqueRectangleTechniqueInfo(
+						result.Add(urMode
+							? (RectangleTechniqueInfo)new UniqueRectangleTechniqueInfo(
 								conclusions,
 								views: new[]
 								{
@@ -178,7 +190,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										regionOffsets: null,
 										linkMasks: null)
 								},
-								detailData: new UrType2Or5(cells, digits.ToArray(), extraDigitReal, true)));
+								detailData: new UrType2Or5(cells, digits.ToArray(), extraDigitReal, true))
+							: new AvoidableRectangleTechniqueInfo(
+								conclusions,
+								views: new[]
+								{
+									new View(
+										cellOffsets: null,
+										candidateOffsets,
+										regionOffsets: null,
+										linkMasks: null)
+								},
+								detailData: new ArType2(cells, digits.ToArray(), extraDigitReal)));
 					}
 				}
 				else if (totalMaskCount == 7)
@@ -215,15 +238,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 					// Check the number of candidates and eliminations.
 					int elimCount = conclusions.Count;
-					if (!_checkIncompleted && (candidateOffsets.Count != 6 || elimCount != 2)
-						|| _checkIncompleted && elimCount == 0)
+					if (elimCount == 0
+						|| urMode && !_checkIncompleted && (candidateOffsets.Count != 6 || elimCount != 2))
 					{
 						continue;
 					}
 
 					// Type 1.
-					result.Add(
-						new UniqueRectangleTechniqueInfo(
+					result.Add(urMode
+						? (RectangleTechniqueInfo)new UniqueRectangleTechniqueInfo(
 							conclusions,
 							views: new[]
 							{
@@ -233,7 +256,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 									regionOffsets: null,
 									linkMasks: null)
 							},
-							detailData: new UrType1(cells, digits.ToArray())));
+							detailData: new UrType1(cells, digits.ToArray()))
+						: new AvoidableRectangleTechniqueInfo(
+							conclusions,
+							views: new[]
+							{
+								new View(
+									cellOffsets: null,
+									candidateOffsets,
+									regionOffsets: null,
+									linkMasks: null)
+							},
+							detailData: new ArType1(cells, digits.ToArray())));
 				}
 
 				// Check hidden rectangle.
@@ -251,7 +285,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 				static bool predicate(int region) => region >= 9;
 				CheckHiddenRectangle(
 					result, grid, new[] { regions1.First(predicate), regions2.First(predicate) },
-					span, elimCell, cellTriplet, extraCell, cells);
+					span, elimCell, cellTriplet, extraCell, cells, urMode);
 			}
 		}
 
@@ -266,10 +300,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <param name="cellTriple">Cell triple.</param>
 		/// <param name="extraCell">The extra cell.</param>
 		/// <param name="cells">All cells.</param>
+		/// <param name="urMode">
+		/// Indicates whether the current searching is for UR. <see langword="true"/>
+		/// is for UR, <see langword="false"/> is for AR.
+		/// </param>
 		private void CheckHiddenRectangle(
-			IList<UniquenessTechniqueInfo> result, Grid grid, int[] regions,
+			IList<RectangleTechniqueInfo> result, Grid grid, int[] regions,
 			Span<int> conjugatePairsSeries, int elimCell, int[] cellTriple,
-			int extraCell, int[] cells)
+			int extraCell, int[] cells, bool urMode)
 		{
 			for (int digit = 0; digit < 9; digit++)
 			{
@@ -336,14 +374,31 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						}
 
 						if (conclusions.Count == 0
-							|| !_checkIncompleted && candidateOffsets.Count != 8)
+							|| urMode && !_checkIncompleted && candidateOffsets.Count != 8)
 						{
 							continue;
 						}
 
 						// Hidden rectangle.
-						result.Add(
-							new HiddenRectangleTechniqueInfo(
+						result.Add(urMode
+							? (RectangleTechniqueInfo)new HiddenRectangleTechniqueInfo(
+								conclusions,
+								views: new[]
+								{
+									new View(
+										cellOffsets: null,
+										candidateOffsets,
+										regionOffsets: (from r in regions select (0, r)).ToArray(),
+										linkMasks: null)
+								},
+								cells,
+								digits,
+								conjugatePairs: new[]
+								{
+									new ConjugatePair(conjugatePairsSeries[0], conjugatePairsSeries[1], digit),
+									new ConjugatePair(conjugatePairsSeries[2], conjugatePairsSeries[3], digit)
+								})
+							: new HiddenAvoidableRectangleTechniqueInfo(
 								conclusions,
 								views: new[]
 								{
@@ -372,8 +427,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <param name="grid">The grid.</param>
 		/// <param name="cells">All cells.</param>
 		/// <param name="cellPairs">Cell pairs.</param>
+		/// <param name="urMode">
+		/// Indicates whether the current searching is for UR. <see langword="true"/>
+		/// is for UR, <see langword="false"/> is for AR.
+		/// </param>
 		private void CheckType23456(
-			IList<UniquenessTechniqueInfo> result, Grid grid, int[] cells, int[][] cellPairs)
+			IList<RectangleTechniqueInfo> result, Grid grid,
+			int[] cells, int[][] cellPairs, bool urMode)
 		{
 			// Traverse on 'cellPairs'.
 			for (int i = 0; i < 6; i++)
@@ -462,7 +522,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						}
 					}
 
-					if (conclusions.Count == 0 || !_checkIncompleted && candidateOffsets.Count != 8)
+					if (conclusions.Count == 0
+						|| urMode && !_checkIncompleted && candidateOffsets.Count != 8)
 					{
 						continue;
 					}
@@ -480,8 +541,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					};
 
 					// Type 2 / 5.
-					result.Add(
-						new UniqueRectangleTechniqueInfo(
+					result.Add(urMode
+						? (RectangleTechniqueInfo)new UniqueRectangleTechniqueInfo(
 							conclusions,
 							views: new[]
 							{
@@ -491,25 +552,42 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 									regionOffsets: null,
 									linkMasks: null)
 							},
-							detailData: new UrType2Or5(cells, digits.ToArray(), extraDigit, isType5)));
+							detailData: new UrType2Or5(cells, digits.ToArray(), extraDigit, isType5))
+						: new AvoidableRectangleTechniqueInfo(
+							conclusions,
+							views: new[]
+							{
+								new View(
+									cellOffsets: null,
+									candidateOffsets,
+									regionOffsets: null,
+									linkMasks: null)
+							},
+							detailData: new ArType2(cells, digits.ToArray(), extraDigit)));
 				}
 
 				// Then check type 4 / 6.
 				if (i == 2 || i == 3)
 				{
-					CheckType6(result, grid, cells, cellPair, extraCells, digits);
+					if (urMode)
+					{
+						CheckType6(result, grid, cells, cellPair, extraCells, digits);
+					}
 				}
 				else
 				{
-					// Check type 4.
-					CheckType4(result, grid, cells, cellPair, extraCells, digits);
+					if (urMode)
+					{
+						// Check type 4.
+						CheckType4(result, grid, cells, cellPair, extraCells, digits);
+					}
 
 					// Check type 3.
 					CellUtils.IsSameRegion(extraCells[0], extraCells[1], out int[] regions);
 					for (int size = 1; size <= 3; size++)
 					{
-						CheckType3Naked(result, grid, cells, digits, regions, size);
-						CheckType3Hidden(result, grid, cells, extraCells, digits, regions, size);
+						CheckType3Naked(result, grid, cells, digits, regions, size, urMode);
+						CheckType3Hidden(result, grid, cells, extraCells, digits, regions, size, urMode);
 					}
 				}
 			}
@@ -524,9 +602,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <param name="digits">All digits.</param>
 		/// <param name="regions">All regions.</param>
 		/// <param name="size">The size to check.</param>
+		/// <param name="urMode">
+		/// Indicates whether the current searching is for UR. <see langword="true"/>
+		/// is for UR, <see langword="false"/> is for AR.
+		/// </param>
 		private void CheckType3Naked(
-			IList<UniquenessTechniqueInfo> result, Grid grid, int[] cells,
-			IEnumerable<int> digits, int[] regions, int size)
+			IList<RectangleTechniqueInfo> result, Grid grid, int[] cells,
+			IEnumerable<int> digits, int[] regions, int size, bool urMode)
 		{
 			for (int i = 0, length = regions.Length; i < length; i++)
 			{
@@ -607,7 +689,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 							}
 
 							if (conclusions.Count == 0
-								|| !_checkIncompleted && candidateOffsets.Count(c =>
+								|| urMode && !_checkIncompleted && candidateOffsets.Count(c =>
 								{
 									var (type, _) = c;
 									return type == 0;
@@ -616,8 +698,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 								continue;
 							}
 
-							result.Add(
-								new UniqueRectangleTechniqueInfo(
+							result.Add(urMode
+								? (RectangleTechniqueInfo)new UniqueRectangleTechniqueInfo(
 									conclusions,
 									views: new[]
 									{
@@ -628,6 +710,22 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 											linkMasks: null)
 									},
 									detailData: new UrType3(
+										cells,
+										digits: digits.ToArray(),
+										subsetDigits: otherDigitMask.GetAllSets().ToArray(),
+										subsetCells: new[] { c1 },
+										true))
+								: new AvoidableRectangleTechniqueInfo(
+									conclusions,
+									views: new[]
+									{
+										new View(
+											cellOffsets: null,
+											candidateOffsets,
+											regionOffsets: null,
+											linkMasks: null)
+									},
+									detailData: new ArType3(
 										cells,
 										digits: digits.ToArray(),
 										subsetDigits: otherDigitMask.GetAllSets().ToArray(),
@@ -712,7 +810,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 									}
 
 									if (conclusions.Count == 0
-										|| !_checkIncompleted && candidateOffsets.Count(c =>
+										|| urMode && !_checkIncompleted && candidateOffsets.Count(c =>
 										{
 											var (type, _) = c;
 											return type == 0;
@@ -721,8 +819,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										continue;
 									}
 
-									result.Add(
-										new UniqueRectangleTechniqueInfo(
+									result.Add(urMode
+										? (RectangleTechniqueInfo)new UniqueRectangleTechniqueInfo(
 											conclusions,
 											views: new[]
 											{
@@ -733,6 +831,22 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 													linkMasks: null)
 											},
 											detailData: new UrType3(
+												cells,
+												digits: digits.ToArray(),
+												subsetDigits: otherDigitMask.GetAllSets().ToArray(),
+												subsetCells: new[] { c1, c2 },
+												true))
+										: new AvoidableRectangleTechniqueInfo(
+											conclusions,
+											views: new[]
+											{
+												new View(
+													cellOffsets: null,
+													candidateOffsets,
+													regionOffsets: null,
+													linkMasks: null)
+											},
+											detailData: new ArType3(
 												cells,
 												digits: digits.ToArray(),
 												subsetDigits: otherDigitMask.GetAllSets().ToArray(),
@@ -815,7 +929,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										}
 
 										if (conclusions.Count == 0
-											|| !_checkIncompleted && candidateOffsets.Count(c =>
+											|| urMode && !_checkIncompleted && candidateOffsets.Count(c =>
 											{
 												var (type, _) = c;
 												return type == 0;
@@ -824,8 +938,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 											continue;
 										}
 
-										result.Add(
-											new UniqueRectangleTechniqueInfo(
+										result.Add(urMode
+											? (RectangleTechniqueInfo)new UniqueRectangleTechniqueInfo(
 												conclusions,
 												views: new[]
 												{
@@ -836,6 +950,22 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 														linkMasks: null)
 												},
 												detailData: new UrType3(
+													cells,
+													digits: digits.ToArray(),
+													subsetDigits: otherDigitMask.GetAllSets().ToArray(),
+													subsetCells: new[] { c1, c2, c3 },
+													true))
+											: new AvoidableRectangleTechniqueInfo(
+												conclusions,
+												views: new[]
+												{
+													new View(
+														cellOffsets: null,
+														candidateOffsets,
+														regionOffsets: null,
+														linkMasks: null)
+												},
+												detailData: new ArType3(
 													cells,
 													digits: digits.ToArray(),
 													subsetDigits: otherDigitMask.GetAllSets().ToArray(),
@@ -860,9 +990,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <param name="digits">All digits.</param>
 		/// <param name="regions">All regions.</param>
 		/// <param name="size">The size to check.</param>
+		/// <param name="urMode">
+		/// Indicates whether the current searching is for UR. <see langword="true"/>
+		/// is for UR, <see langword="false"/> is for AR.
+		/// </param>
 		private void CheckType3Hidden(
-			IList<UniquenessTechniqueInfo> result, Grid grid, int[] cells,
-			int[] extraCells, IEnumerable<int> digits, int[] regions, int size)
+			IList<RectangleTechniqueInfo> result, Grid grid, int[] cells,
+			int[] extraCells, IEnumerable<int> digits, int[] regions, int size,
+			bool urMode)
 		{
 			for (int i = 0, length = regions.Length; i < length; i++)
 			{
@@ -942,7 +1077,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 								}
 
 								if (conclusions.Count == 0
-									|| !_checkIncompleted && candidateOffsets.Count(c =>
+									|| urMode && !_checkIncompleted && candidateOffsets.Count(c =>
 									{
 										var (type, _) = c;
 										return type == 0;
@@ -952,8 +1087,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 								}
 
 								// Type 3 (+ hidden).
-								result.Add(
-									new UniqueRectangleTechniqueInfo(
+								result.Add(urMode
+									? (RectangleTechniqueInfo)new UniqueRectangleTechniqueInfo(
 										conclusions,
 										views: new[]
 										{
@@ -964,6 +1099,22 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 												linkMasks: null)
 										},
 										detailData: new UrType3(
+											cells,
+											digits: digits.ToArray(),
+											subsetDigits: subsetDigits,
+											subsetCells: otherCells,
+											isNaked: false))
+									: new AvoidableRectangleTechniqueInfo(
+										conclusions,
+										views: new[]
+										{
+											new View(
+												cellOffsets: null,
+												candidateOffsets,
+												regionOffsets: null,
+												linkMasks: null)
+										},
+										detailData: new ArType3(
 											cells,
 											digits: digits.ToArray(),
 											subsetDigits: subsetDigits,
@@ -1041,7 +1192,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										}
 
 										if (conclusions.Count == 0
-											|| !_checkIncompleted && candidateOffsets.Count(c =>
+											|| urMode && !_checkIncompleted && candidateOffsets.Count(c =>
 											{
 												var (type, _) = c;
 												return type == 0;
@@ -1051,8 +1202,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										}
 
 										// Type 3 (+ hidden).
-										result.Add(
-											new UniqueRectangleTechniqueInfo(
+										result.Add(urMode
+											? (RectangleTechniqueInfo)new UniqueRectangleTechniqueInfo(
 												conclusions,
 												views: new[]
 												{
@@ -1063,6 +1214,22 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 														linkMasks: null)
 												},
 												detailData: new UrType3(
+													cells,
+													digits: digits.ToArray(),
+													subsetDigits: subsetDigits,
+													subsetCells: otherCells,
+													isNaked: false))
+											: new AvoidableRectangleTechniqueInfo(
+												conclusions,
+												views: new[]
+												{
+													new View(
+														cellOffsets: null,
+														candidateOffsets,
+														regionOffsets: null,
+														linkMasks: null)
+												},
+												detailData: new ArType3(
 													cells,
 													digits: digits.ToArray(),
 													subsetDigits: subsetDigits,
@@ -1138,7 +1305,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 											}
 
 											if (conclusions.Count == 0
-												|| !_checkIncompleted && candidateOffsets.Count(c =>
+												|| urMode && !_checkIncompleted && candidateOffsets.Count(c =>
 												{
 													var (type, _) = c;
 													return type == 0;
@@ -1148,8 +1315,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 											}
 
 											// Type 3 (+ hidden).
-											result.Add(
-												new UniqueRectangleTechniqueInfo(
+											result.Add(urMode
+												? (RectangleTechniqueInfo)new UniqueRectangleTechniqueInfo(
 													conclusions,
 													views: new[]
 													{
@@ -1160,6 +1327,22 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 															linkMasks: null)
 													},
 													detailData: new UrType3(
+														cells,
+														digits: digits.ToArray(),
+														subsetDigits: subsetDigits,
+														subsetCells: otherCells,
+														isNaked: false))
+												: new AvoidableRectangleTechniqueInfo(
+													conclusions,
+													views: new[]
+													{
+														new View(
+															cellOffsets: null,
+															candidateOffsets,
+															regionOffsets: null,
+															linkMasks: null)
+													},
+													detailData: new ArType3(
 														cells,
 														digits: digits.ToArray(),
 														subsetDigits: subsetDigits,
@@ -1185,7 +1368,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <param name="extraCells">All extra cells.</param>
 		/// <param name="digits">All digits.</param>
 		private void CheckType6(
-			IList<UniquenessTechniqueInfo> result, Grid grid, int[] cells,
+			IList<RectangleTechniqueInfo> result, Grid grid, int[] cells,
 			int[] cellPair, int[] extraCells, IEnumerable<int> digits)
 		{
 			var ((r1, c1, _), (r2, c2, _)) =
@@ -1246,8 +1429,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						}
 					}
 
-					if (conclusions.Count == 0
-						|| !_checkIncompleted && (conclusions.Count != 2 || candidateOffsets.Count != 8))
+					int elimCount = conclusions.Count;
+					if (elimCount == 0
+						|| !_checkIncompleted && (elimCount != 2 || candidateOffsets.Count != 8))
 					{
 						continue;
 					}
@@ -1312,8 +1496,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						}
 					}
 
-					if (conclusions.Count == 0
-						|| !_checkIncompleted && (conclusions.Count != 2 || candidateOffsets.Count != 8))
+					int elimCount = conclusions.Count;
+					if (elimCount == 0
+						|| !_checkIncompleted && (elimCount != 2 || candidateOffsets.Count != 8))
 					{
 						continue;
 					}
@@ -1352,7 +1537,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <param name="extraCells">All extra cells.</param>
 		/// <param name="digits">All digits.</param>
 		private void CheckType4(
-			IList<UniquenessTechniqueInfo> result, Grid grid, int[] cells,
+			IList<RectangleTechniqueInfo> result, Grid grid, int[] cells,
 			int[] cellPair, int[] extraCells, IEnumerable<int> digits)
 		{
 			// Get region.
