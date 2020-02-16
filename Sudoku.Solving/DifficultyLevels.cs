@@ -1,65 +1,62 @@
-﻿using System;
-
-namespace Sudoku.Solving
+﻿namespace Sudoku.Solving
 {
 	/// <summary>
 	/// Provides a difficulty kind for a puzzle.
 	/// </summary>
-	[Flags]
 	public enum DifficultyLevels : short
 	{
 		/// <summary>
 		/// Indicates the difficulty level is unknown.
 		/// </summary>
-		Unknown = 0,
+		Unknown,
 		/// <summary>
 		/// Indicates the difficulty is very easy.
 		/// </summary>
-		VeryEasy = 1,
+		VeryEasy,
 		/// <summary>
 		/// Indicates the difficulty is easy.
 		/// </summary>
-		Easy = 2,
+		Easy,
 		/// <summary>
 		/// Indicates the difficulty is moderate.
 		/// </summary>
-		Moderate = 4,
+		Moderate,
 		/// <summary>
 		/// Indicates the difficulty is advanced.
 		/// </summary>
-		Advanced = 8,
+		Advanced,
 		/// <summary>
 		/// Indicates the difficulty is hard.
 		/// </summary>
-		Hard = 16,
+		Hard,
 		/// <summary>
 		/// Indicates the difficulty is very hard.
 		/// </summary>
-		VeryHard = 32,
+		VeryHard,
 		/// <summary>
 		/// Indicates the difficulty is fiendish.
 		/// </summary>
-		Fiendish = 64,
+		Fiendish,
 		/// <summary>
 		/// Indicates the difficulty is diabolical.
 		/// </summary>
-		Diabolical = 128,
+		Diabolical,
 		/// <summary>
 		/// Indicates the difficulty is crazy.
 		/// </summary>
-		Crazy = 256,
+		Crazy,
 		/// <summary>
 		/// Indicates the difficulty is nightmare.
 		/// </summary>
-		Nightmare = 512,
+		Nightmare,
 		/// <summary>
 		/// Indicates the difficulty is beyond nightmare.
 		/// </summary>
-		BeyondNightmare = 1024,
+		BeyondNightmare,
 		/// <summary>
 		/// Indicates the puzzle cannot be solved
 		/// unless using last resort methods.
 		/// </summary>
-		LastResort = 2048,
+		LastResort,
 	}
 }
