@@ -115,7 +115,7 @@
             <summary>
             Indicates the difficulty level of the puzzle.
             If the puzzle has not solved or solved by other
-            solvers, this value will be <see cref="F:Sudoku.Solving.DifficultyLevels.Unknown"/>.
+            solvers, this value will be <see cref="F:Sudoku.Solving.DifficultyLevel.Unknown"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.AnalysisResult.Puzzle">
@@ -173,7 +173,7 @@
             <param name="pearl">(out parameter) The pearl difficulty.</param>
             <param name="diamond">(out parameter) The diamond difficulty.</param>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.Meta.Grid@,System.Boolean@,System.TimeSpan@,Sudoku.Data.Meta.Grid@,Sudoku.Solving.DifficultyLevels@)">
+        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.Meta.Grid@,System.Boolean@,System.TimeSpan@,Sudoku.Data.Meta.Grid@,Sudoku.Solving.DifficultyLevel@)">
             <summary>
             Deconstruct this instance.
             </summary>
@@ -187,7 +187,7 @@
             <param name="solution">(out parameter) The solution.</param>
             <param name="difficultyLevel">(out parameter) The difficulty level.</param>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.Meta.Grid@,System.Boolean@,System.TimeSpan@,Sudoku.Data.Meta.Grid@,Sudoku.Solving.DifficultyLevels@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo}@,System.String@)">
+        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.Meta.Grid@,System.Boolean@,System.TimeSpan@,Sudoku.Data.Meta.Grid@,Sudoku.Solving.DifficultyLevel@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo}@,System.String@)">
             <summary>
             Deconstruct this instance.
             </summary>
@@ -704,7 +704,7 @@
             The digit.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Conclusion.Type">
+        <member name="P:Sudoku.Solving.Conclusion.ConclusionType">
             <summary>
             The conclusion type to control the action of applying.
             If the type is <see cref="F:Sudoku.Solving.ConclusionType.Assignment"/>,
@@ -856,72 +856,72 @@
             <param name="right">The right instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Solving.DifficultyLevels">
+        <member name="T:Sudoku.Solving.DifficultyLevel">
             <summary>
             Provides a difficulty kind for a puzzle.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.DifficultyLevels.Unknown">
+        <member name="F:Sudoku.Solving.DifficultyLevel.Unknown">
             <summary>
             Indicates the difficulty level is unknown.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.DifficultyLevels.VeryEasy">
+        <member name="F:Sudoku.Solving.DifficultyLevel.VeryEasy">
             <summary>
             Indicates the difficulty is very easy.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.DifficultyLevels.Easy">
+        <member name="F:Sudoku.Solving.DifficultyLevel.Easy">
             <summary>
             Indicates the difficulty is easy.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.DifficultyLevels.Moderate">
+        <member name="F:Sudoku.Solving.DifficultyLevel.Moderate">
             <summary>
             Indicates the difficulty is moderate.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.DifficultyLevels.Advanced">
+        <member name="F:Sudoku.Solving.DifficultyLevel.Advanced">
             <summary>
             Indicates the difficulty is advanced.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.DifficultyLevels.Hard">
+        <member name="F:Sudoku.Solving.DifficultyLevel.Hard">
             <summary>
             Indicates the difficulty is hard.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.DifficultyLevels.VeryHard">
+        <member name="F:Sudoku.Solving.DifficultyLevel.VeryHard">
             <summary>
             Indicates the difficulty is very hard.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.DifficultyLevels.Fiendish">
+        <member name="F:Sudoku.Solving.DifficultyLevel.Fiendish">
             <summary>
             Indicates the difficulty is fiendish.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.DifficultyLevels.Diabolical">
+        <member name="F:Sudoku.Solving.DifficultyLevel.Diabolical">
             <summary>
             Indicates the difficulty is diabolical.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.DifficultyLevels.Crazy">
+        <member name="F:Sudoku.Solving.DifficultyLevel.Crazy">
             <summary>
             Indicates the difficulty is crazy.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.DifficultyLevels.Nightmare">
+        <member name="F:Sudoku.Solving.DifficultyLevel.Nightmare">
             <summary>
             Indicates the difficulty is nightmare.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.DifficultyLevels.BeyondNightmare">
+        <member name="F:Sudoku.Solving.DifficultyLevel.BeyondNightmare">
             <summary>
             Indicates the difficulty is beyond nightmare.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.DifficultyLevels.LastResort">
+        <member name="F:Sudoku.Solving.DifficultyLevel.LastResort">
             <summary>
             Indicates the puzzle cannot be solved
             unless using last resort methods.
@@ -3624,7 +3624,7 @@
             <param name="name">(out parameter) The name.</param>
             <param name="difficulty">(out parameter) The difficulty.</param>
         </member>
-        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevels@)">
+        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevel@)">
             <summary>
             Deconstruct this instance.
             </summary>
@@ -3632,7 +3632,7 @@
             <param name="difficulty">(out parameter) The difficulty.</param>
             <param name="difficultyLevel">(out parameter) The difficulty level.</param>
         </member>
-        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevels@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion}@)">
+        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevel@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion}@)">
             <summary>
             Deconstruct this instance.
             </summary>
@@ -3641,7 +3641,7 @@
             <param name="difficultyLevel">(out parameter) The difficulty level.</param>
             <param name="conclusions">(out parameter) All conclusions.</param>
         </member>
-        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevels@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion}@,System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View}@)">
+        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevel@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion}@,System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View}@)">
             <summary>
             Deconstruct this instance.
             </summary>
