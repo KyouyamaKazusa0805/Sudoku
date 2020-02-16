@@ -2942,7 +2942,7 @@
             Provides a usage of avoidable rectangle (AR) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleDetailData)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rectangles.IRectangleDetailData)">
             <summary>
             Initializes an instance with the information.
             </summary>
@@ -2958,11 +2958,6 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleTechniqueInfo.DetailData">
-            <summary>
-            The data of the specified avoidable rectangle type.
-            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleTechniqueInfo.ToString">
             <inheritdoc/>
@@ -3089,9 +3084,6 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenAvoidableRectangleTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenAvoidableRectangleTechniqueInfo.DetailData">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenAvoidableRectangleTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
@@ -3139,9 +3131,6 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenRectangleTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenRectangleTechniqueInfo.DetailData">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenRectangleTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
@@ -3176,8 +3165,13 @@
             Provides a usage of rectangle technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
-            <inheritdoc/>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rectangles.IRectangleDetailData)">
+            <summary>
+            Provides passing data when initializing an instance of derived types.
+            </summary>
+            <param name="conclusions">The conclusions.</param>
+            <param name="views">The views of this solving step.</param>
+            <param name="detailData">The detail data.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo.DetailData">
             <summary>
@@ -3259,7 +3253,7 @@
             Provides a usage of unique rectangle technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleDetailData)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rectangles.IRectangleDetailData)">
             <summary>
             Initializes an instance with the information.
             </summary>
@@ -3275,11 +3269,6 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueInfo.DetailData">
-            <summary>
-            The data of the specified unique rectangle type.
-            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueInfo.ToString">
             <inheritdoc/>
