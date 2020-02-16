@@ -5,21 +5,22 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 	/// <summary>
 	/// Provides all data for unique rectangles (basic and extended types).
 	/// </summary>
-	public abstract class UniqueRectangleDetailData
+	public abstract class AvoidableRectangleDetailData
 	{
 		/// <summary>
 		/// Provides passing data when initializing an instance of derived types.
 		/// </summary>
 		/// <param name="cells">All cells.</param>
 		/// <param name="digits">All digits.</param>
-		protected UniqueRectangleDetailData(IReadOnlyList<int> cells, IReadOnlyList<int> digits) =>
+		protected AvoidableRectangleDetailData(
+			IReadOnlyList<int> cells, IReadOnlyList<int> digits) =>
 			(Cells, Digits) = (cells, digits);
 
 
 		/// <summary>
 		/// <para>
-		/// Indicates the type of the unique rectangle,
-		/// where the value is between 1 and 6.
+		/// Indicates the type of the avoidable rectangle,
+		/// where the value is between 1 and 3.
 		/// </para>
 		/// <para>
 		/// You can find all types in detail in 'remarks' part of this page.
@@ -37,20 +38,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <item>Type 3<term></term>
 		/// <description>
 		/// Generalized subset type (+ naked or hidden subset).
-		/// </description>
-		/// </item>
-		/// <item>Type 4<term></term>
-		/// <description>Conjugate pair type.</description>
-		/// </item>
-		/// <item>Type 5<term></term>
-		/// <description>
-		/// Type-2 extended type (with three additional same digit).
-		/// </description>
-		/// </item>
-		/// <item>Type 6<term></term>
-		/// <description>
-		/// Type-4 extended type (with two parallel conjugate pairs,
-		/// and they hold a same digit).
 		/// </description>
 		/// </item>
 		/// </list>
