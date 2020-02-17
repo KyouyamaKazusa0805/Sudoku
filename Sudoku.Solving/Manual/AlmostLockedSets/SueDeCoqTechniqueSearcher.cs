@@ -88,9 +88,9 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 						});
 					}
 
-					for (int i = 0; i < iterationInterCells.Count; i++)
+					foreach (int[] interEmptyCells in iterationInterCells)
 					{
-						int[] interEmptyCells = iterationInterCells[i];
+						var tempUnionMap = unionMap;
 
 						// Get all kinds of cells in intersection cells.
 						short mask = 0;
@@ -107,21 +107,21 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 						foreach (int cell in interEmptyCells)
 						{
 							// Remove all cells in intersections in this iteration.
-							unionMap[cell] = false;
+							tempUnionMap[cell] = false;
 						}
-						unionMap &= emptyMap;
+						tempUnionMap &= emptyMap;
 
 						// Get all cells to traverse.
-						if (unionMap.Count < takingCellsCount)
+						if (tempUnionMap.Count < takingCellsCount)
 						{
 							// Empty cells are not enough.
 							continue;
 						}
 
-						int[] unionCells = unionMap.ToArray();
+						int[] unionCells = tempUnionMap.ToArray();
 						SearchSdcRecursively(
 							result, grid, takingCellsCount, nonBlock, block,
-							new List<int>(interEmptyCells), emptyMap, unionMap, interCells);
+							new List<int>(interEmptyCells), emptyMap, tempUnionMap, interCells);
 					}
 				}
 			}
@@ -136,6 +136,11 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 			int nonBlock, int block, List<int> takenCells, GridMap emptyMap,
 			GridMap unionMap, Span<int> interCells)
 		{
+			if (takenCells.Count > 9)
+			{
+				return;
+			}
+
 			if (takingCellsCount <= 0)
 			{
 				// Now check whether all taken cells can be formed a SdC.
@@ -236,10 +241,6 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 							als2Digits: als2Digits.ToArray(),
 							interCells: interCells.ToArray(),
 							allDigits: allDigits.ToArray()));
-				}
-				else
-				{
-					return;
 				}
 			}
 
