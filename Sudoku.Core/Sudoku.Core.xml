@@ -1580,6 +1580,78 @@
             The root path of this whole solution.
             </summary>
         </member>
+        <member name="T:Sudoku.Drawing.View">
+            <summary>
+            Encapsulates a view when displaying the information on forms.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.View.#ctor(System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Initializes an instance with information.
+            </summary>
+            <param name="cellOffsets">
+            The list of pairs of identifier and cell offset.
+            </param>
+            <param name="candidateOffsets">
+            The list of pairs of identifier and candidate offset.
+            </param>
+            <param name="regionOffsets">
+            The list of pairs of identifier and region offset.
+            </param>
+            <param name="linkMasks">The list of link masks.</param>
+        </member>
+        <member name="P:Sudoku.Drawing.View.CellOffsets">
+            <summary>
+            All cell offsets.
+            </summary>
+            <remarks>
+            This property is a list of pairs of identifier and cell offsets,
+            where the identifier is an <see cref="T:System.Int32"/> value that can tell
+            all cell offsets' colors.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Drawing.View.CandidateOffsets">
+            <summary>
+            All candidate offsets.
+            </summary>
+            <remarks>
+            This property is a list of pairs of identifier and candidate offsets,
+            where the identifier is an <see cref="T:System.Int32"/> value that can tell
+            all cell offsets' colors.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Drawing.View.RegionOffsets">
+            <summary>
+            All region offsets.
+            </summary>
+            <remarks>
+            This property is a list of pairs of identifier and region offsets,
+            where the identifier is an <see cref="T:System.Int32"/> value that can tell
+            all cell offsets' colors.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Drawing.View.LinkMasks">
+            <summary>
+            All link masks.
+            </summary>
+            <remarks>
+            This property is a list of masks.
+            All mask is regarded as 22 bits, 10 bits for base candidate offset,
+            another 10 bits for target candidate offset and 2 bits for link type,
+            where the value is:
+            <list type="table">
+            <item>
+            <term>0b00</term><description><see langword="false"/> -&gt; <see langword="false"/>.</description>
+            <term>0b01</term><description><see langword="false"/> -&gt; <see langword="true"/>.</description>
+            <term>0b10</term><description><see langword="true"/> -&gt; <see langword="false"/>.</description>
+            <term>0b11</term><description><see langword="true"/> -&gt; <see langword="true"/>.</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Drawing.View.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Runtime.MultipleSolutionsException">
             <summary>
             Represents an error that the puzzle has multiple solutions while solving.
