@@ -121,7 +121,8 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 						int[] unionCells = tempUnionMap.ToArray();
 						SearchSdcRecursively(
 							result, grid, takingCellsCount, nonBlock, block,
-							new List<int>(interEmptyCells), emptyMap, tempUnionMap, interCells);
+							new List<int>(interEmptyCells), emptyMap, tempUnionMap.ToArray(),
+							interCells, 0);
 					}
 				}
 			}
@@ -134,7 +135,7 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 		private void SearchSdcRecursively(
 			IList<SueDeCoqTechniqueInfo> result, Grid grid, int takingCellsCount,
 			int nonBlock, int block, List<int> takenCells, GridMap emptyMap,
-			GridMap unionMap, Span<int> interCells)
+			int[] unionMapArray, Span<int> interCells, int curIndexOfArray)
 		{
 			if (takenCells.Count > 9)
 			{
@@ -224,6 +225,12 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 						}
 					}
 
+					short interMask = 0;
+					foreach (int cell in interCells)
+					{
+						interMask |= grid.GetCandidatesReversal(cell);
+					}
+
 					result.AddIfDoesNotContain(
 						new SueDeCoqTechniqueInfo(
 							conclusions,
@@ -240,12 +247,13 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 							als2Cells: als2Cells.ToArray(),
 							als2Digits: als2Digits.ToArray(),
 							interCells: interCells.ToArray(),
-							allDigits: allDigits.ToArray()));
+							interDigits: interMask.GetAllSets().ToArray()));
 				}
 			}
 
-			foreach (int cell in unionMap.Offsets)
+			for (int i = curIndexOfArray, length = unionMapArray.Length; i < length; i++)
 			{
+				int cell = unionMapArray[i];
 				if (takenCells.Contains(cell))
 				{
 					continue;
@@ -255,7 +263,7 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 
 				SearchSdcRecursively(
 					result, grid, takingCellsCount - 1, nonBlock, block,
-					takenCells, emptyMap, unionMap, interCells);
+					takenCells, emptyMap, unionMapArray, interCells, curIndexOfArray + 1);
 
 				takenCells.Remove(cell);
 			}

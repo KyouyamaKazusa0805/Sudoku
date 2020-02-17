@@ -1000,7 +1000,7 @@
             <param name="als2Cells">ALS 2 cells.</param>
             <param name="als2Digits">ALS 2 digits.</param>
             <param name="interCells">Intersection cells.</param>
-            <param name="allDigits">All digits.</param>
+            <param name="interDigits">Intersection digits.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.Als1Cells">
             <summary>
@@ -1027,9 +1027,9 @@
             Indicates all intersection cells.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.AllDigits">
+        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.IntersectionDigits">
             <summary>
-            Indicates all digits used.
+            Indicates all intersection digits.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.Name">

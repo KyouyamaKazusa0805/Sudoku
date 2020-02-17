@@ -19,12 +19,12 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 		/// <param name="als2Cells">ALS 2 cells.</param>
 		/// <param name="als2Digits">ALS 2 digits.</param>
 		/// <param name="interCells">Intersection cells.</param>
-		/// <param name="allDigits">All digits.</param>
+		/// <param name="interDigits">Intersection digits.</param>
 		public SueDeCoqTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			IReadOnlyList<int> als1Cells, IReadOnlyList<int> als1Digits,
 			IReadOnlyList<int> als2Cells, IReadOnlyList<int> als2Digits,
-			IReadOnlyList<int> interCells, IReadOnlyList<int> allDigits)
+			IReadOnlyList<int> interCells, IReadOnlyList<int> interDigits)
 			: base(conclusions, views)
 		{
 			Als1Cells = als1Cells;
@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 			Als2Cells = als2Cells;
 			Als2Digits = als2Digits;
 			IntersectionCells = interCells;
-			AllDigits = allDigits;
+			IntersectionDigits = interDigits;
 		}
 
 
@@ -62,9 +62,9 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 		public IReadOnlyList<int> IntersectionCells { get; }
 
 		/// <summary>
-		/// Indicates all digits used.
+		/// Indicates all intersection digits.
 		/// </summary>
-		public IReadOnlyList<int> AllDigits { get; }
+		public IReadOnlyList<int> IntersectionDigits { get; }
 
 		/// <inheritdoc/>
 		public override string Name => "Sue de Coq";
@@ -80,7 +80,7 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 		public override string ToString()
 		{
 			string interCells = CellCollection.ToString(IntersectionCells);
-			string digits = DigitCollection.ToSimpleString(AllDigits);
+			string digits = DigitCollection.ToSimpleString(IntersectionDigits);
 			string elimStr = ConclusionCollection.ToString(Conclusions);
 			string als1Cells = CellCollection.ToString(Als1Cells);
 			string als1Digits = DigitCollection.ToSimpleString(Als1Digits);
