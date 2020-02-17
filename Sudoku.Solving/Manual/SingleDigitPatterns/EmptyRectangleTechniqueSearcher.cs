@@ -47,7 +47,12 @@ namespace Sudoku.Solving.Manual.SingleDigitPatterns
 		/// Initializes an instance with the specified grid.
 		/// </summary>
 		/// <param name="regionMaps">All region maps.</param>
-		public EmptyRectangleTechniqueSearcher(GridMap[] regionMaps) => _regionMaps = regionMaps;
+		public EmptyRectangleTechniqueSearcher(GridMap[] regionMaps) =>
+			_regionMaps = regionMaps;
+
+
+		/// <inheritdoc/>
+		public override int Priority => 46;
 
 
 		/// <inheritdoc/>

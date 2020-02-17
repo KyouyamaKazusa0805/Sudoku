@@ -15,6 +15,10 @@ namespace Sudoku.Solving.Manual.Subsets
 	public sealed class SubsetTechniqueSearcher : TechniqueSearcher
 	{
 		/// <inheritdoc/>
+		public override int Priority => 30;
+
+
+		/// <inheritdoc/>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
 			var result = new List<TechniqueInfo>();

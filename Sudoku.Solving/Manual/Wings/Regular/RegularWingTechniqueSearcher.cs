@@ -27,6 +27,10 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 
 
 		/// <inheritdoc/>
+		public override int Priority => 42;
+
+
+		/// <inheritdoc/>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
 			var result = new List<RegularWingTechniqueInfo>();

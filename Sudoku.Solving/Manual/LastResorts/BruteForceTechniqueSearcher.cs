@@ -41,6 +41,10 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
+		public override int Priority => 200;
+
+
+		/// <inheritdoc/>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
 			var result = new List<BruteForceTechniqueInfo>();

@@ -30,6 +30,10 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
+		public override int Priority => 80;
+
+
+		/// <inheritdoc/>
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the puzzle is not unique.
 		/// </exception>

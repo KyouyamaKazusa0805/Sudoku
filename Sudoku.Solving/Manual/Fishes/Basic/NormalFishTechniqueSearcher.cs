@@ -15,6 +15,10 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 	public sealed class NormalFishTechniqueSearcher : FishTechniqueSearcher
 	{
 		/// <inheritdoc/>
+		public override int Priority => 32;
+
+
+		/// <inheritdoc/>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
 			var result = new List<TechniqueInfo>();

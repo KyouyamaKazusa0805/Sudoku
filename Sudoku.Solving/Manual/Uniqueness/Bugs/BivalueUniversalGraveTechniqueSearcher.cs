@@ -46,6 +46,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 
 		/// <inheritdoc/>
+		public override int Priority => 56;
+
+
+		/// <inheritdoc/>
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the number of true candidates is naught.
 		/// </exception>

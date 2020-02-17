@@ -38,6 +38,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 
 		/// <inheritdoc/>
+		public override int Priority => 45;
+
+
+		/// <inheritdoc/>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
 			var result = new List<RectangleTechniqueInfo>();

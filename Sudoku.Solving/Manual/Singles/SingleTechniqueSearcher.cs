@@ -31,6 +31,10 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		/// <inheritdoc/>
+		public override int Priority => 10;
+
+
+		/// <inheritdoc/>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
 			var result = new List<TechniqueInfo>();

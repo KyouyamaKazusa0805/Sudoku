@@ -12,6 +12,10 @@ namespace Sudoku.Solving.Manual.LastResorts
 	public sealed class PatternOverlayMethodTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <inheritdoc/>
+		public override int Priority => 80;
+
+
+		/// <inheritdoc/>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
 			var result = new List<PatternOverlayMethodTechniqueInfo>();

@@ -14,6 +14,10 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 	public sealed class IrregularWingTechniqueSearcher : TechniqueSearcher
 	{
 		/// <inheritdoc/>
+		public override int Priority => 44;
+
+
+		/// <inheritdoc/>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
 			// Search for all conjugate pairs.

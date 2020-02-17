@@ -29,6 +29,10 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 
 
 		/// <inheritdoc/>
+		public override int Priority => 50;
+
+
+		/// <inheritdoc/>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
 			(var emptyMap, _, _) = grid;

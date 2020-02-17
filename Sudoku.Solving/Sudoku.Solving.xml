@@ -1100,6 +1100,9 @@
             </summary>
             <param name="regionMaps">All regions grid maps.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueSearcher.Priority">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
@@ -1160,6 +1163,9 @@
             <summary>
             Encapsulates a normal fish technique searcher.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueSearcher.Priority">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
@@ -1285,6 +1291,9 @@
             </summary>
             <param name="intersection">The intersection table.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueSearcher.Priority">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
@@ -1380,6 +1389,9 @@
             </summary>
             <param name="intersection">The intersection table.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.LockedCandidatesTechniqueSearcher.Priority">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.LockedCandidatesTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
@@ -1446,6 +1458,9 @@
             Initializes an instance with the specified length.
             </summary>
             <param name="length">The length.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.Priority">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
@@ -1524,6 +1539,9 @@
             </summary>
             <param name="solution">The solution.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.Priority">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
@@ -1573,6 +1591,9 @@
             <summary>
             Encapsulates a pattern overlay method (POM) technique searcher.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.PatternOverlayMethodTechniqueSearcher.Priority">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.PatternOverlayMethodTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
@@ -1631,6 +1652,9 @@
             <param name="templateDeleteOnly">
             Indicates whether the technique searcher checks template deletes.
             </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.Priority">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
@@ -1969,6 +1993,9 @@
             </summary>
             <param name="regionMaps">All region maps.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.SingleDigitPatterns.EmptyRectangleTechniqueSearcher.Priority">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.SingleDigitPatterns.EmptyRectangleTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
@@ -2046,6 +2073,9 @@
             <summary>
             Encapsulates a two strong links technique searcher.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.SingleDigitPatterns.TwoStrongLinksTechniqueSearcher.Priority">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.SingleDigitPatterns.TwoStrongLinksTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
@@ -2188,6 +2218,9 @@
             Indicates whether the solver enables last digit.
             </param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.Priority">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
@@ -2295,6 +2328,9 @@
             <summary>
             Encapsulates a subset technique searcher.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.Priority">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
@@ -2449,6 +2485,9 @@
             the extended BUG checker to search for all true candidates no matter how
             difficult searching.
             </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.Priority">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
@@ -2756,6 +2795,9 @@
             <summary>
             Encapsulates a unique loop technique searcher.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.Priority">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
@@ -3331,6 +3373,9 @@
             Indicates whether the solver should check incompleted URs.
             </param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.Priority">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
@@ -3614,6 +3659,9 @@
             Encapsulates an irregular wing technique searcher.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.Priority">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
@@ -3751,6 +3799,9 @@
             Initializes an instance with the specified size.
             </summary>
             <param name="size">The size.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.Priority">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
@@ -4000,6 +4051,11 @@
             <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.TechniqueSearcher.Priority">
+            <summary>
+            Indicates the priority of this technique searcher.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.TakeOne(Sudoku.Data.Meta.Grid)">
             <summary>
             Take a step after searched all solving steps.
@@ -4021,6 +4077,73 @@
             </summary>
             <param name="grid">The grid.</param>
             <returns>The list of all steps found.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueSearcher.CompareTo(Sudoku.Solving.TechniqueSearcher)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueSearcher.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueSearcher.Equals(Sudoku.Solving.TechniqueSearcher)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueSearcher.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueSearcher.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueSearcher.op_Equality(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
+            <summary>
+            Indicates whether two instances have a same value.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueSearcher.op_Inequality(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
+            <summary>
+            Indicates whether two instances have two different values.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueSearcher.op_GreaterThan(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
+            <summary>
+            Indicates whether the priority value of the <paramref name="left"/>
+            technique searcher is greater than the <paramref name="right"/> one.
+            </summary>
+            <param name="left">The left comparer.</param>
+            <param name="right">The right comparer.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueSearcher.op_GreaterThanOrEqual(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
+            <summary>
+            Indicates whether the priority value of <paramref name="left"/>
+            technique searcher is greater than or equals to the <paramref name="right"/> one.
+            </summary>
+            <param name="left">The left comparer.</param>
+            <param name="right">The right comparer.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueSearcher.op_LessThan(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
+            <summary>
+            Indicates whether the priority value of <paramref name="left"/>
+            technique searcher is less than the <paramref name="right"/> one.
+            </summary>
+            <param name="left">The left comparer.</param>
+            <param name="right">The right comparer.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueSearcher.op_LessThanOrEqual(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
+            <summary>
+            Indicates whether the priority value of <paramref name="left"/>
+            technique searcher is less than or equals to the <paramref name="right"/> one.
+            </summary>
+            <param name="left">The left comparer.</param>
+            <param name="right">The right comparer.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Utils.BitCombinationGenerator">
             <summary>

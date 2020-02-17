@@ -13,6 +13,10 @@ namespace Sudoku.Solving.Manual.SingleDigitPatterns
 	public sealed class TwoStrongLinksTechniqueSearcher : SingleDigitPatternTechniqueSearcher
 	{
 		/// <inheritdoc/>
+		public override int Priority => 40;
+
+
+		/// <inheritdoc/>
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
 			var result = new List<TwoStrongLinksTechniqueInfo>();
