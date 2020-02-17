@@ -158,54 +158,14 @@ The program supports technique below at present:
 目前程序支持如下的技巧项：
 
 * Direct techniques: Hidden Single (Last Digit), Naked Single (Full House)<br/>直观技巧：排除（同数剩余）、唯一余数（同区剩余）
-* Locked Candidates: Pointing, Claiming<br/>区块：宫区块、行列区块
+* Locked Candidates: Pointing, Claiming, Almost Locked Candidates<br/>区块：宫区块、行列区块、欠一数组
 * Subset: Naked Subset (Locked Subset & Partial Locked Subset), Hidden Subset<br/>数组：显性数组（死锁数组和区块数组）、隐性数组
-* Fishes: (Finned, Sashimi) X-Wing, Swordfish, Jellyfish<br/>鱼：（带鱼鳍、退化）二链列、三链列和四链列
+* Fishes: Basic (Finned, Sashimi) X-Wing, Swordfish, Jellyfish<br/>鱼：（鳍、退化）二链列、三链列和四链列
 * Wings: XY-Wing, XYZ-Wing, (Incompleted) WXYZ-Wing, (Incompleted) VWXYZ-Wing, W-Wing<br/>Wing 结构：XY-Wing、XYZ-Wing、（残缺）WXYZ-Wing、（残缺）VWXYZ-Wing、W-Wing
 * Uniqueness: Unique Rectangle (Type 1 to 6), Hidden Rectangle, Avoidable Rectangle (Type 1 to 3),  Hidden Avoidable Rectangle, Unique Loop (Type 1 to 4), Bivalue Universal Grave (Type 1 to 4 and BUG + n)<br/>唯一性：唯一矩形（类型 1 到 6）、可规避矩形（类型 1 到 3）、唯一环（类型 1 到 4）、隐性唯一矩形、隐性可规避矩形、全双值格致死解法（类型 1 到 4 和 BUG + n）
-* Single Digit Patterns: Skyscraper, Two-string Kite, Turbot Fish, Empty Rectangle<br/>双强链：摩天楼、双线风筝、多宝鱼、空矩形
-* Almost Locked Set Techniques: Almost Locked Candidates, Sue de Coq<br/>待定数组：欠一数组、融合待定数组
+* Single Digit Patterns: Skyscraper, Two-string Kite, Turbot Fish, Empty Rectangle<br/>同数链式结构：摩天楼、双线风筝、多宝鱼、空矩形
+* Almost Subset Techniques: Sue de Coq<br/>待定数组：融合待定数组
 * Last Resorts: Pattern Overlay Method, Template, Bowman's Bingo, Brute Force<br/>爆破技巧：图案叠加删减、模板、人工试数、计算机试数
-
-
-
-## Intro to Solution Folders
-
-标题：**解决方案文件夹介绍**
-
-Here displays the introduction to all folders in this whole solution.
-
-这里陈列出所有本解决方案会使用到的文件夹的所有介绍。
-
-* `Sudoku.Core`
-    * The implementation of all core data in sudoku, such as a sudoku [grid](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core/Data/Meta/Grid.cs). All extension method in use is also in here.<br/>对于数独里所有核心部件的主要实现，比如[数独盘面类](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core/Data/Meta/Grid.cs)。当然，所有在项目里使用到的扩展方法也都在这里。
-* `Sudoku.Solving`
-    * Solving module of this whole solution.<br/>控制整个解决方案完成解题操作的所有内容的模块。
-* `Sudoku.Generating`
-	* Provides generating operations of sudoku.<br/>为整个数独项目提供出题的模块。
-* `Sudoku.Debugging`
-    * The console program aiming to debugging codes logic of other projects.<br/>旨在解决这整个解决方案里其它项目的 bug 和调试操作的项目。
-* `Sudoku.Core.Old` *
-    * Same as [`Sudoku.Core`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Core) project, but use older implementation logic. For example, this project uses LINQ to implement all SSTS (Standard sudoku technique set) step finder, and uses very simple information to describe all information in a grid, which is reduced efficiency of calculation. One of implementations of step finders is [here](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core.Old/Solving/Subsets/SubsetStepFinder.cs#L27).<br/>和 [`Sudoku.Core`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Core) 项目一样，不过这个项目里的所有部件都采用了很老旧的实现方式。举个例子，这个项目使用的是 LINQ 来实现的四大基本数独技巧（排除、唯一余数、区块、数组）的查找，而使用了人类一眼就能看明白的、很简单的信息表示手段来存储一个盘面的每一个细节信息，这样就会降低计算效率。其中一个使用 LINQ 实现的步骤搜索类的执行思路可以点击[此链接](https://github.com/Sunnie-Shine/Sudoku/blob/master/Sudoku.Core.Old/Solving/Subsets/SubsetStepFinder.cs#L27)查看。
-* `Sudoku.Solving.BruteForces.Bitwise` *
-    * The bitwise brute force solver to a sudoku puzzle.<br/>项目解题期间使用的位运算爆破算法（JCZSolver）的源代码。
-
-Note that all projects marked star `*` is an old or unused project in the whole solution. They are only for reference.
-
-需要注意的是，所有标注了星号 `*` 的项目都是整个解决方案里用不上的项目，它们仅作参考。
-
-## Intro to Files
-
-标题：**文件介绍**
-
-Here displays the introduction to files in root folder.
-
-这里陈列出根目录下的文件的基本说明。
-
-* `.editorconfig`
-    * Editor configuration file.<br/>用户配置文件（项目整体控制编译器错误等信息的控制信息，以及控制成员名称规范的信息）。
-* `Priority of operators.txt`
-    * Operators priority through C# language. (P.S. I don't know why I will upload this file, maybe of vital importance?)<br/>C# 语言里的运算符的优先级表。（我也不知道为啥我要上传它，可能它很重要？）
 
 
 
