@@ -185,8 +185,6 @@ Here displays the introduction to all folders in this whole solution.
 	* Provides generating operations of sudoku.<br/>为整个数独项目提供出题的模块。
 * `Sudoku.Drawing`
     * Painting module of this solution, which is used for GDI+.<br/>控制整个解决方案有关绘制图形的模块，一般用于 GDI+ 上。
-* `Sudoku.Diagnostics`
-    * The diagnostic controlling through all over the solution.<br/>控制整个解决方案执行或调试行为的项目。
 * `Sudoku.Debugging`
     * The console program aiming to debugging codes logic of other projects.<br/>旨在解决这整个解决方案里其它项目的 bug 和调试操作的项目。
 * `Sudoku.Core.Old` *
