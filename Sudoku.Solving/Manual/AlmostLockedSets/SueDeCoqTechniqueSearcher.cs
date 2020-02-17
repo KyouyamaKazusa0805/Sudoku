@@ -277,7 +277,7 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 
 		private bool CheckSdC(
 			Grid grid, IReadOnlyList<int> takenCells, int nonBlock, int block,
-			[NotNullWhen(true)] out IReadOnlyList<(int _digit, IList<int> _region)>? digitRegions)
+			[NotNullWhen(true)] out IReadOnlyList<(int _digit, IReadOnlyList<int> _region)>? digitRegions)
 		{
 			digitRegions = null;
 
@@ -315,7 +315,7 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 			}
 
 			// Check all digits can appear only once in a region of all cells.
-			var tempList = new List<(int _digit, IList<int> _region)>();
+			var tempList = new List<(int _digit, IReadOnlyList<int> _region)>();
 			foreach (int digit in mask.GetAllSets())
 			{
 				var tempMap = default(GridMap);
@@ -341,11 +341,11 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 					var (r, c, b) = CellUtils.GetRegion(cell);
 					if (r + 9 == nonBlock || c + 18 == nonBlock)
 					{
-						tempList.Add((digit, new List<int> { nonBlock }));
+						tempList.Add((digit, new[] { nonBlock }));
 					}
 					else if (b == block)
 					{
-						tempList.Add((digit, new List<int> { block }));
+						tempList.Add((digit, new[] { block }));
 					}
 				}
 				else
@@ -360,7 +360,7 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 					else if (spanningCellsCount > 9)
 					{
 						// Two regions found.
-						tempList.Add((digit, new List<int> { nonBlock, block }));
+						tempList.Add((digit, new[] { nonBlock, block }));
 					}
 					else // spanningCellsCount == 9
 					{
