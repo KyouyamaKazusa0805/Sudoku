@@ -255,6 +255,10 @@ namespace Sudoku.Solving.Manual
 				new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
 				new BruteForceTechniqueSearcher(solution),
 			};
+			if (UseCalculationPriority)
+			{
+				Array.Sort(searchers, (a, b) => a.Priority.CompareTo(b.Priority));
+			}
 
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();

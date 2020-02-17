@@ -20,7 +20,7 @@
 		/// <see cref="OptimizedApplyingOrder"/> will be disabled. In other
 		/// words, this option does not work while solving when the condition
 		/// is satisfied. However, the time of calculation with this value
-		/// <see langword="true"/> will be much slower than that with the
+		/// <see langword="true"/> will be <b>much slower</b> than that with the
 		/// value is <see langword="false"/>.
 		/// </para>
 		/// </summary>
@@ -209,6 +209,22 @@
 		/// </summary>
 		/// <seealso cref="AnalyzeDifficultyStrictly"/>
 		public bool OptimizedApplyingOrder { get; set; } = false;
+
+		/// <summary>
+		/// <para>
+		/// Indicates whether the solver should order all technique searchers
+		/// by its priority.
+		/// </para>
+		/// <para>
+		/// The value is <see langword="true"/> in default case. In addition,
+		/// if you enable the option <see cref="AnalyzeDifficultyStrictly"/>,
+		/// this option will be disabled because the solver will enable the
+		/// function of count on all steps and get one with the <b>minimum</b>
+		/// difficulty of them.
+		/// </para>
+		/// </summary>
+		/// <seealso cref="AnalyzeDifficultyStrictly"/>
+		public bool UseCalculationPriority { get; set; } = true;
 
 		/// <summary>
 		/// <para>
