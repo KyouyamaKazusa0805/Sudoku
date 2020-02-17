@@ -1514,6 +1514,72 @@
             <param name="sender">The object triggering the event.</param>
             <param name="e">The data while triggering.</param>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeCounter">
+            <summary>
+            Encapsulates a code line counter.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeCounter._root">
+            <summary>
+            The root directory of the project.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeCounter._pattern">
+            <summary>
+            The filter pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeCounter._fileList">
+            <summary>
+            All file paths at this root directory.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeCounter.#ctor(System.String)">
+            <summary>
+            Initializes an instance with the specified root directory.
+            </summary>
+            <param name="root">The directory.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeCounter.#ctor(System.String,System.String)">
+            <summary>
+            Initializes an instance with the specified root directory and the filter pattern.
+            </summary>
+            <param name="root">The root directory.</param>
+            <param name="filterPattern">The filter pattern.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeCounter.CountCodeLines(System.Int32@)">
+            <summary>
+            Count on code lines in all files in the specified root directory.
+            </summary>
+            <param name="filesCount">
+            (out parameter) The number of files searched.
+            </param>
+            <returns>The number of lines.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeCounter.SatisfyPattern(System.String,System.String)">
+            <summary>
+            Check the string is whether satisfied the specified pattern strictly.
+            </summary>
+            <param name="str">The string to check.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeCounter.GetAllFilesRecursively(System.IO.DirectoryInfo)">
+            <summary>
+            Get all files in the specified directory recursively.
+            </summary>
+            <param name="directory">The directory information instance.</param>
+        </member>
+        <member name="T:Sudoku.Diagnostics.Solution">
+            <summary>
+            Provides the solution constant values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.Solution.PathRoot">
+            <summary>
+            The root path of this whole solution.
+            </summary>
+        </member>
         <member name="T:Sudoku.Runtime.MultipleSolutionsException">
             <summary>
             Represents an error that the puzzle has multiple solutions while solving.

@@ -15,8 +15,4 @@
 		<DocumentationFile>P:\Projects\Common\Sudoku\Sudoku.Core\Sudoku.Core.xml</DocumentationFile>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\Sudoku.Diagnostics\Sudoku.Diagnostics.csproj" />
-	</ItemGroup>
-
 </Project>
