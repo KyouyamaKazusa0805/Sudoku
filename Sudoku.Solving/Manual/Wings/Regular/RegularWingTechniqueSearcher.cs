@@ -50,7 +50,9 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// Take all technique steps by the specified size.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
-		/// <param name="bivalueCellsMap">(in parameter) bivalue cell information pair.</param>
+		/// <param name="bivalueCellsMap">
+		/// (<see langword="in"/> parameter) bivalue cell information pair.
+		/// </param>
 		/// <param name="size">The size.</param>
 		/// <returns>All technique steps.</returns>
 		/// <remarks>
@@ -318,10 +320,10 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <param name="cells">All body cells.</param>
 		/// <param name="pivot">The pivot cell.</param>
 		/// <param name="isIncompleted">
-		/// (out parameter) Indicates whether the technique is incompleted.
+		/// (<see langword="out"/> parameter) Indicates whether the technique is incompleted.
 		/// </param>
 		/// <param name="map">
-		/// (out parameter) The result grid intersection map.
+		/// (<see langword="out"/> parameter) The result grid intersection map.
 		/// </param>
 		private static void CheckAndSearchEliminations(
 			GridMap pivotPeersMap, int[] cells,
@@ -427,15 +429,15 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <param name="pivot">The pivot cell.</param>
 		/// <param name="cells">All body cells.</param>
 		/// <param name="pivotMask">
-		/// (out parameter) The mask of the pivot cell.
+		/// (<see langword="out"/> parameter) The mask of the pivot cell.
 		/// </param>
-		/// <param name="inter">(out parameter) The intersection mask.</param>
-		/// <param name="union">(out parameter) The union mask.</param>
+		/// <param name="inter">(<see langword="out"/> parameter) The intersection mask.</param>
+		/// <param name="union">(<see langword="out"/> parameter) The union mask.</param>
 		/// <param name="interWithoutPivot">
-		/// (out parameter) The intersection mask without pivot mask.
+		/// (<see langword="out"/> parameter) The intersection mask without pivot mask.
 		/// </param>
 		/// <param name="unionWithoutPivot">
-		/// (out parameter) The union mask without pivot mask.
+		/// (<see langword="out"/> parameter) The union mask without pivot mask.
 		/// </param>
 		private static void RecordValues(
 			Grid grid, int pivot, int[] cells, out short pivotMask,

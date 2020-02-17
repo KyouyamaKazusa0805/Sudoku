@@ -51,17 +51,17 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Deconstruct this instance.
 		/// </summary>
-		/// <param name="name">(out parameter) The name.</param>
-		/// <param name="difficulty">(out parameter) The difficulty.</param>
+		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
+		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
 		public void Deconstruct(out string name, out decimal difficulty) =>
 			(name, difficulty) = (Name, Difficulty);
 
 		/// <summary>
 		/// Deconstruct this instance.
 		/// </summary>
-		/// <param name="name">(out parameter) The name.</param>
-		/// <param name="difficulty">(out parameter) The difficulty.</param>
-		/// <param name="difficultyLevel">(out parameter) The difficulty level.</param>
+		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
+		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
+		/// <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
 		public void Deconstruct(
 			out string name, out decimal difficulty, out DifficultyLevel difficultyLevel) =>
 			(name, difficulty, difficultyLevel) = (Name, Difficulty, DifficultyLevel);
@@ -69,10 +69,10 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Deconstruct this instance.
 		/// </summary>
-		/// <param name="name">(out parameter) The name.</param>
-		/// <param name="difficulty">(out parameter) The difficulty.</param>
-		/// <param name="difficultyLevel">(out parameter) The difficulty level.</param>
-		/// <param name="conclusions">(out parameter) All conclusions.</param>
+		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
+		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
+		/// <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
+		/// <param name="conclusions">(<see langword="out"/> parameter) All conclusions.</param>
 		public void Deconstruct(
 			out string name, out decimal difficulty, out DifficultyLevel difficultyLevel,
 			out IReadOnlyList<Conclusion> conclusions) =>
@@ -81,11 +81,11 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Deconstruct this instance.
 		/// </summary>
-		/// <param name="name">(out parameter) The name.</param>
-		/// <param name="difficulty">(out parameter) The difficulty.</param>
-		/// <param name="difficultyLevel">(out parameter) The difficulty level.</param>
-		/// <param name="conclusions">(out parameter) All conclusions.</param>
-		/// <param name="views">(out parameter) All views.</param>
+		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
+		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
+		/// <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
+		/// <param name="conclusions">(<see langword="out"/> parameter) All conclusions.</param>
+		/// <param name="views">(<see langword="out"/> parameter) All views.</param>
 		public void Deconstruct(
 			out string name, out decimal difficulty, out DifficultyLevel difficultyLevel,
 			out IReadOnlyList<Conclusion> conclusions, out IReadOnlyList<View> views) =>

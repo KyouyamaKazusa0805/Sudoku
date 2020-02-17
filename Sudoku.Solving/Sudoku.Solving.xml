@@ -147,9 +147,11 @@
             <summary>
             Deconstruct this instance.
             </summary>
-            <param name="solverName">(out parameter) The solver's name.</param>
+            <param name="solverName">
+            (<see langword="out"/> parameter) The solver's name.
+            </param>
             <param name="hasSolved">
-            (out parameter) Indicates whether the puzzle has been solved.
+            (<see langword="out"/> parameter) Indicates whether the puzzle has been solved.
             </param>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.Boolean@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo}@)">
@@ -157,55 +159,79 @@
             Deconstruct this instance.
             </summary>
             <param name="hasSolved">
-            (out parameter) Indicates whether the puzzle has been solved.
+            (<see langword="out"/> parameter) Indicates whether the puzzle has been solved.
             </param>
             <param name="solvingStepsCount">
-            (out parameter) The total number of all solving steps.
+            (<see langword="out"/> parameter) The total number of all solving steps.
             </param>
-            <param name="solvingSteps">(out parameter) The all solving steps.</param>
+            <param name="solvingSteps">
+            (<see langword="out"/> parameter) The all solving steps.
+            </param>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.Nullable{System.Decimal}@,System.Decimal@,System.Nullable{System.Decimal}@,System.Nullable{System.Decimal}@)">
             <summary>
             Deconstruct this instance.
             </summary>
-            <param name="total">(out parameter) The total difficulty.</param>
-            <param name="max">(out parameter) The maximum difficulty.</param>
-            <param name="pearl">(out parameter) The pearl difficulty.</param>
-            <param name="diamond">(out parameter) The diamond difficulty.</param>
+            <param name="total">
+            (<see langword="out"/> parameter) The total difficulty.
+            </param>
+            <param name="max">
+            (<see langword="out"/> parameter) The maximum difficulty.
+            </param>
+            <param name="pearl">
+            (<see langword="out"/> parameter) The pearl difficulty.
+            </param>
+            <param name="diamond">
+            (<see langword="out"/> parameter) The diamond difficulty.
+            </param>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.Meta.Grid@,System.Boolean@,System.TimeSpan@,Sudoku.Data.Meta.Grid@,Sudoku.Solving.DifficultyLevel@)">
             <summary>
             Deconstruct this instance.
             </summary>
-            <param name="puzzle">(out parameter) The initial puzzle.</param>
+            <param name="puzzle">
+            (<see langword="out"/> parameter) The initial puzzle.
+            </param>
             <param name="hasSolved">
-            (out parameter) Indicates whether the puzzle has been solved.
+            (<see langword="out"/> parameter) Indicates whether the puzzle has been solved.
             </param>
             <param name="elapsedTime">
-            (out parameter) The elapsed time during solving.
+            (<see langword="out"/> parameter) The elapsed time during solving.
             </param>
-            <param name="solution">(out parameter) The solution.</param>
-            <param name="difficultyLevel">(out parameter) The difficulty level.</param>
+            <param name="solution">
+            (<see langword="out"/> parameter) The solution.
+            </param>
+            <param name="difficultyLevel">
+            (<see langword="out"/> parameter) The difficulty level.
+            </param>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.Meta.Grid@,System.Boolean@,System.TimeSpan@,Sudoku.Data.Meta.Grid@,Sudoku.Solving.DifficultyLevel@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo}@,System.String@)">
             <summary>
             Deconstruct this instance.
             </summary>
-            <param name="puzzle">(out parameter) The initial puzzle.</param>
+            <param name="puzzle">
+            (<see langword="out"/> parameter) The initial puzzle.
+            </param>
             <param name="hasSolved">
-            (out parameter) Indicates whether the puzzle has solved.
+            (<see langword="out"/> parameter) Indicates whether the puzzle has solved.
             </param>
             <param name="elapsedTime">
-            (out parameter) The elapsed time during solving.
+            (<see langword="out"/> parameter) The elapsed time during solving.
             </param>
-            <param name="solution">(out parameter) The solution.</param>
-            <param name="difficultyLevel">(out parameter) The difficulty level.</param>
+            <param name="solution">
+            (<see langword="out"/> parameter) The solution.
+            </param>
+            <param name="difficultyLevel">
+            (<see langword="out"/> parameter) The difficulty level.
+            </param>
             <param name="solvingStepsCount">
-            (out parameter) The number of solving steps recorded.
+            (<see langword="out"/> parameter) The number of solving steps recorded.
             </param>
-            <param name="solvingSteps">(out parameter) All solving steps.</param>
+            <param name="solvingSteps">
+            (<see langword="out"/> parameter) All solving steps.
+            </param>
             <param name="additionalMessage">
-            (out parameter) The additional message.
+            (<see langword="out"/> parameter) The additional message.
             </param>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.GetEnumerator">
@@ -248,6 +274,19 @@
         </member>
         <member name="M:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver.Solve(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver.BacktrackinglySolve(System.Int32@,System.Int32[]@,System.Int32[],System.Int32)">
+            <summary>
+            Solve backtrackingly.
+            </summary>
+            <param name="solutionsCount">
+            (<see langword="ref"/> parameter) The number of solutions.
+            </param>
+            <param name="result">
+            (<see langword="ref"/> parameter) The result array.
+            </param>
+            <param name="gridValues">All grid values.</param>
+            <param name="finishedCellsCount">The number of cells had finished.</param>
         </member>
         <member name="T:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver">
             <summary>
@@ -640,9 +679,10 @@
             <summary>
             To check if a puzzle has only one solution or not.
             </summary>
-            <param name="this">(extension method main parameter) The puzzle to check.</param>
+            <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
             <param name="solutionIfUnique">
-            (out parameter) The solution if the puzzle is unique; otherwise, <see langword="null"/>.
+            (<see langword="out"/> parameter) The solution if the puzzle is unique;
+            otherwise, <see langword="null"/>.
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
@@ -650,28 +690,28 @@
             <summary>
             To check if the puzzle is minimal or not.
             </summary>
-            <param name="this">(extension method main parameter) The puzzle to check.</param>
+            <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsPearl(Sudoku.Data.Meta.Grid)">
             <summary>
             To check if the puzzle is pearl or not.
             </summary>
-            <param name="this">(extension method main parameter) The puzzle to check.</param>
+            <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsDiamond(Sudoku.Data.Meta.Grid)">
             <summary>
             To check if the puzzle is diamond or not.
             </summary>
-            <param name="this">(extension method main parameter) The puzzle to check.</param>
+            <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.CanBeSolvedUsingOnlySsts(Sudoku.Data.Meta.Grid)">
             <summary>
             To check whether the puzzle can be solved using only simple sudoku technique set.
             </summary>
-            <param name="this">(extension method main parameter) The puzzle.</param>
+            <param name="this">(<see langword="this"/> parameter) The puzzle.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Conclusion">
@@ -722,16 +762,16 @@
             <summary>
             Deconstruct an instance.
             </summary>
-            <param name="conclusionType">(out parameter) The type of this conclusion.</param>
-            <param name="candidate">(out parameter) The candidate.</param>
+            <param name="conclusionType">(<see langword="out"/> parameter) The type of this conclusion.</param>
+            <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
         </member>
         <member name="M:Sudoku.Solving.Conclusion.Deconstruct(Sudoku.Solving.ConclusionType@,System.Int32@,System.Int32@)">
             <summary>
             Deconstruct an instance.
             </summary>
-            <param name="conclusionType">(out parameter) The type of this conclusion.</param>
-            <param name="cell">(out parameter) The cell.</param>
-            <param name="digit">(out parameter) The digit.</param>
+            <param name="conclusionType">(<see langword="out"/> parameter) The type of this conclusion.</param>
+            <param name="cell">(<see langword="out"/> parameter) The cell.</param>
+            <param name="digit">(<see langword="out"/> parameter) The digit.</param>
         </member>
         <member name="M:Sudoku.Solving.Conclusion.Equals(System.Object)">
             <inheritdoc/>
@@ -937,15 +977,15 @@
             <summary>
             Deconstruct the grid.
             </summary>
-            <param name="this">(extension method main parameter) The grid.</param>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <param name="emptyCells">
-            (out parameter) The distribution of all empty cells.
+            (<see langword="out"/> parameter) The distribution of all empty cells.
             </param>
             <param name="bivalueCells">
-            (out parameter) The distributions of all bivalue cells.
+            (<see langword="out"/> parameter) The distributions of all bivalue cells.
             </param>
             <param name="digitsDistributions">
-            (out parameter) The distributions of all digits.
+            (<see langword="out"/> parameter) The distributions of all digits.
             </param>
         </member>
         <member name="M:Sudoku.Solving.Extensions.GridEx.GetBivalueCellsMap(Sudoku.Data.Meta.Grid)">
@@ -1139,7 +1179,7 @@
             <summary>
             Record all cells in the all regions to a <see cref="T:Sudoku.Data.Meta.GridMap"/> instance.
             </summary>
-            <param name="map">(ref parameter) The map.</param>
+            <param name="map">(<see langword="ref"/> parameter) The map.</param>
             <param name="regionOffsets">All region offsets.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo">
@@ -1938,8 +1978,8 @@
             </summary>
             <param name="blockMap">The empty cell grid map.</param>
             <param name="block">The block.</param>
-            <param name="row">(out parameter) The row.</param>
-            <param name="column">(out parameter) The column.</param>
+            <param name="row">(<see langword="out"/> parameter) The row.</param>
+            <param name="column">(<see langword="out"/> parameter) The column.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.SingleDigitPatterns.SingleDigitPatternTechniqueInfo">
@@ -2287,7 +2327,7 @@
             <param name="offsets">All cell offsets.</param>
             <param name="digits">All digits.</param>
             <param name="isLocked">
-            (out parameter) Indicates whether the subset is locked.
+            (<see langword="out"/> parameter) Indicates whether the subset is locked.
             </param>
             <returns>All conclusions.</returns>
         </member>
@@ -2318,9 +2358,9 @@
             The mask that calculated in <see cref="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.TakeAllHiddenSubsetsBySize(Sudoku.Data.Meta.Grid,System.Int32)"/>.
             </param>
             <param name="digits">All digits.</param>
-            <param name="cellOffsetList">(out parameter) All cell offsets.</param>
+            <param name="cellOffsetList">(<see langword="out"/> parameter) All cell offsets.</param>
             <param name="highlightedCandidates">
-            (out parameter) All highlight candidate offsets.
+            (<see langword="out"/> parameter) All highlight candidate offsets.
             </param>
             <returns>All conclusions.</returns>
         </member>
@@ -3397,7 +3437,7 @@
             <param name="grid">The grid.</param>
             <param name="allCells">All cells.</param>
             <param name="digits">All digits.</param>
-            <param name="digitKindsMask">(out parameter) The digit kind mask.</param>
+            <param name="digitKindsMask">(<see langword="out"/> parameter) The digit kind mask.</param>
             <returns>The result mask.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.GetRegionAppearingMask(System.Int32,System.Int32[])">
@@ -3747,10 +3787,10 @@
             <param name="cells">All body cells.</param>
             <param name="pivot">The pivot cell.</param>
             <param name="isIncompleted">
-            (out parameter) Indicates whether the technique is incompleted.
+            (<see langword="out"/> parameter) Indicates whether the technique is incompleted.
             </param>
             <param name="map">
-            (out parameter) The result grid intersection map.
+            (<see langword="out"/> parameter) The result grid intersection map.
             </param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.GatherConclusion(Sudoku.Data.Meta.Grid,System.Collections.Generic.IList{Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo},System.Int32,System.Int32[],System.Int16,System.Int16,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion})">
@@ -3786,15 +3826,15 @@
             <param name="pivot">The pivot cell.</param>
             <param name="cells">All body cells.</param>
             <param name="pivotMask">
-            (out parameter) The mask of the pivot cell.
+            (<see langword="out"/> parameter) The mask of the pivot cell.
             </param>
-            <param name="inter">(out parameter) The intersection mask.</param>
-            <param name="union">(out parameter) The union mask.</param>
+            <param name="inter">(<see langword="out"/> parameter) The intersection mask.</param>
+            <param name="union">(<see langword="out"/> parameter) The union mask.</param>
             <param name="interWithoutPivot">
-            (out parameter) The intersection mask without pivot mask.
+            (<see langword="out"/> parameter) The intersection mask without pivot mask.
             </param>
             <param name="unionWithoutPivot">
-            (out parameter) The union mask without pivot mask.
+            (<see langword="out"/> parameter) The union mask without pivot mask.
             </param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Wings.WingTechniqueInfo">
@@ -3882,35 +3922,35 @@
             <summary>
             Deconstruct this instance.
             </summary>
-            <param name="name">(out parameter) The name.</param>
-            <param name="difficulty">(out parameter) The difficulty.</param>
+            <param name="name">(<see langword="out"/> parameter) The name.</param>
+            <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
         </member>
         <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevel@)">
             <summary>
             Deconstruct this instance.
             </summary>
-            <param name="name">(out parameter) The name.</param>
-            <param name="difficulty">(out parameter) The difficulty.</param>
-            <param name="difficultyLevel">(out parameter) The difficulty level.</param>
+            <param name="name">(<see langword="out"/> parameter) The name.</param>
+            <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
+            <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
         </member>
         <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevel@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion}@)">
             <summary>
             Deconstruct this instance.
             </summary>
-            <param name="name">(out parameter) The name.</param>
-            <param name="difficulty">(out parameter) The difficulty.</param>
-            <param name="difficultyLevel">(out parameter) The difficulty level.</param>
-            <param name="conclusions">(out parameter) All conclusions.</param>
+            <param name="name">(<see langword="out"/> parameter) The name.</param>
+            <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
+            <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
+            <param name="conclusions">(<see langword="out"/> parameter) All conclusions.</param>
         </member>
         <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevel@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion}@,System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View}@)">
             <summary>
             Deconstruct this instance.
             </summary>
-            <param name="name">(out parameter) The name.</param>
-            <param name="difficulty">(out parameter) The difficulty.</param>
-            <param name="difficultyLevel">(out parameter) The difficulty level.</param>
-            <param name="conclusions">(out parameter) All conclusions.</param>
-            <param name="views">(out parameter) All views.</param>
+            <param name="name">(<see langword="out"/> parameter) The name.</param>
+            <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
+            <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
+            <param name="conclusions">(<see langword="out"/> parameter) All conclusions.</param>
+            <param name="views">(<see langword="out"/> parameter) All views.</param>
         </member>
         <member name="M:Sudoku.Solving.TechniqueInfo.ApplyTo(Sudoku.Data.Meta.Grid)">
             <summary>
@@ -4121,7 +4161,7 @@
             </summary>
             <param name="cell1">The cell offset 1.</param>
             <param name="cell2">The cell offset 2.</param>
-            <param name="sameRegions">(out parameter) All same regions of two cells.</param>
+            <param name="sameRegions">(<see langword="out"/> parameter) All same regions of two cells.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Utils.ChainingDifficultyRatingUtils">
@@ -4205,7 +4245,7 @@
             return <see langword="false"/>.
             </para>
             </summary>
-            <param name="this">(extension method main parameter) The grid.</param>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <param name="cellOffset">The cell offset.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
@@ -4222,7 +4262,7 @@
             return <see langword="false"/>.
             </para>
             </summary>
-            <param name="this">(extension method main parameter) The grid.</param>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <param name="cellOffset">The cell offset.</param>
             <param name="digit">The digit.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
@@ -4241,7 +4281,7 @@
             return <see langword="false"/>.
             </para>
             </summary>
-            <param name="this">(extension method main parameter) The grid.</param>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <param name="cellOffset">The cell offset.</param>
             <param name="digit">The digit.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
@@ -4252,7 +4292,7 @@
             Checks whether the specified digit has given or modifiable values in
             the specified region.
             </summary>
-            <param name="this">(extension method main parameter) The grid.</param>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <param name="digit">The digit.</param>
             <param name="regionOffset">The region.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
@@ -4267,7 +4307,7 @@
             return <see langword="false"/>.
             </para>
             </summary>
-            <param name="this">(extension method main parameter) The grid.</param>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <param name="digit">The digit.</param>
             <param name="regionOffset">The region.</param>
             <returns>
@@ -4288,7 +4328,7 @@
             return <see langword="false"/>.
             </para>
             </summary>
-            <param name="this">(extension method main parameter) The grid.</param>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <param name="digit">The digit.</param>
             <param name="regionOffset">The region offset.</param>
             <param name="map">The grid map.</param>
@@ -4302,9 +4342,9 @@
             <summary>
             Find all bivalue cells displaying with a <see cref="T:Sudoku.Data.Meta.GridMap"/>.
             </summary>
-            <param name="this">(extension method main parameter) The grid.</param>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <param name="count">
-            (out parameter) The number of bivalue cells.
+            (<see langword="out"/> parameter) The number of bivalue cells.
             This parameter is only used for quickening the code running.
             </param>
             <returns>The grid map.</returns>
@@ -4313,7 +4353,7 @@
             <summary>
             Find all conjugate pairs in a grid.
             </summary>
-            <param name="this">(extension method main parameter) The grid.</param>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>All conjugate pairs.</returns>
         </member>
         <member name="T:Sudoku.Solving.Utils.LinkMaskUtils">
@@ -4345,9 +4385,9 @@
             <summary>
             Deconstruct the value to candidates and the cell status.
             </summary>
-            <param name="this">(extension method main parameter) The value.</param>
-            <param name="cellStatus">(out parameter) The cell status.</param>
-            <param name="candidatesMask">(out parameter) The candidate mask.</param>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="cellStatus">(<see langword="out"/> parameter) The cell status.</param>
+            <param name="candidatesMask">(<see langword="out"/> parameter) The candidate mask.</param>
         </member>
         <member name="T:Sudoku.Solving.Utils.PatternOverlayMethodUtils">
             <summary>

@@ -46,10 +46,10 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Deconstruct the instance to four values.
 		/// </summary>
-		/// <param name="cellOffset">(out parameter) The cell offset.</param>
-		/// <param name="oldMask">(out parameter) The old mask.</param>
-		/// <param name="newMask">(out parameter) The new mask.</param>
-		/// <param name="setValue">(out parameter) the set value.</param>
+		/// <param name="cellOffset">(<see langword="out"/> parameter) The cell offset.</param>
+		/// <param name="oldMask">(<see langword="out"/> parameter) The old mask.</param>
+		/// <param name="newMask">(<see langword="out"/> parameter) The new mask.</param>
+		/// <param name="setValue">(<see langword="out"/> parameter) the set value.</param>
 		public void Deconstruct(
 			out int cellOffset, out short oldMask, out short newMask, out int setValue) =>
 			(cellOffset, oldMask, newMask, setValue) = (CellOffset, OldMask, NewMask, SetValue);

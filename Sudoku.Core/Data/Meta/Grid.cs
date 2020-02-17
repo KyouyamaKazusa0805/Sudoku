@@ -778,7 +778,7 @@ namespace Sudoku.Data.Meta
 		/// </summary>
 		/// <param name="str">The string.</param>
 		/// <param name="result">
-		/// (out parameter) The result parsed. If the conversion is failed,
+		/// (<see langword="out"/> parameter) The result parsed. If the conversion is failed,
 		/// this argument will be <see langword="null"/>.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>

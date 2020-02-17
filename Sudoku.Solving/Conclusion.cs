@@ -75,17 +75,17 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Deconstruct an instance.
 		/// </summary>
-		/// <param name="conclusionType">(out parameter) The type of this conclusion.</param>
-		/// <param name="candidate">(out parameter) The candidate.</param>
+		/// <param name="conclusionType">(<see langword="out"/> parameter) The type of this conclusion.</param>
+		/// <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
 		public void Deconstruct(out ConclusionType conclusionType, out int candidate) =>
 			(conclusionType, candidate) = (ConclusionType, CellOffset * 9 + Digit);
 
 		/// <summary>
 		/// Deconstruct an instance.
 		/// </summary>
-		/// <param name="conclusionType">(out parameter) The type of this conclusion.</param>
-		/// <param name="cell">(out parameter) The cell.</param>
-		/// <param name="digit">(out parameter) The digit.</param>
+		/// <param name="conclusionType">(<see langword="out"/> parameter) The type of this conclusion.</param>
+		/// <param name="cell">(<see langword="out"/> parameter) The cell.</param>
+		/// <param name="digit">(<see langword="out"/> parameter) The digit.</param>
 		public void Deconstruct(out ConclusionType conclusionType, out int cell, out int digit) =>
 			(conclusionType, cell, digit) = (ConclusionType, CellOffset, Digit);
 

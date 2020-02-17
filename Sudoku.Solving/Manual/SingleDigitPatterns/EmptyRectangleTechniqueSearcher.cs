@@ -150,8 +150,8 @@ namespace Sudoku.Solving.Manual.SingleDigitPatterns
 		/// </summary>
 		/// <param name="blockMap">The empty cell grid map.</param>
 		/// <param name="block">The block.</param>
-		/// <param name="row">(out parameter) The row.</param>
-		/// <param name="column">(out parameter) The column.</param>
+		/// <param name="row">(<see langword="out"/> parameter) The row.</param>
+		/// <param name="column">(<see langword="out"/> parameter) The column.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		private bool IsEmptyRectangle(GridMap blockMap, int block, out int row, out int column)
 		{

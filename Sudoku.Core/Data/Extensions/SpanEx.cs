@@ -17,7 +17,7 @@ namespace Sudoku.Data.Extensions
 		/// <see cref="Span{T}"/> sequence satisfy a condition.
 		/// </summary>
 		/// <typeparam name="T">The element of the span instance.</typeparam>
-		/// <param name="this">(extension method main parameter) The span.</param>
+		/// <param name="this">(<see langword="this"/> parameter) The span.</param>
 		/// <param name="predicate">The condition to satisfy.</param>
 		/// <returns>The number of elements satisfying the condition.</returns>
 		/// <remarks>

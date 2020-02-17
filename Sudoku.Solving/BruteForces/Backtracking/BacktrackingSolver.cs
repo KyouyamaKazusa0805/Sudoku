@@ -64,7 +64,17 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 			}
 		}
 
-
+		/// <summary>
+		/// Solve backtrackingly.
+		/// </summary>
+		/// <param name="solutionsCount">
+		/// (<see langword="ref"/> parameter) The number of solutions.
+		/// </param>
+		/// <param name="result">
+		/// (<see langword="ref"/> parameter) The result array.
+		/// </param>
+		/// <param name="gridValues">All grid values.</param>
+		/// <param name="finishedCellsCount">The number of cells had finished.</param>
 		private void BacktrackinglySolve(
 			ref int solutionsCount, ref int[]? result, int[] gridValues, int finishedCellsCount)
 		{

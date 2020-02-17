@@ -13,7 +13,7 @@ namespace Sudoku.Data.Extensions
 		/// Returns a <see cref="string"/> that represents the current object
 		/// though the object is <see langword="null"/>.
 		/// </summary>
-		/// <param name="this">(extension method main parameter) The object.</param>
+		/// <param name="this">(<see langword="this"/> parameter) The object.</param>
 		/// <returns>
 		/// A <see cref="string"/> represents the current object.
 		/// If the current object is <see langword="null"/>, this value will be
@@ -26,7 +26,7 @@ namespace Sudoku.Data.Extensions
 		/// Returns a <see cref="string"/> that represents the current object
 		/// though the object is <see langword="null"/>.
 		/// </summary>
-		/// <param name="this">(extension method main parameter) The object.</param>
+		/// <param name="this">(<see langword="this"/> parameter) The object.</param>
 		/// <param name="defaultValue">
 		/// The default return value when the current object is <see langword="null"/>.
 		/// </param>

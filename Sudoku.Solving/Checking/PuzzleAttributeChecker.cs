@@ -18,9 +18,10 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// To check if a puzzle has only one solution or not.
 		/// </summary>
-		/// <param name="this">(extension method main parameter) The puzzle to check.</param>
+		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
 		/// <param name="solutionIfUnique">
-		/// (out parameter) The solution if the puzzle is unique; otherwise, <see langword="null"/>.
+		/// (<see langword="out"/> parameter) The solution if the puzzle is unique;
+		/// otherwise, <see langword="null"/>.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool IsUnique(this Grid @this, [NotNullWhen(true)] out Grid? solutionIfUnique)
@@ -41,7 +42,7 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// To check if the puzzle is minimal or not.
 		/// </summary>
-		/// <param name="this">(extension method main parameter) The puzzle to check.</param>
+		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool IsMinimal(this Grid @this)
 		{
@@ -79,7 +80,7 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// To check if the puzzle is pearl or not.
 		/// </summary>
-		/// <param name="this">(extension method main parameter) The puzzle to check.</param>
+		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool IsPearl(this Grid @this)
 		{
@@ -100,7 +101,7 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// To check if the puzzle is diamond or not.
 		/// </summary>
-		/// <param name="this">(extension method main parameter) The puzzle to check.</param>
+		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool IsDiamond(this Grid @this)
 		{
@@ -121,7 +122,7 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// To check whether the puzzle can be solved using only simple sudoku technique set.
 		/// </summary>
-		/// <param name="this">(extension method main parameter) The puzzle.</param>
+		/// <param name="this">(<see langword="this"/> parameter) The puzzle.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool CanBeSolvedUsingOnlySsts(this Grid @this)
 		{

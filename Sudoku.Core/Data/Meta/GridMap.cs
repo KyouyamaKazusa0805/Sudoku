@@ -254,8 +254,8 @@ namespace Sudoku.Data.Meta
 		/// <summary>
 		/// Deconstruct this instance.
 		/// </summary>
-		/// <param name="high">(out parameter) Higher 40 bits.</param>
-		/// <param name="low">(out parameter) Lower 41 bits.</param>
+		/// <param name="high">(<see langword="out"/> parameter) Higher 40 bits.</param>
+		/// <param name="low">(<see langword="out"/> parameter) Lower 41 bits.</param>
 		public readonly void Deconstruct(out long high, out long low) =>
 			(high, low) = (_high, _low);
 

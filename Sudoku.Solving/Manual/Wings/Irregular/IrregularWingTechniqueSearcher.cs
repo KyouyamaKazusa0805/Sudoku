@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		/// Search for all W-Wings.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
-		/// <param name="pair">(in parameter) bivalue cell information pair.</param>
+		/// <param name="pair">(<see langword="in"/> parameter) bivalue cell information pair.</param>
 		/// <returns>All technique information instances.</returns>
 		public static IReadOnlyList<IrregularWingTechniqueInfo> TakeAllWWings(
 			Grid grid, in (GridMap _map, int _count) pair)
@@ -123,8 +123,8 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		/// <param name="region">The region.</param>
 		/// <param name="c1">Cell 1.</param>
 		/// <param name="c2">Cell 2.</param>
-		/// <param name="triplet1">The triplet 1.</param>
-		/// <param name="triplet2">The triplet 2.</param>
+		/// <param name="triplet1">(<see langword="in"/> parameter) The triplet 1.</param>
+		/// <param name="triplet2">(<see langword="in"/> parameter) The triplet 2.</param>
 		/// <param name="intersection">The intersection.</param>
 		private static void SearchWWingByRegions(
 			IList<WWingTechniqueInfo> result, Grid grid, int[] digits, int region,

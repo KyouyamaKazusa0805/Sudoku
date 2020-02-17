@@ -18,7 +18,7 @@
             <typeparam name="T">
             The type of each element. Should be not <see langword="null"/>.
             </typeparam>
-            <param name="this">(extension method main parameter) The collection.</param>
+            <param name="this">(<see langword="this"/> parameter) The collection.</param>
             <param name="values">
             The values you want to add to the end of the collection.
             </param>
@@ -31,7 +31,7 @@
             <typeparam name="T">
             The type of all elements. Should be not <see langword="null"/>.
             </typeparam>
-            <param name="this">(extension method main parameter) The list.</param>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
             <param name="item">The item to add.</param>
         </member>
         <member name="T:Sudoku.Data.Extensions.DictionaryEx">
@@ -50,7 +50,7 @@
             The type of keys. The key should be not <see langword="null"/>.
             </typeparam>
             <typeparam name="TValue">The type of elements.</typeparam>
-            <param name="this">(extension method main parameter) The dictionary.</param>
+            <param name="this">(<see langword="this"/> parameter) The dictionary.</param>
             <param name="key">The key.</param>
             <param name="value">The value.</param>
         </member>
@@ -64,7 +64,7 @@
             <summary>
             Find the first offset of set bit of the binary representation of the specified value.
             </summary>
-            <param name="this">(extension method main parameter) The value.</param>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
             <returns>
             An <see cref="T:System.Int32"/> value indicating that. If the value is 0, this method
             will always return 0.
@@ -75,7 +75,7 @@
             <summary>
             Get the total number of set bits of the binary representation of a specified value.
             </summary>
-            <param name="this">(extension method main parameter) The value.</param>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
             <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
             <seealso cref="M:Sudoku.Data.Extensions.Int32Ex.CountSet(System.Int32)"/>
         </member>
@@ -84,7 +84,7 @@
             Find a index of the binary representation of a value
             after the specified index, whose bit is set <see langword="true"/>.
             </summary>
-            <param name="this">(extension method main parameter) The value.</param>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
             <param name="index">The index.</param>
             <returns>The index.</returns>
         </member>
@@ -93,7 +93,7 @@
             Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
             all set bits with the specified set bit order.
             </summary>
-            <param name="this">(extension method main parameter) The value.</param>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
             <param name="order">The number of the order of set bits.</param>
             <returns>The position.</returns>
         </member>
@@ -101,7 +101,7 @@
             <summary>
             Find all offsets of set bits of the binary representation of a specified value.
             </summary>
-            <param name="this">(extension method main parameter) The value.</param>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
             <returns>All offsets.</returns>
         </member>
         <member name="M:Sudoku.Data.Extensions.Int16Ex.ReverseBits(System.Int16@)">
@@ -112,7 +112,7 @@
             method is an extension method, and returns nothing.
             </para>
             </summary>
-            <param name="this">(ref extension method main parameter) The value.</param>
+            <param name="this">(<see langword="this ref"/> parameter) The value.</param>
         </member>
         <member name="T:Sudoku.Data.Extensions.Int32Ex">
             <summary>
@@ -130,7 +130,7 @@
             <summary>
             Find the first offset of set bit of the binary representation of the specified value.
             </summary>
-            <param name="this">(extension method main parameter) The value.</param>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
             <returns>
             An <see cref="T:System.Int32"/> value indicating that. If the value is 0, this method
             will always return 0.
@@ -140,7 +140,7 @@
             <summary>
             Get the total number of set bits of the binary representation of a specified value.
             </summary>
-            <param name="this">(extension method main parameter) The value.</param>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
             <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Data.Extensions.Int32Ex.GetNextSetBit(System.Int32,System.Int32)">
@@ -148,7 +148,7 @@
             Find a index of the binary representation of a value
             after the specified index, whose bit is set <see langword="true"/>.
             </summary>
-            <param name="this">(extension method main parameter) The value.</param>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
             <param name="index">The index.</param>
             <returns>The index.</returns>
         </member>
@@ -157,7 +157,7 @@
             Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
             all set bits with the specified set bit order.
             </summary>
-            <param name="this">(extension method main parameter) The value.</param>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
             <param name="order">The number of the order of set bits.</param>
             <returns>The position.</returns>
         </member>
@@ -165,7 +165,7 @@
             <summary>
             Find all offsets of set bits of the binary representation of a specified value.
             </summary>
-            <param name="this">(extension method main parameter) The value.</param>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
             <returns>All offsets.</returns>
         </member>
         <member name="M:Sudoku.Data.Extensions.Int32Ex.ReverseBits(System.Int32@)">
@@ -176,7 +176,7 @@
             method is an extension method, and returns nothing.
             </para>
             </summary>
-            <param name="this">(extension method main parameter) (ref parameter) The value.</param>
+            <param name="this">(<see langword="this ref"/> parameter) The value.</param>
         </member>
         <member name="T:Sudoku.Data.Extensions.Int64Ex">
             <summary>
@@ -189,14 +189,14 @@
             Get the total number of set bits of the binary representation
             of the specified value.
             </summary>
-            <param name="this">(extension method main parameter) The value.</param>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
             <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Data.Extensions.Int64Ex.GetAllSets(System.Int64)">
             <summary>
             Find all offsets of set bits of the binary representation of a specified value.
             </summary>
-            <param name="this">(extension method main parameter) The value.</param>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
             <returns>All offsets.</returns>
         </member>
         <member name="M:Sudoku.Data.Extensions.Int64Ex.GetNextSetBit(System.Int64,System.Int32)">
@@ -204,7 +204,7 @@
             Find a index of the binary representation of a value
             after the specified index, whose bit is set <see langword="true"/>.
             </summary>
-            <param name="this">(extension method main parameter) The value.</param>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
             <param name="index">The index.</param>
             <returns>The index.</returns>
         </member>
@@ -213,7 +213,7 @@
             Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
             all set bits with the specified set bit order.
             </summary>
-            <param name="this">(extension method main parameter) The value.</param>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
             <param name="order">The number of the order of set bits.</param>
             <returns>The position.</returns>
         </member>
@@ -228,7 +228,7 @@
             Remove the last element of the specified list.
             </summary>
             <typeparam name="T">The type of this element.</typeparam>
-            <param name="this">(extension method main parameter) The list.</param>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
         </member>
         <member name="T:Sudoku.Data.Extensions.ObjectEx">
             <summary>
@@ -241,7 +241,7 @@
             Returns a <see cref="T:System.String"/> that represents the current object
             though the object is <see langword="null"/>.
             </summary>
-            <param name="this">(extension method main parameter) The object.</param>
+            <param name="this">(<see langword="this"/> parameter) The object.</param>
             <returns>
             A <see cref="T:System.String"/> represents the current object.
             If the current object is <see langword="null"/>, this value will be
@@ -253,7 +253,7 @@
             Returns a <see cref="T:System.String"/> that represents the current object
             though the object is <see langword="null"/>.
             </summary>
-            <param name="this">(extension method main parameter) The object.</param>
+            <param name="this">(<see langword="this"/> parameter) The object.</param>
             <param name="defaultValue">
             The default return value when the current object is <see langword="null"/>.
             </param>
@@ -275,7 +275,7 @@
             <see cref="T:System.Span`1"/> sequence satisfy a condition.
             </summary>
             <typeparam name="T">The element of the span instance.</typeparam>
-            <param name="this">(extension method main parameter) The span.</param>
+            <param name="this">(<see langword="this"/> parameter) The span.</param>
             <param name="predicate">The condition to satisfy.</param>
             <returns>The number of elements satisfying the condition.</returns>
             <remarks>
@@ -297,7 +297,7 @@
             <summary>
             Reverse all characters in a specified string builder instance.
             </summary>
-            <param name="this">(extension method main parameter) The instance to reverse all characters.</param>
+            <param name="this">(<see langword="this"/> parameter) The instance to reverse all characters.</param>
             <returns>The reference of the current instance.</returns>
         </member>
         <member name="M:Sudoku.Data.Extensions.StringBuilderEx.RemoveFromEnd(System.Text.StringBuilder,System.Int32)">
@@ -305,7 +305,7 @@
             Remove the specified number of characters from the end of the string builder
             instance.
             </summary>
-            <param name="this">(extension method main parameter) The instance to remove characters.</param>
+            <param name="this">(<see langword="this"/> parameter) The instance to remove characters.</param>
             <param name="length">The number of characters you want to remove.</param>
             <returns>The reference of the current instance.</returns>
         </member>
@@ -314,7 +314,7 @@
             Append a character to the end of the specified string builder instance,
             and then append a <see cref="P:System.Environment.NewLine"/>.
             </summary>
-            <param name="this">(extension method main parameter) The instance.</param>
+            <param name="this">(<see langword="this"/> parameter) The instance.</param>
             <param name="value">The character you want to append.</param>
             <returns>The reference of the current instance.</returns>
             <remarks>
@@ -330,7 +330,7 @@
             to the end of the specified string builder instance,
             and then append a <see cref="P:System.Environment.NewLine"/>.
             </summary>
-            <param name="this">(extension method main parameter) The instance.</param>
+            <param name="this">(<see langword="this"/> parameter) The instance.</param>
             <param name="obj">
             The <see cref="T:System.String"/> representation of an object you want to append.
             </param>
@@ -347,7 +347,7 @@
             Check whether the specified string instance is satisfied
             the specified regular expression pattern or not.
             </summary>
-            <param name="this">(extension method main parameter) The value to check.</param>
+            <param name="this">(<see langword="this"/> parameter) The value to check.</param>
             <param name="pattern">The regular expression pattern.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
@@ -356,7 +356,7 @@
             Check whether the specified string instance can match the value
             using the specified regular expression pattern or not.
             </summary>
-            <param name="this">(extension method main parameter) The value to match.</param>
+            <param name="this">(<see langword="this"/> parameter) The value to match.</param>
             <param name="pattern">The regular expression pattern.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
             <remarks>
@@ -370,7 +370,7 @@
             Searches the specified input string for the first occurrence of
             the specified regular expression pattern.
             </summary>
-            <param name="this">(extension method main parameter) The value to match.</param>
+            <param name="this">(<see langword="this"/> parameter) The value to match.</param>
             <param name="pattern">The regular expression pattern.</param>
             <returns>
             The value after matching. If failed to match,
@@ -387,7 +387,7 @@
             Searches the input string for the first occurrence of the specified regular
             expression, using the specified matching options.
             </summary>
-            <param name="this">(extension method main parameter) The value to match.</param>
+            <param name="this">(<see langword="this"/> parameter) The value to match.</param>
             <param name="pattern">The regular expression pattern.</param>
             <param name="regexOption">The matching options.</param>
             <returns>
@@ -405,7 +405,7 @@
             Searches the specified input string for all occurrences of a
             specified regular expression pattern.
             </summary>
-            <param name="this">(extension method main parameter) The value to match.</param>
+            <param name="this">(<see langword="this"/> parameter) The value to match.</param>
             <param name="pattern">The regular expression pattern.</param>
             <returns>
             The result after matching. If failed to match,
@@ -423,7 +423,7 @@
             specified regular expression pattern, using the specified matching
             options.
             </summary>
-            <param name="this">(extension method main parameter) The value to match.</param>
+            <param name="this">(<see langword="this"/> parameter) The value to match.</param>
             <param name="pattern">The regular expression pattern.</param>
             <param name="regexOption">The matching options.</param>
             <returns>
@@ -441,7 +441,7 @@
             To check if the current string value is a valid regular
             expression pattern or not.
             </summary>
-            <param name="this">(extension method main parameter) The value to check.</param>
+            <param name="this">(<see langword="this"/> parameter) The value to check.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
         <member name="T:Sudoku.Data.Meta.CellStatus">
@@ -944,7 +944,7 @@
             </summary>
             <param name="str">The string.</param>
             <param name="result">
-            (out parameter) The result parsed. If the conversion is failed,
+            (<see langword="out"/> parameter) The result parsed. If the conversion is failed,
             this argument will be <see langword="null"/>.
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
@@ -1195,8 +1195,8 @@
             <summary>
             Deconstruct this instance.
             </summary>
-            <param name="high">(out parameter) Higher 40 bits.</param>
-            <param name="low">(out parameter) Lower 41 bits.</param>
+            <param name="high">(<see langword="out"/> parameter) Higher 40 bits.</param>
+            <param name="low">(<see langword="out"/> parameter) Lower 41 bits.</param>
         </member>
         <member name="M:Sudoku.Data.Meta.GridMap.Equals(System.Object)">
             <inheritdoc/>
@@ -1502,10 +1502,10 @@
             <summary>
             Deconstruct the instance to four values.
             </summary>
-            <param name="cellOffset">(out parameter) The cell offset.</param>
-            <param name="oldMask">(out parameter) The old mask.</param>
-            <param name="newMask">(out parameter) The new mask.</param>
-            <param name="setValue">(out parameter) the set value.</param>
+            <param name="cellOffset">(<see langword="out"/> parameter) The cell offset.</param>
+            <param name="oldMask">(<see langword="out"/> parameter) The old mask.</param>
+            <param name="newMask">(<see langword="out"/> parameter) The new mask.</param>
+            <param name="setValue">(<see langword="out"/> parameter) the set value.</param>
         </member>
         <member name="T:Sudoku.Data.ValueChangedEventHandler">
             <summary>
@@ -1552,7 +1552,7 @@
             Count on code lines in all files in the specified root directory.
             </summary>
             <param name="filesCount">
-            (out parameter) The number of files searched.
+            (<see langword="out"/> parameter) The number of files searched.
             </param>
             <returns>The number of lines.</returns>
         </member>

@@ -47,7 +47,7 @@ namespace Sudoku.Diagnostics
 		/// Count on code lines in all files in the specified root directory.
 		/// </summary>
 		/// <param name="filesCount">
-		/// (out parameter) The number of files searched.
+		/// (<see langword="out"/> parameter) The number of files searched.
 		/// </param>
 		/// <returns>The number of lines.</returns>
 		public int CountCodeLines(out int filesCount)

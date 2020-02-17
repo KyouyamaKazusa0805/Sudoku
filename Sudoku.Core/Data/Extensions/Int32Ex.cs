@@ -39,7 +39,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Find the first offset of set bit of the binary representation of the specified value.
 		/// </summary>
-		/// <param name="this">(extension method main parameter) The value.</param>
+		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
 		/// <returns>
 		/// An <see cref="int"/> value indicating that. If the value is 0, this method
 		/// will always return 0.
@@ -55,7 +55,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Get the total number of set bits of the binary representation of a specified value.
 		/// </summary>
-		/// <param name="this">(extension method main parameter) The value.</param>
+		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
 		/// <returns>An <see cref="int"/> value indicating that.</returns>
 		public static int CountSet(this int @this)
 		{
@@ -68,7 +68,7 @@ namespace Sudoku.Data.Extensions
 		/// Find a index of the binary representation of a value
 		/// after the specified index, whose bit is set <see langword="true"/>.
 		/// </summary>
-		/// <param name="this">(extension method main parameter) The value.</param>
+		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
 		/// <param name="index">The index.</param>
 		/// <returns>The index.</returns>
 		public static int GetNextSetBit(this int @this, int index)
@@ -88,7 +88,7 @@ namespace Sudoku.Data.Extensions
 		/// Get an <see cref="int"/> value, indicating that the absolute position of
 		/// all set bits with the specified set bit order.
 		/// </summary>
-		/// <param name="this">(extension method main parameter) The value.</param>
+		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
 		/// <param name="order">The number of the order of set bits.</param>
 		/// <returns>The position.</returns>
 		public static int GetSetBitIndex(this int @this, int order)
@@ -107,7 +107,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Find all offsets of set bits of the binary representation of a specified value.
 		/// </summary>
-		/// <param name="this">(extension method main parameter) The value.</param>
+		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
 		/// <returns>All offsets.</returns>
 		public static IEnumerable<int> GetAllSets(this int @this)
 		{
@@ -127,7 +127,7 @@ namespace Sudoku.Data.Extensions
 		/// method is an extension method, and returns nothing.
 		/// </para>
 		/// </summary>
-		/// <param name="this">(extension method main parameter) (ref parameter) The value.</param>
+		/// <param name="this">(<see langword="this ref"/> parameter) The value.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void ReverseBits(this ref int @this)
 		{

@@ -218,9 +218,11 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Deconstruct this instance.
 		/// </summary>
-		/// <param name="solverName">(out parameter) The solver's name.</param>
+		/// <param name="solverName">
+		/// (<see langword="out"/> parameter) The solver's name.
+		/// </param>
 		/// <param name="hasSolved">
-		/// (out parameter) Indicates whether the puzzle has been solved.
+		/// (<see langword="out"/> parameter) Indicates whether the puzzle has been solved.
 		/// </param>
 		public void Deconstruct(out string solverName, out bool hasSolved) =>
 			(solverName, hasSolved) = (SolverName, HasSolved);
@@ -229,12 +231,14 @@ namespace Sudoku.Solving
 		/// Deconstruct this instance.
 		/// </summary>
 		/// <param name="hasSolved">
-		/// (out parameter) Indicates whether the puzzle has been solved.
+		/// (<see langword="out"/> parameter) Indicates whether the puzzle has been solved.
 		/// </param>
 		/// <param name="solvingStepsCount">
-		/// (out parameter) The total number of all solving steps.
+		/// (<see langword="out"/> parameter) The total number of all solving steps.
 		/// </param>
-		/// <param name="solvingSteps">(out parameter) The all solving steps.</param>
+		/// <param name="solvingSteps">
+		/// (<see langword="out"/> parameter) The all solving steps.
+		/// </param>
 		public void Deconstruct(
 			out bool hasSolved,
 			out int solvingStepsCount, out IReadOnlyList<TechniqueInfo>? solvingSteps) =>
@@ -243,10 +247,18 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Deconstruct this instance.
 		/// </summary>
-		/// <param name="total">(out parameter) The total difficulty.</param>
-		/// <param name="max">(out parameter) The maximum difficulty.</param>
-		/// <param name="pearl">(out parameter) The pearl difficulty.</param>
-		/// <param name="diamond">(out parameter) The diamond difficulty.</param>
+		/// <param name="total">
+		/// (<see langword="out"/> parameter) The total difficulty.
+		/// </param>
+		/// <param name="max">
+		/// (<see langword="out"/> parameter) The maximum difficulty.
+		/// </param>
+		/// <param name="pearl">
+		/// (<see langword="out"/> parameter) The pearl difficulty.
+		/// </param>
+		/// <param name="diamond">
+		/// (<see langword="out"/> parameter) The diamond difficulty.
+		/// </param>
 		public void Deconstruct(
 			out decimal? total, out decimal max,
 			out decimal? pearl, out decimal? diamond) =>
@@ -255,15 +267,21 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Deconstruct this instance.
 		/// </summary>
-		/// <param name="puzzle">(out parameter) The initial puzzle.</param>
+		/// <param name="puzzle">
+		/// (<see langword="out"/> parameter) The initial puzzle.
+		/// </param>
 		/// <param name="hasSolved">
-		/// (out parameter) Indicates whether the puzzle has been solved.
+		/// (<see langword="out"/> parameter) Indicates whether the puzzle has been solved.
 		/// </param>
 		/// <param name="elapsedTime">
-		/// (out parameter) The elapsed time during solving.
+		/// (<see langword="out"/> parameter) The elapsed time during solving.
 		/// </param>
-		/// <param name="solution">(out parameter) The solution.</param>
-		/// <param name="difficultyLevel">(out parameter) The difficulty level.</param>
+		/// <param name="solution">
+		/// (<see langword="out"/> parameter) The solution.
+		/// </param>
+		/// <param name="difficultyLevel">
+		/// (<see langword="out"/> parameter) The difficulty level.
+		/// </param>
 		public void Deconstruct(
 			out Grid puzzle, out bool hasSolved, out TimeSpan elapsedTime,
 			out Grid? solution, out DifficultyLevel difficultyLevel) =>
@@ -272,21 +290,29 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Deconstruct this instance.
 		/// </summary>
-		/// <param name="puzzle">(out parameter) The initial puzzle.</param>
+		/// <param name="puzzle">
+		/// (<see langword="out"/> parameter) The initial puzzle.
+		/// </param>
 		/// <param name="hasSolved">
-		/// (out parameter) Indicates whether the puzzle has solved.
+		/// (<see langword="out"/> parameter) Indicates whether the puzzle has solved.
 		/// </param>
 		/// <param name="elapsedTime">
-		/// (out parameter) The elapsed time during solving.
+		/// (<see langword="out"/> parameter) The elapsed time during solving.
 		/// </param>
-		/// <param name="solution">(out parameter) The solution.</param>
-		/// <param name="difficultyLevel">(out parameter) The difficulty level.</param>
+		/// <param name="solution">
+		/// (<see langword="out"/> parameter) The solution.
+		/// </param>
+		/// <param name="difficultyLevel">
+		/// (<see langword="out"/> parameter) The difficulty level.
+		/// </param>
 		/// <param name="solvingStepsCount">
-		/// (out parameter) The number of solving steps recorded.
+		/// (<see langword="out"/> parameter) The number of solving steps recorded.
 		/// </param>
-		/// <param name="solvingSteps">(out parameter) All solving steps.</param>
+		/// <param name="solvingSteps">
+		/// (<see langword="out"/> parameter) All solving steps.
+		/// </param>
 		/// <param name="additionalMessage">
-		/// (out parameter) The additional message.
+		/// (<see langword="out"/> parameter) The additional message.
 		/// </param>
 		public void Deconstruct(
 			out Grid puzzle, out bool hasSolved, out TimeSpan elapsedTime,

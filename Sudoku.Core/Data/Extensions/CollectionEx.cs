@@ -18,7 +18,7 @@ namespace Sudoku.Data.Extensions
 		/// <typeparam name="T">
 		/// The type of each element. Should be not <see langword="null"/>.
 		/// </typeparam>
-		/// <param name="this">(extension method main parameter) The collection.</param>
+		/// <param name="this">(<see langword="this"/> parameter) The collection.</param>
 		/// <param name="values">
 		/// The values you want to add to the end of the collection.
 		/// </param>
@@ -36,7 +36,7 @@ namespace Sudoku.Data.Extensions
 		/// <typeparam name="T">
 		/// The type of all elements. Should be not <see langword="null"/>.
 		/// </typeparam>
-		/// <param name="this">(extension method main parameter) The list.</param>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		/// <param name="item">The item to add.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void AddIfDoesNotContain<T>(this ICollection<T> @this, T item)

@@ -14,7 +14,7 @@ namespace Sudoku.Data.Extensions
 		/// Remove the last element of the specified list.
 		/// </summary>
 		/// <typeparam name="T">The type of this element.</typeparam>
-		/// <param name="this">(extension method main parameter) The list.</param>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		public static void RemoveLastElement<T>(this IList<T> @this) =>
 			@this.RemoveAt(@this.Count - 1);
 	}

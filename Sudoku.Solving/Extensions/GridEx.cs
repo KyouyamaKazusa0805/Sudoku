@@ -15,15 +15,15 @@ namespace Sudoku.Solving.Extensions
 		/// <summary>
 		/// Deconstruct the grid.
 		/// </summary>
-		/// <param name="this">(extension method main parameter) The grid.</param>
+		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <param name="emptyCells">
-		/// (out parameter) The distribution of all empty cells.
+		/// (<see langword="out"/> parameter) The distribution of all empty cells.
 		/// </param>
 		/// <param name="bivalueCells">
-		/// (out parameter) The distributions of all bivalue cells.
+		/// (<see langword="out"/> parameter) The distributions of all bivalue cells.
 		/// </param>
 		/// <param name="digitsDistributions">
-		/// (out parameter) The distributions of all digits.
+		/// (<see langword="out"/> parameter) The distributions of all digits.
 		/// </param>
 		public static void Deconstruct(
 			this Grid @this, out GridMap emptyCells,

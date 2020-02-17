@@ -1731,7 +1731,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <param name="grid">The grid.</param>
 		/// <param name="allCells">All cells.</param>
 		/// <param name="digits">All digits.</param>
-		/// <param name="digitKindsMask">(out parameter) The digit kind mask.</param>
+		/// <param name="digitKindsMask">(<see langword="out"/> parameter) The digit kind mask.</param>
 		/// <returns>The result mask.</returns>
 		private static short GetOtherDigitMask(
 			Grid grid, IEnumerable<int> allCells, IEnumerable<int> digits,

@@ -59,7 +59,7 @@ namespace Sudoku.Solving.Utils
 		/// </summary>
 		/// <param name="cell1">The cell offset 1.</param>
 		/// <param name="cell2">The cell offset 2.</param>
-		/// <param name="sameRegions">(out parameter) All same regions of two cells.</param>
+		/// <param name="sameRegions">(<see langword="out"/> parameter) All same regions of two cells.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsSameRegion(int cell1, int cell2, out int[] sameRegions)

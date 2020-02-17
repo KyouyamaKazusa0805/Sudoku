@@ -221,7 +221,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// <param name="offsets">All cell offsets.</param>
 		/// <param name="digits">All digits.</param>
 		/// <param name="isLocked">
-		/// (out parameter) Indicates whether the subset is locked.
+		/// (<see langword="out"/> parameter) Indicates whether the subset is locked.
 		/// </param>
 		/// <returns>All conclusions.</returns>
 		private static IReadOnlyList<Conclusion> GetNakedSubsetConclusions(
@@ -490,9 +490,9 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// The mask that calculated in <see cref="TakeAllHiddenSubsetsBySize(Grid, int)"/>.
 		/// </param>
 		/// <param name="digits">All digits.</param>
-		/// <param name="cellOffsetList">(out parameter) All cell offsets.</param>
+		/// <param name="cellOffsetList">(<see langword="out"/> parameter) All cell offsets.</param>
 		/// <param name="highlightedCandidates">
-		/// (out parameter) All highlight candidate offsets.
+		/// (<see langword="out"/> parameter) All highlight candidate offsets.
 		/// </param>
 		/// <returns>All conclusions.</returns>
 		private static IReadOnlyList<Conclusion> GetHiddenSubsetsConclusions(
