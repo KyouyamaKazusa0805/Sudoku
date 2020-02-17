@@ -118,7 +118,6 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 							continue;
 						}
 
-						int[] unionCells = tempUnionMap.ToArray();
 						SearchSdcRecursively(
 							result, grid, takingCellsCount, nonBlock, block,
 							new List<int>(interEmptyCells), emptyMap, tempUnionMap.ToArray(),
@@ -133,16 +132,17 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 
 		#region SdC utils
 		private void SearchSdcRecursively(
-			IList<SueDeCoqTechniqueInfo> result, Grid grid, int takingCellsCount,
+			IList<SueDeCoqTechniqueInfo> result, Grid grid, int restCellsToTakeCount,
 			int nonBlock, int block, List<int> takenCells, GridMap emptyMap,
-			int[] unionMapArray, Span<int> interCells, int curIndexOfArray)
+			ReadOnlySpan<int> unionMapArray, ReadOnlySpan<int> interCells,
+			int curIndexOfArray)
 		{
 			if (takenCells.Count > 9)
 			{
 				return;
 			}
 
-			if (takingCellsCount <= 0)
+			if (restCellsToTakeCount <= 0)
 			{
 				// Now check whether all taken cells can be formed a SdC.
 				if (CheckSdC(grid, takenCells, nonBlock, block, out var digitRegions))
@@ -248,6 +248,12 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 							als2Digits: als2Digits.ToArray(),
 							interCells: interCells.ToArray(),
 							interDigits: interMask.GetAllSets().ToArray()));
+
+					return;
+				}
+				if (takenCells.Count == 9)
+				{
+					return;
 				}
 			}
 
@@ -262,7 +268,7 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 				takenCells.Add(cell);
 
 				SearchSdcRecursively(
-					result, grid, takingCellsCount - 1, nonBlock, block,
+					result, grid, restCellsToTakeCount - 1, nonBlock, block,
 					takenCells, emptyMap, unionMapArray, interCells, curIndexOfArray + 1);
 
 				takenCells.Remove(cell);
@@ -280,6 +286,7 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 				return false;
 			}
 
+			// Check the number of different digits and the same number of cells.
 			short mask = 0;
 			foreach (int takenCell in takenCells)
 			{

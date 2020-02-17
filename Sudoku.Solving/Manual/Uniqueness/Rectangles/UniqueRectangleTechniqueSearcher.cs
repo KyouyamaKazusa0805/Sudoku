@@ -46,7 +46,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			{
 				foreach (int[] cells in TraversingTable)
 				{
-					if (urMode && cells.Any(c => grid.GetCellStatus(c) != CellStatus.Empty)
+					if (cells.All(cell => grid.GetCellStatus(cell) == CellStatus.Modifiable)
+						|| urMode && cells.Any(c => grid.GetCellStatus(c) != CellStatus.Empty)
 						|| !urMode && cells.Any(c => grid.GetCellStatus(c) == CellStatus.Given))
 					{
 						continue;
