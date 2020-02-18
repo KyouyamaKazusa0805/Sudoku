@@ -54,6 +54,20 @@
             <param name="key">The key.</param>
             <param name="value">The value.</param>
         </member>
+        <member name="T:Sudoku.Data.Extensions.EnumEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Enum"/>.
+            </summary>
+            <seealso cref="T:System.Enum"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.EnumEx.GetCustomName``1(``0)">
+            <summary>
+            Get the custom name of the specified enumeration field.
+            </summary>
+            <typeparam name="TEnum">The type of the enumeration field.</typeparam>
+            <param name="this">The instance.</param>
+            <returns>The custom name.</returns>
+        </member>
         <member name="T:Sudoku.Data.Extensions.Int16Ex">
             <summary>
             Provides extension methods on <see cref="T:System.Int16"/>.
@@ -1614,6 +1628,26 @@
             </para>
             </summary>
         </member>
+        <member name="T:Sudoku.Data.Meta.SymmetricalType">
+            <summary>
+            Define a symmetrical type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.SymmetricalType.Central">
+            <summary>
+            Indicates the central symmetrical type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.SymmetricalType.Diagonal">
+            <summary>
+            Indicates the diagnoal symmetrical type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.SymmetricalType.AntiDiagonal">
+            <summary>
+            Indicates the anti-diagonal symmetrical type.
+            </summary>
+        </member>
         <member name="T:Sudoku.Data.ValueChangedEventArgs">
             <summary>
             Provides the data for the event 'ValueChanged'.
@@ -1804,6 +1838,22 @@
         </member>
         <member name="M:Sudoku.Drawing.View.ToString">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.NameAttribute">
+            <summary>
+            Mark on a field of an enumeration type to set a custom name to output.
+            </summary>
+        </member>
+        <member name="M:Sudoku.NameAttribute.#ctor(System.String)">
+            <summary>
+            Initializes an instance with the specified name.
+            </summary>
+            <param name="name">The name.</param>
+        </member>
+        <member name="P:Sudoku.NameAttribute.Name">
+            <summary>
+            Indicates the name.
+            </summary>
         </member>
         <member name="T:Sudoku.Runtime.MultipleSolutionsException">
             <summary>

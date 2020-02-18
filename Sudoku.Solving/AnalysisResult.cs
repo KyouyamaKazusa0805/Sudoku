@@ -425,7 +425,7 @@ namespace Sudoku.Solving
 					var (index, _) = (ValueTuple<int, TechniqueInfo>)BottleNeckData;
 					for (int i = 0; i < SolvingSteps.Count; i++)
 					{
-						if (i >= index && (format?.Contains('m') ?? false))
+						if (i > index && (format?.Contains('m') ?? false))
 						{
 							sb.AppendLine("...");
 							break;

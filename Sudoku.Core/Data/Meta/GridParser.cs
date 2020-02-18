@@ -73,8 +73,8 @@ namespace Sudoku.Data.Meta
 			else
 			{
 				throw new ArgumentException(
-				message: $"Argument cannot be parsed and converted to target type {typeof(Grid)}.",
-				paramName: nameof(ParsingValue));
+					message: $"Argument cannot be parsed and converted to target type {typeof(Grid)}.",
+					paramName: nameof(ParsingValue));
 			}
 		}
 

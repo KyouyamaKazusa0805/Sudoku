@@ -12,6 +12,7 @@ using Sudoku.Solving.Manual.LastResorts;
 using Sudoku.Solving.Manual.Sdps;
 using Sudoku.Solving.Manual.Singles;
 using Sudoku.Solving.Manual.Subsets;
+using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Solving.Manual.Uniqueness.Bugs;
 using Sudoku.Solving.Manual.Uniqueness.Loops;
 using Sudoku.Solving.Manual.Uniqueness.Rectangles;
@@ -235,6 +236,25 @@ namespace Sudoku.Solving.Manual
 			Grid grid, Grid cloneation, List<TechniqueInfo> steps,
 			Grid solution, Intersection[,] intersection, GridMap[] regionMaps)
 		{
+			// Check symmetry first.
+			var symmetrySearcher = new GurthSymmetricalPlacementTechniqueSearcher();
+			var tempStep = symmetrySearcher.TakeOne(cloneation);
+			if (!(tempStep is null))
+			{
+				if (CheckEliminations(solution, tempStep.Conclusions))
+				{
+					tempStep.ApplyTo(cloneation);
+					steps.Add(tempStep);
+					goto Label_Searching;
+				}
+				else
+				{
+					throw new WrongHandlingException(grid);
+				}
+			}
+
+		Label_Searching:
+			// Start searching.
 			var searchers = new TechniqueSearcher[]
 			{
 				new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit),

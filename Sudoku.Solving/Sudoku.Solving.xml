@@ -2454,6 +2454,66 @@
             </param>
             <returns>All conclusions.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo">
+            <summary>
+            Provides a usage of Gurth's symmetrical placement.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Meta.SymmetricalType,System.Nullable{System.Int32}[])">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="symmetricalType">The symmetrical type.</param>
+            <param name="mappingTable">The mapping table.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo.SymmetricalType">
+            <summary>
+            Indicates the symmetrical type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo.MappingTable">
+            <summary>
+            Indicates the mapping table.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher">
+            <summary>
+            Encapsulates a Gurth's symmetrical placement technique searcher.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.Priority">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Symmetry.SymmetryTechniqueInfo">
+            <summary>
+            Provides a usage of symmetry technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Symmetry.SymmetryTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Symmetry.SymmetryTechniqueSearcher">
+            <summary>
+            Encapsulates a symmetry technique searcher.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveMultipleTrueCandidatesTechniqueInfo">
             <summary>
             Provides a usage of BUG+n technique.
