@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.SingleDigitPatterns
+﻿namespace Sudoku.Solving.Manual.Sdps
 {
 	/// <summary>
 	/// Encapsulates a single-digit pattern technique searcher.

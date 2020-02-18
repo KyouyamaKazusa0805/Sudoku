@@ -5,7 +5,7 @@ using Sudoku.Data.Meta;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
-namespace Sudoku.Solving.Manual.SingleDigitPatterns
+namespace Sudoku.Solving.Manual.Sdps
 {
 	/// <summary>
 	/// Encapsulates a two strong links technique searcher.

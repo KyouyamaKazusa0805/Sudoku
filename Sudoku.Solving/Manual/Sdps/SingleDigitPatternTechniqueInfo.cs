@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Drawing;
 
-namespace Sudoku.Solving.Manual.SingleDigitPatterns
+namespace Sudoku.Solving.Manual.Sdps
 {
 	/// <summary>
 	/// Provides a usage of single-digit pattern technique.

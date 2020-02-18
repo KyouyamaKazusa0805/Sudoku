@@ -9,7 +9,7 @@ using Sudoku.Solving.Manual.Alses;
 using Sudoku.Solving.Manual.Fishes.Basic;
 using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.LastResorts;
-using Sudoku.Solving.Manual.SingleDigitPatterns;
+using Sudoku.Solving.Manual.Sdps;
 using Sudoku.Solving.Manual.Singles;
 using Sudoku.Solving.Manual.Subsets;
 using Sudoku.Solving.Manual.Uniqueness.Bugs;

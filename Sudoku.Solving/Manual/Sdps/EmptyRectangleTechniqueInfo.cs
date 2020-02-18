@@ -2,7 +2,7 @@
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
-namespace Sudoku.Solving.Manual.SingleDigitPatterns
+namespace Sudoku.Solving.Manual.Sdps
 {
 	/// <summary>
 	/// Provides a usage of empty rectangle technique.

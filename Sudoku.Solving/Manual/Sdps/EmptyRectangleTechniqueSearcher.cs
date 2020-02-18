@@ -7,7 +7,7 @@ using Sudoku.Drawing;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
 
-namespace Sudoku.Solving.Manual.SingleDigitPatterns
+namespace Sudoku.Solving.Manual.Sdps
 {
 	/// <summary>
 	/// Encapsulates an empty rectangle technique searcher.
