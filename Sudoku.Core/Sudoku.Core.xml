@@ -932,10 +932,17 @@
         </member>
         <member name="M:Sudoku.Data.Meta.Grid.Parse(System.String)">
             <summary>
+            <para>
             Parses a string value and converts to this type.
+            </para>
+            <para>
+            If you want to parse a PM grid, we recommend you use the method
+            <see cref="M:Sudoku.Data.Meta.Grid.Parse(System.String,Sudoku.Data.Meta.GridParsingType)"/> instead of this method.
+            </para>
             </summary>
             <param name="str">The string.</param>
             <returns>The result instance had converted.</returns>
+            <seealso cref="M:Sudoku.Data.Meta.Grid.Parse(System.String,Sudoku.Data.Meta.GridParsingType)"/>
         </member>
         <member name="M:Sudoku.Data.Meta.Grid.Parse(System.String,Sudoku.Data.Meta.GridParsingType)">
             <summary>

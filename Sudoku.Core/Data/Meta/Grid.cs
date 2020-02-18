@@ -766,10 +766,17 @@ namespace Sudoku.Data.Meta
 
 
 		/// <summary>
+		/// <para>
 		/// Parses a string value and converts to this type.
+		/// </para>
+		/// <para>
+		/// If you want to parse a PM grid, we recommend you use the method
+		/// <see cref="Parse(string, GridParsingType)"/> instead of this method.
+		/// </para>
 		/// </summary>
 		/// <param name="str">The string.</param>
 		/// <returns>The result instance had converted.</returns>
+		/// <seealso cref="Parse(string, GridParsingType)"/>
 		public static Grid Parse(string str) => new GridParser(str).Parse();
 
 		/// <summary>
