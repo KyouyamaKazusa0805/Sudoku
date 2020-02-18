@@ -129,11 +129,21 @@
             is not solved, this value will be <see langword="null"/>.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.BottleNeck">
+            <summary>
+            Indicates the bottle neck during the whole grid solving.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.AnalysisResult.SolvingSteps">
             <summary>
             Indicates the solving steps during solving. If the puzzle is not
             solved and the manual solver cannot find out any steps, or else
             the puzzle is solved by other solvers, this value will be <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.BottleNeckData">
+            <summary>
+            The bottleneck data.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.AnalysisResult.SolvingStepsGrouped">
@@ -203,6 +213,29 @@
             </param>
             <param name="difficultyLevel">
             (<see langword="out"/> parameter) The difficulty level.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.Meta.Grid@,System.Boolean@,Sudoku.Data.Meta.Grid@,Sudoku.Solving.DifficultyLevel@,Sudoku.Solving.TechniqueInfo@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo}@)">
+            <summary>
+            Deconstruct this instance.
+            </summary>
+            <param name="puzzle">
+            (<see langword="out"/> parameter) The initial puzzle.
+            </param>
+            <param name="hasSolved">
+            (<see langword="out"/> parameter) Indicates whether the grid has been solved.
+            </param>
+            <param name="solution">
+            (<see langword="out"/> parameter) The solution.
+            </param>
+            <param name="difficultyLevel">
+            (<see langword="out"/> parameter) The difficulty level.
+            </param>
+            <param name="bottleNeck">
+            (<see langword="out"/> parameter) The bottleneck.
+            </param>
+            <param name="solvingSteps">
+            (<see langword="out"/> parameter) All steps.
             </param>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.Meta.Grid@,System.Boolean@,System.TimeSpan@,Sudoku.Data.Meta.Grid@,Sudoku.Solving.DifficultyLevel@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo}@,System.String@)">

@@ -191,11 +191,43 @@ namespace Sudoku.Solving
 		public Grid? Solution { get; }
 
 		/// <summary>
+		/// Indicates the bottle neck during the whole grid solving.
+		/// </summary>
+		public TechniqueInfo? BottleNeck => BottleNeckData?._info;
+
+		/// <summary>
 		/// Indicates the solving steps during solving. If the puzzle is not
 		/// solved and the manual solver cannot find out any steps, or else
 		/// the puzzle is solved by other solvers, this value will be <see langword="null"/>.
 		/// </summary>
 		public IReadOnlyList<TechniqueInfo>? SolvingSteps { get; }
+
+		/// <summary>
+		/// The bottleneck data.
+		/// </summary>
+		private (int _stepIndex, TechniqueInfo _info)? BottleNeckData
+		{
+			get
+			{
+				if (SolvingSteps is null)
+				{
+					return null;
+				}
+
+				for (int i = SolvingSteps.Count - 1; i >= 0; i--)
+				{
+					var step = SolvingSteps[i];
+					if (!(step is SingleTechniqueInfo))
+					{
+						return (i, step);
+					}
+				}
+
+				// If code goes to here, all steps are more difficult than single techniques.
+				// Get the first one is okay.
+				return (0, SolvingSteps[0]);
+			}
+		}
 
 		/// <summary>
 		/// Indicates all groups that grouped by solving steps during solving.
@@ -294,6 +326,33 @@ namespace Sudoku.Solving
 		/// (<see langword="out"/> parameter) The initial puzzle.
 		/// </param>
 		/// <param name="hasSolved">
+		/// (<see langword="out"/> parameter) Indicates whether the grid has been solved.
+		/// </param>
+		/// <param name="solution">
+		/// (<see langword="out"/> parameter) The solution.
+		/// </param>
+		/// <param name="difficultyLevel">
+		/// (<see langword="out"/> parameter) The difficulty level.
+		/// </param>
+		/// <param name="bottleNeck">
+		/// (<see langword="out"/> parameter) The bottleneck.
+		/// </param>
+		/// <param name="solvingSteps">
+		/// (<see langword="out"/> parameter) All steps.
+		/// </param>
+		public void Deconstruct(
+			out Grid puzzle, out bool hasSolved, out Grid? solution,
+			out DifficultyLevel difficultyLevel, out TechniqueInfo? bottleNeck,
+			out IReadOnlyList<TechniqueInfo>? solvingSteps) =>
+			(puzzle, hasSolved, solution, difficultyLevel, bottleNeck, solvingSteps) = (Puzzle, HasSolved, Solution, DifficultyLevel, BottleNeck, SolvingSteps);
+
+		/// <summary>
+		/// Deconstruct this instance.
+		/// </summary>
+		/// <param name="puzzle">
+		/// (<see langword="out"/> parameter) The initial puzzle.
+		/// </param>
+		/// <param name="hasSolved">
 		/// (<see langword="out"/> parameter) Indicates whether the puzzle has solved.
 		/// </param>
 		/// <param name="elapsedTime">
@@ -361,13 +420,24 @@ namespace Sudoku.Solving
 			if (!(SolvingSteps is null) && SolvingSteps.Count != 0)
 			{
 				sb.AppendLine("Solving steps:");
-				foreach (var info in SolvingSteps)
+				if (!(BottleNeckData is null))
 				{
-					string infoStr = formatLower?.Contains('s') ?? false ? info.ToSimpleString() : info.ToString();
-					sb.AppendLine($"{$"({info.Difficulty}",5:0.0}) {infoStr}");
-				}
+					var (index, _) = (ValueTuple<int, TechniqueInfo>)BottleNeckData;
+					for (int i = 0; i < SolvingSteps.Count; i++)
+					{
+						if (i >= index && (format?.Contains('m') ?? false))
+						{
+							sb.AppendLine("...");
+							break;
+						}
 
-				sb.AppendLine(separator);
+						var info = SolvingSteps[i];
+						string infoStr = formatLower?.Contains('s') ?? false ? info.ToSimpleString() : info.ToString();
+						sb.AppendLine($"{$"({info.Difficulty}",5:0.0}) {infoStr}");
+					}
+
+					sb.AppendLine(separator);
+				}
 			}
 
 			// Print solving step statistics.
