@@ -1044,25 +1044,25 @@
             <param name="grid">The grid.</param>
             <returns>All grid maps.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Manual.AlmostLockedSets.AlmostLockedSetTechniqueInfo">
+        <member name="T:Sudoku.Solving.Manual.Alses.AlmostLockedSetTechniqueInfo">
             <summary>
             Provides a usage of almost locked set (ALS) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.AlmostLockedSets.AlmostLockedSetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlmostLockedSetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.AlmostLockedSets.AlmostLockedSetTechniqueSearcher">
+        <member name="T:Sudoku.Solving.Manual.Alses.AlmostLockedSetTechniqueSearcher">
             <summary>
             Encapsulates an almost locked set (ALS) technique searcher.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo">
+        <member name="T:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueInfo">
             <summary>
             Provides a usage of sue de coq (SdC) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -1075,73 +1075,73 @@
             <param name="interCells">Intersection cells.</param>
             <param name="interDigits">Intersection digits.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.Als1Cells">
+        <member name="P:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueInfo.Als1Cells">
             <summary>
             Indicates all cells in ALS 1.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.Als2Cells">
+        <member name="P:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueInfo.Als2Cells">
             <summary>
             Indicates all cells in ALS 2.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.Als1Digits">
+        <member name="P:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueInfo.Als1Digits">
             <summary>
             Indicates all digits in ALS 1.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.Als2Digits">
+        <member name="P:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueInfo.Als2Digits">
             <summary>
             Indicates all digits in ALS 2.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.IntersectionCells">
+        <member name="P:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueInfo.IntersectionCells">
             <summary>
             Indicates all intersection cells.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.IntersectionDigits">
+        <member name="P:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueInfo.IntersectionDigits">
             <summary>
             Indicates all intersection digits.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.Name">
+        <member name="P:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueInfo.Name">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.DifficultyLevel">
+        <member name="P:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueInfo.ToString">
+        <member name="M:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueSearcher">
+        <member name="T:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueSearcher">
             <summary>
             Encapsulates a sue de coq (SdC) technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueSearcher.TraversingSeries">
+        <member name="F:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueSearcher.TraversingSeries">
             <summary>
             The corresponding line regions to iterate on.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueSearcher._regionMaps">
+        <member name="F:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueSearcher._regionMaps">
             <summary>
             All region maps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueSearcher.#ctor(Sudoku.Data.Meta.GridMap[])">
+        <member name="M:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueSearcher.#ctor(Sudoku.Data.Meta.GridMap[])">
             <summary>
             Initializes an instance with the specified information.
             </summary>
             <param name="regionMaps">All regions grid maps.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueSearcher.Priority">
+        <member name="P:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo">
