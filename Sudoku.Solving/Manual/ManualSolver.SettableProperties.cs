@@ -66,9 +66,12 @@
 		/// the hint will influence the difficulty rating during solving the puzzle.
 		/// If the puzzle is so easy (in other words, the grid does not need check
 		/// it), this option will make the difficulty rating of the puzzle much more
-		/// higher than that when the option is <see langword="false"/>.
+		/// higher than that when the option is <see langword="false"/>. In addtion,
+		/// if the option <see cref="AnalyzeDifficultyStrictly"/> is <see langword="true"/>,
+		/// this option will be ignored.
 		/// </para>
 		/// </summary>
+		/// <seealso cref="AnalyzeDifficultyStrictly"/>
 		public bool CheckGurthSymmetricalPlacement { get; set; } = false;
 
 		/// <summary>
