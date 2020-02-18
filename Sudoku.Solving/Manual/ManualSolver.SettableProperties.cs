@@ -55,6 +55,24 @@
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether the solver should check Gurth's symmetrical placement
+		/// at the initial grid.
+		/// </para>
+		/// <para>
+		/// The value is <see langword="false"/> in default case. In addition,
+		/// if the value is <see langword="true"/>, the solver will check the symmetry
+		/// of the grid at initial. If the grid is symmetrical grid, the solver
+		/// will give you a hint about the technique of symmetrical placement. However,
+		/// the hint will influence the difficulty rating during solving the puzzle.
+		/// If the puzzle is so easy (in other words, the grid does not need check
+		/// it), this option will make the difficulty rating of the puzzle much more
+		/// higher than that when the option is <see langword="false"/>.
+		/// </para>
+		/// </summary>
+		public bool CheckGurthSymmetricalPlacement { get; set; } = false;
+
+		/// <summary>
+		/// <para>
 		/// Indicates whether the solver should check
 		/// incompleted uniqueness patterns.
 		/// </para>
