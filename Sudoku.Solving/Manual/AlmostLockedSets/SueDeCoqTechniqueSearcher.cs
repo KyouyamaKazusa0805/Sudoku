@@ -123,6 +123,14 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 
 						// Get the number of cells to take.
 						int takingCellsCount = kinds - emptyCellsCountInInter;
+						if (takingCellsCount < 2)
+						{
+							// The empty cells in intersection should not form
+							// a normal subset or an ALS.
+							// If the empty cell forms a subset, why we should
+							// check other cells?
+							continue;
+						}
 
 						// Check whether a SdC can be formed in the region.
 						foreach (int cell in interEmptyCells)
