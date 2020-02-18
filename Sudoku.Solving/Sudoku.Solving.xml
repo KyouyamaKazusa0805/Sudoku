@@ -1089,6 +1089,11 @@
             Encapsulates a sue de coq (SdC) technique searcher.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueSearcher.TraversingSeries">
+            <summary>
+            The corresponding line regions to iterate on.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.AlmostLockedSets.SueDeCoqTechniqueSearcher._regionMaps">
             <summary>
             All region maps.

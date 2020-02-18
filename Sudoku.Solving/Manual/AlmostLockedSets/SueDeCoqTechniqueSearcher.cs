@@ -16,6 +16,23 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 	public sealed class SueDeCoqTechniqueSearcher : AlmostLockedSetTechniqueSearcher
 	{
 		/// <summary>
+		/// The corresponding line regions to iterate on.
+		/// </summary>
+		private static readonly int[][] TraversingSeries = new int[9][]
+		{
+			new[] { 9, 10, 11, 18, 19, 20 },
+			new[] { 9, 10, 11, 21, 22, 23 },
+			new[] { 9, 10, 11, 24, 25, 26 },
+			new[] { 12, 13, 14, 18, 19, 20 },
+			new[] { 12, 13, 14, 21, 22, 23 },
+			new[] { 12, 13, 14, 24, 25, 26 },
+			new[] { 15, 16, 17, 18, 19, 20 },
+			new[] { 15, 16, 17, 21, 22, 23 },
+			new[] { 15, 16, 17, 24, 25, 26 },
+		};
+
+
+		/// <summary>
 		/// All region maps.
 		/// </summary>
 		private readonly GridMap[] _regionMaps;
@@ -39,9 +56,9 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 
 			var result = new List<SueDeCoqTechniqueInfo>();
 
-			for (int nonBlock = 9; nonBlock < 27; nonBlock++)
+			for (int block = 0; block < 9; block++)
 			{
-				for (int block = 0; block < 9; block++)
+				foreach (int nonBlock in TraversingSeries[block])
 				{
 					// Get all enumeration grid maps.
 					var nonBlockMap = GridMap.CreateInstance(nonBlock);
