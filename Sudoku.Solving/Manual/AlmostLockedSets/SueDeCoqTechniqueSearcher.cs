@@ -347,7 +347,6 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 			var tempList = new List<(int _digit, IReadOnlyList<int> _region)>();
 			foreach (int digit in mask.GetAllSets())
 			{
-				var tempMap = default(GridMap);
 				int i = 0;
 				var cells = new List<int>();
 				foreach (int cell in takenCells)
@@ -355,17 +354,6 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 					if (grid.CandidateExists(cell, digit))
 					{
 						cells.Add(cell);
-					}
-				}
-				foreach (int cell in cells)
-				{
-					if (i++ == 0)
-					{
-						tempMap = new GridMap(cell);
-					}
-					else
-					{
-						tempMap &= new GridMap(cell);
 					}
 				}
 
@@ -384,6 +372,19 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 				}
 				else
 				{
+					var tempMap = default(GridMap);
+					foreach (int cell in cells)
+					{
+						if (i++ == 0)
+						{
+							tempMap = new GridMap(cell);
+						}
+						else
+						{
+							tempMap &= new GridMap(cell);
+						}
+					}
+
 					int spanningCellsCount = tempMap.Count;
 					if (spanningCellsCount < 9)
 					{
