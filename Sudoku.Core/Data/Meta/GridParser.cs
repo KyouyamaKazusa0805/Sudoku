@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Sudoku.Data.Extensions;
 
@@ -46,6 +47,35 @@ namespace Sudoku.Data.Meta
 			throw new ArgumentException(
 				message: $"Argument cannot be parsed and converted to target type {typeof(Grid)}.",
 				paramName: nameof(ParsingValue));
+		}
+
+		/// <summary>
+		/// To parse the value with a specified grid parsing type.
+		/// </summary>
+		/// <param name="gridParsingType">A specified parsing type.</param>
+		/// <returns>The grid.</returns>
+		/// <exception cref="ArgumentException">
+		/// Throws when failed to parse.
+		/// </exception>
+		public Grid Parse(GridParsingType gridParsingType)
+		{
+			Grid? grid;
+			if (!((grid = new Dictionary<GridParsingType, Func<Grid?>>
+			{
+				[GridParsingType.Susser] = OnParsingSusser,
+				[GridParsingType.Table] = OnParsingSimpleMultilineGrid,
+				[GridParsingType.PencilMarked] = () => OnParsingPencilMarked(false),
+				[GridParsingType.PencilMarkedTreatSingleAsGiven] = () => OnParsingPencilMarked(true)
+			}[gridParsingType]()) is null))
+			{
+				return grid;
+			}
+			else
+			{
+				throw new ArgumentException(
+				message: $"Argument cannot be parsed and converted to target type {typeof(Grid)}.",
+				paramName: nameof(ParsingValue));
+			}
 		}
 
 		/// <summary>

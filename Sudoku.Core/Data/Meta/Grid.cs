@@ -773,6 +773,16 @@ namespace Sudoku.Data.Meta
 		public static Grid Parse(string str) => new GridParser(str).Parse();
 
 		/// <summary>
+		/// Parses a string value and converts to this type,
+		/// using a specified grid parsing type.
+		/// </summary>
+		/// <param name="str">The string.</param>
+		/// <param name="gridParsingType">The grid parsing type.</param>
+		/// <returns>The result instance had converted.</returns>
+		public static Grid Parse(string str, GridParsingType gridParsingType) =>
+			new GridParser(str).Parse(gridParsingType);
+
+		/// <summary>
 		/// Try to parse a string and converts to this type, and returns a
 		/// <see cref="bool"/> value indicating the result of the conversion.
 		/// </summary>
@@ -787,6 +797,32 @@ namespace Sudoku.Data.Meta
 			try
 			{
 				result = Parse(str);
+				return true;
+			}
+			catch
+			{
+				result = null;
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// Try to parse a string and converts to this type, and returns a
+		/// <see cref="bool"/> value indicating the result of the conversion.
+		/// </summary>
+		/// <param name="str">The string.</param>
+		/// <param name="gridParsingType">The grid parsing type.</param>
+		/// <param name="result">
+		/// (<see langword="out"/> parameter) The result parsed. If the conversion is failed,
+		/// this argument will be <see langword="null"/>.
+		/// </param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		public static bool TryParse(
+			string str, GridParsingType gridParsingType, [NotNullWhen(true)] out Grid? result)
+		{
+			try
+			{
+				result = Parse(str, gridParsingType);
 				return true;
 			}
 			catch

@@ -937,12 +937,34 @@
             <param name="str">The string.</param>
             <returns>The result instance had converted.</returns>
         </member>
+        <member name="M:Sudoku.Data.Meta.Grid.Parse(System.String,Sudoku.Data.Meta.GridParsingType)">
+            <summary>
+            Parses a string value and converts to this type,
+            using a specified grid parsing type.
+            </summary>
+            <param name="str">The string.</param>
+            <param name="gridParsingType">The grid parsing type.</param>
+            <returns>The result instance had converted.</returns>
+        </member>
         <member name="M:Sudoku.Data.Meta.Grid.TryParse(System.String,Sudoku.Data.Meta.Grid@)">
             <summary>
             Try to parse a string and converts to this type, and returns a
             <see cref="T:System.Boolean"/> value indicating the result of the conversion.
             </summary>
             <param name="str">The string.</param>
+            <param name="result">
+            (<see langword="out"/> parameter) The result parsed. If the conversion is failed,
+            this argument will be <see langword="null"/>.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.Grid.TryParse(System.String,Sudoku.Data.Meta.GridParsingType,Sudoku.Data.Meta.Grid@)">
+            <summary>
+            Try to parse a string and converts to this type, and returns a
+            <see cref="T:System.Boolean"/> value indicating the result of the conversion.
+            </summary>
+            <param name="str">The string.</param>
+            <param name="gridParsingType">The grid parsing type.</param>
             <param name="result">
             (<see langword="out"/> parameter) The result parsed. If the conversion is failed,
             this argument will be <see langword="null"/>.
@@ -1446,6 +1468,16 @@
             Throws when failed to parse.
             </exception>
         </member>
+        <member name="M:Sudoku.Data.Meta.GridParser.Parse(Sudoku.Data.Meta.GridParsingType)">
+            <summary>
+            To parse the value with a specified grid parsing type.
+            </summary>
+            <param name="gridParsingType">A specified parsing type.</param>
+            <returns>The grid.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when failed to parse.
+            </exception>
+        </member>
         <member name="M:Sudoku.Data.Meta.GridParser.OnParsingSimpleMultilineGrid">
             <summary>
             Parse the value using multiline simple grid (without any candidates).
@@ -1467,6 +1499,38 @@
             Parse the susser format string.
             </summary>
             <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.Data.Meta.GridParsingType">
+            <summary>
+            Represents a grid parsing type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.GridParsingType.Susser">
+            <summary>
+            Indicates the susser format, which means all grid values
+            will be displayed in one line with empty cell character
+            <c>'0'</c> or <c>'.'</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.GridParsingType.PencilMarked">
+            <summary>
+            Indicates the pencil marked grid (PM grid), which means all
+            grid candidates will be displayed using a table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.GridParsingType.PencilMarkedTreatSingleAsGiven">
+            <summary>
+            Indicates the pencil marked grid (PM grid), which means all
+            grid candidates will be displayed using a table. In addition,
+            all single digit will be treated as a given digit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.GridParsingType.Table">
+            <summary>
+            Indicates the table format, which means all grid values
+            will be displayed using a table with empty cell character
+            <c>'0'</c> or <c>'.'</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Data.ValueChangedEventArgs">
             <summary>
