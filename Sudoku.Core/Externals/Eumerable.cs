@@ -79,20 +79,24 @@ namespace System.Linq
 		}
 
 		/// <summary>
-		/// Convert the collection into a read-only list.
+		/// Check whether the specififed list has only one element.
 		/// </summary>
-		/// <typeparam name="TElement">The type of the element.</typeparam>
-		/// <param name="elements">All elements.</param>
-		/// <returns>The read-only list.</returns>
-		public static IReadOnlyList<TElement> ToReadOnlyList<TElement>(
-			this IEnumerable<TElement> elements)
-			where TElement : notnull
+		/// <typeparam name="T">The type of the element.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
+		public static bool HasOnlyOneElement<T>(this IEnumerable<T> @this)
 		{
-			return elements switch
+			int count = 0;
+			var enumerator = @this.GetEnumerator();
+			while (enumerator.MoveNext())
 			{
-				IList<TElement> list => (IReadOnlyList<TElement>)list,
-				_ => new List<TElement>(elements)
-			};
+				if (++count >= 2)
+				{
+					return false;
+				}
+			}
+
+			return true;
 		}
 	}
 }

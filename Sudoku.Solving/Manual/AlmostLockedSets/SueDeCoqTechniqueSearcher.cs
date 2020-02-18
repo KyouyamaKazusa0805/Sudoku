@@ -119,10 +119,9 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 						{
 							mask |= grid.GetCandidatesReversal(cell);
 						}
-						int kinds = mask.CountSet();
 
 						// Get the number of cells to take.
-						int takingCellsCount = kinds - emptyCellsCountInInter;
+						int takingCellsCount = mask.CountSet() - emptyCellsCountInInter;
 						if (takingCellsCount < 2)
 						{
 							// The empty cells in intersection should not form
@@ -280,6 +279,7 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 
 					return;
 				}
+
 				if (takenCells.Count == 9)
 				{
 					return;
@@ -329,7 +329,7 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 
 			// Check the structure spanned two regions.
 			bool all = false;
-			foreach (int region in new[] { nonBlock, block })
+			foreach (int region in stackalloc[] { nonBlock, block })
 			{
 				var map = _regionMaps[region];
 				if (takenCells.All(c => map[c]))
@@ -349,9 +349,14 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 			{
 				var tempMap = default(GridMap);
 				int i = 0;
-				var cells = from cell in takenCells
-							where grid.CandidateExists(cell, digit)
-							select cell;
+				var cells = new List<int>();
+				foreach (int cell in takenCells)
+				{
+					if (grid.CandidateExists(cell, digit))
+					{
+						cells.Add(cell);
+					}
+				}
 				foreach (int cell in cells)
 				{
 					if (i++ == 0)
@@ -364,7 +369,7 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 					}
 				}
 
-				if (cells.Count() == 1)
+				if (cells.Count == 1)
 				{
 					int cell = cells.First();
 					var (r, c, b) = CellUtils.GetRegion(cell);
@@ -372,7 +377,7 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 					{
 						tempList.Add((digit, new[] { nonBlock }));
 					}
-					if (b == block)
+					else if (b == block)
 					{
 						tempList.Add((digit, new[] { block }));
 					}
