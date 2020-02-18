@@ -5,7 +5,7 @@ using System.Linq;
 using Sudoku.Data.Meta;
 using Sudoku.Runtime;
 using Sudoku.Solving.Checking;
-using Sudoku.Solving.Manual.AlmostLockedSets;
+using Sudoku.Solving.Manual.Alses;
 using Sudoku.Solving.Manual.Fishes.Basic;
 using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.LastResorts;

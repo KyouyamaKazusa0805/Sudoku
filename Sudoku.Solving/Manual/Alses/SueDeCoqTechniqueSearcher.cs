@@ -8,7 +8,7 @@ using Sudoku.Drawing;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
 
-namespace Sudoku.Solving.Manual.AlmostLockedSets
+namespace Sudoku.Solving.Manual.Alses
 {
 	/// <summary>
 	/// Encapsulates a sue de coq (SdC) technique searcher.

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Drawing;
 
-namespace Sudoku.Solving.Manual.AlmostLockedSets
+namespace Sudoku.Solving.Manual.Alses
 {
 	/// <summary>
 	/// Provides a usage of almost locked set (ALS) technique.
