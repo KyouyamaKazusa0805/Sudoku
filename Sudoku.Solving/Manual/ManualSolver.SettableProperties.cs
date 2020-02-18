@@ -159,7 +159,7 @@
 		/// <para>
 		/// The value is <see langword="false"/> in default case. Note that
 		/// this option makes the solver search single-digit patterns
-		/// much more slower because it will use enumeration to iterate on
+		/// <c>much more slower</c> because it will use enumeration to iterate on
 		/// all possible patterns of a single digit (46656 patterns in total).
 		/// </para>
 		/// </summary>

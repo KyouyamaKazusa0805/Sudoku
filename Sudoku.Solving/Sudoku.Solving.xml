@@ -1907,7 +1907,7 @@
             <para>
             The value is <see langword="false"/> in default case. Note that
             this option makes the solver search single-digit patterns
-            much more slower because it will use enumeration to iterate on
+            <c>much more slower</c> because it will use enumeration to iterate on
             all possible patterns of a single digit (46656 patterns in total).
             </para>
             </summary>
@@ -1983,12 +1983,12 @@
             <para>The value is <see langword="false"/> in default case.</para>
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.SingleDigitPatterns.EmptyRectangleTechniqueInfo">
+        <member name="T:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo">
             <summary>
             Provides a usage of empty rectangle technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.SingleDigitPatterns.EmptyRectangleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Solving.ConjugatePair)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Solving.ConjugatePair)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -1998,62 +1998,62 @@
             <param name="block">The block.</param>
             <param name="conjugatePair">The conjugate pair.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.SingleDigitPatterns.EmptyRectangleTechniqueInfo.Block">
+        <member name="P:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo.Block">
             <summary>
             The block.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.SingleDigitPatterns.EmptyRectangleTechniqueInfo.ConjugatePair">
+        <member name="P:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo.ConjugatePair">
             <summary>
             Indicates the conjugate pair.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.SingleDigitPatterns.EmptyRectangleTechniqueInfo.Name">
+        <member name="P:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo.Name">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.SingleDigitPatterns.EmptyRectangleTechniqueInfo.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.SingleDigitPatterns.EmptyRectangleTechniqueInfo.DifficultyLevel">
+        <member name="P:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.SingleDigitPatterns.EmptyRectangleTechniqueInfo.ToString">
+        <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.SingleDigitPatterns.EmptyRectangleTechniqueSearcher">
+        <member name="T:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher">
             <summary>
             Encapsulates an empty rectangle technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.SingleDigitPatterns.EmptyRectangleTechniqueSearcher.LinkIds">
+        <member name="F:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.LinkIds">
             <summary>
             Indicates all regions iterating on the specified block
             forming an empty rectangle.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.SingleDigitPatterns.EmptyRectangleTechniqueSearcher._digitDistributions">
+        <member name="F:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher._digitDistributions">
             <summary>
             All digit distributions.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.SingleDigitPatterns.EmptyRectangleTechniqueSearcher._regionMaps">
+        <member name="F:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher._regionMaps">
             <summary>
             All region grid maps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.SingleDigitPatterns.EmptyRectangleTechniqueSearcher.#ctor(Sudoku.Data.Meta.GridMap[])">
+        <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.#ctor(Sudoku.Data.Meta.GridMap[])">
             <summary>
             Initializes an instance with the specified grid.
             </summary>
             <param name="regionMaps">All region maps.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.SingleDigitPatterns.EmptyRectangleTechniqueSearcher.Priority">
+        <member name="P:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.SingleDigitPatterns.EmptyRectangleTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.SingleDigitPatterns.EmptyRectangleTechniqueSearcher.IsEmptyRectangle(Sudoku.Data.Meta.GridMap,System.Int32,System.Int32@,System.Int32@)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.IsEmptyRectangle(Sudoku.Data.Meta.GridMap,System.Int32,System.Int32@,System.Int32@)">
             <summary>
             Check whether the cells form an empty cell.
             </summary>
@@ -2063,12 +2063,12 @@
             <param name="column">(<see langword="out"/> parameter) The column.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Manual.SingleDigitPatterns.SingleDigitPatternTechniqueInfo">
+        <member name="T:Sudoku.Solving.Manual.Sdps.SingleDigitPatternTechniqueInfo">
             <summary>
             Provides a usage of single-digit pattern technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.SingleDigitPatterns.SingleDigitPatternTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.SingleDigitPatternTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -2076,22 +2076,22 @@
             <param name="views">All views.</param>
             <param name="digit">The digit.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.SingleDigitPatterns.SingleDigitPatternTechniqueInfo.Digit">
+        <member name="P:Sudoku.Solving.Manual.Sdps.SingleDigitPatternTechniqueInfo.Digit">
             <summary>
             Indicates the digit.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.SingleDigitPatterns.SingleDigitPatternTechniqueSearcher">
+        <member name="T:Sudoku.Solving.Manual.Sdps.SingleDigitPatternTechniqueSearcher">
             <summary>
             Encapsulates a single-digit pattern technique searcher.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.SingleDigitPatterns.TwoStrongLinksTechniqueInfo">
+        <member name="T:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueInfo">
             <summary>
             Provides a usage of two strong links technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.SingleDigitPatterns.TwoStrongLinksTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -2101,37 +2101,37 @@
             <param name="baseRegion">The base region.</param>
             <param name="targetRegion">The target region.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.SingleDigitPatterns.TwoStrongLinksTechniqueInfo.BaseRegion">
+        <member name="P:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueInfo.BaseRegion">
             <summary>
             Indicates the base region.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.SingleDigitPatterns.TwoStrongLinksTechniqueInfo.TargetRegion">
+        <member name="P:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueInfo.TargetRegion">
             <summary>
             Indicates the target region.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.SingleDigitPatterns.TwoStrongLinksTechniqueInfo.Name">
+        <member name="P:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueInfo.Name">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.SingleDigitPatterns.TwoStrongLinksTechniqueInfo.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.SingleDigitPatterns.TwoStrongLinksTechniqueInfo.DifficultyLevel">
+        <member name="P:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.SingleDigitPatterns.TwoStrongLinksTechniqueInfo.ToString">
+        <member name="M:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.SingleDigitPatterns.TwoStrongLinksTechniqueSearcher">
+        <member name="T:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueSearcher">
             <summary>
             Encapsulates a two strong links technique searcher.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.SingleDigitPatterns.TwoStrongLinksTechniqueSearcher.Priority">
+        <member name="P:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.SingleDigitPatterns.TwoStrongLinksTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo">
