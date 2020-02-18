@@ -275,6 +275,14 @@ namespace Sudoku.Data.Meta
 			_high == other._high && _low == other._low;
 
 		/// <summary>
+		/// Check whether the grid map is fully covered all cells in the specified region.
+		/// </summary>
+		/// <param name="regionOffset">The region offset.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
+		public readonly bool IsCovered(int regionOffset) =>
+			Count - (this - CreateInstance(regionOffset)).Count == 9;
+
+		/// <summary>
 		/// Get the specified index of <see langword="true"/> bits in this instance.
 		/// </summary>
 		/// <param name="index">The true bit index order.</param>

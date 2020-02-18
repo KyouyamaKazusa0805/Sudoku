@@ -21,7 +21,7 @@ namespace Sudoku.Debugging
 				AnalyzeDifficultyStrictly = true,
 				EnableBruteForce = false,
 			};
-			var grid = Grid.Parse("3.9...5.........29.6.....3..3.2...6.7....5.8225.7.4....7.......19.4.3......5..3..");
+			var grid = Grid.Parse("800603540040002068706048010000080201108000090030701080000860070080200004009030820:115 123 327 641 544 752 657 559 659 561 661 579 381 183 583 585 785 586 692");
 			var analysisResult = solver.Solve(grid);
 			Console.WriteLine($"{analysisResult}");
 		}

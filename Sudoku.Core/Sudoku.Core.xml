@@ -1211,6 +1211,13 @@
             value; otherwise, <see langword="false"/>.
             </returns>
         </member>
+        <member name="M:Sudoku.Data.Meta.GridMap.IsCovered(System.Int32)">
+            <summary>
+            Check whether the grid map is fully covered all cells in the specified region.
+            </summary>
+            <param name="regionOffset">The region offset.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Data.Meta.GridMap.ElementAt(System.Int32)">
             <summary>
             Get the specified index of <see langword="true"/> bits in this instance.

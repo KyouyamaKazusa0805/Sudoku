@@ -364,7 +364,7 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 					{
 						tempList.Add((digit, new[] { nonBlock }));
 					}
-					else if (b == block)
+					if (b == block)
 					{
 						tempList.Add((digit, new[] { block }));
 					}
@@ -378,21 +378,18 @@ namespace Sudoku.Solving.Manual.AlmostLockedSets
 						// that candidate.
 						return false;
 					}
-					else if (spanningCellsCount > 9)
+					else
 					{
-						// Two regions found.
-						tempList.Add((digit, new[] { nonBlock, block }));
-					}
-					else // spanningCellsCount == 9
-					{
+						// Two regions found. Check it.
 						var z = new List<int>();
-						short blockMask = tempMap.BlockMask;
-						short rowMask = tempMap.RowMask;
-						short columnMask = tempMap.ColumnMask;
-
-						if (blockMask.CountSet() == 1) z.Add(blockMask.FindFirstSet());
-						if (rowMask.CountSet() == 1) z.Add(rowMask.FindFirstSet() + 9);
-						if (columnMask.CountSet() == 1) z.Add(columnMask.FindFirstSet() + 18);
+						if (tempMap.IsCovered(nonBlock))
+						{
+							z.Add(nonBlock);
+						}
+						if (tempMap.IsCovered(block))
+						{
+							z.Add(block);
+						}
 
 						if (z.Count == 0)
 						{
