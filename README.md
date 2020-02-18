@@ -155,6 +155,7 @@ The program supports technique below at present:
 * Single Digit Patterns: Skyscraper, Two-string Kite, Turbot Fish, Empty Rectangle<br/>同数链式结构：摩天楼、双线风筝、多宝鱼、空矩形
 * Almost Subset Techniques: Sue de Coq<br/>待定数组：融合待定数组
 * Last Resorts: Pattern Overlay Method, Template, Bowman's Bingo, Brute Force<br/>爆破技巧：图案叠加删减、模板、人工试数、计算机试数
+* Other techniques: Gurth's Symmetrical Placement<br/>其它技巧：宇宙法
 
 
 
