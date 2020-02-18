@@ -10,6 +10,7 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DocumentationFile>P:\Projects\Common\Sudoku\Sudoku.Generating\Sudoku.Generating.xml</DocumentationFile>
+		<DefineConstants />
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -11,7 +11,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DefineConstants>TRACE;LAZY_CODE</DefineConstants>
+		<DefineConstants></DefineConstants>
 		<DocumentationFile>P:\Projects\Common\Sudoku\Sudoku.Core\Sudoku.Core.xml</DocumentationFile>
 	</PropertyGroup>
 
