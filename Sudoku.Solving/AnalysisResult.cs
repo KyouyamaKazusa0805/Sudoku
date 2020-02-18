@@ -410,6 +410,7 @@ namespace Sudoku.Solving
 
 			string? formatLower = format?.ToLower();
 			string separator = new string('-', 10);
+			string placeholder = new string(' ', 7);
 			var sb = new StringBuilder();
 
 			// Print header.
@@ -433,7 +434,7 @@ namespace Sudoku.Solving
 
 						var info = SolvingSteps[i];
 						string infoStr = formatLower?.Contains('s') ?? false ? info.ToSimpleString() : info.ToString();
-						sb.AppendLine($"{$"({info.Difficulty}",5:0.0}) {infoStr}");
+						sb.AppendLine($"{(info.ShowDifficulty ? $"({info.Difficulty,5:0.0})" : placeholder)} {infoStr}");
 					}
 
 					sb.AppendLine(separator);

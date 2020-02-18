@@ -23,6 +23,12 @@ namespace Sudoku.Solving
 
 
 		/// <summary>
+		/// Indicates whether the difficulty rating of this technique should be
+		/// shown in the output screen.
+		/// </summary>
+		public virtual bool ShowDifficulty => true;
+
+		/// <summary>
 		/// Indicates the technique name.
 		/// </summary>
 		public abstract string Name { get; }

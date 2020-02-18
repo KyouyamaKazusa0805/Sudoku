@@ -19,8 +19,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 			var result = new List<GurthSymmetricalPlacementTechniqueInfo>();
 
 			CheckCentral(result, grid);
-			// TODO: Check diagonal|anti-diagonal.
-			// TODO: Check X-axis|Y-axis.
+			// TODO: Check diagonal / anti-diagonal.
+			// TODO: Check X-axis / Y-axis.
 
 			return result;
 		}

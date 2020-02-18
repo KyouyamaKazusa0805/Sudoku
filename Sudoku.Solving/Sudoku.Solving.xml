@@ -2478,6 +2478,9 @@
             Indicates the mapping table.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo.ShowDifficulty">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo.Name">
             <inheritdoc/>
         </member>
@@ -4059,6 +4062,12 @@
             </summary>
             <param name="conclusions">The conclusions.</param>
             <param name="views">The views of this solving step.</param>
+        </member>
+        <member name="P:Sudoku.Solving.TechniqueInfo.ShowDifficulty">
+            <summary>
+            Indicates whether the difficulty rating of this technique should be
+            shown in the output screen.
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.TechniqueInfo.Name">
             <summary>
