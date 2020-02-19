@@ -436,7 +436,7 @@ namespace Sudoku.Solving
 
 						var info = SolvingSteps[i];
 						string infoStr = formatLower?.Contains('s') ?? false ? info.ToSimpleString() : info.ToString();
-						sb.AppendLine($"{(info.ShowDifficulty ? $"({info.Difficulty,5:0.0})" : placeholder)} {infoStr}");
+						sb.AppendLine($"{(info.ShowDifficulty ? $"{$"({info.Difficulty}",5:0.0})" : placeholder)} {infoStr}");
 					}
 
 					sb.AppendLine(separator);
