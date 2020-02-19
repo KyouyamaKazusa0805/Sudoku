@@ -18,7 +18,6 @@ namespace Sudoku.Debugging
 			// Manual solver tester.
 			var solver = new ManualSolver
 			{
-				CheckGurthSymmetricalPlacement = true,
 				OptimizedApplyingOrder = true,
 				EnableBruteForce = true,
 			};

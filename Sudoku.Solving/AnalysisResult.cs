@@ -55,8 +55,8 @@ namespace Sudoku.Solving
 			get
 			{
 				return SolvingSteps is null || !SolvingSteps.Any()
-					? 20
-					: SolvingSteps.Max(info => info.Difficulty);
+					? 20m
+					: SolvingSteps.Max(info => info.ShowDifficulty ? info.Difficulty : 0);
 			}
 		}
 
@@ -73,7 +73,8 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
 		/// <seealso cref="SolvingSteps"/>
-		public decimal TotalDifficulty => SolvingSteps?.Sum(info => info.Difficulty) ?? 0;
+		public decimal TotalDifficulty =>
+			SolvingSteps?.Sum(info => info.ShowDifficulty ? info.Difficulty : 0) ?? 0;
 
 		/// <summary>
 		/// <para>
@@ -87,7 +88,8 @@ namespace Sudoku.Solving
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
-		public decimal PearlDifficulty => (SolvingSteps?.FirstOrDefault()?.Difficulty) ?? 0;
+		public decimal PearlDifficulty =>
+			SolvingSteps?.FirstOrDefault(info => info.ShowDifficulty)?.Difficulty ?? 0;
 
 		/// <summary>
 		/// <para>
@@ -115,12 +117,12 @@ namespace Sudoku.Solving
 					}
 					else
 					{
-						var list = new List<TechniqueInfo>(SolvingSteps);
-						for (int i = 1; i < list.Count; i++)
+						for (int i = 1, count = SolvingSteps.Count; i < count; i++)
 						{
-							if (list[i] is SingleTechniqueInfo)
+							var info = SolvingSteps[i - 1];
+							if (info.ShowDifficulty && SolvingSteps[i] is SingleTechniqueInfo)
 							{
-								return list[i - 1].Difficulty;
+								return info.Difficulty;
 							}
 						}
 					}
@@ -168,7 +170,7 @@ namespace Sudoku.Solving
 				{
 					foreach (var step in SolvingSteps)
 					{
-						if (step.DifficultyLevel > maxLevel)
+						if (step.ShowDifficulty && step.DifficultyLevel > maxLevel)
 						{
 							maxLevel = step.DifficultyLevel;
 						}
@@ -217,7 +219,7 @@ namespace Sudoku.Solving
 				for (int i = SolvingSteps.Count - 1; i >= 0; i--)
 				{
 					var step = SolvingSteps[i];
-					if (!(step is SingleTechniqueInfo))
+					if (!(step is SingleTechniqueInfo) && step.ShowDifficulty)
 					{
 						return (i, step);
 					}
