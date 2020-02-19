@@ -61,10 +61,9 @@ namespace Sudoku.Solving.Manual.Alses
 				foreach (int nonBlock in TraversingSeries[block])
 				{
 					// Get all enumeration grid maps.
-					var nonBlockMap = GridMap.CreateInstance(nonBlock);
-					var blockMap = GridMap.CreateInstance(block);
-					var interMap = nonBlockMap & blockMap & emptyMap;
-					var unionMap = (nonBlockMap | blockMap) & emptyMap;
+					var nonBlockMap = _regionMaps[nonBlock] & emptyMap;
+					var blockMap = _regionMaps[block] & emptyMap;
+					var interMap = nonBlockMap & blockMap;
 
 					// Get the number of empty cells in the specified intersection cells
 					// and check the number is no less than 2.
@@ -109,6 +108,7 @@ namespace Sudoku.Solving.Manual.Alses
 						});
 					}
 
+					var unionMap = (nonBlockMap | blockMap) & emptyMap;
 					foreach (int[] interEmptyCells in iterationInterCells)
 					{
 						var tempUnionMap = unionMap;
@@ -146,10 +146,11 @@ namespace Sudoku.Solving.Manual.Alses
 							continue;
 						}
 
+						var takenCellsMap = new GridMap(interEmptyCells);
 						SearchSdcRecursively(
 							result, grid, takingCellsCount, nonBlock, block,
-							new List<int>(interEmptyCells), emptyMap, tempUnionMap.ToArray(),
-							interCells, 0);
+							takenCellsMap, tempUnionMap - takenCellsMap,
+							emptyMap, tempUnionMap.ToArray(), interCells, 0);
 					}
 				}
 			}
@@ -161,11 +162,11 @@ namespace Sudoku.Solving.Manual.Alses
 		#region SdC utils
 		private void SearchSdcRecursively(
 			IList<SueDeCoqTechniqueInfo> result, Grid grid, int restCellsToTakeCount,
-			int nonBlock, int block, List<int> takenCells, GridMap emptyMap,
+			int nonBlock, int block, GridMap takenCellsMap, GridMap restMap, GridMap emptyMap,
 			ReadOnlySpan<int> unionMapArray, ReadOnlySpan<int> interCells,
 			int curIndexOfArray)
 		{
-			if (takenCells.Count > 9)
+			if (!restMap)
 			{
 				return;
 			}
@@ -173,9 +174,11 @@ namespace Sudoku.Solving.Manual.Alses
 			if (restCellsToTakeCount <= 0)
 			{
 				// Now check whether all taken cells can be formed a SdC.
-				if (CheckSdC(grid, takenCells, nonBlock, block, out var digitRegions))
+				if (CheckSdC(grid, takenCellsMap, nonBlock, block, out var digitRegions))
 				{
 					// SdC found.
+					var takenCells = takenCellsMap.Offsets;
+
 					// Check eliminations.
 					var conclusions = new List<Conclusion>();
 					foreach (var (digit, regions) in digitRegions)
@@ -280,7 +283,7 @@ namespace Sudoku.Solving.Manual.Alses
 					return;
 				}
 
-				if (takenCells.Count == 9)
+				if (!restMap)
 				{
 					return;
 				}
@@ -289,40 +292,44 @@ namespace Sudoku.Solving.Manual.Alses
 			for (int i = curIndexOfArray, length = unionMapArray.Length; i < length; i++)
 			{
 				int cell = unionMapArray[i];
-				if (takenCells.Contains(cell))
+				if (takenCellsMap[cell])
 				{
 					continue;
 				}
 
-				takenCells.Add(cell);
+				takenCellsMap[cell] = true;
+				restMap[cell] = false;
 
 				SearchSdcRecursively(
 					result, grid, restCellsToTakeCount - 1, nonBlock, block,
-					takenCells, emptyMap, unionMapArray, interCells, curIndexOfArray + 1);
+					takenCellsMap, restMap, emptyMap, unionMapArray,
+					interCells, curIndexOfArray + 1);
 
-				takenCells.Remove(cell);
+				takenCellsMap[cell] = false;
+				restMap[cell] = true;
 			}
 		}
 
 		private bool CheckSdC(
-			Grid grid, IReadOnlyList<int> takenCells, int nonBlock, int block,
+			Grid grid, GridMap takenCellsMap, int nonBlock, int block,
 			[NotNullWhen(true)] out IReadOnlyList<(int _digit, IReadOnlyList<int> _region)>? digitRegions)
 		{
 			digitRegions = null;
 
-			if (takenCells.Count < 4)
+			if (takenCellsMap.Count < 4)
 			{
 				return false;
 			}
 
 			// Check the number of different digits and the same number of cells.
 			short mask = 0;
+			var takenCells = takenCellsMap.Offsets;
 			foreach (int takenCell in takenCells)
 			{
 				mask |= grid.GetCandidatesReversal(takenCell);
 			}
 
-			if (mask.CountSet() != takenCells.Count)
+			if (mask.CountSet() != takenCellsMap.Count)
 			{
 				return false;
 			}

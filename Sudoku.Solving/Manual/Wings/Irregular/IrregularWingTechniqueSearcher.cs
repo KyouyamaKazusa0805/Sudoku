@@ -157,7 +157,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 						_ when region >= 18 && region < 27 => (triplet1._row, triplet2._row),
 						_ => throw new NotSupportedException("Out of range.")
 					};
-					if (pos[0] == a && pos[1] == b)
+					if (pos[0] == a && pos[1] == b || pos[0] == b && pos[1] == a)
 					{
 						// W-Wing found.
 						var conclusions = new List<Conclusion>();
