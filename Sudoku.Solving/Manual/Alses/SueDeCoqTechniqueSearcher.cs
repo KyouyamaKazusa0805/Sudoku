@@ -148,8 +148,8 @@ namespace Sudoku.Solving.Manual.Alses
 
 						var takenCellsMap = new GridMap((IEnumerable<int>)interEmptyCells);
 						SearchSdcRecursively(
-							result, grid, takingCellsCount, nonBlock, block,
-							takenCellsMap, tempUnionMap - takenCellsMap,
+							result, grid, takingCellsCount, takingCellsCount, nonBlock,
+							block, takenCellsMap, tempUnionMap - takenCellsMap,
 							emptyMap, tempUnionMap, new GridMap(interCells), 0);
 					}
 				}
@@ -160,10 +160,26 @@ namespace Sudoku.Solving.Manual.Alses
 
 
 		#region SdC utils
+		/// <summary>
+		/// Search SdC recursively.
+		/// </summary>
+		/// <param name="result">The result accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="takingCellsCount">The number of cells to take.</param>
+		/// <param name="restCellsToTakeCount">The rest number of cells to take.</param>
+		/// <param name="nonBlock">The index of non-block region.</param>
+		/// <param name="block">The index of block region.</param>
+		/// <param name="takenCellsMap">The map of taken cells.</param>
+		/// <param name="restMap">The map of rest.</param>
+		/// <param name="emptyMap">The map of empty cells.</param>
+		/// <param name="unionMap">The map of union map.</param>
+		/// <param name="interCells">The map of intersection cells.</param>
+		/// <param name="curIndexOfArray">The current index.</param>
 		private void SearchSdcRecursively(
-			IList<SueDeCoqTechniqueInfo> result, Grid grid, int restCellsToTakeCount,
-			int nonBlock, int block, GridMap takenCellsMap, GridMap restMap,
-			GridMap emptyMap, GridMap unionMap, GridMap interCells, int curIndexOfArray)
+			IList<SueDeCoqTechniqueInfo> result, Grid grid, int takingCellsCount,
+			int restCellsToTakeCount, int nonBlock, int block, GridMap takenCellsMap,
+			GridMap restMap, GridMap emptyMap, GridMap unionMap, GridMap interCells,
+			int curIndexOfArray)
 		{
 			if (!restMap)
 			{
@@ -172,12 +188,6 @@ namespace Sudoku.Solving.Manual.Alses
 
 			if (restCellsToTakeCount <= 0)
 			{
-				var u = takenCellsMap - interCells;
-				if (!(u & _regionMaps[block]) || !(u & _regionMaps[nonBlock]))
-				{
-					return;
-				}
-
 				// Now check whether all taken cells can be formed a SdC.
 				if (CheckSdC(grid, takenCellsMap, nonBlock, block, out var digitRegions))
 				{
@@ -300,15 +310,31 @@ namespace Sudoku.Solving.Manual.Alses
 				int cell = unionMapArray[i];
 				if (takenCellsMap[cell])
 				{
+					curIndexOfArray++;
 					continue;
+				}
+
+				// Ensures all taken cells must be in two regions.
+				// If we ensure that the second cell to take is from another region,
+				// the SdC will be exist.
+				if (takingCellsCount - 1 == restCellsToTakeCount)
+				{
+					var t = takenCellsMap;
+					t[cell] = true;
+					var u = t - interCells;
+					if (!(u & _regionMaps[block]) || !(u & _regionMaps[nonBlock]))
+					{
+						curIndexOfArray++;
+						continue;
+					}
 				}
 
 				takenCellsMap[cell] = true;
 				restMap[cell] = false;
 
 				SearchSdcRecursively(
-					result, grid, restCellsToTakeCount - 1, nonBlock, block,
-					takenCellsMap, restMap, emptyMap, unionMap,
+					result, grid, takingCellsCount, restCellsToTakeCount - 1,
+					nonBlock, block, takenCellsMap, restMap, emptyMap, unionMap,
 					interCells, curIndexOfArray + 1);
 
 				takenCellsMap[cell] = false;
@@ -316,7 +342,18 @@ namespace Sudoku.Solving.Manual.Alses
 			}
 		}
 
-		private bool CheckSdC(
+		/// <summary>
+		/// Check whether the structure is an SdC or not.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="takenCellsMap">The map of cells to take.</param>
+		/// <param name="nonBlock">The index of non-block region.</param>
+		/// <param name="block">The index of block-region.</param>
+		/// <param name="digitRegions">
+		/// (<see langword="out"/> parameter) All digit regions.
+		/// </param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		private static bool CheckSdC(
 			Grid grid, GridMap takenCellsMap, int nonBlock, int block,
 			[NotNullWhen(true)] out IReadOnlyList<(int _digit, IReadOnlyList<int> _region)>? digitRegions)
 		{
@@ -339,22 +376,6 @@ namespace Sudoku.Solving.Manual.Alses
 			{
 				return false;
 			}
-
-			// Check the structure spanned two regions.
-			//bool all = false;
-			//foreach (int region in stackalloc[] { nonBlock, block })
-			//{
-			//	var map = _regionMaps[region];
-			//	if (takenCells.All(c => map[c]))
-			//	{
-			//		all = true;
-			//		break;
-			//	}
-			//}
-			//if (all)
-			//{
-			//	return false;
-			//}
 
 			// Check all digits can appear only once in a region of all cells.
 			var tempList = new List<(int _digit, IReadOnlyList<int> _region)>();

@@ -736,11 +736,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 									continue;
 								}
 
+								bool condition(int p) => loop.Contains(RegionUtils.GetCellOffset(region, p));
 								if (size == 3)
 								{
 									// Check hidden triple.
 									short mask = (short)((short)(m1 | m2) | m3);
-									if (mask.CountSet() == 4)
+									if (mask.CountSet() == 4
+										&& m3.GetAllSets().All(p => !condition(p)))
 									{
 										// Hidden pair found.
 										// Record all elimination cells.
@@ -852,7 +854,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 										// Check hidden quadruple.
 										short mask = (short)((short)((short)(m1 | m2) | m3) | m4);
-										if (mask.CountSet() == 5)
+										if (mask.CountSet() == 5
+											&& m3.GetAllSets().All(p => !condition(p))
+											&& m4.GetAllSets().All(p => !condition(p)))
 										{
 											// Hidden pair found.
 											// Record all elimination cells.
