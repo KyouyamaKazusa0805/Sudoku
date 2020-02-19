@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
 using Sudoku.Drawing;
@@ -22,8 +24,12 @@ namespace Sudoku.Solving.Manual.Symmetry
 			CheckCentral(result, grid);
 			CheckDiagonal(result, grid);
 			CheckAntiDiagonal(result, grid);
-			CheckX(result, grid);
-			CheckY(result, grid);
+
+			// These validation is always redundant.
+			// The grid having Gurth's symmetrical placements should not be
+			// X-axis or Y-axis symmetry.
+			//CheckX(result, grid);
+			//CheckY(result, grid);
 
 			return result;
 		}
@@ -35,6 +41,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
+		[Obsolete("The method is always redundant.")]
+		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 		private void CheckX(
 			IList<GurthSymmetricalPlacementTechniqueInfo> result, Grid grid)
 		{
@@ -167,6 +175,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
+		[Obsolete("The method is always redundant.")]
+		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 		private void CheckY(
 			IList<GurthSymmetricalPlacementTechniqueInfo> result, Grid grid)
 		{
