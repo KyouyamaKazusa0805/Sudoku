@@ -186,23 +186,28 @@ namespace Sudoku.Solving.Manual.Intersections
 						}
 					}
 
-					if (conclusions.Count != 0)
+					if (conclusions.Count == 0)
 					{
-						result.Add(
-							new AlmostLockedCandidatesTechniqueInfo(
-								conclusions,
-								views: new[]
-								{
-									new View(
-										cellOffsets: null,
-										candidateOffsets,
-										regionOffsets: new[] { (0, baseSet), (1, coverSet) },
-										linkMasks: null)
-								},
-								digits: digits.ToArray(),
-								baseCells: new[] { c1 },
-								targetCells: new[] { ahsCell }));
+						continue;
 					}
+
+					result.Add(
+						new AlmostLockedCandidatesTechniqueInfo(
+							conclusions,
+							views: new[]
+							{
+								new View(
+									cellOffsets: null,
+									candidateOffsets,
+									regionOffsets: new[] { (0, baseSet), (1, coverSet) },
+									linkMasks: null)
+							},
+							digits: digits.ToArray(),
+							baseCells: new[] { c1 },
+							targetCells: new[] { ahsCell },
+							hasValueCell:
+								new[] { c1, ahsCell }.Any(
+									c => grid.GetCellStatus(c) != CellStatus.Empty)));
 				}
 				else // size > 2
 				{
@@ -315,23 +320,28 @@ namespace Sudoku.Solving.Manual.Intersections
 								}
 							}
 
-							if (conclusions.Count != 0)
+							if (conclusions.Count == 0)
 							{
-								result.Add(
-									new AlmostLockedCandidatesTechniqueInfo(
-										conclusions,
-										views: new[]
-										{
-											new View(
-												cellOffsets: null,
-												candidateOffsets,
-												regionOffsets: new[] { (0, baseSet), (1, coverSet) },
-												linkMasks: null)
-										},
-										digits: digits.ToArray(),
-										baseCells: new[] { c1, c2 },
-										targetCells: new[] { ahsCell1, ahsCell2 }));
+								continue;
 							}
+
+							result.Add(
+								new AlmostLockedCandidatesTechniqueInfo(
+									conclusions,
+									views: new[]
+									{
+										new View(
+											cellOffsets: null,
+											candidateOffsets,
+											regionOffsets: new[] { (0, baseSet), (1, coverSet) },
+											linkMasks: null)
+									},
+									digits: digits.ToArray(),
+									baseCells: new[] { c1, c2 },
+									targetCells: new[] { ahsCell1, ahsCell2 },
+									hasValueCell:
+										new[] { c1, c2, ahsCell1, ahsCell2 }.Any(
+											c => grid.GetCellStatus(c) != CellStatus.Empty)));
 						}
 						else // size == 4
 						{
@@ -459,23 +469,28 @@ namespace Sudoku.Solving.Manual.Intersections
 									}
 								}
 
-								if (conclusions.Count != 0)
+								if (conclusions.Count == 0)
 								{
-									result.Add(
-										new AlmostLockedCandidatesTechniqueInfo(
-											conclusions,
-											views: new[]
-											{
+									continue;
+								}
+
+								result.Add(
+									new AlmostLockedCandidatesTechniqueInfo(
+										conclusions,
+										views: new[]
+										{
 												new View(
 													cellOffsets: null,
 													candidateOffsets,
 													regionOffsets: new[] { (0, baseSet), (1, coverSet) },
 													linkMasks: null)
-											},
-											digits: digits.ToArray(),
-											baseCells: new[] { c1, c2, c3 },
-											targetCells: new[] { ahsCell1, ahsCell2, ahsCell3 }));
-								}
+										},
+										digits: digits.ToArray(),
+										baseCells: new[] { c1, c2, c3 },
+										targetCells: new[] { ahsCell1, ahsCell2, ahsCell3 },
+										hasValueCell:
+											new[] { c1, c2, c3, ahsCell1, ahsCell2, ahsCell3 }.Any(
+												c => grid.GetCellStatus(c) != CellStatus.Empty)));
 							}
 						}
 					}

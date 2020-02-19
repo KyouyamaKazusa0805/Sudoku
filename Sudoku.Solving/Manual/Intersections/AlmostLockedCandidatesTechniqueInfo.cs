@@ -18,11 +18,15 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <param name="digits">The digits.</param>
 		/// <param name="baseCells">The base cells.</param>
 		/// <param name="targetCells">The target cells.</param>
+		/// <param name="hasValueCell">
+		/// Indicates whether the structure has the value cell.
+		/// </param>
 		public AlmostLockedCandidatesTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			IReadOnlyList<int> digits, IReadOnlyList<int> baseCells, IReadOnlyList<int> targetCells)
+			IReadOnlyList<int> digits, IReadOnlyList<int> baseCells, IReadOnlyList<int> targetCells,
+			bool hasValueCell)
 			: base(conclusions, views) =>
-			(Digits, BaseCells, TargetCells) = (digits, baseCells, targetCells);
+			(Digits, BaseCells, TargetCells, HasValueCell) = (digits, baseCells, targetCells, hasValueCell);
 
 
 		/// <summary>
@@ -40,6 +44,11 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// </summary>
 		public IReadOnlyList<int> TargetCells { get; }
 
+		/// <summary>
+		/// Indicates whether the structure has a value cell.
+		/// </summary>
+		public bool HasValueCell { get; }
+
 		/// <inheritdoc/>
 		public override string Name => $"Almost Locked {SubsetUtils.GetNameBy(Digits.Count)}";
 
@@ -52,9 +61,9 @@ namespace Sudoku.Solving.Manual.Intersections
 				{
 					2 => 4.5m,
 					3 => 5.2m,
-					4 => 5.5m,
+					4 => 5.5m, // Reserved.
 					_ => throw new NotSupportedException($"The specified Size is out of valid range.")
-				};
+				} + (HasValueCell ? .1m : 0);
 			}
 		}
 

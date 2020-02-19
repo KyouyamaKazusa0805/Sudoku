@@ -1306,7 +1306,7 @@
             Provides a usage of almost locked candidates (ALC) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -1315,6 +1315,9 @@
             <param name="digits">The digits.</param>
             <param name="baseCells">The base cells.</param>
             <param name="targetCells">The target cells.</param>
+            <param name="hasValueCell">
+            Indicates whether the structure has the value cell.
+            </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueInfo.Digits">
             <summary>
@@ -1329,6 +1332,11 @@
         <member name="P:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueInfo.TargetCells">
             <summary>
             Indicates the target cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueInfo.HasValueCell">
+            <summary>
+            Indicates whether the structure has a value cell.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueInfo.Name">
