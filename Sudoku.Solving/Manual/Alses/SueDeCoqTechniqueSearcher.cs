@@ -108,7 +108,7 @@ namespace Sudoku.Solving.Manual.Alses
 						});
 					}
 
-					var unionMap = (nonBlockMap | blockMap) & emptyMap;
+					var unionMap = nonBlockMap | blockMap;
 					foreach (int[] interEmptyCells in iterationInterCells)
 					{
 						var tempUnionMap = unionMap;

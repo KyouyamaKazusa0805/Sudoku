@@ -1301,47 +1301,6 @@
             </summary>
             <param name="offset">The cell offset.</param>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.SetPeersTrue(System.Int32)">
-            <summary>
-            Set all peers as <see langword="true"/> value.
-            </summary>
-            <param name="offset">The cell offset.</param>
-        </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.SetPeersFalse(System.Int32)">
-            <summary>
-            Set all peers as <see langword="false"/> value.
-            </summary>
-            <param name="offset">The cell offset.</param>
-        </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.NegatePeers(System.Int32)">
-            <summary>
-            Negate all peers' value.
-            </summary>
-            <param name="offset">The cell offset.</param>
-        </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.IntersectWith(Sudoku.Data.Meta.GridMap)">
-            <summary>
-            Intersect with the other instance.
-            </summary>
-            <param name="other">The other instance.</param>
-        </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.UnionWith(Sudoku.Data.Meta.GridMap)">
-            <summary>
-            Union with the other instance.
-            </summary>
-            <param name="other">The other instance.</param>
-        </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.SymmetricalExceptWith(Sudoku.Data.Meta.GridMap)">
-            <summary>
-            Symmetrical except with the other instance.
-            </summary>
-            <param name="other">The other instance.</param>
-        </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.Negate">
-            <summary>
-            Negate all values.
-            </summary>
-        </member>
         <member name="M:Sudoku.Data.Meta.GridMap.GetCellsIn(System.Int32)">
             <summary>
             Get all cell offsets in the specified region.

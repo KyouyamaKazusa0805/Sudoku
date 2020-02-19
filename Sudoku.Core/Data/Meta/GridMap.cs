@@ -72,7 +72,7 @@ namespace Sudoku.Data.Meta
 		/// </remarks>
 		public GridMap(IEnumerable<int> offsets)
 		{
-			(_low, _high) = (0, 0);
+			(_low, _high, Count) = (0, 0, 0);
 			ref long a = ref _low, b = ref _high;
 			foreach (int offset in offsets)
 			{
@@ -81,11 +81,13 @@ namespace Sudoku.Data.Meta
 					case 0:
 					{
 						a |= 1L << offset % Shifting;
+						Count++;
 						break;
 					}
 					case 1:
 					{
 						b |= 1L << offset % Shifting;
+						Count++;
 						break;
 					}
 				}
@@ -97,7 +99,11 @@ namespace Sudoku.Data.Meta
 		/// </summary>
 		/// <param name="high">Higher 40 bits.</param>
 		/// <param name="low">Lower 41 bits.</param>
-		private GridMap(long high, long low) => (_high, _low) = (high, low);
+		private GridMap(long high, long low)
+		{
+			(_high, _low) = (high, low);
+			Count = _high.CountSet() + _low.CountSet();
+		}
 
 
 		/// <summary>
@@ -164,7 +170,7 @@ namespace Sudoku.Data.Meta
 		/// Indicates the total number of cells where the corresponding
 		/// value are set <see langword="true"/>.
 		/// </summary>
-		public readonly int Count => _low.CountSet() + _high.CountSet();
+		public int Count { get; private set; }
 
 		/// <summary>
 		/// <para>
@@ -226,10 +232,12 @@ namespace Sudoku.Data.Meta
 						if (value)
 						{
 							a |= 1L << offset % Shifting;
+							Count++;
 						}
 						else
 						{
 							a &= ~(1L << offset % Shifting);
+							Count--;
 						}
 						break;
 					}
@@ -238,10 +246,12 @@ namespace Sudoku.Data.Meta
 						if (value)
 						{
 							b |= 1L << offset % Shifting;
+							Count++;
 						}
 						else
 						{
 							b &= ~(1L << offset % Shifting);
+							Count--;
 						}
 						break;
 					}
@@ -363,57 +373,6 @@ namespace Sudoku.Data.Meta
 		/// <param name="offset">The cell offset.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Remove(int offset) => this[offset] = false;
-
-		/// <summary>
-		/// Set all peers as <see langword="true"/> value.
-		/// </summary>
-		/// <param name="offset">The cell offset.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void SetPeersTrue(int offset) => UnionWith(new GridMap(offset));
-
-		/// <summary>
-		/// Set all peers as <see langword="false"/> value.
-		/// </summary>
-		/// <param name="offset">The cell offset.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void SetPeersFalse(int offset) => IntersectWith(new GridMap(offset));
-
-		/// <summary>
-		/// Negate all peers' value.
-		/// </summary>
-		/// <param name="offset">The cell offset.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void NegatePeers(int offset) => SymmetricalExceptWith(new GridMap(offset));
-
-		/// <summary>
-		/// Intersect with the other instance.
-		/// </summary>
-		/// <param name="other">The other instance.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void IntersectWith(GridMap other) =>
-			(_low, _high) = (_low & other._low, _high & other._high);
-
-		/// <summary>
-		/// Union with the other instance.
-		/// </summary>
-		/// <param name="other">The other instance.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void UnionWith(GridMap other) =>
-			(_low, _high) = (_low | other._low, _high | other._high);
-
-		/// <summary>
-		/// Symmetrical except with the other instance.
-		/// </summary>
-		/// <param name="other">The other instance.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void SymmetricalExceptWith(GridMap other) =>
-			(_low, _high) = (_low ^ other._low, _high ^ other._high);
-
-		/// <summary>
-		/// Negate all values.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void Negate() => (_low, _high) = (~_low, ~_high);
 
 
 		/// <summary>
