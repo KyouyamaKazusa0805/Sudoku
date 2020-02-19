@@ -2525,6 +2525,41 @@
         <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.CheckX(System.Collections.Generic.IList{Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo},Sudoku.Data.Meta.Grid)">
+            <summary>
+            Check x-axis symmetry.
+            </summary>
+            <param name="result">The result accumulator.</param>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.CheckY(System.Collections.Generic.IList{Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo},Sudoku.Data.Meta.Grid)">
+            <summary>
+            Check y-axis symmetry.
+            </summary>
+            <param name="result">The result accumulator.</param>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.CheckDiagonal(System.Collections.Generic.IList{Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo},Sudoku.Data.Meta.Grid)">
+            <summary>
+            Check diagonal symmetry.
+            </summary>
+            <param name="result">The result accumulator.</param>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.CheckAntiDiagonal(System.Collections.Generic.IList{Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo},Sudoku.Data.Meta.Grid)">
+            <summary>
+            Check anti-diagonal symmetry.
+            </summary>
+            <param name="result">The result accumulator.</param>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.CheckCentral(System.Collections.Generic.IList{Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo},Sudoku.Data.Meta.Grid)">
+            <summary>
+            Check central symmetry.
+            </summary>
+            <param name="result">The result accumulator.</param>
+            <param name="grid">The grid.</param>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Symmetry.SymmetryTechniqueInfo">
             <summary>
             Provides a usage of symmetry technique.

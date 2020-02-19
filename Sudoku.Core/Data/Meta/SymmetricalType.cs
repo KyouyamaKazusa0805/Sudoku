@@ -20,5 +20,15 @@
 		/// </summary>
 		[Name("Anti-diagnoal symmetrical type")]
 		AntiDiagonal,
+		/// <summary>
+		/// Indicates the x-axis symmetrical type.
+		/// </summary>
+		[Name("X-axis symmetrical type")]
+		XAxis,
+		/// <summary>
+		/// Indicates the y-axis symmetrical type.
+		/// </summary>
+		[Name("Y-axis symmetrical type")]
+		YAxis,
 	}
 }

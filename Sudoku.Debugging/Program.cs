@@ -22,7 +22,7 @@ namespace Sudoku.Debugging
 				OptimizedApplyingOrder = true,
 				EnableBruteForce = true,
 			};
-			var grid = Grid.Parse(".37658..4....34.764..1.75.32..3.5..88.......55..8.6..16.84.2..734.76....7..58346.");
+			var grid = Grid.Parse("2...5...1..39...2..1...73..76....4..4.5.....8.98....6...158..3..2.6.91..3...74..2");
 			var analysisResult = solver.Solve(grid);
 			Console.WriteLine($"{analysisResult}");
 		}

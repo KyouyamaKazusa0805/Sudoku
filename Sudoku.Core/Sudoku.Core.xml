@@ -1648,6 +1648,16 @@
             Indicates the anti-diagonal symmetrical type.
             </summary>
         </member>
+        <member name="F:Sudoku.Data.Meta.SymmetricalType.XAxis">
+            <summary>
+            Indicates the x-axis symmetrical type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.SymmetricalType.YAxis">
+            <summary>
+            Indicates the y-axis symmetrical type.
+            </summary>
+        </member>
         <member name="T:Sudoku.Data.ValueChangedEventArgs">
             <summary>
             Provides the data for the event 'ValueChanged'.
