@@ -317,17 +317,17 @@ namespace Sudoku.Solving.Manual.Alses
 				// Ensures all taken cells must be in two regions.
 				// If we ensure that the second cell to take is from another region,
 				// the SdC will be exist.
-				if (takingCellsCount - 1 == restCellsToTakeCount)
-				{
-					var t = takenCellsMap;
-					t[cell] = true;
-					var u = t - interCells;
-					if (!(u & _regionMaps[block]) || !(u & _regionMaps[nonBlock]))
-					{
-						curIndexOfArray++;
-						continue;
-					}
-				}
+				//if (takingCellsCount - 1 == restCellsToTakeCount)
+				//{
+				//	var t = takenCellsMap;
+				//	t[cell] = true;
+				//	var u = t - interCells;
+				//	if (!(u & _regionMaps[block]) || !(u & _regionMaps[nonBlock]))
+				//	{
+				//		curIndexOfArray++;
+				//		continue;
+				//	}
+				//}
 
 				takenCellsMap[cell] = true;
 				restMap[cell] = false;
@@ -364,9 +364,16 @@ namespace Sudoku.Solving.Manual.Alses
 				return false;
 			}
 
+			var takenCells = takenCellsMap.Offsets;
+
+			// Check the structure spanned two regions.
+			if (takenCellsMap.IsCoveredOneRegion(out _))
+			{
+				return false;
+			}
+
 			// Check the number of different digits and the same number of cells.
 			short mask = 0;
-			var takenCells = takenCellsMap.Offsets;
 			foreach (int takenCell in takenCells)
 			{
 				mask |= grid.GetCandidatesReversal(takenCell);
@@ -430,11 +437,11 @@ namespace Sudoku.Solving.Manual.Alses
 					{
 						// Two regions found. Check it.
 						var z = new List<int>();
-						if (tempMap.IsCovered(nonBlock))
+						if (tempMap.AllCellCovers(nonBlock))
 						{
 							z.Add(nonBlock);
 						}
-						if (tempMap.IsCovered(block))
+						if (tempMap.AllCellCovers(block))
 						{
 							z.Add(block);
 						}

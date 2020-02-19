@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -239,6 +240,7 @@ namespace Sudoku.Data.Meta
 			}
 		}
 
+
 		/// <summary>
 		/// Gets or sets a <see cref="bool"/> value on the specified cell
 		/// offset.
@@ -321,8 +323,29 @@ namespace Sudoku.Data.Meta
 		/// </summary>
 		/// <param name="regionOffset">The region offset.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		public readonly bool IsCovered(int regionOffset) =>
+		public readonly bool AllCellCovers(int regionOffset) =>
 			Count - (this - CreateInstance(regionOffset)).Count == 9;
+
+		/// <summary>
+		/// Indicates whether all cells in this instance are in one region.
+		/// </summary>
+		/// <param name="region">
+		/// (<see langword="out"/> parameter) The region covered.
+		/// </param>
+		public readonly bool IsCoveredOneRegion([NotNullWhen(true)] out int? region)
+		{
+			for (int i = 0; i < 27; i++)
+			{
+				if ((_high & ~CoverTable[i, 0]) == 0 && (_low & ~CoverTable[i, 1]) == 0)
+				{
+					region = i;
+					return true;
+				}
+			}
+
+			region = null;
+			return false;
+		}
 
 		/// <summary>
 		/// Get the specified index of <see langword="true"/> bits in this instance.

@@ -1264,12 +1264,20 @@
             value; otherwise, <see langword="false"/>.
             </returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.IsCovered(System.Int32)">
+        <member name="M:Sudoku.Data.Meta.GridMap.AllCellCovers(System.Int32)">
             <summary>
             Check whether the grid map is fully covered all cells in the specified region.
             </summary>
             <param name="regionOffset">The region offset.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridMap.IsCoveredOneRegion(System.Nullable{System.Int32}@)">
+            <summary>
+            Indicates whether all cells in this instance are in one region.
+            </summary>
+            <param name="region">
+            (<see langword="out"/> parameter) The region covered.
+            </param>
         </member>
         <member name="M:Sudoku.Data.Meta.GridMap.ElementAt(System.Int32)">
             <summary>
@@ -1431,6 +1439,11 @@
             The map of all cell offsets in its specified region.
             For example, 'Map[0]' means that all cell offsets
             in the region 0 (block 1).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Meta.GridMap.CoverTable">
+            <summary>
+            The cover table.
             </summary>
         </member>
         <member name="T:Sudoku.Data.Meta.GridParser">
