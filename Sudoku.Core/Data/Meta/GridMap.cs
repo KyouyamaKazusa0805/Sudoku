@@ -59,8 +59,40 @@ namespace Sudoku.Data.Meta
 		/// var map = new GridMap(offset) { [offset] = false };
 		/// </code>
 		/// </param>
-		public GridMap(int offset, bool setItself) : this(PeerTable[offset]) =>
+		public GridMap(int offset, bool setItself) : this((IEnumerable<int>)PeerTable[offset]) =>
 			this[offset] = setItself;
+
+		/// <summary>
+		/// Initializes an instance with a series of cell offsets.
+		/// </summary>
+		/// <param name="offsets">cell offsets.</param>
+		/// <remarks>
+		/// Note that all offsets will be set <see langword="true"/>, but their own peers
+		/// will not be set <see langword="true"/>.
+		/// </remarks>
+		public GridMap(Span<int> offsets)
+		{
+			(_low, _high, Count) = (0, 0, 0);
+			ref long a = ref _low, b = ref _high;
+			foreach (int offset in offsets)
+			{
+				switch (offset / Shifting)
+				{
+					case 0:
+					{
+						a |= 1L << offset % Shifting;
+						Count++;
+						break;
+					}
+					case 1:
+					{
+						b |= 1L << offset % Shifting;
+						Count++;
+						break;
+					}
+				}
+			}
+		}
 
 		/// <summary>
 		/// Initializes an instance with a series of cell offsets.

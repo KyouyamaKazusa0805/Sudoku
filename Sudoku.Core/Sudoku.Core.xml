@@ -1169,6 +1169,16 @@
             </code>
             </param>
         </member>
+        <member name="M:Sudoku.Data.Meta.GridMap.#ctor(System.Span{System.Int32})">
+            <summary>
+            Initializes an instance with a series of cell offsets.
+            </summary>
+            <param name="offsets">cell offsets.</param>
+            <remarks>
+            Note that all offsets will be set <see langword="true"/>, but their own peers
+            will not be set <see langword="true"/>.
+            </remarks>
+        </member>
         <member name="M:Sudoku.Data.Meta.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
             Initializes an instance with a series of cell offsets.

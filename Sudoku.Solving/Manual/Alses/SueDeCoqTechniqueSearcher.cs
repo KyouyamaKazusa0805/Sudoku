@@ -146,11 +146,11 @@ namespace Sudoku.Solving.Manual.Alses
 							continue;
 						}
 
-						var takenCellsMap = new GridMap(interEmptyCells);
+						var takenCellsMap = new GridMap((IEnumerable<int>)interEmptyCells);
 						SearchSdcRecursively(
 							result, grid, takingCellsCount, nonBlock, block,
 							takenCellsMap, tempUnionMap - takenCellsMap,
-							emptyMap, tempUnionMap.ToArray(), interCells, 0);
+							emptyMap, tempUnionMap, new GridMap(interCells), 0);
 					}
 				}
 			}
@@ -162,9 +162,8 @@ namespace Sudoku.Solving.Manual.Alses
 		#region SdC utils
 		private void SearchSdcRecursively(
 			IList<SueDeCoqTechniqueInfo> result, Grid grid, int restCellsToTakeCount,
-			int nonBlock, int block, GridMap takenCellsMap, GridMap restMap, GridMap emptyMap,
-			ReadOnlySpan<int> unionMapArray, ReadOnlySpan<int> interCells,
-			int curIndexOfArray)
+			int nonBlock, int block, GridMap takenCellsMap, GridMap restMap,
+			GridMap emptyMap, GridMap unionMap, GridMap interCells, int curIndexOfArray)
 		{
 			if (!restMap)
 			{
@@ -173,6 +172,12 @@ namespace Sudoku.Solving.Manual.Alses
 
 			if (restCellsToTakeCount <= 0)
 			{
+				var u = takenCellsMap - interCells;
+				if (!(u & _regionMaps[block]) || !(u & _regionMaps[nonBlock]))
+				{
+					return;
+				}
+
 				// Now check whether all taken cells can be formed a SdC.
 				if (CheckSdC(grid, takenCellsMap, nonBlock, block, out var digitRegions))
 				{
@@ -236,7 +241,7 @@ namespace Sudoku.Solving.Manual.Alses
 								{
 									// Line candidate.
 									candidateOffsets.Add((0, cell * 9 + digit));
-									if (!interCells.Contains(cell))
+									if (!interCells[cell])
 									{
 										als1Cells.Add(cell);
 									}
@@ -246,7 +251,7 @@ namespace Sudoku.Solving.Manual.Alses
 								{
 									// Block candidate.
 									candidateOffsets.Add((1, cell * 9 + digit));
-									if (!interCells.Contains(cell))
+									if (!interCells[cell])
 									{
 										als2Cells.Add(cell);
 									}
@@ -257,7 +262,7 @@ namespace Sudoku.Solving.Manual.Alses
 					}
 
 					short interMask = 0;
-					foreach (int cell in interCells)
+					foreach (int cell in interCells.Offsets)
 					{
 						interMask |= grid.GetCandidatesReversal(cell);
 					}
@@ -289,7 +294,8 @@ namespace Sudoku.Solving.Manual.Alses
 				}
 			}
 
-			for (int i = curIndexOfArray, length = unionMapArray.Length; i < length; i++)
+			int[] unionMapArray = unionMap.ToArray();
+			for (int i = curIndexOfArray, count = unionMap.Count; i < count; i++)
 			{
 				int cell = unionMapArray[i];
 				if (takenCellsMap[cell])
@@ -302,7 +308,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 				SearchSdcRecursively(
 					result, grid, restCellsToTakeCount - 1, nonBlock, block,
-					takenCellsMap, restMap, emptyMap, unionMapArray,
+					takenCellsMap, restMap, emptyMap, unionMap,
 					interCells, curIndexOfArray + 1);
 
 				takenCellsMap[cell] = false;
@@ -335,20 +341,20 @@ namespace Sudoku.Solving.Manual.Alses
 			}
 
 			// Check the structure spanned two regions.
-			bool all = false;
-			foreach (int region in stackalloc[] { nonBlock, block })
-			{
-				var map = _regionMaps[region];
-				if (takenCells.All(c => map[c]))
-				{
-					all = true;
-					break;
-				}
-			}
-			if (all)
-			{
-				return false;
-			}
+			//bool all = false;
+			//foreach (int region in stackalloc[] { nonBlock, block })
+			//{
+			//	var map = _regionMaps[region];
+			//	if (takenCells.All(c => map[c]))
+			//	{
+			//		all = true;
+			//		break;
+			//	}
+			//}
+			//if (all)
+			//{
+			//	return false;
+			//}
 
 			// Check all digits can appear only once in a region of all cells.
 			var tempList = new List<(int _digit, IReadOnlyList<int> _region)>();
