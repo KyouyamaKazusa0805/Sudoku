@@ -112,7 +112,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						for (int size = 2; size <= 5; size++)
 						{
 							CheckType3Naked(result, grid, trueCandidates, size);
-							// TODO: Check type 3 with hidden subset.
+							// TODO: Check BUG type 3 with hidden subset.
 						}
 					}
 

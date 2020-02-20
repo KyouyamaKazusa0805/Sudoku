@@ -31,10 +31,10 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 			var result = new List<TechniqueInfo>();
 
 			result.AddRange(TakeAllWWings(grid, in pair));
-			// TODO: Find all M-Wings.
-			// TODO: Find all Local-Wings.
-			// TODO: Find all Split-Wings.
-			// TODO: Find all Hybrid-Wings.
+			// TODO: Check M-Wings.
+			// TODO: Check Local-Wings.
+			// TODO: Check Split-Wings.
+			// TODO: Check Hybrid-Wings.
 
 			return result;
 		}

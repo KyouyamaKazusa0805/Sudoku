@@ -145,7 +145,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						var otherDigits = otherDigitsMask.GetAllSets();
 						if (!otherDigits.HasOnlyOneElement())
 						{
-							// TODO: Type 3 or 4.
+							// TODO: Check BDP 3 digits type 3 or 4.
 						}
 						else
 						{
@@ -274,7 +274,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			IList<BorescoperDeadlyPatternTechniqueInfo> result, Grid grid,
 			int block, int[] quad, int i)
 		{
-
+			// TODO: Check BDP 4 digits type 1, 2, 3, 4 and locked type.
 		}
 
 
