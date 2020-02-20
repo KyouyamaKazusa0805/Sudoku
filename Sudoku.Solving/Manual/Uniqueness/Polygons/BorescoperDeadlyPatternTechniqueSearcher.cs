@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
 using Sudoku.Drawing;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
+using BdpType1 = Sudoku.Solving.Manual.Uniqueness.Polygons.BorescoperDeadlyPatternType1DetailData;
+using BdpType2 = Sudoku.Solving.Manual.Uniqueness.Polygons.BorescoperDeadlyPatternType2DetailData;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
@@ -206,13 +207,73 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 												regionOffsets: null,
 												linkMasks: null)
 										},
-										detailData: new BorescoperDeadlyPatternType1DetailData(
+										detailData: new BdpType1(
 											cells: allCells,
 											digits: digits.ToArray())));
 							}
 							else
 							{
-								// TODO: Type 2.
+								// Type 2.
+								// Check eliminations.
+								int extraDigit = otherDigits.First();
+								var conclusions = new List<Conclusion>();
+								var elimMap = default(GridMap);
+								for (int k = 0; k < extraCells.Count; k++)
+								{
+									int cell = extraCells[k];
+									if (k == 0)
+									{
+										elimMap = new GridMap(cell);
+									}
+									else
+									{
+										elimMap &= new GridMap(cell);
+									}
+								}
+								if (elimMap.Count == 0)
+								{
+									continue;
+								}
+								foreach (int cell in elimMap.Offsets)
+								{
+									if (grid.CandidateExists(cell, extraDigit))
+									{
+										conclusions.Add(
+											new Conclusion(
+												ConclusionType.Elimination, cell * 9 + extraDigit));
+									}
+								}
+
+								if (conclusions.Count == 0)
+								{
+									continue;
+								}
+
+								// Record all highlight candidates.
+								var candidateOffsets = new List<(int, int)>();
+								foreach (int cell in allCells)
+								{
+									foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+									{
+										candidateOffsets.Add((digit == extraDigit ? 1 : 0, cell * 9 + digit));
+									}
+								}
+
+								result.Add(
+									new BorescoperDeadlyPatternTechniqueInfo(
+										conclusions,
+										views: new[]
+										{
+											new View(
+												cellOffsets: null,
+												candidateOffsets,
+												regionOffsets: null,
+												linkMasks: null)
+										},
+										detailData: new BdpType2(
+											cells: allCells,
+											digits: digits.ToArray(),
+											extraDigit)));
 							}
 						}
 					}

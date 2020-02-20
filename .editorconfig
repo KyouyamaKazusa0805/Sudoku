@@ -273,6 +273,8 @@ dotnet_naming_style.start_with__t_.capitalization = pascal_case
 
 
 
+# IDE0001: Simplify Names
+dotnet_diagnostic.IDE0001.severity = suggestion
 
 # IDE0058: Expression value is never used
 csharp_style_unused_value_expression_statement_preference = discard_variable:none
