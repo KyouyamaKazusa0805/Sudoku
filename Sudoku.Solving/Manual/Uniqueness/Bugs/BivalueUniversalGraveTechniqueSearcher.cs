@@ -141,18 +141,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			var trueCandidateCells = from candGroupByCell in candsGroupByCell
 									 select candGroupByCell.Key;
 			int trueCandidateCellsCount = 0;
-			var map = default(GridMap);
-			foreach (int cell in trueCandidateCells)
-			{
-				if (trueCandidateCellsCount++ == 0)
-				{
-					map = new GridMap(cell);
-				}
-				else
-				{
-					map &= new GridMap(cell);
-				}
-			}
+			var map = GridMap.CreateInstance(trueCandidateCells);
 			if (map.Count != 9)
 			{
 				return;

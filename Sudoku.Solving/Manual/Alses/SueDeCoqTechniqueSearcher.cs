@@ -410,18 +410,7 @@ namespace Sudoku.Solving.Manual.Alses
 				}
 				else
 				{
-					var tempMap = default(GridMap);
-					foreach (int cell in cells)
-					{
-						if (i++ == 0)
-						{
-							tempMap = new GridMap(cell);
-						}
-						else
-						{
-							tempMap &= new GridMap(cell);
-						}
-					}
+					var tempMap = GridMap.CreateInstance(cells);
 
 					int spanningCellsCount = tempMap.Count;
 					if (spanningCellsCount < 9)

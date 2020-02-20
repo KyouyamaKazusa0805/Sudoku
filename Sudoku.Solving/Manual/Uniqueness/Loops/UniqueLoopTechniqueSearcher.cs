@@ -125,18 +125,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 								// Record all eliminations.
 								var conclusions = new List<Conclusion>();
-								var elimMap = default(GridMap);
-								for (int i = 0; i < extraCells.Count; i++)
-								{
-									if (i == 0)
-									{
-										elimMap = new GridMap(extraCells[i], false);
-									}
-									else
-									{
-										elimMap &= new GridMap(extraCells[i], false);
-									}
-								}
+								var elimMap = GridMap.CreateInstance(extraCells, false);
 								foreach (int elimCell in elimMap.Offsets)
 								{
 									if (grid.CandidateExists(elimCell, extraDigit))
@@ -255,19 +244,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		{
 			// Record all eliminations.
 			var conclusions = new List<Conclusion>();
-			var elimMap = default(GridMap);
-			for (int i = 0; i < 2; i++)
-			{
-				int extraCell = extraCells[i];
-				if (i == 0)
-				{
-					elimMap = new GridMap(extraCell, false);
-				}
-				else
-				{
-					elimMap &= new GridMap(extraCell, false);
-				}
-			}
+			var elimMap = GridMap.CreateInstance(extraCells);
 
 			foreach (int cell in elimMap.Offsets)
 			{

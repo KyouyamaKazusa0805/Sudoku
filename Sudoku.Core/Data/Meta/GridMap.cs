@@ -517,6 +517,64 @@ namespace Sudoku.Data.Meta
 			return result;
 		}
 
+		/// <summary>
+		/// Different with <see cref="GridMap(IEnumerable{int})"/>,
+		/// this method will generate the intersection table of all peers from
+		/// the argument.
+		/// </summary>
+		/// <param name="cellList">The cell list.</param>
+		/// <returns>An intersection map.</returns>
+		/// <seealso cref="GridMap(IEnumerable{int})"/>
+		public static GridMap CreateInstance(IEnumerable<int> cellList)
+		{
+			var result = default(GridMap);
+			int i = 0;
+			foreach (int cell in cellList)
+			{
+				if (i++ == 0)
+				{
+					result = new GridMap(cell);
+				}
+				else
+				{
+					result &= new GridMap(cell);
+				}
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// Different with <see cref="GridMap(IEnumerable{int})"/> and
+		/// <see cref="GridMap(int, bool)"/>, this method will generate
+		/// the intersection table of all peers from the argument.
+		/// </summary>
+		/// <param name="cellList">The cell list.</param>
+		/// <param name="setItself">
+		/// Indicates whether the initializer will set peer center itself.
+		/// </param>
+		/// <returns>An intersection map.</returns>
+		/// <seealso cref="GridMap(IEnumerable{int})"/>
+		/// <seealso cref="GridMap(int, bool)"/>
+		public static GridMap CreateInstance(IEnumerable<int> cellList, bool setItself)
+		{
+			var result = default(GridMap);
+			int i = 0;
+			foreach (int cell in cellList)
+			{
+				if (i++ == 0)
+				{
+					result = new GridMap(cell, setItself);
+				}
+				else
+				{
+					result &= new GridMap(cell, setItself);
+				}
+			}
+
+			return result;
+		}
+
 
 		/// <summary>
 		/// Check whether the specified map has at least one <see langword="true"/> bits.

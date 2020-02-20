@@ -217,23 +217,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 								// Check eliminations.
 								int extraDigit = otherDigits.First();
 								var conclusions = new List<Conclusion>();
-								var elimMap = default(GridMap);
-								for (int k = 0; k < extraCells.Count; k++)
-								{
-									int cell = extraCells[k];
-									if (k == 0)
-									{
-										elimMap = new GridMap(cell);
-									}
-									else
-									{
-										elimMap &= new GridMap(cell);
-									}
-								}
+								var elimMap = GridMap.CreateInstance(extraCells);
 								if (elimMap.Count == 0)
 								{
 									continue;
 								}
+
 								foreach (int cell in elimMap.Offsets)
 								{
 									if (grid.CandidateExists(cell, extraDigit))
@@ -283,7 +272,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 		private void Check4Digits(
 			IList<BorescoperDeadlyPatternTechniqueInfo> result, Grid grid,
-			int block, int[] quad, int zz)
+			int block, int[] quad, int i)
 		{
 
 		}

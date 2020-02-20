@@ -107,7 +107,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 									GetGridMap(ref bodyMap, baseSets);
 									GetGridMap(ref elimMap, coverSets);
 									bodyMap &= elimMap;
-									elimMap &= ~bodyMap;
+									elimMap -= bodyMap;
 
 									// Check the existence of fin.
 									var finCells = (List<int>?)null;
@@ -274,7 +274,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 												GetGridMap(ref bodyMap, baseSets);
 												GetGridMap(ref elimMap, coverSets);
 												bodyMap &= elimMap;
-												elimMap &= ~bodyMap;
+												elimMap -= bodyMap;
 
 												// Check the existence of fin.
 												var finCells = (List<int>?)null;
@@ -284,7 +284,8 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 												}
 
 												// Get the fin mask.
-												short finMask = (short)(baseMask & ~(1 << i | 1 << j | 1 << k) & 511);
+												short finMask = (short)(
+													baseMask & ~(1 << i | 1 << j | 1 << k) & 511);
 
 												// Confirm all fin cells.
 												finCells = new List<int>();
@@ -402,7 +403,8 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 											continue;
 										}
 
-										short baseMask = (short)((short)((short)(baseMask1 | baseMask2) | baseMask3) | baseMask4);
+										short baseMask = (short)((short)((short)(
+											baseMask1 | baseMask2) | baseMask3) | baseMask4);
 										int finAndBodyCount = baseMask.CountSet();
 										if (finAndBodyCount >= 7)
 										{
@@ -450,7 +452,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 														GetGridMap(ref bodyMap, baseSets);
 														GetGridMap(ref elimMap, coverSets);
 														bodyMap &= elimMap;
-														elimMap &= ~bodyMap;
+														elimMap -= bodyMap;
 
 														// Check the existence of fin.
 														var finCells = (List<int>?)null;

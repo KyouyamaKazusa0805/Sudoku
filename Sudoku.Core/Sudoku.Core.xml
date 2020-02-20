@@ -1365,6 +1365,30 @@
             Throws when the puzzle has not been solved.
             </exception>
         </member>
+        <member name="M:Sudoku.Data.Meta.GridMap.CreateInstance(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Different with <see cref="M:Sudoku.Data.Meta.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>,
+            this method will generate the intersection table of all peers from
+            the argument.
+            </summary>
+            <param name="cellList">The cell list.</param>
+            <returns>An intersection map.</returns>
+            <seealso cref="M:Sudoku.Data.Meta.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridMap.CreateInstance(System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
+            <summary>
+            Different with <see cref="M:Sudoku.Data.Meta.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/> and
+            <see cref="M:Sudoku.Data.Meta.GridMap.#ctor(System.Int32,System.Boolean)"/>, this method will generate
+            the intersection table of all peers from the argument.
+            </summary>
+            <param name="cellList">The cell list.</param>
+            <param name="setItself">
+            Indicates whether the initializer will set peer center itself.
+            </param>
+            <returns>An intersection map.</returns>
+            <seealso cref="M:Sudoku.Data.Meta.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>
+            <seealso cref="M:Sudoku.Data.Meta.GridMap.#ctor(System.Int32,System.Boolean)"/>
+        </member>
         <member name="M:Sudoku.Data.Meta.GridMap.op_True(Sudoku.Data.Meta.GridMap)">
             <summary>
             Check whether the specified map has at least one <see langword="true"/> bits.
