@@ -64,6 +64,17 @@ namespace Sudoku.Data.Meta
 			this[offset] = setItself;
 
 		/// <summary>
+		/// To copy an instance with the specified information.
+		/// This initializer is only used for add other cell like
+		/// <code>
+		/// <see langword="var"/> y = <see langword="new"/> <see cref="GridMap"/>(x) { [i] = <see langword="true"/> };
+		/// </code>
+		/// </summary>
+		/// <param name="another">Another instance.</param>
+		public GridMap(GridMap another) =>
+			(_high, _low, Count) = (another._high, another._low, another.Count);
+
+		/// <summary>
 		/// Initializes an instance with a series of cell offsets.
 		/// </summary>
 		/// <param name="offsets">cell offsets.</param>

@@ -317,17 +317,14 @@ namespace Sudoku.Solving.Manual.Alses
 				// Ensures all taken cells must be in two regions.
 				// If we ensure that the second cell to take is from another region,
 				// the SdC will be exist.
-				//if (takingCellsCount - 1 == restCellsToTakeCount)
-				//{
-				//	var t = takenCellsMap;
-				//	t[cell] = true;
-				//	var u = t - interCells;
-				//	if (!(u & _regionMaps[block]) || !(u & _regionMaps[nonBlock]))
-				//	{
-				//		curIndexOfArray++;
-				//		continue;
-				//	}
-				//}
+				if (takingCellsCount - 1 == restCellsToTakeCount)
+				{
+					if (new GridMap(takenCellsMap) { [cell] = true }.IsCoveredOneRegion(out _))
+					{
+						curIndexOfArray++;
+						continue;
+					}
+				}
 
 				takenCellsMap[cell] = true;
 				restMap[cell] = false;
