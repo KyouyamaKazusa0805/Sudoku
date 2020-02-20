@@ -125,7 +125,7 @@ namespace Sudoku.Solving.Manual
 					new UniqueLoopTechniqueSearcher(),
 					new EmptyRectangleTechniqueSearcher(regionMaps),
 					new AlmostLockedCandidatesTechniqueSearcher(intersection),
-					new SueDeCoqTechniqueSearcher(regionMaps),
+					//new SueDeCoqTechniqueSearcher(regionMaps),
 					new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
 				},
 				new TechniqueSearcher[]
@@ -268,7 +268,7 @@ namespace Sudoku.Solving.Manual
 				new UniqueLoopTechniqueSearcher(),
 				new EmptyRectangleTechniqueSearcher(regionMaps),
 				new AlmostLockedCandidatesTechniqueSearcher(intersection),
-				new SueDeCoqTechniqueSearcher(regionMaps),
+				//new SueDeCoqTechniqueSearcher(regionMaps),
 				new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
 				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 				new PatternOverlayMethodTechniqueSearcher(),
