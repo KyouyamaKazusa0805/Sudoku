@@ -15,6 +15,7 @@ using Sudoku.Solving.Manual.Subsets;
 using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Solving.Manual.Uniqueness.Bugs;
 using Sudoku.Solving.Manual.Uniqueness.Loops;
+using Sudoku.Solving.Manual.Uniqueness.Polygons;
 using Sudoku.Solving.Manual.Uniqueness.Rectangles;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
@@ -126,6 +127,7 @@ namespace Sudoku.Solving.Manual
 					new EmptyRectangleTechniqueSearcher(regionMaps),
 					new AlmostLockedCandidatesTechniqueSearcher(intersection),
 					//new SueDeCoqTechniqueSearcher(regionMaps),
+					new BorescoperDeadlyPatternTechniqueSearcher(),
 					new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
 				},
 				new TechniqueSearcher[]
@@ -269,6 +271,7 @@ namespace Sudoku.Solving.Manual
 				new EmptyRectangleTechniqueSearcher(regionMaps),
 				new AlmostLockedCandidatesTechniqueSearcher(intersection),
 				//new SueDeCoqTechniqueSearcher(regionMaps),
+				new BorescoperDeadlyPatternTechniqueSearcher(),
 				new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
 				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 				new PatternOverlayMethodTechniqueSearcher(),

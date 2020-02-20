@@ -81,10 +81,11 @@ namespace System.Linq
 		/// <summary>
 		/// Check whether the specififed list has only one element.
 		/// </summary>
-		/// <typeparam name="T">The type of the element.</typeparam>
+		/// <typeparam name="TElement">The type of the element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		public static bool HasOnlyOneElement<T>(this IEnumerable<T> @this)
+		public static bool HasOnlyOneElement<TElement>(this IEnumerable<TElement> @this)
+			where TElement : notnull
 		{
 			int count = 0;
 			var enumerator = @this.GetEnumerator();

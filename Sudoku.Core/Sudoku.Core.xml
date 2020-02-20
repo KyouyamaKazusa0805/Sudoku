@@ -1169,6 +1169,16 @@
             </code>
             </param>
         </member>
+        <member name="M:Sudoku.Data.Meta.GridMap.#ctor(Sudoku.Data.Meta.GridMap)">
+            <summary>
+            To copy an instance with the specified information.
+            This initializer is only used for add other cell like
+            <code>
+            <see langword="var"/> y = <see langword="new"/> <see cref="T:Sudoku.Data.Meta.GridMap"/>(x) { [i] = <see langword="true"/> };
+            </code>
+            </summary>
+            <param name="another">Another instance.</param>
+        </member>
         <member name="M:Sudoku.Data.Meta.GridMap.#ctor(System.Span{System.Int32})">
             <summary>
             Initializes an instance with a series of cell offsets.
@@ -1209,6 +1219,11 @@
         <member name="P:Sudoku.Data.Meta.GridMap.ColumnMask">
             <summary>
             Indicates the mask of column.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Meta.GridMap.CoveredLine">
+            <summary>
+            Indicates the covered line.
             </summary>
         </member>
         <member name="P:Sudoku.Data.Meta.GridMap.Count">
@@ -2030,7 +2045,7 @@
             <summary>
             Check whether the specififed list has only one element.
             </summary>
-            <typeparam name="T">The type of the element.</typeparam>
+            <typeparam name="TElement">The type of the element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The list.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>

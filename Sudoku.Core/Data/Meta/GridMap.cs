@@ -211,6 +211,25 @@ namespace Sudoku.Data.Meta
 		}
 
 		/// <summary>
+		/// Indicates the covered line.
+		/// </summary>
+		public readonly int CoveredLine
+		{
+			get
+			{
+				for (int i = 9; i < 27; i++)
+				{
+					if ((_high & ~CoverTable[i, 0]) == 0 && (_low & ~CoverTable[i, 1]) == 0)
+					{
+						return i;
+					}
+				}
+
+				return -1;
+			}
+		}
+
+		/// <summary>
 		/// Indicates the total number of cells where the corresponding
 		/// value are set <see langword="true"/>.
 		/// </summary>

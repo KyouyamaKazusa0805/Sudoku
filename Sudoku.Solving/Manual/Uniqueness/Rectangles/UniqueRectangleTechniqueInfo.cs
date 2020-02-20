@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			IRectangleDetailData detailData)
 			: base(conclusions, views, detailData)
-		{ 
+		{
 		}
 
 
