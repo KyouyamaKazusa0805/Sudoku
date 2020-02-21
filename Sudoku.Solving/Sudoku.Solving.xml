@@ -4318,6 +4318,12 @@
             Encapsulates a wing technique solver.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.SlowRunningAttribute">
+            <summary>
+            To mark on a technique searcher, it means that this technique searcher
+            will have a slow speed to calculate.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Solver">
             <summary>
             Indicates an instance used for solving a sudoku puzzle.

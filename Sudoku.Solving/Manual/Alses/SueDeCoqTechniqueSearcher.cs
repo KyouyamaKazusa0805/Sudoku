@@ -14,6 +14,7 @@ namespace Sudoku.Solving.Manual.Alses
 	/// <summary>
 	/// Encapsulates a sue de coq (SdC) technique searcher.
 	/// </summary>
+	[SlowRunning]
 	public sealed class SueDeCoqTechniqueSearcher : AlmostLockedSetTechniqueSearcher
 	{
 		/// <summary>
@@ -386,7 +387,6 @@ namespace Sudoku.Solving.Manual.Alses
 			var tempList = new List<(int _digit, IReadOnlyList<int> _region)>();
 			foreach (int digit in mask.GetAllSets())
 			{
-				int i = 0;
 				var cells = new List<int>();
 				foreach (int cell in takenCells)
 				{
