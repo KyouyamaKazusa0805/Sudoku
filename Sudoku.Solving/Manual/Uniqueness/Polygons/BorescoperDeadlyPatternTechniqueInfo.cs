@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
+using BdpType3 = Sudoku.Solving.Manual.Uniqueness.Polygons.BorescoperDeadlyPatternType3DetailData;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
@@ -45,6 +46,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				{
 					1 => 5.3m,
 					2 => 5.4m,
+					3 => (((BdpType3)DetailData).IsNaked ? 5.3m : 5.4m) + ((BdpType3)DetailData).Digits.Count * .1m,
 					4 => 5.4m,
 					_ => throw new NotSupportedException("Out of range.")
 				} + (Size != 3 ? .1m : 0);
