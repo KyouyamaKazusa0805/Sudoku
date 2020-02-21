@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Alses
 	/// <summary>
 	/// Encapsulates a sue de coq (SdC) technique searcher.
 	/// </summary>
-	[SlowRunning]
+	[Slow]
 	public sealed class SueDeCoqTechniqueSearcher : AlmostLockedSetTechniqueSearcher
 	{
 		/// <summary>

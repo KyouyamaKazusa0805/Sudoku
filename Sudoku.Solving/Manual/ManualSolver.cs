@@ -126,7 +126,7 @@ namespace Sudoku.Solving.Manual
 					new UniqueLoopTechniqueSearcher(),
 					new EmptyRectangleTechniqueSearcher(regionMaps),
 					new AlmostLockedCandidatesTechniqueSearcher(intersection),
-					//new SueDeCoqTechniqueSearcher(regionMaps),
+					new SueDeCoqTechniqueSearcher(regionMaps),
 					new BorescoperDeadlyPatternTechniqueSearcher(),
 					new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
 				},
@@ -148,6 +148,13 @@ namespace Sudoku.Solving.Manual
 				var collection = new List<TechniqueInfo>();
 				foreach (var searcher in searcherListGroup)
 				{
+					// Skip all searchers marked slow running attribute.
+					if (DisableSlowTechniques
+						&& searcher.GetType().GetCustomAttributes(false).Any(a => a is SlowAttribute))
+					{
+						continue;
+					}
+
 					if (!EnablePatternOverlayMethod && searcher is PatternOverlayMethodTechniqueSearcher
 						|| !EnableTemplate && searcher is TemplateTechniqueSearcher
 						|| !EnableBruteForce && searcher is BruteForceTechniqueSearcher
@@ -270,7 +277,7 @@ namespace Sudoku.Solving.Manual
 				new UniqueLoopTechniqueSearcher(),
 				new EmptyRectangleTechniqueSearcher(regionMaps),
 				new AlmostLockedCandidatesTechniqueSearcher(intersection),
-				//new SueDeCoqTechniqueSearcher(regionMaps),
+				new SueDeCoqTechniqueSearcher(regionMaps),
 				new BorescoperDeadlyPatternTechniqueSearcher(),
 				new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
 				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
@@ -289,6 +296,13 @@ namespace Sudoku.Solving.Manual
 			for (int i = 0, length = searchers.Length; i < length; i++)
 			{
 				var searcher = searchers[i];
+
+				// Skip all searchers marked slow running attribute.
+				if (DisableSlowTechniques
+					&& searcher.GetType().GetCustomAttributes(false).Any(a => a is SlowAttribute))
+				{
+					continue;
+				}
 
 				if (!EnablePatternOverlayMethod && searcher is PatternOverlayMethodTechniqueSearcher
 					|| !EnableTemplate && searcher is TemplateTechniqueSearcher

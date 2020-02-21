@@ -7,7 +7,7 @@ namespace Sudoku.Solving
 	/// will have a slow speed to calculate.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Class)]
-	public sealed class SlowRunningAttribute : Attribute
+	public sealed class SlowAttribute : Attribute
 	{
 	}
 }

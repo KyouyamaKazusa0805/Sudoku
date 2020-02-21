@@ -1909,6 +1909,20 @@
             is too low so I do not allow them.
             </remarks>
         </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.DisableSlowTechniques">
+            <summary>
+            <para>
+            Indicates whether the solver will disable all technique searchers
+            whose running is extremely slow.
+            </para>
+            <para>
+            If the technique searcher marks the attribute <see cref="T:Sudoku.Solving.SlowAttribute"/>,
+            the searcher will be regarded as slow one.
+            </para>
+            <para>The value is <see langword="true"/> in default case.</para>
+            </summary>
+            <seealso cref="T:Sudoku.Solving.SlowAttribute"/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.EnableBowmanBingo">
             <summary>
             <para>
@@ -4318,7 +4332,7 @@
             Encapsulates a wing technique solver.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.SlowRunningAttribute">
+        <member name="T:Sudoku.Solving.SlowAttribute">
             <summary>
             To mark on a technique searcher, it means that this technique searcher
             will have a slow speed to calculate.

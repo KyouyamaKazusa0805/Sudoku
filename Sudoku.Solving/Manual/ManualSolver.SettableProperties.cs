@@ -126,6 +126,20 @@
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether the solver will disable all technique searchers
+		/// whose running is extremely slow.
+		/// </para>
+		/// <para>
+		/// If the technique searcher marks the attribute <see cref="SlowAttribute"/>,
+		/// the searcher will be regarded as slow one.
+		/// </para>
+		/// <para>The value is <see langword="true"/> in default case.</para>
+		/// </summary>
+		/// <seealso cref="SlowAttribute"/>
+		public bool DisableSlowTechniques { get; set; } = true;
+
+		/// <summary>
+		/// <para>
 		/// Indicates whether the solver should check all bowman bingos.
 		/// </para>
 		/// <para>The value is <see langword="true"/> in default case.</para>
