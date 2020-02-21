@@ -410,7 +410,89 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 								short m2 = grid.GetCandidatesReversal(c2);
 								if (size == 3)
 								{
-									// TODO: Check naked triple.
+									// Check naked triple.
+									short mask = (short)(digitsMask ^ ((short)(m1 | m2) | extraCellsMask));
+									if (mask.CountSet() != 3)
+									{
+										continue;
+									}
+
+									// Naked pair found.
+									// Record all eliminations.
+									var conclusions = new List<Conclusion>();
+									foreach (int cell in GridMap.GetCellsIn(region))
+									{
+										if (extraCells.Contains(cell) && cell != c1 && cell != c2)
+										{
+											continue;
+										}
+
+										foreach (int digit in
+											((short)(grid.GetCandidatesReversal(cell) & mask)).GetAllSets())
+										{
+											conclusions.Add(
+												new Conclusion(
+													ConclusionType.Elimination, cell * 9 + digit));
+										}
+									}
+
+									if (conclusions.Count == 0)
+									{
+										continue;
+									}
+
+									// Record all highlight candidates.
+									var candidateOffsets = new List<(int, int)>();
+									foreach (int cell in allCells)
+									{
+										if (extraCells.Contains(cell))
+										{
+											foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+											{
+												if ((mask >> digit & 1) != 0)
+												{
+													candidateOffsets.Add((1, cell * 9 + digit));
+												}
+												else
+												{
+													candidateOffsets.Add((0, cell * 9 + digit));
+												}
+											}
+										}
+										else
+										{
+											foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+											{
+												candidateOffsets.Add((0, cell * 9 + digit));
+											}
+										}
+									}
+									foreach (int digit in grid.GetCandidatesReversal(c1).GetAllSets())
+									{
+										candidateOffsets.Add((1, c1 * 9 + digit));
+									}
+									foreach (int digit in grid.GetCandidatesReversal(c2).GetAllSets())
+									{
+										candidateOffsets.Add((1, c2 * 9 + digit));
+									}
+
+									result.Add(
+										new BorescoperDeadlyPatternTechniqueInfo(
+											conclusions,
+											views: new[]
+											{
+												new View(
+													cellOffsets: null,
+													candidateOffsets,
+													regionOffsets: null,
+													linkMasks: null)
+											},
+											detailData: new BdpType3(
+												cells: allCells,
+												digits: digits.ToArray(),
+												subsetDigits: mask.GetAllSets().ToArray(),
+												subsetCells: new List<int>(extraCells) { c1, c2 },
+												isNaked: true)));
 								}
 								else // size > 3
 								{
@@ -425,7 +507,95 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 										short m3 = grid.GetCandidatesReversal(c3);
 										if (size == 4)
 										{
-											// TODO: Check naked quadruple.
+											// Check naked quadruple.
+											short mask = (short)(digitsMask ^ ((short)((short)(
+												m1 | m2) | m3) | extraCellsMask));
+											if (mask.CountSet() != 4)
+											{
+												continue;
+											}
+
+											// Naked pair found.
+											// Record all eliminations.
+											var conclusions = new List<Conclusion>();
+											foreach (int cell in GridMap.GetCellsIn(region))
+											{
+												if (extraCells.Contains(cell) && cell != c1
+													&& cell != c2 && cell != c3)
+												{
+													continue;
+												}
+
+												foreach (int digit in
+													((short)(grid.GetCandidatesReversal(cell) & mask)).GetAllSets())
+												{
+													conclusions.Add(
+														new Conclusion(
+															ConclusionType.Elimination, cell * 9 + digit));
+												}
+											}
+
+											if (conclusions.Count == 0)
+											{
+												continue;
+											}
+
+											// Record all highlight candidates.
+											var candidateOffsets = new List<(int, int)>();
+											foreach (int cell in allCells)
+											{
+												if (extraCells.Contains(cell))
+												{
+													foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+													{
+														if ((mask >> digit & 1) != 0)
+														{
+															candidateOffsets.Add((1, cell * 9 + digit));
+														}
+														else
+														{
+															candidateOffsets.Add((0, cell * 9 + digit));
+														}
+													}
+												}
+												else
+												{
+													foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+													{
+														candidateOffsets.Add((0, cell * 9 + digit));
+													}
+												}
+											}
+											foreach (int digit in grid.GetCandidatesReversal(c1).GetAllSets())
+											{
+												candidateOffsets.Add((1, c1 * 9 + digit));
+											}
+											foreach (int digit in grid.GetCandidatesReversal(c2).GetAllSets())
+											{
+												candidateOffsets.Add((1, c2 * 9 + digit));
+											}
+											foreach (int digit in grid.GetCandidatesReversal(c3).GetAllSets())
+											{
+												candidateOffsets.Add((1, c3 * 9 + digit));
+											}
+
+											result.Add(
+												new BorescoperDeadlyPatternTechniqueInfo(
+													conclusions,
+													views: new[]
+													{
+														new View(
+															cellOffsets: null,
+															candidateOffsets,
+															regionOffsets: null,
+															linkMasks: null)
+													},
+													detailData: new BdpType3(
+														cells: allCells,
+														digits: digits.ToArray(),
+														subsetDigits: mask.GetAllSets().ToArray(),
+														subsetCells: new List<int>(extraCells) { c1, c2, c3 },
+														isNaked: true)));
 										}
 										else // size == 5
 										{
@@ -438,8 +608,100 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 												}
 
 												short m4 = grid.GetCandidatesReversal(c4);
-												
-												// TODO: Check naked quintuple.
+
+												// Check naked quintuple.
+												short mask = (short)(digitsMask ^ ((short)((short)(
+												m1 | m2) | m3) | extraCellsMask));
+												if (mask.CountSet() != 5)
+												{
+													continue;
+												}
+
+												// Naked pair found.
+												// Record all eliminations.
+												var conclusions = new List<Conclusion>();
+												foreach (int cell in GridMap.GetCellsIn(region))
+												{
+													if (extraCells.Contains(cell) && cell != c1
+														&& cell != c2 && cell != c3 && cell != c4)
+													{
+														continue;
+													}
+
+													foreach (int digit in
+														((short)(grid.GetCandidatesReversal(cell) & mask)).GetAllSets())
+													{
+														conclusions.Add(
+															new Conclusion(
+																ConclusionType.Elimination, cell * 9 + digit));
+													}
+												}
+
+												if (conclusions.Count == 0)
+												{
+													continue;
+												}
+
+												// Record all highlight candidates.
+												var candidateOffsets = new List<(int, int)>();
+												foreach (int cell in allCells)
+												{
+													if (extraCells.Contains(cell))
+													{
+														foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+														{
+															if ((mask >> digit & 1) != 0)
+															{
+																candidateOffsets.Add((1, cell * 9 + digit));
+															}
+															else
+															{
+																candidateOffsets.Add((0, cell * 9 + digit));
+															}
+														}
+													}
+													else
+													{
+														foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+														{
+															candidateOffsets.Add((0, cell * 9 + digit));
+														}
+													}
+												}
+												foreach (int digit in grid.GetCandidatesReversal(c1).GetAllSets())
+												{
+													candidateOffsets.Add((1, c1 * 9 + digit));
+												}
+												foreach (int digit in grid.GetCandidatesReversal(c2).GetAllSets())
+												{
+													candidateOffsets.Add((1, c2 * 9 + digit));
+												}
+												foreach (int digit in grid.GetCandidatesReversal(c3).GetAllSets())
+												{
+													candidateOffsets.Add((1, c3 * 9 + digit));
+												}
+												foreach (int digit in grid.GetCandidatesReversal(c4).GetAllSets())
+												{
+													candidateOffsets.Add((1, c4 * 9 + digit));
+												}
+
+												result.Add(
+													new BorescoperDeadlyPatternTechniqueInfo(
+														conclusions,
+														views: new[]
+														{
+															new View(
+																cellOffsets: null,
+																candidateOffsets,
+																regionOffsets: null,
+																linkMasks: null)
+														},
+														detailData: new BdpType3(
+															cells: allCells,
+															digits: digits.ToArray(),
+															subsetDigits: mask.GetAllSets().ToArray(),
+															subsetCells: new List<int>(extraCells) { c1, c2, c3, c4 },
+															isNaked: true)));
 											}
 										}
 									}
