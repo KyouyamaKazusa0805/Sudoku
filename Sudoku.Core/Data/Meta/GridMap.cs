@@ -250,7 +250,7 @@ namespace Sudoku.Data.Meta
 		/// Indicates the total number of cells where the corresponding
 		/// value are set <see langword="true"/>.
 		/// </summary>
-		public int Count { get; private set; }
+		public int Count { readonly get; private set; }
 
 		/// <summary>
 		/// <para>
