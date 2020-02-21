@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Externals;
 using System.Linq;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
@@ -88,7 +89,7 @@ namespace Sudoku.Solving.Manual.Alses
 							interMap.ElementAt(1),
 							interMap.ElementAt(2)
 						},
-						_ => throw new Exception("Impossible case.")
+						_ => throw Throwing.ImpossibleCase
 					};
 
 					// Get all iteration cases of intersection cells.

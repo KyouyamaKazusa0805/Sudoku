@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Externals;
 using System.Linq;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
@@ -87,7 +88,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					6 => (18, 1),
 					7 => (18, 1),
 					8 => (18, 2),
-					_ => throw new Exception("Impossible case.")
+					_ => throw Throwing.ImpossibleCase
 				};
 				if (region1 >= 9 && region1 < 18)
 				{
@@ -827,7 +828,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					1 => region >= 18 && region < 27 ? (cell - increment, cell) : (cell, cell + increment),
 					2 => region >= 9 && region < 18 ? (cell - increment, cell) : (cell, cell + increment),
 					3 => (cell - increment, cell),
-					_ => throw new Exception("Impossible case.")
+					_ => throw Throwing.ImpossibleCase
 				};
 				cur++;
 			}

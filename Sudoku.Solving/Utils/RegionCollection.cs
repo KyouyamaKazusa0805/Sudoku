@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Externals;
 using System.Linq;
 using System.Text;
 
@@ -37,7 +38,7 @@ namespace Sudoku.Solving.Utils
 					0 => 'b',
 					1 => 'r',
 					2 => 'c',
-					_ => throw new Exception("Invalid region offset value.")
+					_ => Throwing.ImpossibleCase
 				});
 				foreach (int region in regionGroup)
 				{

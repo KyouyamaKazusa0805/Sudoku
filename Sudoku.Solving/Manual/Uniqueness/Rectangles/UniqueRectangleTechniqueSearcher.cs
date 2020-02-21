@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Externals;
 using System.Linq;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
@@ -305,7 +306,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					1 => stackalloc[] { cells[0], cells[2], cells[2], cells[3] },
 					2 => stackalloc[] { cells[0], cells[1], cells[0], cells[2] },
 					3 => stackalloc[] { cells[0], cells[1], cells[1], cells[3] },
-					_ => throw new Exception("Impossible case.")
+					_ => throw Throwing.ImpossibleCase
 				};
 				CellUtils.IsSameRegion(span[0], span[1], out int[] regions1);
 				CellUtils.IsSameRegion(span[2], span[3], out int[] regions2);
@@ -505,7 +506,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					3 => new[] { cells[1], cells[2] }, // Diagnoal type.
 					4 => new[] { cells[1], cells[3] },
 					5 => new[] { cells[2], cells[3] },
-					_ => throw new Exception("Impossible case.")
+					_ => throw Throwing.ImpossibleCase
 				};
 
 				short extraCellMask = 511;
@@ -588,7 +589,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						5 => false,
 						2 => true,
 						3 => true,
-						_ => throw new Exception("Impossible case.")
+						_ => throw Throwing.ImpossibleCase
 					};
 
 					// Type 2 / 5.

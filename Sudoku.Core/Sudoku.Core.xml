@@ -2104,5 +2104,16 @@
         <member name="M:System.ICloneable`1.System#ICloneable#Clone">
             <inheritdoc/>
         </member>
+        <member name="T:System.Externals.Throwing">
+            <summary>
+            Provides operations for throwing exceptions.
+            </summary>
+        </member>
+        <member name="F:System.Externals.Throwing.ImpossibleCase">
+            <summary>
+            Indicates an exception throwing when the case is impossible
+            in switch expressions or switch-case clauses.
+            </summary>
+        </member>
     </members>
 </doc>

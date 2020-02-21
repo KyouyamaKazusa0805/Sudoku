@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Externals;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 using ArType3 = Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleType3DetailData;
@@ -38,7 +39,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					1 => 4.5m,
 					2 => 4.7m,
 					3 => (((ArType3)DetailData).IsNaked ? 4.6m : 4.7m) + ((ArType3)DetailData).SubsetDigits.Count * .1m,
-					_ => throw new Exception("Impossible case.")
+					_ => throw Throwing.ImpossibleCase
 				};
 			}
 		}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Externals;
 using System.Text;
 using Sudoku.Data.Extensions;
 
@@ -117,7 +118,7 @@ namespace Sudoku.Drawing
 						0 => "b",
 						1 => "r",
 						2 => "c",
-						_ => throw new Exception("Impossible case.")
+						_ => throw Throwing.ImpossibleCase
 					}}{regionOffset % 9}{separator}");
 				}
 				sb.RemoveFromEnd(separator.Length);
