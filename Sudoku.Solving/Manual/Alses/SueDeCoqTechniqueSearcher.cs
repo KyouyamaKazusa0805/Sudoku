@@ -216,7 +216,7 @@ namespace Sudoku.Solving.Manual.Alses
 							if (grid.CandidateExists(cell, digit))
 							{
 								conclusions.Add(
-									new Conclusion(ConclusionType.Elimination, cell * 9 + digit));
+									new Conclusion(ConclusionType.Elimination, cell, digit));
 							}
 						}
 					}

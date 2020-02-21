@@ -190,7 +190,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 									{
 										conclusions.Add(
 											new Conclusion(
-												ConclusionType.Elimination, extraCell * 9 + digit));
+												ConclusionType.Elimination, extraCell, digit));
 									}
 								}
 
@@ -247,7 +247,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 									{
 										conclusions.Add(
 											new Conclusion(
-												ConclusionType.Elimination, cell * 9 + extraDigit));
+												ConclusionType.Elimination, cell, extraDigit));
 									}
 								}
 
@@ -340,7 +340,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 								{
 									conclusions.Add(
 										new Conclusion(
-											ConclusionType.Elimination, cell * 9 + digit));
+											ConclusionType.Elimination, cell, digit));
 								}
 							}
 
@@ -433,7 +433,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 										{
 											conclusions.Add(
 												new Conclusion(
-													ConclusionType.Elimination, cell * 9 + digit));
+													ConclusionType.Elimination, cell, digit));
 										}
 									}
 
@@ -532,7 +532,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 												{
 													conclusions.Add(
 														new Conclusion(
-															ConclusionType.Elimination, cell * 9 + digit));
+															ConclusionType.Elimination, cell, digit));
 												}
 											}
 
@@ -634,7 +634,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 													{
 														conclusions.Add(
 															new Conclusion(
-																ConclusionType.Elimination, cell * 9 + digit));
+																ConclusionType.Elimination, cell, digit));
 													}
 												}
 
@@ -747,7 +747,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				if (grid.CandidateExists(cell, elimDigit))
 				{
 					conclusions.Add(
-						new Conclusion(ConclusionType.Elimination, cell * 9 + elimDigit));
+						new Conclusion(ConclusionType.Elimination, cell, elimDigit));
 				}
 			}
 

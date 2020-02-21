@@ -129,7 +129,7 @@ namespace Sudoku.Solving.Manual.Sdps
 							new EmptyRectangleTechniqueInfo(
 								conclusions: new[]
 								{
-									new Conclusion(ConclusionType.Elimination, elimCell * 9 + digit)
+									new Conclusion(ConclusionType.Elimination, elimCell, digit)
 								},
 								views: new[]
 								{

@@ -99,7 +99,7 @@ namespace Sudoku.Solving.Manual.Sdps
 						{
 							if (grid.CandidateExists(cell, digit))
 							{
-								conclusions.Add(new Conclusion(ConclusionType.Elimination, cell * 9 + digit));
+								conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, digit));
 							}
 						}
 

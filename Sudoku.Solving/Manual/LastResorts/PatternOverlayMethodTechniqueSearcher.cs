@@ -75,7 +75,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 					}
 
 					conclusions.Add(
-						new Conclusion(ConclusionType.Elimination, cell * 9 + digit));
+						new Conclusion(ConclusionType.Elimination, cell, digit));
 				}
 
 				if (conclusions.Count == 0)

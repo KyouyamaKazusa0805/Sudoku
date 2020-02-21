@@ -183,7 +183,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 							{
 								conclusions.Add(
 									new Conclusion(
-										ConclusionType.Elimination, cell * 9 + extraDigitReal));
+										ConclusionType.Elimination, cell, extraDigitReal));
 							}
 						}
 
@@ -258,7 +258,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						{
 							conclusions.Add(
 								new Conclusion(
-									ConclusionType.Elimination, extraCell * 9 + digit));
+									ConclusionType.Elimination, extraCell, digit));
 						}
 					}
 
@@ -406,7 +406,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						if (grid.CandidateExists(elimCell, elimDigit))
 						{
 							conclusions.Add(
-								new Conclusion(ConclusionType.Elimination, elimCell * 9 + elimDigit));
+								new Conclusion(ConclusionType.Elimination, elimCell, elimDigit));
 						}
 
 						if (conclusions.Count == 0
@@ -570,7 +570,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						{
 							conclusions.Add(
 								new Conclusion(
-									ConclusionType.Elimination, cell * 9 + extraDigit));
+									ConclusionType.Elimination, cell, extraDigit));
 						}
 					}
 
@@ -725,22 +725,26 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 							{
 								if ((temp & 1) != 0)
 								{
-									GridMap elimMap = default;
-									for (int y = 0, count = 0; y < 5; y++)
-									{
-										int cell = allCells[y];
-										if (grid.CandidateExists(cell, digit))
-										{
-											if (count++ == 0)
-											{
-												elimMap = new GridMap(cell, false);
-											}
-											else
-											{
-												elimMap &= new GridMap(cell, false);
-											}
-										}
-									}
+									var elimMap = GridMap.CreateInstance(
+										from cell in allCells
+										where grid.CandidateExists(cell, digit)
+										select cell);
+									//var elimMap = default(GridMap);
+									//for (int y = 0, count = 0; y < 5; y++)
+									//{
+									//	int cell = allCells[y];
+									//	if (grid.CandidateExists(cell, digit))
+									//	{
+									//		if (count++ == 0)
+									//		{
+									//			elimMap = new GridMap(cell, false);
+									//		}
+									//		else
+									//		{
+									//			elimMap &= new GridMap(cell, false);
+									//		}
+									//	}
+									//}
 
 									foreach (int cell in elimMap.Offsets)
 									{
@@ -748,7 +752,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										{
 											conclusions.Add(
 												new Conclusion(
-													ConclusionType.Elimination, cell * 9 + digit));
+													ConclusionType.Elimination, cell, digit));
 										}
 									}
 								}
@@ -853,22 +857,26 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 									{
 										if ((temp & 1) != 0)
 										{
-											GridMap elimMap = default;
-											for (int y = 0, count = 0; y < 6; y++)
-											{
-												int cell = allCells[y];
-												if (grid.CandidateExists(cell, digit))
-												{
-													if (count++ == 0)
-													{
-														elimMap = new GridMap(cell, false);
-													}
-													else
-													{
-														elimMap &= new GridMap(cell, false);
-													}
-												}
-											}
+											var elimMap = GridMap.CreateInstance(
+												from cell in allCells
+												where grid.CandidateExists(cell, digit)
+												select cell);
+											//var elimMap = default(GridMap);
+											//for (int y = 0, count = 0; y < 6; y++)
+											//{
+											//	int cell = allCells[y];
+											//	if (grid.CandidateExists(cell, digit))
+											//	{
+											//		if (count++ == 0)
+											//		{
+											//			elimMap = new GridMap(cell, false);
+											//		}
+											//		else
+											//		{
+											//			elimMap &= new GridMap(cell, false);
+											//		}
+											//	}
+											//}
 
 											foreach (int cell in elimMap.Offsets)
 											{
@@ -876,7 +884,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 												{
 													conclusions.Add(
 														new Conclusion(
-															ConclusionType.Elimination, cell * 9 + digit));
+															ConclusionType.Elimination, cell, digit));
 												}
 											}
 										}
@@ -979,22 +987,26 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										{
 											if ((temp & 1) != 0)
 											{
-												GridMap elimMap = default;
-												for (int y = 0, count = 0; y < 7; y++)
-												{
-													int cell = allCells[y];
-													if (grid.CandidateExists(cell, digit))
-													{
-														if (count++ == 0)
-														{
-															elimMap = new GridMap(cell, false);
-														}
-														else
-														{
-															elimMap &= new GridMap(cell, false);
-														}
-													}
-												}
+												var elimMap = GridMap.CreateInstance(
+												from cell in allCells
+												where grid.CandidateExists(cell, digit)
+												select cell);
+												//var elimMap = default(GridMap);
+												//for (int y = 0, count = 0; y < 6; y++)
+												//{
+												//	int cell = allCells[y];
+												//	if (grid.CandidateExists(cell, digit))
+												//	{
+												//		if (count++ == 0)
+												//		{
+												//			elimMap = new GridMap(cell, false);
+												//		}
+												//		else
+												//		{
+												//			elimMap &= new GridMap(cell, false);
+												//		}
+												//	}
+												//}
 
 												foreach (int cell in elimMap.Offsets)
 												{
@@ -1002,7 +1014,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 													{
 														conclusions.Add(
 															new Conclusion(
-																ConclusionType.Elimination, cell * 9 + digit));
+																ConclusionType.Elimination, cell, digit));
 													}
 												}
 											}
@@ -1155,7 +1167,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 													{
 														conclusions.Add(
 															new Conclusion(
-																ConclusionType.Elimination, cell * 9 + elimDigit));
+																ConclusionType.Elimination, cell, elimDigit));
 													}
 												}
 											}
@@ -1277,7 +1289,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 															{
 																conclusions.Add(
 																	new Conclusion(
-																		ConclusionType.Elimination, cell * 9 + elimDigit));
+																		ConclusionType.Elimination, cell, elimDigit));
 															}
 														}
 													}
@@ -1397,7 +1409,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 																{
 																	conclusions.Add(
 																		new Conclusion(
-																			ConclusionType.Elimination, cell * 9 + elimDigit));
+																			ConclusionType.Elimination, cell, elimDigit));
 																}
 															}
 														}
@@ -1505,7 +1517,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					{
 						if (grid.GetCellStatus(cell) == CellStatus.Empty)
 						{
-							conclusions.Add(new Conclusion(ConclusionType.Assignment, cell * 9 + digit));
+							conclusions.Add(new Conclusion(ConclusionType.Assignment, cell, digit));
 						}
 					}
 
@@ -1572,7 +1584,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					{
 						if (grid.GetCellStatus(cell) == CellStatus.Empty)
 						{
-							conclusions.Add(new Conclusion(ConclusionType.Assignment, cell * 9 + digit));
+							conclusions.Add(new Conclusion(ConclusionType.Assignment, cell, digit));
 						}
 					}
 
@@ -1697,7 +1709,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 							{
 								conclusions.Add(
 									new Conclusion(
-										ConclusionType.Elimination, cell * 9 + elimDigit));
+										ConclusionType.Elimination, cell, elimDigit));
 							}
 						}
 

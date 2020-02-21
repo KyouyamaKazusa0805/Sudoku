@@ -68,13 +68,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								{
 									conclusions.Add(
 										new Conclusion(
-											ConclusionType.Elimination, extraCell * 9 + d1));
+											ConclusionType.Elimination, extraCell, d1));
 								}
 								if (!grid[extraCell, d2])
 								{
 									conclusions.Add(
 										new Conclusion(
-											ConclusionType.Elimination, extraCell * 9 + d2));
+											ConclusionType.Elimination, extraCell, d2));
 								}
 
 								if (conclusions.Count == 0)
@@ -132,7 +132,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 									{
 										conclusions.Add(
 											new Conclusion(
-												ConclusionType.Elimination, elimCell * 9 + extraDigit));
+												ConclusionType.Elimination, elimCell, extraDigit));
 									}
 								}
 
@@ -250,7 +250,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			{
 				if (grid.CandidateExists(cell, extraDigit))
 				{
-					conclusions.Add(new Conclusion(ConclusionType.Elimination, cell * 9 + extraDigit));
+					conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, extraDigit));
 				}
 			}
 
@@ -338,7 +338,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								{
 									conclusions.Add(
 										new Conclusion(
-											ConclusionType.Elimination, cell * 9 + digit));
+											ConclusionType.Elimination, cell, digit));
 								}
 							}
 						}
@@ -418,7 +418,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 										{
 											conclusions.Add(
 												new Conclusion(
-													ConclusionType.Elimination, cell * 9 + digit));
+													ConclusionType.Elimination, cell, digit));
 										}
 									}
 								}
@@ -501,7 +501,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 											{
 												conclusions.Add(
 													new Conclusion(
-														ConclusionType.Elimination, cell * 9 + digit));
+														ConclusionType.Elimination, cell, digit));
 											}
 										}
 									}
@@ -641,7 +641,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 										{
 											conclusions.Add(
 												new Conclusion(
-													ConclusionType.Elimination, cell * 9 + digit));
+													ConclusionType.Elimination, cell, digit));
 										}
 									}
 								}
@@ -753,7 +753,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 												{
 													conclusions.Add(
 														new Conclusion(
-															ConclusionType.Elimination, cell * 9 + digit));
+															ConclusionType.Elimination, cell, digit));
 												}
 											}
 										}
@@ -867,7 +867,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 													{
 														conclusions.Add(
 															new Conclusion(
-																ConclusionType.Elimination, cell * 9 + digit));
+																ConclusionType.Elimination, cell, digit));
 													}
 												}
 											}
@@ -979,7 +979,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							{
 								conclusions.Add(
 									new Conclusion(
-										ConclusionType.Elimination, cell * 9 + elimDigit));
+										ConclusionType.Elimination, cell, elimDigit));
 							}
 						}
 

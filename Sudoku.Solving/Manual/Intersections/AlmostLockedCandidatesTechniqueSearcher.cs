@@ -171,7 +171,7 @@ namespace Sudoku.Solving.Manual.Intersections
 							if (grid.CandidateExists(aCell, digit))
 							{
 								conclusions.Add(
-									new Conclusion(ConclusionType.Elimination, aCell * 9 + digit));
+									new Conclusion(ConclusionType.Elimination, aCell, digit));
 							}
 						}
 					}
@@ -182,7 +182,7 @@ namespace Sudoku.Solving.Manual.Intersections
 						if ((temp & 1) != 0 && grid.CandidateExists(ahsCell, digit))
 						{
 							conclusions.Add(
-								new Conclusion(ConclusionType.Elimination, ahsCell * 9 + digit));
+								new Conclusion(ConclusionType.Elimination, ahsCell, digit));
 						}
 					}
 
@@ -295,7 +295,7 @@ namespace Sudoku.Solving.Manual.Intersections
 									if (grid.CandidateExists(aCell, digit))
 									{
 										conclusions.Add(
-											new Conclusion(ConclusionType.Elimination, aCell * 9 + digit));
+											new Conclusion(ConclusionType.Elimination, aCell, digit));
 									}
 								}
 							}
@@ -309,13 +309,13 @@ namespace Sudoku.Solving.Manual.Intersections
 									{
 										conclusions.Add(
 											new Conclusion(
-												ConclusionType.Elimination, ahsCell1 * 9 + digit));
+												ConclusionType.Elimination, ahsCell1, digit));
 									}
 									if (grid.CandidateExists(ahsCell2, digit))
 									{
 										conclusions.Add(
 											new Conclusion(
-												ConclusionType.Elimination, ahsCell2 * 9 + digit));
+												ConclusionType.Elimination, ahsCell2, digit));
 									}
 								}
 							}
@@ -438,7 +438,7 @@ namespace Sudoku.Solving.Manual.Intersections
 										if (grid.CandidateExists(aCell, digit))
 										{
 											conclusions.Add(
-												  new Conclusion(ConclusionType.Elimination, aCell * 9 + digit));
+												  new Conclusion(ConclusionType.Elimination, aCell, digit));
 										}
 									}
 								}
@@ -452,19 +452,19 @@ namespace Sudoku.Solving.Manual.Intersections
 										{
 											conclusions.Add(
 												new Conclusion(
-													ConclusionType.Elimination, ahsCell1 * 9 + digit));
+													ConclusionType.Elimination, ahsCell1, digit));
 										}
 										if (grid.CandidateExists(ahsCell2, digit))
 										{
 											conclusions.Add(
 												new Conclusion(
-													ConclusionType.Elimination, ahsCell2 * 9 + digit));
+													ConclusionType.Elimination, ahsCell2, digit));
 										}
 										if (grid.CandidateExists(ahsCell3, digit))
 										{
 											conclusions.Add(
 												new Conclusion(
-													ConclusionType.Elimination, ahsCell3 * 9 + digit));
+													ConclusionType.Elimination, ahsCell3, digit));
 										}
 									}
 								}

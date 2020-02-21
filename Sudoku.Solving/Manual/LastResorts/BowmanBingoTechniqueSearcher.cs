@@ -60,7 +60,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 						continue;
 					}
 
-					_tempConclusions.Add(new Conclusion(ConclusionType.Assignment, cell * 9 + digit));
+					_tempConclusions.Add(new Conclusion(ConclusionType.Assignment, cell, digit));
 					var (candList, mask) = RecordUndoInfo(tempGrid, cell, digit);
 
 					// Try to fill this cell.

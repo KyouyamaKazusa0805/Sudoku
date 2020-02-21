@@ -204,7 +204,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 								{
 									conclusions.Add(
 										new Conclusion(
-											ConclusionType.Elimination, cell * 9 + digit));
+											ConclusionType.Elimination, cell, digit));
 								}
 							}
 						}
@@ -276,7 +276,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 										{
 											conclusions.Add(
 												new Conclusion(
-													ConclusionType.Elimination, cell * 9 + digit));
+													ConclusionType.Elimination, cell, digit));
 										}
 									}
 								}
@@ -352,7 +352,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 												{
 													conclusions.Add(
 														new Conclusion(
-															ConclusionType.Elimination, cell * 9 + digit));
+															ConclusionType.Elimination, cell, digit));
 												}
 											}
 										}
@@ -432,7 +432,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 													{
 														conclusions.Add(
 															new Conclusion(
-																ConclusionType.Elimination, cell * 9 + digit));
+																ConclusionType.Elimination, cell, digit));
 													}
 												}
 											}
@@ -578,7 +578,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 							conclusions.Add(
 								new Conclusion(
-									ConclusionType.Elimination, cell * 9 + d));
+									ConclusionType.Elimination, cell, d));
 						}
 					}
 
@@ -719,20 +719,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			else
 			{
 				// Degenerated to BUG type 2.
-				var map = default(GridMap);
-				for (int i = 0; i < trueCandidates.Count; i++)
-				{
-					int cand = trueCandidates[i];
-					if (i == 0)
-					{
-						map = new GridMap(cand);
-					}
-					else
-					{
-						map &= new GridMap(cand);
-					}
-				}
-
+				var map = GridMap.CreateInstance(trueCandidates);
 				if (map.Count != 0)
 				{
 					// BUG type 2 (or BUG + n, but special) found.
@@ -745,7 +732,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						{
 							conclusions.Add(
 								new Conclusion(
-									ConclusionType.Elimination, cell * 9 + digit));
+									ConclusionType.Elimination, cell, digit));
 						}
 					}
 
@@ -782,20 +769,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		private static void CheckType2(
 			IList<UniquenessTechniqueInfo> result, Grid grid, IReadOnlyList<int> trueCandidates)
 		{
-			var map = default(GridMap);
-			int i = 0;
-			foreach (int cand in trueCandidates)
-			{
-				if (i++ == 0)
-				{
-					map = new GridMap(cand / 9);
-				}
-				else
-				{
-					map &= new GridMap(cand / 9);
-				}
-			}
-
+			var map = GridMap.CreateInstance(from cand in trueCandidates select cand / 9);
 			if (map.Count == 0)
 			{
 				return;
@@ -809,9 +783,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			{
 				if (grid.CandidateExists(cell, digit))
 				{
-					conclusions.Add(
-						new Conclusion(
-							ConclusionType.Elimination, cell * 9 + digit));
+					conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, digit));
 				}
 			}
 

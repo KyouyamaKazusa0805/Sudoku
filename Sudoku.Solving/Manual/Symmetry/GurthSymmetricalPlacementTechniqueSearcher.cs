@@ -146,7 +146,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 					}
 
 					conclusions.Add(
-						new Conclusion(ConclusionType.Elimination, cell * 9 + digit));
+						new Conclusion(ConclusionType.Elimination, cell, digit));
 				}
 			}
 
@@ -280,7 +280,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 					}
 
 					conclusions.Add(
-						new Conclusion(ConclusionType.Elimination, cell * 9 + digit));
+						new Conclusion(ConclusionType.Elimination, cell, digit));
 				}
 			}
 
@@ -414,7 +414,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 					}
 
 					conclusions.Add(
-						new Conclusion(ConclusionType.Elimination, cell * 9 + digit));
+						new Conclusion(ConclusionType.Elimination, cell, digit));
 				}
 			}
 
@@ -548,7 +548,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 					}
 
 					conclusions.Add(
-						new Conclusion(ConclusionType.Elimination, cell * 9 + digit));
+						new Conclusion(ConclusionType.Elimination, cell, digit));
 				}
 			}
 
@@ -648,7 +648,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 						new GurthSymmetricalPlacementTechniqueInfo(
 							conclusions: new[]
 							{
-								new Conclusion(ConclusionType.Assignment, 360 + digit)
+								new Conclusion(ConclusionType.Assignment, 40, digit)
 							},
 							views: new[]
 							{
