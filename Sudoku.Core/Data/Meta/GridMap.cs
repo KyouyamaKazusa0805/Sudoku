@@ -230,6 +230,23 @@ namespace Sudoku.Data.Meta
 		}
 
 		/// <summary>
+		/// Indicates all regions covered.
+		/// </summary>
+		public readonly IEnumerable<int> CoveredRegions
+		{
+			get
+			{
+				for (int i = 0; i < 27; i++)
+				{
+					if ((_high & ~CoverTable[i, 0]) == 0 && (_low & ~CoverTable[i, 1]) == 0)
+					{
+						yield return i;
+					}
+				}
+			}
+		}
+
+		/// <summary>
 		/// Indicates the total number of cells where the corresponding
 		/// value are set <see langword="true"/>.
 		/// </summary>

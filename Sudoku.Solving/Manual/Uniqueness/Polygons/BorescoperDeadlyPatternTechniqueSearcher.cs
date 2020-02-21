@@ -8,6 +8,7 @@ using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
 using BdpType1 = Sudoku.Solving.Manual.Uniqueness.Polygons.BorescoperDeadlyPatternType1DetailData;
 using BdpType2 = Sudoku.Solving.Manual.Uniqueness.Polygons.BorescoperDeadlyPatternType2DetailData;
+using BdpType3 = Sudoku.Solving.Manual.Uniqueness.Polygons.BorescoperDeadlyPatternType3DetailData;
 using BdpType4 = Sudoku.Solving.Manual.Uniqueness.Polygons.BorescoperDeadlyPatternType4DetailData;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
@@ -77,9 +78,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				int[,] pair1 = new int[6, 2], pair2 = new int[6, 2];
 				(int incre1, int incre2) = i switch
 				{
-					0 => (9, 1), 1 => (9, 1), 2 => (9, 1), 3 => (9, 1),
-					4 => (9, 2), 5 => (9, 2),
-					6 => (18, 1), 7 => (18, 1),
+					0 => (9, 1),
+					1 => (9, 1),
+					2 => (9, 1),
+					3 => (9, 1),
+					4 => (9, 2),
+					5 => (9, 2),
+					6 => (18, 1),
+					7 => (18, 1),
 					8 => (18, 2),
 					_ => throw new Exception("Impossible case.")
 				};
@@ -133,40 +139,43 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							continue;
 						}
 
-						// Now check extra cells and extra digits.
+						// Now check extra digits.
 						var allCells = new List<int>(triplet)
 						{
 							pair1[i1, 0], pair1[i1, 1], pair2[i2, 0], pair2[i2, 1]
 						};
-
 						short totalMask = 0;
 						foreach (int cell in allCells)
 						{
 							totalMask |= grid.GetCandidatesReversal(cell);
 						}
-
 						var digits = digitsMask.GetAllSets();
 						short otherDigitsMask = (short)(totalMask ^ digitsMask);
 						var otherDigits = otherDigitsMask.GetAllSets();
+
+						// Find all extra cells.
+						var extraCells = new List<int>();
+						foreach (int cell in allCells)
+						{
+							if (otherDigits.Any(digit => grid.CandidateExists(cell, digit)))
+							{
+								extraCells.Add(cell);
+							}
+						}
+
 						if (!otherDigits.HasOnlyOneElement())
 						{
-							// TODO: Check BDP 3 digits type 3.
+							Check3DigitsType3Naked(
+								result, grid, digits, digitsMask, allCells,
+								extraCells);
 							Check3DigitsType4(
 								result, grid, block, digits, digitsMask,
 								allCells, pair1, pair2, triplet);
+							// TODO: Check BDP 3 digits type 3 with hidden subests.
 						}
 						else
 						{
 							// Type 1 or 2 found.
-							var extraCells = new List<int>();
-							foreach (int cell in allCells)
-							{
-								if (otherDigits.Any(digit => grid.CandidateExists(cell, digit)))
-								{
-									extraCells.Add(cell);
-								}
-							}
-
 							// Now check whether type 1 or 2.
 							if (extraCells.Count == 1)
 							{
@@ -271,6 +280,170 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 											cells: allCells,
 											digits: digits.ToArray(),
 											extraDigit)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		private static void Check3DigitsType3Naked(
+			IList<BorescoperDeadlyPatternTechniqueInfo> result, Grid grid, IEnumerable<int> digits,
+			short digitsMask, IReadOnlyList<int> allCells, IReadOnlyList<int> extraCells)
+		{
+			var regions = new GridMap(extraCells).CoveredRegions;
+			if (!regions.Any())
+			{
+				return;
+			}
+
+			short extraCellsMask = 0;
+			foreach (int extraCell in extraCells)
+			{
+				extraCellsMask |= grid.GetCandidatesReversal(extraCell);
+			}
+			foreach (int region in regions)
+			{
+				for (int size = 2; size <= 5; size++)
+				{
+					for (int i1 = 0; i1 < 10 - size; i1++)
+					{
+						int c1 = RegionUtils.GetCellOffset(region, i1);
+						if (extraCells.Contains(c1))
+						{
+							continue;
+						}
+
+						short m1 = grid.GetCandidatesReversal(c1);
+						if (size == 2)
+						{
+							// Check naked pair.
+							short mask = (short)(digitsMask ^ (m1 | extraCellsMask));
+							if (mask.CountSet() != 2)
+							{
+								continue;
+							}
+
+							// Naked pair found.
+							// Record all eliminations.
+							var conclusions = new List<Conclusion>();
+							foreach (int cell in GridMap.GetCellsIn(region))
+							{
+								if (extraCells.Contains(cell) && cell != c1)
+								{
+									continue;
+								}
+
+								foreach (int digit in
+									((short)(grid.GetCandidatesReversal(cell) & mask)).GetAllSets())
+								{
+									conclusions.Add(
+										new Conclusion(
+											ConclusionType.Elimination, cell * 9 + digit));
+								}
+							}
+
+							if (conclusions.Count == 0)
+							{
+								continue;
+							}
+
+							// Record all highlight candidates.
+							var candidateOffsets = new List<(int, int)>();
+							foreach (int cell in allCells)
+							{
+								if (extraCells.Contains(cell))
+								{
+									foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+									{
+										if ((mask >> digit & 1) != 0)
+										{
+											candidateOffsets.Add((1, cell * 9 + digit));
+										}
+										else
+										{
+											candidateOffsets.Add((0, cell * 9 + digit));
+										}
+									}
+								}
+								else
+								{
+									foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+									{
+										candidateOffsets.Add((0, cell * 9 + digit));
+									}
+								}
+							}
+							foreach (int digit in grid.GetCandidatesReversal(c1).GetAllSets())
+							{
+								candidateOffsets.Add((1, c1 * 9 + digit));
+							}
+
+							result.Add(
+								new BorescoperDeadlyPatternTechniqueInfo(
+									conclusions,
+									views: new[]
+									{
+										new View(
+											cellOffsets: null,
+											candidateOffsets,
+											regionOffsets: null,
+											linkMasks: null)
+									},
+									detailData: new BdpType3(
+										cells: allCells,
+										digits: digits.ToArray(),
+										subsetDigits: mask.GetAllSets().ToArray(),
+										subsetCells: new List<int>(extraCells) { c1 },
+										isNaked: true)));
+						}
+						else // size > 2
+						{
+							for (int i2 = i1 + 1; i2 < 11 - size; i2++)
+							{
+								int c2 = RegionUtils.GetCellOffset(region, i2);
+								if (extraCells.Contains(c2))
+								{
+									continue;
+								}
+
+								short m2 = grid.GetCandidatesReversal(c2);
+								if (size == 3)
+								{
+									// TODO: Check naked triple.
+								}
+								else // size > 3
+								{
+									for (int i3 = i2 + 1; i3 < 12 - size; i3++)
+									{
+										int c3 = RegionUtils.GetCellOffset(region, i3);
+										if (extraCells.Contains(c3))
+										{
+											continue;
+										}
+
+										short m3 = grid.GetCandidatesReversal(c3);
+										if (size == 4)
+										{
+											// TODO: Check naked quadruple.
+										}
+										else // size == 5
+										{
+											for (int i4 = 0; i4 < 9; i4++)
+											{
+												int c4 = RegionUtils.GetCellOffset(region, i4);
+												if (extraCells.Contains(c4))
+												{
+													continue;
+												}
+
+												short m4 = grid.GetCandidatesReversal(c4);
+												
+												// TODO: Check naked quintuple.
+											}
+										}
+									}
+								}
 							}
 						}
 					}

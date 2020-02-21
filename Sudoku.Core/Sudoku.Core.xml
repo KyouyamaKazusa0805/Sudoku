@@ -1226,6 +1226,11 @@
             Indicates the covered line.
             </summary>
         </member>
+        <member name="P:Sudoku.Data.Meta.GridMap.CoveredRegions">
+            <summary>
+            Indicates all regions covered.
+            </summary>
+        </member>
         <member name="P:Sudoku.Data.Meta.GridMap.Count">
             <summary>
             Indicates the total number of cells where the corresponding
