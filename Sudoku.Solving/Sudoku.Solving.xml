@@ -3367,18 +3367,18 @@
             Indicates the detail data of UR type 4.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BorescoperDeadlyPatternType4DetailData.#ctor(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Solving.ConjugatePair)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BorescoperDeadlyPatternType4DetailData.#ctor(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
             <param name="cells">All cells.</param>
             <param name="digits">All digits.</param>
-            <param name="conjugatePair">The conjugate pair.</param>
+            <param name="region">The so-called "conjugate region".</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BorescoperDeadlyPatternType4DetailData.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BorescoperDeadlyPatternType4DetailData.ConjugatePair">
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BorescoperDeadlyPatternType4DetailData.Region">
             <summary>
             Indicates the conjugate pair used.
             </summary>

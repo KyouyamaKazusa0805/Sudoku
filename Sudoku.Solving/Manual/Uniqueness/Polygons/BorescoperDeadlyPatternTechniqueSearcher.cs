@@ -8,6 +8,7 @@ using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
 using BdpType1 = Sudoku.Solving.Manual.Uniqueness.Polygons.BorescoperDeadlyPatternType1DetailData;
 using BdpType2 = Sudoku.Solving.Manual.Uniqueness.Polygons.BorescoperDeadlyPatternType2DetailData;
+using BdpType4 = Sudoku.Solving.Manual.Uniqueness.Polygons.BorescoperDeadlyPatternType4DetailData;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
@@ -125,6 +126,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						short digitsMask = (short)((short)(pair1Mask | pair2Mask) | tripletMask);
 						if (digitsMask.CountSet() != 3)
 						{
+							// If the structure is correct, all masks from three parts
+							// will hold 3 digits at total. If we get the result mask,
+							// the mask from all cells will contain so-called "other digits"
+							// bits.
 							continue;
 						}
 
@@ -145,7 +150,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						var otherDigits = otherDigitsMask.GetAllSets();
 						if (!otherDigits.HasOnlyOneElement())
 						{
-							// TODO: Check BDP 3 digits type 3 or 4.
+							// TODO: Check BDP 3 digits type 3.
+							Check3DigitsType4(
+								result, grid, block, digits, digitsMask,
+								allCells, pair1, pair2, triplet);
 						}
 						else
 						{
@@ -268,6 +276,95 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					}
 				}
 			}
+		}
+
+		private static void Check3DigitsType4(
+			IList<BorescoperDeadlyPatternTechniqueInfo> result, Grid grid, int block,
+			IEnumerable<int> digits, short digitMask, IReadOnlyList<int> allCells, int[,] pair1,
+			int[,] pair2, int[] triplet)
+		{
+			// When we check type 4, we should be carefully when searching for triplets.
+			// Triplet will not always contains a conjugate pair, but a
+			// "conjugate triplet region".
+			// Note that if the pairs has two conjugate pairs, two cells will form a
+			// naked pair instead of other structures.
+			short conjugatePairDigits = 0;
+			foreach (int digit in digits)
+			{
+				short mask = grid.GetDigitAppearingMask(digit, block);
+				if (mask.CountSet() <= 3)
+				{
+					conjugatePairDigits |= (short)(1 << digit);
+				}
+			}
+
+			if (conjugatePairDigits.CountSet() != 2)
+			{
+				return;
+			}
+
+			// Now "conjugate region" forms. Check eliminations.
+			int elimDigit = (digitMask ^ conjugatePairDigits).FindFirstSet();
+			var conclusions = new List<Conclusion>();
+			foreach (int cell in triplet)
+			{
+				if (grid.CandidateExists(cell, elimDigit))
+				{
+					conclusions.Add(
+						new Conclusion(ConclusionType.Elimination, cell * 9 + elimDigit));
+				}
+			}
+
+			if (conclusions.Count == 0)
+			{
+				return;
+			}
+
+			// Record all highlight candidates.
+			var candidateOffsets = new List<(int, int)>();
+			foreach (int cell in pair1)
+			{
+				foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+				{
+					candidateOffsets.Add((0, cell * 9 + digit));
+				}
+			}
+			foreach (int cell in pair2)
+			{
+				foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+				{
+					candidateOffsets.Add((0, cell * 9 + digit));
+				}
+			}
+			foreach (int cell in triplet)
+			{
+				foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+				{
+					if (digit == elimDigit)
+					{
+						continue;
+					}
+
+					// Only highlight non-eliminated digit.
+					candidateOffsets.Add((1, cell * 9 + digit));
+				}
+			}
+
+			result.Add(
+				new BorescoperDeadlyPatternTechniqueInfo(
+					conclusions,
+					views: new[]
+					{
+						new View(
+							cellOffsets: null,
+							candidateOffsets,
+							regionOffsets: new[] { (0, block )},
+							linkMasks: null)
+					},
+					detailData: new BdpType4(
+						cells: allCells,
+						digits: digits.ToArray(),
+						region: block)));
 		}
 
 		private void Check4Digits(

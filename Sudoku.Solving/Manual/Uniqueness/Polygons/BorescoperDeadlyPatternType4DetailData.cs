@@ -13,11 +13,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// </summary>
 		/// <param name="cells">All cells.</param>
 		/// <param name="digits">All digits.</param>
-		/// <param name="conjugatePair">The conjugate pair.</param>
+		/// <param name="region">The so-called "conjugate region".</param>
 		public BorescoperDeadlyPatternType4DetailData(
-			IReadOnlyList<int> cells, IReadOnlyList<int> digits, ConjugatePair conjugatePair)
-			: base(cells, digits) =>
-			ConjugatePair = conjugatePair;
+			IReadOnlyList<int> cells, IReadOnlyList<int> digits, int region)
+			: base(cells, digits) => Region = region;
 
 
 		/// <inheritdoc/>
@@ -26,7 +25,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <summary>
 		/// Indicates the conjugate pair used.
 		/// </summary>
-		public ConjugatePair ConjugatePair { get; }
+		public int Region { get; }
 
 
 		/// <inheritdoc/>
@@ -34,7 +33,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		{
 			string digitsStr = DigitCollection.ToString(Digits);
 			string cellsStr = CellCollection.ToString(Cells);
-			return $"{digitsStr} in cells {cellsStr} with conjugate pair {ConjugatePair}";
+			string regionStr = RegionUtils.ToString(Region);
+			return $"{digitsStr} in cells {cellsStr} with a region {regionStr}";
 		}
 	}
 }
