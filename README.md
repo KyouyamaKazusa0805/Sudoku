@@ -57,29 +57,14 @@ namespace Sudoku.Debugging
             var solver = new ManualSolver
             {
                 AnalyzeDifficultyStrictly = true,
-                //EnableBruteForce = false,
+                EnableBruteForce = true,
             };
-            var grid = Grid.Parse(@"
-.---------------------------------.---------------------------------.---------------------------------.
-|  45679      3          567      |  129        129        269      |  479        8          249      |
-|  2          169        68       |  4          7          689      |  5          139        139      |
-|  479        1479       78       |  3          5          289      |  479        1249       6        |
-:---------------------------------+---------------------------------+---------------------------------:
-|  356        8          2356     |  1259       4          2359     |  369        7          139      |
-|  3456       456        9        |  15         13         7        |  2          1346       8        |
-|  1          47         237      |  8          6          239      |  349        349        5        |
-:---------------------------------+---------------------------------+---------------------------------:
-|  35679      2          1        |  579        8          3459     |  3469       34569      349      |
-|  8          59         35       |  6          239        23459    |  1          23459      7        |
-|  35679      5679       4        |  579        239        1        |  8          23569      239      |
-'---------------------------------'---------------------------------'---------------------------------'
-", GridParsingType.PencilMarkedTreatSingleAsGiven);
+            var grid = Grid.Parse("201000008000003000000000062603007000052094700700300100400006051900500040007010000");
             var analysisResult = solver.Solve(grid);
-            Console.WriteLine($"{analysisResult:m}");
+            Console.WriteLine($"{analysisResult}");
         }
     }
 }
-
 ```
 
 And the puzzle solution and analysis result will be displayed on console screen, like this!
@@ -87,53 +72,52 @@ And the puzzle solution and analysis result will be displayed on console screen,
 然后答案和分析结果都会在你的控制台界面呈现出来，就像这样！
 
 ```
-Puzzle: .3.....8.2..47.5.....35...6.8..4..7...9..72.81..86...5.21.8....8..6..1.7..4..18..:119 294
+Puzzle: 2.1.....8.....3..........626.3..7....52.947..7..3..1..4....6.519..5...4...7.1....
 Solving tool: Manual
 Solving steps:
- (5.0) Sue de Coq: { r4c6, r6c6 }(2359) - ({ r1c6, r2c6, r3c6 }(2689) and r5c45(135)) => r4c4 <> 1, r8c6 <> 2, r4c4 <> 5, r7c6 <> 9, r8c6 <> 9
- (1.5) Hidden Single (In Row): r4c9 = 1 in r4
- (2.6) Pointing: 2 in b8\c5 => r1c5 <> 2
-(20.0) Brute Force: r5c5 = 1
- (1.2) Hidden Single (In Block): r1c4 = 1 in b2
- (1.5) Hidden Single (In Column): r4c4 = 2 in c4
- (1.2) Hidden Single (In Block): r6c3 = 2 in b4
- (1.2) Hidden Single (In Block): r6c2 = 7 in b4
- (2.3) Naked single: r1c5 = 9
- (2.3) Naked single: r5c4 = 5
- (2.6) Pointing: 4 in b4\r5 => r5c8 <> 4
- (2.6) Pointing: 7 in b7\c1 => r1c1 <> 7, r3c1 <> 7
- (2.6) Pointing: 3 in b5\c6 => r7c6 <> 3, r8c6 <> 3
- (2.8) Claiming: 5 in c2\b7 => r7c1 <> 5, r8c3 <> 5, r9c1 <> 5
- (2.3) Naked single: r8c3 = 3
- (1.2) Hidden Single (In Block): r9c5 = 3 in b8
- (1.0) Full House: r8c5 = 2
- (3.0) Naked Pair: 6, 8 in r2 => r2c2 <> 6
- (3.4) Finned X-Wing: 9 in r28\c28 (With a fin cell: r2c9) => r3c8 <> 9
- (3.7) Naked Triple (+): 1, 4, 9 in b1 => r1c1 <> 4, r3c78 <> 4
+ (1.2) Hidden Single (In Block) => r2c8 = 1
+ (1.2) Hidden Single (In Block) => r8c2 = 1
+ (1.2) Hidden Single (In Block) => r5c1 = 1
+ (1.2) Hidden Single (In Block) => r4c4 = 1
+ (1.1) Last Digit => r3c6 = 1
+ (1.2) Hidden Single (In Block) => r9c4 = 4
+ (1.2) Hidden Single (In Block) => r9c1 = 5
+ (1.2) Hidden Single (In Block) => r8c9 = 7
+ (1.2) Hidden Single (In Block) => r1c8 = 7
+ (1.5) Hidden Single (In Column) => r3c1 = 3
+ (1.0) Full House => r2c1 = 8
+ (1.2) Hidden Single (In Block) => r1c7 = 3
+ (1.5) Hidden Single (In Row) => r8c5 = 3
+ (1.5) Hidden Single (In Row) => r7c2 = 3
+ (1.2) Hidden Single (In Block) => r9c2 = 2
+ (1.2) Hidden Single (In Block) => r8c3 = 6
+ (1.0) Full House => r7c3 = 8
+ (1.5) Hidden Single (In Column) => r9c7 = 6
+ (2.6) Pointing => r6c6 <> 8
+ (2.8) Claiming => r2c5 <> 5, r3c5 <> 5
+ (2.8) Claiming => r4c7 <> 2
+ (3.6) Naked Triple => r2c25 <> 4, r2c24 <> 9
+ (5.3) Borescoper's Deadly Pattern 3 Digits (Type 1) => r4c7 <> 4, r4c7 <> 5, r4c7 <> 9
 ...
 ----------
 Technique used:
-19 * Full House
-7 * Last Digit
-18 * Hidden Single (In Block)
-1 * Hidden Single (In Row)
-1 * Hidden Single (In Column)
-4 * Naked single
-4 * Pointing
-1 * Claiming
-1 * Naked Pair
-1 * Finned X-Wing
-1 * Naked Triple (+)
-1 * Sashimi Swordfish
-1 * Sue de Coq
-1 * Brute Force
+21 * Full House
+6 * Last Digit
+23 * Hidden Single (In Block)
+2 * Hidden Single (In Column)
+2 * Hidden Single (In Row)
+1 * Naked single
+1 * Pointing
+2 * Claiming
+1 * Naked Triple
+1 * Borescoper's Deadly Pattern 3 Digits (Type 1)
 ----------
-Total solving steps count: 61
-Difficulty total: 112.9
-Puzzle rating: 20.0/5.0/5.0
-Puzzle solution: 537196482216478593948352716385249671469517238172863945721985364893624157654731829
+Total solving steps count: 60
+Difficulty total: 80.6
+Puzzle rating: 5.3/1.2/1.2
+Puzzle solution: 261945378875623419349781562693157824152894736784362195438276951916538247527419683
 Puzzle has been solved.
-Time elapsed: 00:00.01.907
+Time elapsed: 00:00.00.253
 ```
 
 
