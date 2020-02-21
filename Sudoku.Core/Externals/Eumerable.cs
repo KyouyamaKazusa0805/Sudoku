@@ -87,7 +87,7 @@ namespace System.Linq
 		public static bool HasOnlyOneElement<TElement>(this IEnumerable<TElement> @this)
 			where TElement : notnull
 		{
-			if (@this.Any())
+			if (!@this.Any())
 			{
 				// An empty list.
 				return false;
