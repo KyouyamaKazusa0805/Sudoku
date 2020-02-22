@@ -1830,12 +1830,6 @@
             </summary>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder"/>
         </member>
-        <member name="F:Sudoku.Solving.Manual.ManualSolver._bowmanBingoMaximumLength">
-            <summary>
-            The field bound with <see cref="P:Sudoku.Solving.Manual.ManualSolver.BowmanBingoMaximumLength"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.BowmanBingoMaximumLength"/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.BowmanBingoMaximumLength">
             <summary>
             <para>
@@ -1887,12 +1881,6 @@
             </code>
             The candidate <c>a</c> is also can be eliminated.
             </example>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.ManualSolver._checkRegularWingSize">
-            <summary>
-            The field bound with <see cref="P:Sudoku.Solving.Manual.ManualSolver.CheckRegularWingSize"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.CheckRegularWingSize"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckRegularWingSize">
             <summary>

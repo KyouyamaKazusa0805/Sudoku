@@ -27,31 +27,13 @@
 		/// <seealso cref="OptimizedApplyingOrder"/>
 		public bool AnalyzeDifficultyStrictly { get; set; } = false;
 
-		#region BowmanBingoMaximumLength
-		/// <summary>
-		/// The field bound with <see cref="BowmanBingoMaximumLength"/>.
-		/// </summary>
-		/// <seealso cref="BowmanBingoMaximumLength"/>
-		private int _bowmanBingoMaximumLength = 10;
-
 		/// <summary>
 		/// <para>
 		/// Indicates the number of nodes to be searched for in bowman bingos.
 		/// </para>
 		/// <para>The value is <c>10</c> in default case.</para>
 		/// </summary>
-		public int BowmanBingoMaximumLength
-		{
-			get => _bowmanBingoMaximumLength;
-			set
-			{
-				if (value > 0 && value <= 64)
-				{
-					_bowmanBingoMaximumLength = value;
-				}
-			}
-		}
-		#endregion
+		public int BowmanBingoMaximumLength { get; set; } = 10;
 
 		/// <summary>
 		/// <para>
@@ -97,13 +79,6 @@
 		/// </example>
 		public bool CheckIncompletedUniquenessPatterns { get; set; } = false;
 
-		#region CheckRegularWingSize
-		/// <summary>
-		/// The field bound with <see cref="CheckRegularWingSize"/>.
-		/// </summary>
-		/// <seealso cref="CheckRegularWingSize"/>
-		private int _checkRegularWingSize = 5;
-
 		/// <summary>
 		/// <para>
 		/// Indicates all regular wings with the size less than
@@ -117,12 +92,7 @@
 		/// &amp;&amp; value &lt;&#61; 9</c>) theoretically, however the searching
 		/// is too low so I do not allow them.
 		/// </remarks>
-		public int CheckRegularWingSize
-		{
-			get => _checkRegularWingSize;
-			set => _checkRegularWingSize = value >= 3 && value <= 5 ? value : 5;
-		}
-		#endregion
+		public int CheckRegularWingSize { get; set; } = 5;
 
 		/// <summary>
 		/// <para>
