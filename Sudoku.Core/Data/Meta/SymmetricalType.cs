@@ -11,14 +11,14 @@
 		[Name("Central symmetrical type")]
 		Central,
 		/// <summary>
-		/// Indicates the diagnoal symmetrical type.
+		/// Indicates the diagonal symmetrical type.
 		/// </summary>
 		[Name("Diagonal symmetrical type")]
 		Diagonal,
 		/// <summary>
 		/// Indicates the anti-diagonal symmetrical type.
 		/// </summary>
-		[Name("Anti-diagnoal symmetrical type")]
+		[Name("Anti-diagonal symmetrical type")]
 		AntiDiagonal,
 		/// <summary>
 		/// Indicates the x-axis symmetrical type.

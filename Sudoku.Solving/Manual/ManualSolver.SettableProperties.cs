@@ -48,7 +48,7 @@
 		/// the hint will influence the difficulty rating during solving the puzzle.
 		/// If the puzzle is so easy (in other words, the grid does not need check
 		/// it), this option will make the difficulty rating of the puzzle much more
-		/// higher than that when the option is <see langword="false"/>. In addtion,
+		/// higher than that when the option is <see langword="false"/>. In addition,
 		/// if the option <see cref="AnalyzeDifficultyStrictly"/> is <see langword="true"/>,
 		/// this option will be ignored.
 		/// </para>
@@ -59,7 +59,7 @@
 		/// <summary>
 		/// <para>
 		/// Indicates whether the solver should check
-		/// incompleted uniqueness patterns.
+		/// uncompleted uniqueness patterns.
 		/// </para>
 		/// <para>The value is <see langword="false"/> in default case.</para>
 		/// </summary>
@@ -186,7 +186,7 @@
 
 		/// <summary>
 		/// <para>
-		/// Indicates whether the step accumulator only records templete delete,
+		/// Indicates whether the step accumulator only records template delete,
 		/// and template set will not be in this collection (if necessary).
 		/// </para>
 		/// <para>

@@ -359,7 +359,7 @@ namespace Sudoku.Data.Meta
 		/// </summary>
 		/// <param name="other">The other value to compare.</param>
 		/// <returns>
-		/// The result of this comparsion. <see langword="true"/> if two instances hold a same
+		/// The result of this comparison. <see langword="true"/> if two instances hold a same
 		/// value; otherwise, <see langword="false"/>.
 		/// </returns>
 		public readonly bool Equals(GridMap other) =>
@@ -504,7 +504,7 @@ namespace Sudoku.Data.Meta
 
 		/// <summary>
 		/// Create a <see cref="GridMap"/> instance with the specified solution.
-		/// If the puzzle has been solved, this method will create a gridmap of
+		/// If the puzzle has been solved, this method will create a grid map of
 		/// distribution of a single digit in this solution.
 		/// </summary>
 		/// <param name="grid">The grid.</param>

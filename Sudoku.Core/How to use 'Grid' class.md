@@ -10,7 +10,7 @@ If you has known the whole outline of this solution, you want to know how to use
 
 标题：**单行输出模式下的格式化字符**
 
-| Format chararcters<br/>格式化字符 | Meanings<br/>意思                                                                  |
+| Format characters<br/>格式化字符 | Meanings<br/>意思                                                                  |
 | -------------------------------- | ---------------------------------------------------------------------------------- |
 | `.` and `0`                      | Placeholder option.<br/>占位符选项。                                                |
 | `+`                              | Modifiable values option.<br/>显示可修改的数值选项。                                |
@@ -70,7 +70,7 @@ All examples are shown at the end of this part.
 
 
 
-### Multiline format characters
+### Multi-line format characters
 
 标题：**多行输出模式下的格式化字符**
 
@@ -78,7 +78,7 @@ If you want to output pencil marked grid (PM grid), you should use options below
 
 另外，如果你要输出这个题目的候选数盘面的话，你可以使用下面的选项：
 
-| Format chararcters<br/>格式化字符 | Meanings<br/>意思                                                      |
+| Format characters<br/>格式化字符 | Meanings<br/>意思                                                      |
 | -------------------------------- | ---------------------------------------------------------------------- |
 | `@`                              | Default PM grid character.<br/>默认的候选数盘面输出的格式化字符。        |
 | `0` and `.`                      | Placeholders.<br/>占位符。                                             |
@@ -124,11 +124,11 @@ By the way, character `'*'` is for simple output. If the format has not followed
 +---------------+---------------+------------------+
 ```
 
-Multiline output environment will be more relaxed when ordering different options than single line output one.
+Multi-line output environment will be more relaxed when ordering different options than single line output one.
 
 多行输出环境下的格式化字符顺序要在单行输出环境下的要求更宽松一些。
 
-Note that in multiline output environment, placeholder characters `'0'` or `'.'` cannot appear with candidates option `':'` together, because placeholders may not appear when outputing all candidates.
+Note that in multi-line output environment, placeholder characters `'0'` or `'.'` cannot appear with candidates option `':'` together, because placeholders may not appear when outputting all candidates.
 
 唯一需要注意的地方是，占位符 `'0'` 和 `'.'` 不允许和 `':'` 一起出现，因为需要输出候选数情况时，是不可能出现占位符的。
 

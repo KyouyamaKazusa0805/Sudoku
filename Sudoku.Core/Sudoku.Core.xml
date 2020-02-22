@@ -488,7 +488,7 @@
             <remarks>
             You had better use this field on cases when processing
             the bitwise operations in a sudoku <see cref="T:Sudoku.Data.Meta.Grid"/>.
-            This field is not used to process cell status comparsion.
+            This field is not used to process cell status comparison.
             </remarks>
             <seealso cref="M:Sudoku.Data.Meta.Grid.GetCellStatus(System.Int32)"/>
         </member>
@@ -628,7 +628,7 @@
             </summary>
             <param name="other">The other value to compare.</param>
             <returns>
-            The result of this comparsion. <see langword="true"/> if two instances hold a same
+            The result of this comparison. <see langword="true"/> if two instances hold a same
             value; otherwise, <see langword="false"/>.
             </returns>
         </member>
@@ -801,7 +801,7 @@
             <param name="offset">The cell offset you want to get or set.</param>
             <value>
             The digit you want to set. This value should be between 0 and 8.
-            In addtition, if your input is -1, the candidate mask in this cell
+            In addition, if your input is -1, the candidate mask in this cell
             will be re-computed. If your input is none of them above, this indexer
             will do nothing.
             </value>
@@ -869,7 +869,7 @@
             </summary>
             <param name="other">The other value to compare.</param>
             <returns>
-            The result of this comparsion. <see langword="true"/> if two instances hold a same
+            The result of this comparison. <see langword="true"/> if two instances hold a same
             value; otherwise, <see langword="false"/>.
             </returns>
         </member>
@@ -1029,12 +1029,13 @@
         </member>
         <member name="M:Sudoku.Data.Meta.GridFormatter.#ctor(Sudoku.Data.Meta.Grid,System.Boolean)">
             <summary>
-            Initializes an instance with grid and is-multiline <see cref="T:System.Boolean"/> value.
+            Initializes an instance with grid and a <see cref="T:System.Boolean"/> value
+            indicating multi-line.
             </summary>
             <param name="grid">A grid.</param>
             <param name="multiline">
-            The multiline identifier. If the value is <see langword="true"/>, the output will
-            be multiline.
+            The multi-line identifier. If the value is <see langword="true"/>, the output will
+            be multi-line.
             </param>
         </member>
         <member name="P:Sudoku.Data.Meta.GridFormatter.Placeholder">
@@ -1044,7 +1045,7 @@
         </member>
         <member name="P:Sudoku.Data.Meta.GridFormatter.Multiline">
             <summary>
-            Indicates whether the output should be multiline.
+            Indicates whether the output should be multi-line.
             </summary>
         </member>
         <member name="P:Sudoku.Data.Meta.GridFormatter.WithModifiables">
@@ -1058,12 +1059,12 @@
             Indicates the output should be with candidates.
             If the output is single line, the candidates will indicate
             the candidates-have-eliminated before the current grid status;
-            if the output is multiline, the candidates will indicate
+            if the output is multi-line, the candidates will indicate
             the real candidate at the current grid status.
             </para>
             <para>
             If the output is single line, the output will append the candidates
-            value at the tail of the string in ':candidate list'. In addtition,
+            value at the tail of the string in ':candidate list'. In addition,
             candidates will be represented as 'digit', 'row offset' and
             'column offset' in order.
             </para>
@@ -1073,15 +1074,14 @@
             <summary>
             Indicates the output will treat modifiable values as given ones.
             If the output is single line, the output will remove all plus marks '+'.
-            If the output is multiline, the output will use '&lt;digit&gt;' instead
+            If the output is multi-line, the output will use '&lt;digit&gt;' instead
             of '*digit*'.
             </summary>
         </member>
         <member name="P:Sudoku.Data.Meta.GridFormatter.SubtleGridLines">
             <summary>
-            Indicates whether need to handle all grid outlines when outputing.
-            See <a href="https://github.com/Sunnie-Shine/Sudoku#multiline-format-characters">this link</a>
-            for more information.
+            Indicates whether need to handle all grid outlines while outputting.
+            See file "How to use 'Grid' class.md" for more information.
             </summary>
         </member>
         <member name="P:Sudoku.Data.Meta.GridFormatter.Grid">
@@ -1100,13 +1100,13 @@
         </member>
         <member name="M:Sudoku.Data.Meta.GridFormatter.ToMultiLineSimpleGridCore">
             <summary>
-            To multiline normal grid string without any candidates.
+            To multi-line normal grid string without any candidates.
             </summary>
             <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Data.Meta.GridFormatter.ToMultiLineStringCore">
             <summary>
-            To multiline string with candidates.
+            To multi-line string with candidates.
             </summary>
             <returns>The result.</returns>
         </member>
@@ -1280,7 +1280,7 @@
             </summary>
             <param name="other">The other value to compare.</param>
             <returns>
-            The result of this comparsion. <see langword="true"/> if two instances hold a same
+            The result of this comparison. <see langword="true"/> if two instances hold a same
             value; otherwise, <see langword="false"/>.
             </returns>
         </member>
@@ -1357,7 +1357,7 @@
         <member name="M:Sudoku.Data.Meta.GridMap.CreateInstance(Sudoku.Data.Meta.Grid,System.Int32)">
             <summary>
             Create a <see cref="T:Sudoku.Data.Meta.GridMap"/> instance with the specified solution.
-            If the puzzle has been solved, this method will create a gridmap of
+            If the puzzle has been solved, this method will create a grid map of
             distribution of a single digit in this solution.
             </summary>
             <param name="grid">The grid.</param>
@@ -1527,7 +1527,7 @@
         </member>
         <member name="M:Sudoku.Data.Meta.GridParser.OnParsingSimpleMultilineGrid">
             <summary>
-            Parse the value using multiline simple grid (without any candidates).
+            Parse the value using multi-line simple grid (without any candidates).
             </summary>
             <returns>The result.</returns>
         </member>
@@ -1666,7 +1666,7 @@
         </member>
         <member name="F:Sudoku.Data.Meta.SymmetricalType.Diagonal">
             <summary>
-            Indicates the diagnoal symmetrical type.
+            Indicates the diagonal symmetrical type.
             </summary>
         </member>
         <member name="F:Sudoku.Data.Meta.SymmetricalType.AntiDiagonal">
@@ -1911,7 +1911,7 @@
         </member>
         <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.Meta.Grid,System.String,System.Exception)">
             <summary>
-            Initialzes an instance with a grid, an error message and an inner exception.
+            Initializes an instance with a grid, an error message and an inner exception.
             </summary>
             <param name="grid">The grid.</param>
             <param name="message">The error message.</param>
@@ -1956,7 +1956,7 @@
         </member>
         <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.Meta.Grid,System.String,System.Exception)">
             <summary>
-            Initialzes an instance with a grid, an error message and an inner exception.
+            Initializes an instance with a grid, an error message and an inner exception.
             </summary>
             <param name="grid">The grid.</param>
             <param name="message">The error message.</param>
@@ -2019,7 +2019,7 @@
         </member>
         <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Meta.Grid,System.String,System.Exception)">
             <summary>
-            Initialzes an instance with a grid, an error message and an inner exception.
+            Initializes an instance with a grid, an error message and an inner exception.
             </summary>
             <param name="grid">The grid.</param>
             <param name="message">The error message.</param>
@@ -2089,7 +2089,7 @@
         </member>
         <member name="M:System.Linq.EnumerableEx.HasOnlyOneElement``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
-            Check whether the specififed list has only one element.
+            Check whether the specified list has only one element.
             </summary>
             <typeparam name="TElement">The type of the element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The list.</param>

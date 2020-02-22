@@ -31,7 +31,7 @@ namespace Sudoku.Runtime
 			Grid = grid;
 
 		/// <summary>
-		/// Initialzes an instance with a grid, an error message and an inner exception.
+		/// Initializes an instance with a grid, an error message and an inner exception.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <param name="message">The error message.</param>
@@ -59,6 +59,6 @@ namespace Sudoku.Runtime
 
 		/// <inheritdoc/>
 		public override string Message =>
-			"The specified messge cannot be solved due to wrong handling in manual solver.";
+			"The specified message cannot be solved due to wrong handling in manual solver.";
 	}
 }

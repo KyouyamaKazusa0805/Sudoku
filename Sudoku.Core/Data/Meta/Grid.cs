@@ -163,7 +163,7 @@ namespace Sudoku.Data.Meta
 		/// <param name="offset">The cell offset you want to get or set.</param>
 		/// <value>
 		/// The digit you want to set. This value should be between 0 and 8.
-		/// In addtition, if your input is -1, the candidate mask in this cell
+		/// In addition, if your input is -1, the candidate mask in this cell
 		/// will be re-computed. If your input is none of them above, this indexer
 		/// will do nothing.
 		/// </value>
@@ -335,7 +335,7 @@ namespace Sudoku.Data.Meta
 		/// </summary>
 		/// <param name="other">The other value to compare.</param>
 		/// <returns>
-		/// The result of this comparsion. <see langword="true"/> if two instances hold a same
+		/// The result of this comparison. <see langword="true"/> if two instances hold a same
 		/// value; otherwise, <see langword="false"/>.
 		/// </returns>
 		public bool Equals(Grid other) => GetHashCode() == other.GetHashCode();
@@ -427,21 +427,21 @@ namespace Sudoku.Data.Meta
 						throw new FormatException(
 							message: "The specified format is invalid.",
 							innerException: new Exception(
-								message: "Multiline identifier '@' must be at the first place."));
+								message: "Multi-line identifier '@' must be at the first place."));
 					}
 					else if ((format.Contains('0') || format.Contains('.')) && format.Contains(':'))
 					{
 						throw new FormatException(
 							message: "The specified format is invalid.",
 							innerException: new Exception(
-								message: "In multiline environment, '0' and '.' cannot appear with ':' together."));
+								message: "In multi-line environment, '0' and '.' cannot appear with ':' together."));
 					}
 					else if (format.IsMatch(@"\@[^0\!\*\.\:]+"))
 					{
 						throw new FormatException(
 							message: "The specified format is invalid.",
 							innerException: new Exception(
-								message: "Multiline identifier '@' must follow only character '!', '*', '0', '.' or ':'."));
+								message: "Multi-line identifier '@' must follow only character '!', '*', '0', '.' or ':'."));
 					}
 				}
 				else

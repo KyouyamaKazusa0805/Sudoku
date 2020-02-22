@@ -16,6 +16,6 @@ Console.WriteLine($"Found {filesCount} files, {linesCount} lines.");
 
 
 
-You can get the number of code lines in all csharp files!
+You can get the number of code lines in all c sharp files!
 
 你就可以得到所有 C# 文件的代码行数了。

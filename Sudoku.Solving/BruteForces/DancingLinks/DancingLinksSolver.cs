@@ -30,7 +30,7 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 		{
 			try
 			{
-				// Initalizes the sudoku value list.
+				// Initializes the sudoku value list.
 				var s = new SudokuValueList();
 				for (int i = 0; i < 9; i++)
 				{
@@ -98,7 +98,7 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 				// Starts the stopwatch.
 				stopwatch.Start();
 
-				// Initalizes the sudoku value list.
+				// Initializes the sudoku value list.
 				var s = new SudokuValueList();
 				for (int i = 0; i < 9; i++)
 				{

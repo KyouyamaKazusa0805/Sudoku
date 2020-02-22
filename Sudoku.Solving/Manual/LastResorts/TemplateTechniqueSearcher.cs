@@ -14,13 +14,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 	public sealed class TemplateTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <summary>
-		/// Indicates whether the seacher checks template deletes.
+		/// Indicates whether the searcher checks template deletes.
 		/// </summary>
 		private readonly bool _templateDeleteOnly;
 
 
 		/// <summary>
-		/// Initalizes an instance with the specified <see cref="bool"/> value.
+		/// Initializes an instance with the specified <see cref="bool"/> value.
 		/// </summary>
 		/// <param name="templateDeleteOnly">
 		/// Indicates whether the technique searcher checks template deletes.

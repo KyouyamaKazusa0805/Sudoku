@@ -294,7 +294,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							//Check3DigitsType4(
 							//	result, grid, block, digits, digitsMask,
 							//	allCells, pair1, pair2, triplet);
-							// TODO: Check BDP 3 digits type 3 with hidden subests.
+							// TODO: Check BDP 3 digits type 3 with hidden subsets.
 						}
 					}
 				}
@@ -1056,7 +1056,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							//Check4DigitsType4(
 							//	result, grid, block, digits, digitsMask,
 							//	allCells, pair1, pair2, quad);
-							// TODO: Check BDP 4 digits type 3 with hidden subests.
+							// TODO: Check BDP 4 digits type 3 with hidden subsets.
 						}
 					}
 				}

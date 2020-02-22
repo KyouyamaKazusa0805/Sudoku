@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 	public sealed partial class UniqueRectangleTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>
-		/// Indicates whether the solver should check incompleted URs.
+		/// Indicates whether the solver should check uncompleted URs.
 		/// </summary>
 		private readonly bool _checkIncompleted;
 
@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// Initializes an instance with the checking option.
 		/// </summary>
 		/// <param name="checkIncompletedUniquenessPatterns">
-		/// Indicates whether the solver should check incompleted URs.
+		/// Indicates whether the solver should check uncompleted URs.
 		/// </param>
 		public UniqueRectangleTechniqueSearcher(bool checkIncompletedUniquenessPatterns) =>
 			_checkIncompleted = checkIncompletedUniquenessPatterns;
@@ -58,7 +58,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						continue;
 					}
 
-					// Initalize the data.
+					// Initialize the data.
 					int[][] cellTriplets = new int[4][]
 					{
 						new[] { cells[1], cells[2], cells[3] }, // 0
@@ -502,8 +502,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 				{
 					0 => new[] { cells[0], cells[1] },
 					1 => new[] { cells[0], cells[2] },
-					2 => new[] { cells[0], cells[3] }, // Diagnoal type.
-					3 => new[] { cells[1], cells[2] }, // Diagnoal type.
+					2 => new[] { cells[0], cells[3] }, // Diagonal type.
+					3 => new[] { cells[1], cells[2] }, // Diagonal type.
 					4 => new[] { cells[1], cells[3] },
 					5 => new[] { cells[2], cells[3] },
 					_ => throw Throwing.ImpossibleCase

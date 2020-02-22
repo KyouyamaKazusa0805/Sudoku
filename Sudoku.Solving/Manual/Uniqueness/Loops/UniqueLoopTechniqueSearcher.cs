@@ -62,7 +62,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								// Type 1 found.
 								int extraCell = extraCells[0];
 
-								// Record all eiminations.
+								// Record all eliminations.
 								var conclusions = new List<Conclusion>();
 								if (!grid[extraCell, d1])
 								{

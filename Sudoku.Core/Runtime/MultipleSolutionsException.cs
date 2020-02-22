@@ -29,7 +29,7 @@ namespace Sudoku.Runtime
 			: base(message) => Grid = grid;
 
 		/// <summary>
-		/// Initialzes an instance with a grid, an error message and an inner exception.
+		/// Initializes an instance with a grid, an error message and an inner exception.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <param name="message">The error message.</param>

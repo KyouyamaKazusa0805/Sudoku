@@ -79,7 +79,7 @@ namespace Sudoku.Data.Meta
 		}
 
 		/// <summary>
-		/// Parse the value using multiline simple grid (without any candidates).
+		/// Parse the value using multi-line simple grid (without any candidates).
 		/// </summary>
 		/// <returns>The result.</returns>
 		private Grid? OnParsingSimpleMultilineGrid()
@@ -267,14 +267,14 @@ namespace Sudoku.Data.Meta
 				if (c == '+')
 				{
 					// Plus sign means the character after it is a digit,
-					// which is modifiable value in the grid in its corredsponding position.
+					// which is modifiable value in the grid in its corresponding position.
 					if (i < length - 1)
 					{
 						char nextChar = match[i + 1];
 						if (nextChar >= '1' && nextChar <= '9')
 						{
 							// Set value.
-							// Note that the subtractor is character '1', not '0'.
+							// Note that the subtracter is character '1', not '0'.
 							result[realPos] = nextChar - '1';
 
 							// Add 2 on iteration variable to skip 2 characters

@@ -197,7 +197,7 @@ namespace Sudoku.Data.Meta
 		/// </summary>
 		/// <param name="other">The other value to compare.</param>
 		/// <returns>
-		/// The result of this comparsion. <see langword="true"/> if two instances hold a same
+		/// The result of this comparison. <see langword="true"/> if two instances hold a same
 		/// value; otherwise, <see langword="false"/>.
 		/// </returns>
 		public readonly bool Equals(FullGridMap other)

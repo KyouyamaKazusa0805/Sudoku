@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 		/// <summary>
 		/// Initializes an instance with information.
 		/// </summary>
-		/// <param name="conclusions">The concluisons.</param>
+		/// <param name="conclusions">The conclusions.</param>
 		/// <param name="views">The views.</param>
 		/// <param name="digit">The digit.</param>
 		/// <param name="baseSets">The base sets.</param>

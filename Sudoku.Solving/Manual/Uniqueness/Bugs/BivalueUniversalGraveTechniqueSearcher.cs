@@ -541,7 +541,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						continue;
 					}
 
-					// Check whether the conjuagte pair lies on current two cells.
+					// Check whether the conjugate pair lies on current two cells.
 					int c1 = RegionUtils.GetCellOffset(region, mask.GetSetBitIndex(1));
 					int c2 = RegionUtils.GetCellOffset(region, mask.GetSetBitIndex(2));
 					if (c1 != cells[0] || c2 != cells[1])

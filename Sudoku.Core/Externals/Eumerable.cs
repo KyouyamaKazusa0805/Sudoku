@@ -79,7 +79,7 @@ namespace System.Linq
 		}
 
 		/// <summary>
-		/// Check whether the specififed list has only one element.
+		/// Check whether the specified list has only one element.
 		/// </summary>
 		/// <typeparam name="TElement">The type of the element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>

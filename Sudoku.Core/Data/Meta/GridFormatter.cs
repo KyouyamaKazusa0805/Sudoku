@@ -15,12 +15,13 @@ namespace Sudoku.Data.Meta
 	internal sealed class GridFormatter
 	{
 		/// <summary>
-		/// Initializes an instance with grid and is-multiline <see cref="bool"/> value.
+		/// Initializes an instance with grid and a <see cref="bool"/> value
+		/// indicating multi-line.
 		/// </summary>
 		/// <param name="grid">A grid.</param>
 		/// <param name="multiline">
-		/// The multiline identifier. If the value is <see langword="true"/>, the output will
-		/// be multiline.
+		/// The multi-line identifier. If the value is <see langword="true"/>, the output will
+		/// be multi-line.
 		/// </param>
 		public GridFormatter(Grid grid, bool multiline) =>
 			(Grid, Multiline) = (grid, multiline);
@@ -32,7 +33,7 @@ namespace Sudoku.Data.Meta
 		public char Placeholder { get; set; } = '.';
 
 		/// <summary>
-		/// Indicates whether the output should be multiline.
+		/// Indicates whether the output should be multi-line.
 		/// </summary>
 		public bool Multiline { get; }
 
@@ -46,12 +47,12 @@ namespace Sudoku.Data.Meta
 		/// Indicates the output should be with candidates.
 		/// If the output is single line, the candidates will indicate
 		/// the candidates-have-eliminated before the current grid status;
-		/// if the output is multiline, the candidates will indicate
+		/// if the output is multi-line, the candidates will indicate
 		/// the real candidate at the current grid status.
 		/// </para>
 		/// <para>
 		/// If the output is single line, the output will append the candidates
-		/// value at the tail of the string in ':candidate list'. In addtition,
+		/// value at the tail of the string in ':candidate list'. In addition,
 		/// candidates will be represented as 'digit', 'row offset' and
 		/// 'column offset' in order.
 		/// </para>
@@ -61,15 +62,14 @@ namespace Sudoku.Data.Meta
 		/// <summary>
 		/// Indicates the output will treat modifiable values as given ones.
 		/// If the output is single line, the output will remove all plus marks '+'.
-		/// If the output is multiline, the output will use '&lt;digit&gt;' instead
+		/// If the output is multi-line, the output will use '&lt;digit&gt;' instead
 		/// of '*digit*'.
 		/// </summary>
 		public bool TreatValueAsGiven { get; set; }
 
 		/// <summary>
-		/// Indicates whether need to handle all grid outlines when outputing.
-		/// See <a href="https://github.com/Sunnie-Shine/Sudoku#multiline-format-characters">this link</a>
-		/// for more information.
+		/// Indicates whether need to handle all grid outlines while outputting.
+		/// See file "How to use 'Grid' class.md" for more information.
 		/// </summary>
 		public bool SubtleGridLines { get; set; }
 
@@ -185,7 +185,7 @@ namespace Sudoku.Data.Meta
 		}
 
 		/// <summary>
-		/// To multiline normal grid string without any candidates.
+		/// To multi-line normal grid string without any candidates.
 		/// </summary>
 		/// <returns>The result.</returns>
 		private string ToMultiLineSimpleGridCore()
@@ -210,7 +210,7 @@ namespace Sudoku.Data.Meta
 		}
 
 		/// <summary>
-		/// To multiline string with candidates.
+		/// To multi-line string with candidates.
 		/// </summary>
 		/// <returns>The result.</returns>
 		[SuppressMessage("", "IDE0004")]
