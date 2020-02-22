@@ -19,12 +19,10 @@ namespace Sudoku.Debugging
 			var solver = new ManualSolver
 			{
 				AnalyzeDifficultyStrictly = true,
-				//OptimizedApplyingOrder = true,
-				EnableBruteForce = true,
 			};
-			var grid = Grid.Parse("201000008000003000000000062603007000052094700700300100400006051900500040007010000");
+			var grid = Grid.Parse(".....9..22473....9.9....13.6.3.7...5...5..31...5.2..9.....1.9..8.96...4....2.7...");
 			var analysisResult = solver.Solve(grid);
-			Console.WriteLine($"{analysisResult:sm}");
+			Console.WriteLine($"{analysisResult}");
 		}
 	}
 }
