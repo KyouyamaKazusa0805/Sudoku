@@ -55,7 +55,7 @@ namespace Sudoku.Generating.Basic
 					}
 				}
 
-				(_, hasSolved) = Solver.Solve(series);
+				(_, hasSolved) = Solver.Solve(series, 2);
 			} while (!hasSolved);
 
 			return Grid.CreateInstance(series);

@@ -19,6 +19,31 @@ namespace Sudoku.Solving.Checking
 		/// To check if a puzzle has only one solution or not.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
+		/// <param name="solutionIfValid">
+		/// (<see langword="out"/> parameter) The solution if the puzzle is valid;
+		/// otherwise, <see langword="null"/>.
+		/// </param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		public static bool IsValid(this Grid @this, [NotNullWhen(true)] out Grid? solutionIfValid)
+		{
+			solutionIfValid = null;
+
+			bool validity = new DancingLinksSolver().CheckValidity(@this, out var solution);
+			if (validity)
+			{
+				solutionIfValid = solution;
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// To check if a puzzle has only one solution or not.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
 		/// <param name="solutionIfUnique">
 		/// (<see langword="out"/> parameter) The solution if the puzzle is unique;
 		/// otherwise, <see langword="null"/>.
@@ -72,7 +97,7 @@ namespace Sudoku.Solving.Checking
 			var solver = new DancingLinksSolver();
 			return tempArrays.All(gridValues =>
 			{
-				var (_, hasSolved, _, _, _) = solver.Solve(gridValues);
+				var (_, hasSolved, _, _, _) = solver.Solve(gridValues, 2);
 				return !hasSolved;
 			});
 		}

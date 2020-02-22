@@ -1981,6 +1981,23 @@
             The grid.
             </summary>
         </member>
+        <member name="T:Sudoku.Runtime.SudokuRuntimeException">
+            <summary>
+            Represents an error that the puzzle has no solution while solving.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.SudokuRuntimeException.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.SudokuRuntimeException.#ctor(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.SudokuRuntimeException.#ctor(System.String,System.Exception)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.SudokuRuntimeException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Runtime.WrongHandlingException">
             <summary>
             Represents an error that the puzzle has wrong handling while solving with

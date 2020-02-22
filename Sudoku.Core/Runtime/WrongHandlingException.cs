@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 using Sudoku.Data.Meta;
@@ -10,9 +11,10 @@ namespace Sudoku.Runtime
 	/// manual logic tools.
 	/// </summary>
 	[Serializable]
+	[DebuggerStepThrough]
 	[SuppressMessage("Usage", "CA2229:Implement serialization constructors", Justification = "<Pending>")]
 	[SuppressMessage("Design", "CA1032:Implement standard exception constructors", Justification = "<Pending>")]
-	public class WrongHandlingException : Exception
+	public class WrongHandlingException : SudokuRuntimeException
 	{
 		/// <summary>
 		/// Initializes an instance with a grid.

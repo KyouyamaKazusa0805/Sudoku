@@ -2,16 +2,17 @@
 using System.Runtime.Serialization;
 using System;
 using Sudoku.Data.Meta;
+using System.Diagnostics;
 
 namespace Sudoku.Runtime
 {
 	/// <summary>
 	/// Represents an error that the puzzle has multiple solutions while solving.
 	/// </summary>
-	[Serializable]
+	[Serializable, DebuggerStepThrough]
 	[SuppressMessage("Usage", "CA2229:Implement serialization constructors", Justification = "<Pending>")]
 	[SuppressMessage("Design", "CA1032:Implement standard exception constructors", Justification = "<Pending>")]
-	public class MultipleSolutionsException : Exception
+	public class MultipleSolutionsException : SudokuRuntimeException
 	{
 		/// <summary>
 		/// Initializes an instance with a grid.

@@ -35,7 +35,7 @@ namespace Sudoku.Solving.Manual
 		/// <inheritdoc/>
 		public override AnalysisResult Solve(Grid grid)
 		{
-			if (grid.IsUnique(out var solution))
+			if (grid.IsValid(out var solution))
 			{
 				// Get intersection table in order to run faster in intersection technique searchers.
 				var intersectionTable = new Intersection[18, 3];
