@@ -150,7 +150,7 @@ namespace Sudoku.Solving.Manual
 				{
 					// Skip all searchers marked slow running attribute.
 					if (DisableSlowTechniques
-						&& searcher.GetType().GetCustomAttributes(false).Any(a => a is SlowAttribute))
+						&& searcher.GetType().GetCustomAttributes(false).OfType<SlowAttribute>().Any())
 					{
 						continue;
 					}
@@ -299,7 +299,7 @@ namespace Sudoku.Solving.Manual
 
 				// Skip all searchers marked slow running attribute.
 				if (DisableSlowTechniques
-					&& searcher.GetType().GetCustomAttributes(false).Any(a => a is SlowAttribute))
+					&& searcher.GetType().GetCustomAttributes(false).OfType<SlowAttribute>().Any())
 				{
 					continue;
 				}
