@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Externals;
 using System.Linq;
 using Sudoku.Data.Extensions;
@@ -287,12 +288,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						}
 						else
 						{
-							Check3DigitsType3Naked(
-								result, grid, digits, digitsMask, allCells,
-								extraCells);
-							Check3DigitsType4(
-								result, grid, block, digits, digitsMask,
-								allCells, pair1, pair2, triplet);
+							//Check3DigitsType3Naked(
+							//	result, grid, digits, digitsMask, allCells,
+							//	extraCells);
+							//Check3DigitsType4(
+							//	result, grid, block, digits, digitsMask,
+							//	allCells, pair1, pair2, triplet);
 							// TODO: Check BDP 3 digits type 3 with hidden subests.
 						}
 					}
@@ -300,6 +301,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			}
 		}
 
+		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 		private static void Check3DigitsType3Naked(
 			IList<BorescoperDeadlyPatternTechniqueInfo> result, Grid grid, IEnumerable<int> digits,
 			short digitsMask, IReadOnlyList<int> allCells, IReadOnlyList<int> extraCells)
@@ -726,6 +728,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			}
 		}
 
+		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 		private static void Check3DigitsType4(
 			IList<BorescoperDeadlyPatternTechniqueInfo> result, Grid grid, int block,
 			IEnumerable<int> digits, short digitMask, IReadOnlyList<int> allCells, int[,] pair1,
@@ -1047,12 +1050,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						}
 						else
 						{
-							Check4DigitsType3Naked(
-								result, grid, digits, digitsMask, allCells,
-								extraCells);
-							Check4DigitsType4(
-								result, grid, block, digits, digitsMask,
-								allCells, pair1, pair2, quad);
+							//Check4DigitsType3Naked(
+							//	result, grid, digits, digitsMask, allCells,
+							//	extraCells);
+							//Check4DigitsType4(
+							//	result, grid, block, digits, digitsMask,
+							//	allCells, pair1, pair2, quad);
 							// TODO: Check BDP 4 digits type 3 with hidden subests.
 						}
 					}
@@ -1060,19 +1063,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			}
 		}
 
+		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
+		[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
 		private void Check4DigitsType3Naked(
 			IList<BorescoperDeadlyPatternTechniqueInfo> result, Grid grid, IEnumerable<int> digits,
 			short digitsMask, IReadOnlyList<int> allCells, List<int> extraCells)
 		{
-
+			// TODO: Check BDP 4 digits type 3 with naked subsets.
 		}
 
+		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
+		[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
 		private void Check4DigitsType4(
 			IList<BorescoperDeadlyPatternTechniqueInfo> result, Grid grid, int block,
 			IEnumerable<int> digits, short digitsMask, IReadOnlyList<int> allCells,
 			int[,] pair1, int[,] pair2, int[] quad)
 		{
-
+			// TODO: Check BDP 4 digits type 4.
 		}
 
 
