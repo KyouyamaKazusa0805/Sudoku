@@ -1086,6 +1086,28 @@
             Encapsulates an almost locked set (ALS) technique searcher.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.NewerSueDeCoqTechniqueSearcher">
+            <summary>
+            Encapsulates a sue de coq (SdC) technique searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.NewerSueDeCoqTechniqueSearcher.EnumerationList">
+            <summary>
+            The enumeration list of masks.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.NewerSueDeCoqTechniqueSearcher.Priority">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.NewerSueDeCoqTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.NewerSueDeCoqTechniqueSearcher.GetEnumerationList">
+            <summary>
+            Get all combinations of enumeration.
+            </summary>
+            <returns>The list.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueInfo">
             <summary>
             Provides a usage of sue de coq (SdC) technique.

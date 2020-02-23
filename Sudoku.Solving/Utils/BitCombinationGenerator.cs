@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
@@ -66,17 +67,17 @@ namespace Sudoku.Solving.Utils
 		}
 
 		/// <inheritdoc/>
-		[DebuggerHidden]
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		public override bool Equals(object? obj) =>
 			throw new NotSupportedException("The instance does not support this method.");
 
 		/// <inheritdoc/>
-		[DebuggerHidden]
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		public override int GetHashCode() =>
 			throw new NotSupportedException("The instance does not support this method.");
 
 		/// <inheritdoc/>
-		[DebuggerHidden]
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		public override string ToString() =>
 			throw new NotSupportedException("The instance does not support this method.");
 
