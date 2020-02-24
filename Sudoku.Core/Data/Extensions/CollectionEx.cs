@@ -26,7 +26,9 @@ namespace Sudoku.Data.Extensions
 			where T : notnull
 		{
 			foreach (var value in values)
+			{
 				@this.Add(value);
+			}
 		}
 
 		/// <summary>
@@ -43,7 +45,9 @@ namespace Sudoku.Data.Extensions
 			where T : notnull
 		{
 			if (!@this.Contains(item))
+			{
 				@this.Add(item);
+			}
 		}
 	}
 }

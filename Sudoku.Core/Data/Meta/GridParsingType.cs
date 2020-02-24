@@ -20,6 +20,7 @@
 		/// </para>
 		/// </summary>
 		Susser,
+
 		/// <summary>
 		/// <para>
 		/// Indicates the pencil marked grid (PM grid), which means all
@@ -47,6 +48,7 @@
 		/// </para>
 		/// </summary>
 		PencilMarked,
+
 		/// <summary>
 		/// <para>
 		/// Indicates the pencil marked grid (PM grid), which means all
@@ -75,6 +77,7 @@
 		/// </para>
 		/// </summary>
 		PencilMarkedTreatSingleAsGiven,
+
 		/// <summary>
 		/// <para>
 		/// Indicates the table format, which means all grid values

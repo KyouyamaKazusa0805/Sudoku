@@ -13,7 +13,9 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Reverse all characters in a specified string builder instance.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The instance to reverse all characters.</param>
+		/// <param name="this">
+		/// (<see langword="this"/> parameter) The instance to reverse all characters.
+		/// </param>
 		/// <returns>The reference of the current instance.</returns>
 		public static StringBuilder Reverse(this StringBuilder @this)
 		{

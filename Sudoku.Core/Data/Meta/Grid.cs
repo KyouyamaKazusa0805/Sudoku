@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Externals;
 using System.Runtime.CompilerServices;
 using Sudoku.Data.Extensions;
 
@@ -424,24 +425,21 @@ namespace Sudoku.Data.Meta
 				{
 					if (!format.StartsWith('@'))
 					{
-						throw new FormatException(
-							message: "The specified format is invalid.",
-							innerException: new Exception(
-								message: "Multi-line identifier '@' must be at the first place."));
+						throw Throwing.FormatErrorWithMessage(
+							"Multi-line identifier '@' must be at the first place.",
+							nameof(format));
 					}
 					else if ((format.Contains('0') || format.Contains('.')) && format.Contains(':'))
 					{
-						throw new FormatException(
-							message: "The specified format is invalid.",
-							innerException: new Exception(
-								message: "In multi-line environment, '0' and '.' cannot appear with ':' together."));
+						throw Throwing.FormatErrorWithMessage(
+							"In multi-line environment, '0' and '.' cannot appear with ':' together.",
+							nameof(format));
 					}
 					else if (format.IsMatch(@"\@[^0\!\*\.\:]+"))
 					{
-						throw new FormatException(
-							message: "The specified format is invalid.",
-							innerException: new Exception(
-								message: "Multi-line identifier '@' must follow only character '!', '*', '0', '.' or ':'."));
+						throw Throwing.FormatErrorWithMessage(
+							"Multi-line identifier '@' must follow only character '!', '*', '0', '.' or ':'.",
+							nameof(format));
 					}
 				}
 				else
@@ -450,46 +448,43 @@ namespace Sudoku.Data.Meta
 					{
 						if (!format.StartsWith('#'))
 						{
-							throw new FormatException(
-								message: "The specified format is invalid.",
-								innerException: new Exception(
-									message: "Intelligence option character '#' must be at the first place."));
+							throw Throwing.FormatErrorWithMessage(
+								"Intelligence option character '#' must be at the first place.",
+								nameof(format));
 						}
 						else if (format.IsMatch(@"\#[^\.0]+"))
 						{
-							throw new FormatException(
-								message: "The specified format is invalid.",
-								innerException: new Exception(
-									message: "Intelligence option character '#' must be with placeholder '0' or '.'."));
+							throw Throwing.FormatErrorWithMessage(
+								"Intelligence option character '#' must be with placeholder '0' or '.'.",
+								nameof(format));
 						}
 					}
 					else
 					{
 						if (format.Contains('0') && format.Contains('.'))
 						{
-							throw new FormatException(
-								message: "The specified format is invalid.",
-								innerException: new Exception(
-									message: "Placeholder character '0' and '.' cannot appear both."));
+							throw Throwing.FormatErrorWithMessage(
+								"Placeholder character '0' and '.' cannot appear both.",
+								nameof(format));
 						}
 						else if (format.Contains('+') && format.Contains('!'))
 						{
-							throw new FormatException(
-								message: "The specified format is invalid.",
-								innerException: new Exception(
-									message: "Cell status character '+' and '!' cannot appear both."));
+							throw Throwing.FormatErrorWithMessage(
+								"Cell status character '+' and '!' cannot appear both.",
+								nameof(format));
 						}
 						else if (format.Contains(':') && !format.EndsWith(':'))
 						{
-							throw new FormatException(
-								message: "The specified format is invalid.",
-								innerException: new Exception(
-									message: "Candidate leading character ':' must be at the last place."));
+							throw Throwing.FormatErrorWithMessage(
+								"Candidate leading character ':' must be at the last place.",
+								nameof(format));
 						}
 					}
 				}
 			}
 
+			// Returns the grid string.
+			// Here you can also use switch expression to return.
 			switch (format)
 			{
 				case null:

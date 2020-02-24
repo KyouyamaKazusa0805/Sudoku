@@ -280,7 +280,8 @@ namespace Sudoku.Data.Meta
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
-		public static bool operator ==(FullGridMap left, FullGridMap right) => left.Equals(right);
+		public static bool operator ==(FullGridMap left, FullGridMap right) =>
+			left.Equals(right);
 
 		/// <summary>
 		/// Indicates whether two instances have two different values.
@@ -288,7 +289,8 @@ namespace Sudoku.Data.Meta
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
-		public static bool operator !=(FullGridMap left, FullGridMap right) => !(left == right);
+		public static bool operator !=(FullGridMap left, FullGridMap right) =>
+			!(left == right);
 
 		/// <summary>
 		/// Negate all bits.
@@ -310,7 +312,8 @@ namespace Sudoku.Data.Meta
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
 		/// <returns>The result.</returns>
-		public static FullGridMap operator -(FullGridMap left, FullGridMap right) => left & ~right;
+		public static FullGridMap operator -(FullGridMap left, FullGridMap right) =>
+			left & ~right;
 
 		/// <summary>
 		/// Intersect two <see cref="FullGridMap"/>s.

@@ -311,7 +311,9 @@
             <summary>
             Reverse all characters in a specified string builder instance.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The instance to reverse all characters.</param>
+            <param name="this">
+            (<see langword="this"/> parameter) The instance to reverse all characters.
+            </param>
             <returns>The reference of the current instance.</returns>
         </member>
         <member name="M:Sudoku.Data.Extensions.StringBuilderEx.RemoveFromEnd(System.Text.StringBuilder,System.Int32)">
@@ -1038,14 +1040,53 @@
             be multi-line.
             </param>
         </member>
-        <member name="P:Sudoku.Data.Meta.GridFormatter.Placeholder">
-            <summary>
-            The place holder.
-            </summary>
-        </member>
         <member name="P:Sudoku.Data.Meta.GridFormatter.Multiline">
             <summary>
             Indicates whether the output should be multi-line.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Meta.GridFormatter.Grid">
+            <summary>
+            Indicates the grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridFormatter.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridFormatter.ToSingleLineStringCore">
+            <summary>
+            To single line string.
+            </summary>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridFormatter.ToMultiLineSimpleGridCore">
+            <summary>
+            To multi-line normal grid string without any candidates.
+            </summary>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridFormatter.ToMultiLineStringCore">
+            <summary>
+            To multi-line string with candidates.
+            </summary>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridFormatter.GetCellStatus(System.Int16)">
+            <summary>
+            Get cell status for a value.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>The cell status.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridFormatter.GetDefaultList">
+            <summary>
+            Get the default list.
+            </summary>
+            <returns>The list.</returns>
+        </member>
+        <member name="P:Sudoku.Data.Meta.GridFormatter.Placeholder">
+            <summary>
+            The place holder.
             </summary>
         </member>
         <member name="P:Sudoku.Data.Meta.GridFormatter.WithModifiables">
@@ -1083,39 +1124,6 @@
             Indicates whether need to handle all grid outlines while outputting.
             See file "How to use 'Grid' class.md" for more information.
             </summary>
-        </member>
-        <member name="P:Sudoku.Data.Meta.GridFormatter.Grid">
-            <summary>
-            The grid.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Meta.GridFormatter.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.GridFormatter.ToSingleLineStringCore">
-            <summary>
-            To single line string.
-            </summary>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Meta.GridFormatter.ToMultiLineSimpleGridCore">
-            <summary>
-            To multi-line normal grid string without any candidates.
-            </summary>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Meta.GridFormatter.ToMultiLineStringCore">
-            <summary>
-            To multi-line string with candidates.
-            </summary>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Meta.GridFormatter.GetCellStatus(System.Int16)">
-            <summary>
-            Get cell status for a value.
-            </summary>
-            <param name="value">The value.</param>
-            <returns>The cell status.</returns>
         </member>
         <member name="T:Sudoku.Data.Meta.GridMap">
             <summary>
@@ -1546,6 +1554,12 @@
             Parse the susser format string.
             </summary>
             <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridParser.GetDefaultCheckingArray">
+            <summary>
+            Get an array of default values in checking.
+            </summary>
+            <returns>The array of <see cref="T:System.Boolean"/> values.</returns>
         </member>
         <member name="T:Sudoku.Data.Meta.GridParsingType">
             <summary>
@@ -2126,11 +2140,35 @@
             Provides operations for throwing exceptions.
             </summary>
         </member>
-        <member name="F:System.Externals.Throwing.ImpossibleCase">
+        <member name="P:System.Externals.Throwing.ImpossibleCase">
             <summary>
             Indicates an exception throwing when the case is impossible
             in switch expressions or switch-case clauses.
             </summary>
+        </member>
+        <member name="M:System.Externals.Throwing.ImpossibleCaseWithMessage(System.String)">
+            <summary>
+            Indicates an exception throwing when the case is impossible
+            in switch expressions or switch-case clauses.
+            </summary>
+            <param name="message">The specified message to display.</param>
+            <returns>The exception.</returns>
+        </member>
+        <member name="M:System.Externals.Throwing.ParsingError``1(System.String)">
+            <summary>
+            Indicates an exception throwing when the parsing is failed.
+            </summary>
+            <typeparam name="TTarget">The target type to parse.</typeparam>
+            <param name="paramName">The name of the parameter.</param>
+            <returns>The exception.</returns>
+        </member>
+        <member name="M:System.Externals.Throwing.FormatErrorWithMessage(System.String,System.String)">
+            <summary>
+            Indicates an exception throwing when the format string is error.
+            </summary>
+            <param name="message">The inner message to display.</param>
+            <param name="paramName">The name of format string parameter.</param>
+            <returns>The exception.</returns>
         </member>
     </members>
 </doc>

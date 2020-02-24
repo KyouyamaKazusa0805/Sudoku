@@ -5,6 +5,7 @@ using System.Linq;
 using Sudoku.Data.Meta;
 using Sudoku.Runtime;
 using static System.Math;
+using static System.StringComparison;
 
 namespace Sudoku.Solving.BruteForces.Linqing
 {
@@ -45,13 +46,14 @@ namespace Sudoku.Solving.BruteForces.Linqing
 		private static List<string> SolveStrings(string puzzle)
 		{
 			const string values = "123456789";
-			var result = new List<string> { puzzle };
+			static int indexOf(string solution) => solution.IndexOf('0', OrdinalIgnoreCase);
 
-			while (result.Count > 0 && result[0].IndexOf('0', StringComparison.OrdinalIgnoreCase) != -1)
+			var result = new List<string> { puzzle };
+			while (result.Count > 0 && indexOf(result[0]) != -1)
 			{
 				result = new List<string>(
 					from solution in result
-					let index = solution.IndexOf('0', StringComparison.OrdinalIgnoreCase)
+					let index = indexOf(solution)
 					let column = index % 9
 					let block = index - index % 27 + column - index % 3
 					from value in values

@@ -12,17 +12,20 @@ namespace Sudoku.Data.Meta
 		/// Indicates that the cell is empty.
 		/// </summary>
 		Empty = 1,
+
 		/// <summary>
 		/// Indicates that the cell has already filled a value,
 		/// but the value does not exist when the puzzle begins.
 		/// </summary>
 		Modifiable = 2,
+
 		/// <summary>
 		/// Indicates that the cell has already filled a value,
 		/// and the value does exist when the puzzle begins. In
 		/// other words, the value is a given (or a hint, clue, etc.).
 		/// </summary>
 		Given = 4,
+
 		/// <summary>
 		/// Indicates all cases of cell statuses.
 		/// </summary>

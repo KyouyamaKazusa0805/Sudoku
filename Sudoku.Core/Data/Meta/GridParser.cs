@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Externals;
+using System.Runtime.CompilerServices;
 using Sudoku.Data.Extensions;
 
 namespace Sudoku.Data.Meta
@@ -33,20 +35,11 @@ namespace Sudoku.Data.Meta
 		/// </exception>
 		public Grid Parse()
 		{
-			Grid? grid;
-			if (!((grid = OnParsingSusser()) is null)
-				|| !((grid = OnParsingSimpleMultilineGrid()) is null)
-				|| !((grid = OnParsingPencilMarked(false)) is null)
-				|| !((grid = OnParsingPencilMarked(true)) is null))
-			{
-				return grid;
-			}
-
-			// All ways are failed, therefore we cannot find a way to parse.
-			// Throw an exception to report this error.
-			throw new ArgumentException(
-				message: $"Argument cannot be parsed and converted to target type {typeof(Grid)}.",
-				paramName: nameof(ParsingValue));
+			return OnParsingSusser()
+				?? OnParsingSimpleMultilineGrid()
+				?? OnParsingPencilMarked(false)
+				?? OnParsingPencilMarked(true)
+				?? throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
 		}
 
 		/// <summary>
@@ -59,23 +52,13 @@ namespace Sudoku.Data.Meta
 		/// </exception>
 		public Grid Parse(GridParsingType gridParsingType)
 		{
-			Grid? grid;
-			if (!((grid = new Dictionary<GridParsingType, Func<Grid?>>
+			return new Dictionary<GridParsingType, Func<Grid?>>
 			{
 				[GridParsingType.Susser] = OnParsingSusser,
 				[GridParsingType.Table] = OnParsingSimpleMultilineGrid,
 				[GridParsingType.PencilMarked] = () => OnParsingPencilMarked(false),
 				[GridParsingType.PencilMarkedTreatSingleAsGiven] = () => OnParsingPencilMarked(true)
-			}[gridParsingType]()) is null))
-			{
-				return grid;
-			}
-			else
-			{
-				throw new ArgumentException(
-					message: $"Argument cannot be parsed and converted to target type {typeof(Grid)}.",
-					paramName: nameof(ParsingValue));
-			}
+			}[gridParsingType]() ?? throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
 		}
 
 		/// <summary>
@@ -157,7 +140,7 @@ namespace Sudoku.Data.Meta
 						}
 						else
 						{
-							bool[] series = new[] { true, true, true, true, true, true, true, true, true };
+							bool[] series = GetDefaultCheckingArray();
 							foreach (char c in s)
 							{
 								series[c - '1'] = false;
@@ -224,7 +207,7 @@ namespace Sudoku.Data.Meta
 						// Candidates.
 						// Here do not need to check the length of the string,
 						// and also all characters are digit characters.
-						bool[] series = new[] { true, true, true, true, true, true, true, true, true };
+						bool[] series = GetDefaultCheckingArray();
 						foreach (char c in s)
 						{
 							series[c - '1'] = false;
@@ -257,7 +240,6 @@ namespace Sudoku.Data.Meta
 				return null;
 			}
 
-			#region Step 1
 			// Step 1: fills all digits.
 			var result = Grid.Empty.Clone();
 			int i = 0, length = match.Length;
@@ -327,14 +309,10 @@ namespace Sudoku.Data.Meta
 				else
 				{
 					// Other invalid characters. Throws an exception.
-					throw new ArgumentException(
-						message: $"Argument cannot be parsed and converted to target type {typeof(Grid)}.",
-						paramName: nameof(ParsingValue));
+					throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
 				}
 			}
-			#endregion
 
-			#region Step 2
 			// Step 2: eliminates candidates if exist.
 			// If we have met the colon sign ':', this loop would not be executed. 
 			string? elimMatch = ParsingValue.Match(@"(?<=\:)(\d{3}\s+)*\d{3}");
@@ -349,9 +327,16 @@ namespace Sudoku.Data.Meta
 						digit: eliminationBlock[0] - '1'] = true;
 				}
 			}
-			#endregion
 
 			return result;
 		}
+
+		/// <summary>
+		/// Get an array of default values in checking.
+		/// </summary>
+		/// <returns>The array of <see cref="bool"/> values.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private static bool[] GetDefaultCheckingArray() =>
+			new[] { true, true, true, true, true, true, true, true, true };
 	}
 }
