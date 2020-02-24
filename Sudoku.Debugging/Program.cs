@@ -20,9 +20,9 @@ namespace Sudoku.Debugging
 			{
 				AnalyzeDifficultyStrictly = true,
 			};
-			var grid = Grid.Parse("000000000000000000000000000000000000000000000000000000000000000000000000000000000");
+			var grid = Grid.Parse("700000020000300405006000097000006070035708140060400000690000700801005000070000001");
 			var analysisResult = solver.Solve(grid);
-			Console.WriteLine($"{analysisResult}");
+			Console.WriteLine($"{analysisResult:-#!.}");
 		}
 	}
 }

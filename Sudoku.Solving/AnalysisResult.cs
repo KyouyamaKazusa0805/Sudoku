@@ -411,35 +411,62 @@ namespace Sudoku.Solving
 			}
 
 			string? formatLower = format?.ToLower();
-			string separator = new string('-', 10);
-			string placeholder = new string(' ', 7);
-			var sb = new StringBuilder();
+			bool showSeparator = formatLower?.Contains('-') ?? false;
+			bool showStepNum = formatLower?.Contains('#') ?? false;
+			bool showSimple = formatLower?.Contains('@') ?? false;
+			bool showBottleneck = formatLower?.Contains('%') ?? false;
+			bool showDifficulty = formatLower?.Contains('!') ?? false;
+			bool showStepsAfterBottleneck = formatLower?.Contains('.') ?? false;
 
 			// Print header.
+			var sb = new StringBuilder();
 			sb.AppendLine($"Puzzle: {Puzzle:#}");
 			sb.AppendLine($"Solving tool: {SolverName}");
 
 			// Print solving steps.
+			string separator = new string('-', 10);
 			if (!(SolvingSteps is null) && SolvingSteps.Count != 0)
 			{
 				sb.AppendLine("Solving steps:");
 				if (!(BottleNeckData is null))
 				{
-					var (index, _) = (ValueTuple<int, TechniqueInfo>)BottleNeckData;
+					var (bIndex, bInfo) = (ValueTuple<int, TechniqueInfo>)BottleNeckData;
 					for (int i = 0; i < SolvingSteps.Count; i++)
 					{
-						if (i > index && (format?.Contains('m') ?? false))
+						if (i > bIndex && !showStepsAfterBottleneck)
 						{
-							sb.AppendLine("...");
+							sb.AppendLine("......");
 							break;
 						}
 
 						var info = SolvingSteps[i];
-						string infoStr = formatLower?.Contains('s') ?? false ? info.ToSimpleString() : info.ToString();
-						sb.AppendLine($"{(info.ShowDifficulty ? $"{$"({info.Difficulty}",5:0.0})" : placeholder)} {infoStr}");
+						string infoStr = showSimple ? info.ToSimpleString() : info.ToString();
+						bool showDiff = showDifficulty ? info.ShowDifficulty : false;
+						string labelInfo = (showStepNum, showDiff) switch
+						{
+							(true, true) => $"{i + 1,4}, {$"({info.Difficulty}",5:0.0}) ",
+							(true, false) => $"{i + 1,4} ",
+							(false, true) => $"{$"({info.Difficulty}",5:0.0}) ",
+							_ => string.Empty,
+						};
+						sb.AppendLine($"{labelInfo}{infoStr}");
 					}
 
-					sb.AppendLine(separator);
+					if (showBottleneck)
+					{
+						if (showSeparator)
+						{
+							sb.AppendLine(separator);
+						}
+
+						string bottleLabelInfo = showStepNum ? $" In step {bIndex + 1}:" : string.Empty;
+						sb.AppendLine($"BottleNeck step:{bottleLabelInfo} {bInfo}");
+					}
+
+					if (showSeparator)
+					{
+						sb.AppendLine(separator);
+					}
 				}
 			}
 
@@ -452,7 +479,10 @@ namespace Sudoku.Solving
 					sb.AppendLine($"{solvingStepsGroup.Count()} * {solvingStepsGroup.Key}");
 				}
 
-				sb.AppendLine(separator);
+				if (showSeparator)
+				{
+					sb.AppendLine(separator);
+				}
 			}
 
 			// Print detail data.
@@ -473,7 +503,11 @@ namespace Sudoku.Solving
 			// Print the additional information.
 			if (!(Additional is null))
 			{
-				sb.AppendLine(separator);
+				if (showSeparator)
+				{
+					sb.AppendLine(separator);
+				}
+
 				sb.AppendLine(Additional);
 			}
 
