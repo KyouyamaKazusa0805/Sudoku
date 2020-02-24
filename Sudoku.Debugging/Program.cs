@@ -16,10 +16,7 @@ namespace Sudoku.Debugging
 		private static void Main()
 		{
 			// Manual solver tester.
-			var solver = new ManualSolver
-			{
-				AnalyzeDifficultyStrictly = true,
-			};
+			var solver = new ManualSolver();
 			var grid = Grid.Parse("700000020000300405006000097000006070035708140060400000690000700801005000070000001");
 			var analysisResult = solver.Solve(grid);
 			Console.WriteLine($"{analysisResult:-#!.}");
