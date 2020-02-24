@@ -433,7 +433,7 @@ namespace Sudoku.Solving
 					var (bIndex, bInfo) = (ValueTuple<int, TechniqueInfo>)BottleNeckData;
 					for (int i = 0; i < SolvingSteps.Count; i++)
 					{
-						if (i > bIndex && !showStepsAfterBottleneck)
+						if (i > bIndex && showStepsAfterBottleneck)
 						{
 							sb.AppendLine("......");
 							break;
@@ -460,7 +460,7 @@ namespace Sudoku.Solving
 						}
 
 						string bottleLabelInfo = showStepNum ? $" In step {bIndex + 1}:" : string.Empty;
-						sb.AppendLine($"BottleNeck step:{bottleLabelInfo} {bInfo}");
+						sb.AppendLine($"Bottleneck step:{bottleLabelInfo} {bInfo}");
 					}
 
 					if (showSeparator)

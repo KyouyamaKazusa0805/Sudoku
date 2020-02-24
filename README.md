@@ -107,32 +107,7 @@ Solving steps:
   34,  (2.3) Naked single: r9c5 = 4
   35,  (1.1) Last Digit: r3c6 = 4
   36,  (3.2) X-Wing: 9 in r69\c67 => r1c6 <> 9
-  37,  (2.3) Naked single: r1c6 = 1
-  38,  (1.2) Hidden Single (In Block): r3c2 = 1 in b1
-  39,  (1.1) Last Digit: r7c5 = 1
-  40,  (1.2) Hidden Single (In Block): r1c2 = 5 in b1
-  41,  (1.1) Last Digit: r3c4 = 5
-  42,  (1.0) Full House: r3c5 = 2
-  43,  (1.2) Hidden Single (In Block): r6c6 = 2 in b5
-  44,  (1.0) Full House: r5c5 = 9
-  45,  (1.0) Full House: r5c1 = 2
-  46,  (1.0) Full House: r6c7 = 9
-  47,  (1.0) Full House: r4c9 = 2
-  48,  (1.0) Full House: r2c1 = 9
-  49,  (1.0) Full House: r1c5 = 8
-  50,  (1.0) Full House: r1c4 = 9
-  51,  (1.0) Full House: r9c7 = 2
-  52,  (1.0) Full House: r8c9 = 9
-  53,  (1.0) Full House: r8c4 = 2
-  54,  (1.0) Full House: r7c4 = 8
-  55,  (1.2) Hidden Single (In Block): r2c2 = 2 in b1
-  56,  (1.0) Full House: r2c3 = 8
-  57,  (1.0) Full House: r4c2 = 8
-  58,  (1.0) Full House: r4c3 = 9
-  59,  (1.1) Last Digit: r7c3 = 2
-  60,  (1.0) Full House: r9c3 = 3
-  61,  (1.0) Full House: r7c6 = 3
-  62,  (1.0) Full House: r9c6 = 9
+......
 ----------
 Technique used:
 20 * Full House
@@ -151,7 +126,7 @@ Difficulty total: 88.0
 Puzzle rating: 4.0/1.2/1.2
 Puzzle solution: 754981623928367415316524897489136572235798146167452938692813754841275369573649281
 Puzzle has been solved.
-Time elapsed: 00:00.00.127
+Time elapsed: 00:00.00.154
 ```
 
 
