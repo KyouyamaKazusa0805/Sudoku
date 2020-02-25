@@ -127,7 +127,7 @@ namespace Sudoku.Solving
 		/// Returns a string that only contains the name and the conclusions.
 		/// </summary>
 		/// <returns>The string instance.</returns>
-		public virtual string ToSimpleString() =>
+		public string ToSimpleString() =>
 			$"{Name} => {ConclusionCollection.ToString(Conclusions)}";
 
 

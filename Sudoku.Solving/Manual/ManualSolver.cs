@@ -136,6 +136,10 @@ namespace Sudoku.Solving.Manual
 					new PatternOverlayMethodTechniqueSearcher(),
 					new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
 				},
+				new TechniqueSearcher[]
+				{
+					new ChuteClueCoverTechniqueSearcher(),
+				},
 				new[] { new BruteForceTechniqueSearcher(solution) }
 			};
 
@@ -283,6 +287,7 @@ namespace Sudoku.Solving.Manual
 				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 				new PatternOverlayMethodTechniqueSearcher(),
 				new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
+				new ChuteClueCoverTechniqueSearcher(),
 				new BruteForceTechniqueSearcher(solution),
 			};
 			if (UseCalculationPriority)

@@ -1626,14 +1626,14 @@
             Encapsulates a brute force technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher._solution">
-            <summary>
-            The solution.
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.TryAndErrorOrder">
             <summary>
             The order of cell offsets to get values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher._solution">
+            <summary>
+            The solution.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.#ctor(Sudoku.Data.Meta.Grid)">
@@ -1648,6 +1648,47 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.LastResorts.ChuteClueCoverTechniqueInfo">
+            <summary>
+            Provides a usage of chute clue cover (CCC) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.ChuteClueCoverTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="count">The total number of combinations traversed.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.ChuteClueCoverTechniqueInfo.Count">
+            <summary>
+            Indicates the total number of combinations traversed.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.ChuteClueCoverTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.ChuteClueCoverTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.ChuteClueCoverTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.ChuteClueCoverTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.LastResorts.ChuteClueCoverTechniqueSearcher">
+            <summary>
+            Encapsulates a chute clue cover (CCC) technique searcher.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.ChuteClueCoverTechniqueSearcher.Priority">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.ChuteClueCoverTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.LastResorts.LastResortTechniqueInfo">
