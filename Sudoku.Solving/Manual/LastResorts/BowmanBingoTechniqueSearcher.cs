@@ -208,15 +208,14 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <returns>The result.</returns>
 		private static bool IsValidGrid(Grid grid, int cell)
 		{
-			return new GridMap(cell, false).Offsets.All(
-				c =>
-				{
-					var status = grid.GetCellStatus(c);
-					return (
-						status != CellStatus.Empty && grid[c] != grid[cell]
-						|| status == CellStatus.Empty
-					) && grid.GetCandidates(c) != 511;
-				});
+			return new GridMap(cell, false).Offsets.All(c =>
+			{
+				var status = grid.GetCellStatus(c);
+				return (
+					status != CellStatus.Empty && grid[c] != grid[cell]
+					|| status == CellStatus.Empty
+				) && grid.GetCandidates(c) != 511;
+			});
 		}
 		#endregion
 	}

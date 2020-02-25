@@ -10,11 +10,6 @@ namespace Sudoku.Solving.Manual.LastResorts
 	public sealed class BruteForceTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <summary>
-		/// The solution.
-		/// </summary>
-		private readonly Grid _solution;
-
-		/// <summary>
 		/// The order of cell offsets to get values.
 		/// </summary>
 		private static readonly int[] TryAndErrorOrder = new[]
@@ -29,6 +24,12 @@ namespace Sudoku.Solving.Manual.LastResorts
 			73, 72, 63, 54, 45, 36, 27, 18, 9,
 			0, 1, 2, 3, 4, 5, 6, 7, 8
 		};
+
+
+		/// <summary>
+		/// The solution.
+		/// </summary>
+		private readonly Grid _solution;
 
 
 		/// <summary>
@@ -57,19 +58,17 @@ namespace Sudoku.Solving.Manual.LastResorts
 				}
 
 				int cand = offset * 9 + _solution[offset];
-				result.Add(new BruteForceTechniqueInfo(
-					conclusions: new[]
-					{
-						new Conclusion(ConclusionType.Assignment, cand)
-					},
-					views: new[]
-					{
-						new View(
-							cellOffsets: null,
-							candidateOffsets: new[] { (0, cand) },
-							regionOffsets: null,
-							linkMasks: null)
-					}));
+				result.Add(
+					new BruteForceTechniqueInfo(
+						conclusions: new[] { new Conclusion(ConclusionType.Assignment, cand) },
+						views: new[]
+						{
+							new View(
+								cellOffsets: null,
+								candidateOffsets: new[] { (0, cand) },
+								regionOffsets: null,
+								linkMasks: null)
+						}));
 			}
 
 			return result;
