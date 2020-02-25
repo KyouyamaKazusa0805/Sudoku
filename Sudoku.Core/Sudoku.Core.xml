@@ -1668,6 +1668,84 @@
             </para>
             </summary>
         </member>
+        <member name="T:Sudoku.Data.Meta.GridTransformations">
+            <summary>
+            Provides a series of methods for <see cref="T:Sudoku.Data.Meta.Grid"/>
+            using in transformations.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Meta.Grid"/>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridTransformations.MirrorLeftRight(Sudoku.Data.Meta.Grid)">
+            <summary>
+            Mirror left-right the grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridTransformations.MirrorTopBottom(Sudoku.Data.Meta.Grid)">
+            <summary>
+            Mirror top-bottom the grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridTransformations.MirrorDiagonal(Sudoku.Data.Meta.Grid)">
+            <summary>
+            Mirror diagonal the grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridTransformations.MirrorAntidiagonal(Sudoku.Data.Meta.Grid)">
+            <summary>
+            Mirror anti-diagonal the grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridTransformations.RotateClockwise(Sudoku.Data.Meta.Grid)">
+            <summary>
+            Rotate the grid clockwise.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridTransformations.RotateCounterClockwise(Sudoku.Data.Meta.Grid)">
+            <summary>
+            Rotate the grid counter-clockwise.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridTransformations.RotatePi(Sudoku.Data.Meta.Grid)">
+            <summary>
+            Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridTransformations.SwapTwoRegions(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)">
+            <summary>
+            Swap to regions.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="region1">The region 1.</param>
+            <param name="region2">The region 2.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when two specified region argument is not in valid range (0..27)
+            or two regions are not in same region type.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Data.Meta.GridTransformations.GetCellOffset(System.Int32,System.Int32)">
+            <summary>
+            Get the cell offset of the relative position in the specified
+            region.
+            </summary>
+            <param name="regionOffset">The region offset.</param>
+            <param name="relativePos">The relative position.</param>
+            <returns>The cell offset.</returns>
+        </member>
         <member name="T:Sudoku.Data.Meta.SymmetricalType">
             <summary>
             Define a symmetrical type.

@@ -35,7 +35,6 @@ namespace Sudoku.Solving.Manual.Symmetry
 		}
 
 
-		#region Gsp utils
 		/// <summary>
 		/// Check x-axis symmetry.
 		/// </summary>
@@ -665,6 +664,5 @@ namespace Sudoku.Solving.Manual.Symmetry
 				}
 			}
 		}
-		#endregion
 	}
 }
