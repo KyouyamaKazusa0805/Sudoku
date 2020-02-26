@@ -146,13 +146,6 @@
             The bottleneck data.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.AnalysisResult.SolvingStepsGrouped">
-            <summary>
-            Indicates all groups that grouped by solving steps during solving.
-            If and only if <see cref="P:Sudoku.Solving.AnalysisResult.SolvingSteps"/> is <see langword="null"/>, this value
-            will be <see langword="null"/>.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.String@,System.Boolean@)">
             <summary>
             Deconstruct this instance.
@@ -291,6 +284,50 @@
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.AnalysisResultFormatter">
+            <summary>
+            Provides operations for analysis result formatting.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResultFormatter.#ctor(Sudoku.Solving.AnalysisResult)">
+            <summary>
+            Initializes an instance with the specified analysis result and format.
+            </summary>
+            <param name="result">The analysis result.</param>
+        </member>
+        <member name="P:Sudoku.Solving.AnalysisResultFormatter.Result">
+            <summary>
+            Indicates the analysis result.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResultFormatter.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResultFormatter.ToString(System.String)">
+            <summary>
+            Returns a string that represents the current object with a specified format.
+            </summary>
+            <param name="format">The format.</param>
+            <returns>The string instance.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResultFormatter.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResultFormatter.GetSolvingStepsGrouped">
+            <summary>
+            Indicates all groups that grouped by solving steps during solving.
+            If and only if <see cref="P:Sudoku.Solving.AnalysisResult.SolvingSteps"/> is <see langword="null"/>, this value
+            will be <see langword="null"/>.
+            </summary>
+            <returns>The list grouped and ordered.</returns>
+            <seealso cref="P:Sudoku.Solving.AnalysisResult.SolvingSteps"/>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResultFormatter.GetBottleneckData">
+            <summary>
+            Get the data of bottleneck.
+            </summary>
+            <returns>The data.</returns>
         </member>
         <member name="T:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver">
             <summary>

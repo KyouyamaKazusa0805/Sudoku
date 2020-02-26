@@ -195,19 +195,7 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Indicates the bottle neck during the whole grid solving.
 		/// </summary>
-		public TechniqueInfo? BottleNeck => BottleNeckData?._info;
-
-		/// <summary>
-		/// Indicates the solving steps during solving. If the puzzle is not
-		/// solved and the manual solver cannot find out any steps, or else
-		/// the puzzle is solved by other solvers, this value will be <see langword="null"/>.
-		/// </summary>
-		public IReadOnlyList<TechniqueInfo>? SolvingSteps { get; }
-
-		/// <summary>
-		/// The bottleneck data.
-		/// </summary>
-		private (int _stepIndex, TechniqueInfo _info)? BottleNeckData
+		public TechniqueInfo? Bottleneck
 		{
 			get
 			{
@@ -221,32 +209,22 @@ namespace Sudoku.Solving
 					var step = SolvingSteps[i];
 					if (!(step is SingleTechniqueInfo) && step.ShowDifficulty)
 					{
-						return (i, step);
+						return step;
 					}
 				}
 
 				// If code goes to here, all steps are more difficult than single techniques.
 				// Get the first one is okay.
-				return (0, SolvingSteps[0]);
+				return SolvingSteps[0];
 			}
 		}
 
 		/// <summary>
-		/// Indicates all groups that grouped by solving steps during solving.
-		/// If and only if <see cref="SolvingSteps"/> is <see langword="null"/>, this value
-		/// will be <see langword="null"/>.
+		/// Indicates the solving steps during solving. If the puzzle is not
+		/// solved and the manual solver cannot find out any steps, or else
+		/// the puzzle is solved by other solvers, this value will be <see langword="null"/>.
 		/// </summary>
-		private IEnumerable<IGrouping<string, TechniqueInfo>>? SolvingStepsGrouped
-		{
-			get
-			{
-				return SolvingSteps is null
-					? null
-					: from solvingStep in SolvingSteps
-					  orderby solvingStep.Difficulty
-					  group solvingStep by solvingStep.Name;
-			}
-		}
+		public IReadOnlyList<TechniqueInfo>? SolvingSteps { get; }
 
 
 		/// <summary>
@@ -274,8 +252,8 @@ namespace Sudoku.Solving
 		/// (<see langword="out"/> parameter) The all solving steps.
 		/// </param>
 		public void Deconstruct(
-			out bool hasSolved,
-			out int solvingStepsCount, out IReadOnlyList<TechniqueInfo>? solvingSteps) =>
+			out bool hasSolved, out int solvingStepsCount,
+			out IReadOnlyList<TechniqueInfo>? solvingSteps) =>
 			(hasSolved, solvingStepsCount, solvingSteps) = (HasSolved, SolvingStepsCount, SolvingSteps);
 
 		/// <summary>
@@ -336,7 +314,7 @@ namespace Sudoku.Solving
 		/// <param name="difficultyLevel">
 		/// (<see langword="out"/> parameter) The difficulty level.
 		/// </param>
-		/// <param name="bottleNeck">
+		/// <param name="bottleneck">
 		/// (<see langword="out"/> parameter) The bottleneck.
 		/// </param>
 		/// <param name="solvingSteps">
@@ -344,9 +322,9 @@ namespace Sudoku.Solving
 		/// </param>
 		public void Deconstruct(
 			out Grid puzzle, out bool hasSolved, out Grid? solution,
-			out DifficultyLevel difficultyLevel, out TechniqueInfo? bottleNeck,
+			out DifficultyLevel difficultyLevel, out TechniqueInfo? bottleneck,
 			out IReadOnlyList<TechniqueInfo>? solvingSteps) =>
-			(puzzle, hasSolved, solution, difficultyLevel, bottleNeck, solvingSteps) = (Puzzle, HasSolved, Solution, DifficultyLevel, BottleNeck, SolvingSteps);
+			(puzzle, hasSolved, solution, difficultyLevel, bottleneck, solvingSteps) = (Puzzle, HasSolved, Solution, DifficultyLevel, Bottleneck, SolvingSteps);
 
 		/// <summary>
 		/// Deconstruct this instance.
@@ -403,116 +381,8 @@ namespace Sudoku.Solving
 		public string ToString(string format) => ToString(format, null);
 
 		/// <inheritdoc/>
-		public string ToString(string? format, IFormatProvider? formatProvider)
-		{
-			if (formatProvider?.GetFormat(GetType()) is ICustomFormatter customFormatter)
-			{
-				return customFormatter.Format(format, this, formatProvider);
-			}
-
-			string? formatLower = format?.ToLower();
-			bool showSeparator = formatLower?.Contains('-') ?? false;
-			bool showStepNum = formatLower?.Contains('#') ?? false;
-			bool showSimple = formatLower?.Contains('@') ?? false;
-			bool showBottleneck = formatLower?.Contains('%') ?? false;
-			bool showDifficulty = formatLower?.Contains('!') ?? false;
-			bool showStepsAfterBottleneck = formatLower?.Contains('.') ?? false;
-
-			// Print header.
-			var sb = new StringBuilder();
-			sb.AppendLine($"Puzzle: {Puzzle:#}");
-			sb.AppendLine($"Solving tool: {SolverName}");
-
-			// Print solving steps.
-			string separator = new string('-', 10);
-			if (!(SolvingSteps is null) && SolvingSteps.Count != 0)
-			{
-				sb.AppendLine("Solving steps:");
-				if (!(BottleNeckData is null))
-				{
-					var (bIndex, bInfo) = (ValueTuple<int, TechniqueInfo>)BottleNeckData;
-					for (int i = 0; i < SolvingSteps.Count; i++)
-					{
-						if (i > bIndex && showStepsAfterBottleneck)
-						{
-							sb.AppendLine("......");
-							break;
-						}
-
-						var info = SolvingSteps[i];
-						string infoStr = showSimple ? info.ToSimpleString() : info.ToString();
-						bool showDiff = showDifficulty ? info.ShowDifficulty : false;
-						string labelInfo = (showStepNum, showDiff) switch
-						{
-							(true, true) => $"{i + 1,4}, {$"({info.Difficulty}",5:0.0}) ",
-							(true, false) => $"{i + 1,4} ",
-							(false, true) => $"{$"({info.Difficulty}",5:0.0}) ",
-							_ => string.Empty,
-						};
-						sb.AppendLine($"{labelInfo}{infoStr}");
-					}
-
-					if (showBottleneck)
-					{
-						if (showSeparator)
-						{
-							sb.AppendLine(separator);
-						}
-
-						string bottleLabelInfo = showStepNum ? $" In step {bIndex + 1}:" : string.Empty;
-						sb.AppendLine($"Bottleneck step:{bottleLabelInfo} {bInfo}");
-					}
-
-					if (showSeparator)
-					{
-						sb.AppendLine(separator);
-					}
-				}
-			}
-
-			// Print solving step statistics.
-			if (!(SolvingStepsGrouped is null) && SolvingStepsGrouped.Count() != 0)
-			{
-				sb.AppendLine("Technique used:");
-				foreach (var solvingStepsGroup in SolvingStepsGrouped)
-				{
-					sb.AppendLine($"{solvingStepsGroup.Count()} * {solvingStepsGroup.Key}");
-				}
-
-				if (showSeparator)
-				{
-					sb.AppendLine(separator);
-				}
-			}
-
-			// Print detail data.
-			sb.AppendLine($"Total solving steps count: {SolvingStepsCount}");
-			sb.AppendLine($"Difficulty total: {TotalDifficulty}");
-			sb.AppendLine($"Puzzle rating: {MaxDifficulty:0.0}/{PearlDifficulty:0.0}/{DiamondDifficulty:0.0}");
-
-			// Print the solution (if not null).
-			if (!(Solution is null))
-			{
-				sb.AppendLine($"Puzzle solution: {Solution:!}");
-			}
-
-			// Print the elapsed time.
-			sb.AppendLine($"Puzzle has {(HasSolved ? "" : "not ")}been solved.");
-			sb.AppendLine($"Time elapsed: {ElapsedTime:hh':'mm'.'ss'.'fff}");
-
-			// Print the additional information.
-			if (!(Additional is null))
-			{
-				if (showSeparator)
-				{
-					sb.AppendLine(separator);
-				}
-
-				sb.AppendLine(Additional);
-			}
-
-			return sb.ToString();
-		}
+		public string ToString(string? format, IFormatProvider? formatProvider) =>
+			new AnalysisResultFormatter(this).ToString(format, formatProvider);
 
 		/// <inheritdoc/>
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
