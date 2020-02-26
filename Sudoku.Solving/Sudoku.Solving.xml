@@ -1143,6 +1143,9 @@
         <member name="P:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueInfo.Equals(Sudoku.Solving.TechniqueInfo)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
@@ -1151,9 +1154,19 @@
             Encapsulates a sue de coq (SdC) technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueSearcher.TraversingSeries">
+        <member name="F:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueSearcher.NonblockTable">
             <summary>
             The corresponding line regions to iterate on.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueSearcher.TakingCombinations6">
+            <summary>
+            Indicates all combinations (6 cells) to take.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueSearcher.TakingCombinations7">
+            <summary>
+            Indicates all combinations (7 cells) to take.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueSearcher._regionMaps">
@@ -1167,41 +1180,16 @@
             </summary>
             <param name="regionMaps">All regions grid maps.</param>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueSearcher.#cctor">
+            <summary>
+            The static initializer of this class.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueSearcher.SearchSdcRecursively(System.Collections.Generic.IList{Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,System.Int32)">
-            <summary>
-            Search SdC recursively.
-            </summary>
-            <param name="result">The result accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="takingCellsCount">The number of cells to take.</param>
-            <param name="restCellsToTakeCount">The rest number of cells to take.</param>
-            <param name="nonBlock">The index of non-block region.</param>
-            <param name="block">The index of block region.</param>
-            <param name="takenCellsMap">The map of taken cells.</param>
-            <param name="restMap">The map of rest.</param>
-            <param name="emptyMap">The map of empty cells.</param>
-            <param name="unionMap">The map of union map.</param>
-            <param name="interCells">The map of intersection cells.</param>
-            <param name="curIndexOfArray">The current index.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueSearcher.CheckSdC(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.GridMap,System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32}}}@)">
-            <summary>
-            Check whether the structure is an SdC or not.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="takenCellsMap">The map of cells to take.</param>
-            <param name="nonBlock">The index of non-block region.</param>
-            <param name="block">The index of block-region.</param>
-            <param name="digitRegions">
-            (<see langword="out"/> parameter) All digit regions.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo">
             <summary>

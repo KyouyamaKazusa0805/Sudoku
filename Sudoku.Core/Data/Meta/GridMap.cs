@@ -149,6 +149,27 @@ namespace Sudoku.Data.Meta
 			Count = _high.CountSet() + _low.CountSet();
 		}
 
+		/// <summary>
+		/// Indicates whether the map has no set bits.
+		/// This property is equivalent to code '<c>!<see langword="this"/>.IsNotEmpty</c>'.
+		/// </summary>
+		/// <seealso cref="IsNotEmpty"/>
+		public readonly bool IsEmpty
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _high == 0 && _low == 0;
+		}
+
+		/// <summary>
+		/// Indicates whether the map has at least one set bit.
+		/// This property is equivalent to code '<c>!<see langword="this"/>.IsEmpty</c>'.
+		/// </summary>
+		/// <seealso cref="IsEmpty"/>
+		public readonly bool IsNotEmpty
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _high != 0 || _low != 0;
+		}
 
 		/// <summary>
 		/// Indicates the mask of block.
@@ -160,7 +181,7 @@ namespace Sudoku.Data.Meta
 				short result = 0;
 				for (int i = 0; i < 9; i++)
 				{
-					if (this & CreateInstance(i))
+					if ((this & CreateInstance(i)).IsNotEmpty)
 					{
 						result |= (short)(1 << i);
 					}
@@ -180,7 +201,7 @@ namespace Sudoku.Data.Meta
 				short result = 0;
 				for (int i = 9; i < 18; i++)
 				{
-					if (this & CreateInstance(i))
+					if ((this & CreateInstance(i)).IsNotEmpty)
 					{
 						result |= (short)(1 << i - 9);
 					}
@@ -200,7 +221,7 @@ namespace Sudoku.Data.Meta
 				short result = 0;
 				for (int i = 18; i < 27; i++)
 				{
-					if (this & CreateInstance(i))
+					if ((this & CreateInstance(i)).IsNotEmpty)
 					{
 						result |= (short)(1 << i - 18);
 					}
@@ -260,7 +281,7 @@ namespace Sudoku.Data.Meta
 		/// <para>
 		/// If you want to make an array of them, please use method
 		/// <see cref="ToArray"/> instead of code
-		/// '<c><see cref="Offsets"/>.ToArray()</c>'.
+		/// '<c>Offsets.ToArray()</c>'.
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ToArray"/>
@@ -301,11 +322,14 @@ namespace Sudoku.Data.Meta
 		/// </returns>
 		public bool this[int offset]
 		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			readonly get =>
 				((stackalloc[] { _low, _high }[offset / Shifting] >> offset % Shifting) & 1) != 0;
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
 				ref long a = ref _low, b = ref _high;
+				bool older = this[offset];
 				switch (offset / Shifting)
 				{
 					case 0:
@@ -313,12 +337,18 @@ namespace Sudoku.Data.Meta
 						if (value)
 						{
 							a |= 1L << offset % Shifting;
-							Count++;
+							if (!older)
+							{
+								Count++;
+							}
 						}
 						else
 						{
 							a &= ~(1L << offset % Shifting);
-							Count--;
+							if (older)
+							{
+								Count--;
+							}
 						}
 						break;
 					}
@@ -327,17 +357,22 @@ namespace Sudoku.Data.Meta
 						if (value)
 						{
 							b |= 1L << offset % Shifting;
-							Count++;
+							if (!older)
+							{
+								Count++;
+							}
 						}
 						else
 						{
 							b &= ~(1L << offset % Shifting);
-							Count--;
+							if (older)
+							{
+								Count--;
+							}
 						}
 						break;
 					}
 				}
-				
 			}
 		}
 
@@ -399,7 +434,7 @@ namespace Sudoku.Data.Meta
 		/// </summary>
 		/// <param name="index">The true bit index order.</param>
 		/// <returns>The real index.</returns>
-		public readonly int ElementAt(int index) => Offsets.ElementAt(index);
+		public readonly int SetBitAt(int index) => Offsets.ElementAt(index);
 
 		/// <summary>
 		/// Get all cell offsets whose bits are set <see langword="true"/>.
@@ -592,29 +627,6 @@ namespace Sudoku.Data.Meta
 			return result;
 		}
 
-
-		/// <summary>
-		/// Check whether the specified map has at least one <see langword="true"/> bits.
-		/// </summary>
-		/// <param name="map">The grid map.</param>
-		/// <returns>A <see cref="bool"/> result.</returns>
-		public static bool operator true(GridMap map) => !(map._low == 0 && map._high == 0);
-
-		/// <summary>
-		/// Check whether the specified grid map has no <see langword="true"/> bits.
-		/// </summary>
-		/// <param name="map">The grid map.</param>
-		/// <returns>A <see cref="bool"/> result.</returns>
-		public static bool operator false(GridMap map) => map._low == 0 && map._high == 0;
-
-		/// <summary>
-		/// Check whether the specified grid map has no <see langword="true"/> bits.
-		/// Same as <see cref="operator false(GridMap)"/>.
-		/// </summary>
-		/// <param name="map">The grid map.</param>
-		/// <returns>A <see cref="bool"/> result.</returns>
-		/// <seealso cref="operator false(GridMap)"/>.
-		public static bool operator !(GridMap map) => map._low == 0 && map._high == 0;
 
 		/// <summary>
 		/// Indicates whether two instances have a same value.

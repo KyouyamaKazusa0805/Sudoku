@@ -4,6 +4,66 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Data.Extensions.ByteEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Byte"/>.
+            </summary>
+            <seealso cref="T:System.Byte"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ByteEx.FindFirstSet(System.Byte)">
+            <summary>
+            Find the first offset of set bit of the binary representation of the specified value.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>
+            An <see cref="T:System.Int32"/> value indicating that. If the value is 0, this method
+            will always return 0.
+            </returns>
+            <seealso cref="M:Sudoku.Data.Extensions.Int32Ex.FindFirstSet(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ByteEx.CountSet(System.Byte)">
+            <summary>
+            Get the total number of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
+            <seealso cref="M:Sudoku.Data.Extensions.Int32Ex.CountSet(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ByteEx.GetNextSetBit(System.Byte,System.Int32)">
+            <summary>
+            Find a index of the binary representation of a value
+            after the specified index, whose bit is set <see langword="true"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="index">The index.</param>
+            <returns>The index.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ByteEx.GetSetBitIndex(System.Byte,System.Int32)">
+            <summary>
+            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
+            all set bits with the specified set bit order.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="order">The number of the order of set bits.</param>
+            <returns>The position.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ByteEx.GetAllSets(System.Byte)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ByteEx.ReverseBits(System.Byte@)">
+            <summary>
+            <para>Reverse all bits in a specified value.</para>
+            <para>
+            Note that the value is passed by <b>reference</b> though the
+            method is an extension method, and returns nothing.
+            </para>
+            </summary>
+            <param name="this">(<see langword="this ref"/> parameter) The value.</param>
+        </member>
         <member name="T:Sudoku.Data.Extensions.CollectionEx">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.Generic.ICollection`1"/>.
@@ -1214,6 +1274,20 @@
             <param name="high">Higher 40 bits.</param>
             <param name="low">Lower 41 bits.</param>
         </member>
+        <member name="P:Sudoku.Data.Meta.GridMap.IsEmpty">
+            <summary>
+            Indicates whether the map has no set bits.
+            This property is equivalent to code '<c>!<see langword="this"/>.IsNotEmpty</c>'.
+            </summary>
+            <seealso cref="P:Sudoku.Data.Meta.GridMap.IsNotEmpty"/>
+        </member>
+        <member name="P:Sudoku.Data.Meta.GridMap.IsNotEmpty">
+            <summary>
+            Indicates whether the map has at least one set bit.
+            This property is equivalent to code '<c>!<see langword="this"/>.IsEmpty</c>'.
+            </summary>
+            <seealso cref="P:Sudoku.Data.Meta.GridMap.IsEmpty"/>
+        </member>
         <member name="P:Sudoku.Data.Meta.GridMap.BlockMask">
             <summary>
             Indicates the mask of block.
@@ -1254,7 +1328,7 @@
             <para>
             If you want to make an array of them, please use method
             <see cref="M:Sudoku.Data.Meta.GridMap.ToArray"/> instead of code
-            '<c><see cref="P:Sudoku.Data.Meta.GridMap.Offsets"/>.ToArray()</c>'.
+            '<c>Offsets.ToArray()</c>'.
             </para>
             </summary>
             <seealso cref="M:Sudoku.Data.Meta.GridMap.ToArray"/>
@@ -1307,7 +1381,7 @@
             (<see langword="out"/> parameter) The region covered.
             </param>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.ElementAt(System.Int32)">
+        <member name="M:Sudoku.Data.Meta.GridMap.SetBitAt(System.Int32)">
             <summary>
             Get the specified index of <see langword="true"/> bits in this instance.
             </summary>
@@ -1401,29 +1475,6 @@
             <returns>An intersection map.</returns>
             <seealso cref="M:Sudoku.Data.Meta.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>
             <seealso cref="M:Sudoku.Data.Meta.GridMap.#ctor(System.Int32,System.Boolean)"/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.op_True(Sudoku.Data.Meta.GridMap)">
-            <summary>
-            Check whether the specified map has at least one <see langword="true"/> bits.
-            </summary>
-            <param name="map">The grid map.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.op_False(Sudoku.Data.Meta.GridMap)">
-            <summary>
-            Check whether the specified grid map has no <see langword="true"/> bits.
-            </summary>
-            <param name="map">The grid map.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.op_LogicalNot(Sudoku.Data.Meta.GridMap)">
-            <summary>
-            Check whether the specified grid map has no <see langword="true"/> bits.
-            Same as <see cref="M:Sudoku.Data.Meta.GridMap.op_False(Sudoku.Data.Meta.GridMap)"/>.
-            </summary>
-            <param name="map">The grid map.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <seealso cref="M:Sudoku.Data.Meta.GridMap.op_False(Sudoku.Data.Meta.GridMap)"/>.
         </member>
         <member name="M:Sudoku.Data.Meta.GridMap.op_Equality(Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)">
             <summary>
@@ -2220,8 +2271,14 @@
         </member>
         <member name="P:System.Externals.Throwing.ImpossibleCase">
             <summary>
+            <para>
             Indicates an exception throwing when the case is impossible
             in switch expressions or switch-case clauses.
+            </para>
+            <para>
+            This property will be used as a placeholder when expressions
+            generate a warning (CS8509).
+            </para>
             </summary>
         </member>
         <member name="M:System.Externals.Throwing.ImpossibleCaseWithMessage(System.String)">

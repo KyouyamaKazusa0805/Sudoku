@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data.Meta;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -25,15 +26,8 @@ namespace Sudoku.Solving.Manual.Alses
 			IReadOnlyList<int> als1Cells, IReadOnlyList<int> als1Digits,
 			IReadOnlyList<int> als2Cells, IReadOnlyList<int> als2Digits,
 			IReadOnlyList<int> interCells, IReadOnlyList<int> interDigits)
-			: base(conclusions, views)
-		{
-			Als1Cells = als1Cells;
-			Als1Digits = als1Digits;
-			Als2Cells = als2Cells;
-			Als2Digits = als2Digits;
-			IntersectionCells = interCells;
-			IntersectionDigits = interDigits;
-		}
+			: base(conclusions, views) =>
+			(Als1Cells, Als1Digits, Als2Cells, Als2Digits, IntersectionCells, IntersectionDigits) = (als1Cells, als1Digits, als2Cells, als2Digits, interCells, interDigits);
 
 
 		/// <summary>
@@ -77,6 +71,27 @@ namespace Sudoku.Solving.Manual.Alses
 
 
 		/// <inheritdoc/>
+		public override bool Equals(TechniqueInfo other)
+		{
+			if (!(other is SueDeCoqTechniqueInfo comparer))
+			{
+				return false;
+			}
+
+			var thisMap = GridMap.Empty;
+			foreach (int cell in Als1Cells) thisMap[cell] = true;
+			foreach (int cell in Als2Cells) thisMap[cell] = true;
+			foreach (int cell in IntersectionCells) thisMap[cell] = true;
+
+			var comparerMap = GridMap.Empty;
+			foreach (int cell in comparer.Als1Cells) comparerMap[cell] = true;
+			foreach (int cell in comparer.Als2Cells) comparerMap[cell] = true;
+			foreach (int cell in comparer.IntersectionCells) comparerMap[cell] = true;
+
+			return thisMap == comparerMap;
+		}
+
+		/// <inheritdoc/>
 		public override string ToString()
 		{
 			string interCells = CellCollection.ToString(IntersectionCells);
@@ -86,7 +101,7 @@ namespace Sudoku.Solving.Manual.Alses
 			string als1Digits = DigitCollection.ToSimpleString(Als1Digits);
 			string als2Cells = CellCollection.ToString(Als2Cells);
 			string als2Digits = DigitCollection.ToSimpleString(Als2Digits);
-			return $"{Name}: {interCells}({digits}) - ({als1Cells}({als1Digits}) and {als2Cells}({als2Digits})) => {elimStr}";
+			return $"{Name}: {interCells}({digits}) - ({als1Cells}({als1Digits}) & {als2Cells}({als2Digits})) => {elimStr}";
 		}
 	}
 }

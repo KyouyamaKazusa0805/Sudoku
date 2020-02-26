@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Externals;
 using System.Linq;
 using Sudoku.Data.Extensions;
@@ -14,13 +13,12 @@ namespace Sudoku.Solving.Manual.Alses
 	/// <summary>
 	/// Encapsulates a sue de coq (SdC) technique searcher.
 	/// </summary>
-	[Slow]
 	public sealed class SueDeCoqTechniqueSearcher : AlmostLockedSetTechniqueSearcher
 	{
 		/// <summary>
 		/// The corresponding line regions to iterate on.
 		/// </summary>
-		private static readonly int[][] TraversingSeries = new int[9][]
+		private static readonly int[][] NonblockTable = new int[9][]
 		{
 			new[] { 9, 10, 11, 18, 19, 20 },
 			new[] { 9, 10, 11, 21, 22, 23 },
@@ -33,6 +31,16 @@ namespace Sudoku.Solving.Manual.Alses
 			new[] { 15, 16, 17, 24, 25, 26 },
 		};
 
+		/// <summary>
+		/// Indicates all combinations (6 cells) to take.
+		/// </summary>
+		private static readonly IReadOnlyList<long>[] TakingCombinations6;
+
+		/// <summary>
+		/// Indicates all combinations (7 cells) to take.
+		/// </summary>
+		private static readonly IReadOnlyList<long>[] TakingCombinations7;
+
 
 		/// <summary>
 		/// All region maps.
@@ -44,7 +52,30 @@ namespace Sudoku.Solving.Manual.Alses
 		/// Initializes an instance with the specified information.
 		/// </summary>
 		/// <param name="regionMaps">All regions grid maps.</param>
-		public SueDeCoqTechniqueSearcher(GridMap[] regionMaps) => _regionMaps = regionMaps;
+		public SueDeCoqTechniqueSearcher(GridMap[] regionMaps) =>
+			_regionMaps = regionMaps;
+
+
+		/// <summary>
+		/// The static initializer of this class.
+		/// </summary>
+		static SueDeCoqTechniqueSearcher()
+		{
+			static IReadOnlyList<long>[] Z(int m)
+			{
+				var temp = new List<long>[m + 1];
+				temp[0] = null!;
+				for (int i = 1; i <= m; i++)
+				{
+					temp[i] = new List<long>(new BitCombinationGenerator(m, i));
+				}
+
+				return temp;
+			}
+
+			TakingCombinations6 = Z(6);
+			TakingCombinations7 = Z(7);
+		}
 
 
 		/// <inheritdoc/>
@@ -55,17 +86,21 @@ namespace Sudoku.Solving.Manual.Alses
 		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
 		{
 			(var emptyMap, _, _) = grid;
+			if (emptyMap.Count < 4)
+			{
+				return Array.Empty<SueDeCoqTechniqueInfo>();
+			}
 
 			var result = new List<SueDeCoqTechniqueInfo>();
 
 			for (int block = 0; block < 9; block++)
 			{
-				foreach (int nonBlock in TraversingSeries[block])
+				foreach (int nonblock in NonblockTable[block])
 				{
 					// Get all enumeration grid maps.
-					var nonBlockMap = _regionMaps[nonBlock] & emptyMap;
-					var blockMap = _regionMaps[block] & emptyMap;
-					var interMap = nonBlockMap & blockMap;
+					var nonblockMap = _regionMaps[nonblock] & emptyMap; /*readonly*/
+					var blockMap = _regionMaps[block] & emptyMap; /*readonly*/
+					var interMap = nonblockMap & blockMap;
 
 					// Get the number of empty cells in the specified intersection cells
 					// and check the number is no less than 2.
@@ -77,82 +112,101 @@ namespace Sudoku.Solving.Manual.Alses
 						continue;
 					}
 
+					// Get all empty cells in intersection.
 					var interCells = emptyCellsCountInInter switch
 					{
 						2 => stackalloc[]
 						{
-							interMap.ElementAt(0),
-							interMap.ElementAt(1)
+							interMap.SetBitAt(0),
+							interMap.SetBitAt(1)
 						},
 						3 => stackalloc[]
 						{
-							interMap.ElementAt(0),
-							interMap.ElementAt(1),
-							interMap.ElementAt(2)
+							interMap.SetBitAt(0),
+							interMap.SetBitAt(1),
+							interMap.SetBitAt(2)
 						},
 						_ => throw Throwing.ImpossibleCase
 					};
 
-					// Get all iteration cases of intersection cells.
+					// Get all iteration cases in intersection cells.
 					var iterationInterCells = new List<int[]>();
-					if (emptyCellsCountInInter == 2)
+					switch (emptyCellsCountInInter)
 					{
-						iterationInterCells.Add(new[] { interCells[0], interCells[1] });
-					}
-					else
-					{
-						iterationInterCells.AddRange(new int[4][]
+						case 2:
 						{
-							new[] { interCells[0], interCells[1] },
-							new[] { interCells[0], interCells[2] },
-							new[] { interCells[1], interCells[2] },
-							new[] { interCells[0], interCells[1], interCells[2] }
-						});
+							iterationInterCells.Add(new[] { interCells[0], interCells[1] });
+							break;
+						}
+						case 3:
+						{
+							iterationInterCells.AddRange(new int[4][]
+							{
+								new[] { interCells[0], interCells[1], interCells[2] },
+								new[] { interCells[0], interCells[1] },
+								new[] { interCells[0], interCells[2] },
+								new[] { interCells[1], interCells[2] },
+							});
+							break;
+						}
 					}
 
-					var unionMap = nonBlockMap | blockMap;
+					// Now we can iterate on those cases.
+					var unionMap = nonblockMap | blockMap;
 					foreach (int[] interEmptyCells in iterationInterCells)
 					{
+						int count = interEmptyCells.Length;
 						var tempUnionMap = unionMap;
 
 						// Get all kinds of cells in intersection cells.
-						short mask = 0;
+						short interMask = 0;
 						foreach (int cell in interEmptyCells)
 						{
-							mask |= grid.GetCandidatesReversal(cell);
+							interMask |= grid.GetCandidatesReversal(cell);
 						}
 
 						// Get the number of cells to take.
-						int takingCellsCount = mask.CountSet() - emptyCellsCountInInter;
-						if (takingCellsCount < 2)
+						int rankInInter = interMask.CountSet() - emptyCellsCountInInter;
+						if (rankInInter < 2)
 						{
-							// The empty cells in intersection should not form
+							// These empty cells in intersection will form
 							// a normal subset or an ALS.
-							// If the empty cell forms a subset, why we should
-							// check other cells?
+							// If these cells form a subset, why we will use
+							// other cells to iterate?
+							// If these cells form an ALS, we may only find
+							// at most a cell to form a subset (not an SdC).
 							continue;
 						}
 
-						// Check whether a SdC can be formed in the region.
+						// Check whether an SdC can be formed in the region.
 						foreach (int cell in interEmptyCells)
 						{
 							// Remove all cells in intersections in this iteration.
 							tempUnionMap[cell] = false;
 						}
-						tempUnionMap &= emptyMap;
 
-						// Get all cells to traverse.
-						if (tempUnionMap.Count < takingCellsCount)
+						// Check whether the number of all empty cells in two
+						// regions are enough to take or even form an SdC.
+						if (tempUnionMap.Count < rankInInter)
 						{
 							// Empty cells are not enough.
 							continue;
 						}
 
-						var takenCellsMap = new GridMap((IEnumerable<int>)interEmptyCells);
-						SearchSdcRecursively(
-							result, grid, takingCellsCount, takingCellsCount, nonBlock,
-							block, takenCellsMap, tempUnionMap - takenCellsMap,
-							emptyMap, tempUnionMap, new GridMap(interCells), 0);
+						var takenInterMap = new GridMap((IEnumerable<int>)interEmptyCells);
+						var blockTakingList = new List<int>(
+							(_regionMaps[block] - new GridMap((IEnumerable<int>)interEmptyCells)).Offsets);
+						var nonblockTakingList = new List<int>(
+							(_regionMaps[nonblock] - new GridMap((IEnumerable<int>)interEmptyCells)).Offsets);
+						for (int blockTakenCellsCount = 1;
+							blockTakenCellsCount <= 8 - count;
+							blockTakenCellsCount++)
+						{
+							TakeAllByInterCount(
+								result, grid, blockTakenCellsCount, count, interMask, interEmptyCells,
+								block, nonblock, interMap, takenInterMap, tempUnionMap, blockTakingList,
+								nonblockTakingList, count == 2 ? TakingCombinations7 : TakingCombinations6);
+						}
 					}
 				}
 			}
@@ -161,122 +215,177 @@ namespace Sudoku.Solving.Manual.Alses
 		}
 
 
-		#region SdC utils
-		/// <summary>
-		/// Search SdC recursively.
-		/// </summary>
-		/// <param name="result">The result accumulator.</param>
-		/// <param name="grid">The grid.</param>
-		/// <param name="takingCellsCount">The number of cells to take.</param>
-		/// <param name="restCellsToTakeCount">The rest number of cells to take.</param>
-		/// <param name="nonBlock">The index of non-block region.</param>
-		/// <param name="block">The index of block region.</param>
-		/// <param name="takenCellsMap">The map of taken cells.</param>
-		/// <param name="restMap">The map of rest.</param>
-		/// <param name="emptyMap">The map of empty cells.</param>
-		/// <param name="unionMap">The map of union map.</param>
-		/// <param name="interCells">The map of intersection cells.</param>
-		/// <param name="curIndexOfArray">The current index.</param>
-		private void SearchSdcRecursively(
-			IList<SueDeCoqTechniqueInfo> result, Grid grid, int takingCellsCount,
-			int restCellsToTakeCount, int nonBlock, int block, GridMap takenCellsMap,
-			GridMap restMap, GridMap emptyMap, GridMap unionMap, GridMap interCells,
-			int curIndexOfArray)
+		private void TakeAllByInterCount(
+			IList<SueDeCoqTechniqueInfo> result, Grid grid, int blockTakenCellsCount,
+			int count, short interMask, int[] interEmptyCells, int block, int nonblock,
+			GridMap interMap, GridMap takenInterMap, GridMap tempUnionMap,
+			IReadOnlyList<int> blockTakingList, IReadOnlyList<int> nonblockTakingList,
+			IReadOnlyList<long>[] takingCombinations)
 		{
-			if (!restMap)
+			foreach (byte blockCombination in takingCombinations[blockTakenCellsCount])
 			{
-				return;
-			}
-
-			if (restCellsToTakeCount <= 0)
-			{
-				// Now check whether all taken cells can be formed a SdC.
-				if (CheckSdC(grid, takenCellsMap, nonBlock, block, out var digitRegions))
+				var takenCellsInBlockMap = GridMap.Empty;
+				short blockMask = 0;
+				foreach (int i in blockCombination.GetAllSets())
 				{
-					// SdC found.
-					var takenCells = takenCellsMap.Offsets;
-
-					// Check eliminations.
-					var conclusions = new List<Conclusion>();
-					foreach (var (digit, regions) in digitRegions)
+					int cell = blockTakingList[i];
+					if (grid.GetCellStatus(cell) != CellStatus.Empty)
 					{
-						var map = GridMap.Empty;
-						foreach (int region in regions)
+						goto Label_NextBlock;
+					}
+
+					takenCellsInBlockMap[cell] = true;
+					blockMask |= grid.GetCandidatesReversal(cell);
+				}
+
+				int nonblockTakenCellsCount =
+					(blockMask | interMask).CountSet() - blockTakenCellsCount - count;
+				if (nonblockTakenCellsCount == 0)
+				{
+					continue;
+				}
+
+				foreach (byte nonblockCombination in takingCombinations[nonblockTakenCellsCount])
+				{
+					var takenCellsInNonblockMap = GridMap.Empty;
+					short nonblockMask = 0;
+					foreach (int i in nonblockCombination.GetAllSets())
+					{
+						int cell = nonblockTakingList[i];
+						if (grid.GetCellStatus(cell) != CellStatus.Empty || interMap[cell])
 						{
-							map |= _regionMaps[region];
-						}
-						map &= emptyMap;
-						foreach (int takenCell in takenCells)
-						{
-							map[takenCell] = false;
+							goto Label_NextNonblock;
 						}
 
-						foreach (int cell in map.Offsets)
+						takenCellsInNonblockMap[cell] = true;
+						nonblockMask |= grid.GetCandidatesReversal(cell);
+					}
+
+					if ((takenCellsInBlockMap & takenCellsInNonblockMap).IsNotEmpty)
+					{
+						// They got a same cell (in intersection).
+						continue;
+					}
+
+					// Iterate on two collections to sum up all kinds of digits.
+					short mask = (short)((short)(blockMask | nonblockMask) | interMask);
+
+					// Check the kinds of digits.
+					int digitsKindsCount = count + takenCellsInBlockMap.Count + takenCellsInNonblockMap.Count;
+					if (mask.CountSet() != digitsKindsCount)
+					{
+						continue;
+					}
+
+					// Now check whether all digits lie on less than two regions.
+					var digits = mask.GetAllSets();
+					var digitRegions = new Dictionary<int, IEnumerable<int>>();
+					foreach (int digit in digits)
+					{
+						var tempMap = GridMap.Empty;
+						foreach (int cell in takenCellsInBlockMap.Offsets)
 						{
 							if (grid.CandidateExists(cell, digit))
 							{
-								conclusions.Add(
-									new Conclusion(ConclusionType.Elimination, cell, digit));
+								tempMap[cell] = true;
+							}
+						}
+						foreach (int cell in takenCellsInNonblockMap.Offsets)
+						{
+							if (grid.CandidateExists(cell, digit))
+							{
+								tempMap[cell] = true;
+							}
+						}
+						foreach (int cell in interEmptyCells)
+						{
+							if (grid.CandidateExists(cell, digit))
+							{
+								tempMap[cell] = true;
+							}
+						}
+
+						if (tempMap.Count == 1)
+						{
+							var (r, c, b) = CellUtils.GetRegion(tempMap.SetBitAt(0));
+							if (b == block)
+							{
+								digitRegions.Add(digit, new[] { block });
+							}
+							else if (r + 9 == nonblock || c + 18 == nonblock)
+							{
+								digitRegions.Add(digit, new[] { nonblock });
+							}
+							else
+							{
+								goto Label_NextNonblock;
+							}
+						}
+						else
+						{
+							var coveredRegions = tempMap.CoveredRegions;
+							if (!coveredRegions.Any())
+							{
+								goto Label_NextNonblock;
+							}
+
+							digitRegions.Add(digit, coveredRegions);
+						}
+					}
+
+					// Check whether the selected cells form a subset.
+					var allTakenCellsMap = takenCellsInBlockMap | takenCellsInNonblockMap | takenInterMap;
+					if (allTakenCellsMap.IsCoveredOneRegion(out _))
+					{
+						continue;
+					}
+
+					// Each digit lies on only one region,
+					// which means an SdC has already forms.
+					// Now check eliminations.
+					var conclusions = new List<Conclusion>();
+					var elimUnion = tempUnionMap - allTakenCellsMap;
+					foreach (int digit in digits)
+					{
+						foreach (int region in digitRegions[digit])
+						{
+							foreach (int cell in (elimUnion & _regionMaps[region]).Offsets)
+							{
+								if (grid.CandidateExists(cell, digit))
+								{
+									conclusions.AddIfDoesNotContain(
+										new Conclusion(ConclusionType.Elimination, cell, digit));
+								}
 							}
 						}
 					}
 
 					if (conclusions.Count == 0)
 					{
-						return;
+						continue;
 					}
 
-					// Get all highlight candidates.
+					// Record all highlight candidates.
 					var candidateOffsets = new List<(int, int)>();
-					var als1Cells = new HashSet<int>();
-					var als1Digits = new HashSet<int>();
-					var als2Cells = new HashSet<int>();
-					var als2Digits = new HashSet<int>();
-					var allDigits = new HashSet<int>();
-					foreach (int cell in takenCells)
+					foreach (int cell in allTakenCellsMap.Offsets)
 					{
-						foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+						short tempMask = grid.GetCandidatesReversal(cell);
+						foreach (int digit in tempMask.GetAllSets())
 						{
-							allDigits.Add(digit);
-
-							var regions = (
-								from pair in digitRegions
-								select pair).First(pair => pair._digit == digit)._region;
-							if (regions.Count == 2)
+							int cand = cell * 9 + digit;
+							if (digitRegions[digit].Count() == 2)
 							{
-								candidateOffsets.Add((2, cell * 9 + digit));
+								candidateOffsets.Add((2, cand));
+							}
+							else if (takenCellsInBlockMap[cell])
+							{
+								candidateOffsets.Add((0, cand));
 							}
 							else
 							{
-								int region = regions[0];
-								if (region >= 9)
-								{
-									// Line candidate.
-									candidateOffsets.Add((0, cell * 9 + digit));
-									if (!interCells[cell])
-									{
-										als1Cells.Add(cell);
-									}
-									als1Digits.Add(digit);
-								}
-								else
-								{
-									// Block candidate.
-									candidateOffsets.Add((1, cell * 9 + digit));
-									if (!interCells[cell])
-									{
-										als2Cells.Add(cell);
-									}
-									als2Digits.Add(digit);
-								}
+								candidateOffsets.Add((1, cand));
 							}
 						}
-					}
-
-					short interMask = 0;
-					foreach (int cell in interCells.Offsets)
-					{
-						interMask |= grid.GetCandidatesReversal(cell);
 					}
 
 					result.AddIfDoesNotContain(
@@ -287,165 +396,21 @@ namespace Sudoku.Solving.Manual.Alses
 								new View(
 									cellOffsets: null,
 									candidateOffsets,
-									regionOffsets: null,
+									regionOffsets: new[] { (0, nonblock), (0, block) },
 									linkMasks: null)
 							},
-							als1Cells: als1Cells.ToArray(),
-							als1Digits: als1Digits.ToArray(),
-							als2Cells: als2Cells.ToArray(),
-							als2Digits: als2Digits.ToArray(),
-							interCells: interCells.ToArray(),
-							interDigits: interMask.GetAllSets().ToArray()));
+							als1Cells: new List<int>(takenCellsInBlockMap.Offsets),
+							als1Digits: new List<int>(blockMask.GetAllSets()),
+							als2Cells: new List<int>(takenCellsInNonblockMap.Offsets),
+							als2Digits: new List<int>(nonblockMask.GetAllSets()),
+							interCells: new List<int>(takenInterMap.Offsets),
+							interDigits: new List<int>(interMask.GetAllSets())));
 
-					return;
+				Label_NextNonblock:;
 				}
 
-				if (!restMap)
-				{
-					return;
-				}
-			}
-
-			int[] unionMapArray = unionMap.ToArray();
-			for (int i = curIndexOfArray, count = unionMap.Count; i < count; i++)
-			{
-				int cell = unionMapArray[i];
-				if (takenCellsMap[cell])
-				{
-					curIndexOfArray++;
-					continue;
-				}
-
-				// Ensures all taken cells must be in two regions.
-				// If we ensure that the second cell to take is from another region,
-				// the SdC will be exist.
-				if (takingCellsCount - 1 == restCellsToTakeCount)
-				{
-					if (new GridMap(takenCellsMap) { [cell] = true }.IsCoveredOneRegion(out _))
-					{
-						curIndexOfArray++;
-						continue;
-					}
-				}
-
-				takenCellsMap[cell] = true;
-				restMap[cell] = false;
-
-				SearchSdcRecursively(
-					result, grid, takingCellsCount, restCellsToTakeCount - 1,
-					nonBlock, block, takenCellsMap, restMap, emptyMap, unionMap,
-					interCells, curIndexOfArray + 1);
-
-				takenCellsMap[cell] = false;
-				restMap[cell] = true;
+			Label_NextBlock:;
 			}
 		}
-
-		/// <summary>
-		/// Check whether the structure is an SdC or not.
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <param name="takenCellsMap">The map of cells to take.</param>
-		/// <param name="nonBlock">The index of non-block region.</param>
-		/// <param name="block">The index of block-region.</param>
-		/// <param name="digitRegions">
-		/// (<see langword="out"/> parameter) All digit regions.
-		/// </param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		private static bool CheckSdC(
-			Grid grid, GridMap takenCellsMap, int nonBlock, int block,
-			[NotNullWhen(true)] out IReadOnlyList<(int _digit, IReadOnlyList<int> _region)>? digitRegions)
-		{
-			digitRegions = null;
-
-			if (takenCellsMap.Count < 4)
-			{
-				return false;
-			}
-
-			var takenCells = takenCellsMap.Offsets;
-
-			// Check the structure spanned two regions.
-			if (takenCellsMap.IsCoveredOneRegion(out _))
-			{
-				return false;
-			}
-
-			// Check the number of different digits and the same number of cells.
-			short mask = 0;
-			foreach (int takenCell in takenCells)
-			{
-				mask |= grid.GetCandidatesReversal(takenCell);
-			}
-
-			if (mask.CountSet() != takenCellsMap.Count)
-			{
-				return false;
-			}
-
-			// Check all digits can appear only once in a region of all cells.
-			var tempList = new List<(int _digit, IReadOnlyList<int> _region)>();
-			foreach (int digit in mask.GetAllSets())
-			{
-				var cells = new List<int>();
-				foreach (int cell in takenCells)
-				{
-					if (grid.CandidateExists(cell, digit))
-					{
-						cells.Add(cell);
-					}
-				}
-
-				if (cells.Count == 1)
-				{
-					int cell = cells.First();
-					var (r, c, b) = CellUtils.GetRegion(cell);
-					if (r + 9 == nonBlock || c + 18 == nonBlock)
-					{
-						tempList.Add((digit, new[] { nonBlock }));
-					}
-					else if (b == block)
-					{
-						tempList.Add((digit, new[] { block }));
-					}
-				}
-				else
-				{
-					var tempMap = GridMap.CreateInstance(cells);
-
-					int spanningCellsCount = tempMap.Count;
-					if (spanningCellsCount < 9)
-					{
-						// We cannot find a region whose cells contains ones having
-						// that candidate.
-						return false;
-					}
-					else
-					{
-						// Two regions found. Check it.
-						var z = new List<int>();
-						if (tempMap.AllCellCovers(nonBlock))
-						{
-							z.Add(nonBlock);
-						}
-						if (tempMap.AllCellCovers(block))
-						{
-							z.Add(block);
-						}
-
-						if (z.Count == 0)
-						{
-							return false;
-						}
-
-						tempList.Add((digit, z));
-					}
-				}
-			}
-
-			digitRegions = tempList;
-			return true;
-		}
-		#endregion
 	}
 }

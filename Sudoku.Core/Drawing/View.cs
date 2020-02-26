@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Externals;
 using System.Text;
 using Sudoku.Data.Extensions;
@@ -9,6 +9,7 @@ namespace Sudoku.Drawing
 	/// <summary>
 	/// Encapsulates a view when displaying the information on forms.
 	/// </summary>
+	[DebuggerStepThrough]
 	public sealed class View
 	{
 		/// <summary>

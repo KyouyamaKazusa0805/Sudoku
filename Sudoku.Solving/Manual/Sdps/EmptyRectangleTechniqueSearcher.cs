@@ -85,8 +85,8 @@ namespace Sudoku.Solving.Manual.Sdps
 						}
 
 						if (linkMap.BlockMask.CountSet() == 1
-							|| i < 6 && !(linkMap & _regionMaps[column])
-							|| i >= 6 && !(linkMap & _regionMaps[row]))
+							|| i < 6 && (linkMap & _regionMaps[column]).IsEmpty
+							|| i >= 6 && (linkMap & _regionMaps[row]).IsEmpty)
 						{
 							continue;
 						}
@@ -97,7 +97,7 @@ namespace Sudoku.Solving.Manual.Sdps
 							? _digitDistributions[digit] & _regionMaps[elimRegion] & _regionMaps[row]
 							: _digitDistributions[digit] & _regionMaps[elimRegion] & _regionMaps[column];
 
-						if (!elimCellMap)
+						if (elimCellMap.IsEmpty)
 						{
 							continue;
 						}
@@ -164,7 +164,7 @@ namespace Sudoku.Solving.Manual.Sdps
 			int c = block % 3 * 3 + 18;
 			for (int i = r, count = 0; i < r + 3; i++)
 			{
-				if (!(blockMap & _regionMaps[i]) && ++count > 1)
+				if ((blockMap & _regionMaps[i]).IsEmpty && ++count > 1)
 				{
 					row = column = -1;
 					return false;
@@ -173,7 +173,7 @@ namespace Sudoku.Solving.Manual.Sdps
 
 			for (int i = c, count = 0; i < c + 3; i++)
 			{
-				if (!(blockMap & _regionMaps[i]) && ++count > 1)
+				if ((blockMap & _regionMaps[i]).IsEmpty && ++count > 1)
 				{
 					row = column = -1;
 					return false;
@@ -184,7 +184,7 @@ namespace Sudoku.Solving.Manual.Sdps
 			{
 				for (int j = c; j < c + 3; j++)
 				{
-					if (!(blockMap - (_regionMaps[i] | _regionMaps[j])))
+					if ((blockMap - (_regionMaps[i] | _regionMaps[j])).IsEmpty)
 					{
 						(row, column) = (i, j);
 						return true;

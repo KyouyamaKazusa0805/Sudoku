@@ -875,7 +875,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 								commonCells[bugCell] = false;
 							}
 
-							if (bugCells.Count > 1 && allBugValues.CountSet() > 1 && !commonCells)
+							if (bugCells.Count > 1 && allBugValues.CountSet() > 1 && commonCells.IsEmpty)
 							{
 								// None of type 1, 2 or 3.
 								return Array.Empty<int>();

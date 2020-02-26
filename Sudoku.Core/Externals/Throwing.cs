@@ -8,8 +8,14 @@ namespace System.Externals
 	public static class Throwing
 	{
 		/// <summary>
+		/// <para>
 		/// Indicates an exception throwing when the case is impossible
 		/// in switch expressions or switch-case clauses.
+		/// </para>
+		/// <para>
+		/// This property will be used as a placeholder when expressions
+		/// generate a warning (CS8509).
+		/// </para>
 		/// </summary>
 		public static SwitchExpressionException ImpossibleCase =>
 			new SwitchExpressionException("Impossible case.");
