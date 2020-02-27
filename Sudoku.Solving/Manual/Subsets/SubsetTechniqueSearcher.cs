@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
+using Action = System.Action<System.Collections.Generic.IBag<Sudoku.Solving.TechniqueInfo>, Sudoku.Data.Meta.IReadOnlyGrid, int>;
 
 namespace Sudoku.Solving.Manual.Subsets
 {
@@ -19,37 +19,31 @@ namespace Sudoku.Solving.Manual.Subsets
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
+		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var result = new List<TechniqueInfo>();
-
 			for (int size = 2; size <= 4; size++)
 			{
-				foreach (var func in new Func<IReadOnlyGrid, int, IReadOnlyList<SubsetTechniqueInfo>>[]
+				foreach (var act in new Action[]
 				{
 					TakeAllNakedSubsetsBySize,
 					TakeAllHiddenSubsetsBySize
 				})
 				{
-					result.AddRange(func(grid, size));
+					act(accumulator, grid, size);
 				}
 			}
-
-			return result;
 		}
-
 
 		/// <summary>
 		/// Get all naked subsets technique information, for searching the specified size.
 		/// </summary>
+		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="size">The size.</param>
 		/// <returns>All technique information searched.</returns>
-		private static IReadOnlyList<SubsetTechniqueInfo> TakeAllNakedSubsetsBySize(
-			IReadOnlyGrid grid, int size)
+		private static void TakeAllNakedSubsetsBySize(
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int size)
 		{
-			var result = new List<NakedSubsetTechniqueInfo>();
-
 			// Iterates on each region.
 			for (int region = 0; region < 27; region++)
 			{
@@ -178,8 +172,6 @@ namespace Sudoku.Solving.Manual.Subsets
 					}
 				}
 			}
-
-			return result;
 		}
 
 		/// <summary>
@@ -193,7 +185,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// <param name="conclusions">All conclusions.</param>
 		/// <param name="isLocked">Indicates whether the subset is locked.</param>
 		private static void GatherConclusion(
-			IReadOnlyGrid grid, IList<NakedSubsetTechniqueInfo> result, int region,
+			IReadOnlyGrid grid, IBag<TechniqueInfo> result, int region,
 			IReadOnlyList<int> digits, IReadOnlyList<int> offsets,
 			IReadOnlyList<Conclusion> conclusions, bool? isLocked)
 		{
@@ -313,14 +305,13 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// <summary>
 		/// Get all hidden subsets technique information, for searching the specified size.
 		/// </summary>
+		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="size">The size.</param>
 		/// <returns>All technique information searched.</returns>
-		private static IReadOnlyList<SubsetTechniqueInfo> TakeAllHiddenSubsetsBySize(
-			IReadOnlyGrid grid, int size)
+		private static void TakeAllHiddenSubsetsBySize(
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int size)
 		{
-			var result = new List<HiddenSubsetTechniqueInfo>();
-
 			for (int region = 0; region < 27; region++)
 			{
 				for (int d1 = 0; d1 < 10 - size; d1++)
@@ -476,8 +467,6 @@ namespace Sudoku.Solving.Manual.Subsets
 					}
 				}
 			}
-
-			return result;
 		}
 
 		/// <summary>
@@ -486,7 +475,8 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// <param name="grid">The grid.</param>
 		/// <param name="region">The region offset.</param>
 		/// <param name="mask">
-		/// The mask that calculated in <see cref="TakeAllHiddenSubsetsBySize(IReadOnlyGrid, int)"/>.
+		/// The mask that calculated in
+		/// <see cref="TakeAllHiddenSubsetsBySize(IBag{TechniqueInfo}, IReadOnlyGrid, int)"/>.
 		/// </param>
 		/// <param name="digits">All digits.</param>
 		/// <param name="cellOffsetList">(<see langword="out"/> parameter) All cell offsets.</param>

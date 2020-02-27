@@ -50,10 +50,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 
 		/// <inheritdoc/>
-		/// <exception cref="WrongHandlingException">
-		/// Throws when the number of true candidates is naught.
-		/// </exception>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
+		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			IReadOnlyList<int> trueCandidates;
 			if (_extended)
@@ -68,10 +65,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 			if (trueCandidates.Count == 0)
 			{
-				return Array.Empty<UniquenessTechniqueInfo>();
+				return;
 			}
 
-			var result = new List<UniquenessTechniqueInfo>();
 			int trueCandidatesCount = trueCandidates.Count;
 			switch (trueCandidatesCount)
 			{
@@ -82,7 +78,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				case 1:
 				{
 					// BUG + 1 found.
-					result.Add(
+					accumulator.Add(
 						new BugType1(
 							conclusions: new[] { new Conclusion(ConclusionType.Assignment, trueCandidates[0]) },
 							views: new[]
@@ -99,19 +95,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				{
 					if (CheckSingleDigit(trueCandidates))
 					{
-						CheckType2(result, grid, trueCandidates);
+						CheckType2(accumulator, grid, trueCandidates);
 					}
 					else
 					{
 						if (_extended)
 						{
-							CheckMultiple(result, grid, trueCandidates);
+							CheckMultiple(accumulator, grid, trueCandidates);
 						}
 
-						CheckType4(result, grid, trueCandidates);
+						CheckType4(accumulator, grid, trueCandidates);
 						for (int size = 2; size <= 5; size++)
 						{
-							CheckType3Naked(result, grid, trueCandidates, size);
+							CheckType3Naked(accumulator, grid, trueCandidates, size);
 							// TODO: Check BUG type 3 with hidden subset.
 						}
 					}
@@ -119,8 +115,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					break;
 				}
 			}
-
-			return result;
 		}
 
 		/// <summary>
@@ -131,7 +125,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="trueCandidates">All true candidates.</param>
 		/// <param name="size">The size.</param>
 		private void CheckType3Naked(
-			IList<UniquenessTechniqueInfo> result, IReadOnlyGrid grid,
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid,
 			IReadOnlyList<int> trueCandidates, int size)
 		{
 			// Check whether all true candidates lie on a same region.
@@ -496,7 +490,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
 		private static void CheckType4(
-			IList<UniquenessTechniqueInfo> result, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			// Conjugate pairs should lie on two cells.
 			var candsGroupByCell = from cand in trueCandidates group cand by cand / 9;
@@ -617,7 +611,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
 		private static void CheckMultiple(
-			IList<UniquenessTechniqueInfo> result, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			if (trueCandidates.Count > 18)
 			{
@@ -765,7 +759,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
 		private static void CheckType2(
-			IList<UniquenessTechniqueInfo> result, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			var map = GridMap.CreateInstance(from cand in trueCandidates select cand / 9);
 			if (map.Count == 0)
@@ -845,7 +839,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						}
 
 						// If there're two or more positions falling in a BUG cell,
-						// we cannot decide which one is the BUG-gy one. Just do
+						// we cannot decide which one is the BUGgy one. Just do
 						// nothing because another region will capture the correct
 						// cell.
 						if (newBugCells.Count == 1)

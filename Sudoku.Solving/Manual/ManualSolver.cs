@@ -143,13 +143,13 @@ namespace Sudoku.Solving.Manual
 				new[] { new BruteForceTechniqueSearcher(solution) }
 			};
 
+			var bag = new Bag<TechniqueInfo>();
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
 		Label_StartSolving:
 			for (int i = 0, length = searchers.Length; i < length; i++)
 			{
 				var searcherListGroup = searchers[i];
-				var collection = new List<TechniqueInfo>();
 				foreach (var searcher in searcherListGroup)
 				{
 					// Skip all searchers marked slow running attribute.
@@ -167,10 +167,11 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
-					collection.AddRange(searcher.TakeAll(cloneation));
+					searcher.AccumulateAll(bag, cloneation);
 				}
 
-				var step = collection.GetElementByMinSelector(info => info.Difficulty);
+				var step = bag.GetElementByMinSelector(info => info.Difficulty);
+				bag.Clear();
 				if (step is null)
 				{
 					// If current step cannot find any steps,
@@ -295,6 +296,7 @@ namespace Sudoku.Solving.Manual
 				Array.Sort(searchers, (a, b) => a.Priority.CompareTo(b.Priority));
 			}
 
+			var bag = new Bag<TechniqueInfo>();
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
 		Label_StartSolving:
@@ -317,10 +319,11 @@ namespace Sudoku.Solving.Manual
 					continue;
 				}
 
-				var infos = searcher.TakeAll(cloneation);
+				searcher.AccumulateAll(bag, cloneation);
 				var step = OptimizedApplyingOrder
-					? infos.GetElementByMinSelector(info => info.Difficulty)
-					: infos.FirstOrDefault();
+					? bag.GetElementByMinSelector(info => info.Difficulty)
+					: bag.FirstOrDefault();
+				bag.Clear();
 
 				if (step is null)
 				{

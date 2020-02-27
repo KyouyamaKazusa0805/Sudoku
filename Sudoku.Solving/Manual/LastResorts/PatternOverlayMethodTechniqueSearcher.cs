@@ -17,10 +17,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
+		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var result = new List<PatternOverlayMethodTechniqueInfo>();
-
 			for (int digit = 0; digit < 9; digit++)
 			{
 				int count = 0;
@@ -84,7 +82,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 					continue;
 				}
 
-				result.Add(
+				accumulator.Add(
 					new PatternOverlayMethodTechniqueInfo(
 						conclusions,
 						views: new[]
@@ -96,8 +94,6 @@ namespace Sudoku.Solving.Manual.LastResorts
 								linkMasks: null)
 						}));
 			}
-
-			return result;
 		}
 	}
 }

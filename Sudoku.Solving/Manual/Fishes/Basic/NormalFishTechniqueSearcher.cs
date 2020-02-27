@@ -19,38 +19,31 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
+		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var result = new List<TechniqueInfo>();
-
 			for (int size = 2; size <= 4; size++)
 			{
 				foreach (bool value in new[] { false, true })
 				{
-					result.AddRange(TakeAllBySize(grid, size, value));
+					AccumulateAllBySize(accumulator, grid, size, value);
 				}
 			}
-
-			return result;
 		}
 
 
 		/// <summary>
 		/// Searches all basic fish of the specified size.
 		/// </summary>
+		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="size">The size.</param>
 		/// <param name="searchRow">
 		/// Indicates the solver will searching rows or columns.
 		/// </param>
 		/// <returns>The result.</returns>
-		private static IReadOnlyList<NormalFishTechniqueInfo> TakeAllBySize(
-			IReadOnlyGrid grid, int size, bool searchRow)
+		private static void AccumulateAllBySize(
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int size, bool searchRow)
 		{
-			Contract.Requires(size >= 2 && size <= 4);
-
-			var result = new List<NormalFishTechniqueInfo>();
-
 			int baseSetStart = searchRow ? 9 : 18;
 			int coverSetStart = searchRow ? 18 : 9;
 			for (int digit = 0; digit < 9; digit++)
@@ -578,8 +571,6 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 					}
 				}
 			}
-
-			return result;
 		}
 
 		/// <summary>

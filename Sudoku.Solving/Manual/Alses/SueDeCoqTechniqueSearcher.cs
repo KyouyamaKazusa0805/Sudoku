@@ -81,17 +81,15 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override int Priority => 50;
 
-
+		
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
+		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			(var emptyMap, _, _) = grid;
 			if (emptyMap.Count < 4)
 			{
-				return Array.Empty<SueDeCoqTechniqueInfo>();
+				return;
 			}
-
-			var result = new List<SueDeCoqTechniqueInfo>();
 
 			for (int block = 0; block < 9; block++)
 			{
@@ -203,20 +201,17 @@ namespace Sudoku.Solving.Manual.Alses
 							blockTakenCellsCount++)
 						{
 							TakeAllByInterCount(
-								result, grid, blockTakenCellsCount, count, interMask, interEmptyCells,
+								accumulator, grid, blockTakenCellsCount, count, interMask, interEmptyCells,
 								block, nonblock, interMap, takenInterMap, tempUnionMap, blockTakingList,
 								nonblockTakingList, count == 2 ? TakingCombinations7 : TakingCombinations6);
 						}
 					}
 				}
 			}
-
-			return result;
 		}
 
-
 		private void TakeAllByInterCount(
-			IList<SueDeCoqTechniqueInfo> result, IReadOnlyGrid grid, int blockTakenCellsCount,
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int blockTakenCellsCount,
 			int count, short interMask, int[] interEmptyCells, int block, int nonblock,
 			GridMap interMap, GridMap takenInterMap, GridMap tempUnionMap,
 			IReadOnlyList<int> blockTakingList, IReadOnlyList<int> nonblockTakingList,

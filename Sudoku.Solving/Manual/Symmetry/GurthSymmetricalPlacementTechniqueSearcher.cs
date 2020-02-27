@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Meta;
 using Sudoku.Drawing;
+using Action = System.Action<System.Collections.Generic.IBag<Sudoku.Solving.TechniqueInfo>, Sudoku.Data.Meta.IReadOnlyGrid>;
 
 namespace Sudoku.Solving.Manual.Symmetry
 {
@@ -17,33 +18,22 @@ namespace Sudoku.Solving.Manual.Symmetry
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
+		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var result = new List<GurthSymmetricalPlacementTechniqueInfo>();
-
-			CheckCentral(result, grid);
-			CheckDiagonal(result, grid);
-			CheckAntiDiagonal(result, grid);
-
-			// These validation is always redundant.
-			// The grid having Gurth's symmetrical placements should not be
-			// X-axis or Y-axis symmetry.
-			//CheckX(result, grid);
-			//CheckY(result, grid);
-
-			return result;
+			foreach (var act in new Action[] { CheckCentral, CheckDiagonal, CheckAntiDiagonal })
+			{
+				act(accumulator, grid);
+			}
 		}
-
 
 		/// <summary>
 		/// Check x-axis symmetry.
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
-		[Obsolete("The method is always redundant.")]
+		[Obsolete("The method is always redundant. The grid having Gurth's Symmetrical Placement cannot be this type.")]
 		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-		private void CheckX(
-			IList<GurthSymmetricalPlacementTechniqueInfo> result, IReadOnlyGrid grid)
+		private void CheckX(IBag<TechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			bool xHasEmptyCell = false;
 			for (int i = 0; i < 9; i++)
@@ -174,10 +164,9 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
-		[Obsolete("The method is always redundant.")]
+		[Obsolete("The method is always redundant. The grid having Gurth's Symmetrical Placement cannot be this type.")]
 		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-		private void CheckY(
-			IList<GurthSymmetricalPlacementTechniqueInfo> result, IReadOnlyGrid grid)
+		private void CheckY(IBag<TechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			bool yHasEmptyCell = false;
 			for (int i = 0; i < 9; i++)
@@ -308,8 +297,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
-		private void CheckDiagonal(
-			IList<GurthSymmetricalPlacementTechniqueInfo> result, IReadOnlyGrid grid)
+		private void CheckDiagonal(IBag<TechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			bool diagonalHasEmptyCell = false;
 			for (int i = 0; i < 9; i++)
@@ -442,8 +430,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
-		private void CheckAntiDiagonal(
-			IList<GurthSymmetricalPlacementTechniqueInfo> result, IReadOnlyGrid grid)
+		private void CheckAntiDiagonal(IBag<TechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			bool antiDiagonalHasEmptyCell = false;
 			for (int i = 0; i < 9; i++)
@@ -576,8 +563,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
-		private static void CheckCentral(
-			IList<GurthSymmetricalPlacementTechniqueInfo> result, IReadOnlyGrid grid)
+		private static void CheckCentral(IBag<TechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			if (grid.GetCellStatus(40) != CellStatus.Empty)
 			{

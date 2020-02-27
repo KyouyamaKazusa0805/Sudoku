@@ -41,10 +41,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
+		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var result = new List<BowmanBingoTechniqueInfo>();
-
 			var tempGrid = grid.Clone();
 			for (int cell = 0; cell < 81; cell++)
 			{
@@ -68,11 +66,11 @@ namespace Sudoku.Solving.Manual.LastResorts
 					int startCandidate = cell * 9 + digit;
 					if (IsValidGrid(grid, cell))
 					{
-						TakeAllRecursively(result, tempGrid, startCandidate, _length - 1);
+						TakeAllRecursively(accumulator, tempGrid, startCandidate, _length - 1);
 					}
 					else
 					{
-						result.Add(
+						accumulator.Add(
 							new BowmanBingoTechniqueInfo(
 								conclusions: new[]
 								{
@@ -97,13 +95,10 @@ namespace Sudoku.Solving.Manual.LastResorts
 					UndoGrid(tempGrid, candList, cell, mask);
 				}
 			}
-
-			return result;
 		}
 
 		private void TakeAllRecursively(
-			IList<BowmanBingoTechniqueInfo> result, Grid grid,
-			int startCandidate, int length)
+			IBag<TechniqueInfo> result, Grid grid, int startCandidate, int length)
 		{
 			if (length == 0)
 			{

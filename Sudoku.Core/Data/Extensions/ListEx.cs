@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace Sudoku.Data.Extensions
 {
@@ -15,6 +16,7 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <typeparam name="T">The type of this element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void RemoveLastElement<T>(this IList<T> @this) =>
 			@this.RemoveAt(@this.Count - 1);
 	}

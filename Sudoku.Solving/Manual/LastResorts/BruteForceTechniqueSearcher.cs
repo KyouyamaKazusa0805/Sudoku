@@ -47,10 +47,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
+		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var result = new List<BruteForceTechniqueInfo>();
-
 			foreach (int offset in TryAndErrorOrder)
 			{
 				if (grid.GetCellStatus(offset) != CellStatus.Empty)
@@ -59,7 +57,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				}
 
 				int cand = offset * 9 + _solution[offset];
-				result.Add(
+				accumulator.Add(
 					new BruteForceTechniqueInfo(
 						conclusions: new[] { new Conclusion(ConclusionType.Assignment, cand) },
 						views: new[]
@@ -71,8 +69,6 @@ namespace Sudoku.Solving.Manual.LastResorts
 								linkMasks: null)
 						}));
 			}
-
-			return result;
 		}
 	}
 }

@@ -37,20 +37,16 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the puzzle is not unique.
 		/// </exception>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
+		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			if (grid.IsUnique(out var solution))
 			{
-				var result = new List<TemplateTechniqueInfo>();
-
 				(_, _, var digitDistributions) = grid;
 				if (!_templateDeleteOnly)
 				{
-					GetAllTemplateSet(result, solution, digitDistributions);
+					GetAllTemplateSet(accumulator, solution, digitDistributions);
 				}
-				GetAllTemplateDelete(result, solution, digitDistributions);
-
-				return result;
+				GetAllTemplateDelete(accumulator, solution, digitDistributions);
 			}
 			else
 			{
@@ -59,7 +55,6 @@ namespace Sudoku.Solving.Manual.LastResorts
 		}
 
 
-		#region Template utils
 		/// <summary>
 		/// Get all template sets.
 		/// </summary>
@@ -68,8 +63,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <param name="digitDistributions">All digit distributions.</param>
 		/// <returns>All template sets.</returns>
 		private static void GetAllTemplateSet(
-			IList<TemplateTechniqueInfo> result,
-			IReadOnlyGrid solution, GridMap[] digitDistributions)
+			IBag<TechniqueInfo> result, IReadOnlyGrid solution, GridMap[] digitDistributions)
 		{
 			for (int digit = 0; digit < 9; digit++)
 			{
@@ -112,8 +106,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <param name="digitDistributions">All digit distributions.</param>
 		/// <returns>All template deletes.</returns>
 		private static void GetAllTemplateDelete(
-			IList<TemplateTechniqueInfo> result,
-			IReadOnlyGrid solution, GridMap[] digitDistributions)
+			IBag<TechniqueInfo> result, IReadOnlyGrid solution, GridMap[] digitDistributions)
 		{
 			for (int digit = 0; digit < 9; digit++)
 			{
@@ -147,6 +140,5 @@ namespace Sudoku.Solving.Manual.LastResorts
 						isTemplateDeletion: true));
 			}
 		}
-		#endregion
 	}
 }

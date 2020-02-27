@@ -31,10 +31,8 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
+		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var result = new List<RegularWingTechniqueInfo>();
-
 			// Search for all bivalue cells.
 			var map = grid.GetBivalueCellsMap(out int count);
 			var pair = (map, count);
@@ -42,29 +40,28 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			// Iterates on size.
 			for (int size = 3; size <= _size; size++)
 			{
-				result.AddRange(TakeAllBySize(grid, in pair, size));
+				TakeAllBySize(accumulator, grid, in pair, size);
 			}
-
-			return result;
 		}
 
 
 		/// <summary>
 		/// Take all technique steps by the specified size.
 		/// </summary>
+		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="bivalueCellsMap">
 		/// (<see langword="in"/> parameter) bivalue cell information pair.
 		/// </param>
 		/// <param name="size">The size.</param>
-		/// <returns>All technique steps.</returns>
 		/// <remarks>
 		/// Parameter <paramref name="bivalueCellsMap"/> is passed by reference and cannot 
 		/// be modified because the instance is a pair of values, passed by
 		/// reference can make the value passing more simple.
 		/// </remarks>
-		private static IReadOnlyList<RegularWingTechniqueInfo> TakeAllBySize(
-			IReadOnlyGrid grid, in (GridMap _map, int _count) bivalueCellsMap, int size)
+		private static void TakeAllBySize(
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid,
+			in (GridMap _map, int _count) bivalueCellsMap, int size)
 		{
 			// Check bivalue cells.
 			// If the number of bivalue cells is less than the specified size,
@@ -72,11 +69,10 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			// this technique structure, so we should return the empty list.
 			if (bivalueCellsMap._count < size)
 			{
-				return Array.Empty<RegularWingTechniqueInfo>();
+				return;
 			}
 
 			// Start searching.
-			var result = new List<RegularWingTechniqueInfo>();
 			int pivot = 0;
 			foreach (var (status, mask) in grid)
 			{
@@ -288,8 +284,6 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			Label_ContinueLoop:
 				pivot++;
 			}
-
-			return result;
 		}
 
 		/// <summary>
@@ -359,7 +353,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <param name="inter">The intersection mask.</param>
 		/// <param name="conclusions">The conclusions.</param>
 		private static void GatherConclusion(
-			IReadOnlyGrid grid, IList<RegularWingTechniqueInfo> result,
+			IReadOnlyGrid grid, IBag<TechniqueInfo> result,
 			int pivot, int[] cells, short pivotMask,
 			short inter, IReadOnlyList<Conclusion> conclusions)
 		{

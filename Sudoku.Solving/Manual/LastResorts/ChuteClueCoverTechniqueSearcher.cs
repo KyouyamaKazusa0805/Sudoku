@@ -19,19 +19,14 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
+		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var result = new List<ChuteClueCoverTechniqueInfo>();
-
-			SearchForFloors(result, grid);
-			SearchForTowers(result, grid);
-
-			return result;
+			SearchForFloors(accumulator, grid);
+			SearchForTowers(accumulator, grid);
 		}
 
 
-		private static void SearchForFloors(
-			IList<ChuteClueCoverTechniqueInfo> result, IReadOnlyGrid grid)
+		private static void SearchForFloors(IBag<TechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			var series = (Span<int>)stackalloc int[27];
 			for (int i = 0; i < 3; i++)
@@ -99,8 +94,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			}
 		}
 
-		private static void SearchForTowers(
-			IList<ChuteClueCoverTechniqueInfo> result, IReadOnlyGrid grid)
+		private static void SearchForTowers(IBag<TechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			var series = (Span<int>)stackalloc int[27];
 			for (int i = 0; i < 3; i++)

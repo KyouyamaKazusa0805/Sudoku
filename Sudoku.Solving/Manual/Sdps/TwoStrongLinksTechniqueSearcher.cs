@@ -17,10 +17,8 @@ namespace Sudoku.Solving.Manual.Sdps
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
+		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var result = new List<TwoStrongLinksTechniqueInfo>();
-
 			for (int digit = 0; digit < 9; digit++)
 			{
 				for (int r1 = 0; r1 < 26; r1++)
@@ -108,7 +106,7 @@ namespace Sudoku.Solving.Manual.Sdps
 							continue;
 						}
 
-						result.Add(
+						accumulator.Add(
 							new TwoStrongLinksTechniqueInfo(
 								conclusions,
 								views: new[]
@@ -136,8 +134,6 @@ namespace Sudoku.Solving.Manual.Sdps
 					}
 				}
 			}
-
-			return result;
 		}
 	}
 }

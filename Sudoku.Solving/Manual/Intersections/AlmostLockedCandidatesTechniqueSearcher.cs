@@ -42,30 +42,23 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
+		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var result = new List<AlmostLockedCandidatesTechniqueInfo>();
-
 			for (int size = 2; size <= (_checkAlq ? 4 : 3); size++)
 			{
-				result.AddRange(TakeAllBySize(grid, size));
+				AccumulateAllBySize(accumulator, grid, size);
 			}
-
-			return result;
 		}
-
 
 		/// <summary>
 		/// Take all by size.
 		/// </summary>
+		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="size">The size.</param>
 		/// <returns>The result.</returns>
-		private IReadOnlyList<AlmostLockedCandidatesTechniqueInfo> TakeAllBySize(
-			IReadOnlyGrid grid, int size)
+		private void AccumulateAllBySize(IBag<TechniqueInfo> result, IReadOnlyGrid grid, int size)
 		{
-			var result = new List<AlmostLockedCandidatesTechniqueInfo>();
-
 			for (int i = 0; i < 18; i++)
 			{
 				for (int j = 0; j < 3; j++)
@@ -82,8 +75,6 @@ namespace Sudoku.Solving.Manual.Intersections
 					Process(grid, result, size, coverSet, baseSet, right, left, intersection);
 				}
 			}
-
-			return result;
 		}
 
 
@@ -99,8 +90,8 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <param name="right">The right grid map.</param>
 		/// <param name="intersection">The intersection.</param>
 		private static void Process(
-			IReadOnlyGrid grid, IList<AlmostLockedCandidatesTechniqueInfo> result,
-			int size, int baseSet, int coverSet, GridMap left, GridMap right, GridMap intersection)
+			IReadOnlyGrid grid, IBag<TechniqueInfo> result, int size,
+			int baseSet, int coverSet, GridMap left, GridMap right, GridMap intersection)
 		{
 			GridMap a = left ^ intersection, b = right ^ intersection;
 			int[] aCells = a.ToArray();

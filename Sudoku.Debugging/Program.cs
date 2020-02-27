@@ -21,7 +21,7 @@ namespace Sudoku.Debugging
 				CheckAlmostLockedQuadruple = true,
 				OptimizedApplyingOrder = false
 			};
-			var grid = Grid.Parse("00+90+74380+30+816+90020000809+1003600709080000000109080+642+30030400009000380000857000+30:234 541 544 545 752 753 554 556 557 558 577 579 679 689 195 699");
+			var grid = Grid.Parse("..5..4.7.4...2...3.6.3..8....3..5......1.8..57......9...9.3...7...4...6.6....79..");
 			var analysisResult = solver.Solve(grid);
 			Console.WriteLine($"{analysisResult:-#!.}");
 		}

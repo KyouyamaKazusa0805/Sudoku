@@ -223,7 +223,7 @@ namespace Sudoku.Solving.Checking
 									{
 										// Solve successfully.
 										_result.Add(new List<Conclusion>(tempList));
-										tempList.RemoveAt(tempList.Count - 1);
+										tempList.RemoveLastElement();
 									}
 
 									tempGrid[c2, d2] = false;
@@ -236,7 +236,7 @@ namespace Sudoku.Solving.Checking
 					{
 						// Solve successfully.
 						_result.Add(new List<Conclusion>(tempList));
-						tempList.RemoveAt(tempList.Count - 1);
+						tempList.RemoveLastElement();
 					}
 
 					tempGrid[c1, d1] = false;

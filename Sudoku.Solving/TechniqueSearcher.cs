@@ -18,31 +18,23 @@ namespace Sudoku.Solving
 
 
 		/// <summary>
-		/// Take a step after searched all solving steps.
+		/// Take a technique step after searched all solving steps.
 		/// </summary>
 		/// <param name="grid">The grid to search steps.</param>
 		/// <returns>A technique information.</returns>
-		public TechniqueInfo? TakeOne(IReadOnlyGrid grid) => TakeAll(grid).FirstOrDefault();
-
-		/// <summary>
-		/// Take the specified number of steps.
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <param name="count">The number of steps you want to take.</param>
-		/// <returns>The specified number of technique information instances.</returns>
-		public IReadOnlyList<TechniqueInfo> Take(IReadOnlyGrid grid, int count)
+		public TechniqueInfo? TakeOne(IReadOnlyGrid grid)
 		{
-			// 'Take' method will never throw exceptions when
-			// count is greater than the step count of the list.
-			return TakeAll(grid).Take(count).ToList();
+			var bag = new Bag<TechniqueInfo>();
+			AccumulateAll(bag, grid);
+			return bag.FirstOrDefault();
 		}
 
 		/// <summary>
-		/// Take all technique steps after searched.
+		/// Accumulate all technique information instances into the specified accumulator.
 		/// </summary>
+		/// <param name="accumulator">The accumulator.</param>
 		/// <param name="grid">The grid.</param>
-		/// <returns>The list of all steps found.</returns>
-		public abstract IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid);
+		public abstract void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid);
 
 		/// <inheritdoc/>
 		public virtual int CompareTo(TechniqueSearcher other) =>

@@ -25,15 +25,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
+		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			(var emptyCells, _, _) = grid;
 			if (emptyCells.Count < 7)
 			{
-				return Array.Empty<TechniqueInfo>();
+				return;
 			}
-
-			var result = new List<BorescoperDeadlyPatternTechniqueInfo>();
 
 			for (int block = 0; block < 9; block++)
 			{
@@ -47,18 +45,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						tempQuad[j] = (block / 3 * 3 + quad[j] / 3) * 9 + block % 3 * 3 + quad[j] % 3;
 					}
 
-					Check3Digits(result, grid, block, tempQuad, i);
-					Check4Digits(result, grid, block, tempQuad, i);
+					Check3Digits(accumulator, grid, block, tempQuad, i);
+					Check4Digits(accumulator, grid, block, tempQuad, i);
 				}
 			}
-
-			return result;
 		}
 
 
 		private static void Check3Digits(
-			IList<BorescoperDeadlyPatternTechniqueInfo> result, IReadOnlyGrid grid,
-			int block, int[] quad, int i)
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int block, int[] quad, int i)
 		{
 			int[][] triplets = new int[4][]
 			{
@@ -303,9 +298,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 		private static void Check3DigitsType3Naked(
-			IList<BorescoperDeadlyPatternTechniqueInfo> result,
-			IReadOnlyGrid grid, IEnumerable<int> digits, short digitsMask,
-			IReadOnlyList<int> allCells, IReadOnlyList<int> extraCells)
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, IEnumerable<int> digits,
+			short digitsMask, IReadOnlyList<int> allCells, IReadOnlyList<int> extraCells)
 		{
 			var regions = new GridMap(extraCells).CoveredRegions;
 			if (!regions.Any())
@@ -731,9 +725,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 		private static void Check3DigitsType4(
-			IList<BorescoperDeadlyPatternTechniqueInfo> result, IReadOnlyGrid grid,
-			int block, IEnumerable<int> digits, short digitMask,
-			IReadOnlyList<int> allCells, int[,] pair1, int[,] pair2, int[] triplet)
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int block,
+			IEnumerable<int> digits, short digitMask, IReadOnlyList<int> allCells,
+			int[,] pair1, int[,] pair2, int[] triplet)
 		{
 			// When we check type 4, we should be carefully when searching for triplets.
 			// Triplet will not always contains a conjugate pair, but a
@@ -826,7 +820,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		}
 
 		private void Check4Digits(
-			IList<BorescoperDeadlyPatternTechniqueInfo> result, IReadOnlyGrid grid,
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid,
 			int block, int[] quad, int i)
 		{
 			if (quad.Any(c => grid.GetCellStatus(c) != CellStatus.Empty))
@@ -1067,7 +1061,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 		[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
 		private void Check4DigitsType3Naked(
-			IList<BorescoperDeadlyPatternTechniqueInfo> result, IReadOnlyGrid grid, IEnumerable<int> digits,
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, IEnumerable<int> digits,
 			short digitsMask, IReadOnlyList<int> allCells, List<int> extraCells)
 		{
 			// TODO: Check BDP 4 digits type 3 with naked subsets.
@@ -1076,7 +1070,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 		[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
 		private void Check4DigitsType4(
-			IList<BorescoperDeadlyPatternTechniqueInfo> result, IReadOnlyGrid grid, int block,
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int block,
 			IEnumerable<int> digits, short digitsMask, IReadOnlyList<int> allCells,
 			int[,] pair1, int[,] pair2, int[] quad)
 		{

@@ -35,10 +35,8 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
+		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var result = new List<TechniqueInfo>();
-
 			// Search for full houses.
 			if (_enableFullHouse)
 			{
@@ -80,7 +78,7 @@ namespace Sudoku.Solving.Manual.Singles
 						// If the number of empty cells is only 1,
 						// We can conclude that this only empty cell is the full house.
 						int digit = ((short)(511 & ~cands)).FindFirstSet();
-						result.Add(
+						accumulator.Add(
 							new FullHouseTechniqueInfo(
 								conclusions: new[]
 								{
@@ -145,7 +143,7 @@ namespace Sudoku.Solving.Manual.Singles
 							enableAndIsLastDigit = digitCount == 8;
 						}
 
-						result.Add(
+						accumulator.Add(
 							new HiddenSingleTechniqueInfo(
 								conclusions: new[]
 								{
@@ -176,7 +174,7 @@ namespace Sudoku.Solving.Manual.Singles
 				if (grid.GetCellStatus(i) == CellStatus.Empty && (mask & (mask - 1)) == 0)
 				{
 					int digit = mask.FindFirstSet();
-					result.Add(
+					accumulator.Add(
 						new NakedSingleTechniqueInfo(
 							conclusions: new[] { new Conclusion(ConclusionType.Assignment, i, digit) },
 							views: new[]
@@ -191,8 +189,6 @@ namespace Sudoku.Solving.Manual.Singles
 							digit));
 				}
 			}
-
-			return result;
 		}
 	}
 }

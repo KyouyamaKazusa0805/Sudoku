@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
+		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			// Search for all conjugate pairs.
 			//var conjugatePairs = grid.GetAllConjugatePairs();
@@ -28,35 +28,30 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 			var pair = (bivalueCellsMap, bivalueCellsCount);
 
 			// Finally search all irregular wings.
-			var result = new List<TechniqueInfo>();
-
-			result.AddRange(TakeAllWWings(grid, in pair));
+			TakeAllWWings(accumulator, grid, in pair);
 			// TODO: Check M-Wings.
 			// TODO: Check Local-Wings.
 			// TODO: Check Split-Wings.
 			// TODO: Check Hybrid-Wings.
-
-			return result;
 		}
-
 
 		/// <summary>
 		/// Search for all W-Wings.
 		/// </summary>
+		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="pair">(<see langword="in"/> parameter) bivalue cell information pair.</param>
 		/// <returns>All technique information instances.</returns>
-		public static IReadOnlyList<IrregularWingTechniqueInfo> TakeAllWWings(
-			IReadOnlyGrid grid, in (GridMap _map, int _count) pair)
+		public static void TakeAllWWings(
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, in (GridMap _map, int _count) pair)
 		{
 			var (bivalueMap, count) = pair;
 			if (count < 2)
 			{
-				return Array.Empty<IrregularWingTechniqueInfo>();
+				return;
 			}
 
 			// Iterate on each cells.
-			var result = new List<WWingTechniqueInfo>();
 			for (int c1 = 0; c1 < 81; c1++)
 			{
 				if (!bivalueMap[c1] || grid.GetCellStatus(c1) != CellStatus.Empty)
@@ -113,8 +108,6 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 					}
 				}
 			}
-
-			return result;
 		}
 
 		/// <summary>
@@ -130,7 +123,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		/// <param name="triplet2">(<see langword="in"/> parameter) The triplet 2.</param>
 		/// <param name="intersection">The intersection.</param>
 		private static void SearchWWingByRegions(
-			IList<WWingTechniqueInfo> result, IReadOnlyGrid grid, int[] digits, int region,
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int[] digits, int region,
 			int c1, int c2, in (int _row, int _column, int _block) triplet1,
 			in (int _row, int _column, int _block) triplet2, GridMap intersection)
 		{

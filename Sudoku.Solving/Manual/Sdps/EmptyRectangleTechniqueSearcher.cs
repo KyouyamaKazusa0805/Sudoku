@@ -56,12 +56,9 @@ namespace Sudoku.Solving.Manual.Sdps
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
+		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			(_, _, _digitDistributions) = grid;
-
-			var result = new List<EmptyRectangleTechniqueInfo>();
-
 			for (int digit = 0; digit < 9; digit++)
 			{
 				for (int block = 0; block < 9; block++)
@@ -125,7 +122,7 @@ namespace Sudoku.Solving.Manual.Sdps
 						}
 
 						// Empty rectangle.
-						result.Add(
+						accumulator.Add(
 							new EmptyRectangleTechniqueInfo(
 								conclusions: new[]
 								{
@@ -145,10 +142,7 @@ namespace Sudoku.Solving.Manual.Sdps
 					}
 				}
 			}
-
-			return result;
 		}
-
 
 		/// <summary>
 		/// Check whether the cells form an empty cell.

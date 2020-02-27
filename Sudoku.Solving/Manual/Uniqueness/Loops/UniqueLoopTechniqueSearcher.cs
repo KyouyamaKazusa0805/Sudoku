@@ -22,10 +22,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
+		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var result = new List<UniqueLoopTechniqueInfo>();
-
 			for (int cell = 0; cell < 81; cell++)
 			{
 				if (grid.IsBivalueCell(cell))
@@ -97,7 +95,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								}
 
 								// UL type 1.
-								result.AddIfDoesNotContain(
+								accumulator.AddIfDoesNotContain(
 									new UniqueLoopTechniqueInfo(
 										conclusions,
 										views: new[]
@@ -154,7 +152,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								}
 
 								// UL type 2.
-								result.AddIfDoesNotContain(
+								accumulator.AddIfDoesNotContain(
 									new UniqueLoopTechniqueInfo(
 										conclusions,
 										views: new[]
@@ -189,7 +187,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								if (count == 1)
 								{
 									CheckType2(
-										result, grid, extraDigitMask.FindFirstSet(),
+										accumulator, grid, extraDigitMask.FindFirstSet(),
 										extraCells, digits, loop);
 								}
 								else if (count >= 2)
@@ -204,10 +202,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 									for (int size = 2; size <= 4; size++)
 									{
 										CheckType3Naked(
-											result, grid, extraDigitMask, digits,
+											accumulator, grid, extraDigitMask, digits,
 											loop, regions, size);
 										CheckType3Hidden(
-											result, grid, extraCells, digits,
+											accumulator, grid, extraCells, digits,
 											loop, regions, size);
 									}
 								}
@@ -217,15 +215,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 									continue;
 								}
 
-								CheckType4(result, grid, extraCells, digits, regions, loop);
+								CheckType4(accumulator, grid, extraCells, digits, regions, loop);
 							}
 						}
 					}
 				}
 			}
-
-			return result;
 		}
+
 
 		/// <summary>
 		/// Check for type 2 (with two extra cells).
@@ -237,8 +234,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="digits">All digits.</param>
 		/// <param name="loop">The loop.</param>
 		private static void CheckType2(
-			IList<UniqueLoopTechniqueInfo> result, IReadOnlyGrid grid,
-			int extraDigit, IReadOnlyList<int> extraCells, int[] digits, IReadOnlyList<int> loop)
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int extraDigit,
+			IReadOnlyList<int> extraCells, int[] digits, IReadOnlyList<int> loop)
 		{
 			// Record all eliminations.
 			var conclusions = new List<Conclusion>();
@@ -295,9 +292,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="regions">All regions.</param>
 		/// <param name="size">The size.</param>
 		private void CheckType3Naked(
-			IList<UniqueLoopTechniqueInfo> result, IReadOnlyGrid grid,
-			short extraDigits, int[] digits,
-			IReadOnlyList<int> loop, int[] regions, int size)
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, short extraDigits,
+			int[] digits, IReadOnlyList<int> loop, int[] regions, int size)
 		{
 			foreach (int region in regions)
 			{
@@ -569,9 +565,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="regions">All regions.</param>
 		/// <param name="size">The size.</param>
 		private void CheckType3Hidden(
-			IList<UniqueLoopTechniqueInfo> result, IReadOnlyGrid grid,
-			IReadOnlyList<int> extraCells, int[] digits,
-			IReadOnlyList<int> loop, int[] regions, int size)
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, IReadOnlyList<int> extraCells,
+			int[] digits, IReadOnlyList<int> loop, int[] regions, int size)
 		{
 			foreach (int region in regions)
 			{
@@ -953,9 +948,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="regions">All regions.</param>
 		/// <param name="loop">The loop.</param>
 		private void CheckType4(
-			IList<UniqueLoopTechniqueInfo> result, IReadOnlyGrid grid,
-			IReadOnlyList<int> extraCells, int[] digits, int[] regions,
-			IReadOnlyList<int> loop)
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, IReadOnlyList<int> extraCells,
+			int[] digits, int[] regions, IReadOnlyList<int> loop)
 		{
 			foreach (int region in regions)
 			{
@@ -1145,7 +1139,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			}
 
 			// Backtracking.
-			loop.RemoveAt(loop.Count - 1);
+			loop.RemoveLastElement();
 		}
 	}
 }

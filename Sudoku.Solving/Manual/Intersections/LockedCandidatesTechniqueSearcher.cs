@@ -30,10 +30,8 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
+		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var result = new List<TechniqueInfo>();
-
 			for (int i = 0; i < 18; i++)
 			{
 				for (int j = 0; j < 3; j++)
@@ -128,7 +126,7 @@ namespace Sudoku.Solving.Manual.Intersections
 							continue;
 						}
 
-						result.Add(
+						accumulator.Add(
 							new LockedCandidatesTechniqueInfo(
 								conclusions,
 								views: new[]
@@ -145,8 +143,6 @@ namespace Sudoku.Solving.Manual.Intersections
 					}
 				}
 			}
-
-			return result;
 		}
 
 		/// <summary>

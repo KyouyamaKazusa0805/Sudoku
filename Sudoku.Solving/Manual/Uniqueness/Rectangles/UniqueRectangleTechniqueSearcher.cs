@@ -43,10 +43,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
+		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var result = new List<RectangleTechniqueInfo>();
-
 			foreach (bool urMode in new[] { true, false })
 			{
 				foreach (int[] cells in TraversingTable)
@@ -76,12 +74,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						new[] { cells[0], cells[1] }, // 2, 3
 					};
 
-					CheckType15AndHidden(result, grid, cells, cellTriplets, urMode);
-					CheckType23456(result, grid, cells, cellPairs, urMode);
+					CheckType15AndHidden(accumulator, grid, cells, cellTriplets, urMode);
+					CheckType23456(accumulator, grid, cells, cellPairs, urMode);
 				}
 			}
-			
-			return result;
 		}
 
 		/// <summary>
@@ -96,8 +92,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// is for UR, <see langword="false"/> is for AR.
 		/// </param>
 		private void CheckType15AndHidden(
-			IList<RectangleTechniqueInfo> result, IReadOnlyGrid grid,
-			int[] cells, int[][] cellTriplets, bool urMode)
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int[] cells, int[][] cellTriplets, bool urMode)
 		{
 			// Traverse on 'cellTriplets'.
 			for (int i = 0; i < 4; i++)
@@ -333,7 +328,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// is for UR, <see langword="false"/> is for AR.
 		/// </param>
 		private void CheckHiddenRectangle(
-			IList<RectangleTechniqueInfo> result, IReadOnlyGrid grid, int[] regions,
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int[] regions,
 			Span<int> conjugatePairsSeries, int elimCell, int[] cellTriple,
 			int extraCell, int[] cells, bool urMode)
 		{
@@ -473,8 +468,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// is for UR, <see langword="false"/> is for AR.
 		/// </param>
 		private void CheckType23456(
-			IList<RectangleTechniqueInfo> result, IReadOnlyGrid grid,
-			int[] cells, int[][] cellPairs, bool urMode)
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int[] cells, int[][] cellPairs, bool urMode)
 		{
 			// Traverse on 'cellPairs'.
 			for (int i = 0; i < 6; i++)
@@ -668,7 +662,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// is for UR, <see langword="false"/> is for AR.
 		/// </param>
 		private void CheckType3Naked(
-			IList<RectangleTechniqueInfo> result, IReadOnlyGrid grid, int[] cells,
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int[] cells,
 			IEnumerable<int> digits, int[] regions, int size, bool urMode)
 		{
 			for (int i = 0, length = regions.Length; i < length; i++)
@@ -728,22 +722,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										from cell in allCells
 										where grid.CandidateExists(cell, digit)
 										select cell);
-									//var elimMap = default(GridMap);
-									//for (int y = 0, count = 0; y < 5; y++)
-									//{
-									//	int cell = allCells[y];
-									//	if (grid.CandidateExists(cell, digit))
-									//	{
-									//		if (count++ == 0)
-									//		{
-									//			elimMap = new GridMap(cell, false);
-									//		}
-									//		else
-									//		{
-									//			elimMap &= new GridMap(cell, false);
-									//		}
-									//	}
-									//}
 
 									foreach (int cell in elimMap.Offsets)
 									{
@@ -860,22 +838,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 												from cell in allCells
 												where grid.CandidateExists(cell, digit)
 												select cell);
-											//var elimMap = default(GridMap);
-											//for (int y = 0, count = 0; y < 6; y++)
-											//{
-											//	int cell = allCells[y];
-											//	if (grid.CandidateExists(cell, digit))
-											//	{
-											//		if (count++ == 0)
-											//		{
-											//			elimMap = new GridMap(cell, false);
-											//		}
-											//		else
-											//		{
-											//			elimMap &= new GridMap(cell, false);
-											//		}
-											//	}
-											//}
 
 											foreach (int cell in elimMap.Offsets)
 											{
@@ -987,25 +949,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 											if ((temp & 1) != 0)
 											{
 												var elimMap = GridMap.CreateInstance(
-												from cell in allCells
-												where grid.CandidateExists(cell, digit)
-												select cell);
-												//var elimMap = default(GridMap);
-												//for (int y = 0, count = 0; y < 6; y++)
-												//{
-												//	int cell = allCells[y];
-												//	if (grid.CandidateExists(cell, digit))
-												//	{
-												//		if (count++ == 0)
-												//		{
-												//			elimMap = new GridMap(cell, false);
-												//		}
-												//		else
-												//		{
-												//			elimMap &= new GridMap(cell, false);
-												//		}
-												//	}
-												//}
+													from cell in allCells
+													where grid.CandidateExists(cell, digit)
+													select cell);
 
 												foreach (int cell in elimMap.Offsets)
 												{
@@ -1089,7 +1035,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// is for UR, <see langword="false"/> is for AR.
 		/// </param>
 		private void CheckType3Hidden(
-			IList<RectangleTechniqueInfo> result, IReadOnlyGrid grid, int[] cells,
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int[] cells,
 			int[] extraCells, IEnumerable<int> digits, int[] regions, int size,
 			bool urMode)
 		{
@@ -1483,7 +1429,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <param name="extraCells">All extra cells.</param>
 		/// <param name="digits">All digits.</param>
 		private void CheckType6(
-			IList<RectangleTechniqueInfo> result, IReadOnlyGrid grid, int[] cells,
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int[] cells,
 			int[] cellPair, int[] extraCells, IEnumerable<int> digits)
 		{
 			var ((r1, c1, _), (r2, c2, _)) =
@@ -1652,7 +1598,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <param name="extraCells">All extra cells.</param>
 		/// <param name="digits">All digits.</param>
 		private void CheckType4(
-			IList<RectangleTechniqueInfo> result, IReadOnlyGrid grid, int[] cells,
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int[] cells,
 			int[] cellPair, int[] extraCells, IEnumerable<int> digits)
 		{
 			// Get region.
