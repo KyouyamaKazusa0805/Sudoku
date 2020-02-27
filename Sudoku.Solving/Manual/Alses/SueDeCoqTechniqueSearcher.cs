@@ -64,7 +64,7 @@ namespace Sudoku.Solving.Manual.Alses
 			static IReadOnlyList<long>[] Z(int m)
 			{
 				var temp = new List<long>[m + 1];
-				temp[0] = null!;
+				temp[0] = null!; // Only be a placeholder.
 				for (int i = 1; i <= m; i++)
 				{
 					temp[i] = new List<long>(new BitCombinationGenerator(m, i));
@@ -98,8 +98,8 @@ namespace Sudoku.Solving.Manual.Alses
 				foreach (int nonblock in NonblockTable[block])
 				{
 					// Get all enumeration grid maps.
-					var nonblockMap = _regionMaps[nonblock] & emptyMap; /*readonly*/
-					var blockMap = _regionMaps[block] & emptyMap; /*readonly*/
+					var nonblockMap = _regionMaps[nonblock] & emptyMap;
+					var blockMap = _regionMaps[block] & emptyMap;
 					var interMap = nonblockMap & blockMap;
 
 					// Get the number of empty cells in the specified intersection cells

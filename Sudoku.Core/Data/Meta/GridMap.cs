@@ -645,7 +645,9 @@ namespace Sudoku.Data.Meta
 		public static bool operator !=(GridMap left, GridMap right) => !(left == right);
 
 		/// <summary>
-		/// Negate all bits.
+		/// Reverse all cells' statuses, which means all <see langword="true"/> bits
+		/// will be set <see langword="false"/>, and all <see langword="false"/> bits
+		/// will be set <see langword="true"/>.
 		/// </summary>
 		/// <param name="gridMap">The instance to negate.</param>
 		/// <returns>The negative result.</returns>
@@ -662,7 +664,7 @@ namespace Sudoku.Data.Meta
 		public static GridMap operator -(GridMap left, GridMap right) => left & ~right;
 
 		/// <summary>
-		/// Intersect two <see cref="GridMap"/>s.
+		/// Get all cells that two <see cref="GridMap"/>s both contain.
 		/// </summary>
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
@@ -671,7 +673,7 @@ namespace Sudoku.Data.Meta
 			new GridMap(left._high & right._high, left._low & right._low);
 
 		/// <summary>
-		/// Union two <see cref="GridMap"/>s.
+		/// Get all cells from two <see cref="GridMap"/>s.
 		/// </summary>
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
@@ -680,11 +682,14 @@ namespace Sudoku.Data.Meta
 			new GridMap(left._high | right._high, left._low | right._low);
 
 		/// <summary>
-		/// Symmetrical except two <see cref="GridMap"/>s.
+		/// Unions two sets of <paramref name="left"/> minus <paramref name="right"/>
+		/// and <paramref name="right"/> minus <paramref name="left"/>, where the minus
+		/// operator is <see cref="operator -(GridMap, GridMap)"/>.
 		/// </summary>
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
 		/// <returns>The result.</returns>
+		/// <seealso cref="operator -(GridMap, GridMap)"/>
 		public static GridMap operator ^(GridMap left, GridMap right) =>
 			new GridMap(left._high ^ right._high, left._low ^ right._low);
 	}
