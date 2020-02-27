@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
+		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
 		{
 			var result = new List<RegularWingTechniqueInfo>();
 
@@ -49,7 +49,6 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		}
 
 
-		#region Regular wing utils
 		/// <summary>
 		/// Take all technique steps by the specified size.
 		/// </summary>
@@ -65,7 +64,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// reference can make the value passing more simple.
 		/// </remarks>
 		private static IReadOnlyList<RegularWingTechniqueInfo> TakeAllBySize(
-			Grid grid, in (GridMap _map, int _count) bivalueCellsMap, int size)
+			IReadOnlyGrid grid, in (GridMap _map, int _count) bivalueCellsMap, int size)
 		{
 			// Check bivalue cells.
 			// If the number of bivalue cells is less than the specified size,
@@ -299,7 +298,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <param name="grid">The grid.</param>
 		/// <param name="cells">The cells to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		private static bool CheckWhetherBivalueCellsAreSame(Grid grid, int[] cells)
+		private static bool CheckWhetherBivalueCellsAreSame(IReadOnlyGrid grid, int[] cells)
 		{
 			for (int i = 0, length = cells.Length; i < length - 1; i++)
 			{
@@ -360,7 +359,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <param name="inter">The intersection mask.</param>
 		/// <param name="conclusions">The conclusions.</param>
 		private static void GatherConclusion(
-			Grid grid, IList<RegularWingTechniqueInfo> result,
+			IReadOnlyGrid grid, IList<RegularWingTechniqueInfo> result,
 			int pivot, int[] cells, short pivotMask,
 			short inter, IReadOnlyList<Conclusion> conclusions)
 		{
@@ -404,7 +403,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <param name="map">The intersection grid map.</param>
 		/// <returns>The conclusions.</returns>
 		private static IReadOnlyList<Conclusion> GetConclusions(
-			Grid grid, short union, short unionWithoutPivot,
+			IReadOnlyGrid grid, short union, short unionWithoutPivot,
 			bool isIncompleted, GridMap map)
 		{
 			var conclusions = new List<Conclusion>();
@@ -444,7 +443,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// (<see langword="out"/> parameter) The union mask without pivot mask.
 		/// </param>
 		private static void RecordValues(
-			Grid grid, int pivot, int[] cells, out short pivotMask,
+			IReadOnlyGrid grid, int pivot, int[] cells, out short pivotMask,
 			out short inter, out short union,
 			out short interWithoutPivot, out short unionWithoutPivot)
 		{
@@ -459,6 +458,5 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			inter &= pivotMask;
 			union |= pivotMask;
 		}
-		#endregion
 	}
 }

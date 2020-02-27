@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
+		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
 		{
 			var result = new List<ChuteClueCoverTechniqueInfo>();
 
@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		private static void SearchForFloors(
-			IList<ChuteClueCoverTechniqueInfo> result, Grid grid)
+			IList<ChuteClueCoverTechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			var series = (Span<int>)stackalloc int[27];
 			for (int i = 0; i < 3; i++)
@@ -100,7 +100,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		}
 
 		private static void SearchForTowers(
-			IList<ChuteClueCoverTechniqueInfo> result, Grid grid)
+			IList<ChuteClueCoverTechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			var series = (Span<int>)stackalloc int[27];
 			for (int i = 0; i < 3; i++)
@@ -169,7 +169,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		}
 
 		private static void GetAllPartialSolutionsForTowersRecursively(
-			int[] series, IList<int[]> solutions, Grid grid, int i, int n)
+			int[] series, IList<int[]> solutions, IReadOnlyGrid grid, int i, int n)
 		{
 			if (n == 27)
 			{
@@ -200,7 +200,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		}
 		
 		private static void GetAllPartialSolutionsForFloorsRecursively(
-			int[] series, IList<int[]> solutions, Grid grid, int i, int n)
+			int[] series, IList<int[]> solutions, IReadOnlyGrid grid, int i, int n)
 		{
 			if (n == 27)
 			{
@@ -230,7 +230,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			}
 		}
 
-		private static bool IsValidTower(Grid grid, int[] series, int i, int n)
+		private static bool IsValidTower(IReadOnlyGrid grid, int[] series, int i, int n)
 		{
 			int r = n / 3, c = n % 3 + i * 3;
 
@@ -310,7 +310,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			return true;
 		}
 
-		private static bool IsValidFloor(Grid grid, int[] series, int n)
+		private static bool IsValidFloor(IReadOnlyGrid grid, int[] series, int n)
 		{
 			int r = n / 9, c = n % 9;
 

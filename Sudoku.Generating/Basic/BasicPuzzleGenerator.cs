@@ -21,7 +21,7 @@ namespace Sudoku.Generating.Basic
 
 
 		/// <inheritdoc/>
-		public override Grid Generate()
+		public override IReadOnlyGrid Generate()
 		{
 			static bool[] GetMask(out int count)
 			{

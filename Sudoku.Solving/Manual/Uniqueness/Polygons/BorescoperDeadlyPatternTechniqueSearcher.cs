@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
+		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
 		{
 			(var emptyCells, _, _) = grid;
 			if (emptyCells.Count < 7)
@@ -57,7 +57,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 
 		private static void Check3Digits(
-			IList<BorescoperDeadlyPatternTechniqueInfo> result, Grid grid,
+			IList<BorescoperDeadlyPatternTechniqueInfo> result, IReadOnlyGrid grid,
 			int block, int[] quad, int i)
 		{
 			int[][] triplets = new int[4][]
@@ -303,8 +303,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 		private static void Check3DigitsType3Naked(
-			IList<BorescoperDeadlyPatternTechniqueInfo> result, Grid grid, IEnumerable<int> digits,
-			short digitsMask, IReadOnlyList<int> allCells, IReadOnlyList<int> extraCells)
+			IList<BorescoperDeadlyPatternTechniqueInfo> result,
+			IReadOnlyGrid grid, IEnumerable<int> digits, short digitsMask,
+			IReadOnlyList<int> allCells, IReadOnlyList<int> extraCells)
 		{
 			var regions = new GridMap(extraCells).CoveredRegions;
 			if (!regions.Any())
@@ -730,9 +731,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 		private static void Check3DigitsType4(
-			IList<BorescoperDeadlyPatternTechniqueInfo> result, Grid grid, int block,
-			IEnumerable<int> digits, short digitMask, IReadOnlyList<int> allCells, int[,] pair1,
-			int[,] pair2, int[] triplet)
+			IList<BorescoperDeadlyPatternTechniqueInfo> result, IReadOnlyGrid grid,
+			int block, IEnumerable<int> digits, short digitMask,
+			IReadOnlyList<int> allCells, int[,] pair1, int[,] pair2, int[] triplet)
 		{
 			// When we check type 4, we should be carefully when searching for triplets.
 			// Triplet will not always contains a conjugate pair, but a
@@ -825,7 +826,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		}
 
 		private void Check4Digits(
-			IList<BorescoperDeadlyPatternTechniqueInfo> result, Grid grid,
+			IList<BorescoperDeadlyPatternTechniqueInfo> result, IReadOnlyGrid grid,
 			int block, int[] quad, int i)
 		{
 			if (quad.Any(c => grid.GetCellStatus(c) != CellStatus.Empty))
@@ -1066,7 +1067,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 		[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
 		private void Check4DigitsType3Naked(
-			IList<BorescoperDeadlyPatternTechniqueInfo> result, Grid grid, IEnumerable<int> digits,
+			IList<BorescoperDeadlyPatternTechniqueInfo> result, IReadOnlyGrid grid, IEnumerable<int> digits,
 			short digitsMask, IReadOnlyList<int> allCells, List<int> extraCells)
 		{
 			// TODO: Check BDP 4 digits type 3 with naked subsets.
@@ -1075,7 +1076,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 		[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
 		private void Check4DigitsType4(
-			IList<BorescoperDeadlyPatternTechniqueInfo> result, Grid grid, int block,
+			IList<BorescoperDeadlyPatternTechniqueInfo> result, IReadOnlyGrid grid, int block,
 			IEnumerable<int> digits, short digitsMask, IReadOnlyList<int> allCells,
 			int[,] pair1, int[,] pair2, int[] quad)
 		{

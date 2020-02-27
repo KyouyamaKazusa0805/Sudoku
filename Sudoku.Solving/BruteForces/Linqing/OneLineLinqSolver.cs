@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Sudoku.Data.Meta;
@@ -19,7 +18,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 
 
 		/// <inheritdoc/>
-		public override AnalysisResult Solve(Grid grid)
+		public override AnalysisResult Solve(IReadOnlyGrid grid)
 		{
 			var stopwatch = new Stopwatch();
 

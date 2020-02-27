@@ -29,7 +29,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <summary>
 		/// The solution.
 		/// </summary>
-		private readonly Grid _solution;
+		private readonly IReadOnlyGrid _solution;
 
 
 		/// <summary>
@@ -38,7 +38,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// solution.
 		/// </summary>
 		/// <param name="solution">The solution.</param>
-		public BruteForceTechniqueSearcher(Grid solution) => _solution = solution;
+		public BruteForceTechniqueSearcher(IReadOnlyGrid solution) =>
+			_solution = solution;
 
 
 		/// <inheritdoc/>
@@ -46,7 +47,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
+		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
 		{
 			var result = new List<BruteForceTechniqueInfo>();
 

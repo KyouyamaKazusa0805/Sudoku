@@ -851,45 +851,16 @@
             </summary>
         </member>
         <member name="P:Sudoku.Data.Meta.Grid.HasSolved">
-            <summary>
-            Indicates the grid has already solved. If the value is <see langword="true"/>,
-            the grid is solved; otherwise, <see langword="false"/>.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Meta.Grid.Item(System.Int32)">
-            <summary>
-            Gets or sets a digit into a cell.
-            </summary>
-            <param name="offset">The cell offset you want to get or set.</param>
-            <value>
-            The digit you want to set. This value should be between 0 and 8.
-            In addition, if your input is -1, the candidate mask in this cell
-            will be re-computed. If your input is none of them above, this indexer
-            will do nothing.
-            </value>
-            <returns>
-            An <see cref="T:System.Int32"/> value indicating the result.
-            If the current cell does not have a digit
-            (i.e. The cell is <see cref="F:Sudoku.Data.Meta.CellStatus.Empty"/>),
-            The value will be -1.
-            </returns>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Meta.Grid.Item(System.Int32,System.Int32)">
-            <summary>
-            Gets or sets a candidate existence case with a <see cref="T:System.Boolean"/> value.
-            </summary>
-            <param name="offset">The cell offset between 0 and 80.</param>
-            <param name="digit">The digit between 0 and 8.</param>
-            <value>
-            The case you want to set. <see langword="true"/> means that this candidate
-            does not exist in this current sudoku grid; otherwise, <see langword="false"/>.
-            </value>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <inheritdoc/>
         </member>
         <member name="E:Sudoku.Data.Meta.Grid.ValueChanged">
-            <summary>
-            Indicates the event when the mask in a certain cell has changed.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Meta.Grid.Fix">
             <summary>
@@ -926,48 +897,22 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Meta.Grid.Equals(Sudoku.Data.Meta.Grid)">
-            <summary>
-            Indicates whether the current object has the same value with the other one.
-            </summary>
-            <param name="other">The other value to compare.</param>
-            <returns>
-            The result of this comparison. <see langword="true"/> if two instances hold a same
-            value; otherwise, <see langword="false"/>.
-            </returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Meta.Grid.GetHashCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Meta.Grid.ToArray">
-            <summary>
-            Serializes this instance to an array, where all digit value will be stored.
-            </summary>
-            <returns>
-            This array. All elements are between 0 to 9, where 0 means the
-            cell is <see cref="F:Sudoku.Data.Meta.CellStatus.Empty"/> now.
-            </returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Meta.Grid.GetMask(System.Int32)">
-            <summary>
-            Get a mask of the specified cell.
-            </summary>
-            <param name="offset">The cell offset you want to get.</param>
-            <returns>The mask.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Meta.Grid.GetCandidates(System.Int32)">
-            <summary>
-            Get the candidate mask part of the specified cell.
-            </summary>
-            <param name="offset">The cell offset you want to get.</param>
-            <returns>The candidate mask.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Meta.Grid.GetCandidatesReversal(System.Int32)">
-            <summary>
-            Get the candidate mask after reversed all bits mask part
-            of the specified cell.
-            </summary>
-            <param name="offset">The cell offset you want to get.</param>
-            <returns>The candidate mask.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Meta.Grid.ToString">
             <inheritdoc/>
@@ -984,11 +929,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Meta.Grid.GetCellStatus(System.Int32)">
-            <summary>
-            Get a cell status of the specified cell.
-            </summary>
-            <param name="offset">The cell offset you want to get.</param>
-            <returns>The cell status.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Meta.Grid.Clone">
             <inheritdoc/>
@@ -1436,7 +1377,7 @@
             <param name="regionOffset">The region offset.</param>
             <returns>The grid map.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.CreateInstance(Sudoku.Data.Meta.Grid,System.Int32)">
+        <member name="M:Sudoku.Data.Meta.GridMap.CreateInstance(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32)">
             <summary>
             Create a <see cref="T:Sudoku.Data.Meta.GridMap"/> instance with the specified solution.
             If the puzzle has been solved, this method will create a grid map of
@@ -1731,56 +1672,56 @@
             </summary>
             <seealso cref="T:Sudoku.Data.Meta.Grid"/>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridTransformations.MirrorLeftRight(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Data.Meta.GridTransformations.MirrorLeftRight(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Mirror left-right the grid.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result grid.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridTransformations.MirrorTopBottom(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Data.Meta.GridTransformations.MirrorTopBottom(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Mirror top-bottom the grid.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result grid.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridTransformations.MirrorDiagonal(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Data.Meta.GridTransformations.MirrorDiagonal(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Mirror diagonal the grid.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result grid.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridTransformations.MirrorAntidiagonal(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Data.Meta.GridTransformations.MirrorAntidiagonal(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Mirror anti-diagonal the grid.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result grid.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridTransformations.RotateClockwise(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Data.Meta.GridTransformations.RotateClockwise(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Rotate the grid clockwise.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridTransformations.RotateCounterClockwise(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Data.Meta.GridTransformations.RotateCounterClockwise(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Rotate the grid counter-clockwise.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridTransformations.RotatePi(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Data.Meta.GridTransformations.RotatePi(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridTransformations.SwapTwoRegions(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Data.Meta.GridTransformations.SwapTwoRegions(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32,System.Int32)">
             <summary>
             Swap to regions.
             </summary>
@@ -1801,6 +1742,113 @@
             <param name="regionOffset">The region offset.</param>
             <param name="relativePos">The relative position.</param>
             <returns>The cell offset.</returns>
+        </member>
+        <member name="T:Sudoku.Data.Meta.IReadOnlyGrid">
+            <summary>
+            Provides a read-only sudoku grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Meta.IReadOnlyGrid.HasSolved">
+            <summary>
+            Indicates the grid has already solved. If the value is <see langword="true"/>,
+            the grid is solved; otherwise, <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Meta.IReadOnlyGrid.Item(System.Int32)">
+            <summary>
+            Gets or sets a digit into a cell.
+            </summary>
+            <param name="offset">The cell offset you want to get or set.</param>
+            <value>
+            The digit you want to set. This value should be between 0 and 8.
+            In addition, if your input is -1, the candidate mask in this cell
+            will be re-computed. If your input is none of them above, this indexer
+            will do nothing.
+            </value>
+            <returns>
+            An <see cref="T:System.Int32"/> value indicating the result.
+            If the current cell does not have a digit
+            (i.e. The cell is <see cref="F:Sudoku.Data.Meta.CellStatus.Empty"/>),
+            The value will be -1.
+            </returns>
+        </member>
+        <member name="P:Sudoku.Data.Meta.IReadOnlyGrid.Item(System.Int32,System.Int32)">
+            <summary>
+            Gets or sets a candidate existence case with a <see cref="T:System.Boolean"/> value.
+            </summary>
+            <param name="offset">The cell offset between 0 and 80.</param>
+            <param name="digit">The digit between 0 and 8.</param>
+            <value>
+            The case you want to set. <see langword="true"/> means that this candidate
+            does not exist in this current sudoku grid; otherwise, <see langword="false"/>.
+            </value>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="E:Sudoku.Data.Meta.IReadOnlyGrid.ValueChanged">
+            <summary>
+            Indicates the event when the mask in a certain cell has changed.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Meta.IReadOnlyGrid.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Meta.IReadOnlyGrid.GetHashCode">
+            <summary>
+            Serves as the default hash function.
+            </summary>
+            <returns>The hash code.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.IReadOnlyGrid.ToArray">
+            <summary>
+            Serializes this instance to an array, where all digit value will be stored.
+            </summary>
+            <returns>
+            This array. All elements are between 0 to 9, where 0 means the
+            cell is <see cref="F:Sudoku.Data.Meta.CellStatus.Empty"/> now.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.IReadOnlyGrid.GetMask(System.Int32)">
+            <summary>
+            Get a mask of the specified cell.
+            </summary>
+            <param name="offset">The cell offset you want to get.</param>
+            <returns>The mask.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.IReadOnlyGrid.GetCandidates(System.Int32)">
+            <summary>
+            Get the candidate mask part of the specified cell.
+            </summary>
+            <param name="offset">The cell offset you want to get.</param>
+            <returns>The candidate mask.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.IReadOnlyGrid.GetCandidatesReversal(System.Int32)">
+            <summary>
+            Get the candidate mask after reversed all bits mask part
+            of the specified cell.
+            </summary>
+            <param name="offset">The cell offset you want to get.</param>
+            <returns>The candidate mask.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.IReadOnlyGrid.ToString(System.String)">
+            <summary>
+            Returns a string that represents the current object, with the
+            specified format.
+            </summary>
+            <param name="format">The format.</param>
+            <returns>The string result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.IReadOnlyGrid.GetCellStatus(System.Int32)">
+            <summary>
+            Get a cell status of the specified cell.
+            </summary>
+            <param name="offset">The cell offset you want to get.</param>
+            <returns>The cell status.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.IReadOnlyGrid.Clone">
+            <summary>
+            Creates a new instance that is a copy of the current instance.
+            </summary>
+            <returns>The cloneation.</returns>
         </member>
         <member name="T:Sudoku.Data.Meta.SymmetricalType">
             <summary>
@@ -2044,20 +2092,20 @@
             Represents an error that the puzzle has multiple solutions while solving.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Initializes an instance with a grid.
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.Meta.Grid,System.String)">
+        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid,System.String)">
             <summary>
             Initializes an instance with a grid and an error message.
             </summary>
             <param name="grid">The grid.</param>
             <param name="message">The error message.</param>
         </member>
-        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.Meta.Grid,System.String,System.Exception)">
+        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid,System.String,System.Exception)">
             <summary>
             Initializes an instance with a grid, an error message and an inner exception.
             </summary>
@@ -2065,7 +2113,7 @@
             <param name="message">The error message.</param>
             <param name="inner">The inner exception.</param>
         </member>
-        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.Meta.Grid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
             Initializes an instance with a grid, a serialization information instance and
             a streaming context instance.
@@ -2089,20 +2137,20 @@
             Represents an error that the puzzle has no solution while solving.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Initializes an instance with a grid.
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.Meta.Grid,System.String)">
+        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid,System.String)">
             <summary>
             Initializes an instance with a grid and an error message.
             </summary>
             <param name="grid">The grid.</param>
             <param name="message">The error message.</param>
         </member>
-        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.Meta.Grid,System.String,System.Exception)">
+        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid,System.String,System.Exception)">
             <summary>
             Initializes an instance with a grid, an error message and an inner exception.
             </summary>
@@ -2110,7 +2158,7 @@
             <param name="message">The error message.</param>
             <param name="inner">The inner exception.</param>
         </member>
-        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.Meta.Grid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
             Initializes an instance with a grid, a serialization information instance and
             a streaming context instance.
@@ -2152,20 +2200,20 @@
             manual logic tools.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Initializes an instance with a grid.
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Meta.Grid,System.String)">
+        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid,System.String)">
             <summary>
             Initializes an instance with a grid and an error message.
             </summary>
             <param name="grid">The grid.</param>
             <param name="message">The error message.</param>
         </member>
-        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Meta.Grid,System.String,System.Exception)">
+        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid,System.String,System.Exception)">
             <summary>
             Initializes an instance with a grid, an error message and an inner exception.
             </summary>
@@ -2173,7 +2221,7 @@
             <param name="message">The error message.</param>
             <param name="inner">The inner exception.</param>
         </member>
-        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Meta.Grid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
             Initializes an instance with a grid, a serialization information instance and
             a streaming context instance.

@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
+		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
 		{
 			var result = new List<AlmostLockedCandidatesTechniqueInfo>();
 
@@ -62,10 +62,8 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <param name="size">The size.</param>
 		/// <returns>The result.</returns>
 		private IReadOnlyList<AlmostLockedCandidatesTechniqueInfo> TakeAllBySize(
-			Grid grid, int size)
+			IReadOnlyGrid grid, int size)
 		{
-			Contract.Requires(size >= 2 && size <= 4);
-
 			var result = new List<AlmostLockedCandidatesTechniqueInfo>();
 
 			for (int i = 0; i < 18; i++)
@@ -101,7 +99,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <param name="right">The right grid map.</param>
 		/// <param name="intersection">The intersection.</param>
 		private static void Process(
-			Grid grid, IList<AlmostLockedCandidatesTechniqueInfo> result,
+			IReadOnlyGrid grid, IList<AlmostLockedCandidatesTechniqueInfo> result,
 			int size, int baseSet, int coverSet, GridMap left, GridMap right, GridMap intersection)
 		{
 			GridMap a = left ^ intersection, b = right ^ intersection;

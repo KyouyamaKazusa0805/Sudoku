@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
+		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
 		{
 			// Search for all conjugate pairs.
 			//var conjugatePairs = grid.GetAllConjugatePairs();
@@ -40,7 +40,6 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		}
 
 
-		#region Irregular wing utils
 		/// <summary>
 		/// Search for all W-Wings.
 		/// </summary>
@@ -48,7 +47,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		/// <param name="pair">(<see langword="in"/> parameter) bivalue cell information pair.</param>
 		/// <returns>All technique information instances.</returns>
 		public static IReadOnlyList<IrregularWingTechniqueInfo> TakeAllWWings(
-			Grid grid, in (GridMap _map, int _count) pair)
+			IReadOnlyGrid grid, in (GridMap _map, int _count) pair)
 		{
 			var (bivalueMap, count) = pair;
 			if (count < 2)
@@ -131,7 +130,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		/// <param name="triplet2">(<see langword="in"/> parameter) The triplet 2.</param>
 		/// <param name="intersection">The intersection.</param>
 		private static void SearchWWingByRegions(
-			IList<WWingTechniqueInfo> result, Grid grid, int[] digits, int region,
+			IList<WWingTechniqueInfo> result, IReadOnlyGrid grid, int[] digits, int region,
 			int c1, int c2, in (int _row, int _column, int _block) triplet1,
 			in (int _row, int _column, int _block) triplet2, GridMap intersection)
 		{
@@ -200,6 +199,5 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 				}
 			}
 		}
-		#endregion
 	}
 }

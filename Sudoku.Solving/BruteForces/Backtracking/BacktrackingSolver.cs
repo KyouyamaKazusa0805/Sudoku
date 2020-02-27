@@ -14,7 +14,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 		/// <summary>
 		/// The temporary grid to solve.
 		/// </summary>
-		private Grid _grid = null!;
+		private IReadOnlyGrid _grid = null!;
 
 
 		/// <inheritdoc/>
@@ -22,7 +22,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 
 
 		/// <inheritdoc/>
-		public override AnalysisResult Solve(Grid grid)
+		public override AnalysisResult Solve(IReadOnlyGrid grid)
 		{
 			_grid = grid;
 

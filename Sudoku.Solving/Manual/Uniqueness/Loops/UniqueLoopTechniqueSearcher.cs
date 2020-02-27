@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
+		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
 		{
 			var result = new List<UniqueLoopTechniqueInfo>();
 
@@ -227,8 +227,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			return result;
 		}
 
-
-		#region UL utils
 		/// <summary>
 		/// Check for type 2 (with two extra cells).
 		/// </summary>
@@ -239,7 +237,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="digits">All digits.</param>
 		/// <param name="loop">The loop.</param>
 		private static void CheckType2(
-			IList<UniqueLoopTechniqueInfo> result, Grid grid,
+			IList<UniqueLoopTechniqueInfo> result, IReadOnlyGrid grid,
 			int extraDigit, IReadOnlyList<int> extraCells, int[] digits, IReadOnlyList<int> loop)
 		{
 			// Record all eliminations.
@@ -297,7 +295,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="regions">All regions.</param>
 		/// <param name="size">The size.</param>
 		private void CheckType3Naked(
-			IList<UniqueLoopTechniqueInfo> result, Grid grid,
+			IList<UniqueLoopTechniqueInfo> result, IReadOnlyGrid grid,
 			short extraDigits, int[] digits,
 			IReadOnlyList<int> loop, int[] regions, int size)
 		{
@@ -571,7 +569,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="regions">All regions.</param>
 		/// <param name="size">The size.</param>
 		private void CheckType3Hidden(
-			IList<UniqueLoopTechniqueInfo> result, Grid grid,
+			IList<UniqueLoopTechniqueInfo> result, IReadOnlyGrid grid,
 			IReadOnlyList<int> extraCells, int[] digits,
 			IReadOnlyList<int> loop, int[] regions, int size)
 		{
@@ -955,7 +953,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="regions">All regions.</param>
 		/// <param name="loop">The loop.</param>
 		private void CheckType4(
-			IList<UniqueLoopTechniqueInfo> result, Grid grid,
+			IList<UniqueLoopTechniqueInfo> result, IReadOnlyGrid grid,
 			IReadOnlyList<int> extraCells, int[] digits, int[] regions,
 			IReadOnlyList<int> loop)
 		{
@@ -1031,7 +1029,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="grid">The grid.</param>
 		/// <param name="loop">The loop to check.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		private static bool IsValidLoop(Grid grid, IList<int> loop)
+		private static bool IsValidLoop(IReadOnlyGrid grid, IList<int> loop)
 		{
 			var visitedOdd = new HashSet<int>();
 			var visitedEven = new HashSet<int>();
@@ -1088,7 +1086,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="lastRegionType">The last region type.</param>
 		/// <param name="loops">All loops.</param>
 		private static void CheckForLoopsRecursively(
-			Grid grid, int cell, int d1, int d2, IList<int> loop,
+			IReadOnlyGrid grid, int cell, int d1, int d2, IList<int> loop,
 			int allowedExtraCellsCount, short exDigitsMask,
 			int lastRegionType, IList<List<int>> loops)
 		{
@@ -1149,6 +1147,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			// Backtracking.
 			loop.RemoveAt(loop.Count - 1);
 		}
-		#endregion
 	}
 }

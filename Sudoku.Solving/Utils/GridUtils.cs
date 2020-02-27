@@ -24,7 +24,7 @@ namespace Sudoku.Solving.Utils
 		/// <param name="cellOffset">The cell offset.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsBivalueCell(this Grid @this, int cellOffset)
+		public static bool IsBivalueCell(this IReadOnlyGrid @this, int cellOffset)
 		{
 			return @this.GetCellStatus(cellOffset) == CellStatus.Empty
 				&& @this.GetCandidatesReversal(cellOffset).CountSet() == 2;
@@ -36,7 +36,7 @@ namespace Sudoku.Solving.Utils
 		/// </para>
 		/// <para>
 		/// If you want to check the reversal case, please use the method
-		/// <see cref="CandidateDoesNotExist(Grid, int, int)"/> instead
+		/// <see cref="CandidateDoesNotExist(IReadOnlyGrid, int, int)"/> instead
 		/// of '<c>!grid.CandidateExists</c>'.
 		/// Note that given and modifiable values always make this method
 		/// return <see langword="false"/>.
@@ -46,9 +46,10 @@ namespace Sudoku.Solving.Utils
 		/// <param name="cellOffset">The cell offset.</param>
 		/// <param name="digit">The digit.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		/// <seealso cref="CandidateDoesNotExist(Grid, int, int)"/>
+		/// <seealso cref="CandidateDoesNotExist(IReadOnlyGrid, int, int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool CandidateExists(this Grid @this, int cellOffset, int digit) =>
+		public static bool CandidateExists(
+			this IReadOnlyGrid @this, int cellOffset, int digit) =>
 			@this.GetCellStatus(cellOffset) == CellStatus.Empty && !@this[cellOffset, digit];
 
 		/// <summary>
@@ -57,7 +58,7 @@ namespace Sudoku.Solving.Utils
 		/// </para>
 		/// <para>
 		/// If you want to check the reversal case, please use the method
-		/// <see cref="CandidateExists(Grid, int, int)"/> instead
+		/// <see cref="CandidateExists(IReadOnlyGrid, int, int)"/> instead
 		/// of '<c>!grid.CandidateDoesNotExist</c>'.
 		/// Note that given and modifiable values always make this method
 		/// return <see langword="false"/>.
@@ -67,9 +68,10 @@ namespace Sudoku.Solving.Utils
 		/// <param name="cellOffset">The cell offset.</param>
 		/// <param name="digit">The digit.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		/// <seealso cref="CandidateExists(Grid, int, int)"/>
+		/// <seealso cref="CandidateExists(IReadOnlyGrid, int, int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool CandidateDoesNotExist(this Grid @this, int cellOffset, int digit) =>
+		public static bool CandidateDoesNotExist(
+			this IReadOnlyGrid @this, int cellOffset, int digit) =>
 			@this.GetCellStatus(cellOffset) == CellStatus.Empty && @this[cellOffset, digit];
 
 		/// <summary>
@@ -81,7 +83,8 @@ namespace Sudoku.Solving.Utils
 		/// <param name="regionOffset">The region.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasDigitValue(this Grid @this, int digit, int regionOffset)
+		public static bool HasDigitValue(
+			this IReadOnlyGrid @this, int digit, int regionOffset)
 		{
 			return GridMap.GetCellsIn(regionOffset).Any(
 				o => @this.GetCellStatus(o) != CellStatus.Empty && @this[o] == digit);
@@ -104,7 +107,8 @@ namespace Sudoku.Solving.Utils
 		/// in a specified region. The mask uses 1 to make the cell 'have this digit',
 		/// and 0 to make the cell 'does not have this digit'.
 		/// </returns>
-		public static short GetDigitAppearingMask(this Grid @this, int digit, int regionOffset)
+		public static short GetDigitAppearingMask(
+			this IReadOnlyGrid @this, int digit, int regionOffset)
 		{
 			int result = 0, i = 0;
 			foreach (int cellOffset in GridMap.GetCellsIn(regionOffset))
@@ -144,7 +148,7 @@ namespace Sudoku.Solving.Utils
 		/// and 0 to make the cell 'does not have this digit'.
 		/// </returns>
 		public static short GetDigitAppearingMask(
-			this Grid @this, int digit, int regionOffset, GridMap map)
+			this IReadOnlyGrid @this, int digit, int regionOffset, GridMap map)
 		{
 			int result = 0, i = 0;
 			foreach (int cell in GridMap.GetCellsIn(regionOffset))
@@ -170,7 +174,7 @@ namespace Sudoku.Solving.Utils
 		/// This parameter is only used for quickening the code running.
 		/// </param>
 		/// <returns>The grid map.</returns>
-		public static GridMap GetBivalueCellsMap(this Grid @this, out int count)
+		public static GridMap GetBivalueCellsMap(this IReadOnlyGrid @this, out int count)
 		{
 			var bivalueCellsMap = new GridMap();
 			count = 0;
@@ -194,7 +198,8 @@ namespace Sudoku.Solving.Utils
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>All conjugate pairs.</returns>
-		public static IReadOnlyList<ConjugatePair> GetAllConjugatePairs(this Grid @this)
+		public static IReadOnlyList<ConjugatePair> GetAllConjugatePairs(
+			this IReadOnlyGrid @this)
 		{
 			var list = new List<ConjugatePair>();
 			for (int region = 0; region < 27; region++)

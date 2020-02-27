@@ -53,7 +53,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the number of true candidates is naught.
 		/// </exception>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
+		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
 		{
 			IReadOnlyList<int> trueCandidates;
 			if (_extended)
@@ -123,8 +123,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			return result;
 		}
 
-
-		#region BUG utils
 		/// <summary>
 		/// Check type 3 (with naked subsets).
 		/// </summary>
@@ -133,7 +131,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="trueCandidates">All true candidates.</param>
 		/// <param name="size">The size.</param>
 		private void CheckType3Naked(
-			IList<UniquenessTechniqueInfo> result, Grid grid,
+			IList<UniquenessTechniqueInfo> result, IReadOnlyGrid grid,
 			IReadOnlyList<int> trueCandidates, int size)
 		{
 			// Check whether all true candidates lie on a same region.
@@ -498,7 +496,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
 		private static void CheckType4(
-			IList<UniquenessTechniqueInfo> result, Grid grid, IReadOnlyList<int> trueCandidates)
+			IList<UniquenessTechniqueInfo> result, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			// Conjugate pairs should lie on two cells.
 			var candsGroupByCell = from cand in trueCandidates group cand by cand / 9;
@@ -619,7 +617,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
 		private static void CheckMultiple(
-			IList<UniquenessTechniqueInfo> result, Grid grid, IReadOnlyList<int> trueCandidates)
+			IList<UniquenessTechniqueInfo> result, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			if (trueCandidates.Count > 18)
 			{
@@ -767,7 +765,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
 		private static void CheckType2(
-			IList<UniquenessTechniqueInfo> result, Grid grid, IReadOnlyList<int> trueCandidates)
+			IList<UniquenessTechniqueInfo> result, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			var map = GridMap.CreateInstance(from cand in trueCandidates select cand / 9);
 			if (map.Count == 0)
@@ -815,7 +813,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <returns>All true candidates searched.</returns>
-		private IReadOnlyList<int> GetTrueCandidatesSimply(Grid grid)
+		private IReadOnlyList<int> GetTrueCandidatesSimply(IReadOnlyGrid grid)
 		{
 			var tempGrid = grid.Clone();
 			var bugCells = new List<int>();
@@ -959,6 +957,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 			return true;
 		}
-		#endregion
 	}
 }

@@ -22,7 +22,7 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <param name="grid">The grid to search steps.</param>
 		/// <returns>A technique information.</returns>
-		public TechniqueInfo? TakeOne(Grid grid) => TakeAll(grid).FirstOrDefault();
+		public TechniqueInfo? TakeOne(IReadOnlyGrid grid) => TakeAll(grid).FirstOrDefault();
 
 		/// <summary>
 		/// Take the specified number of steps.
@@ -30,7 +30,7 @@ namespace Sudoku.Solving
 		/// <param name="grid">The grid.</param>
 		/// <param name="count">The number of steps you want to take.</param>
 		/// <returns>The specified number of technique information instances.</returns>
-		public IReadOnlyList<TechniqueInfo> Take(Grid grid, int count)
+		public IReadOnlyList<TechniqueInfo> Take(IReadOnlyGrid grid, int count)
 		{
 			// 'Take' method will never throw exceptions when
 			// count is greater than the step count of the list.
@@ -42,14 +42,14 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <returns>The list of all steps found.</returns>
-		public abstract IReadOnlyList<TechniqueInfo> TakeAll(Grid grid);
+		public abstract IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid);
 
 		/// <inheritdoc/>
 		public virtual int CompareTo(TechniqueSearcher other) =>
 			Priority.CompareTo(other.Priority);
 
 		/// <inheritdoc/>
-		public sealed override int GetHashCode() => Priority * 0xDEAD + 17 & 0xC0DE;
+		public sealed override int GetHashCode() => Priority * 17 + 0xDEAD & 0xC0DE;
 
 		/// <inheritdoc/>
 		public virtual bool Equals(TechniqueSearcher other) => Priority == other.Priority;

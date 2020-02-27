@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Checking
 		/// Initializes an instance with the specified grid.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
-		public BugChecker(Grid grid)
+		public BugChecker(IReadOnlyGrid grid)
 		{
 			if (grid.IsUnique(out _))
 			{
@@ -56,7 +56,7 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// The grid.
 		/// </summary>
-		public Grid Grid { get; }
+		public IReadOnlyGrid Grid { get; }
 
 		/// <summary>
 		/// Indicates all true candidates (non-BUG candidates).

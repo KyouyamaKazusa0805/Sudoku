@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
+		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
 		{
 			var result = new List<GurthSymmetricalPlacementTechniqueInfo>();
 
@@ -43,7 +43,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		[Obsolete("The method is always redundant.")]
 		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 		private void CheckX(
-			IList<GurthSymmetricalPlacementTechniqueInfo> result, Grid grid)
+			IList<GurthSymmetricalPlacementTechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			bool xHasEmptyCell = false;
 			for (int i = 0; i < 9; i++)
@@ -177,7 +177,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		[Obsolete("The method is always redundant.")]
 		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 		private void CheckY(
-			IList<GurthSymmetricalPlacementTechniqueInfo> result, Grid grid)
+			IList<GurthSymmetricalPlacementTechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			bool yHasEmptyCell = false;
 			for (int i = 0; i < 9; i++)
@@ -309,7 +309,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
 		private void CheckDiagonal(
-			IList<GurthSymmetricalPlacementTechniqueInfo> result, Grid grid)
+			IList<GurthSymmetricalPlacementTechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			bool diagonalHasEmptyCell = false;
 			for (int i = 0; i < 9; i++)
@@ -443,7 +443,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
 		private void CheckAntiDiagonal(
-			IList<GurthSymmetricalPlacementTechniqueInfo> result, Grid grid)
+			IList<GurthSymmetricalPlacementTechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			bool antiDiagonalHasEmptyCell = false;
 			for (int i = 0; i < 9; i++)
@@ -577,7 +577,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
 		private static void CheckCentral(
-			IList<GurthSymmetricalPlacementTechniqueInfo> result, Grid grid)
+			IList<GurthSymmetricalPlacementTechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			if (grid.GetCellStatus(40) != CellStatus.Empty)
 			{

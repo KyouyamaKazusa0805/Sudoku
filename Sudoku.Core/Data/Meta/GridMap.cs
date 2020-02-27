@@ -551,7 +551,7 @@ namespace Sudoku.Data.Meta
 		/// <exception cref="ArgumentException">
 		/// Throws when the puzzle has not been solved.
 		/// </exception>
-		public static GridMap CreateInstance(Grid grid, int digit)
+		public static GridMap CreateInstance(IReadOnlyGrid grid, int digit)
 		{
 			if (!grid.HasSolved)
 			{

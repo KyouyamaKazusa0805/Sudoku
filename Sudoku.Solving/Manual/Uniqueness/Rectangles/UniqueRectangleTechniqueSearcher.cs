@@ -43,7 +43,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
+		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
 		{
 			var result = new List<RectangleTechniqueInfo>();
 
@@ -84,7 +84,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			return result;
 		}
 
-		#region Unique rectangle utils
 		/// <summary>
 		/// Check basic type and generalized locked candidates type.
 		/// </summary>
@@ -97,7 +96,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// is for UR, <see langword="false"/> is for AR.
 		/// </param>
 		private void CheckType15AndHidden(
-			IList<RectangleTechniqueInfo> result, Grid grid,
+			IList<RectangleTechniqueInfo> result, IReadOnlyGrid grid,
 			int[] cells, int[][] cellTriplets, bool urMode)
 		{
 			// Traverse on 'cellTriplets'.
@@ -334,7 +333,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// is for UR, <see langword="false"/> is for AR.
 		/// </param>
 		private void CheckHiddenRectangle(
-			IList<RectangleTechniqueInfo> result, Grid grid, int[] regions,
+			IList<RectangleTechniqueInfo> result, IReadOnlyGrid grid, int[] regions,
 			Span<int> conjugatePairsSeries, int elimCell, int[] cellTriple,
 			int extraCell, int[] cells, bool urMode)
 		{
@@ -474,7 +473,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// is for UR, <see langword="false"/> is for AR.
 		/// </param>
 		private void CheckType23456(
-			IList<RectangleTechniqueInfo> result, Grid grid,
+			IList<RectangleTechniqueInfo> result, IReadOnlyGrid grid,
 			int[] cells, int[][] cellPairs, bool urMode)
 		{
 			// Traverse on 'cellPairs'.
@@ -669,7 +668,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// is for UR, <see langword="false"/> is for AR.
 		/// </param>
 		private void CheckType3Naked(
-			IList<RectangleTechniqueInfo> result, Grid grid, int[] cells,
+			IList<RectangleTechniqueInfo> result, IReadOnlyGrid grid, int[] cells,
 			IEnumerable<int> digits, int[] regions, int size, bool urMode)
 		{
 			for (int i = 0, length = regions.Length; i < length; i++)
@@ -1090,7 +1089,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// is for UR, <see langword="false"/> is for AR.
 		/// </param>
 		private void CheckType3Hidden(
-			IList<RectangleTechniqueInfo> result, Grid grid, int[] cells,
+			IList<RectangleTechniqueInfo> result, IReadOnlyGrid grid, int[] cells,
 			int[] extraCells, IEnumerable<int> digits, int[] regions, int size,
 			bool urMode)
 		{
@@ -1484,7 +1483,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <param name="extraCells">All extra cells.</param>
 		/// <param name="digits">All digits.</param>
 		private void CheckType6(
-			IList<RectangleTechniqueInfo> result, Grid grid, int[] cells,
+			IList<RectangleTechniqueInfo> result, IReadOnlyGrid grid, int[] cells,
 			int[] cellPair, int[] extraCells, IEnumerable<int> digits)
 		{
 			var ((r1, c1, _), (r2, c2, _)) =
@@ -1653,7 +1652,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <param name="extraCells">All extra cells.</param>
 		/// <param name="digits">All digits.</param>
 		private void CheckType4(
-			IList<RectangleTechniqueInfo> result, Grid grid, int[] cells,
+			IList<RectangleTechniqueInfo> result, IReadOnlyGrid grid, int[] cells,
 			int[] cellPair, int[] extraCells, IEnumerable<int> digits)
 		{
 			// Get region.
@@ -1751,7 +1750,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <param name="digitKindsMask">(<see langword="out"/> parameter) The digit kind mask.</param>
 		/// <returns>The result mask.</returns>
 		private static short GetOtherDigitMask(
-			Grid grid, IEnumerable<int> allCells, IEnumerable<int> digits,
+			IReadOnlyGrid grid, IEnumerable<int> allCells, IEnumerable<int> digits,
 			out short digitKindsMask)
 		{
 			digitKindsMask = 511;
@@ -1790,6 +1789,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			mask.ReverseBits();
 			return (short)(mask >> 7 & 511);
 		}
-		#endregion
 	}
 }

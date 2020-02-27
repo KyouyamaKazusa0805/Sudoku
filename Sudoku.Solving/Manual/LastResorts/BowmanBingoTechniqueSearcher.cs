@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
+		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
 		{
 			var result = new List<BowmanBingoTechniqueInfo>();
 
@@ -101,8 +101,6 @@ namespace Sudoku.Solving.Manual.LastResorts
 			return result;
 		}
 
-
-		#region Bowman bingo utils
 		private void TakeAllRecursively(
 			IList<BowmanBingoTechniqueInfo> result, Grid grid,
 			int startCandidate, int length)
@@ -206,7 +204,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <param name="grid">The grid.</param>
 		/// <param name="cell">The cell.</param>
 		/// <returns>The result.</returns>
-		private static bool IsValidGrid(Grid grid, int cell)
+		private static bool IsValidGrid(IReadOnlyGrid grid, int cell)
 		{
 			return new GridMap(cell, false).Offsets.All(c =>
 			{
@@ -217,6 +215,5 @@ namespace Sudoku.Solving.Manual.LastResorts
 				) && grid.GetCandidates(c) != 511;
 			});
 		}
-		#endregion
 	}
 }

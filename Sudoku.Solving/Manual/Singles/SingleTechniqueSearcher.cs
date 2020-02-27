@@ -35,11 +35,11 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
+		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
 		{
 			var result = new List<TechniqueInfo>();
 
-			#region Full house
+			// Search for full houses.
 			if (_enableFullHouse)
 			{
 				for (int region = 0; region < 27; region++)
@@ -102,9 +102,8 @@ namespace Sudoku.Solving.Manual.Singles
 				Label_ToNextRegion:;
 				}
 			}
-			#endregion
 
-			#region Hidden Single and Last Digit
+			// Search for hidden singles & last digits.
 			for (int digit = 0; digit < 9; digit++)
 			{
 				for (int region = 0; region < 27; region++)
@@ -169,9 +168,8 @@ namespace Sudoku.Solving.Manual.Singles
 				Label_ToNextRegion:;
 				}
 			}
-			#endregion
 
-			#region Naked single
+			// Search for naked singles.
 			for (int i = 0; i < 81; i++)
 			{
 				short mask = grid.GetCandidatesReversal(i);
@@ -193,7 +191,6 @@ namespace Sudoku.Solving.Manual.Singles
 							digit));
 				}
 			}
-			#endregion
 
 			return result;
 		}

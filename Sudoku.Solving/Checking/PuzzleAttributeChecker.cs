@@ -24,7 +24,8 @@ namespace Sudoku.Solving.Checking
 		/// otherwise, <see langword="null"/>.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public static bool IsValid(this Grid @this, [NotNullWhen(true)] out Grid? solutionIfValid)
+		public static bool IsValid(
+			this IReadOnlyGrid @this, [NotNullWhen(true)] out IReadOnlyGrid? solutionIfValid)
 		{
 			solutionIfValid = null;
 
@@ -49,7 +50,8 @@ namespace Sudoku.Solving.Checking
 		/// otherwise, <see langword="null"/>.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public static bool IsUnique(this Grid @this, [NotNullWhen(true)] out Grid? solutionIfUnique)
+		public static bool IsUnique
+			(this IReadOnlyGrid @this, [NotNullWhen(true)] out IReadOnlyGrid? solutionIfUnique)
 		{
 			var (_, hasSolved, _, solution, _) = new DancingLinksSolver().Solve(@this);
 			if (hasSolved)
@@ -69,7 +71,7 @@ namespace Sudoku.Solving.Checking
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public static bool IsMinimal(this Grid @this)
+		public static bool IsMinimal(this IReadOnlyGrid @this)
 		{
 			int hintCount = 0;
 			int[] array = @this.ToArray();
@@ -107,7 +109,7 @@ namespace Sudoku.Solving.Checking
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public static bool IsPearl(this Grid @this)
+		public static bool IsPearl(this IReadOnlyGrid @this)
 		{
 			// Using a faster solver to check the grid is unique or not.
 			if (@this.IsUnique(out _))
@@ -128,7 +130,7 @@ namespace Sudoku.Solving.Checking
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public static bool IsDiamond(this Grid @this)
+		public static bool IsDiamond(this IReadOnlyGrid @this)
 		{
 			// Using a faster solver to check the grid is unique or not.
 			if (@this.IsUnique(out _))
@@ -149,7 +151,7 @@ namespace Sudoku.Solving.Checking
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The puzzle.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public static bool CanBeSolvedUsingOnlySsts(this Grid @this)
+		public static bool CanBeSolvedUsingOnlySsts(this IReadOnlyGrid @this)
 		{
 			if (!@this.IsUnique(out _))
 			{

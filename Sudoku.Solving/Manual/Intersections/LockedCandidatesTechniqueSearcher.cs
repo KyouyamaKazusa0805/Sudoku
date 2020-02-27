@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
+		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
 		{
 			var result = new List<TechniqueInfo>();
 
@@ -149,14 +149,13 @@ namespace Sudoku.Solving.Manual.Intersections
 			return result;
 		}
 
-		#region Intersection utils
 		/// <summary>
 		/// Bitwise and all masks.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <param name="map">The grid map.</param>
 		/// <returns>The result.</returns>
-		private static short BitwiseAndMasks(Grid grid, GridMap map)
+		private static short BitwiseAndMasks(IReadOnlyGrid grid, GridMap map)
 		{
 			short mask = 511;
 			foreach (int offset in map.Offsets)
@@ -166,6 +165,5 @@ namespace Sudoku.Solving.Manual.Intersections
 
 			return mask;
 		}
-		#endregion
 	}
 }

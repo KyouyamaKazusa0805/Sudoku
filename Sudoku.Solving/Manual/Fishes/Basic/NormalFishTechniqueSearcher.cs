@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
+		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
 		{
 			var result = new List<TechniqueInfo>();
 
@@ -45,7 +45,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 		/// </param>
 		/// <returns>The result.</returns>
 		private static IReadOnlyList<NormalFishTechniqueInfo> TakeAllBySize(
-			Grid grid, int size, bool searchRow)
+			IReadOnlyGrid grid, int size, bool searchRow)
 		{
 			Contract.Requires(size >= 2 && size <= 4);
 
@@ -582,7 +582,6 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 			return result;
 		}
 
-		#region Fish utils
 		/// <summary>
 		/// Record all cells in the all regions to a <see cref="GridMap"/> instance.
 		/// </summary>
@@ -595,6 +594,5 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 				map |= GridMap.CreateInstance(regionOffset);
 			}
 		}
-		#endregion
 	}
 }

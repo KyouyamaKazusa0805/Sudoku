@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the puzzle is not unique.
 		/// </exception>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
+		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
 		{
 			if (grid.IsUnique(out var solution))
 			{
@@ -69,7 +69,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <returns>All template sets.</returns>
 		private static void GetAllTemplateSet(
 			IList<TemplateTechniqueInfo> result,
-			Grid solution, GridMap[] digitDistributions)
+			IReadOnlyGrid solution, GridMap[] digitDistributions)
 		{
 			for (int digit = 0; digit < 9; digit++)
 			{
@@ -113,7 +113,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <returns>All template deletes.</returns>
 		private static void GetAllTemplateDelete(
 			IList<TemplateTechniqueInfo> result,
-			Grid solution, GridMap[] digitDistributions)
+			IReadOnlyGrid solution, GridMap[] digitDistributions)
 		{
 			for (int digit = 0; digit < 9; digit++)
 			{

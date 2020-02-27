@@ -9,7 +9,7 @@
             Provides an analysis result after a puzzle solved.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.#ctor(Sudoku.Data.Meta.Grid,System.String,System.Boolean,Sudoku.Data.Meta.Grid,System.TimeSpan,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo},System.String)">
+        <member name="M:Sudoku.Solving.AnalysisResult.#ctor(Sudoku.Data.Meta.IReadOnlyGrid,System.String,System.Boolean,Sudoku.Data.Meta.IReadOnlyGrid,System.TimeSpan,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo},System.String)">
             <summary>
             Initializes an instance with some information.
             </summary>
@@ -183,7 +183,7 @@
             (<see langword="out"/> parameter) The diamond difficulty.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.Meta.Grid@,System.Boolean@,System.TimeSpan@,Sudoku.Data.Meta.Grid@,Sudoku.Solving.DifficultyLevel@)">
+        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.Meta.IReadOnlyGrid@,System.Boolean@,System.TimeSpan@,Sudoku.Data.Meta.IReadOnlyGrid@,Sudoku.Solving.DifficultyLevel@)">
             <summary>
             Deconstruct this instance.
             </summary>
@@ -203,7 +203,7 @@
             (<see langword="out"/> parameter) The difficulty level.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.Meta.Grid@,System.Boolean@,Sudoku.Data.Meta.Grid@,Sudoku.Solving.DifficultyLevel@,Sudoku.Solving.TechniqueInfo@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo}@)">
+        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.Meta.IReadOnlyGrid@,System.Boolean@,Sudoku.Data.Meta.IReadOnlyGrid@,Sudoku.Solving.DifficultyLevel@,Sudoku.Solving.TechniqueInfo@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo}@)">
             <summary>
             Deconstruct this instance.
             </summary>
@@ -226,7 +226,7 @@
             (<see langword="out"/> parameter) All steps.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.Meta.Grid@,System.Boolean@,System.TimeSpan@,Sudoku.Data.Meta.Grid@,Sudoku.Solving.DifficultyLevel@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo}@,System.String@)">
+        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.Meta.IReadOnlyGrid@,System.Boolean@,System.TimeSpan@,Sudoku.Data.Meta.IReadOnlyGrid@,Sudoku.Solving.DifficultyLevel@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo}@,System.String@)">
             <summary>
             Deconstruct this instance.
             </summary>
@@ -337,7 +337,7 @@
         <member name="P:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver.SolverName">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver.Solve(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver.Solve(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver.BacktrackinglySolve(System.Int32@,System.Int32[]@,System.Int32[],System.Int32)">
@@ -361,7 +361,7 @@
         <member name="P:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.SolverName">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve32(System.String,System.Text.StringBuilder,System.Int32)">
@@ -428,7 +428,7 @@
         <member name="P:Sudoku.Solving.BruteForces.DancingLinks.DancingLinksSolver.SolverName">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.DancingLinksSolver.CheckValidity(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid@)">
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.DancingLinksSolver.CheckValidity(Sudoku.Data.Meta.IReadOnlyGrid,Sudoku.Data.Meta.IReadOnlyGrid@)">
             <summary>
             Checks whether the grid has only one solution. If the grid has multiple
             solutions or no solution, this method will return <see langword="false"/>.
@@ -440,7 +440,7 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.DancingLinksSolver.Solve(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.DancingLinksSolver.Solve(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.DancingLinks.DancingLinksSolver.Solve(System.Int32[],System.Int32)">
@@ -635,7 +635,7 @@
         <member name="P:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver.SolverName">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver.Solve(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver.Solve(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Checking.BackdoorSearcher">
@@ -683,7 +683,7 @@
         <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.FindBackdoors(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.FindBackdoors(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             To find all backdoors in a sudoku grid.
             </summary>
@@ -709,7 +709,7 @@
             The distribution of all digits.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Checking.BugChecker.#ctor(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Checking.BugChecker.#ctor(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Initializes an instance with the specified grid.
             </summary>
@@ -758,7 +758,7 @@
             Provides some puzzle attributes validation operations.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid@)">
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.Meta.IReadOnlyGrid,Sudoku.Data.Meta.IReadOnlyGrid@)">
             <summary>
             To check if a puzzle has only one solution or not.
             </summary>
@@ -769,7 +769,7 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsUnique(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid@)">
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsUnique(Sudoku.Data.Meta.IReadOnlyGrid,Sudoku.Data.Meta.IReadOnlyGrid@)">
             <summary>
             To check if a puzzle has only one solution or not.
             </summary>
@@ -780,28 +780,28 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsMinimal(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsMinimal(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             To check if the puzzle is minimal or not.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsPearl(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsPearl(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             To check if the puzzle is pearl or not.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsDiamond(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsDiamond(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             To check if the puzzle is diamond or not.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.CanBeSolvedUsingOnlySsts(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.CanBeSolvedUsingOnlySsts(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             To check whether the puzzle can be solved using only simple sudoku technique set.
             </summary>
@@ -1063,11 +1063,12 @@
         </member>
         <member name="T:Sudoku.Solving.Extensions.GridEx">
             <summary>
-            Provides extension methods on <see cref="T:Sudoku.Data.Meta.Grid"/>.
+            Provides extension methods on <see cref="T:Sudoku.Data.Meta.Grid"/> and <see cref="T:Sudoku.Data.Meta.IReadOnlyGrid"/>.
             </summary>
             <seealso cref="T:Sudoku.Data.Meta.Grid"/>
+            <seealso cref="T:Sudoku.Data.Meta.IReadOnlyGrid"/>
         </member>
-        <member name="M:Sudoku.Solving.Extensions.GridEx.Deconstruct(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.GridMap@,Sudoku.Data.Meta.GridMap@,Sudoku.Data.Meta.GridMap[]@)">
+        <member name="M:Sudoku.Solving.Extensions.GridEx.Deconstruct(Sudoku.Data.Meta.IReadOnlyGrid,Sudoku.Data.Meta.GridMap@,Sudoku.Data.Meta.GridMap@,Sudoku.Data.Meta.GridMap[]@)">
             <summary>
             Deconstruct the grid.
             </summary>
@@ -1082,7 +1083,7 @@
             (<see langword="out"/> parameter) The distributions of all digits.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Extensions.GridEx.GetBivalueCellsMap(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Extensions.GridEx.GetBivalueCellsMap(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Get the grid map instance with all bivalue cells
             set <see langword="true"/>.
@@ -1090,7 +1091,7 @@
             <param name="grid">The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Extensions.GridEx.GetEmptyCellsGridMap(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Extensions.GridEx.GetEmptyCellsGridMap(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Get the grid map instance with all empty cells set
             <see langword="true"/>.
@@ -1098,7 +1099,7 @@
             <param name="grid">The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Extensions.GridEx.GetAllDigitDistributionMaps(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Extensions.GridEx.GetAllDigitDistributionMaps(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Get 9 grid maps representing all digits' distributions.
             </summary>
@@ -1220,7 +1221,7 @@
         <member name="P:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueSearcher.TakeAll(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo">
@@ -1284,10 +1285,10 @@
         <member name="P:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueSearcher.TakeAll(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueSearcher.TakeAllBySize(Sudoku.Data.Meta.Grid,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueSearcher.TakeAllBySize(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32,System.Boolean)">
             <summary>
             Searches all basic fish of the specified size.
             </summary>
@@ -1427,10 +1428,10 @@
         <member name="P:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueSearcher.TakeAll(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueSearcher.TakeAllBySize(Sudoku.Data.Meta.Grid,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueSearcher.TakeAllBySize(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32)">
             <summary>
             Take all by size.
             </summary>
@@ -1438,7 +1439,7 @@
             <param name="size">The size.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueSearcher.Process(Sudoku.Data.Meta.Grid,System.Collections.Generic.IList{Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueInfo},System.Int32,System.Int32,System.Int32,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueSearcher.Process(Sudoku.Data.Meta.IReadOnlyGrid,System.Collections.Generic.IList{Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueInfo},System.Int32,System.Int32,System.Int32,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)">
             <summary>
             Process the calculation.
             </summary>
@@ -1525,10 +1526,10 @@
         <member name="P:Sudoku.Solving.Manual.Intersections.LockedCandidatesTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.LockedCandidatesTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.LockedCandidatesTechniqueSearcher.TakeAll(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.LockedCandidatesTechniqueSearcher.BitwiseAndMasks(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.LockedCandidatesTechniqueSearcher.BitwiseAndMasks(Sudoku.Data.Meta.IReadOnlyGrid,Sudoku.Data.Meta.GridMap)">
             <summary>
             Bitwise and all masks.
             </summary>
@@ -1595,7 +1596,7 @@
         <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.TakeAll(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.RecordUndoInfo(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)">
@@ -1616,7 +1617,7 @@
             <param name="cell">The cell.</param>
             <param name="mask">The mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.IsValidGrid(Sudoku.Data.Meta.Grid,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.IsValidGrid(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32)">
             <summary>
             To check the specified cell has a same digit filled in a cell
             which is same region with the current one.
@@ -1664,7 +1665,7 @@
             The solution.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.#ctor(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.#ctor(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             A trick. Initializes an instance with the solution grid.
             This searcher will try to extract a value from the
@@ -1675,7 +1676,7 @@
         <member name="P:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.TakeAll(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.LastResorts.ChuteClueCoverTechniqueInfo">
@@ -1716,7 +1717,7 @@
         <member name="P:Sudoku.Solving.Manual.LastResorts.ChuteClueCoverTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.ChuteClueCoverTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.ChuteClueCoverTechniqueSearcher.TakeAll(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.LastResorts.LastResortTechniqueInfo">
@@ -1769,7 +1770,7 @@
         <member name="P:Sudoku.Solving.Manual.LastResorts.PatternOverlayMethodTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.PatternOverlayMethodTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.PatternOverlayMethodTechniqueSearcher.TakeAll(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo">
@@ -1830,13 +1831,13 @@
         <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.TakeAll(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
             <exception cref="T:Sudoku.Runtime.WrongHandlingException">
             Throws when the puzzle is not unique.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.GetAllTemplateSet(System.Collections.Generic.IList{Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo},Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.GridMap[])">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.GetAllTemplateSet(System.Collections.Generic.IList{Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid,Sudoku.Data.Meta.GridMap[])">
             <summary>
             Get all template sets.
             </summary>
@@ -1845,7 +1846,7 @@
             <param name="digitDistributions">All digit distributions.</param>
             <returns>All template sets.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.GetAllTemplateDelete(System.Collections.Generic.IList{Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo},Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.GridMap[])">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.GetAllTemplateDelete(System.Collections.Generic.IList{Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid,Sudoku.Data.Meta.GridMap[])">
             <summary>
             Get all template deletes.
             </summary>
@@ -1862,10 +1863,10 @@
         <member name="P:Sudoku.Solving.Manual.ManualSolver.SolverName">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Meta.Grid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap}[0:,0:],Sudoku.Data.Meta.GridMap[])">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.Meta.IReadOnlyGrid,Sudoku.Data.Meta.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap}[0:,0:],Sudoku.Data.Meta.GridMap[])">
             <summary>
             Solve the puzzle with <see cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/> option.
             </summary>
@@ -1880,7 +1881,7 @@
             Throws when the solver cannot solved due to wrong handling.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Meta.Grid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap}[0:,0:],Sudoku.Data.Meta.GridMap[])">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.Meta.IReadOnlyGrid,Sudoku.Data.Meta.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap}[0:,0:],Sudoku.Data.Meta.GridMap[])">
             <summary>
             Solve naively.
             </summary>
@@ -1895,7 +1896,7 @@
             Throws when the solver cannot solved due to wrong handling.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.CheckEliminations(Sudoku.Data.Meta.Grid,System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.CheckEliminations(Sudoku.Data.Meta.IReadOnlyGrid,System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
             <summary>
             To check the validity of all conclusions.
             </summary>
@@ -2220,7 +2221,7 @@
         <member name="P:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.TakeAll(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.IsEmptyRectangle(Sudoku.Data.Meta.GridMap,System.Int32,System.Int32@,System.Int32@)">
@@ -2301,7 +2302,7 @@
         <member name="P:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueSearcher.TakeAll(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo">
@@ -2445,7 +2446,7 @@
         <member name="P:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.TakeAll(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo">
@@ -2556,10 +2557,10 @@
         <member name="P:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.TakeAll(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.TakeAllNakedSubsetsBySize(Sudoku.Data.Meta.Grid,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.TakeAllNakedSubsetsBySize(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32)">
             <summary>
             Get all naked subsets technique information, for searching the specified size.
             </summary>
@@ -2567,7 +2568,7 @@
             <param name="size">The size.</param>
             <returns>All technique information searched.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GatherConclusion(Sudoku.Data.Meta.Grid,System.Collections.Generic.IList{Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GatherConclusion(Sudoku.Data.Meta.IReadOnlyGrid,System.Collections.Generic.IList{Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Nullable{System.Boolean})">
             <summary>
             To gather a conclusion with essential information.
             </summary>
@@ -2579,7 +2580,7 @@
             <param name="conclusions">All conclusions.</param>
             <param name="isLocked">Indicates whether the subset is locked.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetNakedSubsetConclusions(Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean}@)">
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetNakedSubsetConclusions(Sudoku.Data.Meta.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean}@)">
             <summary>
             Get conclusions after searched a subset technique.
             </summary>
@@ -2591,7 +2592,7 @@
             </param>
             <returns>All conclusions.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetNakedSubsetsHighlightedCandidateOffsets(Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetNakedSubsetsHighlightedCandidateOffsets(Sudoku.Data.Meta.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Get all candidate offsets highlight in a specified naked subset technique.
             </summary>
@@ -2600,7 +2601,7 @@
             <param name="digits">All digits.</param>
             <returns>All candidate offsets and its ID.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.TakeAllHiddenSubsetsBySize(Sudoku.Data.Meta.Grid,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.TakeAllHiddenSubsetsBySize(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32)">
             <summary>
             Get all hidden subsets technique information, for searching the specified size.
             </summary>
@@ -2608,14 +2609,14 @@
             <param name="size">The size.</param>
             <returns>All technique information searched.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetHiddenSubsetsConclusions(Sudoku.Data.Meta.Grid,System.Int32,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32}@,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}}@)">
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetHiddenSubsetsConclusions(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32}@,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}}@)">
             <summary>
             Get conclusions after a hidden subset searched.
             </summary>
             <param name="grid">The grid.</param>
             <param name="region">The region offset.</param>
             <param name="mask">
-            The mask that calculated in <see cref="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.TakeAllHiddenSubsetsBySize(Sudoku.Data.Meta.Grid,System.Int32)"/>.
+            The mask that calculated in <see cref="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.TakeAllHiddenSubsetsBySize(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32)"/>.
             </param>
             <param name="digits">All digits.</param>
             <param name="cellOffsetList">(<see langword="out"/> parameter) All cell offsets.</param>
@@ -2671,38 +2672,38 @@
         <member name="P:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.TakeAll(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.CheckX(System.Collections.Generic.IList{Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo},Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.CheckX(System.Collections.Generic.IList{Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Check x-axis symmetry.
             </summary>
             <param name="result">The result accumulator.</param>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.CheckY(System.Collections.Generic.IList{Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo},Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.CheckY(System.Collections.Generic.IList{Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Check y-axis symmetry.
             </summary>
             <param name="result">The result accumulator.</param>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.CheckDiagonal(System.Collections.Generic.IList{Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo},Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.CheckDiagonal(System.Collections.Generic.IList{Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Check diagonal symmetry.
             </summary>
             <param name="result">The result accumulator.</param>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.CheckAntiDiagonal(System.Collections.Generic.IList{Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo},Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.CheckAntiDiagonal(System.Collections.Generic.IList{Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Check anti-diagonal symmetry.
             </summary>
             <param name="result">The result accumulator.</param>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.CheckCentral(System.Collections.Generic.IList{Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo},Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.CheckCentral(System.Collections.Generic.IList{Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Check central symmetry.
             </summary>
@@ -2811,13 +2812,13 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.TakeAll(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
             <exception cref="T:Sudoku.Runtime.WrongHandlingException">
             Throws when the number of true candidates is naught.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
             <summary>
             Check type 3 (with naked subsets).
             </summary>
@@ -2826,7 +2827,7 @@
             <param name="trueCandidates">All true candidates.</param>
             <param name="size">The size.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Check type 4.
             </summary>
@@ -2834,7 +2835,7 @@
             <param name="grid">The grid.</param>
             <param name="trueCandidates">All true candidates.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.CheckMultiple(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.CheckMultiple(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Check BUG+n.
             </summary>
@@ -2842,7 +2843,7 @@
             <param name="grid">The grid.</param>
             <param name="trueCandidates">All true candidates.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Check type 2.
             </summary>
@@ -2850,7 +2851,7 @@
             <param name="grid">The grid.</param>
             <param name="trueCandidates">All true candidates.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.GetTrueCandidatesSimply(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveTechniqueSearcher.GetTrueCandidatesSimply(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             To get true candidates (but simple mode).
             </summary>
@@ -3121,10 +3122,10 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.TakeAll(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid,System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Check for type 2 (with two extra cells).
             </summary>
@@ -3135,7 +3136,7 @@
             <param name="digits">All digits.</param>
             <param name="loop">The loop.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int16,System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid,System.Int16,System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Int32)">
             <summary>
             Check type 3 (with naked subsets).
             </summary>
@@ -3147,7 +3148,7 @@
             <param name="regions">All regions.</param>
             <param name="size">The size.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckType3Hidden(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueInfo},Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckType3Hidden(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Int32)">
             <summary>
             Check type 3 (with hidden subsets).
             </summary>
@@ -3159,7 +3160,7 @@
             <param name="regions">All regions.</param>
             <param name="size">The size.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueInfo},Sudoku.Data.Meta.Grid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Check type 4.
             </summary>
@@ -3170,7 +3171,7 @@
             <param name="regions">All regions.</param>
             <param name="loop">The loop.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.IsValidLoop(Sudoku.Data.Meta.Grid,System.Collections.Generic.IList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.IsValidLoop(Sudoku.Data.Meta.IReadOnlyGrid,System.Collections.Generic.IList{System.Int32})">
             <summary>
             Check whether the loop is valid.
             </summary>
@@ -3178,7 +3179,7 @@
             <param name="loop">The loop to check.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckForLoopsRecursively(Sudoku.Data.Meta.Grid,System.Int32,System.Int32,System.Int32,System.Collections.Generic.IList{System.Int32},System.Int32,System.Int16,System.Int32,System.Collections.Generic.IList{System.Collections.Generic.List{System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckForLoopsRecursively(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32,System.Int32,System.Int32,System.Collections.Generic.IList{System.Int32},System.Int32,System.Int16,System.Int32,System.Collections.Generic.IList{System.Collections.Generic.List{System.Int32}})">
             <summary>
             Check the validity of the unique loop recursively.
             </summary>
@@ -3387,7 +3388,7 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BorescoperDeadlyPatternTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BorescoperDeadlyPatternTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BorescoperDeadlyPatternTechniqueSearcher.TakeAll(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Polygons.BorescoperDeadlyPatternTechniqueSearcher.Quads">
@@ -3902,10 +3903,10 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.TakeAll(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType15AndHidden(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Int32[][],System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType15AndHidden(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid,System.Int32[],System.Int32[][],System.Boolean)">
             <summary>
             Check basic type and generalized locked candidates type.
             </summary>
@@ -3918,7 +3919,7 @@
             is for UR, <see langword="false"/> is for AR.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckHiddenRectangle(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Span{System.Int32},System.Int32,System.Int32[],System.Int32,System.Int32[],System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckHiddenRectangle(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid,System.Int32[],System.Span{System.Int32},System.Int32,System.Int32[],System.Int32,System.Int32[],System.Boolean)">
             <summary>
             Check hidden rectangle.
             </summary>
@@ -3935,7 +3936,7 @@
             is for UR, <see langword="false"/> is for AR.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType23456(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Int32[][],System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType23456(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid,System.Int32[],System.Int32[][],System.Boolean)">
             <summary>
             Check type 2 to 6.
             </summary>
@@ -3948,7 +3949,7 @@
             is for UR, <see langword="false"/> is for AR.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Collections.Generic.IEnumerable{System.Int32},System.Int32[],System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid,System.Int32[],System.Collections.Generic.IEnumerable{System.Int32},System.Int32[],System.Int32,System.Boolean)">
             <summary>
             Check type 3 (with naked subset).
             </summary>
@@ -3963,7 +3964,7 @@
             is for UR, <see langword="false"/> is for AR.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType3Hidden(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Int32[],System.Collections.Generic.IEnumerable{System.Int32},System.Int32[],System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType3Hidden(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid,System.Int32[],System.Int32[],System.Collections.Generic.IEnumerable{System.Int32},System.Int32[],System.Int32,System.Boolean)">
             <summary>
             Check type 3 (with hidden subset).
             </summary>
@@ -3979,7 +3980,7 @@
             is for UR, <see langword="false"/> is for AR.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType6(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Int32[],System.Int32[],System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType6(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid,System.Int32[],System.Int32[],System.Int32[],System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
             Check type 6.
             </summary>
@@ -3990,7 +3991,7 @@
             <param name="extraCells">All extra cells.</param>
             <param name="digits">All digits.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Int32[],System.Int32[],System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid,System.Int32[],System.Int32[],System.Int32[],System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
             Check type 4.
             </summary>
@@ -4001,7 +4002,7 @@
             <param name="extraCells">All extra cells.</param>
             <param name="digits">All digits.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.GetOtherDigitMask(Sudoku.Data.Meta.Grid,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Int16@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UniqueRectangleTechniqueSearcher.GetOtherDigitMask(Sudoku.Data.Meta.IReadOnlyGrid,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Int16@)">
             <summary>
             Get other digit mask used in type 3 with naked subset.
             </summary>
@@ -4188,10 +4189,10 @@
         <member name="P:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.TakeAll(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.TakeAllWWings(Sudoku.Data.Meta.Grid,System.ValueTuple{Sudoku.Data.Meta.GridMap,System.Int32}@)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.TakeAllWWings(Sudoku.Data.Meta.IReadOnlyGrid,System.ValueTuple{Sudoku.Data.Meta.GridMap,System.Int32}@)">
             <summary>
             Search for all W-Wings.
             </summary>
@@ -4199,7 +4200,7 @@
             <param name="pair">(<see langword="in"/> parameter) bivalue cell information pair.</param>
             <returns>All technique information instances.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.SearchWWingByRegions(System.Collections.Generic.IList{Sudoku.Solving.Manual.Wings.Irregular.WWingTechniqueInfo},Sudoku.Data.Meta.Grid,System.Int32[],System.Int32,System.Int32,System.Int32,System.ValueTuple{System.Int32,System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32,System.Int32}@,Sudoku.Data.Meta.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.SearchWWingByRegions(System.Collections.Generic.IList{Sudoku.Solving.Manual.Wings.Irregular.WWingTechniqueInfo},Sudoku.Data.Meta.IReadOnlyGrid,System.Int32[],System.Int32,System.Int32,System.Int32,System.ValueTuple{System.Int32,System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32,System.Int32}@,Sudoku.Data.Meta.GridMap)">
             <summary>
             Searches W-Wing technique by region.
             </summary>
@@ -4329,10 +4330,10 @@
         <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.TakeAll(Sudoku.Data.Meta.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.TakeAllBySize(Sudoku.Data.Meta.Grid,System.ValueTuple{Sudoku.Data.Meta.GridMap,System.Int32}@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.TakeAllBySize(Sudoku.Data.Meta.IReadOnlyGrid,System.ValueTuple{Sudoku.Data.Meta.GridMap,System.Int32}@,System.Int32)">
             <summary>
             Take all technique steps by the specified size.
             </summary>
@@ -4348,7 +4349,7 @@
             reference can make the value passing more simple.
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.CheckWhetherBivalueCellsAreSame(Sudoku.Data.Meta.Grid,System.Int32[])">
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.CheckWhetherBivalueCellsAreSame(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32[])">
             <summary>
             Check whether the two of all bivalue cells has whole same candidates.
             </summary>
@@ -4372,7 +4373,7 @@
             (<see langword="out"/> parameter) The result grid intersection map.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.GatherConclusion(Sudoku.Data.Meta.Grid,System.Collections.Generic.IList{Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo},System.Int32,System.Int32[],System.Int16,System.Int16,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.GatherConclusion(Sudoku.Data.Meta.IReadOnlyGrid,System.Collections.Generic.IList{Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo},System.Int32,System.Int32[],System.Int16,System.Int16,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion})">
             <summary>
             Gather the conclusion.
             </summary>
@@ -4384,7 +4385,7 @@
             <param name="inter">The intersection mask.</param>
             <param name="conclusions">The conclusions.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.GetConclusions(Sudoku.Data.Meta.Grid,System.Int16,System.Int16,System.Boolean,Sudoku.Data.Meta.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.GetConclusions(Sudoku.Data.Meta.IReadOnlyGrid,System.Int16,System.Int16,System.Boolean,Sudoku.Data.Meta.GridMap)">
             <summary>
             Get all conclusions.
             </summary>
@@ -4397,7 +4398,7 @@
             <param name="map">The intersection grid map.</param>
             <returns>The conclusions.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.RecordValues(Sudoku.Data.Meta.Grid,System.Int32,System.Int32[],System.Int16@,System.Int16@,System.Int16@,System.Int16@,System.Int16@)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.RecordValues(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32,System.Int32[],System.Int16@,System.Int16@,System.Int16@,System.Int16@,System.Int16@)">
             <summary>
             Record all values.
             </summary>
@@ -4445,7 +4446,7 @@
             The name of this solver.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Solver.Solve(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Solver.Solve(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Solves the specified puzzle.
             </summary>
@@ -4454,7 +4455,7 @@
             An <see cref="T:Sudoku.Solving.AnalysisResult"/> displaying all information of solving.
             </returns>
         </member>
-        <member name="M:Sudoku.Solving.Solver.SolveAsync(Sudoku.Data.Meta.Grid,System.Boolean)">
+        <member name="M:Sudoku.Solving.Solver.SolveAsync(Sudoku.Data.Meta.IReadOnlyGrid,System.Boolean)">
             <summary>
             Solves the specified puzzle asynchronizedly.
             </summary>
@@ -4594,14 +4595,14 @@
             Indicates the priority of this technique searcher.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.TakeOne(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.TechniqueSearcher.TakeOne(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Take a step after searched all solving steps.
             </summary>
             <param name="grid">The grid to search steps.</param>
             <returns>A technique information.</returns>
         </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.Take(Sudoku.Data.Meta.Grid,System.Int32)">
+        <member name="M:Sudoku.Solving.TechniqueSearcher.Take(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32)">
             <summary>
             Take the specified number of steps.
             </summary>
@@ -4609,7 +4610,7 @@
             <param name="count">The number of steps you want to take.</param>
             <returns>The specified number of technique information instances.</returns>
         </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.TakeAll(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.TechniqueSearcher.TakeAll(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Take all technique steps after searched.
             </summary>
@@ -4900,7 +4901,7 @@
             Provides extension method used for grid calculating.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Utils.GridUtils.IsBivalueCell(Sudoku.Data.Meta.Grid,System.Int32)">
+        <member name="M:Sudoku.Solving.Utils.GridUtils.IsBivalueCell(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32)">
             <summary>
             <para>Indicates whether the specified cell is a bivalue cell.</para>
             <para>
@@ -4912,14 +4913,14 @@
             <param name="cellOffset">The cell offset.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Utils.GridUtils.CandidateExists(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Utils.GridUtils.CandidateExists(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32,System.Int32)">
             <summary>
             <para>
             Indicates whether the specified grid contains the candidate.
             </para>
             <para>
             If you want to check the reversal case, please use the method
-            <see cref="M:Sudoku.Solving.Utils.GridUtils.CandidateDoesNotExist(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)"/> instead
+            <see cref="M:Sudoku.Solving.Utils.GridUtils.CandidateDoesNotExist(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32,System.Int32)"/> instead
             of '<c>!grid.CandidateExists</c>'.
             Note that given and modifiable values always make this method
             return <see langword="false"/>.
@@ -4929,16 +4930,16 @@
             <param name="cellOffset">The cell offset.</param>
             <param name="digit">The digit.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <seealso cref="M:Sudoku.Solving.Utils.GridUtils.CandidateDoesNotExist(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)"/>
+            <seealso cref="M:Sudoku.Solving.Utils.GridUtils.CandidateDoesNotExist(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32,System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Solving.Utils.GridUtils.CandidateDoesNotExist(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Utils.GridUtils.CandidateDoesNotExist(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32,System.Int32)">
             <summary>
             <para>
             Indicates whether the specified grid <b>does not</b> contain the candidate.
             </para>
             <para>
             If you want to check the reversal case, please use the method
-            <see cref="M:Sudoku.Solving.Utils.GridUtils.CandidateExists(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)"/> instead
+            <see cref="M:Sudoku.Solving.Utils.GridUtils.CandidateExists(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32,System.Int32)"/> instead
             of '<c>!grid.CandidateDoesNotExist</c>'.
             Note that given and modifiable values always make this method
             return <see langword="false"/>.
@@ -4948,9 +4949,9 @@
             <param name="cellOffset">The cell offset.</param>
             <param name="digit">The digit.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <seealso cref="M:Sudoku.Solving.Utils.GridUtils.CandidateExists(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)"/>
+            <seealso cref="M:Sudoku.Solving.Utils.GridUtils.CandidateExists(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32,System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Solving.Utils.GridUtils.HasDigitValue(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Utils.GridUtils.HasDigitValue(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32,System.Int32)">
             <summary>
             Checks whether the specified digit has given or modifiable values in
             the specified region.
@@ -4960,7 +4961,7 @@
             <param name="regionOffset">The region.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Utils.GridUtils.GetDigitAppearingMask(Sudoku.Data.Meta.Grid,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Utils.GridUtils.GetDigitAppearingMask(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32,System.Int32)">
             <summary>
             <para>
             Gets a mask of digit appearing in the specified region offset.
@@ -4979,7 +4980,7 @@
             and 0 to make the cell 'does not have this digit'.
             </returns>
         </member>
-        <member name="M:Sudoku.Solving.Utils.GridUtils.GetDigitAppearingMask(Sudoku.Data.Meta.Grid,System.Int32,System.Int32,Sudoku.Data.Meta.GridMap)">
+        <member name="M:Sudoku.Solving.Utils.GridUtils.GetDigitAppearingMask(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32,System.Int32,Sudoku.Data.Meta.GridMap)">
             <summary>
             <para>
             Gets a mask of digit appearing in the specified region offset.
@@ -5001,7 +5002,7 @@
             and 0 to make the cell 'does not have this digit'.
             </returns>
         </member>
-        <member name="M:Sudoku.Solving.Utils.GridUtils.GetBivalueCellsMap(Sudoku.Data.Meta.Grid,System.Int32@)">
+        <member name="M:Sudoku.Solving.Utils.GridUtils.GetBivalueCellsMap(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32@)">
             <summary>
             Find all bivalue cells displaying with a <see cref="T:Sudoku.Data.Meta.GridMap"/>.
             </summary>
@@ -5012,7 +5013,7 @@
             </param>
             <returns>The grid map.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Utils.GridUtils.GetAllConjugatePairs(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Solving.Utils.GridUtils.GetAllConjugatePairs(Sudoku.Data.Meta.IReadOnlyGrid)">
             <summary>
             Find all conjugate pairs in a grid.
             </summary>

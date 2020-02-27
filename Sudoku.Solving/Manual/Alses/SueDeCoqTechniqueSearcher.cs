@@ -83,7 +83,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
+		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
 		{
 			(var emptyMap, _, _) = grid;
 			if (emptyMap.Count < 4)
@@ -216,7 +216,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 
 		private void TakeAllByInterCount(
-			IList<SueDeCoqTechniqueInfo> result, Grid grid, int blockTakenCellsCount,
+			IList<SueDeCoqTechniqueInfo> result, IReadOnlyGrid grid, int blockTakenCellsCount,
 			int count, short interMask, int[] interEmptyCells, int block, int nonblock,
 			GridMap interMap, GridMap takenInterMap, GridMap tempUnionMap,
 			IReadOnlyList<int> blockTakingList, IReadOnlyList<int> nonblockTakingList,

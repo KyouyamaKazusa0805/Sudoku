@@ -5,6 +5,5 @@
 	/// </summary>
 	public abstract class LastResortTechniqueSearcher : TechniqueSearcher
 	{
-
 	}
 }

@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Manual
 
 
 		/// <inheritdoc/>
-		public override AnalysisResult Solve(Grid grid)
+		public override AnalysisResult Solve(IReadOnlyGrid grid)
 		{
 			if (grid.IsValid(out var solution))
 			{
@@ -108,8 +108,8 @@ namespace Sudoku.Solving.Manual
 		/// Throws when the solver cannot solved due to wrong handling.
 		/// </exception>
 		private AnalysisResult SolveWithStrictDifficultyRating(
-			Grid grid, Grid cloneation, List<TechniqueInfo> steps,
-			Grid solution, Intersection[,] intersection, GridMap[] regionMaps)
+			IReadOnlyGrid grid, Grid cloneation, List<TechniqueInfo> steps,
+			IReadOnlyGrid solution, Intersection[,] intersection, GridMap[] regionMaps)
 		{
 			var searchers = new TechniqueSearcher[][]
 			{
@@ -246,8 +246,8 @@ namespace Sudoku.Solving.Manual
 		/// Throws when the solver cannot solved due to wrong handling.
 		/// </exception>
 		private AnalysisResult SolveNaively(
-			Grid grid, Grid cloneation, List<TechniqueInfo> steps,
-			Grid solution, Intersection[,] intersection, GridMap[] regionMaps)
+			IReadOnlyGrid grid, Grid cloneation, List<TechniqueInfo> steps,
+			IReadOnlyGrid solution, Intersection[,] intersection, GridMap[] regionMaps)
 		{
 			// Check symmetry first.
 			var symmetrySearcher = new GurthSymmetricalPlacementTechniqueSearcher();
@@ -389,7 +389,8 @@ namespace Sudoku.Solving.Manual
 		/// <param name="solution">The solution.</param>
 		/// <param name="conclusions">The conclusions.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
-		private static bool CheckEliminations(Grid solution, IEnumerable<Conclusion> conclusions)
+		private static bool CheckEliminations(
+			IReadOnlyGrid solution, IEnumerable<Conclusion> conclusions)
 		{
 			foreach (var conclusion in conclusions)
 			{

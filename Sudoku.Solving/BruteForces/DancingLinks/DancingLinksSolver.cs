@@ -26,7 +26,8 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 		/// If the grid is invalid, this value will be <see langword="null"/>.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public bool CheckValidity(Grid grid, [NotNullWhen(true)] out Grid? solutionIfValid)
+		public bool CheckValidity(
+			IReadOnlyGrid grid, [NotNullWhen(true)] out IReadOnlyGrid? solutionIfValid)
 		{
 			try
 			{
@@ -81,7 +82,8 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 		}
 
 		/// <inheritdoc/>
-		public override AnalysisResult Solve(Grid grid) => Solve(grid.ToArray(), int.MaxValue);
+		public override AnalysisResult Solve(IReadOnlyGrid grid) =>
+			Solve(grid.ToArray(), int.MaxValue);
 
 		/// <summary>
 		/// Solves the specified grid.

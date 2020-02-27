@@ -13,12 +13,12 @@ namespace Sudoku.Data.Meta
 	/// Encapsulates a sudoku grid.
 	/// </summary>
 	[DebuggerStepThrough]
-	public sealed class Grid : ICloneable<Grid>, IEnumerable<short>, IEquatable<Grid>, IFormattable
+	public sealed class Grid : ICloneable<Grid>, IEnumerable, IEnumerable<short>, IEquatable<Grid>, IReadOnlyGrid
 	{
 		/// <summary>
 		/// Indicates an empty grid, where all values are zero.
 		/// </summary>
-		public static readonly Grid Empty = new Grid();
+		public static readonly IReadOnlyGrid Empty = new Grid();
 
 
 		/// <summary>
@@ -105,10 +105,7 @@ namespace Sudoku.Data.Meta
 		}
 
 
-		/// <summary>
-		/// Indicates the grid has already solved. If the value is <see langword="true"/>,
-		/// the grid is solved; otherwise, <see langword="false"/>.
-		/// </summary>
+		/// <inheritdoc/>
 		public bool HasSolved
 		{
 			get
@@ -158,22 +155,7 @@ namespace Sudoku.Data.Meta
 		}
 
 
-		/// <summary>
-		/// Gets or sets a digit into a cell.
-		/// </summary>
-		/// <param name="offset">The cell offset you want to get or set.</param>
-		/// <value>
-		/// The digit you want to set. This value should be between 0 and 8.
-		/// In addition, if your input is -1, the candidate mask in this cell
-		/// will be re-computed. If your input is none of them above, this indexer
-		/// will do nothing.
-		/// </value>
-		/// <returns>
-		/// An <see cref="int"/> value indicating the result.
-		/// If the current cell does not have a digit
-		/// (i.e. The cell is <see cref="CellStatus.Empty"/>),
-		/// The value will be -1.
-		/// </returns>
+		/// <inheritdoc/>
 		public int this[int offset]
 		{
 			get
@@ -224,16 +206,7 @@ namespace Sudoku.Data.Meta
 			}
 		}
 
-		/// <summary>
-		/// Gets or sets a candidate existence case with a <see cref="bool"/> value.
-		/// </summary>
-		/// <param name="offset">The cell offset between 0 and 80.</param>
-		/// <param name="digit">The digit between 0 and 8.</param>
-		/// <value>
-		/// The case you want to set. <see langword="true"/> means that this candidate
-		/// does not exist in this current sudoku grid; otherwise, <see langword="false"/>.
-		/// </value>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		/// <inheritdoc/>
 		public bool this[int offset, int digit]
 		{
 			get => (_masks[offset] >> digit & 1) != 0;
@@ -256,9 +229,7 @@ namespace Sudoku.Data.Meta
 		}
 
 
-		/// <summary>
-		/// Indicates the event when the mask in a certain cell has changed.
-		/// </summary>
+		/// <inheritdoc/>
 		public event ValueChangedEventHandler ValueChanged;
 
 
@@ -331,14 +302,7 @@ namespace Sudoku.Data.Meta
 		public override bool Equals(object? obj) =>
 			obj is Grid comparer && Equals(comparer);
 
-		/// <summary>
-		/// Indicates whether the current object has the same value with the other one.
-		/// </summary>
-		/// <param name="other">The other value to compare.</param>
-		/// <returns>
-		/// The result of this comparison. <see langword="true"/> if two instances hold a same
-		/// value; otherwise, <see langword="false"/>.
-		/// </returns>
+		/// <inheritdoc/>
 		public bool Equals(Grid other) => GetHashCode() == other.GetHashCode();
 
 		/// <inheritdoc/>
@@ -354,13 +318,7 @@ namespace Sudoku.Data.Meta
 			return result;
 		}
 
-		/// <summary>
-		/// Serializes this instance to an array, where all digit value will be stored.
-		/// </summary>
-		/// <returns>
-		/// This array. All elements are between 0 to 9, where 0 means the
-		/// cell is <see cref="CellStatus.Empty"/> now.
-		/// </returns>
+		/// <inheritdoc/>
 		public int[] ToArray()
 		{
 			int[] result = new int[81];
@@ -374,28 +332,15 @@ namespace Sudoku.Data.Meta
 			return result;
 		}
 
-		/// <summary>
-		/// Get a mask of the specified cell.
-		/// </summary>
-		/// <param name="offset">The cell offset you want to get.</param>
-		/// <returns>The mask.</returns>
+		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public short GetMask(int offset) => _masks[offset];
 
-		/// <summary>
-		/// Get the candidate mask part of the specified cell.
-		/// </summary>
-		/// <param name="offset">The cell offset you want to get.</param>
-		/// <returns>The candidate mask.</returns>
+		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public short GetCandidates(int offset) => (short)(_masks[offset] & 511);
 
-		/// <summary>
-		/// Get the candidate mask after reversed all bits mask part
-		/// of the specified cell.
-		/// </summary>
-		/// <param name="offset">The cell offset you want to get.</param>
-		/// <returns>The candidate mask.</returns>
+		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public short GetCandidatesReversal(int offset) => (short)(~_masks[offset] & 511);
 
@@ -712,11 +657,7 @@ namespace Sudoku.Data.Meta
 			}
 		}
 
-		/// <summary>
-		/// Get a cell status of the specified cell.
-		/// </summary>
-		/// <param name="offset">The cell offset you want to get.</param>
-		/// <returns>The cell status.</returns>
+		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public CellStatus GetCellStatus(int offset) =>
 			(CellStatus)(_masks[offset] >> 9 & (int)CellStatus.All);

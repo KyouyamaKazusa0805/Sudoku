@@ -25,7 +25,7 @@ namespace Sudoku.Solving
 		/// <param name="solvingList">All steps produced in solving.</param>
 		/// <param name="additional">The additional message.</param>
 		public AnalysisResult(
-			Grid puzzle, string solverName, bool hasSolved, Grid? solution,
+			IReadOnlyGrid puzzle, string solverName, bool hasSolved, IReadOnlyGrid? solution,
 			TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? solvingList, string? additional) =>
 			(Puzzle, SolverName, HasSolved, Solution, SolvingSteps, ElapsedTime, Additional) = (puzzle, solverName, hasSolved, solution, solvingList, elapsedTime, additional);
 
@@ -184,13 +184,13 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Indicates the initial puzzle.
 		/// </summary>
-		public Grid Puzzle { get; }
+		public IReadOnlyGrid Puzzle { get; }
 
 		/// <summary>
 		/// Indicates the solution grid. If and only if the puzzle
 		/// is not solved, this value will be <see langword="null"/>.
 		/// </summary>
-		public Grid? Solution { get; }
+		public IReadOnlyGrid? Solution { get; }
 
 		/// <summary>
 		/// Indicates the bottle neck during the whole grid solving.
@@ -295,8 +295,8 @@ namespace Sudoku.Solving
 		/// (<see langword="out"/> parameter) The difficulty level.
 		/// </param>
 		public void Deconstruct(
-			out Grid puzzle, out bool hasSolved, out TimeSpan elapsedTime,
-			out Grid? solution, out DifficultyLevel difficultyLevel) =>
+			out IReadOnlyGrid puzzle, out bool hasSolved, out TimeSpan elapsedTime,
+			out IReadOnlyGrid? solution, out DifficultyLevel difficultyLevel) =>
 			(puzzle, hasSolved, elapsedTime, solution, difficultyLevel) = (Puzzle, HasSolved, ElapsedTime, Solution, DifficultyLevel);
 
 		/// <summary>
@@ -321,7 +321,7 @@ namespace Sudoku.Solving
 		/// (<see langword="out"/> parameter) All steps.
 		/// </param>
 		public void Deconstruct(
-			out Grid puzzle, out bool hasSolved, out Grid? solution,
+			out IReadOnlyGrid puzzle, out bool hasSolved, out IReadOnlyGrid? solution,
 			out DifficultyLevel difficultyLevel, out TechniqueInfo? bottleneck,
 			out IReadOnlyList<TechniqueInfo>? solvingSteps) =>
 			(puzzle, hasSolved, solution, difficultyLevel, bottleneck, solvingSteps) = (Puzzle, HasSolved, Solution, DifficultyLevel, Bottleneck, SolvingSteps);
@@ -354,8 +354,8 @@ namespace Sudoku.Solving
 		/// (<see langword="out"/> parameter) The additional message.
 		/// </param>
 		public void Deconstruct(
-			out Grid puzzle, out bool hasSolved, out TimeSpan elapsedTime,
-			out Grid? solution, out DifficultyLevel difficultyLevel,
+			out IReadOnlyGrid puzzle, out bool hasSolved, out TimeSpan elapsedTime,
+			out IReadOnlyGrid? solution, out DifficultyLevel difficultyLevel,
 			out int solvingStepsCount, out IReadOnlyList<TechniqueInfo>? solvingSteps,
 			out string? additionalMessage) =>
 			(puzzle, hasSolved, elapsedTime, solution, difficultyLevel, solvingStepsCount, solvingSteps, additionalMessage) = (Puzzle, HasSolved, ElapsedTime, Solution, DifficultyLevel, SolvingStepsCount, SolvingSteps, Additional);

@@ -90,7 +90,7 @@ namespace Sudoku.Solving.Checking
 		/// To find all backdoors in a sudoku grid.
 		/// </summary>
 		/// <param name="grid">A sudoku grid to search backdoors.</param>
-		private void FindBackdoors(Grid grid)
+		private void FindBackdoors(IReadOnlyGrid grid)
 		{
 			if (!grid.IsUnique(out var solution))
 			{

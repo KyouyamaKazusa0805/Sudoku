@@ -12,7 +12,7 @@ namespace Sudoku.Generating
 		/// Generates a puzzle.
 		/// </summary>
 		/// <returns>The puzzle.</returns>
-		public abstract Grid Generate();
+		public abstract IReadOnlyGrid Generate();
 
 		/// <summary>
 		/// Generate a puzzle asynchronizedly.
@@ -22,7 +22,7 @@ namespace Sudoku.Generating
 		/// the original context captured; otherwise, <see langword="false"/>.
 		/// </param>
 		/// <returns>The task of generating puzzle.</returns>
-		public virtual async Task<Grid> GenerateAsync(bool continueOnCapturedContext = false)
+		public virtual async Task<IReadOnlyGrid> GenerateAsync(bool continueOnCapturedContext = false)
 		{
 			return continueOnCapturedContext
 				? await Task.Run(Generate)

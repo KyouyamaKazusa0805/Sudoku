@@ -55,7 +55,7 @@ namespace Sudoku.Data.Meta
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The result grid.</returns>
-		public static Grid MirrorLeftRight(this Grid @this)
+		public static Grid MirrorLeftRight(this IReadOnlyGrid @this)
 		{
 			var result = @this.Clone();
 			for (int i = 0; i < 4; i++)
@@ -76,7 +76,7 @@ namespace Sudoku.Data.Meta
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The result grid.</returns>
-		public static Grid MirrorTopBottom(this Grid @this)
+		public static Grid MirrorTopBottom(this IReadOnlyGrid @this)
 		{
 			var result = @this.Clone();
 			for (int i = 0; i < 9; i++)
@@ -97,7 +97,7 @@ namespace Sudoku.Data.Meta
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The result grid.</returns>
-		public static Grid MirrorDiagonal(this Grid @this)
+		public static Grid MirrorDiagonal(this IReadOnlyGrid @this)
 		{
 			var result = @this.Clone();
 			for (int i = 1; i < 9; i++)
@@ -118,7 +118,7 @@ namespace Sudoku.Data.Meta
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The result grid.</returns>
-		public static Grid MirrorAntidiagonal(this Grid @this)
+		public static Grid MirrorAntidiagonal(this IReadOnlyGrid @this)
 		{
 			var result = @this.Clone();
 			for (int i = 0; i < 9; i++)
@@ -139,7 +139,7 @@ namespace Sudoku.Data.Meta
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The result.</returns>
-		public static Grid RotateClockwise(this Grid @this)
+		public static Grid RotateClockwise(this IReadOnlyGrid @this)
 		{
 			var result = @this.Clone();
 			for (int i = 0; i < 81; i++)
@@ -157,7 +157,7 @@ namespace Sudoku.Data.Meta
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The result.</returns>
-		public static Grid RotateCounterClockwise(this Grid @this)
+		public static Grid RotateCounterClockwise(this IReadOnlyGrid @this)
 		{
 			var result = @this.Clone();
 			for (int i = 0; i < 81; i++)
@@ -175,7 +175,7 @@ namespace Sudoku.Data.Meta
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The result.</returns>
-		public static Grid RotatePi(this Grid @this)
+		public static Grid RotatePi(this IReadOnlyGrid @this)
 		{
 			var result = @this.Clone();
 			for (int i = 0; i < 81; i++)
@@ -199,7 +199,7 @@ namespace Sudoku.Data.Meta
 		/// Throws when two specified region argument is not in valid range (0..27)
 		/// or two regions are not in same region type.
 		/// </exception>
-		public static Grid SwapTwoRegions(this Grid @this, int region1, int region2)
+		public static Grid SwapTwoRegions(this IReadOnlyGrid @this, int region1, int region2)
 		{
 			if (region1 < 0 || region1 >= 18)
 			{

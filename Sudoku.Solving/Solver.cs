@@ -21,7 +21,7 @@ namespace Sudoku.Solving
 		/// <returns>
 		/// An <see cref="AnalysisResult"/> displaying all information of solving.
 		/// </returns>
-		public abstract AnalysisResult Solve(Grid grid);
+		public abstract AnalysisResult Solve(IReadOnlyGrid grid);
 
 		/// <summary>
 		/// Solves the specified puzzle asynchronizedly.
@@ -32,7 +32,8 @@ namespace Sudoku.Solving
 		/// the original context captured; otherwise, <see langword="false"/>.
 		/// </param>
 		/// <returns>The solving task.</returns>
-		public virtual async Task<AnalysisResult> SolveAsync(Grid grid, bool continueOnCapturedContext) =>
+		public virtual async Task<AnalysisResult> SolveAsync(
+			IReadOnlyGrid grid, bool continueOnCapturedContext) =>
 			await Task.Run(() => Solve(grid)).ConfigureAwait(continueOnCapturedContext);
 	}
 }

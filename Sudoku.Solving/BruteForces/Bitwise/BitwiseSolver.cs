@@ -17,7 +17,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 
 		
 		/// <inheritdoc/>
-		public override AnalysisResult Solve(Grid grid)
+		public override AnalysisResult Solve(IReadOnlyGrid grid)
 		{
 			var str = grid.ToString(".");
 			var sb = new StringBuilder(81);

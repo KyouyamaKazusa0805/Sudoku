@@ -6,9 +6,10 @@ using Sudoku.Solving.Utils;
 namespace Sudoku.Solving.Extensions
 {
 	/// <summary>
-	/// Provides extension methods on <see cref="Grid"/>.
+	/// Provides extension methods on <see cref="Grid"/> and <see cref="IReadOnlyGrid"/>.
 	/// </summary>
 	/// <seealso cref="Grid"/>
+	/// <seealso cref="IReadOnlyGrid"/>
 	[DebuggerStepThrough]
 	public static class GridEx
 	{
@@ -26,7 +27,7 @@ namespace Sudoku.Solving.Extensions
 		/// (<see langword="out"/> parameter) The distributions of all digits.
 		/// </param>
 		public static void Deconstruct(
-			this Grid @this, out GridMap emptyCells,
+			this IReadOnlyGrid @this, out GridMap emptyCells,
 			out GridMap bivalueCells, out GridMap[] digitsDistributions)
 		{
 			emptyCells = GetEmptyCellsGridMap(@this);
@@ -40,7 +41,7 @@ namespace Sudoku.Solving.Extensions
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <returns>The result.</returns>
-		private static GridMap GetBivalueCellsMap(Grid grid)
+		private static GridMap GetBivalueCellsMap(IReadOnlyGrid grid)
 		{
 			var result = GridMap.Empty;
 			for (int cell = 0; cell < 81; cell++)
@@ -61,7 +62,7 @@ namespace Sudoku.Solving.Extensions
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <returns>The result.</returns>
-		private static GridMap GetEmptyCellsGridMap(Grid grid)
+		private static GridMap GetEmptyCellsGridMap(IReadOnlyGrid grid)
 		{
 			var result = GridMap.Empty;
 			for (int cell = 0; cell < 81; cell++)
@@ -81,7 +82,7 @@ namespace Sudoku.Solving.Extensions
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <returns>All grid maps.</returns>
-		private static GridMap[] GetAllDigitDistributionMaps(Grid grid)
+		private static GridMap[] GetAllDigitDistributionMaps(IReadOnlyGrid grid)
 		{
 			var result = new GridMap[9];
 			for (int i = 0; i < 9; i++)

@@ -19,13 +19,13 @@ namespace Sudoku.Solving.Manual.Subsets
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyList<TechniqueInfo> TakeAll(Grid grid)
+		public override IReadOnlyList<TechniqueInfo> TakeAll(IReadOnlyGrid grid)
 		{
 			var result = new List<TechniqueInfo>();
 
 			for (int size = 2; size <= 4; size++)
 			{
-				foreach (var func in new Func<Grid, int, IReadOnlyList<SubsetTechniqueInfo>>[]
+				foreach (var func in new Func<IReadOnlyGrid, int, IReadOnlyList<SubsetTechniqueInfo>>[]
 				{
 					TakeAllNakedSubsetsBySize,
 					TakeAllHiddenSubsetsBySize
@@ -39,7 +39,6 @@ namespace Sudoku.Solving.Manual.Subsets
 		}
 
 
-		#region Naked Subsets utils
 		/// <summary>
 		/// Get all naked subsets technique information, for searching the specified size.
 		/// </summary>
@@ -47,10 +46,8 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// <param name="size">The size.</param>
 		/// <returns>All technique information searched.</returns>
 		private static IReadOnlyList<SubsetTechniqueInfo> TakeAllNakedSubsetsBySize(
-			Grid grid, int size)
+			IReadOnlyGrid grid, int size)
 		{
-			Contract.Requires(size >= 2 && size <= 4);
-
 			var result = new List<NakedSubsetTechniqueInfo>();
 
 			// Iterates on each region.
@@ -196,7 +193,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// <param name="conclusions">All conclusions.</param>
 		/// <param name="isLocked">Indicates whether the subset is locked.</param>
 		private static void GatherConclusion(
-			Grid grid, IList<NakedSubsetTechniqueInfo> result, int region,
+			IReadOnlyGrid grid, IList<NakedSubsetTechniqueInfo> result, int region,
 			IReadOnlyList<int> digits, IReadOnlyList<int> offsets,
 			IReadOnlyList<Conclusion> conclusions, bool? isLocked)
 		{
@@ -229,7 +226,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// </param>
 		/// <returns>All conclusions.</returns>
 		private static IReadOnlyList<Conclusion> GetNakedSubsetConclusions(
-			Grid grid, IReadOnlyList<int> offsets,
+			IReadOnlyGrid grid, IReadOnlyList<int> offsets,
 			IReadOnlyList<int> digits, out bool? isLocked)
 		{
 			var result = new List<Conclusion>();
@@ -294,7 +291,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// <param name="digits">All digits.</param>
 		/// <returns>All candidate offsets and its ID.</returns>
 		private static IReadOnlyList<(int, int)> GetNakedSubsetsHighlightedCandidateOffsets(
-			Grid grid, IReadOnlyList<int> offsets, IReadOnlyList<int> digits)
+			IReadOnlyGrid grid, IReadOnlyList<int> offsets, IReadOnlyList<int> digits)
 		{
 			var result = new List<(int, int)>();
 			foreach (int offset in offsets)
@@ -312,9 +309,7 @@ namespace Sudoku.Solving.Manual.Subsets
 
 			return result;
 		}
-		#endregion
 
-		#region Hidden Subsets utils
 		/// <summary>
 		/// Get all hidden subsets technique information, for searching the specified size.
 		/// </summary>
@@ -322,7 +317,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// <param name="size">The size.</param>
 		/// <returns>All technique information searched.</returns>
 		private static IReadOnlyList<SubsetTechniqueInfo> TakeAllHiddenSubsetsBySize(
-			Grid grid, int size)
+			IReadOnlyGrid grid, int size)
 		{
 			var result = new List<HiddenSubsetTechniqueInfo>();
 
@@ -491,7 +486,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// <param name="grid">The grid.</param>
 		/// <param name="region">The region offset.</param>
 		/// <param name="mask">
-		/// The mask that calculated in <see cref="TakeAllHiddenSubsetsBySize(Grid, int)"/>.
+		/// The mask that calculated in <see cref="TakeAllHiddenSubsetsBySize(IReadOnlyGrid, int)"/>.
 		/// </param>
 		/// <param name="digits">All digits.</param>
 		/// <param name="cellOffsetList">(<see langword="out"/> parameter) All cell offsets.</param>
@@ -500,7 +495,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// </param>
 		/// <returns>All conclusions.</returns>
 		private static IReadOnlyList<Conclusion> GetHiddenSubsetsConclusions(
-			Grid grid, int region, short mask, IReadOnlyList<int> digits,
+			IReadOnlyGrid grid, int region, short mask, IReadOnlyList<int> digits,
 			out IReadOnlyList<int> cellOffsetList,
 			out IReadOnlyList<(int, int)> highlightedCandidates)
 		{
@@ -542,6 +537,5 @@ namespace Sudoku.Solving.Manual.Subsets
 			(cellOffsetList, highlightedCandidates) = (tempCellList, tempCandList);
 			return result;
 		}
-		#endregion
 	}
 }
