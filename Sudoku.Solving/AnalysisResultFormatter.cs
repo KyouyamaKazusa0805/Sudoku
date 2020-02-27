@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using Sudoku.Solving.Manual.Singles;
 
 namespace Sudoku.Solving
@@ -37,6 +38,14 @@ namespace Sudoku.Solving
 		public string ToString(string format) => ToString(format, null);
 
 		/// <inheritdoc/>
+		/// <exception cref="ArgumentNullException">
+		/// Throws when the specified format is <see langword="null"/> and the format provider
+		/// cannot work.
+		/// </exception>
+		/// <exception cref="FormatException">
+		/// Throws when the specified format contains other invalid characters
+		/// and the format provider cannot work.
+		/// </exception>
 		public string ToString(string? format, IFormatProvider? formatProvider)
 		{
 			if (formatProvider?.GetFormat(GetType()) is ICustomFormatter customFormatter)
@@ -44,13 +53,22 @@ namespace Sudoku.Solving
 				return customFormatter.Format(format, this, formatProvider);
 			}
 
-			string? formatLower = format?.ToLower();
-			bool showSeparator = formatLower?.Contains('-') ?? false;
-			bool showStepNum = formatLower?.Contains('#') ?? false;
-			bool showSimple = formatLower?.Contains('@') ?? false;
-			bool showBottleneck = formatLower?.Contains('%') ?? false;
-			bool showDifficulty = formatLower?.Contains('!') ?? false;
-			bool showStepsAfterBottleneck = formatLower?.Contains('.') ?? false;
+			if (format is null)
+			{
+				throw new ArgumentNullException(nameof(format));
+			}
+			if (Regex.IsMatch(format, @"[^\-\.#@%!]"))
+			{
+				throw new FormatException("The specified format is invalid due to with invalid characters.");
+			}
+
+			string formatLower = format.ToLower();
+			bool showSeparator = formatLower.Contains('-');
+			bool showStepNum = formatLower.Contains('#');
+			bool showSimple = formatLower.Contains('@');
+			bool showBottleneck = formatLower.Contains('%');
+			bool showDifficulty = formatLower.Contains('!');
+			bool showStepsAfterBottleneck = formatLower.Contains('.');
 
 			var (solverName, hasSolved) = Result;
 			var (total, max, pearl, diamond) = Result;
@@ -163,7 +181,7 @@ namespace Sudoku.Solving
 		/// <seealso cref="AnalysisResult.SolvingSteps"/>
 		private IEnumerable<IGrouping<string, TechniqueInfo>>? GetSolvingStepsGrouped()
 		{
-			var (_, _, _, _, _, solvingSteps) = Result;
+			var (_, _, solvingSteps) = Result;
 			return solvingSteps is null
 				? null
 				: from solvingStep in solvingSteps
