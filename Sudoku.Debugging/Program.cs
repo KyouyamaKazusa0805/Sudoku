@@ -18,9 +18,10 @@ namespace Sudoku.Debugging
 			// Manual solver tester.
 			var solver = new ManualSolver
 			{
+				CheckAlmostLockedQuadruple = true,
 				AnalyzeDifficultyStrictly = true
 			};
-			var grid = Grid.Parse("5.7....1....56..87..427...........6.......8.5....5..42.32.9.4..1..3..........265.");
+			var grid = Grid.Parse("00+90+74380+30+816+90020000809+1003600709080000000109080+642+30030400009000380000857000+30:234 541 544 545 752 753 554 556 557 558 577 579 679 689 195 699");
 			var analysisResult = solver.Solve(grid);
 			Console.WriteLine($"{analysisResult:-#!.}");
 		}

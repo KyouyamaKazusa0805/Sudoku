@@ -37,6 +37,17 @@
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether the solver should check the technique Almost
+		/// Locked Quadruple (ALQ).
+		/// </para>
+		/// <para>
+		/// The value is <see langword="false"/> in default case.
+		/// </para>
+		/// </summary>
+		public bool CheckAlmostLockedQuadruple { get; set; } = false;
+
+		/// <summary>
+		/// <para>
 		/// Indicates whether the solver should check Gurth's symmetrical placement
 		/// at the initial grid.
 		/// </para>

@@ -15,6 +15,11 @@ namespace Sudoku.Solving.Manual.Intersections
 	public sealed class AlmostLockedCandidatesTechniqueSearcher : IntersectionTechniqueSearcher
 	{
 		/// <summary>
+		/// Indicates the searcher will check almost locked quadruple (ALQ).
+		/// </summary>
+		private readonly bool _checkAlq;
+
+		/// <summary>
 		/// All intersection series.
 		/// </summary>
 		private readonly Intersection[,] _intersection;
@@ -24,8 +29,12 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// Initializes an instance with the intersection table.
 		/// </summary>
 		/// <param name="intersection">The intersection table.</param>
-		public AlmostLockedCandidatesTechniqueSearcher(Intersection[,] intersection) =>
-			_intersection = intersection;
+		/// <param name="checkAlq">
+		/// Indicates whether the searcher should check almost locked quadruple.
+		/// </param>
+		public AlmostLockedCandidatesTechniqueSearcher(
+			Intersection[,] intersection, bool checkAlq) =>
+			(_intersection, _checkAlq) = (intersection, checkAlq);
 
 
 		/// <inheritdoc/>
@@ -37,7 +46,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		{
 			var result = new List<AlmostLockedCandidatesTechniqueInfo>();
 
-			for (int size = 2; size <= 3; size++)
+			for (int size = 2; size <= (_checkAlq ? 4 : 3); size++)
 			{
 				result.AddRange(TakeAllBySize(grid, size));
 			}
@@ -46,7 +55,6 @@ namespace Sudoku.Solving.Manual.Intersections
 		}
 
 
-		#region Almost locked candidate utils
 		/// <summary>
 		/// Take all by size.
 		/// </summary>
@@ -176,8 +184,7 @@ namespace Sudoku.Solving.Manual.Intersections
 						}
 					}
 
-					short ahsElimMask = (short)(~(grid.GetMask(ahsCell) | mask1) & 511);
-					for (int digit = 0, temp = ahsElimMask; digit < 9; digit++, temp >>= 1)
+					for (int digit = 0, temp = (short)(511 & (short)~mask1); digit < 9; digit++, temp >>= 1)
 					{
 						if ((temp & 1) != 0 && grid.CandidateExists(ahsCell, digit))
 						{
@@ -191,13 +198,17 @@ namespace Sudoku.Solving.Manual.Intersections
 						continue;
 					}
 
+					int[] cells = new[] { c1, ahsCell };
+					var valueCells = from cell in cells
+									 where grid.GetCellStatus(cell) != CellStatus.Empty
+									 select (0, cell);
 					result.Add(
 						new AlmostLockedCandidatesTechniqueInfo(
 							conclusions,
 							views: new[]
 							{
 								new View(
-									cellOffsets: null,
+									cellOffsets: valueCells.Any() ? valueCells.ToList() : null,
 									candidateOffsets,
 									regionOffsets: new[] { (0, baseSet), (1, coverSet) },
 									linkMasks: null)
@@ -205,9 +216,7 @@ namespace Sudoku.Solving.Manual.Intersections
 							digits: digits.ToArray(),
 							baseCells: new[] { c1 },
 							targetCells: new[] { ahsCell },
-							hasValueCell:
-								new[] { c1, ahsCell }.Any(
-									c => grid.GetCellStatus(c) != CellStatus.Empty)));
+							hasValueCell: valueCells.Any()));
 				}
 				else // size > 2
 				{
@@ -300,8 +309,7 @@ namespace Sudoku.Solving.Manual.Intersections
 								}
 							}
 
-							short ahsElimMask = (short)(~((short)(grid.GetMask(ahsCell1) | mask1) | mask2) & 511);
-							for (int digit = 0, temp = ahsElimMask; digit < 9; digit++, temp >>= 1)
+							for (int digit = 0, temp = (short)(511 & (short)~m); digit < 9; digit++, temp >>= 1)
 							{
 								if ((temp & 1) != 0)
 								{
@@ -325,13 +333,17 @@ namespace Sudoku.Solving.Manual.Intersections
 								continue;
 							}
 
+							int[] cells = new[] { c1, c2, ahsCell1, ahsCell2 };
+							var valueCells = from cell in cells
+											 where grid.GetCellStatus(cell) != CellStatus.Empty
+											 select (0, cell);
 							result.Add(
 								new AlmostLockedCandidatesTechniqueInfo(
 									conclusions,
 									views: new[]
 									{
 										new View(
-											cellOffsets: null,
+											cellOffsets: valueCells.Any() ? valueCells.ToList() : null,
 											candidateOffsets,
 											regionOffsets: new[] { (0, baseSet), (1, coverSet) },
 											linkMasks: null)
@@ -339,9 +351,7 @@ namespace Sudoku.Solving.Manual.Intersections
 									digits: digits.ToArray(),
 									baseCells: new[] { c1, c2 },
 									targetCells: new[] { ahsCell1, ahsCell2 },
-									hasValueCell:
-										new[] { c1, c2, ahsCell1, ahsCell2 }.Any(
-											c => grid.GetCellStatus(c) != CellStatus.Empty)));
+									hasValueCell: valueCells.Any()));
 						}
 						else // size == 4
 						{
@@ -443,8 +453,7 @@ namespace Sudoku.Solving.Manual.Intersections
 									}
 								}
 
-								short ahsElimMask = (short)(~((short)(grid.GetMask(ahsCell1) | mask1) | mask2) & 511);
-								for (int digit = 0, temp = ahsElimMask; digit < 9; digit++, temp >>= 1)
+								for (int digit = 0, temp = (short)(511 & (short)~m); digit < 9; digit++, temp >>= 1)
 								{
 									if ((temp & 1) != 0)
 									{
@@ -474,29 +483,30 @@ namespace Sudoku.Solving.Manual.Intersections
 									continue;
 								}
 
+								int[] cells = new[] { c1, c2, c3, ahsCell1, ahsCell2, ahsCell3 };
+								var valueCells = from cell in cells
+												 where grid.GetCellStatus(cell) != CellStatus.Empty
+												 select (0, cell);
 								result.Add(
 									new AlmostLockedCandidatesTechniqueInfo(
 										conclusions,
 										views: new[]
 										{
-												new View(
-													cellOffsets: null,
-													candidateOffsets,
-													regionOffsets: new[] { (0, baseSet), (1, coverSet) },
-													linkMasks: null)
+											new View(
+												cellOffsets: valueCells.Any() ? valueCells.ToList() : null,
+												candidateOffsets,
+												regionOffsets: new[] { (0, baseSet), (1, coverSet) },
+												linkMasks: null)
 										},
 										digits: digits.ToArray(),
 										baseCells: new[] { c1, c2, c3 },
 										targetCells: new[] { ahsCell1, ahsCell2, ahsCell3 },
-										hasValueCell:
-											new[] { c1, c2, c3, ahsCell1, ahsCell2, ahsCell3 }.Any(
-												c => grid.GetCellStatus(c) != CellStatus.Empty)));
+										hasValueCell: valueCells.Any()));
 							}
 						}
 					}
 				}
 			}
 		}
-		#endregion
 	}
 }

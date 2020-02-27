@@ -1405,16 +1405,24 @@
             Encapsulates an almost locked candidates (ALC) technique searcher.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueSearcher._checkAlq">
+            <summary>
+            Indicates the searcher will check almost locked quadruple (ALQ).
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueSearcher._intersection">
             <summary>
             All intersection series.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueSearcher.#ctor(System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap}[0:,0:])">
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueSearcher.#ctor(System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap}[0:,0:],System.Boolean)">
             <summary>
             Initializes an instance with the intersection table.
             </summary>
             <param name="intersection">The intersection table.</param>
+            <param name="checkAlq">
+            Indicates whether the searcher should check almost locked quadruple.
+            </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueSearcher.Priority">
             <inheritdoc/>
@@ -1926,6 +1934,17 @@
             Indicates the number of nodes to be searched for in bowman bingos.
             </para>
             <para>The value is <c>10</c> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckAlmostLockedQuadruple">
+            <summary>
+            <para>
+            Indicates whether the solver should check the technique Almost
+            Locked Quadruple (ALQ).
+            </para>
+            <para>
+            The value is <see langword="false"/> in default case.
+            </para>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckGurthSymmetricalPlacement">
