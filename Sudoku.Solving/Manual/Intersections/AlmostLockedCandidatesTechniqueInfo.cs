@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Externals;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -57,13 +57,17 @@ namespace Sudoku.Solving.Manual.Intersections
 		{
 			get
 			{
-				return Digits.Count switch
+				int size = Digits.Count;
+				return size switch
 				{
 					2 => 4.5m,
 					3 => 5.2m,
-					4 => 5.5m, // Reserved.
-					_ => throw new NotSupportedException($"The specified Size is out of valid range.")
-				} + (HasValueCell ? .1m : 0);
+					4 => 5.7m,
+					_ => throw Throwing.ImpossibleCase
+				} + (
+					HasValueCell
+						? size switch { 2 => .1m, 3 => .1m, 4 => .2m, _ => throw Throwing.ImpossibleCase }
+						: 0);
 			}
 		}
 
