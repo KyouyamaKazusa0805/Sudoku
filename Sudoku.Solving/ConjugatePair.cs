@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Sudoku.Data.Meta;
 using Sudoku.Solving.Utils;
 
@@ -30,7 +31,7 @@ namespace Sudoku.Solving
 		public ConjugatePair(int from, int to, int digit)
 		{
 			(Digit, From, To) = (digit, from, to);
-			_map = new GridMap { [from] = true, [to] = true };
+			_map = new GridMap((IEnumerable<int>)new[] { from, to });
 		}
 
 
@@ -38,7 +39,7 @@ namespace Sudoku.Solving
 		/// Indicates the 'from' cell.
 		/// </summary>
 		public int From { get; }
-		
+
 		/// <summary>
 		/// Indicates the 'to' cell.
 		/// </summary>
@@ -49,7 +50,7 @@ namespace Sudoku.Solving
 		/// </summary>
 		public int Digit { get; }
 
-		
+
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) =>
 			obj is ConjugatePair comparer && Equals(comparer);
@@ -68,7 +69,9 @@ namespace Sudoku.Solving
 		public override string ToString()
 		{
 			int v = Digit + 1;
-			return $"{CellUtils.ToString(From)}({v}) == {CellUtils.ToString(To)}({v})";
+			string fromCell = CellUtils.ToString(From);
+			string toCell = CellUtils.ToString(To);
+			return $"{fromCell}=={toCell}({v})";
 		}
 
 
