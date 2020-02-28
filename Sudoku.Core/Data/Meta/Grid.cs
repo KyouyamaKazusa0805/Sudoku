@@ -117,43 +117,9 @@ namespace Sudoku.Data.Meta
 						return false;
 					}
 				}
-
-				bool SimplyValidate()
-				{
-					int count = 0;
-					for (int i = 0; i < 81; i++)
-					{
-						if (GetCellStatus(i) == CellStatus.Given)
-						{
-							count++;
-						}
-
-						int curDigit, peerDigit;
-						if (GetCellStatus(i) != CellStatus.Empty)
-						{
-							curDigit = this[i];
-							foreach (int peerOffset in new GridMap(i).Offsets)
-							{
-								if (peerOffset == i)
-								{
-									continue;
-								}
-
-								if ((peerDigit = this[peerOffset]) != -1 && curDigit == peerDigit)
-								{
-									return false;
-								}
-							}
-						}
-					}
-
-					// Each unique puzzle has at least 17 hints.
-					return count >= 17;
-				}
 				return SimplyValidate();
 			}
 		}
-
 
 		/// <inheritdoc/>
 		public int this[int offset]
@@ -180,6 +146,7 @@ namespace Sudoku.Data.Meta
 					return -1;
 				}
 			}
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
 				if (value >= 0 && value < 9)
@@ -209,7 +176,9 @@ namespace Sudoku.Data.Meta
 		/// <inheritdoc/>
 		public bool this[int offset, int digit]
 		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (_masks[offset] >> digit & 1) != 0;
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
 				ref short result = ref _masks[offset];
@@ -268,6 +237,7 @@ namespace Sudoku.Data.Meta
 		/// <summary>
 		/// To reset the grid.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Reset() => Array.Copy(_initialMasks, _masks, 81);
 
 		/// <summary>
@@ -305,7 +275,18 @@ namespace Sudoku.Data.Meta
 			obj is Grid comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(Grid other) => GetHashCode() == other.GetHashCode();
+		public bool Equals(Grid other)
+		{
+			for (int i = 0; i < 81; i++)
+			{
+				if (_masks[i] != other._masks[i])
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
 
 		/// <inheritdoc/>
 		public override int GetHashCode()
@@ -366,69 +347,7 @@ namespace Sudoku.Data.Meta
 			}
 
 			// Format checking.
-			if (!(format is null))
-			{
-				if (format.Contains('@'))
-				{
-					if (!format.StartsWith('@'))
-					{
-						throw Throwing.FormatErrorWithMessage(
-							"Multi-line identifier '@' must be at the first place.",
-							nameof(format));
-					}
-					else if ((format.Contains('0') || format.Contains('.')) && format.Contains(':'))
-					{
-						throw Throwing.FormatErrorWithMessage(
-							"In multi-line environment, '0' and '.' cannot appear with ':' together.",
-							nameof(format));
-					}
-					else if (format.IsMatch(@"\@[^0\!\*\.\:]+"))
-					{
-						throw Throwing.FormatErrorWithMessage(
-							"Multi-line identifier '@' must follow only character '!', '*', '0', '.' or ':'.",
-							nameof(format));
-					}
-				}
-				else
-				{
-					if (format.Contains('#'))
-					{
-						if (!format.StartsWith('#'))
-						{
-							throw Throwing.FormatErrorWithMessage(
-								"Intelligence option character '#' must be at the first place.",
-								nameof(format));
-						}
-						else if (format.IsMatch(@"\#[^\.0]+"))
-						{
-							throw Throwing.FormatErrorWithMessage(
-								"Intelligence option character '#' must be with placeholder '0' or '.'.",
-								nameof(format));
-						}
-					}
-					else
-					{
-						if (format.Contains('0') && format.Contains('.'))
-						{
-							throw Throwing.FormatErrorWithMessage(
-								"Placeholder character '0' and '.' cannot appear both.",
-								nameof(format));
-						}
-						else if (format.Contains('+') && format.Contains('!'))
-						{
-							throw Throwing.FormatErrorWithMessage(
-								"Cell status character '+' and '!' cannot appear both.",
-								nameof(format));
-						}
-						else if (format.Contains(':') && !format.EndsWith(':'))
-						{
-							throw Throwing.FormatErrorWithMessage(
-								"Candidate leading character ':' must be at the last place.",
-								nameof(format));
-						}
-					}
-				}
-			}
+			CheckFormatString(format ?? throw new ArgumentNullException(nameof(format)));
 
 			// Returns the grid string.
 			// Here you can also use switch expression to return.
@@ -702,6 +621,43 @@ namespace Sudoku.Data.Meta
 			}
 		}
 
+		/// <summary>
+		/// Simply validate.
+		/// </summary>
+		/// <returns>The <see cref="bool"/> result.</returns>
+		private bool SimplyValidate()
+		{
+			int count = 0;
+			for (int i = 0; i < 81; i++)
+			{
+				if (GetCellStatus(i) == CellStatus.Given)
+				{
+					count++;
+				}
+
+				int curDigit, peerDigit;
+				if (GetCellStatus(i) != CellStatus.Empty)
+				{
+					curDigit = this[i];
+					foreach (int peerOffset in new GridMap(i).Offsets)
+					{
+						if (peerOffset == i)
+						{
+							continue;
+						}
+
+						if ((peerDigit = this[peerOffset]) != -1 && curDigit == peerDigit)
+						{
+							return false;
+						}
+					}
+				}
+			}
+
+			// Each unique puzzle has at least 17 hints.
+			return count >= 17;
+		}
+
 
 		/// <summary>
 		/// <para>
@@ -748,6 +704,76 @@ namespace Sudoku.Data.Meta
 			{
 				result = null;
 				return false;
+			}
+		}
+
+		/// <summary>
+		/// To check the format string, delegated from the method
+		/// <see cref="ToString(string, IFormatProvider)"/>.
+		/// </summary>
+		/// <param name="format">The format.</param>
+		/// <seealso cref="ToString(string, IFormatProvider)"/>
+		private static void CheckFormatString(string format)
+		{
+			if (format.Contains('@'))
+			{
+				if (!format.StartsWith('@'))
+				{
+					throw Throwing.FormatErrorWithMessage(
+						"Multi-line identifier '@' must be at the first place.",
+						nameof(format));
+				}
+				else if ((format.Contains('0') || format.Contains('.')) && format.Contains(':'))
+				{
+					throw Throwing.FormatErrorWithMessage(
+						"In multi-line environment, '0' and '.' cannot appear with ':' together.",
+						nameof(format));
+				}
+				else if (format.IsMatch(@"\@[^0\!\*\.\:]+"))
+				{
+					throw Throwing.FormatErrorWithMessage(
+						"Multi-line identifier '@' must follow only character '!', '*', '0', '.' or ':'.",
+						nameof(format));
+				}
+			}
+			else
+			{
+				if (format.Contains('#'))
+				{
+					if (!format.StartsWith('#'))
+					{
+						throw Throwing.FormatErrorWithMessage(
+							"Intelligence option character '#' must be at the first place.",
+							nameof(format));
+					}
+					else if (format.IsMatch(@"\#[^\.0]+"))
+					{
+						throw Throwing.FormatErrorWithMessage(
+							"Intelligence option character '#' must be with placeholder '0' or '.'.",
+							nameof(format));
+					}
+				}
+				else
+				{
+					if (format.Contains('0') && format.Contains('.'))
+					{
+						throw Throwing.FormatErrorWithMessage(
+							"Placeholder character '0' and '.' cannot appear both.",
+							nameof(format));
+					}
+					else if (format.Contains('+') && format.Contains('!'))
+					{
+						throw Throwing.FormatErrorWithMessage(
+							"Cell status character '+' and '!' cannot appear both.",
+							nameof(format));
+					}
+					else if (format.Contains(':') && !format.EndsWith(':'))
+					{
+						throw Throwing.FormatErrorWithMessage(
+							"Candidate leading character ':' must be at the last place.",
+							nameof(format));
+					}
+				}
 			}
 		}
 

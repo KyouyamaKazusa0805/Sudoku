@@ -966,6 +966,12 @@
             <param name="sender">The instance triggering the event.</param>
             <param name="e">The data.</param>
         </member>
+        <member name="M:Sudoku.Data.Meta.Grid.SimplyValidate">
+            <summary>
+            Simply validate.
+            </summary>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Data.Meta.Grid.Parse(System.String)">
             <summary>
             <para>
@@ -1000,6 +1006,14 @@
             this argument will be <see langword="null"/>.
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Meta.Grid.CheckFormatString(System.String)">
+            <summary>
+            To check the format string, delegated from the method
+            <see cref="M:Sudoku.Data.Meta.Grid.ToString(System.String,System.IFormatProvider)"/>.
+            </summary>
+            <param name="format">The format.</param>
+            <seealso cref="M:Sudoku.Data.Meta.Grid.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Data.Meta.Grid.TryParse(System.String,Sudoku.Data.Meta.GridParsingType,Sudoku.Data.Meta.Grid@)">
             <summary>
