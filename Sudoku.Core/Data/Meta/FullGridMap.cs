@@ -240,7 +240,7 @@ namespace Sudoku.Data.Meta
 			{
 				result ^= map.GetHashCode();
 			}
-
+			
 			return result;
 		}
 
