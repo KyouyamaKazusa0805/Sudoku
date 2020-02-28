@@ -877,7 +877,9 @@
             <inheritdoc/>
         </member>
         <member name="E:Sudoku.Data.Meta.Grid.ValueChanged">
-            <inheritdoc/>
+            <summary>
+            Indicates the event when the mask in a certain cell has changed.
+            </summary>
         </member>
         <member name="M:Sudoku.Data.Meta.Grid.Fix">
             <summary>
@@ -1800,11 +1802,6 @@
             does not exist in this current sudoku grid; otherwise, <see langword="false"/>.
             </value>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="E:Sudoku.Data.Meta.IReadOnlyGrid.ValueChanged">
-            <summary>
-            Indicates the event when the mask in a certain cell has changed.
-            </summary>
         </member>
         <member name="M:Sudoku.Data.Meta.IReadOnlyGrid.Equals(System.Object)">
             <inheritdoc/>

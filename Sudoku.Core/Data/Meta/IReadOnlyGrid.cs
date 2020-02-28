@@ -46,12 +46,6 @@ namespace Sudoku.Data.Meta
 		bool this[int offset, int digit] { get; }
 
 
-		/// <summary>
-		/// Indicates the event when the mask in a certain cell has changed.
-		/// </summary>
-		event ValueChangedEventHandler ValueChanged;
-
-
 		/// <inheritdoc/>
 		bool Equals(object? obj);
 

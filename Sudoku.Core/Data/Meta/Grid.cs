@@ -229,7 +229,9 @@ namespace Sudoku.Data.Meta
 		}
 
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the event when the mask in a certain cell has changed.
+		/// </summary>
 		public event ValueChangedEventHandler ValueChanged;
 
 
