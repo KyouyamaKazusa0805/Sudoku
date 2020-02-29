@@ -138,7 +138,7 @@ Note that in multi-line output environment, placeholder characters `'0'` or `'.'
 
 标题：**示例**
 
-![](https://github.com/Sunnie-Shine/Sudoku/tree/master/pic/P1.png)
+![](../pic/P1.png)
 
 ```
 Format（格式）:
@@ -170,7 +170,7 @@ Output（输出结果）:
 
 
 
-![](https://github.com/Sunnie-Shine/Sudoku/tree/master/pic/P2.png)
+![](../pic/P2.png)
 
 ```
 Format（格式）:
@@ -222,7 +222,7 @@ Output（输出结果）:
 
 
 
-![](https://github.com/Sunnie-Shine/Sudoku/tree/master/pic/P3.png)
+![](../pic/P3.png)
 
 ```
 Format（格式）:
