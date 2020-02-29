@@ -558,48 +558,6 @@
             <param name="this">(<see langword="this"/> parameter) The value to check.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Data.Meta.AssignmentStep">
-            <summary>
-            Encapsulates an assignment step.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Meta.AssignmentStep.#ctor(System.Int32,System.Int32,System.Int16,Sudoku.Data.Meta.GridMap)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="digit">The digit.</param>
-            <param name="cell">The cell.</param>
-            <param name="mask">The old mask to undo.</param>
-            <param name="innerMap">
-            The map which contains all cells that contains the digit.
-            </param>
-        </member>
-        <member name="P:Sudoku.Data.Meta.AssignmentStep.Digit">
-            <summary>
-            Indicates the digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Meta.AssignmentStep.Cell">
-            <summary>
-            Indicates the cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Meta.AssignmentStep.Mask">
-            <summary>
-            Indicates the mask of the cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Meta.AssignmentStep.InnerMap">
-            <summary>
-            Indicates the grid map.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Meta.AssignmentStep.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.AssignmentStep.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Data.Meta.CellStatus">
             <summary>
             Represents a cell status.
@@ -633,56 +591,6 @@
             This field is not used to process cell status comparison.
             </remarks>
             <seealso cref="M:Sudoku.Data.Meta.Grid.GetCellStatus(System.Int32)"/>
-        </member>
-        <member name="T:Sudoku.Data.Meta.EliminationStep">
-            <summary>
-            Encapsulates an elimination step.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Meta.EliminationStep.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="digit">The digit.</param>
-            <param name="cell">The cell.</param>
-        </member>
-        <member name="P:Sudoku.Data.Meta.EliminationStep.Digit">
-            <summary>
-            Indicates the digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Meta.EliminationStep.Cell">
-            <summary>
-            Indicates the cell.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Meta.EliminationStep.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.EliminationStep.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Data.Meta.FixStep">
-            <summary>
-            Encapsulates a fix step.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Meta.FixStep.#ctor(Sudoku.Data.Meta.GridMap)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="allCells">All cells to fix.</param>
-        </member>
-        <member name="P:Sudoku.Data.Meta.FixStep.AllCells">
-            <summary>
-            Indicates all cells to fix.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Meta.FixStep.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.FixStep.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.Meta.FullGridMap">
             <summary>
@@ -1991,119 +1899,6 @@
             </summary>
             <returns>The cloneation.</returns>
         </member>
-        <member name="T:Sudoku.Data.Meta.ResetStep">
-            <summary>
-            Encapsulates a reset step.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Meta.ResetStep.#ctor(System.Int16[],System.Int16[])">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="oldMasks">The old grid masks.</param>
-            <param name="newMasks">The new grid masks.</param>
-        </member>
-        <member name="P:Sudoku.Data.Meta.ResetStep.NewMasks">
-            <summary>
-            Indicates the table of new grid masks.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Meta.ResetStep.OldMasks">
-            <summary>
-            Indicates the table of old grid masks.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Meta.ResetStep.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.ResetStep.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Data.Meta.SetCellStatusStep">
-            <summary>
-            Encapsulates a step for setting a cell status.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Meta.SetCellStatusStep.#ctor(System.Int32,Sudoku.Data.Meta.CellStatus,Sudoku.Data.Meta.CellStatus)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="oldStatus">The old status.</param>
-            <param name="newStatus">The new status.</param>
-        </member>
-        <member name="P:Sudoku.Data.Meta.SetCellStatusStep.Cell">
-            <summary>
-            Indicates the cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Meta.SetCellStatusStep.OldStatus">
-            <summary>
-            Indicates the old status.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Meta.SetCellStatusStep.NewStatus">
-            <summary>
-            Indicates the new status.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Meta.SetCellStatusStep.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.SetCellStatusStep.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Data.Meta.SetMaskStep">
-            <summary>
-            Encapsulates a step of setting mask.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Meta.SetMaskStep.#ctor(System.Int32,System.Int16,System.Int16)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="oldMask">The old mask.</param>
-            <param name="newMask">The new mask.</param>
-        </member>
-        <member name="P:Sudoku.Data.Meta.SetMaskStep.Cell">
-            <summary>
-            Indicates the cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Meta.SetMaskStep.OldMask">
-            <summary>
-            Indicates the old mask.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Meta.SetMaskStep.NewMask">
-            <summary>
-            Indicates the new mask.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Meta.SetMaskStep.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.SetMaskStep.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Data.Meta.Step">
-            <summary>
-            Provides a step used for applying to a sudoku grid.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Meta.Step.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
-            <summary>
-            Apply the step to the grid.
-            </summary>
-            <param name="grid">The grid.</param>
-        </member>
-        <member name="M:Sudoku.Data.Meta.Step.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
-            <summary>
-            Undo the step to the grid.
-            </summary>
-            <param name="grid">The grid.</param>
-        </member>
         <member name="T:Sudoku.Data.Meta.SymmetricalType">
             <summary>
             Define a symmetrical type.
@@ -2239,26 +2034,231 @@
             <param name="right">The right instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Data.Meta.UnfixStep">
+        <member name="T:Sudoku.Data.Stepping.AssignmentStep">
+            <summary>
+            Encapsulates an assignment step.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.AssignmentStep.#ctor(System.Int32,System.Int32,System.Int16,Sudoku.Data.Meta.GridMap)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="cell">The cell.</param>
+            <param name="mask">The old mask to undo.</param>
+            <param name="innerMap">
+            The map which contains all cells that contains the digit.
+            </param>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.AssignmentStep.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.AssignmentStep.Cell">
+            <summary>
+            Indicates the cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.AssignmentStep.Mask">
+            <summary>
+            Indicates the mask of the cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.AssignmentStep.InnerMap">
+            <summary>
+            Indicates the grid map.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.AssignmentStep.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.AssignmentStep.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Data.Stepping.EliminationStep">
+            <summary>
+            Encapsulates an elimination step.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.EliminationStep.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="cell">The cell.</param>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.EliminationStep.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.EliminationStep.Cell">
+            <summary>
+            Indicates the cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.EliminationStep.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.EliminationStep.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Data.Stepping.FixStep">
+            <summary>
+            Encapsulates a fix step.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.FixStep.#ctor(Sudoku.Data.Meta.GridMap)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="allCells">All cells to fix.</param>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.FixStep.AllCells">
+            <summary>
+            Indicates all cells to fix.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.FixStep.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.FixStep.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Data.Stepping.ResetStep">
+            <summary>
+            Encapsulates a reset step.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.ResetStep.#ctor(System.Int16[],System.Int16[])">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="oldMasks">The old grid masks.</param>
+            <param name="newMasks">The new grid masks.</param>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.ResetStep.NewMasks">
+            <summary>
+            Indicates the table of new grid masks.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.ResetStep.OldMasks">
+            <summary>
+            Indicates the table of old grid masks.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.ResetStep.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.ResetStep.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Data.Stepping.SetCellStatusStep">
+            <summary>
+            Encapsulates a step for setting a cell status.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.SetCellStatusStep.#ctor(System.Int32,Sudoku.Data.Meta.CellStatus,Sudoku.Data.Meta.CellStatus)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="oldStatus">The old status.</param>
+            <param name="newStatus">The new status.</param>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.SetCellStatusStep.Cell">
+            <summary>
+            Indicates the cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.SetCellStatusStep.OldStatus">
+            <summary>
+            Indicates the old status.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.SetCellStatusStep.NewStatus">
+            <summary>
+            Indicates the new status.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.SetCellStatusStep.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.SetCellStatusStep.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Data.Stepping.SetMaskStep">
+            <summary>
+            Encapsulates a step of setting mask.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.SetMaskStep.#ctor(System.Int32,System.Int16,System.Int16)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="oldMask">The old mask.</param>
+            <param name="newMask">The new mask.</param>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.SetMaskStep.Cell">
+            <summary>
+            Indicates the cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.SetMaskStep.OldMask">
+            <summary>
+            Indicates the old mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.SetMaskStep.NewMask">
+            <summary>
+            Indicates the new mask.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.SetMaskStep.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.SetMaskStep.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Data.Stepping.Step">
+            <summary>
+            Provides a step used for applying to a sudoku grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.Step.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+            <summary>
+            Apply the step to the grid.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.Step.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+            <summary>
+            Undo the step to the grid.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="T:Sudoku.Data.Stepping.UnfixStep">
             <summary>
             Encapsulates an unfix step.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Meta.UnfixStep.#ctor(Sudoku.Data.Meta.GridMap)">
+        <member name="M:Sudoku.Data.Stepping.UnfixStep.#ctor(Sudoku.Data.Meta.GridMap)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
             <param name="allCells">All cells.</param>
         </member>
-        <member name="P:Sudoku.Data.Meta.UnfixStep.AllCells">
+        <member name="P:Sudoku.Data.Stepping.UnfixStep.AllCells">
             <summary>
             Indicates all cells.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Meta.UnfixStep.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.UnfixStep.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.UnfixStep.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.UnfixStep.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.ValueChangedEventArgs">

@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Data.Meta
+﻿using Sudoku.Data.Meta;
+
+namespace Sudoku.Data.Stepping
 {
 	/// <summary>
 	/// Encapsulates a step of setting mask.

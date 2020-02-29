@@ -1,19 +1,21 @@
-﻿namespace Sudoku.Data.Meta
+﻿using Sudoku.Data.Meta;
+
+namespace Sudoku.Data.Stepping
 {
 	/// <summary>
-	/// Encapsulates an unfix step.
+	/// Encapsulates a fix step.
 	/// </summary>
-	public sealed class UnfixStep : Step
+	public sealed class FixStep : Step
 	{
 		/// <summary>
 		/// Initializes an instance with the specified information.
 		/// </summary>
-		/// <param name="allCells">All cells.</param>
-		public UnfixStep(GridMap allCells) => AllCells = allCells;
+		/// <param name="allCells">All cells to fix.</param>
+		public FixStep(GridMap allCells) => AllCells = allCells;
 
 
 		/// <summary>
-		/// Indicates all cells.
+		/// Indicates all cells to fix.
 		/// </summary>
 		public GridMap AllCells { get; }
 
@@ -25,7 +27,7 @@
 			{
 				// To prevent the event re-invoke.
 				ref short mask = ref grid._masks[cell];
-				mask = (short)((int)CellStatus.Modifiable << 9 | mask & 511);
+				mask = (short)((int)CellStatus.Given << 9 | mask & 511);
 			}
 		}
 
@@ -36,7 +38,7 @@
 			{
 				// To prevent the event re-invoke.
 				ref short mask = ref grid._masks[cell];
-				mask = (short)((int)CellStatus.Given << 9 | mask & 511);
+				mask = (short)((int)CellStatus.Modifiable << 9 | mask & 511);
 			}
 		}
 	}

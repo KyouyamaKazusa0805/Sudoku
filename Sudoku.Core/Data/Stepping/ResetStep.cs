@@ -1,6 +1,7 @@
 ﻿using System;
+using Sudoku.Data.Meta;
 
-namespace Sudoku.Data.Meta
+namespace Sudoku.Data.Stepping
 {
 	/// <summary>
 	/// Encapsulates a reset step.
