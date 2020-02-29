@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using Sudoku.Data.Extensions;
 using Sudoku.Solving.Manual.Singles;
 
 namespace Sudoku.Solving
@@ -48,9 +49,9 @@ namespace Sudoku.Solving
 		/// </exception>
 		public string ToString(string? format, IFormatProvider? formatProvider)
 		{
-			if (formatProvider?.GetFormat(GetType()) is ICustomFormatter customFormatter)
+			if (formatProvider.HasFormatted(this, format, out string? result))
 			{
-				return customFormatter.Format(format, this, formatProvider);
+				return result;
 			}
 
 			if (format is null)

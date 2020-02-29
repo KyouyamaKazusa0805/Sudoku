@@ -10,10 +10,10 @@ using Sudoku.Data.Extensions;
 namespace Sudoku.Data.Meta
 {
 	/// <summary>
-	/// Encapsulates a sudoku grid.
+	/// Encapsulates a basic sudoku grid.
 	/// </summary>
 	[DebuggerStepThrough]
-	public sealed class Grid : ICloneable<Grid>, IEnumerable, IEnumerable<short>, IEquatable<Grid>, IReadOnlyGrid
+	public class Grid : ICloneable<Grid>, IEnumerable, IEnumerable<short>, IEquatable<Grid>, IReadOnlyGrid
 	{
 		/// <summary>
 		/// Indicates an empty grid, where all values are zero.
@@ -50,14 +50,14 @@ namespace Sudoku.Data.Meta
 		/// </para>
 		/// </remarks>
 		/// <seealso cref="CellStatus"/>
-		private readonly short[] _masks;
+		protected internal readonly short[] _masks;
 
 		/// <summary>
 		/// Same as <see cref="_masks"/>, but this field stores the all masks at
 		/// the initial grid. The field will not be modified until this instance
 		/// destructs.
 		/// </summary>
-		private readonly short[] _initialMasks;
+		protected internal readonly short[] _initialMasks;
 
 
 		/// <summary>
@@ -122,7 +122,7 @@ namespace Sudoku.Data.Meta
 		}
 
 		/// <inheritdoc/>
-		public int this[int offset]
+		public virtual int this[int offset]
 		{
 			get
 			{
@@ -174,7 +174,7 @@ namespace Sudoku.Data.Meta
 		}
 
 		/// <inheritdoc/>
-		public bool this[int offset, int digit]
+		public virtual bool this[int offset, int digit]
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (_masks[offset] >> digit & 1) != 0;
@@ -208,7 +208,7 @@ namespace Sudoku.Data.Meta
 		/// To fix a grid, which means all modifiable values will be changed
 		/// to given ones.
 		/// </summary>
-		public void Fix()
+		public virtual void Fix()
 		{
 			for (int i = 0; i < 81; i++)
 			{
@@ -223,7 +223,7 @@ namespace Sudoku.Data.Meta
 		/// To unfix a grid, which means all given values will be changed
 		/// to modifiable ones.
 		/// </summary>
-		public void Unfix()
+		public virtual void Unfix()
 		{
 			for (int i = 0; i < 81; i++)
 			{
@@ -238,7 +238,7 @@ namespace Sudoku.Data.Meta
 		/// To reset the grid.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void Reset() => Array.Copy(_initialMasks, _masks, 81);
+		public virtual void Reset() => Array.Copy(_initialMasks, _masks, 81);
 
 		/// <summary>
 		/// Set the status in a cell.
@@ -246,7 +246,7 @@ namespace Sudoku.Data.Meta
 		/// <param name="offset">The cell offset you want to change.</param>
 		/// <param name="cellStatus">The cell status you want to set.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void SetCellStatus(int offset, CellStatus cellStatus)
+		public virtual void SetCellStatus(int offset, CellStatus cellStatus)
 		{
 			ref short mask = ref _masks[offset];
 			short copy = mask;
@@ -261,7 +261,7 @@ namespace Sudoku.Data.Meta
 		/// <param name="offset">The cell offset you want to change.</param>
 		/// <param name="value">The cell mask you want to set.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void SetMask(int offset, short value)
+		public virtual void SetMask(int offset, short value)
 		{
 			ref short mask = ref _masks[offset];
 			short copy = mask;
@@ -328,7 +328,7 @@ namespace Sudoku.Data.Meta
 		public short GetCandidatesReversal(int offset) => (short)(~_masks[offset] & 511);
 
 		/// <inheritdoc/>
-		public override string ToString() => ToString(null, null);
+		public sealed override string ToString() => ToString(null, null);
 
 		/// <summary>
 		/// Returns a string that represents the current object, with the
@@ -341,9 +341,9 @@ namespace Sudoku.Data.Meta
 		/// <inheritdoc/>
 		public string ToString(string? format, IFormatProvider? formatProvider)
 		{
-			if (formatProvider?.GetFormat(GetType()) is ICustomFormatter customFormatter)
+			if (formatProvider.HasFormatted(this, format, out string? result))
 			{
-				return customFormatter.Format(format, this, formatProvider);
+				return result;
 			}
 
 			// Format checking.
