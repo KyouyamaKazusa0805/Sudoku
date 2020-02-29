@@ -52,18 +52,18 @@ namespace Sudoku.Solving.BruteForces.Linqing
 			{
 				result = new List<string>(
 					from solution in result
-					let index = indexOf(solution)
-					let column = index % 9
-					let block = index - index % 27 + column - index % 3
+					let Index = indexOf(solution)
+					let Column = Index % 9
+					let Block = Index - Index % 27 + Column - Index % 3
 					from value in values
 					where !(
 						from i in Enumerable.Range(0, 9)
-						let inRow = solution[index - column + i] == value
-						let inColumn = solution[column + i * 9] == value
-						let inBlock = solution[block + i % 3 + (int)Floor(i / 3f) * 9] == value
-						where inRow || inColumn || inBlock
+						let InRow = solution[Index - Column + i] == value
+						let InColumn = solution[Column + i * 9] == value
+						let InBlock = solution[Block + i % 3 + (int)Floor(i / 3f) * 9] == value
+						where InRow || InColumn || InBlock
 						select i).Any()
-					select $"{solution.Substring(0, index)}{value}{solution.Substring(index + 1)}");
+					select $"{solution.Substring(0, Index)}{value}{solution.Substring(Index + 1)}");
 			}
 
 			return result;
