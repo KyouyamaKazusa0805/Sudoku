@@ -19,8 +19,7 @@ namespace Sudoku.Debugging
 			var solver = new ManualSolver
 			{
 				CheckAlmostLockedQuadruple = true,
-				OptimizedApplyingOrder = false,
-				BowmanBingoMaximumLength = 32
+				OptimizedApplyingOrder = false
 			};
 			var grid = Grid.Parse("..5..4.7.4...2...3.6.3..8....3..5......1.8..57......9...9.3...7...4...6.6....79..");
 			var analysisResult = solver.Solve(grid);
