@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
+using Sudoku.Data;
 using Sudoku.Data.Extensions;
-using Sudoku.Data.Meta;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
-using Intersection = System.ValueTuple<int, int, Sudoku.Data.Meta.GridMap, Sudoku.Data.Meta.GridMap>;
+using Intersection = System.ValueTuple<int, int, Sudoku.Data.GridMap, Sudoku.Data.GridMap>;
 
 namespace Sudoku.Solving.Manual.Intersections
 {

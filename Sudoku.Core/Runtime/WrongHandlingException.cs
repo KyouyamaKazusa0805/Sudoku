@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
-using Sudoku.Data.Meta;
+using Sudoku.Data;
 
 namespace Sudoku.Runtime
 {

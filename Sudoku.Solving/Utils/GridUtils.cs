@@ -2,8 +2,8 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Sudoku.Data;
 using Sudoku.Data.Extensions;
-using Sudoku.Data.Meta;
 
 namespace Sudoku.Solving.Utils
 {

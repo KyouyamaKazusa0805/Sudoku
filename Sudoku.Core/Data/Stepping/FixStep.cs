@@ -1,6 +1,4 @@
-﻿using Sudoku.Data.Meta;
-
-namespace Sudoku.Data.Stepping
+﻿namespace Sudoku.Data.Stepping
 {
 	/// <summary>
 	/// Encapsulates a fix step.

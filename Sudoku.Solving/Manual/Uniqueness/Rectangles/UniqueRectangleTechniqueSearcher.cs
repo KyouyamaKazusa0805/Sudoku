@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Externals;
 using System.Linq;
+using Sudoku.Data;
 using Sudoku.Data.Extensions;
-using Sudoku.Data.Meta;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 using ArType1 = Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleType1DetailData;

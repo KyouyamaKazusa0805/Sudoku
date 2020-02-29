@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Data.Meta
+﻿namespace Sudoku.Data
 {
 	partial class GridFormatter
 	{

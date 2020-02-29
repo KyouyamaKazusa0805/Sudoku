@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
-using Sudoku.Data.Meta;
+using Sudoku.Data;
 using Sudoku.Runtime;
 
 namespace Sudoku.Solving.BruteForces.Bitwise

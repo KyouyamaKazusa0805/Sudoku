@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace Sudoku.Data.Meta
+namespace Sudoku.Data
 {
 	/// <summary>
 	/// Encapsulates a binary series of candidate status table consisting of 729 bits,
@@ -72,16 +72,12 @@ namespace Sudoku.Data.Meta
 				{
 					var series = stackalloc[] { a, b, c, d, e, f, g, h, i };
 					foreach (int z in GridMap.PeerTable[cell])
-					{
 						(*series[z / 9])[z % 9 * 9 + digit] = true;
-					}
 				}
 			}
 
 			for (int i = 0; i < 9; i++)
-			{
 				this[cell * 9 + i] = i == digit ? setItself : true;
-			}
 		}
 
 		/// <summary>
@@ -135,12 +131,8 @@ namespace Sudoku.Data.Meta
 				};
 
 				for (int i = 0; i < 9; i++)
-				{
 					foreach (int offset in lines[i].Offsets)
-					{
 						yield return i * 81 + offset;
-					}
-				}
 			}
 		}
 
@@ -162,16 +154,22 @@ namespace Sudoku.Data.Meta
 			{
 				return stackalloc[]
 				{
-					_line1, _line2, _line3, _line4, _line5, _line6, _line7, _line8, _line9
+					_line1,
+					_line2,
+					_line3,
+					_line4,
+					_line5,
+					_line6,
+					_line7,
+					_line8,
+					_line9
 				}[offset / 81][offset / 9 % 9 * 9 + offset % 9];
 			}
 			set
 			{
 				// We should get along with pointers extremely carefully.
 				if (offset < 0 || offset >= 729)
-				{
 					throw new ArgumentOutOfRangeException(nameof(offset));
-				}
 
 				unsafe
 				{
@@ -204,21 +202,32 @@ namespace Sudoku.Data.Meta
 		{
 			var left = (Span<GridMap>)stackalloc[]
 			{
-				_line1, _line2, _line3, _line4, _line5, _line6, _line7, _line8, _line9
+				_line1,
+				_line2,
+				_line3,
+				_line4,
+				_line5,
+				_line6,
+				_line7,
+				_line8,
+				_line9
 			};
 			var right = (Span<GridMap>)stackalloc[]
 			{
-				other._line1, other._line2, other._line3, other._line4,
-				other._line5, other._line6, other._line7, other._line8, other._line9
+				other._line1,
+				other._line2,
+				other._line3,
+				other._line4,
+				other._line5,
+				other._line6,
+				other._line7,
+				other._line8,
+				other._line9
 			};
 
 			for (int i = 0; i < 9; i++)
-			{
 				if (left[i] != right[i])
-				{
 					return false;
-				}
-			}
 
 			return true;
 		}
@@ -235,12 +244,18 @@ namespace Sudoku.Data.Meta
 			int result = GetType().GetHashCode();
 			foreach (var map in stackalloc[]
 			{
-				_line1, _line2, _line3, _line4, _line5, _line6, _line7, _line8, _line9
+				_line1,
+				_line2,
+				_line3,
+				_line4,
+				_line5,
+				_line6,
+				_line7,
+				_line8,
+				_line9
 			})
-			{
 				result ^= map.GetHashCode();
-			}
-			
+
 			return result;
 		}
 

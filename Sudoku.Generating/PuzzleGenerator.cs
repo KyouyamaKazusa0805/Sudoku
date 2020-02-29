@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Sudoku.Data.Meta;
+using Sudoku.Data;
 
 namespace Sudoku.Generating
 {

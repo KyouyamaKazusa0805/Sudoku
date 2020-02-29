@@ -1,4 +1,4 @@
-﻿using Sudoku.Data.Meta;
+﻿using Sudoku.Data;
 using Sudoku.Solving.Manual;
 using static System.Console;
 

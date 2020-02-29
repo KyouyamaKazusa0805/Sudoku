@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace Sudoku.Data.Meta
+namespace Sudoku.Data
 {
 	/// <summary>
 	/// Provides a series of methods for <see cref="Grid"/>
@@ -59,14 +59,12 @@ namespace Sudoku.Data.Meta
 		{
 			var result = @this.Clone();
 			for (int i = 0; i < 4; i++)
-			{
 				for (int j = 0; j < 9; j++)
 				{
 					short temp = result.GetMask(i * 9 + j);
 					result.SetMask(i * 9 + j, result.GetMask(i * 9 + (8 - j)));
 					result.SetMask(i * 9 + (8 - j), temp);
 				}
-			}
 
 			return result;
 		}
@@ -80,14 +78,12 @@ namespace Sudoku.Data.Meta
 		{
 			var result = @this.Clone();
 			for (int i = 0; i < 9; i++)
-			{
 				for (int j = 0; j < 4; j++)
 				{
 					short temp = result.GetMask(i * 9 + j);
 					result.SetMask(i * 9 + j, result.GetMask((8 - i) * 9 + j));
 					result.SetMask((8 - i) * 9 + j, temp);
 				}
-			}
 
 			return result;
 		}
@@ -101,14 +97,12 @@ namespace Sudoku.Data.Meta
 		{
 			var result = @this.Clone();
 			for (int i = 1; i < 9; i++)
-			{
 				for (int j = 0; j < i; j++)
 				{
 					short temp = result.GetMask(i * 9 + j);
 					result.SetMask(i * 9 + j, result.GetMask(j * 9 + i));
 					result.SetMask(j * 9 + i, temp);
 				}
-			}
 
 			return result;
 		}
@@ -122,14 +116,12 @@ namespace Sudoku.Data.Meta
 		{
 			var result = @this.Clone();
 			for (int i = 0; i < 9; i++)
-			{
 				for (int j = 0; j < 8 - i; j++)
 				{
 					short temp = result.GetMask(i * 9 + j);
 					result.SetMask(i * 9 + j, result.GetMask((8 - j) * 9 + (8 - i)));
 					result.SetMask((8 - j) * 9 + (8 - i), temp);
 				}
-			}
 
 			return result;
 		}
@@ -202,17 +194,11 @@ namespace Sudoku.Data.Meta
 		public static Grid SwapTwoRegions(this IReadOnlyGrid @this, int region1, int region2)
 		{
 			if (region1 < 0 || region1 >= 18)
-			{
 				throw new ArgumentException("The specified argument is out of valid range.", nameof(region1));
-			}
 			if (region2 < 0 || region2 >= 18)
-			{
 				throw new ArgumentException("The specified argument is out of valid range.", nameof(region2));
-			}
 			if (region1 / 9 != region2 / 9)
-			{
 				throw new ArgumentException("Two region should be the same region type.");
-			}
 
 			var result = @this.Clone();
 			for (int i = 0; i < 9; i++)

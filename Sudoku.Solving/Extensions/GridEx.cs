@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
+using Sudoku.Data;
 using Sudoku.Data.Extensions;
-using Sudoku.Data.Meta;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Extensions

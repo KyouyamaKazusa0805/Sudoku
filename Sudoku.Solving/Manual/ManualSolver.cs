@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Sudoku.Data.Meta;
+using Sudoku.Data;
 using Sudoku.Runtime;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Alses;
@@ -19,7 +19,7 @@ using Sudoku.Solving.Manual.Uniqueness.Polygons;
 using Sudoku.Solving.Manual.Uniqueness.Rectangles;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
-using Intersection = System.ValueTuple<int, int, Sudoku.Data.Meta.GridMap, Sudoku.Data.Meta.GridMap>;
+using Intersection = System.ValueTuple<int, int, Sudoku.Data.GridMap, Sudoku.Data.GridMap>;
 
 namespace Sudoku.Solving.Manual
 {

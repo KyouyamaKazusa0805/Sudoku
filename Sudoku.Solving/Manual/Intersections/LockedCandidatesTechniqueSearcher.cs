@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Sudoku.Data.Meta;
+using Sudoku.Data;
 using Sudoku.Drawing;
-using Intersection = System.ValueTuple<int, int, Sudoku.Data.Meta.GridMap, Sudoku.Data.Meta.GridMap>;
+using Intersection = System.ValueTuple<int, int, Sudoku.Data.GridMap, Sudoku.Data.GridMap>;
 
 namespace Sudoku.Solving.Manual.Intersections
 {

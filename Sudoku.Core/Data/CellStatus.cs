@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sudoku.Data.Meta
+namespace Sudoku.Data
 {
 	/// <summary>
 	/// Represents a cell status.

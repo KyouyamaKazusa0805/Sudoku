@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Data.Meta
+﻿namespace Sudoku.Data
 {
 	partial struct GridMap
 	{

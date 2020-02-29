@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data.Extensions;
 
-namespace Sudoku.Data.Meta
+namespace Sudoku.Data
 {
 	/// <summary>
 	/// Provides operations for grid formatting.

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Sudoku.Data.Meta;
+using Sudoku.Data;
 using Sudoku.Drawing;
 using static Sudoku.Solving.Utils.PatternOverlayMethodUtils;
 

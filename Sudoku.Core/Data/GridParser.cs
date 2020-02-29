@@ -5,7 +5,7 @@ using System.Externals;
 using System.Runtime.CompilerServices;
 using Sudoku.Data.Extensions;
 
-namespace Sudoku.Data.Meta
+namespace Sudoku.Data
 {
 	/// <summary>
 	/// Encapsulates a grid parser.
@@ -70,19 +70,15 @@ namespace Sudoku.Data.Meta
 			string[] matches = ParsingValue.MatchAll(@"[\d\.]");
 			int length = matches.Length;
 			if (length != 81 && length != 83)
-			{
 				// Subtle grid outline will bring 2 '.'s on first line of the grid.
 				return null;
-			}
 
 			var result = Grid.Empty.Clone();
 			for (int i = 0; i < 81; i++)
 			{
 				char match = matches[length == 81 ? i : i + 2][0];
 				if (match != '.' && match != '0')
-				{
 					result[i] = match - '1';
-				}
 			}
 
 			return result;
@@ -100,26 +96,21 @@ namespace Sudoku.Data.Meta
 		{
 			string[] matches = ParsingValue.MatchAll(@"(\<\d\>|\*\d\*|\d{1,9})");
 			if (matches.Length != 81)
-			{
 				return null;
-			}
 
 			var result = Grid.Empty.Clone();
 			for (int offset = 0; offset < 81; offset++)
 			{
 				string s = matches[offset];
 				if (treatSingleValueAsGiven)
-				{
 					// This options means that all characters matched will
 					// contain only digit characters.
 					// If the match has only one digit character, this character
 					// will be treated as given at once.
 					if (s.IsMatch(@"[^1-9]"))
-					{
 						// Matches some invalid characters,
 						// which means that the parsing failed.
 						return null;
-					}
 					else
 					{
 						// Check the length is 1 or not.
@@ -134,95 +125,68 @@ namespace Sudoku.Data.Meta
 							result.SetCellStatus(offset, CellStatus.Given);
 						}
 						else if (length > 9)
-						{
 							// Greater than 9 characters is also invalid.
 							return null;
-						}
 						else
 						{
 							bool[] series = GetDefaultCheckingArray();
 							foreach (char c in s)
-							{
 								series[c - '1'] = false;
-							}
 							for (int digit = 0; digit < 9; digit++)
-							{
 								result[offset, digit] = series[digit];
-							}
 						}
 					}
-				}
 				else
-				{
 					// All values will be treated as normal characters:
 					// '<digit>', '*digit*' and 'candidates'.
 					if (s.Contains('<'))
+					// Givens.
+					if (s.Length == 3)
 					{
-						// Givens.
-						if (s.Length == 3)
+						char c = s[1];
+						if (c >= '1' && c <= '9')
 						{
-							char c = s[1];
-							if (c >= '1' && c <= '9')
-							{
-								result[offset] = c - '1';
-								result.SetCellStatus(offset, CellStatus.Given);
-							}
-							else
-							{
-								// Illegal characters found.
-								return null;
-							}
+							result[offset] = c - '1';
+							result.SetCellStatus(offset, CellStatus.Given);
 						}
 						else
-						{
-							// The length is not 3.
+							// Illegal characters found.
 							return null;
-						}
-					}
-					else if (s.Contains('*'))
-					{
-						// Modifiables.
-						if (s.Length == 3)
-						{
-							char c = s[1];
-							if (c >= '1' && c <= '9')
-							{
-								result[offset] = c - '1';
-								result.SetCellStatus(offset, CellStatus.Modifiable);
-							}
-							else
-							{
-								// Illegal characters found.
-								return null;
-							}
-						}
-						else
-						{
-							// The length is not 3.
-							return null;
-						}
-					}
-					else if (s.SatisfyPattern(@"[1-9]{1,9}"))
-					{
-						// Candidates.
-						// Here do not need to check the length of the string,
-						// and also all characters are digit characters.
-						bool[] series = GetDefaultCheckingArray();
-						foreach (char c in s)
-						{
-							series[c - '1'] = false;
-						}
-						for (int digit = 0; digit < 9; digit++)
-						{
-							result[offset, digit] = series[digit];
-						}
 					}
 					else
-					{
-						// All conditions cannot match.
+						// The length is not 3.
 						return null;
+				else if (s.Contains('*'))
+					// Modifiables.
+					if (s.Length == 3)
+					{
+						char c = s[1];
+						if (c >= '1' && c <= '9')
+						{
+							result[offset] = c - '1';
+							result.SetCellStatus(offset, CellStatus.Modifiable);
+						}
+						else
+							// Illegal characters found.
+							return null;
 					}
+					else
+						// The length is not 3.
+						return null;
+				else if (s.SatisfyPattern(@"[1-9]{1,9}"))
+				{
+					// Candidates.
+					// Here do not need to check the length of the string,
+					// and also all characters are digit characters.
+					bool[] series = GetDefaultCheckingArray();
+					foreach (char c in s)
+						series[c - '1'] = false;
+					for (int digit = 0; digit < 9; digit++)
+						result[offset, digit] = series[digit];
 				}
+				else
+					// All conditions cannot match.
+					return null;
 			}
 
 			return result;
@@ -236,9 +200,7 @@ namespace Sudoku.Data.Meta
 		{
 			string? match = ParsingValue.Match(@"[\d\.\+]{81,}(\:(\d{3}\s+)*\d{3})?");
 			if (match is null)
-			{
 				return null;
-			}
 
 			// Step 1: fills all digits.
 			var result = Grid.Empty.Clone();
@@ -247,7 +209,6 @@ namespace Sudoku.Data.Meta
 			{
 				char c = match[i];
 				if (c == '+')
-				{
 					// Plus sign means the character after it is a digit,
 					// which is modifiable value in the grid in its corresponding position.
 					if (i < length - 1)
@@ -264,7 +225,6 @@ namespace Sudoku.Data.Meta
 							i += 2;
 						}
 						else
-						{
 							// Why isn't the character a digit character?
 							// Throws an exception to report this case.
 							throw new ArgumentException(
@@ -272,23 +232,17 @@ namespace Sudoku.Data.Meta
 								innerException: new ArgumentException(
 									message: "The value after the specified argument is not a digit.",
 									paramName: nameof(i)));
-						}
 					}
 					else
-					{
 						throw new ArgumentException(
 							message: $"Argument cannot be parsed and converted to target type {typeof(Grid)}.",
 							innerException: new ArgumentOutOfRangeException(
 								paramName: nameof(i),
 								message: "The specified iteration argument is out of range due to invalid grid string."));
-					}
-				}
 				else if (c == '.' || c == '0')
-				{
 					// A placeholder.
 					// Do nothing but only move 1 step forward.
 					i++;
-				}
 				else if (c >= '1' && c <= '9')
 				{
 					// Is a digit character.
@@ -307,10 +261,8 @@ namespace Sudoku.Data.Meta
 					i++;
 				}
 				else
-				{
 					// Other invalid characters. Throws an exception.
 					throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
-				}
 			}
 
 			// Step 2: eliminates candidates if exist.
@@ -320,12 +272,10 @@ namespace Sudoku.Data.Meta
 			{
 				string[] eliminationBlocks = elimMatch.MatchAll(@"\d{3}");
 				foreach (string eliminationBlock in eliminationBlocks)
-				{
 					// Set the candidate true value to eliminate the candidate.
 					result[
 						offset: (eliminationBlock[1] - '1') * 9 + eliminationBlock[2] - '1',
 						digit: eliminationBlock[0] - '1'] = true;
-				}
 			}
 
 			return result;

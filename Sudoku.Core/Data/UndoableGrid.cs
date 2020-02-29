@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Sudoku.Data.Stepping;
 
-namespace Sudoku.Data.Meta
+namespace Sudoku.Data
 {
 	/// <summary>
 	/// Provides an undo-able sudoku grid. This data structure is nearly same
@@ -66,12 +66,8 @@ namespace Sudoku.Data.Meta
 		{
 			var map = GridMap.Empty;
 			for (int i = 0; i < 81; i++)
-			{
 				if (GetCellStatus(i) == CellStatus.Modifiable)
-				{
 					map[i] = true;
-				}
-			}
 
 			var step = new FixStep(map);
 			_undoStack.Push(step);
@@ -83,12 +79,8 @@ namespace Sudoku.Data.Meta
 		{
 			var map = GridMap.Empty;
 			for (int i = 0; i < 81; i++)
-			{
 				if (GetCellStatus(i) == CellStatus.Given)
-				{
 					map[i] = true;
-				}
-			}
 
 			var step = new UnfixStep(map);
 			_undoStack.Push(step);
@@ -147,15 +139,15 @@ namespace Sudoku.Data.Meta
 		}
 
 		/// <inheritdoc/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override bool Equals(object? obj) => base.Equals(obj);
 
 		/// <inheritdoc/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool Equals(UndoableGrid other) => Equals((Grid)other);
 
 		/// <inheritdoc/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)] 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override int GetHashCode() => base.GetHashCode();
 
 		/// <summary>

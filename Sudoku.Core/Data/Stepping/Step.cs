@@ -1,6 +1,4 @@
-﻿using Sudoku.Data.Meta;
-
-namespace Sudoku.Data.Stepping
+﻿namespace Sudoku.Data.Stepping
 {
 	/// <summary>
 	/// Provides a step used for applying to a sudoku grid.

@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 using System;
-using Sudoku.Data.Meta;
 using System.Diagnostics;
+using Sudoku.Data;
 
 namespace Sudoku.Runtime
 {

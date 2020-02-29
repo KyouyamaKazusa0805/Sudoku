@@ -1,5 +1,4 @@
 ﻿using System;
-using Sudoku.Data.Meta;
 
 namespace Sudoku.Data.Stepping
 {

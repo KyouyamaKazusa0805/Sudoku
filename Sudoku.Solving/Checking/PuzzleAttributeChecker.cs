@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Sudoku.Data.Meta;
+using Sudoku.Data;
 using Sudoku.Solving.BruteForces.DancingLinks;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Utils;

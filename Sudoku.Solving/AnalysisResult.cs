@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Sudoku.Data.Meta;
+using Sudoku.Data;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Singles;
 

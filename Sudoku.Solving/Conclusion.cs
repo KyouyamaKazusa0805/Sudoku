@@ -1,5 +1,5 @@
 ﻿using System;
-using Sudoku.Data.Meta;
+using Sudoku.Data;
 
 namespace Sudoku.Solving
 {

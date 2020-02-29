@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using Sudoku.Data.Meta;
+using Sudoku.Data;
 using Sudoku.Runtime;
 using static Sudoku.Solving.Utils.CellUtils;
 
