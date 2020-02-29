@@ -70,9 +70,11 @@ namespace Sudoku.Data
 		public Grid(short[] masks)
 		{
 			if (masks.Length != 81)
+			{
 				throw new ArgumentException(
 					message: "The specified argument is invalid, because the length of this argument is not 81.",
 					paramName: nameof(masks));
+			}
 
 			_masks = masks;
 			_initialMasks = (short[])masks.Clone();
@@ -89,7 +91,9 @@ namespace Sudoku.Data
 			// can be combined a binary number of cell status.
 			_masks = new short[81];
 			for (int i = 0; i < 81; i++)
+			{
 				_masks[i] = (short)CellStatus.Empty << 9;
+			}
 			_initialMasks = (short[])_masks.Clone();
 
 			// Initializes the event handler.
@@ -107,8 +111,13 @@ namespace Sudoku.Data
 			get
 			{
 				for (int i = 0; i < 81; i++)
+				{
 					if (GetCellStatus(i) == CellStatus.Empty)
+					{
 						return false;
+					}
+				}
+
 				return SimplyValidate();
 			}
 		}
@@ -119,14 +128,20 @@ namespace Sudoku.Data
 			get
 			{
 				if (GetCellStatus(offset) == CellStatus.Empty)
+				{
 					// Empty cells does not have a fixed value.
 					return -1;
+				}
 				else
 				{
 					short mask = _masks[offset];
 					for (int i = 0; i < 9; i++, mask >>= 1)
+					{
 						if ((mask & 1) == 0)
+						{
 							return i;
+						}
+					}
 
 					// Modifiables and givens contain no fixed digit? What the hell?
 					return -1;
@@ -148,10 +163,14 @@ namespace Sudoku.Data
 					ValueChanged.Invoke(this, new ValueChangedEventArgs(offset, copy, result, value));
 				}
 				else if (value == -1)
+				{
 					// If 'value' is -1, we should reset the grid.
 					// Note that reset candidates may not trigger the event.
 					if (GetCellStatus(offset) == CellStatus.Modifiable)
+					{
 						Reset();
+					}
+				}
 			}
 		}
 
@@ -166,9 +185,13 @@ namespace Sudoku.Data
 				ref short result = ref _masks[offset];
 				short copy = result;
 				if (value)
+				{
 					result |= (short)(1 << digit);
+				}
 				else
+				{
 					result &= (short)~(1 << digit);
+				}
 
 				// To trigger the event.
 				ValueChanged.Invoke(this, new ValueChangedEventArgs(offset, copy, result, -1));
@@ -189,8 +212,12 @@ namespace Sudoku.Data
 		public virtual void Fix()
 		{
 			for (int i = 0; i < 81; i++)
+			{
 				if (GetCellStatus(i) == CellStatus.Modifiable)
+				{
 					SetCellStatus(i, CellStatus.Given);
+				}
+			}
 		}
 
 		/// <summary>
@@ -200,8 +227,12 @@ namespace Sudoku.Data
 		public virtual void Unfix()
 		{
 			for (int i = 0; i < 81; i++)
+			{
 				if (GetCellStatus(i) == CellStatus.Given)
+				{
 					SetCellStatus(i, CellStatus.Modifiable);
+				}
+			}
 		}
 
 		/// <summary>
@@ -248,8 +279,12 @@ namespace Sudoku.Data
 		public bool Equals(Grid other)
 		{
 			for (int i = 0; i < 81; i++)
+			{
 				if (_masks[i] != other._masks[i])
+				{
 					return false;
+				}
+			}
 
 			return true;
 		}
@@ -260,7 +295,9 @@ namespace Sudoku.Data
 			int result = GetType().GetHashCode() ^ nameof(_masks).GetHashCode();
 
 			for (int i = 0; i < 81; i++)
+			{
 				result ^= (i + 1) * _masks[i];
+			}
 
 			return result;
 		}
@@ -270,9 +307,11 @@ namespace Sudoku.Data
 		{
 			int[] result = new int[81];
 			for (int i = 0; i < 81; i++)
+			{
 				// 'this[i]' is always in range -1 to 8 (-1 is empty, and 0 to 8 is 1 to 9 for
 				// mankind representation).
 				result[i] = this[i] + 1;
+			}
 
 			return result;
 		}
@@ -304,7 +343,9 @@ namespace Sudoku.Data
 		public string ToString(string? format, IFormatProvider? formatProvider)
 		{
 			if (formatProvider.HasFormatted(this, format, out string? result))
+			{
 				return result;
+			}
 
 			// Format checking.
 			CheckFormatString(format ?? throw new ArgumentNullException(nameof(format)));
@@ -562,11 +603,14 @@ namespace Sudoku.Data
 		{
 			var (offset, _, _, setValue) = e;
 			if (setValue != -1)
+			{
 				foreach (int peerOffset in new GridMap(offset).Offsets)
 				{
 					if (peerOffset == offset)
+					{
 						// Same cell.
 						continue;
+					}
 
 					// To check if the peer cell is empty or not.
 					if (GetCellStatus(peerOffset) == CellStatus.Empty)
@@ -575,6 +619,7 @@ namespace Sudoku.Data
 						peerValue |= (short)(1 << setValue);
 					}
 				}
+			}
 		}
 
 		/// <summary>
@@ -587,7 +632,9 @@ namespace Sudoku.Data
 			for (int i = 0; i < 81; i++)
 			{
 				if (GetCellStatus(i) == CellStatus.Given)
+				{
 					count++;
+				}
 
 				int curDigit, peerDigit;
 				if (GetCellStatus(i) != CellStatus.Empty)
@@ -596,10 +643,14 @@ namespace Sudoku.Data
 					foreach (int peerOffset in new GridMap(i).Offsets)
 					{
 						if (peerOffset == i)
+						{
 							continue;
+						}
 
 						if ((peerDigit = this[peerOffset]) != -1 && curDigit == peerDigit)
+						{
 							return false;
+						}
 					}
 				}
 			}
@@ -666,41 +717,59 @@ namespace Sudoku.Data
 		private static void CheckFormatString(string format)
 		{
 			if (format.Contains('@'))
+			{
 				if (!format.StartsWith('@'))
+				{
 					throw Throwing.FormatErrorWithMessage(
 						"Multi-line identifier '@' must be at the first place.",
 						nameof(format));
+				}
 				else if ((format.Contains('0') || format.Contains('.')) && format.Contains(':'))
+				{
 					throw Throwing.FormatErrorWithMessage(
 						"In multi-line environment, '0' and '.' cannot appear with ':' together.",
 						nameof(format));
+				}
 				else if (format.IsMatch(@"\@[^0\!\*\.\:]+"))
+				{
 					throw Throwing.FormatErrorWithMessage(
 						"Multi-line identifier '@' must follow only character '!', '*', '0', '.' or ':'.",
 						nameof(format));
-			else
-				if (format.Contains('#'))
-				if (!format.StartsWith('#'))
-					throw Throwing.FormatErrorWithMessage(
-						"Intelligence option character '#' must be at the first place.",
-						nameof(format));
-				else if (format.IsMatch(@"\#[^\.0]+"))
-					throw Throwing.FormatErrorWithMessage(
-						"Intelligence option character '#' must be with placeholder '0' or '.'.",
-						nameof(format));
-			else
-					if (format.Contains('0') && format.Contains('.'))
-				throw Throwing.FormatErrorWithMessage(
-					"Placeholder character '0' and '.' cannot appear both.",
-					nameof(format));
-			else if (format.Contains('+') && format.Contains('!'))
-				throw Throwing.FormatErrorWithMessage(
-					"Cell status character '+' and '!' cannot appear both.",
-					nameof(format));
-			else if (format.Contains(':') && !format.EndsWith(':'))
-				throw Throwing.FormatErrorWithMessage(
-					"Candidate leading character ':' must be at the last place.",
-					nameof(format));
+				}
+				else if (format.Contains('#'))
+				{
+					if (!format.StartsWith('#'))
+					{
+						throw Throwing.FormatErrorWithMessage(
+							"Intelligence option character '#' must be at the first place.",
+							nameof(format));
+					}
+					else if (format.IsMatch(@"\#[^\.0]+"))
+					{
+						throw Throwing.FormatErrorWithMessage(
+							"Intelligence option character '#' must be with placeholder '0' or '.'.",
+							nameof(format));
+					}
+					else if (format.Contains('0') && format.Contains('.'))
+					{
+						throw Throwing.FormatErrorWithMessage(
+							"Placeholder character '0' and '.' cannot appear both.",
+							nameof(format));
+					}
+					else if (format.Contains('+') && format.Contains('!'))
+					{
+						throw Throwing.FormatErrorWithMessage(
+							"Cell status character '+' and '!' cannot appear both.",
+							nameof(format));
+					}
+					else if (format.Contains(':') && !format.EndsWith(':'))
+					{
+						throw Throwing.FormatErrorWithMessage(
+							"Candidate leading character ':' must be at the last place.",
+							nameof(format));
+					}
+				}
+			}
 		}
 
 		/// <summary>
@@ -763,6 +832,7 @@ namespace Sudoku.Data
 		{
 			var result = Empty.Clone();
 			for (int i = 0; i < 9; i++)
+			{
 				for (int j = 0; j < 9; j++)
 				{
 					int value = gridValues[i, j];
@@ -773,6 +843,7 @@ namespace Sudoku.Data
 						result.SetCellStatus(pos, CellStatus.Given);
 					}
 				}
+			}
 
 			return result;
 		}
