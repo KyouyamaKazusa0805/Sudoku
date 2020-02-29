@@ -2329,11 +2329,6 @@
             The filter pattern.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeCounter._fileList">
-            <summary>
-            All file paths at this root directory.
-            </summary>
-        </member>
         <member name="M:Sudoku.Diagnostics.CodeCounter.#ctor(System.String)">
             <summary>
             Initializes an instance with the specified root directory.
@@ -2347,6 +2342,11 @@
             <param name="root">The root directory.</param>
             <param name="filterPattern">The filter pattern.</param>
         </member>
+        <member name="P:Sudoku.Diagnostics.CodeCounter.FileList">
+            <summary>
+            All file paths at this root directory.
+            </summary>
+        </member>
         <member name="M:Sudoku.Diagnostics.CodeCounter.CountCodeLines(System.Int32@)">
             <summary>
             Count on code lines in all files in the specified root directory.
@@ -2355,14 +2355,6 @@
             (<see langword="out"/> parameter) The number of files searched.
             </param>
             <returns>The number of lines.</returns>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeCounter.SatisfyPattern(System.String,System.String)">
-            <summary>
-            Check the string is whether satisfied the specified pattern strictly.
-            </summary>
-            <param name="str">The string to check.</param>
-            <param name="pattern">The regular expression pattern.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeCounter.GetAllFilesRecursively(System.IO.DirectoryInfo)">
             <summary>
