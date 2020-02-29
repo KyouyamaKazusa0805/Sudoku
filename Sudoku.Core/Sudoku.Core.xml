@@ -4,6 +4,40 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Data.CellStatus">
+            <summary>
+            Represents a cell status.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.CellStatus.Empty">
+            <summary>
+            Indicates that the cell is empty.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.CellStatus.Modifiable">
+            <summary>
+            Indicates that the cell has already filled a value,
+            but the value does not exist when the puzzle begins.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.CellStatus.Given">
+            <summary>
+            Indicates that the cell has already filled a value,
+            and the value does exist when the puzzle begins. In
+            other words, the value is a given (or a hint, clue, etc.).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.CellStatus.All">
+            <summary>
+            Indicates all cases of cell statuses.
+            </summary>
+            <remarks>
+            You had better use this field on cases when processing
+            the bitwise operations in a sudoku <see cref="T:Sudoku.Data.Grid"/>.
+            This field is not used to process cell status comparison.
+            </remarks>
+            <seealso cref="M:Sudoku.Data.Grid.GetCellStatus(System.Int32)"/>
+        </member>
         <member name="T:Sudoku.Data.Extensions.BagEx">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.Generic.IBag`1"/>.
@@ -558,41 +592,7 @@
             <param name="this">(<see langword="this"/> parameter) The value to check.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Data.Meta.CellStatus">
-            <summary>
-            Represents a cell status.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Meta.CellStatus.Empty">
-            <summary>
-            Indicates that the cell is empty.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Meta.CellStatus.Modifiable">
-            <summary>
-            Indicates that the cell has already filled a value,
-            but the value does not exist when the puzzle begins.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Meta.CellStatus.Given">
-            <summary>
-            Indicates that the cell has already filled a value,
-            and the value does exist when the puzzle begins. In
-            other words, the value is a given (or a hint, clue, etc.).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Meta.CellStatus.All">
-            <summary>
-            Indicates all cases of cell statuses.
-            </summary>
-            <remarks>
-            You had better use this field on cases when processing
-            the bitwise operations in a sudoku <see cref="T:Sudoku.Data.Meta.Grid"/>.
-            This field is not used to process cell status comparison.
-            </remarks>
-            <seealso cref="M:Sudoku.Data.Meta.Grid.GetCellStatus(System.Int32)"/>
-        </member>
-        <member name="T:Sudoku.Data.Meta.FullGridMap">
+        <member name="T:Sudoku.Data.FullGridMap">
             <summary>
             Encapsulates a binary series of candidate status table consisting of 729 bits,
             where <see langword="true"/> bit (1) is for the cell having digit,
@@ -602,67 +602,67 @@
             This data structure use at least 144 bytes, which has outnumbered the number of
             the threshold of value types via Microsoft C# language designation team (Every instance
             of value type should be no more than 64 bytes). Therefore, we should use
-            <see cref="T:Sudoku.Data.Meta.GridMap"/> instead of this data structure as much as possible.
+            <see cref="T:Sudoku.Data.GridMap"/> instead of this data structure as much as possible.
             </remarks>
         </member>
-        <member name="F:Sudoku.Data.Meta.FullGridMap.Empty">
+        <member name="F:Sudoku.Data.FullGridMap.Empty">
             <summary>
             Indicates an empty instance (making no changes).
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.FullGridMap._line1">
+        <member name="F:Sudoku.Data.FullGridMap._line1">
             <summary>
             All bits map.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.FullGridMap._line2">
+        <member name="F:Sudoku.Data.FullGridMap._line2">
             <summary>
             All bits map.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.FullGridMap._line3">
+        <member name="F:Sudoku.Data.FullGridMap._line3">
             <summary>
             All bits map.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.FullGridMap._line4">
+        <member name="F:Sudoku.Data.FullGridMap._line4">
             <summary>
             All bits map.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.FullGridMap._line5">
+        <member name="F:Sudoku.Data.FullGridMap._line5">
             <summary>
             All bits map.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.FullGridMap._line6">
+        <member name="F:Sudoku.Data.FullGridMap._line6">
             <summary>
             All bits map.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.FullGridMap._line7">
+        <member name="F:Sudoku.Data.FullGridMap._line7">
             <summary>
             All bits map.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.FullGridMap._line8">
+        <member name="F:Sudoku.Data.FullGridMap._line8">
             <summary>
             All bits map.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.FullGridMap._line9">
+        <member name="F:Sudoku.Data.FullGridMap._line9">
             <summary>
             All bits map.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Meta.FullGridMap.#ctor(System.Int32)">
+        <member name="M:Sudoku.Data.FullGridMap.#ctor(System.Int32)">
             <summary>
             Initializes an instance with the specified candidate offset
             (Sets itself and all peers).
             </summary>
             <param name="offset">The candidate offset.</param>
         </member>
-        <member name="M:Sudoku.Data.Meta.FullGridMap.#ctor(System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Data.FullGridMap.#ctor(System.Int32,System.Boolean)">
             <summary>
             Initializes an instance with the specified candidate offset.
             This will set all bits of all peers of this candidate. Another
@@ -680,7 +680,7 @@
             </code>
             </param>
         </member>
-        <member name="M:Sudoku.Data.Meta.FullGridMap.#ctor(Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)">
+        <member name="M:Sudoku.Data.FullGridMap.#ctor(Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <summary>
             Initializes an instance with three binary value.
             </summary>
@@ -694,19 +694,19 @@
             <param name="line8">Line 8 grid map.</param>
             <param name="line9">Line 9 grid map.</param>
         </member>
-        <member name="P:Sudoku.Data.Meta.FullGridMap.Count">
+        <member name="P:Sudoku.Data.FullGridMap.Count">
             <summary>
             Indicates the total number of cells where the corresponding
             value are set <see langword="true"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Meta.FullGridMap.Offsets">
+        <member name="P:Sudoku.Data.FullGridMap.Offsets">
             <summary>
             Indicates all candidate offsets whose corresponding value
             are set <see langword="true"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Meta.FullGridMap.Item(System.Int32)">
+        <member name="P:Sudoku.Data.FullGridMap.Item(System.Int32)">
             <summary>
             Gets or sets a <see cref="T:System.Boolean"/> value on the specified candidate
             offset.
@@ -719,10 +719,10 @@
             A <see cref="T:System.Boolean"/> value indicating whether the candidate has digit.
             </returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.FullGridMap.Equals(System.Object)">
+        <member name="M:Sudoku.Data.FullGridMap.Equals(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.FullGridMap.Equals(Sudoku.Data.Meta.FullGridMap)">
+        <member name="M:Sudoku.Data.FullGridMap.Equals(Sudoku.Data.FullGridMap)">
             <summary>
             Indicates whether the current object has the same value with the other one.
             </summary>
@@ -732,45 +732,45 @@
             value; otherwise, <see langword="false"/>.
             </returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.FullGridMap.ToArray">
+        <member name="M:Sudoku.Data.FullGridMap.ToArray">
             <summary>
             Get all candidate offsets whose bits are set <see langword="true"/>.
             </summary>
             <returns>An array of candidate offsets.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.FullGridMap.GetHashCode">
+        <member name="M:Sudoku.Data.FullGridMap.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.FullGridMap.ToString">
+        <member name="M:Sudoku.Data.FullGridMap.ToString">
             <summary>
             Returns a string that represents the current object.
             </summary>
             <returns>A string that represents the current object.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.FullGridMap.op_True(Sudoku.Data.Meta.FullGridMap)">
+        <member name="M:Sudoku.Data.FullGridMap.op_True(Sudoku.Data.FullGridMap)">
             <summary>
             Check whether the specified map has at least one <see langword="true"/> bits.
             </summary>
             <param name="map">The grid map.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.FullGridMap.op_False(Sudoku.Data.Meta.FullGridMap)">
+        <member name="M:Sudoku.Data.FullGridMap.op_False(Sudoku.Data.FullGridMap)">
             <summary>
             Check whether the specified grid map has no <see langword="true"/> bits.
             </summary>
             <param name="map">The grid map.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.FullGridMap.op_LogicalNot(Sudoku.Data.Meta.FullGridMap)">
+        <member name="M:Sudoku.Data.FullGridMap.op_LogicalNot(Sudoku.Data.FullGridMap)">
             <summary>
             Check whether the specified grid map has no <see langword="true"/> bits.
-            Same as <see cref="M:Sudoku.Data.Meta.FullGridMap.op_False(Sudoku.Data.Meta.FullGridMap)"/>.
+            Same as <see cref="M:Sudoku.Data.FullGridMap.op_False(Sudoku.Data.FullGridMap)"/>.
             </summary>
             <param name="map">The grid map.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <seealso cref="M:Sudoku.Data.Meta.FullGridMap.op_False(Sudoku.Data.Meta.FullGridMap)"/>
+            <seealso cref="M:Sudoku.Data.FullGridMap.op_False(Sudoku.Data.FullGridMap)"/>
         </member>
-        <member name="M:Sudoku.Data.Meta.FullGridMap.op_Equality(Sudoku.Data.Meta.FullGridMap,Sudoku.Data.Meta.FullGridMap)">
+        <member name="M:Sudoku.Data.FullGridMap.op_Equality(Sudoku.Data.FullGridMap,Sudoku.Data.FullGridMap)">
             <summary>
             Indicates whether two instances have a same value.
             </summary>
@@ -778,7 +778,7 @@
             <param name="right">The right instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.FullGridMap.op_Inequality(Sudoku.Data.Meta.FullGridMap,Sudoku.Data.Meta.FullGridMap)">
+        <member name="M:Sudoku.Data.FullGridMap.op_Inequality(Sudoku.Data.FullGridMap,Sudoku.Data.FullGridMap)">
             <summary>
             Indicates whether two instances have two different values.
             </summary>
@@ -786,57 +786,57 @@
             <param name="right">The right instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.FullGridMap.op_OnesComplement(Sudoku.Data.Meta.FullGridMap)">
+        <member name="M:Sudoku.Data.FullGridMap.op_OnesComplement(Sudoku.Data.FullGridMap)">
             <summary>
             Negate all bits.
             </summary>
             <param name="map">The instance to negate.</param>
             <returns>The negative result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.FullGridMap.op_Subtraction(Sudoku.Data.Meta.FullGridMap,Sudoku.Data.Meta.FullGridMap)">
+        <member name="M:Sudoku.Data.FullGridMap.op_Subtraction(Sudoku.Data.FullGridMap,Sudoku.Data.FullGridMap)">
             <summary>
-            Get a <see cref="T:Sudoku.Data.Meta.FullGridMap"/> that contains all <paramref name="left"/> cells
+            Get a <see cref="T:Sudoku.Data.FullGridMap"/> that contains all <paramref name="left"/> cells
             but not in <paramref name="right"/> cells.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.FullGridMap.op_BitwiseAnd(Sudoku.Data.Meta.FullGridMap,Sudoku.Data.Meta.FullGridMap)">
+        <member name="M:Sudoku.Data.FullGridMap.op_BitwiseAnd(Sudoku.Data.FullGridMap,Sudoku.Data.FullGridMap)">
             <summary>
-            Intersect two <see cref="T:Sudoku.Data.Meta.FullGridMap"/>s.
+            Intersect two <see cref="T:Sudoku.Data.FullGridMap"/>s.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
             <returns>The intersection result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.FullGridMap.op_BitwiseOr(Sudoku.Data.Meta.FullGridMap,Sudoku.Data.Meta.FullGridMap)">
+        <member name="M:Sudoku.Data.FullGridMap.op_BitwiseOr(Sudoku.Data.FullGridMap,Sudoku.Data.FullGridMap)">
             <summary>
-            Union two <see cref="T:Sudoku.Data.Meta.FullGridMap"/>s.
+            Union two <see cref="T:Sudoku.Data.FullGridMap"/>s.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
             <returns>The union result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.FullGridMap.op_ExclusiveOr(Sudoku.Data.Meta.FullGridMap,Sudoku.Data.Meta.FullGridMap)">
+        <member name="M:Sudoku.Data.FullGridMap.op_ExclusiveOr(Sudoku.Data.FullGridMap,Sudoku.Data.FullGridMap)">
             <summary>
-            Symmetrical except two <see cref="T:Sudoku.Data.Meta.FullGridMap"/>s.
+            Symmetrical except two <see cref="T:Sudoku.Data.FullGridMap"/>s.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
             <returns>The result.</returns>
         </member>
-        <member name="T:Sudoku.Data.Meta.Grid">
+        <member name="T:Sudoku.Data.Grid">
             <summary>
             Encapsulates a basic sudoku grid.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.Grid.Empty">
+        <member name="F:Sudoku.Data.Grid.Empty">
             <summary>
             Indicates an empty grid, where all values are zero.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.Grid._masks">
+        <member name="F:Sudoku.Data.Grid._masks">
             <summary>
             Binary masks of all cells.
             </summary>
@@ -852,29 +852,29 @@
             <list type="table">
             <item>
             <term>0b001 (1)</term>
-            <description>The cell is <see cref="F:Sudoku.Data.Meta.CellStatus.Empty"/>.</description>
+            <description>The cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/>.</description>
             </item>
             <item>
             <term>0b010 (2)</term>
-            <description>The cell is <see cref="F:Sudoku.Data.Meta.CellStatus.Modifiable"/>.</description>
+            <description>The cell is <see cref="F:Sudoku.Data.CellStatus.Modifiable"/>.</description>
             </item>
             <item>
             <term>0b100 (4)</term>
-            <description>The cell is <see cref="F:Sudoku.Data.Meta.CellStatus.Given"/>.</description>
+            <description>The cell is <see cref="F:Sudoku.Data.CellStatus.Given"/>.</description>
             </item>
             </list>
             </para>
             </remarks>
-            <seealso cref="T:Sudoku.Data.Meta.CellStatus"/>
+            <seealso cref="T:Sudoku.Data.CellStatus"/>
         </member>
-        <member name="F:Sudoku.Data.Meta.Grid._initialMasks">
+        <member name="F:Sudoku.Data.Grid._initialMasks">
             <summary>
-            Same as <see cref="F:Sudoku.Data.Meta.Grid._masks"/>, but this field stores the all masks at
+            Same as <see cref="F:Sudoku.Data.Grid._masks"/>, but this field stores the all masks at
             the initial grid. The field will not be modified until this instance
             destructs.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.#ctor(System.Int16[])">
+        <member name="M:Sudoku.Data.Grid.#ctor(System.Int16[])">
             <summary>
             Initializes an instance with the binary mask array.
             </summary>
@@ -883,81 +883,81 @@
             Throws when the length of the specified argument is not 81.
             </exception>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.#ctor">
+        <member name="M:Sudoku.Data.Grid.#ctor">
             <summary>
             Provides default initialization.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Meta.Grid.HasSolved">
+        <member name="P:Sudoku.Data.Grid.HasSolved">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Data.Meta.Grid.Item(System.Int32)">
+        <member name="P:Sudoku.Data.Grid.Item(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Data.Meta.Grid.Item(System.Int32,System.Int32)">
+        <member name="P:Sudoku.Data.Grid.Item(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="E:Sudoku.Data.Meta.Grid.ValueChanged">
+        <member name="E:Sudoku.Data.Grid.ValueChanged">
             <summary>
             Indicates the event when the mask in a certain cell has changed.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.Fix">
+        <member name="M:Sudoku.Data.Grid.Fix">
             <summary>
             To fix a grid, which means all modifiable values will be changed
             to given ones.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.Unfix">
+        <member name="M:Sudoku.Data.Grid.Unfix">
             <summary>
             To unfix a grid, which means all given values will be changed
             to modifiable ones.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.Reset">
+        <member name="M:Sudoku.Data.Grid.Reset">
             <summary>
             To reset the grid.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.SetCellStatus(System.Int32,Sudoku.Data.Meta.CellStatus)">
+        <member name="M:Sudoku.Data.Grid.SetCellStatus(System.Int32,Sudoku.Data.CellStatus)">
             <summary>
             Set the status in a cell.
             </summary>
             <param name="offset">The cell offset you want to change.</param>
             <param name="cellStatus">The cell status you want to set.</param>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.SetMask(System.Int32,System.Int16)">
+        <member name="M:Sudoku.Data.Grid.SetMask(System.Int32,System.Int16)">
             <summary>
             Set a mask in a cell.
             </summary>
             <param name="offset">The cell offset you want to change.</param>
             <param name="value">The cell mask you want to set.</param>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.Equals(System.Object)">
+        <member name="M:Sudoku.Data.Grid.Equals(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.Equals(Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Data.Grid.Equals(Sudoku.Data.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.GetHashCode">
+        <member name="M:Sudoku.Data.Grid.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.ToArray">
+        <member name="M:Sudoku.Data.Grid.ToArray">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.GetMask(System.Int32)">
+        <member name="M:Sudoku.Data.Grid.GetMask(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.GetCandidates(System.Int32)">
+        <member name="M:Sudoku.Data.Grid.GetCandidates(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.GetCandidatesReversal(System.Int32)">
+        <member name="M:Sudoku.Data.Grid.GetCandidatesReversal(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.ToString">
+        <member name="M:Sudoku.Data.Grid.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.ToString(System.String)">
+        <member name="M:Sudoku.Data.Grid.ToString(System.String)">
             <summary>
             Returns a string that represents the current object, with the
             specified format.
@@ -965,49 +965,49 @@
             <param name="format">The format.</param>
             <returns>The string result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.ToString(System.String,System.IFormatProvider)">
+        <member name="M:Sudoku.Data.Grid.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.GetCellStatus(System.Int32)">
+        <member name="M:Sudoku.Data.Grid.GetCellStatus(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.Clone">
+        <member name="M:Sudoku.Data.Grid.Clone">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.GetEnumerator">
+        <member name="M:Sudoku.Data.Grid.GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:Sudoku.Data.Grid.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.OnValueChanged(System.Object,Sudoku.Data.ValueChangedEventArgs)">
+        <member name="M:Sudoku.Data.Grid.OnValueChanged(System.Object,Sudoku.Data.ValueChangedEventArgs)">
             <summary>
             The method, which will be invoked when the mask has changed.
             </summary>
             <param name="sender">The instance triggering the event.</param>
             <param name="e">The data.</param>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.SimplyValidate">
+        <member name="M:Sudoku.Data.Grid.SimplyValidate">
             <summary>
             Simply validate.
             </summary>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.Parse(System.String)">
+        <member name="M:Sudoku.Data.Grid.Parse(System.String)">
             <summary>
             <para>
             Parses a string value and converts to this type.
             </para>
             <para>
             If you want to parse a PM grid, we recommend you use the method
-            <see cref="M:Sudoku.Data.Meta.Grid.Parse(System.String,Sudoku.Data.Meta.GridParsingType)"/> instead of this method.
+            <see cref="M:Sudoku.Data.Grid.Parse(System.String,Sudoku.Data.GridParsingType)"/> instead of this method.
             </para>
             </summary>
             <param name="str">The string.</param>
             <returns>The result instance had converted.</returns>
-            <seealso cref="M:Sudoku.Data.Meta.Grid.Parse(System.String,Sudoku.Data.Meta.GridParsingType)"/>
+            <seealso cref="M:Sudoku.Data.Grid.Parse(System.String,Sudoku.Data.GridParsingType)"/>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.Parse(System.String,Sudoku.Data.Meta.GridParsingType)">
+        <member name="M:Sudoku.Data.Grid.Parse(System.String,Sudoku.Data.GridParsingType)">
             <summary>
             Parses a string value and converts to this type,
             using a specified grid parsing type.
@@ -1016,7 +1016,7 @@
             <param name="gridParsingType">The grid parsing type.</param>
             <returns>The result instance had converted.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.TryParse(System.String,Sudoku.Data.Meta.Grid@)">
+        <member name="M:Sudoku.Data.Grid.TryParse(System.String,Sudoku.Data.Grid@)">
             <summary>
             Try to parse a string and converts to this type, and returns a
             <see cref="T:System.Boolean"/> value indicating the result of the conversion.
@@ -1028,15 +1028,15 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.CheckFormatString(System.String)">
+        <member name="M:Sudoku.Data.Grid.CheckFormatString(System.String)">
             <summary>
             To check the format string, delegated from the method
-            <see cref="M:Sudoku.Data.Meta.Grid.ToString(System.String,System.IFormatProvider)"/>.
+            <see cref="M:Sudoku.Data.Grid.ToString(System.String,System.IFormatProvider)"/>.
             </summary>
             <param name="format">The format.</param>
-            <seealso cref="M:Sudoku.Data.Meta.Grid.ToString(System.String,System.IFormatProvider)"/>
+            <seealso cref="M:Sudoku.Data.Grid.ToString(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.TryParse(System.String,Sudoku.Data.Meta.GridParsingType,Sudoku.Data.Meta.Grid@)">
+        <member name="M:Sudoku.Data.Grid.TryParse(System.String,Sudoku.Data.GridParsingType,Sudoku.Data.Grid@)">
             <summary>
             Try to parse a string and converts to this type, and returns a
             <see cref="T:System.Boolean"/> value indicating the result of the conversion.
@@ -1049,21 +1049,21 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.CreateInstance(System.Int32[])">
+        <member name="M:Sudoku.Data.Grid.CreateInstance(System.Int32[])">
             <summary>
             Creates an instance using grid values.
             </summary>
             <param name="gridValues">The array of grid values.</param>
             <returns>The result instance.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.CreateInstance(System.Int32[0:,0:])">
+        <member name="M:Sudoku.Data.Grid.CreateInstance(System.Int32[0:,0:])">
             <summary>
             Creates an instance using grid values.
             </summary>
             <param name="gridValues">The array of grid values.</param>
             <returns>The result instance.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.op_Equality(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Data.Grid.op_Equality(Sudoku.Data.Grid,Sudoku.Data.Grid)">
             <summary>
             Indicates whether two instances have a same value.
             </summary>
@@ -1071,7 +1071,7 @@
             <param name="right">The right instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.Grid.op_Inequality(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.Grid)">
+        <member name="M:Sudoku.Data.Grid.op_Inequality(Sudoku.Data.Grid,Sudoku.Data.Grid)">
             <summary>
             Indicates whether two instances have two different values.
             </summary>
@@ -1079,12 +1079,12 @@
             <param name="right">The right instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Data.Meta.GridFormatter">
+        <member name="T:Sudoku.Data.GridFormatter">
             <summary>
             Provides operations for grid formatting.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridFormatter.#ctor(Sudoku.Data.Meta.Grid,System.Boolean)">
+        <member name="M:Sudoku.Data.GridFormatter.#ctor(Sudoku.Data.Grid,System.Boolean)">
             <summary>
             Initializes an instance with grid and a <see cref="T:System.Boolean"/> value
             indicating multi-line.
@@ -1095,61 +1095,61 @@
             be multi-line.
             </param>
         </member>
-        <member name="P:Sudoku.Data.Meta.GridFormatter.Multiline">
+        <member name="P:Sudoku.Data.GridFormatter.Multiline">
             <summary>
             Indicates whether the output should be multi-line.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Meta.GridFormatter.Grid">
+        <member name="P:Sudoku.Data.GridFormatter.Grid">
             <summary>
             Indicates the grid.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridFormatter.ToString">
+        <member name="M:Sudoku.Data.GridFormatter.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridFormatter.ToSingleLineStringCore">
+        <member name="M:Sudoku.Data.GridFormatter.ToSingleLineStringCore">
             <summary>
             To single line string.
             </summary>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridFormatter.ToMultiLineSimpleGridCore">
+        <member name="M:Sudoku.Data.GridFormatter.ToMultiLineSimpleGridCore">
             <summary>
             To multi-line normal grid string without any candidates.
             </summary>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridFormatter.ToMultiLineStringCore">
+        <member name="M:Sudoku.Data.GridFormatter.ToMultiLineStringCore">
             <summary>
             To multi-line string with candidates.
             </summary>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridFormatter.GetCellStatus(System.Int16)">
+        <member name="M:Sudoku.Data.GridFormatter.GetCellStatus(System.Int16)">
             <summary>
             Get cell status for a value.
             </summary>
             <param name="value">The value.</param>
             <returns>The cell status.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridFormatter.GetDefaultList">
+        <member name="M:Sudoku.Data.GridFormatter.GetDefaultList">
             <summary>
             Get the default list.
             </summary>
             <returns>The list.</returns>
         </member>
-        <member name="P:Sudoku.Data.Meta.GridFormatter.Placeholder">
+        <member name="P:Sudoku.Data.GridFormatter.Placeholder">
             <summary>
             The place holder.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Meta.GridFormatter.WithModifiables">
+        <member name="P:Sudoku.Data.GridFormatter.WithModifiables">
             <summary>
             Indicates the output should be with modifiable values.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Meta.GridFormatter.WithCandidates">
+        <member name="P:Sudoku.Data.GridFormatter.WithCandidates">
             <summary>
             <para>
             Indicates the output should be with candidates.
@@ -1166,7 +1166,7 @@
             </para>
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Meta.GridFormatter.TreatValueAsGiven">
+        <member name="P:Sudoku.Data.GridFormatter.TreatValueAsGiven">
             <summary>
             Indicates the output will treat modifiable values as given ones.
             If the output is single line, the output will remove all plus marks '+'.
@@ -1174,47 +1174,47 @@
             of '*digit*'.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Meta.GridFormatter.SubtleGridLines">
+        <member name="P:Sudoku.Data.GridFormatter.SubtleGridLines">
             <summary>
             Indicates whether need to handle all grid outlines while outputting.
             See file "How to use 'Grid' class.md" for more information.
             </summary>
         </member>
-        <member name="T:Sudoku.Data.Meta.GridMap">
+        <member name="T:Sudoku.Data.GridMap">
             <summary>
             Encapsulates a binary series of cell status table consisting of 81 bits,
             where <see langword="true"/> bit (1) is for the cell having digit,
             and the <see langword="false"/> bit (0) is for empty cell. Sometimes for other usages.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.GridMap.Empty">
+        <member name="F:Sudoku.Data.GridMap.Empty">
             <summary>
             Indicates an empty instance (making no changes).
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.GridMap.Shifting">
+        <member name="F:Sudoku.Data.GridMap.Shifting">
             <summary>
             The value used for shifting.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.GridMap._high">
+        <member name="F:Sudoku.Data.GridMap._high">
             <summary>
             Inner binary representation values.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.GridMap._low">
+        <member name="F:Sudoku.Data.GridMap._low">
             <summary>
             Inner binary representation values.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.#ctor(System.Int32)">
+        <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32)">
             <summary>
             Initializes an instance with the specified cell offset
             (Sets itself and all peers).
             </summary>
             <param name="offset">The cell offset.</param>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.#ctor(System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32,System.Boolean)">
             <summary>
             Initializes an instance with the specified cell offset.
             This will set all bits of all peers of this cell. Another
@@ -1232,17 +1232,17 @@
             </code>
             </param>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.#ctor(Sudoku.Data.Meta.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.#ctor(Sudoku.Data.GridMap)">
             <summary>
             To copy an instance with the specified information.
             This initializer is only used for add other cell like
             <code>
-            <see langword="var"/> y = <see langword="new"/> <see cref="T:Sudoku.Data.Meta.GridMap"/>(x) { [i] = <see langword="true"/> };
+            <see langword="var"/> y = <see langword="new"/> <see cref="T:Sudoku.Data.GridMap"/>(x) { [i] = <see langword="true"/> };
             </code>
             </summary>
             <param name="another">Another instance.</param>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.#ctor(System.Span{System.Int32})">
+        <member name="M:Sudoku.Data.GridMap.#ctor(System.Span{System.Int32})">
             <summary>
             Initializes an instance with a series of cell offsets.
             </summary>
@@ -1252,7 +1252,7 @@
             will not be set <see langword="true"/>.
             </remarks>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
             Initializes an instance with a series of cell offsets.
             </summary>
@@ -1262,59 +1262,59 @@
             will not be set <see langword="true"/>.
             </remarks>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.#ctor(System.Int64,System.Int64)">
+        <member name="M:Sudoku.Data.GridMap.#ctor(System.Int64,System.Int64)">
             <summary>
             Initializes an instance with three binary value.
             </summary>
             <param name="high">Higher 40 bits.</param>
             <param name="low">Lower 41 bits.</param>
         </member>
-        <member name="P:Sudoku.Data.Meta.GridMap.IsEmpty">
+        <member name="P:Sudoku.Data.GridMap.IsEmpty">
             <summary>
             Indicates whether the map has no set bits.
             This property is equivalent to code '<c>!<see langword="this"/>.IsNotEmpty</c>'.
             </summary>
-            <seealso cref="P:Sudoku.Data.Meta.GridMap.IsNotEmpty"/>
+            <seealso cref="P:Sudoku.Data.GridMap.IsNotEmpty"/>
         </member>
-        <member name="P:Sudoku.Data.Meta.GridMap.IsNotEmpty">
+        <member name="P:Sudoku.Data.GridMap.IsNotEmpty">
             <summary>
             Indicates whether the map has at least one set bit.
             This property is equivalent to code '<c>!<see langword="this"/>.IsEmpty</c>'.
             </summary>
-            <seealso cref="P:Sudoku.Data.Meta.GridMap.IsEmpty"/>
+            <seealso cref="P:Sudoku.Data.GridMap.IsEmpty"/>
         </member>
-        <member name="P:Sudoku.Data.Meta.GridMap.BlockMask">
+        <member name="P:Sudoku.Data.GridMap.BlockMask">
             <summary>
             Indicates the mask of block.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Meta.GridMap.RowMask">
+        <member name="P:Sudoku.Data.GridMap.RowMask">
             <summary>
             Indicates the mask of row.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Meta.GridMap.ColumnMask">
+        <member name="P:Sudoku.Data.GridMap.ColumnMask">
             <summary>
             Indicates the mask of column.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Meta.GridMap.CoveredLine">
+        <member name="P:Sudoku.Data.GridMap.CoveredLine">
             <summary>
             Indicates the covered line.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Meta.GridMap.CoveredRegions">
+        <member name="P:Sudoku.Data.GridMap.CoveredRegions">
             <summary>
             Indicates all regions covered.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Meta.GridMap.Count">
+        <member name="P:Sudoku.Data.GridMap.Count">
             <summary>
             Indicates the total number of cells where the corresponding
             value are set <see langword="true"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Meta.GridMap.Offsets">
+        <member name="P:Sudoku.Data.GridMap.Offsets">
             <summary>
             <para>
             Indicates all cell offsets whose corresponding value
@@ -1322,13 +1322,13 @@
             </para>
             <para>
             If you want to make an array of them, please use method
-            <see cref="M:Sudoku.Data.Meta.GridMap.ToArray"/> instead of code
+            <see cref="M:Sudoku.Data.GridMap.ToArray"/> instead of code
             '<c>Offsets.ToArray()</c>'.
             </para>
             </summary>
-            <seealso cref="M:Sudoku.Data.Meta.GridMap.ToArray"/>
+            <seealso cref="M:Sudoku.Data.GridMap.ToArray"/>
         </member>
-        <member name="P:Sudoku.Data.Meta.GridMap.Item(System.Int32)">
+        <member name="P:Sudoku.Data.GridMap.Item(System.Int32)">
             <summary>
             Gets or sets a <see cref="T:System.Boolean"/> value on the specified cell
             offset.
@@ -1341,17 +1341,17 @@
             A <see cref="T:System.Boolean"/> value indicating whether the cell has digit.
             </returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.Deconstruct(System.Int64@,System.Int64@)">
+        <member name="M:Sudoku.Data.GridMap.Deconstruct(System.Int64@,System.Int64@)">
             <summary>
             Deconstruct this instance.
             </summary>
             <param name="high">(<see langword="out"/> parameter) Higher 40 bits.</param>
             <param name="low">(<see langword="out"/> parameter) Lower 41 bits.</param>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.Equals(System.Object)">
+        <member name="M:Sudoku.Data.GridMap.Equals(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.Equals(Sudoku.Data.Meta.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.Equals(Sudoku.Data.GridMap)">
             <summary>
             Indicates whether the current object has the same value with the other one.
             </summary>
@@ -1361,14 +1361,14 @@
             value; otherwise, <see langword="false"/>.
             </returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.AllCellCovers(System.Int32)">
+        <member name="M:Sudoku.Data.GridMap.AllCellCovers(System.Int32)">
             <summary>
             Check whether the grid map is fully covered all cells in the specified region.
             </summary>
             <param name="regionOffset">The region offset.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.IsCoveredOneRegion(System.Nullable{System.Int32}@)">
+        <member name="M:Sudoku.Data.GridMap.IsCoveredOneRegion(System.Nullable{System.Int32}@)">
             <summary>
             Indicates whether all cells in this instance are in one region.
             </summary>
@@ -1376,64 +1376,64 @@
             (<see langword="out"/> parameter) The region covered.
             </param>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.SetBitAt(System.Int32)">
+        <member name="M:Sudoku.Data.GridMap.SetBitAt(System.Int32)">
             <summary>
             Get the specified index of <see langword="true"/> bits in this instance.
             </summary>
             <param name="index">The true bit index order.</param>
             <returns>The real index.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.ToArray">
+        <member name="M:Sudoku.Data.GridMap.ToArray">
             <summary>
             Get all cell offsets whose bits are set <see langword="true"/>.
             </summary>
             <returns>An array of cell offsets.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.GetEnumerator">
+        <member name="M:Sudoku.Data.GridMap.GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.GetHashCode">
+        <member name="M:Sudoku.Data.GridMap.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.ToString">
+        <member name="M:Sudoku.Data.GridMap.ToString">
             <summary>
             Returns a string that represents the current object.
             </summary>
             <returns>A string that represents the current object.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:Sudoku.Data.GridMap.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.Add(System.Int32)">
+        <member name="M:Sudoku.Data.GridMap.Add(System.Int32)">
             <summary>
             Set the specified cell as <see langword="true"/> value.
             </summary>
             <param name="offset">The cell offset.</param>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.Remove(System.Int32)">
+        <member name="M:Sudoku.Data.GridMap.Remove(System.Int32)">
             <summary>
             Set the specified cell as <see langword="false"/> value.
             </summary>
             <param name="offset">The cell offset.</param>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.GetCellsIn(System.Int32)">
+        <member name="M:Sudoku.Data.GridMap.GetCellsIn(System.Int32)">
             <summary>
             Get all cell offsets in the specified region.
             </summary>
             <param name="regionOffset">The region offset.</param>
             <returns>All cell offsets.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.CreateInstance(System.Int32)">
+        <member name="M:Sudoku.Data.GridMap.CreateInstance(System.Int32)">
             <summary>
-            Create a <see cref="T:Sudoku.Data.Meta.GridMap"/> instance with the specified region offset.
+            Create a <see cref="T:Sudoku.Data.GridMap"/> instance with the specified region offset.
             This will set all bits <see langword="true"/> in this region.
             </summary>
             <param name="regionOffset">The region offset.</param>
             <returns>The grid map.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.CreateInstance(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32)">
+        <member name="M:Sudoku.Data.GridMap.CreateInstance(Sudoku.Data.IReadOnlyGrid,System.Int32)">
             <summary>
-            Create a <see cref="T:Sudoku.Data.Meta.GridMap"/> instance with the specified solution.
+            Create a <see cref="T:Sudoku.Data.GridMap"/> instance with the specified solution.
             If the puzzle has been solved, this method will create a grid map of
             distribution of a single digit in this solution.
             </summary>
@@ -1447,20 +1447,20 @@
             Throws when the puzzle has not been solved.
             </exception>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.CreateInstance(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Data.GridMap.CreateInstance(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
-            Different with <see cref="M:Sudoku.Data.Meta.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>,
+            Different with <see cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>,
             this method will generate the intersection table of all peers from
             the argument.
             </summary>
             <param name="cellList">The cell list.</param>
             <returns>An intersection map.</returns>
-            <seealso cref="M:Sudoku.Data.Meta.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>
+            <seealso cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.CreateInstance(System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
+        <member name="M:Sudoku.Data.GridMap.CreateInstance(System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
             <summary>
-            Different with <see cref="M:Sudoku.Data.Meta.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/> and
-            <see cref="M:Sudoku.Data.Meta.GridMap.#ctor(System.Int32,System.Boolean)"/>, this method will generate
+            Different with <see cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/> and
+            <see cref="M:Sudoku.Data.GridMap.#ctor(System.Int32,System.Boolean)"/>, this method will generate
             the intersection table of all peers from the argument.
             </summary>
             <param name="cellList">The cell list.</param>
@@ -1468,10 +1468,10 @@
             Indicates whether the initializer will set peer center itself.
             </param>
             <returns>An intersection map.</returns>
-            <seealso cref="M:Sudoku.Data.Meta.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>
-            <seealso cref="M:Sudoku.Data.Meta.GridMap.#ctor(System.Int32,System.Boolean)"/>
+            <seealso cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>
+            <seealso cref="M:Sudoku.Data.GridMap.#ctor(System.Int32,System.Boolean)"/>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.op_Equality(Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.op_Equality(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <summary>
             Indicates whether two instances have a same value.
             </summary>
@@ -1479,7 +1479,7 @@
             <param name="right">The right instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.op_Inequality(Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.op_Inequality(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <summary>
             Indicates whether two instances have two different values.
             </summary>
@@ -1487,7 +1487,7 @@
             <param name="right">The right instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.op_OnesComplement(Sudoku.Data.Meta.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.op_OnesComplement(Sudoku.Data.GridMap)">
             <summary>
             Reverse all cells' statuses, which means all <see langword="true"/> bits
             will be set <see langword="false"/>, and all <see langword="false"/> bits
@@ -1496,76 +1496,76 @@
             <param name="gridMap">The instance to negate.</param>
             <returns>The negative result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.op_Subtraction(Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <summary>
-            Get a <see cref="T:Sudoku.Data.Meta.GridMap"/> that contains all <paramref name="left"/> cells
+            Get a <see cref="T:Sudoku.Data.GridMap"/> that contains all <paramref name="left"/> cells
             but not in <paramref name="right"/> cells.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.op_BitwiseAnd(Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.op_BitwiseAnd(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <summary>
-            Get all cells that two <see cref="T:Sudoku.Data.Meta.GridMap"/>s both contain.
+            Get all cells that two <see cref="T:Sudoku.Data.GridMap"/>s both contain.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
             <returns>The intersection result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.op_BitwiseOr(Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.op_BitwiseOr(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <summary>
-            Get all cells from two <see cref="T:Sudoku.Data.Meta.GridMap"/>s.
+            Get all cells from two <see cref="T:Sudoku.Data.GridMap"/>s.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
             <returns>The union result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridMap.op_ExclusiveOr(Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.op_ExclusiveOr(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <summary>
             Unions two sets of <paramref name="left"/> minus <paramref name="right"/>
             and <paramref name="right"/> minus <paramref name="left"/>, where the minus
-            operator is <see cref="M:Sudoku.Data.Meta.GridMap.op_Subtraction(Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)"/>.
+            operator is <see cref="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap,Sudoku.Data.GridMap)"/>.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
             <returns>The result.</returns>
-            <seealso cref="M:Sudoku.Data.Meta.GridMap.op_Subtraction(Sudoku.Data.Meta.GridMap,Sudoku.Data.Meta.GridMap)"/>
+            <seealso cref="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap,Sudoku.Data.GridMap)"/>
         </member>
-        <member name="F:Sudoku.Data.Meta.GridMap.PeerTable">
+        <member name="F:Sudoku.Data.GridMap.PeerTable">
             <summary>
             The peer table used in intersection.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.GridMap.RegionTable">
+        <member name="F:Sudoku.Data.GridMap.RegionTable">
             <summary>
             The map of all cell offsets in its specified region.
             For example, 'Map[0]' means that all cell offsets
             in the region 0 (block 1).
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.GridMap.CoverTable">
+        <member name="F:Sudoku.Data.GridMap.CoverTable">
             <summary>
             The cover table.
             </summary>
         </member>
-        <member name="T:Sudoku.Data.Meta.GridParser">
+        <member name="T:Sudoku.Data.GridParser">
             <summary>
             Encapsulates a grid parser.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridParser.#ctor(System.String)">
+        <member name="M:Sudoku.Data.GridParser.#ctor(System.String)">
             <summary>
             Initializes an instance with parsing data.
             </summary>
             <param name="parsingValue">The string to parse.</param>
         </member>
-        <member name="P:Sudoku.Data.Meta.GridParser.ParsingValue">
+        <member name="P:Sudoku.Data.GridParser.ParsingValue">
             <summary>
             The value to parse.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridParser.Parse">
+        <member name="M:Sudoku.Data.GridParser.Parse">
             <summary>
             To parse the value.
             </summary>
@@ -1574,7 +1574,7 @@
             Throws when failed to parse.
             </exception>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridParser.Parse(Sudoku.Data.Meta.GridParsingType)">
+        <member name="M:Sudoku.Data.GridParser.Parse(Sudoku.Data.GridParsingType)">
             <summary>
             To parse the value with a specified grid parsing type.
             </summary>
@@ -1584,13 +1584,13 @@
             Throws when failed to parse.
             </exception>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridParser.OnParsingSimpleMultilineGrid">
+        <member name="M:Sudoku.Data.GridParser.OnParsingSimpleMultilineGrid">
             <summary>
             Parse the value using multi-line simple grid (without any candidates).
             </summary>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridParser.OnParsingPencilMarked(System.Boolean)">
+        <member name="M:Sudoku.Data.GridParser.OnParsingPencilMarked(System.Boolean)">
             <summary>
             Parse the PM grid.
             </summary>
@@ -1600,24 +1600,24 @@
             </param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridParser.OnParsingSusser">
+        <member name="M:Sudoku.Data.GridParser.OnParsingSusser">
             <summary>
             Parse the susser format string.
             </summary>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridParser.GetDefaultCheckingArray">
+        <member name="M:Sudoku.Data.GridParser.GetDefaultCheckingArray">
             <summary>
             Get an array of default values in checking.
             </summary>
             <returns>The array of <see cref="T:System.Boolean"/> values.</returns>
         </member>
-        <member name="T:Sudoku.Data.Meta.GridParsingType">
+        <member name="T:Sudoku.Data.GridParsingType">
             <summary>
             Represents a grid parsing type.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.GridParsingType.Susser">
+        <member name="F:Sudoku.Data.GridParsingType.Susser">
             <summary>
             <para>
             Indicates the susser format, which means all grid values
@@ -1633,7 +1633,7 @@
             </para>
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.GridParsingType.PencilMarked">
+        <member name="F:Sudoku.Data.GridParsingType.PencilMarked">
             <summary>
             <para>
             Indicates the pencil marked grid (PM grid), which means all
@@ -1661,7 +1661,7 @@
             </para>
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.GridParsingType.PencilMarkedTreatSingleAsGiven">
+        <member name="F:Sudoku.Data.GridParsingType.PencilMarkedTreatSingleAsGiven">
             <summary>
             <para>
             Indicates the pencil marked grid (PM grid), which means all
@@ -1690,7 +1690,7 @@
             </para>
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Meta.GridParsingType.Table">
+        <member name="F:Sudoku.Data.GridParsingType.Table">
             <summary>
             <para>
             Indicates the table format, which means all grid values
@@ -1719,63 +1719,63 @@
             </para>
             </summary>
         </member>
-        <member name="T:Sudoku.Data.Meta.GridTransformations">
+        <member name="T:Sudoku.Data.GridTransformations">
             <summary>
-            Provides a series of methods for <see cref="T:Sudoku.Data.Meta.Grid"/>
+            Provides a series of methods for <see cref="T:Sudoku.Data.Grid"/>
             using in transformations.
             </summary>
-            <seealso cref="T:Sudoku.Data.Meta.Grid"/>
+            <seealso cref="T:Sudoku.Data.Grid"/>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridTransformations.MirrorLeftRight(Sudoku.Data.Meta.IReadOnlyGrid)">
+        <member name="M:Sudoku.Data.GridTransformations.MirrorLeftRight(Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Mirror left-right the grid.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result grid.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridTransformations.MirrorTopBottom(Sudoku.Data.Meta.IReadOnlyGrid)">
+        <member name="M:Sudoku.Data.GridTransformations.MirrorTopBottom(Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Mirror top-bottom the grid.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result grid.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridTransformations.MirrorDiagonal(Sudoku.Data.Meta.IReadOnlyGrid)">
+        <member name="M:Sudoku.Data.GridTransformations.MirrorDiagonal(Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Mirror diagonal the grid.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result grid.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridTransformations.MirrorAntidiagonal(Sudoku.Data.Meta.IReadOnlyGrid)">
+        <member name="M:Sudoku.Data.GridTransformations.MirrorAntidiagonal(Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Mirror anti-diagonal the grid.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result grid.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridTransformations.RotateClockwise(Sudoku.Data.Meta.IReadOnlyGrid)">
+        <member name="M:Sudoku.Data.GridTransformations.RotateClockwise(Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Rotate the grid clockwise.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridTransformations.RotateCounterClockwise(Sudoku.Data.Meta.IReadOnlyGrid)">
+        <member name="M:Sudoku.Data.GridTransformations.RotateCounterClockwise(Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Rotate the grid counter-clockwise.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridTransformations.RotatePi(Sudoku.Data.Meta.IReadOnlyGrid)">
+        <member name="M:Sudoku.Data.GridTransformations.RotatePi(Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridTransformations.SwapTwoRegions(Sudoku.Data.Meta.IReadOnlyGrid,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Data.GridTransformations.SwapTwoRegions(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32)">
             <summary>
             Swap to regions.
             </summary>
@@ -1788,7 +1788,7 @@
             or two regions are not in same region type.
             </exception>
         </member>
-        <member name="M:Sudoku.Data.Meta.GridTransformations.GetCellOffset(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Data.GridTransformations.GetCellOffset(System.Int32,System.Int32)">
             <summary>
             Get the cell offset of the relative position in the specified
             region.
@@ -1797,18 +1797,18 @@
             <param name="relativePos">The relative position.</param>
             <returns>The cell offset.</returns>
         </member>
-        <member name="T:Sudoku.Data.Meta.IReadOnlyGrid">
+        <member name="T:Sudoku.Data.IReadOnlyGrid">
             <summary>
             Provides a read-only sudoku grid.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Meta.IReadOnlyGrid.HasSolved">
+        <member name="P:Sudoku.Data.IReadOnlyGrid.HasSolved">
             <summary>
             Indicates the grid has already solved. If the value is <see langword="true"/>,
             the grid is solved; otherwise, <see langword="false"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Meta.IReadOnlyGrid.Item(System.Int32)">
+        <member name="P:Sudoku.Data.IReadOnlyGrid.Item(System.Int32)">
             <summary>
             Gets or sets a digit into a cell.
             </summary>
@@ -1822,11 +1822,11 @@
             <returns>
             An <see cref="T:System.Int32"/> value indicating the result.
             If the current cell does not have a digit
-            (i.e. The cell is <see cref="F:Sudoku.Data.Meta.CellStatus.Empty"/>),
+            (i.e. The cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/>),
             The value will be -1.
             </returns>
         </member>
-        <member name="P:Sudoku.Data.Meta.IReadOnlyGrid.Item(System.Int32,System.Int32)">
+        <member name="P:Sudoku.Data.IReadOnlyGrid.Item(System.Int32,System.Int32)">
             <summary>
             Gets or sets a candidate existence case with a <see cref="T:System.Boolean"/> value.
             </summary>
@@ -1838,39 +1838,39 @@
             </value>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.IReadOnlyGrid.Equals(System.Object)">
+        <member name="M:Sudoku.Data.IReadOnlyGrid.Equals(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Meta.IReadOnlyGrid.GetHashCode">
+        <member name="M:Sudoku.Data.IReadOnlyGrid.GetHashCode">
             <summary>
             Serves as the default hash function.
             </summary>
             <returns>The hash code.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.IReadOnlyGrid.ToArray">
+        <member name="M:Sudoku.Data.IReadOnlyGrid.ToArray">
             <summary>
             Serializes this instance to an array, where all digit value will be stored.
             </summary>
             <returns>
             This array. All elements are between 0 to 9, where 0 means the
-            cell is <see cref="F:Sudoku.Data.Meta.CellStatus.Empty"/> now.
+            cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/> now.
             </returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.IReadOnlyGrid.GetMask(System.Int32)">
+        <member name="M:Sudoku.Data.IReadOnlyGrid.GetMask(System.Int32)">
             <summary>
             Get a mask of the specified cell.
             </summary>
             <param name="offset">The cell offset you want to get.</param>
             <returns>The mask.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.IReadOnlyGrid.GetCandidates(System.Int32)">
+        <member name="M:Sudoku.Data.IReadOnlyGrid.GetCandidates(System.Int32)">
             <summary>
             Get the candidate mask part of the specified cell.
             </summary>
             <param name="offset">The cell offset you want to get.</param>
             <returns>The candidate mask.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.IReadOnlyGrid.GetCandidatesReversal(System.Int32)">
+        <member name="M:Sudoku.Data.IReadOnlyGrid.GetCandidatesReversal(System.Int32)">
             <summary>
             Get the candidate mask after reversed all bits mask part
             of the specified cell.
@@ -1878,7 +1878,7 @@
             <param name="offset">The cell offset you want to get.</param>
             <returns>The candidate mask.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.IReadOnlyGrid.ToString(System.String)">
+        <member name="M:Sudoku.Data.IReadOnlyGrid.ToString(System.String)">
             <summary>
             Returns a string that represents the current object, with the
             specified format.
@@ -1886,160 +1886,25 @@
             <param name="format">The format.</param>
             <returns>The string result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.IReadOnlyGrid.GetCellStatus(System.Int32)">
+        <member name="M:Sudoku.Data.IReadOnlyGrid.GetCellStatus(System.Int32)">
             <summary>
             Get a cell status of the specified cell.
             </summary>
             <param name="offset">The cell offset you want to get.</param>
             <returns>The cell status.</returns>
         </member>
-        <member name="M:Sudoku.Data.Meta.IReadOnlyGrid.Clone">
+        <member name="M:Sudoku.Data.IReadOnlyGrid.Clone">
             <summary>
             Creates a new instance that is a copy of the current instance.
             </summary>
             <returns>The cloneation.</returns>
-        </member>
-        <member name="T:Sudoku.Data.Meta.SymmetricalType">
-            <summary>
-            Define a symmetrical type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Meta.SymmetricalType.Central">
-            <summary>
-            Indicates the central symmetrical type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Meta.SymmetricalType.Diagonal">
-            <summary>
-            Indicates the diagonal symmetrical type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Meta.SymmetricalType.AntiDiagonal">
-            <summary>
-            Indicates the anti-diagonal symmetrical type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Meta.SymmetricalType.XAxis">
-            <summary>
-            Indicates the x-axis symmetrical type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Meta.SymmetricalType.YAxis">
-            <summary>
-            Indicates the y-axis symmetrical type.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Data.Meta.UndoableGrid">
-            <summary>
-            Provides an undo-able sudoku grid. This data structure is nearly same
-            as <see cref="T:Sudoku.Data.Meta.Grid"/>, but only add two methods <see cref="M:Sudoku.Data.Meta.UndoableGrid.Undo"/>
-            and <see cref="M:Sudoku.Data.Meta.UndoableGrid.Redo"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.Meta.Grid"/>
-        </member>
-        <member name="F:Sudoku.Data.Meta.UndoableGrid._undoStack">
-            <summary>
-            The undo stack.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Meta.UndoableGrid._redoStack">
-            <summary>
-            The redo stack.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Meta.UndoableGrid.#ctor(System.Int16[])">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Data.Meta.UndoableGrid.Item(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Data.Meta.UndoableGrid.Item(System.Int32,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.UndoableGrid.Fix">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.UndoableGrid.Unfix">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.UndoableGrid.Reset">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.UndoableGrid.SetCellStatus(System.Int32,Sudoku.Data.Meta.CellStatus)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.UndoableGrid.SetMask(System.Int32,System.Int16)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.UndoableGrid.Redo">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.UndoableGrid.Undo">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.UndoableGrid.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.UndoableGrid.Equals(Sudoku.Data.Meta.UndoableGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.UndoableGrid.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Meta.UndoableGrid.op_Equality(Sudoku.Data.Meta.UndoableGrid,Sudoku.Data.Meta.UndoableGrid)">
-            <summary>
-            Indicates whether two instances have a same value.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Meta.UndoableGrid.op_Inequality(Sudoku.Data.Meta.UndoableGrid,Sudoku.Data.Meta.UndoableGrid)">
-            <summary>
-            Indicates whether two instances have two different values.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Meta.UndoableGrid.op_Equality(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.UndoableGrid)">
-            <summary>
-            Indicates whether two instances have a same value.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Meta.UndoableGrid.op_Inequality(Sudoku.Data.Meta.Grid,Sudoku.Data.Meta.UndoableGrid)">
-            <summary>
-            Indicates whether two instances have two different values.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Meta.UndoableGrid.op_Equality(Sudoku.Data.Meta.UndoableGrid,Sudoku.Data.Meta.Grid)">
-            <summary>
-            Indicates whether two instances have a same value.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Meta.UndoableGrid.op_Inequality(Sudoku.Data.Meta.UndoableGrid,Sudoku.Data.Meta.Grid)">
-            <summary>
-            Indicates whether two instances have two different values.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Data.Stepping.AssignmentStep">
             <summary>
             Encapsulates an assignment step.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.AssignmentStep.#ctor(System.Int32,System.Int32,System.Int16,Sudoku.Data.Meta.GridMap)">
+        <member name="M:Sudoku.Data.Stepping.AssignmentStep.#ctor(System.Int32,System.Int32,System.Int16,Sudoku.Data.GridMap)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -2070,10 +1935,10 @@
             Indicates the grid map.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.AssignmentStep.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.AssignmentStep.UndoStepTo(Sudoku.Data.UndoableGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Stepping.AssignmentStep.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.AssignmentStep.DoStepTo(Sudoku.Data.UndoableGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.Stepping.EliminationStep">
@@ -2098,10 +1963,10 @@
             Indicates the cell.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.EliminationStep.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.EliminationStep.UndoStepTo(Sudoku.Data.UndoableGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Stepping.EliminationStep.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.EliminationStep.DoStepTo(Sudoku.Data.UndoableGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.Stepping.FixStep">
@@ -2109,7 +1974,7 @@
             Encapsulates a fix step.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.FixStep.#ctor(Sudoku.Data.Meta.GridMap)">
+        <member name="M:Sudoku.Data.Stepping.FixStep.#ctor(Sudoku.Data.GridMap)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -2120,10 +1985,10 @@
             Indicates all cells to fix.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.FixStep.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.FixStep.DoStepTo(Sudoku.Data.UndoableGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Stepping.FixStep.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.FixStep.UndoStepTo(Sudoku.Data.UndoableGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.Stepping.ResetStep">
@@ -2148,10 +2013,10 @@
             Indicates the table of old grid masks.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.ResetStep.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.ResetStep.DoStepTo(Sudoku.Data.UndoableGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Stepping.ResetStep.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.ResetStep.UndoStepTo(Sudoku.Data.UndoableGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.Stepping.SetCellStatusStep">
@@ -2159,7 +2024,7 @@
             Encapsulates a step for setting a cell status.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.SetCellStatusStep.#ctor(System.Int32,Sudoku.Data.Meta.CellStatus,Sudoku.Data.Meta.CellStatus)">
+        <member name="M:Sudoku.Data.Stepping.SetCellStatusStep.#ctor(System.Int32,Sudoku.Data.CellStatus,Sudoku.Data.CellStatus)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -2182,10 +2047,10 @@
             Indicates the new status.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.SetCellStatusStep.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.SetCellStatusStep.DoStepTo(Sudoku.Data.UndoableGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Stepping.SetCellStatusStep.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.SetCellStatusStep.UndoStepTo(Sudoku.Data.UndoableGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.Stepping.SetMaskStep">
@@ -2216,10 +2081,10 @@
             Indicates the new mask.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.SetMaskStep.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.SetMaskStep.DoStepTo(Sudoku.Data.UndoableGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Stepping.SetMaskStep.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.SetMaskStep.UndoStepTo(Sudoku.Data.UndoableGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.Stepping.Step">
@@ -2227,13 +2092,13 @@
             Provides a step used for applying to a sudoku grid.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.Step.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.Step.DoStepTo(Sudoku.Data.UndoableGrid)">
             <summary>
             Apply the step to the grid.
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Data.Stepping.Step.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.Step.UndoStepTo(Sudoku.Data.UndoableGrid)">
             <summary>
             Undo the step to the grid.
             </summary>
@@ -2244,7 +2109,7 @@
             Encapsulates an unfix step.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.UnfixStep.#ctor(Sudoku.Data.Meta.GridMap)">
+        <member name="M:Sudoku.Data.Stepping.UnfixStep.#ctor(Sudoku.Data.GridMap)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -2255,11 +2120,146 @@
             Indicates all cells.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.UnfixStep.DoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.UnfixStep.DoStepTo(Sudoku.Data.UndoableGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Stepping.UnfixStep.UndoStepTo(Sudoku.Data.Meta.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.UnfixStep.UndoStepTo(Sudoku.Data.UndoableGrid)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Data.SymmetricalType">
+            <summary>
+            Define a symmetrical type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SymmetricalType.Central">
+            <summary>
+            Indicates the central symmetrical type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SymmetricalType.Diagonal">
+            <summary>
+            Indicates the diagonal symmetrical type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SymmetricalType.AntiDiagonal">
+            <summary>
+            Indicates the anti-diagonal symmetrical type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SymmetricalType.XAxis">
+            <summary>
+            Indicates the x-axis symmetrical type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SymmetricalType.YAxis">
+            <summary>
+            Indicates the y-axis symmetrical type.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Data.UndoableGrid">
+            <summary>
+            Provides an undo-able sudoku grid. This data structure is nearly same
+            as <see cref="T:Sudoku.Data.Grid"/>, but only add two methods <see cref="M:Sudoku.Data.UndoableGrid.Undo"/>
+            and <see cref="M:Sudoku.Data.UndoableGrid.Redo"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Grid"/>
+        </member>
+        <member name="F:Sudoku.Data.UndoableGrid._undoStack">
+            <summary>
+            The undo stack.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.UndoableGrid._redoStack">
+            <summary>
+            The redo stack.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.UndoableGrid.#ctor(System.Int16[])">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.UndoableGrid.Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.UndoableGrid.Item(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.UndoableGrid.Fix">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.UndoableGrid.Unfix">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.UndoableGrid.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.UndoableGrid.SetCellStatus(System.Int32,Sudoku.Data.CellStatus)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.UndoableGrid.SetMask(System.Int32,System.Int16)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.UndoableGrid.Redo">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.UndoableGrid.Undo">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.UndoableGrid.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.UndoableGrid.Equals(Sudoku.Data.UndoableGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.UndoableGrid.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.UndoableGrid.op_Equality(Sudoku.Data.UndoableGrid,Sudoku.Data.UndoableGrid)">
+            <summary>
+            Indicates whether two instances have a same value.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.UndoableGrid.op_Inequality(Sudoku.Data.UndoableGrid,Sudoku.Data.UndoableGrid)">
+            <summary>
+            Indicates whether two instances have two different values.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.UndoableGrid.op_Equality(Sudoku.Data.Grid,Sudoku.Data.UndoableGrid)">
+            <summary>
+            Indicates whether two instances have a same value.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.UndoableGrid.op_Inequality(Sudoku.Data.Grid,Sudoku.Data.UndoableGrid)">
+            <summary>
+            Indicates whether two instances have two different values.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.UndoableGrid.op_Equality(Sudoku.Data.UndoableGrid,Sudoku.Data.Grid)">
+            <summary>
+            Indicates whether two instances have a same value.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.UndoableGrid.op_Inequality(Sudoku.Data.UndoableGrid,Sudoku.Data.Grid)">
+            <summary>
+            Indicates whether two instances have two different values.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Data.ValueChangedEventArgs">
             <summary>
@@ -2473,20 +2473,20 @@
             Represents an error that the puzzle has multiple solutions while solving.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid)">
+        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Initializes an instance with a grid.
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid,System.String)">
+        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.IReadOnlyGrid,System.String)">
             <summary>
             Initializes an instance with a grid and an error message.
             </summary>
             <param name="grid">The grid.</param>
             <param name="message">The error message.</param>
         </member>
-        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid,System.String,System.Exception)">
+        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.IReadOnlyGrid,System.String,System.Exception)">
             <summary>
             Initializes an instance with a grid, an error message and an inner exception.
             </summary>
@@ -2494,7 +2494,7 @@
             <param name="message">The error message.</param>
             <param name="inner">The inner exception.</param>
         </member>
-        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+        <member name="M:Sudoku.Runtime.MultipleSolutionsException.#ctor(Sudoku.Data.IReadOnlyGrid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
             Initializes an instance with a grid, a serialization information instance and
             a streaming context instance.
@@ -2518,20 +2518,20 @@
             Represents an error that the puzzle has no solution while solving.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid)">
+        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Initializes an instance with a grid.
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid,System.String)">
+        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.IReadOnlyGrid,System.String)">
             <summary>
             Initializes an instance with a grid and an error message.
             </summary>
             <param name="grid">The grid.</param>
             <param name="message">The error message.</param>
         </member>
-        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid,System.String,System.Exception)">
+        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.IReadOnlyGrid,System.String,System.Exception)">
             <summary>
             Initializes an instance with a grid, an error message and an inner exception.
             </summary>
@@ -2539,7 +2539,7 @@
             <param name="message">The error message.</param>
             <param name="inner">The inner exception.</param>
         </member>
-        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+        <member name="M:Sudoku.Runtime.NoSolutionException.#ctor(Sudoku.Data.IReadOnlyGrid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
             Initializes an instance with a grid, a serialization information instance and
             a streaming context instance.
@@ -2581,20 +2581,20 @@
             manual logic tools.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid)">
+        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Initializes an instance with a grid.
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid,System.String)">
+        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.IReadOnlyGrid,System.String)">
             <summary>
             Initializes an instance with a grid and an error message.
             </summary>
             <param name="grid">The grid.</param>
             <param name="message">The error message.</param>
         </member>
-        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid,System.String,System.Exception)">
+        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.IReadOnlyGrid,System.String,System.Exception)">
             <summary>
             Initializes an instance with a grid, an error message and an inner exception.
             </summary>
@@ -2602,7 +2602,7 @@
             <param name="message">The error message.</param>
             <param name="inner">The inner exception.</param>
         </member>
-        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.Meta.IReadOnlyGrid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+        <member name="M:Sudoku.Runtime.WrongHandlingException.#ctor(Sudoku.Data.IReadOnlyGrid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
             Initializes an instance with a grid, a serialization information instance and
             a streaming context instance.

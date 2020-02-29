@@ -37,6 +37,13 @@ namespace Sudoku.Solving.Manual
 		{
 			if (grid.IsValid(out var solution))
 			{
+				// Get all region maps.
+				var regionMaps = new GridMap[27];
+				for (int i = 0; i < 27; i++)
+				{
+					regionMaps[i] = GridMap.CreateInstance(i);
+				}
+
 				// Get intersection table in order to run faster in intersection technique searchers.
 				var intersectionTable = new Intersection[18, 3];
 				for (int i = 0; i < 18; i++)
@@ -46,16 +53,9 @@ namespace Sudoku.Solving.Manual
 						int baseSet = i + 9;
 						int coverSet = i < 9 ? i / 3 * 3 + j : ((i - 9) / 3 * 3 + j) * 3 % 8;
 						intersectionTable[i, j] = (
-							baseSet, coverSet, GridMap.CreateInstance(baseSet),
-							GridMap.CreateInstance(coverSet));
+							baseSet, coverSet, regionMaps[baseSet],
+							regionMaps[coverSet]);
 					}
-				}
-
-				// Get all region maps.
-				var regionMaps = new GridMap[27];
-				for (int i = 0; i < 27; i++)
-				{
-					regionMaps[i] = GridMap.CreateInstance(i);
 				}
 
 				// Solve the puzzle.

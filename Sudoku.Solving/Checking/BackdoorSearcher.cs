@@ -28,7 +28,6 @@ namespace Sudoku.Solving.Checking
 		/// </summary>
 		private static readonly ManualSolver TestSolver = new ManualSolver
 		{
-			OptimizedApplyingOrder = false,
 			EnableFullHouse = false,
 			EnableLastDigit = false
 		};
