@@ -31,9 +31,14 @@
 		/// <para>
 		/// Indicates the number of nodes to be searched for in bowman bingos.
 		/// </para>
-		/// <para>The value is <c>10</c> in default case.</para>
+		/// <para>
+		/// The value is <c>32</c> in default case. You can let this value
+		/// be higher because this value take a little influence on the solver.
+		/// However, each unique solution has more than 17 hints (given digits),
+		/// which means you cannot set this value more than <c>64</c> (81 - 17 = 64).
+		/// </para>
 		/// </summary>
-		public int BowmanBingoMaximumLength { get; set; } = 10;
+		public int BowmanBingoMaximumLength { get; set; } = 32;
 
 		/// <summary>
 		/// <para>
@@ -74,20 +79,6 @@
 		/// </para>
 		/// <para>The value is <see langword="false"/> in default case.</para>
 		/// </summary>
-		/// <example>
-		/// For example, An basic UR pattern should be
-		/// <code>
-		/// ab ab
-		/// ab abc
-		/// </code>
-		/// But sometimes, some digits will be missed in the pattern
-		/// like this:
-		/// <code>
-		/// ab ab
-		/// ab ac
-		/// </code>
-		/// The candidate <c>a</c> is also can be eliminated.
-		/// </example>
 		public bool CheckIncompletedUniquenessPatterns { get; set; } = false;
 
 		/// <summary>
