@@ -1721,10 +1721,10 @@
         </member>
         <member name="T:Sudoku.Data.GridTransformations">
             <summary>
-            Provides a series of methods for <see cref="T:Sudoku.Data.Grid"/>
+            Provides a series of methods for <see cref="T:Sudoku.Data.IReadOnlyGrid"/>
             using in transformations.
             </summary>
-            <seealso cref="T:Sudoku.Data.Grid"/>
+            <seealso cref="T:Sudoku.Data.IReadOnlyGrid"/>
         </member>
         <member name="M:Sudoku.Data.GridTransformations.MirrorLeftRight(Sudoku.Data.IReadOnlyGrid)">
             <summary>
