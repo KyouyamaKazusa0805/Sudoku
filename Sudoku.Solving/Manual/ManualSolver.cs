@@ -200,7 +200,10 @@ namespace Sudoku.Solving.Manual
 				if (CheckConclusionsValidity(solution, step.Conclusions))
 				{
 					step.ApplyTo(cloneation);
-					_stepGrids.Add(cloneation.Clone());
+					if (RemoveAllRedundantSteps)
+					{
+						_stepGrids.Add(cloneation.Clone());
+					}
 					steps.Add(step);
 					if (cloneation.HasSolved)
 					{
@@ -370,7 +373,10 @@ namespace Sudoku.Solving.Manual
 				if (CheckConclusionsValidity(solution, step.Conclusions))
 				{
 					step.ApplyTo(cloneation);
-					_stepGrids.Add(cloneation.Clone());
+					if (RemoveAllRedundantSteps)
+					{
+						_stepGrids.Add(cloneation.Clone());
+					}
 					steps.Add(step);
 					if (cloneation.HasSolved)
 					{
