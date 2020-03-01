@@ -29,8 +29,14 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		/// <inheritdoc/>
-		public override string Name =>
-			EnableAndIsLastDigit ? "Last Digit" : $"Hidden Single (In {RegionUtils.GetRegionName(RegionOffset)})";
+		public override string Name
+		{
+			get
+			{
+				string region = RegionUtils.GetRegionName(RegionOffset);
+				return EnableAndIsLastDigit ? "Last Digit" : $"Hidden Single (In {region})";
+			}
+		}
 
 		/// <inheritdoc/>
 		public override decimal Difficulty =>

@@ -19,9 +19,10 @@ namespace Sudoku.Debugging
 			var solver = new ManualSolver
 			{
 				CheckAlmostLockedQuadruple = true,
-				OptimizedApplyingOrder = false
+				OptimizedApplyingOrder = false,
+				RemoveAllRedundantSteps = true,
 			};
-			var grid = Grid.Parse("098420600000000810700000005000600002003217500600005000200000001067000000005072340");
+			var grid = Grid.Parse("170230600000800090000001005000640307000000000508027000800700000050004000003052071");
 			var analysisResult = solver.Solve(grid);
 			WriteLine($"{analysisResult:-#!.}");
 		}

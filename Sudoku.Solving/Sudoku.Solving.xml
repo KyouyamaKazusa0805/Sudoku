@@ -1878,6 +1878,11 @@
             Provides a solver that use logical methods to solve a specified sudoku puzzle.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.ManualSolver._stepGrids">
+            <summary>
+            All step grids in solving.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.SolverName">
             <inheritdoc/>
         </member>
@@ -1914,7 +1919,13 @@
             Throws when the solver cannot solved due to wrong handling.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.CheckEliminations(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.RemoveRedundantSteps(System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo}@)">
+            <summary>
+            Remove all redundant steps after finished solving.
+            </summary>
+            <param name="steps">(<see langword="ref"/> parameter) All steps.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.CheckConclusionsValidity(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
             <summary>
             To check the validity of all conclusions.
             </summary>
@@ -2132,7 +2143,7 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder">
             <summary>
-            <para>Indicates the solver will optimizes the applying order.</para>
+            <para>Indicates whether the solver will optimizes the applying order.</para>
             <para>
             When the value is <see langword="true"/>, the result to apply to
             the grid will be the one which has the minimum difficulty
@@ -2146,6 +2157,25 @@
             </para>
             </summary>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.RemoveAllRedundantSteps">
+            <summary>
+            <para>
+            Indicates whether the solver will optimized the solving steps.
+            </para>
+            <para>
+            If the value is <see langword="true"/>, the solver will check all redundant
+            solving steps after finished solving the puzzle. Redundant steps are those
+            steps which is not necessary steps while solving. If these steps does not
+            exist, the puzzle can be also solved.
+            </para>
+            <para>
+            The value is <see langword="false"/> in default case. If the value is
+            <see langword="true"/>, the solver will enable the function to remove
+            all redundant steps. However the solver will use recursion to find all
+            redundant ones, so the solver will be slower than normal case.
+            </para>
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.UseCalculationPriority">
             <summary>
