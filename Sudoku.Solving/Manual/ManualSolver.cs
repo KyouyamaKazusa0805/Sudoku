@@ -437,7 +437,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="steps">(<see langword="ref"/> parameter) All steps.</param>
 		private void RemoveRedundantSteps(ref List<TechniqueInfo> steps)
 		{
-
+			// TODO: Implement the logic.
 		}
 
 
