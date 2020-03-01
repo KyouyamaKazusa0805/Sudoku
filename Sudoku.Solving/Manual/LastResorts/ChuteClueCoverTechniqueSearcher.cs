@@ -26,7 +26,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		}
 
 
-		private static void SearchForFloors(IBag<TechniqueInfo> result, IReadOnlyGrid grid)
+		private void SearchForFloors(IBag<TechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			var series = (Span<int>)stackalloc int[27];
 			for (int i = 0; i < 3; i++)
@@ -94,7 +94,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			}
 		}
 
-		private static void SearchForTowers(IBag<TechniqueInfo> result, IReadOnlyGrid grid)
+		private void SearchForTowers(IBag<TechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			var series = (Span<int>)stackalloc int[27];
 			for (int i = 0; i < 3; i++)

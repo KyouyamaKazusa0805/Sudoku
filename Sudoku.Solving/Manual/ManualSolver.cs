@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.Runtime;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Alses;
@@ -154,7 +155,7 @@ namespace Sudoku.Solving.Manual
 				{
 					// Skip all searchers marked slow running attribute.
 					if (DisableSlowTechniques
-						&& searcher.GetType().GetCustomAttributes(false).OfType<SlowAttribute>().Any())
+						&& searcher.HasMarkedAttribute<SlowAttribute>(false, out _))
 					{
 						continue;
 					}
@@ -167,11 +168,18 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
+					if (EnableGarbageCollectionForcedly
+						&& searcher.HasMarkedAttribute<HighAllocationAttribute>(false, out _))
+					{
+						GC.Collect();
+					}
+
 					searcher.AccumulateAll(bag, cloneation);
 				}
 
 				var step = bag.GetElementByMinSelector(info => info.Difficulty);
 				bag.Clear();
+
 				if (step is null)
 				{
 					// If current step cannot find any steps,
@@ -306,7 +314,7 @@ namespace Sudoku.Solving.Manual
 
 				// Skip all searchers marked slow running attribute.
 				if (DisableSlowTechniques
-					&& searcher.GetType().GetCustomAttributes(false).OfType<SlowAttribute>().Any())
+					&& searcher.HasMarkedAttribute<SlowAttribute>(false, out _))
 				{
 					continue;
 				}
@@ -324,6 +332,12 @@ namespace Sudoku.Solving.Manual
 					? bag.GetElementByMinSelector(info => info.Difficulty)
 					: bag.FirstOrDefault();
 				bag.Clear();
+
+				if (EnableGarbageCollectionForcedly
+					&& searcher.HasMarkedAttribute<HighAllocationAttribute>(false, out _))
+				{
+					GC.Collect();
+				}
 
 				if (step is null)
 				{

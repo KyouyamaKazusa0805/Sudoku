@@ -145,6 +145,16 @@
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether the solver enables the garbage collection
+		/// after finished searching a technique whose searcher is
+		/// high space-complexity.
+		/// </para>
+		/// <para>This value is <see langword="true"/> in default case.</para>
+		/// </summary>
+		public bool EnableGarbageCollectionForcedly { get; set; } = true;
+
+		/// <summary>
+		/// <para>
 		/// Indicates whether the solver will record the step
 		/// whose name or kind is last digit.
 		/// </para>

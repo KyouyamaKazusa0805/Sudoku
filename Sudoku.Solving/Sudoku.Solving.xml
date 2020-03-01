@@ -1114,6 +1114,14 @@
             <param name="grid">The grid.</param>
             <returns>All grid maps.</returns>
         </member>
+        <member name="T:Sudoku.Solving.HighAllocationAttribute">
+            <summary>
+            Represents a mark on a searcher which should allocate
+            extremely-high temporary memory.
+            If so, the manual solver will enable garbage collection forcedly
+            after finished. 
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlmostLockedSetTechniqueInfo">
             <summary>
             Provides a usage of almost locked set (ALS) technique.
@@ -2054,6 +2062,16 @@
             the full house will be found at this empty cell (the last
             value in this region).
             </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.EnableGarbageCollectionForcedly">
+            <summary>
+            <para>
+            Indicates whether the solver enables the garbage collection
+            after finished searching a technique whose searcher is
+            high space-complexity.
+            </para>
+            <para>This value is <see langword="true"/> in default case.</para>
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.EnableLastDigit">
             <summary>

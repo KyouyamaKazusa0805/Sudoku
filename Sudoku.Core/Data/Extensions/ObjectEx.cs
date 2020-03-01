@@ -1,4 +1,8 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Sudoku.Data.Extensions
 {
@@ -37,5 +41,77 @@ namespace Sudoku.Data.Extensions
 		/// </returns>
 		public static string NullableToString(this object? @this, string defaultValue) =>
 			@this?.ToString() ?? defaultValue;
+
+		/// <summary>
+		/// To check whether the specified type has marked the specified attribute.
+		/// </summary>
+		/// <typeparam name="TAttribute">The type of the attribute.</typeparam>
+		/// <param name="this">
+		/// (<see langword="this"/> parameter) The instance. This instance will
+		/// never be useful except to get its type.
+		/// </param>
+		/// <param name="inherit">
+		/// <see langword="true"/> to search this member's inheritance chain
+		/// to find the attributes; otherwise, <see langword="false"/>.
+		/// This parameter is ignored for properties and events.
+		/// </param>
+		/// <param name="attributes">
+		/// (<see langword="out"/> parameter) All attributes found.
+		/// </param>
+		/// <returns>A <see cref="bool"/> indicating that.</returns>
+		public static bool HasMarkedAttribute<TAttribute>(
+			this object @this, bool inherit,
+			[NotNullWhen(true)] out IEnumerable<TAttribute>? attributes)
+			where TAttribute : Attribute
+		{
+			var temp = @this.GetType().GetCustomAttributes(inherit).OfType<TAttribute>();
+			if (temp.Any())
+			{
+				attributes = temp;
+				return true;
+			}
+			else
+			{
+				attributes = null;
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// To check whether the specified type has marked the specified attribute.
+		/// </summary>
+		/// <typeparam name="T">The type of the instance.</typeparam>
+		/// <typeparam name="TAttribute">The type of the attribute.</typeparam>
+		/// <param name="inherit">
+		/// <see langword="true"/> to search this member's inheritance chain
+		/// to find the attributes; otherwise, <see langword="false"/>.
+		/// This parameter is ignored for properties and events.
+		/// </param>
+		/// <param name="attributes">
+		/// (<see langword="out"/> parameter) All attributes found.
+		/// </param>
+		/// <returns>A <see cref="bool"/> indicating that.</returns>
+		/// <remarks>
+		/// This method is same as
+		/// <see cref="HasMarkedAttribute{TAttribute}(object, bool, out IEnumerable{TAttribute})"/>,
+		/// but the type of the specified object is used only.
+		/// </remarks>
+		/// <seealso cref="HasMarkedAttribute{TAttribute}(object, bool, out IEnumerable{TAttribute})"/>
+		public static bool HasMarkedAttribute<T, TAttribute>(
+			bool inherit, [NotNullWhen(true)] out IEnumerable<TAttribute>? attributes)
+			where TAttribute : Attribute
+		{
+			var temp = typeof(T).GetCustomAttributes(inherit).OfType<TAttribute>();
+			if (temp.Any())
+			{
+				attributes = temp;
+				return true;
+			}
+			else
+			{
+				attributes = null;
+				return false;
+			}
+		}
 	}
 }
