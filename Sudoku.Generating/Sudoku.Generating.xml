@@ -22,6 +22,33 @@
         <member name="M:Sudoku.Generating.Basic.BasicPuzzleGenerator.Generate">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Generating.ExtendedGenerator">
+            <summary>
+            Encapsulates an extended puzzle generator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.ExtendedGenerator.Rng">
+            <summary>
+            The random number generator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.ExtendedGenerator.Solver">
+            <summary>
+            The dancing links solver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.ExtendedGenerator.Generate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.ExtendedGenerator.Generate(System.Int32,System.Int32,Sudoku.Data.SymmetricalType)">
+            <summary>
+            Generate a puzzle with the specified information.
+            </summary>
+            <param name="min">The minimum hints of the puzzle.</param>
+            <param name="max">The maximum hints of the puzzle.</param>
+            <param name="symmetricalType">The symmetrical type.</param>
+            <returns>The grid.</returns>
+        </member>
         <member name="T:Sudoku.Generating.PuzzleGenerator">
             <summary>
             Provides data for all derived puzzle generators.

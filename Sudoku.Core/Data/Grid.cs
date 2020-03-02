@@ -16,6 +16,11 @@ namespace Sudoku.Data
 	public class Grid : ICloneable<Grid>, IEnumerable, IEnumerable<short>, IEquatable<Grid>, IReadOnlyGrid
 	{
 		/// <summary>
+		/// Indicates the empty grid string.
+		/// </summary>
+		public const string EmptyString = "000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+
+		/// <summary>
 		/// Indicates an empty grid, where all values are zero.
 		/// </summary>
 		public static readonly IReadOnlyGrid Empty = new Grid();

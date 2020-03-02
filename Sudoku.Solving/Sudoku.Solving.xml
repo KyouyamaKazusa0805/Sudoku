@@ -372,6 +372,15 @@
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve(System.String,System.Text.StringBuilder,System.Int32)">
+            <summary>
+            Inner solver.
+            </summary>
+            <param name="puzzle">The puzzle.</param>
+            <param name="solution">The solution.</param>
+            <param name="limit">The limit.</param>
+            <returns>The number of all solutions.</returns>
+        </member>
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve32(System.String,System.Text.StringBuilder,System.Int32)">
             <summary>
             The core function of solving the puzzle based on x86 platform.
@@ -451,12 +460,15 @@
         <member name="M:Sudoku.Solving.BruteForces.DancingLinks.DancingLinksSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.DancingLinksSolver.Solve(System.Int32[],System.Int32)">
+        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.DancingLinksSolver.Solve(System.Int32[],System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32[]}@)">
             <summary>
             Solves the specified grid.
             </summary>
             <param name="gridValues">The grid values.</param>
             <param name="count">The number of solutions to search for.</param>
+            <param name="solutions">
+            (<see langword="out"/> parameter) The solutions.
+            </param>
             <returns>The analysis result.</returns>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.DancingLinks.DancingLinksSolver.SearchRecursively(Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList{System.Boolean},System.Collections.Generic.List{Sudoku.Solving.BruteForces.DancingLinks.Node{System.Boolean}},System.Collections.Generic.List{System.Collections.Generic.List{Sudoku.Solving.BruteForces.DancingLinks.Node{System.Boolean}}},System.Int32@)">
@@ -1878,11 +1890,6 @@
             Provides a solver that use logical methods to solve a specified sudoku puzzle.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.ManualSolver._stepGrids">
-            <summary>
-            All step grids in solving.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.SolverName">
             <inheritdoc/>
         </member>
@@ -1918,12 +1925,6 @@
             <exception cref="T:Sudoku.Runtime.WrongHandlingException">
             Throws when the solver cannot solved due to wrong handling.
             </exception>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.RemoveRedundantSteps(System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo}@)">
-            <summary>
-            Remove all redundant steps after finished solving.
-            </summary>
-            <param name="steps">(<see langword="ref"/> parameter) All steps.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.CheckConclusionsValidity(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
             <summary>
@@ -2157,25 +2158,6 @@
             </para>
             </summary>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.RemoveAllRedundantSteps">
-            <summary>
-            <para>
-            Indicates whether the solver will optimized the solving steps.
-            </para>
-            <para>
-            If the value is <see langword="true"/>, the solver will check all redundant
-            solving steps after finished solving the puzzle. Redundant steps are those
-            steps which is not necessary steps while solving. If these steps does not
-            exist, the puzzle can be also solved.
-            </para>
-            <para>
-            The value is <see langword="false"/> in default case. If the value is
-            <see langword="true"/>, the solver will enable the function to remove
-            all redundant steps. However the solver will use recursion to find all
-            redundant ones, so the solver will be slower than normal case.
-            </para>
-            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.UseCalculationPriority">
             <summary>
@@ -2726,20 +2708,6 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.CheckX(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Check x-axis symmetry.
-            </summary>
-            <param name="result">The result accumulator.</param>
-            <param name="grid">The grid.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.CheckY(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Check y-axis symmetry.
-            </summary>
-            <param name="result">The result accumulator.</param>
-            <param name="grid">The grid.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Symmetry.GurthSymmetricalPlacementTechniqueSearcher.CheckDiagonal(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <summary>

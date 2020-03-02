@@ -99,7 +99,7 @@ namespace Sudoku.Solving.Checking
 			var solver = new DancingLinksSolver();
 			return tempArrays.All(gridValues =>
 			{
-				var (_, hasSolved, _, _, _) = solver.Solve(gridValues, 2);
+				var (_, hasSolved, _, _, _) = solver.Solve(gridValues, 2, out _);
 				return !hasSolved;
 			});
 		}

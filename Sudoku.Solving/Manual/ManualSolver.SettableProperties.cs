@@ -229,25 +229,6 @@
 
 		/// <summary>
 		/// <para>
-		/// Indicates whether the solver will optimized the solving steps.
-		/// </para>
-		/// <para>
-		/// If the value is <see langword="true"/>, the solver will check all redundant
-		/// solving steps after finished solving the puzzle. Redundant steps are those
-		/// steps which is not necessary steps while solving. If these steps does not
-		/// exist, the puzzle can be also solved.
-		/// </para>
-		/// <para>
-		/// The value is <see langword="false"/> in default case. If the value is
-		/// <see langword="true"/>, the solver will enable the function to remove
-		/// all redundant steps. However the solver will use recursion to find all
-		/// redundant ones, so the solver will be slower than normal case.
-		/// </para>
-		/// </summary>
-		public bool RemoveAllRedundantSteps { get; set; } = false;
-
-		/// <summary>
-		/// <para>
 		/// Indicates whether the solver should order all technique searchers
 		/// by its priority.
 		/// </para>

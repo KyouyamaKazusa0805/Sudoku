@@ -20,10 +20,7 @@ using Sudoku.Solving.Manual.Uniqueness.Polygons;
 using Sudoku.Solving.Manual.Uniqueness.Rectangles;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
-using HiddenSingle = Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo;
 using Intersection = System.ValueTuple<int, int, Sudoku.Data.GridMap, Sudoku.Data.GridMap>;
-using NakedSingle = Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo;
-using Single = Sudoku.Solving.Manual.Singles.SingleTechniqueInfo;
 
 namespace Sudoku.Solving.Manual
 {
@@ -32,12 +29,6 @@ namespace Sudoku.Solving.Manual
 	/// </summary>
 	public sealed partial class ManualSolver : Solver
 	{
-		/// <summary>
-		/// All step grids in solving.
-		/// </summary>
-		private readonly IBag<IReadOnlyGrid> _stepGrids = new Bag<IReadOnlyGrid>();
-
-
 		/// <inheritdoc/>
 		public override string SolverName => "Manual";
 
@@ -200,20 +191,11 @@ namespace Sudoku.Solving.Manual
 				if (CheckConclusionsValidity(solution, step.Conclusions))
 				{
 					step.ApplyTo(cloneation);
-					if (RemoveAllRedundantSteps)
-					{
-						_stepGrids.Add(cloneation.Clone());
-					}
 					steps.Add(step);
 					if (cloneation.HasSolved)
 					{
 						// The puzzle has been solved.
 						// :)
-						if (RemoveAllRedundantSteps)
-						{
-							RemoveRedundantSteps(ref steps);
-						}
-
 						if (stopwatch.IsRunning)
 						{
 							stopwatch.Stop();
@@ -244,11 +226,6 @@ namespace Sudoku.Solving.Manual
 
 			// All solver cannot finish the puzzle...
 			// :(
-			if (RemoveAllRedundantSteps)
-			{
-				RemoveRedundantSteps(ref steps);
-			}
-
 			if (stopwatch.IsRunning)
 			{
 				stopwatch.Stop();
@@ -373,20 +350,11 @@ namespace Sudoku.Solving.Manual
 				if (CheckConclusionsValidity(solution, step.Conclusions))
 				{
 					step.ApplyTo(cloneation);
-					if (RemoveAllRedundantSteps)
-					{
-						_stepGrids.Add(cloneation.Clone());
-					}
 					steps.Add(step);
 					if (cloneation.HasSolved)
 					{
 						// The puzzle has been solved.
 						// :)
-						if (RemoveAllRedundantSteps)
-						{
-							RemoveRedundantSteps(ref steps);
-						}
-
 						if (stopwatch.IsRunning)
 						{
 							stopwatch.Stop();
@@ -417,11 +385,6 @@ namespace Sudoku.Solving.Manual
 
 			// All solver cannot finish the puzzle...
 			// :(
-			if (RemoveAllRedundantSteps)
-			{
-				RemoveRedundantSteps(ref steps);
-			}
-
 			if (stopwatch.IsRunning)
 			{
 				stopwatch.Stop();
@@ -435,15 +398,6 @@ namespace Sudoku.Solving.Manual
 				elapsedTime: stopwatch.Elapsed,
 				solvingList: steps,
 				additional: null);
-		}
-
-		/// <summary>
-		/// Remove all redundant steps after finished solving.
-		/// </summary>
-		/// <param name="steps">(<see langword="ref"/> parameter) All steps.</param>
-		private void RemoveRedundantSteps(ref List<TechniqueInfo> steps)
-		{
-			// TODO: Implement the logic.
 		}
 
 

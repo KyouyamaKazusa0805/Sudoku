@@ -872,6 +872,11 @@
             Encapsulates a basic sudoku grid.
             </summary>
         </member>
+        <member name="F:Sudoku.Data.Grid.EmptyString">
+            <summary>
+            Indicates the empty grid string.
+            </summary>
+        </member>
         <member name="F:Sudoku.Data.Grid.Empty">
             <summary>
             Indicates an empty grid, where all values are zero.
@@ -1934,11 +1939,17 @@
             <param name="offset">The cell offset you want to get.</param>
             <returns>The cell status.</returns>
         </member>
+        <member name="M:Sudoku.Data.IReadOnlyGrid.ToString">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Data.IReadOnlyGrid.Clone">
             <summary>
             Creates a new instance that is a copy of the current instance.
             </summary>
             <returns>The cloneation.</returns>
+        </member>
+        <member name="M:Sudoku.Data.IReadOnlyGrid.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.Stepping.AssignmentStep">
             <summary>

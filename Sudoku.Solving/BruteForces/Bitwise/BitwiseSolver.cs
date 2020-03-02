@@ -15,7 +15,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <inheritdoc/>
 		public override string SolverName => "Bitwise";
 
-		
+
 		/// <inheritdoc/>
 		public override AnalysisResult Solve(IReadOnlyGrid grid)
 		{
@@ -79,6 +79,37 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 			}
 		}
 
+		/// <summary>
+		/// Inner solver.
+		/// </summary>
+		/// <param name="puzzle">The puzzle.</param>
+		/// <param name="solution">The solution.</param>
+		/// <param name="limit">The limit.</param>
+		/// <returns>The number of all solutions.</returns>
+		public int Solve(string puzzle, StringBuilder solution, int limit)
+		{
+			try
+			{
+				return Solve32(puzzle, solution, limit);
+			}
+			catch
+			{
+				try
+				{
+					return Solve64(puzzle, solution, limit);
+				}
+				catch
+				{
+					return 0;
+				}
+			}
+		}
+
+		public unsafe int Solve(char* puzzle, char* solution, int limit)
+		{
+			return SolveInternal(puzzle, solution, limit);
+		}
+
 
 		/// <summary>
 		/// The core function of solving the puzzle based on x86 platform.
@@ -91,7 +122,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// </param>
 		/// <returns>The solution count of the puzzle.</returns>
 		[DllImport("Sudoku.BitwiseSolver (x86).dll",
-			EntryPoint = "Solve", CharSet = CharSet.Unicode,
+			EntryPoint = "Solve", CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.StdCall)]
 		private static extern int Solve32(
 			[MarshalAs(UnmanagedType.LPWStr)] string puzzle,
@@ -109,11 +140,18 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// </param>
 		/// <returns>The solution count of the puzzle.</returns>
 		[DllImport("Sudoku.BitwiseSolver (x64).dll",
-			EntryPoint = "Solve", CharSet = CharSet.Unicode,
+			EntryPoint = "Solve", CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.StdCall)]
 		private static extern int Solve64(
 			[MarshalAs(UnmanagedType.LPWStr)] string puzzle,
 			[MarshalAs(UnmanagedType.LPWStr)] StringBuilder solution,
 			[MarshalAs(UnmanagedType.I4)] int limit);
+
+		[DllImport("Sudoku.BitwiseSolver (x64).dll",
+			EntryPoint = "Solve", CharSet = CharSet.Ansi)]
+		private static extern unsafe int SolveInternal(
+			char* puzzle,
+			char* solution,
+			int limit);
 	}
 }

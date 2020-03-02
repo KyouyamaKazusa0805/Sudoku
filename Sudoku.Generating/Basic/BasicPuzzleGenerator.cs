@@ -23,23 +23,6 @@ namespace Sudoku.Generating.Basic
 		/// <inheritdoc/>
 		public override IReadOnlyGrid Generate()
 		{
-			static bool[] GetMask(out int count)
-			{
-				bool[] result = new bool[81];
-				count = Rng.Next(18, 30);
-				for (int i = count - 1; i >= 0; i--)
-				{
-					int pos;
-					do
-					{
-						pos = Rng.Next(0, 80);
-					} while (result[pos]);
-					result[pos] = true;
-				}
-
-				return result;
-			}
-
 			bool hasSolved;
 			bool[] pattern = GetMask(out int count);
 			int[] series = new int[81];
@@ -55,10 +38,27 @@ namespace Sudoku.Generating.Basic
 					}
 				}
 
-				(_, hasSolved) = Solver.Solve(series, 2);
+				(_, hasSolved) = Solver.Solve(series, 2, out _);
 			} while (!hasSolved);
 
 			return Grid.CreateInstance(series);
+		}
+
+		private static bool[] GetMask(out int count)
+		{
+			bool[] result = new bool[81];
+			count = Rng.Next(18, 30);
+			for (int i = count - 1; i >= 0; i--)
+			{
+				int pos;
+				do
+				{
+					pos = Rng.Next(0, 80);
+				} while (result[pos]);
+				result[pos] = true;
+			}
+
+			return result;
 		}
 	}
 }

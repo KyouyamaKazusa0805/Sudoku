@@ -83,16 +83,20 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 
 		/// <inheritdoc/>
 		public override AnalysisResult Solve(IReadOnlyGrid grid) =>
-			Solve(grid.ToArray(), int.MaxValue);
+			Solve(grid.ToArray(), int.MaxValue, out _);
 
 		/// <summary>
 		/// Solves the specified grid.
 		/// </summary>
 		/// <param name="gridValues">The grid values.</param>
 		/// <param name="count">The number of solutions to search for.</param>
+		/// <param name="solutions">
+		/// (<see langword="out"/> parameter) The solutions.
+		/// </param>
 		/// <returns>The analysis result.</returns>
-		public AnalysisResult Solve(int[] gridValues, int count)
+		public AnalysisResult Solve(int[] gridValues, int count, out IReadOnlyList<int[]>? solutions)
 		{
+			solutions = null;
 			var stopwatch = new Stopwatch();
 
 			try
@@ -120,6 +124,24 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 				list.ProcessMatrix(booleanList);
 
 				var resultSeries = Search(list, count);
+				if (resultSeries.Count != 0)
+				{
+					var tempList = new List<int[]>();
+					for (int i = 0; i < resultSeries.Count; i++)
+					{
+						var tempArray = new int[81];
+						foreach (var series in resultSeries[i])
+						{
+							var (r, c, v) = rcvList[series.Index];
+							tempArray[r * 9 + c] = v;
+						}
+
+						tempList.Add(tempArray);
+					}
+
+					solutions = tempList;
+				}
+
 				var grid = Grid.CreateInstance(gridValues);
 				switch (resultSeries.Count)
 				{

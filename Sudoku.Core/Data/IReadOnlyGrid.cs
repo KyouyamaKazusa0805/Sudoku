@@ -101,10 +101,17 @@ namespace Sudoku.Data
 		/// <returns>The cell status.</returns>
 		CellStatus GetCellStatus(int offset);
 
+		/// <inheritdoc/>
+		public string ToString() => ToString(null, null);
+
 		/// <summary>
 		/// Creates a new instance that is a copy of the current instance.
 		/// </summary>
 		/// <returns>The cloneation.</returns>
 		public Grid Clone() => ((Grid)this).Clone();
+
+		/// <inheritdoc/>
+		string IFormattable.ToString(string? format, IFormatProvider? formatProvider) =>
+			((Grid)this).ToString(format, formatProvider);
 	}
 }

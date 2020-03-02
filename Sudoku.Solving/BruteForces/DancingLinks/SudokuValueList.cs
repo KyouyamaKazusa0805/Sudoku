@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 namespace Sudoku.Solving.BruteForces.DancingLinks
@@ -6,6 +7,7 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 	/// <summary>
 	/// Provides a sudoku value list.
 	/// </summary>
+	[DebuggerStepThrough]
 	internal sealed class SudokuValueList
 	{
 		/// <summary>
@@ -50,14 +52,14 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 					{
 						for (int value = 1; value <= 9; value++)
 						{
-							matrix.Add(new bool[9 * 9 << 2]);
+							matrix.Add(new bool[325]);
 							SetMatrixValues(matrix[^1], row, column, value);
 							rcv.Add((row, column, value));
 						}
 					}
 					else
 					{
-						matrix.Add(new bool[9 * 9 << 2]);
+						matrix.Add(new bool[325]);
 						SetMatrixValues(matrix[^1], row, column, Values[row, column]);
 						rcv.Add((row, column, Values[row, column]));
 					}
@@ -78,9 +80,9 @@ namespace Sudoku.Solving.BruteForces.DancingLinks
 		private static void SetMatrixValues(bool[] matrixRow, int row, int column, int value)
 		{
 			int positionConstraint = row * 9 + column;
-			int rowConstraint = 81 + row * 9 + (value - 1);
-			int columnConstraint = 162 + column * 9 + (value - 1);
-			int blockConstraint = 243 + (row / 3 * 3 + column / 3) * 9 + (value - 1);
+			int rowConstraint = 81 + row * 9 + value - 1;
+			int columnConstraint = 162 + column * 9 + value - 1;
+			int blockConstraint = 243 + (row / 3 * 3 + column / 3) * 9 + value - 1;
 
 			matrixRow[positionConstraint] = true;
 			matrixRow[rowConstraint] = true;
