@@ -9,6 +9,12 @@ namespace Sudoku.Data
 	public enum SymmetricalType : byte
 	{
 		/// <summary>
+		/// Indicates none of symmetrical type.
+		/// </summary>
+		[Name("The pattern does not have any symmetrical type")]
+		None = 0,
+
+		/// <summary>
 		/// Indicates the central symmetrical type.
 		/// </summary>
 		[Name("Central symmetrical type")]
@@ -37,5 +43,23 @@ namespace Sudoku.Data
 		/// </summary>
 		[Name("Y-axis symmetrical type")]
 		YAxis = 16,
+
+		/// <summary>
+		/// Indicates both X-axis and Y-axis type.
+		/// </summary>
+		[Name("Both X-axis and Y-axis")]
+		AxisBoth = 32,
+
+		/// <summary>
+		/// Indicates both diagonal and anti-diagonal type.
+		/// </summary>
+		[Name("Both diagonal and anti-diagonal")]
+		DiagonalBoth = 64,
+
+		/// <summary>
+		/// Indicates all symmetrical types should be satisfied.
+		/// </summary>
+		[Name("All symmetrical type")]
+		All = 128,
 	}
 }

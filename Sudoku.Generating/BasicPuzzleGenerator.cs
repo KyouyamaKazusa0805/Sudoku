@@ -2,7 +2,7 @@
 using Sudoku.Data;
 using Sudoku.Solving.BruteForces.Bitwise;
 
-namespace Sudoku.Generating.Basic
+namespace Sudoku.Generating
 {
 	/// <summary>
 	/// Provides a basic puzzle generator.

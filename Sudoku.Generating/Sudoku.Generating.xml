@@ -4,22 +4,22 @@
         <name>Sudoku.Generating</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Generating.Basic.BasicPuzzleGenerator">
+        <member name="T:Sudoku.Generating.BasicPuzzleGenerator">
             <summary>
             Provides a basic puzzle generator.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.Basic.BasicPuzzleGenerator.Rng">
+        <member name="F:Sudoku.Generating.BasicPuzzleGenerator.Rng">
             <summary>
             The random number generator (RNG).
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.Basic.BasicPuzzleGenerator.Solver">
+        <member name="F:Sudoku.Generating.BasicPuzzleGenerator.Solver">
             <summary>
             The solver when checking whether the puzzle is unique.
             </summary>
         </member>
-        <member name="M:Sudoku.Generating.Basic.BasicPuzzleGenerator.Generate">
+        <member name="M:Sudoku.Generating.BasicPuzzleGenerator.Generate">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Generating.ExtendedGenerator">
@@ -45,8 +45,15 @@
             Generate a puzzle with the specified information.
             </summary>
             <param name="max">The maximum hints of the puzzle.</param>
-            <param name="symmetricalType">The symmetrical type.</param>
+            <param name="symmetricalType">
+            The symmetrical type flags. The <see cref="T:Sudoku.Data.SymmetricalType"/> is
+            a flag type, you can use bit operators to accumulate multiple
+            symmetrical types such as <c><see cref="F:Sudoku.Data.SymmetricalType.AntiDiagonal"/> | <see cref="F:Sudoku.Data.SymmetricalType.Diagonal"/></c>,
+            which means that the solver will generate anti-diagonal type or
+            diagonal type puzzles.
+            </param>
             <returns>The grid.</returns>
+            <seealso cref="T:Sudoku.Data.SymmetricalType"/>
         </member>
         <member name="T:Sudoku.Generating.PuzzleGenerator">
             <summary>

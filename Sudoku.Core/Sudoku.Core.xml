@@ -179,6 +179,13 @@
             <param name="this">The instance.</param>
             <returns>The custom name.</returns>
         </member>
+        <member name="M:Sudoku.Data.Extensions.EnumEx.GetValues``1">
+            <summary>
+            Get all enumeration fields.
+            </summary>
+            <typeparam name="TEnum">The type of enumeration type.</typeparam>
+            <returns>The fields.</returns>
+        </member>
         <member name="T:Sudoku.Data.Extensions.FormatProviderEx">
             <summary>
             Provides extension methods on <see cref="T:System.IFormatProvider"/>.
@@ -2183,6 +2190,11 @@
             Define a symmetrical type.
             </summary>
         </member>
+        <member name="F:Sudoku.Data.SymmetricalType.None">
+            <summary>
+            Indicates none of symmetrical type.
+            </summary>
+        </member>
         <member name="F:Sudoku.Data.SymmetricalType.Central">
             <summary>
             Indicates the central symmetrical type.
@@ -2206,6 +2218,21 @@
         <member name="F:Sudoku.Data.SymmetricalType.YAxis">
             <summary>
             Indicates the y-axis symmetrical type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SymmetricalType.AxisBoth">
+            <summary>
+            Indicates both X-axis and Y-axis type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SymmetricalType.DiagonalBoth">
+            <summary>
+            Indicates both diagonal and anti-diagonal type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SymmetricalType.All">
+            <summary>
+            Indicates all symmetrical types should be satisfied.
             </summary>
         </member>
         <member name="T:Sudoku.Data.UndoableGrid">

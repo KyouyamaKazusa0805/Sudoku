@@ -24,5 +24,13 @@ namespace Sudoku.Data.Extensions
 				? null
 				: (Attribute.GetCustomAttribute(field, typeof(NameAttribute)) as NameAttribute)?.Name;
 		}
+
+		/// <summary>
+		/// Get all enumeration fields.
+		/// </summary>
+		/// <typeparam name="TEnum">The type of enumeration type.</typeparam>
+		/// <returns>The fields.</returns>
+		public static TEnum[] GetValues<TEnum>()
+			where TEnum : Enum => (TEnum[])Enum.GetValues(typeof(TEnum));
 	}
 }

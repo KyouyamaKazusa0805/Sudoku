@@ -19,7 +19,7 @@ namespace Sudoku.Debugging
 			var generator = new ExtendedGenerator();
 			for (int i = 0; i < 20; i++)
 			{
-				var puzzle = generator.Generate();
+				var puzzle = generator.Generate(35, (SymmetricalType)byte.MaxValue);
 				WriteLine($"{puzzle:.}");
 			}
 
