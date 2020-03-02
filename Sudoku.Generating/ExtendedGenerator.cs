@@ -23,88 +23,95 @@ namespace Sudoku.Generating
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyGrid Generate() => Generate(17, 30, Central);
+		public override IReadOnlyGrid Generate() => Generate(28, Central);
 
 		/// <summary>
 		/// Generate a puzzle with the specified information.
 		/// </summary>
-		/// <param name="min">The minimum hints of the puzzle.</param>
 		/// <param name="max">The maximum hints of the puzzle.</param>
 		/// <param name="symmetricalType">The symmetrical type.</param>
 		/// <returns>The grid.</returns>
-		public unsafe IReadOnlyGrid Generate(int min, int max, SymmetricalType symmetricalType)
+		public IReadOnlyGrid Generate(int max, SymmetricalType symmetricalType)
 		{
-			char[] emptySeries = new char[82];
-			char[] solutionArray = new char[82];
-			char[] puzzleArray = new char[82];
-			fixed (char *solutionPtr = solutionArray, puzzlePtr = puzzleArray)
+			var puzzle = new StringBuilder(Grid.EmptyString);
+			var solution = new StringBuilder(Grid.EmptyString);
+			do
 			{
-				do
+				for (int i = 0; i < 81; i++)
 				{
-					Array.Copy(emptySeries, puzzleArray, 82);
-					var map = GridMap.Empty;
-					for (int i = 0; i < 16; i++)
+					puzzle[i] = '0';
+				}
+
+				var map = GridMap.Empty;
+				for (int i = 0; i < 16; i++)
+				{
+					while (true)
 					{
-						while (true)
+						int cell = Rng.Next(0, 81);
+						if (!map[cell])
 						{
-							int cell = Rng.Next(0, 81);
-							if (!map[cell])
-							{
-								map[cell] = true;
-								break;
-							}
+							map[cell] = true;
+							break;
 						}
 					}
+				}
 
-					foreach (int cell in map.Offsets)
-					{
-						do
-						{
-							puzzlePtr[cell] = (char)(Rng.Next(1, 9) + '0');
-						} while (CheckDuplicate(puzzleArray, cell));
-					}
-				} while (Solver.Solve(puzzlePtr, null, 2) == 0);
-
-				// Now we remove some digits from the grid.
-				do
+				foreach (int cell in map.Offsets)
 				{
-					var totalMap = GridMap.Empty;
 					do
 					{
-						int cell;
-						do
-						{
-							cell = Rng.Next(0, 81);
-						} while (totalMap[cell]);
+						puzzle[cell] = (char)(Rng.Next(1, 9) + '0');
+					} while (CheckDuplicate(puzzle, cell));
+				}
+			} while (Solver.Solve(puzzle.ToString(), solution, 2) == 0);
 
-						int r = cell / 9, c = cell % 9;
-						int[] series = symmetricalType switch
-						{
-							Central => new[] { r * 9 + c, (8 - r) * 9 + 8 - c },
-							Diagonal => new[] { r * 9 + c, c * 9 + r },
-							AntiDiagonal => new[] { r * 9 + c, (8 - c) * 9 + 8 - r },
-							XAxis => new[] { r * 9 + c, (8 - r) * 9 + c },
-							YAxis => new[] { r * 9 + c, r * 9 + 8 - c },
-							_ => Array.Empty<int>()
-						};
+			// Now we remove some digits from the grid.
+			var tempSb = new StringBuilder(solution.ToString());
+			string result;
+			do
+			{
+				for (int i = 0; i < 81; i++)
+				{
+					solution[i] = tempSb[i];
+				}
 
-						// Get new value of 'last'.
-						var tempMap = GridMap.Empty;
-						foreach (int tCell in series)
-						{
-							solutionPtr[tCell] = '0';
-							totalMap[tCell] = true;
-							tempMap[tCell] = true;
-						}
-					} while (81 - totalMap.Count < min || 81 - totalMap.Count > max);
-				} while (Solver.Solve(puzzlePtr, solutionPtr, 2) != 1);
+				var totalMap = GridMap.Empty;
+				do
+				{
+					int cell;
+					do
+					{
+						cell = Rng.Next(0, 81);
+					} while (totalMap[cell]);
 
-				return Grid.Parse(new string(puzzlePtr));
-			}
+					int r = cell / 9, c = cell % 9;
+					int[] series = symmetricalType switch
+					{
+						Central => new[] { r * 9 + c, (8 - r) * 9 + 8 - c },
+						Diagonal => new[] { r * 9 + c, c * 9 + r },
+						AntiDiagonal => new[] { r * 9 + c, (8 - c) * 9 + 8 - r },
+						XAxis => new[] { r * 9 + c, (8 - r) * 9 + c },
+						YAxis => new[] { r * 9 + c, r * 9 + 8 - c },
+						_ => Array.Empty<int>()
+					};
+
+					// Get new value of 'last'.
+					var tempMap = GridMap.Empty;
+					foreach (int tCell in series)
+					{
+						solution[tCell] = '0';
+						totalMap[tCell] = true;
+						tempMap[tCell] = true;
+					}
+				} while (81 - totalMap.Count > max);
+				Console.WriteLine(result = solution.ToString());
+			} while (!Solver.CheckValidity(result));
+
+			return Grid.Parse(result);
 		}
 
 
-		private static bool CheckDuplicate(char[] gridArray, int cell)
+		private static bool CheckDuplicate(StringBuilder gridArray, int cell)
 		{
 			char value = gridArray[cell];
 			foreach (int c in new GridMap(cell, false).Offsets)

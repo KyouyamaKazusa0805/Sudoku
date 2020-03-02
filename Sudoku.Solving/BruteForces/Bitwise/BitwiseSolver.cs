@@ -4,6 +4,11 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Runtime;
+#if BIT64
+using nint = System.Int32;
+#else
+using nint = System.Int16;
+#endif
 
 namespace Sudoku.Solving.BruteForces.Bitwise
 {
@@ -80,13 +85,30 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		}
 
 		/// <summary>
-		/// Inner solver.
+		/// Check the validity of the puzzle.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <returns>The <see cref="bool"/> result.</returns>
+		public bool CheckValidity(IReadOnlyGrid grid) =>
+			Solve(grid.ToString("0"), null, 2) == 1;
+
+		/// <summary>
+		/// Check the validity of the puzzle.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <returns>The <see cref="bool"/> result.</returns>
+		public bool CheckValidity(string grid) => Solve(grid, null, 2) == 1;
+
+		/// <summary>
+		/// The inner solver.
 		/// </summary>
 		/// <param name="puzzle">The puzzle.</param>
-		/// <param name="solution">The solution.</param>
+		/// <param name="solution">
+		/// The solution. <see langword="null"/> if you does not want to use this result.
+		/// </param>
 		/// <param name="limit">The limit.</param>
 		/// <returns>The number of all solutions.</returns>
-		public int Solve(string puzzle, StringBuilder solution, int limit)
+		public int Solve(string puzzle, StringBuilder? solution, int limit)
 		{
 			try
 			{
@@ -105,11 +127,6 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 			}
 		}
 
-		public unsafe int Solve(char* puzzle, char* solution, int limit)
-		{
-			return SolveInternal(puzzle, solution, limit);
-		}
-
 
 		/// <summary>
 		/// The core function of solving the puzzle based on x86 platform.
@@ -124,10 +141,15 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		[DllImport("Sudoku.BitwiseSolver (x86).dll",
 			EntryPoint = "Solve", CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.StdCall)]
-		private static extern int Solve32(
-			[MarshalAs(UnmanagedType.LPWStr)] string puzzle,
-			[MarshalAs(UnmanagedType.LPWStr)] StringBuilder solution,
-			[MarshalAs(UnmanagedType.I4)] int limit);
+		private static extern nint Solve32(
+			[MarshalAs(UnmanagedType.LPStr)] string puzzle,
+			[MarshalAs(UnmanagedType.LPStr)] StringBuilder? solution,
+#if BIT64
+			[MarshalAs(UnmanagedType.I4)]
+#else
+			[MarshalAs(UnmanagedType.I2)]
+#endif
+			nint limit);
 
 		/// <summary>
 		/// The core function of solving the puzzle based on x64 platform.
@@ -142,16 +164,14 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		[DllImport("Sudoku.BitwiseSolver (x64).dll",
 			EntryPoint = "Solve", CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.StdCall)]
-		private static extern int Solve64(
-			[MarshalAs(UnmanagedType.LPWStr)] string puzzle,
-			[MarshalAs(UnmanagedType.LPWStr)] StringBuilder solution,
-			[MarshalAs(UnmanagedType.I4)] int limit);
-
-		[DllImport("Sudoku.BitwiseSolver (x64).dll",
-			EntryPoint = "Solve", CharSet = CharSet.Ansi)]
-		private static extern unsafe int SolveInternal(
-			char* puzzle,
-			char* solution,
-			int limit);
+		private static extern nint Solve64(
+			[MarshalAs(UnmanagedType.LPStr)] string puzzle,
+			[MarshalAs(UnmanagedType.LPStr)] StringBuilder? solution,
+#if BIT64
+			[MarshalAs(UnmanagedType.I4)]
+#else
+			[MarshalAs(UnmanagedType.I2)]
+#endif
+			nint limit);
 	}
 }

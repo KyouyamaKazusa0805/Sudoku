@@ -372,12 +372,28 @@
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.CheckValidity(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Check the validity of the puzzle.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.CheckValidity(System.String)">
+            <summary>
+            Check the validity of the puzzle.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve(System.String,System.Text.StringBuilder,System.Int32)">
             <summary>
-            Inner solver.
+            The inner solver.
             </summary>
             <param name="puzzle">The puzzle.</param>
-            <param name="solution">The solution.</param>
+            <param name="solution">
+            The solution. <see langword="null"/> if you does not want to use this result.
+            </param>
             <param name="limit">The limit.</param>
             <returns>The number of all solutions.</returns>
         </member>
