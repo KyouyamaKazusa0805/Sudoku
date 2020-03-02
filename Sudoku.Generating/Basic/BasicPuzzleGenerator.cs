@@ -1,6 +1,6 @@
 ﻿using System;
 using Sudoku.Data;
-using Sudoku.Solving.BruteForces.DancingLinks;
+using Sudoku.Solving.BruteForces.Bitwise;
 
 namespace Sudoku.Generating.Basic
 {
@@ -17,7 +17,7 @@ namespace Sudoku.Generating.Basic
 		/// <summary>
 		/// The solver when checking whether the puzzle is unique.
 		/// </summary>
-		private static readonly DancingLinksSolver Solver = new DancingLinksSolver();
+		private static readonly BitwiseSolver Solver = new BitwiseSolver();
 
 
 		/// <inheritdoc/>
@@ -38,7 +38,7 @@ namespace Sudoku.Generating.Basic
 					}
 				}
 
-				(_, hasSolved) = Solver.Solve(series, 2, out _);
+				(_, hasSolved) = Solver.Solve(Grid.CreateInstance(series));
 			} while (!hasSolved);
 
 			return Grid.CreateInstance(series);

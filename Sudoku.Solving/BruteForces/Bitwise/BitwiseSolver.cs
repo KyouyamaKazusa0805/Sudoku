@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Text;
 using Sudoku.Data;
@@ -88,16 +89,48 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// Check the validity of the puzzle.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
+		/// <param name="solutionIfUnique">
+		/// (<see langword="out"/> parameter) The solution.
+		/// </param>
 		/// <returns>The <see cref="bool"/> result.</returns>
-		public bool CheckValidity(IReadOnlyGrid grid) =>
-			Solve(grid.ToString("0"), null, 2) == 1;
+		public bool CheckValidity(
+			IReadOnlyGrid grid, [NotNullWhen(true)] out IReadOnlyGrid? solutionIfUnique)
+		{
+			var sb = new StringBuilder(82);
+			if (Solve(grid.ToString("0"), sb, 2) == 1)
+			{
+				solutionIfUnique = Grid.Parse(sb.ToString());
+				return true;
+			}
+			else
+			{
+				solutionIfUnique = null;
+				return false;
+			}
+		}
 
 		/// <summary>
 		/// Check the validity of the puzzle.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
+		/// <param name="solutionIfUnique">
+		/// (<see langword="out"/> parameter) The solution.
+		/// </param>
 		/// <returns>The <see cref="bool"/> result.</returns>
-		public bool CheckValidity(string grid) => Solve(grid, null, 2) == 1;
+		public bool CheckValidity(string grid, [NotNullWhen(true)] out string? solutionIfUnique)
+		{
+			var sb = new StringBuilder(82);
+			if (Solve(grid, sb, 2) == 1)
+			{
+				solutionIfUnique = sb.ToString();
+				return true;
+			}
+			else
+			{
+				solutionIfUnique = null;
+				return false;
+			}
+		}
 
 		/// <summary>
 		/// The inner solver.

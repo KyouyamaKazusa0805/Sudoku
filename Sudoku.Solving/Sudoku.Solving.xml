@@ -372,18 +372,24 @@
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.CheckValidity(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.CheckValidity(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.IReadOnlyGrid@)">
             <summary>
             Check the validity of the puzzle.
             </summary>
             <param name="grid">The grid.</param>
+            <param name="solutionIfUnique">
+            (<see langword="out"/> parameter) The solution.
+            </param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.CheckValidity(System.String)">
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.CheckValidity(System.String,System.String@)">
             <summary>
             Check the validity of the puzzle.
             </summary>
             <param name="grid">The grid.</param>
+            <param name="solutionIfUnique">
+            (<see langword="out"/> parameter) The solution.
+            </param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve(System.String,System.Text.StringBuilder,System.Int32)">
@@ -420,248 +426,6 @@
             You should pass the value by a positive integer at least 1.
             </param>
             <returns>The solution count of the puzzle.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.BruteForces.DancingLinks.ColumnNode`1">
-            <summary>
-            Provides a column node.
-            </summary>
-            <typeparam name="T">The element type.</typeparam>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.ColumnNode`1.#ctor(System.Int32)">
-            <summary>
-            Initializes an instance with an ID.
-            </summary>
-            <param name="id">The ID.</param>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.ColumnNode`1.Id">
-            <summary>
-            The ID.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.ColumnNode`1.Size">
-            <summary>
-            The size of this column.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.ColumnNode`1.IncSize">
-            <summary>
-            Increase the property <see cref="P:Sudoku.Solving.BruteForces.DancingLinks.ColumnNode`1.Size"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.ColumnNode`1.DecSize">
-            <summary>
-            Decrease the property <see cref="P:Sudoku.Solving.BruteForces.DancingLinks.ColumnNode`1.Size"/>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.BruteForces.DancingLinks.DancingLinksSolver">
-            <summary>
-            Provides a solver using dancing links (DLX) algorithm.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.DancingLinksSolver.SolverName">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.DancingLinksSolver.CheckValidity(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.IReadOnlyGrid@)">
-            <summary>
-            Checks whether the grid has only one solution. If the grid has multiple
-            solutions or no solution, this method will return <see langword="false"/>.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="solutionIfValid">
-            (<see langword="out"/> parameter) The result grid if the puzzle is valid.
-            If the grid is invalid, this value will be <see langword="null"/>.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.DancingLinksSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.DancingLinksSolver.Solve(System.Int32[],System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32[]}@)">
-            <summary>
-            Solves the specified grid.
-            </summary>
-            <param name="gridValues">The grid values.</param>
-            <param name="count">The number of solutions to search for.</param>
-            <param name="solutions">
-            (<see langword="out"/> parameter) The solutions.
-            </param>
-            <returns>The analysis result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.DancingLinksSolver.SearchRecursively(Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList{System.Boolean},System.Collections.Generic.List{Sudoku.Solving.BruteForces.DancingLinks.Node{System.Boolean}},System.Collections.Generic.List{System.Collections.Generic.List{Sudoku.Solving.BruteForces.DancingLinks.Node{System.Boolean}}},System.Int32@)">
-            <exception cref="T:Sudoku.Runtime.SudokuRuntimeException">
-            Throws when the puzzle has multiple solutions.
-            </exception>
-        </member>
-        <member name="T:Sudoku.Solving.BruteForces.DancingLinks.Node`1">
-            <summary>
-            Provides a node in a torodial doubly linked list.
-            </summary>
-            <typeparam name="T">The type of element.</typeparam>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.Node`1.#ctor(System.Int32)">
-            <summary>
-            Initializes an instance with the specified index.
-            </summary>
-            <param name="index">The index.</param>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.Node`1.Index">
-            <summary>
-            The index.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.Node`1.Value">
-            <summary>
-            The data.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.Node`1.Left">
-            <summary>
-            The left node of this current node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.Node`1.Right">
-            <summary>
-            The right node of this current node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.Node`1.Up">
-            <summary>
-            The up node of this current node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.Node`1.Down">
-            <summary>
-            The down node of this current node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.Node`1.ColumnNode">
-            <summary>
-            The column node.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.Node`1.RemoveVertical">
-            <summary>
-            Remove the vertical node.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.Node`1.RemoveHorizontal">
-            <summary>
-            Remove the horizontal node.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.Node`1.ReplaceVertical">
-            <summary>
-            Replace the vertical node with 'this'.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.Node`1.ReplaceHorizontal">
-            <summary>
-            Replace the horizontal node with 'this'.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.BruteForces.DancingLinks.SudokuValueList">
-            <summary>
-            Provides a sudoku value list.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.SudokuValueList.#ctor">
-            <summary>
-            Initializes an instance in a default way.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.SudokuValueList.Values">
-            <summary>
-            The values.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.SudokuValueList.SetRow(System.Int32[],System.Int32)">
-            <summary>
-            Add a row into this instance.
-            </summary>
-            <param name="row">The row.</param>
-            <param name="index">The index.</param>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.SudokuValueList.CalculateMatrix">
-            <summary>
-            Calculate the matrix.
-            </summary>
-            <returns>The pair of matrix information.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.SudokuValueList.SetMatrixValues(System.Boolean[],System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Set values in the specified matrix row.
-            </summary>
-            <param name="matrixRow">The matrix row.</param>
-            <param name="row">The row index.</param>
-            <param name="column">The column index.</param>
-            <param name="value">The digit.</param>
-        </member>
-        <member name="T:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1">
-            <summary>
-            Provides a torodial doubly linked list (also called
-            circular doubly linked list).
-            </summary>
-            <typeparam name="T">The type of the element.</typeparam>
-        </member>
-        <member name="F:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1._columns">
-            <summary>
-            All columns.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1.#ctor(System.Int32)">
-            <summary>
-            Initializes an instance with column number.
-            </summary>
-            <param name="noColumns">The column number.</param>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1.Head">
-            <summary>
-            Indicates the head node.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1.ProcessMatrix(System.Boolean[0:,0:])">
-            <summary>
-            Process the matrix.
-            </summary>
-            <param name="matrix">The matrix.</param>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1.ProcessMatrix(System.Collections.Generic.List{System.Boolean[]})">
-            <summary>
-            Process the matrix.
-            </summary>
-            <param name="matrix">The matrix.</param>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1.AddToColumn(System.Int32,Sudoku.Solving.BruteForces.DancingLinks.Node{`0})">
-            <summary>
-            Add the specified node to the specified index in column.
-            </summary>
-            <param name="index">The index.</param>
-            <param name="node">The node.</param>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1.InsertAt(System.Int32,System.Collections.Generic.IList{System.Byte},System.Byte)">
-            <summary>
-            Insert the specified value into the list.
-            </summary>
-            <param name="index">The index.</param>
-            <param name="list">The list.</param>
-            <param name="value">The value.</param>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1.ProcessMatrixRow(System.Collections.Generic.List{System.ValueTuple{System.Int32,Sudoku.Solving.BruteForces.DancingLinks.Node{`0}}})">
-            <summary>
-            Process the matrix row.
-            </summary>
-            <param name="nodes">All nodes.</param>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.DancingLinks.TorodialDoublyLinkedList`1.WrapIndex(System.Int32,System.Int32)">
-            <summary>
-            Wraps the index.
-            </summary>
-            <param name="value">The value.</param>
-            <param name="length">The length.</param>
-            <returns>The new index.</returns>
         </member>
         <member name="T:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver">
             <summary>

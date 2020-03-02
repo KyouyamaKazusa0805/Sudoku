@@ -104,7 +104,7 @@ namespace Sudoku.Generating
 						tempMap[tCell] = true;
 					}
 				} while (81 - totalMap.Count > max);
-			} while (!Solver.CheckValidity(result = solution.ToString()));
+			} while (!Solver.CheckValidity(result = solution.ToString(), out _));
 
 			return Grid.Parse(result);
 		}

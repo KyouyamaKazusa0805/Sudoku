@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data;
-using Sudoku.Solving.BruteForces.DancingLinks;
+using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Utils;
 
@@ -29,10 +29,9 @@ namespace Sudoku.Solving.Checking
 		{
 			solutionIfValid = null;
 
-			bool validity = new DancingLinksSolver().CheckValidity(@this, out var solution);
-			if (validity)
+			if (new BitwiseSolver().CheckValidity(@this.ToString(), out var solution))
 			{
-				solutionIfValid = solution;
+				solutionIfValid = Grid.Parse(solution);
 				return true;
 			}
 			else
@@ -53,7 +52,7 @@ namespace Sudoku.Solving.Checking
 		public static bool IsUnique
 			(this IReadOnlyGrid @this, [NotNullWhen(true)] out IReadOnlyGrid? solutionIfUnique)
 		{
-			var (_, hasSolved, _, solution, _) = new DancingLinksSolver().Solve(@this);
+			var (_, hasSolved, _, solution, _) = new BitwiseSolver().Solve(@this);
 			if (hasSolved)
 			{
 				solutionIfUnique = solution;
@@ -96,10 +95,10 @@ namespace Sudoku.Solving.Checking
 				tempArrays[i][CellUtils.GetOffset(r, c)] = 0;
 			}
 
-			var solver = new DancingLinksSolver();
+			var solver = new BitwiseSolver();
 			return tempArrays.All(gridValues =>
 			{
-				var (_, hasSolved, _, _, _) = solver.Solve(gridValues, 2, out _);
+				var (_, hasSolved, _, _, _) = solver.Solve(Grid.CreateInstance(gridValues));
 				return !hasSolved;
 			});
 		}
