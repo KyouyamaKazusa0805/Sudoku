@@ -17,8 +17,11 @@ namespace Sudoku.Debugging
 		private static void Main()
 		{
 			var generator = new ExtendedGenerator();
-			var puzzle = generator.Generate();
-			WriteLine($"{puzzle:.}");
+			for (int i = 0; i < 20; i++)
+			{
+				var puzzle = generator.Generate();
+				WriteLine($"{puzzle:.}");
+			}
 
 			// Manual solver tester.
 			//var solver = new ManualSolver
