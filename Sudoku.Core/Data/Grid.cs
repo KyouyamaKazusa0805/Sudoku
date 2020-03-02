@@ -352,8 +352,11 @@ namespace Sudoku.Data
 				return result;
 			}
 
-			// Format checking.
-			CheckFormatString(format ?? throw new ArgumentNullException(nameof(format)));
+			if (!(format is null))
+			{
+				// Format checking.
+				CheckFormatString(format);
+			}
 
 			// Returns the grid string.
 			// Here you can also use switch expression to return.

@@ -16,22 +16,15 @@ namespace Sudoku.Debugging
 		/// </summary>
 		private static void Main()
 		{
-			var generator = new ExtendedGenerator();
-			for (int i = 0; i < 20; i++)
-			{
-				var puzzle = generator.Generate(35, (SymmetricalType)byte.MaxValue);
-				WriteLine($"{puzzle:.}");
-			}
-
 			// Manual solver tester.
-			//var solver = new ManualSolver
-			//{
-			//	CheckAlmostLockedQuadruple = true,
-			//	OptimizedApplyingOrder = false,
-			//};
-			//var grid = Grid.Parse("000200091942015000000009080200000410000060000071000002050700000000580163460001000");
-			//var analysisResult = solver.Solve(grid);
-			//WriteLine($"{analysisResult:-#!.}");
+			var solver = new ManualSolver
+			{
+				CheckAlmostLockedQuadruple = true,
+				OptimizedApplyingOrder = false,
+			};
+			var grid = Grid.Parse("000200091942015000000009080200000410000060000071000002050700000000580163460001000");
+			var analysisResult = solver.Solve(grid);
+			WriteLine($"{analysisResult:-#!.}");
 		}
 	}
 }
