@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// </exception>
 		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			if (grid.IsUnique(out var solution))
+			if (grid.IsValid(out var solution))
 			{
 				(_, _, var digitDistributions) = grid;
 				if (!_templateDeleteOnly)

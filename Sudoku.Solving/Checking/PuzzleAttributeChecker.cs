@@ -41,31 +41,6 @@ namespace Sudoku.Solving.Checking
 		}
 
 		/// <summary>
-		/// To check if a puzzle has only one solution or not.
-		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
-		/// <param name="solutionIfUnique">
-		/// (<see langword="out"/> parameter) The solution if the puzzle is unique;
-		/// otherwise, <see langword="null"/>.
-		/// </param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public static bool IsUnique
-			(this IReadOnlyGrid @this, [NotNullWhen(true)] out IReadOnlyGrid? solutionIfUnique)
-		{
-			var (_, hasSolved, _, solution, _) = new BitwiseSolver().Solve(@this);
-			if (hasSolved)
-			{
-				solutionIfUnique = solution;
-				return true;
-			}
-			else
-			{
-				solutionIfUnique = null;
-				return false;
-			}
-		}
-
-		/// <summary>
 		/// To check if the puzzle is minimal or not.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
@@ -111,7 +86,7 @@ namespace Sudoku.Solving.Checking
 		public static bool IsPearl(this IReadOnlyGrid @this)
 		{
 			// Using a faster solver to check the grid is unique or not.
-			if (@this.IsUnique(out _))
+			if (@this.IsValid(out _))
 			{
 				var result = new ManualSolver().Solve(@this);
 				var (er, pr) = (result.MaxDifficulty, result.PearlDifficulty);
@@ -132,7 +107,7 @@ namespace Sudoku.Solving.Checking
 		public static bool IsDiamond(this IReadOnlyGrid @this)
 		{
 			// Using a faster solver to check the grid is unique or not.
-			if (@this.IsUnique(out _))
+			if (@this.IsValid(out _))
 			{
 				var result = new ManualSolver().Solve(@this);
 				var (er, pr, dr) = (result.MaxDifficulty, result.PearlDifficulty, result.DiamondDifficulty);
@@ -152,7 +127,7 @@ namespace Sudoku.Solving.Checking
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool CanBeSolvedUsingOnlySsts(this IReadOnlyGrid @this)
 		{
-			if (!@this.IsUnique(out _))
+			if (!@this.IsValid(out _))
 			{
 				return false;
 			}

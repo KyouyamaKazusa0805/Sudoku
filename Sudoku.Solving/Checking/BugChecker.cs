@@ -35,7 +35,7 @@ namespace Sudoku.Solving.Checking
 		/// <param name="grid">The grid.</param>
 		public BugChecker(IReadOnlyGrid grid)
 		{
-			if (grid.IsUnique(out _))
+			if (grid.IsValid(out _))
 			{
 				Grid = grid;
 				(_emptyCellsDistribution, _bivalueCellsDistribution, _digitsDistributions) = grid;

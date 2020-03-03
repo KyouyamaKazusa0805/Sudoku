@@ -91,7 +91,7 @@ namespace Sudoku.Solving.Checking
 		/// <param name="grid">A sudoku grid to search backdoors.</param>
 		private void FindBackdoors(IReadOnlyGrid grid)
 		{
-			if (!grid.IsUnique(out var solution))
+			if (!grid.IsValid(out var solution))
 			{
 				throw new InvalidOperationException("The puzzle does not have unique solution.");
 			}

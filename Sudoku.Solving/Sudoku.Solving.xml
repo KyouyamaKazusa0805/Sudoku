@@ -569,17 +569,6 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsUnique(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.IReadOnlyGrid@)">
-            <summary>
-            To check if a puzzle has only one solution or not.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
-            <param name="solutionIfUnique">
-            (<see langword="out"/> parameter) The solution if the puzzle is unique;
-            otherwise, <see langword="null"/>.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
         <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsMinimal(Sudoku.Data.IReadOnlyGrid)">
             <summary>
             To check if the puzzle is minimal or not.
