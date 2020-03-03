@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using Sudoku.Data;
 using Sudoku.Runtime;
+using Sudoku.Solving.Extensions;
 using static Sudoku.Solving.Utils.CellUtils;
 
 namespace Sudoku.Solving.BruteForces.Backtracking
@@ -48,10 +49,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 			}
 			catch (Exception ex)
 			{
-				if (stopwatch.IsRunning)
-				{
-					stopwatch.Stop();
-				}
+				stopwatch.StopAnyway();
 
 				return new AnalysisResult(
 					puzzle: grid,

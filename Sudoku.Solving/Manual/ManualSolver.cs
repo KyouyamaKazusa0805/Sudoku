@@ -6,6 +6,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Runtime;
 using Sudoku.Solving.Checking;
+using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual.Alses;
 using Sudoku.Solving.Manual.Fishes.Basic;
 using Sudoku.Solving.Manual.Intersections;
@@ -196,10 +197,7 @@ namespace Sudoku.Solving.Manual
 					{
 						// The puzzle has been solved.
 						// :)
-						if (stopwatch.IsRunning)
-						{
-							stopwatch.Stop();
-						}
+						stopwatch.StopAnyway();
 
 						return new AnalysisResult(
 							puzzle: grid,
@@ -226,10 +224,7 @@ namespace Sudoku.Solving.Manual
 
 			// All solver cannot finish the puzzle...
 			// :(
-			if (stopwatch.IsRunning)
-			{
-				stopwatch.Stop();
-			}
+			stopwatch.StopAnyway();
 
 			return new AnalysisResult(
 				puzzle: grid,
@@ -355,10 +350,7 @@ namespace Sudoku.Solving.Manual
 					{
 						// The puzzle has been solved.
 						// :)
-						if (stopwatch.IsRunning)
-						{
-							stopwatch.Stop();
-						}
+						stopwatch.StopAnyway();
 
 						return new AnalysisResult(
 							puzzle: grid,
@@ -385,10 +377,7 @@ namespace Sudoku.Solving.Manual
 
 			// All solver cannot finish the puzzle...
 			// :(
-			if (stopwatch.IsRunning)
-			{
-				stopwatch.Stop();
-			}
+			stopwatch.StopAnyway();
 
 			return new AnalysisResult(
 				puzzle: grid,

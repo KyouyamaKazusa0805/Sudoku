@@ -141,7 +141,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// </param>
 		/// <param name="limit">The limit.</param>
 		/// <returns>The number of all solutions.</returns>
-		public int Solve(string puzzle, StringBuilder? solution, int limit)
+		public native_int Solve(string puzzle, StringBuilder? solution, native_int limit)
 		{
 			try
 			{
