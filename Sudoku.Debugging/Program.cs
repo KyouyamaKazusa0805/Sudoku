@@ -1,5 +1,4 @@
 ﻿using Sudoku.Data;
-using Sudoku.Generating;
 using Sudoku.Solving.Manual;
 using static System.Console;
 
