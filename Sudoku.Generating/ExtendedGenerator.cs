@@ -105,10 +105,16 @@ namespace Sudoku.Generating
 						Central => new[] { r * 9 + c, (8 - r) * 9 + 8 - c },
 						Diagonal => new[] { r * 9 + c, c * 9 + r },
 						AntiDiagonal => new[] { r * 9 + c, (8 - c) * 9 + 8 - r },
-						DiagonalBoth => new[] { r * 9 + c, c * 9 + r, (8 - c) * 9 + 8 - r, (8 - r) * 9 + 8 - c },
 						XAxis => new[] { r * 9 + c, (8 - r) * 9 + c },
 						YAxis => new[] { r * 9 + c, r * 9 + 8 - c },
-						AxisBoth => new[] { r * 9 + c, (8 - r) * 9 + c, r * 9 + 8 - c, (8 - r) * 9 + 8 - c },
+						DiagonalBoth => new[]
+						{
+							r * 9 + c, c * 9 + r, (8 - c) * 9 + 8 - r, (8 - r) * 9 + 8 - c
+						},
+						AxisBoth => new[]
+						{
+							r * 9 + c, (8 - r) * 9 + c, r * 9 + 8 - c, (8 - r) * 9 + 8 - c
+						},
 						All => new[]
 						{
 							r * 9 + c, r * 9 + (8 - c), (8 - r) * 9 + c, (8 - r) * 9 + (8 - c),

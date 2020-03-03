@@ -1,10 +1,12 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Solving.Manual;
+using static Sudoku.Data.CellStatus;
+using static Sudoku.Solving.ConclusionType;
+using static Sudoku.Solving.DifficultyLevel;
+using IBackdoorSet = System.Collections.Generic.IReadOnlyList<Sudoku.Solving.Conclusion>;
 
 namespace Sudoku.Solving.Checking
 {
@@ -16,13 +18,8 @@ namespace Sudoku.Solving.Checking
 	/// a puzzle decrease sharply after they are applied to a grid.
 	/// </remarks>
 	/// <seealso cref="Conclusion"/>
-	public sealed class BackdoorSearcher : IEnumerable<IReadOnlyList<Conclusion>>
+	public sealed class BackdoorSearcher
 	{
-		/// <summary>
-		/// The result list.
-		/// </summary>
-		private readonly List<List<Conclusion>> _result = new List<List<Conclusion>>();
-
 		/// <summary>
 		/// The temporary test solver used in this searcher.
 		/// </summary>
@@ -34,62 +31,65 @@ namespace Sudoku.Solving.Checking
 
 
 		/// <summary>
-		/// Initializes an instance with a grid and searching depth.
+		/// Search all backdoors whose level is lower or equals than the
+		/// specified depth.
 		/// </summary>
-		/// <param name="grid">The sudoku grid to search backdoors.</param>
-		/// <param name="depth">The maximum depth to search. No more than 3.</param>
-		/// <exception cref="ArgumentOutOfRangeException">
-		/// Throws when <paramref name="depth"/> is greater than 3.
-		/// </exception>
-		/// <seealso cref="Depth"/>
-		public BackdoorSearcher(Grid grid, int depth)
+		/// <param name="grid">The grid.</param>
+		/// <param name="depth">
+		/// The depth you want to search for. The depth value must be between 0 and 3.
+		/// where value 0 is for searching for assignments.
+		/// </param>
+		/// <returns>All backdoors.</returns>
+		public IEnumerable<IBackdoorSet> SearchBackdoors(IReadOnlyGrid grid, int depth)
 		{
-			Depth = depth >= 0 && depth <= 3
-				? depth
-				: throw new ArgumentOutOfRangeException(nameof(depth));
-
-			FindBackdoors(grid);
-		}
-
-
-		/// <summary>
-		/// The maximum depth to search.
-		/// </summary>
-		public int Depth { get; }
-
-
-		/// <inheritdoc/>
-		public override string ToString()
-		{
-			const string separator = ", ";
-			var sb = new StringBuilder();
-
-			foreach (var eachConclusionList in _result)
+			if (depth < 0 || depth > 3)
 			{
-				foreach (var conclusion in eachConclusionList)
-				{
-					sb.Append($"{conclusion}{separator}");
-				}
-
-				sb.RemoveFromEnd(separator.Length);
-				sb.AppendLine();
+				return Array.Empty<IBackdoorSet>();
 			}
 
-			return sb.ToString();
+			var result = new List<IBackdoorSet>();
+			for (int dep = 0; dep <= depth; dep++)
+			{
+				FindBackdoors(result, grid, dep);
+			}
+
+			return result;
 		}
 
-		/// <inheritdoc/>
-		public IEnumerator<IReadOnlyList<Conclusion>> GetEnumerator() =>
-			_result.GetEnumerator();
+		/// <summary>
+		/// Search all backdoors whose depth is exactly same as the argument.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="depth">
+		/// The depth you want to search for. The depth value must be between 0 and 3.
+		/// where value 0 is for searching for assignments.
+		/// </param>
+		/// <returns>All backdoors.</returns>
+		public IEnumerable<IBackdoorSet> SearchBackdoorsExact(
+			IReadOnlyGrid grid, int depth)
+		{
+			if (depth < 0 || depth > 3)
+			{
+				return Array.Empty<IBackdoorSet>();
+			}
 
-		/// <inheritdoc/>
-		IEnumerator IEnumerable.GetEnumerator() => _result.GetEnumerator();
+			var result = new List<IBackdoorSet>();
+			FindBackdoors(result, grid, depth);
+			return result;
+		}
+
 
 		/// <summary>
 		/// To find all backdoors in a sudoku grid.
 		/// </summary>
+		/// <param name="result">The result list.</param>
 		/// <param name="grid">A sudoku grid to search backdoors.</param>
-		private void FindBackdoors(IReadOnlyGrid grid)
+		/// <param name="depth">The depth to search.</param>
+		/// <exception cref="InvalidOperationException">
+		/// Throws when the grid is invalid (has no solution or multiple solutions).
+		/// </exception>
+		private static void FindBackdoors(
+			IList<IBackdoorSet> result, IReadOnlyGrid grid, int depth)
 		{
 			if (!grid.IsValid(out var solution))
 			{
@@ -98,32 +98,38 @@ namespace Sudoku.Solving.Checking
 
 			var tempGrid = grid.Clone();
 
-			// Search backdoors (Assignments).
-			bool hasSolved;
-			DifficultyLevel difficultyLevel;
-			for (int cellOffset = 0; cellOffset < 81; cellOffset++)
+			if (depth == 0)
 			{
-				if (tempGrid.GetCellStatus(cellOffset) != CellStatus.Empty)
+				// Search backdoors (Assignments).
+				for (int cellOffset = 0; cellOffset < 81; cellOffset++)
 				{
-					continue;
-				}
-
-				int digit = solution[cellOffset];
-				tempGrid[cellOffset] = digit;
-
-				(_, hasSolved, _, _, difficultyLevel) = TestSolver.Solve(tempGrid);
-				if (hasSolved && difficultyLevel == DifficultyLevel.Easy)
-				{
-					// Solve successfully.
-					_result.Add(new List<Conclusion>
+					if (tempGrid.GetCellStatus(cellOffset) != Empty)
 					{
-						new Conclusion(ConclusionType.Assignment, cellOffset, digit)
-					});
-				}
+						continue;
+					}
 
-				// Restore data.
-				// Simply assigning to trigger the event to re-compute all candidates.
-				tempGrid[cellOffset] = -1;
+					int digit = solution[cellOffset];
+					tempGrid[cellOffset] = digit;
+
+					var (_, hasSolved, _, _, difficultyLevel) = TestSolver.Solve(tempGrid);
+					if (hasSolved && difficultyLevel == Easy)
+					{
+						// Solve successfully.
+						result.Add(new[]
+						{
+						new Conclusion(Assignment, cellOffset, digit)
+					});
+					}
+
+					// Restore data.
+					// Simply assigning to trigger the event to re-compute all candidates.
+					tempGrid[cellOffset] = -1;
+				}
+			}
+
+			if (depth == 0)
+			{
+				return;
 			}
 
 			// Store all incorrect candidates to prepare for search elimination backdoors.
@@ -135,7 +141,7 @@ namespace Sudoku.Solving.Checking
 				currentList = new List<int>();
 				for (int digit = 0; digit < 9; digit++)
 				{
-					if (grid.GetCellStatus(cellOffset) != CellStatus.Empty)
+					if (grid.GetCellStatus(cellOffset) != Empty)
 					{
 						// This cell does not need to fill with a digit.
 						continue;
@@ -150,9 +156,9 @@ namespace Sudoku.Solving.Checking
 
 			// Search backdoors (Eliminations).
 			var tempList = new List<Conclusion>();
-			for (int c1 = 0; c1 < 82 - Depth; c1++)
+			for (int c1 = 0; c1 < 82 - depth; c1++)
 			{
-				if (tempGrid.GetCellStatus(c1) != CellStatus.Empty)
+				if (tempGrid.GetCellStatus(c1) != Empty)
 				{
 					continue;
 				}
@@ -162,17 +168,17 @@ namespace Sudoku.Solving.Checking
 					int d1 = cand1 % 9;
 					tempGrid[c1, d1] = true;
 
-					tempList.Add(new Conclusion(ConclusionType.Elimination, c1, d1));
+					tempList.Add(new Conclusion(Elimination, c1, d1));
 
-					(_, hasSolved, _, _, difficultyLevel) = TestSolver.Solve(tempGrid);
-					if (!hasSolved || difficultyLevel != DifficultyLevel.Easy)
+					var (_, hasSolved, _, _, difficultyLevel) = TestSolver.Solve(tempGrid);
+					if (!hasSolved || difficultyLevel != Easy)
 					{
 						// Fail to solve.
-						if (Depth > 1)
+						if (depth > 1)
 						{
-							for (int c2 = c1 + 1; c2 < 83 - Depth; c2++)
+							for (int c2 = c1 + 1; c2 < 83 - depth; c2++)
 							{
-								if (tempGrid.GetCellStatus(c2) != CellStatus.Empty)
+								if (tempGrid.GetCellStatus(c2) != Empty)
 								{
 									continue;
 								}
@@ -182,17 +188,17 @@ namespace Sudoku.Solving.Checking
 									int d2 = cand2 % 9;
 									tempGrid[c2, d2] = true;
 
-									tempList.Add(new Conclusion(ConclusionType.Elimination, c2, d2));
+									tempList.Add(new Conclusion(Elimination, c2, d2));
 
 									(_, hasSolved, _, _, difficultyLevel) = TestSolver.Solve(tempGrid);
-									if (!hasSolved || difficultyLevel != DifficultyLevel.Easy)
+									if (!hasSolved || difficultyLevel != Easy)
 									{
 										// Fail to solve.
-										if (Depth > 2)
+										if (depth > 2)
 										{
 											for (int c3 = c2 + 1; c3 < 81; c3++)
 											{
-												if (tempGrid.GetCellStatus(c3) != CellStatus.Empty)
+												if (tempGrid.GetCellStatus(c3) != Empty)
 												{
 													continue;
 												}
@@ -202,26 +208,26 @@ namespace Sudoku.Solving.Checking
 													int d3 = cand3 % 9;
 													tempGrid[c3, d3] = true;
 
-													tempList.Add(new Conclusion(ConclusionType.Elimination, c3, d3));
+													tempList.Add(new Conclusion(Elimination, c3, d3));
 
 													(_, hasSolved, _, _, difficultyLevel) = TestSolver.Solve(tempGrid);
-													if (hasSolved && difficultyLevel == DifficultyLevel.Easy)
+													if (hasSolved && difficultyLevel == Easy)
 													{
 														// Solve successfully.
 														// Note this condition.
-														_result.Add(new List<Conclusion>(tempList));
+														result.Add(new List<Conclusion>(tempList));
 													}
 
 													tempGrid[c3, d3] = false;
 													tempList.Clear();
-												} 
+												}
 											}
 										}
 									}
 									else
 									{
 										// Solve successfully.
-										_result.Add(new List<Conclusion>(tempList));
+										result.Add(new List<Conclusion>(tempList));
 										tempList.RemoveLastElement();
 									}
 
@@ -234,7 +240,7 @@ namespace Sudoku.Solving.Checking
 					else
 					{
 						// Solve successfully.
-						_result.Add(new List<Conclusion>(tempList));
+						result.Add(new List<Conclusion>(tempList));
 						tempList.RemoveLastElement();
 					}
 

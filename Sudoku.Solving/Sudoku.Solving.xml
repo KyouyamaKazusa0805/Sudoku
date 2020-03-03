@@ -448,46 +448,44 @@
             </remarks>
             <seealso cref="T:Sudoku.Solving.Conclusion"/>
         </member>
-        <member name="F:Sudoku.Solving.Checking.BackdoorSearcher._result">
-            <summary>
-            The result list.
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.Checking.BackdoorSearcher.TestSolver">
             <summary>
             The temporary test solver used in this searcher.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.#ctor(Sudoku.Data.Grid,System.Int32)">
+        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchBackdoors(Sudoku.Data.IReadOnlyGrid,System.Int32)">
             <summary>
-            Initializes an instance with a grid and searching depth.
+            Search all backdoors whose level is lower or equals than the
+            specified depth.
             </summary>
-            <param name="grid">The sudoku grid to search backdoors.</param>
-            <param name="depth">The maximum depth to search. No more than 3.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when <paramref name="depth"/> is greater than 3.
-            </exception>
-            <seealso cref="P:Sudoku.Solving.Checking.BackdoorSearcher.Depth"/>
+            <param name="grid">The grid.</param>
+            <param name="depth">
+            The depth you want to search for. The depth value must be between 0 and 3.
+            where value 0 is for searching for assignments.
+            </param>
+            <returns>All backdoors.</returns>
         </member>
-        <member name="P:Sudoku.Solving.Checking.BackdoorSearcher.Depth">
+        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchBackdoorsExact(Sudoku.Data.IReadOnlyGrid,System.Int32)">
             <summary>
-            The maximum depth to search.
+            Search all backdoors whose depth is exactly same as the argument.
             </summary>
+            <param name="grid">The grid.</param>
+            <param name="depth">
+            The depth you want to search for. The depth value must be between 0 and 3.
+            where value 0 is for searching for assignments.
+            </param>
+            <returns>All backdoors.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.FindBackdoors(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.FindBackdoors(System.Collections.Generic.IList{System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion}},Sudoku.Data.IReadOnlyGrid,System.Int32)">
             <summary>
             To find all backdoors in a sudoku grid.
             </summary>
+            <param name="result">The result list.</param>
             <param name="grid">A sudoku grid to search backdoors.</param>
+            <param name="depth">The depth to search.</param>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the grid is invalid (has no solution or multiple solutions).
+            </exception>
         </member>
         <member name="T:Sudoku.Solving.Checking.BugChecker">
             <summary>
