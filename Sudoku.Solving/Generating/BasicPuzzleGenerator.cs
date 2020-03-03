@@ -1,5 +1,4 @@
-﻿using System;
-using System.Externals;
+﻿using System.Externals;
 using System.Linq;
 using System.Text;
 using Sudoku.Data;
@@ -7,20 +6,16 @@ using Sudoku.Data.Extensions;
 using Sudoku.Solving.BruteForces.Bitwise;
 using static Sudoku.Data.SymmetricalType;
 
-namespace Sudoku.Generating
+namespace Sudoku.Solving.Generating
 {
 	/// <summary>
-	/// Encapsulates an extended puzzle generator.
+	/// Encapsulates a puzzle generator, which provides the symmetrical type constraint
+	/// and the maximum clues constraint.
 	/// </summary>
-	public sealed class ExtendedGenerator : PuzzleGenerator
+	public sealed class BasicPuzzleGenerator : PuzzleGenerator
 	{
 		/// <summary>
-		/// The random number generator.
-		/// </summary>
-		private static readonly Random Rng = new Random();
-
-		/// <summary>
-		/// The dancing links solver.
+		/// A fast solver.
 		/// </summary>
 		private static readonly BitwiseSolver Solver = new BitwiseSolver();
 
@@ -138,7 +133,12 @@ namespace Sudoku.Generating
 			return Grid.Parse(result);
 		}
 
-
+		/// <summary>
+		/// Check whether the digit in its peer cells has duplicate ones.
+		/// </summary>
+		/// <param name="gridArray">The grid array.</param>
+		/// <param name="cell">The cell.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		private static bool CheckDuplicate(StringBuilder gridArray, int cell)
 		{
 			char value = gridArray[cell];

@@ -906,6 +906,59 @@
             </summary>
             <param name="this">(<see langword="this"/> parameter) The stopwatch.</param>
         </member>
+        <member name="T:Sudoku.Solving.Generating.BasicPuzzleGenerator">
+            <summary>
+            Encapsulates a puzzle generator, which provides the symmetrical type constraint
+            and the maximum clues constraint.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Generating.BasicPuzzleGenerator.Solver">
+            <summary>
+            A fast solver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Generating.BasicPuzzleGenerator.Generate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Generating.BasicPuzzleGenerator.Generate(System.Int32,Sudoku.Data.SymmetricalType)">
+            <summary>
+            Generate a puzzle with the specified information.
+            </summary>
+            <param name="max">The maximum hints of the puzzle.</param>
+            <param name="symmetricalType">
+            The symmetrical type flags. The <see cref="T:Sudoku.Data.SymmetricalType"/> is
+            a flag type, you can use bit operators to accumulate multiple
+            symmetrical types such as <c><see cref="F:Sudoku.Data.SymmetricalType.AntiDiagonal"/> | <see cref="F:Sudoku.Data.SymmetricalType.Diagonal"/></c>,
+            which means that the solver will generate anti-diagonal type or
+            diagonal type puzzles.
+            </param>
+            <returns>The grid.</returns>
+            <seealso cref="T:Sudoku.Data.SymmetricalType"/>
+        </member>
+        <member name="M:Sudoku.Solving.Generating.BasicPuzzleGenerator.CheckDuplicate(System.Text.StringBuilder,System.Int32)">
+            <summary>
+            Check whether the digit in its peer cells has duplicate ones.
+            </summary>
+            <param name="gridArray">The grid array.</param>
+            <param name="cell">The cell.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Generating.PuzzleGenerator">
+            <summary>
+            Provides data for all derived puzzle generators.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Generating.PuzzleGenerator.Rng">
+            <summary>
+            The random number generator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Generating.PuzzleGenerator.Generate">
+            <summary>
+            Generates a puzzle.
+            </summary>
+            <returns>The puzzle.</returns>
+        </member>
         <member name="T:Sudoku.Solving.HighAllocationAttribute">
             <summary>
             Represents a mark on a searcher which should allocate
