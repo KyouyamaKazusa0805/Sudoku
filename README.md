@@ -1,6 +1,6 @@
-# Sudoku
+# Sunnie's Sudoku Solution
 
-标题：**数独**
+标题：**向向的数独解决方案（SSS）**
 
 A sudoku handling SDK using brute forces and logical techniques (Update files gradually).
 
@@ -143,7 +143,7 @@ The program supports technique below at present:
 * Locked Candidates: Pointing, Claiming, Almost Locked Candidates<br/>区块：宫区块、行列区块、欠一数组
 * Subset: Naked Subset (Locked Subset & Partial Locked Subset), Hidden Subset<br/>数组：显性数组（死锁数组和区块数组）、隐性数组
 * Fishes: Basic (Finned, Sashimi) X-Wing, Swordfish, Jellyfish<br/>鱼：（鳍、退化）二链列、三链列和四链列
-* Wings: XY-Wing, XYZ-Wing, (Incompleted) WXYZ-Wing, (Incompleted) VWXYZ-Wing, W-Wing<br/>Wing 结构：XY-Wing、XYZ-Wing、（残缺）WXYZ-Wing、（残缺）VWXYZ-Wing、W-Wing
+* Wings: XY-Wing, XYZ-Wing, (Uncompleted) WXYZ-Wing, (Uncompleted) VWXYZ-Wing, W-Wing<br/>Wing 结构：XY-Wing、XYZ-Wing、（残缺）WXYZ-Wing、（残缺）VWXYZ-Wing、W-Wing
 * Uniqueness: Unique Rectangle (Type 1 to 6), Hidden Rectangle, Avoidable Rectangle (Type 1 to 3),  Hidden Avoidable Rectangle, Unique Loop (Type 1 to 4), Bivalue Universal Grave (Type 1 to 4 and BUG + n), Borescoper's Deadly Pattern (Type 1 to 2)<br/>唯一性：唯一矩形（类型 1 到 6）、可规避矩形（类型 1 到 3）、唯一环（类型 1 到 4）、隐性唯一矩形、隐性可规避矩形、全双值格致死解法（类型 1 到 4 和 BUG + n）、探长致命结构（类型 1 到 2）
 * Single Digit Patterns: Skyscraper, Two-string Kite, Turbot Fish, Empty Rectangle<br/>同数链式结构：摩天楼、双线风筝、多宝鱼、空矩形
 * Almost Subset Techniques: Sue de Coq<br/>待定数组：融合待定数组
