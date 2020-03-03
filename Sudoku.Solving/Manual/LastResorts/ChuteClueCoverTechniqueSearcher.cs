@@ -11,7 +11,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// <summary>
 	/// Encapsulates a chute clue cover (CCC) technique searcher.
 	/// </summary>
-	[Slow]
+	[Slow, HighAllocation]
 	public sealed class ChuteClueCoverTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <inheritdoc/>

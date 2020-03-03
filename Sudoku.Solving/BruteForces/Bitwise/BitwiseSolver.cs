@@ -6,9 +6,9 @@ using System.Text;
 using Sudoku.Data;
 using Sudoku.Runtime;
 #if BIT64
-using nint = System.Int32;
+using native_int = System.Int32;
 #else
-using nint = System.Int16;
+using native_int = System.Int16;
 #endif
 
 namespace Sudoku.Solving.BruteForces.Bitwise
@@ -171,10 +171,8 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// You should pass the value by a positive integer at least 1.
 		/// </param>
 		/// <returns>The solution count of the puzzle.</returns>
-		[DllImport("Sudoku.BitwiseSolver (x86).dll",
-			EntryPoint = "Solve", CharSet = CharSet.Ansi,
-			CallingConvention = CallingConvention.StdCall)]
-		private static extern nint Solve32(
+		[DllImport("Sudoku.BitwiseSolver (x86).dll", EntryPoint = "Solve", CharSet = CharSet.Ansi)]
+		private static extern native_int Solve32(
 			[MarshalAs(UnmanagedType.LPStr)] string puzzle,
 			[MarshalAs(UnmanagedType.LPStr)] StringBuilder? solution,
 #if BIT64
@@ -182,7 +180,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 #else
 			[MarshalAs(UnmanagedType.I2)]
 #endif
-			nint limit);
+			native_int limit);
 
 		/// <summary>
 		/// The core function of solving the puzzle based on x64 platform.
@@ -194,10 +192,8 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// You should pass the value by a positive integer at least 1.
 		/// </param>
 		/// <returns>The solution count of the puzzle.</returns>
-		[DllImport("Sudoku.BitwiseSolver (x64).dll",
-			EntryPoint = "Solve", CharSet = CharSet.Ansi,
-			CallingConvention = CallingConvention.StdCall)]
-		private static extern nint Solve64(
+		[DllImport("Sudoku.BitwiseSolver (x64).dll", EntryPoint = "Solve", CharSet = CharSet.Ansi)]
+		private static extern native_int Solve64(
 			[MarshalAs(UnmanagedType.LPStr)] string puzzle,
 			[MarshalAs(UnmanagedType.LPStr)] StringBuilder? solution,
 #if BIT64
@@ -205,6 +201,6 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 #else
 			[MarshalAs(UnmanagedType.I2)]
 #endif
-			nint limit);
+			native_int limit);
 	}
 }
