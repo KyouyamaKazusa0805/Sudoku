@@ -404,23 +404,11 @@ namespace Sudoku.Solving.Manual
 				int digit = solution[conclusion.CellOffset];
 				switch (conclusion.ConclusionType)
 				{
-					case ConclusionType.Assignment:
+					case ConclusionType.Assignment when digit != conclusion.Digit:
 					{
-						if (digit != conclusion.Digit)
-						{
-							return false;
-						}
-						break;
+						return false;
 					}
-					case ConclusionType.Elimination:
-					{
-						if (digit == conclusion.Digit)
-						{
-							return false;
-						}
-						break;
-					}
-					default:
+					case ConclusionType.Elimination when digit == conclusion.Digit:
 					{
 						return false;
 					}
