@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Checking
 		/// where value 0 is for searching for assignments.
 		/// </param>
 		/// <returns>All backdoors.</returns>
-		public IEnumerable<IBackdoorSet> SearchBackdoors(IReadOnlyGrid grid, int depth)
+		public IEnumerable<IBackdoorSet> SearchForBackdoors(IReadOnlyGrid grid, int depth)
 		{
 			if (depth < 0 || depth > 3)
 			{
@@ -50,7 +50,7 @@ namespace Sudoku.Solving.Checking
 			var result = new List<IBackdoorSet>();
 			for (int dep = 0; dep <= depth; dep++)
 			{
-				FindBackdoors(result, grid, dep);
+				SearchForBackdoors(result, grid, dep);
 			}
 
 			return result;
@@ -65,7 +65,7 @@ namespace Sudoku.Solving.Checking
 		/// where value 0 is for searching for assignments.
 		/// </param>
 		/// <returns>All backdoors.</returns>
-		public IEnumerable<IBackdoorSet> SearchBackdoorsExact(
+		public IEnumerable<IBackdoorSet> SearchForBackdoorsExact(
 			IReadOnlyGrid grid, int depth)
 		{
 			if (depth < 0 || depth > 3)
@@ -74,7 +74,7 @@ namespace Sudoku.Solving.Checking
 			}
 
 			var result = new List<IBackdoorSet>();
-			FindBackdoors(result, grid, depth);
+			SearchForBackdoors(result, grid, depth);
 			return result;
 		}
 
@@ -88,7 +88,7 @@ namespace Sudoku.Solving.Checking
 		/// <exception cref="InvalidOperationException">
 		/// Throws when the grid is invalid (has no solution or multiple solutions).
 		/// </exception>
-		private static void FindBackdoors(
+		private static void SearchForBackdoors(
 			IList<IBackdoorSet> result, IReadOnlyGrid grid, int depth)
 		{
 			if (!grid.IsValid(out var solution))

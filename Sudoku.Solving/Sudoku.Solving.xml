@@ -453,7 +453,7 @@
             The temporary test solver used in this searcher.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchBackdoors(Sudoku.Data.IReadOnlyGrid,System.Int32)">
+        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchForBackdoors(Sudoku.Data.IReadOnlyGrid,System.Int32)">
             <summary>
             Search all backdoors whose level is lower or equals than the
             specified depth.
@@ -465,7 +465,7 @@
             </param>
             <returns>All backdoors.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchBackdoorsExact(Sudoku.Data.IReadOnlyGrid,System.Int32)">
+        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchForBackdoorsExact(Sudoku.Data.IReadOnlyGrid,System.Int32)">
             <summary>
             Search all backdoors whose depth is exactly same as the argument.
             </summary>
@@ -476,7 +476,7 @@
             </param>
             <returns>All backdoors.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.FindBackdoors(System.Collections.Generic.IList{System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion}},Sudoku.Data.IReadOnlyGrid,System.Int32)">
+        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchForBackdoors(System.Collections.Generic.IList{System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion}},Sudoku.Data.IReadOnlyGrid,System.Int32)">
             <summary>
             To find all backdoors in a sudoku grid.
             </summary>
