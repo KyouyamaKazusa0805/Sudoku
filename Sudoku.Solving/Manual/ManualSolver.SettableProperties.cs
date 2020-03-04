@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Manual
+﻿using Sudoku.Runtime;
+
+namespace Sudoku.Solving.Manual
 {
 	partial class ManualSolver
 	{
@@ -50,6 +52,28 @@
 		/// </para>
 		/// </summary>
 		public bool CheckAlmostLockedQuadruple { get; set; } = false;
+
+		/// <summary>
+		/// <para>
+		/// Indicates whether the solver will check the validity of the conclusions
+		/// after searched them. If the conclusions eliminate the wrong digits or
+		/// assign to the wrong cells, it will report the error
+		/// (i.e. throw a <see cref="WrongHandlingException"/>).
+		/// </para>
+		/// <para>
+		/// The value is <see langword="true"/> in default case. If the value is
+		/// <see langword="true"/>, all conclusions will be checked before applying
+		/// to the grid. The comparer is the solution grid. Computer does not know
+		/// which conclusions are correct and which ones are incorrect. Therefore,
+		/// the best plan is to compare to the solution grid. If not, the solver
+		/// will not check the validity of all conclusions. In other words, the solver
+		/// does not stop the searching until the grid is totally invalid (None of
+		/// eliminations or assignments can be searched). However, unfortunately,
+		/// the grid has no solution at present.
+		/// </para>
+		/// </summary>
+		/// <seealso cref="WrongHandlingException"/>
+		public bool CheckConclusionValidityAfterSearched { get; set; } = true;
 
 		/// <summary>
 		/// <para>

@@ -190,7 +190,9 @@ namespace Sudoku.Solving.Manual
 					continue;
 				}
 
-				if (CheckConclusionsValidity(solution, step.Conclusions))
+				if (CheckConclusionValidityAfterSearched
+					? CheckConclusionsValidity(solution, step.Conclusions)
+					: true)
 				{
 					step.ApplyTo(cloneation);
 					steps.Add(step);
@@ -344,7 +346,9 @@ namespace Sudoku.Solving.Manual
 					continue;
 				}
 
-				if (CheckConclusionsValidity(solution, step.Conclusions))
+				if (CheckConclusionValidityAfterSearched
+					? CheckConclusionsValidity(solution, step.Conclusions)
+					: true)
 				{
 					step.ApplyTo(cloneation);
 					steps.Add(step);
