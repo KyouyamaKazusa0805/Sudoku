@@ -39,17 +39,25 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// </summary>
 		static ExtendedRectangleTechniqueSearcher()
 		{
+			static bool check(int size, short value) => value.CountSet() << 1 > size;
+
 			var list = new Dictionary<int, IEnumerable<short>>();
 			for (int size = 3; size <= 7; size++)
 			{
 				var innerList = new List<short>();
 				foreach (short mask in new BitCombinationGenerator(9, size))
 				{
+					// Check whether all cells are in same region.
+					// If so, continue the loop immediately.
+					short a = (short)(mask >> 6), b = (short)(mask >> 3 & 7), c = (short)(mask & 7);
+					if (size == 3 && (a == 7 || b == 7 || c == 7))
+					{
+						continue;
+					}
+
 					// Optimize the combinations.
-					// Note that some combinations are proved to be impossible.
-					if (((short)(mask >> 6)).CountSet() > size
-						|| ((short)(mask >> 3 & 7)).CountSet() > size
-						|| ((short)(mask & 7)).CountSet() > size)
+					// Note that some combinations are proved impossible.
+					if (check(size, a) || check(size, b) || check(size, c))
 					{
 						continue;
 					}
@@ -91,13 +99,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 							allCellsMap[c1] = true;
 							allCellsMap[c2] = true;
 							pairs.Add((c1, c2));
-						}
-
-						// Check whether all cells are in same region.
-						// If so, continue the loop immediately.
-						if (size == 3 && allCellsMap.AllSetsAreInOneRegion(out _))
-						{
-							continue;
 						}
 
 						// Check each pair.
