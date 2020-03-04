@@ -950,33 +950,54 @@
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Generating.ExtendedPuzzleGenerator">
+        <member name="T:Sudoku.Solving.Generating.DiggingPuzzleGenerator">
             <summary>
-            Provides an extended puzzle generator.
+            Encapsulates a puzzle generator, whose basic algorithm is digging
+            some values out of a random answer grid.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Generating.ExtendedPuzzleGenerator.Solver">
+        <member name="F:Sudoku.Solving.Generating.DiggingPuzzleGenerator.FastSolver">
             <summary>
-            A fast solver.
+            The fast solver.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Generating.ExtendedPuzzleGenerator.Generate">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Generating.ExtendedPuzzleGenerator.GenerateAnswerGrid(System.Text.StringBuilder,System.Text.StringBuilder)">
+        <member name="M:Sudoku.Solving.Generating.DiggingPuzzleGenerator.GenerateAnswerGrid(System.Text.StringBuilder,System.Text.StringBuilder)">
             <summary>
             To generate an answer grid.
             </summary>
             <param name="puzzle">The puzzle string.</param>
             <param name="solution">The solution string.</param>
         </member>
-        <member name="M:Sudoku.Solving.Generating.ExtendedPuzzleGenerator.CheckDuplicate(System.Text.StringBuilder,System.Int32)">
+        <member name="M:Sudoku.Solving.Generating.DiggingPuzzleGenerator.CreatePattern(System.Int32[])">
+            <summary>
+            To create the pattern.
+            </summary>
+            <param name="pattern">The pattern array.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Generating.DiggingPuzzleGenerator.CheckDuplicate(System.Text.StringBuilder,System.Int32)">
             <summary>
             Check whether the digit in its peer cells has duplicate ones.
             </summary>
             <param name="gridArray">The grid array.</param>
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Generating.ExtendedPuzzleGenerator">
+            <summary>
+            Provides an extended puzzle generator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Generating.ExtendedPuzzleGenerator.Generate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Generating.ExtendedPuzzleGenerator.CreatePattern(System.Int32[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Generating.ExtendedPuzzleGenerator.RecreatePattern(System.Int32[])">
+            <summary>
+            To re-create the pattern.
+            </summary>
+            <param name="pattern">The pattern array.</param>
         </member>
         <member name="T:Sudoku.Solving.Generating.PuzzleGenerator">
             <summary>

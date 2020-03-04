@@ -1,21 +1,14 @@
 ﻿using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
-using Sudoku.Solving.BruteForces.Bitwise;
 
 namespace Sudoku.Solving.Generating
 {
 	/// <summary>
 	/// Provides an extended puzzle generator.
 	/// </summary>
-	public sealed class ExtendedPuzzleGenerator : PuzzleGenerator
+	public sealed class ExtendedPuzzleGenerator : DiggingPuzzleGenerator
 	{
-		/// <summary>
-		/// A fast solver.
-		/// </summary>
-		private static readonly BitwiseSolver Solver = new BitwiseSolver();
-
-
 		/// <inheritdoc/>
 		public override IReadOnlyGrid Generate()
 		{
@@ -38,14 +31,14 @@ namespace Sudoku.Solving.Generating
 						char temp = solution[p];
 						solution[p] = '0';
 
-						if (!Solver.CheckValidity(solution.ToString(), out _))
+						if (!FastSolver.CheckValidity(solution.ToString(), out _))
 						{
 							// Reset the value.
 							solution[p] = temp;
 						}
 					}
 
-					if (Solver.CheckValidity(solution.ToString(), out _))
+					if (FastSolver.CheckValidity(solution.ToString(), out _))
 					{
 						return Grid.Parse(solution.ToString());
 					}
@@ -55,65 +48,8 @@ namespace Sudoku.Solving.Generating
 			}
 		}
 
-		/// <summary>
-		/// To generate an answer grid.
-		/// </summary>
-		/// <param name="puzzle">The puzzle string.</param>
-		/// <param name="solution">The solution string.</param>
-		private static void GenerateAnswerGrid(StringBuilder puzzle, StringBuilder solution)
-		{
-			do
-			{
-				for (int i = 0; i < 81; i++)
-				{
-					puzzle[i] = '0';
-				}
-
-				var map = GridMap.Empty;
-				for (int i = 0; i < 16; i++)
-				{
-					while (true)
-					{
-						int cell = Rng.Next(0, 81);
-						if (!map[cell])
-						{
-							map[cell] = true;
-							break;
-						}
-					}
-				}
-
-				foreach (int cell in map.Offsets)
-				{
-					do
-					{
-						puzzle[cell] = (char)(Rng.Next(1, 9) + '0');
-					} while (CheckDuplicate(puzzle, cell));
-				}
-			} while (Solver.Solve(puzzle.ToString(), solution, 2) == 0);
-		}
-
-		/// <summary>
-		/// Check whether the digit in its peer cells has duplicate ones.
-		/// </summary>
-		/// <param name="gridArray">The grid array.</param>
-		/// <param name="cell">The cell.</param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		private static bool CheckDuplicate(StringBuilder gridArray, int cell)
-		{
-			char value = gridArray[cell];
-			foreach (int c in new GridMap(cell, false).Offsets)
-			{
-				if (value != '0' && gridArray[c] == value)
-				{
-					return true;
-				}
-			}
-
-			return false;
-		}
-
-		private static void CreatePattern(int[] pattern)
+		/// <inheritdoc/>
+		protected override void CreatePattern(int[] pattern)
 		{
 			//[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			static void swap<T>(ref T left, ref T right) { var temp = left; left = right; right = temp; }
@@ -153,6 +89,10 @@ namespace Sudoku.Solving.Generating
 			}
 		}
 
+		/// <summary>
+		/// To re-create the pattern.
+		/// </summary>
+		/// <param name="pattern">The pattern array.</param>
 		private static void RecreatePattern(int[] pattern)
 		{
 			//[MethodImpl(MethodImplOptions.AggressiveInlining)]
