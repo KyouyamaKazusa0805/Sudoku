@@ -721,7 +721,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 									var elimMap = GridMap.CreateInstance(
 										from cell in allCells
 										where grid.CandidateExists(cell, digit)
-										select cell);
+										select cell, false);
 
 									foreach (int cell in elimMap.Offsets)
 									{
@@ -837,7 +837,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 											var elimMap = GridMap.CreateInstance(
 												from cell in allCells
 												where grid.CandidateExists(cell, digit)
-												select cell);
+												select cell, false);
 
 											foreach (int cell in elimMap.Offsets)
 											{
@@ -951,7 +951,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 												var elimMap = GridMap.CreateInstance(
 													from cell in allCells
 													where grid.CandidateExists(cell, digit)
-													select cell);
+													select cell, false);
 
 												foreach (int cell in elimMap.Offsets)
 												{

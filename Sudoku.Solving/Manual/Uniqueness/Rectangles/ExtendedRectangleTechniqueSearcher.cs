@@ -6,6 +6,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 using XrType1 = Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType1DetailData;
+using XrType2 = Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType2DetailData;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 {
@@ -216,14 +217,61 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 							else
 							{
 								// Type 2.
+								// Check eliminations.
+								var elimMap = GridMap.CreateInstance(extraCells, false);
+								foreach (int cell in elimMap.Offsets)
+								{
+									int digit = extraDigits[0];
+									if (grid.CandidateExists(cell, digit))
+									{
+										conclusions.Add(
+											new Conclusion(
+												ConclusionType.Elimination, cell, digit));
+									}
+								}
 
+								if (conclusions.Count == 0)
+								{
+									continue;
+								}
+
+								// Record all highlight candidates.
+								foreach (int cell in allCellsMap.Offsets)
+								{
+									foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+									{
+										candidateOffsets.Add(
+											(digit == extraDigits[0] ? 1 : 0, cell * 9 + digit));
+									}
+								}
+
+								accumulator.Add(
+									new ExtendedRectangleTechniqueInfo(
+										conclusions,
+										views: new[]
+										{
+											new View(
+												cellOffsets: null,
+												candidateOffsets,
+												regionOffsets: null,
+												linkMasks: null)
+										},
+										detailData: new XrType2(
+											cells: allCellsMap.ToArray(),
+											digits: normalDigits,
+											extraDigit: extraDigits[0])));
 							}
 						}
 						else
 						{
 							// Check type 3 or 4.
-							foreach (var normalDigits in
-								GetAllNormalDigitCombinations(resultMask.GetAllSets().ToArray()))
+							int[] digits = resultMask.GetAllSets().ToArray();
+							if (digits.Length >= 8)
+							{
+								continue;
+							}
+
+							foreach (var normalDigits in GetAllNormalDigitCombinations(digits))
 							{
 								// TODO: Check XR type 3 and 4.
 							}
