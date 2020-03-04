@@ -40,35 +40,7 @@ namespace Sudoku.Solving.Generating
 		{
 			var puzzle = new StringBuilder(Grid.EmptyString);
 			var solution = new StringBuilder(Grid.EmptyString);
-			do
-			{
-				for (int i = 0; i < 81; i++)
-				{
-					puzzle[i] = '0';
-				}
-
-				var map = GridMap.Empty;
-				for (int i = 0; i < 16; i++)
-				{
-					while (true)
-					{
-						int cell = Rng.Next(0, 81);
-						if (!map[cell])
-						{
-							map[cell] = true;
-							break;
-						}
-					}
-				}
-
-				foreach (int cell in map.Offsets)
-				{
-					do
-					{
-						puzzle[cell] = (char)(Rng.Next(1, 9) + '0');
-					} while (CheckDuplicate(puzzle, cell));
-				}
-			} while (Solver.Solve(puzzle.ToString(), solution, 2) == 0);
+			GenerateAnswerGrid(puzzle, solution);
 
 			// Now we remove some digits from the grid.
 			var allTypes = from st in EnumEx.GetValues<SymmetricalType>()
@@ -131,6 +103,45 @@ namespace Sudoku.Solving.Generating
 			} while (!Solver.CheckValidity(result = solution.ToString(), out _));
 
 			return Grid.Parse(result);
+		}
+
+
+		/// <summary>
+		/// To generate an answer grid.
+		/// </summary>
+		/// <param name="puzzle">The puzzle string.</param>
+		/// <param name="solution">The solution string.</param>
+		private static void GenerateAnswerGrid(StringBuilder puzzle, StringBuilder solution)
+		{
+			do
+			{
+				for (int i = 0; i < 81; i++)
+				{
+					puzzle[i] = '0';
+				}
+
+				var map = GridMap.Empty;
+				for (int i = 0; i < 16; i++)
+				{
+					while (true)
+					{
+						int cell = Rng.Next(0, 81);
+						if (!map[cell])
+						{
+							map[cell] = true;
+							break;
+						}
+					}
+				}
+
+				foreach (int cell in map.Offsets)
+				{
+					do
+					{
+						puzzle[cell] = (char)(Rng.Next(1, 9) + '0');
+					} while (CheckDuplicate(puzzle, cell));
+				}
+			} while (Solver.Solve(puzzle.ToString(), solution, 2) == 0);
 		}
 
 		/// <summary>

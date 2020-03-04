@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Text;
 
 namespace Sudoku.Data.Extensions
@@ -42,7 +43,7 @@ namespace Sudoku.Data.Extensions
 
 		/// <summary>
 		/// Append a character to the end of the specified string builder instance,
-		/// and then append a <see cref="System.Environment.NewLine"/>.
+		/// and then append a <see cref="Environment.NewLine"/>.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
 		/// <param name="value">The character you want to append.</param>
@@ -64,7 +65,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Append a <see cref="string"/> representation of an object
 		/// to the end of the specified string builder instance,
-		/// and then append a <see cref="System.Environment.NewLine"/>.
+		/// and then append a <see cref="Environment.NewLine"/>.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
 		/// <param name="obj">
@@ -73,5 +74,28 @@ namespace Sudoku.Data.Extensions
 		/// <returns>The reference of the current instance.</returns>
 		public static StringBuilder AppendLine(this StringBuilder @this, object? obj) =>
 			@this.AppendLine(obj.NullableToString());
+
+		/// <summary>
+		/// Copy the specified string builder to the specified target.
+		/// </summary>
+		/// <param name="this">The base string builder.</param>
+		/// <param name="to">The target builder.</param>
+		/// <exception cref="ArgumentException">
+		/// Throws if the target instance does not have enough space to store all characters
+		/// from the base one.
+		/// </exception>
+		public static void CopyTo(this StringBuilder @this, StringBuilder @to)
+		{
+			if (@this.Length > @to.Length)
+			{
+				throw new ArgumentException(
+					"The specified string builder does not have enough space to copy.");
+			}
+
+			for (int i = 0; i < @this.Length; i++)
+			{
+				@to[i] = @this[i];
+			}
+		}
 	}
 }

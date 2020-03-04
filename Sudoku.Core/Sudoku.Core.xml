@@ -532,6 +532,17 @@
             </param>
             <returns>The reference of the current instance.</returns>
         </member>
+        <member name="M:Sudoku.Data.Extensions.StringBuilderEx.CopyTo(System.Text.StringBuilder,System.Text.StringBuilder)">
+            <summary>
+            Copy the specified string builder to the specified target.
+            </summary>
+            <param name="this">The base string builder.</param>
+            <param name="to">The target builder.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws if the target instance does not have enough space to store all characters
+            from the base one.
+            </exception>
+        </member>
         <member name="T:Sudoku.Data.Extensions.StringEx">
             <summary>
             Provides extension methods on <see cref="T:System.String"/>.
