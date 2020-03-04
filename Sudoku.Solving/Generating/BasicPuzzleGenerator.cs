@@ -1,9 +1,9 @@
-﻿using System.Externals;
+﻿using System;
+using System.Externals;
 using System.Linq;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
-using Sudoku.Solving.BruteForces.Bitwise;
 using static Sudoku.Data.SymmetricalType;
 
 namespace Sudoku.Solving.Generating
@@ -12,14 +12,8 @@ namespace Sudoku.Solving.Generating
 	/// Encapsulates a puzzle generator, which provides the symmetrical type constraint
 	/// and the maximum clues constraint.
 	/// </summary>
-	public sealed class BasicPuzzleGenerator : PuzzleGenerator
+	public sealed class BasicPuzzleGenerator : DiggingPuzzleGenerator
 	{
-		/// <summary>
-		/// A fast solver.
-		/// </summary>
-		private static readonly BitwiseSolver Solver = new BitwiseSolver();
-
-
 		/// <inheritdoc/>
 		public override IReadOnlyGrid Generate() => Generate(28, Central);
 
@@ -100,68 +94,15 @@ namespace Sudoku.Solving.Generating
 						tempMap[tCell] = true;
 					}
 				} while (81 - totalMap.Count > max);
-			} while (!Solver.CheckValidity(result = solution.ToString(), out _));
+			} while (!FastSolver.CheckValidity(result = solution.ToString(), out _));
 
 			return Grid.Parse(result);
 		}
 
-
-		/// <summary>
-		/// To generate an answer grid.
-		/// </summary>
-		/// <param name="puzzle">The puzzle string.</param>
-		/// <param name="solution">The solution string.</param>
-		private static void GenerateAnswerGrid(StringBuilder puzzle, StringBuilder solution)
-		{
-			do
-			{
-				for (int i = 0; i < 81; i++)
-				{
-					puzzle[i] = '0';
-				}
-
-				var map = GridMap.Empty;
-				for (int i = 0; i < 16; i++)
-				{
-					while (true)
-					{
-						int cell = Rng.Next(0, 81);
-						if (!map[cell])
-						{
-							map[cell] = true;
-							break;
-						}
-					}
-				}
-
-				foreach (int cell in map.Offsets)
-				{
-					do
-					{
-						puzzle[cell] = (char)(Rng.Next(1, 9) + '0');
-					} while (CheckDuplicate(puzzle, cell));
-				}
-			} while (Solver.Solve(puzzle.ToString(), solution, 2) == 0);
-		}
-
-		/// <summary>
-		/// Check whether the digit in its peer cells has duplicate ones.
-		/// </summary>
-		/// <param name="gridArray">The grid array.</param>
-		/// <param name="cell">The cell.</param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		private static bool CheckDuplicate(StringBuilder gridArray, int cell)
-		{
-			char value = gridArray[cell];
-			foreach (int c in new GridMap(cell, false).Offsets)
-			{
-				if (value != '0' && gridArray[c] == value)
-				{
-					return true;
-				}
-			}
-
-			return false;
-		}
+		/// <inheritdoc/>
+		/// <exception cref="NotImplementedException">
+		/// Throws always.
+		/// </exception>
+		protected override void CreatePattern(int[] pattern) => throw new NotImplementedException();
 	}
 }

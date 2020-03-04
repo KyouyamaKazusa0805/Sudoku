@@ -912,11 +912,6 @@
             and the maximum clues constraint.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Generating.BasicPuzzleGenerator.Solver">
-            <summary>
-            A fast solver.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Generating.BasicPuzzleGenerator.Generate">
             <inheritdoc/>
         </member>
@@ -935,20 +930,11 @@
             <returns>The grid.</returns>
             <seealso cref="T:Sudoku.Data.SymmetricalType"/>
         </member>
-        <member name="M:Sudoku.Solving.Generating.BasicPuzzleGenerator.GenerateAnswerGrid(System.Text.StringBuilder,System.Text.StringBuilder)">
-            <summary>
-            To generate an answer grid.
-            </summary>
-            <param name="puzzle">The puzzle string.</param>
-            <param name="solution">The solution string.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Generating.BasicPuzzleGenerator.CheckDuplicate(System.Text.StringBuilder,System.Int32)">
-            <summary>
-            Check whether the digit in its peer cells has duplicate ones.
-            </summary>
-            <param name="gridArray">The grid array.</param>
-            <param name="cell">The cell.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        <member name="M:Sudoku.Solving.Generating.BasicPuzzleGenerator.CreatePattern(System.Int32[])">
+            <inheritdoc/>
+            <exception cref="T:System.NotImplementedException">
+            Throws always.
+            </exception>
         </member>
         <member name="T:Sudoku.Solving.Generating.DiggingPuzzleGenerator">
             <summary>

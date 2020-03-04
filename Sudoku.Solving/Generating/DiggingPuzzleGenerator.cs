@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Generating
 		/// </summary>
 		/// <param name="puzzle">The puzzle string.</param>
 		/// <param name="solution">The solution string.</param>
-		public virtual void GenerateAnswerGrid(StringBuilder puzzle, StringBuilder solution)
+		protected virtual void GenerateAnswerGrid(StringBuilder puzzle, StringBuilder solution)
 		{
 			do
 			{
