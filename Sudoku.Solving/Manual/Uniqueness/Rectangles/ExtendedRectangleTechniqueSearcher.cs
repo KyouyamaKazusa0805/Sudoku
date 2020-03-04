@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Externals;
 using System.Linq;
 using Sudoku.Data;
@@ -263,25 +264,26 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 											extraDigit: extraDigit)));
 							}
 						}
-						else
-						{
-							// Check type 3 or 4.
-							int[] digits = resultMask.GetAllSets().ToArray();
-							if (digits.Length >= 8)
-							{
-								continue;
-							}
-
-							foreach (var normalDigits in GetAllNormalDigitCombinations(digits))
-							{
-								// TODO: Check XR type 3 and 4.
-							}
-						}
+						//else
+						//{
+						//	// Check type 3 or 4.
+						//	int[] digits = resultMask.GetAllSets().ToArray();
+						//	if (digits.Length >= 8)
+						//	{
+						//		continue;
+						//	}
+						//
+						//	foreach (var normalDigits in GetAllNormalDigitCombinations(digits))
+						//	{
+						//		 TODO: Check XR type 3 and 4.
+						//	}
+						//}
 					}
 				}
 			}
 		}
 
+		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 		private static IEnumerable<int>[] GetAllNormalDigitCombinations(IReadOnlyList<int> digits)
 		{
 			System.Diagnostics.Contracts.Contract.Requires(digits.Count >= 3 && digits.Count <= 7);
