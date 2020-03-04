@@ -982,18 +982,18 @@
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Generating.ExtendedPuzzleGenerator">
+        <member name="T:Sudoku.Solving.Generating.HardPatternPuzzleGenerator">
             <summary>
             Provides an extended puzzle generator.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Generating.ExtendedPuzzleGenerator.Generate">
+        <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.Generate">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Generating.ExtendedPuzzleGenerator.CreatePattern(System.Int32[])">
+        <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.CreatePattern(System.Int32[])">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Generating.ExtendedPuzzleGenerator.RecreatePattern(System.Int32[])">
+        <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.RecreatePattern(System.Int32[])">
             <summary>
             To re-create the pattern.
             </summary>

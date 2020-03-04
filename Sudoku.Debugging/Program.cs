@@ -15,7 +15,7 @@ namespace Sudoku.Debugging
 		/// </summary>
 		private static void Main()
 		{
-			var generator = new Solving.Generating.ExtendedPuzzleGenerator();
+			var generator = new Solving.Generating.HardPatternPuzzleGenerator();
 			for (int i = 0; i < 50; i++)
 			{
 				WriteLine(generator.Generate());

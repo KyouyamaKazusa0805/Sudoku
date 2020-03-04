@@ -7,7 +7,7 @@ namespace Sudoku.Solving.Generating
 	/// <summary>
 	/// Provides an extended puzzle generator.
 	/// </summary>
-	public sealed class ExtendedPuzzleGenerator : DiggingPuzzleGenerator
+	public sealed class HardPatternPuzzleGenerator : DiggingPuzzleGenerator
 	{
 		/// <inheritdoc/>
 		public override IReadOnlyGrid Generate()
