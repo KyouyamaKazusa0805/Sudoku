@@ -124,8 +124,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 								int count = 0;
 								foreach (var (l, r) in pairs)
 								{
-									if (((grid.GetCandidates(l) & grid.GetCandidates(r)) >> digit & 1) == 0)
+									if (((grid.GetCandidates(l) | grid.GetCandidates(r)) >> digit & 1) == 0)
 									{
+										// Both two cells contain same digit.
 										count++;
 									}
 								}
@@ -165,6 +166,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 							}
 
 							// Get all eliminations and highlight candidates.
+							int extraDigit = extraDigits[0];
 							var conclusions = new List<Conclusion>();
 							var candidateOffsets = new List<(int, int)>();
 							if (extraCellsMap.Count == 1)
@@ -176,7 +178,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 									{
 										foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 										{
-											if (digit == extraDigits[0])
+											if (digit == extraDigit)
 											{
 												continue;
 											}
@@ -221,12 +223,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 								var elimMap = GridMap.CreateInstance(extraCells, false);
 								foreach (int cell in elimMap.Offsets)
 								{
-									int digit = extraDigits[0];
-									if (grid.CandidateExists(cell, digit))
+									if (grid.CandidateExists(cell, extraDigit))
 									{
 										conclusions.Add(
 											new Conclusion(
-												ConclusionType.Elimination, cell, digit));
+												ConclusionType.Elimination, cell, extraDigit));
 									}
 								}
 
@@ -241,7 +242,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 									foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 									{
 										candidateOffsets.Add(
-											(digit == extraDigits[0] ? 1 : 0, cell * 9 + digit));
+											(digit == extraDigit ? 1 : 0, cell * 9 + digit));
 									}
 								}
 
@@ -259,7 +260,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										detailData: new XrType2(
 											cells: allCellsMap.ToArray(),
 											digits: normalDigits,
-											extraDigit: extraDigits[0])));
+											extraDigit: extraDigit)));
 							}
 						}
 						else
