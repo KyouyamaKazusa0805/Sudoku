@@ -1,4 +1,6 @@
-﻿namespace System.Collections.Generic
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace System.Collections.Generic
 {
 	/// <summary>
 	/// Provides a basic only-in collection.
@@ -13,6 +15,7 @@
 		/// </summary>
 		/// <param name="index">The index.</param>
 		/// <returns>The element.</returns>
+		[NotNull]
 		T this[int index] { get; }
 
 
@@ -20,7 +23,7 @@
 		/// Add the element into the collection.
 		/// </summary>
 		/// <param name="item">The element.</param>
-		void Add(T item);
+		void Add([NotNull] T item);
 
 		/// <summary>
 		/// To clear all elements.
@@ -32,6 +35,6 @@
 		/// </summary>
 		/// <param name="item">The element.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		bool Contains(T item);
+		bool Contains([NotNull] T item);
 	}
 }

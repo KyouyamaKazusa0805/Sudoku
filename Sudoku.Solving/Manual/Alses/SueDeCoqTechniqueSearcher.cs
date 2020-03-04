@@ -330,7 +330,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 					// Check whether the selected cells form a subset.
 					var allTakenCellsMap = takenCellsInBlockMap | takenCellsInNonblockMap | takenInterMap;
-					if (allTakenCellsMap.IsCoveredOneRegion(out _))
+					if (allTakenCellsMap.AllSetsAreInOneRegion(out _))
 					{
 						continue;
 					}

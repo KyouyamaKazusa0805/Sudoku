@@ -1421,7 +1421,7 @@
             <param name="regionOffset">The region offset.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Data.GridMap.IsCoveredOneRegion(System.Nullable{System.Int32}@)">
+        <member name="M:Sudoku.Data.GridMap.AllSetsAreInOneRegion(System.Nullable{System.Int32}@)">
             <summary>
             Indicates whether all cells in this instance are in one region.
             </summary>

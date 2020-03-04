@@ -414,7 +414,7 @@ namespace Sudoku.Data
 		/// <param name="region">
 		/// (<see langword="out"/> parameter) The region covered.
 		/// </param>
-		public readonly bool IsCoveredOneRegion([NotNullWhen(true)] out int? region)
+		public readonly bool AllSetsAreInOneRegion([NotNullWhen(true)] out int? region)
 		{
 			for (int i = 0; i < 27; i++)
 			{

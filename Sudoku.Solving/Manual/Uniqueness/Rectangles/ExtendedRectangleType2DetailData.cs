@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Solving.Utils;
 
-namespace Sudoku.Solving.Manual.Uniqueness.Loops
+namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 {
 	/// <summary>
-	/// Indicates the detail data of UL type 2.
+	/// Indicates the detail data of XR type 2.
 	/// </summary>
-	public sealed class UniqueLoopType2DetailData : UniqueLoopDetailData
+	public sealed class ExtendedRectangleType2DetailData : ExtendedRectangleDetailData
 	{
 		/// <summary>
 		/// Initializes an instance with the specified information.
@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="cells">All cells.</param>
 		/// <param name="digits">All digits.</param>
 		/// <param name="extraDigit">The extra digit.</param>
-		public UniqueLoopType2DetailData(
+		public ExtendedRectangleType2DetailData(
 			IReadOnlyList<int> cells, IReadOnlyList<int> digits, int extraDigit)
 			: base(cells, digits) =>
 			ExtraDigit = extraDigit;

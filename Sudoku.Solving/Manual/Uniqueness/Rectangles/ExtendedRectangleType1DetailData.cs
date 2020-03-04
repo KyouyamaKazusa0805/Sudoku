@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Solving.Utils;
 
-namespace Sudoku.Solving.Manual.Uniqueness.Loops
+namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 {
 	/// <summary>
-	/// Indicates the detail data of UL type 1.
+	/// Indicates the detail data of XR type 1.
 	/// </summary>
-	public sealed class UniqueLoopType1DetailData : UniqueLoopDetailData
+	public sealed class ExtendedRectangleType1DetailData : ExtendedRectangleDetailData
 	{
 		/// <inheritdoc/>
-		public UniqueLoopType1DetailData(
+		public ExtendedRectangleType1DetailData(
 			IReadOnlyList<int> cells, IReadOnlyList<int> digits) : base(cells, digits)
 		{
 		}

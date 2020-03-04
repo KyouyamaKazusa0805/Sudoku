@@ -3499,6 +3499,223 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleType3DetailData.ToString">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleDetailData">
+            <summary>
+            Provides all data for extended rectangle (basic and extended types).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleDetailData.#ctor(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Provides passing data when initializing an instance of derived types.
+            </summary>
+            <param name="cells">All cells.</param>
+            <param name="digits">All digits.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleDetailData.Type">
+            <summary>
+            <para>
+            Indicates the type of the extended rectangle,
+            where the value is between 1 to 4.
+            </para>
+            <para>
+            You can find all types in detail in 'remarks' part of this page.
+            </para>
+            </summary>
+            <remarks>
+            All types:
+            <list type="table">
+            <item>Type 1<term></term>
+            <description>Basic type.</description>
+            </item>
+            <item>Type 2<term></term>
+            <description>Generalized locked candidates type.</description>
+            </item>
+            <item>Type 3<term></term>
+            <description>
+            Generalized subset type (+ naked or hidden subset).
+            </description>
+            </item>
+            <item>Type 4<term></term>
+            <description>Conjugate pair type.</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleDetailData.Cells">
+            <summary>
+            Indicates all cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleDetailData.Digits">
+            <summary>
+            Indicates all digits used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleDetailData.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleTechniqueInfo">
+            <summary>
+            Provides a usage of extended rectangle (XR) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleTechniqueInfo.DifficultyExtra">
+            <summary>
+            The difficulty extra.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rectangles.IRectangleDetailData)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="detailData">The detail data.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleTechniqueInfo.Size">
+            <summary>
+            Indicates the size of the instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleTechniqueSearcher">
+            <summary>
+            Encapsulates an extended rectangle technique searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleTechniqueSearcher.Regions">
+            <summary>
+            The table of regions to traverse.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleTechniqueSearcher.Combinations">
+            <summary>
+            All combinations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleTechniqueSearcher.#cctor">
+            <summary>
+            The static initializer of this class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleTechniqueSearcher.Priority">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType1DetailData">
+            <summary>
+            Indicates the detail data of XR type 1.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType1DetailData.#ctor(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType1DetailData.Type">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType1DetailData.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType2DetailData">
+            <summary>
+            Indicates the detail data of XR type 2.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType2DetailData.#ctor(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="cells">All cells.</param>
+            <param name="digits">All digits.</param>
+            <param name="extraDigit">The extra digit.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType2DetailData.ExtraDigit">
+            <summary>
+            Indicates the extra digit in this pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType2DetailData.Type">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType2DetailData.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType3DetailData">
+            <summary>
+            Indicates the detail data of XR type 3.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType3DetailData.#ctor(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="cells">All cells.</param>
+            <param name="digits">All digits.</param>
+            <param name="subsetDigits">All subset digits.</param>
+            <param name="subsetCells">All subset cells.</param>
+            <param name="isNaked">Indicates whether the subset is naked or not.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType3DetailData.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType3DetailData.SubsetDigits">
+            <summary>
+            Indicates all subset digits in this pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType3DetailData.SubsetCells">
+            <summary>
+            Indicates all subset cells in this pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType3DetailData.IsNaked">
+            <summary>
+            Indicates whether this subset is naked or not.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType3DetailData.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType4DetailData">
+            <summary>
+            Indicates the detail data of XR type 4.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType4DetailData.#ctor(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Solving.ConjugatePair)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="cells">All cells.</param>
+            <param name="digits">All digits.</param>
+            <param name="conjugatePair">The conjugate pair.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType4DetailData.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType4DetailData.ConjugatePair">
+            <summary>
+            Indicates the conjugate pair used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType4DetailData.Equals(Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType4DetailData)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.ExtendedRectangleType4DetailData.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.HiddenAvoidableRectangleTechniqueInfo">
             <summary>
             Provides a usage of hidden avoidable rectangle technique.
