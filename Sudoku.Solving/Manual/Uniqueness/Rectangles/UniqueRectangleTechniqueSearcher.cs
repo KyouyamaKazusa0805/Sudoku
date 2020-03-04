@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Externals;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;

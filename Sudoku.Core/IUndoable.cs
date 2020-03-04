@@ -1,4 +1,4 @@
-﻿namespace System
+﻿namespace Sudoku
 {
 	/// <summary>
 	/// Provides a undo-able data structure.

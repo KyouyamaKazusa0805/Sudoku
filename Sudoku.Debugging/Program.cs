@@ -15,22 +15,16 @@ namespace Sudoku.Debugging
 		/// </summary>
 		private static void Main()
 		{
-			var generator = new Solving.Generating.HardPatternPuzzleGenerator();
-			for (int i = 0; i < 50; i++)
+			// Manual solver tester.
+			var solver = new ManualSolver
 			{
-				WriteLine(generator.Generate());
-			}
-
-			//// Manual solver tester.
-			//var solver = new ManualSolver
-			//{
-			//	CheckAlmostLockedQuadruple = true,
-			//	AnalyzeDifficultyStrictly = true,
-			//};
-			//var grid = Grid.Parse(
-			//	"500000060000008093040020700000005007060187020900300000004070010680200000010000005");
-			//var analysisResult = solver.Solve(grid);
-			//WriteLine($"{analysisResult:-#!.}");
+				CheckAlmostLockedQuadruple = true,
+				AnalyzeDifficultyStrictly = true,
+			};
+			var grid = Grid.Parse(
+				"500000060000008093040020700000005007060187020900300000004070010680200000010000005");
+			var analysisResult = solver.Solve(grid);
+			WriteLine($"{analysisResult:-#!.}");
 		}
 	}
 }

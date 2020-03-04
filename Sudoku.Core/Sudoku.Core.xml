@@ -2534,6 +2534,21 @@
         <member name="M:Sudoku.Drawing.View.ToString">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.IUndoable">
+            <summary>
+            Provides a undo-able data structure.
+            </summary>
+        </member>
+        <member name="M:Sudoku.IUndoable.Undo">
+            <summary>
+            To undo the step.
+            </summary>
+        </member>
+        <member name="M:Sudoku.IUndoable.Redo">
+            <summary>
+            To redo the step.
+            </summary>
+        </member>
         <member name="T:Sudoku.NameAttribute">
             <summary>
             Mark on a field of an enumeration type to set a custom name to output.
@@ -2701,6 +2716,47 @@
         <member name="P:Sudoku.Runtime.WrongHandlingException.Message">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Throwing">
+            <summary>
+            Provides operations for throwing exceptions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Throwing.ImpossibleCase">
+            <summary>
+            <para>
+            Indicates an exception throwing when the case is impossible
+            in switch expressions or switch-case clauses.
+            </para>
+            <para>
+            This property will be used as a placeholder when expressions
+            generate a warning (CS8509).
+            </para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Throwing.ImpossibleCaseWithMessage(System.String)">
+            <summary>
+            Indicates an exception throwing when the case is impossible
+            in switch expressions or switch-case clauses.
+            </summary>
+            <param name="message">The specified message to display.</param>
+            <returns>The exception.</returns>
+        </member>
+        <member name="M:Sudoku.Throwing.ParsingError``1(System.String)">
+            <summary>
+            Indicates an exception throwing when the parsing is failed.
+            </summary>
+            <typeparam name="TTarget">The target type to parse.</typeparam>
+            <param name="paramName">The name of the parameter.</param>
+            <returns>The exception.</returns>
+        </member>
+        <member name="M:Sudoku.Throwing.FormatErrorWithMessage(System.String,System.String)">
+            <summary>
+            Indicates an exception throwing when the format string is error.
+            </summary>
+            <param name="message">The inner message to display.</param>
+            <param name="paramName">The name of format string parameter.</param>
+            <returns>The exception.</returns>
+        </member>
         <member name="T:System.Collections.Generic.Bag`1">
             <summary>
             Encapsulates a collection which only allows user add elements
@@ -2864,62 +2920,6 @@
         </member>
         <member name="M:System.ICloneable`1.System#ICloneable#Clone">
             <inheritdoc/>
-        </member>
-        <member name="T:System.IUndoable">
-            <summary>
-            Provides a undo-able data structure.
-            </summary>
-        </member>
-        <member name="M:System.IUndoable.Undo">
-            <summary>
-            To undo the step.
-            </summary>
-        </member>
-        <member name="M:System.IUndoable.Redo">
-            <summary>
-            To redo the step.
-            </summary>
-        </member>
-        <member name="T:System.Externals.Throwing">
-            <summary>
-            Provides operations for throwing exceptions.
-            </summary>
-        </member>
-        <member name="P:System.Externals.Throwing.ImpossibleCase">
-            <summary>
-            <para>
-            Indicates an exception throwing when the case is impossible
-            in switch expressions or switch-case clauses.
-            </para>
-            <para>
-            This property will be used as a placeholder when expressions
-            generate a warning (CS8509).
-            </para>
-            </summary>
-        </member>
-        <member name="M:System.Externals.Throwing.ImpossibleCaseWithMessage(System.String)">
-            <summary>
-            Indicates an exception throwing when the case is impossible
-            in switch expressions or switch-case clauses.
-            </summary>
-            <param name="message">The specified message to display.</param>
-            <returns>The exception.</returns>
-        </member>
-        <member name="M:System.Externals.Throwing.ParsingError``1(System.String)">
-            <summary>
-            Indicates an exception throwing when the parsing is failed.
-            </summary>
-            <typeparam name="TTarget">The target type to parse.</typeparam>
-            <param name="paramName">The name of the parameter.</param>
-            <returns>The exception.</returns>
-        </member>
-        <member name="M:System.Externals.Throwing.FormatErrorWithMessage(System.String,System.String)">
-            <summary>
-            Indicates an exception throwing when the format string is error.
-            </summary>
-            <param name="message">The inner message to display.</param>
-            <param name="paramName">The name of format string parameter.</param>
-            <returns>The exception.</returns>
         </member>
     </members>
 </doc>

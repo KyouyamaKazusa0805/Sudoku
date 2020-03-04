@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Externals;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 using ArType3 = Sudoku.Solving.Manual.Uniqueness.Rectangles.AvoidableRectangleType3DetailData;

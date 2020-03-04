@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Externals;
 using System.Runtime.CompilerServices;
 using Sudoku.Data.Extensions;
 

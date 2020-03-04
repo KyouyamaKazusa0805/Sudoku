@@ -1,6 +1,7 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 
-namespace System.Externals
+namespace Sudoku
 {
 	/// <summary>
 	/// Provides operations for throwing exceptions.

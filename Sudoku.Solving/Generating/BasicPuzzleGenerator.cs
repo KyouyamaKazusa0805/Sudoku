@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Externals;
 using System.Linq;
 using System.Text;
 using Sudoku.Data;
