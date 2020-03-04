@@ -287,15 +287,12 @@ namespace Sudoku.Data
 				var cellStatus = GetCellStatus(value);
 				int digit = cellStatus != CellStatus.Empty ? (~value).FindFirstSet() : -1;
 
-				sb.Append(cellStatus switch
+				sb.Append((cellStatus switch
 				{
-					CellStatus.Given => $"<{digit + 1}>".PadRight(maxLengths[i]),
-					CellStatus.Modifiable =>
-						TreatValueAsGiven
-							? $"<{digit + 1}>".PadRight(maxLengths[i])
-							: $"*{digit + 1}*".PadRight(maxLengths[i]),
-					_ => PrintCandidates(value).PadRight(maxLengths[i])
-				});
+					CellStatus.Given => $"<{digit + 1}>",
+					CellStatus.Modifiable => TreatValueAsGiven ? $"<{digit + 1}>" : $"*{digit + 1}*",
+					_ => PrintCandidates(value)
+				}).PadRight(maxLengths[i]));
 				sb.Append(i != end ? "  " : " ");
 			}
 		}

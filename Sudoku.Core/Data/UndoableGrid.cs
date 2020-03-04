@@ -66,8 +66,12 @@ namespace Sudoku.Data
 		{
 			var map = GridMap.Empty;
 			for (int i = 0; i < 81; i++)
+			{
 				if (GetCellStatus(i) == CellStatus.Modifiable)
+				{
 					map[i] = true;
+				}
+			}
 
 			var step = new FixStep(map);
 			_undoStack.Push(step);
@@ -79,8 +83,12 @@ namespace Sudoku.Data
 		{
 			var map = GridMap.Empty;
 			for (int i = 0; i < 81; i++)
+			{
 				if (GetCellStatus(i) == CellStatus.Given)
+				{
 					map[i] = true;
+				}
+			}
 
 			var step = new UnfixStep(map);
 			_undoStack.Push(step);

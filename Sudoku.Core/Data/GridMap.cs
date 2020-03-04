@@ -32,7 +32,9 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Inner binary representation values.
 		/// </summary>
+#pragma warning disable IDE0044 // Add readonly modifier (A bug)
 		private long _high, _low;
+#pragma warning restore IDE0044 // Add readonly modifier
 
 
 		/// <summary>
@@ -85,24 +87,10 @@ namespace Sudoku.Data
 		public GridMap(Span<int> offsets)
 		{
 			(_low, _high, Count) = (0, 0, 0);
-			ref long a = ref _low, b = ref _high;
 			foreach (int offset in offsets)
 			{
-				switch (offset / Shifting)
-				{
-					case 0:
-					{
-						a |= 1L << offset % Shifting;
-						Count++;
-						break;
-					}
-					case 1:
-					{
-						b |= 1L << offset % Shifting;
-						Count++;
-						break;
-					}
-				}
+				(offset / Shifting == 0 ? ref _low : ref _high) |= 1L << offset % Shifting;
+				Count++;
 			}
 		}
 
@@ -117,24 +105,10 @@ namespace Sudoku.Data
 		public GridMap(IEnumerable<int> offsets)
 		{
 			(_low, _high, Count) = (0, 0, 0);
-			ref long a = ref _low, b = ref _high;
 			foreach (int offset in offsets)
 			{
-				switch (offset / Shifting)
-				{
-					case 0:
-					{
-						a |= 1L << offset % Shifting;
-						Count++;
-						break;
-					}
-					case 1:
-					{
-						b |= 1L << offset % Shifting;
-						Count++;
-						break;
-					}
-				}
+				(offset / Shifting == 0 ? ref _low : ref _high) |= 1L << offset % Shifting;
+				Count++;
 			}
 		}
 
@@ -154,22 +128,14 @@ namespace Sudoku.Data
 		/// This property is equivalent to code '<c>!<see langword="this"/>.IsNotEmpty</c>'.
 		/// </summary>
 		/// <seealso cref="IsNotEmpty"/>
-		public readonly bool IsEmpty
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => _high == 0 && _low == 0;
-		}
+		public readonly bool IsEmpty => _high == 0 && _low == 0;
 
 		/// <summary>
 		/// Indicates whether the map has at least one set bit.
 		/// This property is equivalent to code '<c>!<see langword="this"/>.IsEmpty</c>'.
 		/// </summary>
 		/// <seealso cref="IsEmpty"/>
-		public readonly bool IsNotEmpty
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => _high != 0 || _low != 0;
-		}
+		public readonly bool IsNotEmpty => _high != 0 || _low != 0;
 
 		/// <summary>
 		/// Indicates the mask of block.
@@ -323,54 +289,26 @@ namespace Sudoku.Data
 		public bool this[int offset]
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			readonly get =>
-				((stackalloc[] { _low, _high }[offset / Shifting] >> offset % Shifting) & 1) != 0;
+			readonly get => ((stackalloc[] { _low, _high }[offset / Shifting] >> offset % Shifting) & 1) != 0;
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
-				ref long a = ref _low, b = ref _high;
+				ref long d = ref offset / Shifting == 0 ? ref _low : ref _high;
 				bool older = this[offset];
-				switch (offset / Shifting)
+				if (value)
 				{
-					case 0:
+					d |= 1L << offset % Shifting;
+					if (!older)
 					{
-						if (value)
-						{
-							a |= 1L << offset % Shifting;
-							if (!older)
-							{
-								Count++;
-							}
-						}
-						else
-						{
-							a &= ~(1L << offset % Shifting);
-							if (older)
-							{
-								Count--;
-							}
-						}
-						break;
+						Count++;
 					}
-					case 1:
+				}
+				else
+				{
+					d &= ~(1L << offset % Shifting);
+					if (older)
 					{
-						if (value)
-						{
-							b |= 1L << offset % Shifting;
-							if (!older)
-							{
-								Count++;
-							}
-						}
-						else
-						{
-							b &= ~(1L << offset % Shifting);
-							if (older)
-							{
-								Count--;
-							}
-						}
-						break;
+						Count--;
 					}
 				}
 			}
