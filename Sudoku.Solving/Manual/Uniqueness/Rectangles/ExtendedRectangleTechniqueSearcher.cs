@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// <summary>
 		/// All combinations.
 		/// </summary>
-		private static readonly IReadOnlyDictionary<int, IEnumerable<long>> Combinations;
+		private static readonly IReadOnlyDictionary<int, IEnumerable<short>> Combinations;
 
 
 		/// <summary>
@@ -39,10 +39,25 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// </summary>
 		static ExtendedRectangleTechniqueSearcher()
 		{
-			var list = new Dictionary<int, IEnumerable<long>>();
-			for (int i = 3; i <= 7; i++)
+			var list = new Dictionary<int, IEnumerable<short>>();
+			for (int size = 3; size <= 7; size++)
 			{
-				list.Add(i, new BitCombinationGenerator(9, i));
+				var innerList = new List<short>();
+				foreach (short mask in new BitCombinationGenerator(9, size))
+				{
+					// Optimize the combinations.
+					// Note that some combinations are proved to be impossible.
+					if (((short)(mask >> 6)).CountSet() > size
+						|| ((short)(mask >> 3 & 7)).CountSet() > size
+						|| ((short)(mask & 7)).CountSet() > size)
+					{
+						continue;
+					}
+
+					innerList.Add(mask);
+				}
+
+				list.Add(size, innerList);
 			}
 
 			Combinations = list;
