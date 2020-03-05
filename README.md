@@ -2,9 +2,9 @@
 
 标题：**向向的数独解决方案（SSS）**
 
-A sudoku handling SDK using brute forces and logical techniques (Update files gradually).
+A sudoku handling SDK using brute forces and logical techniques (Update files gradually). Now this solution supports generating puzzles, solving puzzles (with logical & illogical techniques) and some attribute checking.
 
-一个使用暴力破解和普通逻辑算法解题的数独分析解题 SDK（逐渐更新）。
+一个使用暴力破解和普通逻辑算法解题的数独分析解题 SDK（逐渐更新）。目前该解决方案支持对数独的题目生成、使用逻辑技巧或无逻辑技巧解题和一些常见数独特性的验证。
 
 
 
@@ -163,7 +163,9 @@ The program supports technique below at present:
 
 Here display all conditional compliation symbols in this solution.
 
-* `BIT64` & `BIT32`: Indicates your computer is 32 bits or 64 bits. If 64, please add `BIT64` into the solution; otherwise, add `BIT32`. This conditional compliation symbol is used in calling C/C++ functions in dynamic linking library.<br/>指示系统是多少位的。当你的电脑是 64 位的时候，请添加 `BIT64` 条件编译符号；否则请使用 `BIT32`。这个条件编译符号用于调用位于动态链接库里的 C/C++ 函数。
+这里罗列本解决方案里用到的条件编译符号。
+
+* `BIT64` & `BIT32`: Indicates your computer is 32 bits or 64 bits. If 64, please add `BIT64` into the solution; otherwise, add `BIT32`. This conditional compliation symbol is used in calling C/C++ functions in dynamic link library (i.e. DLL).<br/>指示系统是多少位的。当你的电脑是 64 位的时候，请添加 `BIT64` 条件编译符号；否则请使用 `BIT32`。这个条件编译符号用于调用位于动态链接库里的 C/C++ 函数。
 
 
 
@@ -174,3 +176,4 @@ Here display all conditional compliation symbols in this solution.
 Sunnie, from Chengdu, is an original undergraduate.
 
 小向，来自成都的一名普通大学生。
+
