@@ -1,6 +1,6 @@
 ﻿using Sudoku.Data;
-using Sudoku.Solving.Manual;
 using static System.Console;
+using solver = Sudoku.Solving.Manual;
 
 namespace Sudoku.Debugging
 {
@@ -16,7 +16,7 @@ namespace Sudoku.Debugging
 		private static void Main()
 		{
 			// Manual solver tester.
-			var solver = new ManualSolver
+			var solver = new solver::ManualSolver
 			{
 				CheckAlmostLockedQuadruple = true,
 				AnalyzeDifficultyStrictly = true,

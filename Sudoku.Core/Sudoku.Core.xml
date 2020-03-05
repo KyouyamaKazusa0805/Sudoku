@@ -1664,6 +1664,12 @@
             </param>
             <returns>The result.</returns>
         </member>
+        <member name="M:Sudoku.Data.GridParser.OnParsingSimpleTable">
+            <summary>
+            Parse the simple table format string (Sudoku explainer format).
+            </summary>
+            <returns>The grid.</returns>
+        </member>
         <member name="M:Sudoku.Data.GridParser.OnParsingSusser">
             <summary>
             Parse the susser format string.
@@ -1781,6 +1787,27 @@
             Due to the rendering engine of IDE, all spaces will not be displayed
             in this table.
             </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridParsingType.SimpleTable">
+            <summary>
+            <para>
+            Sudoku explainer format (9 characters in a row, and 9 rows).
+            </para>
+            <para>
+            For example:
+            <code>
+            080630040<br/>
+            200085009<br/>
+            090000081<br/>
+            000300800<br/>
+            000020000<br/>
+            006001000<br/>
+            970000030<br/>
+            400850007<br/>
+            010094050
+            </code>
+            </para>	
             </summary>
         </member>
         <member name="T:Sudoku.Data.GridTransformations">

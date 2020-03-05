@@ -106,5 +106,26 @@
 		/// </para>
 		/// </summary>
 		Table,
+
+		/// <summary>
+		/// <para>
+		/// Sudoku explainer format (9 characters in a row, and 9 rows).
+		/// </para>
+		/// <para>
+		/// For example:
+		/// <code>
+		/// 080630040<br/>
+		/// 200085009<br/>
+		/// 090000081<br/>
+		/// 000300800<br/>
+		/// 000020000<br/>
+		/// 006001000<br/>
+		/// 970000030<br/>
+		/// 400850007<br/>
+		/// 010094050
+		/// </code>
+		/// </para>	
+		/// </summary>
+		SimpleTable,
 	}
 }

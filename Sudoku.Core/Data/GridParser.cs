@@ -22,7 +22,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// The value to parse.
 		/// </summary>
-		public string ParsingValue { get; }
+		public string ParsingValue { get; private set; }
 
 
 		/// <summary>
@@ -34,7 +34,8 @@ namespace Sudoku.Data
 		/// </exception>
 		public Grid Parse()
 		{
-			return OnParsingSusser()
+			return OnParsingSimpleTable()
+				?? OnParsingSusser()
 				?? OnParsingSimpleMultilineGrid()
 				?? OnParsingPencilMarked(false)
 				?? OnParsingPencilMarked(true)
@@ -56,7 +57,8 @@ namespace Sudoku.Data
 				[GridParsingType.Susser] = OnParsingSusser,
 				[GridParsingType.Table] = OnParsingSimpleMultilineGrid,
 				[GridParsingType.PencilMarked] = () => OnParsingPencilMarked(false),
-				[GridParsingType.PencilMarkedTreatSingleAsGiven] = () => OnParsingPencilMarked(true)
+				[GridParsingType.PencilMarkedTreatSingleAsGiven] = () => OnParsingPencilMarked(true),
+				[GridParsingType.SimpleTable] = OnParsingSimpleTable
 			}[gridParsingType]() ?? throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
 		}
 
@@ -223,6 +225,22 @@ namespace Sudoku.Data
 			}
 
 			return result;
+		}
+
+		/// <summary>
+		/// Parse the simple table format string (Sudoku explainer format).
+		/// </summary>
+		/// <returns>The grid.</returns>
+		private Grid? OnParsingSimpleTable()
+		{
+			string? match = ParsingValue.Match(@"([\d\.\+]{9}\r?\n?){8}[\d\.\+]{9}");
+			if (match is null)
+			{
+				return null;
+			}
+
+			ParsingValue = match;
+			return OnParsingSusser();
 		}
 
 		/// <summary>
