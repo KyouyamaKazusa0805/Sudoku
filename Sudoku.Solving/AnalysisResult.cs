@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Solving.Manual;
@@ -358,6 +359,32 @@ namespace Sudoku.Solving
 			out int solvingStepsCount, out IReadOnlyList<TechniqueInfo>? solvingSteps,
 			out string? additionalMessage) =>
 			(puzzle, hasSolved, elapsedTime, solution, difficultyLevel, solvingStepsCount, solvingSteps, additionalMessage) = (Puzzle, HasSolved, ElapsedTime, Solution, DifficultyLevel, SolvingStepsCount, SolvingSteps, Additional);
+
+		/// <summary>
+		/// Write the text to the specified file.
+		/// </summary>
+		/// <param name="path">The path you want to output.</param>
+		public void WriteToFile(string path) => WriteToFile(path, "", null);
+
+		/// <summary>
+		/// Write the text to the specified file path with the specified format.
+		/// </summary>
+		/// <param name="path">The path.</param>
+		/// <param name="format">The format.</param>
+		public void WriteToFile(string path, string format) => WriteToFile(path, format, null);
+
+		/// <summary>
+		/// Write the text to the specified file path with the specified format
+		/// and the format provider.
+		/// </summary>
+		/// <param name="path">The path.</param>
+		/// <param name="format">The format.</param>
+		/// <param name="formatProvider">The format provider.</param>
+		public void WriteToFile(string path, string? format, IFormatProvider? formatProvider)
+		{
+			using var sw = new StreamWriter(path);
+			sw.Write(ToString(format, formatProvider));
+		}
 
 		/// <summary>
 		/// <para>Returns an enumerator that iterates through the collection.</para>
