@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Text;
 using Sudoku.Data.Extensions;
+using System.Linq;
 
 namespace Sudoku.Data
 {
@@ -239,7 +241,14 @@ namespace Sudoku.Data
 				return null;
 			}
 
-			ParsingValue = match;
+			// Remove all '\r' and '\n'-s.
+			var sb = new StringBuilder();
+			foreach (char c in from c in match where c != '\r' && c != '\n' select c)
+			{
+				sb.Append(c);
+			}
+
+			ParsingValue = sb.ToString();
 			return OnParsingSusser();
 		}
 
