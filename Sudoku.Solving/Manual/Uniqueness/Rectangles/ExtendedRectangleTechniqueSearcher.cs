@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// </summary>
 		static ExtendedRectangleTechniqueSearcher()
 		{
-			static bool check(int size, short value) => value.CountSet() << 1 > size;
+			//static bool check(int size, short value) => value.CountSet() << 1 > size;
 
 			var list = new Dictionary<int, IEnumerable<short>>();
 			for (int size = 3; size <= 7; size++)
@@ -57,10 +57,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 					// Optimize the combinations.
 					// Note that some combinations are proved impossible.
-					if (check(size, a) || check(size, b) || check(size, c))
-					{
-						continue;
-					}
+					//if (check(size, a) || check(size, b) || check(size, c))
+					//{
+					//	continue;
+					//}
 
 					innerList.Add(mask);
 				}
