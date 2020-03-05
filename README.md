@@ -157,6 +157,16 @@ The program supports technique below at present:
 
 
 
+## Conditional Compliation Symbol
+
+标题：**条件编译符号**
+
+Here display all conditional compliation symbols in this solution.
+
+* `BIT64` & `BIT32`: Indicates your computer is 32 bits or 64 bits. If 64, please add `BIT64` into the solution; otherwise, add `BIT32`. This conditional compliation symbol is used in calling C/C++ functions in dynamic linking library.<br/>指示系统是多少位的。当你的电脑是 64 位的时候，请添加 `BIT64` 条件编译符号；否则请使用 `BIT32`。这个条件编译符号用于调用位于动态链接库里的 C/C++ 函数。
+
+
+
 ## Author
 
 标题：**作者**
