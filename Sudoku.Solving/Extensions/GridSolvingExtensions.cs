@@ -11,7 +11,7 @@ namespace Sudoku.Solving.Extensions
 	/// <seealso cref="Grid"/>
 	/// <seealso cref="IReadOnlyGrid"/>
 	[DebuggerStepThrough]
-	public static class GridEx
+	public static class GridSolvingExtensions
 	{
 		/// <summary>
 		/// Deconstruct the grid.

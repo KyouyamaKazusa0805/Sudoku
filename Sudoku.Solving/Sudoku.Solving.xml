@@ -255,28 +255,6 @@
             (<see langword="out"/> parameter) The additional message.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.WriteToFile(System.String)">
-            <summary>
-            Write the text to the specified file.
-            </summary>
-            <param name="path">The path you want to output.</param>
-        </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.WriteToFile(System.String,System.String)">
-            <summary>
-            Write the text to the specified file path with the specified format.
-            </summary>
-            <param name="path">The path.</param>
-            <param name="format">The format.</param>
-        </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.WriteToFile(System.String,System.String,System.IFormatProvider)">
-            <summary>
-            Write the text to the specified file path with the specified format
-            and the format provider.
-            </summary>
-            <param name="path">The path.</param>
-            <param name="format">The format.</param>
-            <param name="formatProvider">The format provider.</param>
-        </member>
         <member name="M:Sudoku.Solving.AnalysisResult.GetEnumerator">
             <summary>
             <para>Returns an enumerator that iterates through the collection.</para>
@@ -870,14 +848,37 @@
             unless using last resort methods.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Extensions.GridEx">
+        <member name="T:Sudoku.Solving.Extensions.AnalysisResultIO">
+            <summary>
+            Provides with operations to output to files for <see cref="T:Sudoku.Solving.AnalysisResult"/>s.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.AnalysisResult"/>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.AnalysisResultIO.WriteToFile(Sudoku.Solving.AnalysisResult,System.String,System.String)">
+            <summary>
+            Output the text to file.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The analysis result.</param>
+            <param name="path">The path.</param>
+            <param name="format">The format.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.AnalysisResultIO.WriteToFileAsync(Sudoku.Solving.AnalysisResult,System.String,System.String)">
+            <summary>
+            Output the text to file.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The analysis result.</param>
+            <param name="path">The path.</param>
+            <param name="format">The format.</param>
+            <returns>The task of this operation.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Extensions.GridSolvingExtensions">
             <summary>
             Provides extension methods on <see cref="T:Sudoku.Data.Grid"/> and <see cref="T:Sudoku.Data.IReadOnlyGrid"/>.
             </summary>
             <seealso cref="T:Sudoku.Data.Grid"/>
             <seealso cref="T:Sudoku.Data.IReadOnlyGrid"/>
         </member>
-        <member name="M:Sudoku.Solving.Extensions.GridEx.Deconstruct(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap[]@)">
+        <member name="M:Sudoku.Solving.Extensions.GridSolvingExtensions.Deconstruct(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap[]@)">
             <summary>
             Deconstruct the grid.
             </summary>
@@ -892,7 +893,7 @@
             (<see langword="out"/> parameter) The distributions of all digits.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Extensions.GridEx.GetBivalueCellsMap(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Extensions.GridSolvingExtensions.GetBivalueCellsMap(Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Get the grid map instance with all bivalue cells
             set <see langword="true"/>.
@@ -900,7 +901,7 @@
             <param name="grid">The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Extensions.GridEx.GetEmptyCellsGridMap(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Extensions.GridSolvingExtensions.GetEmptyCellsGridMap(Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Get the grid map instance with all empty cells set
             <see langword="true"/>.
@@ -908,7 +909,7 @@
             <param name="grid">The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Extensions.GridEx.GetAllDigitDistributionMaps(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Extensions.GridSolvingExtensions.GetAllDigitDistributionMaps(Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Get 9 grid maps representing all digits' distributions.
             </summary>
