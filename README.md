@@ -13,6 +13,7 @@ A sudoku handling SDK using brute forces and logical techniques (Update files gr
 标题：**C# 版本和 IDE 使用情况**
 
 * C# version: 8.0<br/>C# 版本：8.0
+* Framework using: .NET Core 3.1<br/>框架使用：.NET Core 3.1
 * IDE using: Visual Studio 2019 V16.4<br/>IDE 使用：Visual Studio 2019 V16.4
 
 
@@ -21,9 +22,9 @@ A sudoku handling SDK using brute forces and logical techniques (Update files gr
 
 标题：**如何使用**
 
-Clone this repo, and you can take all codes!
+Clone this repo, and you can take all codes! This solution does not provide you with GUI at present because DNC may not support the form designer for some internal bugs. I may write forms part in later version of IDE.
 
-只需要你克隆这个仓库就可以带走所有的代码了！
+只需要你克隆这个仓库就可以带走所有的代码了！这个解决方案目前还不支持可视化界面，因为 .NET Core 框架由于一些内部 bug，暂时不支持窗体设计器。我可能将在下一个 IDE 更新版本才会写窗体部分。
 
 
 
@@ -128,6 +129,10 @@ Puzzle solution: 754981623928367415316524897489136572235798146167452938692813754
 Puzzle has been solved.
 Time elapsed: 00:00.00.154
 ```
+
+> Format strings in the analysis result is shown in the description of file 'How to use 'AnalysisResult' class.md'.
+>
+> 分析结果的格式化字符串可以参照 'How to use 'AnalysisResult'.md' 文件里呈现的描述。
 
 
 
