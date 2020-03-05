@@ -52,7 +52,7 @@ namespace Sudoku.Solving.Manual.Sdps
 
 
 		/// <inheritdoc/>
-		public override int Priority => 46;
+		public override int Priority { get; set; } = 46;
 
 
 		/// <inheritdoc/>

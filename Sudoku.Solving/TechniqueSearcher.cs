@@ -14,7 +14,7 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Indicates the priority of this technique searcher.
 		/// </summary>
-		public abstract int Priority { get; }
+		public abstract int Priority { get; set; }
 
 
 		/// <summary>

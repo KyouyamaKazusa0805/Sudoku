@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	public sealed class ChuteClueCoverTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override int Priority => 90;
+		public override int Priority { get; set; } = 90;
 
 
 		/// <inheritdoc/>

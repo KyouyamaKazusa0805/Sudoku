@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	public sealed partial class BorescoperDeadlyPatternTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override int Priority => 53;
+		public override int Priority { get; set; } = 53;
 
 
 		/// <inheritdoc/>

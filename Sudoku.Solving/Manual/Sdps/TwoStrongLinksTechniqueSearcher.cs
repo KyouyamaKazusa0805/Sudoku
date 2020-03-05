@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	public sealed class TwoStrongLinksTechniqueSearcher : SingleDigitPatternTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override int Priority => 40;
+		public override int Priority { get; set; } = 40;
 
 
 		/// <inheritdoc/>
@@ -57,10 +57,8 @@ namespace Sudoku.Solving.Manual.Sdps
 
 						// Check two cells have a same region.
 						int sameBlock = -1;
-						int c1Index = default;
-						int c2Index = default;
-						int headIndex = default;
-						int tailIndex = default;
+						int c1Index = default, c2Index = default;
+						int headIndex = default, tailIndex = default;
 						for (int i = 0; i < cells1.Count; i++)
 						{
 							int cell1 = cells1[i];

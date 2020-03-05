@@ -27,7 +27,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 
 
 		/// <inheritdoc/>
-		public override int Priority => 42;
+		public override int Priority { get; set; } = 42;
 
 
 		/// <inheritdoc/>

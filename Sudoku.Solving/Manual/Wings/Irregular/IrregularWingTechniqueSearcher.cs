@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 	public sealed class IrregularWingTechniqueSearcher : TechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override int Priority => 44;
+		public override int Priority { get; set; } = 44;
 
 
 		/// <inheritdoc/>

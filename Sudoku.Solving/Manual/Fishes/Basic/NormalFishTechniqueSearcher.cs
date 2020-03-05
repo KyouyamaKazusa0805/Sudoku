@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -15,7 +14,7 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 	public sealed class NormalFishTechniqueSearcher : FishTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override int Priority => 32;
+		public override int Priority { get; set; } = 32;
 
 
 		/// <inheritdoc/>
@@ -197,10 +196,8 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 															candidateOffsets: highlightCandidates,
 															regionOffsets: new[]
 															{
-																(0, bs1),
-																(0, bs2),
-																(1, cs1),
-																(1, cs2)
+																(0, bs1), (0, bs2),
+																(1, cs1), (1, cs2)
 															},
 															linkMasks: null)
 													},
@@ -365,12 +362,8 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 																		candidateOffsets: highlightCandidates,
 																		regionOffsets: new[]
 																		{
-																			(0, bs1),
-																			(0, bs2),
-																			(0, bs3),
-																			(1, cs1),
-																			(1, cs2),
-																			(1, cs3)
+																			(0, bs1), (0, bs2), (0, bs3),
+																			(1, cs1), (1, cs2), (1, cs3)
 																		},
 																		linkMasks: null)
 																},
@@ -542,14 +535,10 @@ namespace Sudoku.Solving.Manual.Fishes.Basic
 																				candidateOffsets: highlightCandidates,
 																				regionOffsets: new[]
 																				{
-																					(0, bs1),
-																					(0, bs2),
-																					(0, bs3),
-																					(0, bs4),
-																					(1, cs1),
-																					(1, cs2),
-																					(1, cs3),
-																					(1, cs4)
+																					(0, bs1), (0, bs2),
+																					(0, bs3), (0, bs4),
+																					(1, cs1), (1, cs2),
+																					(1, cs3), (1, cs4)
 																				},
 																				linkMasks: null)
 																		},

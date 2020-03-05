@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		/// <inheritdoc/>
-		public override int Priority => 45;
+		public override int Priority { get; set; } = 45;
 
 
 		/// <inheritdoc/>
@@ -92,7 +92,8 @@ namespace Sudoku.Solving.Manual.Intersections
 			IReadOnlyGrid grid, IBag<TechniqueInfo> result, int size,
 			int baseSet, int coverSet, GridMap left, GridMap right, GridMap intersection)
 		{
-			GridMap a = left ^ intersection, b = right ^ intersection;
+			var a = left ^ intersection;
+			var b = right ^ intersection;
 			int[] aCells = a.ToArray();
 			for (int i1 = 0; i1 < 8 - size; i1++)
 			{

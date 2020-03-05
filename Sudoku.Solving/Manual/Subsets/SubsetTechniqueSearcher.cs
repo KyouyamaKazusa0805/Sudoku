@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Subsets
 	public sealed class SubsetTechniqueSearcher : TechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override int Priority => 30;
+		public override int Priority { get; set; } = 30;
 
 
 		/// <inheritdoc/>
@@ -23,11 +23,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		{
 			for (int size = 2; size <= 4; size++)
 			{
-				foreach (var act in new Action[]
-				{
-					TakeAllNakedSubsetsBySize,
-					TakeAllHiddenSubsetsBySize
-				})
+				foreach (var act in new Action[] { TakeAllNakedSubsetsBySize, TakeAllHiddenSubsetsBySize })
 				{
 					act(accumulator, grid, size);
 				}
@@ -196,8 +192,7 @@ namespace Sudoku.Solving.Manual.Subsets
 					{
 						new View(
 							cellOffsets: null,
-							candidateOffsets:
-								GetNakedSubsetsHighlightedCandidateOffsets(grid, offsets, digits),
+							candidateOffsets: GetNakedSubsetsHighlightedCandidateOffsets(grid, offsets, digits),
 							regionOffsets: new[] { (0, region) },
 							linkMasks: null)
 					},

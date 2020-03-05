@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	public sealed class PatternOverlayMethodTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override int Priority => 80;
+		public override int Priority { get; set; } = 80;
 
 
 		/// <inheritdoc/>

@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		/// <inheritdoc/>
-		public override int Priority => 10;
+		public override int Priority { get; set; } = 10;
 
 
 		/// <inheritdoc/>

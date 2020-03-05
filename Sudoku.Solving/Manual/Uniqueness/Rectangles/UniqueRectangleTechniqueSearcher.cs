@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 
 		/// <inheritdoc/>
-		public override int Priority => 45;
+		public override int Priority { get; set; } = 45;
 
 
 		/// <inheritdoc/>

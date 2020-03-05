@@ -78,9 +78,9 @@ namespace Sudoku.Solving.Manual.Alses
 
 
 		/// <inheritdoc/>
-		public override int Priority => 50;
+		public override int Priority { get; set; } = 50;
 
-		
+
 		/// <inheritdoc/>
 		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{

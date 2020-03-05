@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	public sealed class UniqueLoopTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override int Priority => 46;
+		public override int Priority { get; set; } = 46;
 
 
 		/// <inheritdoc/>

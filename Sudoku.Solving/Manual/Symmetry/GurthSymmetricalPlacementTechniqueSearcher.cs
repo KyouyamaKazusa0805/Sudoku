@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 	public sealed partial class GurthSymmetricalPlacementTechniqueSearcher : SymmetryTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override int Priority => 0;
+		public override int Priority { get; set; } = 0;
 
 
 		/// <inheritdoc/>

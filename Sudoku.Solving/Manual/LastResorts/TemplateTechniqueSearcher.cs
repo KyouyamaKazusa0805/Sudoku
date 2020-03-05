@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
-		public override int Priority => 80;
+		public override int Priority { get; set; } = 80;
 
 
 		/// <inheritdoc/>

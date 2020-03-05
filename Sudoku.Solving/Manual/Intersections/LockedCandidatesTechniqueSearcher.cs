@@ -26,7 +26,7 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		/// <inheritdoc/>
-		public override int Priority => 26;
+		public override int Priority { get; set; } = 26;
 
 
 		/// <inheritdoc/>
