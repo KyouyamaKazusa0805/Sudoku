@@ -4,7 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Singles;
 
 namespace Sudoku.Solving
@@ -58,19 +60,23 @@ namespace Sudoku.Solving
 			{
 				throw new ArgumentNullException(nameof(format));
 			}
-			if (Regex.IsMatch(format, @"[^\-\.#@%!]"))
+			if (Regex.IsMatch(format, @"[^\^\-\.\?#@!ab]"))
 			{
 				throw new FormatException("The specified format is invalid due to with invalid characters.");
 			}
 
 			string formatLower = format.ToLower();
-			bool showSeparator = formatLower.Contains('-');
-			bool showStepNum = formatLower.Contains('#');
-			bool showSimple = formatLower.Contains('@');
-			bool showBottleneck = formatLower.Contains('%');
-			bool showDifficulty = formatLower.Contains('!');
-			bool showStepsAfterBottleneck = formatLower.Contains('.');
+			bool c(char c) => formatLower.Contains(c);
+			bool showSeparator = c('-');
+			bool showStepNum = c('#');
+			bool showSimple = c('@');
+			bool showBottleneck = c('?');
+			bool showDifficulty = c('!');
+			bool showStepsAfterBottleneck = c('.');
+			bool showAttributes = c('a');
+			bool showBackdoors = c('b');
 
+			// Get all information.
 			var (solverName, hasSolved) = Result;
 			var (total, max, pearl, diamond) = Result;
 			var (puzzle, _, elapsed, solution, _, stepsCount, steps, additional) = Result;
@@ -80,9 +86,10 @@ namespace Sudoku.Solving
 			sb.AppendLine($"Puzzle: {puzzle:#}");
 			sb.AppendLine($"Solving tool: {solverName}");
 
-			// Print solving steps.
+			// Print solving steps (if worth).
 			var bottleneckData = GetBottleneckData();
-			string separator = new string('-', 10);
+			string separator = $"{new string('-', 10)}{Environment.NewLine}";
+			void appendSeparator() => sb.Append(showSeparator ? separator : string.Empty);
 			if (!(steps is null) && steps.Count != 0)
 			{
 				sb.AppendLine("Solving steps:");
@@ -112,23 +119,17 @@ namespace Sudoku.Solving
 
 					if (showBottleneck)
 					{
-						if (showSeparator)
-						{
-							sb.AppendLine(separator);
-						}
+						appendSeparator();
 
 						string bottleLabelInfo = showStepNum ? $" In step {bIndex + 1}:" : string.Empty;
 						sb.AppendLine($"Bottleneck step:{bottleLabelInfo} {bInfo}");
 					}
 
-					if (showSeparator)
-					{
-						sb.AppendLine(separator);
-					}
+					appendSeparator();
 				}
 			}
 
-			// Print solving step statistics.
+			// Print solving step statistics (if worth).
 			var solvingStepsGrouped = GetSolvingStepsGrouped();
 			if (!(solvingStepsGrouped is null) && solvingStepsGrouped.Count() != 0)
 			{
@@ -138,10 +139,7 @@ namespace Sudoku.Solving
 					sb.AppendLine($"{solvingStepsGroup.Count()} * {solvingStepsGroup.Key}");
 				}
 
-				if (showSeparator)
-				{
-					sb.AppendLine(separator);
-				}
+				appendSeparator();
 			}
 
 			// Print detail data.
@@ -158,15 +156,43 @@ namespace Sudoku.Solving
 			// Print the elapsed time.
 			sb.AppendLine($"Puzzle has {(hasSolved ? "" : "not ")}been solved.");
 			sb.AppendLine($"Time elapsed: {elapsed:hh':'mm'.'ss'.'fff}");
+			appendSeparator();
 
-			// Print the additional information.
+			// Print attributes (if worth).
+			// Here use dynamic call (reflection) to get all methods which contains
+			// only one parameter and its type is 'IReadOnlyGrid'.
+			if (showAttributes)
+			{
+				sb.AppendLine("Attributes:");
+				foreach (var methodInfo in
+					from methodInfo in typeof(PuzzleAttributeChecker).GetMethods()
+					let parameters = methodInfo.GetParameters()
+					where parameters.Length == 1
+						&& parameters[0].ParameterType == typeof(IReadOnlyGrid)
+						&& methodInfo.ReturnType == typeof(bool)
+					select methodInfo)
+				{
+					bool attributeResult = (bool)methodInfo.Invoke(null, new object[] { puzzle })!;
+					sb.AppendLine($"    {methodInfo.Name}: {attributeResult}");
+				}
+				appendSeparator();
+			}
+
+			// Print backdoors (if worth).
+			if (showBackdoors)
+			{
+				sb.AppendLine("Backdoors:");
+				var searcher = new BackdoorSearcher();
+				foreach (var assignment in searcher.SearchForBackdoorsExact(puzzle, 0))
+				{
+					sb.AppendLine($"    {assignment[0]}");
+				}
+				appendSeparator();
+			}
+
+			// Print the additional information (if worth).
 			if (!(additional is null))
 			{
-				if (showSeparator)
-				{
-					sb.AppendLine(separator);
-				}
-
 				sb.AppendLine(additional);
 			}
 

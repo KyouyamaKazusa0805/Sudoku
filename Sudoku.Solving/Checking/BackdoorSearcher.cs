@@ -98,7 +98,7 @@ namespace Sudoku.Solving.Checking
 
 			var tempGrid = grid.Clone();
 
-			if (depth == 0)
+			if (depth >= 0)
 			{
 				// Search backdoors (Assignments).
 				for (int cellOffset = 0; cellOffset < 81; cellOffset++)
