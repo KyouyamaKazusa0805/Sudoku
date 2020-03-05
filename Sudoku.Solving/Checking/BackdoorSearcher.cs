@@ -115,10 +115,7 @@ namespace Sudoku.Solving.Checking
 					if (hasSolved && difficultyLevel == Easy)
 					{
 						// Solve successfully.
-						result.Add(new[]
-						{
-						new Conclusion(Assignment, cellOffset, digit)
-					});
+						result.Add(new[] { new Conclusion(Assignment, cellOffset, digit) });
 					}
 
 					// Restore data.
