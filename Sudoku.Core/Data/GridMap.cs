@@ -29,12 +29,16 @@ namespace Sudoku.Data
 		/// </summary>
 		private const int Shifting = 41;
 
+
 		/// <summary>
 		/// Inner binary representation values.
 		/// </summary>
-#pragma warning disable IDE0044 // Add readonly modifier (A bug)
+		/// <remarks>
+		/// These two fields does not readonly!
+		/// Roslyn lies!
+		/// </remarks>
+		[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
 		private long _high, _low;
-#pragma warning restore IDE0044 // Add readonly modifier
 
 
 		/// <summary>
@@ -77,6 +81,15 @@ namespace Sudoku.Data
 			(_high, _low, Count) = (another._high, another._low, another.Count);
 
 		/// <summary>
+		/// Same initializer as <see cref="GridMap(IEnumerable{int})"/>
+		/// </summary>
+		/// <param name="offsets">All offsets.</param>
+		/// <seealso cref="GridMap(IEnumerable{int})"/>
+		public GridMap(int[] offsets) : this((IEnumerable<int>)offsets)
+		{
+		}
+
+		/// <summary>
 		/// Initializes an instance with a series of cell offsets.
 		/// </summary>
 		/// <param name="offsets">cell offsets.</param>
@@ -84,7 +97,7 @@ namespace Sudoku.Data
 		/// Note that all offsets will be set <see langword="true"/>, but their own peers
 		/// will not be set <see langword="true"/>.
 		/// </remarks>
-		public GridMap(Span<int> offsets)
+		public GridMap(ReadOnlySpan<int> offsets)
 		{
 			(_low, _high, Count) = (0, 0, 0);
 			foreach (int offset in offsets)

@@ -31,7 +31,7 @@ namespace Sudoku.Solving
 		public ConjugatePair(int from, int to, int digit)
 		{
 			(Digit, From, To) = (digit, from, to);
-			_map = new GridMap((IEnumerable<int>)new[] { from, to });
+			_map = new GridMap(new[] { from, to });
 		}
 
 

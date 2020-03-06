@@ -833,7 +833,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				new GridMap { quad[0], quad[2] }.CoveredLine,
 				new GridMap { quad[1], quad[3] }.CoveredLine,
 				new GridMap { quad[2], quad[3] }.CoveredLine,
-				new GridMap((IEnumerable<int>)quad).CoveredRegions.First()
+				new GridMap(quad).CoveredRegions.First()
 			};
 
 			int region1 = regions[0], region2 = regions[1];

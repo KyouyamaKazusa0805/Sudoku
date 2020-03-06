@@ -190,11 +190,11 @@ namespace Sudoku.Solving.Manual.Alses
 							continue;
 						}
 
-						var takenInterMap = new GridMap((IEnumerable<int>)interEmptyCells);
+						var takenInterMap = new GridMap(interEmptyCells);
 						var blockTakingList = new List<int>(
-							(_regionMaps[block] - new GridMap((IEnumerable<int>)interEmptyCells)).Offsets);
+							(_regionMaps[block] - new GridMap(interEmptyCells)).Offsets);
 						var nonblockTakingList = new List<int>(
-							(_regionMaps[nonblock] - new GridMap((IEnumerable<int>)interEmptyCells)).Offsets);
+							(_regionMaps[nonblock] - new GridMap(interEmptyCells)).Offsets);
 						for (int blockTakenCellsCount = 1;
 							blockTakenCellsCount <= 8 - count;
 							blockTakenCellsCount++)

@@ -1265,11 +1265,19 @@
             <summary>
             Inner binary representation values.
             </summary>
+            <remarks>
+            These two fields does not readonly!
+            Roslyn lies!
+            </remarks>
         </member>
         <member name="F:Sudoku.Data.GridMap._low">
             <summary>
             Inner binary representation values.
             </summary>
+            <remarks>
+            These two fields does not readonly!
+            Roslyn lies!
+            </remarks>
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32)">
             <summary>
@@ -1306,7 +1314,14 @@
             </summary>
             <param name="another">Another instance.</param>
         </member>
-        <member name="M:Sudoku.Data.GridMap.#ctor(System.Span{System.Int32})">
+        <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32[])">
+            <summary>
+            Same initializer as <see cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>
+            </summary>
+            <param name="offsets">All offsets.</param>
+            <seealso cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.#ctor(System.ReadOnlySpan{System.Int32})">
             <summary>
             Initializes an instance with a series of cell offsets.
             </summary>
