@@ -8,7 +8,7 @@ using Sudoku.Runtime;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual.Alses;
-using Sudoku.Solving.Manual.Fishes.Basic;
+using Sudoku.Solving.Manual.Fishes;
 using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.LastResorts;
 using Sudoku.Solving.Manual.Sdps;

@@ -1150,89 +1150,6 @@
         <member name="M:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo">
-            <summary>
-            Provides a usage of normal fish technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean})">
-            <summary>
-            Initializes an instance with information.
-            </summary>
-            <param name="conclusions">The conclusions.</param>
-            <param name="views">The views.</param>
-            <param name="digit">The digit.</param>
-            <param name="baseSets">The base sets.</param>
-            <param name="coverSets">The cover sets.</param>
-            <param name="finCellOffsets">All candidate offsets of fins' position.</param>
-            <param name="isSashimi">
-            Indicates whether the fish instance is sashimi.
-            </param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo.IsSashimi">
-            <summary>
-            Indicates whether the fish instance is sashimi.
-            The value can be:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term><description>Sashimi finned fish.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term><description>Normal finned fish.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term><description>Normal fish.</description>
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo.FinCellOffsets">
-            <summary>
-            Indicates all fin candidates in this fish information instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueInfo.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueSearcher">
-            <summary>
-            Encapsulates a normal fish technique searcher.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueSearcher.Priority">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueSearcher.AccumulateAllBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Boolean)">
-            <summary>
-            Searches all basic fish of the specified size.
-            </summary>
-            <param name="result">The result accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="size">The size.</param>
-            <param name="searchRow">
-            Indicates the solver will searching rows or columns.
-            </param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.Basic.NormalFishTechniqueSearcher.GetGridMap(Sudoku.Data.GridMap@,System.Int32[])">
-            <summary>
-            Record all cells in the all regions to a <see cref="T:Sudoku.Data.GridMap"/> instance.
-            </summary>
-            <param name="map">(<see langword="ref"/> parameter) The map.</param>
-            <param name="regionOffsets">All region offsets.</param>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo">
             <summary>
             Provides a usage of fish technique.
@@ -1277,6 +1194,89 @@
             <summary>
             Encapsulates a fish technique searcher.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo">
+            <summary>
+            Provides a usage of normal fish technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean})">
+            <summary>
+            Initializes an instance with information.
+            </summary>
+            <param name="conclusions">The conclusions.</param>
+            <param name="views">The views.</param>
+            <param name="digit">The digit.</param>
+            <param name="baseSets">The base sets.</param>
+            <param name="coverSets">The cover sets.</param>
+            <param name="finCellOffsets">All candidate offsets of fins' position.</param>
+            <param name="isSashimi">
+            Indicates whether the fish instance is sashimi.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.IsSashimi">
+            <summary>
+            Indicates whether the fish instance is sashimi.
+            The value can be:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term><description>Sashimi finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term><description>Normal finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term><description>Normal fish.</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.FinCellOffsets">
+            <summary>
+            Indicates all fin candidates in this fish information instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher">
+            <summary>
+            Encapsulates a normal fish technique searcher.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher.Priority">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher.AccumulateAllBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Boolean)">
+            <summary>
+            Searches all basic fish of the specified size.
+            </summary>
+            <param name="result">The result accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="size">The size.</param>
+            <param name="searchRow">
+            Indicates the solver will searching rows or columns.
+            </param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher.GetGridMap(Sudoku.Data.GridMap@,System.Int32[])">
+            <summary>
+            Record all cells in the all regions to a <see cref="T:Sudoku.Data.GridMap"/> instance.
+            </summary>
+            <param name="map">(<see langword="ref"/> parameter) The map.</param>
+            <param name="regionOffsets">All region offsets.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Intersections.AlmostLockedCandidatesTechniqueInfo">
             <summary>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
-namespace Sudoku.Solving.Manual.Fishes.Basic
+namespace Sudoku.Solving.Manual.Fishes
 {
 	/// <summary>
 	/// Provides a usage of normal fish technique.

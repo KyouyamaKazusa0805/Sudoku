@@ -6,7 +6,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
-namespace Sudoku.Solving.Manual.Fishes.Basic
+namespace Sudoku.Solving.Manual.Fishes
 {
 	/// <summary>
 	/// Encapsulates a normal fish technique searcher.
