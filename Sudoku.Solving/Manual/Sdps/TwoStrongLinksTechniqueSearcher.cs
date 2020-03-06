@@ -24,11 +24,6 @@ namespace Sudoku.Solving.Manual.Sdps
 				{
 					for (int r2 = r1 + 1; r2 < 27; r2++)
 					{
-						if (r1 / 9 == r2 / 9)
-						{
-							continue;
-						}
-
 						// Get masks.
 						short mask1 = grid.GetDigitAppearingMask(digit, r1);
 						short mask2 = grid.GetDigitAppearingMask(digit, r2);
@@ -60,19 +55,18 @@ namespace Sudoku.Solving.Manual.Sdps
 							continue;
 						}
 
-						// Check two cells have a same region.
-						int sameBlock, headIndex, tailIndex, c1Index, c2Index;
-						for (int i = 0; i < cells1.Count; i++)
+						// Check two cells share a same region.
+						int? sameRegion;
+						int headIndex, tailIndex, c1Index, c2Index;
+						for (int i = 0; i < 2; i++)
 						{
 							int cell1 = cells1[i];
-							for (int j = 0; j < cells2.Count; j++)
+							for (int j = 0; j < 2; j++)
 							{
 								int cell2 = cells2[j];
-								int b1 = cell1 / 9 / 3 * 3 + cell1 % 9 / 3;
-								if (b1 == cell2 / 9 / 3 * 3 + cell2 % 9 / 3)
+								if (new GridMap((IEnumerable<int>)new[] { cell1, cell2 }).AllSetsAreInOneRegion(out sameRegion))
 								{
-									(sameBlock, c1Index, c2Index, headIndex, tailIndex) =
-										(b1, i, j, i == 0 ? 1 : 0, j == 0 ? 1 : 0);
+									(c1Index, c2Index, headIndex, tailIndex) = (i, j, i == 0 ? 1 : 0, j == 0 ? 1 : 0);
 									goto Label_Checking;
 								}
 							}
@@ -125,7 +119,7 @@ namespace Sudoku.Solving.Manual.Sdps
 										{
 											(0, r1),
 											(0, r2),
-											(1, sameBlock)
+											(1, (int)sameRegion)
 										},
 										linkMasks: null)
 								},
