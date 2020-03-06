@@ -39,26 +39,30 @@ namespace Sudoku.Solving.Manual.Sdps
 						}
 
 						// Get all cells.
+						var map1 = GridMap.Empty;
+						var map2 = GridMap.Empty;
 						var cells1 = new List<int>();
 						var cells2 = new List<int>();
 						foreach (int pos1 in mask1.GetAllSets())
 						{
-							cells1.Add(RegionUtils.GetCellOffset(r1, pos1));
+							int cell1 = RegionUtils.GetCellOffset(r1, pos1);
+							cells1.Add(cell1);
+							map1[cell1] = true;
 						}
 						foreach (int pos2 in mask2.GetAllSets())
 						{
-							cells2.Add(RegionUtils.GetCellOffset(r2, pos2));
+							int cell2 = RegionUtils.GetCellOffset(r2, pos2);
+							cells2.Add(cell2);
+							map2[cell2] = true;
 						}
 
-						if (cells1.Any(c => cells2.Contains(c)))
+						if ((map1 & map2).IsNotEmpty)
 						{
 							continue;
 						}
 
 						// Check two cells have a same region.
-						int sameBlock = -1;
-						int c1Index = default, c2Index = default;
-						int headIndex = default, tailIndex = default;
+						int sameBlock, headIndex, tailIndex, c1Index, c2Index;
 						for (int i = 0; i < cells1.Count; i++)
 						{
 							int cell1 = cells1[i];
