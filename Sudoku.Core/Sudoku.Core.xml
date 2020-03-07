@@ -1146,17 +1146,31 @@
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
         </member>
+        <member name="T:Sudoku.Data.GridFormatFactory">
+            <summary>
+            Provides a factory to create a <see cref="T:Sudoku.Data.GridFormatter"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.GridFormatFactory.Create(System.String)">
+            <summary>
+            Create a <see cref="T:Sudoku.Data.GridFormatter"/> according to the specified format.
+            </summary>
+            <param name="format">The format.</param>
+            <returns>The grid formatter.</returns>
+            <exception cref="T:System.FormatException">
+            Throws when the format string is invalid.
+            </exception>
+        </member>
         <member name="T:Sudoku.Data.GridFormatter">
             <summary>
             Provides operations for grid formatting.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.GridFormatter.#ctor(Sudoku.Data.Grid,System.Boolean)">
+        <member name="M:Sudoku.Data.GridFormatter.#ctor(System.Boolean)">
             <summary>
-            Initializes an instance with grid and a <see cref="T:System.Boolean"/> value
+            Initializes an instance with a <see cref="T:System.Boolean"/> value
             indicating multi-line.
             </summary>
-            <param name="grid">A grid.</param>
             <param name="multiline">
             The multi-line identifier. If the value is <see langword="true"/>, the output will
             be multi-line.
@@ -1167,30 +1181,32 @@
             Indicates whether the output should be multi-line.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.GridFormatter.Grid">
+        <member name="M:Sudoku.Data.GridFormatter.ToString(Sudoku.Data.Grid)">
             <summary>
-            Indicates the grid.
+            Represents a string value indicating this instance.
             </summary>
+            <param name="grid">The grid.</param>
+            <returns>The string.</returns>
         </member>
-        <member name="M:Sudoku.Data.GridFormatter.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.GridFormatter.ToSingleLineStringCore">
+        <member name="M:Sudoku.Data.GridFormatter.ToSingleLineStringCore(Sudoku.Data.Grid)">
             <summary>
             To single line string.
             </summary>
+            <param name="grid">The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.GridFormatter.ToMultiLineSimpleGridCore">
+        <member name="M:Sudoku.Data.GridFormatter.ToMultiLineSimpleGridCore(Sudoku.Data.Grid)">
             <summary>
             To multi-line normal grid string without any candidates.
             </summary>
+            <param name="grid">The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.GridFormatter.ToMultiLineStringCore">
+        <member name="M:Sudoku.Data.GridFormatter.ToMultiLineStringCore(Sudoku.Data.Grid)">
             <summary>
             To multi-line string with candidates.
             </summary>
+            <param name="grid">The grid.</param>
             <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Data.GridFormatter.GetCellStatus(System.Int16)">
@@ -2805,6 +2821,11 @@
             This property will be used as a placeholder when expressions
             generate a warning (CS8509).
             </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Throwing.FormatError">
+            <summary>
+            Indicates an exception throwing when the format string is invalid.
             </summary>
         </member>
         <member name="M:Sudoku.Throwing.ImpossibleCaseWithMessage(System.String)">

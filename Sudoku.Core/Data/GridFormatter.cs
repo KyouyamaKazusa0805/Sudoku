@@ -14,16 +14,14 @@ namespace Sudoku.Data
 	internal sealed partial class GridFormatter
 	{
 		/// <summary>
-		/// Initializes an instance with grid and a <see cref="bool"/> value
+		/// Initializes an instance with a <see cref="bool"/> value
 		/// indicating multi-line.
 		/// </summary>
-		/// <param name="grid">A grid.</param>
 		/// <param name="multiline">
 		/// The multi-line identifier. If the value is <see langword="true"/>, the output will
 		/// be multi-line.
 		/// </param>
-		public GridFormatter(Grid grid, bool multiline) =>
-			(Grid, Multiline) = (grid, multiline);
+		public GridFormatter(bool multiline) => Multiline = multiline;
 
 
 		/// <summary>
@@ -31,25 +29,25 @@ namespace Sudoku.Data
 		/// </summary>
 		public bool Multiline { get; }
 
+
 		/// <summary>
-		/// Indicates the grid.
+		/// Represents a string value indicating this instance.
 		/// </summary>
-		public Grid Grid { get; }
-
-
-		/// <inheritdoc/>
-		public override string ToString()
+		/// <param name="grid">The grid.</param>
+		/// <returns>The string.</returns>
+		public string ToString(Grid grid)
 		{
 			return Multiline
-				? WithCandidates ? ToMultiLineStringCore() : ToMultiLineSimpleGridCore()
-				: ToSingleLineStringCore();
+				? WithCandidates ? ToMultiLineStringCore(grid) : ToMultiLineSimpleGridCore(grid)
+				: ToSingleLineStringCore(grid);
 		}
 
 		/// <summary>
 		/// To single line string.
 		/// </summary>
+		/// <param name="grid">The grid.</param>
 		/// <returns>The result.</returns>
-		private string ToSingleLineStringCore()
+		private string ToSingleLineStringCore(Grid grid)
 		{
 			static int GetFirstFalseCandidate(short value)
 			{
@@ -84,11 +82,11 @@ namespace Sudoku.Data
 			if (WithCandidates)
 			{
 				// Get a temp grid only used for checking.
-				tempGrid = Grid.Parse(Grid.ToString(".+"));
+				tempGrid = Grid.Parse(grid.ToString(".+"));
 			}
 
 			int offset = 0;
-			foreach (short value in Grid)
+			foreach (short value in grid)
 			{
 				switch (GetCellStatus(value))
 				{
@@ -143,10 +141,11 @@ namespace Sudoku.Data
 		/// <summary>
 		/// To multi-line normal grid string without any candidates.
 		/// </summary>
+		/// <param name="grid">The grid.</param>
 		/// <returns>The result.</returns>
-		private string ToMultiLineSimpleGridCore()
+		private string ToMultiLineSimpleGridCore(Grid grid)
 		{
-			string temp = Grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : $"{Placeholder}");
+			string temp = grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : $"{Placeholder}");
 			return new StringBuilder()
 				.AppendLine(SubtleGridLines ? ".-------+-------+-------." : "+-------+-------+-------+")
 				.AppendLine($"| {temp[0]} {temp[1]} {temp[2]} | {temp[3]} {temp[4]} {temp[5]} | {temp[6]} {temp[7]} {temp[8]} |")
@@ -167,15 +166,16 @@ namespace Sudoku.Data
 		/// <summary>
 		/// To multi-line string with candidates.
 		/// </summary>
+		/// <param name="grid">The grid.</param>
 		/// <returns>The result.</returns>
-		private string ToMultiLineStringCore()
+		private string ToMultiLineStringCore(Grid grid)
 		{
 			// Step 1: gets the candidates information grouped by columns.
 			var valuesByColumn = GetDefaultList();
 			var valuesByRow = GetDefaultList();
 			for (int i = 0; i < 81; i++)
 			{
-				short value = Grid.GetMask(i);
+				short value = grid.GetMask(i);
 				valuesByRow[i / 9].Add(value);
 				valuesByColumn[i % 9].Add(value);
 			}

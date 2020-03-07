@@ -21,6 +21,12 @@ namespace Sudoku
 		public static SwitchExpressionException ImpossibleCase =>
 			new SwitchExpressionException("Impossible case.");
 
+		/// <summary>
+		/// Indicates an exception throwing when the format string is invalid.
+		/// </summary>
+		public static FormatException FormatError =>
+			throw new FormatException("The specified format is invalid.");
+
 
 		/// <summary>
 		/// Indicates an exception throwing when the case is impossible
