@@ -1350,6 +1350,15 @@
             <param name="elimMaps">The possible elimination cells map.</param>
             <param name="digitDistributions">The all distributions for each digit.</param>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.CheckSashimi(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+            <summary>
+            Check whether the fish is sashimi or not.
+            </summary>
+            <param name="baseSets">All base sets.</param>
+            <param name="bodyMap">The map of body cells.</param>
+            <param name="finMap">The map of fin cells.</param>
+            <returns>A <see cref="T:System.Boolean"/>? result.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.RecordHighlightRegions(System.Int32[],System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
             <summary>
             Record all highlight regions.

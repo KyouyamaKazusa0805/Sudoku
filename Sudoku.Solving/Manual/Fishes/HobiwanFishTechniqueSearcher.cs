@@ -224,8 +224,7 @@ namespace Sudoku.Solving.Manual.Fishes
 									coverSets: coverSets.ToArray(),
 									exofins: exofinsMap.IsEmpty ? null : exofinsMap.ToArray(),
 									endofins: endofinsMap.IsEmpty ? null : endofinsMap.ToArray(),
-									// TODO: Check sashimi.
-									isSashimi: finMap.IsEmpty ? (bool?)null : false));
+									isSashimi: CheckSashimi(baseSets, bodyMap, finMap)));
 						}
 					}
 					else // size > 2
@@ -234,6 +233,26 @@ namespace Sudoku.Solving.Manual.Fishes
 					} // end if size == 2
 				} // end for bs2
 			} // end for bs1
+		}
+
+		/// <summary>
+		/// Check whether the fish is sashimi or not.
+		/// </summary>
+		/// <param name="baseSets">All base sets.</param>
+		/// <param name="bodyMap">The map of body cells.</param>
+		/// <param name="finMap">The map of fin cells.</param>
+		/// <returns>A <see cref="bool"/>? result.</returns>
+		private bool? CheckSashimi(IEnumerable<int> baseSets, GridMap bodyMap, GridMap finMap)
+		{
+			foreach (int baseSet in baseSets)
+			{
+				if ((bodyMap & _regionMaps[baseSet]).Count == 1)
+				{
+					return true;
+				}
+			}
+
+			return finMap.IsEmpty ? (bool?)null : false;
 		}
 
 		/// <summary>
