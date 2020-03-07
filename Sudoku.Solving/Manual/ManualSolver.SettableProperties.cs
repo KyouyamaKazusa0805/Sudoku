@@ -225,11 +225,11 @@ namespace Sudoku.Solving.Manual
 		/// Indicates what size of the Hobiwan's fish will be searched for.
 		/// </para>
 		/// <para>
-		/// The value is <c>5</c> in default case. The maximum value supporting
+		/// The value is <c>3</c> in default case. The maximum value supporting
 		/// is <c>7</c>.
 		/// </para>
 		/// </summary>
-		public int HobiwanFishMaximumSize { get; set; } = 5;
+		public int HobiwanFishMaximumSize { get; set; } = 3;
 
 		/// <summary>
 		/// <para>

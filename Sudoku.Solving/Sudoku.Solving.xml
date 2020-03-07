@@ -1350,6 +1350,35 @@
             <param name="elimMaps">The possible elimination cells map.</param>
             <param name="digitDistributions">The all distributions for each digit.</param>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.CheckCoverSets(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,Sudoku.Data.GridMap[],Sudoku.Data.GridMap[],System.Int32[],Sudoku.Data.GridMap)">
+            <summary>
+            Check all cover sets combinations to verify whether the fish can be formed.
+            </summary>
+            <param name="accumulator">The result accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="size">The size.</param>
+            <param name="elimMaps">The elimination maps.</param>
+            <param name="digitDistributions">The digit distributions.</param>
+            <param name="baseSets">The base sets.</param>
+            <param name="bodyMap">The body map.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.AddTechnique(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},System.Int32,System.Int32[],Sudoku.Data.GridMap,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}})">
+            <summary>
+            Add the technique to bag.
+            </summary>
+            <param name="accumulator">The bag.</param>
+            <param name="digit">The digit.</param>
+            <param name="baseSets">The base sets.</param>
+            <param name="bodyMap">The body map.</param>
+            <param name="coverSets">The cover sets.</param>
+            <param name="exofinsMap">The exo-fins map.</param>
+            <param name="endofinsMap">The endo-fins map.</param>
+            <param name="finMap">The fins map.</param>
+            <param name="conclusions">All conclusions.</param>
+            <param name="candidateOffsets">The highlight candidates.</param>
+            <param name="regionOffsets">The highlight regions.</param>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.CheckSashimi(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <summary>
             Check whether the fish is sashimi or not.
@@ -2297,7 +2326,7 @@
             Indicates what size of the Hobiwan's fish will be searched for.
             </para>
             <para>
-            The value is <c>5</c> in default case. The maximum value supporting
+            The value is <c>3</c> in default case. The maximum value supporting
             is <c>7</c>.
             </para>
             </summary>
