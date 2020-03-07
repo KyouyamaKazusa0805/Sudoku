@@ -150,8 +150,7 @@ namespace Sudoku.Solving.Manual.Fishes
 						// If we have checked the template, the region will also
 						// contain the elimination.
 						var bodyMap = CreateMap(baseSets) & digitDistributions[digit];
-						var coverSetsList = new List<IEnumerable<int>>(GetAllProperCoverSets(grid, digit, size, baseSets, elimMaps, bodyMap));
-						foreach (var coverSets in coverSetsList)
+						foreach (var coverSets in GetAllProperCoverSets(grid, digit, size, baseSets, elimMaps, bodyMap))
 						{
 							// Now search for exo-fins and endo-fins.
 							var tempBodyMap = bodyMap;
