@@ -33,11 +33,7 @@ namespace Sudoku.Solving
 		/// <inheritdoc/>
 		public override string ToString() => ToString(null, null);
 
-		/// <summary>
-		/// Returns a string that represents the current object with a specified format.
-		/// </summary>
-		/// <param name="format">The format.</param>
-		/// <returns>The string instance.</returns>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
 		public string ToString(string format) => ToString(format, null);
 
 		/// <inheritdoc/>

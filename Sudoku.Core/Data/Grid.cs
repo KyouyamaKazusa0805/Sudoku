@@ -86,9 +86,7 @@ namespace Sudoku.Data
 			ValueChanged += OnValueChanged;
 		}
 
-		/// <summary>
-		/// Provides default initialization.
-		/// </summary>
+		/// <include file='../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		private Grid()
 		{
 			// 512 is equal to binary number '0b01_000_000_000', where the higher 2 bits
@@ -335,12 +333,7 @@ namespace Sudoku.Data
 		/// <inheritdoc/>
 		public sealed override string ToString() => ToString(null, null);
 
-		/// <summary>
-		/// Returns a string that represents the current object, with the
-		/// specified format.
-		/// </summary>
-		/// <param name="format">The format.</param>
-		/// <returns>The string result.</returns>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
 		public string ToString(string format) => ToString(format, null);
 
 		/// <inheritdoc/>
@@ -856,20 +849,10 @@ namespace Sudoku.Data
 		}
 
 
-		/// <summary>
-		/// Indicates whether two instances have a same value.
-		/// </summary>
-		/// <param name="left">The left instance.</param>
-		/// <param name="right">The right instance.</param>
-		/// <returns>A <see cref="bool"/> result indicating that.</returns>
+		/// <include file='../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(Grid left, Grid right) => left.Equals(right);
 
-		/// <summary>
-		/// Indicates whether two instances have two different values.
-		/// </summary>
-		/// <param name="left">The left instance.</param>
-		/// <param name="right">The right instance.</param>
-		/// <returns>A <see cref="bool"/> result indicating that.</returns>
+		/// <include file='../../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(Grid left, Grid right) => !(left == right);
 	}
 }

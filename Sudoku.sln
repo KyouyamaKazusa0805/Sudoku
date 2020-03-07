@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5A289988-A100-41DA-B297-F4A3DE001B78}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		GlobalDocComments.xml = GlobalDocComments.xml
 		Priority of operators.txt = Priority of operators.txt
 	EndProjectSection
 EndProject

@@ -121,21 +121,11 @@ namespace Sudoku.Solving
 		}
 
 
-		/// <summary>
-		/// Indicates whether two instances have a same value.
-		/// </summary>
-		/// <param name="left">The left instance.</param>
-		/// <param name="right">The right instance.</param>
-		/// <returns>A <see cref="bool"/> result indicating that.</returns>
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(Conclusion left, Conclusion right) =>
 			left.Equals(right);
 
-		/// <summary>
-		/// Indicates whether two instances have two different values.
-		/// </summary>
-		/// <param name="left">The left instance.</param>
-		/// <param name="right">The right instance.</param>
-		/// <returns>A <see cref="bool"/> result indicating that.</returns>
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(Conclusion left, Conclusion right) =>
 			!(left == right);
 	}

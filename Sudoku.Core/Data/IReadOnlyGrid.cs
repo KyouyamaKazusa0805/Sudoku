@@ -86,12 +86,7 @@ namespace Sudoku.Data
 		/// <returns>The candidate mask.</returns>
 		short GetCandidatesReversal(int offset);
 
-		/// <summary>
-		/// Returns a string that represents the current object, with the
-		/// specified format.
-		/// </summary>
-		/// <param name="format">The format.</param>
-		/// <returns>The string result.</returns>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
 		string ToString(string format);
 
 		/// <summary>
@@ -101,7 +96,10 @@ namespace Sudoku.Data
 		/// <returns>The cell status.</returns>
 		CellStatus GetCellStatus(int offset);
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Formats the value of the current instance using the specified format.
+		/// </summary>
+		/// <returns>The string.</returns>
 		public string ToString() => ToString(null, null);
 
 		/// <summary>
