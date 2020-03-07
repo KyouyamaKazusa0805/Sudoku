@@ -122,7 +122,7 @@ namespace Sudoku.Solving.Manual
 					new SubsetTechniqueSearcher(),
 					new NormalFishTechniqueSearcher(),
 					new RegularWingTechniqueSearcher(CheckRegularWingSize),
-					//new IrregularWingTechniqueSearcher(),
+					new IrregularWingTechniqueSearcher(),
 					new TwoStrongLinksTechniqueSearcher(),
 					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 					new ExtendedRectangleTechniqueSearcher(),
