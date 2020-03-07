@@ -1195,6 +1195,240 @@
             Encapsulates a fish technique searcher.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo">
+            <summary>
+            Provides a usage of Hobiwan's fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.BasicDiff">
+            <summary>
+            The basic difficulty rating table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.FinnedDiff">
+            <summary>
+            The finned difficulty rating table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.SashimiDiff">
+            <summary>
+            The sashimi difficulty rating table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.FrankenShapeDiffExtra">
+            <summary>
+            The Franken shape extra difficulty rating table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.MutantShapeDiffExtra">
+            <summary>
+            The mutant shape extra difficulty rating table.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="digit">The digit.</param>
+            <param name="baseSets">The base sets.</param>
+            <param name="coverSets">The cover sets.</param>
+            <param name="exofins">The exo-fins.</param>
+            <param name="endofins">The endo-fins.</param>
+            <param name="isSashimi">Indicates the sashimi fish.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.IsSashimi">
+            <summary>
+            Indicates whether the fish instance is sashimi.
+            The value can be:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term><description>Sashimi finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term><description>Normal finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term><description>Normal fish.</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.ExofinCells">
+            <summary>
+            Indicates all exo-fins.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.EndofinCells">
+            <summary>
+            Indicates all endo-fins.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.IsBasic">
+            <summary>
+            To check whether the specified structure is basic.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.IsFranken">
+            <summary>
+            To check whether the specified structure is Franken.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher">
+            <summary>
+            Encapsulates a Hobiwan's fish technique searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher._exofinCount">
+            <summary>
+            Indicates the maximum number of exo-fins will be found.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher._endofinCount">
+            <summary>
+            Indicates the maximum number of endo-fins will be found.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher._size">
+            <summary>
+            Indicates the maximum size will be found. The maximum value supporting is 7.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher._checkTemplates">
+            <summary>
+            Indicates whether the puzzle will check templates first.
+            If so and the digit does not have any eliminations, this digit
+            will be skipped rather than do empty and useless loops.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher._regionMaps">
+            <summary>
+            Indicates region maps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.#ctor(System.Int32,System.Int32,System.Int32,System.Boolean,Sudoku.Data.GridMap[])">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="size">The size.</param>
+            <param name="exofinCount">The maximum number of exo-fins.</param>
+            <param name="endofinCount">The maximum number of endo-fins.</param>
+            <param name="checkTemplates">
+            Indicates whether the puzzle will check templates first.
+            </param>
+            <param name="regionMaps">The region maps.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.Priority">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.AccumulateAllBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,Sudoku.Data.GridMap[],Sudoku.Data.GridMap[])">
+            <summary>
+            Accumulate all results by the size of the fish.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid to check.</param>
+            <param name="digit">The digit.</param>
+            <param name="size">The size.</param>
+            <param name="elimMaps">The possible elimination cells map.</param>
+            <param name="digitDistributions">The all distributions for each digit.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.RecordHighlightRegions(System.Int32[],System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
+            <summary>
+            Record all highlight regions.
+            </summary>
+            <param name="baseSets">The base sets.</param>
+            <param name="coverSets">The cover sets.</param>
+            <param name="regionOffsets">The list of all highlight regions.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.RecordHighlightCandidates(Sudoku.Data.IReadOnlyGrid,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
+            <summary>
+            Record all highlight candidates.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="bodyMap">The body map.</param>
+            <param name="exofinsMap">The exo-fins map.</param>
+            <param name="endofinsMap">The endo-fins map.</param>
+            <param name="candidateOffsets">The list of highlight candidates.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.GetAllProperCoverSets(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int32[],Sudoku.Data.GridMap[],Sudoku.Data.GridMap)">
+            <summary>
+            Get all proper cover sets combinations.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="size">The size.</param>
+            <param name="baseSets">The base sets.</param>
+            <param name="elimMaps">All elimination maps.</param>
+            <param name="bodyMap">The body map.</param>
+            <returns>All cover sets combinations.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.RegionsAreWorth(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int32[],Sudoku.Data.GridMap[],Sudoku.Data.GridMap)">
+            <summary>
+            To check whether the specified iterated regions satisfy
+            the following conditions:
+            <list type="number">
+            <item>The region <b>cannot</b> contain the digit value.</item>
+            <item>
+            The specified regions <b>must</b> contain any one of eliminations
+            when the elimination map is not empty.
+            </item>
+            <item><b>None</b> of all regions is a part of base sets.</item>
+            <item>The region <b>must</b> contain at least one body cell.</item>
+            </list>
+            <b>Any one of</b> all conditions is false,
+            the method will return <see langword="false"/>.
+            </summary>
+            <param name="grid">The grid to check.</param>
+            <param name="digit">The digit.</param>
+            <param name="regionsMask">
+            The region mask (got by <see cref="T:Sudoku.Solving.Utils.BitCombinationGenerator"/>).
+            </param>
+            <param name="baseSets">Base sets.</param>
+            <param name="elimMaps">The elimination maps.</param>
+            <param name="bodyMap">The body map.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.CreateMap(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Get all cells from specified regions.
+            </summary>
+            <param name="regions">All regions.</param>
+            <returns>The instance containing all cells.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.GetEndofinMap(System.Int32[])">
+            <summary>
+            Get the endo-fins map.
+            </summary>
+            <param name="baseSets">All base sets.</param>
+            <returns>Endo-fin map.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.GetExofinMap(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+            <summary>
+            Get the exo-fins map.
+            </summary>
+            <param name="bodyMap">The map of body cells.</param>
+            <param name="elimMap">The map of elimination maps (cover sets).</param>
+            <returns>Exo-fin map.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo">
             <summary>
             Provides a usage of normal fish technique.
@@ -2047,6 +2281,47 @@
             </para>
             </summary>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.OnlyRecordTemplateDelete"/>.
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.HobiwanFishMaximumSize">
+            <summary>
+            <para>
+            Indicates what size of the Hobiwan's fish will be searched for.
+            </para>
+            <para>
+            The value is <c>5</c> in default case. The maximum value supporting
+            is <c>7</c>.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.HobiwanFishMaximumExofinsCount">
+            <summary>
+            <para>
+            Indicates how many exo-fins in Hobiwan's fish will be searched for.
+            </para>
+            <para>The value is <c>3</c> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.HobiwanFishMaximumEndofinsCount">
+            <summary>
+            <para>
+            Indicates how many endo-fins in Hobiwan's fish will be searched for.
+            </para>
+            <para>The value is <c>1</c> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.HobiwanFishCheckTemplates">
+            <summary>
+            <para>
+            Indicates whether the solver will check templates before searching
+            Hobiwan's fish.
+            </para>
+            <para>
+            The value is <see langword="true"/> in default case. If the value
+            is <see langword="true"/>, the solver will check templates first,
+            and get all possible eliminations for each digit. If the digit does
+            not contain any elimination, the digit will not exist any fish.
+            </para>
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.OnlyRecordTemplateDelete">
             <summary>
@@ -4761,8 +5036,8 @@
             <summary>
             Accumulate all technique information instances into the specified accumulator.
             </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
+            <param name="accumulator">The accumulator to store technique information.</param>
+            <param name="grid">The grid to search for techniques.</param>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.CompareTo(Sudoku.Solving.TechniqueSearcher)">
             <inheritdoc/>

@@ -71,13 +71,12 @@ namespace Sudoku.Solving.Manual.Fishes
 		{
 			get
 			{
-				var ex = new NotSupportedException($"{nameof(Size)} is out of valid range.");
 				return Size switch
 				{
 					2 => 3.2m,
 					3 => 3.8m,
 					4 => 5.2m,
-					_ => throw ex
+					_ => throw Throwing.ImpossibleCase
 				} + IsSashimi switch
 				{
 					null => 0,
@@ -86,7 +85,7 @@ namespace Sudoku.Solving.Manual.Fishes
 						2 => 0.3m,
 						3 => 0.3m,
 						4 => 0.4m,
-						_ => throw ex
+						_ => throw Throwing.ImpossibleCase
 					},
 					false => 0.2m
 				};

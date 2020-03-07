@@ -32,8 +32,8 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Accumulate all technique information instances into the specified accumulator.
 		/// </summary>
-		/// <param name="accumulator">The accumulator.</param>
-		/// <param name="grid">The grid.</param>
+		/// <param name="accumulator">The accumulator to store technique information.</param>
+		/// <param name="grid">The grid to search for techniques.</param>
 		public abstract void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid);
 
 		/// <inheritdoc/>

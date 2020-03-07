@@ -122,7 +122,7 @@ namespace Sudoku.Solving.Manual
 					new SubsetTechniqueSearcher(),
 					new NormalFishTechniqueSearcher(),
 					new RegularWingTechniqueSearcher(CheckRegularWingSize),
-					new IrregularWingTechniqueSearcher(),
+					//new IrregularWingTechniqueSearcher(),
 					new TwoStrongLinksTechniqueSearcher(),
 					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
 					new ExtendedRectangleTechniqueSearcher(),
@@ -132,6 +132,7 @@ namespace Sudoku.Solving.Manual
 					new SueDeCoqTechniqueSearcher(regionMaps),
 					new BorescoperDeadlyPatternTechniqueSearcher(),
 					new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
+					new HobiwanFishTechniqueSearcher(HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount, HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
 				},
 				new TechniqueSearcher[]
 				{
@@ -292,6 +293,7 @@ namespace Sudoku.Solving.Manual
 				new SueDeCoqTechniqueSearcher(regionMaps),
 				new BorescoperDeadlyPatternTechniqueSearcher(),
 				new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
+				new HobiwanFishTechniqueSearcher(HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount, HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
 				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 				new PatternOverlayMethodTechniqueSearcher(),
 				new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),

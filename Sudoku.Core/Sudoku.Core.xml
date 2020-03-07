@@ -63,12 +63,13 @@
         </member>
         <member name="M:Sudoku.Data.Extensions.ByteEx.FindFirstSet(System.Byte)">
             <summary>
-            Find the first offset of set bit of the binary representation of the specified value.
+            Find the first offset of set bit of the binary representation
+            of the specified value. If the value is 0, this method
+            will always return -1.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The value.</param>
             <returns>
-            An <see cref="T:System.Int32"/> value indicating that. If the value is 0, this method
-            will always return 0.
+            An <see cref="T:System.Int32"/> value indicating that.
             </returns>
             <seealso cref="M:Sudoku.Data.Extensions.Int32Ex.FindFirstSet(System.Int32)"/>
         </member>
@@ -286,7 +287,7 @@
             <param name="this">(<see langword="this"/> parameter) The value.</param>
             <returns>
             An <see cref="T:System.Int32"/> value indicating that. If the value is 0, this method
-            will always return 0.
+            will always return -1.
             </returns>
         </member>
         <member name="M:Sudoku.Data.Extensions.Int32Ex.CountSet(System.Int32)">

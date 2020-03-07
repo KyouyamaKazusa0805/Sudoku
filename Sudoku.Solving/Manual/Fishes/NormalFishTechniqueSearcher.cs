@@ -92,8 +92,8 @@ namespace Sudoku.Solving.Manual.Fishes
 									}
 
 									// Confirm all elimination cells.
-									var baseSets = new[] { bs1, bs2 };
-									var coverSets = new[] { cs1, cs2 };
+									int[] baseSets = new[] { bs1, bs2 };
+									int[] coverSets = new[] { cs1, cs2 };
 									var bodyMap = GridMap.Empty;
 									var elimMap = GridMap.Empty;
 									GetGridMap(ref bodyMap, baseSets);
@@ -120,10 +120,12 @@ namespace Sudoku.Solving.Manual.Fishes
 											if ((temp & 1) != 0)
 											{
 												int possibleFinCellOffset = RegionUtils.GetCellOffset(baseSet, x);
-												if (grid.CandidateExists(possibleFinCellOffset, digit))
+												if (!grid.CandidateExists(possibleFinCellOffset, digit))
 												{
-													finCells.Add(possibleFinCellOffset);
+													continue;
 												}
+
+												finCells.Add(possibleFinCellOffset);
 											}
 										}
 									}
@@ -150,63 +152,67 @@ namespace Sudoku.Solving.Manual.Fishes
 										var elimList = new List<int>();
 										foreach (int offset in elimMap.Offsets)
 										{
-											if (grid.CandidateExists(offset, digit))
+											if (!grid.CandidateExists(offset, digit))
 											{
-												elimList.Add(offset * 9 + digit);
+												continue;
 											}
+
+											elimList.Add(offset * 9 + digit);
 										}
 
-										if (elimList.Count != 0)
+										if (elimList.Count == 0)
 										{
-											// Eliminations does exist.
-											// Check all highlight candidates.
-											var highlightCandidates = new List<(int, int)>(
-												from cellOffset in bodyMap.Offsets
-												where grid.CandidateExists(cellOffset, digit)
-												select (0, cellOffset));
+											continue;
+										}
 
-											// Check the fish is sashimi, normal finned or normal.
-											bool? isSashimi = null;
-											if (!(finCells is null))
+										// Eliminations does exist.
+										// Check all highlight candidates.
+										var highlightCandidates = new List<(int, int)>(
+											from cellOffset in bodyMap.Offsets
+											where grid.CandidateExists(cellOffset, digit)
+											select (0, cellOffset));
+
+										// Check the fish is sashimi, normal finned or normal.
+										bool? isSashimi = null;
+										if (!(finCells is null))
+										{
+											isSashimi = true;
+											int finCell = finCells[0];
+											int block = finCell / 9 / 3 * 3 + finCell % 9 / 3;
+											foreach (int offset in bodyMap.Offsets)
 											{
-												isSashimi = true;
-												int finCell = finCells[0];
-												int block = finCell / 9 / 3 * 3 + finCell % 9 / 3;
-												foreach (int offset in bodyMap.Offsets)
+												if (offset / 9 / 3 * 3 + offset % 9 / 3 == block
+													&& grid.CandidateExists(offset, digit))
 												{
-													if (offset / 9 / 3 * 3 + offset % 9 / 3 == block
-														&& grid.CandidateExists(offset, digit))
-													{
-														isSashimi = false;
-														break;
-													}
+													isSashimi = false;
+													break;
 												}
 											}
-
-											// Add to 'result'.
-											result.Add(
-												new NormalFishTechniqueInfo(
-													conclusions: new List<Conclusion>(
-														from cand in elimList
-														select new Conclusion(ConclusionType.Elimination, cand)),
-													views: new[]
-													{
-														new View(
-															cellOffsets: null,
-															candidateOffsets: highlightCandidates,
-															regionOffsets: new[]
-															{
-																(0, bs1), (0, bs2),
-																(1, cs1), (1, cs2)
-															},
-															linkMasks: null)
-													},
-													digit,
-													baseSets: new List<int>(baseSets),
-													coverSets: new List<int>(coverSets),
-													finCellOffsets: finCells,
-													isSashimi));
 										}
+
+										// Add to 'result'.
+										result.Add(
+											new NormalFishTechniqueInfo(
+												conclusions: new List<Conclusion>(
+													from cand in elimList
+													select new Conclusion(ConclusionType.Elimination, cand)),
+												views: new[]
+												{
+													new View(
+														cellOffsets: null,
+														candidateOffsets: highlightCandidates,
+														regionOffsets: new[]
+														{
+															(0, bs1), (0, bs2),
+															(1, cs1), (1, cs2)
+														},
+														linkMasks: null)
+												},
+												digit,
+												baseSets,
+												coverSets,
+												finCellOffsets: finCells,
+												isSashimi));
 									}
 								}
 							}
@@ -286,10 +292,12 @@ namespace Sudoku.Solving.Manual.Fishes
 														if ((temp & 1) != 0)
 														{
 															int possibleFinCellOffset = RegionUtils.GetCellOffset(baseSet, x);
-															if (grid.CandidateExists(possibleFinCellOffset, digit))
+															if (!grid.CandidateExists(possibleFinCellOffset, digit))
 															{
-																finCells.Add(possibleFinCellOffset);
+																continue;
 															}
+
+															finCells.Add(possibleFinCellOffset);
 														}
 													}
 												}
@@ -316,63 +324,67 @@ namespace Sudoku.Solving.Manual.Fishes
 													var elimList = new List<int>();
 													foreach (int offset in elimMap.Offsets)
 													{
-														if (grid.CandidateExists(offset, digit))
+														if (!grid.CandidateExists(offset, digit))
 														{
-															elimList.Add(offset * 9 + digit);
+															continue;
 														}
+
+														elimList.Add(offset * 9 + digit);
 													}
 
-													if (elimList.Count != 0)
+													if (elimList.Count == 0)
 													{
-														// Eliminations does exist.
-														// Check all highlight candidates.
-														var highlightCandidates = new List<(int, int)>(
-															from cellOffset in bodyMap.Offsets
-															where grid.CandidateExists(cellOffset, digit)
-															select (0, cellOffset));
+														continue;
+													}
 
-														// Check the fish is sashimi, normal finned or normal.
-														bool? isSashimi = null;
-														if (!(finCells is null))
+													// Eliminations does exist.
+													// Check all highlight candidates.
+													var highlightCandidates = new List<(int, int)>(
+														from cellOffset in bodyMap.Offsets
+														where grid.CandidateExists(cellOffset, digit)
+														select (0, cellOffset));
+
+													// Check the fish is sashimi, normal finned or normal.
+													bool? isSashimi = null;
+													if (!(finCells is null))
+													{
+														isSashimi = true;
+														int finCell = finCells[0];
+														int block = finCell / 9 / 3 * 3 + finCell % 9 / 3;
+														foreach (int offset in bodyMap.Offsets)
 														{
-															isSashimi = true;
-															int finCell = finCells[0];
-															int block = finCell / 9 / 3 * 3 + finCell % 9 / 3;
-															foreach (int offset in bodyMap.Offsets)
+															if (offset / 9 / 3 * 3 + offset % 9 / 3 == block
+																&& grid.CandidateExists(offset, digit))
 															{
-																if (offset / 9 / 3 * 3 + offset % 9 / 3 == block
-																	&& grid.CandidateExists(offset, digit))
-																{
-																	isSashimi = false;
-																	break;
-																}
+																isSashimi = false;
+																break;
 															}
 														}
-
-														// Add to 'result'.
-														result.Add(
-															new NormalFishTechniqueInfo(
-																conclusions: new List<Conclusion>(
-																	from cand in elimList
-																	select new Conclusion(ConclusionType.Elimination, cand)),
-																views: new[]
-																{
-																	new View(
-																		cellOffsets: null,
-																		candidateOffsets: highlightCandidates,
-																		regionOffsets: new[]
-																		{
-																			(0, bs1), (0, bs2), (0, bs3),
-																			(1, cs1), (1, cs2), (1, cs3)
-																		},
-																		linkMasks: null)
-																},
-																digit,
-																baseSets: new List<int>(baseSets),
-																coverSets: new List<int>(coverSets),
-																finCellOffsets: finCells,
-																isSashimi));
 													}
+
+													// Add to 'result'.
+													result.Add(
+														new NormalFishTechniqueInfo(
+															conclusions: new List<Conclusion>(
+																from cand in elimList
+																select new Conclusion(ConclusionType.Elimination, cand)),
+															views: new[]
+															{
+																new View(
+																	cellOffsets: null,
+																	candidateOffsets: highlightCandidates,
+																	regionOffsets: new[]
+																	{
+																		(0, bs1), (0, bs2), (0, bs3),
+																		(1, cs1), (1, cs2), (1, cs3)
+																	},
+																	linkMasks: null)
+															},
+															digit,
+															baseSets,
+															coverSets,
+															finCellOffsets: finCells,
+															isSashimi));
 												}
 											}
 										}
@@ -459,10 +471,12 @@ namespace Sudoku.Solving.Manual.Fishes
 																if ((temp & 1) != 0)
 																{
 																	int possibleFinCellOffset = RegionUtils.GetCellOffset(baseSet, x);
-																	if (grid.CandidateExists(possibleFinCellOffset, digit))
+																	if (!grid.CandidateExists(possibleFinCellOffset, digit))
 																	{
-																		finCells.Add(possibleFinCellOffset);
+																		continue;
 																	}
+
+																	finCells.Add(possibleFinCellOffset);
 																}
 															}
 														}
@@ -489,65 +503,69 @@ namespace Sudoku.Solving.Manual.Fishes
 															var elimList = new List<int>();
 															foreach (int offset in elimMap.Offsets)
 															{
-																if (grid.CandidateExists(offset, digit))
+																if (!grid.CandidateExists(offset, digit))
 																{
-																	elimList.Add(offset * 9 + digit);
+																	continue;
 																}
+
+																elimList.Add(offset * 9 + digit);
 															}
 
-															if (elimList.Count != 0)
+															if (elimList.Count == 0)
 															{
-																// Eliminations does exist.
-																// Check all highlight candidates.
-																var highlightCandidates = new List<(int, int)>(
-																	from cellOffset in bodyMap.Offsets
-																	where grid.CandidateExists(cellOffset, digit)
-																	select (0, cellOffset));
+																continue;
+															}
 
-																// Check the fish is sashimi, normal finned or normal.
-																bool? isSashimi = null;
-																if (!(finCells is null))
+															// Eliminations does exist.
+															// Check all highlight candidates.
+															var highlightCandidates = new List<(int, int)>(
+																from cellOffset in bodyMap.Offsets
+																where grid.CandidateExists(cellOffset, digit)
+																select (0, cellOffset));
+
+															// Check the fish is sashimi, normal finned or normal.
+															bool? isSashimi = null;
+															if (!(finCells is null))
+															{
+																isSashimi = true;
+																int finCell = finCells[0];
+																int block = finCell / 9 / 3 * 3 + finCell % 9 / 3;
+																foreach (int offset in bodyMap.Offsets)
 																{
-																	isSashimi = true;
-																	int finCell = finCells[0];
-																	int block = finCell / 9 / 3 * 3 + finCell % 9 / 3;
-																	foreach (int offset in bodyMap.Offsets)
+																	if (offset / 9 / 3 * 3 + offset % 9 / 3 == block
+																		&& grid.CandidateExists(offset, digit))
 																	{
-																		if (offset / 9 / 3 * 3 + offset % 9 / 3 == block
-																			&& grid.CandidateExists(offset, digit))
-																		{
-																			isSashimi = false;
-																			break;
-																		}
+																		isSashimi = false;
+																		break;
 																	}
 																}
-
-																// Add to 'result'.
-																result.Add(
-																	new NormalFishTechniqueInfo(
-																		conclusions: new List<Conclusion>(
-																			from cand in elimList
-																			select new Conclusion(ConclusionType.Elimination, cand)),
-																		views: new[]
-																		{
-																			new View(
-																				cellOffsets: null,
-																				candidateOffsets: highlightCandidates,
-																				regionOffsets: new[]
-																				{
-																					(0, bs1), (0, bs2),
-																					(0, bs3), (0, bs4),
-																					(1, cs1), (1, cs2),
-																					(1, cs3), (1, cs4)
-																				},
-																				linkMasks: null)
-																		},
-																		digit,
-																		baseSets: new List<int>(baseSets),
-																		coverSets: new List<int>(coverSets),
-																		finCellOffsets: finCells,
-																		isSashimi));
 															}
+
+															// Add to 'result'.
+															result.Add(
+																new NormalFishTechniqueInfo(
+																	conclusions: new List<Conclusion>(
+																		from cand in elimList
+																		select new Conclusion(ConclusionType.Elimination, cand)),
+																	views: new[]
+																	{
+																		new View(
+																			cellOffsets: null,
+																			candidateOffsets: highlightCandidates,
+																			regionOffsets: new[]
+																			{
+																				(0, bs1), (0, bs2),
+																				(0, bs3), (0, bs4),
+																				(1, cs1), (1, cs2),
+																				(1, cs3), (1, cs4)
+																			},
+																			linkMasks: null)
+																	},
+																	digit,
+																	baseSets,
+																	coverSets,
+																	finCellOffsets: finCells,
+																	isSashimi));
 														}
 													}
 												}

@@ -12,12 +12,13 @@ namespace Sudoku.Data.Extensions
 	public static class ByteEx
 	{
 		/// <summary>
-		/// Find the first offset of set bit of the binary representation of the specified value.
+		/// Find the first offset of set bit of the binary representation
+		/// of the specified value. If the value is 0, this method
+		/// will always return -1.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
 		/// <returns>
-		/// An <see cref="int"/> value indicating that. If the value is 0, this method
-		/// will always return 0.
+		/// An <see cref="int"/> value indicating that.
 		/// </returns>
 		/// <seealso cref="Int32Ex.FindFirstSet(int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

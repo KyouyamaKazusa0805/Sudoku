@@ -42,7 +42,7 @@ namespace Sudoku.Data.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
 		/// <returns>
 		/// An <see cref="int"/> value indicating that. If the value is 0, this method
-		/// will always return 0.
+		/// will always return -1.
 		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static int FindFirstSet(this int @this)

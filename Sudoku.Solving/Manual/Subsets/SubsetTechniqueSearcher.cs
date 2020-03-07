@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -180,6 +181,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// <param name="offsets">The cell offsets.</param>
 		/// <param name="conclusions">All conclusions.</param>
 		/// <param name="isLocked">Indicates whether the subset is locked.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static void GatherConclusion(
 			IReadOnlyGrid grid, IBag<TechniqueInfo> result, int region,
 			IReadOnlyList<int> digits, IReadOnlyList<int> offsets,
@@ -256,14 +258,13 @@ namespace Sudoku.Solving.Manual.Subsets
 				// Add eliminations by each digit.
 				foreach (int offset in tempMap.Offsets)
 				{
-					if (grid.GetCellStatus(offset) == CellStatus.Empty && !grid[offset, digit])
+					if (grid.CandidateExists(offset, digit))
 					{
 						result.Add(new Conclusion(ConclusionType.Elimination, offset, digit));
 					}
 				}
 			}
-			static bool lockedJudger(bool v) => v;
-			bool? isLockedTemp = series.Any(lockedJudger) ? series.All(lockedJudger) : (bool?)null;
+			bool? isLockedTemp = series.Any(v => v) ? series.All(v => v) : (bool?)null;
 			isLocked = digits.Count == 4
 				? isLockedTemp != true ? isLockedTemp : false
 				: isLockedTemp;
@@ -508,8 +509,7 @@ namespace Sudoku.Solving.Manual.Subsets
 							{
 								// Does not contain in the list.
 								// These candidates are eliminations.
-								result.Add(
-									new Conclusion(ConclusionType.Elimination, offset, digit));
+								result.Add(new Conclusion(ConclusionType.Elimination, offset, digit));
 							}
 						}
 					}
