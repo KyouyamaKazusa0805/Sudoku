@@ -11,7 +11,7 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DocumentationFile>P:\Projects\Common\Sudoku\Sudoku.Solving\Sudoku.Solving.xml</DocumentationFile>
-		<DefineConstants>BIT64</DefineConstants>
+		<DefineConstants>TARGET_64BIT</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

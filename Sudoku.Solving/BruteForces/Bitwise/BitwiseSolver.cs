@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Runtime;
-#if BIT64
+#if TARGET_64BIT
 using native_int = System.Int32;
 #else
 using native_int = System.Int16;
@@ -175,7 +175,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		private static extern native_int Solve32(
 			[MarshalAs(UnmanagedType.LPStr)] string puzzle,
 			[MarshalAs(UnmanagedType.LPStr)] StringBuilder? solution,
-#if BIT64
+#if TARGET_64BIT
 			[MarshalAs(UnmanagedType.I4)]
 #else
 			[MarshalAs(UnmanagedType.I2)]
@@ -196,7 +196,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		private static extern native_int Solve64(
 			[MarshalAs(UnmanagedType.LPStr)] string puzzle,
 			[MarshalAs(UnmanagedType.LPStr)] StringBuilder? solution,
-#if BIT64
+#if TARGET_64BIT
 			[MarshalAs(UnmanagedType.I4)]
 #else
 			[MarshalAs(UnmanagedType.I2)]
