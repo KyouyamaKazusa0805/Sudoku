@@ -1425,7 +1425,7 @@
             <param name="bodyMap">The body map.</param>
             <returns>All cover sets combinations.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.RegionsAreWorth(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int32[],Sudoku.Data.GridMap[],Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.RegionsAreWorth(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int32[],Sudoku.Data.GridMap[],Sudoku.Data.GridMap,System.Int32)">
             <summary>
             To check whether the specified iterated regions satisfy
             the following conditions:
@@ -1449,6 +1449,7 @@
             <param name="baseSets">Base sets.</param>
             <param name="elimMaps">The elimination maps.</param>
             <param name="bodyMap">The body map.</param>
+            <param name="size">The size.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.CreateMap(System.Collections.Generic.IEnumerable{System.Int32})">

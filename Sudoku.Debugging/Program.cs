@@ -20,7 +20,6 @@ namespace Sudoku.Debugging
 			{
 				CheckAlmostLockedQuadruple = true,
 				AnalyzeDifficultyStrictly = true,
-				HobiwanFishMaximumSize = 2,
 				DisableSlowTechniques = false,
 				HobiwanFishCheckTemplates = true,
 			};

@@ -73,14 +73,13 @@ namespace Sudoku.Solving.Manual.Fishes
 			(_, _, var digitDistributions) = grid;
 
 			// Now search fishes.
-			var elimMaps = new GridMap[9];
 			if (_size <= 4)
 			{
 				for (int size = 2; size <= _size; size++)
 				{
 					for (int digit = 0; digit < 9; digit++)
 					{
-						AccumulateAllBySize(accumulator, grid, digit, size, elimMaps, digitDistributions);
+						AccumulateAllBySize(accumulator, grid, digit, size, new GridMap[9], digitDistributions);
 					}
 				}
 			}
@@ -90,11 +89,12 @@ namespace Sudoku.Solving.Manual.Fishes
 				{
 					for (int digit = 0; digit < 9; digit++)
 					{
-						AccumulateAllBySize(accumulator, grid, digit, size, elimMaps, digitDistributions);
+						AccumulateAllBySize(accumulator, grid, digit, size, new GridMap[9], digitDistributions);
 					}
 				}
 
 				// Checking templates will be started at size greater than 4.
+				var elimMaps = new GridMap[9];
 				if (_checkTemplates)
 				{
 					// Check templates.
@@ -122,7 +122,7 @@ namespace Sudoku.Solving.Manual.Fishes
 					}
 				}
 
-				for (int size = 5; size < _size; size++)
+				for (int size = 5; size <= _size; size++)
 				{
 					for (int digit = 0; digit < 9; digit++)
 					{
@@ -145,7 +145,7 @@ namespace Sudoku.Solving.Manual.Fishes
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, int digit, int size,
 			GridMap[] elimMaps, GridMap[] digitDistributions)
 		{
-			if (_checkTemplates && elimMaps[digit].IsEmpty)
+			if (size > 4 && _checkTemplates && elimMaps[digit].IsEmpty)
 			{
 				// No possible eliminations use.
 				return;
@@ -294,7 +294,8 @@ namespace Sudoku.Solving.Manual.Fishes
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, int digit, int size,
 			GridMap[] elimMaps, GridMap[] digitDistributions, int[] baseSets, GridMap bodyMap)
 		{
-			foreach (var coverSets in GetAllProperCoverSets(grid, digit, size, baseSets, elimMaps, bodyMap))
+			var enumerable = GetAllProperCoverSets(grid, digit, size, baseSets, elimMaps, bodyMap);
+			foreach (var coverSets in enumerable)
 			{
 				// Now search for exo-fins and endo-fins.
 				var tempBodyMap = bodyMap;
@@ -488,7 +489,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		{
 			foreach (int regionsMask in new BitCombinationGenerator(27, size))
 			{
-				if (!RegionsAreWorth(grid, digit, regionsMask, baseSets, elimMaps, bodyMap))
+				if (!RegionsAreWorth(grid, digit, regionsMask, baseSets, elimMaps, bodyMap, size))
 				{
 					continue;
 				}
@@ -520,12 +521,13 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="baseSets">Base sets.</param>
 		/// <param name="elimMaps">The elimination maps.</param>
 		/// <param name="bodyMap">The body map.</param>
+		/// <param name="size">The size.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		private bool RegionsAreWorth(
 			IReadOnlyGrid grid, int digit, int regionsMask, int[] baseSets,
-			GridMap[] elimMaps, GridMap bodyMap)
+			GridMap[] elimMaps, GridMap bodyMap, int size)
 		{
-			var regions = regionsMask.GetAllSets();
+			var regions = regionsMask.GetAllSets().ToArray();
 			if (regions.Any(region => grid.HasDigitValue(digit, region)))
 			{
 				return false;
@@ -564,7 +566,8 @@ namespace Sudoku.Solving.Manual.Fishes
 				}
 			}
 
-			return _checkTemplates && elimMap.IsNotEmpty || !_checkTemplates;
+			bool templatesChecked = size > 4 && _checkTemplates;
+			return templatesChecked && elimMap.IsNotEmpty || !templatesChecked;
 		}
 
 		/// <summary>
