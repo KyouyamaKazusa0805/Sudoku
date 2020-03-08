@@ -20,7 +20,6 @@ namespace Sudoku.Debugging
 			{
 				CheckAlmostLockedQuadruple = true,
 				AnalyzeDifficultyStrictly = true,
-				DisableSlowTechniques = false,
 			};
 			var grid = Grid.Parse(
 				"040009300000030000000000800090005010800004700050070000002307490700400008580000000");
