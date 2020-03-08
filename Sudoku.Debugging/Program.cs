@@ -21,10 +21,9 @@ namespace Sudoku.Debugging
 				CheckAlmostLockedQuadruple = true,
 				AnalyzeDifficultyStrictly = true,
 				DisableSlowTechniques = false,
-				HobiwanFishMaximumSize = 2,
 			};
 			var grid = Grid.Parse(
-				"020006000008590007490007102230000900000000000001000045507100084100058600000600070");
+				"040009300000030000000000800090005010800004700050070000002307490700400008580000000");
 			var analysisResult = solver.Solve(grid);
 			WriteLine($"{analysisResult:-#!.}");
 		}

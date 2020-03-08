@@ -84,7 +84,7 @@ namespace Sudoku.Solving.Manual.Fishes
 			}
 			else
 			{
-				for (int size = 2; size <= 4; size++)
+				for (int size = 2; size <= 3; size++)
 				{
 					for (int digit = 0; digit < 9; digit++)
 					{
@@ -121,7 +121,7 @@ namespace Sudoku.Solving.Manual.Fishes
 					}
 				}
 
-				for (int size = 5; size <= _size; size++)
+				for (int size = 4; size <= _size; size++)
 				{
 					for (int digit = 0; digit < 9; digit++)
 					{

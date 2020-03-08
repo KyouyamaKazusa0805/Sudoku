@@ -4,6 +4,7 @@ using Sudoku.Solving.Utils;
 using R = Sudoku.Solving.Utils.RegionCollection;
 using C = Sudoku.Solving.Utils.CellCollection;
 using Conc = Sudoku.Solving.Utils.ConclusionCollection;
+using System.Linq;
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -161,39 +162,10 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <returns>A <see cref="bool"/> value.</returns>
 		private bool IsBasic()
 		{
-			static bool basicChecker(int s1, int s2)
-			{
-				int s1Type = s1 / 9;
-				int s2Type = s2 / 9;
-				return s1Type == 1 && s2Type != 1 || s1Type == 2 && s2Type != 2;
-			}
-
-			for (int i = 0, count = BaseSets.Count; i < count - 1; i++)
-			{
-				for (int j = i + 1; j < count; j++)
-				{
-					int bs1 = BaseSets[i];
-					int bs2 = BaseSets[j];
-					if (basicChecker(bs1, bs2))
-					{
-						return false;
-					}
-				}
-			}
-			for (int i = 0, count = CoverSets.Count; i < count - 1; i++)
-			{
-				for (int j = i + 1; j < count; j++)
-				{
-					int cs1 = CoverSets[i];
-					int cs2 = CoverSets[j];
-					if (basicChecker(cs1, cs2))
-					{
-						return false;
-					}
-				}
-			}
-
-			return true;
+			static bool rowJudger(int region) => region / 9 == 1;
+			static bool columnJudger(int region) => region / 9 == 2;
+			return BaseSets.All(rowJudger) && CoverSets.All(columnJudger)
+				|| BaseSets.All(columnJudger) && CoverSets.All(rowJudger);
 		}
 
 		/// <summary>
