@@ -72,12 +72,16 @@ namespace Sudoku.Data
 				{
 					var series = stackalloc[] { a, b, c, d, e, f, g, h, i };
 					foreach (int z in GridMap.PeerTable[cell])
+					{
 						(*series[z / 9])[z % 9 * 9 + digit] = true;
+					}
 				}
 			}
 
 			for (int i = 0; i < 9; i++)
+			{
 				this[cell * 9 + i] = i == digit ? setItself : true;
+			}
 		}
 
 		/// <summary>
@@ -131,8 +135,12 @@ namespace Sudoku.Data
 				};
 
 				for (int i = 0; i < 9; i++)
+				{
 					foreach (int offset in lines[i].Offsets)
+					{
 						yield return i * 81 + offset;
+					}
+				}
 			}
 		}
 
@@ -154,22 +162,16 @@ namespace Sudoku.Data
 			{
 				return stackalloc[]
 				{
-					_line1,
-					_line2,
-					_line3,
-					_line4,
-					_line5,
-					_line6,
-					_line7,
-					_line8,
-					_line9
+					_line1, _line2, _line3, _line4, _line5, _line6, _line7, _line8, _line9
 				}[offset / 81][offset / 9 % 9 * 9 + offset % 9];
 			}
 			set
 			{
 				// We should get along with pointers extremely carefully.
 				if (offset < 0 || offset >= 729)
+				{
 					throw new ArgumentOutOfRangeException(nameof(offset));
+				}
 
 				unsafe
 				{
@@ -202,34 +204,42 @@ namespace Sudoku.Data
 		{
 			var left = (Span<GridMap>)stackalloc[]
 			{
-				_line1,
-				_line2,
-				_line3,
-				_line4,
-				_line5,
-				_line6,
-				_line7,
-				_line8,
-				_line9
+				_line1, _line2, _line3,
+				_line4, _line5, _line6,
+				_line7, _line8, _line9
 			};
 			var right = (Span<GridMap>)stackalloc[]
 			{
-				other._line1,
-				other._line2,
-				other._line3,
-				other._line4,
-				other._line5,
-				other._line6,
-				other._line7,
-				other._line8,
-				other._line9
+				other._line1, other._line2, other._line3,
+				other._line4, other._line5, other._line6,
+				other._line7, other._line8, other._line9
 			};
 
 			for (int i = 0; i < 9; i++)
+			{
 				if (left[i] != right[i])
+				{
 					return false;
+				}
+			}
 
 			return true;
+		}
+
+		/// <summary>
+		/// Get the sub-view of the specified cell.
+		/// </summary>
+		/// <param name="cellOffset">The cell offset.</param>
+		/// <returns>The <see cref="bool"/> array.</returns>
+		public readonly bool[] GetCellSubView(int cellOffset)
+		{
+			bool[] result = new bool[9];
+			for (int offset = cellOffset * 9, index = offset, i = 0; index < offset + 9; index++, i++)
+			{
+				result[i] = this[offset];
+			}
+
+			return result;
 		}
 
 		/// <summary>
@@ -244,17 +254,13 @@ namespace Sudoku.Data
 			int result = GetType().GetHashCode();
 			foreach (var map in stackalloc[]
 			{
-				_line1,
-				_line2,
-				_line3,
-				_line4,
-				_line5,
-				_line6,
-				_line7,
-				_line8,
-				_line9
+				_line1, _line2, _line3,
+				_line4, _line5, _line6,
+				_line7, _line8, _line9
 			})
+			{
 				result ^= map.GetHashCode();
+			}
 
 			return result;
 		}
@@ -264,6 +270,19 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <returns>A string that represents the current object.</returns>
 		public override readonly string ToString() => "...";
+
+		/// <summary>
+		/// Set the bits to the specified cell.
+		/// </summary>
+		/// <param name="cellOffset">The cells.</param>
+		/// <param name="bits">Bits.</param>
+		public void SetCell(int cellOffset, bool[] bits)
+		{
+			for (int i = 0, offset = cellOffset * 9, index = offset; i < 9; i++, index++)
+			{
+				this[index] = bits[i];
+			}
+		}
 
 
 		/// <summary>
