@@ -9,6 +9,7 @@ using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual.LastResorts;
 using Sudoku.Solving.Utils;
 using Pair = System.ValueTuple<int, int>;
+using Pom = Sudoku.Solving.Manual.LastResorts.PatternOverlayMethodTechniqueSearcher;
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -71,40 +72,62 @@ namespace Sudoku.Solving.Manual.Fishes
 		{
 			(_, _, var digitDistributions) = grid;
 
+			// Now search fishes.
 			var elimMaps = new GridMap[9];
-			if (_checkTemplates)
+			if (_size <= 4)
 			{
-				// Check templates.
-				// Now sum up all possible eliminations.
-				var searcher = new PatternOverlayMethodTechniqueSearcher();
-				var bag = new Bag<TechniqueInfo>();
-				for (int digit = 0; digit < 9; digit++)
+				for (int size = 2; size <= _size; size++)
 				{
-					searcher.AccumulateAll(bag, grid);
-
-					// Store all eliminations.
-					ref var map = ref elimMaps[digit];
-					if (bag.Any())
+					for (int digit = 0; digit < 9; digit++)
 					{
-						foreach (var info in bag)
-						{
-							foreach (var conclusion in info.Conclusions)
-							{
-								map[conclusion.CellOffset] = true;
-							}
-						}
+						AccumulateAllBySize(accumulator, grid, digit, size, elimMaps, digitDistributions);
 					}
-
-					bag.Clear();
 				}
 			}
-
-			// Now search fishes.
-			for (int size = 2; size <= _size; size++)
+			else
 			{
-				for (int digit = 0; digit < 9; digit++)
+				for (int size = 2; size <= 4; size++)
 				{
-					AccumulateAllBySize(accumulator, grid, digit, size, elimMaps, digitDistributions);
+					for (int digit = 0; digit < 9; digit++)
+					{
+						AccumulateAllBySize(accumulator, grid, digit, size, elimMaps, digitDistributions);
+					}
+				}
+
+				// Checking templates will be started at size greater than 4.
+				if (_checkTemplates)
+				{
+					// Check templates.
+					// Now sum up all possible eliminations.
+					var searcher = new Pom();
+					var bag = new Bag<TechniqueInfo>();
+					for (int digit = 0; digit < 9; digit++)
+					{
+						searcher.AccumulateAll(bag, grid);
+
+						// Store all eliminations.
+						ref var map = ref elimMaps[digit];
+						if (bag.Any())
+						{
+							foreach (var info in bag)
+							{
+								foreach (var conclusion in info.Conclusions)
+								{
+									map[conclusion.CellOffset] = true;
+								}
+							}
+						}
+
+						bag.Clear();
+					}
+				}
+
+				for (int size = 5; size < _size; size++)
+				{
+					for (int digit = 0; digit < 9; digit++)
+					{
+						AccumulateAllBySize(accumulator, grid, digit, size, elimMaps, digitDistributions);
+					}
 				}
 			}
 		}
