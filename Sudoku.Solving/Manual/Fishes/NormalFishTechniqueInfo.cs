@@ -116,11 +116,8 @@ namespace Sudoku.Solving.Manual.Fishes
 			string elimStr = ConclusionCollection.ToString(Conclusions);
 			string? finCellStr = FinCellOffsets is null ? null : CellCollection.ToString(FinCellOffsets);
 			bool condition = !(FinCellOffsets is null) && FinCellOffsets.Count != 0;
-			return $@"{Name}: {value} in {baseSetStr}\{coverSetStr}"
-				+ $@"{(condition
-					? $" (With {(FinCellOffsets!.Count == 1 ? "a fin cell" : "fin cells")}: {finCellStr})"
-					: "")}"
-				+ $" => {elimStr}";
+			string finStr = condition ? $" f{finCellStr}" : string.Empty;
+			return $@"{Name}: {value} in {baseSetStr}\{coverSetStr}{finStr} => {elimStr}";
 		}
 	}
 }
