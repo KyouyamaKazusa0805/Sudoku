@@ -792,6 +792,13 @@
             value; otherwise, <see langword="false"/>.
             </returns>
         </member>
+        <member name="M:Sudoku.Data.FullGridMap.GetCellSubView(System.Int32)">
+            <summary>
+            Get the sub-view of the specified cell.
+            </summary>
+            <param name="cellOffset">The cell offset.</param>
+            <returns>The <see cref="T:System.Boolean"/> array.</returns>
+        </member>
         <member name="M:Sudoku.Data.FullGridMap.ToArray">
             <summary>
             Get all candidate offsets whose bits are set <see langword="true"/>.
@@ -806,6 +813,13 @@
             Returns a string that represents the current object.
             </summary>
             <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="M:Sudoku.Data.FullGridMap.SetCell(System.Int32,System.Boolean[])">
+            <summary>
+            Set the bits to the specified cell.
+            </summary>
+            <param name="cellOffset">The cells.</param>
+            <param name="bits">Bits.</param>
         </member>
         <member name="M:Sudoku.Data.FullGridMap.op_True(Sudoku.Data.FullGridMap)">
             <summary>

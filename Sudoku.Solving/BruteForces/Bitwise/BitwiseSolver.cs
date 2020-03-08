@@ -2,9 +2,10 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
-using System.Text;
 using Sudoku.Data;
 using Sudoku.Runtime;
+using CStyleString = System.Text.StringBuilder;
+using ImmutableString = System.String;
 #if TARGET_64BIT
 using native_int = System.Int32;
 #else
@@ -26,7 +27,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		public override AnalysisResult Solve(IReadOnlyGrid grid)
 		{
 			var str = grid.ToString(".");
-			var sb = new StringBuilder(81);
+			var sb = new CStyleString(81);
 			var stopwatch = new Stopwatch();
 
 			try
@@ -96,7 +97,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		public bool CheckValidity(
 			IReadOnlyGrid grid, [NotNullWhen(true)] out IReadOnlyGrid? solutionIfUnique)
 		{
-			var sb = new StringBuilder(82);
+			var sb = new CStyleString(82);
 			if (Solve(grid.ToString("0"), sb, 2) == 1)
 			{
 				solutionIfUnique = Grid.Parse(sb.ToString());
@@ -117,9 +118,9 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// (<see langword="out"/> parameter) The solution.
 		/// </param>
 		/// <returns>The <see cref="bool"/> result.</returns>
-		public bool CheckValidity(string grid, [NotNullWhen(true)] out string? solutionIfUnique)
+		public bool CheckValidity(ImmutableString grid, [NotNullWhen(true)] out string? solutionIfUnique)
 		{
-			var sb = new StringBuilder(82);
+			var sb = new CStyleString(82);
 			if (Solve(grid, sb, 2) == 1)
 			{
 				solutionIfUnique = sb.ToString();
@@ -141,7 +142,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// </param>
 		/// <param name="limit">The limit.</param>
 		/// <returns>The number of all solutions.</returns>
-		public native_int Solve(string puzzle, StringBuilder? solution, native_int limit)
+		public native_int Solve(ImmutableString puzzle, CStyleString? solution, native_int limit)
 		{
 			try
 			{
@@ -173,8 +174,8 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <returns>The solution count of the puzzle.</returns>
 		[DllImport("Sudoku.BitwiseSolver (x86).dll", EntryPoint = "Solve", CharSet = CharSet.Ansi)]
 		private static extern native_int Solve32(
-			[MarshalAs(UnmanagedType.LPStr)] string puzzle,
-			[MarshalAs(UnmanagedType.LPStr)] StringBuilder? solution,
+			[MarshalAs(UnmanagedType.LPStr)] ImmutableString puzzle,
+			[MarshalAs(UnmanagedType.LPStr)] CStyleString? solution,
 #if TARGET_64BIT
 			[MarshalAs(UnmanagedType.I4)]
 #else
@@ -194,8 +195,8 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <returns>The solution count of the puzzle.</returns>
 		[DllImport("Sudoku.BitwiseSolver (x64).dll", EntryPoint = "Solve", CharSet = CharSet.Ansi)]
 		private static extern native_int Solve64(
-			[MarshalAs(UnmanagedType.LPStr)] string puzzle,
-			[MarshalAs(UnmanagedType.LPStr)] StringBuilder? solution,
+			[MarshalAs(UnmanagedType.LPStr)] ImmutableString puzzle,
+			[MarshalAs(UnmanagedType.LPStr)] CStyleString? solution,
 #if TARGET_64BIT
 			[MarshalAs(UnmanagedType.I4)]
 #else
