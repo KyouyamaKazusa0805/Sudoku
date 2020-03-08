@@ -6,10 +6,9 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Solving.Extensions;
-using Sudoku.Solving.Manual.LastResorts;
 using Sudoku.Solving.Utils;
 using Pair = System.ValueTuple<int, int>;
-using Pom = Sudoku.Solving.Manual.LastResorts.PatternOverlayMethodTechniqueSearcher;
+using Templates = Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher;
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -99,7 +98,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				{
 					// Check templates.
 					// Now sum up all possible eliminations.
-					var searcher = new Pom();
+					var searcher = new Templates(true);
 					var bag = new Bag<TechniqueInfo>();
 					for (int digit = 0; digit < 9; digit++)
 					{
@@ -294,8 +293,7 @@ namespace Sudoku.Solving.Manual.Fishes
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, int digit, int size,
 			GridMap[] elimMaps, GridMap[] digitDistributions, int[] baseSets, GridMap bodyMap)
 		{
-			var enumerable = GetAllProperCoverSets(grid, digit, size, baseSets, elimMaps, bodyMap);
-			foreach (var coverSets in enumerable)
+			foreach (var coverSets in GetAllProperCoverSets(grid, digit, size, baseSets, elimMaps, bodyMap))
 			{
 				// Now search for exo-fins and endo-fins.
 				var tempBodyMap = bodyMap;
@@ -527,7 +525,7 @@ namespace Sudoku.Solving.Manual.Fishes
 			IReadOnlyGrid grid, int digit, int regionsMask, int[] baseSets,
 			GridMap[] elimMaps, GridMap bodyMap, int size)
 		{
-			var regions = regionsMask.GetAllSets().ToArray();
+			var regions = regionsMask.GetAllSets();
 			if (regions.Any(region => grid.HasDigitValue(digit, region)))
 			{
 				return false;
@@ -539,6 +537,14 @@ namespace Sudoku.Solving.Manual.Fishes
 			}
 
 			if (regions.Any(region => (bodyMap & _regionMaps[region]).IsEmpty))
+			{
+				return false;
+			}
+
+			static bool rowJudger(int region) => region / 9 == 1;
+			static bool columnJudger(int region) => region / 9 == 2;
+			if (baseSets.All(rowJudger) && regions.All(columnJudger)
+				|| baseSets.All(columnJudger) && regions.All(rowJudger))
 			{
 				return false;
 			}

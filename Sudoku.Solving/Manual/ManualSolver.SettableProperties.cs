@@ -253,17 +253,13 @@ namespace Sudoku.Solving.Manual
 		/// Hobiwan's fish.
 		/// </para>
 		/// <para>
-		/// The value is <see langword="false"/> in default case. If the value
+		/// The value is <see langword="true"/> in default case. If the value
 		/// is <see langword="true"/>, the solver will check templates first,
 		/// and get all possible eliminations for each digit. If the digit does
 		/// not contain any elimination, the digit will not exist any fish.
 		/// </para>
-		/// <para>
-		/// Due to algorithm, the solver will become extremely slow. We recommend
-		/// you keep this option <see langword="false"/> always.
-		/// </para>
 		/// </summary>
-		public bool HobiwanFishCheckTemplates { get; set; } = false;
+		public bool HobiwanFishCheckTemplates { get; set; } = true;
 
 		/// <summary>
 		/// <para>

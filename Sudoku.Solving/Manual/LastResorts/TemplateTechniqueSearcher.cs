@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// Initializes an instance with the specified <see cref="bool"/> value.
 		/// </summary>
 		/// <param name="templateDeleteOnly">
-		/// Indicates whether the technique searcher checks template deletes.
+		/// Indicates whether the technique searcher checks template deletes only.
 		/// </param>
 		public TemplateTechniqueSearcher(bool templateDeleteOnly) =>
 			_templateDeleteOnly = templateDeleteOnly;

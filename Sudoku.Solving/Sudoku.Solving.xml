@@ -2032,7 +2032,7 @@
             Initializes an instance with the specified <see cref="T:System.Boolean"/> value.
             </summary>
             <param name="templateDeleteOnly">
-            Indicates whether the technique searcher checks template deletes.
+            Indicates whether the technique searcher checks template deletes only.
             </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.Priority">
@@ -2361,14 +2361,10 @@
             Hobiwan's fish.
             </para>
             <para>
-            The value is <see langword="false"/> in default case. If the value
+            The value is <see langword="true"/> in default case. If the value
             is <see langword="true"/>, the solver will check templates first,
             and get all possible eliminations for each digit. If the digit does
             not contain any elimination, the digit will not exist any fish.
-            </para>
-            <para>
-            Due to algorithm, the solver will become extremely slow. We recommend
-            you keep this option <see langword="false"/> always.
             </para>
             </summary>
         </member>
