@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Chaining
+﻿namespace Sudoku.Solving.Manual.Chaining
 {
 	/// <summary>
 	/// Encapsulates a chain technique searcher.

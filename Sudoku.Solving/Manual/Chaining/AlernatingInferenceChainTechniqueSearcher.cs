@@ -4,7 +4,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
-namespace Sudoku.Solving.Chaining
+namespace Sudoku.Solving.Manual.Chaining
 {
 	/// <summary>
 	/// Encapsulates an alternating inference chain (AIC) technique searcher.

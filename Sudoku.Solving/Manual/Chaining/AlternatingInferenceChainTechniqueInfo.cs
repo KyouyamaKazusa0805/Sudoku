@@ -3,7 +3,7 @@ using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
-namespace Sudoku.Solving.Chaining
+namespace Sudoku.Solving.Manual.Chaining
 {
 	/// <summary>
 	/// Provides a usage of alternating inference chain (AIC) technique.

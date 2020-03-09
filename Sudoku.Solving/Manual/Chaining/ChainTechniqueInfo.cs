@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Drawing;
 
-namespace Sudoku.Solving.Chaining
+namespace Sudoku.Solving.Manual.Chaining
 {
 	/// <summary>
 	/// Provides a usage of chain technique.
