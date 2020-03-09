@@ -1,7 +1,7 @@
 ﻿using System;
-using Sudoku.Solving.Utils;
+using System.Runtime.CompilerServices;
 
-namespace Sudoku.Solving.Chaining
+namespace Sudoku.Data
 {
 	/// <summary>
 	/// Provides a node in a chain.
@@ -52,8 +52,20 @@ namespace Sudoku.Solving.Chaining
 		public override string ToString()
 		{
 			string sign = IsOn ? string.Empty : "!";
-			string candStr = CandidateUtils.ToString(Candidate);
+			string candStr = CandidateToString(Candidate);
 			return $"{sign}{candStr}";
+		}
+
+		/// <summary>
+		/// Candidate to string.
+		/// </summary>
+		/// <param name="candidateOffset">The candidate.</param>
+		/// <returns>The string text.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private static string CandidateToString(int candidateOffset)
+		{
+			int cell = candidateOffset / 81;
+			return $"r{cell / 9 + 1}c{cell % 9 + 1}({candidateOffset % 9 + 1})";
 		}
 
 

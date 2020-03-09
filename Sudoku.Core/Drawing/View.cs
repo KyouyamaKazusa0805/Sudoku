@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using Sudoku.Data;
 using Sudoku.Data.Extensions;
 
 namespace Sudoku.Drawing
@@ -26,7 +27,7 @@ namespace Sudoku.Drawing
 		/// <param name="linkMasks">The list of link masks.</param>
 		public View(
 			IReadOnlyList<(int, int)>? cellOffsets, IReadOnlyList<(int, int)>? candidateOffsets,
-			IReadOnlyList<(int, int)>? regionOffsets, IReadOnlyList<int>? linkMasks) =>
+			IReadOnlyList<(int, int)>? regionOffsets, IReadOnlyList<Inference>? linkMasks) =>
 			(CellOffsets, CandidateOffsets, RegionOffsets, LinkMasks) = (cellOffsets, candidateOffsets, regionOffsets, linkMasks);
 
 
@@ -63,21 +64,7 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// All link masks.
 		/// </summary>
-		/// <remarks>
-		/// This property is a list of masks.
-		/// All mask is regarded as 22 bits, 10 bits for base candidate offset,
-		/// another 10 bits for target candidate offset and 2 bits for link type,
-		/// where the value is:
-		/// <list type="table">
-		/// <item>
-		/// <term>0b00</term><description><see langword="false"/> -&gt; <see langword="false"/>.</description>
-		/// <term>0b01</term><description><see langword="false"/> -&gt; <see langword="true"/>.</description>
-		/// <term>0b10</term><description><see langword="true"/> -&gt; <see langword="false"/>.</description>
-		/// <term>0b11</term><description><see langword="true"/> -&gt; <see langword="true"/>.</description>
-		/// </item>
-		/// </list>
-		/// </remarks>
-		public IReadOnlyList<int>? LinkMasks { get; }
+		public IReadOnlyList<Inference>? LinkMasks { get; }
 
 		/// <inheritdoc/>
 		public override string ToString()
@@ -128,13 +115,18 @@ namespace Sudoku.Drawing
 			{
 				sb.AppendLine("Links:");
 				sb.Append("    ");
-				foreach (int linkMask in LinkMasks)
+				foreach (var (startCell, startDigit, startIsOn, endCell, endDigit, endIsOn) in LinkMasks)
 				{
-					int linkType = linkMask >> 20;
-					int baseCandidate = linkType % 729, targetCandidate = linkType / 729;
-
-					sb.Append($"r{baseCandidate / 81 + 1}{baseCandidate % 81 / 9 + 1}({baseCandidate % 9 + 1}) -> ");
-					sb.Append($"r{targetCandidate / 81 + 1}{targetCandidate % 81 / 9 + 1}({targetCandidate % 9 + 1}){separator}");
+					string startCondition = startIsOn ? string.Empty : "!";
+					string endCondition = endIsOn ? string.Empty : "!";
+					int startOutputRow = startCell / 9 + 1;
+					int startOutputColumn = startCell % 9 + 1;
+					int startOutputDigit = startDigit + 1;
+					int endOutputRow = endCell / 9 + 1;
+					int endOutputColumn = endCell % 9 + 1;
+					int endOutputDigit = endDigit + 1;
+					sb.Append($"{startCondition}r{startOutputRow}{startOutputColumn}({startOutputDigit}) -> ");
+					sb.Append($"{endCondition}r{endOutputRow}{endOutputColumn}({endOutputDigit}){separator}");
 				}
 				sb.RemoveFromEnd(separator.Length);
 				sb.AppendLine();

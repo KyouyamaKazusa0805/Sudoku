@@ -71,7 +71,7 @@ namespace Sudoku.Data
 
 		/// <summary>
 		/// To copy an instance with the specified information.
-		/// This initializer is only used for add other cell like
+		/// This constructor is only used for adding or removing some extra cells like:
 		/// <code>
 		/// <see langword="var"/> y = <see langword="new"/> <see cref="GridMap"/>(x) { [i] = <see langword="true"/> };
 		/// </code>

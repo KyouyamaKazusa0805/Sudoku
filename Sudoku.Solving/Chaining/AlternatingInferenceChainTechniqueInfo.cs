@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -14,20 +15,20 @@ namespace Sudoku.Solving.Chaining
 		/// </summary>
 		/// <param name="conclusions">All conclusions.</param>
 		/// <param name="views">All views.</param>
-		/// <param name="inferences">All inferences.</param>
+		/// <param name="nodes">All nodes.</param>
 		public AlternatingInferenceChainTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			IReadOnlyList<Inference> inferences)
-			: base(conclusions, views) => Inferences = inferences;
+			IReadOnlyList<Node> nodes)
+			: base(conclusions, views) => Nodes = nodes;
 
 
 		/// <summary>
 		/// Indicates all inferences.
 		/// </summary>
-		public IReadOnlyList<Inference> Inferences { get; }
+		public IReadOnlyList<Node> Nodes { get; }
 
 		/// <inheritdoc/>
-		public override string Name => throw new System.NotImplementedException();
+		public override string Name => "Alternating Inference Chain";// TODO: Rename.
 
 		/// <inheritdoc/>
 		public override decimal Difficulty
@@ -40,7 +41,7 @@ namespace Sudoku.Solving.Chaining
 					"XY-Chain" => 4.8m,
 					"Alternating Inference Chain" => 4.9m,
 					_ => throw Throwing.ImpossibleCase
-				} + ChainingDifficultyRatingUtils.GetExtraDifficultyByLength(Inferences.Count);
+				} + ChainingDifficultyRatingUtils.GetExtraDifficultyByLength(Nodes.Count);
 			}
 		}
 

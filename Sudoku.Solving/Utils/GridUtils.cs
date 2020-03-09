@@ -32,6 +32,34 @@ namespace Sudoku.Solving.Utils
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether the specified region is a bi-location region
+		/// for the specified digit.
+		/// </para>
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="digit">The digit.</param>
+		/// <param name="region">The region.</param>
+		/// <param name="mask">
+		/// (<see langword="out"/> parameter) The mask off digit appearing mask.
+		/// If the region has the value cell with this digit, this value will be 0.
+		/// </param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool IsBilocationRegion(
+			this IReadOnlyGrid @this, int digit, int region, out short mask)
+		{
+			if (@this.HasDigitValue(digit, region))
+			{
+				mask = 0;
+				return false;
+			}
+
+			mask = @this.GetDigitAppearingMask(digit, region);
+			return mask.CountSet() == 2;
+		}
+
+		/// <summary>
+		/// <para>
 		/// Indicates whether the specified grid contains the candidate.
 		/// </para>
 		/// <para>
@@ -115,16 +143,50 @@ namespace Sudoku.Solving.Utils
 			{
 				result += @this.CandidateExists(cellOffset, digit) ? 1 : 0;
 
-				if (i++ != 8)
+				if (i++ == 8)
 				{
-					result <<= 1;
+					continue;
 				}
+
+				result <<= 1;
 			}
 
 			// Now should reverse all bits. Note that this extension method
 			// will be passed a ref value ('ref int', not 'int').
 			result.ReverseBits();
 			return (short)(result >> 23 & 511); // 23 == 32 - 9
+		}
+
+		/// <summary>
+		/// <para>
+		/// Gets a <see cref="GridMap"/> of cells whose input digit appearing
+		/// in the specified region offset.
+		/// </para>
+		/// <para>
+		/// Note that given and modifiable cells always make this method
+		/// return <see langword="false"/>.
+		/// </para>
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="digit">The digit.</param>
+		/// <param name="regionOffset">The region.</param>
+		/// <returns>The cells' map.</returns>
+		public static GridMap GetDigitAppearingCells(
+			this IReadOnlyGrid @this, int digit, int regionOffset)
+		{
+			var result = GridMap.Empty;
+
+			foreach (int cell in GridMap.GetCellsIn(regionOffset))
+			{
+				if (!@this.CandidateExists(cell, digit))
+				{
+					continue;
+				}
+
+				result[cell] = true;
+			}
+
+			return result;
 		}
 
 		/// <summary>
@@ -198,23 +260,23 @@ namespace Sudoku.Solving.Utils
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>All conjugate pairs.</returns>
-		public static IReadOnlyList<ConjugatePair> GetAllConjugatePairs(
-			this IReadOnlyGrid @this)
+		public static IReadOnlyList<ConjugatePair> GetAllConjugatePairs(this IReadOnlyGrid @this)
 		{
 			var list = new List<ConjugatePair>();
 			for (int region = 0; region < 27; region++)
 			{
 				for (int digit = 0; digit < 9; digit++)
 				{
-					short mask = @this.GetDigitAppearingMask(digit, region);
-					if (mask.CountSet() == 2)
+					if (!@this.IsBilocationRegion(digit, region, out short mask))
 					{
-						// Conjugate pair found.
-						int[] z = mask.GetAllSets().ToArray();
-						int p1 = RegionUtils.GetCellOffset(region, z[0]);
-						int p2 = RegionUtils.GetCellOffset(region, z[1]);
-						list.Add(new ConjugatePair(p1, p2, digit));
+						continue;
 					}
+
+					// Conjugate pair found.
+					int[] z = mask.GetAllSets().ToArray();
+					int p1 = RegionUtils.GetCellOffset(region, z[0]);
+					int p2 = RegionUtils.GetCellOffset(region, z[1]);
+					list.Add(new ConjugatePair(p1, p2, digit));
 				}
 			}
 

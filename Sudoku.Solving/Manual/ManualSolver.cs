@@ -5,6 +5,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Runtime;
+using Sudoku.Solving.Chaining;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual.Alses;
@@ -133,6 +134,10 @@ namespace Sudoku.Solving.Manual
 					new BorescoperDeadlyPatternTechniqueSearcher(),
 					new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
 					new HobiwanFishTechniqueSearcher(HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount, HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
+				},
+				new TechniqueSearcher[]
+				{
+					new AlernatingInferenceChainTechniqueSearcher(),
 				},
 				new TechniqueSearcher[]
 				{
@@ -294,6 +299,7 @@ namespace Sudoku.Solving.Manual
 				new BorescoperDeadlyPatternTechniqueSearcher(),
 				new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
 				new HobiwanFishTechniqueSearcher(HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount, HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
+				new AlernatingInferenceChainTechniqueSearcher(),
 				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 				new PatternOverlayMethodTechniqueSearcher(),
 				new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),

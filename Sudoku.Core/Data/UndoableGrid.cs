@@ -6,7 +6,7 @@ using Sudoku.Data.Stepping;
 namespace Sudoku.Data
 {
 	/// <summary>
-	/// Provides an undo-able sudoku grid. This data structure is nearly same
+	/// Provides an undoable sudoku grid. This data structure is nearly same
 	/// as <see cref="Grid"/>, but only add two methods <see cref="Undo"/>
 	/// and <see cref="Redo"/>.
 	/// </summary>
@@ -26,6 +26,15 @@ namespace Sudoku.Data
 
 		/// <inheritdoc/>
 		public UndoableGrid(short[] masks) : base(masks)
+		{
+		}
+
+		/// <summary>
+		/// Initializes an instance with the specified grid (to convert to
+		/// an undoable grid).
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		public UndoableGrid(Grid grid) : this((short[])grid._masks.Clone())
 		{
 		}
 
@@ -123,27 +132,37 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc/>
+		/// <exception cref="InvalidOperationException">
+		/// Throws when the redo stack is empty.
+		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Redo()
 		{
-			if (_redoStack.Count != 0)
+			if (_redoStack.Count == 0)
 			{
-				var step = _redoStack.Pop();
-				_undoStack.Push(step);
-				step.DoStepTo(this);
+				throw new InvalidOperationException("The redo stack is already empty.");
 			}
+
+			var step = _redoStack.Pop();
+			_undoStack.Push(step);
+			step.DoStepTo(this);
 		}
 
 		/// <inheritdoc/>
+		/// <exception cref="InvalidOperationException">
+		/// Throws when the undo stack is empty.
+		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Undo()
 		{
-			if (_undoStack.Count != 0)
+			if (_undoStack.Count == 0)
 			{
-				var step = _undoStack.Pop();
-				_redoStack.Push(step);
-				step.UndoStepTo(this);
+				throw new InvalidOperationException("The undo stack is already empty.");
 			}
+
+			var step = _undoStack.Pop();
+			_redoStack.Push(step);
+			step.UndoStepTo(this);
 		}
 
 		/// <inheritdoc/>
@@ -163,21 +182,21 @@ namespace Sudoku.Data
 		public static bool operator ==(UndoableGrid left, UndoableGrid right) =>
 			left.Equals(right);
 
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		public static bool operator ==(Grid left, UndoableGrid right) =>
+			left.Equals(right);
+		
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		public static bool operator ==(UndoableGrid left, Grid right) =>
+			left.Equals(right);
+
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(UndoableGrid left, UndoableGrid right) =>
 			!(left == right);
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
-		public static bool operator ==(Grid left, UndoableGrid right) =>
-			left.Equals(right);
-
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(Grid left, UndoableGrid right) =>
 			!(left == right);
-
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
-		public static bool operator ==(UndoableGrid left, Grid right) =>
-			left.Equals(right);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(UndoableGrid left, Grid right) =>

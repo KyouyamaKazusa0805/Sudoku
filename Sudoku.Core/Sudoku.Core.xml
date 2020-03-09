@@ -379,10 +379,21 @@
         </member>
         <member name="M:Sudoku.Data.Extensions.ListEx.RemoveLastElement``1(System.Collections.Generic.IList{``0})">
             <summary>
-            Remove the last element of the specified list.
+            Remove the last element of the specified list, which is equivalent to code:
+            <code>
+            list.RemoveAt(list.Count - 1);
+            </code>
             </summary>
-            <typeparam name="T">The type of this element.</typeparam>
+            <typeparam name="T">The type of each element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The list.</param>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ListEx.RemoveAt``1(System.Collections.Generic.IList{``0},System.Index)">
+            <summary>
+            Remove at the element in the specified index.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="index">The index to remove.</param>
         </member>
         <member name="T:Sudoku.Data.Extensions.ObjectEx">
             <summary>
@@ -754,6 +765,20 @@
             <param name="line8">Line 8 grid map.</param>
             <param name="line9">Line 9 grid map.</param>
         </member>
+        <member name="P:Sudoku.Data.FullGridMap.IsEmpty">
+            <summary>
+            Indicates whether the map has no set bits.
+            This property is equivalent to code '<c>!<see langword="this"/>.IsNotEmpty</c>'.
+            </summary>
+            <seealso cref="P:Sudoku.Data.FullGridMap.IsNotEmpty"/>
+        </member>
+        <member name="P:Sudoku.Data.FullGridMap.IsNotEmpty">
+            <summary>
+            Indicates whether the map has at least one set bit.
+            This property is equivalent to code '<c>!<see langword="this"/>.IsEmpty</c>'.
+            </summary>
+            <seealso cref="P:Sudoku.Data.FullGridMap.IsEmpty"/>
+        </member>
         <member name="P:Sudoku.Data.FullGridMap.Count">
             <summary>
             Indicates the total number of cells where the corresponding
@@ -799,6 +824,14 @@
             <param name="cellOffset">The cell offset.</param>
             <returns>The <see cref="T:System.Boolean"/> array.</returns>
         </member>
+        <member name="M:Sudoku.Data.FullGridMap.ElementAt(System.Int32)">
+            <summary>
+            Simply calls <see cref="M:System.Linq.Enumerable.ElementAt``1(System.Collections.Generic.IEnumerable{``0},System.Int32)"/>.
+            </summary>
+            <param name="index">The index of all true bits.</param>
+            <returns>The total index.</returns>
+            <seealso cref="M:System.Linq.Enumerable.ElementAt``1(System.Collections.Generic.IEnumerable{``0},System.Int32)"/>
+        </member>
         <member name="M:Sudoku.Data.FullGridMap.ToArray">
             <summary>
             Get all candidate offsets whose bits are set <see langword="true"/>.
@@ -820,6 +853,20 @@
             </summary>
             <param name="cellOffset">The cells.</param>
             <param name="bits">Bits.</param>
+        </member>
+        <member name="M:Sudoku.Data.FullGridMap.CreateInstance(System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
+            <summary>
+            Create the instance with some candidates. These candidates will make their own
+            peers. This method will get the intersection of all peers' list.
+            </summary>
+            <param name="candidates">All candidates.</param>
+            <param name="setItself">
+            Indicates whether the peer table will record itself. If the value
+            is <see langword="true"/>, the peer candidates will add itself to
+            calculate the final intersection; otherwise, <see langword="false"/>.
+            The default value is <see langword="false"/>.
+            </param>
+            <returns>The result map.</returns>
         </member>
         <member name="M:Sudoku.Data.FullGridMap.op_True(Sudoku.Data.FullGridMap)">
             <summary>
@@ -1340,7 +1387,7 @@
         <member name="M:Sudoku.Data.GridMap.#ctor(Sudoku.Data.GridMap)">
             <summary>
             To copy an instance with the specified information.
-            This initializer is only used for add other cell like
+            This constructor is only used for adding or removing some extra cells like:
             <code>
             <see langword="var"/> y = <see langword="new"/> <see cref="T:Sudoku.Data.GridMap"/>(x) { [i] = <see langword="true"/> };
             </code>
@@ -1936,6 +1983,141 @@
             <param name="relativePos">The relative position.</param>
             <returns>The cell offset.</returns>
         </member>
+        <member name="T:Sudoku.Data.Inference">
+            <summary>
+            Provides a relationship of two <see cref="T:Sudoku.Data.Node"/>s.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Node"/>
+        </member>
+        <member name="M:Sudoku.Data.Inference.#ctor(System.Int32,System.Boolean,System.Int32,System.Boolean)">
+            <summary>
+            Initializes an instance with the specified nodes.
+            </summary>
+            <param name="startCell">The start cell offset.</param>
+            <param name="startCellIsOn">Indicates whether the start cell is on.</param>
+            <param name="endCell">The end cell offset.</param>
+            <param name="endCellIsOn">Indicates whether the end cell is on.</param>
+        </member>
+        <member name="M:Sudoku.Data.Inference.#ctor(Sudoku.Data.Node,Sudoku.Data.Node)">
+            <summary>
+            Initializes an instance with two nodes.
+            </summary>
+            <param name="startNode">The start node.</param>
+            <param name="endNode">The end node.</param>
+        </member>
+        <member name="P:Sudoku.Data.Inference.StartIsOn">
+            <summary>
+            Indicates whether the start candidate is on.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Inference.EndIsOn">
+            <summary>
+            Indicates whether the end candidate is on.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Inference.StartCell">
+            <summary>
+            Indicates the start cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Inference.StartDigit">
+            <summary>
+            Indicates the start digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Inference.EndCell">
+            <summary>
+            Indicates the end cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Inference.EndDigit">
+            <summary>
+            Indicates the end digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Inference.StartCandidate">
+            <summary>
+            Indicates the start candidate.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Inference.EndCandidate">
+            <summary>
+            Indicates the end candidate.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Inference.StartNode">
+            <summary>
+            The start node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Inference.EndNode">
+            <summary>
+            The end node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Inference.Deconstruct(Sudoku.Data.Node@,Sudoku.Data.Node@)">
+            <summary>
+            Deconstruct the instance.
+            </summary>
+            <param name="start">(<see langword="out"/> parameter) The start node.</param>
+            <param name="end">(<see langword="out"/> parameter) The end node.</param>
+        </member>
+        <member name="M:Sudoku.Data.Inference.Deconstruct(System.Int32@,System.Boolean@,System.Int32@,System.Boolean@)">
+            <summary>
+            Deconstruct the instance.
+            </summary>
+            <param name="startCand">(<see langword="out"/> parameter) The start candidate.</param>
+            <param name="startIsOn">
+            (<see langword="out"/> parameter) Indicates whether the start candidate is on.
+            </param>
+            <param name="endCand">(<see langword="out"/> parameter) The end candidate.</param>
+            <param name="endIsOn">
+            (<see langword="out"/> parameter) Indicates whether the end candidate is on.
+            </param>
+        </member>
+        <member name="M:Sudoku.Data.Inference.Deconstruct(System.Int32@,System.Int32@,System.Boolean@,System.Int32@,System.Int32@,System.Boolean@)">
+            <summary>
+            Deconstruct the instance.
+            </summary>
+            <param name="startCell">(<see langword="out"/> parameter) The start cell.</param>
+            <param name="startDigit">(<see langword="out"/> parameter) The start digit.</param>
+            <param name="startIsOn">
+            (<see langword="out"/> parameter) Indicates whether the start candidate is on.
+            </param>
+            <param name="endCell">(<see langword="out"/> parameter) The end cell.</param>
+            <param name="endDigit">(<see langword="out"/> parameter) The end digit.</param>
+            <param name="endIsOn">
+            (<see langword="out"/> parameter) Indicates whether the end candidate is on.
+            </param>
+        </member>
+        <member name="M:Sudoku.Data.Inference.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Inference.Equals(Sudoku.Data.Inference)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Inference.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Inference.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Inference.op_Equality(Sudoku.Data.Inference,Sudoku.Data.Inference)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Data.Inference.op_Inequality(Sudoku.Data.Inference,Sudoku.Data.Inference)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
         <member name="T:Sudoku.Data.IReadOnlyGrid">
             <summary>
             Provides a read-only sudoku grid.
@@ -2048,6 +2230,74 @@
         </member>
         <member name="M:Sudoku.Data.IReadOnlyGrid.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Data.Node">
+            <summary>
+            Provides a node in a chain.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Node.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Initializes an instance with a specified candidate and a <see cref="T:System.Boolean"/>
+            value.
+            </summary>
+            <param name="candidate">The candidate.</param>
+            <param name="isOn">Indicates whether the candidate is on.</param>
+        </member>
+        <member name="P:Sudoku.Data.Node.Candidate">
+            <summary>
+            Indicates the candidate.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Node.IsOn">
+            <summary>
+            Indicates whether the candidate is on. If the value is <see langword="true"/>,
+            the candidate will be on (i.e. a true candidate); otherwise, <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Node.Deconstruct(System.Int32@,System.Boolean@)">
+            <summary>
+            Deconstruct the instance.
+            </summary>
+            <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
+            <param name="isOn">
+            (<see langword="out"/> parameter) Indicates whether the candidate is on.
+            </param>
+        </member>
+        <member name="M:Sudoku.Data.Node.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Node.Equals(Sudoku.Data.Node)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Node.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Node.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Node.CandidateToString(System.Int32)">
+            <summary>
+            Candidate to string.
+            </summary>
+            <param name="candidateOffset">The candidate.</param>
+            <returns>The string text.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Node.op_Equality(Sudoku.Data.Node,Sudoku.Data.Node)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Data.Node.op_Inequality(Sudoku.Data.Node,Sudoku.Data.Node)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="T:Sudoku.Data.Stepping.AssignmentStep">
             <summary>
@@ -2328,7 +2578,7 @@
         </member>
         <member name="T:Sudoku.Data.UndoableGrid">
             <summary>
-            Provides an undo-able sudoku grid. This data structure is nearly same
+            Provides an undoable sudoku grid. This data structure is nearly same
             as <see cref="T:Sudoku.Data.Grid"/>, but only add two methods <see cref="M:Sudoku.Data.UndoableGrid.Undo"/>
             and <see cref="M:Sudoku.Data.UndoableGrid.Redo"/>.
             </summary>
@@ -2346,6 +2596,13 @@
         </member>
         <member name="M:Sudoku.Data.UndoableGrid.#ctor(System.Int16[])">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.UndoableGrid.#ctor(Sudoku.Data.Grid)">
+            <summary>
+            Initializes an instance with the specified grid (to convert to
+            an undoable grid).
+            </summary>
+            <param name="grid">The grid.</param>
         </member>
         <member name="P:Sudoku.Data.UndoableGrid.Item(System.Int32)">
             <inheritdoc/>
@@ -2370,9 +2627,15 @@
         </member>
         <member name="M:Sudoku.Data.UndoableGrid.Redo">
             <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the redo stack is empty.
+            </exception>
         </member>
         <member name="M:Sudoku.Data.UndoableGrid.Undo">
             <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the undo stack is empty.
+            </exception>
         </member>
         <member name="M:Sudoku.Data.UndoableGrid.Equals(System.Object)">
             <inheritdoc/>
@@ -2391,14 +2654,6 @@
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
         </member>
-        <member name="M:Sudoku.Data.UndoableGrid.op_Inequality(Sudoku.Data.UndoableGrid,Sudoku.Data.UndoableGrid)">
-            <operator name="op_Inequality">
-		<summary>Indicates whether two instances have two different values.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
-	</operator>
-        </member>
         <member name="M:Sudoku.Data.UndoableGrid.op_Equality(Sudoku.Data.Grid,Sudoku.Data.UndoableGrid)">
             <operator name="op_Equality">
 		<summary>Indicates whether two instances have a same value.</summary>
@@ -2407,7 +2662,15 @@
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
         </member>
-        <member name="M:Sudoku.Data.UndoableGrid.op_Inequality(Sudoku.Data.Grid,Sudoku.Data.UndoableGrid)">
+        <member name="M:Sudoku.Data.UndoableGrid.op_Equality(Sudoku.Data.UndoableGrid,Sudoku.Data.Grid)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Data.UndoableGrid.op_Inequality(Sudoku.Data.UndoableGrid,Sudoku.Data.UndoableGrid)">
             <operator name="op_Inequality">
 		<summary>Indicates whether two instances have two different values.</summary>
 		<param name="left">The left instance.</param>
@@ -2415,9 +2678,9 @@
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
         </member>
-        <member name="M:Sudoku.Data.UndoableGrid.op_Equality(Sudoku.Data.UndoableGrid,Sudoku.Data.Grid)">
-            <operator name="op_Equality">
-		<summary>Indicates whether two instances have a same value.</summary>
+        <member name="M:Sudoku.Data.UndoableGrid.op_Inequality(Sudoku.Data.Grid,Sudoku.Data.UndoableGrid)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
 		<param name="left">The left instance.</param>
 		<param name="right">The right instance.</param>
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
@@ -2547,7 +2810,7 @@
             Encapsulates a view when displaying the information on forms.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.View.#ctor(System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Drawing.View.#ctor(System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Inference})">
             <summary>
             Initializes an instance with information.
             </summary>
@@ -2596,20 +2859,6 @@
             <summary>
             All link masks.
             </summary>
-            <remarks>
-            This property is a list of masks.
-            All mask is regarded as 22 bits, 10 bits for base candidate offset,
-            another 10 bits for target candidate offset and 2 bits for link type,
-            where the value is:
-            <list type="table">
-            <item>
-            <term>0b00</term><description><see langword="false"/> -&gt; <see langword="false"/>.</description>
-            <term>0b01</term><description><see langword="false"/> -&gt; <see langword="true"/>.</description>
-            <term>0b10</term><description><see langword="true"/> -&gt; <see langword="false"/>.</description>
-            <term>0b11</term><description><see langword="true"/> -&gt; <see langword="true"/>.</description>
-            </item>
-            </list>
-            </remarks>
         </member>
         <member name="M:Sudoku.Drawing.View.ToString">
             <inheritdoc/>

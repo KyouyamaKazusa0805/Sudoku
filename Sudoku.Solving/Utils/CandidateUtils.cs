@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace Sudoku.Solving.Utils
 {
@@ -13,6 +14,7 @@ namespace Sudoku.Solving.Utils
 		/// </summary>
 		/// <param name="candidateOffset">The candidate offset.</param>
 		/// <returns>A string text.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static string ToString(int candidateOffset)
 		{
 			int cell = candidateOffset / 81;

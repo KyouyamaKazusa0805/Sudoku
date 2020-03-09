@@ -108,6 +108,20 @@ namespace Sudoku.Data
 
 
 		/// <summary>
+		/// Indicates whether the map has no set bits.
+		/// This property is equivalent to code '<c>!<see langword="this"/>.IsNotEmpty</c>'.
+		/// </summary>
+		/// <seealso cref="IsNotEmpty"/>
+		public readonly bool IsEmpty => Offsets.Any();
+
+		/// <summary>
+		/// Indicates whether the map has at least one set bit.
+		/// This property is equivalent to code '<c>!<see langword="this"/>.IsEmpty</c>'.
+		/// </summary>
+		/// <seealso cref="IsEmpty"/>
+		public readonly bool IsNotEmpty => !IsEmpty;
+
+		/// <summary>
 		/// Indicates the total number of cells where the corresponding
 		/// value are set <see langword="true"/>.
 		/// </summary>
@@ -243,6 +257,14 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
+		/// Simply calls <see cref="Enumerable.ElementAt{TSource}(IEnumerable{TSource}, int)"/>.
+		/// </summary>
+		/// <param name="index">The index of all true bits.</param>
+		/// <returns>The total index.</returns>
+		/// <seealso cref="Enumerable.ElementAt{TSource}(IEnumerable{TSource}, int)"/>
+		public readonly int ElementAt(int index) => Offsets.ElementAt(index);
+
+		/// <summary>
 		/// Get all candidate offsets whose bits are set <see langword="true"/>.
 		/// </summary>
 		/// <returns>An array of candidate offsets.</returns>
@@ -282,6 +304,37 @@ namespace Sudoku.Data
 			{
 				this[index] = bits[i];
 			}
+		}
+
+		/// <summary>
+		/// Create the instance with some candidates. These candidates will make their own
+		/// peers. This method will get the intersection of all peers' list.
+		/// </summary>
+		/// <param name="candidates">All candidates.</param>
+		/// <param name="setItself">
+		/// Indicates whether the peer table will record itself. If the value
+		/// is <see langword="true"/>, the peer candidates will add itself to
+		/// calculate the final intersection; otherwise, <see langword="false"/>.
+		/// The default value is <see langword="false"/>.
+		/// </param>
+		/// <returns>The result map.</returns>
+		public static FullGridMap CreateInstance(IEnumerable<int> candidates, bool setItself = false)
+		{
+			int i = 0;
+			var result = default(FullGridMap);
+			foreach (int candidate in candidates)
+			{
+				if (i++ == 0)
+				{
+					result = new FullGridMap(candidate, setItself);
+				}
+				else
+				{
+					result &= new FullGridMap(candidate, setItself);
+				}
+			}
+
+			return result;
 		}
 
 

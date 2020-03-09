@@ -444,6 +444,89 @@
         <member name="M:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Chaining.AlernatingInferenceChainTechniqueSearcher">
+            <summary>
+            Encapsulates an alternating inference chain (AIC) technique searcher.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Chaining.AlernatingInferenceChainTechniqueSearcher.Priority">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Chaining.AlernatingInferenceChainTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Chaining.AlernatingInferenceChainTechniqueSearcher.GetOnToOffRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.UndoableGrid,System.Collections.Generic.List{System.Int32},System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}})">
+            <summary>
+            Get 'on' nodes to 'off' nodes recursively (Searching for weak links).
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="undoable">Undoable grid.</param>
+            <param name="candidateList">The candidate list.</param>
+            <param name="currentCell">The current cell.</param>
+            <param name="currentDigit">The current digit.</param>
+            <param name="strongRelations">The strong relations.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Chaining.AlernatingInferenceChainTechniqueSearcher.GetOffToOnRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.UndoableGrid,System.Collections.Generic.List{System.Int32},System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}})">
+            <summary>
+            Get 'off' nodes to 'on' nodes recursively (Searching for strong links).
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="undoable">Undoable grid.</param>
+            <param name="candidateList">The candidate list.</param>
+            <param name="currentCell">The current cell.</param>
+            <param name="currentDigit">The current digit.</param>
+            <param name="strongRelations">All strong relations.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Chaining.AlernatingInferenceChainTechniqueSearcher.GetAllStrongRelations(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Get all strong relations.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>All strong relations.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Chaining.AlternatingInferenceChainTechniqueInfo">
+            <summary>
+            Provides a usage of alternating inference chain (AIC) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Chaining.AlternatingInferenceChainTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Node})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="nodes">All nodes.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Chaining.AlternatingInferenceChainTechniqueInfo.Nodes">
+            <summary>
+            Indicates all inferences.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Chaining.AlternatingInferenceChainTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Chaining.AlternatingInferenceChainTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Chaining.AlternatingInferenceChainTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Chaining.AlternatingInferenceChainTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Chaining.ChainTechniqueInfo">
+            <summary>
+            Provides a usage of chain technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Chaining.ChainTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Chaining.ChainTechniqueSearcher">
+            <summary>
+            Encapsulates a chain technique searcher.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Checking.BackdoorSearcher">
             <summary>
             Provides a backdoor searcher.
@@ -5372,12 +5455,28 @@
             <summary>
             <para>Indicates whether the specified cell is a bivalue cell.</para>
             <para>
-            Note that given and modifiable values always make this method
+            Note that given and modifiable cells always make this method
             return <see langword="false"/>.
             </para>
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <param name="cellOffset">The cell offset.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.GridUtils.IsBilocationRegion(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int16@)">
+            <summary>
+            <para>
+            Indicates whether the specified region is a bi-location region
+            for the specified digit.
+            </para>
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="region">The region.</param>
+            <param name="mask">
+            (<see langword="out"/> parameter) The mask off digit appearing mask.
+            If the region has the value cell with this digit, this value will be 0.
+            </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Solving.Utils.GridUtils.CandidateExists(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32)">
@@ -5389,7 +5488,7 @@
             If you want to check the reversal case, please use the method
             <see cref="M:Sudoku.Solving.Utils.GridUtils.CandidateDoesNotExist(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32)"/> instead
             of '<c>!grid.CandidateExists</c>'.
-            Note that given and modifiable values always make this method
+            Note that given and modifiable cells always make this method
             return <see langword="false"/>.
             </para>
             </summary>
@@ -5408,7 +5507,7 @@
             If you want to check the reversal case, please use the method
             <see cref="M:Sudoku.Solving.Utils.GridUtils.CandidateExists(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32)"/> instead
             of '<c>!grid.CandidateDoesNotExist</c>'.
-            Note that given and modifiable values always make this method
+            Note that given and modifiable cells always make this method
             return <see langword="false"/>.
             </para>
             </summary>
@@ -5434,7 +5533,7 @@
             Gets a mask of digit appearing in the specified region offset.
             </para>
             <para>
-            Note that given and modifiable values always make this method
+            Note that given and modifiable cells always make this method
             return <see langword="false"/>.
             </para>
             </summary>
@@ -5447,6 +5546,22 @@
             and 0 to make the cell 'does not have this digit'.
             </returns>
         </member>
+        <member name="M:Sudoku.Solving.Utils.GridUtils.GetDigitAppearingCells(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32)">
+            <summary>
+            <para>
+            Gets a <see cref="T:Sudoku.Data.GridMap"/> of cells whose input digit appearing
+            in the specified region offset.
+            </para>
+            <para>
+            Note that given and modifiable cells always make this method
+            return <see langword="false"/>.
+            </para>
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="regionOffset">The region.</param>
+            <returns>The cells' map.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Utils.GridUtils.GetDigitAppearingMask(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,Sudoku.Data.GridMap)">
             <summary>
             <para>
@@ -5455,7 +5570,7 @@
             not calculated to the result.
             </para>
             <para>
-            Note that given and modifiable values always make this method
+            Note that given and modifiable cells always make this method
             return <see langword="false"/>.
             </para>
             </summary>
