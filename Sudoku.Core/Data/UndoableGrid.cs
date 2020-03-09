@@ -158,6 +158,7 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override int GetHashCode() => base.GetHashCode();
 
+
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(UndoableGrid left, UndoableGrid right) =>
 			left.Equals(right);

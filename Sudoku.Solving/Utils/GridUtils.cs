@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Utils
 		/// <summary>
 		/// <para>Indicates whether the specified cell is a bivalue cell.</para>
 		/// <para>
-		/// Note that given and modifiable values always make this method
+		/// Note that given and modifiable cells always make this method
 		/// return <see langword="false"/>.
 		/// </para>
 		/// </summary>
@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Utils
 		/// If you want to check the reversal case, please use the method
 		/// <see cref="CandidateDoesNotExist(IReadOnlyGrid, int, int)"/> instead
 		/// of '<c>!grid.CandidateExists</c>'.
-		/// Note that given and modifiable values always make this method
+		/// Note that given and modifiable cells always make this method
 		/// return <see langword="false"/>.
 		/// </para>
 		/// </summary>
@@ -60,7 +60,7 @@ namespace Sudoku.Solving.Utils
 		/// If you want to check the reversal case, please use the method
 		/// <see cref="CandidateExists(IReadOnlyGrid, int, int)"/> instead
 		/// of '<c>!grid.CandidateDoesNotExist</c>'.
-		/// Note that given and modifiable values always make this method
+		/// Note that given and modifiable cells always make this method
 		/// return <see langword="false"/>.
 		/// </para>
 		/// </summary>
@@ -95,7 +95,7 @@ namespace Sudoku.Solving.Utils
 		/// Gets a mask of digit appearing in the specified region offset.
 		/// </para>
 		/// <para>
-		/// Note that given and modifiable values always make this method
+		/// Note that given and modifiable cells always make this method
 		/// return <see langword="false"/>.
 		/// </para>
 		/// </summary>
@@ -134,7 +134,7 @@ namespace Sudoku.Solving.Utils
 		/// not calculated to the result.
 		/// </para>
 		/// <para>
-		/// Note that given and modifiable values always make this method
+		/// Note that given and modifiable cells always make this method
 		/// return <see langword="false"/>.
 		/// </para>
 		/// </summary>
