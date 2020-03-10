@@ -33,7 +33,6 @@ namespace Sudoku.Solving.Manual.Chaining
 		{
 			get
 			{
-				// TODO: Rename.
 				return true switch
 				{
 					_ when IsXChain() => "X-Chain",
