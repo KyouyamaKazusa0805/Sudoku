@@ -1186,6 +1186,12 @@
         <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.IsXChain">
+            <summary>
+            Indicates whether the chain is X-Chain.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher">
             <summary>
             Encapsulates an alternating inference chain (AIC) technique searcher.
@@ -1201,12 +1207,20 @@
             Indicates whether the searcher will search for Y-Chains.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.#ctor(System.Boolean,System.Boolean)">
+        <member name="F:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher._maxLength">
+            <summary>
+            Indicates the maximum length to search.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
             <param name="searchX">Indicates searching X-Chains or not.</param>
             <param name="searchY">Indicates searching Y-Chains or not.</param>
+            <param name="maxLength">
+            Indicates the maximum length of a chain to search.
+            </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.Priority">
             <inheritdoc/>
@@ -1214,7 +1228,7 @@
         <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.GetOnToOffRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.GetOnToOffRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.Int32},System.Int32)">
             <summary>
             Get 'on' nodes to 'off' nodes recursively (Searching for weak links).
             </summary>
@@ -1225,8 +1239,9 @@
             <param name="currentDigit">The current digit.</param>
             <param name="strongRelations">The strong relations.</param>
             <param name="stack">The stack.</param>
+            <param name="length">The last length to search.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.GetOffToOnRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.GetOffToOnRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.Int32},System.Int32)">
             <summary>
             Get 'off' nodes to 'on' nodes recursively (Searching for strong links).
             </summary>
@@ -1237,6 +1252,7 @@
             <param name="currentDigit">The current digit.</param>
             <param name="strongRelations">All strong relations.</param>
             <param name="stack">The stack.</param>
+            <param name="length">The last length to search.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.GetAllStrongRelations(Sudoku.Data.IReadOnlyGrid)">
             <summary>
@@ -2222,6 +2238,14 @@
             <param name="solution">The solution.</param>
             <param name="conclusions">The conclusions.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.AicMaximumLength">
+            <summary>
+            <para>
+            Indicates the maximum length of a chain to search.
+            </para>
+            <para>The value is <c>10</c> in default case.</para>
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly">
             <summary>

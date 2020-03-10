@@ -40,28 +40,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				};
 			}
 		}
-
-		private bool IsXChain()
-		{
-			int i = 0;
-			int cand = default;
-			bool isX = true;
-			foreach (var node in Nodes)
-			{
-				if (i++ == 0)
-				{
-					cand = node.Candidate % 9;
-				}
-				else if (cand != node.Candidate % 9)
-				{
-					isX = false;
-					break;
-				}
-			}
-
-			return isX;
-		}
-
+		
 		/// <inheritdoc/>
 		public override decimal Difficulty
 		{
@@ -87,6 +66,31 @@ namespace Sudoku.Solving.Manual.Chaining
 			string elimStr = ConclusionCollection.ToString(Conclusions);
 			string nodesStr = NodeCollection.ToString(Nodes);
 			return $"{Name}: {nodesStr} => {elimStr}";
+		}
+
+		/// <summary>
+		/// Indicates whether the chain is X-Chain.
+		/// </summary>
+		/// <returns>A <see cref="bool"/> value.</returns>
+		private bool IsXChain()
+		{
+			int i = 0;
+			int cand = default;
+			bool isX = true;
+			foreach (var node in Nodes)
+			{
+				if (i++ == 0)
+				{
+					cand = node.Candidate % 9;
+				}
+				else if (cand != node.Candidate % 9)
+				{
+					isX = false;
+					break;
+				}
+			}
+
+			return isX;
 		}
 	}
 }

@@ -6,6 +6,14 @@ namespace Sudoku.Solving.Manual
 	{
 		/// <summary>
 		/// <para>
+		/// Indicates the maximum length of a chain to search.
+		/// </para>
+		/// <para>The value is <c>10</c> in default case.</para>
+		/// </summary>
+		public int AicMaximumLength { get; set; } = 10;
+
+		/// <summary>
+		/// <para>
 		/// Indicates whether the solver should check all technique
 		/// information using the strict technique searchers order.
 		/// </para>

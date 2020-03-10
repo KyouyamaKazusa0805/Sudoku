@@ -2880,7 +2880,7 @@
             <param name="regionOffsets">
             The list of pairs of identifier and region offset.
             </param>
-            <param name="linkMasks">The list of link masks.</param>
+            <param name="links">The list of links.</param>
         </member>
         <member name="P:Sudoku.Drawing.View.CellOffsets">
             <summary>
@@ -2912,7 +2912,7 @@
             all cell offsets' colors.
             </remarks>
         </member>
-        <member name="P:Sudoku.Drawing.View.LinkMasks">
+        <member name="P:Sudoku.Drawing.View.Links">
             <summary>
             All link masks.
             </summary>

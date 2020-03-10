@@ -21,16 +21,26 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		private readonly bool _searchY;
 
+		/// <summary>
+		/// Indicates the maximum length to search.
+		/// </summary>
+		private readonly int _maxLength;
+
 
 		/// <summary>
 		/// Initializes an instance with the specified information.
 		/// </summary>
 		/// <param name="searchX">Indicates searching X-Chains or not.</param>
 		/// <param name="searchY">Indicates searching Y-Chains or not.</param>
-		public AlternatingInferenceChainTechniqueSearcher(bool searchX, bool searchY)
+		/// <param name="maxLength">
+		/// Indicates the maximum length of a chain to search.
+		/// </param>
+		public AlternatingInferenceChainTechniqueSearcher(
+			bool searchX, bool searchY, int maxLength)
 		{
 			_searchX = searchX;
 			_searchY = searchY;
+			_maxLength = maxLength;
 		}
 
 
@@ -58,7 +68,8 @@ namespace Sudoku.Solving.Manual.Chaining
 
 					// Get 'on' to 'off' nodes and 'off' to 'on' nodes recursively.
 					GetOnToOffRecursively(
-						accumulator, grid, candidateList, endCell, endDigit, strongRelations, stack);
+						accumulator, grid, candidateList, endCell, endDigit,
+						strongRelations, stack, _maxLength - 2);
 
 					// Undo the step to recover the candidate status.
 					candidateList[startCandidate] = false;
@@ -79,11 +90,17 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="currentDigit">The current digit.</param>
 		/// <param name="strongRelations">The strong relations.</param>
 		/// <param name="stack">The stack.</param>
+		/// <param name="length">The last length to search.</param>
 		private void GetOnToOffRecursively(
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, FullGridMap candidateList,
 			int currentCell, int currentDigit, IReadOnlyList<(int, int)> strongRelations,
-			IList<int> stack)
+			IList<int> stack, int length)
 		{
+			if (length < 0)
+			{
+				return;
+			}
+
 			// Search for same regions.
 			foreach (int nextCell in new GridMap(currentCell, false).Offsets)
 			{
@@ -102,7 +119,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				stack.Add(nextCandidate);
 
 				GetOffToOnRecursively(
-					accumulator, grid, candidateList, nextCell, currentDigit, strongRelations, stack);
+					accumulator, grid, candidateList, nextCell, currentDigit,
+					strongRelations, stack, length - 1);
 
 				candidateList[nextCandidate] = false;
 				stack.RemoveLastElement();
@@ -128,7 +146,8 @@ namespace Sudoku.Solving.Manual.Chaining
 					stack.Add(nextCandidate);
 
 					GetOffToOnRecursively(
-						accumulator, grid, candidateList, currentCell, nextDigit, strongRelations, stack);
+						accumulator, grid, candidateList, currentCell, nextDigit,
+						strongRelations, stack, length - 1);
 
 					candidateList[nextCandidate] = false;
 					stack.RemoveLastElement();
@@ -146,11 +165,17 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="currentDigit">The current digit.</param>
 		/// <param name="strongRelations">All strong relations.</param>
 		/// <param name="stack">The stack.</param>
+		/// <param name="length">The last length to search.</param>
 		private void GetOffToOnRecursively(
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, FullGridMap candidateList,
 			int currentCell, int currentDigit, IReadOnlyList<(int, int)> strongRelations,
-			IList<int> stack)
+			IList<int> stack, int length)
 		{
+			if (length < 0)
+			{
+				return;
+			}
+
 			// Search for same regions.
 			var (r, c, b) = CellUtils.GetRegion(currentCell);
 			foreach (int region in stackalloc[] { r + 9, c + 18, b })
@@ -177,7 +202,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				CheckElimination(accumulator, grid, candidateList, stack);
 
 				GetOnToOffRecursively(
-					accumulator, grid, candidateList, nextCell, currentDigit, strongRelations, stack);
+					accumulator, grid, candidateList, nextCell, currentDigit,
+					strongRelations, stack, length - 1);
 
 				candidateList[nextCandidate] = false;
 				stack.RemoveLastElement();
@@ -204,7 +230,8 @@ namespace Sudoku.Solving.Manual.Chaining
 					CheckElimination(accumulator, grid, candidateList, stack);
 
 					GetOnToOffRecursively(
-						accumulator, grid, candidateList, currentCell, nextDigit, strongRelations, stack);
+						accumulator, grid, candidateList, currentCell, nextDigit,
+						strongRelations, stack, length - 1);
 
 					candidateList[nextCandidate] = false;
 					stack.RemoveLastElement();
@@ -289,8 +316,8 @@ namespace Sudoku.Solving.Manual.Chaining
 			// Now we should construct a node list.
 			// Record all highlight candidates.
 			int lastCand = default;
-			var nodes = new List<Node>();
 			var candidateOffsets = new List<(int, int)>();
+			var nodes = new List<Node>();
 			var links = new List<Inference>();
 			bool @switch = false;
 			int i = 0;

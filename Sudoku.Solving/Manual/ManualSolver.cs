@@ -133,7 +133,8 @@ namespace Sudoku.Solving.Manual
 					new SueDeCoqTechniqueSearcher(regionMaps),
 					new BorescoperDeadlyPatternTechniqueSearcher(),
 					new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
-					new AlternatingInferenceChainTechniqueSearcher(true, false),
+					new AlternatingInferenceChainTechniqueSearcher(true, false, AicMaximumLength),
+					new AlternatingInferenceChainTechniqueSearcher(false, true, AicMaximumLength),
 				},
 				new TechniqueSearcher[]
 				{
@@ -298,7 +299,8 @@ namespace Sudoku.Solving.Manual
 				new SueDeCoqTechniqueSearcher(regionMaps),
 				new BorescoperDeadlyPatternTechniqueSearcher(),
 				new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
-				new AlternatingInferenceChainTechniqueSearcher(true, false),
+				new AlternatingInferenceChainTechniqueSearcher(true, false, AicMaximumLength),
+				new AlternatingInferenceChainTechniqueSearcher(false, true, AicMaximumLength),
 				new HobiwanFishTechniqueSearcher(HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount, HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
 				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 				new PatternOverlayMethodTechniqueSearcher(),
