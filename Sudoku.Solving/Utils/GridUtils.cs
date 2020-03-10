@@ -185,7 +185,6 @@ namespace Sudoku.Solving.Utils
 			this IReadOnlyGrid @this, int digit, int regionOffset)
 		{
 			var result = GridMap.Empty;
-
 			foreach (int cell in GridMap.GetCellsIn(regionOffset))
 			{
 				if (!@this.CandidateExists(cell, digit))

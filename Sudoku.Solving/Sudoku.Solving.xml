@@ -1167,36 +1167,39 @@
         <member name="M:Sudoku.Solving.Manual.Chaining.AlernatingInferenceChainTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AlernatingInferenceChainTechniqueSearcher.GetOnToOffRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.UndoableGrid,Sudoku.Data.FullGridMap,System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlernatingInferenceChainTechniqueSearcher.GetOnToOffRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.Int32})">
             <summary>
             Get 'on' nodes to 'off' nodes recursively (Searching for weak links).
             </summary>
             <param name="accumulator">The accumulator.</param>
-            <param name="undoable">Undoable grid.</param>
+            <param name="grid">The grid.</param>
             <param name="candidateList">The candidate list.</param>
             <param name="currentCell">The current cell.</param>
             <param name="currentDigit">The current digit.</param>
             <param name="strongRelations">The strong relations.</param>
+            <param name="stack">The stack.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AlernatingInferenceChainTechniqueSearcher.GetOffToOnRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.UndoableGrid,Sudoku.Data.FullGridMap,System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlernatingInferenceChainTechniqueSearcher.GetOffToOnRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.Int32})">
             <summary>
             Get 'off' nodes to 'on' nodes recursively (Searching for strong links).
             </summary>
             <param name="accumulator">The accumulator.</param>
-            <param name="undoable">Undoable grid.</param>
+            <param name="grid">The grid.</param>
             <param name="candidateList">The candidate list.</param>
             <param name="currentCell">The current cell.</param>
             <param name="currentDigit">The current digit.</param>
             <param name="strongRelations">All strong relations.</param>
+            <param name="stack">The stack.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AlernatingInferenceChainTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlernatingInferenceChainTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Collections.Generic.IList{System.Int32})">
             <summary>
             Check the elimination, and save the chain into the accumulator
             when the chain is valid and worth.
             </summary>
             <param name="accumulator">The accumulator.</param>
-            <param name="undoable">The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="candidateList">The candidate list.</param>
+            <param name="stack">The stack.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.AlernatingInferenceChainTechniqueSearcher.GetAllStrongRelations(Sudoku.Data.IReadOnlyGrid)">
             <summary>

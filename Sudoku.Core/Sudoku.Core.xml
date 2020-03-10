@@ -824,7 +824,7 @@
             <param name="cellOffset">The cell offset.</param>
             <returns>The <see cref="T:System.Boolean"/> array.</returns>
         </member>
-        <member name="M:Sudoku.Data.FullGridMap.ElementAt(System.Int32)">
+        <member name="M:Sudoku.Data.FullGridMap.SetBitAt(System.Int32)">
             <summary>
             Simply calls <see cref="M:System.Linq.Enumerable.ElementAt``1(System.Collections.Generic.IEnumerable{``0},System.Int32)"/>.
             </summary>
@@ -832,9 +832,9 @@
             <returns>The result position.</returns>
             <seealso cref="M:System.Linq.Enumerable.ElementAt``1(System.Collections.Generic.IEnumerable{``0},System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Data.FullGridMap.ElementAt(System.Index)">
+        <member name="M:Sudoku.Data.FullGridMap.SetBitAt(System.Index)">
             <summary>
-            Get the index of true bits from start or end.
+            Get the index of <see langword="true"/> bits from start or end.
             </summary>
             <param name="index">
             The index. If <see cref="P:System.Index.IsFromEnd"/> is <see langword="true"/>,

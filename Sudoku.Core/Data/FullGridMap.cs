@@ -263,17 +263,17 @@ namespace Sudoku.Data
 		/// <param name="index">The index of all true bits.</param>
 		/// <returns>The result position.</returns>
 		/// <seealso cref="Enumerable.ElementAt{TSource}(IEnumerable{TSource}, int)"/>
-		public readonly int ElementAt(int index) => Offsets.ElementAt(index);
+		public readonly int SetBitAt(int index) => Offsets.ElementAt(index);
 
 		/// <summary>
-		/// Get the index of true bits from start or end.
+		/// Get the index of <see langword="true"/> bits from start or end.
 		/// </summary>
 		/// <param name="index">
 		/// The index. If <see cref="Index.IsFromEnd"/> is <see langword="true"/>,
 		/// the method will search the bits from end of the list.
 		/// </param>
 		/// <returns>The result position.</returns>
-		public readonly int ElementAt(Index index)
+		public readonly int SetBitAt(Index index)
 		{
 			if (index.IsFromEnd)
 			{

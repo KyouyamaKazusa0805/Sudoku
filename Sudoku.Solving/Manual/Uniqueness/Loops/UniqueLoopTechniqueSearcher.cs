@@ -238,7 +238,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		{
 			// Record all eliminations.
 			var conclusions = new List<Conclusion>();
-			var elimMap = GridMap.CreateInstance(extraCells);
+			var elimMap = GridMap.CreateInstance(extraCells, false);
 
 			foreach (int cell in elimMap.Offsets)
 			{
