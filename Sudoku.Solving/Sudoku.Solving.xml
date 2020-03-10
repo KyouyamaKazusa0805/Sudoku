@@ -1156,58 +1156,6 @@
         <member name="M:Sudoku.Solving.Manual.Alses.SueDeCoqTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Chaining.AlernatingInferenceChainTechniqueSearcher">
-            <summary>
-            Encapsulates an alternating inference chain (AIC) technique searcher.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.AlernatingInferenceChainTechniqueSearcher.Priority">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AlernatingInferenceChainTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AlernatingInferenceChainTechniqueSearcher.GetOnToOffRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.Int32})">
-            <summary>
-            Get 'on' nodes to 'off' nodes recursively (Searching for weak links).
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="candidateList">The candidate list.</param>
-            <param name="currentCell">The current cell.</param>
-            <param name="currentDigit">The current digit.</param>
-            <param name="strongRelations">The strong relations.</param>
-            <param name="stack">The stack.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AlernatingInferenceChainTechniqueSearcher.GetOffToOnRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.Int32})">
-            <summary>
-            Get 'off' nodes to 'on' nodes recursively (Searching for strong links).
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="candidateList">The candidate list.</param>
-            <param name="currentCell">The current cell.</param>
-            <param name="currentDigit">The current digit.</param>
-            <param name="strongRelations">All strong relations.</param>
-            <param name="stack">The stack.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AlernatingInferenceChainTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Collections.Generic.IList{System.Int32})">
-            <summary>
-            Check the elimination, and save the chain into the accumulator
-            when the chain is valid and worth.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="candidateList">The candidate list.</param>
-            <param name="stack">The stack.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AlernatingInferenceChainTechniqueSearcher.GetAllStrongRelations(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Get all strong relations.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>All strong relations.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo">
             <summary>
             Provides a usage of alternating inference chain (AIC) technique.
@@ -1237,6 +1185,75 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.ToString">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher">
+            <summary>
+            Encapsulates an alternating inference chain (AIC) technique searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher._searchX">
+            <summary>
+            Indicates whether the searcher will search for X-Chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher._searchY">
+            <summary>
+            Indicates whether the searcher will search for Y-Chains.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="searchX">Indicates searching X-Chains or not.</param>
+            <param name="searchY">Indicates searching Y-Chains or not.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.Priority">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.GetOnToOffRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.Int32})">
+            <summary>
+            Get 'on' nodes to 'off' nodes recursively (Searching for weak links).
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="candidateList">The candidate list.</param>
+            <param name="currentCell">The current cell.</param>
+            <param name="currentDigit">The current digit.</param>
+            <param name="strongRelations">The strong relations.</param>
+            <param name="stack">The stack.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.GetOffToOnRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.Int32})">
+            <summary>
+            Get 'off' nodes to 'on' nodes recursively (Searching for strong links).
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="candidateList">The candidate list.</param>
+            <param name="currentCell">The current cell.</param>
+            <param name="currentDigit">The current digit.</param>
+            <param name="strongRelations">All strong relations.</param>
+            <param name="stack">The stack.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.GetAllStrongRelations(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Get all strong relations.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>All strong relations.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Collections.Generic.IList{System.Int32})">
+            <summary>
+            Check the elimination, and save the chain into the accumulator
+            when the chain is valid and worth.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="candidateList">The candidate list.</param>
+            <param name="stack">The stack.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.ChainTechniqueInfo">
             <summary>
@@ -5649,6 +5666,18 @@
             <param name="this">(<see langword="this"/> parameter) The value.</param>
             <param name="cellStatus">(<see langword="out"/> parameter) The cell status.</param>
             <param name="candidatesMask">(<see langword="out"/> parameter) The candidate mask.</param>
+        </member>
+        <member name="T:Sudoku.Solving.Utils.NodeCollection">
+            <summary>
+            Provides extension methods of node collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.NodeCollection.ToString(System.Collections.Generic.IEnumerable{Sudoku.Data.Node})">
+            <summary>
+            Get a string consists of nodes' text.
+            </summary>
+            <param name="nodes">The nodes.</param>
+            <returns>The string.</returns>
         </member>
         <member name="T:Sudoku.Solving.Utils.PatternOverlayMethodUtils">
             <summary>

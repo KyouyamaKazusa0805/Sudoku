@@ -28,7 +28,39 @@ namespace Sudoku.Solving.Manual.Chaining
 		public IReadOnlyList<Node> Nodes { get; }
 
 		/// <inheritdoc/>
-		public override string Name => "Alternating Inference Chain";// TODO: Rename.
+		public override string Name
+		{
+			get
+			{
+				// TODO: Rename.
+				return true switch
+				{
+					_ when IsXChain() => "X-Chain",
+					_ => "Alternating Inference Chain"
+				};
+			}
+		}
+
+		private bool IsXChain()
+		{
+			int i = 0;
+			int cand = default;
+			bool isX = true;
+			foreach (var node in Nodes)
+			{
+				if (i++ == 0)
+				{
+					cand = node.Candidate % 9;
+				}
+				else if (cand != node.Candidate % 9)
+				{
+					isX = false;
+					break;
+				}
+			}
+
+			return isX;
+		}
 
 		/// <inheritdoc/>
 		public override decimal Difficulty
@@ -53,7 +85,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override string ToString()
 		{
 			string elimStr = ConclusionCollection.ToString(Conclusions);
-			return $"{Name}: => {elimStr}";
+			string nodesStr = NodeCollection.ToString(Nodes);
+			return $"{Name}: {nodesStr} => {elimStr}";
 		}
 	}
 }

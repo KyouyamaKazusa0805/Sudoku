@@ -9,8 +9,31 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Encapsulates an alternating inference chain (AIC) technique searcher.
 	/// </summary>
-	public sealed class AlernatingInferenceChainTechniqueSearcher : ChainTechniqueSearcher
+	public sealed class AlternatingInferenceChainTechniqueSearcher : ChainTechniqueSearcher
 	{
+		/// <summary>
+		/// Indicates whether the searcher will search for X-Chains.
+		/// </summary>
+		private readonly bool _searchX;
+
+		/// <summary>
+		/// Indicates whether the searcher will search for Y-Chains.
+		/// </summary>
+		private readonly bool _searchY;
+
+
+		/// <summary>
+		/// Initializes an instance with the specified information.
+		/// </summary>
+		/// <param name="searchX">Indicates searching X-Chains or not.</param>
+		/// <param name="searchY">Indicates searching Y-Chains or not.</param>
+		public AlternatingInferenceChainTechniqueSearcher(bool searchX, bool searchY)
+		{
+			_searchX = searchX;
+			_searchY = searchY;
+		}
+
+
 		/// <inheritdoc/>
 		public override int Priority { get; set; } = 45;
 
@@ -86,27 +109,30 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 
 			// Search for the cells.
-			foreach (int nextDigit in grid.GetCandidatesReversal(currentCell).GetAllSets())
+			if (_searchY)
 			{
-				if (nextDigit == currentDigit)
+				foreach (int nextDigit in grid.GetCandidatesReversal(currentCell).GetAllSets())
 				{
-					continue;
+					if (nextDigit == currentDigit)
+					{
+						continue;
+					}
+
+					int nextCandidate = currentCell * 9 + nextDigit;
+					if (candidateList[nextCandidate])
+					{
+						continue;
+					}
+
+					candidateList[nextCandidate] = true;
+					stack.Add(nextCandidate);
+
+					GetOffToOnRecursively(
+						accumulator, grid, candidateList, currentCell, nextDigit, strongRelations, stack);
+
+					candidateList[nextCandidate] = false;
+					stack.RemoveLastElement();
 				}
-
-				int nextCandidate = currentCell * 9 + nextDigit;
-				if (candidateList[nextCandidate])
-				{
-					continue;
-				}
-
-				candidateList[nextCandidate] = true;
-				stack.Add(nextCandidate);
-
-				GetOffToOnRecursively(
-					accumulator, grid, candidateList, currentCell, nextDigit, strongRelations, stack);
-
-				candidateList[nextCandidate] = false;
-				stack.RemoveLastElement();
 			}
 		}
 
@@ -158,94 +184,30 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 
 			// Search for cell.
-			if (grid.IsBivalueCell(currentCell, out short mask))
+			if (_searchY)
 			{
-				mask &= (short)~(1 << currentDigit);
-				int nextDigit = mask.FindFirstSet();
-				int nextCandidate = currentCell * 9 + nextDigit;
-				if (candidateList[nextCandidate])
+				if (grid.IsBivalueCell(currentCell, out short mask))
 				{
-					return;
-				}
-
-				candidateList[nextCandidate] = true;
-				stack.Add(nextCandidate);
-
-				// Now check elimination.
-				// If the elimination exists, the chain will be added to the accumulator.
-				CheckElimination(accumulator, grid, candidateList, stack);
-
-				GetOnToOffRecursively(
-					accumulator, grid, candidateList, currentCell, nextDigit, strongRelations, stack);
-
-				candidateList[nextCandidate] = false;
-				stack.RemoveLastElement();
-			}
-		}
-
-
-		/// <summary>
-		/// Check the elimination, and save the chain into the accumulator
-		/// when the chain is valid and worth.
-		/// </summary>
-		/// <param name="accumulator">The accumulator.</param>
-		/// <param name="grid">The grid.</param>
-		/// <param name="candidateList">The candidate list.</param>
-		/// <param name="stack">The stack.</param>
-		private static void CheckElimination(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, FullGridMap candidateList,
-			IList<int> stack)
-		{
-			int startCandidate = stack[0], endCandidate = stack[^1];
-			var elimMap = FullGridMap.CreateInstance(new[] { startCandidate, endCandidate });
-			if (elimMap.IsNotEmpty)
-			{
-				var conclusions = new List<Conclusion>();
-				foreach (int candidate in elimMap.Offsets)
-				{
-					if (grid.CandidateExists(candidate / 9, candidate % 9))
+					mask &= (short)~(1 << currentDigit);
+					int nextDigit = mask.FindFirstSet();
+					int nextCandidate = currentCell * 9 + nextDigit;
+					if (candidateList[nextCandidate])
 					{
-						conclusions.Add(new Conclusion(ConclusionType.Elimination, candidate));
-					}
-				}
-
-				if (conclusions.Count != 0)
-				{
-					// Now we should construct a node list.
-					// Record all highlight candidates.
-					int lastCand = default;
-					var nodes = new List<Node>();
-					var candidateOffsets = new List<(int, int)>();
-					var linkMasks = new List<Inference>();
-					bool @switch = false;
-					int i = 0;
-					foreach (int candidate in stack)
-					{
-						nodes.Add(new Node(candidate, @switch));
-						candidateOffsets.Add((@switch ? 1 : 0, candidate));
-
-						// To ensure this loop has the predecessor.
-						if (i++ > 0)
-						{
-							linkMasks.Add(new Inference(lastCand, !@switch, candidate, @switch));
-						}
-
-						lastCand = candidate;
-						@switch = !@switch;
+						return;
 					}
 
-					accumulator.Add(
-						new AlternatingInferenceChainTechniqueInfo(
-							conclusions,
-							views: new[]
-							{
-								new View(
-									cellOffsets: null,
-									candidateOffsets,
-									regionOffsets: null,
-									linkMasks)
-							},
-							nodes));
+					candidateList[nextCandidate] = true;
+					stack.Add(nextCandidate);
+
+					// Now check elimination.
+					// If the elimination exists, the chain will be added to the accumulator.
+					CheckElimination(accumulator, grid, candidateList, stack);
+
+					GetOnToOffRecursively(
+						accumulator, grid, candidateList, currentCell, nextDigit, strongRelations, stack);
+
+					candidateList[nextCandidate] = false;
+					stack.RemoveLastElement();
 				}
 			}
 		}
@@ -255,7 +217,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <returns>All strong relations.</returns>
-		private static IReadOnlyList<(int, int)> GetAllStrongRelations(IReadOnlyGrid grid)
+		private IReadOnlyList<(int, int)> GetAllStrongRelations(IReadOnlyGrid grid)
 		{
 			var result = new List<(int, int)>();
 			for (int region = 0; region < 27; region++)
@@ -273,18 +235,92 @@ namespace Sudoku.Solving.Manual.Chaining
 						RegionUtils.GetCellOffset(region, mask.GetNextSetBit(pos1)) * 9 + digit));
 				}
 			}
-			for (int cell = 0; cell < 81; cell++)
+			if (_searchY)
 			{
-				if (!grid.IsBivalueCell(cell, out short mask))
+				for (int cell = 0; cell < 81; cell++)
 				{
-					continue;
-				}
+					if (!grid.IsBivalueCell(cell, out short mask))
+					{
+						continue;
+					}
 
-				int digit1 = mask.FindFirstSet();
-				result.Add((cell * 9 + digit1, cell * 9 + mask.GetNextSetBit(digit1)));
+					int digit1 = mask.FindFirstSet();
+					result.Add((cell * 9 + digit1, cell * 9 + mask.GetNextSetBit(digit1)));
+				}
 			}
 
 			return result;
+		}
+
+
+		/// <summary>
+		/// Check the elimination, and save the chain into the accumulator
+		/// when the chain is valid and worth.
+		/// </summary>
+		/// <param name="accumulator">The accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="candidateList">The candidate list.</param>
+		/// <param name="stack">The stack.</param>
+		private static void CheckElimination(
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, FullGridMap candidateList,
+			IList<int> stack)
+		{
+			int startCandidate = stack[0], endCandidate = stack[^1];
+			var elimMap = FullGridMap.CreateInstance(new[] { startCandidate, endCandidate });
+			if (!elimMap.IsNotEmpty)
+			{
+				return;
+			}
+
+			var conclusions = new List<Conclusion>();
+			foreach (int candidate in elimMap.Offsets)
+			{
+				if (grid.CandidateExists(candidate / 9, candidate % 9))
+				{
+					conclusions.Add(new Conclusion(ConclusionType.Elimination, candidate));
+				}
+			}
+
+			if (conclusions.Count == 0)
+			{
+				return;
+			}
+
+			// Now we should construct a node list.
+			// Record all highlight candidates.
+			int lastCand = default;
+			var nodes = new List<Node>();
+			var candidateOffsets = new List<(int, int)>();
+			var linkMasks = new List<Inference>();
+			bool @switch = false;
+			int i = 0;
+			foreach (int candidate in stack)
+			{
+				nodes.Add(new Node(candidate, @switch));
+				candidateOffsets.Add((@switch ? 1 : 0, candidate));
+
+				// To ensure this loop has the predecessor.
+				if (i++ > 0)
+				{
+					linkMasks.Add(new Inference(lastCand, !@switch, candidate, @switch));
+				}
+
+				lastCand = candidate;
+				@switch = !@switch;
+			}
+
+			accumulator.Add(
+				new AlternatingInferenceChainTechniqueInfo(
+					conclusions,
+					views: new[]
+					{
+						new View(
+							cellOffsets: null,
+							candidateOffsets,
+							regionOffsets: null,
+							linkMasks)
+					},
+					nodes));
 		}
 	}
 }
