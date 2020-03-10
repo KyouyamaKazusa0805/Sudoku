@@ -24,11 +24,11 @@ namespace Sudoku.Drawing
 		/// <param name="regionOffsets">
 		/// The list of pairs of identifier and region offset.
 		/// </param>
-		/// <param name="linkMasks">The list of link masks.</param>
+		/// <param name="links">The list of links.</param>
 		public View(
 			IReadOnlyList<(int, int)>? cellOffsets, IReadOnlyList<(int, int)>? candidateOffsets,
-			IReadOnlyList<(int, int)>? regionOffsets, IReadOnlyList<Inference>? linkMasks) =>
-			(CellOffsets, CandidateOffsets, RegionOffsets, LinkMasks) = (cellOffsets, candidateOffsets, regionOffsets, linkMasks);
+			IReadOnlyList<(int, int)>? regionOffsets, IReadOnlyList<Inference>? links) =>
+			(CellOffsets, CandidateOffsets, RegionOffsets, Links) = (cellOffsets, candidateOffsets, regionOffsets, links);
 
 
 		/// <summary>
@@ -64,7 +64,7 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// All link masks.
 		/// </summary>
-		public IReadOnlyList<Inference>? LinkMasks { get; }
+		public IReadOnlyList<Inference>? Links { get; }
 
 		/// <inheritdoc/>
 		public override string ToString()
@@ -111,11 +111,11 @@ namespace Sudoku.Drawing
 				sb.RemoveFromEnd(separator.Length);
 				sb.AppendLine();
 			}
-			if (!(LinkMasks is null))
+			if (!(Links is null))
 			{
 				sb.AppendLine("Links:");
 				sb.Append("    ");
-				foreach (var (startCell, startDigit, startIsOn, endCell, endDigit, endIsOn) in LinkMasks)
+				foreach (var (startCell, startDigit, startIsOn, endCell, endDigit, endIsOn) in Links)
 				{
 					string startCondition = startIsOn ? string.Empty : "!";
 					string endCondition = endIsOn ? string.Empty : "!";

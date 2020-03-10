@@ -121,7 +121,7 @@ namespace Sudoku.Solving.Manual.Sdps
 											(0, r2),
 											(1, (int)sameRegion)
 										},
-										linkMasks: null)
+										links: null)
 								},
 								digit,
 								baseRegion: r1,

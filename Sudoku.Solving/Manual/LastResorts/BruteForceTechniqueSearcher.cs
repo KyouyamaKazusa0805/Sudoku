@@ -66,7 +66,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 								cellOffsets: null,
 								candidateOffsets: new[] { (0, cand) },
 								regionOffsets: null,
-								linkMasks: null)
+								links: null)
 						}));
 			}
 		}

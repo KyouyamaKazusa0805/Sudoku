@@ -391,7 +391,7 @@ namespace Sudoku.Solving.Manual.Alses
 									cellOffsets: null,
 									candidateOffsets,
 									regionOffsets: new[] { (0, nonblock), (0, block) },
-									linkMasks: null)
+									links: null)
 							},
 							als1Cells: new List<int>(takenCellsInBlockMap.Offsets),
 							als1Digits: new List<int>(blockMask.GetAllSets()),

@@ -103,7 +103,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 												cellOffsets: null,
 												candidateOffsets,
 												regionOffsets: null,
-												linkMasks: null)
+												links: null)
 										},
 										detailData: new UlType1(
 											cells: loop,
@@ -160,7 +160,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 												cellOffsets: null,
 												candidateOffsets,
 												regionOffsets: null,
-												linkMasks: null)
+												links: null)
 										},
 										detailData: new UlType2(
 											cells: loop,
@@ -275,7 +275,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							cellOffsets: null,
 							candidateOffsets,
 							regionOffsets: null,
-							linkMasks: null)
+							links: null)
 					},
 					detailData: new UlType2(loop, digits, extraDigit)));
 		}
@@ -366,7 +366,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 										cellOffsets: null,
 										candidateOffsets,
 										regionOffsets: new[] { (0, region) },
-										linkMasks: null)
+										links: null)
 								},
 								detailData: new UlType3(
 									cells: loop,
@@ -450,7 +450,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 												cellOffsets: null,
 												candidateOffsets,
 												regionOffsets: new[] { (0, region) },
-												linkMasks: null)
+												links: null)
 										},
 										detailData: new UlType3(
 											cells: loop,
@@ -537,7 +537,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 													cellOffsets: null,
 													candidateOffsets,
 													regionOffsets: new[] { (0, region) },
-													linkMasks: null)
+													links: null)
 											},
 											detailData: new UlType3(
 												cells: loop,
@@ -685,7 +685,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 												cellOffsets: null,
 												candidateOffsets,
 												regionOffsets: new[] { (0, region) },
-												linkMasks: null)
+												links: null)
 										},
 										detailData: new UlType3(
 											cells: loop,
@@ -801,7 +801,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 														cellOffsets: null,
 														candidateOffsets,
 														regionOffsets: new[] { (0, region) },
-														linkMasks: null)
+														links: null)
 												},
 												detailData: new UlType3(
 													cells: loop,
@@ -919,7 +919,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 															cellOffsets: null,
 															candidateOffsets,
 															regionOffsets: new[] { (0, region) },
-															linkMasks: null)
+															links: null)
 													},
 													detailData: new UlType3(
 														cells: loop,
@@ -1004,7 +1004,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 										cellOffsets: null,
 										candidateOffsets,
 										regionOffsets: new[] { (0, region) },
-										linkMasks: null)
+										links: null)
 								},
 								detailData: new UlType4(
 									cells: loop,

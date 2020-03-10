@@ -206,7 +206,7 @@ namespace Sudoku.Solving.Manual.Fishes
 															(0, bs1), (0, bs2),
 															(1, cs1), (1, cs2)
 														},
-														linkMasks: null)
+														links: null)
 												},
 												digit,
 												baseSets,
@@ -378,7 +378,7 @@ namespace Sudoku.Solving.Manual.Fishes
 																		(0, bs1), (0, bs2), (0, bs3),
 																		(1, cs1), (1, cs2), (1, cs3)
 																	},
-																	linkMasks: null)
+																	links: null)
 															},
 															digit,
 															baseSets,
@@ -559,7 +559,7 @@ namespace Sudoku.Solving.Manual.Fishes
 																				(1, cs1), (1, cs2),
 																				(1, cs3), (1, cs4)
 																			},
-																			linkMasks: null)
+																			links: null)
 																	},
 																	digit,
 																	baseSets,

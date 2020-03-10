@@ -86,7 +86,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 												from conclusion in _tempConclusions
 												select (0, conclusion.CellOffset * 9 + conclusion.Digit)),
 										regionOffsets: null,
-										linkMasks: null)
+										links: null)
 								},
 								contradictionSeries: new List<Conclusion>(_tempConclusions)));
 					}
@@ -144,7 +144,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 										from tempConclusion in _tempConclusions
 										select (0, tempConclusion.CellOffset * 9 + tempConclusion.Digit)),
 								regionOffsets: null,
-								linkMasks: null)
+								links: null)
 						},
 						contradictionSeries: new List<Conclusion>(_tempConclusions)));
 			}

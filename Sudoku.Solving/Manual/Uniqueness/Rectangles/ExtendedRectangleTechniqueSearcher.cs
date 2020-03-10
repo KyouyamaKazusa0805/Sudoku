@@ -226,7 +226,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 												cellOffsets: null,
 												candidateOffsets,
 												regionOffsets: null,
-												linkMasks: null)
+												links: null)
 										},
 										detailData: new XrType1(
 											cells: allCellsMap.ToArray(),
@@ -271,7 +271,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 												cellOffsets: null,
 												candidateOffsets,
 												regionOffsets: null,
-												linkMasks: null)
+												links: null)
 										},
 										detailData: new XrType2(
 											cells: allCellsMap.ToArray(),

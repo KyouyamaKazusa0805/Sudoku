@@ -182,7 +182,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 												(1, c2 * 9 + elimDigit)
 											},
 											regionOffsets: new[] { (0, region) },
-											linkMasks: null)
+											links: null)
 									},
 									startCellOffset: c1,
 									endCellOffset: c2,

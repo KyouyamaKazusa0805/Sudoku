@@ -83,7 +83,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 								cellOffsets: null,
 								candidateOffsets: null,
 								regionOffsets: null,
-								linkMasks: null)
+								links: null)
 						},
 						count: solutions.Count));
 
@@ -151,7 +151,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 								cellOffsets: null,
 								candidateOffsets: null,
 								regionOffsets: null,
-								linkMasks: null)
+								links: null)
 						},
 						count: solutions.Count));
 

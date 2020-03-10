@@ -91,7 +91,7 @@ namespace Sudoku.Solving.Manual.Singles
 										cellOffsets: null,
 										candidateOffsets: new[] { (0, fullHouseCellOffset * 9 + digit) },
 										regionOffsets: new[] { (0, region) },
-										linkMasks: null)
+										links: null)
 								},
 								cellOffset: fullHouseCellOffset,
 								digit));
@@ -155,7 +155,7 @@ namespace Sudoku.Solving.Manual.Singles
 										cellOffsets: null,
 										candidateOffsets: new[] { (0, hiddenSingleCellOffset * 9 + digit) },
 										regionOffsets: new[] { (0, region) },
-										linkMasks: null)
+										links: null)
 								},
 								regionOffset: region,
 								cellOffset: hiddenSingleCellOffset,
@@ -183,7 +183,7 @@ namespace Sudoku.Solving.Manual.Singles
 									cellOffsets: null,
 									candidateOffsets: new[] { (0, i * 9 + digit) },
 									regionOffsets: null,
-									linkMasks: null)
+									links: null)
 							},
 							cellOffset: i,
 							digit));

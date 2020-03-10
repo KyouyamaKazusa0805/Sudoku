@@ -197,7 +197,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										cellOffsets: null,
 										candidateOffsets,
 										regionOffsets: null,
-										linkMasks: null)
+										links: null)
 								},
 								detailData: new UrType2Or5(cells, digits.ToArray(), extraDigitReal, true))
 							: new AvoidableRectangleTechniqueInfo(
@@ -211,7 +211,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 												select (0, cell)),
 										candidateOffsets,
 										regionOffsets: null,
-										linkMasks: null)
+										links: null)
 								},
 								detailData: new ArType2(cells, digits.ToArray(), extraDigitReal)));
 					}
@@ -273,7 +273,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 									cellOffsets: null,
 									candidateOffsets,
 									regionOffsets: null,
-									linkMasks: null)
+									links: null)
 							},
 							detailData: new UrType1(cells, digits.ToArray()))
 						: new AvoidableRectangleTechniqueInfo(
@@ -287,7 +287,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 											select (0, cell)),
 									candidateOffsets: null,
 									regionOffsets: null,
-									linkMasks: null)
+									links: null)
 							},
 							detailData: new ArType1(cells, digits.ToArray())));
 				}
@@ -420,7 +420,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										regionOffsets:
 											new List<(int, int)>(
 												from r in regions select (0, r)),
-										linkMasks: null)
+										links: null)
 								},
 								cells,
 								digits,
@@ -441,7 +441,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										regionOffsets:
 											new List<(int, int)>(
 												from r in regions select (0, r)),
-										linkMasks: null)
+										links: null)
 								},
 								cells,
 								digits,
@@ -594,7 +594,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 									cellOffsets: null,
 									candidateOffsets,
 									regionOffsets: null,
-									linkMasks: null)
+									links: null)
 							},
 							detailData: new UrType2Or5(cells, digits.ToArray(), extraDigit, isType5))
 						: new AvoidableRectangleTechniqueInfo(
@@ -608,7 +608,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 											select (0, cell)),
 									candidateOffsets,
 									regionOffsets: null,
-									linkMasks: null)
+									links: null)
 							},
 							detailData: new ArType2(cells, digits.ToArray(), extraDigit)));
 				}
@@ -753,7 +753,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 											cellOffsets: null,
 											candidateOffsets,
 											regionOffsets: null,
-											linkMasks: null)
+											links: null)
 									},
 									detailData: new UrType3(
 										cells,
@@ -772,7 +772,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 													select (0, cell)),
 											candidateOffsets,
 											regionOffsets: null,
-											linkMasks: null)
+											links: null)
 									},
 									detailData: new ArType3(
 										cells,
@@ -869,7 +869,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 													cellOffsets: null,
 													candidateOffsets,
 													regionOffsets: null,
-													linkMasks: null)
+													links: null)
 											},
 											detailData: new UrType3(
 												cells,
@@ -888,7 +888,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 															select (0, cell)),
 													candidateOffsets,
 													regionOffsets: null,
-													linkMasks: null)
+													links: null)
 											},
 											detailData: new ArType3(
 												cells,
@@ -983,7 +983,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 														cellOffsets: null,
 														candidateOffsets,
 														regionOffsets: null,
-														linkMasks: null)
+														links: null)
 												},
 												detailData: new UrType3(
 													cells,
@@ -1002,7 +1002,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 																select (0, cell)),
 														candidateOffsets,
 														regionOffsets: null,
-														linkMasks: null)
+														links: null)
 												},
 												detailData: new ArType3(
 													cells,
@@ -1139,7 +1139,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 												cellOffsets: null,
 												candidateOffsets,
 												regionOffsets: null,
-												linkMasks: null)
+												links: null)
 										},
 										detailData: new UrType3(
 											cells,
@@ -1158,7 +1158,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 														select (0, cell)),
 												candidateOffsets,
 												regionOffsets: null,
-												linkMasks: null)
+												links: null)
 										},
 										detailData: new ArType3(
 											cells,
@@ -1261,7 +1261,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 														cellOffsets: null,
 														candidateOffsets,
 														regionOffsets: null,
-														linkMasks: null)
+														links: null)
 												},
 												detailData: new UrType3(
 													cells,
@@ -1280,7 +1280,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 																select (0, cell)),
 														candidateOffsets,
 														regionOffsets: null,
-														linkMasks: null)
+														links: null)
 												},
 												detailData: new ArType3(
 													cells,
@@ -1381,7 +1381,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 															cellOffsets: null,
 															candidateOffsets,
 															regionOffsets: null,
-															linkMasks: null)
+															links: null)
 													},
 													detailData: new UrType3(
 														cells,
@@ -1400,7 +1400,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 																	select (0, cell)),
 															candidateOffsets,
 															regionOffsets: null,
-															linkMasks: null)
+															links: null)
 													},
 													detailData: new ArType3(
 														cells,
@@ -1506,7 +1506,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 									cellOffsets: null,
 									candidateOffsets,
 									regionOffsets: new[] { (0, r1), (0, r2) },
-									linkMasks: null)
+									links: null)
 							},
 							detailData: new UrType6(
 								cells,
@@ -1573,7 +1573,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 									cellOffsets: null,
 									candidateOffsets,
 									regionOffsets: new[] { (0, c1), (0, c2) },
-									linkMasks: null)
+									links: null)
 							},
 							detailData: new UrType6(
 								cells,
@@ -1674,7 +1674,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										cellOffsets: null,
 										candidateOffsets,
 										regionOffsets: new[] { (0, regionOffset) },
-										linkMasks: null)
+										links: null)
 								},
 								detailData: new UrType4(
 									cells,

@@ -87,7 +87,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 									cellOffsets: null,
 									candidateOffsets: new[] { (0, trueCandidates[0]) },
 									regionOffsets: null,
-									linkMasks: null)
+									links: null)
 							}));
 					break;
 				}
@@ -228,7 +228,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 										cellOffsets: null,
 										candidateOffsets,
 										regionOffsets: new[] { (0, region) },
-										linkMasks: null)
+										links: null)
 								},
 								trueCandidates,
 								digits: digits.ToArray(),
@@ -303,7 +303,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 												cellOffsets: null,
 												candidateOffsets,
 												regionOffsets: new[] { (0, region) },
-												linkMasks: null)
+												links: null)
 										},
 										trueCandidates,
 										digits: digits.ToArray(),
@@ -383,7 +383,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 														cellOffsets: null,
 														candidateOffsets,
 														regionOffsets: new[] { (0, region) },
-														linkMasks: null)
+														links: null)
 												},
 												trueCandidates,
 												digits: digits.ToArray(),
@@ -467,7 +467,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 															cellOffsets: null,
 															candidateOffsets,
 															regionOffsets: new[] { (0, region) },
-															linkMasks: null)
+															links: null)
 													},
 													trueCandidates,
 													digits: digits.ToArray(),
@@ -595,7 +595,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 											(1, c2 * 9 + conjuagtePairDigit)
 										},
 									regionOffsets: new[] { (0, region) },
-									linkMasks: null)
+									links: null)
 							},
 							digits.ToList(),
 							cells,
@@ -704,7 +704,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 									new List<(int, int)>(
 										from cand in trueCandidates select (0, cand)),
 								regionOffsets: null,
-								linkMasks: null)
+								links: null)
 						},
 						candidates: trueCandidates));
 			}
@@ -745,7 +745,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 										new List<(int, int)>(
 											from cand in trueCandidates select (0, cand)),
 									regionOffsets: null,
-									linkMasks: null)
+									links: null)
 							},
 							candidates: trueCandidates));
 				}
@@ -796,7 +796,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 								new List<(int, int)>(
 									from cand in trueCandidates select (0, cand)),
 							regionOffsets: null,
-							linkMasks: null)
+							links: null)
 					},
 					digit,
 					cells: trueCandidates));

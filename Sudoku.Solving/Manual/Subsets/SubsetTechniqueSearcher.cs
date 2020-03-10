@@ -196,7 +196,7 @@ namespace Sudoku.Solving.Manual.Subsets
 							cellOffsets: null,
 							candidateOffsets: GetNakedSubsetsHighlightedCandidateOffsets(grid, offsets, digits),
 							regionOffsets: new[] { (0, region) },
-							linkMasks: null)
+							links: null)
 					},
 					regionOffset: region,
 					cellOffsets: offsets,
@@ -357,7 +357,7 @@ namespace Sudoku.Solving.Manual.Subsets
 											{
 												(0, region)
 											},
-											linkMasks: null)
+											links: null)
 									},
 									regionOffset: region,
 									cellOffsets,
@@ -404,7 +404,7 @@ namespace Sudoku.Solving.Manual.Subsets
 													{
 														(0, region)
 													},
-													linkMasks: null)
+													links: null)
 											},
 											regionOffset: region,
 											cellOffsets,
@@ -451,7 +451,7 @@ namespace Sudoku.Solving.Manual.Subsets
 														{
 															(0, region)
 														},
-														linkMasks: null)
+														links: null)
 												},
 												regionOffset: region,
 												cellOffsets,

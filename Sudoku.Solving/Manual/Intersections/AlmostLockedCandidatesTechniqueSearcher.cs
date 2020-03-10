@@ -200,7 +200,7 @@ namespace Sudoku.Solving.Manual.Intersections
 									cellOffsets: valueCells.Any() ? valueCells.ToList() : null,
 									candidateOffsets,
 									regionOffsets: new[] { (0, baseSet), (1, coverSet) },
-									linkMasks: null)
+									links: null)
 							},
 							digits: digits.ToArray(),
 							baseCells: new[] { c1 },
@@ -335,7 +335,7 @@ namespace Sudoku.Solving.Manual.Intersections
 											cellOffsets: valueCells.Any() ? valueCells.ToList() : null,
 											candidateOffsets,
 											regionOffsets: new[] { (0, baseSet), (1, coverSet) },
-											linkMasks: null)
+											links: null)
 									},
 									digits: digits.ToArray(),
 									baseCells: new[] { c1, c2 },
@@ -485,7 +485,7 @@ namespace Sudoku.Solving.Manual.Intersections
 												cellOffsets: valueCells.Any() ? valueCells.ToList() : null,
 												candidateOffsets,
 												regionOffsets: new[] { (0, baseSet), (1, coverSet) },
-												linkMasks: null)
+												links: null)
 										},
 										digits: digits.ToArray(),
 										baseCells: new[] { c1, c2, c3 },

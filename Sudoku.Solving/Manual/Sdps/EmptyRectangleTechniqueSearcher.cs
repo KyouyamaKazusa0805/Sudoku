@@ -134,7 +134,7 @@ namespace Sudoku.Solving.Manual.Sdps
 										cellOffsets: null,
 										candidateOffsets,
 										regionOffsets: new[] { (0, block) },
-										linkMasks: null)
+										links: null)
 								},
 								digit,
 								block,

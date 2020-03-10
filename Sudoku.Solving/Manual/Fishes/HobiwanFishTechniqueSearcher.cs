@@ -385,7 +385,7 @@ namespace Sudoku.Solving.Manual.Fishes
 							cellOffsets: null,
 							candidateOffsets,
 							regionOffsets,
-							linkMasks: null)
+							links: null)
 					},
 					digit,
 					baseSets: baseSets.ToArray(),

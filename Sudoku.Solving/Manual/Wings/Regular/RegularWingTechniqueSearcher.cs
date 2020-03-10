@@ -377,7 +377,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 									where !grid[pivot, digit]
 									select (0, pivot * 9 + digit))),
 							regionOffsets: null,
-							linkMasks: null)
+							links: null)
 					},
 					pivot,
 					pivotCandidatesCount: (~pivotMask & 511).CountSet(),

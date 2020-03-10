@@ -135,7 +135,7 @@ namespace Sudoku.Solving.Manual.Intersections
 										cellOffsets: null,
 										candidateOffsets: candidatesList,
 										regionOffsets: null,
-										linkMasks: null)
+										links: null)
 								},
 								digit,
 								baseSet: lockedRegions[0],

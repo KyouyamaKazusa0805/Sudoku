@@ -220,7 +220,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 												cellOffsets: null,
 												candidateOffsets,
 												regionOffsets: null,
-												linkMasks: null)
+												links: null)
 										},
 										detailData: new BdpType1(
 											cells: allCells,
@@ -272,7 +272,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 												cellOffsets: null,
 												candidateOffsets,
 												regionOffsets: null,
-												linkMasks: null)
+												links: null)
 										},
 										detailData: new BdpType2(
 											cells: allCells,
@@ -397,7 +397,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 											cellOffsets: null,
 											candidateOffsets,
 											regionOffsets: null,
-											linkMasks: null)
+											links: null)
 									},
 									detailData: new BdpType3(
 										cells: allCells,
@@ -494,7 +494,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 													cellOffsets: null,
 													candidateOffsets,
 													regionOffsets: null,
-													linkMasks: null)
+													links: null)
 											},
 											detailData: new BdpType3(
 												cells: allCells,
@@ -597,7 +597,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 															cellOffsets: null,
 															candidateOffsets,
 															regionOffsets: null,
-															linkMasks: null)
+															links: null)
 													},
 													detailData: new BdpType3(
 														cells: allCells,
@@ -703,7 +703,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 																cellOffsets: null,
 																candidateOffsets,
 																regionOffsets: null,
-																linkMasks: null)
+																links: null)
 														},
 														detailData: new BdpType3(
 															cells: allCells,
@@ -810,7 +810,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							cellOffsets: null,
 							candidateOffsets,
 							regionOffsets: new[] { (0, block )},
-							linkMasks: null)
+							links: null)
 					},
 					detailData: new BdpType4(
 						cells: allCells,
@@ -982,7 +982,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 												cellOffsets: null,
 												candidateOffsets,
 												regionOffsets: null,
-												linkMasks: null)
+												links: null)
 										},
 										detailData: new BdpType1(
 											cells: allCells,
@@ -1034,7 +1034,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 												cellOffsets: null,
 												candidateOffsets,
 												regionOffsets: null,
-												linkMasks: null)
+												links: null)
 										},
 										detailData: new BdpType2(
 											cells: allCells,

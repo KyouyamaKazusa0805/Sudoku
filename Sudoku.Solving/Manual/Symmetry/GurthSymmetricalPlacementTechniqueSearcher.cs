@@ -153,7 +153,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 							cellOffsets: null,
 							candidateOffsets,
 							regionOffsets: null,
-							linkMasks: null)
+							links: null)
 					},
 					symmetricalType: SymmetricalType.Diagonal,
 					mappingTable: mapping));
@@ -286,7 +286,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 							cellOffsets: null,
 							candidateOffsets,
 							regionOffsets: null,
-							linkMasks: null)
+							links: null)
 					},
 					symmetricalType: SymmetricalType.AntiDiagonal,
 					mappingTable: mapping));
@@ -375,7 +375,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 									cellOffsets: null,
 									candidateOffsets: null,
 									regionOffsets: null,
-									linkMasks: null)
+									links: null)
 							},
 							symmetricalType: SymmetricalType.Central,
 							mappingTable: mapping));

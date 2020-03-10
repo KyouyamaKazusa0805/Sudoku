@@ -291,7 +291,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			int lastCand = default;
 			var nodes = new List<Node>();
 			var candidateOffsets = new List<(int, int)>();
-			var linkMasks = new List<Inference>();
+			var links = new List<Inference>();
 			bool @switch = false;
 			int i = 0;
 			foreach (int candidate in stack)
@@ -302,7 +302,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				// To ensure this loop has the predecessor.
 				if (i++ > 0)
 				{
-					linkMasks.Add(new Inference(lastCand, !@switch, candidate, @switch));
+					links.Add(new Inference(lastCand, !@switch, candidate, @switch));
 				}
 
 				lastCand = candidate;
@@ -318,7 +318,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							cellOffsets: null,
 							candidateOffsets,
 							regionOffsets: null,
-							linkMasks)
+							links)
 					},
 					nodes));
 		}

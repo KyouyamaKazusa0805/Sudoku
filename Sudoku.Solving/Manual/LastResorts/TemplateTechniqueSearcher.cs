@@ -92,7 +92,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 										from cand in conclusions
 										select (0, cand.CellOffset * 9 + cand.Digit)),
 								regionOffsets: null,
-								linkMasks: null)
+								links: null)
 						},
 						isTemplateDeletion: false));
 			}
@@ -135,7 +135,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 										from cand in conclusions
 										select (0, cand.CellOffset * 9 + cand.Digit)),
 								regionOffsets: null,
-								linkMasks: null)
+								links: null)
 						},
 						isTemplateDeletion: true));
 			}
