@@ -346,7 +346,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				@switch = !@switch;
 			}
 
-			accumulator.Add(
+			accumulator.AddIfDoesNotContain(
 				new AlternatingInferenceChainTechniqueInfo(
 					conclusions,
 					views: new[]

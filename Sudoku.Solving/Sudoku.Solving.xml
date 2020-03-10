@@ -1186,6 +1186,12 @@
         <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.Equals(Sudoku.Solving.TechniqueInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.Equals(Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.IsXChain">
             <summary>
             Indicates whether the chain is X-Chain.

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
@@ -8,7 +9,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Provides a usage of alternating inference chain (AIC) technique.
 	/// </summary>
-	public sealed class AlternatingInferenceChainTechniqueInfo : ChainTechniqueInfo
+	public sealed class AlternatingInferenceChainTechniqueInfo : ChainTechniqueInfo, IEquatable<AlternatingInferenceChainTechniqueInfo>
 	{
 		/// <summary>
 		/// Initializes an instance with the specified information.
@@ -74,6 +75,20 @@ namespace Sudoku.Solving.Manual.Chaining
 			string elimStr = ConclusionCollection.ToString(Conclusions);
 			string nodesStr = NodeCollection.ToString(Nodes);
 			return $"{Name}: {nodesStr} => {elimStr}";
+		}
+
+		/// <inheritdoc/>
+		public override bool Equals(TechniqueInfo obj) =>
+			obj is AlternatingInferenceChainTechniqueInfo comparer && Equals(comparer);
+
+		/// <inheritdoc/>
+		public bool Equals(AlternatingInferenceChainTechniqueInfo other)
+		{
+			int head = Nodes[0].Candidate;
+			int tail = Nodes[^1].Candidate;
+			int head2 = other.Nodes[0].Candidate;
+			int tail2 = other.Nodes[^1].Candidate;
+			return head == head2 && tail == tail2 || head == tail2 && tail == head2;
 		}
 
 		/// <summary>
