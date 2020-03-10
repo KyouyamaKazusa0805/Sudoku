@@ -284,6 +284,18 @@ namespace Sudoku.Solving.Manual
 		public bool OnlyRecordTemplateDelete { get; set; } = true;
 
 		/// <summary>
+		/// <para>
+		/// Indicates whether the searcher will save the shortest path in AICs only.
+		/// </para>
+		/// <para>
+		/// The value is <see langword="false"/> in default case. If the value
+		/// is <see langword="true"/>, the searcher will check all chains had stored
+		/// in the list and get the shortest one, but the speed is slow.
+		/// </para>
+		/// </summary>
+		public bool OnlySaveShortestPathAic { get; set; } = false;
+
+		/// <summary>
 		/// <para>Indicates whether the solver will optimizes the applying order.</para>
 		/// <para>
 		/// When the value is <see langword="true"/>, the result to apply to
@@ -299,6 +311,21 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		/// <seealso cref="AnalyzeDifficultyStrictly"/>
 		public bool OptimizedApplyingOrder { get; set; } = false;
+
+		/// <summary>
+		/// <para>
+		/// Indicates whether the solver will record only one AIC
+		/// when searched AICs that contain same head node and tail node,
+		/// but different path.
+		/// </para>
+		/// <para>
+		/// The value is <see langword="true"/> in default case. If the value
+		/// is <see langword="true"/>, the solver will save only one chain with
+		/// the condition above, but the length of the chain may not be the shortest
+		/// one.
+		/// </para>
+		/// </summary>
+		public bool ReductDifferentPathAic { get; set; } = true;
 
 		/// <summary>
 		/// <para>

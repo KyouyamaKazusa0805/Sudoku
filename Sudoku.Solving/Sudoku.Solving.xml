@@ -1227,12 +1227,23 @@
             Indicates whether the searcher will search for Y-Chains.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher._reductDifferentPathAic">
+            <summary>
+            Indicates whether the searcher will reduct same AICs
+            which has same head and tail nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher._onlySaveShortestPathAic">
+            <summary>
+            Indicates whether the searcher will store the shortest path only.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher._maxLength">
             <summary>
             Indicates the maximum length to search.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -1240,6 +1251,14 @@
             <param name="searchY">Indicates searching Y-Chains or not.</param>
             <param name="maxLength">
             Indicates the maximum length of a chain to search.
+            </param>
+            <param name="reductDifferentPathAic">
+            Indicates whether the searcher will reduct same AICs
+            which has same head and tail nodes.
+            </param>
+            <param name="onlySaveShortestPathAic">
+            Indicates whether the searcher will store the shortest path
+            only.
             </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.Priority">
@@ -1290,6 +1309,14 @@
             <param name="grid">The grid.</param>
             <param name="candidateList">The candidate list.</param>
             <param name="stack">The stack.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.GetAct(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo})">
+            <summary>
+            Bound with <see cref="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Collections.Generic.IList{System.Int32})"/>.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <returns>The result action.</returns>
+            <seealso cref="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Collections.Generic.IList{System.Int32})"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.ChainTechniqueInfo">
             <summary>
@@ -2538,6 +2565,18 @@
             <para>The value is <see langword="true"/> in default case.</para>
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.OnlySaveShortestPathAic">
+            <summary>
+            <para>
+            Indicates whether the searcher will save the shortest path in AICs only.
+            </para>
+            <para>
+            The value is <see langword="false"/> in default case. If the value
+            is <see langword="true"/>, the searcher will check all chains had stored
+            in the list and get the shortest one, but the speed is slow.
+            </para>
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder">
             <summary>
             <para>Indicates whether the solver will optimizes the applying order.</para>
@@ -2554,6 +2593,21 @@
             </para>
             </summary>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.ReductDifferentPathAic">
+            <summary>
+            <para>
+            Indicates whether the solver will record only one AIC
+            when searched AICs that contain same head node and tail node,
+            but different path.
+            </para>
+            <para>
+            The value is <see langword="true"/> in default case. If the value
+            is <see langword="true"/>, the solver will save only one chain with
+            the condition above, but the length of the chain may not be the shortest
+            one.
+            </para>
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.UseCalculationPriority">
             <summary>

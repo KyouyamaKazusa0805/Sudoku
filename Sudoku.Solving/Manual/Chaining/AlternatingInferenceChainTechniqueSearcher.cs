@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -22,6 +25,17 @@ namespace Sudoku.Solving.Manual.Chaining
 		private readonly bool _searchY;
 
 		/// <summary>
+		/// Indicates whether the searcher will reduct same AICs
+		/// which has same head and tail nodes.
+		/// </summary>
+		private readonly bool _reductDifferentPathAic;
+
+		/// <summary>
+		/// Indicates whether the searcher will store the shortest path only.
+		/// </summary>
+		private readonly bool _onlySaveShortestPathAic;
+
+		/// <summary>
 		/// Indicates the maximum length to search.
 		/// </summary>
 		private readonly int _maxLength;
@@ -35,12 +49,23 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="maxLength">
 		/// Indicates the maximum length of a chain to search.
 		/// </param>
+		/// <param name="reductDifferentPathAic">
+		/// Indicates whether the searcher will reduct same AICs
+		/// which has same head and tail nodes.
+		/// </param>
+		/// <param name="onlySaveShortestPathAic">
+		/// Indicates whether the searcher will store the shortest path
+		/// only.
+		/// </param>
 		public AlternatingInferenceChainTechniqueSearcher(
-			bool searchX, bool searchY, int maxLength)
+			bool searchX, bool searchY, int maxLength, bool reductDifferentPathAic,
+			bool onlySaveShortestPathAic)
 		{
 			_searchX = searchX;
 			_searchY = searchY;
 			_maxLength = maxLength;
+			_reductDifferentPathAic = reductDifferentPathAic;
+			_onlySaveShortestPathAic = onlySaveShortestPathAic;
 		}
 
 
@@ -298,7 +323,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="grid">The grid.</param>
 		/// <param name="candidateList">The candidate list.</param>
 		/// <param name="stack">The stack.</param>
-		private static void CheckElimination(
+		private void CheckElimination(
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, FullGridMap candidateList,
 			IList<int> stack)
 		{
@@ -346,7 +371,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				@switch = !@switch;
 			}
 
-			accumulator.AddIfDoesNotContain(
+			var resultInfo =
 				new AlternatingInferenceChainTechniqueInfo(
 					conclusions,
 					views: new[]
@@ -357,7 +382,64 @@ namespace Sudoku.Solving.Manual.Chaining
 							regionOffsets: null,
 							links)
 					},
-					nodes));
+					nodes);
+
+			if (_onlySaveShortestPathAic)
+			{
+				// Get all AICs with same head and tail nodes.
+				var set = new HashSet<TechniqueInfo>();
+				foreach (var infoGroupedByNode in
+					from info in accumulator.OfType<AlternatingInferenceChainTechniqueInfo>()
+					group info by (_head: info.Nodes[0], _tail: info.Nodes[^1]))
+				{
+					var ptr = default(TechniqueInfo?);
+					int shortestLength = default;
+
+					// Now check the shortest one.
+					foreach (var info in infoGroupedByNode)
+					{
+						int length = info.Nodes.Count;
+						if (length < shortestLength)
+						{
+							shortestLength = length;
+							ptr = info;
+						}
+					}
+
+					// Then compare to the current result information.
+					if (resultInfo.Nodes.Count < shortestLength)
+					{
+						shortestLength = resultInfo.Nodes.Count;
+						ptr = resultInfo;
+					}
+
+					// Now store it.
+					set.Add(ptr!);
+				}
+
+				accumulator.Clear();
+				accumulator.AddRange(set);
+			}
+			else
+			{
+				GetAct(accumulator)(resultInfo);
+			}
+		}
+
+		/// <summary>
+		/// Bound with <see cref="CheckElimination(IBag{TechniqueInfo}, IReadOnlyGrid, FullGridMap, IList{int})"/>.
+		/// </summary>
+		/// <param name="accumulator">The accumulator.</param>
+		/// <returns>The result action.</returns>
+		/// <seealso cref="CheckElimination(IBag{TechniqueInfo}, IReadOnlyGrid, FullGridMap, IList{int})"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private Action<AlternatingInferenceChainTechniqueInfo> GetAct(IBag<TechniqueInfo> accumulator)
+		{
+			return _reductDifferentPathAic switch
+			{
+				true => accumulator.Add,
+				false => accumulator.AddIfDoesNotContain
+			};
 		}
 	}
 }

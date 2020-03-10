@@ -16,7 +16,7 @@ namespace Sudoku.Data.Extensions
 		/// the specified list does not contain the specified element.
 		/// </summary>
 		/// <typeparam name="T">
-		/// The type of all elements. Should be not <see langword="null"/>.
+		/// The type of all elements. Should not be <see langword="null"/>.
 		/// </typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		/// <param name="item">The item to add.</param>
@@ -25,6 +25,23 @@ namespace Sudoku.Data.Extensions
 			where T : notnull
 		{
 			if (!@this.Contains(item))
+			{
+				@this.Add(item);
+			}
+		}
+
+		/// <summary>
+		/// Adds a series of elements to the <see cref="IBag{T}"/>.
+		/// </summary>
+		/// <typeparam name="T">
+		/// The type of all elements. Should not be <see langword="null"/>.
+		/// </typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="items">The elements.</param>
+		public static void AddRange<T>(this IBag<T> @this, IEnumerable<T> items)
+			where T : notnull
+		{
+			foreach (var item in items)
 			{
 				@this.Add(item);
 			}

@@ -50,10 +50,20 @@
             the specified list does not contain the specified element.
             </summary>
             <typeparam name="T">
-            The type of all elements. Should be not <see langword="null"/>.
+            The type of all elements. Should not be <see langword="null"/>.
             </typeparam>
             <param name="this">(<see langword="this"/> parameter) The list.</param>
             <param name="item">The item to add.</param>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.BagEx.AddRange``1(System.Collections.Generic.IBag{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Adds a series of elements to the <see cref="T:System.Collections.Generic.IBag`1"/>.
+            </summary>
+            <typeparam name="T">
+            The type of all elements. Should not be <see langword="null"/>.
+            </typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="items">The elements.</param>
         </member>
         <member name="T:Sudoku.Data.Extensions.ByteEx">
             <summary>
