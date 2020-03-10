@@ -102,28 +102,31 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 
 			// Search for same regions.
-			foreach (int nextCell in new GridMap(currentCell, false).Offsets)
+			if (_searchX)
 			{
-				if (!grid.CandidateExists(nextCell, currentDigit))
+				foreach (int nextCell in new GridMap(currentCell, false).Offsets)
 				{
-					continue;
+					if (!grid.CandidateExists(nextCell, currentDigit))
+					{
+						continue;
+					}
+
+					int nextCandidate = nextCell * 9 + currentDigit;
+					if (candidateList[nextCandidate])
+					{
+						continue;
+					}
+
+					candidateList[nextCandidate] = true;
+					stack.Add(nextCandidate);
+
+					GetOffToOnRecursively(
+						accumulator, grid, candidateList, nextCell, currentDigit,
+						strongRelations, stack, length - 1);
+
+					candidateList[nextCandidate] = false;
+					stack.RemoveLastElement();
 				}
-
-				int nextCandidate = nextCell * 9 + currentDigit;
-				if (candidateList[nextCandidate])
-				{
-					continue;
-				}
-
-				candidateList[nextCandidate] = true;
-				stack.Add(nextCandidate);
-
-				GetOffToOnRecursively(
-					accumulator, grid, candidateList, nextCell, currentDigit,
-					strongRelations, stack, length - 1);
-
-				candidateList[nextCandidate] = false;
-				stack.RemoveLastElement();
 			}
 
 			// Search for the cells.
@@ -247,21 +250,25 @@ namespace Sudoku.Solving.Manual.Chaining
 		private IReadOnlyList<(int, int)> GetAllStrongRelations(IReadOnlyGrid grid)
 		{
 			var result = new List<(int, int)>();
-			for (int region = 0; region < 27; region++)
+			if (_searchX)
 			{
-				for (int digit = 0; digit < 9; digit++)
+				for (int region = 0; region < 27; region++)
 				{
-					if (!grid.IsBilocationRegion(digit, region, out short mask))
+					for (int digit = 0; digit < 9; digit++)
 					{
-						continue;
-					}
+						if (!grid.IsBilocationRegion(digit, region, out short mask))
+						{
+							continue;
+						}
 
-					int pos1 = mask.FindFirstSet();
-					result.Add((
-						RegionUtils.GetCellOffset(region, pos1) * 9 + digit,
-						RegionUtils.GetCellOffset(region, mask.GetNextSetBit(pos1)) * 9 + digit));
+						int pos1 = mask.FindFirstSet();
+						result.Add((
+							RegionUtils.GetCellOffset(region, pos1) * 9 + digit,
+							RegionUtils.GetCellOffset(region, mask.GetNextSetBit(pos1)) * 9 + digit));
+					}
 				}
 			}
+
 			if (_searchY)
 			{
 				for (int cell = 0; cell < 81; cell++)

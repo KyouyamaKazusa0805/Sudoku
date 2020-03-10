@@ -19,7 +19,7 @@ namespace Sudoku.Debugging
 			var solver = new ManualSolver
 			{
 				CheckAlmostLockedQuadruple = true,
-				//AnalyzeDifficultyStrictly = true,
+				AnalyzeDifficultyStrictly = true,
 			};
 			var grid = Grid.Parse(
 				"400389250008200000920000000009020780040706030037050400000000094000001800092874003");
