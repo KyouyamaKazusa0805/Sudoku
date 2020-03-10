@@ -47,9 +47,25 @@ namespace Sudoku.Data
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
-				var step = new AssignmentStep(value, offset, _masks[offset], new GridMap(offset, false));
-				_undoStack.Push(step);
-				step.DoStepTo(this);
+				var map = GridMap.Empty;
+				foreach (int cell in GridMap.PeerTable[offset])
+				{
+					if (cell == offset)
+					{
+						continue;
+					}
+
+					if (GetCellStatus(cell) != CellStatus.Empty)
+					{
+						continue;
+					}
+
+					map[cell] = true;
+				}
+				_undoStack.Push(new AssignmentStep(value, offset, _masks[offset], map));
+
+				// Do step.
+				base[offset] = value;
 			}
 		}
 
@@ -61,11 +77,13 @@ namespace Sudoku.Data
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
-				var step = value
-					? (Step)new EliminationStep(digit, offset)
-					: new AssignmentStep(digit, offset, _masks[offset], new GridMap(offset, false));
-				_undoStack.Push(step);
-				step.DoStepTo(this);
+				_undoStack.Push(
+					value
+						? (Step)new EliminationStep(digit, offset)
+						: new AntiEliminationStep(digit, offset));
+
+				// Do step.
+				base[offset, digit] = value;
 			}
 		}
 
@@ -82,9 +100,12 @@ namespace Sudoku.Data
 				}
 			}
 
-			var step = new FixStep(map);
-			_undoStack.Push(step);
-			step.DoStepTo(this);
+			_undoStack.Push(new FixStep(map));
+			foreach (int cell in map.Offsets)
+			{
+				ref short mask = ref _masks[cell];
+				mask = (short)((int)CellStatus.Given << 9 | mask & 511);
+			}
 		}
 
 		/// <inheritdoc/>
@@ -99,36 +120,36 @@ namespace Sudoku.Data
 				}
 			}
 
-			var step = new UnfixStep(map);
-			_undoStack.Push(step);
-			step.DoStepTo(this);
+			_undoStack.Push(new UnfixStep(map));
+			foreach (int cell in map.Offsets)
+			{
+				ref short mask = ref _masks[cell];
+				mask = (short)((int)CellStatus.Modifiable << 9 | mask & 511);
+			}
 		}
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override void Reset()
 		{
-			var step = new ResetStep(_initialMasks, _masks);
-			_undoStack.Push(step);
-			step.DoStepTo(this);
+			_undoStack.Push(new ResetStep(_initialMasks, _masks));
+			base.Reset();
 		}
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override void SetCellStatus(int offset, CellStatus cellStatus)
 		{
-			var step = new SetCellStatusStep(offset, GetCellStatus(offset), cellStatus);
-			_undoStack.Push(step);
-			step.DoStepTo(this);
+			_undoStack.Push(new SetCellStatusStep(offset, GetCellStatus(offset), cellStatus));
+			base.SetCellStatus(offset, cellStatus);
 		}
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override void SetMask(int offset, short value)
 		{
-			var step = new SetMaskStep(offset, GetMask(offset), value);
-			_undoStack.Push(step);
-			step.DoStepTo(this);
+			_undoStack.Push(new SetMaskStep(offset, GetMask(offset), value));
+			base.SetMask(offset, value);
 		}
 
 		/// <inheritdoc/>
@@ -167,7 +188,8 @@ namespace Sudoku.Data
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override bool Equals(object? obj) => base.Equals(obj);
+		public override bool Equals(object? obj) =>
+			obj is UndoableGrid comparer && Equals(comparer);
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

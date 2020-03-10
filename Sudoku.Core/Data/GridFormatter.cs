@@ -49,33 +49,6 @@ namespace Sudoku.Data
 		/// <returns>The result.</returns>
 		private string ToSingleLineStringCore(Grid grid)
 		{
-			static int GetFirstFalseCandidate(short value)
-			{
-				// To truncate the value to range 0 to 511.
-				value = (short)~(value & 511);
-
-				// Special case: the value is 0.
-				if (value == 0)
-				{
-					return -1;
-				}
-				else
-				{
-					for (int i = 0; i < 9; i++, value >>= 1)
-					{
-						if ((value & 1) != 0)
-						{
-							return i;
-						}
-					}
-
-					// All values are 0, which means the value is 0,
-					// so return -1 is necessary, even though the special case has been
-					// handled before.
-					return -1;
-				}
-			}
-
 			var sb = new StringBuilder();
 			var elims = new StringBuilder();
 			Grid tempGrid = null!; // This assignment is very dangerous (Non-nullable is assigned null)!
@@ -136,6 +109,38 @@ namespace Sudoku.Data
 
 			string elimsStr = elims.ToString();
 			return $"{sb}{(string.IsNullOrEmpty(elimsStr) ? string.Empty : $":{elimsStr}")}";
+		}
+
+		/// <summary>
+		/// Get the first <see langword="false"/> candidate.
+		/// </summary>
+		/// <param name="value">The value.</param>
+		/// <returns>The first one.</returns>
+		private static int GetFirstFalseCandidate(short value)
+		{
+			// To truncate the value to range 0 to 511.
+			value = (short)~(value & 511);
+
+			// Special case: the value is 0.
+			if (value == 0)
+			{
+				return -1;
+			}
+			else
+			{
+				for (int i = 0; i < 9; i++, value >>= 1)
+				{
+					if ((value & 1) != 0)
+					{
+						return i;
+					}
+				}
+
+				// All values are 0, which means the value is 0,
+				// so return -1 is necessary, even though the special case has been
+				// handled before.
+				return -1;
+			}
 		}
 
 		/// <summary>

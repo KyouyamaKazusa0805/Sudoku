@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Data.Stepping
+﻿using System;
+
+namespace Sudoku.Data.Stepping
 {
 	/// <summary>
 	/// Encapsulates an assignment step.
@@ -42,14 +44,37 @@
 		/// <inheritdoc/>
 		public override void UndoStepTo(UndoableGrid grid)
 		{
-			grid.SetMask(Cell, Mask);
+			grid._masks[Cell] = Mask;
+
 			foreach (int peerCell in InnerMap.Offsets)
 			{
-				grid[peerCell, Digit] = false;
+				grid._masks[peerCell] &= (short)~(1 << Digit);
 			}
 		}
 
 		/// <inheritdoc/>
-		public override void DoStepTo(UndoableGrid grid) => grid[Cell] = Digit;
+		public override void DoStepTo(UndoableGrid grid)
+		{
+			if (Digit >= 0 && Digit < 9)
+			{
+				grid._masks[Cell] = (short)((short)CellStatus.Modifiable << 9 | 511 & ~(1 << Digit));
+				foreach (int cell in GridMap.PeerTable[Cell])
+				{
+					if (grid.GetCellStatus(cell) != CellStatus.Empty)
+					{
+						continue;
+					}
+
+					grid._masks[cell] |= (short)(1 << Digit);
+				}
+			}
+			else if (Digit == -1)
+			{
+				if (grid.GetCellStatus(Cell) == CellStatus.Modifiable)
+				{
+					Array.Copy(grid._initialMasks, grid._masks, 81);
+				}
+			}
+		}
 	}
 }

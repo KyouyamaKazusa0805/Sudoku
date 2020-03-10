@@ -26,27 +26,26 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 
 			// Iterate on each strong relation, and search for weak relations.
+			var candidateList = FullGridMap.Empty;
 			var undoable = new UndoableGrid(tempGrid);
 			var strongRelations = GetAllStrongRelations(undoable);
 			foreach (var (start, end) in strongRelations)
 			{
-				foreach (var infer in new[]
+				foreach (var (startCandidate, endCandidate) in stackalloc[] { (start, end), (end, start) })
 				{
-					new Inference(start, false, end, true),
-					new Inference(end, false, start, true)
-				})
-				{
-					var (_, _, _, endCell, endDigit, _) = infer;
+					int endCell = endCandidate / 9;
+					int endDigit = endCandidate % 9;
+					undoable[startCandidate / 9, startCandidate % 9] = true;
 					undoable[endCell] = endDigit;
-
-					var stack = new List<int> { infer.EndCandidate };
+					candidateList[endCandidate] = true;
 
 					// Get 'on' to 'off' nodes and 'off' to 'on' nodes recursively.
-					GetOnToOffRecursively(accumulator, undoable, stack, endCell, endDigit, strongRelations);
+					GetOnToOffRecursively(accumulator, undoable, candidateList, endCell, endDigit, strongRelations);
 
 					// Undo the step to recover the candidate status.
 					undoable.Undo();
-					stack.RemoveLastElement();
+					undoable.Undo();
+					candidateList[endCandidate] = false;
 				}
 			}
 		}
@@ -61,7 +60,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="currentDigit">The current digit.</param>
 		/// <param name="strongRelations">The strong relations.</param>
 		private void GetOnToOffRecursively(
-			IBag<TechniqueInfo> accumulator, UndoableGrid undoable, List<int> candidateList,
+			IBag<TechniqueInfo> accumulator, UndoableGrid undoable, FullGridMap candidateList,
 			int currentCell, int currentDigit, IReadOnlyList<(int, int)> strongRelations)
 		{
 			var (r, c, b) = CellUtils.GetRegion(currentCell);
@@ -76,20 +75,21 @@ namespace Sudoku.Solving.Manual.Chaining
 					[currentCell] = false
 				}.Offsets)
 				{
-					if (candidateList.Exists(cand => cand / 9 == cell))
+					if (candidateList[cell * 9 + currentDigit])
 					{
 						// The list contains the specified cell,
 						// so this cell should not be added into this list.
 						continue;
 					}
 
-					candidateList.Add(cell * 9 + currentDigit);
+					int cand = cell * 9 + currentDigit;
+					candidateList[cand] = true;
 					undoable[cell, currentDigit] = true;
 
 					GetOffToOnRecursively(accumulator, undoable, candidateList, cell, currentDigit, strongRelations);
 
 					undoable.Undo();
-					candidateList.RemoveLastElement();
+					candidateList[cand] = false;
 				}
 			}
 
@@ -97,13 +97,19 @@ namespace Sudoku.Solving.Manual.Chaining
 			short mask = (short)(undoable.GetCandidatesReversal(currentCell) & ~(1 << currentDigit));
 			foreach (int digit in mask.GetAllSets())
 			{
-				candidateList.Add(currentCell * 9 + digit);
+				int cand = currentCell * 9 + digit;
+				if (candidateList[cand])
+				{
+					continue;
+				}
+
+				candidateList[cand] = true;
 				undoable[currentCell, digit] = true;
 
 				GetOffToOnRecursively(accumulator, undoable, candidateList, currentCell, digit, strongRelations);
 
 				undoable.Undo();
-				candidateList.RemoveLastElement();
+				candidateList[cand] = false;
 			}
 		}
 
@@ -117,13 +123,61 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="currentDigit">The current digit.</param>
 		/// <param name="strongRelations">All strong relations.</param>
 		private void GetOffToOnRecursively(
-			IBag<TechniqueInfo> accumulator, UndoableGrid undoable, List<int> candidateList,
+			IBag<TechniqueInfo> accumulator, UndoableGrid undoable, FullGridMap candidateList,
 			int currentCell, int currentDigit, IReadOnlyList<(int, int)> strongRelations)
 		{
-			// Now we should check elimination.
+			// First and foremost, we should check elimination.
 			// If the elimination exists, the chain will be added to the accumulator;
-			// otherwise, continue to search.
-			int startCandidate = candidateList[0], endCandidate = candidateList[^1];
+			// otherwise, continue to search for other strong or weak links.
+			CheckElimination(accumulator, undoable, candidateList);
+
+			// Continue to search strong links.
+			foreach (var (start, end) in strongRelations)
+			{
+				foreach (int endCandidate in new[] { start, end })
+				{
+					int endCell = endCandidate / 9;
+					if (!new GridMap { currentCell, endCell }.AllSetsAreInOneRegion(out _)
+						&& currentCell != endCell)
+					{
+						// The next link should be in same region with 'endCell'
+						// or at same cell.
+						continue;
+					}
+
+					if (candidateList[endCandidate])
+					{
+						continue;
+					}
+
+					int endDigit = endCandidate % 9;
+
+					undoable[endCell] = endDigit;
+					candidateList[endCandidate] = true;
+
+					// Get 'on' to 'off' nodes and 'off' to 'on' nodes recursively.
+					GetOnToOffRecursively(accumulator, undoable, candidateList, endCell, endDigit, strongRelations);
+
+					// Undo the step to recover the candidate status.
+					undoable.Undo();
+					candidateList[endCandidate] = false;
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// Check the elimination, and save the chain into the accumulator
+		/// when the chain is valid and worth.
+		/// </summary>
+		/// <param name="accumulator">The accumulator.</param>
+		/// <param name="undoable">The grid.</param>
+		/// <param name="candidateList">The candidate list.</param>
+		private static void CheckElimination(
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid undoable, FullGridMap candidateList)
+		{
+			int startCandidate = candidateList.ElementAt(0);
+			int endCandidate = candidateList.ElementAt(^1);
 			var elimMap = FullGridMap.CreateInstance(new[] { startCandidate, endCandidate });
 			if (elimMap.IsNotEmpty)
 			{
@@ -146,7 +200,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					var linkMasks = new List<Inference>();
 					bool @switch = false;
 					int i = 0;
-					foreach (int candidate in candidateList)
+					foreach (int candidate in candidateList.Offsets)
 					{
 						nodes.Add(new Node(candidate, @switch));
 						candidateOffsets.Add((@switch ? 1 : 0, candidate));
@@ -175,31 +229,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							nodes));
 				}
 			}
-
-			// Continue to search strong links.
-			foreach (var (start, end) in strongRelations)
-			{
-				foreach (var infer in new[]
-				{
-					new Inference(start, false, end, true),
-					new Inference(end, false, start, true)
-				})
-				{
-					var (_, _, _, endCell, endDigit, _) = infer;
-
-					undoable[endCell] = endDigit;
-					candidateList.Add(infer.EndCandidate);
-
-					// Get 'on' to 'off' nodes and 'off' to 'on' nodes recursively.
-					GetOnToOffRecursively(accumulator, undoable, candidateList, endCell, endDigit, strongRelations);
-
-					// Undo the step to recover the candidate status.
-					undoable.Undo();
-					candidateList.RemoveLastElement();
-				}
-			}
 		}
-
 
 		/// <summary>
 		/// Get all strong relations.
@@ -226,12 +256,11 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 			for (int cell = 0; cell < 81; cell++)
 			{
-				if (!grid.IsBivalueCell(cell))
+				if (!grid.IsBivalueCell(cell, out short mask))
 				{
 					continue;
 				}
 
-				short mask = grid.GetCandidatesReversal(cell);
 				int digit1 = mask.FindFirstSet();
 				result.Add((cell * 9 + digit1, cell * 9 + mask.GetNextSetBit(digit1)));
 			}

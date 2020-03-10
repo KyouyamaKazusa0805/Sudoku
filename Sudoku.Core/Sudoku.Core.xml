@@ -829,8 +829,18 @@
             Simply calls <see cref="M:System.Linq.Enumerable.ElementAt``1(System.Collections.Generic.IEnumerable{``0},System.Int32)"/>.
             </summary>
             <param name="index">The index of all true bits.</param>
-            <returns>The total index.</returns>
+            <returns>The result position.</returns>
             <seealso cref="M:System.Linq.Enumerable.ElementAt``1(System.Collections.Generic.IEnumerable{``0},System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Data.FullGridMap.ElementAt(System.Index)">
+            <summary>
+            Get the index of true bits from start or end.
+            </summary>
+            <param name="index">
+            The index. If <see cref="P:System.Index.IsFromEnd"/> is <see langword="true"/>,
+            the method will search the bits from end of the list.
+            </param>
+            <returns>The result position.</returns>
         </member>
         <member name="M:Sudoku.Data.FullGridMap.ToArray">
             <summary>
@@ -847,12 +857,24 @@
             </summary>
             <returns>A string that represents the current object.</returns>
         </member>
+        <member name="M:Sudoku.Data.FullGridMap.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.FullGridMap.Add(System.Int32)">
+            <summary>
+            Add the candidate into the list.
+            </summary>
+            <param name="candidate">The candidate.</param>
+        </member>
         <member name="M:Sudoku.Data.FullGridMap.SetCell(System.Int32,System.Boolean[])">
             <summary>
             Set the bits to the specified cell.
             </summary>
             <param name="cellOffset">The cells.</param>
             <param name="bits">Bits.</param>
+        </member>
+        <member name="M:Sudoku.Data.FullGridMap.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.FullGridMap.CreateInstance(System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
             <summary>
@@ -1255,6 +1277,13 @@
             </summary>
             <param name="grid">The grid.</param>
             <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridFormatter.GetFirstFalseCandidate(System.Int16)">
+            <summary>
+            Get the first <see langword="false"/> candidate.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>The first one.</returns>
         </member>
         <member name="M:Sudoku.Data.GridFormatter.ToMultiLineSimpleGridCore(Sudoku.Data.Grid)">
             <summary>
@@ -2298,6 +2327,34 @@
 		<param name="right">The right instance.</param>
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
+        </member>
+        <member name="T:Sudoku.Data.Stepping.AntiEliminationStep">
+            <summary>
+            Encapsulates an anti-elimination step.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.AntiEliminationStep.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="cell">The cell.</param>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.AntiEliminationStep.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.AntiEliminationStep.Cell">
+            <summary>
+            Indicates the cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.AntiEliminationStep.UndoStepTo(Sudoku.Data.UndoableGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.AntiEliminationStep.DoStepTo(Sudoku.Data.UndoableGrid)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.Stepping.AssignmentStep">
             <summary>

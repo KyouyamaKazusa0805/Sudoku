@@ -22,12 +22,22 @@ namespace Sudoku.Solving.Utils
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <param name="cellOffset">The cell offset.</param>
+		/// <param name="mask">
+		/// (<see langword="out"/> parameter) The result mask.
+		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsBivalueCell(this IReadOnlyGrid @this, int cellOffset)
+		public static bool IsBivalueCell(
+			this IReadOnlyGrid @this, int cellOffset, out short mask)
 		{
-			return @this.GetCellStatus(cellOffset) == CellStatus.Empty
-				&& @this.GetCandidatesReversal(cellOffset).CountSet() == 2;
+			if (@this.GetCellStatus(cellOffset) != CellStatus.Empty)
+			{
+				mask = 0;
+				return false;
+			}
+
+			mask = @this.GetCandidatesReversal(cellOffset);
+			return mask.CountSet() == 2;
 		}
 
 		/// <summary>

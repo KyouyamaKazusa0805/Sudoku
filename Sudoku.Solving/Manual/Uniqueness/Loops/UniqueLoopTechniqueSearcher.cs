@@ -26,9 +26,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		{
 			for (int cell = 0; cell < 81; cell++)
 			{
-				if (grid.IsBivalueCell(cell))
+				if (grid.IsBivalueCell(cell, out short mask))
 				{
-					short mask = grid.GetCandidatesReversal(cell);
 					int d1 = mask.GetNextSetBit(-1);
 					int d2 = mask.GetNextSetBit(d1);
 					int[] digits = new[] { d1, d2 };

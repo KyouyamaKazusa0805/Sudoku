@@ -64,7 +64,7 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static string CandidateToString(int candidateOffset)
 		{
-			int cell = candidateOffset / 81;
+			int cell = candidateOffset / 9;
 			return $"r{cell / 9 + 1}c{cell % 9 + 1}({candidateOffset % 9 + 1})";
 		}
 

@@ -64,6 +64,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 					// Try to fill this cell.
 					tempGrid[cell] = digit;
 					int startCandidate = cell * 9 + digit;
+
 					if (IsValidGrid(grid, cell))
 					{
 						TakeAllRecursively(accumulator, tempGrid, startCandidate, _length - 1);

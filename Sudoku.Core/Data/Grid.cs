@@ -63,7 +63,6 @@ namespace Sudoku.Data
 		/// </summary>
 		protected internal readonly short[] _initialMasks;
 
-
 		/// <summary>
 		/// Initializes an instance with the binary mask array.
 		/// </summary>
@@ -124,6 +123,7 @@ namespace Sudoku.Data
 			}
 		}
 
+
 		/// <inheritdoc/>
 		public virtual int this[int offset]
 		{
@@ -162,7 +162,7 @@ namespace Sudoku.Data
 
 					// To trigger the event, which is used for eliminate
 					// all same candidates in peer cells.
-					ValueChanged.Invoke(this, new ValueChangedEventArgs(offset, copy, result, value));
+					ValueChanged?.Invoke(this, new ValueChangedEventArgs(offset, copy, result, value));
 				}
 				else if (value == -1)
 				{
@@ -196,7 +196,7 @@ namespace Sudoku.Data
 				}
 
 				// To trigger the event.
-				ValueChanged.Invoke(this, new ValueChangedEventArgs(offset, copy, result, -1));
+				ValueChanged?.Invoke(this, new ValueChangedEventArgs(offset, copy, result, -1));
 			}
 		}
 
@@ -525,38 +525,38 @@ namespace Sudoku.Data
 						"Multi-line identifier '@' must follow only character '!', '*', '0', '.' or ':'.",
 						nameof(format));
 				}
-				else if (format.Contains('#'))
+			}
+			else if (format.Contains('#'))
+			{
+				if (!format.StartsWith('#'))
 				{
-					if (!format.StartsWith('#'))
-					{
-						throw Throwing.FormatErrorWithMessage(
-							"Intelligence option character '#' must be at the first place.",
-							nameof(format));
-					}
-					else if (format.IsMatch(@"\#[^\.0]+"))
-					{
-						throw Throwing.FormatErrorWithMessage(
-							"Intelligence option character '#' must be with placeholder '0' or '.'.",
-							nameof(format));
-					}
-					else if (format.Contains('0') && format.Contains('.'))
-					{
-						throw Throwing.FormatErrorWithMessage(
-							"Placeholder character '0' and '.' cannot appear both.",
-							nameof(format));
-					}
-					else if (format.Contains('+') && format.Contains('!'))
-					{
-						throw Throwing.FormatErrorWithMessage(
-							"Cell status character '+' and '!' cannot appear both.",
-							nameof(format));
-					}
-					else if (format.Contains(':') && !format.EndsWith(':'))
-					{
-						throw Throwing.FormatErrorWithMessage(
-							"Candidate leading character ':' must be at the last place.",
-							nameof(format));
-					}
+					throw Throwing.FormatErrorWithMessage(
+						"Intelligence option character '#' must be at the first place.",
+						nameof(format));
+				}
+				else if (format.IsMatch(@"\#[^\.0]+"))
+				{
+					throw Throwing.FormatErrorWithMessage(
+						"Intelligence option character '#' must be with placeholder '0' or '.'.",
+						nameof(format));
+				}
+				else if (format.Contains('0') && format.Contains('.'))
+				{
+					throw Throwing.FormatErrorWithMessage(
+						"Placeholder character '0' and '.' cannot appear both.",
+						nameof(format));
+				}
+				else if (format.Contains('+') && format.Contains('!'))
+				{
+					throw Throwing.FormatErrorWithMessage(
+						"Cell status character '+' and '!' cannot appear both.",
+						nameof(format));
+				}
+				else if (format.Contains(':') && !format.EndsWith(':'))
+				{
+					throw Throwing.FormatErrorWithMessage(
+						"Candidate leading character ':' must be at the last place.",
+						nameof(format));
 				}
 			}
 		}

@@ -1,16 +1,16 @@
 ﻿namespace Sudoku.Data.Stepping
 {
 	/// <summary>
-	/// Encapsulates an elimination step.
+	/// Encapsulates an anti-elimination step.
 	/// </summary>
-	public sealed class EliminationStep : Step
+	public sealed class AntiEliminationStep : Step
 	{
 		/// <summary>
 		/// Initializes an instance with the specified information.
 		/// </summary>
 		/// <param name="digit">The digit.</param>
 		/// <param name="cell">The cell.</param>
-		public EliminationStep(int digit, int cell) => (Digit, Cell) = (digit, cell);
+		public AntiEliminationStep(int digit, int cell) => (Digit, Cell) = (digit, cell);
 
 
 		/// <summary>
@@ -26,10 +26,10 @@
 
 		/// <inheritdoc/>
 		public override void UndoStepTo(UndoableGrid grid) =>
-			grid._masks[Cell] &= (short)~(1 << Digit);
+			grid._masks[Cell] |= (short)(1 << Digit);
 
 		/// <inheritdoc/>
 		public override void DoStepTo(UndoableGrid grid) =>
-			grid._masks[Cell] |= (short)(1 << Digit);
+			grid._masks[Cell] &= (short)~(1 << Digit);
 	}
 }

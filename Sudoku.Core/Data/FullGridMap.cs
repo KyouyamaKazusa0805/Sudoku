@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Sudoku.Data
 	/// <see cref="GridMap"/> instead of this data structure as much as possible.
 	/// </remarks>
 	[DebuggerStepThrough]
-	public struct FullGridMap : IEquatable<FullGridMap>
+	public struct FullGridMap : IEquatable<FullGridMap>, IEnumerable<bool>
 	{
 		/// <summary>
 		/// Indicates an empty instance (making no changes).
@@ -112,7 +113,7 @@ namespace Sudoku.Data
 		/// This property is equivalent to code '<c>!<see langword="this"/>.IsNotEmpty</c>'.
 		/// </summary>
 		/// <seealso cref="IsNotEmpty"/>
-		public readonly bool IsEmpty => Offsets.Any();
+		public readonly bool IsEmpty => !Offsets.Any();
 
 		/// <summary>
 		/// Indicates whether the map has at least one set bit.
@@ -260,9 +261,43 @@ namespace Sudoku.Data
 		/// Simply calls <see cref="Enumerable.ElementAt{TSource}(IEnumerable{TSource}, int)"/>.
 		/// </summary>
 		/// <param name="index">The index of all true bits.</param>
-		/// <returns>The total index.</returns>
+		/// <returns>The result position.</returns>
 		/// <seealso cref="Enumerable.ElementAt{TSource}(IEnumerable{TSource}, int)"/>
 		public readonly int ElementAt(int index) => Offsets.ElementAt(index);
+
+		/// <summary>
+		/// Get the index of true bits from start or end.
+		/// </summary>
+		/// <param name="index">
+		/// The index. If <see cref="Index.IsFromEnd"/> is <see langword="true"/>,
+		/// the method will search the bits from end of the list.
+		/// </param>
+		/// <returns>The result position.</returns>
+		public readonly int ElementAt(Index index)
+		{
+			if (index.IsFromEnd)
+			{
+				for (int i = 728; i >= 0; i--)
+				{
+					if (this[i])
+					{
+						return i;
+					}
+				}
+			}
+			else
+			{
+				for (int i = 0; i < 729; i++)
+				{
+					if (this[i])
+					{
+						return i;
+					}
+				}
+			}
+
+			return -1;
+		}
 
 		/// <summary>
 		/// Get all candidate offsets whose bits are set <see langword="true"/>.
@@ -293,6 +328,21 @@ namespace Sudoku.Data
 		/// <returns>A string that represents the current object.</returns>
 		public override readonly string ToString() => "...";
 
+		/// <inheritdoc/>
+		public readonly IEnumerator<bool> GetEnumerator()
+		{
+			for (int i = 0; i < 729; i++)
+			{
+				yield return this[i];
+			}
+		}
+
+		/// <summary>
+		/// Add the candidate into the list.
+		/// </summary>
+		/// <param name="candidate">The candidate.</param>
+		public void Add(int candidate) => this[candidate] = true;
+
 		/// <summary>
 		/// Set the bits to the specified cell.
 		/// </summary>
@@ -305,6 +355,10 @@ namespace Sudoku.Data
 				this[index] = bits[i];
 			}
 		}
+
+		/// <inheritdoc/>
+		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
 
 		/// <summary>
 		/// Create the instance with some candidates. These candidates will make their own
