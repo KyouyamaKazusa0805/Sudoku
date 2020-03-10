@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
@@ -36,11 +37,18 @@ namespace Sudoku.Solving.Manual.Chaining
 				return true switch
 				{
 					_ when IsXChain() => "X-Chain",
+					_ when !IsHeadTailSame() => Conclusions.Count switch
+					{
+						1 => "Discontinuous Nice Loop",
+						2 => "XY-X-Chain",
+						_ => throw Throwing.ImpossibleCase
+					},
+					_ when IsXyChain() => "XY-Chain",
 					_ => "Alternating Inference Chain"
 				};
 			}
 		}
-		
+
 		/// <inheritdoc/>
 		public override decimal Difficulty
 		{
@@ -50,6 +58,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				{
 					"X-Chain" => 4.5m,
 					"XY-Chain" => 4.8m,
+					"XY-X-Chain" => 4.9m,
+					"Discontinuous Nice Loop" => 4.9m,
 					"Alternating Inference Chain" => 4.9m,
 					_ => throw Throwing.ImpossibleCase
 				} + ChainingDifficultyRatingUtils.GetExtraDifficultyByLength(Nodes.Count);
@@ -92,5 +102,30 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			return isX;
 		}
+
+		/// <summary>
+		/// Indicates whether the chain is XY-Chain.
+		/// </summary>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		private bool IsXyChain()
+		{
+			for (int i = 0; i < Nodes.Count; i += 2)
+			{
+				if (Nodes[i].Candidate / 9 != Nodes[i + 1].Candidate / 9)
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		/// <summary>
+		/// Indicates whether the head and tail node contain the different digit.
+		/// </summary>
+		/// <returns>
+		/// <see langword="true"/> is for same digit; otherwise, <see langword="false"/>.
+		/// </returns>
+		private bool IsHeadTailSame() => Nodes[0].Candidate % 9 == Nodes[^1].Candidate % 9;
 	}
 }

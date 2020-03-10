@@ -1192,6 +1192,20 @@
             </summary>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.IsXyChain">
+            <summary>
+            Indicates whether the chain is XY-Chain.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.IsHeadTailSame">
+            <summary>
+            Indicates whether the head and tail node contain the different digit.
+            </summary>
+            <returns>
+            <see langword="true"/> is for same digit; otherwise, <see langword="false"/>.
+            </returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher">
             <summary>
             Encapsulates an alternating inference chain (AIC) technique searcher.
