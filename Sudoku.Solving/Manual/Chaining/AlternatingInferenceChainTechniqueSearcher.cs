@@ -180,36 +180,39 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 
 			// Search for same regions.
-			var (r, c, b) = CellUtils.GetRegion(currentCell);
-			foreach (int region in stackalloc[] { r + 9, c + 18, b })
+			if (_searchX)
 			{
-				var map = grid.GetDigitAppearingCells(currentDigit, region);
-				if (map.Count != 2)
+				var (r, c, b) = CellUtils.GetRegion(currentCell);
+				foreach (int region in stackalloc[] { r + 9, c + 18, b })
 				{
-					continue;
+					var map = grid.GetDigitAppearingCells(currentDigit, region);
+					if (map.Count != 2)
+					{
+						continue;
+					}
+
+					map[currentCell] = false;
+					int nextCell = map.SetBitAt(0);
+					int nextCandidate = nextCell * 9 + currentDigit;
+					if (candidateList[nextCandidate])
+					{
+						continue;
+					}
+
+					candidateList[nextCandidate] = true;
+					stack.Add(nextCandidate);
+
+					// Now check elimination.
+					// If the elimination exists, the chain will be added to the accumulator.
+					CheckElimination(accumulator, grid, candidateList, stack);
+
+					GetOnToOffRecursively(
+						accumulator, grid, candidateList, nextCell, currentDigit,
+						strongRelations, stack, length - 1);
+
+					candidateList[nextCandidate] = false;
+					stack.RemoveLastElement();
 				}
-
-				map[currentCell] = false;
-				int nextCell = map.SetBitAt(0);
-				int nextCandidate = nextCell * 9 + currentDigit;
-				if (candidateList[nextCandidate])
-				{
-					continue;
-				}
-
-				candidateList[nextCandidate] = true;
-				stack.Add(nextCandidate);
-
-				// Now check elimination.
-				// If the elimination exists, the chain will be added to the accumulator.
-				CheckElimination(accumulator, grid, candidateList, stack);
-
-				GetOnToOffRecursively(
-					accumulator, grid, candidateList, nextCell, currentDigit,
-					strongRelations, stack, length - 1);
-
-				candidateList[nextCandidate] = false;
-				stack.RemoveLastElement();
 			}
 
 			// Search for cell.
