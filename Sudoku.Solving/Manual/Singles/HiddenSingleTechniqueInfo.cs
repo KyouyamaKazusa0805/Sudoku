@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Manual.Singles
 
 		/// <inheritdoc/>
 		public override decimal Difficulty =>
-			EnableAndIsLastDigit ? 1.1m : RegionOffset < 9 ? 1.2m : 1.5m;
+			EnableAndIsLastDigit ? 1.1M : RegionOffset < 9 ? 1.2M : 1.5M;
 
 		/// <summary>
 		/// Indicates the region offset.

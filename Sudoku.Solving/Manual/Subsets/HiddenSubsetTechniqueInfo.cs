@@ -26,9 +26,9 @@ namespace Sudoku.Solving.Manual.Subsets
 			{
 				return Size switch
 				{
-					2 => 3.4m,
-					3 => 4.0m,
-					4 => 5.4m,
+					2 => 3.4M,
+					3 => 4M,
+					4 => 5.4M,
 					_ => throw new NotSupportedException($"{nameof(Size)} is out of valid range.")
 				};
 			}

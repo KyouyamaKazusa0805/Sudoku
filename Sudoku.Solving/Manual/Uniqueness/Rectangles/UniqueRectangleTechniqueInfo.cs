@@ -36,15 +36,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			{
 				return DetailData.Type switch
 				{
-					1 => 4.5m,
-					2 => 4.6m,
-					3 => (((UrType3)DetailData).IsNaked ? 4.5m : 4.6m) + ((UrType3)DetailData).SubsetCells.Count * 0.1m,
-					4 => 4.6m,
-					5 => 4.6m,
-					6 => 4.7m,
-					7 => 4.8m, // Reserved.
-					8 => 4.9m, // Reserved.
-					9 => 5m, // Reserved.
+					1 => 4.5M,
+					2 => 4.6M,
+					3 => (((UrType3)DetailData).IsNaked ? 4.5M : 4.6M) + ((UrType3)DetailData).SubsetCells.Count * .1M,
+					4 => 4.6M,
+					5 => 4.6M,
+					6 => 4.7M,
+					7 => 4.8M, // Reserved.
+					8 => 4.9M, // Reserved.
+					9 => 5M, // Reserved.
 					_ => throw new NotSupportedException($"The specified {nameof(DetailData.Type)} is out of range.")
 				};
 			}

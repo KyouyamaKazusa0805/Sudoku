@@ -46,7 +46,7 @@ namespace Sudoku.Solving
 		/// the value will be the maximum value among all difficulty
 		/// ratings in solving steps. If the puzzle has not been solved,
 		/// or else the puzzle is solved by other solvers, this value will
-		/// be always <c>20.0m</c>.
+		/// be always <c>20M</c>.
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
@@ -55,7 +55,7 @@ namespace Sudoku.Solving
 			get
 			{
 				return SolvingSteps is null || !SolvingSteps.Any()
-					? 20m
+					? 20M
 					: SolvingSteps.Max(info => info.ShowDifficulty ? info.Difficulty : 0);
 			}
 		}
@@ -100,7 +100,7 @@ namespace Sudoku.Solving
 		/// When the puzzle is solved, the value will be the difficulty rating
 		/// of the first step before the first one whose conclusion is
 		/// <see cref="ConclusionType.Assignment"/>. If the puzzle has not solved
-		/// or solved by other solvers, this value will be <c>20.0m</c>.
+		/// or solved by other solvers, this value will be <c>20.0M</c>.
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
@@ -113,7 +113,7 @@ namespace Sudoku.Solving
 				{
 					if (SolvingSteps is null)
 					{
-						return 20m;
+						return 20M;
 					}
 					else
 					{
@@ -129,7 +129,7 @@ namespace Sudoku.Solving
 				}
 
 				// Not solved.
-				return 20m;
+				return 20M;
 			}
 		}
 

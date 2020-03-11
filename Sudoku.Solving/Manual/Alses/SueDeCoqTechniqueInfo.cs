@@ -64,7 +64,7 @@ namespace Sudoku.Solving.Manual.Alses
 		public override string Name => "Sue de Coq";
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => IntersectionCells.Count == 2 ? 5.0m : 5.1m;
+		public override decimal Difficulty => IntersectionCells.Count == 2 ? 5M : 5.1M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.VeryHard;

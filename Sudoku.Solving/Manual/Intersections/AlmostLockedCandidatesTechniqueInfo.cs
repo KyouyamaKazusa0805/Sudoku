@@ -59,13 +59,13 @@ namespace Sudoku.Solving.Manual.Intersections
 				int size = Digits.Count;
 				return size switch
 				{
-					2 => 4.5m,
-					3 => 5.2m,
-					4 => 5.7m,
+					2 => 4.5M,
+					3 => 5.2M,
+					4 => 5.7M,
 					_ => throw Throwing.ImpossibleCase
 				} + (
 					HasValueCell
-						? size switch { 2 => .1m, 3 => .1m, 4 => .2m, _ => throw Throwing.ImpossibleCase }
+						? size switch { 2 => .1M, 3 => .1M, 4 => .2M, _ => throw Throwing.ImpossibleCase }
 						: 0);
 			}
 		}

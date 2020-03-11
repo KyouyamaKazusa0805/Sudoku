@@ -43,7 +43,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		public override string Name => "W-Wing";
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 4.4m;
+		public override decimal Difficulty => 4.4M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

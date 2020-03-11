@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Manual.Sdps
 		public override string Name => "Empty Rectangle";
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 4.6m;
+		public override decimal Difficulty => 4.6M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

@@ -73,21 +73,21 @@ namespace Sudoku.Solving.Manual.Fishes
 			{
 				return Size switch
 				{
-					2 => 3.2m,
-					3 => 3.8m,
-					4 => 5.2m,
+					2 => 3.2M,
+					3 => 3.8M,
+					4 => 5.2M,
 					_ => throw Throwing.ImpossibleCase
 				} + IsSashimi switch
 				{
 					null => 0,
 					true => Size switch
 					{
-						2 => 0.3m,
-						3 => 0.3m,
-						4 => 0.4m,
+						2 => .3M,
+						3 => .3M,
+						4 => .4M,
 						_ => throw Throwing.ImpossibleCase
 					},
-					false => 0.2m
+					false => .2M
 				};
 			}
 		}

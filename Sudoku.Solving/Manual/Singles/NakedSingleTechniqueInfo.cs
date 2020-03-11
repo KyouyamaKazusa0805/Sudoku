@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Singles
 		public override string Name => "Naked single";
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 2.3m;
+		public override decimal Difficulty => 2.3M;
 
 
 		/// <inheritdoc/>

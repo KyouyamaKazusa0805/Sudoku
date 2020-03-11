@@ -60,9 +60,9 @@ namespace Sudoku.Solving.Manual.Sdps
 			{
 				return Name switch
 				{
-					"Turbot Fish" => 4.2m,
-					"Skyscraper" => 4.0m,
-					"Two-string Kite" => 4.1m,
+					"Turbot Fish" => 4.2M,
+					"Skyscraper" => 4M,
+					"Two-string Kite" => 4.1M,
 					_ => throw new NotSupportedException("The specified value is invalid.")
 				};
 			}

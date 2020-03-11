@@ -89,15 +89,15 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				return Name switch
 				{
-					"X-Chain" => 4.5m,
-					"Fishy Cycle" => 4.5m,
-					"XY-Chain" => 4.8m,
-					"XY-Cycle" => 4.7m,
-					"Continuous Nice Loop" => 4.8m,
-					//"XY-X-Chain" => 4.9m,
-					//"Discontinuous Nice Loop" => 4.9m,
-					//"Alternating Inference Chain" => 4.9m,
-					_ => 4.9m
+					"X-Chain" => 4.5M,
+					"Fishy Cycle" => 4.5M,
+					"XY-Chain" => 4.8M,
+					"XY-Cycle" => 4.7M,
+					"Continuous Nice Loop" => 4.8M,
+					//"XY-X-Chain" => 4.9M,
+					//"Discontinuous Nice Loop" => 4.9M,
+					//"Alternating Inference Chain" => 4.9M,
+					_ => 4.9M
 				} + ChainingDifficultyRatingUtils.GetExtraDifficultyByLength(Length);
 			}
 		}

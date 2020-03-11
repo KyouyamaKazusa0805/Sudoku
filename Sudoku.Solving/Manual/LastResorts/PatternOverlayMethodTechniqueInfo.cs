@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public override string Name => "Pattern overlay method";
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 8.5m;
+		public override decimal Difficulty => 8.5M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;

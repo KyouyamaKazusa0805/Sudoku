@@ -34,9 +34,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			{
 				return DetailData.Type switch
 				{
-					1 => 4.5m,
-					2 => 4.7m,
-					3 => (((ArType3)DetailData).IsNaked ? 4.6m : 4.7m) + ((ArType3)DetailData).SubsetDigits.Count * .1m,
+					1 => 4.5M,
+					2 => 4.7M,
+					3 => (((ArType3)DetailData).IsNaked ? 4.6M : 4.7M) + ((ArType3)DetailData).SubsetDigits.Count * .1M,
 					_ => throw Throwing.ImpossibleCase
 				};
 			}

@@ -16,7 +16,7 @@
 			int ceil = 4;
 			for (bool isOdd = false; length > ceil; isOdd = !isOdd)
 			{
-				added += .1m;
+				added += .1M;
 				ceil = isOdd ? (ceil << 2) / 3 : ceil * 3 >> 1;
 			}
 			return added;
@@ -33,7 +33,7 @@
 			//decimal added = 0;
 			//for (int index = 0; index < steps.Length && length > steps[index]; index++)
 			//{
-			//	added += .1m;
+			//	added += .1M;
 			//}
 			//return added;
 			#endregion

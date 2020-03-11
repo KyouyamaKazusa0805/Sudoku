@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// </summary>
 		private static readonly decimal[] DifficultyExtra = new[]
 		{
-			0, 0, 0, 0, .1m, 0, .2m, 0, .3m, 0, .4m, 0, .5m, 0, .6m
+			0, 0, 0, 0, .1M, 0, .2M, 0, .3M, 0, .4M, 0, .5M, 0, .6M
 		};
 
 
@@ -49,10 +49,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			{
 				return DetailData.Type switch
 				{
-					1 => 4.5m,
-					2 => 4.6m,
-					3 => (((XrType3)DetailData).IsNaked ? 4.5m : 4.6m) + ((XrType3)DetailData).SubsetCells.Count * .1m,
-					4 => 4.6m,
+					1 => 4.5M,
+					2 => 4.6M,
+					3 => (((XrType3)DetailData).IsNaked ? 4.5M : 4.6M) + ((XrType3)DetailData).SubsetCells.Count * .1M,
+					4 => 4.6M,
 					_ => throw new NotSupportedException($"The specified {nameof(DetailData.Type)} is out of range.")
 				} + DifficultyExtra[DetailData.Cells.Count];
 			}

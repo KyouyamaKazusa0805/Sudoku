@@ -14,8 +14,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// </summary>
 		private static readonly decimal[] DifficultyExtra = new[]
 		{
-			.1m, .2m, .2m, .3m, .3m, .3m, .4m, .4m, .4m, .4m,
-			.5m, .5m, .5m, .5m, .5m, .6m, .6m, .6m
+			.1M, .2M, .2M, .3M, .3M, .3M, .4M, .4M, .4M, .4M,
+			.5M, .5M, .5M, .5M, .5M, .6M, .6M, .6M
 		};
 
 
@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		public override string Name => $"Bivalue Universal Grave + {Candidates.Count}";
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 5.7m + DifficultyExtra[Candidates.Count - 1];
+		public override decimal Difficulty => 5.7M + DifficultyExtra[Candidates.Count - 1];
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.VeryHard;

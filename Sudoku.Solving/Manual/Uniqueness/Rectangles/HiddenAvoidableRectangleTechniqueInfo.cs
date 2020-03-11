@@ -49,7 +49,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		public override string Name => "Hidden Avoidable Rectangle";
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 4.9m;
+		public override decimal Difficulty => 4.9M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

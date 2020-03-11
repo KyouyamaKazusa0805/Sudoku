@@ -16,27 +16,27 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <summary>
 		/// The basic difficulty rating table.
 		/// </summary>
-		private static readonly decimal[] BasicDiff = { 0, 0, 3.2m, 3.8m, 5.2m, 6.0m, 6.3m, 6.6m, 7.0m };
+		private static readonly decimal[] BasicDiff = { 0, 0, 3.2M, 3.8M, 5.2M, 6M, 6M, 6.6M, 7M };
 
 		/// <summary>
 		/// The finned difficulty rating table.
 		/// </summary>
-		private static readonly decimal[] FinnedDiff = { 0, 0, .2m, .2m, .2m, .3m, .3m, .3m, .4m };
+		private static readonly decimal[] FinnedDiff = { 0, 0, .2M, .2M, .2M, .3M, .3M, .3M, .4M };
 
 		/// <summary>
 		/// The sashimi difficulty rating table.
 		/// </summary>
-		private static readonly decimal[] SashimiDiff = { 0, 0, .3m, .3m, .4m, .4m, .5m, .6m, .7m };
+		private static readonly decimal[] SashimiDiff = { 0, 0, .3M, .3M, .4M, .4M, .5M, .6M, .7M };
 
 		/// <summary>
 		/// The Franken shape extra difficulty rating table.
 		/// </summary>
-		private static readonly decimal[] FrankenShapeDiffExtra = { 0, 0, .2m, 1.2m, 1.2m, 1.3m, 1.3m, 1.3m, 1.4m };
+		private static readonly decimal[] FrankenShapeDiffExtra = { 0, 0, .2M, 1.2M, 1.2M, 1.3M, 1.3M, 1.3M, 1.4M };
 
 		/// <summary>
 		/// The mutant shape extra difficulty rating table.
 		/// </summary>
-		private static readonly decimal[] MutantShapeDiffExtra = { 0, 0, .3m, 1.4m, 1.4m, 1.5m, 1.5m, 1.5m, 1.6m };
+		private static readonly decimal[] MutantShapeDiffExtra = { 0, 0, .3M, 1.4M, 1.4M, 1.5M, 1.5M, 1.5M, 1.6M };
 
 
 		/// <summary>

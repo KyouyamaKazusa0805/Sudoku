@@ -66,20 +66,20 @@ namespace Sudoku.Solving.Manual.Subsets
 				var ex = new NotSupportedException($"{nameof(Size)} is out of valid range.");
 				return Size switch
 				{
-					2 => 3.0m,
-					3 => 3.6m,
-					4 => 5.0m,
+					2 => 3M,
+					3 => 3.6M,
+					4 => 5M,
 					_ => throw ex
 				} + IsLocked switch
 				{
 					null => 0,
 					true => Size switch
 					{
-						2 => -1.0m,
-						3 => -1.1m,
+						2 => -1M,
+						3 => -1.1M,
 						_ => throw ex
 					},
-					false => 0.1m
+					false => .1M
 				};
 			}
 		}

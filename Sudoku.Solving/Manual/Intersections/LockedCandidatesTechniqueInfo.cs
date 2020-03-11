@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		public override string Name => BaseSet < 9 ? "Pointing" : "Claiming";
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => BaseSet < 9 ? 2.6m : 2.8m;
+		public override decimal Difficulty => BaseSet < 9 ? 2.6M : 2.8M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Moderate;

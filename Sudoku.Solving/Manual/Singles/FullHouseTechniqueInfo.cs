@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Singles
 		public override string Name => "Full House";
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 1.0m;
+		public override decimal Difficulty => 1M;
 
 
 		/// <inheritdoc/>

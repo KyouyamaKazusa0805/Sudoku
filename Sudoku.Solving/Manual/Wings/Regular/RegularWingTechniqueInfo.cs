@@ -83,14 +83,14 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			{
 				var values = (Span<decimal>)stackalloc[]
 				{
-					0, 0, 0, 0, 4.6m, 4.8m, 5.1m, 5.4m, 5.7m, 6m
+					0, 0, 0, 0, 4.6M, 4.8M, 5.1M, 5.4M, 5.7M, 6M
 				};
 				bool isImcompleted = Size == PivotCellCandidatesCount + 1;
 				return Size switch
 				{
-					3 => isImcompleted ? 4.2m : 4.4m,
+					3 => isImcompleted ? 4.2M : 4.4M,
 					_ when Size >= 4 && Size <= 9 =>
-						isImcompleted ? values[Size] + 0.1m : values[Size],
+						isImcompleted ? values[Size] + .1M : values[Size],
 					_ => throw new NotSupportedException($"The specified {nameof(Size)} is out of range.")
 				};
 			}
