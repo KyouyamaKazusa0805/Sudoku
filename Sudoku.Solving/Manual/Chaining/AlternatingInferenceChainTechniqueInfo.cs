@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
@@ -66,17 +67,30 @@ namespace Sudoku.Solving.Manual.Chaining
 						_ when IsXyChain() => "XY-Cycle",
 						_ => "Continuous Nice Loop"
 					},
-					false => true switch
+					false => Length switch
 					{
-						_ when IsXChain() => "X-Chain",
-						_ when !IsHeadTailSame() => Conclusions.Count switch
+						5 => true switch
 						{
-							1 => "Discontinuous Nice Loop",
-							2 => "XY-X-Chain",
-							_ => throw Throwing.ImpossibleCase
+							_ when IsXyChain() => "XY-Wing",
+							_ when IsWWing() => "W-Wing",
+							_ when IsMWing() => "M-Wing",
+							_ when IsHybridWing() => "Hybrid-Wing",
+							_ when IsLocalWing() => "Local-Wing",
+							_ when IsSplitWing() => "Split-Wing",
+							_ => "Other Wing",
 						},
-						_ when IsXyChain() => "XY-Chain",
-						_ => "Alternating Inference Chain"
+						_ => true switch
+						{
+							_ when IsXChain() => "X-Chain",
+							_ when !IsHeadTailSame() => Conclusions.Count switch
+							{
+								1 => "Discontinuous Nice Loop",
+								2 => "XY-X-Chain",
+								_ => throw Throwing.ImpossibleCase
+							},
+							_ when IsXyChain() => "XY-Chain",
+							_ => "Alternating Inference Chain"
+						}
 					}
 				};
 			}
@@ -89,6 +103,12 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				return Name switch
 				{
+					"XY-Wing" => 4.2M,
+					"W-Wing" => 4.4M,
+					"M-Wing" => 4.5M,
+					"Local-Wing" => 4.7M,
+					"Split-Wing" => 4.7M,
+					"Hybrid-Wing" => 4.7M,
 					"X-Chain" => 4.5M,
 					"Fishy Cycle" => 4.5M,
 					"XY-Chain" => 4.8M,
@@ -168,6 +188,97 @@ namespace Sudoku.Solving.Manual.Chaining
 		}
 
 		/// <summary>
+		/// Indicates whether the chain is W-Wing (<c>(x = y) - y = y - (y = x)</c>).
+		/// </summary>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private bool IsWWing()
+		{
+			int a = Nodes[0].Candidate, b = Nodes[1].Candidate;
+			int c = Nodes[2].Candidate, d = Nodes[3].Candidate;
+			int e = Nodes[4].Candidate, f = Nodes[5].Candidate;
+			return a % 9 == f % 9 && b % 9 == e % 9 // Head link and tail link are both in cells.
+				&& a / 9 == b / 9 && e / 9 == f / 9 // Symmetrical nodes has same digit.
+				&& c % 9 == d % 9 && b % 9 == c % 9;
+		}
+
+		/// <summary>
+		/// Indicates whether the chain is M-Wing (<c>(x = y) - y = (y - x) = x</c>).
+		/// </summary>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private bool IsMWing()
+		{
+			int a = Nodes[0].Candidate, b = Nodes[1].Candidate;
+			int c = Nodes[2].Candidate, d = Nodes[3].Candidate;
+			int e = Nodes[4].Candidate, f = Nodes[5].Candidate;
+			return a / 9 == b / 9 && d / 9 == e / 9
+				&& b % 9 == c % 9 && c % 9 == d % 9
+				&& a % 9 == e % 9 && e % 9 == f % 9
+				|| f / 9 == e / 9 && c / 9 == b / 9 // Reverse case.
+				&& d % 9 == e % 9 && c % 9 == d % 9
+				&& b % 9 == f % 9 && a % 9 == b % 9;
+		}
+
+		/// <summary>
+		/// Indicates whether the chain is Split-Wing (<c>x = x - (x = y) - y = y</c>).
+		/// </summary>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private bool IsSplitWing()
+		{
+			int a = Nodes[0].Candidate, b = Nodes[1].Candidate;
+			int c = Nodes[2].Candidate, d = Nodes[3].Candidate;
+			int e = Nodes[4].Candidate, f = Nodes[5].Candidate;
+			return a % 9 == b % 9 && b % 9 == c % 9 // First three nodes hold a same digit.
+				&& d % 9 == e % 9 && e % 9 == f % 9 // Last three nodes hold a same digit.
+				&& c / 9 == d / 9; // In same cell.
+		}
+
+		/// <summary>
+		/// Indicates whether the chain is Hybrid-Wing.
+		/// This wing has two types:
+		/// <list type="bullet">
+		/// <item><c>(x = y) - y = (y - z) = z</c></item>
+		/// <item><c>(x = y) - (y = z) - z = z</c></item>
+		/// </list>
+		/// </summary>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private bool IsHybridWing()
+		{
+			int a = Nodes[0].Candidate, b = Nodes[1].Candidate;
+			int c = Nodes[2].Candidate, d = Nodes[3].Candidate;
+			int e = Nodes[4].Candidate, f = Nodes[5].Candidate;
+			return a / 9 == b / 9 && d / 9 == e / 9
+				&& b % 9 == c % 9 && c % 9 == d % 9
+				&& e % 9 == f % 9
+				|| e / 9 == f / 9 && b / 9 == c / 9
+				&& d % 9 == e % 9 && c % 9 == d % 9
+				&& a % 9 == b % 9
+				|| a / 9 == b / 9 && c / 9 == d / 9 // Reverse case.
+				&& b % 9 == c % 9
+				&& d % 9 == e % 9 && e % 9 == f % 9
+				|| e / 9 == f / 9 && c / 9 == d / 9
+				&& d % 9 == e % 9
+				&& b % 9 == c % 9 && a % 9 == b % 9;
+		}
+
+		/// <summary>
+		/// Indicates whether the chain is Local-Wing (<c>x = (x - z) = (z - y) = y</c>).
+		/// </summary>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private bool IsLocalWing()
+		{
+			int a = Nodes[0].Candidate, b = Nodes[1].Candidate;
+			int c = Nodes[2].Candidate, d = Nodes[3].Candidate;
+			int e = Nodes[4].Candidate, f = Nodes[5].Candidate;
+			return b / 9 == c / 9 && d / 9 == e / 9
+				&& a % 9 == b % 9 && c % 9 == d % 9 && e % 9 == f % 9;
+		}
+
+		/// <summary>
 		/// Keep the head node is lower than tail node.
 		/// </summary>
 		/// <param name="nodes">The nodes.</param>
@@ -197,6 +308,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <returns>
 		/// <see langword="true"/> is for same digit; otherwise, <see langword="false"/>.
 		/// </returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool IsHeadTailSame() => Nodes[0].Candidate % 9 == Nodes[LastIndex].Candidate % 9;
 
 

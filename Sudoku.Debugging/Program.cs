@@ -19,7 +19,7 @@ namespace Sudoku.Debugging
 			var solver = new ManualSolver
 			{
 				CheckAlmostLockedQuadruple = true,
-				//AnalyzeDifficultyStrictly = true,
+				AnalyzeDifficultyStrictly = true,
 				OnlySaveShortestPathAic = true,
 			};
 			var grid = Grid.Parse(

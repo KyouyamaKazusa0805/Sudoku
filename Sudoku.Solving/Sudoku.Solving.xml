@@ -38,7 +38,7 @@
             the value will be the maximum value among all difficulty
             ratings in solving steps. If the puzzle has not been solved,
             or else the puzzle is solved by other solvers, this value will
-            be always <c>20.0M</c>.
+            be always <c>20M</c>.
             </para>
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
@@ -1222,6 +1222,41 @@
         <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.IsXyChain">
             <summary>
             Indicates whether the chain is XY-Chain.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.IsWWing">
+            <summary>
+            Indicates whether the chain is W-Wing (<c>(x = y) - y = y - (y = x)</c>).
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.IsMWing">
+            <summary>
+            Indicates whether the chain is M-Wing (<c>(x = y) - y = (y - x) = x</c>).
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.IsSplitWing">
+            <summary>
+            Indicates whether the chain is Split-Wing (<c>x = x - (x = y) - y = y</c>).
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.IsHybridWing">
+            <summary>
+            Indicates whether the chain is Hybrid-Wing.
+            This wing has two types:
+            <list type="bullet">
+            <item><c>(x = y) - y = (y - z) = z</c></item>
+            <item><c>(x = y) - (y = z) - z = z</c></item>
+            </list>
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.IsLocalWing">
+            <summary>
+            Indicates whether the chain is Local-Wing (<c>x = (x - z) = (z - y) = y</c>).
             </summary>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
