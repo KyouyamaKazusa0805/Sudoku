@@ -192,7 +192,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <returns>
 		/// <see langword="true"/> is for same digit; otherwise, <see langword="false"/>.
 		/// </returns>
-		private bool IsHeadTailSame() => Nodes[0].Candidate % 9 == Nodes[^1].Candidate % 9;
+		private bool IsHeadTailSame() => Nodes[0].Candidate % 9 == Nodes[LastIndex].Candidate % 9;
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
