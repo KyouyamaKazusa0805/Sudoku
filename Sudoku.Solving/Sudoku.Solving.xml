@@ -2299,7 +2299,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
-            <exception cref="T:Sudoku.Runtime.WrongHandlingException">
+            <exception cref="T:Sudoku.WrongHandlingException">
             Throws when the puzzle is not unique.
             </exception>
         </member>
@@ -2343,7 +2343,7 @@
             <param name="intersection">The intersection table.</param>
             <param name="regionMaps">All region maps.</param>
             <returns>The analysis result.</returns>
-            <exception cref="T:Sudoku.Runtime.WrongHandlingException">
+            <exception cref="T:Sudoku.WrongHandlingException">
             Throws when the solver cannot solved due to wrong handling.
             </exception>
         </member>
@@ -2358,7 +2358,7 @@
             <param name="intersection">Intersection table.</param>
             <param name="regionMaps">All region maps.</param>
             <returns>The analysis result.</returns>
-            <exception cref="T:Sudoku.Runtime.WrongHandlingException">
+            <exception cref="T:Sudoku.WrongHandlingException">
             Throws when the solver cannot solved due to wrong handling.
             </exception>
         </member>
@@ -2433,7 +2433,7 @@
             Indicates whether the solver will check the validity of the conclusions
             after searched them. If the conclusions eliminate the wrong digits or
             assign to the wrong cells, it will report the error
-            (i.e. throw a <see cref="T:Sudoku.Runtime.WrongHandlingException"/>).
+            (i.e. throw a <see cref="T:Sudoku.WrongHandlingException"/>).
             </para>
             <para>
             The value is <see langword="true"/> in default case. If the value is
@@ -2447,7 +2447,7 @@
             the grid has no solution at present.
             </para>
             </summary>
-            <seealso cref="T:Sudoku.Runtime.WrongHandlingException"/>
+            <seealso cref="T:Sudoku.WrongHandlingException"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckContinuousNiceLoop">
             <summary>

@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using Sudoku.Data;
-using Sudoku.Runtime;
 using CStyleString = System.Text.StringBuilder;
 using ImmutableString = System.String;
 #if TARGET_64BIT

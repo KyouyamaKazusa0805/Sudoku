@@ -2,7 +2,6 @@
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
-using Sudoku.Runtime;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Extensions;
 

@@ -1,6 +1,4 @@
-﻿using Sudoku.Runtime;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	partial class ManualSolver
 	{

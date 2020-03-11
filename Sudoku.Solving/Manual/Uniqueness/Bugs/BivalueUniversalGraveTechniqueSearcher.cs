@@ -4,7 +4,6 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
-using Sudoku.Runtime;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Utils;
 using BugMultiple = Sudoku.Solving.Manual.Uniqueness.Bugs.BivalueUniversalGraveMultipleTrueCandidatesTechniqueInfo;

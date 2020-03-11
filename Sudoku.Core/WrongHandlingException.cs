@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 using Sudoku.Data;
 
-namespace Sudoku.Runtime
+namespace Sudoku
 {
 	/// <summary>
 	/// Represents an error that the puzzle has wrong handling while solving with
