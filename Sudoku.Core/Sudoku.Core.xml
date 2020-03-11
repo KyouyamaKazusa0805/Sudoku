@@ -3291,7 +3291,7 @@
             </summary>
             <typeparam name="TElement">The element type.</typeparam>
             <typeparam name="TComparable">The comparing type.</typeparam>
-            <param name="elements">The elements to search the minimal one.</param>
+            <param name="this">The elements to search the minimal one.</param>
             <param name="selector">The selector.</param>
             <returns>
             The result value. If the collection does not have a minimal element,
@@ -3304,7 +3304,7 @@
             Get the total number of the elements using the specified formula.
             </summary>
             <typeparam name="TElement">The type of element.</typeparam>
-            <param name="elements">All elements.</param>
+            <param name="this">All elements.</param>
             <param name="countingFormula">The formula used in counting.</param>
             <returns>The total number.</returns>
         </member>
@@ -3313,7 +3313,7 @@
             Get the total number of a part of elements using the specified formula.
             </summary>
             <typeparam name="TElement">The type of element.</typeparam>
-            <param name="elements">All elements.</param>
+            <param name="this">All elements.</param>
             <param name="selector">The selector to get the specified elements.</param>
             <param name="countingFormula">The formula used in counting.</param>
             <returns>The total number.</returns>

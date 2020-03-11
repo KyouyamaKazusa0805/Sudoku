@@ -2387,6 +2387,20 @@
             Throws when the solver cannot solved due to wrong handling.
             </exception>
         </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.RecordTechnique(System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.TechniqueInfo,Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Diagnostics.Stopwatch,Sudoku.Solving.AnalysisResult@)">
+            <summary>
+            Bound with on-solving methods returns the solving state.
+            </summary>
+            <param name="steps">The steps.</param>
+            <param name="step">The step.</param>
+            <param name="grid">The grid.</param>
+            <param name="cloneation">The cloneation (playground).</param>
+            <param name="stopwatch">The stopwatch.</param>
+            <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
+            <returns></returns>
+            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:],Sudoku.Data.GridMap[])"/>
+            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:],Sudoku.Data.GridMap[])"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:],Sudoku.Data.GridMap[])">
             <summary>
             Solve naively.
@@ -2657,6 +2671,25 @@
             </para>
             </summary>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.OnlyRecordTemplateDelete"/>.
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.FastSearch">
+            <summary>
+            <para>
+            Indicates whether the solver will apply multiple technique usages
+            at the same time if searched more than one technique.
+            As for the option <see cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/> is
+            <see langword="true"/>, when searched more than one technique
+            instance which holds a same difficulty, the searcher will apply
+            them at the same time; however if the value is <see langword="false"/>,
+            the solver will apply all same techniques searched at the same time.
+            </para>
+            <para>
+            The value is <see langword="false"/> in default case. If the value
+            is <see langword="true"/>, the solver will enable this mode to
+            accelerate the running, but the applied techniques will be added much
+            more than when the value is <see langword="false"/>.
+            </para>
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.HobiwanFishMaximumSize">
             <summary>

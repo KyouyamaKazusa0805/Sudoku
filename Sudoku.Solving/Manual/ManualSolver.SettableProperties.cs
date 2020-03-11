@@ -252,6 +252,25 @@
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether the solver will apply multiple technique usages
+		/// at the same time if searched more than one technique.
+		/// As for the option <see cref="AnalyzeDifficultyStrictly"/> is
+		/// <see langword="true"/>, when searched more than one technique
+		/// instance which holds a same difficulty, the searcher will apply
+		/// them at the same time; however if the value is <see langword="false"/>,
+		/// the solver will apply all same techniques searched at the same time.
+		/// </para>
+		/// <para>
+		/// The value is <see langword="false"/> in default case. If the value
+		/// is <see langword="true"/>, the solver will enable this mode to
+		/// accelerate the running, but the applied techniques will be added much
+		/// more than when the value is <see langword="false"/>.
+		/// </para>
+		/// </summary>
+		public bool FastSearch { get; set; } = false;
+
+		/// <summary>
+		/// <para>
 		/// Indicates what size of the Hobiwan's fish will be searched for.
 		/// </para>
 		/// <para>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -12,6 +11,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Encapsulates an alternating inference chain (AIC) technique searcher.
 	/// </summary>
+	[Slow]
 	public sealed class AlternatingInferenceChainTechniqueSearcher : ChainTechniqueSearcher
 	{
 		/// <summary>
@@ -553,10 +553,9 @@ namespace Sudoku.Solving.Manual.Chaining
 			int head = stack[0], tail = stack[LastIndex];
 			int headCell = head / 9, headDigit = head % 9;
 			int tailCell = tail / 9, tailDigit = tail % 9;
-			if (headCell == tailCell && headDigit != tailDigit)
+			if (headCell == tailCell)
 			{
-				// The cells are same.
-				return true;
+				return headDigit != tailDigit;
 			}
 
 			// If the cell are not same, we will check the cells are in a same region

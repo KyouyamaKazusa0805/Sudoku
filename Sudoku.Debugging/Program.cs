@@ -19,8 +19,11 @@ namespace Sudoku.Debugging
 			var solver = new ManualSolver
 			{
 				CheckAlmostLockedQuadruple = true,
-				AnalyzeDifficultyStrictly = true,
+				//AnalyzeDifficultyStrictly = true,
 				OnlySaveShortestPathAic = true,
+				DisableSlowTechniques = false,
+				FastSearch = true,
+				HobiwanFishMaximumSize = 2,
 			};
 			var grid = Grid.Parse(
 				"94.......1..83..7...8..2....7..4.1...8.1.6.2...6.5..3....7..4...5..23..1.......57");

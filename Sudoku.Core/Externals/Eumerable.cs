@@ -20,7 +20,7 @@ namespace System.Linq
 		/// </summary>
 		/// <typeparam name="TElement">The element type.</typeparam>
 		/// <typeparam name="TComparable">The comparing type.</typeparam>
-		/// <param name="elements">The elements to search the minimal one.</param>
+		/// <param name="this">The elements to search the minimal one.</param>
 		/// <param name="selector">The selector.</param>
 		/// <returns>
 		/// The result value. If the collection does not have a minimal element,
@@ -29,23 +29,23 @@ namespace System.Linq
 		/// </returns>
 		[return: MaybeNull]
 		public static TElement GetElementByMinSelector<TElement, TComparable>(
-			this IEnumerable<TElement> elements, Func<TElement, IComparable<TComparable>> selector)
+			this IEnumerable<TElement> @this, Func<TElement, IComparable<TComparable>> selector)
 			where TElement : notnull =>
-			(from element in elements orderby selector(element) select element).FirstOrDefault();
+			(from element in @this orderby selector(element) select element).FirstOrDefault();
 
 		/// <summary>
 		/// Get the total number of the elements using the specified formula.
 		/// </summary>
 		/// <typeparam name="TElement">The type of element.</typeparam>
-		/// <param name="elements">All elements.</param>
+		/// <param name="this">All elements.</param>
 		/// <param name="countingFormula">The formula used in counting.</param>
 		/// <returns>The total number.</returns>
 		public static int Count<TElement>(
-			this IEnumerable<TElement> elements, Func<TElement, int> countingFormula)
+			this IEnumerable<TElement> @this, Func<TElement, int> countingFormula)
 			where TElement : notnull
 		{
 			int count = 0;
-			foreach (var element in elements)
+			foreach (var element in @this)
 			{
 				count += countingFormula(element);
 			}
@@ -57,17 +57,17 @@ namespace System.Linq
 		/// Get the total number of a part of elements using the specified formula.
 		/// </summary>
 		/// <typeparam name="TElement">The type of element.</typeparam>
-		/// <param name="elements">All elements.</param>
+		/// <param name="this">All elements.</param>
 		/// <param name="selector">The selector to get the specified elements.</param>
 		/// <param name="countingFormula">The formula used in counting.</param>
 		/// <returns>The total number.</returns>
 		public static int Count<TElement>(
-			this IEnumerable<TElement> elements, Predicate<TElement> selector,
+			this IEnumerable<TElement> @this, Predicate<TElement> selector,
 			Func<TElement, int> countingFormula)
 			where TElement : notnull
 		{
 			int count = 0;
-			foreach (var element in elements)
+			foreach (var element in @this)
 			{
 				if (selector(element))
 				{

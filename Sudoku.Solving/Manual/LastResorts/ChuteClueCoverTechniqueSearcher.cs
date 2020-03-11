@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			SearchForFloors(accumulator, grid);
-			SearchForTowers(accumulator, grid);
+			//SearchForTowers(accumulator, grid);
 		}
 
 

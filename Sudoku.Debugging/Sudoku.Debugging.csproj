@@ -10,7 +10,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <DefineConstants />
+	  <DefineConstants></DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

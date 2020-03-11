@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Solving.Checking;
@@ -21,6 +23,7 @@ using Sudoku.Solving.Manual.Uniqueness.Polygons;
 using Sudoku.Solving.Manual.Uniqueness.Rectangles;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
+using Sudoku.Solving.Utils;
 using Intersection = System.ValueTuple<int, int, Sudoku.Data.GridMap, Sudoku.Data.GridMap>;
 
 namespace Sudoku.Solving.Manual
@@ -187,57 +190,98 @@ namespace Sudoku.Solving.Manual
 
 					searcher.AccumulateAll(bag, cloneation);
 				}
-
-				var step = bag.GetElementByMinSelector(info => info.Difficulty);
-				bag.Clear();
-
-				if (step is null)
+				if (!bag.Any())
 				{
-					// If current step cannot find any steps,
-					// we will turn to the next step finder to
-					// continue solving puzzle.
 					continue;
 				}
 
-				if (CheckConclusionValidityAfterSearched
-					? CheckConclusionsValidity(solution, step.Conclusions)
-					: true)
+				if (FastSearch)
 				{
-					step.ApplyTo(cloneation);
-					steps.Add(step);
-					if (cloneation.HasSolved)
+					decimal minDiff = bag.Min(info => info.Difficulty);
+					var selection = from info in bag
+									where info.Difficulty == minDiff
+									select info;
+					if (!selection.Any())
 					{
-						// The puzzle has been solved.
-						// :)
-						stopwatch.StopAnyway();
-
-						return new AnalysisResult(
-							puzzle: grid,
-							solverName: SolverName,
-							hasSolved: true,
-							solution: cloneation,
-							elapsedTime: stopwatch.Elapsed,
-							solvingList: steps,
-							additional: null);
+						continue;
 					}
-					else
+
+					if (CheckConclusionValidityAfterSearched
+						? selection.All(info => CheckConclusionsValidity(solution, info.Conclusions))
+						: true)
 					{
+						foreach (var step in selection)
+						{
+							if (RecordTechnique(steps, step, grid, cloneation, stopwatch, out var result))
+							{
+								stopwatch.StopAnyway();
+								return result;
+							}
+						}
+
 						// The puzzle has not been finished,
 						// we should turn to the first step finder
 						// to continue solving puzzle.
+						bag.Clear();
 						goto Label_StartSolving;
+					}
+					else
+					{
+						var wrongStep = (TechniqueInfo?)null;
+						foreach (var step in selection)
+						{
+							if (!CheckConclusionsValidity(solution, step.Conclusions))
+							{
+								wrongStep = step;
+								break;
+							}
+						}
+						throw new WrongHandlingException(
+							grid, $"The specified step is wrong: {wrongStep}.");
 					}
 				}
 				else
 				{
-					throw new WrongHandlingException(grid);
+					var step = bag.GetElementByMinSelector(info => info.Difficulty);
+					if (step is null)
+					{
+						// If current step cannot find any steps,
+						// we will turn to the next step finder to
+						// continue solving puzzle.
+						continue;
+					}
+
+					if (CheckConclusionValidityAfterSearched
+						? CheckConclusionsValidity(solution, step.Conclusions)
+						: true)
+					{
+						if (RecordTechnique(steps, step, grid, cloneation, stopwatch, out var result))
+						{
+							// The puzzle has been solved.
+							// :)
+							stopwatch.StopAnyway();
+							return result;
+						}
+						else
+						{
+							// The puzzle has not been finished,
+							// we should turn to the first step finder
+							// to continue solving puzzle.
+							bag.Clear();
+							goto Label_StartSolving;
+						}
+					}
+					else
+					{
+						throw new WrongHandlingException(
+							grid, $"The specified step is wrong: {step}.");
+					}
 				}
 			}
 
 			// All solver cannot finish the puzzle...
 			// :(
 			stopwatch.StopAnyway();
-
 			return new AnalysisResult(
 				puzzle: grid,
 				solverName: SolverName,
@@ -246,6 +290,72 @@ namespace Sudoku.Solving.Manual
 				elapsedTime: stopwatch.Elapsed,
 				solvingList: steps,
 				additional: null);
+		}
+
+		/// <summary>
+		/// Bound with on-solving methods returns the solving state.
+		/// </summary>
+		/// <param name="steps">The steps.</param>
+		/// <param name="step">The step.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="cloneation">The cloneation (playground).</param>
+		/// <param name="stopwatch">The stopwatch.</param>
+		/// <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
+		/// <returns></returns>
+		/// <seealso cref="SolveNaively(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, Intersection[,], GridMap[])"/>
+		/// <seealso cref="SolveWithStrictDifficultyRating(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, Intersection[,], GridMap[])"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private bool RecordTechnique(
+			List<TechniqueInfo> steps, TechniqueInfo step, IReadOnlyGrid grid, Grid cloneation,
+			Stopwatch stopwatch, [NotNullWhen(true)] out AnalysisResult? result)
+		{
+			bool needAdd = false;
+			foreach (var conclusion in step.Conclusions)
+			{
+				switch (conclusion.ConclusionType)
+				{
+					case ConclusionType.Assignment:
+					{
+						if (cloneation.GetCellStatus(conclusion.CellOffset) == CellStatus.Empty)
+						{
+							needAdd = true;
+						}
+
+						break;
+					}
+					case ConclusionType.Elimination:
+					{
+						if (cloneation.CandidateExists(conclusion.CellOffset, conclusion.Digit))
+						{
+							needAdd = true;
+						}
+
+						break;
+					}
+				}
+			}
+
+			if (needAdd)
+			{
+				step.ApplyTo(cloneation);
+				steps.Add(step);
+
+				if (cloneation.HasSolved)
+				{
+					result = new AnalysisResult(
+						puzzle: grid,
+						solverName: SolverName,
+						hasSolved: true,
+						solution: cloneation,
+						elapsedTime: stopwatch.Elapsed,
+						solvingList: steps,
+						additional: null);
+					return true;
+				}
+			}
+
+			result = null;
+			return false;
 		}
 
 		/// <summary>
@@ -342,64 +452,101 @@ namespace Sudoku.Solving.Manual
 				}
 
 				searcher.AccumulateAll(bag, cloneation);
-				var step = OptimizedApplyingOrder
-					? bag.GetElementByMinSelector(info => info.Difficulty)
-					: bag.FirstOrDefault();
-				bag.Clear();
-
-				if (EnableGarbageCollectionForcedly
-					&& searcher.HasMarkedAttribute<HighAllocationAttribute>(false, out _))
+				if (!bag.Any())
 				{
-					GC.Collect();
-				}
-
-				if (step is null)
-				{
-					// If current step cannot find any steps,
-					// we will turn to the next step finder to
-					// continue solving puzzle.
 					continue;
 				}
 
-				if (CheckConclusionValidityAfterSearched
-					? CheckConclusionsValidity(solution, step.Conclusions)
-					: true)
+				if (FastSearch)
 				{
-					step.ApplyTo(cloneation);
-					steps.Add(step);
-					if (cloneation.HasSolved)
+					if (CheckConclusionValidityAfterSearched
+						? bag.All(info => CheckConclusionsValidity(solution, info.Conclusions))
+						: true)
 					{
-						// The puzzle has been solved.
-						// :)
-						stopwatch.StopAnyway();
+						foreach (var step in bag)
+						{
+							if (RecordTechnique(steps, step, grid, cloneation, stopwatch, out var result))
+							{
+								stopwatch.StopAnyway();
+								return result;
+							}
+						}
 
-						return new AnalysisResult(
-							puzzle: grid,
-							solverName: SolverName,
-							hasSolved: true,
-							solution: cloneation,
-							elapsedTime: stopwatch.Elapsed,
-							solvingList: steps,
-							additional: null);
-					}
-					else
-					{
 						// The puzzle has not been finished,
 						// we should turn to the first step finder
 						// to continue solving puzzle.
+						bag.Clear();
+						if (EnableGarbageCollectionForcedly
+							&& searcher.HasMarkedAttribute<HighAllocationAttribute>(false, out _))
+						{
+							GC.Collect();
+						}
+
 						goto Label_StartSolving;
+					}
+					else
+					{
+						var wrongStep = (TechniqueInfo?)null;
+						foreach (var step in bag)
+						{
+							if (!CheckConclusionsValidity(solution, step.Conclusions))
+							{
+								wrongStep = step;
+								break;
+							}
+						}
+						throw new WrongHandlingException(
+							grid, $"The specified step is wrong: {wrongStep}.");
 					}
 				}
 				else
 				{
-					throw new WrongHandlingException(grid);
+					var step = OptimizedApplyingOrder
+						? bag.GetElementByMinSelector(info => info.Difficulty)
+						: bag.FirstOrDefault();
+					if (step is null)
+					{
+						// If current step cannot find any steps,
+						// we will turn to the next step finder to
+						// continue solving puzzle.
+						continue;
+					}
+
+					if (CheckConclusionValidityAfterSearched
+						? CheckConclusionsValidity(solution, step.Conclusions)
+						: true)
+					{
+						if (RecordTechnique(steps, step, grid, cloneation, stopwatch, out var result))
+						{
+							stopwatch.StopAnyway();
+							return result;
+						}
+						else
+						{
+							// The puzzle has not been finished,
+							// we should turn to the first step finder
+							// to continue solving puzzle.
+							bag.Clear();
+							if (EnableGarbageCollectionForcedly
+								&& searcher.HasMarkedAttribute<HighAllocationAttribute>(false, out _))
+							{
+								GC.Collect();
+							}
+
+							goto Label_StartSolving;
+						}
+					}
+					else
+					{
+						throw new WrongHandlingException(
+							grid, $"The specified step is wrong: {step}.");
+					}
 				}
 			}
 
 			// All solver cannot finish the puzzle...
 			// :(
 			stopwatch.StopAnyway();
-
 			return new AnalysisResult(
 				puzzle: grid,
 				solverName: SolverName,
