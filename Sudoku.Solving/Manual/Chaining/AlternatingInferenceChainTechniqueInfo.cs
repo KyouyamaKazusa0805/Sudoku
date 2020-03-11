@@ -48,6 +48,11 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		public IReadOnlyList<Node> Nodes { get; }
 
+		/// <summary>
+		/// Indicates the length of the instance.
+		/// </summary>
+		public int Length => IsContinuousNiceLoop ? Nodes.Count : Nodes.Count - 1;
+
 		/// <inheritdoc/>
 		public override string Name
 		{
@@ -93,7 +98,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					//"Discontinuous Nice Loop" => 4.9m,
 					//"Alternating Inference Chain" => 4.9m,
 					_ => 4.9m
-				} + ChainingDifficultyRatingUtils.GetExtraDifficultyByLength(Nodes.Count);
+				} + ChainingDifficultyRatingUtils.GetExtraDifficultyByLength(Length);
 			}
 		}
 

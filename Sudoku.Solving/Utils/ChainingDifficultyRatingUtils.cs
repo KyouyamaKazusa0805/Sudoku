@@ -12,25 +12,31 @@
 		/// <returns>The difficulty.</returns>
 		public static decimal GetExtraDifficultyByLength(int length)
 		{
-			return length switch
+			decimal added = 0;
+			int ceil = 4;
+			for (bool isOdd = false; length > ceil; isOdd = !isOdd)
 			{
-				_ when length > 0 && length < 3 => .0m,
-				_ when length >= 3 && length < 5 => .1m,
-				_ when length >= 5 && length < 7 => .2m,
-				_ when length >= 7 && length < 9 => .3m,
-				_ when length >= 9 && length < 13 => .4m,
-				_ when length >= 13 && length < 17 => .5m,
-				_ when length >= 17 && length < 25 => .6m,
-				_ when length >= 25 && length < 37 => .7m,
-				_ when length >= 37 && length < 49 => .8m,
-				_ when length >= 49 && length < 73 => .9m,
-				_ when length >= 73 && length < 97 => 1m,
-				_ when length >= 97 && length < 145 => 1.1m,
-				_ when length >= 145 && length < 193 => 1.2m,
-				_ when length >= 193 && length < 289 => 1.3m,
-				_ when length >= 289 && length < 577 => 1.4m,
-				_ => 1.5m
-			};
+				added += .1m;
+				ceil = isOdd ? (ceil << 2) / 3 : ceil * 3 >> 1;
+			}
+			return added;
+
+			// I have seen the code of Sudoku Explainer.
+			// The calculation formula (older one) is:
+			#region Obsolete code
+			//int[] steps =
+			//{
+			//	4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128,
+			//	192, 256, 384, 512, 768, 1024, 1536, 2048,
+			//	3072, 4096, 6144, 8192
+			//};
+			//decimal added = 0;
+			//for (int index = 0; index < steps.Length && length > steps[index]; index++)
+			//{
+			//	added += .1m;
+			//}
+			//return added;
+			#endregion
 		}
 	}
 }

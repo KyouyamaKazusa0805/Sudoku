@@ -1187,6 +1187,11 @@
             Indicates all inferences.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.Length">
+            <summary>
+            Indicates the length of the instance.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.Name">
             <inheritdoc/>
         </member>
