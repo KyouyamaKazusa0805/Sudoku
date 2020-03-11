@@ -9,9 +9,7 @@ namespace Sudoku.Solving.Utils
 	[DebuggerStepThrough]
 	public static class MaskDeconstruction
 	{
-		/// <summary>
-		/// Deconstruct the value to candidates and the cell status.
-		/// </summary>
+		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
 		/// <param name="cellStatus">(<see langword="out"/> parameter) The cell status.</param>
 		/// <param name="candidatesMask">(<see langword="out"/> parameter) The candidate mask.</param>

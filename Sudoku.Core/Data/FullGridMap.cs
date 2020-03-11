@@ -337,10 +337,7 @@ namespace Sudoku.Data
 			return result;
 		}
 
-		/// <summary>
-		/// Returns a string that represents the current object.
-		/// </summary>
-		/// <returns>A string that represents the current object.</returns>
+		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override readonly string ToString() => "...";
 
 		/// <inheritdoc/>

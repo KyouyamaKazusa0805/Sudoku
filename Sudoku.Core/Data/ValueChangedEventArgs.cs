@@ -43,9 +43,7 @@ namespace Sudoku.Data
 		public int SetValue { get; }
 
 
-		/// <summary>
-		/// Deconstruct the instance to four values.
-		/// </summary>
+		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="cellOffset">(<see langword="out"/> parameter) The cell offset.</param>
 		/// <param name="oldMask">(<see langword="out"/> parameter) The old mask.</param>
 		/// <param name="newMask">(<see langword="out"/> parameter) The new mask.</param>

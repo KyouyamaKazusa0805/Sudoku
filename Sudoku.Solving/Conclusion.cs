@@ -72,17 +72,13 @@ namespace Sudoku.Solving
 			}
 		}
 
-		/// <summary>
-		/// Deconstruct an instance.
-		/// </summary>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="conclusionType">(<see langword="out"/> parameter) The type of this conclusion.</param>
 		/// <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
 		public void Deconstruct(out ConclusionType conclusionType, out int candidate) =>
 			(conclusionType, candidate) = (ConclusionType, CellOffset * 9 + Digit);
 
-		/// <summary>
-		/// Deconstruct an instance.
-		/// </summary>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="conclusionType">(<see langword="out"/> parameter) The type of this conclusion.</param>
 		/// <param name="cell">(<see langword="out"/> parameter) The cell.</param>
 		/// <param name="digit">(<see langword="out"/> parameter) The digit.</param>
@@ -106,10 +102,7 @@ namespace Sudoku.Solving
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((int)ConclusionType + 1) * (CellOffset * 9 + Digit);
 
-		/// <summary>
-		/// Returns a string that represents the current object.
-		/// </summary>
-		/// <returns>A string that represents the current object.</returns>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString()
 		{
 			return $@"r{CellOffset / 9 + 1}c{CellOffset % 9 + 1} {ConclusionType switch

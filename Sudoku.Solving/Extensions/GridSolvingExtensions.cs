@@ -13,9 +13,7 @@ namespace Sudoku.Solving.Extensions
 	[DebuggerStepThrough]
 	public static class GridSolvingExtensions
 	{
-		/// <summary>
-		/// Deconstruct the grid.
-		/// </summary>
+		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <param name="emptyCells">
 		/// (<see langword="out"/> parameter) The distribution of all empty cells.

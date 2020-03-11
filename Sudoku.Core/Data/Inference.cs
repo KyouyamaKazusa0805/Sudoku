@@ -77,17 +77,13 @@ namespace Sudoku.Data
 		public Node EndNode { get; }
 
 
-		/// <summary>
-		/// Deconstruct the instance.
-		/// </summary>
+		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="start">(<see langword="out"/> parameter) The start node.</param>
 		/// <param name="end">(<see langword="out"/> parameter) The end node.</param>
 		public void Deconstruct(out Node start, out Node end) =>
 			(start, end) = (StartNode, EndNode);
 
-		/// <summary>
-		/// Deconstruct the instance.
-		/// </summary>
+		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="startCand">(<see langword="out"/> parameter) The start candidate.</param>
 		/// <param name="startIsOn">
 		/// (<see langword="out"/> parameter) Indicates whether the start candidate is on.
@@ -100,9 +96,7 @@ namespace Sudoku.Data
 			out int startCand, out bool startIsOn, out int endCand, out bool endIsOn) =>
 			(startCand, startIsOn, endCand, endIsOn) = (StartCandidate, StartIsOn, EndCandidate, EndIsOn);
 
-		/// <summary>
-		/// Deconstruct the instance.
-		/// </summary>
+		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="startCell">(<see langword="out"/> parameter) The start cell.</param>
 		/// <param name="startDigit">(<see langword="out"/> parameter) The start digit.</param>
 		/// <param name="startIsOn">
@@ -134,7 +128,7 @@ namespace Sudoku.Data
 		/// <inheritdoc/>
 		public override int GetHashCode() => StartNode.GetHashCode() ^ EndNode.GetHashCode();
 
-		/// <inheritdoc/>
+		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString() => $"{StartNode} -> {EndNode}";
 
 

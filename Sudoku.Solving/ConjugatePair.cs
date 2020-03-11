@@ -62,10 +62,7 @@ namespace Sudoku.Solving
 		/// <inheritdoc/>
 		public override int GetHashCode() => _map.GetHashCode() ^ Digit;
 
-		/// <summary>
-		/// Returns a string that represents the current object.
-		/// </summary>
-		/// <returns>A string that represents the current object.</returns>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString()
 		{
 			int v = Digit + 1;

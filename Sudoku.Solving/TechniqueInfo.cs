@@ -54,17 +54,13 @@ namespace Sudoku.Solving
 		public IReadOnlyList<View> Views { get; }
 
 
-		/// <summary>
-		/// Deconstruct this instance.
-		/// </summary>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
 		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
 		public void Deconstruct(out string name, out decimal difficulty) =>
 			(name, difficulty) = (Name, Difficulty);
 
-		/// <summary>
-		/// Deconstruct this instance.
-		/// </summary>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
 		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
 		/// <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
@@ -72,9 +68,7 @@ namespace Sudoku.Solving
 			out string name, out decimal difficulty, out DifficultyLevel difficultyLevel) =>
 			(name, difficulty, difficultyLevel) = (Name, Difficulty, DifficultyLevel);
 
-		/// <summary>
-		/// Deconstruct this instance.
-		/// </summary>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
 		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
 		/// <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
@@ -84,9 +78,7 @@ namespace Sudoku.Solving
 			out IReadOnlyList<Conclusion> conclusions) =>
 			(name, difficulty, difficultyLevel, conclusions) = (Name, Difficulty, DifficultyLevel, Conclusions);
 
-		/// <summary>
-		/// Deconstruct this instance.
-		/// </summary>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
 		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
 		/// <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>

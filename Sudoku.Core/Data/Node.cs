@@ -29,9 +29,7 @@ namespace Sudoku.Data
 		public bool IsOn { get; }
 
 
-		/// <summary>
-		/// Deconstruct the instance.
-		/// </summary>
+		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
 		/// <param name="isOn">
 		/// (<see langword="out"/> parameter) Indicates whether the candidate is on.
@@ -48,7 +46,7 @@ namespace Sudoku.Data
 		/// <inheritdoc/>
 		public override int GetHashCode() => (Candidate + 1) * (IsOn ? 1 : -1);
 
-		/// <inheritdoc/>
+		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString()
 		{
 			string sign = IsOn ? string.Empty : "!";

@@ -328,9 +328,7 @@ namespace Sudoku.Data
 		}
 
 
-		/// <summary>
-		/// Deconstruct this instance.
-		/// </summary>
+		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="high">(<see langword="out"/> parameter) Higher 40 bits.</param>
 		/// <param name="low">(<see langword="out"/> parameter) Lower 41 bits.</param>
 		public readonly void Deconstruct(out long high, out long low) =>
@@ -414,10 +412,7 @@ namespace Sudoku.Data
 		public override readonly int GetHashCode() =>
 			GetType().GetHashCode() ^ (int)((_low ^ _high) & int.MaxValue);
 
-		/// <summary>
-		/// Returns a string that represents the current object.
-		/// </summary>
-		/// <returns>A string that represents the current object.</returns>
+		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override readonly string ToString()
 		{
 			var sb = new StringBuilder();

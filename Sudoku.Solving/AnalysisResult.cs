@@ -226,9 +226,7 @@ namespace Sudoku.Solving
 		public IReadOnlyList<TechniqueInfo>? SolvingSteps { get; }
 
 
-		/// <summary>
-		/// Deconstruct this instance.
-		/// </summary>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="solverName">
 		/// (<see langword="out"/> parameter) The solver's name.
 		/// </param>
@@ -238,9 +236,7 @@ namespace Sudoku.Solving
 		public void Deconstruct(out string solverName, out bool hasSolved) =>
 			(solverName, hasSolved) = (SolverName, HasSolved);
 
-		/// <summary>
-		/// Deconstruct this instance.
-		/// </summary>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="hasSolved">
 		/// (<see langword="out"/> parameter) Indicates whether the puzzle has been solved.
 		/// </param>
@@ -255,9 +251,7 @@ namespace Sudoku.Solving
 			out IReadOnlyList<TechniqueInfo>? solvingSteps) =>
 			(hasSolved, solvingStepsCount, solvingSteps) = (HasSolved, SolvingStepsCount, SolvingSteps);
 
-		/// <summary>
-		/// Deconstruct this instance.
-		/// </summary>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="total">
 		/// (<see langword="out"/> parameter) The total difficulty.
 		/// </param>
@@ -275,9 +269,7 @@ namespace Sudoku.Solving
 			out decimal? pearl, out decimal? diamond) =>
 			(total, max, pearl, diamond) = (TotalDifficulty, MaxDifficulty, PearlDifficulty, DiamondDifficulty);
 
-		/// <summary>
-		/// Deconstruct this instance.
-		/// </summary>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="puzzle">
 		/// (<see langword="out"/> parameter) The initial puzzle.
 		/// </param>
@@ -298,9 +290,7 @@ namespace Sudoku.Solving
 			out IReadOnlyGrid? solution, out DifficultyLevel difficultyLevel) =>
 			(puzzle, hasSolved, elapsedTime, solution, difficultyLevel) = (Puzzle, HasSolved, ElapsedTime, Solution, DifficultyLevel);
 
-		/// <summary>
-		/// Deconstruct this instance.
-		/// </summary>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="puzzle">
 		/// (<see langword="out"/> parameter) The initial puzzle.
 		/// </param>
@@ -325,9 +315,7 @@ namespace Sudoku.Solving
 			out IReadOnlyList<TechniqueInfo>? solvingSteps) =>
 			(puzzle, hasSolved, solution, difficultyLevel, bottleneck, solvingSteps) = (Puzzle, HasSolved, Solution, DifficultyLevel, Bottleneck, SolvingSteps);
 
-		/// <summary>
-		/// Deconstruct this instance.
-		/// </summary>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="puzzle">
 		/// (<see langword="out"/> parameter) The initial puzzle.
 		/// </param>
