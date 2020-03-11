@@ -23,7 +23,9 @@ namespace Sudoku.Solving.Utils
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <param name="cellOffset">The cell offset.</param>
 		/// <param name="mask">
-		/// (<see langword="out"/> parameter) The result mask.
+		/// (<see langword="out"/> parameter) The result mask. The mask consists of
+		/// 9 bits, where the set bits means the digit exists in this cell; otherwise,
+		/// the bit will not be set.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

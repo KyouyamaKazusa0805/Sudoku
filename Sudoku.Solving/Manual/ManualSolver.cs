@@ -133,11 +133,15 @@ namespace Sudoku.Solving.Manual
 					new SueDeCoqTechniqueSearcher(regionMaps),
 					new BorescoperDeadlyPatternTechniqueSearcher(),
 					new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
-					new AlternatingInferenceChainTechniqueSearcher(true, true, AicMaximumLength, ReductDifferentPathAic, OnlySaveShortestPathAic),
+					new AlternatingInferenceChainTechniqueSearcher(
+						true, true, AicMaximumLength, ReductDifferentPathAic,
+						OnlySaveShortestPathAic, CheckHeadCollision),
 				},
 				new TechniqueSearcher[]
 				{
-					new HobiwanFishTechniqueSearcher(HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount, HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
+					new HobiwanFishTechniqueSearcher(
+						HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
+						HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
 				},
 				new TechniqueSearcher[]
 				{
@@ -298,8 +302,12 @@ namespace Sudoku.Solving.Manual
 				new SueDeCoqTechniqueSearcher(regionMaps),
 				new BorescoperDeadlyPatternTechniqueSearcher(),
 				new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
-				new AlternatingInferenceChainTechniqueSearcher(true, true, AicMaximumLength, ReductDifferentPathAic, OnlySaveShortestPathAic),
-				new HobiwanFishTechniqueSearcher(HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount, HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
+				new AlternatingInferenceChainTechniqueSearcher(
+					true, true, AicMaximumLength, ReductDifferentPathAic,
+					OnlySaveShortestPathAic, CheckHeadCollision),
+				new HobiwanFishTechniqueSearcher(
+					HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
+					HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
 				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 				new PatternOverlayMethodTechniqueSearcher(),
 				new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),

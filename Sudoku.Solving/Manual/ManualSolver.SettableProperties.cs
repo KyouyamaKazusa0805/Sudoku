@@ -106,6 +106,20 @@ namespace Sudoku.Solving.Manual
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether the solver will check head collision in searching for
+		/// AICs.
+		/// </para>
+		/// <para>
+		/// If the value is <see langword="true"/>, the searcher will search for
+		/// AICs whose head nodes are same as tail nodes. In this case, the AIC
+		/// will raise a conclusion that the head node is absolutely true.
+		/// </para>
+		/// <para>The value is <see langword="true"/> in default case.</para>
+		/// </summary>
+		public bool CheckHeadCollision { get; set; } = true;
+
+		/// <summary>
+		/// <para>
 		/// Indicates whether the solver should check
 		/// uncompleted uniqueness patterns.
 		/// </para>

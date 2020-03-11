@@ -91,6 +91,9 @@ namespace Sudoku.Solving.Manual.Chaining
 			return head == head2 && tail == tail2 || head == tail2 && tail == head2;
 		}
 
+		/// <inheritdoc/>
+		public override int GetHashCode() => Nodes[0].Candidate << 20 + Nodes[^1].Candidate;
+
 		/// <summary>
 		/// Indicates whether the chain is X-Chain.
 		/// </summary>

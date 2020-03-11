@@ -36,6 +36,12 @@ namespace Sudoku.Solving.Manual.Chaining
 		private readonly bool _onlySaveShortestPathAic;
 
 		/// <summary>
+		/// Indicates whether the searcher will store the discontinuous nice loop
+		/// whose head and tail is a same node.
+		/// </summary>
+		private readonly bool _addHeadCollision;
+
+		/// <summary>
 		/// Indicates the maximum length to search.
 		/// </summary>
 		private readonly int _maxLength;
@@ -57,15 +63,20 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Indicates whether the searcher will store the shortest path
 		/// only.
 		/// </param>
+		/// <param name="addHeadCollision">
+		/// Indicates whether the searcher will store the discontinuous nice loop
+		/// whose head and tail is a same node.
+		/// </param>
 		public AlternatingInferenceChainTechniqueSearcher(
 			bool searchX, bool searchY, int maxLength, bool reductDifferentPathAic,
-			bool onlySaveShortestPathAic)
+			bool onlySaveShortestPathAic, bool addHeadCollision)
 		{
 			_searchX = searchX;
 			_searchY = searchY;
 			_maxLength = maxLength;
 			_reductDifferentPathAic = reductDifferentPathAic;
 			_onlySaveShortestPathAic = onlySaveShortestPathAic;
+			_addHeadCollision = addHeadCollision;
 		}
 
 
@@ -205,6 +216,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 
 			// Search for same regions.
+			bool checkCollision(int next) => !_addHeadCollision && candidateList[next];
 			if (_searchX)
 			{
 				var (r, c, b) = CellUtils.GetRegion(currentCell);
@@ -219,7 +231,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					map[currentCell] = false;
 					int nextCell = map.SetBitAt(0);
 					int nextCandidate = nextCell * 9 + currentDigit;
-					if (candidateList[nextCandidate])
+					if (checkCollision(nextCandidate))
 					{
 						continue;
 					}
@@ -248,7 +260,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					mask &= (short)~(1 << currentDigit);
 					int nextDigit = mask.FindFirstSet();
 					int nextCandidate = currentCell * 9 + nextDigit;
-					if (candidateList[nextCandidate])
+					if (checkCollision(nextCandidate))
 					{
 						return;
 					}

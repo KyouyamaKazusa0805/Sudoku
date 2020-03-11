@@ -1192,6 +1192,9 @@
         <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.Equals(Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.IsXChain">
             <summary>
             Indicates whether the chain is X-Chain.
@@ -1238,12 +1241,18 @@
             Indicates whether the searcher will store the shortest path only.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher._addHeadCollision">
+            <summary>
+            Indicates whether the searcher will store the discontinuous nice loop
+            whose head and tail is a same node.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher._maxLength">
             <summary>
             Indicates the maximum length to search.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -1259,6 +1268,10 @@
             <param name="onlySaveShortestPathAic">
             Indicates whether the searcher will store the shortest path
             only.
+            </param>
+            <param name="addHeadCollision">
+            Indicates whether the searcher will store the discontinuous nice loop
+            whose head and tail is a same node.
             </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.Priority">
@@ -2385,6 +2398,20 @@
             </para>
             </summary>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckHeadCollision">
+            <summary>
+            <para>
+            Indicates whether the solver will check head collision in searching for
+            AICs.
+            </para>
+            <para>
+            If the value is <see langword="true"/>, the searcher will search for
+            AICs whose head nodes are same as tail nodes. In this case, the AIC
+            will raise a conclusion that the head node is absolutely true.
+            </para>
+            <para>The value is <see langword="true"/> in default case.</para>
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckIncompletedUniquenessPatterns">
             <summary>
@@ -5589,7 +5616,9 @@
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <param name="cellOffset">The cell offset.</param>
             <param name="mask">
-            (<see langword="out"/> parameter) The result mask.
+            (<see langword="out"/> parameter) The result mask. The mask consists of
+            9 bits, where the set bits means the digit exists in this cell; otherwise,
+            the bit will not be set.
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
