@@ -14,6 +14,12 @@ namespace Sudoku.Solving.Manual.Chaining
 	public sealed class AlternatingInferenceChainTechniqueInfo : ChainTechniqueInfo, IEquatable<AlternatingInferenceChainTechniqueInfo>
 	{
 		/// <summary>
+		/// Indicates the last index of a collection.
+		/// </summary>
+		private static readonly Index LastIndex = ^1;
+
+
+		/// <summary>
 		/// Initializes an instance with the specified information.
 		/// </summary>
 		/// <param name="conclusions">All conclusions.</param>
@@ -25,8 +31,11 @@ namespace Sudoku.Solving.Manual.Chaining
 		public AlternatingInferenceChainTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			IReadOnlyList<Node> nodes, bool isContinuousNiceLoop)
-			: base(conclusions, views) =>
-			(Nodes, IsContinuousNiceLoop) = (nodes, isContinuousNiceLoop);
+			: base(conclusions, views)
+		{
+			Nodes = KeepNodeMinimum(nodes);
+			IsContinuousNiceLoop = isContinuousNiceLoop;
+		}
 
 
 		/// <summary>
@@ -105,17 +114,11 @@ namespace Sudoku.Solving.Manual.Chaining
 			obj is AlternatingInferenceChainTechniqueInfo comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(AlternatingInferenceChainTechniqueInfo other)
-		{
-			int head = Nodes[0].Candidate;
-			int tail = Nodes[^1].Candidate;
-			int head2 = other.Nodes[0].Candidate;
-			int tail2 = other.Nodes[^1].Candidate;
-			return head == head2 && tail == tail2 || head == tail2 && tail == head2;
-		}
+		public bool Equals(AlternatingInferenceChainTechniqueInfo other) =>
+			GetHashCode() == other.GetHashCode();
 
 		/// <inheritdoc/>
-		public override int GetHashCode() => Nodes[0].Candidate << 20 + Nodes[^1].Candidate;
+		public override int GetHashCode() => Nodes[0].Candidate << 20 + Nodes[LastIndex].Candidate;
 
 		/// <summary>
 		/// Indicates whether the chain is X-Chain.
@@ -157,6 +160,30 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 
 			return true;
+		}
+
+		/// <summary>
+		/// Keep the head node is lower than tail node.
+		/// </summary>
+		/// <param name="nodes">The nodes.</param>
+		/// <returns>The list.</returns>
+		private IReadOnlyList<Node> KeepNodeMinimum(IReadOnlyList<Node> nodes)
+		{
+			if (nodes[0].Candidate > nodes[LastIndex].Candidate)
+			{
+				var list = new List<Node>(nodes);
+				for (int i = 0; i < nodes.Count >> 1; i++)
+				{
+					var temp = list[i];
+					list[i] = list[^(i + 1)];
+					list[^(i + 1)] = temp;
+				}
+				return list;
+			}
+			else
+			{
+				return nodes;
+			}
 		}
 
 		/// <summary>

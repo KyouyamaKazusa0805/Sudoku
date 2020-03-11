@@ -1161,6 +1161,11 @@
             Provides a usage of alternating inference chain (AIC) technique.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.LastIndex">
+            <summary>
+            Indicates the last index of a collection.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Node},System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
@@ -1214,6 +1219,13 @@
             Indicates whether the chain is XY-Chain.
             </summary>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.KeepNodeMinimum(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Node})">
+            <summary>
+            Keep the head node is lower than tail node.
+            </summary>
+            <param name="nodes">The nodes.</param>
+            <returns>The list.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.IsHeadTailSame">
             <summary>
