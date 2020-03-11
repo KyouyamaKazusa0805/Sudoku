@@ -418,7 +418,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				// Continuous nice loop should be a loop.
 				links.Add(new Inference(stack[LastIndex], true, stack[0], false));
 
-				var resultInfo =
+				SumUpResult(
+					accumulator,
 					new AlternatingInferenceChainTechniqueInfo(
 						conclusions,
 						views: new[]
@@ -430,7 +431,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								links)
 						},
 						nodes,
-						isContinuousNiceLoop: true);
+						isContinuousNiceLoop: true));
 			}
 			else
 			{
@@ -481,7 +482,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 
 				// Step 3: Record it into the result accumulator.
-				var resultInfo =
+				SumUpResult(
+					accumulator,
 					new AlternatingInferenceChainTechniqueInfo(
 						conclusions,
 						views: new[]
@@ -493,47 +495,57 @@ namespace Sudoku.Solving.Manual.Chaining
 								links)
 						},
 						nodes,
-						isContinuousNiceLoop: false);
-				if (_onlySaveShortestPathAic)
+						isContinuousNiceLoop: false));
+			}
+		}
+
+		/// <summary>
+		/// Sum up the result.
+		/// </summary>
+		/// <param name="accumulator">The accumulator list.</param>
+		/// <param name="resultInfo">The result information instance.</param>
+		private void SumUpResult(
+			IBag<TechniqueInfo> accumulator, AlternatingInferenceChainTechniqueInfo resultInfo)
+		{
+			if (_onlySaveShortestPathAic)
+			{
+				// Get all AICs with same head and tail nodes.
+				var set = new HashSet<TechniqueInfo>();
+				foreach (var infoGroupedByNode in
+					from info in accumulator.OfType<AlternatingInferenceChainTechniqueInfo>()
+					group info by (_head: info.Nodes[0], _tail: info.Nodes[LastIndex]))
 				{
-					// Get all AICs with same head and tail nodes.
-					var set = new HashSet<TechniqueInfo>();
-					foreach (var infoGroupedByNode in
-						from info in accumulator.OfType<AlternatingInferenceChainTechniqueInfo>()
-						group info by (_head: info.Nodes[0], _tail: info.Nodes[LastIndex]))
+					var ptr = default(TechniqueInfo?);
+					int shortestLength = default;
+
+					// Now check the shortest one.
+					foreach (var info in infoGroupedByNode)
 					{
-						var ptr = default(TechniqueInfo?);
-						int shortestLength = default;
-
-						// Now check the shortest one.
-						foreach (var info in infoGroupedByNode)
+						int length = info.Nodes.Count;
+						if (length < shortestLength)
 						{
-							int length = info.Nodes.Count;
-							if (length < shortestLength)
-							{
-								shortestLength = length;
-								ptr = info;
-							}
+							shortestLength = length;
+							ptr = info;
 						}
-
-						// Then compare to the current result information.
-						if (resultInfo.Nodes.Count < shortestLength)
-						{
-							shortestLength = resultInfo.Nodes.Count;
-							ptr = resultInfo;
-						}
-
-						// Now store it.
-						set.Add(ptr!);
 					}
 
-					accumulator.Clear();
-					accumulator.AddRange(set);
+					// Then compare to the current result information.
+					if (resultInfo.Nodes.Count < shortestLength)
+					{
+						shortestLength = resultInfo.Nodes.Count;
+						ptr = resultInfo;
+					}
+
+					// Now store it.
+					set.Add(ptr!);
 				}
-				else
-				{
-					GetAct(accumulator)(resultInfo);
-				}
+
+				accumulator.Clear();
+				accumulator.AddRange(set);
+			}
+			else
+			{
+				GetAct(accumulator)(resultInfo);
 			}
 		}
 

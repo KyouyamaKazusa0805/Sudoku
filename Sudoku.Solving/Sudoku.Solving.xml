@@ -1346,6 +1346,13 @@
             <param name="candidateList">The candidate list.</param>
             <param name="stack">The stack.</param>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.SumUpResult(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo)">
+            <summary>
+            Sum up the result.
+            </summary>
+            <param name="accumulator">The accumulator list.</param>
+            <param name="resultInfo">The result information instance.</param>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.IsContinuousNiceLoop(System.Collections.Generic.IList{System.Int32})">
             <summary>
             To check whether the nodes form a loop.
