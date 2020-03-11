@@ -17,11 +17,20 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="conclusions">All conclusions.</param>
 		/// <param name="views">All views.</param>
 		/// <param name="nodes">All nodes.</param>
+		/// <param name="isContinuousNiceLoop">
+		/// Indicates whether the structure is a continuous nice loop.
+		/// </param>
 		public AlternatingInferenceChainTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			IReadOnlyList<Node> nodes)
-			: base(conclusions, views) => Nodes = nodes;
+			IReadOnlyList<Node> nodes, bool isContinuousNiceLoop)
+			: base(conclusions, views) =>
+			(Nodes, IsContinuousNiceLoop) = (nodes, isContinuousNiceLoop);
 
+
+		/// <summary>
+		/// Indicates whether the structure is a continuous nice loop.
+		/// </summary>
+		public bool IsContinuousNiceLoop { get; }
 
 		/// <summary>
 		/// Indicates all inferences.
@@ -33,17 +42,21 @@ namespace Sudoku.Solving.Manual.Chaining
 		{
 			get
 			{
-				return true switch
+				return IsContinuousNiceLoop switch
 				{
-					_ when IsXChain() => "X-Chain",
-					_ when !IsHeadTailSame() => Conclusions.Count switch
+					true => "Continuous Nice Loop",
+					false => true switch
 					{
-						1 => "Discontinuous Nice Loop",
-						2 => "XY-X-Chain",
-						_ => throw Throwing.ImpossibleCase
-					},
-					_ when IsXyChain() => "XY-Chain",
-					_ => "Alternating Inference Chain"
+						_ when IsXChain() => "X-Chain",
+						_ when !IsHeadTailSame() => Conclusions.Count switch
+						{
+							1 => "Discontinuous Nice Loop",
+							2 => "XY-X-Chain",
+							_ => throw Throwing.ImpossibleCase
+						},
+						_ when IsXyChain() => "XY-Chain",
+						_ => "Alternating Inference Chain"
+					}
 				};
 			}
 		}
@@ -57,10 +70,11 @@ namespace Sudoku.Solving.Manual.Chaining
 				{
 					"X-Chain" => 4.5m,
 					"XY-Chain" => 4.8m,
-					"XY-X-Chain" => 4.9m,
-					"Discontinuous Nice Loop" => 4.9m,
-					"Alternating Inference Chain" => 4.9m,
-					_ => throw Throwing.ImpossibleCase
+					"Continuous Nice Loop" => 4.8m,
+					//"XY-X-Chain" => 4.9m,
+					//"Discontinuous Nice Loop" => 4.9m,
+					//"Alternating Inference Chain" => 4.9m,
+					_ => 4.9m
 				} + ChainingDifficultyRatingUtils.GetExtraDifficultyByLength(Nodes.Count);
 			}
 		}

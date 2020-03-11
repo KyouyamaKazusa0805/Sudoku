@@ -15,6 +15,12 @@ namespace Sudoku.Solving.Manual.Chaining
 	public sealed class AlternatingInferenceChainTechniqueSearcher : ChainTechniqueSearcher
 	{
 		/// <summary>
+		/// Indicates the last index of the collection.
+		/// </summary>
+		private static readonly Index LastIndex = ^1;
+
+
+		/// <summary>
 		/// Indicates whether the searcher will search for X-Chains.
 		/// </summary>
 		private readonly bool _searchX;
@@ -42,6 +48,12 @@ namespace Sudoku.Solving.Manual.Chaining
 		private readonly bool _addHeadCollision;
 
 		/// <summary>
+		/// Indicates whether the searcher will check the chain forms a continuous
+		/// nice loop.
+		/// </summary>
+		private readonly bool _checkContinuousNiceLoop;
+
+		/// <summary>
 		/// Indicates the maximum length to search.
 		/// </summary>
 		private readonly int _maxLength;
@@ -67,9 +79,13 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Indicates whether the searcher will store the discontinuous nice loop
 		/// whose head and tail is a same node.
 		/// </param>
+		/// <param name="checkContinuousNiceLoop">
+		/// Indicates whether the searcher will check the chain forms a continuous
+		/// nice loop.
+		/// </param>
 		public AlternatingInferenceChainTechniqueSearcher(
 			bool searchX, bool searchY, int maxLength, bool reductDifferentPathAic,
-			bool onlySaveShortestPathAic, bool addHeadCollision)
+			bool onlySaveShortestPathAic, bool addHeadCollision, bool checkContinuousNiceLoop)
 		{
 			_searchX = searchX;
 			_searchY = searchY;
@@ -77,6 +93,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			_reductDifferentPathAic = reductDifferentPathAic;
 			_onlySaveShortestPathAic = onlySaveShortestPathAic;
 			_addHeadCollision = addHeadCollision;
+			_checkContinuousNiceLoop = checkContinuousNiceLoop;
 		}
 
 
@@ -90,8 +107,8 @@ namespace Sudoku.Solving.Manual.Chaining
 			// Iterate on each strong relation, and search for weak relations.
 			var candidateList = FullGridMap.Empty;
 			var stack = new List<int>();
-			var strongRelations = GetAllStrongRelations(grid);
-			foreach (var (start, end) in strongRelations)
+			var strongInferences = GetAllStrongInferences(grid);
+			foreach (var (start, end) in strongInferences)
 			{
 				foreach (var (startCandidate, endCandidate) in stackalloc[] { (start, end), (end, start) })
 				{
@@ -105,7 +122,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					// Get 'on' to 'off' nodes and 'off' to 'on' nodes recursively.
 					GetOnToOffRecursively(
 						accumulator, grid, candidateList, endCell, endDigit,
-						strongRelations, stack, _maxLength - 2);
+						strongInferences, stack, _maxLength - 2);
 
 					// Undo the step to recover the candidate status.
 					candidateList[startCandidate] = false;
@@ -287,7 +304,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <returns>All strong relations.</returns>
-		private IReadOnlyList<(int, int)> GetAllStrongRelations(IReadOnlyGrid grid)
+		private IReadOnlyList<(int, int)> GetAllStrongInferences(IReadOnlyGrid grid)
 		{
 			var result = new List<(int, int)>();
 			if (_searchX)
@@ -326,7 +343,6 @@ namespace Sudoku.Solving.Manual.Chaining
 			return result;
 		}
 
-
 		/// <summary>
 		/// Check the elimination, and save the chain into the accumulator
 		/// when the chain is valid and worth.
@@ -339,103 +355,214 @@ namespace Sudoku.Solving.Manual.Chaining
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, FullGridMap candidateList,
 			IList<int> stack)
 		{
-			int startCandidate = stack[0], endCandidate = stack[^1];
-			var elimMap = FullGridMap.CreateInstance(new[] { startCandidate, endCandidate });
-			if (!elimMap.IsNotEmpty)
+			if (_checkContinuousNiceLoop && IsContinuousNiceLoop(stack))
 			{
-				return;
-			}
-
-			var conclusions = new List<Conclusion>();
-			foreach (int candidate in elimMap.Offsets)
-			{
-				if (grid.CandidateExists(candidate / 9, candidate % 9))
+				// The structure is a continuous nice loop!
+				// Now we should get all weak inferences to search all eliminations.
+				// Step 1: save all weak inferences.
+				var weakInferences = new List<(int, int)>();
+				for (int i = 1; i < stack.Count; i += 2)
 				{
-					conclusions.Add(new Conclusion(ConclusionType.Elimination, candidate));
-				}
-			}
-
-			if (conclusions.Count == 0)
-			{
-				return;
-			}
-
-			// Now we should construct a node list.
-			// Record all highlight candidates.
-			int lastCand = default;
-			var candidateOffsets = new List<(int, int)>();
-			var nodes = new List<Node>();
-			var links = new List<Inference>();
-			bool @switch = false;
-			int i = 0;
-			foreach (int candidate in stack)
-			{
-				nodes.Add(new Node(candidate, @switch));
-				candidateOffsets.Add((@switch ? 1 : 0, candidate));
-
-				// To ensure this loop has the predecessor.
-				if (i++ > 0)
-				{
-					links.Add(new Inference(lastCand, !@switch, candidate, @switch));
+					weakInferences.Add((stack[i], stack[i + 1]));
 				}
 
-				lastCand = candidate;
-				@switch = !@switch;
-			}
-
-			var resultInfo =
-				new AlternatingInferenceChainTechniqueInfo(
-					conclusions,
-					views: new[]
-					{
-						new View(
-							cellOffsets: null,
-							candidateOffsets,
-							regionOffsets: null,
-							links)
-					},
-					nodes);
-
-			if (_onlySaveShortestPathAic)
-			{
-				// Get all AICs with same head and tail nodes.
-				var set = new HashSet<TechniqueInfo>();
-				foreach (var infoGroupedByNode in
-					from info in accumulator.OfType<AlternatingInferenceChainTechniqueInfo>()
-					group info by (_head: info.Nodes[0], _tail: info.Nodes[^1]))
+				// Step 2: Check elimination sets.
+				var eliminationSets = new List<FullGridMap>();
+				foreach (var (start, end) in weakInferences)
 				{
-					var ptr = default(TechniqueInfo?);
-					int shortestLength = default;
+					eliminationSets.Add(FullGridMap.CreateInstance(new[] { start, end }));
+				}
+				if (eliminationSets.Count == 0)
+				{
+					return;
+				}
 
-					// Now check the shortest one.
-					foreach (var info in infoGroupedByNode)
+				// Step 3: Record eliminations if exists.
+				var conclusions = new List<Conclusion>();
+				foreach (var eliminationSet in eliminationSets)
+				{
+					foreach (int candidate in eliminationSet.Offsets)
 					{
-						int length = info.Nodes.Count;
-						if (length < shortestLength)
+						if (grid.CandidateExists(candidate / 9, candidate % 9))
 						{
-							shortestLength = length;
-							ptr = info;
+							conclusions.Add(new Conclusion(ConclusionType.Elimination, candidate));
 						}
 					}
-
-					// Then compare to the current result information.
-					if (resultInfo.Nodes.Count < shortestLength)
-					{
-						shortestLength = resultInfo.Nodes.Count;
-						ptr = resultInfo;
-					}
-
-					// Now store it.
-					set.Add(ptr!);
+				}
+				if (conclusions.Count == 0)
+				{
+					return;
 				}
 
-				accumulator.Clear();
-				accumulator.AddRange(set);
+				// Step 4: Get all highlight candidates.
+				var candidateOffsets = new List<(int, int)>();
+				var links = new List<Inference>();
+				var nodes = new List<Node>();
+				int index = 0;
+				int last = default;
+				foreach (int node in stack)
+				{
+					int isOn = index & 1, isOff = (index + 1) & 1;
+					candidateOffsets.Add((isOff, node));
+					nodes.Add(new Node(node, isOff == 0));
+
+					if (index > 0)
+					{
+						links.Add(new Inference(last, isOn == 0, node, isOff == 0));
+					}
+
+					last = node;
+					index++;
+				}
+
+				// Continuous nice loop should be a loop.
+				links.Add(new Inference(stack[LastIndex], true, stack[0], false));
+
+				var resultInfo =
+					new AlternatingInferenceChainTechniqueInfo(
+						conclusions,
+						views: new[]
+						{
+							new View(
+								cellOffsets: null,
+								candidateOffsets,
+								regionOffsets: null,
+								links)
+						},
+						nodes,
+						isContinuousNiceLoop: true);
 			}
 			else
 			{
-				GetAct(accumulator)(resultInfo);
+				// Is a normal chain.
+				// Step 1: Check eliminations.
+				int startCandidate = stack[0], endCandidate = stack[LastIndex];
+				var elimMap = FullGridMap.CreateInstance(new[] { startCandidate, endCandidate });
+				if (!elimMap.IsNotEmpty)
+				{
+					return;
+				}
+
+				var conclusions = new List<Conclusion>();
+				foreach (int candidate in elimMap.Offsets)
+				{
+					if (grid.CandidateExists(candidate / 9, candidate % 9))
+					{
+						conclusions.Add(new Conclusion(ConclusionType.Elimination, candidate));
+					}
+				}
+
+				if (conclusions.Count == 0)
+				{
+					return;
+				}
+
+				// Step 2: if the chain is worth, we will construct a node list.
+				// Record all highlight candidates.
+				int lastCand = default;
+				var candidateOffsets = new List<(int, int)>();
+				var nodes = new List<Node>();
+				var links = new List<Inference>();
+				bool @switch = false;
+				int i = 0;
+				foreach (int candidate in stack)
+				{
+					nodes.Add(new Node(candidate, @switch));
+					candidateOffsets.Add((@switch ? 1 : 0, candidate));
+
+					// To ensure this loop has the predecessor.
+					if (i++ > 0)
+					{
+						links.Add(new Inference(lastCand, !@switch, candidate, @switch));
+					}
+
+					lastCand = candidate;
+					@switch = !@switch;
+				}
+
+				// Step 3: Record it into the result accumulator.
+				var resultInfo =
+					new AlternatingInferenceChainTechniqueInfo(
+						conclusions,
+						views: new[]
+						{
+							new View(
+								cellOffsets: null,
+								candidateOffsets,
+								regionOffsets: null,
+								links)
+						},
+						nodes,
+						isContinuousNiceLoop: false);
+				if (_onlySaveShortestPathAic)
+				{
+					// Get all AICs with same head and tail nodes.
+					var set = new HashSet<TechniqueInfo>();
+					foreach (var infoGroupedByNode in
+						from info in accumulator.OfType<AlternatingInferenceChainTechniqueInfo>()
+						group info by (_head: info.Nodes[0], _tail: info.Nodes[LastIndex]))
+					{
+						var ptr = default(TechniqueInfo?);
+						int shortestLength = default;
+
+						// Now check the shortest one.
+						foreach (var info in infoGroupedByNode)
+						{
+							int length = info.Nodes.Count;
+							if (length < shortestLength)
+							{
+								shortestLength = length;
+								ptr = info;
+							}
+						}
+
+						// Then compare to the current result information.
+						if (resultInfo.Nodes.Count < shortestLength)
+						{
+							shortestLength = resultInfo.Nodes.Count;
+							ptr = resultInfo;
+						}
+
+						// Now store it.
+						set.Add(ptr!);
+					}
+
+					accumulator.Clear();
+					accumulator.AddRange(set);
+				}
+				else
+				{
+					GetAct(accumulator)(resultInfo);
+				}
 			}
+		}
+
+		/// <summary>
+		/// To check whether the nodes form a loop.
+		/// </summary>
+		/// <param name="stack">The stack.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		/// <remarks>
+		/// If the nodes form a continuous nice loop, the head and tail node should be
+		/// in a same region, and hold a same digit; or else the head and the tail is in
+		/// a same cell, but the digits are different; otherwise, the nodes forms a normal
+		/// AIC.
+		/// </remarks>
+		private bool IsContinuousNiceLoop(IList<int> stack)
+		{
+			int head = stack[0], tail = stack[LastIndex];
+			int headCell = head / 9, headDigit = head % 9;
+			int tailCell = tail / 9, tailDigit = tail % 9;
+			if (headCell == tailCell && headDigit != tailDigit)
+			{
+				// The cells are same.
+				return true;
+			}
+
+			// If the cell are not same, we will check the cells are in a same region
+			// and the digits are same.
+			return headDigit == tailDigit
+				&& new GridMap(new[] { headCell, tailCell }).AllSetsAreInOneRegion(out _);
 		}
 
 		/// <summary>
@@ -447,6 +574,11 @@ namespace Sudoku.Solving.Manual.Chaining
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private Action<AlternatingInferenceChainTechniqueInfo> GetAct(IBag<TechniqueInfo> accumulator)
 		{
+			// Here may use conditional operator '?:' to decide the result.
+			// However, this operator cannot tell with the type of the result
+			// due to the delegate type (return a method call rather than a normal object),
+			// so you should add the type name explicitly at the either a branch,
+			// but the code is so ugly...
 			return _reductDifferentPathAic switch
 			{
 				true => accumulator.Add,

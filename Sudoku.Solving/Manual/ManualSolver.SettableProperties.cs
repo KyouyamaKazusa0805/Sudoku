@@ -85,6 +85,16 @@ namespace Sudoku.Solving.Manual
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether the solver will check the chain finally forms a
+		/// continuous nice loop. If so, the structure may eliminate more candidates
+		/// than those of normal AICs.
+		/// </para>
+		/// <para>The value is <see langword="true"/> in default case.</para>
+		/// </summary>
+		public bool CheckContinuousNiceLoop { get; set; } = true;
+
+		/// <summary>
+		/// <para>
 		/// Indicates whether the solver should check Gurth's symmetrical placement
 		/// at the initial grid.
 		/// </para>

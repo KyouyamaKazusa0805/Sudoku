@@ -1161,13 +1161,21 @@
             Provides a usage of alternating inference chain (AIC) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Node})">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Node},System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
             <param name="conclusions">All conclusions.</param>
             <param name="views">All views.</param>
             <param name="nodes">All nodes.</param>
+            <param name="isContinuousNiceLoop">
+            Indicates whether the structure is a continuous nice loop.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.IsContinuousNiceLoop">
+            <summary>
+            Indicates whether the structure is a continuous nice loop.
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.Nodes">
             <summary>
@@ -1220,6 +1228,11 @@
             Encapsulates an alternating inference chain (AIC) technique searcher.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.LastIndex">
+            <summary>
+            Indicates the last index of the collection.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher._searchX">
             <summary>
             Indicates whether the searcher will search for X-Chains.
@@ -1247,12 +1260,18 @@
             whose head and tail is a same node.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher._checkContinuousNiceLoop">
+            <summary>
+            Indicates whether the searcher will check the chain forms a continuous
+            nice loop.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher._maxLength">
             <summary>
             Indicates the maximum length to search.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -1272,6 +1291,10 @@
             <param name="addHeadCollision">
             Indicates whether the searcher will store the discontinuous nice loop
             whose head and tail is a same node.
+            </param>
+            <param name="checkContinuousNiceLoop">
+            Indicates whether the searcher will check the chain forms a continuous
+            nice loop.
             </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.Priority">
@@ -1306,7 +1329,7 @@
             <param name="stack">The stack.</param>
             <param name="length">The last length to search.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.GetAllStrongRelations(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.GetAllStrongInferences(Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Get all strong relations.
             </summary>
@@ -1322,6 +1345,19 @@
             <param name="grid">The grid.</param>
             <param name="candidateList">The candidate list.</param>
             <param name="stack">The stack.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.IsContinuousNiceLoop(System.Collections.Generic.IList{System.Int32})">
+            <summary>
+            To check whether the nodes form a loop.
+            </summary>
+            <param name="stack">The stack.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <remarks>
+            If the nodes form a continuous nice loop, the head and tail node should be
+            in a same region, and hold a same digit; or else the head and the tail is in
+            a same cell, but the digits are different; otherwise, the nodes forms a normal
+            AIC.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.GetAct(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo})">
             <summary>
@@ -2377,6 +2413,16 @@
             </para>
             </summary>
             <seealso cref="T:Sudoku.Runtime.WrongHandlingException"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckContinuousNiceLoop">
+            <summary>
+            <para>
+            Indicates whether the solver will check the chain finally forms a
+            continuous nice loop. If so, the structure may eliminate more candidates
+            than those of normal AICs.
+            </para>
+            <para>The value is <see langword="true"/> in default case.</para>
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckGurthSymmetricalPlacement">
             <summary>

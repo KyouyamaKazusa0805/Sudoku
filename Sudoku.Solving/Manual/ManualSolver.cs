@@ -135,7 +135,7 @@ namespace Sudoku.Solving.Manual
 					new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
 					new AlternatingInferenceChainTechniqueSearcher(
 						true, true, AicMaximumLength, ReductDifferentPathAic,
-						OnlySaveShortestPathAic, CheckHeadCollision),
+						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
 				},
 				new TechniqueSearcher[]
 				{
@@ -304,7 +304,7 @@ namespace Sudoku.Solving.Manual
 				new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
 				new AlternatingInferenceChainTechniqueSearcher(
 					true, true, AicMaximumLength, ReductDifferentPathAic,
-					OnlySaveShortestPathAic, CheckHeadCollision),
+					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
 				new HobiwanFishTechniqueSearcher(
 					HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
 					HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
