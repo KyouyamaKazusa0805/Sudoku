@@ -44,7 +44,12 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				return IsContinuousNiceLoop switch
 				{
-					true => "Continuous Nice Loop",
+					true => true switch
+					{
+						_ when IsXChain() => "Fishy Cycle",
+						_ when IsXyChain() => "XY-Cycle",
+						_ => "Continuous Nice Loop"
+					},
 					false => true switch
 					{
 						_ when IsXChain() => "X-Chain",
@@ -69,7 +74,9 @@ namespace Sudoku.Solving.Manual.Chaining
 				return Name switch
 				{
 					"X-Chain" => 4.5m,
+					"Fishy Cycle" => 4.5m,
 					"XY-Chain" => 4.8m,
+					"XY-Cycle" => 4.7m,
 					"Continuous Nice Loop" => 4.8m,
 					//"XY-X-Chain" => 4.9m,
 					//"Discontinuous Nice Loop" => 4.9m,

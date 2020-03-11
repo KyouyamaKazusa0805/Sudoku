@@ -152,7 +152,7 @@ The program supports technique below at present:
 * Uniqueness: Unique Rectangle (Type 1 to 6, Hidden), Avoidable Rectangle (Type 1 to 3, Hidden), Extended Rectangle (Type 1 to 2), Unique Loop (Type 1 to 4), Avoidable Rectangle, Bivalue Universal Grave (Type 1 to 4 and BUG + n), Borescoper's Deadly Pattern (Type 1 to 2)<br/>唯一性：唯一矩形（类型 1 到 6）、隐性唯一矩形、可规避矩形（类型 1 到 3）、隐性可规避矩形、拓展矩形（类型 1 到 2）、唯一环（类型 1 到 4）、全双值格致死解法（类型 1 到 4 和 BUG + n）、探长致命结构（类型 1 到 2）
 * Single Digit Patterns: Skyscraper, Two-string Kite, Turbot Fish, Empty Rectangle<br/>同数链式结构：摩天楼、双线风筝、多宝鱼、空矩形
 * Almost Subset Techniques: Sue de Coq<br/>待定数组：融合待定数组
-* Chains: X-Chain, XY-Chain, Discontinuous Nice Loop, XY-X-Chain, Alternating Inference Chain<br/>链：同数链、双值格链、不连续环、首尾异数链、普通链
+* Chains: X-Chain, X-Cycle (Fishy Cycle), XY-Chain, XY-Loop (XY-Cycle), Discontinuous Nice Loop, XY-X-Chain, Alternating Inference Chain, Continuous Nice Loop<br/>链：同数链、同数环、双值格链、双值格环、不连续环、首尾异数链、普通链、环
 * Last Resorts: Pattern Overlay Method, Template, Bowman's Bingo, Chute Clue Cover, Brute Force<br/>爆破技巧：图案叠加删减、模板、人工试数、大行列提示信息覆盖、计算机试数
 * Other techniques: Gurth's Symmetrical Placement<br/>其它技巧：宇宙法
 
