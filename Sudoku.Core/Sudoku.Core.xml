@@ -2820,6 +2820,19 @@
             <param name="sender">The object triggering the event.</param>
             <param name="e">The data while triggering.</param>
         </member>
+        <member name="T:Sudoku.Diagnostics.ClassRelations">
+            <summary>
+            Provides operations for class relations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.ClassRelations.GetAllSubclasses``1(System.Reflection.Assembly)">
+            <summary>
+            Get all sub-classes of a specified class type.
+            </summary>
+            <typeparam name="T">The class type.</typeparam>
+            <param name="assembly">The assembly to search for.</param>
+            <returns>All sub-classes.</returns>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeCounter">
             <summary>
             Encapsulates a code line counter.
