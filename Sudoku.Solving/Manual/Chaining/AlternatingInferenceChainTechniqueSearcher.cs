@@ -361,7 +361,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				// Now we should get all weak inferences to search all eliminations.
 				// Step 1: save all weak inferences.
 				var weakInferences = new List<(int, int)>();
-				for (int i = 1; i < stack.Count; i += 2)
+				for (int i = 1; i < stack.Count - 1; i += 2)
 				{
 					weakInferences.Add((stack[i], stack[i + 1]));
 				}
@@ -509,39 +509,27 @@ namespace Sudoku.Solving.Manual.Chaining
 		{
 			if (_onlySaveShortestPathAic)
 			{
-				// Get all AICs with same head and tail nodes.
-				var set = new HashSet<TechniqueInfo>();
-				foreach (var infoGroupedByNode in
-					from info in accumulator.OfType<AlternatingInferenceChainTechniqueInfo>()
-					group info by (_head: info.Nodes[0], _tail: info.Nodes[LastIndex]))
+				bool hasSameAic = false;
+				int sameAicIndex = default;
+				for (int i = 0; i < accumulator.Count; i++)
 				{
-					var ptr = default(TechniqueInfo?);
-					int shortestLength = default;
-
-					// Now check the shortest one.
-					foreach (var info in infoGroupedByNode)
+					if (accumulator[i] is AlternatingInferenceChainTechniqueInfo comparer
+						&& comparer == resultInfo)
 					{
-						int length = info.Nodes.Count;
-						if (length < shortestLength)
-						{
-							shortestLength = length;
-							ptr = info;
-						}
+						hasSameAic = true;
+						sameAicIndex = i;
 					}
-
-					// Then compare to the current result information.
-					if (resultInfo.Nodes.Count < shortestLength)
-					{
-						shortestLength = resultInfo.Nodes.Count;
-						ptr = resultInfo;
-					}
-
-					// Now store it.
-					set.Add(ptr!);
 				}
-
-				accumulator.Clear();
-				accumulator.AddRange(set);
+				if (hasSameAic)
+				{
+					var list = new List<TechniqueInfo>(accumulator) { [sameAicIndex] = resultInfo };
+					accumulator.Clear();
+					accumulator.AddRange(list);
+				}
+				else
+				{
+					GetAct(accumulator)(resultInfo);
+				}
 			}
 			else
 			{

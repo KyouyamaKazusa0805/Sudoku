@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
@@ -9,6 +10,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Provides a usage of alternating inference chain (AIC) technique.
 	/// </summary>
+	[SuppressMessage("", "CS0660")]
 	public sealed class AlternatingInferenceChainTechniqueInfo : ChainTechniqueInfo, IEquatable<AlternatingInferenceChainTechniqueInfo>
 	{
 		/// <summary>
@@ -164,5 +166,16 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <see langword="true"/> is for same digit; otherwise, <see langword="false"/>.
 		/// </returns>
 		private bool IsHeadTailSame() => Nodes[0].Candidate % 9 == Nodes[^1].Candidate % 9;
+
+
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		public static bool operator ==(
+			AlternatingInferenceChainTechniqueInfo left, AlternatingInferenceChainTechniqueInfo right) =>
+			left.Equals(right);
+
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		public static bool operator !=(
+			AlternatingInferenceChainTechniqueInfo left, AlternatingInferenceChainTechniqueInfo right) =>
+			!(left == right);
 	}
 }

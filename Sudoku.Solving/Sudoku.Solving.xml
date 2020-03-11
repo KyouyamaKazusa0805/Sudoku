@@ -1223,6 +1223,22 @@
             <see langword="true"/> is for same digit; otherwise, <see langword="false"/>.
             </returns>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.op_Equality(Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo,Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo.op_Inequality(Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo,Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueInfo)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher">
             <summary>
             Encapsulates an alternating inference chain (AIC) technique searcher.
