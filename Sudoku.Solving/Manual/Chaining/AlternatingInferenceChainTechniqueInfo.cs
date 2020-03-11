@@ -89,6 +89,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								_ => throw Throwing.ImpossibleCase
 							},
 							_ when IsXyChain() => "XY-Chain",
+							_ when IsHeadCollisionChain() => "Discontinuous Nice Loop",
 							_ => "Alternating Inference Chain"
 						}
 					}
@@ -139,8 +140,30 @@ namespace Sudoku.Solving.Manual.Chaining
 			obj is AlternatingInferenceChainTechniqueInfo comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(AlternatingInferenceChainTechniqueInfo other) =>
-			GetHashCode() == other.GetHashCode();
+		public bool Equals(AlternatingInferenceChainTechniqueInfo other)
+		{
+			if (IsContinuousNiceLoop)
+			{
+				if (Length != other.Length)
+				{
+					return false;
+				}
+
+				var thisMap = FullGridMap.Empty;
+				var otherMap = FullGridMap.Empty;
+				for (int i = 0; i < Length; i++)
+				{
+					thisMap[Nodes[i].Candidate] = true;
+					otherMap[Nodes[i].Candidate] = true;
+				}
+
+				return thisMap == otherMap;
+			}
+			else
+			{
+				return GetHashCode() == other.GetHashCode();
+			}
+		}
 
 		/// <inheritdoc/>
 		public override int GetHashCode() => Nodes[0].Candidate << 20 + Nodes[LastIndex].Candidate;
@@ -277,6 +300,14 @@ namespace Sudoku.Solving.Manual.Chaining
 			return b / 9 == c / 9 && d / 9 == e / 9
 				&& a % 9 == b % 9 && c % 9 == d % 9 && e % 9 == f % 9;
 		}
+
+		/// <summary>
+		/// Indicates whether the chain is discontinuous nice loop whose head and tail
+		/// is a same node.
+		/// </summary>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private bool IsHeadCollisionChain() => Nodes[0].Candidate == Nodes[LastIndex].Candidate;
 
 		/// <summary>
 		/// Keep the head node is lower than tail node.
