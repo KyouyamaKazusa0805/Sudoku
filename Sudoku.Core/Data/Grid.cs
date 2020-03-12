@@ -513,13 +513,7 @@ namespace Sudoku.Data
 		/// <seealso cref="ToString(string, IFormatProvider)"/>
 		private static void CheckFormatString(string format)
 		{
-			if (format.IsMatch(@"[Hh]") && !format.EndsWith('h') && !format.EndsWith('H'))
-			{
-				throw Throwing.FormatErrorWithMessage(
-					"Hodoku identifier 'h' or 'H' should be at the last place.",
-					nameof(format));
-			}
-			else if (format.Contains('@'))
+			if (format.Contains('@'))
 			{
 				if (!format.StartsWith('@'))
 				{
@@ -531,12 +525,6 @@ namespace Sudoku.Data
 				{
 					throw Throwing.FormatErrorWithMessage(
 						"In multi-line environment, '0' and '.' cannot appear with ':' together.",
-						nameof(format));
-				}
-				else if (format.Contains('H') || format.Contains('h'))
-				{
-					throw Throwing.FormatErrorWithMessage(
-						"In multi-line environment, 'h' or 'H' cannot appear with '@' together.",
 						nameof(format));
 				}
 				else if (format.IsMatch(@"\@[^0\!\*\.\:]+"))
