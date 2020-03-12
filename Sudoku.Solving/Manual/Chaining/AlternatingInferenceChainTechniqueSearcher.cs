@@ -11,6 +11,12 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Encapsulates an alternating inference chain (AIC) technique searcher.
 	/// </summary>
+	/// <remarks>
+	/// This technique searcher may use the basic searching way to find all AICs.
+	/// For example, this searcher will try to search for all strong inferences firstly,
+	/// and then search a weak inference that the candidate is in the same region or cell
+	/// with a node in the strong inference in order to link them.
+	/// </remarks>
 	[Slow]
 	public sealed class AlternatingInferenceChainTechniqueSearcher : ChainTechniqueSearcher
 	{
