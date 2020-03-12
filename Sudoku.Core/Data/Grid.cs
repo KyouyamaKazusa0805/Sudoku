@@ -333,6 +333,14 @@ namespace Sudoku.Data
 		/// <inheritdoc/>
 		public sealed override string ToString() => ToString(null, null);
 
+		/// <summary>
+		/// Returns a string that represents the current object with the grid output option.
+		/// </summary>
+		/// <param name="gridOutputOption">The grid output option.</param>
+		/// <returns>The string.</returns>
+		public string ToString(GridOutputOptions gridOutputOption) =>
+			GridFormatFactory.Create(gridOutputOption).ToString(this);
+
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
 		public string ToString(string format) => ToString(format, null);
 
@@ -455,12 +463,12 @@ namespace Sudoku.Data
 		/// </para>
 		/// <para>
 		/// If you want to parse a PM grid, we recommend you use the method
-		/// <see cref="Parse(string, GridParsingType)"/> instead of this method.
+		/// <see cref="Parse(string, GridParsingOption)"/> instead of this method.
 		/// </para>
 		/// </summary>
 		/// <param name="str">The string.</param>
 		/// <returns>The result instance had converted.</returns>
-		/// <seealso cref="Parse(string, GridParsingType)"/>
+		/// <seealso cref="Parse(string, GridParsingOption)"/>
 		public static Grid Parse(string str) => new GridParser(str).Parse();
 
 		/// <summary>
@@ -468,10 +476,10 @@ namespace Sudoku.Data
 		/// using a specified grid parsing type.
 		/// </summary>
 		/// <param name="str">The string.</param>
-		/// <param name="gridParsingType">The grid parsing type.</param>
+		/// <param name="gridParsingOption">The grid parsing type.</param>
 		/// <returns>The result instance had converted.</returns>
-		public static Grid Parse(string str, GridParsingType gridParsingType) =>
-			new GridParser(str).Parse(gridParsingType);
+		public static Grid Parse(string str, GridParsingOption gridParsingOption) =>
+			new GridParser(str).Parse(gridParsingOption);
 
 		/// <summary>
 		/// Try to parse a string and converts to this type, and returns a
@@ -505,7 +513,13 @@ namespace Sudoku.Data
 		/// <seealso cref="ToString(string, IFormatProvider)"/>
 		private static void CheckFormatString(string format)
 		{
-			if (format.Contains('@'))
+			if (format.IsMatch(@"[Hh]") && !format.EndsWith('h') && !format.EndsWith('H'))
+			{
+				throw Throwing.FormatErrorWithMessage(
+					"Hodoku identifier 'h' or 'H' should be at the last place.",
+					nameof(format));
+			}
+			else if (format.Contains('@'))
 			{
 				if (!format.StartsWith('@'))
 				{
@@ -517,6 +531,12 @@ namespace Sudoku.Data
 				{
 					throw Throwing.FormatErrorWithMessage(
 						"In multi-line environment, '0' and '.' cannot appear with ':' together.",
+						nameof(format));
+				}
+				else if (format.Contains('H') || format.Contains('h'))
+				{
+					throw Throwing.FormatErrorWithMessage(
+						"In multi-line environment, 'h' or 'H' cannot appear with '@' together.",
 						nameof(format));
 				}
 				else if (format.IsMatch(@"\@[^0\!\*\.\:]+"))
@@ -566,18 +586,18 @@ namespace Sudoku.Data
 		/// <see cref="bool"/> value indicating the result of the conversion.
 		/// </summary>
 		/// <param name="str">The string.</param>
-		/// <param name="gridParsingType">The grid parsing type.</param>
+		/// <param name="gridParsingOption">The grid parsing type.</param>
 		/// <param name="result">
 		/// (<see langword="out"/> parameter) The result parsed. If the conversion is failed,
 		/// this argument will be <see langword="null"/>.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool TryParse(
-			string str, GridParsingType gridParsingType, [NotNullWhen(true)] out Grid? result)
+			string str, GridParsingOption gridParsingOption, [NotNullWhen(true)] out Grid? result)
 		{
 			try
 			{
-				result = Parse(str, gridParsingType);
+				result = Parse(str, gridParsingOption);
 				return true;
 			}
 			catch

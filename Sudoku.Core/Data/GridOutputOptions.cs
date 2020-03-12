@@ -1,16 +1,22 @@
-﻿namespace Sudoku.Data
+﻿using System;
+
+namespace Sudoku.Data
 {
-	partial class GridFormatter
+	/// <summary>
+	/// Provides a grid output option.
+	/// </summary>
+	[Flags]
+	public enum GridOutputOptions : byte
 	{
 		/// <summary>
-		/// The place holder.
+		/// Indicates the default settings (a single-line string text).
 		/// </summary>
-		public char Placeholder { get; set; } = '.';
+		None = 0,
 
 		/// <summary>
 		/// Indicates the output should be with modifiable values.
 		/// </summary>
-		public bool WithModifiables { get; set; }
+		WithModifiers = 1,
 
 		/// <summary>
 		/// <para>
@@ -27,7 +33,7 @@
 		/// 'column offset' in order.
 		/// </para>
 		/// </summary>
-		public bool WithCandidates { get; set; }
+		WithCandidates = 2,
 
 		/// <summary>
 		/// Indicates the output will treat modifiable values as given ones.
@@ -35,17 +41,29 @@
 		/// If the output is multi-line, the output will use '&lt;digit&gt;' instead
 		/// of '*digit*'.
 		/// </summary>
-		public bool TreatValueAsGiven { get; set; }
+		TreatValueAsGiven = 4,
 
 		/// <summary>
 		/// Indicates whether need to handle all grid outlines while outputting.
 		/// See file "How to use 'Grid' class.md" for more information.
 		/// </summary>
-		public bool SubtleGridLines { get; set; }
+		SubtleGridLines = 8,
 
 		/// <summary>
 		/// Indicates whether the output will be compatible with Hodoku library format.
 		/// </summary>
-		public bool HodokuCompatible { get; set; }
+		HodokuCompatible = 16,
+
+		/// <summary>
+		/// Indicates the placeholder must be '.' instead of '0'.
+		/// If the value is <see langword="true"/>, the placeholder will be '.';
+		/// otherwise, '0'.
+		/// </summary>
+		DotPlaceholder = 32,
+
+		/// <summary>
+		/// Indicates whether the output should be multi-line.
+		/// </summary>
+		Multiline = 64,
 	}
 }

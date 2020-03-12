@@ -47,21 +47,21 @@ namespace Sudoku.Data
 		/// <summary>
 		/// To parse the value with a specified grid parsing type.
 		/// </summary>
-		/// <param name="gridParsingType">A specified parsing type.</param>
+		/// <param name="gridParsingOption">A specified parsing type.</param>
 		/// <returns>The grid.</returns>
 		/// <exception cref="ArgumentException">
 		/// Throws when failed to parse.
 		/// </exception>
-		public Grid Parse(GridParsingType gridParsingType)
+		public Grid Parse(GridParsingOption gridParsingOption)
 		{
-			return new Dictionary<GridParsingType, Func<Grid?>>
+			return new Dictionary<GridParsingOption, Func<Grid?>>
 			{
-				[GridParsingType.Susser] = OnParsingSusser,
-				[GridParsingType.Table] = OnParsingSimpleMultilineGrid,
-				[GridParsingType.PencilMarked] = () => OnParsingPencilMarked(false),
-				[GridParsingType.PencilMarkedTreatSingleAsGiven] = () => OnParsingPencilMarked(true),
-				[GridParsingType.SimpleTable] = OnParsingSimpleTable
-			}[gridParsingType]() ?? throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
+				[GridParsingOption.Susser] = OnParsingSusser,
+				[GridParsingOption.Table] = OnParsingSimpleMultilineGrid,
+				[GridParsingOption.PencilMarked] = () => OnParsingPencilMarked(false),
+				[GridParsingOption.PencilMarkedTreatSingleAsGiven] = () => OnParsingPencilMarked(true),
+				[GridParsingOption.SimpleTable] = OnParsingSimpleTable
+			}[gridParsingOption]() ?? throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
 		}
 
 		/// <summary>

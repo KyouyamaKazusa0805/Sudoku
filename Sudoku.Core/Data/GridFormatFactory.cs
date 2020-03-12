@@ -8,6 +8,40 @@ namespace Sudoku.Data
 	internal static class GridFormatFactory
 	{
 		/// <summary>
+		/// Create a <see cref="GridFormatter"/> according to the specified grid output options.
+		/// </summary>
+		/// <param name="gridOutputOption">The grid output options.</param>
+		/// <returns>The grid formatter.</returns>
+		public static GridFormatter Create(GridOutputOptions gridOutputOption)
+		{
+			var formatter = new GridFormatter(gridOutputOption.HasFlag(GridOutputOptions.Multiline));
+			if (gridOutputOption.HasFlag(GridOutputOptions.WithModifiers))
+			{
+				formatter.WithModifiables = true;
+			}
+			if (gridOutputOption.HasFlag(GridOutputOptions.WithCandidates))
+			{
+				formatter.WithCandidates = true;
+			}
+			if (gridOutputOption.HasFlag(GridOutputOptions.TreatValueAsGiven))
+			{
+				formatter.TreatValueAsGiven = true;
+			}
+			if (gridOutputOption.HasFlag(GridOutputOptions.SubtleGridLines))
+			{
+				formatter.SubtleGridLines = true;
+			}
+			if (gridOutputOption.HasFlag(GridOutputOptions.HodokuCompatible))
+			{
+				formatter.HodokuCompatible = true;
+			}
+			formatter.Placeholder =
+				gridOutputOption.HasFlag(GridOutputOptions.DotPlaceholder) ? '.' : '0';
+
+			return formatter;
+		}
+
+		/// <summary>
 		/// Create a <see cref="GridFormatter"/> according to the specified format.
 		/// </summary>
 		/// <param name="format">The format.</param>

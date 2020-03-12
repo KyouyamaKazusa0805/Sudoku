@@ -39,7 +39,18 @@ namespace Sudoku.Data
 		{
 			return Multiline
 				? WithCandidates ? ToMultiLineStringCore(grid) : ToMultiLineSimpleGridCore(grid)
-				: ToSingleLineStringCore(grid);
+				: HodokuCompatible ? ToHodokuLibraryFormatString(grid) : ToSingleLineStringCore(grid);
+		}
+
+		/// <summary>
+		/// To string with Hodoku library format compatible string.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <returns>The string.</returns>
+		private string ToHodokuLibraryFormatString(Grid grid)
+		{
+			string result = ToSingleLineStringCore(grid);
+			return $":0000:x:{result}:::";
 		}
 
 		/// <summary>
