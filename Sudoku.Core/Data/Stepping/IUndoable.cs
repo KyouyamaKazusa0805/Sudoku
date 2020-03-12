@@ -1,4 +1,4 @@
-﻿namespace Sudoku
+﻿namespace Sudoku.Data.Stepping
 {
 	/// <summary>
 	/// Provides a undo-able data structure.

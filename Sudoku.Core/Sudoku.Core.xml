@@ -249,33 +249,6 @@
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
         </member>
-        <member name="T:Sudoku.Data.Extensions.BagEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.Generic.IBag`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.IBag`1"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.BagEx.AddIfDoesNotContain``1(System.Collections.Generic.IBag{``0},``0)">
-            <summary>
-            Adds an object to the end of the <see cref="T:System.Collections.Generic.IBag`1"/> when
-            the specified list does not contain the specified element.
-            </summary>
-            <typeparam name="T">
-            The type of all elements. Should not be <see langword="null"/>.
-            </typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
-            <param name="item">The item to add.</param>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.BagEx.AddRange``1(System.Collections.Generic.IBag{``0},System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Adds a series of elements to the <see cref="T:System.Collections.Generic.IBag`1"/>.
-            </summary>
-            <typeparam name="T">
-            The type of all elements. Should not be <see langword="null"/>.
-            </typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
-            <param name="items">The elements.</param>
-        </member>
         <member name="T:Sudoku.Data.Extensions.ByteEx">
             <summary>
             Provides extension methods on <see cref="T:System.Byte"/>.
@@ -604,9 +577,14 @@
             <code>
             list.RemoveAt(list.Count - 1);
             </code>
+            or
+            <code>
+            list.RemoveAt(^1); // Call extension method 'RemoveAt'.
+            </code>
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <seealso cref="M:Sudoku.Data.Extensions.ListEx.RemoveAt``1(System.Collections.Generic.IList{``0},System.Index)"/>
         </member>
         <member name="M:Sudoku.Data.Extensions.ListEx.RemoveAt``1(System.Collections.Generic.IList{``0},System.Index)">
             <summary>
@@ -689,30 +667,6 @@
             but the type of the specified object is used only.
             </remarks>
             <seealso cref="M:Sudoku.Data.Extensions.ObjectEx.HasMarkedAttribute``1(System.Object,System.Boolean,System.Collections.Generic.IEnumerable{``0}@)"/>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.SpanEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Span`1"/>.
-            </summary>
-            <seealso cref="T:System.Span`1"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.SpanEx.CountWhen``1(System.Span{``0},System.Predicate{``0})">
-            <summary>
-            Returns a number that represents how many elements in the specified
-            <see cref="T:System.Span`1"/> sequence satisfy a condition.
-            </summary>
-            <typeparam name="T">The element of the span instance.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The span.</param>
-            <param name="predicate">The condition to satisfy.</param>
-            <returns>The number of elements satisfying the condition.</returns>
-            <remarks>
-            This method is provides because <see cref="T:System.Span`1"/> cannot support
-            <see cref="T:System.Collections.Generic.IEnumerable`1"/> interface but can be used in <see langword="foreach"/>
-            loop. If the span has implemented <see cref="T:System.Collections.Generic.IEnumerable`1"/>,
-            all span instance can use <see langword="foreach"/> loop or use extension method
-            <see cref="M:System.Linq.Enumerable.Count``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>.
-            </remarks>
-            <seealso cref="M:System.Linq.Enumerable.Count``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
         </member>
         <member name="T:Sudoku.Data.Extensions.StringBuilderEx">
             <summary>
@@ -1219,10 +1173,14 @@
             <para>This array stores binary representation of decimals.</para>
             <para>
             There are 81 cells in a sudoku grid, so this data structure uses
-            an array of size 81. Each element is a <see cref="T:System.Int16"/> value,
-            where the lower 9 bits indicates if the digit 1 to 9 exists or not.
-            If the value is <see langword="true"/> (i.e. binary is for 1), this digit will
-            <b>not</b> be exist. The higher 3 bits indicates the cell status. The
+            an array of size 81. Each element is a <see cref="T:System.Int16"/> value
+            (but only use 12 bits), where the lower 9 bits indicates whether
+            the digit 1 to 9 exists or not. If the corresponding value is
+            <see langword="true"/>, or in other words, the binary representation
+            is 1, this digit will <b>not</b> exist.
+            </para>
+            <para>
+            The higher 3 bits indicates the cell status. The
             cases are below:
             <list type="table">
             <item>
@@ -1591,8 +1549,8 @@
             <summary>
             Indicates the output will treat modifiable values as given ones.
             If the output is single line, the output will remove all plus marks '+'.
-            If the output is multi-line, the output will use '&lt;digit&gt;' instead
-            of '*digit*'.
+            If the output is multi-line, the output will use '<c>&lt;digit&gt;</c>' instead
+            of '<c>*digit*</c>'.
             </summary>
         </member>
         <member name="P:Sudoku.Data.GridFormatter.SubtleGridLines">
@@ -1608,14 +1566,18 @@
         </member>
         <member name="T:Sudoku.Data.GridMap">
             <summary>
-            Encapsulates a binary series of cell status table consisting of 81 bits,
-            where <see langword="true"/> bit (1) is for the cell having digit,
-            and the <see langword="false"/> bit (0) is for empty cell. Sometimes for other usages.
+            Encapsulates a binary series of cell status table.
             </summary>
+            <remarks>
+            The instance stores two <see cref="T:System.Int64"/> values, consisting of 81 bits,
+            where <see langword="true"/> bit (1) is for the cell having that digit,
+            and the <see langword="false"/> bit (0) is for the cell not containing
+            the digit. Sometimes this type will be used for other cases.
+            </remarks>
         </member>
         <member name="F:Sudoku.Data.GridMap.Empty">
             <summary>
-            Indicates an empty instance (making no changes).
+            Indicates an empty instance (all bits are 0).
             </summary>
         </member>
         <member name="F:Sudoku.Data.GridMap.Shifting">
@@ -1625,20 +1587,20 @@
         </member>
         <member name="F:Sudoku.Data.GridMap._high">
             <summary>
-            Inner binary representation values.
+            Indicates the internal two <see cref="T:System.Int64"/> values,
+            which represents 81 bits.
             </summary>
             <remarks>
-            These two fields does not readonly!
-            Roslyn lies!
+            These two fields does not <see langword="readonly"/>! Roslyn lies!
             </remarks>
         </member>
         <member name="F:Sudoku.Data.GridMap._low">
             <summary>
-            Inner binary representation values.
+            Indicates the internal two <see cref="T:System.Int64"/> values,
+            which represents 81 bits.
             </summary>
             <remarks>
-            These two fields does not readonly!
-            Roslyn lies!
+            These two fields does not <see langword="readonly"/>! Roslyn lies!
             </remarks>
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32)">
@@ -1671,7 +1633,11 @@
             To copy an instance with the specified information.
             This constructor is only used for adding or removing some extra cells like:
             <code>
-            <see langword="var"/> y = <see langword="new"/> <see cref="T:Sudoku.Data.GridMap"/>(x) { [i] = <see langword="true"/> };
+            var y = new GridMap(x) { [i] = true };
+            </code>
+            or
+            <code>
+            var y = new GridMap(x) { i };
             </code>
             </summary>
             <param name="another">Another instance.</param>
@@ -1817,9 +1783,9 @@
             (<see langword="out"/> parameter) The region covered.
             </param>
         </member>
-        <member name="M:Sudoku.Data.GridMap.SetBitAt(System.Int32)">
+        <member name="M:Sudoku.Data.GridMap.SetAt(System.Int32)">
             <summary>
-            Get the specified index of <see langword="true"/> bits in this instance.
+            Get a n-th index of the <see langword="true"/> bit in this instance.
             </summary>
             <param name="index">The true bit index order.</param>
             <returns>The real index.</returns>
@@ -1981,7 +1947,7 @@
         <member name="F:Sudoku.Data.GridMap.RegionTable">
             <summary>
             The map of all cell offsets in its specified region.
-            For example, 'Map[0]' means that all cell offsets
+            For example, '<c>RegionTable[0]</c>' means that all cell offsets
             in the region 0 (block 1).
             </summary>
         </member>
@@ -2026,14 +1992,14 @@
             <summary>
             Indicates the output will treat modifiable values as given ones.
             If the output is single line, the output will remove all plus marks '+'.
-            If the output is multi-line, the output will use '&lt;digit&gt;' instead
-            of '*digit*'.
+            If the output is multi-line, the output will use '<c>&lt;digit&gt;</c>'
+            instead of '<c>*digit*</c>'.
             </summary>
         </member>
         <member name="F:Sudoku.Data.GridOutputOptions.SubtleGridLines">
             <summary>
             Indicates whether need to handle all grid outlines while outputting.
-            See file "How to use 'Grid' class.md" for more information.
+            See file <i><a href="#">How to use 'Grid' class.md</a></i> for more information.
             </summary>
         </member>
         <member name="F:Sudoku.Data.GridOutputOptions.HodokuCompatible">
@@ -2074,9 +2040,7 @@
             To parse the value.
             </summary>
             <returns>The grid.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when failed to parse.
-            </exception>
+            <exception cref="T:System.ArgumentException">Throws when failed to parse.</exception>
         </member>
         <member name="M:Sudoku.Data.GridParser.Parse(Sudoku.Data.GridParsingOption)">
             <summary>
@@ -2121,6 +2085,10 @@
             Get an array of default values in checking.
             </summary>
             <returns>The array of <see cref="T:System.Boolean"/> values.</returns>
+            <remarks>
+            Here must use method instead of property or field.
+            Because the return value should be mutable.
+            </remarks>
         </member>
         <member name="T:Sudoku.Data.GridParsingOption">
             <summary>
@@ -2166,8 +2134,8 @@
             | &lt;8&gt;   49   *3*   | &lt;6&gt;    *2*    15 | 15  49  &lt;7&gt;   |<br/>
             '--------------'--------------'-------------'
             </code>
-            Due to the rendering engine of IDE, all spaces will not be displayed
-            in this table.
+            (Due to the rendering engine of IDE, all spaces will be displayed only once
+            in this table.)
             </para>
             </summary>
         </member>
@@ -2195,8 +2163,8 @@
             | 8   49   3   | 6    2    15 | 15  49  7   |<br/>
             '--------------'--------------'-------------'
             </code>
-            Due to the rendering engine of IDE, all spaces will not be displayed
-            in this table.
+            (Due to the rendering engine of IDE, all spaces will be displayed only once
+            in this table.)
             </para>
             </summary>
         </member>
@@ -2224,8 +2192,8 @@
             |  .  .  9 |  .  . +5 |  4  8  . |<br/>
             '----------'----------'----------'
             </code>
-            Due to the rendering engine of IDE, all spaces will not be displayed
-            in this table.
+            (Due to the rendering engine of IDE, all spaces will be displayed only once
+            in this table.)
             </para>
             </summary>
         </member>
@@ -2256,6 +2224,21 @@
             using in transformations.
             </summary>
             <seealso cref="T:Sudoku.Data.IReadOnlyGrid"/>
+        </member>
+        <member name="F:Sudoku.Data.GridTransformations.ClockwiseTable">
+            <summary>
+            The table of clockwise rotation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridTransformations.CounterClockwiseTable">
+            <summary>
+            The table of counter-clockwise rotation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridTransformations.PiRotateTable">
+            <summary>
+            The table of pi-rotation.
+            </summary>
         </member>
         <member name="M:Sudoku.Data.GridTransformations.MirrorLeftRight(Sudoku.Data.IReadOnlyGrid)">
             <summary>
@@ -2370,13 +2353,24 @@
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Data.IReadOnlyGrid.Equals(System.Object)">
-            <inheritdoc/>
+            <method name="Equals" paramType="object">
+		<summary>
+			Determines whether the specified object is equal to the current object.
+		</summary>
+		<param name="obj">The object to compare with the current object.</param>
+		<returns>
+			<see langword="true" /> if the specified object is equal to the
+			current object; otherwise, <see langword="false" />.
+		</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Data.IReadOnlyGrid.GetHashCode">
-            <summary>
-            Serves as the default hash function.
-            </summary>
-            <returns>The hash code.</returns>
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Data.IReadOnlyGrid.ToArray">
             <summary>
@@ -2463,10 +2457,10 @@
             Indicates the cell.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.AntiEliminationStep.UndoStepTo(Sudoku.Data.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.AntiEliminationStep.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Stepping.AntiEliminationStep.DoStepTo(Sudoku.Data.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.AntiEliminationStep.DoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.Stepping.AssignmentStep">
@@ -2505,10 +2499,10 @@
             Indicates the grid map.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.AssignmentStep.UndoStepTo(Sudoku.Data.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.AssignmentStep.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Stepping.AssignmentStep.DoStepTo(Sudoku.Data.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.AssignmentStep.DoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.Stepping.EliminationStep">
@@ -2533,10 +2527,10 @@
             Indicates the cell.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.EliminationStep.UndoStepTo(Sudoku.Data.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.EliminationStep.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Stepping.EliminationStep.DoStepTo(Sudoku.Data.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.EliminationStep.DoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.Stepping.FixStep">
@@ -2555,11 +2549,26 @@
             Indicates all cells to fix.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.FixStep.DoStepTo(Sudoku.Data.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.FixStep.DoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Stepping.FixStep.UndoStepTo(Sudoku.Data.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.FixStep.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Data.Stepping.IUndoable">
+            <summary>
+            Provides a undo-able data structure.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.IUndoable.Undo">
+            <summary>
+            To undo the step.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.IUndoable.Redo">
+            <summary>
+            To redo the step.
+            </summary>
         </member>
         <member name="T:Sudoku.Data.Stepping.ResetStep">
             <summary>
@@ -2583,10 +2592,10 @@
             Indicates the table of old grid masks.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.ResetStep.DoStepTo(Sudoku.Data.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.ResetStep.DoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Stepping.ResetStep.UndoStepTo(Sudoku.Data.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.ResetStep.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.Stepping.SetCellStatusStep">
@@ -2617,10 +2626,10 @@
             Indicates the new status.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.SetCellStatusStep.DoStepTo(Sudoku.Data.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.SetCellStatusStep.DoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Stepping.SetCellStatusStep.UndoStepTo(Sudoku.Data.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.SetCellStatusStep.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.Stepping.SetMaskStep">
@@ -2651,10 +2660,10 @@
             Indicates the new mask.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.SetMaskStep.DoStepTo(Sudoku.Data.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.SetMaskStep.DoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Stepping.SetMaskStep.UndoStepTo(Sudoku.Data.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.SetMaskStep.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.Stepping.Step">
@@ -2662,17 +2671,135 @@
             Provides a step used for applying to a sudoku grid.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.Step.DoStepTo(Sudoku.Data.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.Step.DoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <summary>
             Apply the step to the grid.
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Data.Stepping.Step.UndoStepTo(Sudoku.Data.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.Step.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <summary>
             Undo the step to the grid.
             </summary>
             <param name="grid">The grid.</param>
+        </member>
+        <member name="T:Sudoku.Data.Stepping.UndoableGrid">
+            <summary>
+            Provides an undoable sudoku grid. This data structure is nearly same
+            as <see cref="T:Sudoku.Data.Grid"/>, but only add two methods <see cref="M:Sudoku.Data.Stepping.UndoableGrid.Undo"/>
+            and <see cref="M:Sudoku.Data.Stepping.UndoableGrid.Redo"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Grid"/>
+        </member>
+        <member name="F:Sudoku.Data.Stepping.UndoableGrid._undoStack">
+            <summary>
+            The undo stack.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Stepping.UndoableGrid._redoStack">
+            <summary>
+            The redo stack.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.#ctor(System.Int16[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.#ctor(Sudoku.Data.Grid)">
+            <summary>
+            Initializes an instance with the specified grid (to convert to
+            an undoable grid).
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.UndoableGrid.Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.UndoableGrid.Item(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.Fix">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.Unfix">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.SetCellStatus(System.Int32,Sudoku.Data.CellStatus)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.SetMask(System.Int32,System.Int16)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.Redo">
+            <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the redo stack is empty.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.Undo">
+            <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the undo stack is empty.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.Equals(Sudoku.Data.Stepping.UndoableGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Equality(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.Stepping.UndoableGrid)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Equality(Sudoku.Data.Grid,Sudoku.Data.Stepping.UndoableGrid)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Equality(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.Grid)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Inequality(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.Stepping.UndoableGrid)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Inequality(Sudoku.Data.Grid,Sudoku.Data.Stepping.UndoableGrid)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Inequality(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.Grid)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="T:Sudoku.Data.Stepping.UnfixStep">
             <summary>
@@ -2690,10 +2817,10 @@
             Indicates all cells.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Stepping.UnfixStep.DoStepTo(Sudoku.Data.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.UnfixStep.DoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Stepping.UnfixStep.UndoStepTo(Sudoku.Data.UndoableGrid)">
+        <member name="M:Sudoku.Data.Stepping.UnfixStep.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.SymmetricalType">
@@ -2745,124 +2872,6 @@
             <summary>
             Indicates all symmetrical types should be satisfied.
             </summary>
-        </member>
-        <member name="T:Sudoku.Data.UndoableGrid">
-            <summary>
-            Provides an undoable sudoku grid. This data structure is nearly same
-            as <see cref="T:Sudoku.Data.Grid"/>, but only add two methods <see cref="M:Sudoku.Data.UndoableGrid.Undo"/>
-            and <see cref="M:Sudoku.Data.UndoableGrid.Redo"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.Grid"/>
-        </member>
-        <member name="F:Sudoku.Data.UndoableGrid._undoStack">
-            <summary>
-            The undo stack.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.UndoableGrid._redoStack">
-            <summary>
-            The redo stack.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.UndoableGrid.#ctor(System.Int16[])">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.UndoableGrid.#ctor(Sudoku.Data.Grid)">
-            <summary>
-            Initializes an instance with the specified grid (to convert to
-            an undoable grid).
-            </summary>
-            <param name="grid">The grid.</param>
-        </member>
-        <member name="P:Sudoku.Data.UndoableGrid.Item(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Data.UndoableGrid.Item(System.Int32,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.UndoableGrid.Fix">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.UndoableGrid.Unfix">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.UndoableGrid.Reset">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.UndoableGrid.SetCellStatus(System.Int32,Sudoku.Data.CellStatus)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.UndoableGrid.SetMask(System.Int32,System.Int16)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.UndoableGrid.Redo">
-            <inheritdoc/>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the redo stack is empty.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Data.UndoableGrid.Undo">
-            <inheritdoc/>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the undo stack is empty.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Data.UndoableGrid.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.UndoableGrid.Equals(Sudoku.Data.UndoableGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.UndoableGrid.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.UndoableGrid.op_Equality(Sudoku.Data.UndoableGrid,Sudoku.Data.UndoableGrid)">
-            <operator name="op_Equality">
-		<summary>Indicates whether two instances have a same value.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
-	</operator>
-        </member>
-        <member name="M:Sudoku.Data.UndoableGrid.op_Equality(Sudoku.Data.Grid,Sudoku.Data.UndoableGrid)">
-            <operator name="op_Equality">
-		<summary>Indicates whether two instances have a same value.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
-	</operator>
-        </member>
-        <member name="M:Sudoku.Data.UndoableGrid.op_Equality(Sudoku.Data.UndoableGrid,Sudoku.Data.Grid)">
-            <operator name="op_Equality">
-		<summary>Indicates whether two instances have a same value.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
-	</operator>
-        </member>
-        <member name="M:Sudoku.Data.UndoableGrid.op_Inequality(Sudoku.Data.UndoableGrid,Sudoku.Data.UndoableGrid)">
-            <operator name="op_Inequality">
-		<summary>Indicates whether two instances have two different values.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
-	</operator>
-        </member>
-        <member name="M:Sudoku.Data.UndoableGrid.op_Inequality(Sudoku.Data.Grid,Sudoku.Data.UndoableGrid)">
-            <operator name="op_Inequality">
-		<summary>Indicates whether two instances have two different values.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
-	</operator>
-        </member>
-        <member name="M:Sudoku.Data.UndoableGrid.op_Inequality(Sudoku.Data.UndoableGrid,Sudoku.Data.Grid)">
-            <operator name="op_Inequality">
-		<summary>Indicates whether two instances have two different values.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
-	</operator>
         </member>
         <member name="T:Sudoku.Data.ValueChangedEventArgs">
             <summary>
@@ -2943,7 +2952,17 @@
             Initializes an instance with the specified root directory and the filter pattern.
             </summary>
             <param name="root">The root directory.</param>
-            <param name="filterPattern">The filter pattern.</param>
+            <param name="filterPattern">
+            The filter pattern.
+            </param>
+            <example>
+            For example, you can write code like this:
+            <code>
+            var cc = new CodeCounter(<br/>
+                root: @"C:\Users\HelloWorld\Desktop\Project",<br/>
+                filterPattern: @".+\.cs$");
+            </code>
+            </example>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeCounter.FileList">
             <summary>
@@ -3056,21 +3075,6 @@
             <param name="path">The path.</param>
             <param name="format">The format.</param>
             <returns>The task of this operation.</returns>
-        </member>
-        <member name="T:Sudoku.IUndoable">
-            <summary>
-            Provides a undo-able data structure.
-            </summary>
-        </member>
-        <member name="M:Sudoku.IUndoable.Undo">
-            <summary>
-            To undo the step.
-            </summary>
-        </member>
-        <member name="M:Sudoku.IUndoable.Redo">
-            <summary>
-            To redo the step.
-            </summary>
         </member>
         <member name="T:Sudoku.MultipleSolutionsException">
             <summary>
@@ -3379,10 +3383,23 @@
             <param name="item">The element.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="M:System.Collections.Generic.IBag`1.AddIfDoesNotContain(`0)">
+            <summary>
+            Adds an object into the end of the <see cref="T:System.Collections.Generic.IBag`1"/>
+            when the specified list does not contain the specified element.
+            </summary>
+            <param name="item">The item to add.</param>
+        </member>
+        <member name="M:System.Collections.Generic.IBag`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Adds a series of elements to the <see cref="T:System.Collections.Generic.IBag`1"/>.
+            </summary>
+            <param name="items">The elements to add.</param>
+        </member>
         <member name="T:System.Linq.EnumerableEx">
             <summary>
             Provides a set of static methods for querying objects that implement
-            <see cref="T:System.Collections.Generic.IEnumerable`1"/> and <see cref="T:System.Collections.IEnumerable"/>.
+            <see cref="T:System.Collections.IEnumerable"/> and <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
             </summary>
             <remarks>
             This class has the same function and status with <see cref="T:System.Linq.Enumerable"/>.
@@ -3404,25 +3421,6 @@
             the result will be the default value, where it will be <see langword="null"/>, which
             is decided in the element type.
             </returns>
-        </member>
-        <member name="M:System.Linq.EnumerableEx.Count``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32})">
-            <summary>
-            Get the total number of the elements using the specified formula.
-            </summary>
-            <typeparam name="TElement">The type of element.</typeparam>
-            <param name="this">All elements.</param>
-            <param name="countingFormula">The formula used in counting.</param>
-            <returns>The total number.</returns>
-        </member>
-        <member name="M:System.Linq.EnumerableEx.Count``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0},System.Func{``0,System.Int32})">
-            <summary>
-            Get the total number of a part of elements using the specified formula.
-            </summary>
-            <typeparam name="TElement">The type of element.</typeparam>
-            <param name="this">All elements.</param>
-            <param name="selector">The selector to get the specified elements.</param>
-            <param name="countingFormula">The formula used in counting.</param>
-            <returns>The total number.</returns>
         </member>
         <member name="M:System.Linq.EnumerableEx.HasOnlyOneElement``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
