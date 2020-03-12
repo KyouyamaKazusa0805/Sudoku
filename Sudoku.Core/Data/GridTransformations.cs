@@ -10,6 +10,9 @@ namespace Sudoku.Data
 	/// <seealso cref="IReadOnlyGrid"/>
 	public static class GridTransformations
 	{
+		/// <summary>
+		/// The table of clockwise rotation.
+		/// </summary>
 		private static readonly int[] ClockwiseTable = new[]
 		{
 			72, 63, 54, 45, 36, 27, 18, 9, 0,
@@ -23,6 +26,9 @@ namespace Sudoku.Data
 			80, 71, 62, 53, 44, 35, 26, 17, 8
 		};
 
+		/// <summary>
+		/// The table of counter-clockwise rotation.
+		/// </summary>
 		private static readonly int[] CounterClockwiseTable = new[]
 		{
 			8, 17, 26, 35, 44, 53, 62, 71, 80,
@@ -36,6 +42,9 @@ namespace Sudoku.Data
 			0, 9, 18, 27, 36, 45, 54, 63, 72
 		};
 
+		/// <summary>
+		/// The table of pi-rotation.
+		/// </summary>
 		private static readonly int[] PiRotateTable = new[]
 		{
 			80, 79, 78, 77, 76, 75, 74, 73, 72,

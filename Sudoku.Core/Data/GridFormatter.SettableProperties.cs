@@ -32,8 +32,8 @@
 		/// <summary>
 		/// Indicates the output will treat modifiable values as given ones.
 		/// If the output is single line, the output will remove all plus marks '+'.
-		/// If the output is multi-line, the output will use '&lt;digit&gt;' instead
-		/// of '*digit*'.
+		/// If the output is multi-line, the output will use '<c>&lt;digit&gt;</c>' instead
+		/// of '<c>*digit*</c>'.
 		/// </summary>
 		public bool TreatValueAsGiven { get; set; }
 

@@ -24,7 +24,8 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="startNode">The start node.</param>
 		/// <param name="endNode">The end node.</param>
-		public ChainInference(ChainNode startNode, ChainNode endNode) => (StartNode, EndNode) = (startNode, endNode);
+		public ChainInference(ChainNode startNode, ChainNode endNode) =>
+			(StartNode, EndNode) = (startNode, endNode);
 
 
 		/// <summary>

@@ -20,6 +20,22 @@
 	<method name="Deconstruct">
 		<summary>Deconstruct this instance.</summary>
 	</method>
+	<method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
+	<method name="Equals" paramType="object">
+		<summary>
+			Determines whether the specified object is equal to the current object.
+		</summary>
+		<param name="obj">The object to compare with the current object.</param>
+		<returns>
+			<see langword="true"/> if the specified object is equal to the
+			current object; otherwise, <see langword="false"/>.
+		</returns>
+	</method>
 	<!--operators-->
 	<operator name="op_Equality">
 		<summary>Indicates whether two instances have a same value.</summary>

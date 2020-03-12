@@ -11,15 +11,19 @@ using Sudoku.Data.Extensions;
 namespace Sudoku.Data
 {
 	/// <summary>
-	/// Encapsulates a binary series of cell status table consisting of 81 bits,
-	/// where <see langword="true"/> bit (1) is for the cell having digit,
-	/// and the <see langword="false"/> bit (0) is for empty cell. Sometimes for other usages.
+	/// Encapsulates a binary series of cell status table.
 	/// </summary>
+	/// <remarks>
+	/// The instance stores two <see cref="long"/> values, consisting of 81 bits,
+	/// where <see langword="true"/> bit (1) is for the cell having that digit,
+	/// and the <see langword="false"/> bit (0) is for the cell not containing
+	/// the digit. Sometimes this type will be used for other cases.
+	/// </remarks>
 	[DebuggerStepThrough]
 	public partial struct GridMap : IEnumerable<bool>, IEquatable<GridMap>
 	{
 		/// <summary>
-		/// Indicates an empty instance (making no changes).
+		/// Indicates an empty instance (all bits are 0).
 		/// </summary>
 		public static readonly GridMap Empty = new GridMap();
 
@@ -31,11 +35,11 @@ namespace Sudoku.Data
 
 
 		/// <summary>
-		/// Inner binary representation values.
+		/// Indicates the internal two <see cref="long"/> values,
+		/// which represents 81 bits.
 		/// </summary>
 		/// <remarks>
-		/// These two fields does not readonly!
-		/// Roslyn lies!
+		/// These two fields does not <see langword="readonly"/>! Roslyn lies!
 		/// </remarks>
 		[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
 		private long _high, _low;
@@ -66,14 +70,19 @@ namespace Sudoku.Data
 		/// var map = new GridMap(offset) { [offset] = false };
 		/// </code>
 		/// </param>
-		public GridMap(int offset, bool setItself) : this((IEnumerable<int>)PeerTable[offset]) =>
+		public GridMap(int offset, bool setItself)
+			: this((IEnumerable<int>)PeerTable[offset]) =>
 			this[offset] = setItself;
 
 		/// <summary>
 		/// To copy an instance with the specified information.
 		/// This constructor is only used for adding or removing some extra cells like:
 		/// <code>
-		/// <see langword="var"/> y = <see langword="new"/> <see cref="GridMap"/>(x) { [i] = <see langword="true"/> };
+		/// var y = new GridMap(x) { [i] = true };
+		/// </code>
+		/// or
+		/// <code>
+		/// var y = new GridMap(x) { i };
 		/// </code>
 		/// </summary>
 		/// <param name="another">Another instance.</param>
@@ -379,11 +388,11 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Get the specified index of <see langword="true"/> bits in this instance.
+		/// Get a n-th index of the <see langword="true"/> bit in this instance.
 		/// </summary>
 		/// <param name="index">The true bit index order.</param>
 		/// <returns>The real index.</returns>
-		public readonly int SetBitAt(int index) => Offsets.ElementAt(index);
+		public readonly int SetAt(int index) => Offsets.ElementAt(index);
 
 		/// <summary>
 		/// Get all cell offsets whose bits are set <see langword="true"/>.
@@ -394,17 +403,13 @@ namespace Sudoku.Data
 		/// <inheritdoc/>
 		public readonly IEnumerator<bool> GetEnumerator()
 		{
-			long h = _high, l = _low;
-			while (l != 0)
+			for (long l = _low; l != 0; l >>= 1)
 			{
 				yield return (l & 1) != 0;
-				l >>= 1;
 			}
-
-			while (h != 0)
+			for (long h = _high; h != 0; h >>= 1)
 			{
 				yield return (h & 1) != 0;
-				h >>= 1;
 			}
 		}
 

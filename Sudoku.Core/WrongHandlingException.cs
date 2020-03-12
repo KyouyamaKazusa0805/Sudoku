@@ -10,8 +10,7 @@ namespace Sudoku
 	/// Represents an error that the puzzle has wrong handling while solving with
 	/// manual logic tools.
 	/// </summary>
-	[Serializable]
-	[DebuggerStepThrough]
+	[Serializable, DebuggerStepThrough]
 	[SuppressMessage("Usage", "CA2229:Implement serialization constructors", Justification = "<Pending>")]
 	[SuppressMessage("Design", "CA1032:Implement standard exception constructors", Justification = "<Pending>")]
 	public class WrongHandlingException : SudokuRuntimeException

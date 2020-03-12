@@ -31,9 +31,7 @@ namespace Sudoku.Data
 		/// To parse the value.
 		/// </summary>
 		/// <returns>The grid.</returns>
-		/// <exception cref="ArgumentException">
-		/// Throws when failed to parse.
-		/// </exception>
+		/// <exception cref="ArgumentException">Throws when failed to parse.</exception>
 		public Grid Parse()
 		{
 			return OnParsingSimpleTable()
@@ -359,6 +357,10 @@ namespace Sudoku.Data
 		/// Get an array of default values in checking.
 		/// </summary>
 		/// <returns>The array of <see cref="bool"/> values.</returns>
+		/// <remarks>
+		/// Here must use method instead of property or field.
+		/// Because the return value should be mutable.
+		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static bool[] GetDefaultCheckingArray() =>
 			new[] { true, true, true, true, true, true, true, true, true };

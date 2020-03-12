@@ -46,13 +46,10 @@ namespace Sudoku.Data
 		bool this[int offset, int digit] { get; }
 
 
-		/// <inheritdoc/>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
 		bool Equals(object? obj);
 
-		/// <summary>
-		/// Serves as the default hash function.
-		/// </summary>
-		/// <returns>The hash code.</returns>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		int GetHashCode();
 
 		/// <summary>

@@ -11,6 +11,7 @@ namespace Sudoku.Diagnostics
 		/// <summary>
 		/// The root path of this whole solution.
 		/// </summary>
-		public static readonly string PathRoot = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName;
+		public static readonly string PathRoot =
+			Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName;
 	}
 }

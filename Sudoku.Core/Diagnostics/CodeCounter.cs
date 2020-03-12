@@ -33,7 +33,17 @@ namespace Sudoku.Diagnostics
 		/// Initializes an instance with the specified root directory and the filter pattern.
 		/// </summary>
 		/// <param name="root">The root directory.</param>
-		/// <param name="filterPattern">The filter pattern.</param>
+		/// <param name="filterPattern">
+		/// The filter pattern.
+		/// </param>
+		/// <example>
+		/// For example, you can write code like this:
+		/// <code>
+		/// var cc = new CodeCounter(<br/>
+		///     root: @"C:\Users\HelloWorld\Desktop\Project",<br/>
+		///     filterPattern: @".+\.cs$");
+		/// </code>
+		/// </example>
 		public CodeCounter(string root, string? filterPattern) =>
 			(_root, _pattern) = (root, filterPattern);
 
@@ -86,12 +96,14 @@ namespace Sudoku.Diagnostics
 		/// <param name="directory">The directory information instance.</param>
 		private void GetAllFilesRecursively(DirectoryInfo directory)
 		{
-			foreach (var fileInfo in from file in directory.GetFiles()
-									 where _pattern is null ? true : file.FullName.SatisfyPattern(_pattern)
-									 select file)
+			foreach (var fileInfo in
+				from file in directory.GetFiles()
+				where _pattern is null ? true : file.FullName.SatisfyPattern(_pattern)
+				select file)
 			{
 				FileList.Add(fileInfo.FullName);
 			}
+
 			var allDirectories = directory.GetDirectories();
 			foreach (var d in allDirectories)
 			{

@@ -92,7 +92,7 @@
 
 		/// <summary>
 		/// The map of all cell offsets in its specified region.
-		/// For example, 'Map[0]' means that all cell offsets
+		/// For example, '<c>RegionTable[0]</c>' means that all cell offsets
 		/// in the region 0 (block 1).
 		/// </summary>
 		private static readonly int[][] RegionTable = new int[][]

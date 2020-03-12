@@ -114,14 +114,14 @@ namespace Sudoku.Solving.Manual.Alses
 					{
 						2 => stackalloc[]
 						{
-							interMap.SetBitAt(0),
-							interMap.SetBitAt(1)
+							interMap.SetAt(0),
+							interMap.SetAt(1)
 						},
 						3 => stackalloc[]
 						{
-							interMap.SetBitAt(0),
-							interMap.SetBitAt(1),
-							interMap.SetBitAt(2)
+							interMap.SetAt(0),
+							interMap.SetAt(1),
+							interMap.SetAt(2)
 						},
 						_ => throw Throwing.ImpossibleCase
 					};
@@ -301,7 +301,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 						if (tempMap.Count == 1)
 						{
-							var (r, c, b) = CellUtils.GetRegion(tempMap.SetBitAt(0));
+							var (r, c, b) = CellUtils.GetRegion(tempMap.SetAt(0));
 							if (b == block)
 							{
 								digitRegions.Add(digit, new[] { block });

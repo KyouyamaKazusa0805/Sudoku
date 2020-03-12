@@ -17,7 +17,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the empty grid string.
 		/// </summary>
-		public const string EmptyString = "000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+		public static readonly string EmptyString = new string('0', 81);
 
 		/// <summary>
 		/// Indicates an empty grid, where all values are zero.
@@ -32,10 +32,14 @@ namespace Sudoku.Data
 		/// <para>This array stores binary representation of decimals.</para>
 		/// <para>
 		/// There are 81 cells in a sudoku grid, so this data structure uses
-		/// an array of size 81. Each element is a <see cref="short"/> value,
-		/// where the lower 9 bits indicates if the digit 1 to 9 exists or not.
-		/// If the value is <see langword="true"/> (i.e. binary is for 1), this digit will
-		/// <b>not</b> be exist. The higher 3 bits indicates the cell status. The
+		/// an array of size 81. Each element is a <see cref="short"/> value
+		/// (but only use 12 bits), where the lower 9 bits indicates whether
+		/// the digit 1 to 9 exists or not. If the corresponding value is
+		/// <see langword="true"/>, or in other words, the binary representation
+		/// is 1, this digit will <b>not</b> exist.
+		/// </para>
+		/// <para>
+		/// The higher 3 bits indicates the cell status. The
 		/// cases are below:
 		/// <list type="table">
 		/// <item>
@@ -88,7 +92,7 @@ namespace Sudoku.Data
 		/// <include file='../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		private Grid()
 		{
-			// 512 is equal to binary number '0b01_000_000_000', where the higher 2 bits
+			// 512 is equivalent to value '0b001_000_000_000', where the higher 3 bits
 			// can be combined a binary number of cell status.
 			_masks = new short[81];
 			for (int i = 0; i < 81; i++)
@@ -99,7 +103,7 @@ namespace Sudoku.Data
 
 			// Initializes the event handler.
 			// Note that the default event initialization hides the back delegate field,
-			// so we should use 'fake' event field to trigger the event by
+			// so we should use this field-style event to trigger the event by
 			// 'Event.Invoke(objectToTrigger, eventArg)', where the variable
 			// 'objectToTrigger' is always 'this'.
 			ValueChanged += OnValueChanged;
@@ -399,23 +403,22 @@ namespace Sudoku.Data
 		private void OnValueChanged(object sender, ValueChangedEventArgs e)
 		{
 			var (offset, _, _, setValue) = e;
-			if (setValue != -1)
+			if (setValue == -1)
 			{
-				foreach (int peerOffset in new GridMap(offset).Offsets)
-				{
-					if (peerOffset == offset)
-					{
-						// Same cell.
-						continue;
-					}
+				return;
+			}
 
-					// To check if the peer cell is empty or not.
-					if (GetCellStatus(peerOffset) == CellStatus.Empty)
-					{
-						ref short peerValue = ref _masks[peerOffset];
-						peerValue |= (short)(1 << setValue);
-					}
+			foreach (int peerOffset in new GridMap(offset).Offsets)
+			{
+				if (peerOffset == offset || GetCellStatus(peerOffset) != CellStatus.Empty)
+				{
+					// Same cell,
+					// or else the peer cell is empty or not.
+					continue;
 				}
+
+				ref short peerValue = ref _masks[peerOffset];
+				peerValue |= (short)(1 << setValue);
 			}
 		}
 

@@ -43,8 +43,8 @@
 		/// | &lt;8&gt;   49   *3*   | &lt;6&gt;    *2*    15 | 15  49  &lt;7&gt;   |<br/>
 		/// '--------------'--------------'-------------'
 		/// </code>
-		/// Due to the rendering engine of IDE, all spaces will not be displayed
-		/// in this table.
+		/// (Due to the rendering engine of IDE, all spaces will be displayed only once
+		/// in this table.)
 		/// </para>
 		/// </summary>
 		PencilMarked,
@@ -72,8 +72,8 @@
 		/// | 8   49   3   | 6    2    15 | 15  49  7   |<br/>
 		/// '--------------'--------------'-------------'
 		/// </code>
-		/// Due to the rendering engine of IDE, all spaces will not be displayed
-		/// in this table.
+		/// (Due to the rendering engine of IDE, all spaces will be displayed only once
+		/// in this table.)
 		/// </para>
 		/// </summary>
 		PencilMarkedTreatSingleAsGiven,
@@ -101,8 +101,8 @@
 		/// |  .  .  9 |  .  . +5 |  4  8  . |<br/>
 		/// '----------'----------'----------'
 		/// </code>
-		/// Due to the rendering engine of IDE, all spaces will not be displayed
-		/// in this table.
+		/// (Due to the rendering engine of IDE, all spaces will be displayed only once
+		/// in this table.)
 		/// </para>
 		/// </summary>
 		Table,

@@ -252,7 +252,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					}
 
 					map[currentCell] = false;
-					int nextCell = map.SetBitAt(0);
+					int nextCell = map.SetAt(0);
 					int nextCandidate = nextCell * 9 + currentDigit;
 					if (checkCollision(nextCandidate))
 					{
