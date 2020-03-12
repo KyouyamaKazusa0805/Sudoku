@@ -4,9 +4,10 @@ using System.Runtime.CompilerServices;
 namespace Sudoku.Data
 {
 	/// <summary>
-	/// Provides a node in a chain.
+	/// Provides a node in a chain. This data structure is used for
+	/// searching for AICs.
 	/// </summary>
-	public readonly struct Node : IEquatable<Node>
+	public readonly struct ChainNode : IEquatable<ChainNode>
 	{
 		/// <summary>
 		/// Initializes an instance with a specified candidate and a <see cref="bool"/>
@@ -14,7 +15,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="candidate">The candidate.</param>
 		/// <param name="isOn">Indicates whether the candidate is on.</param>
-		public Node(int candidate, bool isOn) => (Candidate, IsOn) = (candidate, isOn);
+		public ChainNode(int candidate, bool isOn) => (Candidate, IsOn) = (candidate, isOn);
 
 
 		/// <summary>
@@ -38,10 +39,10 @@ namespace Sudoku.Data
 			(candidate, isOn) = (Candidate, IsOn);
 
 		/// <inheritdoc/>
-		public override bool Equals(object? obj) => obj is Node comparer && Equals(comparer);
+		public override bool Equals(object? obj) => obj is ChainNode comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(Node other) => GetHashCode() == other.GetHashCode();
+		public bool Equals(ChainNode other) => GetHashCode() == other.GetHashCode();
 
 		/// <inheritdoc/>
 		public override int GetHashCode() => (Candidate + 1) * (IsOn ? 1 : -1);
@@ -68,9 +69,9 @@ namespace Sudoku.Data
 
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
-		public static bool operator ==(Node left, Node right) => left.Equals(right);
+		public static bool operator ==(ChainNode left, ChainNode right) => left.Equals(right);
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
-		public static bool operator !=(Node left, Node right) => !(left == right);
+		public static bool operator !=(ChainNode left, ChainNode right) => !(left == right);
 	}
 }

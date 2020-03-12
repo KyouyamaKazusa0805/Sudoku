@@ -3,10 +3,11 @@
 namespace Sudoku.Data
 {
 	/// <summary>
-	/// Provides a relationship of two <see cref="Node"/>s.
+	/// Provides a relationship of two <see cref="ChainNode"/>s.
+	/// This data structure is used for searching for AICs.
 	/// </summary>
-	/// <seealso cref="Node"/>
-	public readonly struct Inference : IEquatable<Inference>
+	/// <seealso cref="ChainNode"/>
+	public readonly struct ChainInference : IEquatable<ChainInference>
 	{
 		/// <summary>
 		/// Initializes an instance with the specified nodes.
@@ -15,15 +16,15 @@ namespace Sudoku.Data
 		/// <param name="startCellIsOn">Indicates whether the start cell is on.</param>
 		/// <param name="endCell">The end cell offset.</param>
 		/// <param name="endCellIsOn">Indicates whether the end cell is on.</param>
-		public Inference(int startCell, bool startCellIsOn, int endCell, bool endCellIsOn) =>
-			(StartNode, EndNode) = (new Node(startCell, startCellIsOn), new Node(endCell, endCellIsOn));
+		public ChainInference(int startCell, bool startCellIsOn, int endCell, bool endCellIsOn) =>
+			(StartNode, EndNode) = (new ChainNode(startCell, startCellIsOn), new ChainNode(endCell, endCellIsOn));
 
 		/// <summary>
 		/// Initializes an instance with two nodes.
 		/// </summary>
 		/// <param name="startNode">The start node.</param>
 		/// <param name="endNode">The end node.</param>
-		public Inference(Node startNode, Node endNode) => (StartNode, EndNode) = (startNode, endNode);
+		public ChainInference(ChainNode startNode, ChainNode endNode) => (StartNode, EndNode) = (startNode, endNode);
 
 
 		/// <summary>
@@ -69,18 +70,18 @@ namespace Sudoku.Data
 		/// <summary>
 		/// The start node.
 		/// </summary>
-		public Node StartNode { get; }
+		public ChainNode StartNode { get; }
 
 		/// <summary>
 		/// The end node.
 		/// </summary>
-		public Node EndNode { get; }
+		public ChainNode EndNode { get; }
 
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="start">(<see langword="out"/> parameter) The start node.</param>
 		/// <param name="end">(<see langword="out"/> parameter) The end node.</param>
-		public void Deconstruct(out Node start, out Node end) =>
+		public void Deconstruct(out ChainNode start, out ChainNode end) =>
 			(start, end) = (StartNode, EndNode);
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
@@ -113,10 +114,10 @@ namespace Sudoku.Data
 			(startCell, startDigit, startIsOn, endCell, endDigit, endIsOn) = (StartCell, StartDigit, StartIsOn, EndCell, EndDigit, EndIsOn);
 
 		/// <inheritdoc/>
-		public override bool Equals(object? obj) => obj is Inference comparer && Equals(comparer);
+		public override bool Equals(object? obj) => obj is ChainInference comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(Inference other)
+		public bool Equals(ChainInference other)
 		{
 			int s1 = StartNode.GetHashCode();
 			int s2 = other.StartNode.GetHashCode();
@@ -133,9 +134,9 @@ namespace Sudoku.Data
 
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
-		public static bool operator ==(Inference left, Inference right) => left.Equals(right);
+		public static bool operator ==(ChainInference left, ChainInference right) => left.Equals(right);
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
-		public static bool operator !=(Inference left, Inference right) => !(left == right);
+		public static bool operator !=(ChainInference left, ChainInference right) => !(left == right);
 	}
 }

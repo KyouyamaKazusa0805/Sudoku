@@ -396,19 +396,19 @@ namespace Sudoku.Solving.Manual.Chaining
 
 				// Step 4: Get all highlight candidates.
 				var candidateOffsets = new List<(int, int)>();
-				var links = new List<Inference>();
-				var nodes = new List<Node>();
+				var links = new List<ChainInference>();
+				var nodes = new List<ChainNode>();
 				int index = 0;
 				int last = default;
 				foreach (int node in stack)
 				{
 					int isOn = index & 1, isOff = (index + 1) & 1;
 					candidateOffsets.Add((isOff, node));
-					nodes.Add(new Node(node, isOff == 0));
+					nodes.Add(new ChainNode(node, isOff == 0));
 
 					if (index > 0)
 					{
-						links.Add(new Inference(last, isOn == 0, node, isOff == 0));
+						links.Add(new ChainInference(last, isOn == 0, node, isOff == 0));
 					}
 
 					last = node;
@@ -416,7 +416,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 
 				// Continuous nice loop should be a loop.
-				links.Add(new Inference(stack[LastIndex], true, stack[0], false));
+				links.Add(new ChainInference(stack[LastIndex], true, stack[0], false));
 
 				SumUpResult(
 					accumulator,
@@ -462,19 +462,19 @@ namespace Sudoku.Solving.Manual.Chaining
 				// Record all highlight candidates.
 				int lastCand = default;
 				var candidateOffsets = new List<(int, int)>();
-				var nodes = new List<Node>();
-				var links = new List<Inference>();
+				var nodes = new List<ChainNode>();
+				var links = new List<ChainInference>();
 				bool @switch = false;
 				int i = 0;
 				foreach (int candidate in stack)
 				{
-					nodes.Add(new Node(candidate, @switch));
+					nodes.Add(new ChainNode(candidate, @switch));
 					candidateOffsets.Add((@switch ? 1 : 0, candidate));
 
 					// To ensure this loop has the predecessor.
 					if (i++ > 0)
 					{
-						links.Add(new Inference(lastCand, !@switch, candidate, @switch));
+						links.Add(new ChainInference(lastCand, !@switch, candidate, @switch));
 					}
 
 					lastCand = candidate;

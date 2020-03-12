@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Utils
 		/// </summary>
 		/// <param name="nodes">The nodes.</param>
 		/// <returns>The string.</returns>
-		public static string ToString(IEnumerable<Node> nodes)
+		public static string ToString(IEnumerable<ChainNode> nodes)
 		{
 			const string separator = " -> ";
 

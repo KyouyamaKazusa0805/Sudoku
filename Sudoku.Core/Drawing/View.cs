@@ -27,7 +27,7 @@ namespace Sudoku.Drawing
 		/// <param name="links">The list of links.</param>
 		public View(
 			IReadOnlyList<(int, int)>? cellOffsets, IReadOnlyList<(int, int)>? candidateOffsets,
-			IReadOnlyList<(int, int)>? regionOffsets, IReadOnlyList<Inference>? links) =>
+			IReadOnlyList<(int, int)>? regionOffsets, IReadOnlyList<ChainInference>? links) =>
 			(CellOffsets, CandidateOffsets, RegionOffsets, Links) = (cellOffsets, candidateOffsets, regionOffsets, links);
 
 
@@ -64,7 +64,7 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// All link masks.
 		/// </summary>
-		public IReadOnlyList<Inference>? Links { get; }
+		public IReadOnlyList<ChainInference>? Links { get; }
 
 		/// <inheritdoc/>
 		public override string ToString()

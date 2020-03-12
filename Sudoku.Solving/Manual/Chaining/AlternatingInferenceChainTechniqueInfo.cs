@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </param>
 		public AlternatingInferenceChainTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			IReadOnlyList<Node> nodes, bool isContinuousNiceLoop)
+			IReadOnlyList<ChainNode> nodes, bool isContinuousNiceLoop)
 			: base(conclusions, views)
 		{
 			Nodes = KeepNodeMinimum(nodes);
@@ -47,7 +47,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Indicates all inferences.
 		/// </summary>
-		public IReadOnlyList<Node> Nodes { get; }
+		public IReadOnlyList<ChainNode> Nodes { get; }
 
 		/// <summary>
 		/// Indicates the length of the instance.
@@ -314,11 +314,11 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		/// <param name="nodes">The nodes.</param>
 		/// <returns>The list.</returns>
-		private IReadOnlyList<Node> KeepNodeMinimum(IReadOnlyList<Node> nodes)
+		private IReadOnlyList<ChainNode> KeepNodeMinimum(IReadOnlyList<ChainNode> nodes)
 		{
 			if (nodes[0].Candidate > nodes[LastIndex].Candidate)
 			{
-				var list = new List<Node>(nodes);
+				var list = new List<ChainNode>(nodes);
 				for (int i = 0; i < nodes.Count >> 1; i++)
 				{
 					var temp = list[i];
