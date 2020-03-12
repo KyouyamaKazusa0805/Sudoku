@@ -1121,6 +1121,13 @@
         <member name="M:Sudoku.Data.Grid.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.Grid.ToString(Sudoku.Data.GridOutputOptions)">
+            <summary>
+            Returns a string that represents the current object with the grid output option.
+            </summary>
+            <param name="gridOutputOption">The grid output option.</param>
+            <returns>The string.</returns>
+        </member>
         <member name="M:Sudoku.Data.Grid.ToString(System.String)">
             <method name="ToString" paramType="string">
 		<summary>
@@ -1166,20 +1173,20 @@
             </para>
             <para>
             If you want to parse a PM grid, we recommend you use the method
-            <see cref="M:Sudoku.Data.Grid.Parse(System.String,Sudoku.Data.GridParsingType)"/> instead of this method.
+            <see cref="M:Sudoku.Data.Grid.Parse(System.String,Sudoku.Data.GridParsingOption)"/> instead of this method.
             </para>
             </summary>
             <param name="str">The string.</param>
             <returns>The result instance had converted.</returns>
-            <seealso cref="M:Sudoku.Data.Grid.Parse(System.String,Sudoku.Data.GridParsingType)"/>
+            <seealso cref="M:Sudoku.Data.Grid.Parse(System.String,Sudoku.Data.GridParsingOption)"/>
         </member>
-        <member name="M:Sudoku.Data.Grid.Parse(System.String,Sudoku.Data.GridParsingType)">
+        <member name="M:Sudoku.Data.Grid.Parse(System.String,Sudoku.Data.GridParsingOption)">
             <summary>
             Parses a string value and converts to this type,
             using a specified grid parsing type.
             </summary>
             <param name="str">The string.</param>
-            <param name="gridParsingType">The grid parsing type.</param>
+            <param name="gridParsingOption">The grid parsing type.</param>
             <returns>The result instance had converted.</returns>
         </member>
         <member name="M:Sudoku.Data.Grid.TryParse(System.String,Sudoku.Data.Grid@)">
@@ -1202,13 +1209,13 @@
             <param name="format">The format.</param>
             <seealso cref="M:Sudoku.Data.Grid.ToString(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Data.Grid.TryParse(System.String,Sudoku.Data.GridParsingType,Sudoku.Data.Grid@)">
+        <member name="M:Sudoku.Data.Grid.TryParse(System.String,Sudoku.Data.GridParsingOption,Sudoku.Data.Grid@)">
             <summary>
             Try to parse a string and converts to this type, and returns a
             <see cref="T:System.Boolean"/> value indicating the result of the conversion.
             </summary>
             <param name="str">The string.</param>
-            <param name="gridParsingType">The grid parsing type.</param>
+            <param name="gridParsingOption">The grid parsing type.</param>
             <param name="result">
             (<see langword="out"/> parameter) The result parsed. If the conversion is failed,
             this argument will be <see langword="null"/>.
@@ -1250,6 +1257,13 @@
             Provides a factory to create a <see cref="T:Sudoku.Data.GridFormatter"/>.
             </summary>
         </member>
+        <member name="M:Sudoku.Data.GridFormatFactory.Create(Sudoku.Data.GridOutputOptions)">
+            <summary>
+            Create a <see cref="T:Sudoku.Data.GridFormatter"/> according to the specified grid output options.
+            </summary>
+            <param name="gridOutputOption">The grid output options.</param>
+            <returns>The grid formatter.</returns>
+        </member>
         <member name="M:Sudoku.Data.GridFormatFactory.Create(System.String)">
             <summary>
             Create a <see cref="T:Sudoku.Data.GridFormatter"/> according to the specified format.
@@ -1283,6 +1297,13 @@
         <member name="M:Sudoku.Data.GridFormatter.ToString(Sudoku.Data.Grid)">
             <summary>
             Represents a string value indicating this instance.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The string.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridFormatter.ToHodokuLibraryFormatString(Sudoku.Data.Grid)">
+            <summary>
+            To string with Hodoku library format compatible string.
             </summary>
             <param name="grid">The grid.</param>
             <returns>The string.</returns>
@@ -1367,6 +1388,11 @@
             <summary>
             Indicates whether need to handle all grid outlines while outputting.
             See file "How to use 'Grid' class.md" for more information.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.GridFormatter.HodokuCompatible">
+            <summary>
+            Indicates whether the output will be compatible with Hodoku library format.
             </summary>
         </member>
         <member name="T:Sudoku.Data.GridMap">
@@ -1753,6 +1779,69 @@
             The cover table.
             </summary>
         </member>
+        <member name="T:Sudoku.Data.GridOutputOptions">
+            <summary>
+            Provides a grid output option.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridOutputOptions.None">
+            <summary>
+            Indicates the default settings (a single-line string text).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridOutputOptions.WithModifiers">
+            <summary>
+            Indicates the output should be with modifiable values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridOutputOptions.WithCandidates">
+            <summary>
+            <para>
+            Indicates the output should be with candidates.
+            If the output is single line, the candidates will indicate
+            the candidates-have-eliminated before the current grid status;
+            if the output is multi-line, the candidates will indicate
+            the real candidate at the current grid status.
+            </para>
+            <para>
+            If the output is single line, the output will append the candidates
+            value at the tail of the string in ':candidate list'. In addition,
+            candidates will be represented as 'digit', 'row offset' and
+            'column offset' in order.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridOutputOptions.TreatValueAsGiven">
+            <summary>
+            Indicates the output will treat modifiable values as given ones.
+            If the output is single line, the output will remove all plus marks '+'.
+            If the output is multi-line, the output will use '&lt;digit&gt;' instead
+            of '*digit*'.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridOutputOptions.SubtleGridLines">
+            <summary>
+            Indicates whether need to handle all grid outlines while outputting.
+            See file "How to use 'Grid' class.md" for more information.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridOutputOptions.HodokuCompatible">
+            <summary>
+            Indicates whether the output will be compatible with Hodoku library format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridOutputOptions.DotPlaceholder">
+            <summary>
+            Indicates the placeholder must be '.' instead of '0'.
+            If the value is <see langword="true"/>, the placeholder will be '.';
+            otherwise, '0'.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridOutputOptions.Multiline">
+            <summary>
+            Indicates whether the output should be multi-line.
+            </summary>
+        </member>
         <member name="T:Sudoku.Data.GridParser">
             <summary>
             Encapsulates a grid parser.
@@ -1778,11 +1867,11 @@
             Throws when failed to parse.
             </exception>
         </member>
-        <member name="M:Sudoku.Data.GridParser.Parse(Sudoku.Data.GridParsingType)">
+        <member name="M:Sudoku.Data.GridParser.Parse(Sudoku.Data.GridParsingOption)">
             <summary>
             To parse the value with a specified grid parsing type.
             </summary>
-            <param name="gridParsingType">A specified parsing type.</param>
+            <param name="gridParsingOption">A specified parsing type.</param>
             <returns>The grid.</returns>
             <exception cref="T:System.ArgumentException">
             Throws when failed to parse.
@@ -1822,12 +1911,12 @@
             </summary>
             <returns>The array of <see cref="T:System.Boolean"/> values.</returns>
         </member>
-        <member name="T:Sudoku.Data.GridParsingType">
+        <member name="T:Sudoku.Data.GridParsingOption">
             <summary>
             Represents a grid parsing type.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.GridParsingType.Susser">
+        <member name="F:Sudoku.Data.GridParsingOption.Susser">
             <summary>
             <para>
             Indicates the susser format, which means all grid values
@@ -1843,7 +1932,7 @@
             </para>
             </summary>
         </member>
-        <member name="F:Sudoku.Data.GridParsingType.PencilMarked">
+        <member name="F:Sudoku.Data.GridParsingOption.PencilMarked">
             <summary>
             <para>
             Indicates the pencil marked grid (PM grid), which means all
@@ -1871,7 +1960,7 @@
             </para>
             </summary>
         </member>
-        <member name="F:Sudoku.Data.GridParsingType.PencilMarkedTreatSingleAsGiven">
+        <member name="F:Sudoku.Data.GridParsingOption.PencilMarkedTreatSingleAsGiven">
             <summary>
             <para>
             Indicates the pencil marked grid (PM grid), which means all
@@ -1900,7 +1989,7 @@
             </para>
             </summary>
         </member>
-        <member name="F:Sudoku.Data.GridParsingType.Table">
+        <member name="F:Sudoku.Data.GridParsingOption.Table">
             <summary>
             <para>
             Indicates the table format, which means all grid values
@@ -1929,7 +2018,7 @@
             </para>
             </summary>
         </member>
-        <member name="F:Sudoku.Data.GridParsingType.SimpleTable">
+        <member name="F:Sudoku.Data.GridParsingOption.SimpleTable">
             <summary>
             <para>
             Sudoku explainer format (9 characters in a row, and 9 rows).
