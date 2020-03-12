@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using Sudoku.Data.Stepping;
 
-namespace Sudoku.Data
+namespace Sudoku.Data.Stepping
 {
 	/// <summary>
 	/// Provides an undoable sudoku grid. This data structure is nearly same
@@ -50,12 +49,7 @@ namespace Sudoku.Data
 				var map = GridMap.Empty;
 				foreach (int cell in GridMap.PeerTable[offset])
 				{
-					if (cell == offset)
-					{
-						continue;
-					}
-
-					if (GetCellStatus(cell) != CellStatus.Empty)
+					if (cell == offset || GetCellStatus(cell) != CellStatus.Empty)
 					{
 						continue;
 					}
@@ -207,7 +201,7 @@ namespace Sudoku.Data
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(Grid left, UndoableGrid right) =>
 			left.Equals(right);
-		
+
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(UndoableGrid left, Grid right) =>
 			left.Equals(right);

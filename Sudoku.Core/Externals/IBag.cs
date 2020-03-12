@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 
 namespace System.Collections.Generic
 {
@@ -36,5 +37,31 @@ namespace System.Collections.Generic
 		/// <param name="item">The element.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		bool Contains([NotNull] T item);
+
+		/// <summary>
+		/// Adds an object into the end of the <see cref="IBag{T}"/>
+		/// when the specified list does not contain the specified element.
+		/// </summary>
+		/// <param name="item">The item to add.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public void AddIfDoesNotContain(T item)
+		{
+			if (!Contains(item))
+			{
+				Add(item);
+			}
+		}
+
+		/// <summary>
+		/// Adds a series of elements to the <see cref="IBag{T}"/>.
+		/// </summary>
+		/// <param name="items">The elements to add.</param>
+		public void AddRange(IEnumerable<T> items)
+		{
+			foreach (var item in items)
+			{
+				Add(item);
+			}
+		}
 	}
 }

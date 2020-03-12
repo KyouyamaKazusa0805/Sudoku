@@ -17,9 +17,14 @@ namespace Sudoku.Data.Extensions
 		/// <code>
 		/// list.RemoveAt(list.Count - 1);
 		/// </code>
+		/// or
+		/// <code>
+		/// list.RemoveAt(^1); // Call extension method 'RemoveAt'.
+		/// </code>
 		/// </summary>
 		/// <typeparam name="T">The type of each element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <seealso cref="RemoveAt{T}(IList{T}, Index)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void RemoveLastElement<T>(this IList<T> @this) =>
 			@this.RemoveAt(@this.Count - 1);

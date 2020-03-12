@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.Text.RegularExpressions;
 
 namespace Sudoku.Data.Extensions
@@ -21,6 +22,8 @@ namespace Sudoku.Data.Extensions
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool SatisfyPattern(this string @this, string pattern)
 		{
+			Contract.Requires(pattern.IsRegexPattern());
+
 			string? match = @this.Match(pattern);
 			return !(match is null) && match == @this;
 		}
@@ -37,8 +40,12 @@ namespace Sudoku.Data.Extensions
 		/// method <see cref="Regex.IsMatch(string, string)"/>.
 		/// </remarks>
 		/// <seealso cref="Regex.IsMatch(string, string)"/>
-		public static bool IsMatch(this string @this, string pattern) =>
-			Regex.IsMatch(@this, pattern);
+		public static bool IsMatch(this string @this, string pattern)
+		{
+			Contract.Requires(pattern.IsRegexPattern());
+
+			return Regex.IsMatch(@this, pattern);
+		}
 
 		/// <summary>
 		/// Searches the specified input string for the first occurrence of
@@ -55,8 +62,12 @@ namespace Sudoku.Data.Extensions
 		/// method <see cref="Regex.Match(string, string)"/>.
 		/// </remarks>
 		/// <seealso cref="Regex.Match(string, string)"/>
-		public static string? Match(this string @this, string pattern) =>
-			@this.Match(pattern, RegexOptions.None);
+		public static string? Match(this string @this, string pattern)
+		{
+			Contract.Requires(pattern.IsRegexPattern());
+
+			return @this.Match(pattern, RegexOptions.None);
+		}
 
 		/// <summary>
 		/// Searches the input string for the first occurrence of the specified regular
@@ -77,6 +88,8 @@ namespace Sudoku.Data.Extensions
 		public static string? Match(
 			this string @this, string pattern, RegexOptions regexOption)
 		{
+			Contract.Requires(pattern.IsRegexPattern());
+
 			var match = Regex.Match(@this, pattern, regexOption);
 			return match.Success ? match.Value : null;
 		}
@@ -96,8 +109,12 @@ namespace Sudoku.Data.Extensions
 		/// method <see cref="Regex.Matches(string, string)"/>.
 		/// </remarks>
 		/// <seealso cref="Regex.Matches(string, string)"/>
-		public static string[] MatchAll(this string @this, string pattern) =>
-			@this.MatchAll(pattern, RegexOptions.None);
+		public static string[] MatchAll(this string @this, string pattern)
+		{
+			Contract.Requires(pattern.IsRegexPattern());
+
+			return @this.MatchAll(pattern, RegexOptions.None);
+		}
 
 		/// <summary>
 		/// Searches the specified input string for all occurrences of a
@@ -119,6 +136,8 @@ namespace Sudoku.Data.Extensions
 		public static string[] MatchAll(
 			this string @this, string pattern, RegexOptions regexOption)
 		{
+			Contract.Requires(pattern.IsRegexPattern());
+
 			var matches = Regex.Matches(@this, pattern, regexOption);
 			var result = new List<string>();
 			foreach (Match? match in matches) // Do not use 'var' ('var' is 'object?').

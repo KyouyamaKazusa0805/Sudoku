@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace Sudoku.Data.Extensions
 {
@@ -30,6 +31,7 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <typeparam name="TEnum">The type of enumeration type.</typeparam>
 		/// <returns>The fields.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static TEnum[] GetValues<TEnum>()
 			where TEnum : Enum => (TEnum[])Enum.GetValues(typeof(TEnum));
 	}
