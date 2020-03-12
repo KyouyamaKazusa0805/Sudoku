@@ -122,6 +122,13 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 		}
 
 
+		/// <summary>
+		/// To decide the current row and column index is valid.
+		/// </summary>
+		/// <param name="gridValues">The grid values.</param>
+		/// <param name="r">The current row index.</param>
+		/// <param name="c">The current column index.</param>
+		/// <returns>The <see cref="bool"/> result.</returns>
 		private static bool IsValid(int[] gridValues, int r, int c)
 		{
 			int number = gridValues[GetOffset(r, c)];

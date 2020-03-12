@@ -4,6 +4,7 @@ using System.Linq;
 using Sudoku.Data;
 using static System.Math;
 using static System.StringComparison;
+using static System.Linq.Enumerable;
 
 namespace Sudoku.Solving.BruteForces.Linqing
 {
@@ -41,6 +42,11 @@ namespace Sudoku.Solving.BruteForces.Linqing
 		}
 
 
+		/// <summary>
+		/// Internal solving method.
+		/// </summary>
+		/// <param name="puzzle">The puzzle string, with placeholder character '0'.</param>
+		/// <returns>The result strings (i.e. All solutions).</returns>
 		private static List<string> SolveStrings(string puzzle)
 		{
 			const string values = "123456789";
@@ -56,7 +62,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 					let Block = Index - Index % 27 + Column - Index % 3
 					from value in values
 					where !(
-						from i in Enumerable.Range(0, 9)
+						from i in Range(0, 9)
 						let InRow = solution[Index - Column + i] == value
 						let InColumn = solution[Column + i * 9] == value
 						let InBlock = solution[Block + i % 3 + (int)Floor(i / 3f) * 9] == value

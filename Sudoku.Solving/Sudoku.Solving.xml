@@ -367,6 +367,15 @@
             <param name="gridValues">All grid values.</param>
             <param name="finishedCellsCount">The number of cells had finished.</param>
         </member>
+        <member name="M:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver.IsValid(System.Int32[],System.Int32,System.Int32)">
+            <summary>
+            To decide the current row and column index is valid.
+            </summary>
+            <param name="gridValues">The grid values.</param>
+            <param name="r">The current row index.</param>
+            <param name="c">The current column index.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver">
             <summary>
             Provides a solver using bitwise method.
@@ -443,6 +452,13 @@
         </member>
         <member name="M:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver.SolveStrings(System.String)">
+            <summary>
+            Internal solving method.
+            </summary>
+            <param name="puzzle">The puzzle string, with placeholder character '0'.</param>
+            <returns>The result strings (i.e. All solutions).</returns>
         </member>
         <member name="T:Sudoku.Solving.Checking.BackdoorSearcher">
             <summary>

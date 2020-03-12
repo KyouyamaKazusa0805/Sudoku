@@ -5,6 +5,9 @@ using System.Runtime.InteropServices;
 using Sudoku.Data;
 using CStyleString = System.Text.StringBuilder;
 using ImmutableString = System.String;
+using static System.Runtime.InteropServices.CharSet;
+using static System.Runtime.InteropServices.CallingConvention;
+using static System.Runtime.InteropServices.UnmanagedType;
 #if TARGET_64BIT
 using native_int = System.Int32;
 #else
@@ -171,14 +174,14 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// You should pass the value by a positive integer at least 1.
 		/// </param>
 		/// <returns>The solution count of the puzzle.</returns>
-		[DllImport("Sudoku.BitwiseSolver (x86).dll", EntryPoint = "Solve", CharSet = CharSet.Ansi)]
+		[DllImport("Sudoku.BitwiseSolver (x86).dll", EntryPoint = "Solve", CallingConvention = StdCall, CharSet = Ansi)]
 		private static extern native_int Solve32(
-			[MarshalAs(UnmanagedType.LPStr)] ImmutableString puzzle,
-			[MarshalAs(UnmanagedType.LPStr)] CStyleString? solution,
+			[MarshalAs(LPStr)] ImmutableString puzzle,
+			[MarshalAs(LPStr)] CStyleString? solution,
 #if TARGET_64BIT
-			[MarshalAs(UnmanagedType.I4)]
+			[MarshalAs(I4)]
 #else
-			[MarshalAs(UnmanagedType.I2)]
+			[MarshalAs(I2)]
 #endif
 			native_int limit);
 
@@ -192,14 +195,14 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// You should pass the value by a positive integer at least 1.
 		/// </param>
 		/// <returns>The solution count of the puzzle.</returns>
-		[DllImport("Sudoku.BitwiseSolver (x64).dll", EntryPoint = "Solve", CharSet = CharSet.Ansi)]
+		[DllImport("Sudoku.BitwiseSolver (x64).dll", EntryPoint = "Solve", CallingConvention = StdCall, CharSet = Ansi)]
 		private static extern native_int Solve64(
-			[MarshalAs(UnmanagedType.LPStr)] ImmutableString puzzle,
-			[MarshalAs(UnmanagedType.LPStr)] CStyleString? solution,
+			[MarshalAs(LPStr)] ImmutableString puzzle,
+			[MarshalAs(LPStr)] CStyleString? solution,
 #if TARGET_64BIT
-			[MarshalAs(UnmanagedType.I4)]
+			[MarshalAs(I4)]
 #else
-			[MarshalAs(UnmanagedType.I2)]
+			[MarshalAs(I2)]
 #endif
 			native_int limit);
 	}
