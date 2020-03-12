@@ -3,8 +3,11 @@
 namespace System.Collections.Generic
 {
 	/// <summary>
+	/// <para>
 	/// Encapsulates a collection which only allows user add elements
-	/// and get them, but cannot remove one or more elements.
+	/// and get them, but cannot remove any elements in this collection
+	/// (i.e. Only-in collection).
+	/// </para>
 	/// </summary>
 	/// <typeparam name="T">
 	/// The type of each element. The type should not be <see langword="null"/>.
@@ -21,6 +24,12 @@ namespace System.Collections.Generic
 		/// Initializes a default <see cref="Bag{T}"/>.
 		/// </summary>
 		public Bag() { }
+
+		/// <summary>
+		/// Initializes an instance with an element.
+		/// </summary>
+		/// <param name="element">An element.</param>
+		public Bag(T element) => Add(element);
 
 		/// <summary>
 		/// Initializes an instance with the specified elements.

@@ -3285,8 +3285,11 @@
         </member>
         <member name="T:System.Collections.Generic.Bag`1">
             <summary>
+            <para>
             Encapsulates a collection which only allows user add elements
-            and get them, but cannot remove one or more elements.
+            and get them, but cannot remove any elements in this collection
+            (i.e. Only-in collection).
+            </para>
             </summary>
             <typeparam name="T">
             The type of each element. The type should not be <see langword="null"/>.
@@ -3301,6 +3304,12 @@
             <summary>
             Initializes a default <see cref="T:System.Collections.Generic.Bag`1"/>.
             </summary>
+        </member>
+        <member name="M:System.Collections.Generic.Bag`1.#ctor(`0)">
+            <summary>
+            Initializes an instance with an element.
+            </summary>
+            <param name="element">An element.</param>
         </member>
         <member name="M:System.Collections.Generic.Bag`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
             <summary>
