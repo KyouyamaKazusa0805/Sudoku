@@ -6,14 +6,17 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Provides an inference between two nodes.
 	/// </summary>
-	public sealed class Inference : IEquatable<Inference>
+	public class Inference : IEquatable<Inference>
 	{
 		/// <summary>
 		/// Initializes an instance with the specified information.
 		/// </summary>
 		/// <param name="start">The start node.</param>
+		/// <param name="startIsOn">Indicates whether the start node is on.</param>
 		/// <param name="end">The end node.</param>
-		public Inference(Node start, Node end) => (Start, End) = (start, end);
+		/// <param name="endIsOn">Indicates whether the end node is on.</param>
+		public Inference(Node start, bool startIsOn, Node end, bool endIsOn) =>
+			(Start, StartIsOn, End, EndIsOn) = (start, startIsOn, end, endIsOn);
 
 
 		/// <summary>
@@ -25,6 +28,31 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Indicates the end node.
 		/// </summary>
 		public Node End { get; }
+
+		/// <summary>
+		/// Indicates whether the start node is on.
+		/// </summary>
+		public bool StartIsOn { get; }
+
+		/// <summary>
+		/// Indicates whether the end node is on.
+		/// </summary>
+		public bool EndIsOn { get; }
+
+		/// <summary>
+		/// Indicates whether the inference is strong.
+		/// </summary>
+		public bool IsStrongInference => !StartIsOn && EndIsOn;
+
+		/// <summary>
+		/// Indicates whether the inference is weak.
+		/// </summary>
+		public bool IsWeakInference => StartIsOn && !EndIsOn;
+
+		/// <summary>
+		/// Indicates whether the inference is neither strong nor weak.
+		/// </summary>
+		public bool IsOtherInference => !IsStrongInference && !IsWeakInference;
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
@@ -55,7 +83,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		public void Deconstruct(
 			out FullGridMap startMap, out bool startInOn, out NodeType startNodeType,
 			out FullGridMap endMap, out bool endIsOn, out NodeType endNodeType) =>
-			(startMap, startInOn, startNodeType, endMap, endIsOn, endNodeType) = (Start.Candidates, Start.IsOn, Start.NodeType, End.Candidates, End.IsOn, End.NodeType);
+			(startMap, startInOn, startNodeType, endMap, endIsOn, endNodeType) = (Start.Candidates, StartIsOn, Start.NodeType, End.Candidates, EndIsOn, End.NodeType);
 
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is Inference comparer && Equals(comparer);

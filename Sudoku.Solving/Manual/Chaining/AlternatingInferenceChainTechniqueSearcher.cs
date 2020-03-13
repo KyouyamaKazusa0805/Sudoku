@@ -12,10 +12,16 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// Encapsulates an alternating inference chain (AIC) technique searcher.
 	/// </summary>
 	/// <remarks>
+	/// <para>
 	/// This technique searcher may use the basic searching way to find all AICs.
 	/// For example, this searcher will try to search for all strong inferences firstly,
 	/// and then search a weak inference that the candidate is in the same region or cell
 	/// with a node in the strong inference in order to link them.
+	/// </para>
+	/// <para>
+	/// Note that AIC may be static chains, which means that the searcher may just use
+	/// static analysis is fine, which is different with dynamic chains.
+	/// </para>
 	/// </remarks>
 	[Slow]
 	public sealed class AlternatingInferenceChainTechniqueSearcher : ChainTechniqueSearcher
@@ -33,6 +39,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		/// <summary>
 		/// Indicates whether the searcher will search for Y-Chains.
+		/// Here Y-Chains means for multi-digit AICs.
 		/// </summary>
 		private readonly bool _searchY;
 

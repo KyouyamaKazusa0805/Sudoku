@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Solving.Utils;
 
@@ -10,23 +11,25 @@ namespace Sudoku.Solving.Manual.Chaining
 	public abstract class Node : IEquatable<Node>
 	{
 		/// <summary>
+		/// Initializes an instance with the specified candidates and
+		/// a <see cref="bool"/> value.
+		/// </summary>
+		/// <param name="candidates">The candidates.</param>
+		protected Node(IEnumerable<int> candidates) : this(new FullGridMap(candidates))
+		{ 
+		}
+
+		/// <summary>
 		/// Initializes an instance with the specified map.
 		/// </summary>
 		/// <param name="candidates">The map of candidates.</param>
-		/// <param name="isOn">Indicates whether the node is on.</param>
-		protected Node(FullGridMap candidates, bool isOn) =>
-			(Candidates, IsOn) = (candidates, isOn);
+		protected Node(FullGridMap candidates) => Candidates = candidates;
 
 
 		/// <summary>
 		/// Indicates all candidates used in this node.
 		/// </summary>
 		public FullGridMap Candidates { get; }
-
-		/// <summary>
-		/// Indicates whether the node is on.
-		/// </summary>
-		public bool IsOn { get; }
 
 		/// <summary>
 		/// Indicates the type of this current node.
@@ -36,14 +39,11 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="map">(<see langword="out"/> parameter) The map.</param>
-		/// <param name="isOn">
-		/// (<see langword="out"/> parameter) Indicates whether the node is on.
-		/// </param>
 		/// <param name="nodeType">
 		/// (<see langword="out"/> parameter) Indicates the node type.
 		/// </param>
-		public void Deconstruct(out FullGridMap map, out bool isOn, out NodeType nodeType) =>
-			(map, isOn, nodeType) = (Candidates, IsOn, NodeType);
+		public void Deconstruct(out FullGridMap map, out NodeType nodeType) =>
+			(map, nodeType) = (Candidates, NodeType);
 
 		/// <inheritdoc/>
 		public sealed override bool Equals(object? obj) => obj is Node comparer && Equals(comparer);
@@ -56,7 +56,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// If you get a derived class, we recommend you override this method
 		/// to describe the type of the node.
 		/// </remarks>
-		public override int GetHashCode() => Candidates.GetHashCode() * (IsOn ? 1 : -1);
+		public override int GetHashCode() => Candidates.GetHashCode();
 
 		/// <inheritdoc/>
 		/// <remarks>
@@ -64,7 +64,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// to describe the type of the node.
 		/// </remarks>
 		public override string ToString() =>
-			$"{(IsOn ? string.Empty : "!")}{CandidateCollection.ToString(Candidates.Offsets)}";
+			CandidateCollection.ToString(Candidates.Offsets);
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
