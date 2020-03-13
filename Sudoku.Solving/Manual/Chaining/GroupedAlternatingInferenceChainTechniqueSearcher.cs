@@ -12,10 +12,11 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// </summary>
 	/// <remarks>
 	/// <para>
-	/// This technique searcher may use the basic searching way to find all AICs.
-	/// For example, this searcher will try to search for all strong inferences firstly,
-	/// and then search a weak inference that the candidate is in the same region or cell
-	/// with a node in the strong inference in order to link them.
+	/// This technique searcher may use the basic searching way to find all AICs and
+	/// grouped AICs. For example, this searcher will try to search for all strong
+	/// inferences firstly, and then search a weak inference that the candidate is
+	/// in the same region or cell with a node in the strong inference in order to
+	/// link them.
 	/// </para>
 	/// <para>
 	/// Note that AIC may be static chains, which means that the searcher may just use
@@ -134,30 +135,24 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <returns>All strong relations.</returns>
-		private IReadOnlyList<Inference> GetAllStrongInferences(IReadOnlyGrid grid)
+		private IReadOnlyList<StrongInference> GetAllStrongInferences(IReadOnlyGrid grid)
 		{
-			var result = new List<Inference>();
-			if (_searchX)
+			var result = new List<StrongInference>();
+			for (int region = 0; region < 27; region++)
 			{
-				for (int region = 0; region < 27; region++)
+				for (int digit = 0; digit < 9; digit++)
 				{
-					for (int digit = 0; digit < 9; digit++)
+					if (!grid.IsBilocationRegion(digit, region, out short mask))
 					{
-						if (!grid.IsBilocationRegion(digit, region, out short mask))
-						{
-							continue;
-						}
-
-						int pos1 = mask.FindFirstSet();
-						result.Add(
-							new Inference(
-								new CandidateNode(
-									GetCellOffset(region, pos1) * 9 + digit),
-								false,
-								new CandidateNode(
-									GetCellOffset(region, mask.GetNextSetBit(pos1)) * 9 + digit),
-								true));
+						continue;
 					}
+
+					int pos1 = mask.FindFirstSet();
+					result.Add(
+						new StrongInference(
+							new CandidateNode(GetCellOffset(region, pos1) * 9 + digit),
+							new CandidateNode(
+								GetCellOffset(region, mask.GetNextSetBit(pos1)) * 9 + digit)));
 				}
 			}
 
@@ -172,9 +167,9 @@ namespace Sudoku.Solving.Manual.Chaining
 
 					int digit1 = mask.FindFirstSet();
 					result.Add(
-						new Inference(
-							new CandidateNode(cell * 9 + digit1), false,
-							new CandidateNode(cell * 9 + mask.GetNextSetBit(digit1)), true));
+						new StrongInference(
+							new CandidateNode(cell * 9 + digit1),
+							new CandidateNode(cell * 9 + mask.GetNextSetBit(digit1))));
 				}
 			}
 

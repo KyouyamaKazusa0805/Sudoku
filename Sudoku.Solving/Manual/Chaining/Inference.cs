@@ -5,7 +5,11 @@ namespace Sudoku.Solving.Manual.Chaining
 {
 	/// <summary>
 	/// Provides an inference between two nodes.
+	/// If you want to describe a strong link, please use the class <see cref="StrongInference"/>
+	/// instead, while you want to describe a weak link, use <see cref="WeakInference"/>.
 	/// </summary>
+	/// <seealso cref="StrongInference"/>
+	/// <seealso cref="WeakInference"/>
 	public class Inference : IEquatable<Inference>
 	{
 		/// <summary>
