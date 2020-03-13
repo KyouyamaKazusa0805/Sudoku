@@ -5706,6 +5706,19 @@
             will have a slow speed to calculate.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.SlowAttribute.SlowButNecessary">
+            <summary>
+            <para>
+            Indicates whether the searcher is slow but necessary.
+            If the value is <see langword="true"/>, the search will not
+            be optimized by <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>, and skip this searcher;
+            otherwise, this searcher will be skipped.
+            </para>
+            <para>
+            The value is <see langword="false"/> in default case.
+            </para>
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Solver">
             <summary>
             Indicates an instance used for solving a sudoku puzzle.

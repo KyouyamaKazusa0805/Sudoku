@@ -169,7 +169,8 @@ namespace Sudoku.Solving.Manual
 				{
 					// Skip all searchers marked slow running attribute.
 					if (DisableSlowTechniques
-						&& searcher.HasMarkedAttribute<SlowAttribute>(false, out _))
+						&& searcher.HasMarkedAttribute<SlowAttribute>(false, out var instance)
+						&& !instance.First().SlowButNecessary)
 					{
 						continue;
 					}
@@ -441,7 +442,8 @@ namespace Sudoku.Solving.Manual
 
 				// Skip all searchers marked slow running attribute.
 				if (DisableSlowTechniques
-					&& searcher.HasMarkedAttribute<SlowAttribute>(false, out _))
+					&& searcher.HasMarkedAttribute<SlowAttribute>(false, out var instance)
+					&& !instance.First().SlowButNecessary)
 				{
 					continue;
 				}
