@@ -136,11 +136,11 @@ namespace Sudoku.Solving.Manual
 					new BorescoperDeadlyPatternTechniqueSearcher(),
 					new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
 					new AlternatingInferenceChainTechniqueSearcher(
-						true, true, AicMaximumLength, ReductDifferentPathAic,
+						true, false, AicMaximumLength, ReductDifferentPathAic,
 						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
-				},
-				new TechniqueSearcher[]
-				{
+					new AlternatingInferenceChainTechniqueSearcher(
+						false, true, AicMaximumLength, ReductDifferentPathAic,
+						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
 					new HobiwanFishTechniqueSearcher(
 						HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
 						HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
@@ -412,7 +412,10 @@ namespace Sudoku.Solving.Manual
 				new BorescoperDeadlyPatternTechniqueSearcher(),
 				new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
 				new AlternatingInferenceChainTechniqueSearcher(
-					true, true, AicMaximumLength, ReductDifferentPathAic,
+					true, false, AicMaximumLength, ReductDifferentPathAic,
+					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
+				new AlternatingInferenceChainTechniqueSearcher(
+					false, true, AicMaximumLength, ReductDifferentPathAic,
 					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
 				new HobiwanFishTechniqueSearcher(
 					HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,

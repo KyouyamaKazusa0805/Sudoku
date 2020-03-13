@@ -247,39 +247,36 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			// Search for same regions.
 			bool checkCollision(int next) => !_addHeadCollision && candidateList[next];
-			if (_searchX)
+			var (r, c, b) = CellUtils.GetRegion(currentCell);
+			foreach (int region in stackalloc[] { r + 9, c + 18, b })
 			{
-				var (r, c, b) = CellUtils.GetRegion(currentCell);
-				foreach (int region in stackalloc[] { r + 9, c + 18, b })
+				var map = grid.GetDigitAppearingCells(currentDigit, region);
+				if (map.Count != 2)
 				{
-					var map = grid.GetDigitAppearingCells(currentDigit, region);
-					if (map.Count != 2)
-					{
-						continue;
-					}
-
-					map[currentCell] = false;
-					int nextCell = map.SetAt(0);
-					int nextCandidate = nextCell * 9 + currentDigit;
-					if (checkCollision(nextCandidate))
-					{
-						continue;
-					}
-
-					candidateList[nextCandidate] = true;
-					stack.Add(nextCandidate);
-
-					// Now check elimination.
-					// If the elimination exists, the chain will be added to the accumulator.
-					CheckElimination(accumulator, grid, candidateList, stack);
-
-					GetOnToOffRecursively(
-						accumulator, grid, candidateList, nextCell, currentDigit,
-						strongRelations, stack, length - 1);
-
-					candidateList[nextCandidate] = false;
-					stack.RemoveLastElement();
+					continue;
 				}
+
+				map[currentCell] = false;
+				int nextCell = map.SetAt(0);
+				int nextCandidate = nextCell * 9 + currentDigit;
+				if (checkCollision(nextCandidate))
+				{
+					continue;
+				}
+
+				candidateList[nextCandidate] = true;
+				stack.Add(nextCandidate);
+
+				// Now check elimination.
+				// If the elimination exists, the chain will be added to the accumulator.
+				CheckElimination(accumulator, grid, candidateList, stack);
+
+				GetOnToOffRecursively(
+					accumulator, grid, candidateList, nextCell, currentDigit,
+					strongRelations, stack, length - 1);
+
+				candidateList[nextCandidate] = false;
+				stack.RemoveLastElement();
 			}
 
 			// Search for cell.
@@ -320,22 +317,19 @@ namespace Sudoku.Solving.Manual.Chaining
 		private IReadOnlyList<(int, int)> GetAllStrongInferences(IReadOnlyGrid grid)
 		{
 			var result = new List<(int, int)>();
-			if (_searchX)
+			for (int region = 0; region < 27; region++)
 			{
-				for (int region = 0; region < 27; region++)
+				for (int digit = 0; digit < 9; digit++)
 				{
-					for (int digit = 0; digit < 9; digit++)
+					if (!grid.IsBilocationRegion(digit, region, out short mask))
 					{
-						if (!grid.IsBilocationRegion(digit, region, out short mask))
-						{
-							continue;
-						}
-
-						int pos1 = mask.FindFirstSet();
-						result.Add((
-							RegionUtils.GetCellOffset(region, pos1) * 9 + digit,
-							RegionUtils.GetCellOffset(region, mask.GetNextSetBit(pos1)) * 9 + digit));
+						continue;
 					}
+
+					int pos1 = mask.FindFirstSet();
+					result.Add((
+						RegionUtils.GetCellOffset(region, pos1) * 9 + digit,
+						RegionUtils.GetCellOffset(region, mask.GetNextSetBit(pos1)) * 9 + digit));
 				}
 			}
 

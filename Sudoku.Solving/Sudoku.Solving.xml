@@ -1319,10 +1319,16 @@
             Encapsulates an alternating inference chain (AIC) technique searcher.
             </summary>
             <remarks>
+            <para>
             This technique searcher may use the basic searching way to find all AICs.
             For example, this searcher will try to search for all strong inferences firstly,
             and then search a weak inference that the candidate is in the same region or cell
             with a node in the strong inference in order to link them.
+            </para>
+            <para>
+            Note that AIC may be static chains, which means that the searcher may just use
+            static analysis is fine, which is different with dynamic chains.
+            </para>
             </remarks>
         </member>
         <member name="F:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.LastIndex">
@@ -1338,6 +1344,7 @@
         <member name="F:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher._searchY">
             <summary>
             Indicates whether the searcher will search for Y-Chains.
+            Here Y-Chains means for multi-digit AICs.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher._reductDifferentPathAic">
@@ -1471,6 +1478,21 @@
             <returns>The result action.</returns>
             <seealso cref="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Collections.Generic.IList{System.Int32})"/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Chaining.CandidateNode">
+            <summary>
+            Encapsulates a candidate node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.CandidateNode.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance with the specified candidate
+            and a <see cref="T:System.Boolean"/> value.
+            </summary>
+            <param name="candidate">The candidate.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.CandidateNode.NodeType">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.ChainTechniqueInfo">
             <summary>
             Provides a usage of chain technique.
@@ -1484,17 +1506,127 @@
             Encapsulates a chain technique searcher.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher">
+            <summary>
+            Encapsulates an (grouped) alternating inference chain (AIC) technique searcher.
+            </summary>
+            <remarks>
+            <para>
+            This technique searcher may use the basic searching way to find all AICs.
+            For example, this searcher will try to search for all strong inferences firstly,
+            and then search a weak inference that the candidate is in the same region or cell
+            with a node in the strong inference in order to link them.
+            </para>
+            <para>
+            Note that AIC may be static chains, which means that the searcher may just use
+            static analysis is fine, which is different with dynamic chains.
+            </para>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.LastIndex">
+            <summary>
+            Indicates the last index of the collection.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher._searchX">
+            <summary>
+            Indicates whether the searcher will search for X-Chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher._searchY">
+            <summary>
+            Indicates whether the searcher will search for Y-Chains.
+            Here Y-Chains means for multi-digit AICs.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher._checkLockedCandidatesNodes">
+            <summary>
+            Indicates whether the searcher will check locked candidates nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher._reductDifferentPathAic">
+            <summary>
+            Indicates whether the searcher will reduct same AICs
+            which has same head and tail nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher._onlySaveShortestPathAic">
+            <summary>
+            Indicates whether the searcher will store the shortest path only.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher._addHeadCollision">
+            <summary>
+            Indicates whether the searcher will store the discontinuous nice loop
+            whose head and tail is a same node.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher._checkContinuousNiceLoop">
+            <summary>
+            Indicates whether the searcher will check the chain forms a continuous
+            nice loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher._maxLength">
+            <summary>
+            Indicates the maximum length to search.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="searchX">Indicates searching X-Chains or not.</param>
+            <param name="searchY">Indicates searching Y-Chains or not.</param>
+            <param name="checkLockedCandidatesNodes">
+            Indicates whether the searcher will check the locked candidates nodes.
+            </param>
+            <param name="maxLength">
+            Indicates the maximum length of a chain to search.
+            </param>
+            <param name="reductDifferentPathAic">
+            Indicates whether the searcher will reduct same AICs
+            which has same head and tail nodes.
+            </param>
+            <param name="onlySaveShortestPathAic">
+            Indicates whether the searcher will store the shortest path
+            only.
+            </param>
+            <param name="addHeadCollision">
+            Indicates whether the searcher will store the discontinuous nice loop
+            whose head and tail is a same node.
+            </param>
+            <param name="checkContinuousNiceLoop">
+            Indicates whether the searcher will check the chain forms a continuous
+            nice loop.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.Priority">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.GetAllStrongInferences(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Get all strong relations.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>All strong relations.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.Inference">
             <summary>
             Provides an inference between two nodes.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Inference.#ctor(Sudoku.Solving.Manual.Chaining.Node,Sudoku.Solving.Manual.Chaining.Node)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.Inference.#ctor(Sudoku.Solving.Manual.Chaining.Node,System.Boolean,Sudoku.Solving.Manual.Chaining.Node,System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
             <param name="start">The start node.</param>
+            <param name="startIsOn">Indicates whether the start node is on.</param>
             <param name="end">The end node.</param>
+            <param name="endIsOn">Indicates whether the end node is on.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.Inference.Start">
             <summary>
@@ -1504,6 +1636,31 @@
         <member name="P:Sudoku.Solving.Manual.Chaining.Inference.End">
             <summary>
             Indicates the end node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.Inference.StartIsOn">
+            <summary>
+            Indicates whether the start node is on.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.Inference.EndIsOn">
+            <summary>
+            Indicates whether the end node is on.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.Inference.IsStrongInference">
+            <summary>
+            Indicates whether the inference is strong.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.Inference.IsWeakInference">
+            <summary>
+            Indicates whether the inference is weak.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.Inference.IsOtherInference">
+            <summary>
+            Indicates whether the inference is neither strong nor weak.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.Inference.Deconstruct(Sudoku.Solving.Manual.Chaining.Node@,Sudoku.Solving.Manual.Chaining.Node@)">
@@ -1569,21 +1726,22 @@
             Provides an elementary unit in a chain.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Node.#ctor(Sudoku.Data.FullGridMap,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.Node.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Initializes an instance with the specified candidates and
+            a <see cref="T:System.Boolean"/> value.
+            </summary>
+            <param name="candidates">The candidates.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.Node.#ctor(Sudoku.Data.FullGridMap)">
             <summary>
             Initializes an instance with the specified map.
             </summary>
             <param name="candidates">The map of candidates.</param>
-            <param name="isOn">Indicates whether the node is on.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.Node.Candidates">
             <summary>
             Indicates all candidates used in this node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.Node.IsOn">
-            <summary>
-            Indicates whether the node is on.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.Node.NodeType">
@@ -1591,14 +1749,11 @@
             Indicates the type of this current node.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Node.Deconstruct(Sudoku.Data.FullGridMap@,System.Boolean@,Sudoku.Solving.Manual.Chaining.NodeType@)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.Node.Deconstruct(Sudoku.Data.FullGridMap@,Sudoku.Solving.Manual.Chaining.NodeType@)">
             <method name="Deconstruct">
 		<summary>Deconstruct this instance.</summary>
 	</method>
             <param name="map">(<see langword="out" /> parameter) The map.</param>
-            <param name="isOn">
-            (<see langword="out" /> parameter) Indicates whether the node is on.
-            </param>
             <param name="nodeType">
             (<see langword="out" /> parameter) Indicates the node type.
             </param>
