@@ -135,12 +135,6 @@ namespace Sudoku.Solving.Manual
 					new SueDeCoqTechniqueSearcher(regionMaps),
 					new BorescoperDeadlyPatternTechniqueSearcher(),
 					new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
-					//new AlternatingInferenceChainTechniqueSearcher(
-					//	true, false, AicMaximumLength, ReductDifferentPathAic,
-					//	OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
-					//new AlternatingInferenceChainTechniqueSearcher(
-					//	false, true, AicMaximumLength, ReductDifferentPathAic,
-					//	OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
 					new GroupedAlternatingInferenceChainTechniqueSearcher(
 						true, false, false, AicMaximumLength, ReductDifferentPathAic,
 						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
@@ -420,12 +414,6 @@ namespace Sudoku.Solving.Manual
 				new SueDeCoqTechniqueSearcher(regionMaps),
 				new BorescoperDeadlyPatternTechniqueSearcher(),
 				new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
-				//new AlternatingInferenceChainTechniqueSearcher(
-				//	true, false, AicMaximumLength, ReductDifferentPathAic,
-				//	OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
-				//new AlternatingInferenceChainTechniqueSearcher(
-				//	false, true, AicMaximumLength, ReductDifferentPathAic,
-				//	OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
 				new GroupedAlternatingInferenceChainTechniqueSearcher(
 					true, false, false, AicMaximumLength, ReductDifferentPathAic,
 					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
