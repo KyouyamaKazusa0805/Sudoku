@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Sudoku.Data;
 
 namespace Sudoku.Solving.Manual.Chaining
@@ -58,6 +59,13 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		public bool IsOtherInference => !IsStrongInference && !IsWeakInference;
 
+		/// <summary>
+		/// Indicates the intersection of the current inference, which is used
+		/// in searching for eliminations in loops or normal AICs.
+		/// </summary>
+		public virtual FullGridMap Intersection =>
+			FullGridMap.CreateInstance(Start.Candidates.Concat(End.Candidates));
+
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="start">(<see langword="out"/> parameter) The start node.</param>
@@ -87,7 +95,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		public void Deconstruct(
 			out FullGridMap startMap, out bool startInOn, out NodeType startNodeType,
 			out FullGridMap endMap, out bool endIsOn, out NodeType endNodeType) =>
-			(startMap, startInOn, startNodeType, endMap, endIsOn, endNodeType) = (Start.Candidates, StartIsOn, Start.NodeType, End.Candidates, EndIsOn, End.NodeType);
+			(startMap, startInOn, startNodeType, endMap, endIsOn, endNodeType) = (Start.CandidatesMap, StartIsOn, Start.NodeType, End.CandidatesMap, EndIsOn, End.NodeType);
 
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is Inference comparer && Equals(comparer);

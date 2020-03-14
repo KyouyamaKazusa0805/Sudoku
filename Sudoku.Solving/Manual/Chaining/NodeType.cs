@@ -1,17 +1,27 @@
-﻿namespace Sudoku.Solving.Manual.Chaining
+﻿using System;
+
+namespace Sudoku.Solving.Manual.Chaining
 {
 	/// <summary>
 	/// Indicates a node type in a chain.
 	/// </summary>
-	public enum NodeType
+	public enum NodeType : byte
 	{
+		/// <summary>
+		/// Indicates an empty node, which is only used for
+		/// keep away from the throwing of exceptions.
+		/// </summary>
+		[Obsolete]
+		Empty = 0,
+
 		/// <summary>
 		/// Indicates a normal candidate.
 		/// </summary>
-		Candidate = 1,
+		Candidate,
 
 		/// <summary>
-		/// Indicates a normal locked candidates.
+		/// Indicates a locked candidates node, which contains at least two cells
+		/// in a same box-row or box-column and contains the same digit.
 		/// </summary>
 		LockedCandidates,
 

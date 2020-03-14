@@ -278,7 +278,7 @@ namespace Sudoku.Data
 		/// <param name="index">The index of all true bits.</param>
 		/// <returns>The result position.</returns>
 		/// <seealso cref="Enumerable.ElementAt{TSource}(IEnumerable{TSource}, int)"/>
-		public readonly int SetBitAt(int index) => Offsets.ElementAt(index);
+		public readonly int SetAt(int index) => Offsets.ElementAt(index);
 
 		/// <summary>
 		/// Get the index of <see langword="true"/> bits from start or end.
@@ -288,7 +288,7 @@ namespace Sudoku.Data
 		/// the method will search the bits from end of the list.
 		/// </param>
 		/// <returns>The result position.</returns>
-		public readonly int SetBitAt(Index index)
+		public readonly int SetAt(Index index)
 		{
 			if (index.IsFromEnd)
 			{
@@ -340,6 +340,22 @@ namespace Sudoku.Data
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override readonly string ToString() => "...";
 
+		/// <summary>
+		/// Reduct the map to <see cref="GridMap"/> with the specified digit.
+		/// </summary>
+		/// <param name="digit">The digit.</param>
+		/// <returns>The map of the digit.</returns>
+		public readonly GridMap Reduct(int digit)
+		{
+			var result = GridMap.Empty;
+			for (int i = 0, ii = i * 9 + digit; i < 81; i++, ii += 9)
+			{
+				result[i] = this[ii];
+			}
+
+			return result;
+		}
+
 		/// <inheritdoc/>
 		public readonly IEnumerator<bool> GetEnumerator()
 		{
@@ -354,6 +370,36 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="candidate">The candidate.</param>
 		public void Add(int candidate) => this[candidate] = true;
+
+		/// <summary>
+		/// Add a series of candidates into the list.
+		/// </summary>
+		/// <param name="candidates">All candidates.</param>
+		public void AddRange(IEnumerable<int> candidates)
+		{
+			foreach (int candidate in candidates)
+			{
+				this[candidate] = true;
+			}
+		}
+
+		/// <summary>
+		/// Remove a candidate from the current list.
+		/// </summary>
+		/// <param name="candidate">The candidate.</param>
+		public void Remove(int candidate) => this[candidate] = false;
+
+		/// <summary>
+		/// Remove a series of candidates from the current list.
+		/// </summary>
+		/// <param name="candidates">All candidates.</param>
+		public void RemoveRange(IEnumerable<int> candidates)
+		{
+			foreach (int candidate in candidates)
+			{
+				this[candidate] = false;
+			}
+		}
 
 		/// <summary>
 		/// Set the bits to the specified cell.
@@ -403,29 +449,6 @@ namespace Sudoku.Data
 			return result;
 		}
 
-
-		/// <summary>
-		/// Check whether the specified map has at least one <see langword="true"/> bits.
-		/// </summary>
-		/// <param name="map">The grid map.</param>
-		/// <returns>A <see cref="bool"/> result.</returns>
-		public static bool operator true(FullGridMap map) => map.Count != 0;
-
-		/// <summary>
-		/// Check whether the specified grid map has no <see langword="true"/> bits.
-		/// </summary>
-		/// <param name="map">The grid map.</param>
-		/// <returns>A <see cref="bool"/> result.</returns>
-		public static bool operator false(FullGridMap map) => map.Count == 0;
-
-		/// <summary>
-		/// Check whether the specified grid map has no <see langword="true"/> bits.
-		/// Same as <see cref="operator false(FullGridMap)"/>.
-		/// </summary>
-		/// <param name="map">The grid map.</param>
-		/// <returns>A <see cref="bool"/> result.</returns>
-		/// <seealso cref="operator false(FullGridMap)"/>
-		public static bool operator !(FullGridMap map) => map.Count == 0;
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(FullGridMap left, FullGridMap right) =>

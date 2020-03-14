@@ -135,12 +135,20 @@ namespace Sudoku.Solving.Manual
 					new SueDeCoqTechniqueSearcher(regionMaps),
 					new BorescoperDeadlyPatternTechniqueSearcher(),
 					new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
-					new AlternatingInferenceChainTechniqueSearcher(
-						true, false, AicMaximumLength, ReductDifferentPathAic,
-						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
-					new AlternatingInferenceChainTechniqueSearcher(
-						false, true, AicMaximumLength, ReductDifferentPathAic,
-						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
+					//new AlternatingInferenceChainTechniqueSearcher(
+					//	true, false, AicMaximumLength, ReductDifferentPathAic,
+					//	OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
+					//new AlternatingInferenceChainTechniqueSearcher(
+					//	false, true, AicMaximumLength, ReductDifferentPathAic,
+					//	OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
+					new GroupedAlternatingInferenceChainTechniqueSearcher(
+						true, false, false, AicMaximumLength, ReductDifferentPathAic,
+						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
+						regionMaps),
+					new GroupedAlternatingInferenceChainTechniqueSearcher(
+						false, true, false, AicMaximumLength, ReductDifferentPathAic,
+						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
+						regionMaps),
 					new HobiwanFishTechniqueSearcher(
 						HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
 						HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
@@ -412,12 +420,20 @@ namespace Sudoku.Solving.Manual
 				new SueDeCoqTechniqueSearcher(regionMaps),
 				new BorescoperDeadlyPatternTechniqueSearcher(),
 				new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
-				new AlternatingInferenceChainTechniqueSearcher(
-					true, false, AicMaximumLength, ReductDifferentPathAic,
-					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
-				new AlternatingInferenceChainTechniqueSearcher(
-					false, true, AicMaximumLength, ReductDifferentPathAic,
-					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
+				//new AlternatingInferenceChainTechniqueSearcher(
+				//	true, false, AicMaximumLength, ReductDifferentPathAic,
+				//	OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
+				//new AlternatingInferenceChainTechniqueSearcher(
+				//	false, true, AicMaximumLength, ReductDifferentPathAic,
+				//	OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
+				new GroupedAlternatingInferenceChainTechniqueSearcher(
+					true, false, false, AicMaximumLength, ReductDifferentPathAic,
+					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
+					regionMaps),
+				new GroupedAlternatingInferenceChainTechniqueSearcher(
+					false, true, false, AicMaximumLength, ReductDifferentPathAic,
+					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
+					regionMaps),
 				new HobiwanFishTechniqueSearcher(
 					HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
 					HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),

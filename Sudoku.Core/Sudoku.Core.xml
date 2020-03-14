@@ -1005,7 +1005,7 @@
             <param name="cellOffset">The cell offset.</param>
             <returns>The <see cref="T:System.Boolean"/> array.</returns>
         </member>
-        <member name="M:Sudoku.Data.FullGridMap.SetBitAt(System.Int32)">
+        <member name="M:Sudoku.Data.FullGridMap.SetAt(System.Int32)">
             <summary>
             Simply calls <see cref="M:System.Linq.Enumerable.ElementAt``1(System.Collections.Generic.IEnumerable{``0},System.Int32)"/>.
             </summary>
@@ -1013,7 +1013,7 @@
             <returns>The result position.</returns>
             <seealso cref="M:System.Linq.Enumerable.ElementAt``1(System.Collections.Generic.IEnumerable{``0},System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Data.FullGridMap.SetBitAt(System.Index)">
+        <member name="M:Sudoku.Data.FullGridMap.SetAt(System.Index)">
             <summary>
             Get the index of <see langword="true"/> bits from start or end.
             </summary>
@@ -1038,6 +1038,13 @@
 		<returns>A string that represents the current object.</returns>
 	</method>
         </member>
+        <member name="M:Sudoku.Data.FullGridMap.Reduct(System.Int32)">
+            <summary>
+            Reduct the map to <see cref="T:Sudoku.Data.GridMap"/> with the specified digit.
+            </summary>
+            <param name="digit">The digit.</param>
+            <returns>The map of the digit.</returns>
+        </member>
         <member name="M:Sudoku.Data.FullGridMap.GetEnumerator">
             <inheritdoc/>
         </member>
@@ -1046,6 +1053,24 @@
             Add the candidate into the list.
             </summary>
             <param name="candidate">The candidate.</param>
+        </member>
+        <member name="M:Sudoku.Data.FullGridMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Add a series of candidates into the list.
+            </summary>
+            <param name="candidates">All candidates.</param>
+        </member>
+        <member name="M:Sudoku.Data.FullGridMap.Remove(System.Int32)">
+            <summary>
+            Remove a candidate from the current list.
+            </summary>
+            <param name="candidate">The candidate.</param>
+        </member>
+        <member name="M:Sudoku.Data.FullGridMap.RemoveRange(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Remove a series of candidates from the current list.
+            </summary>
+            <param name="candidates">All candidates.</param>
         </member>
         <member name="M:Sudoku.Data.FullGridMap.SetCell(System.Int32,System.Boolean[])">
             <summary>
@@ -1070,29 +1095,6 @@
             The default value is <see langword="false"/>.
             </param>
             <returns>The result map.</returns>
-        </member>
-        <member name="M:Sudoku.Data.FullGridMap.op_True(Sudoku.Data.FullGridMap)">
-            <summary>
-            Check whether the specified map has at least one <see langword="true"/> bits.
-            </summary>
-            <param name="map">The grid map.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.FullGridMap.op_False(Sudoku.Data.FullGridMap)">
-            <summary>
-            Check whether the specified grid map has no <see langword="true"/> bits.
-            </summary>
-            <param name="map">The grid map.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.FullGridMap.op_LogicalNot(Sudoku.Data.FullGridMap)">
-            <summary>
-            Check whether the specified grid map has no <see langword="true"/> bits.
-            Same as <see cref="M:Sudoku.Data.FullGridMap.op_False(Sudoku.Data.FullGridMap)"/>.
-            </summary>
-            <param name="map">The grid map.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <seealso cref="M:Sudoku.Data.FullGridMap.op_False(Sudoku.Data.FullGridMap)"/>
         </member>
         <member name="M:Sudoku.Data.FullGridMap.op_Equality(Sudoku.Data.FullGridMap,Sudoku.Data.FullGridMap)">
             <operator name="op_Equality">

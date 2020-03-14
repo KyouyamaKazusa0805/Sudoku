@@ -1506,6 +1506,154 @@
             Encapsulates a chain technique searcher.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo">
+            <summary>
+            Provides a usage of (grouped) alternating inference chain (AIC) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.LastIndex">
+            <summary>
+            Indicates the last index of a collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Chaining.Node},System.Boolean)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="nodes">All nodes.</param>
+            <param name="isContinuousNiceLoop">
+            Indicates whether the structure is a continuous nice loop.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.IsContinuousNiceLoop">
+            <summary>
+            Indicates whether the structure is a continuous nice loop.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.Nodes">
+            <summary>
+            Indicates all inferences.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.Length">
+            <summary>
+            Indicates the length of the instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.Equals(Sudoku.Solving.TechniqueInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.Equals(Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.IsGroupedChain">
+            <summary>
+            Indicates whether the chain is grouped chain.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.IsXChain">
+            <summary>
+            Indicates whether the chain is X-Chain.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.IsXyChain">
+            <summary>
+            Indicates whether the chain is XY-Chain.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.IsWWing">
+            <summary>
+            Indicates whether the chain is W-Wing (<c>(x = y) - y = y - (y = x)</c>).
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.IsMWing">
+            <summary>
+            Indicates whether the chain is M-Wing (<c>(x = y) - y = (y - x) = x</c>).
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.IsSplitWing">
+            <summary>
+            Indicates whether the chain is Split-Wing (<c>x = x - (x = y) - y = y</c>).
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.IsHybridWing">
+            <summary>
+            Indicates whether the chain is Hybrid-Wing.
+            This wing has two types:
+            <list type="bullet">
+            <item><c>(x = y) - y = (y - z) = z</c></item>
+            <item><c>(x = y) - (y = z) - z = z</c></item>
+            </list>
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.IsLocalWing">
+            <summary>
+            Indicates whether the chain is Local-Wing (<c>x = (x - z) = (z - y) = y</c>).
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.IsHeadCollisionChain">
+            <summary>
+            Indicates whether the chain is discontinuous nice loop whose head and tail
+            is a same node.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.KeepNodeMinimum(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Chaining.Node})">
+            <summary>
+            Keep the head node is lower than tail node.
+            </summary>
+            <param name="nodes">The nodes.</param>
+            <returns>The list.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.IsHeadTailSame">
+            <summary>
+            Indicates whether the head and tail node contain the different digit.
+            </summary>
+            <returns>
+            <see langword="true"/> is for same digit; otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.op_Equality(Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo,Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo.op_Inequality(Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo,Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher">
             <summary>
             Encapsulates an (grouped) alternating inference chain (AIC) technique searcher.
@@ -1524,6 +1672,16 @@
             </para>
             </remarks>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.EmptyArray">
+            <summary>
+            The empty array.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.BlockTable">
+            <summary>
+            The table of blocks.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.LastIndex">
             <summary>
             Indicates the last index of the collection.
@@ -1540,7 +1698,7 @@
             Here Y-Chains means for multi-digit AICs.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher._checkLockedCandidatesNodes">
+        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher._searchLcNodes">
             <summary>
             Indicates whether the searcher will check locked candidates nodes.
             </summary>
@@ -1556,7 +1714,7 @@
             Indicates whether the searcher will store the shortest path only.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher._addHeadCollision">
+        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher._checkHeadCollision">
             <summary>
             Indicates whether the searcher will store the discontinuous nice loop
             whose head and tail is a same node.
@@ -1573,13 +1731,18 @@
             Indicates the maximum length to search.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher._regionMaps">
+            <summary>
+            Indicates all region maps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,Sudoku.Data.GridMap[])">
             <summary>
             Initializes an instance with the specified information.
             </summary>
             <param name="searchX">Indicates searching X-Chains or not.</param>
             <param name="searchY">Indicates searching Y-Chains or not.</param>
-            <param name="checkLockedCandidatesNodes">
+            <param name="searchLockedCandidatesNodes">
             Indicates whether the searcher will check the locked candidates nodes.
             </param>
             <param name="maxLength">
@@ -1593,7 +1756,7 @@
             Indicates whether the searcher will store the shortest path
             only.
             </param>
-            <param name="addHeadCollision">
+            <param name="checkHeadCollision">
             Indicates whether the searcher will store the discontinuous nice loop
             whose head and tail is a same node.
             </param>
@@ -1601,6 +1764,7 @@
             Indicates whether the searcher will check the chain forms a continuous
             nice loop.
             </param>
+            <param name="regionMaps">All region maps.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.Priority">
             <inheritdoc/>
@@ -1608,12 +1772,102 @@
         <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.GetAllStrongInferences(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.GetOnToOffRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,Sudoku.Solving.Manual.Chaining.Node,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Chaining.StrongInference},Sudoku.Data.GridMap[],System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.Node},System.Int32)">
+            <summary>
+            Get 'on' nodes to 'off' nodes recursively (Searching for weak links).
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="candidatesUsed">The candidate used.</param>
+            <param name="currentNode">The current node.</param>
+            <param name="strongInferences">The strong inferences.</param>
+            <param name="digitDistributions">All digits' distributions.</param>
+            <param name="stack">The stack.</param>
+            <param name="length">The last length to search.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.GetOffToOnRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,Sudoku.Solving.Manual.Chaining.Node,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Chaining.StrongInference},Sudoku.Data.GridMap[],System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.Node},System.Int32)">
+            <summary>
+            Get 'off' nodes to 'on' nodes recursively (Searching for strong links).
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="candidatesUsed">The candidates used.</param>
+            <param name="currentNode">The current node.</param>
+            <param name="strongInferences">All strong inferences.</param>
+            <param name="digitDistributions">All digits' distributions.</param>
+            <param name="stack">The stack.</param>
+            <param name="length">The last length to search.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.GetLcNodes(Sudoku.Data.GridMap[],System.Int32,System.Int32)">
+            <summary>
+            Get all locked candidates nodes at current cell and digit.
+            </summary>
+            <param name="digitDistributions">The digit distributions.</param>
+            <param name="currentCell">The current cell.</param>
+            <param name="currentDigit">The current digit.</param>
+            <returns>All locked candidates nodes.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.Node})">
+            <summary>
+            Check the elimination, and save the chain into the accumulator
+            when the chain is valid and worth.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="candidateList">The candidate list.</param>
+            <param name="stack">The stack.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.SumUpResult(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo)">
+            <summary>
+            Sum up the result.
+            </summary>
+            <param name="accumulator">The accumulator list.</param>
+            <param name="resultInfo">The result information instance.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.IsContinuousNiceLoop(System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.Node})">
+            <summary>
+            To check whether the nodes form a loop.
+            </summary>
+            <param name="stack">The stack.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <remarks>
+            If the nodes form a continuous nice loop, the head and tail node should be
+            in a same region, and hold a same digit; or else the head and the tail is in
+            a same cell, but the digits are different; otherwise, the nodes forms a normal
+            AIC.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.GetAct(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo})">
+            <summary>
+            Bound with <see cref="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.Node})"/>.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <returns>The result action.</returns>
+            <seealso cref="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.Node})"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.GetAllStrongInferences(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap[])">
             <summary>
             Get all strong relations.
             </summary>
             <param name="grid">The grid.</param>
+            <param name="digitDistributions">All digits' distributions.</param>
             <returns>All strong relations.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.AddNodeToMap(Sudoku.Solving.Manual.Chaining.Node,Sudoku.Data.FullGridMap@,System.Byte[])">
+            <summary>
+            Add the node to the map.
+            </summary>
+            <param name="node">The node.</param>
+            <param name="map">The map.</param>
+            <param name="counter">The counter.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.RemoveNodeToMap(Sudoku.Solving.Manual.Chaining.Node,Sudoku.Data.FullGridMap@,System.Byte[])">
+            <summary>
+            Remove the node from the map.
+            </summary>
+            <param name="node">The node.</param>
+            <param name="map">The map.</param>
+            <param name="counter">The counter.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.Inference">
             <summary>
@@ -1666,6 +1920,12 @@
         <member name="P:Sudoku.Solving.Manual.Chaining.Inference.IsOtherInference">
             <summary>
             Indicates whether the inference is neither strong nor weak.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.Inference.Intersection">
+            <summary>
+            Indicates the intersection of the current inference, which is used
+            in searching for eliminations in loops or normal AICs.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.Inference.Deconstruct(Sudoku.Solving.Manual.Chaining.Node@,Sudoku.Solving.Manual.Chaining.Node@)">
@@ -1753,9 +2013,9 @@
             <summary>
             Initializes an instance with the specified map.
             </summary>
-            <param name="candidates">The map of candidates.</param>
+            <param name="candidatesMap">The map of candidates.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.Node.Candidates">
+        <member name="P:Sudoku.Solving.Manual.Chaining.Node.CandidatesMap">
             <summary>
             Indicates all candidates used in this node.
             </summary>
@@ -1765,6 +2025,25 @@
             Indicates the type of this current node.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.Node.Candidates">
+            <summary>
+            Indicates all candidates used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.Node.Item(System.Int32)">
+            <summary>
+            Get a candidate offset in the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The candidate offset.</returns>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.Node.Item(System.Index)">
+            <summary>
+            Get a candidate offset in the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The candidate offset.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.Node.Deconstruct(Sudoku.Data.FullGridMap@,Sudoku.Solving.Manual.Chaining.NodeType@)">
             <method name="Deconstruct">
 		<summary>Deconstruct this instance.</summary>
@@ -1773,6 +2052,23 @@
             <param name="nodeType">
             (<see langword="out" /> parameter) Indicates the node type.
             </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.Node.IsCollideWith(Sudoku.Solving.Manual.Chaining.Node)">
+            <summary>
+            Checks whether all candidates used in this instance is collide with
+            the other one. If two candidates hold at least one same candidate,
+            we will say the node is collide with the other node (or reversely).
+            </summary>
+            <param name="other">The other node.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.Node.Contains(Sudoku.Solving.Manual.Chaining.Node)">
+            <summary>
+            Checks whether all candidates used in this instance fully contains
+            the other one.
+            </summary>
+            <param name="other">The other node.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.Node.Equals(System.Object)">
             <inheritdoc/>
@@ -1810,9 +2106,50 @@
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.Node.op_BitwiseAnd(Sudoku.Solving.Manual.Chaining.Node,Sudoku.Solving.Manual.Chaining.Node)">
+            <summary>
+            Get all candidates that <paramref name="left"/> and <paramref name="right"/>
+            map both contain.
+            </summary>
+            <param name="left">The left map.</param>
+            <param name="right">The right map.</param>
+            <returns>All candidates that satisfied the condition.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.Node.op_BitwiseOr(Sudoku.Solving.Manual.Chaining.Node,Sudoku.Solving.Manual.Chaining.Node)">
+            <summary>
+            Get all candidates from <paramref name="left"/> and <paramref name="right"/>
+            maps.
+            </summary>
+            <param name="left">The left map.</param>
+            <param name="right">The right map.</param>
+            <returns>All candidates.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.Node.op_ExclusiveOr(Sudoku.Solving.Manual.Chaining.Node,Sudoku.Solving.Manual.Chaining.Node)">
+            <summary>
+            Get all candidates that satisfy the formula <c>(a - b) | (b - a)</c>.
+            </summary>
+            <param name="left">The left map.</param>
+            <param name="right">The right map.</param>
+            <returns>All candidates.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.Node.op_Subtraction(Sudoku.Solving.Manual.Chaining.Node,Sudoku.Solving.Manual.Chaining.Node)">
+            <summary>
+            Get all candidates that is in the <paramref name="left"/> map but not in
+            the <paramref name="right"/> map (i.e. formula <c>a &#38; ~b</c>).
+            </summary>
+            <param name="left">The left map.</param>
+            <param name="right">The right map.</param>
+            <returns>All candidates.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.NodeType">
             <summary>
             Indicates a node type in a chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.NodeType.Empty">
+            <summary>
+            Indicates an empty node, which is only used for
+            keep away from the throwing of exceptions.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Chaining.NodeType.Candidate">
@@ -1822,7 +2159,8 @@
         </member>
         <member name="F:Sudoku.Solving.Manual.Chaining.NodeType.LockedCandidates">
             <summary>
-            Indicates a normal locked candidates.
+            Indicates a locked candidates node, which contains at least two cells
+            in a same box-row or box-column and contains the same digit.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Chaining.NodeType.AlmostLockedSets">
@@ -6363,6 +6701,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Utils.NodeCollection.ToString(System.Collections.Generic.IEnumerable{Sudoku.Data.ChainNode})">
+            <summary>
+            Get a string consists of nodes' text.
+            </summary>
+            <param name="nodes">The nodes.</param>
+            <returns>The string.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Utils.NodeCollection.ToString(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Chaining.Node})">
             <summary>
             Get a string consists of nodes' text.
             </summary>
