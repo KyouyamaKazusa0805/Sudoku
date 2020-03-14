@@ -2004,11 +2004,6 @@
             Indicates the type of this current node.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.Node.Candidates">
-            <summary>
-            Indicates all candidates used.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.Node.Item(System.Int32)">
             <summary>
             Get a candidate offset in the specified index.
@@ -2068,6 +2063,11 @@
             If you get a derived class, we recommend you override this method
             to describe the type of the node.
             </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.Node.GetCandidates">
+            <summary>
+            Indicates all candidates used.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.Node.op_Equality(Sudoku.Solving.Manual.Chaining.Node,Sudoku.Solving.Manual.Chaining.Node)">
             <operator name="op_Equality">

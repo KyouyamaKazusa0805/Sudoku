@@ -168,7 +168,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 
 			// Search for same regions.
-			if (_searchX)
+			if (_searchX || _searchY)
 			{
 				foreach (int nextCell in new GridMap(currentCell, false).Offsets)
 				{
@@ -248,35 +248,38 @@ namespace Sudoku.Solving.Manual.Chaining
 			// Search for same regions.
 			bool checkCollision(int next) => !_addHeadCollision && candidateList[next];
 			var (r, c, b) = CellUtils.GetRegion(currentCell);
-			foreach (int region in stackalloc[] { r + 9, c + 18, b })
+			if (_searchX || _searchY)
 			{
-				var map = grid.GetDigitAppearingCells(currentDigit, region);
-				if (map.Count != 2)
+				foreach (int region in stackalloc[] { r + 9, c + 18, b })
 				{
-					continue;
+					var map = grid.GetDigitAppearingCells(currentDigit, region);
+					if (map.Count != 2)
+					{
+						continue;
+					}
+
+					map[currentCell] = false;
+					int nextCell = map.SetAt(0);
+					int nextCandidate = nextCell * 9 + currentDigit;
+					if (checkCollision(nextCandidate))
+					{
+						continue;
+					}
+
+					candidateList[nextCandidate] = true;
+					stack.Add(nextCandidate);
+
+					// Now check elimination.
+					// If the elimination exists, the chain will be added to the accumulator.
+					CheckElimination(accumulator, grid, candidateList, stack);
+
+					GetOnToOffRecursively(
+						accumulator, grid, candidateList, nextCell, currentDigit,
+						strongRelations, stack, length - 1);
+
+					candidateList[nextCandidate] = false;
+					stack.RemoveLastElement();
 				}
-
-				map[currentCell] = false;
-				int nextCell = map.SetAt(0);
-				int nextCandidate = nextCell * 9 + currentDigit;
-				if (checkCollision(nextCandidate))
-				{
-					continue;
-				}
-
-				candidateList[nextCandidate] = true;
-				stack.Add(nextCandidate);
-
-				// Now check elimination.
-				// If the elimination exists, the chain will be added to the accumulator.
-				CheckElimination(accumulator, grid, candidateList, stack);
-
-				GetOnToOffRecursively(
-					accumulator, grid, candidateList, nextCell, currentDigit,
-					strongRelations, stack, length - 1);
-
-				candidateList[nextCandidate] = false;
-				stack.RemoveLastElement();
 			}
 
 			// Search for cell.
@@ -317,19 +320,22 @@ namespace Sudoku.Solving.Manual.Chaining
 		private IReadOnlyList<(int, int)> GetAllStrongInferences(IReadOnlyGrid grid)
 		{
 			var result = new List<(int, int)>();
-			for (int region = 0; region < 27; region++)
+			if (_searchX || _searchY)
 			{
-				for (int digit = 0; digit < 9; digit++)
+				for (int region = 0; region < 27; region++)
 				{
-					if (!grid.IsBilocationRegion(digit, region, out short mask))
+					for (int digit = 0; digit < 9; digit++)
 					{
-						continue;
-					}
+						if (!grid.IsBilocationRegion(digit, region, out short mask))
+						{
+							continue;
+						}
 
-					int pos1 = mask.FindFirstSet();
-					result.Add((
-						RegionUtils.GetCellOffset(region, pos1) * 9 + digit,
-						RegionUtils.GetCellOffset(region, mask.GetNextSetBit(pos1)) * 9 + digit));
+						int pos1 = mask.FindFirstSet();
+						result.Add((
+							RegionUtils.GetCellOffset(region, pos1) * 9 + digit,
+							RegionUtils.GetCellOffset(region, mask.GetNextSetBit(pos1)) * 9 + digit));
+					}
 				}
 			}
 
@@ -446,7 +452,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				// Step 1: Check eliminations.
 				int startCandidate = stack[0], endCandidate = stack[LastIndex];
 				var elimMap = FullGridMap.CreateInstance(new[] { startCandidate, endCandidate });
-				if (!elimMap.IsNotEmpty)
+				if (elimMap.IsEmpty)
 				{
 					return;
 				}

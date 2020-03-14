@@ -9,7 +9,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Provides an elementary unit in a chain.
 	/// </summary>
-	public readonly struct Node : IEquatable<Node>
+	public sealed class Node : IEquatable<Node>
 	{
 		/// <summary>
 		/// Initializes an instance with a specified candidate and its type.
@@ -49,11 +49,6 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Indicates the type of this current node.
 		/// </summary>
 		public NodeType NodeType { get; }
-
-		/// <summary>
-		/// Indicates all candidates used.
-		/// </summary>
-		public IEnumerable<int> Candidates => CandidatesMap.Offsets;
 
 
 		/// <summary>
@@ -123,7 +118,13 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// If you get a derived class, we recommend you override this method
 		/// to describe the type of the node.
 		/// </remarks>
-		public override string ToString() => CandidateCollection.ToString(CandidatesMap.Offsets);
+		public override string ToString() =>
+			CandidateCollection.ToString(CandidatesMap.Offsets);
+
+		/// <summary>
+		/// Indicates all candidates used.
+		/// </summary>
+		public IEnumerable<int> GetCandidates() => CandidatesMap.Offsets;
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>

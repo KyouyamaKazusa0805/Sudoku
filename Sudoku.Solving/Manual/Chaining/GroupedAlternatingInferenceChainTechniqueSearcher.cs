@@ -170,7 +170,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			foreach (var (start, end) in strongInferences)
 			{
 				// Iterate on two cases.
-				foreach (var (startNode, endNode) in stackalloc[] { (start, end), (end, start) })
+				foreach (var (startNode, endNode) in new[] { (start, end), (end, start) })
 				{
 					// Add the start and end node to the used list.
 					AddNode(start, ref candidatesUsed);
@@ -221,33 +221,36 @@ namespace Sudoku.Solving.Manual.Chaining
 					int currentCell = currentCandidate / 9, currentDigit = currentCandidate % 9;
 
 					// Search for same regions.
-					foreach (int nextCell in new GridMap(currentCell, false).Offsets)
+					if (_searchX || _searchY || _searchLcNodes)
 					{
-						if (!grid.CandidateExists(nextCell, currentDigit))
+						foreach (int nextCell in new GridMap(currentCell, false).Offsets)
 						{
-							continue;
+							if (!grid.CandidateExists(nextCell, currentDigit))
+							{
+								continue;
+							}
+
+							int nextCandidate = nextCell * 9 + currentDigit;
+							if (candidatesUsed[nextCandidate])
+							{
+								continue;
+							}
+
+							candidatesUsed[nextCandidate] = true;
+							var nextNode = new Node(nextCandidate, NodeType.Candidate);
+							stack.Add(nextNode);
+
+							GetOffToOnRecursively(
+								accumulator, grid, candidatesUsed, nextNode, strongInferences,
+								digitDistributions, stack, length - 1);
+
+							candidatesUsed[nextCandidate] = false;
+							stack.RemoveLastElement();
 						}
-
-						int nextCandidate = nextCell * 9 + currentDigit;
-						if (candidatesUsed[nextCandidate])
-						{
-							continue;
-						}
-
-						candidatesUsed[nextCandidate] = true;
-						var nextNode = new Node(nextCandidate, NodeType.Candidate);
-						stack.Add(nextNode);
-
-						GetOffToOnRecursively(
-							accumulator, grid, candidatesUsed, nextNode, strongInferences,
-							digitDistributions, stack, length - 1);
-
-						candidatesUsed[nextCandidate] = false;
-						stack.RemoveLastElement();
 					}
 
 					// Search for the cells.
-					if (_searchY)
+					if (_searchY || _searchLcNodes)
 					{
 						foreach (int nextDigit in grid.GetCandidatesReversal(currentCell).GetAllSets())
 						{
@@ -286,7 +289,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								continue;
 							}
 
-							candidatesUsed.AddRange(nextNode.Candidates);
+							candidatesUsed.AddRange(nextNode.GetCandidates());
 							stack.Add(nextNode);
 
 							GetOffToOnRecursively(
@@ -294,7 +297,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								digitDistributions, stack, length - 1);
 
 							stack.RemoveLastElement();
-							candidatesUsed.RemoveRange(nextNode.Candidates);
+							candidatesUsed.RemoveRange(nextNode.GetCandidates());
 						}
 					}
 
@@ -417,7 +420,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								}
 
 								// Strong inference found.
-								candidatesUsed.AddRange(nextNode.Candidates);
+								candidatesUsed.AddRange(nextNode.GetCandidates());
 								stack.Add(nextNode);
 
 								// Now check elimination.
@@ -428,7 +431,7 @@ namespace Sudoku.Solving.Manual.Chaining
 									accumulator, grid, candidatesUsed, nextNode, strongInferences,
 									digitDistributions, stack, length - 1);
 
-								candidatesUsed.RemoveRange(nextNode.Candidates);
+								candidatesUsed.RemoveRange(nextNode.GetCandidates());
 								stack.RemoveLastElement();
 							}
 						}
@@ -565,7 +568,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						}
 						case NodeType.LockedCandidates:
 						{
-							foreach (int candidate in node.Candidates)
+							foreach (int candidate in node.GetCandidates())
 							{
 								candidateOffsets.Add((isOff, candidate));
 							}
@@ -648,7 +651,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						}
 						case NodeType.LockedCandidates:
 						{
-							foreach (int candidate in node.Candidates)
+							foreach (int candidate in node.GetCandidates())
 							{
 								candidateOffsets.Add((@switch ? 1 : 0, candidate));
 							}
@@ -883,7 +886,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 				case NodeType.LockedCandidates:
 				{
-					foreach (int cand in node.Candidates)
+					foreach (int cand in node.GetCandidates())
 					{
 						map[cand] = true;
 					}
@@ -910,7 +913,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 				case NodeType.LockedCandidates:
 				{
-					foreach (int cand in node.Candidates)
+					foreach (int cand in node.GetCandidates())
 					{
 						map[cand] = false;
 					}

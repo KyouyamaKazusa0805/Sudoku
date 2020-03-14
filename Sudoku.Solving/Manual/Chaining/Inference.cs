@@ -63,7 +63,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// in searching for eliminations in loops or normal AICs.
 		/// </summary>
 		public FullGridMap Intersection =>
-			FullGridMap.CreateInstance(Start.Candidates.Concat(End.Candidates));
+			FullGridMap.CreateInstance(Start.GetCandidates().Concat(End.GetCandidates()));
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
