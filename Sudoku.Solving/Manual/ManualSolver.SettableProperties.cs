@@ -157,7 +157,10 @@
 		/// </para>
 		/// <para>
 		/// If the technique searcher marks the attribute <see cref="SlowAttribute"/>,
-		/// the searcher will be regarded as slow one.
+		/// the searcher will be regarded as slow one. However, if the technique
+		/// searcher marked this attribute, but its property
+		/// <see cref="SlowAttribute.SlowButNecessary"/> is <see langword="true"/>,
+		/// the searcher will not be disabled.
 		/// </para>
 		/// <para>The value is <see langword="true"/> in default case.</para>
 		/// </summary>

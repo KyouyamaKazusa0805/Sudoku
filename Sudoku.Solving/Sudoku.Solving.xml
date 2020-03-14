@@ -3322,7 +3322,10 @@
             </para>
             <para>
             If the technique searcher marks the attribute <see cref="T:Sudoku.Solving.SlowAttribute"/>,
-            the searcher will be regarded as slow one.
+            the searcher will be regarded as slow one. However, if the technique
+            searcher marked this attribute, but its property
+            <see cref="P:Sudoku.Solving.SlowAttribute.SlowButNecessary"/> is <see langword="true"/>,
+            the searcher will not be disabled.
             </para>
             <para>The value is <see langword="true"/> in default case.</para>
             </summary>
