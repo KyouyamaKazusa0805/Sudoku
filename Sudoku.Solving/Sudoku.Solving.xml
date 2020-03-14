@@ -2397,7 +2397,17 @@
             <param name="elimMaps">The possible elimination cells map.</param>
             <param name="digitDistributions">The all distributions for each digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.CheckCoverSets(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,Sudoku.Data.GridMap[],Sudoku.Data.GridMap[],System.Int32[],Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.IsRedundantRegion(System.Int32,Sudoku.Data.GridMap[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
+            <summary>
+            Check whether the specified region to add is redundant.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="digitDistributions">The digit distributions.</param>
+            <param name="baseSets">The base sets.</param>
+            <param name="baseSetToAdd">The base set to add.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.CheckCoverSets(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,Sudoku.Data.GridMap[],Sudoku.Data.GridMap[],System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.GridMap)">
             <summary>
             Check all cover sets combinations to verify whether the fish can be formed.
             </summary>
@@ -2410,7 +2420,7 @@
             <param name="baseSets">The base sets.</param>
             <param name="bodyMap">The body map.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.AddTechnique(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},System.Int32,System.Int32[],Sudoku.Data.GridMap,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.AddTechnique(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.GridMap,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}})">
             <summary>
             Add the technique to bag.
             </summary>
@@ -2435,7 +2445,7 @@
             <param name="finMap">The map of fin cells.</param>
             <returns>A <see cref="T:System.Boolean"/>? result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.RecordHighlightRegions(System.Int32[],System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.RecordHighlightRegions(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
             <summary>
             Record all highlight regions.
             </summary>
@@ -2454,7 +2464,7 @@
             <param name="endofinsMap">The endo-fins map.</param>
             <param name="candidateOffsets">The list of highlight candidates.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.GetAllProperCoverSets(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int32[],Sudoku.Data.GridMap[],Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.GetAllProperCoverSets(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.GridMap[],Sudoku.Data.GridMap)">
             <summary>
             Get all proper cover sets combinations.
             </summary>
@@ -2466,7 +2476,7 @@
             <param name="bodyMap">The body map.</param>
             <returns>All cover sets combinations.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.RegionsAreWorth(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int32[],Sudoku.Data.GridMap[],Sudoku.Data.GridMap,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.RegionsAreWorth(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.GridMap[],Sudoku.Data.GridMap,System.Int32)">
             <summary>
             To check whether the specified iterated regions satisfy
             the following conditions:
@@ -2500,7 +2510,7 @@
             <param name="regions">All regions.</param>
             <returns>The instance containing all cells.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.GetEndofinMap(System.Int32[])">
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.GetEndofinMap(System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Get the endo-fins map.
             </summary>
