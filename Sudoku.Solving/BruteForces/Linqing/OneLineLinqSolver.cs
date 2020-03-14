@@ -65,7 +65,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 						from i in Range(0, 9)
 						let InRow = solution[Index - Column + i] == value
 						let InColumn = solution[Column + i * 9] == value
-						let InBlock = solution[Block + i % 3 + (int)Floor(i / 3f) * 9] == value
+						let InBlock = solution[Block + i % 3 + (int)Floor(i / 3F) * 9] == value
 						where InRow || InColumn || InBlock
 						select i).Any()
 					select $"{solution.Substring(0, Index)}{value}{solution.Substring(Index + 1)}");
