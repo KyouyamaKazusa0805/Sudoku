@@ -9,22 +9,35 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Provides an elementary unit in a chain.
 	/// </summary>
-	public abstract class Node : IEquatable<Node>
+	public readonly struct Node : IEquatable<Node>
 	{
 		/// <summary>
-		/// Initializes an instance with the specified candidates and
-		/// a <see cref="bool"/> value.
+		/// Initializes an instance with a specified candidate and its type.
 		/// </summary>
-		/// <param name="candidates">The candidates.</param>
-		protected Node(IEnumerable<int> candidates) : this(new FullGridMap(candidates))
-		{ 
+		/// <param name="candidate">The candidates.</param>
+		/// <param name="nodeType">The type of this node.</param>
+		public Node(int candidate, NodeType nodeType)
+			: this(new FullGridMap(stackalloc[] { candidate }), nodeType)
+		{
 		}
 
 		/// <summary>
-		/// Initializes an instance with the specified map.
+		/// Initializes an instance with the specified candidates and its type.
+		/// </summary>
+		/// <param name="candidates">The candidates.</param>
+		/// <param name="nodeType">The type of this node.</param>
+		public Node(IEnumerable<int> candidates, NodeType nodeType)
+			: this(new FullGridMap(candidates), nodeType)
+		{
+		}
+
+		/// <summary>
+		/// Initializes an instance with the specified map and its type.
 		/// </summary>
 		/// <param name="candidatesMap">The map of candidates.</param>
-		protected Node(FullGridMap candidatesMap) => CandidatesMap = candidatesMap;
+		/// <param name="nodeType">The node type.</param>
+		public Node(FullGridMap candidatesMap, NodeType nodeType) =>
+			(CandidatesMap, NodeType) = (candidatesMap, nodeType);
 
 
 		/// <summary>
@@ -35,7 +48,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Indicates the type of this current node.
 		/// </summary>
-		public abstract NodeType NodeType { get; }
+		public NodeType NodeType { get; }
 
 		/// <summary>
 		/// Indicates all candidates used.
@@ -93,7 +106,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			CandidatesMap.Count <= other.CandidatesMap.Count ? false : (this | other) == CandidatesMap;
 
 		/// <inheritdoc/>
-		public sealed override bool Equals(object? obj) => obj is Node comparer && Equals(comparer);
+		public override bool Equals(object? obj) => obj is Node comparer && Equals(comparer);
 
 		/// <inheritdoc/>
 		public bool Equals(Node other) => CandidatesMap == other.CandidatesMap;

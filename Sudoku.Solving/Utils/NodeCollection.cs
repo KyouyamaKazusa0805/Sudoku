@@ -40,10 +40,12 @@ namespace Sudoku.Solving.Utils
 		{
 			const string separator = " -> ";
 
+			bool @switch = false;
 			var sb = new StringBuilder();
 			foreach (var node in nodes)
 			{
-				sb.Append($"{node}{separator}");
+				sb.Append($"{(@switch ? string.Empty : "!")}{node}{separator}");
+				@switch = !@switch;
 			}
 
 			return sb.RemoveFromEnd(separator.Length).ToString();

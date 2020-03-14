@@ -12,7 +12,7 @@ using static Sudoku.Solving.Utils.RegionUtils;
 namespace Sudoku.Solving.Manual.Chaining
 {
 	/// <summary>
-	/// Encapsulates an (grouped) alternating inference chain (AIC) technique searcher.
+	/// Encapsulates a/an (grouped) alternating inference chain (AIC) technique searcher.
 	/// </summary>
 	/// <remarks>
 	/// <para>
@@ -163,7 +163,6 @@ namespace Sudoku.Solving.Manual.Chaining
 			(_, _, var digitDistributions) = grid;
 
 			var candidatesUsed = FullGridMap.Empty;
-			byte[] counter = new byte[729];
 			var stack = new List<Node>();
 			var strongInferences = GetAllStrongInferences(grid, digitDistributions);
 
@@ -171,11 +170,11 @@ namespace Sudoku.Solving.Manual.Chaining
 			foreach (var (start, end) in strongInferences)
 			{
 				// Iterate on two cases.
-				foreach (var (startNode, endNode) in new[] { (start, end), (end, start) })
+				foreach (var (startNode, endNode) in stackalloc[] { (start, end), (end, start) })
 				{
 					// Add the start and end node to the used list.
-					AddNodeToMap(start, ref candidatesUsed, counter);
-					AddNodeToMap(end, ref candidatesUsed, counter);
+					AddNode(start, ref candidatesUsed);
+					AddNode(end, ref candidatesUsed);
 					stack.Add(startNode);
 					stack.Add(endNode);
 
@@ -185,8 +184,8 @@ namespace Sudoku.Solving.Manual.Chaining
 						digitDistributions, stack, _maxLength - 2);
 
 					// Undo the step to recover the candidate status.
-					RemoveNodeToMap(start, ref candidatesUsed, counter);
-					RemoveNodeToMap(end, ref candidatesUsed, counter);
+					RemoveNode(start, ref candidatesUsed);
+					RemoveNode(end, ref candidatesUsed);
 					stack.RemoveLastElement();
 					stack.RemoveLastElement();
 				}
@@ -206,7 +205,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="length">The last length to search.</param>
 		private void GetOnToOffRecursively(
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, FullGridMap candidatesUsed,
-			Node currentNode, IReadOnlyList<StrongInference> strongInferences,
+			Node currentNode, IReadOnlyList<Inference> strongInferences,
 			GridMap[] digitDistributions, IList<Node> stack, int length)
 		{
 			if (length < 0)
@@ -214,11 +213,11 @@ namespace Sudoku.Solving.Manual.Chaining
 				return;
 			}
 
-			switch (currentNode)
+			switch (currentNode.NodeType)
 			{
-				case CandidateNode candidate:
+				case NodeType.Candidate:
 				{
-					int currentCandidate = candidate[0];
+					int currentCandidate = currentNode[0];
 					int currentCell = currentCandidate / 9, currentDigit = currentCandidate % 9;
 
 					// Search for same regions.
@@ -236,7 +235,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						}
 
 						candidatesUsed[nextCandidate] = true;
-						var nextNode = new CandidateNode(nextCandidate);
+						var nextNode = new Node(nextCandidate, NodeType.Candidate);
 						stack.Add(nextNode);
 
 						GetOffToOnRecursively(
@@ -264,7 +263,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							}
 
 							candidatesUsed[nextCandidate] = true;
-							var nextNode = new CandidateNode(nextCandidate);
+							var nextNode = new Node(nextCandidate, NodeType.Candidate);
 							stack.Add(nextNode);
 
 							GetOffToOnRecursively(
@@ -301,7 +300,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 					break;
 				}
-				case LockedCandidatesNode lockedCandidates:
+				case NodeType.LockedCandidates:
 				{
 
 
@@ -323,7 +322,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="length">The last length to search.</param>
 		private void GetOffToOnRecursively(
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, FullGridMap candidatesUsed,
-			Node currentNode, IReadOnlyList<StrongInference> strongInferences,
+			Node currentNode, IReadOnlyList<Inference> strongInferences,
 			GridMap[] digitDistributions, IList<Node> stack, int length)
 		{
 			if (length < 0)
@@ -331,9 +330,9 @@ namespace Sudoku.Solving.Manual.Chaining
 				return;
 			}
 
-			switch (currentNode)
+			switch (currentNode.NodeType)
 			{
-				case CandidateNode candidate:
+				case NodeType.Candidate:
 				{
 					int currentCandidate = currentNode[0];
 					int currentCell = currentCandidate / 9, currentDigit = currentCandidate % 9;
@@ -358,7 +357,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						}
 
 						candidatesUsed[nextCandidate] = true;
-						var nextNode = new CandidateNode(nextCandidate);
+						var nextNode = new Node(nextCandidate, NodeType.Candidate);
 						stack.Add(nextNode);
 
 						// Now check elimination.
@@ -387,7 +386,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							}
 
 							candidatesUsed[nextCandidate] = true;
-							var nextNode = new CandidateNode(nextCandidate);
+							var nextNode = new Node(nextCandidate, NodeType.Candidate);
 							stack.Add(nextNode);
 
 							// Now check elimination.
@@ -437,7 +436,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 					break;
 				}
-				case LockedCandidatesNode lockedCandidates:
+				case NodeType.LockedCandidates:
 				{
 
 
@@ -453,10 +452,10 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="currentCell">The current cell.</param>
 		/// <param name="currentDigit">The current digit.</param>
 		/// <returns>All locked candidates nodes.</returns>
-		private IEnumerable<LockedCandidatesNode> GetLcNodes(
+		private IEnumerable<Node> GetLcNodes(
 			GridMap[] digitDistributions, int currentCell, int currentDigit)
 		{
-			var result = new List<LockedCandidatesNode>();
+			var result = new List<Node>();
 			var (r, c, b) = CellUtils.GetRegion(currentCell);
 			foreach (int nonblock in stackalloc[] { r + 9, c + 18 })
 			{
@@ -478,7 +477,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					}
 
 					// Group node found.
-					result.Add(new LockedCandidatesNode(anotherMap.Offsets));
+					result.Add(new Node(anotherMap.Offsets, NodeType.LockedCandidates));
 				}
 			}
 
@@ -502,10 +501,10 @@ namespace Sudoku.Solving.Manual.Chaining
 				// The structure is a continuous nice loop!
 				// Now we should get all weak inferences to search all eliminations.
 				// Step 1: save all weak inferences.
-				var weakInferences = new List<WeakInference>();
+				var weakInferences = new List<Inference>();
 				for (int i = 1; i < stack.Count - 1; i += 2)
 				{
-					weakInferences.Add(new WeakInference(stack[i], stack[i + 1]));
+					weakInferences.Add(new Inference(stack[i], true, stack[i + 1], false));
 				}
 
 				// Step 2: Check elimination sets.
@@ -513,10 +512,10 @@ namespace Sudoku.Solving.Manual.Chaining
 				foreach (var weakInference in weakInferences)
 				{
 					var (start, end) = weakInference;
-					switch (start)
+					switch ((start.NodeType, end.NodeType))
 					{
-						case CandidateNode _ when end is CandidateNode || end is LockedCandidatesNode:
-						case LockedCandidatesNode _ when end is CandidateNode || end is LockedCandidatesNode:
+						case (NodeType.Candidate, _):
+						case (NodeType.LockedCandidates, _):
 						{
 							eliminationSets.Add(weakInference.Intersection);
 
@@ -556,15 +555,15 @@ namespace Sudoku.Solving.Manual.Chaining
 				{
 					int isOn = index & 1, isOff = (index + 1) & 1;
 					nodes.Add(node);
-					switch (node)
+					switch (node.NodeType)
 					{
-						case CandidateNode _:
+						case NodeType.Candidate:
 						{
 							candidateOffsets.Add((isOff, node[0]));
 
 							break;
 						}
-						case LockedCandidatesNode _:
+						case NodeType.LockedCandidates:
 						{
 							foreach (int candidate in node.Candidates)
 							{
@@ -577,7 +576,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 					if (index > 0)
 					{
-						links.Add(new Inference(last!, isOn == 0, node, isOff == 0));
+						links.Add(new Inference((Node)last!, isOn == 0, node, isOff == 0));
 					}
 
 					last = node;
@@ -608,7 +607,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				// Step 1: Check eliminations.
 				var startNode = stack[0];
 				var endNode = stack[LastIndex];
-				var elimMap = new StrongInference(startNode, endNode).Intersection;
+				var elimMap = new Inference(startNode, false, endNode, true).Intersection;
 				if (elimMap.IsEmpty)
 				{
 					return;
@@ -639,15 +638,15 @@ namespace Sudoku.Solving.Manual.Chaining
 				foreach (var node in stack)
 				{
 					nodes.Add(node);
-					switch (node)
+					switch (node.NodeType)
 					{
-						case CandidateNode _:
+						case NodeType.Candidate:
 						{
 							candidateOffsets.Add((@switch ? 1 : 0, node[0]));
 
 							break;
 						}
-						case LockedCandidatesNode _:
+						case NodeType.LockedCandidates:
 						{
 							foreach (int candidate in node.Candidates)
 							{
@@ -661,7 +660,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					// To ensure this loop has the predecessor.
 					if (i++ > 0)
 					{
-						links.Add(new Inference(lastCand!, !@switch, node, @switch));
+						links.Add(new Inference((Node)lastCand!, !@switch, node, @switch));
 					}
 
 					lastCand = node;
@@ -778,10 +777,10 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="grid">The grid.</param>
 		/// <param name="digitDistributions">All digits' distributions.</param>
 		/// <returns>All strong relations.</returns>
-		private IReadOnlyList<StrongInference> GetAllStrongInferences(
+		private IReadOnlyList<Inference> GetAllStrongInferences(
 			IReadOnlyGrid grid, GridMap[] digitDistributions)
 		{
-			var result = new List<StrongInference>();
+			var result = new List<Inference>();
 
 			// Search for each region to get all strong inferences (basic strong inference).
 			for (int region = 0; region < 27; region++)
@@ -795,10 +794,16 @@ namespace Sudoku.Solving.Manual.Chaining
 
 					int pos1 = mask.FindFirstSet();
 					result.Add(
-						new StrongInference(
-							new CandidateNode(GetCellOffset(region, pos1) * 9 + digit),
-							new CandidateNode(
-								GetCellOffset(region, mask.GetNextSetBit(pos1)) * 9 + digit)));
+						new Inference(
+							new Node(
+								GetCellOffset(region, pos1) * 9 + digit,
+								NodeType.Candidate),
+							false,
+							new Node(
+								GetCellOffset(
+									region, mask.GetNextSetBit(pos1)) * 9 + digit,
+								NodeType.Candidate),
+							true));
 				}
 			}
 
@@ -814,9 +819,11 @@ namespace Sudoku.Solving.Manual.Chaining
 
 					int digit1 = mask.FindFirstSet();
 					result.Add(
-						new StrongInference(
-							new CandidateNode(cell * 9 + digit1),
-							new CandidateNode(cell * 9 + mask.GetNextSetBit(digit1))));
+						new Inference(
+							new Node(cell * 9 + digit1, NodeType.Candidate),
+							false,
+							new Node(cell * 9 + mask.GetNextSetBit(digit1), NodeType.Candidate),
+							true));
 				}
 			}
 
@@ -837,12 +844,20 @@ namespace Sudoku.Solving.Manual.Chaining
 							continue;
 						}
 
+						var startMap = map & _regionMaps[coveredBlocks[0]];
+						var endMap = map & _regionMaps[coveredBlocks[1]];
 						result.Add(
-							new StrongInference(
-								new LockedCandidatesNode(
-									(map & _regionMaps[coveredBlocks[0]]).Offsets),
-								new LockedCandidatesNode(
-									(map & _regionMaps[coveredBlocks[1]]).Offsets)));
+							new Inference(
+								new Node(
+									startMap.Offsets, startMap.Offsets.HasOnlyOneElement()
+										? NodeType.Candidate
+										: NodeType.LockedCandidates),
+								false,
+								new Node(
+									endMap.Offsets, endMap.Offsets.HasOnlyOneElement()
+										? NodeType.Candidate
+										: NodeType.LockedCandidates),
+								true));
 					}
 				}
 			}
@@ -856,23 +871,21 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		/// <param name="node">The node.</param>
 		/// <param name="map">The map.</param>
-		/// <param name="counter">The counter.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static void AddNodeToMap(Node node, ref FullGridMap map, byte[] counter)
+		private static void AddNode(Node node, ref FullGridMap map)
 		{
-			switch (node)
+			switch (node.NodeType)
 			{
-				case CandidateNode candidate:
+				case NodeType.Candidate:
 				{
-					map[candidate[0]] = true;
+					map[node[0]] = true;
 					break;
 				}
-				case LockedCandidatesNode lockedCandidates:
+				case NodeType.LockedCandidates:
 				{
-					foreach (int cand in lockedCandidates.Candidates)
+					foreach (int cand in node.Candidates)
 					{
 						map[cand] = true;
-						counter[cand]++;
 					}
 
 					break;
@@ -885,23 +898,21 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		/// <param name="node">The node.</param>
 		/// <param name="map">The map.</param>
-		/// <param name="counter">The counter.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static void RemoveNodeToMap(Node node, ref FullGridMap map, byte[] counter)
+		private static void RemoveNode(Node node, ref FullGridMap map)
 		{
-			switch (node)
+			switch (node.NodeType)
 			{
-				case CandidateNode candidate:
+				case NodeType.Candidate:
 				{
-					map[candidate[0]] = false;
+					map[node[0]] = false;
 					break;
 				}
-				case LockedCandidatesNode lockedCandidates:
+				case NodeType.LockedCandidates:
 				{
-					foreach (int cand in lockedCandidates.Candidates)
+					foreach (int cand in node.Candidates)
 					{
 						map[cand] = false;
-						counter[cand]--;
 					}
 
 					break;

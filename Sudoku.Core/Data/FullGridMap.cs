@@ -89,6 +89,21 @@ namespace Sudoku.Data
 		/// Initializes an instance with a series of elements.
 		/// </summary>
 		/// <param name="offsets">The cell offsets.</param>
+		public FullGridMap(ReadOnlySpan<int> offsets)
+		{
+			_line1 = GridMap.Empty; _line2 = GridMap.Empty; _line3 = GridMap.Empty;
+			_line4 = GridMap.Empty; _line5 = GridMap.Empty; _line6 = GridMap.Empty;
+			_line7 = GridMap.Empty; _line8 = GridMap.Empty; _line9 = GridMap.Empty;
+			foreach (int offset in offsets)
+			{
+				this[offset] = true;
+			}
+		}
+
+		/// <summary>
+		/// Initializes an instance with a series of elements.
+		/// </summary>
+		/// <param name="offsets">The cell offsets.</param>
 		public FullGridMap(IEnumerable<int> offsets)
 		{
 			_line1 = GridMap.Empty; _line2 = GridMap.Empty; _line3 = GridMap.Empty;

@@ -926,6 +926,12 @@
             </code>
             </param>
         </member>
+        <member name="M:Sudoku.Data.FullGridMap.#ctor(System.ReadOnlySpan{System.Int32})">
+            <summary>
+            Initializes an instance with a series of elements.
+            </summary>
+            <param name="offsets">The cell offsets.</param>
+        </member>
         <member name="M:Sudoku.Data.FullGridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
             Initializes an instance with a series of elements.

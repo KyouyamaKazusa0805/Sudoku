@@ -6,12 +6,11 @@ namespace Sudoku.Solving.Manual.Chaining
 {
 	/// <summary>
 	/// Provides an inference between two nodes.
-	/// If you want to describe a strong link, please use the class <see cref="StrongInference"/>
-	/// instead, while you want to describe a weak link, use <see cref="WeakInference"/>.
 	/// </summary>
-	/// <seealso cref="StrongInference"/>
-	/// <seealso cref="WeakInference"/>
-	public class Inference : IEquatable<Inference>
+	/// <remarks>
+	/// This data structure is so heavy...
+	/// </remarks>
+	public readonly struct Inference : IEquatable<Inference>
 	{
 		/// <summary>
 		/// Initializes an instance with the specified information.
@@ -47,23 +46,23 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Indicates whether the inference is strong.
 		/// </summary>
-		public bool IsStrongInference => !StartIsOn && EndIsOn;
+		public bool IsStrong => !StartIsOn && EndIsOn;
 
 		/// <summary>
 		/// Indicates whether the inference is weak.
 		/// </summary>
-		public bool IsWeakInference => StartIsOn && !EndIsOn;
+		public bool IsWeak => StartIsOn && !EndIsOn;
 
 		/// <summary>
 		/// Indicates whether the inference is neither strong nor weak.
 		/// </summary>
-		public bool IsOtherInference => !IsStrongInference && !IsWeakInference;
+		public bool IsOtherInference => !IsStrong && !IsWeak;
 
 		/// <summary>
 		/// Indicates the intersection of the current inference, which is used
 		/// in searching for eliminations in loops or normal AICs.
 		/// </summary>
-		public virtual FullGridMap Intersection =>
+		public FullGridMap Intersection =>
 			FullGridMap.CreateInstance(Start.Candidates.Concat(End.Candidates));
 
 
@@ -107,7 +106,11 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override int GetHashCode() => Start.GetHashCode() ^ End.GetHashCode();
 
 		/// <inheritdoc/>
-		public override string ToString() => $"{Start} -> {End}";
+		public override string ToString()
+		{
+			static string sign(bool value) => value ? string.Empty : "!";
+			return $"{sign(StartIsOn)}{Start} -> {sign(EndIsOn)}{End}";
+		}
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>

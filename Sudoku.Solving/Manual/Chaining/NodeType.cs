@@ -24,15 +24,5 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// in a same box-row or box-column and contains the same digit.
 		/// </summary>
 		LockedCandidates,
-
-		/// <summary>
-		/// Indicates an ALS.
-		/// </summary>
-		AlmostLockedSets,
-
-		/// <summary>
-		/// Indicates a UR.
-		/// </summary>
-		UniqueRectangle,
 	}
 }

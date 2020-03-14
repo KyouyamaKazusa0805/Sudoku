@@ -1478,21 +1478,6 @@
             <returns>The result action.</returns>
             <seealso cref="M:Sudoku.Solving.Manual.Chaining.AlternatingInferenceChainTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Collections.Generic.IList{System.Int32})"/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Chaining.CandidateNode">
-            <summary>
-            Encapsulates a candidate node.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.CandidateNode.#ctor(System.Int32)">
-            <summary>
-            Initializes an instance with the specified candidate
-            and a <see cref="T:System.Boolean"/> value.
-            </summary>
-            <param name="candidate">The candidate.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.CandidateNode.NodeType">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.ChainTechniqueInfo">
             <summary>
             Provides a usage of chain technique.
@@ -1656,7 +1641,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher">
             <summary>
-            Encapsulates an (grouped) alternating inference chain (AIC) technique searcher.
+            Encapsulates a/an (grouped) alternating inference chain (AIC) technique searcher.
             </summary>
             <remarks>
             <para>
@@ -1772,7 +1757,7 @@
         <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.GetOnToOffRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,Sudoku.Solving.Manual.Chaining.Node,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Chaining.StrongInference},Sudoku.Data.GridMap[],System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.Node},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.GetOnToOffRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,Sudoku.Solving.Manual.Chaining.Node,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Chaining.Inference},Sudoku.Data.GridMap[],System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.Node},System.Int32)">
             <summary>
             Get 'on' nodes to 'off' nodes recursively (Searching for weak links).
             </summary>
@@ -1785,7 +1770,7 @@
             <param name="stack">The stack.</param>
             <param name="length">The last length to search.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.GetOffToOnRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,Sudoku.Solving.Manual.Chaining.Node,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Chaining.StrongInference},Sudoku.Data.GridMap[],System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.Node},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.GetOffToOnRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,Sudoku.Solving.Manual.Chaining.Node,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Chaining.Inference},Sudoku.Data.GridMap[],System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.Node},System.Int32)">
             <summary>
             Get 'off' nodes to 'on' nodes recursively (Searching for strong links).
             </summary>
@@ -1853,30 +1838,27 @@
             <param name="digitDistributions">All digits' distributions.</param>
             <returns>All strong relations.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.AddNodeToMap(Sudoku.Solving.Manual.Chaining.Node,Sudoku.Data.FullGridMap@,System.Byte[])">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.AddNode(Sudoku.Solving.Manual.Chaining.Node,Sudoku.Data.FullGridMap@)">
             <summary>
             Add the node to the map.
             </summary>
             <param name="node">The node.</param>
             <param name="map">The map.</param>
-            <param name="counter">The counter.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.RemoveNodeToMap(Sudoku.Solving.Manual.Chaining.Node,Sudoku.Data.FullGridMap@,System.Byte[])">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.RemoveNode(Sudoku.Solving.Manual.Chaining.Node,Sudoku.Data.FullGridMap@)">
             <summary>
             Remove the node from the map.
             </summary>
             <param name="node">The node.</param>
             <param name="map">The map.</param>
-            <param name="counter">The counter.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.Inference">
             <summary>
             Provides an inference between two nodes.
-            If you want to describe a strong link, please use the class <see cref="T:Sudoku.Solving.Manual.Chaining.StrongInference"/>
-            instead, while you want to describe a weak link, use <see cref="T:Sudoku.Solving.Manual.Chaining.WeakInference"/>.
             </summary>
-            <seealso cref="T:Sudoku.Solving.Manual.Chaining.StrongInference"/>
-            <seealso cref="T:Sudoku.Solving.Manual.Chaining.WeakInference"/>
+            <remarks>
+            This data structure is so heavy...
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.Inference.#ctor(Sudoku.Solving.Manual.Chaining.Node,System.Boolean,Sudoku.Solving.Manual.Chaining.Node,System.Boolean)">
             <summary>
@@ -1907,12 +1889,12 @@
             Indicates whether the end node is on.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.Inference.IsStrongInference">
+        <member name="P:Sudoku.Solving.Manual.Chaining.Inference.IsStrong">
             <summary>
             Indicates whether the inference is strong.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.Inference.IsWeakInference">
+        <member name="P:Sudoku.Solving.Manual.Chaining.Inference.IsWeak">
             <summary>
             Indicates whether the inference is weak.
             </summary>
@@ -1986,34 +1968,31 @@
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Chaining.LockedCandidatesNode">
-            <summary>
-            Encapsulates a locked candidates node.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.LockedCandidatesNode.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.LockedCandidatesNode.NodeType">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.Node">
             <summary>
             Provides an elementary unit in a chain.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Node.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Chaining.Node.#ctor(System.Int32,Sudoku.Solving.Manual.Chaining.NodeType)">
             <summary>
-            Initializes an instance with the specified candidates and
-            a <see cref="T:System.Boolean"/> value.
+            Initializes an instance with a specified candidate and its type.
+            </summary>
+            <param name="candidate">The candidates.</param>
+            <param name="nodeType">The type of this node.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.Node.#ctor(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Chaining.NodeType)">
+            <summary>
+            Initializes an instance with the specified candidates and its type.
             </summary>
             <param name="candidates">The candidates.</param>
+            <param name="nodeType">The type of this node.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Node.#ctor(Sudoku.Data.FullGridMap)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.Node.#ctor(Sudoku.Data.FullGridMap,Sudoku.Solving.Manual.Chaining.NodeType)">
             <summary>
-            Initializes an instance with the specified map.
+            Initializes an instance with the specified map and its type.
             </summary>
             <param name="candidatesMap">The map of candidates.</param>
+            <param name="nodeType">The node type.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.Node.CandidatesMap">
             <summary>
@@ -2162,40 +2141,6 @@
             Indicates a locked candidates node, which contains at least two cells
             in a same box-row or box-column and contains the same digit.
             </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.NodeType.AlmostLockedSets">
-            <summary>
-            Indicates an ALS.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.NodeType.UniqueRectangle">
-            <summary>
-            Indicates a UR.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Chaining.StrongInference">
-            <summary>
-            Encapsulates a strong inference.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.StrongInference.#ctor(Sudoku.Solving.Manual.Chaining.Node,Sudoku.Solving.Manual.Chaining.Node)">
-            <summary>
-            Initializes an instance with two nodes.
-            </summary>
-            <param name="start">The start node.</param>
-            <param name="end">The end node.</param>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Chaining.WeakInference">
-            <summary>
-            Encapsulates a weak inference.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.WeakInference.#ctor(Sudoku.Solving.Manual.Chaining.Node,Sudoku.Solving.Manual.Chaining.Node)">
-            <summary>
-            Initializes an instance with two nodes.
-            </summary>
-            <param name="start">The start node.</param>
-            <param name="end">The end node.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo">
             <summary>
