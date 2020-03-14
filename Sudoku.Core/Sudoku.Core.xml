@@ -2366,11 +2366,6 @@
             Indicates whether the inference is weak.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Inference.IsOtherInference">
-            <summary>
-            Indicates whether the inference is neither strong nor weak.
-            </summary>
-        </member>
         <member name="P:Sudoku.Data.Inference.Intersection">
             <summary>
             Indicates the intersection of the current inference, which is used
@@ -2595,6 +2590,11 @@
             Indicates the type of this current node.
             </summary>
         </member>
+        <member name="P:Sudoku.Data.Node.Candidates">
+            <summary>
+            Indicates all candidates used.
+            </summary>
+        </member>
         <member name="P:Sudoku.Data.Node.Item(System.Int32)">
             <summary>
             Get a candidate offset in the specified index.
@@ -2654,11 +2654,6 @@
             If you get a derived class, we recommend you override this method
             to describe the type of the node.
             </remarks>
-        </member>
-        <member name="M:Sudoku.Data.Node.GetCandidates">
-            <summary>
-            Indicates all candidates used.
-            </summary>
         </member>
         <member name="M:Sudoku.Data.Node.op_Equality(Sudoku.Data.Node,Sudoku.Data.Node)">
             <operator name="op_Equality">

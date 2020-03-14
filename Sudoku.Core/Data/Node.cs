@@ -51,6 +51,15 @@ namespace Sudoku.Data
 		/// </summary>
 		public NodeType NodeType { get; }
 
+		/// <summary>
+		/// Indicates all candidates used.
+		/// </summary>
+		public IEnumerable<int> Candidates
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => CandidatesMap.Offsets;
+		}
+
 
 		/// <summary>
 		/// Get a candidate offset in the specified index.
@@ -161,11 +170,6 @@ namespace Sudoku.Data
 			sb.RemoveFromEnd(separator.Length);
 			return sb.ToString();
 		}
-
-		/// <summary>
-		/// Indicates all candidates used.
-		/// </summary>
-		public IEnumerable<int> GetCandidates() => CandidatesMap.Offsets;
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>

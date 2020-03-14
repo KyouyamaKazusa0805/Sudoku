@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Sudoku.Data
 {
@@ -9,7 +10,7 @@ namespace Sudoku.Data
 	/// <remarks>
 	/// This data structure is so heavy...
 	/// </remarks>
-	public readonly struct Inference : IEquatable<Inference>
+	public sealed class Inference : IEquatable<Inference>
 	{
 		/// <summary>
 		/// Initializes an instance with the specified information.
@@ -53,16 +54,14 @@ namespace Sudoku.Data
 		public bool IsWeak => StartIsOn && !EndIsOn;
 
 		/// <summary>
-		/// Indicates whether the inference is neither strong nor weak.
-		/// </summary>
-		public bool IsOtherInference => !IsStrong && !IsWeak;
-
-		/// <summary>
 		/// Indicates the intersection of the current inference, which is used
 		/// in searching for eliminations in loops or normal AICs.
 		/// </summary>
-		public FullGridMap Intersection =>
-			FullGridMap.CreateInstance(Start.GetCandidates().Concat(End.GetCandidates()));
+		public FullGridMap Intersection
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => FullGridMap.CreateInstance(Start.Candidates.Concat(End.Candidates));
+		}
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>

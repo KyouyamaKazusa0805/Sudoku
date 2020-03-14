@@ -289,7 +289,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								continue;
 							}
 
-							candidatesUsed.AddRange(nextNode.GetCandidates());
+							candidatesUsed.AddRange(nextNode.Candidates);
 							stack.Add(nextNode);
 
 							GetOffToOnRecursively(
@@ -297,7 +297,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								digitDistributions, stack, length - 1);
 
 							stack.RemoveLastElement();
-							candidatesUsed.RemoveRange(nextNode.GetCandidates());
+							candidatesUsed.RemoveRange(nextNode.Candidates);
 						}
 					}
 
@@ -420,7 +420,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								}
 
 								// Strong inference found.
-								candidatesUsed.AddRange(nextNode.GetCandidates());
+								candidatesUsed.AddRange(nextNode.Candidates);
 								stack.Add(nextNode);
 
 								// Now check elimination.
@@ -431,7 +431,7 @@ namespace Sudoku.Solving.Manual.Chaining
 									accumulator, grid, candidatesUsed, nextNode, strongInferences,
 									digitDistributions, stack, length - 1);
 
-								candidatesUsed.RemoveRange(nextNode.GetCandidates());
+								candidatesUsed.RemoveRange(nextNode.Candidates);
 								stack.RemoveLastElement();
 							}
 						}
@@ -568,7 +568,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						}
 						case NodeType.LockedCandidates:
 						{
-							foreach (int candidate in node.GetCandidates())
+							foreach (int candidate in node.Candidates)
 							{
 								candidateOffsets.Add((isOff, candidate));
 							}
@@ -651,7 +651,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						}
 						case NodeType.LockedCandidates:
 						{
-							foreach (int candidate in node.GetCandidates())
+							foreach (int candidate in node.Candidates)
 							{
 								candidateOffsets.Add((@switch ? 1 : 0, candidate));
 							}
@@ -886,7 +886,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 				case NodeType.LockedCandidates:
 				{
-					foreach (int cand in node.GetCandidates())
+					foreach (int cand in node.Candidates)
 					{
 						map[cand] = true;
 					}
@@ -913,7 +913,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 				case NodeType.LockedCandidates:
 				{
-					foreach (int cand in node.GetCandidates())
+					foreach (int cand in node.Candidates)
 					{
 						map[cand] = false;
 					}
