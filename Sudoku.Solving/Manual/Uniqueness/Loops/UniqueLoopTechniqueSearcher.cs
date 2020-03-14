@@ -175,8 +175,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 									continue;
 								}
 
-								bool hasSameRegion = CellUtils.IsSameRegion(
-									extraCells[0], extraCells[1], out int[] regions);
+								var regions = new GridMap(extraCells).CoveredRegions;
+								bool hasSameRegion = regions.Any();
 								int c1 = extraCells[0];
 								int c2 = extraCells[1];
 								short extraDigitMask = (short)(grid.GetCandidatesReversal(c1)
@@ -292,7 +292,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="size">The size.</param>
 		private void CheckType3Naked(
 			IBag<TechniqueInfo> result, IReadOnlyGrid grid, short extraDigits,
-			int[] digits, IReadOnlyList<int> loop, int[] regions, int size)
+			int[] digits, IReadOnlyList<int> loop, IEnumerable<int> regions, int size)
 		{
 			foreach (int region in regions)
 			{
@@ -565,7 +565,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="size">The size.</param>
 		private void CheckType3Hidden(
 			IBag<TechniqueInfo> result, IReadOnlyGrid grid, IReadOnlyList<int> extraCells,
-			int[] digits, IReadOnlyList<int> loop, int[] regions, int size)
+			int[] digits, IReadOnlyList<int> loop, IEnumerable<int> regions, int size)
 		{
 			foreach (int region in regions)
 			{
@@ -948,7 +948,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="loop">The loop.</param>
 		private void CheckType4(
 			IBag<TechniqueInfo> result, IReadOnlyGrid grid, IReadOnlyList<int> extraCells,
-			int[] digits, int[] regions, IReadOnlyList<int> loop)
+			int[] digits, IEnumerable<int> regions, IReadOnlyList<int> loop)
 		{
 			foreach (int region in regions)
 			{

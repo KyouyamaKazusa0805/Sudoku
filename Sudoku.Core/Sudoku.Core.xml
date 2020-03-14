@@ -1652,7 +1652,7 @@
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32[])">
             <summary>
-            Same initializer as <see cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>.
+            Same behavior of the initializer as <see cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>.
             </summary>
             <param name="offsets">All offsets.</param>
             <seealso cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>

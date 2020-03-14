@@ -22,10 +22,7 @@ namespace Sudoku.Solving.Utils
 			const string separator = ", ";
 
 			var sb = new StringBuilder();
-			var group = from cell in
-							from cell in cellOffsets
-							orderby cell
-							select cell
+			var group = from cell in from cell in cellOffsets orderby cell select cell
 						group cell by cell / 9;
 			int cellGroupCount = group.Count();
 			if (cellGroupCount >= 2)

@@ -90,7 +90,7 @@ namespace Sudoku.Data
 			(_high, _low, Count) = (another._high, another._low, another.Count);
 
 		/// <summary>
-		/// Same initializer as <see cref="GridMap(IEnumerable{int})"/>.
+		/// Same behavior of the initializer as <see cref="GridMap(IEnumerable{int})"/>.
 		/// </summary>
 		/// <param name="offsets">All offsets.</param>
 		/// <seealso cref="GridMap(IEnumerable{int})"/>

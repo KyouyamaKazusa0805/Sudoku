@@ -21,7 +21,8 @@ namespace Sudoku.Solving.Utils
 		{
 			var sb = new StringBuilder();
 			const string separator = ", ";
-			foreach (int digit in (from digit in digits orderby digit select digit).Distinct())
+			foreach (int digit in new HashSet<int>(
+				from digit in digits orderby digit select digit))
 			{
 				sb.Append($"{digit + 1}{separator}");
 			}
@@ -37,7 +38,8 @@ namespace Sudoku.Solving.Utils
 		public static string ToSimpleString(IEnumerable<int> digits)
 		{
 			var sb = new StringBuilder();
-			foreach (int digit in (from digit in digits orderby digit select digit).Distinct())
+			foreach (int digit in new HashSet<int>(
+				from digit in digits orderby digit select digit))
 			{
 				sb.Append($"{digit + 1}");
 			}

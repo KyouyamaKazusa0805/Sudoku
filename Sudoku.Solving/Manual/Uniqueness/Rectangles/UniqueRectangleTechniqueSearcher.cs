@@ -301,8 +301,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					3 => stackalloc[] { cells[0], cells[1], cells[1], cells[3] },
 					_ => throw Throwing.ImpossibleCase
 				};
-				CellUtils.IsSameRegion(span[0], span[1], out int[] regions1);
-				CellUtils.IsSameRegion(span[2], span[3], out int[] regions2);
+				var regions1 = new GridMap(new[] { span[0], span[1] }).CoveredRegions;
+				var regions2 = new GridMap(new[] { span[2], span[3] }).CoveredRegions;
 				int elimCell = cells[3 - i];
 				static bool predicate(int region) => region >= 9;
 				CheckHiddenRectangle(
@@ -637,7 +637,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						continue;
 					}
 
-					CellUtils.IsSameRegion(extraCells[0], extraCells[1], out int[] regions);
+					var regions = new GridMap(new[] { extraCells[0], extraCells[1] }).CoveredRegions.ToArray();
 					for (int size = 1; size <= 3; size++)
 					{
 						CheckType3Naked(result, grid, cells, digits, regions, size, urMode);

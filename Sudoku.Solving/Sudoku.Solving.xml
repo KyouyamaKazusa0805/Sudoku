@@ -4194,7 +4194,7 @@
             <param name="digits">All digits.</param>
             <param name="loop">The loop.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int16,System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int16,System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
             <summary>
             Check type 3 (with naked subsets).
             </summary>
@@ -4206,7 +4206,7 @@
             <param name="regions">All regions.</param>
             <param name="size">The size.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckType3Hidden(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckType3Hidden(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
             <summary>
             Check type 3 (with hidden subsets).
             </summary>
@@ -4218,7 +4218,7 @@
             <param name="regions">All regions.</param>
             <param name="size">The size.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckType4(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UniqueLoopTechniqueSearcher.CheckType4(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Check type 4.
             </summary>
@@ -6073,13 +6073,6 @@
             <param name="cellOffset">The cell offset.</param>
             <returns>The output string described as 'r_c_'.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Utils.CellUtils.ToFullString(System.Int32)">
-            <summary>
-            Get the full string of the specified cell offset.
-            </summary>
-            <param name="cellOffset">The cell offset.</param>
-            <returns>The output string described as 'r_c_b_'.</returns>
-        </member>
         <member name="M:Sudoku.Solving.Utils.CellUtils.GetRegion(System.Int32)">
             <summary>
             <para>Get the row, column and block index of the specified cell.</para>
@@ -6091,15 +6084,6 @@
             <returns>
             The row, column and block index triplet.
             </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.CellUtils.IsSameRegion(System.Int32,System.Int32,System.Int32[]@)">
-            <summary>
-            Check two cells have different row, column and block.
-            </summary>
-            <param name="cell1">The cell offset 1.</param>
-            <param name="cell2">The cell offset 2.</param>
-            <param name="sameRegions">(<see langword="out"/> parameter) All same regions of two cells.</param>
-            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Utils.ChainingDifficultyRatingUtils">
             <summary>
@@ -6329,26 +6313,6 @@
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>All conjugate pairs.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Utils.LinkMaskUtils">
-            <summary>
-            Provides extension method used for link masks.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.LinkMaskUtils.Create(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Create a link mask value with the specified cell offsets
-            and a type.
-            </summary>
-            <param name="c1">The cell offset 1.</param>
-            <param name="digit1">The candidate digit 1.</param>
-            <param name="c2">The cell offset 2.</param>
-            <param name="digit2">The candidate digit 2.</param>
-            <param name="type">
-            The type of this link.
-            This value should be in range 0 to 3.
-            </param>
-            <returns>The link mask.</returns>
         </member>
         <member name="T:Sudoku.Solving.Utils.MaskDeconstruction">
             <summary>

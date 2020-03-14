@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 namespace Sudoku.Solving.Utils
@@ -29,18 +28,6 @@ namespace Sudoku.Solving.Utils
 			$"r{cellOffset / 9 + 1}c{cellOffset % 9 + 1}";
 
 		/// <summary>
-		/// Get the full string of the specified cell offset.
-		/// </summary>
-		/// <param name="cellOffset">The cell offset.</param>
-		/// <returns>The output string described as 'r_c_b_'.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static string ToFullString(int cellOffset)
-		{
-			var (r, c, b) = GetRegion(cellOffset);
-			return $"r{r + 1}c{c + 1}b{b + 1}";
-		}
-
-		/// <summary>
 		/// <para>Get the row, column and block index of the specified cell.</para>
 		/// <para>
 		/// Note that all row, column and block indices are always between 0 and 8.
@@ -53,24 +40,5 @@ namespace Sudoku.Solving.Utils
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static (int _row, int _column, int _block) GetRegion(int cellOffset) =>
 			(cellOffset / 9, cellOffset % 9, cellOffset / 9 / 3 * 3 + cellOffset % 9 / 3);
-
-		/// <summary>
-		/// Check two cells have different row, column and block.
-		/// </summary>
-		/// <param name="cell1">The cell offset 1.</param>
-		/// <param name="cell2">The cell offset 2.</param>
-		/// <param name="sameRegions">(<see langword="out"/> parameter) All same regions of two cells.</param>
-		/// <returns>A <see cref="bool"/> indicating that.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsSameRegion(int cell1, int cell2, out int[] sameRegions)
-		{
-			var temp = new List<int>(3);
-			var ((r1, c1, b1), (r2, c2, b2)) = (GetRegion(cell1), GetRegion(cell2));
-			if (b1 == b2) temp.Add(b1);
-			if (r1 == r2) temp.Add(r1 + 9);
-			if (c1 == c2) temp.Add(c1 + 18);
-			sameRegions = temp.ToArray();
-			return temp.Count != 0;
-		}
 	}
 }

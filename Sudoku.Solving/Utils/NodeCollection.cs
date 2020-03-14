@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
-using Sudoku.Solving.Manual.Chaining;
 
 namespace Sudoku.Solving.Utils
 {

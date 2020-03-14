@@ -22,10 +22,7 @@ namespace Sudoku.Solving.Utils
 			const string separator = ", ";
 			var sb = new StringBuilder();
 			foreach (var candidateGroupByDigit in
-				from candidate in
-					from cand in candidateOffsets
-					orderby cand
-					select cand
+				from candidate in from cand in candidateOffsets orderby cand select cand
 				group candidate by candidate % 9)
 			{
 				int digit = candidateGroupByDigit.Key;

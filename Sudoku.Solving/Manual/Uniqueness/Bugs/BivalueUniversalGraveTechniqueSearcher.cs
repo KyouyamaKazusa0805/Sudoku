@@ -504,7 +504,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			{
 				cells.Add(candGroupByCell.Key);
 			}
-			if (!CellUtils.IsSameRegion(cells.ElementAt(0), cells.ElementAt(1), out int[] regions))
+
+			var regions = new GridMap(cells).CoveredRegions;
+			if (!regions.Any())
 			{
 				return;
 			}

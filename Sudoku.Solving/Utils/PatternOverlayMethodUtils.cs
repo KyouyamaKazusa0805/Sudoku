@@ -44,7 +44,7 @@ namespace Sudoku.Solving.Utils
 				int cell = count * 9 + i;
 				template[cell] = true;
 
-				if (new GridMap(cell, false).Offsets.All(c => !template[c]))
+				if ((new GridMap(cell, false) & template).IsEmpty)
 				{
 					GenerateMapsRecursively(templates, template, count + 1);
 				}
