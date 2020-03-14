@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// static analysis is fine, which is different with dynamic chains.
 	/// </para>
 	/// </remarks>
-	[Slow(SlowButNecessary = true)]
+	[Obsolete, Slow(SlowButNecessary = true)]
 	public sealed class AlternatingInferenceChainTechniqueSearcher : ChainTechniqueSearcher
 	{
 		/// <summary>
@@ -409,7 +409,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 				// Step 4: Get all highlight candidates.
 				var candidateOffsets = new List<(int, int)>();
-				var links = new List<ChainInference>();
+				//var links = new List<ChainInference>();
 				var nodes = new List<ChainNode>();
 				int index = 0;
 				int last = default;
@@ -419,17 +419,17 @@ namespace Sudoku.Solving.Manual.Chaining
 					candidateOffsets.Add((isOff, node));
 					nodes.Add(new ChainNode(node, isOff == 0));
 
-					if (index > 0)
-					{
-						links.Add(new ChainInference(last, isOn == 0, node, isOff == 0));
-					}
+					//if (index > 0)
+					//{
+					//	links.Add(new ChainInference(last, isOn == 0, node, isOff == 0));
+					//}
 
 					last = node;
 					index++;
 				}
 
 				// Continuous nice loop should be a loop.
-				links.Add(new ChainInference(stack[LastIndex], true, stack[0], false));
+				//links.Add(new ChainInference(stack[LastIndex], true, stack[0], false));
 
 				SumUpResult(
 					accumulator,
@@ -441,7 +441,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								cellOffsets: null,
 								candidateOffsets,
 								regionOffsets: null,
-								links)
+								links: null) // Older one will use links.
 						},
 						nodes,
 						isContinuousNiceLoop: true));
@@ -476,19 +476,19 @@ namespace Sudoku.Solving.Manual.Chaining
 				int lastCand = default;
 				var candidateOffsets = new List<(int, int)>();
 				var nodes = new List<ChainNode>();
-				var links = new List<ChainInference>();
+				//var links = new List<ChainInference>();
 				bool @switch = false;
-				int i = 0;
+				//int i = 0;
 				foreach (int candidate in stack)
 				{
 					nodes.Add(new ChainNode(candidate, @switch));
 					candidateOffsets.Add((@switch ? 1 : 0, candidate));
 
 					// To ensure this loop has the predecessor.
-					if (i++ > 0)
-					{
-						links.Add(new ChainInference(lastCand, !@switch, candidate, @switch));
-					}
+					//if (i++ > 0)
+					//{
+					//	links.Add(new ChainInference(lastCand, !@switch, candidate, @switch));
+					//}
 
 					lastCand = candidate;
 					@switch = !@switch;
@@ -505,7 +505,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								cellOffsets: null,
 								candidateOffsets,
 								regionOffsets: null,
-								links)
+								links: null) // Older version will use links.
 						},
 						nodes,
 						isContinuousNiceLoop: false));

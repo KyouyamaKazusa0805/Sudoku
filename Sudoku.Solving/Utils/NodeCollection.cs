@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using Sudoku.Data;
@@ -18,6 +19,7 @@ namespace Sudoku.Solving.Utils
 		/// </summary>
 		/// <param name="nodes">The nodes.</param>
 		/// <returns>The string.</returns>
+		[Obsolete]
 		public static string ToString(IEnumerable<ChainNode> nodes)
 		{
 			const string separator = " -> ";

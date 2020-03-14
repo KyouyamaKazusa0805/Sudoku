@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Linq;
-using Sudoku.Data;
 
-namespace Sudoku.Solving.Manual.Chaining
+namespace Sudoku.Data
 {
 	/// <summary>
 	/// Provides an inference between two nodes.

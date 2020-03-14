@@ -7,6 +7,7 @@ namespace Sudoku.Data
 	/// This data structure is used for searching for AICs.
 	/// </summary>
 	/// <seealso cref="ChainNode"/>
+	[Obsolete]
 	public readonly struct ChainInference : IEquatable<ChainInference>
 	{
 		/// <summary>

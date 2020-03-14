@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Solving.Utils;
+using System.Text;
+using Sudoku.Data.Extensions;
 
-namespace Sudoku.Solving.Manual.Chaining
+namespace Sudoku.Data
 {
 	/// <summary>
 	/// Provides an elementary unit in a chain.
@@ -118,8 +119,48 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// If you get a derived class, we recommend you override this method
 		/// to describe the type of the node.
 		/// </remarks>
-		public override string ToString() =>
-			CandidateCollection.ToString(CandidatesMap.Offsets);
+		public override string ToString()
+		{
+			const string separator = ", ";
+			var sb = new StringBuilder();
+			foreach (var candidateGroupByDigit in
+				from candidate in
+					from cand in CandidatesMap.Offsets
+					orderby cand
+					select cand
+				group candidate by candidate % 9)
+			{
+				int digit = candidateGroupByDigit.Key;
+				var group = from candidate in candidateGroupByDigit
+							group candidate by candidate / 81;
+				int cellGroupCount = group.Count();
+				if (cellGroupCount >= 2)
+				{
+					sb.Append("{ ");
+				}
+				foreach (var candidateGroupByCellRow in group)
+				{
+					int cellRow = candidateGroupByCellRow.Key;
+					sb.Append($"r{cellRow + 1}c");
+					foreach (int cell in candidateGroupByCellRow)
+					{
+						sb.Append($"{cell / 9 % 9 + 1}");
+					}
+
+					sb.Append(separator);
+				}
+
+				sb.RemoveFromEnd(separator.Length);
+				if (cellGroupCount >= 2)
+				{
+					sb.Append(" }");
+				}
+				sb.Append($"({digit + 1}){separator}");
+			}
+
+			sb.RemoveFromEnd(separator.Length);
+			return sb.ToString();
+		}
 
 		/// <summary>
 		/// Indicates all candidates used.

@@ -11,6 +11,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Provides a usage of alternating inference chain (AIC) technique.
 	/// </summary>
+	[Obsolete]
 	[SuppressMessage("", "CS0660")]
 	public sealed class AlternatingInferenceChainTechniqueInfo : ChainTechniqueInfo, IEquatable<AlternatingInferenceChainTechniqueInfo>
 	{

@@ -7,6 +7,7 @@ namespace Sudoku.Data
 	/// Provides a node in a chain. This data structure is used for
 	/// searching for AICs.
 	/// </summary>
+	[Obsolete]
 	public readonly struct ChainNode : IEquatable<ChainNode>
 	{
 		/// <summary>
