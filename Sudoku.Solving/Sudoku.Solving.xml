@@ -6307,13 +6307,6 @@
             </param>
             <returns>The grid map.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Utils.GridUtils.GetAllConjugatePairs(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Find all conjugate pairs in a grid.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>All conjugate pairs.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Utils.MaskDeconstruction">
             <summary>
             Provides a deconstruction method for grid mask (<see cref="T:System.Int16"/> value).

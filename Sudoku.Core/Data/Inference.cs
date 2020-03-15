@@ -57,8 +57,43 @@ namespace Sudoku.Data
 		/// Indicates the intersection of the current inference, which is used
 		/// in searching for eliminations in loops or normal AICs.
 		/// </summary>
-		public FullGridMap Intersection =>
-			FullGridMap.CreateInstance(Start.Candidates.Concat(End.Candidates));
+		public FullGridMap Intersection
+		{
+			get
+			{
+				switch (Start.NodeType)
+				{
+					case NodeType.Candidate:
+					{
+						switch (End.NodeType)
+						{
+							case NodeType.Candidate:
+							case NodeType.LockedCandidates:
+							{
+								return FullGridMap.CreateInstance(Start.Candidates.Concat(End.Candidates));
+							}
+						}
+
+						break;
+					}
+					case NodeType.LockedCandidates:
+					{
+						switch (End.NodeType)
+						{
+							case NodeType.Candidate:
+							case NodeType.LockedCandidates:
+							{
+								return FullGridMap.CreateInstance(Start.Candidates.Concat(End.Candidates));
+							}
+						}
+
+						break;
+					}
+				}
+
+				return FullGridMap.Empty;
+			}
+		}
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>

@@ -143,6 +143,10 @@ namespace Sudoku.Solving.Manual
 						false, true, false, AicMaximumLength, ReductDifferentPathAic,
 						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
 						regionMaps),
+					new GroupedAlternatingInferenceChainTechniqueSearcher(
+						false, false, true, AicMaximumLength, ReductDifferentPathAic,
+						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
+						regionMaps),
 					new HobiwanFishTechniqueSearcher(
 						HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
 						HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
@@ -420,6 +424,10 @@ namespace Sudoku.Solving.Manual
 					regionMaps),
 				new GroupedAlternatingInferenceChainTechniqueSearcher(
 					false, true, false, AicMaximumLength, ReductDifferentPathAic,
+					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
+					regionMaps),
+				new GroupedAlternatingInferenceChainTechniqueSearcher(
+					false, false, true, AicMaximumLength, ReductDifferentPathAic,
 					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
 					regionMaps),
 				new HobiwanFishTechniqueSearcher(

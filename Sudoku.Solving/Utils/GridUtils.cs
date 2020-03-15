@@ -265,33 +265,5 @@ namespace Sudoku.Solving.Utils
 
 			return bivalueCellsMap;
 		}
-
-		/// <summary>
-		/// Find all conjugate pairs in a grid.
-		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
-		/// <returns>All conjugate pairs.</returns>
-		public static IReadOnlyList<ConjugatePair> GetAllConjugatePairs(this IReadOnlyGrid @this)
-		{
-			var list = new List<ConjugatePair>();
-			for (int region = 0; region < 27; region++)
-			{
-				for (int digit = 0; digit < 9; digit++)
-				{
-					if (!@this.IsBilocationRegion(digit, region, out short mask))
-					{
-						continue;
-					}
-
-					// Conjugate pair found.
-					int[] z = mask.GetAllSets().ToArray();
-					int p1 = RegionUtils.GetCellOffset(region, z[0]);
-					int p2 = RegionUtils.GetCellOffset(region, z[1]);
-					list.Add(new ConjugatePair(p1, p2, digit));
-				}
-			}
-
-			return list;
-		}
 	}
 }

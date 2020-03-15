@@ -306,7 +306,72 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 				case NodeType.LockedCandidates:
 				{
+					int currentDigit = currentNode[0] % 9;
+					var currentCells = from cand in currentNode.Candidates
+									   where cand % 9 == currentDigit
+									   select cand / 9;
 
+					// Search for same regions.
+					if (_searchX || _searchY || _searchLcNodes)
+					{
+						foreach (int nextCell in GridMap.CreateInstance(currentCells, false).Offsets)
+						{
+							if (!grid.CandidateExists(nextCell, currentDigit))
+							{
+								continue;
+							}
+
+							int nextCandidate = nextCell * 9 + currentDigit;
+							if (candidatesUsed[nextCandidate])
+							{
+								continue;
+							}
+
+							candidatesUsed[nextCandidate] = true;
+							var nextNode = new Node(nextCandidate, NodeType.Candidate);
+							stack.Add(nextNode);
+
+							GetOffToOnRecursively(
+								accumulator, grid, candidatesUsed, nextNode, strongInferences,
+								digitDistributions, stack, length - 1);
+
+							candidatesUsed[nextCandidate] = false;
+							stack.RemoveLastElement();
+						}
+					}
+
+					// In a grouped AIC, a locked candidate node cannot link with a
+					// candidate node with different value.
+					// In contrast, this one is an advanced link (such as using
+					// an almost UR, or an ALS structure).
+					// Search for the cells.
+					//if (_searchY || _searchLcNodes)
+					//{
+					//	// Do nothing.
+					//}
+
+					if (_searchLcNodes)
+					{
+						// Check locked candidate nodes.
+						foreach (var nextNode in GetLcNodes(digitDistributions, currentCells, currentDigit))
+						{
+							if ((nextNode.CandidatesMap | candidatesUsed) == candidatesUsed)
+							{
+								// The current node is fully covered by 'candidatesUsed'.
+								continue;
+							}
+
+							candidatesUsed.AddRange(nextNode.Candidates);
+							stack.Add(nextNode);
+
+							GetOffToOnRecursively(
+								accumulator, grid, candidatesUsed, nextNode, strongInferences,
+								digitDistributions, stack, length - 1);
+
+							stack.RemoveLastElement();
+							candidatesUsed.RemoveRange(nextNode.Candidates);
+						}
+					}
 
 					break;
 				}
@@ -377,7 +442,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					}
 
 					// Search for cell.
-					if (_searchY)
+					if (_searchY || _searchLcNodes)
 					{
 						if (grid.IsBivalueCell(currentCell, out short mask))
 						{
@@ -414,8 +479,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								.Reduct(currentDigit);
 							foreach (int coveredRegion in tempMap.CoveredRegions)
 							{
-								var map = tempMap - digitDistributions[currentDigit];
-								if (map.IsNotEmpty)
+								if ((tempMap - digitDistributions[currentDigit]).IsNotEmpty)
 								{
 									continue;
 								}
@@ -442,7 +506,84 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 				case NodeType.LockedCandidates:
 				{
+					int currentDigit = currentNode[0] % 9;
+					var currentCells = from cand in currentNode.Candidates
+									   where cand % 9 == currentDigit
+									   select cand / 9;
 
+					// Search for same regions.
+					bool checkCollision(int next) => !_checkHeadCollision && candidatesUsed[next];
+					foreach (int region in GridMap.CreateInstance(currentCells, false).CoveredRegions)
+					{
+						var map = grid.GetDigitAppearingCells(currentDigit, region);
+						if (map.Count != 1)
+						{
+							continue;
+						}
+
+						int nextCell = map.SetAt(0);
+						int nextCandidate = nextCell * 9 + currentDigit;
+						if (checkCollision(nextCandidate))
+						{
+							continue;
+						}
+
+						candidatesUsed[nextCandidate] = true;
+						var nextNode = new Node(nextCandidate, NodeType.Candidate);
+						stack.Add(nextNode);
+
+						// Now check elimination.
+						// If the elimination exists, the chain will be added to the accumulator.
+						CheckElimination(accumulator, grid, candidatesUsed, stack);
+
+						GetOnToOffRecursively(
+							accumulator, grid, candidatesUsed, nextNode, strongInferences,
+							digitDistributions, stack, length - 1);
+
+						candidatesUsed[nextCandidate] = false;
+						stack.RemoveLastElement();
+					}
+
+					// In a grouped AIC, a locked candidate node cannot link with a
+					// candidate node with different value.
+					// In contrast, this one is an advanced link (such as using
+					// an almost UR, or an ALS structure).
+					// Search for the cells.
+					//if (_searchY || _searchLcNodes)
+					//{
+					//	// Do nothing.
+					//}
+
+					if (_searchLcNodes)
+					{
+						foreach (var nextNode in GetLcNodes(digitDistributions, currentCells, currentDigit))
+						{
+							var tempMap = (nextNode.CandidatesMap | currentNode.CandidatesMap)
+								.Reduct(currentDigit);
+							foreach (int coveredRegion in tempMap.CoveredRegions)
+							{
+								if ((tempMap - digitDistributions[currentDigit]).IsNotEmpty)
+								{
+									continue;
+								}
+
+								// Strong inference found.
+								candidatesUsed.AddRange(nextNode.Candidates);
+								stack.Add(nextNode);
+
+								// Now check elimination.
+								// If the elimination exists, the chain will be added to the accumulator.
+								CheckElimination(accumulator, grid, candidatesUsed, stack);
+
+								GetOnToOffRecursively(
+									accumulator, grid, candidatesUsed, nextNode, strongInferences,
+									digitDistributions, stack, length - 1);
+
+								candidatesUsed.RemoveRange(nextNode.Candidates);
+								stack.RemoveLastElement();
+							}
+						}
+					}
 
 					break;
 				}
@@ -462,6 +603,39 @@ namespace Sudoku.Solving.Manual.Chaining
 			var result = new List<Node>();
 			var (r, c, b) = CellUtils.GetRegion(currentCell);
 			foreach (int nonblock in stackalloc[] { r + 9, c + 18 })
+			{
+				var tempMap = _regionMaps[nonblock] & digitDistributions[currentDigit];
+				if (tempMap.IsEmpty)
+				{
+					// No candidates left in this region.
+					continue;
+				}
+
+				foreach (int block in BlockTable[nonblock])
+				{
+					var anotherMap = tempMap & _regionMaps[block];
+					if (anotherMap.IsEmpty || anotherMap.Count < 2)
+					{
+						// No candidates in this region
+						// or the node is not a locked candidates node.
+						continue;
+					}
+
+					// Group node found.
+					result.Add(new Node(anotherMap.Offsets, NodeType.LockedCandidates));
+				}
+			}
+
+			return result;
+		}
+
+		private IEnumerable<Node> GetLcNodes(
+			GridMap[] digitDistributions, IEnumerable<int> currentCells, int currentDigit)
+		{
+			var result = new List<Node>();
+			foreach (int nonblock in from region in new GridMap(currentCells).CoveredRegions
+									 where region >= 9
+									 select region)
 			{
 				var tempMap = _regionMaps[nonblock] & digitDistributions[currentDigit];
 				if (tempMap.IsEmpty)
@@ -512,21 +686,9 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 
 				// Step 2: Check elimination sets.
-				var eliminationSets = new List<FullGridMap>();
-				foreach (var weakInference in weakInferences)
-				{
-					var (start, end) = weakInference;
-					switch ((start.NodeType, end.NodeType))
-					{
-						case (NodeType.Candidate, _):
-						case (NodeType.LockedCandidates, _):
-						{
-							eliminationSets.Add(weakInference.Intersection);
-
-							break;
-						}
-					}
-				}
+				var eliminationSets = new List<FullGridMap>(
+					from weakInference in weakInferences
+					select weakInference.Intersection);
 				if (eliminationSets.Count == 0)
 				{
 					return;
@@ -569,10 +731,9 @@ namespace Sudoku.Solving.Manual.Chaining
 						}
 						case NodeType.LockedCandidates:
 						{
-							foreach (int candidate in node.Candidates)
-							{
-								candidateOffsets.Add((isOff, candidate));
-							}
+							candidateOffsets.AddRange(
+								from candidate in node.Candidates
+								select (isOff, candidate));
 
 							break;
 						}
@@ -638,7 +799,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				var nodes = new List<Node>();
 				var links = new List<Inference>();
 				bool @switch = false;
-				int i = 0;
+				int index = 0;
 				foreach (var node in stack)
 				{
 					nodes.Add(node);
@@ -652,17 +813,16 @@ namespace Sudoku.Solving.Manual.Chaining
 						}
 						case NodeType.LockedCandidates:
 						{
-							foreach (int candidate in node.Candidates)
-							{
-								candidateOffsets.Add((@switch ? 1 : 0, candidate));
-							}
+							candidateOffsets.AddRange(
+								from candidate in node.Candidates
+								select (@switch ? 1 : 0, candidate));
 
 							break;
 						}
 					}
-					
+
 					// To ensure this loop has the predecessor.
-					if (i++ > 0)
+					if (index++ > 0)
 					{
 						links.Add(new Inference(lastCand!, !@switch, node, @switch));
 					}
@@ -711,9 +871,9 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 				if (hasSameAic)
 				{
+					var list = new List<TechniqueInfo>(accumulator) { [sameAicIndex] = resultInfo };
 					accumulator.Clear();
-					accumulator.AddRange(
-						new List<TechniqueInfo>(accumulator) { [sameAicIndex] = resultInfo });
+					accumulator.AddRange(list);
 				}
 				else
 				{
@@ -737,20 +897,34 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// a same cell, but the digits are different; otherwise, the nodes forms a normal
 		/// AIC.
 		/// </remarks>
+		//[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool IsContinuousNiceLoop(IList<Node> stack)
 		{
-			int head = stack[0][0], tail = stack[LastIndex][0];
-			int headCell = head / 9, headDigit = head % 9;
-			int tailCell = tail / 9, tailDigit = tail % 9;
-			if (headCell == tailCell)
+			var startNode = stack[0];
+			var endNode = stack[LastIndex];
+			switch ((startNode.NodeType, endNode.NodeType))
 			{
-				return headDigit != tailDigit;
-			}
+				case (NodeType.Candidate, _):
+				case (NodeType.LockedCandidates, _):
+				{
+					int head = startNode[0], tail = endNode[0];
+					int headCell = head / 9, headDigit = head % 9;
+					int tailCell = tail / 9, tailDigit = tail % 9;
+					if (headCell == tailCell)
+					{
+						return headDigit != tailDigit;
+					}
 
-			// If the cell are not same, we will check the cells are in a same region
-			// and the digits are same.
-			return headDigit == tailDigit
-				&& new GridMap(new[] { headCell, tailCell }).AllSetsAreInOneRegion(out _);
+					// If the cell are not same, we will check the cells are in a same region
+					// and the digits are same.
+					return headDigit == tailDigit
+						&& new GridMap(new[] { headCell, tailCell }).AllSetsAreInOneRegion(out _);
+				}
+				default:
+				{
+					return false;
+				}
+			}
 		}
 
 		/// <summary>
