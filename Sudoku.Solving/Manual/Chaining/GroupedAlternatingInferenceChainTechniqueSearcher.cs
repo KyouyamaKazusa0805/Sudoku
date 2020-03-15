@@ -703,8 +703,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				int sameAicIndex = default;
 				for (int i = 0; i < accumulator.Count; i++)
 				{
-					if (accumulator[i] is GaicInfo comparer
-						&& comparer == resultInfo)
+					if (accumulator[i] is GaicInfo comparer && comparer == resultInfo)
 					{
 						hasSameAic = true;
 						sameAicIndex = i;
