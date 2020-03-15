@@ -57,11 +57,8 @@ namespace Sudoku.Data
 		/// Indicates the intersection of the current inference, which is used
 		/// in searching for eliminations in loops or normal AICs.
 		/// </summary>
-		public FullGridMap Intersection
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => FullGridMap.CreateInstance(Start.Candidates.Concat(End.Candidates));
-		}
+		public FullGridMap Intersection =>
+			FullGridMap.CreateInstance(Start.Candidates.Concat(End.Candidates));
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
@@ -106,8 +103,8 @@ namespace Sudoku.Data
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			static string sign(bool value) => value ? string.Empty : "!";
-			return $"{sign(StartIsOn)}{Start} -> {sign(EndIsOn)}{End}";
+			static string sgn(bool v) => v ? string.Empty : "!";
+			return $"{sgn(StartIsOn)}{Start} -> {sgn(EndIsOn)}{End}";
 		}
 
 

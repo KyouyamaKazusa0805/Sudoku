@@ -599,7 +599,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								cellOffsets: null,
 								candidateOffsets,
 								regionOffsets: null,
-								links: null) // TODO: Replace it.
+								links)
 						},
 						nodes,
 						isContinuousNiceLoop: true));
@@ -681,7 +681,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								cellOffsets: null,
 								candidateOffsets,
 								regionOffsets: null,
-								links: null) // TODO: Replace it.
+								links)
 						},
 						nodes,
 						isContinuousNiceLoop: false));
