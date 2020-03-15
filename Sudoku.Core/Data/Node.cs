@@ -102,13 +102,13 @@ namespace Sudoku.Data
 		public bool IsCollideWith(Node other) => (this & other).IsNotEmpty;
 
 		/// <summary>
-		/// Checks whether all candidates used in this instance fully contains
+		/// Checks whether all candidates used in this instance fully covered
 		/// the other one.
 		/// </summary>
 		/// <param name="other">The other node.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public bool Contains(Node other) =>
-			CandidatesMap.Count <= other.CandidatesMap.Count ? false : (this | other) == CandidatesMap;
+		public bool FullCovered(Node other) =>
+			CandidatesMap.Count < other.CandidatesMap.Count ? false : (this | other) == CandidatesMap;
 
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is Node comparer && Equals(comparer);

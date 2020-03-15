@@ -222,32 +222,29 @@ namespace Sudoku.Solving.Manual.Chaining
 					int currentCell = currentCandidate / 9, currentDigit = currentCandidate % 9;
 
 					// Search for same regions.
-					if (_searchX || _searchY || _searchLcNodes)
+					foreach (int nextCell in new GridMap(currentCell, false).Offsets)
 					{
-						foreach (int nextCell in new GridMap(currentCell, false).Offsets)
+						if (!grid.CandidateExists(nextCell, currentDigit))
 						{
-							if (!grid.CandidateExists(nextCell, currentDigit))
-							{
-								continue;
-							}
-
-							int nextCandidate = nextCell * 9 + currentDigit;
-							if (candidatesUsed[nextCandidate])
-							{
-								continue;
-							}
-
-							candidatesUsed[nextCandidate] = true;
-							var nextNode = new Node(nextCandidate, NodeType.Candidate);
-							stack.Add(nextNode);
-
-							GetOffToOnRecursively(
-								accumulator, grid, candidatesUsed, nextNode, strongInferences,
-								digitDistributions, stack, length - 1);
-
-							candidatesUsed[nextCandidate] = false;
-							stack.RemoveLastElement();
+							continue;
 						}
+
+						int nextCandidate = nextCell * 9 + currentDigit;
+						if (candidatesUsed[nextCandidate])
+						{
+							continue;
+						}
+
+						candidatesUsed[nextCandidate] = true;
+						var nextNode = new Node(nextCandidate, NodeType.Candidate);
+						stack.Add(nextNode);
+
+						GetOffToOnRecursively(
+							accumulator, grid, candidatesUsed, nextNode, strongInferences,
+							digitDistributions, stack, length - 1);
+
+						candidatesUsed[nextCandidate] = false;
+						stack.RemoveLastElement();
 					}
 
 					// Search for the cells.
@@ -284,9 +281,8 @@ namespace Sudoku.Solving.Manual.Chaining
 						// Check locked candidate nodes.
 						foreach (var nextNode in GetLcNodes(digitDistributions, currentCell, currentDigit))
 						{
-							if ((nextNode.CandidatesMap | candidatesUsed) == candidatesUsed)
+							if (nextNode.FullCovered(currentNode))
 							{
-								// The current node is fully covered by 'candidatesUsed'.
 								continue;
 							}
 
@@ -312,32 +308,29 @@ namespace Sudoku.Solving.Manual.Chaining
 									   select cand / 9;
 
 					// Search for same regions.
-					if (_searchX || _searchY || _searchLcNodes)
+					foreach (int nextCell in GridMap.CreateInstance(currentCells, false).Offsets)
 					{
-						foreach (int nextCell in GridMap.CreateInstance(currentCells, false).Offsets)
+						if (!grid.CandidateExists(nextCell, currentDigit))
 						{
-							if (!grid.CandidateExists(nextCell, currentDigit))
-							{
-								continue;
-							}
-
-							int nextCandidate = nextCell * 9 + currentDigit;
-							if (candidatesUsed[nextCandidate])
-							{
-								continue;
-							}
-
-							candidatesUsed[nextCandidate] = true;
-							var nextNode = new Node(nextCandidate, NodeType.Candidate);
-							stack.Add(nextNode);
-
-							GetOffToOnRecursively(
-								accumulator, grid, candidatesUsed, nextNode, strongInferences,
-								digitDistributions, stack, length - 1);
-
-							candidatesUsed[nextCandidate] = false;
-							stack.RemoveLastElement();
+							continue;
 						}
+
+						int nextCandidate = nextCell * 9 + currentDigit;
+						if (candidatesUsed[nextCandidate])
+						{
+							continue;
+						}
+
+						candidatesUsed[nextCandidate] = true;
+						var nextNode = new Node(nextCandidate, NodeType.Candidate);
+						stack.Add(nextNode);
+
+						GetOffToOnRecursively(
+							accumulator, grid, candidatesUsed, nextNode, strongInferences,
+							digitDistributions, stack, length - 1);
+
+						candidatesUsed[nextCandidate] = false;
+						stack.RemoveLastElement();
 					}
 
 					// In a grouped AIC, a locked candidate node cannot link with a
@@ -407,7 +400,6 @@ namespace Sudoku.Solving.Manual.Chaining
 					int currentCell = currentCandidate / 9, currentDigit = currentCandidate % 9;
 
 					// Search for same regions.
-					bool checkCollision(int next) => !_checkHeadCollision && candidatesUsed[next];
 					var (r, c, b) = CellUtils.GetRegion(currentCell);
 					foreach (int region in stackalloc[] { r + 9, c + 18, b })
 					{
@@ -420,7 +412,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						map[currentCell] = false;
 						int nextCell = map.SetAt(0);
 						int nextCandidate = nextCell * 9 + currentDigit;
-						if (checkCollision(nextCandidate))
+						if (candidatesUsed[nextCandidate])
 						{
 							continue;
 						}
@@ -449,7 +441,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							mask &= (short)~(1 << currentDigit);
 							int nextDigit = mask.FindFirstSet();
 							int nextCandidate = currentCell * 9 + nextDigit;
-							if (checkCollision(nextCandidate))
+							if (candidatesUsed[nextCandidate])
 							{
 								return;
 							}
@@ -477,13 +469,14 @@ namespace Sudoku.Solving.Manual.Chaining
 						{
 							var tempMap = (nextNode.CandidatesMap | currentNode.CandidatesMap)
 								.Reduct(currentDigit);
+							if ((tempMap - digitDistributions[currentDigit]).IsNotEmpty
+									|| nextNode.FullCovered(currentNode))
+							{
+								continue;
+							}
+
 							foreach (int coveredRegion in tempMap.CoveredRegions)
 							{
-								if ((tempMap - digitDistributions[currentDigit]).IsNotEmpty)
-								{
-									continue;
-								}
-
 								// Strong inference found.
 								candidatesUsed.AddRange(nextNode.Candidates);
 								stack.Add(nextNode);
@@ -512,7 +505,6 @@ namespace Sudoku.Solving.Manual.Chaining
 									   select cand / 9;
 
 					// Search for same regions.
-					bool checkCollision(int next) => !_checkHeadCollision && candidatesUsed[next];
 					foreach (int region in GridMap.CreateInstance(currentCells, false).CoveredRegions)
 					{
 						var map = grid.GetDigitAppearingCells(currentDigit, region);
@@ -523,7 +515,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 						int nextCell = map.SetAt(0);
 						int nextCandidate = nextCell * 9 + currentDigit;
-						if (checkCollision(nextCandidate))
+						if (candidatesUsed[nextCandidate])
 						{
 							continue;
 						}
@@ -560,13 +552,14 @@ namespace Sudoku.Solving.Manual.Chaining
 						{
 							var tempMap = (nextNode.CandidatesMap | currentNode.CandidatesMap)
 								.Reduct(currentDigit);
+							if ((tempMap - digitDistributions[currentDigit]).IsNotEmpty
+								|| nextNode == currentNode)
+							{
+								continue;
+							}
+
 							foreach (int coveredRegion in tempMap.CoveredRegions)
 							{
-								if ((tempMap - digitDistributions[currentDigit]).IsNotEmpty)
-								{
-									continue;
-								}
-
 								// Strong inference found.
 								candidatesUsed.AddRange(nextNode.Candidates);
 								stack.Add(nextNode);
@@ -611,19 +604,19 @@ namespace Sudoku.Solving.Manual.Chaining
 					continue;
 				}
 
-				foreach (int block in BlockTable[nonblock])
+				var anotherMap = tempMap & _regionMaps[b];
+				if (anotherMap.IsEmpty || anotherMap.Count < 2)
 				{
-					var anotherMap = tempMap & _regionMaps[block];
-					if (anotherMap.IsEmpty || anotherMap.Count < 2)
-					{
-						// No candidates in this region
-						// or the node is not a locked candidates node.
-						continue;
-					}
-
-					// Group node found.
-					result.Add(new Node(anotherMap.Offsets, NodeType.LockedCandidates));
+					// No candidates in this region
+					// or the node is not a locked candidates node.
+					continue;
 				}
+
+				// Group node found.
+				result.Add(
+					new Node(
+						from cell in anotherMap.Offsets select cell * 9 + currentDigit,
+						NodeType.LockedCandidates));
 			}
 
 			return result;
@@ -655,7 +648,10 @@ namespace Sudoku.Solving.Manual.Chaining
 					}
 
 					// Group node found.
-					result.Add(new Node(anotherMap.Offsets, NodeType.LockedCandidates));
+					result.Add(
+						new Node(
+							from cell in anotherMap.Offsets select cell * 9 + currentDigit,
+							NodeType.LockedCandidates));
 				}
 			}
 
@@ -772,6 +768,11 @@ namespace Sudoku.Solving.Manual.Chaining
 				// Step 1: Check eliminations.
 				var startNode = stack[0];
 				var endNode = stack[LastIndex];
+				if (_checkHeadCollision && startNode == endNode)
+				{
+					return;
+				}
+
 				var elimMap = new Inference(startNode, false, endNode, true).Intersection;
 				if (elimMap.IsEmpty)
 				{
@@ -984,7 +985,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 			}
 
-			if (_searchY)
+			if (_searchY || _searchLcNodes)
 			{
 				// Search for each bivalue cells.
 				for (int cell = 0; cell < 81; cell++)
@@ -1014,24 +1015,24 @@ namespace Sudoku.Solving.Manual.Chaining
 						var map = digitDistributions[digit] & _regionMaps[region];
 						int[] coveredBlocks = (
 							from coveredRegion in map.CoveredRegions
-							where coveredRegion >= 0 && coveredRegion < 9
+							where coveredRegion < 9
 							select coveredRegion).ToArray();
 						if (coveredBlocks.Length != 2)
 						{
 							continue;
 						}
 
-						var startMap = map & _regionMaps[coveredBlocks[0]];
-						var endMap = map & _regionMaps[coveredBlocks[1]];
+						var startCandidates = (map & _regionMaps[coveredBlocks[0]]).Offsets;
+						var endCandidates = (map & _regionMaps[coveredBlocks[1]]).Offsets;
 						result.Add(
 							new Inference(
 								new Node(
-									startMap.Offsets, startMap.Offsets.HasOnlyOneElement()
+									startCandidates, startCandidates.HasOnlyOneElement()
 										? NodeType.Candidate
 										: NodeType.LockedCandidates),
 								false,
 								new Node(
-									endMap.Offsets, endMap.Offsets.HasOnlyOneElement()
+									endCandidates, endCandidates.HasOnlyOneElement()
 										? NodeType.Candidate
 										: NodeType.LockedCandidates),
 								true));

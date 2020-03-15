@@ -2627,9 +2627,9 @@
             <param name="other">The other node.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Data.Node.Contains(Sudoku.Data.Node)">
+        <member name="M:Sudoku.Data.Node.FullCovered(Sudoku.Data.Node)">
             <summary>
-            Checks whether all candidates used in this instance fully contains
+            Checks whether all candidates used in this instance fully covered
             the other one.
             </summary>
             <param name="other">The other node.</param>
