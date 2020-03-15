@@ -167,7 +167,7 @@ namespace Sudoku.Solving.Manual
 			var bag = new Bag<TechniqueInfo>();
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
-		Label_StartSolving:
+		Label_Restart:
 			for (int i = 0, length = searchers.Length; i < length; i++)
 			{
 				var searcherListGroup = searchers[i];
@@ -230,7 +230,7 @@ namespace Sudoku.Solving.Manual
 						// we should turn to the first step finder
 						// to continue solving puzzle.
 						bag.Clear();
-						goto Label_StartSolving;
+						goto Label_Restart;
 					}
 					else
 					{
@@ -275,7 +275,7 @@ namespace Sudoku.Solving.Manual
 							// we should turn to the first step finder
 							// to continue solving puzzle.
 							bag.Clear();
-							goto Label_StartSolving;
+							goto Label_Restart;
 						}
 					}
 					else
@@ -447,7 +447,7 @@ namespace Sudoku.Solving.Manual
 			var bag = new Bag<TechniqueInfo>();
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
-		Label_StartSolving:
+		Label_Restart:
 			for (int i = 0, length = searchers.Length; i < length; i++)
 			{
 				var searcher = searchers[i];
@@ -499,7 +499,7 @@ namespace Sudoku.Solving.Manual
 							GC.Collect();
 						}
 
-						goto Label_StartSolving;
+						goto Label_Restart;
 					}
 					else
 					{
@@ -550,7 +550,7 @@ namespace Sudoku.Solving.Manual
 								GC.Collect();
 							}
 
-							goto Label_StartSolving;
+							goto Label_Restart;
 						}
 					}
 					else
