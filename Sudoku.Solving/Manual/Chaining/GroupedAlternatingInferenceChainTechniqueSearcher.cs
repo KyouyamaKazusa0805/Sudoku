@@ -8,6 +8,7 @@ using Sudoku.Drawing;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
 using static Sudoku.Solving.Utils.RegionUtils;
+using GaicInfo = Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueInfo;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -579,7 +580,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 					if (index > 0)
 					{
-						links.Add(new Inference((Node)last!, isOn == 0, node, isOff == 0));
+						links.Add(new Inference(last!, isOn == 0, node, isOff == 0));
 					}
 
 					last = node;
@@ -591,7 +592,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 				SumUpResult(
 					accumulator,
-					new GroupedAlternatingInferenceChainTechniqueInfo(
+					new GaicInfo(
 						conclusions,
 						views: new[]
 						{
@@ -663,7 +664,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					// To ensure this loop has the predecessor.
 					if (i++ > 0)
 					{
-						links.Add(new Inference((Node)lastCand!, !@switch, node, @switch));
+						links.Add(new Inference(lastCand!, !@switch, node, @switch));
 					}
 
 					lastCand = node;
@@ -673,7 +674,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				// Step 3: Record it into the result accumulator.
 				SumUpResult(
 					accumulator,
-					new GroupedAlternatingInferenceChainTechniqueInfo(
+					new GaicInfo(
 						conclusions,
 						views: new[]
 						{
@@ -694,7 +695,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="accumulator">The accumulator list.</param>
 		/// <param name="resultInfo">The result information instance.</param>
 		private void SumUpResult(
-			IBag<TechniqueInfo> accumulator, GroupedAlternatingInferenceChainTechniqueInfo resultInfo)
+			IBag<TechniqueInfo> accumulator, GaicInfo resultInfo)
 		{
 			if (_onlySaveShortestPathAic)
 			{
@@ -702,7 +703,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				int sameAicIndex = default;
 				for (int i = 0; i < accumulator.Count; i++)
 				{
-					if (accumulator[i] is GroupedAlternatingInferenceChainTechniqueInfo comparer
+					if (accumulator[i] is GaicInfo comparer
 						&& comparer == resultInfo)
 					{
 						hasSameAic = true;
@@ -711,9 +712,9 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 				if (hasSameAic)
 				{
-					var list = new List<TechniqueInfo>(accumulator) { [sameAicIndex] = resultInfo };
 					accumulator.Clear();
-					accumulator.AddRange(list);
+					accumulator.AddRange(
+						new List<TechniqueInfo>(accumulator) { [sameAicIndex] = resultInfo });
 				}
 				else
 				{
@@ -760,7 +761,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <returns>The result action.</returns>
 		/// <seealso cref="CheckElimination(IBag{TechniqueInfo}, IReadOnlyGrid, FullGridMap, IList{Node})"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private Action<GroupedAlternatingInferenceChainTechniqueInfo> GetAct(IBag<TechniqueInfo> accumulator)
+		private Action<GaicInfo> GetAct(IBag<TechniqueInfo> accumulator)
 		{
 			// Here may use conditional operator '?:' to decide the result.
 			// However, this operator cannot tell with the type of the result

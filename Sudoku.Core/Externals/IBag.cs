@@ -44,7 +44,7 @@ namespace System.Collections.Generic
 		/// </summary>
 		/// <param name="item">The item to add.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void AddIfDoesNotContain(T item)
+		public void AddIfDoesNotContain([NotNull] T item)
 		{
 			if (!Contains(item))
 			{
