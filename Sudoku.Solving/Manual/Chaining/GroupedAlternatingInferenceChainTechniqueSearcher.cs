@@ -214,6 +214,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				return;
 			}
 
+			bool isFullInMap(Node nextNode) =>
+				(nextNode.CandidatesMap | candidatesUsed) == candidatesUsed;
 			switch (currentNode.NodeType)
 			{
 				case NodeType.Candidate:
@@ -281,7 +283,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						// Check locked candidate nodes.
 						foreach (var nextNode in GetLcNodes(digitDistributions, currentCell, currentDigit))
 						{
-							if (nextNode.FullCovered(currentNode))
+							if (isFullInMap(nextNode) || nextNode.FullCovered(currentNode))
 							{
 								continue;
 							}
@@ -348,7 +350,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						// Check locked candidate nodes.
 						foreach (var nextNode in GetLcNodes(digitDistributions, currentCells, currentDigit))
 						{
-							if ((nextNode.CandidatesMap | candidatesUsed) == candidatesUsed)
+							if (isFullInMap(nextNode) || nextNode == currentNode)
 							{
 								// The current node is fully covered by 'candidatesUsed'.
 								continue;
