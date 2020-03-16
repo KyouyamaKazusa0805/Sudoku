@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Generating
 						int cell = Rng.Next(0, 81);
 						if (!map[cell])
 						{
-							map[cell] = true;
+							map.Add(cell);
 							break;
 						}
 					}

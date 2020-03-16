@@ -41,13 +41,13 @@ namespace Sudoku.Solving.Manual.Sdps
 						{
 							int cell1 = RegionUtils.GetCellOffset(r1, pos1);
 							cells1.Add(cell1);
-							map1[cell1] = true;
+							map1.Add(cell1);
 						}
 						foreach (int pos2 in mask2.GetAllSets())
 						{
 							int cell2 = RegionUtils.GetCellOffset(r2, pos2);
 							cells2.Add(cell2);
-							map2[cell2] = true;
+							map2.Add(cell2);
 						}
 
 						if ((map1 & map2).IsNotEmpty)

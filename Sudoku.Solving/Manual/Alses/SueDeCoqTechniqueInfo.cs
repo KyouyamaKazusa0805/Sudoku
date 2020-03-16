@@ -79,14 +79,14 @@ namespace Sudoku.Solving.Manual.Alses
 			}
 
 			var thisMap = GridMap.Empty;
-			foreach (int cell in Als1Cells) thisMap[cell] = true;
-			foreach (int cell in Als2Cells) thisMap[cell] = true;
-			foreach (int cell in IntersectionCells) thisMap[cell] = true;
+			foreach (int cell in Als1Cells) thisMap.Add(cell);
+			foreach (int cell in Als2Cells) thisMap.Add(cell);
+			foreach (int cell in IntersectionCells) thisMap.Add(cell);
 
 			var comparerMap = GridMap.Empty;
-			foreach (int cell in comparer.Als1Cells) comparerMap[cell] = true;
-			foreach (int cell in comparer.Als2Cells) comparerMap[cell] = true;
-			foreach (int cell in comparer.IntersectionCells) comparerMap[cell] = true;
+			foreach (int cell in comparer.Als1Cells) comparerMap.Add(cell);
+			foreach (int cell in comparer.Als2Cells) comparerMap.Add(cell);
+			foreach (int cell in comparer.IntersectionCells) comparerMap.Add(cell);
 
 			return thisMap == comparerMap;
 		}

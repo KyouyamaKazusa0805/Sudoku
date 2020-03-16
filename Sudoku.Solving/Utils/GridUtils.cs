@@ -194,7 +194,7 @@ namespace Sudoku.Solving.Utils
 					continue;
 				}
 
-				result[cell] = true;
+				result.Add(cell);
 			}
 
 			return result;
@@ -256,7 +256,7 @@ namespace Sudoku.Solving.Utils
 			{
 				if (status == CellStatus.Empty && (~mask & 511).CountSet() == 2)
 				{
-					bivalueCellsMap[i] = true;
+					bivalueCellsMap.Add(i);
 					count++;
 				}
 

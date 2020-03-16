@@ -127,8 +127,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				{
 					int endCell = endCandidate / 9;
 					int endDigit = endCandidate % 9;
-					candidateList[startCandidate] = true;
-					candidateList[endCandidate] = true;
+					candidateList.Add(startCandidate);
+					candidateList.Add(endCandidate);
 					stack.Add(startCandidate);
 					stack.Add(endCandidate);
 
@@ -138,8 +138,8 @@ namespace Sudoku.Solving.Manual.Chaining
 						strongInferences, stack, _maxLength - 2);
 
 					// Undo the step to recover the candidate status.
-					candidateList[startCandidate] = false;
-					candidateList[endCandidate] = false;
+					candidateList.Remove(startCandidate);
+					candidateList.Remove(endCandidate);
 					stack.RemoveLastElement();
 					stack.RemoveLastElement();
 				}
@@ -183,14 +183,14 @@ namespace Sudoku.Solving.Manual.Chaining
 						continue;
 					}
 
-					candidateList[nextCandidate] = true;
+					candidateList.Add(nextCandidate);
 					stack.Add(nextCandidate);
 
 					GetOffToOnRecursively(
 						accumulator, grid, candidateList, nextCell, currentDigit,
 						strongRelations, stack, length - 1);
 
-					candidateList[nextCandidate] = false;
+					candidateList.Remove(nextCandidate);
 					stack.RemoveLastElement();
 				}
 			}
@@ -211,14 +211,14 @@ namespace Sudoku.Solving.Manual.Chaining
 						continue;
 					}
 
-					candidateList[nextCandidate] = true;
+					candidateList.Add(nextCandidate);
 					stack.Add(nextCandidate);
 
 					GetOffToOnRecursively(
 						accumulator, grid, candidateList, currentCell, nextDigit,
 						strongRelations, stack, length - 1);
 
-					candidateList[nextCandidate] = false;
+					candidateList.Remove(nextCandidate);
 					stack.RemoveLastElement();
 				}
 			}
@@ -258,7 +258,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						continue;
 					}
 
-					map[currentCell] = false;
+					map.Remove(currentCell);
 					int nextCell = map.SetAt(0);
 					int nextCandidate = nextCell * 9 + currentDigit;
 					if (checkCollision(nextCandidate))
@@ -266,7 +266,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						continue;
 					}
 
-					candidateList[nextCandidate] = true;
+					candidateList.Add(nextCandidate);
 					stack.Add(nextCandidate);
 
 					// Now check elimination.
@@ -277,7 +277,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						accumulator, grid, candidateList, nextCell, currentDigit,
 						strongRelations, stack, length - 1);
 
-					candidateList[nextCandidate] = false;
+					candidateList.Remove(nextCandidate);
 					stack.RemoveLastElement();
 				}
 			}
@@ -295,7 +295,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						return;
 					}
 
-					candidateList[nextCandidate] = true;
+					candidateList.Add(nextCandidate);
 					stack.Add(nextCandidate);
 
 					// Now check elimination.
@@ -306,7 +306,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						accumulator, grid, candidateList, currentCell, nextDigit,
 						strongRelations, stack, length - 1);
 
-					candidateList[nextCandidate] = false;
+					candidateList.Remove(nextCandidate);
 					stack.RemoveLastElement();
 				}
 			}

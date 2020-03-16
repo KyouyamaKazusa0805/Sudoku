@@ -154,8 +154,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				var otherMap = FullGridMap.Empty;
 				for (int i = 0; i < Length; i++)
 				{
-					thisMap[Nodes[i].Candidate] = true;
-					otherMap[Nodes[i].Candidate] = true;
+					thisMap.Add(Nodes[i].Candidate);
+					otherMap.Add(other.Nodes[i].Candidate);
 				}
 
 				return thisMap == otherMap;

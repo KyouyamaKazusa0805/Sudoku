@@ -101,7 +101,7 @@ namespace Sudoku.Solving.Checking
 					{
 						int digit = digits[j];
 						ref var map = ref stack[0, digit];
-						map[bivalueCell] = true;
+						map.Add(bivalueCell);
 
 						var (r, c, b) = CellUtils.GetRegion(bivalueCell);
 						var span = (Span<int>)stackalloc[] { r + 9, c + 18, b };
@@ -149,7 +149,7 @@ namespace Sudoku.Solving.Checking
 					for (int j = 1; j <= 2; j++)
 					{
 						var temp = stack[pt - 1, mask.GetSetBitIndex(j)];
-						temp[ps] = true;
+						temp.Add(ps);
 						var (r, c, b) = CellUtils.GetRegion(ps);
 
 						// Use 'stackalloc' frequently may destroy the call stack.
@@ -181,8 +181,8 @@ namespace Sudoku.Solving.Checking
 
 					chosen[pt] = i;
 					var digits = mask.GetAllSets();
-					stack[pt, digits.ElementAt(0)][ps] = true;
-					stack[pt, digits.ElementAt(1)][ps] = true;
+					stack[pt, digits.ElementAt(0)].Add(ps);
+					stack[pt, digits.ElementAt(1)].Add(ps);
 					if (pt == multivalueCellsCount)
 					{
 						for (int k = 0; k < 9; k++)
@@ -245,7 +245,7 @@ namespace Sudoku.Solving.Checking
 			{
 				foreach (int offset in GridMap.GetCellsIn(region))
 				{
-					result[region][offset] = true;
+					result[region].Add(offset);
 				}
 			}
 

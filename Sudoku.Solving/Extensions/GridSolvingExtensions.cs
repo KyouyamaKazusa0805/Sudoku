@@ -47,7 +47,7 @@ namespace Sudoku.Solving.Extensions
 				var (status, candidates) = grid.GetMask(cell);
 				if (status == CellStatus.Empty && candidates.CountSet() == 7)
 				{
-					result[cell] = true;
+					result.Add(cell);
 				}
 			}
 
@@ -68,7 +68,7 @@ namespace Sudoku.Solving.Extensions
 				(var status, _) = grid.GetMask(cell);
 				if (status == CellStatus.Empty)
 				{
-					result[cell] = true;
+					result.Add(cell);
 				}
 			}
 
@@ -91,7 +91,7 @@ namespace Sudoku.Solving.Extensions
 				{
 					if (grid.CandidateExists(cell, i))
 					{
-						map[cell] = true;
+						map.Add(cell);
 					}
 				}
 			}

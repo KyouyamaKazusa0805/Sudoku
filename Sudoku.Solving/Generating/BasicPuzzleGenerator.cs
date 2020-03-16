@@ -89,8 +89,8 @@ namespace Sudoku.Solving.Generating
 					foreach (int tCell in series)
 					{
 						solution[tCell] = '0';
-						totalMap[tCell] = true;
-						tempMap[tCell] = true;
+						totalMap.Add(tCell);
+						tempMap.Add(tCell);
 					}
 				} while (81 - totalMap.Count > max);
 			} while (!FastSolver.CheckValidity(result = solution.ToString(), out _));

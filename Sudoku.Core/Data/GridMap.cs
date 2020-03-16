@@ -147,7 +147,7 @@ namespace Sudoku.Data
 			{
 				case InitializeOption.Ordinary:
 				{
-					this[offset] = true;
+					Add(offset);
 
 					break;
 				}
@@ -156,12 +156,12 @@ namespace Sudoku.Data
 				{
 					foreach (int peer in PeerTable[offset])
 					{
-						this[peer] = true;
+						Add(peer);
 					}
 
 					if (initializeOption == InitializeOption.ProcessPeersAlso)
 					{
-						this[offset] = true;
+						Add(offset);
 					}
 
 					break;
@@ -595,7 +595,7 @@ namespace Sudoku.Data
 			var result = Empty;
 			foreach (int cell in RegionTable[regionOffset])
 			{
-				result[cell] = true;
+				result.Add(cell);
 			}
 
 			return result;
@@ -627,7 +627,7 @@ namespace Sudoku.Data
 			{
 				if (grid[cell] == digit)
 				{
-					result[cell] = true;
+					result.Add(cell);
 				}
 			}
 			return result;

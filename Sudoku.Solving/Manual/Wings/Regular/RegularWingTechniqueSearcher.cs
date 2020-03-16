@@ -339,7 +339,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			}
 
 			// Pivot cell may be recorded into the 'map'.
-			map[pivot] = false;
+			map.Remove(pivot);
 		}
 
 		/// <summary>

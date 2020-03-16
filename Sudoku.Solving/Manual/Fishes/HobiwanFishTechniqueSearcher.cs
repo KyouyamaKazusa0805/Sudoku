@@ -112,7 +112,7 @@ namespace Sudoku.Solving.Manual.Fishes
 							{
 								foreach (var conclusion in info.Conclusions)
 								{
-									map[conclusion.CellOffset] = true;
+									map.Add(conclusion.CellOffset);
 								}
 							}
 						}

@@ -54,7 +54,7 @@ namespace Sudoku.Data.Stepping
 						continue;
 					}
 
-					map[cell] = true;
+					map.Add(cell);
 				}
 				_undoStack.Push(new AssignmentStep(value, offset, _masks[offset], map));
 
@@ -90,7 +90,7 @@ namespace Sudoku.Data.Stepping
 			{
 				if (GetCellStatus(i) == CellStatus.Modifiable)
 				{
-					map[i] = true;
+					map.Add(i);
 				}
 			}
 
@@ -110,7 +110,7 @@ namespace Sudoku.Data.Stepping
 			{
 				if (GetCellStatus(i) == CellStatus.Given)
 				{
-					map[i] = true;
+					map.Add(i);
 				}
 			}
 

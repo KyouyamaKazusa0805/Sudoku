@@ -179,7 +179,7 @@ namespace Sudoku.Solving.Manual.Alses
 						foreach (int cell in interEmptyCells)
 						{
 							// Remove all cells in intersections in this iteration.
-							tempUnionMap[cell] = false;
+							tempUnionMap.Remove(cell);
 						}
 
 						// Check whether the number of all empty cells in two
@@ -228,7 +228,7 @@ namespace Sudoku.Solving.Manual.Alses
 						goto Label_NextBlock;
 					}
 
-					takenCellsInBlockMap[cell] = true;
+					takenCellsInBlockMap.Add(cell);
 					blockMask |= grid.GetCandidatesReversal(cell);
 				}
 
@@ -251,7 +251,7 @@ namespace Sudoku.Solving.Manual.Alses
 							goto Label_NextNonblock;
 						}
 
-						takenCellsInNonblockMap[cell] = true;
+						takenCellsInNonblockMap.Add(cell);
 						nonblockMask |= grid.GetCandidatesReversal(cell);
 					}
 
@@ -281,21 +281,21 @@ namespace Sudoku.Solving.Manual.Alses
 						{
 							if (grid.CandidateExists(cell, digit))
 							{
-								tempMap[cell] = true;
+								tempMap.Add(cell);
 							}
 						}
 						foreach (int cell in takenCellsInNonblockMap.Offsets)
 						{
 							if (grid.CandidateExists(cell, digit))
 							{
-								tempMap[cell] = true;
+								tempMap.Add(cell);
 							}
 						}
 						foreach (int cell in interEmptyCells)
 						{
 							if (grid.CandidateExists(cell, digit))
 							{
-								tempMap[cell] = true;
+								tempMap.Add(cell);
 							}
 						}
 

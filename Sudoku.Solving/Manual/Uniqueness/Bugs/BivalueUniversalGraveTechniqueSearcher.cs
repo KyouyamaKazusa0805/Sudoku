@@ -867,7 +867,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 							foreach (int bugCell in bugCells)
 							{
-								commonCells[bugCell] = false;
+								commonCells.Remove(bugCell);
 							}
 
 							if (bugCells.Count > 1 && allBugValues.CountSet() > 1 && commonCells.IsEmpty)

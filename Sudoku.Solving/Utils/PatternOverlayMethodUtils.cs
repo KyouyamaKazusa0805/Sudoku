@@ -42,14 +42,14 @@ namespace Sudoku.Solving.Utils
 			for (int i = 0; i < 9; i++)
 			{
 				int cell = count * 9 + i;
-				template[cell] = true;
+				template.Add(cell);
 
 				if ((new GridMap(cell, false) & template).IsEmpty)
 				{
 					GenerateMapsRecursively(templates, template, count + 1);
 				}
 
-				template[cell] = false;
+				template.Remove(cell);
 			}
 		}
 	}

@@ -74,7 +74,7 @@ namespace Sudoku.Data
 					var series = stackalloc[] { a, b, c, d, e, f, g, h, i };
 					foreach (int z in GridMap.PeerTable[cell])
 					{
-						(*series[z / 9])[z % 9 * 9 + digit] = true;
+						(*series[z / 9]).Add(z % 9 * 9 + digit);
 					}
 				}
 			}
@@ -96,7 +96,7 @@ namespace Sudoku.Data
 			_line7 = GridMap.Empty; _line8 = GridMap.Empty; _line9 = GridMap.Empty;
 			foreach (int offset in offsets)
 			{
-				this[offset] = true;
+				Add(offset);
 			}
 		}
 
@@ -111,7 +111,7 @@ namespace Sudoku.Data
 			_line7 = GridMap.Empty; _line8 = GridMap.Empty; _line9 = GridMap.Empty;
 			foreach (int offset in offsets)
 			{
-				this[offset] = true;
+				Add(offset);
 			}
 		}
 
@@ -394,7 +394,7 @@ namespace Sudoku.Data
 		{
 			foreach (int candidate in candidates)
 			{
-				this[candidate] = true;
+				Add(candidate);
 			}
 		}
 
@@ -412,7 +412,7 @@ namespace Sudoku.Data
 		{
 			foreach (int candidate in candidates)
 			{
-				this[candidate] = false;
+				Remove(candidate);
 			}
 		}
 

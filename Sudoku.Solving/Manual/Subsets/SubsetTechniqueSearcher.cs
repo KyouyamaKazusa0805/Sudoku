@@ -252,7 +252,7 @@ namespace Sudoku.Solving.Manual.Subsets
 				// Set bit 'false' on themselves (do not regard them as eliminations).
 				foreach (int offset in offsets)
 				{
-					tempMap[offset] = false;
+					tempMap.Remove(offset);
 				}
 
 				// Add eliminations by each digit.

@@ -237,7 +237,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							continue;
 						}
 
-						candidatesUsed[nextCandidate] = true;
+						candidatesUsed.Add(nextCandidate);
 						var nextNode = new Node(nextCandidate, NodeType.Candidate);
 						stack.Add(nextNode);
 
@@ -245,7 +245,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							accumulator, grid, candidatesUsed, nextNode, strongInferences,
 							digitDistributions, stack, length - 1);
 
-						candidatesUsed[nextCandidate] = false;
+						candidatesUsed.Remove(nextCandidate);
 						stack.RemoveLastElement();
 					}
 
@@ -265,7 +265,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								continue;
 							}
 
-							candidatesUsed[nextCandidate] = true;
+							candidatesUsed.Add(nextCandidate);
 							var nextNode = new Node(nextCandidate, NodeType.Candidate);
 							stack.Add(nextNode);
 
@@ -273,7 +273,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								accumulator, grid, candidatesUsed, nextNode, strongInferences,
 								digitDistributions, stack, length - 1);
 
-							candidatesUsed[nextCandidate] = false;
+							candidatesUsed.Remove(nextCandidate);
 							stack.RemoveLastElement();
 						}
 					}
@@ -324,7 +324,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							continue;
 						}
 
-						candidatesUsed[nextCandidate] = true;
+						candidatesUsed.Add(nextCandidate);
 						var nextNode = new Node(nextCandidate, NodeType.Candidate);
 						stack.Add(nextNode);
 
@@ -332,7 +332,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							accumulator, grid, candidatesUsed, nextNode, strongInferences,
 							digitDistributions, stack, length - 1);
 
-						candidatesUsed[nextCandidate] = false;
+						candidatesUsed.Remove(nextCandidate);
 						stack.RemoveLastElement();
 					}
 
@@ -412,7 +412,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							continue;
 						}
 
-						map[currentCell] = false;
+						map.Remove(currentCell);
 						int nextCell = map.SetAt(0);
 						int nextCandidate = nextCell * 9 + currentDigit;
 						if (candidatesUsed[nextCandidate])
@@ -420,7 +420,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							continue;
 						}
 
-						candidatesUsed[nextCandidate] = true;
+						candidatesUsed.Add(nextCandidate);
 						var nextNode = new Node(nextCandidate, NodeType.Candidate);
 						stack.Add(nextNode);
 
@@ -432,7 +432,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							accumulator, grid, candidatesUsed, nextNode, strongInferences,
 							digitDistributions, stack, length - 1);
 
-						candidatesUsed[nextCandidate] = false;
+						candidatesUsed.Remove(nextCandidate);
 						stack.RemoveLastElement();
 					}
 
@@ -449,7 +449,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								return;
 							}
 
-							candidatesUsed[nextCandidate] = true;
+							candidatesUsed.Add(nextCandidate);
 							var nextNode = new Node(nextCandidate, NodeType.Candidate);
 							stack.Add(nextNode);
 
@@ -461,7 +461,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								accumulator, grid, candidatesUsed, nextNode, strongInferences,
 								digitDistributions, stack, length - 1);
 
-							candidatesUsed[nextCandidate] = false;
+							candidatesUsed.Remove(nextCandidate);
 							stack.RemoveLastElement();
 						}
 					}
@@ -524,7 +524,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							continue;
 						}
 
-						candidatesUsed[nextCandidate] = true;
+						candidatesUsed.Add(nextCandidate);
 						var nextNode = new Node(nextCandidate, NodeType.Candidate);
 						stack.Add(nextNode);
 
@@ -536,7 +536,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							accumulator, grid, candidatesUsed, nextNode, strongInferences,
 							digitDistributions, stack, length - 1);
 
-						candidatesUsed[nextCandidate] = false;
+						candidatesUsed.Remove(nextCandidate);
 						stack.RemoveLastElement();
 					}
 
@@ -1060,16 +1060,12 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				case NodeType.Candidate:
 				{
-					map[node[0]] = true;
+					map.Add(node[0]);
 					break;
 				}
 				case NodeType.LockedCandidates:
 				{
-					foreach (int cand in node.Candidates)
-					{
-						map[cand] = true;
-					}
-
+					map.AddRange(node.Candidates);
 					break;
 				}
 			}
@@ -1087,16 +1083,12 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				case NodeType.Candidate:
 				{
-					map[node[0]] = false;
+					map.Remove(node[0]);
 					break;
 				}
 				case NodeType.LockedCandidates:
 				{
-					foreach (int cand in node.Candidates)
-					{
-						map[cand] = false;
-					}
-
+					map.RemoveRange(node.Candidates);
 					break;
 				}
 			}

@@ -96,8 +96,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						{
 							int c1 = RegionUtils.GetCellOffset(r1, pos);
 							int c2 = RegionUtils.GetCellOffset(r2, pos);
-							allCellsMap[c1] = true;
-							allCellsMap[c2] = true;
+							allCellsMap.Add(c1);
+							allCellsMap.Add(c2);
 							pairs.Add((c1, c2));
 						}
 
