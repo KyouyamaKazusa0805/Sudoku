@@ -60,46 +60,39 @@ namespace Sudoku.Solving.Manual.Chaining
 		{
 			get
 			{
-				return IsGroupedChain() switch
+				string groupedSuffix() => IsGroupedChain() ? string.Empty : "Grouped ";
+				return IsContinuousNiceLoop switch
 				{
-					true => IsContinuousNiceLoop switch
+					true => true switch
 					{
-						true => "Grouped Continuous Nice Loop", // TODO: Naming.
-						false => "Grouped Alternating Inference Chain"
+						_ when IsXChain() => $"{groupedSuffix()}Fishy Cycle",
+						_ when IsXyChain() => $"{groupedSuffix()}XY-Cycle",
+						_ => $"{groupedSuffix()}Continuous Nice Loop"
 					},
-					false => IsContinuousNiceLoop switch
+					false => Length switch
 					{
-						true => true switch
+						5 => true switch
 						{
-							_ when IsXChain() => "Fishy Cycle",
-							_ when IsXyChain() => "XY-Cycle",
-							_ => "Continuous Nice Loop"
+							_ when IsXyChain() => $"{groupedSuffix()}XY-Wing",
+							_ when IsWWing() => $"{groupedSuffix()}W-Wing",
+							_ when IsMWing() => $"{groupedSuffix()}M-Wing",
+							_ when IsHybridWing() => $"{groupedSuffix()}Hybrid-Wing",
+							_ when IsLocalWing() => $"{groupedSuffix()}Local-Wing",
+							_ when IsSplitWing() => $"{groupedSuffix()}Split-Wing",
+							_ => $"{groupedSuffix()}Purple Cow",
 						},
-						false => Length switch
+						_ => true switch
 						{
-							5 => true switch
+							_ when IsXChain() => $"{groupedSuffix()}X-Chain",
+							_ when !IsHeadTailSame() => Conclusions.Count switch
 							{
-								_ when IsXyChain() => "XY-Wing",
-								_ when IsWWing() => "W-Wing",
-								_ when IsMWing() => "M-Wing",
-								_ when IsHybridWing() => "Hybrid-Wing",
-								_ when IsLocalWing() => "Local-Wing",
-								_ when IsSplitWing() => "Split-Wing",
-								_ => "Other Wing",
+								1 => $"{groupedSuffix()}Discontinuous Nice Loop",
+								2 => $"{groupedSuffix()}XY-X-Chain",
+								_ => throw Throwing.ImpossibleCase
 							},
-							_ => true switch
-							{
-								_ when IsXChain() => "X-Chain",
-								_ when !IsHeadTailSame() => Conclusions.Count switch
-								{
-									1 => "Discontinuous Nice Loop",
-									2 => "XY-X-Chain",
-									_ => throw Throwing.ImpossibleCase
-								},
-								_ when IsXyChain() => "XY-Chain",
-								_ when IsHeadCollisionChain() => "Discontinuous Nice Loop",
-								_ => "Alternating Inference Chain"
-							}
+							_ when IsXyChain() => $"{groupedSuffix()}XY-Chain",
+							_ when IsHeadCollisionChain() => $"{groupedSuffix()}Discontinuous Nice Loop",
+							_ => $"{groupedSuffix()}Alternating Inference Chain"
 						}
 					}
 				};

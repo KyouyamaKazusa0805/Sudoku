@@ -233,7 +233,7 @@ namespace Sudoku.Data
 		/// <returns>The grid.</returns>
 		private Grid? OnParsingSimpleTable()
 		{
-			string? match = ParsingValue.Match(@"([\d\.\+]{9}\r?\n?){8}[\d\.\+]{9}");
+			string? match = ParsingValue.Match(@"([\d\.\+]{9}(\n|\r)){8}[\d\.\+]{9}");
 			if (match is null)
 			{
 				return null;
