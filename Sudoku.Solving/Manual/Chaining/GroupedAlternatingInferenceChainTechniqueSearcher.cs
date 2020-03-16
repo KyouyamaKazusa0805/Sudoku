@@ -214,8 +214,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				return;
 			}
 
-			bool isFullInMap(Node nextNode) =>
-				(nextNode.CandidatesMap | candidatesUsed) == candidatesUsed;
+			bool isFullInMap(Node next) => (next.CandidatesMap | candidatesUsed) == candidatesUsed;
 			switch (currentNode.NodeType)
 			{
 				case NodeType.Candidate:
@@ -684,6 +683,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				{
 					weakInferences.Add(new Inference(stack[i], true, stack[i + 1], false));
 				}
+				weakInferences.Add(new Inference(stack[LastIndex], true, stack[0], false));
 
 				// Step 2: Check elimination sets.
 				var eliminationSets = new List<FullGridMap>(
@@ -909,21 +909,42 @@ namespace Sudoku.Solving.Manual.Chaining
 			var endNode = stack[LastIndex];
 			switch ((startNode.NodeType, endNode.NodeType))
 			{
-				case (NodeType.Candidate, _):
-				case (NodeType.LockedCandidates, _):
+				case (NodeType.Candidate, NodeType.Candidate):
 				{
+					if (startNode == endNode)
+					{
+						return false;
+					}
+
 					int head = startNode[0], tail = endNode[0];
 					int headCell = head / 9, headDigit = head % 9;
 					int tailCell = tail / 9, tailDigit = tail % 9;
-					if (headCell == tailCell)
+					if (headDigit != tailDigit)
 					{
-						return headDigit != tailDigit;
+						return false;
 					}
 
 					// If the cell are not same, we will check the cells are in a same region
 					// and the digits are same.
-					return headDigit == tailDigit
-						&& new GridMap(new[] { headCell, tailCell }).AllSetsAreInOneRegion(out _);
+					return new GridMap(new[] { headCell, tailCell }).AllSetsAreInOneRegion(out _);
+				}
+				case (NodeType.Candidate, NodeType.LockedCandidates):
+				case (NodeType.LockedCandidates, NodeType.Candidate):
+				case (NodeType.LockedCandidates, NodeType.LockedCandidates):
+				{
+					if (startNode == endNode)
+					{
+						return false;
+					}
+
+					int headDigit = startNode[0] % 9, tailDigit = endNode[0] % 9;
+					if (headDigit != tailDigit)
+					{
+						return false;
+					}
+
+					var resultMap = (startNode.CandidatesMap & endNode.CandidatesMap).Reduct(headDigit);
+					return resultMap.IsNotEmpty && resultMap.AllSetsAreInOneRegion(out _);
 				}
 				default:
 				{
@@ -1011,32 +1032,77 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			if (_searchLcNodes)
 			{
+				var intersectionMaps = (GridMap[,])Array.CreateInstance(typeof(GridMap), new[] { 18, 3 }, new[] { 9, 0 });
+				for (int region = 9; region < 27; region++)
+				{
+					int[] cells = GridMap.GetCellsIn(region);
+					int[][] z = new int[3][] { cells[0..3], cells[3..6], cells[6..9] };
+
+					for (int i = 0; i < 3; i++)
+					{
+						intersectionMaps[region, i] = new GridMap(z[i]);
+					}
+				}
+
 				// Search for each digit and each regions.
+				var tempMaps = (Span<GridMap>)stackalloc GridMap[3];
 				for (int digit = 0; digit < 9; digit++)
 				{
 					for (int region = 9; region < 27; region++)
 					{
 						var map = digitDistributions[digit] & _regionMaps[region];
-						int[] coveredBlocks = (
-							from coveredRegion in map.CoveredRegions
-							where coveredRegion < 9
-							select coveredRegion).ToArray();
-						if (coveredBlocks.Length != 2)
+						for (int i = 0; i < 3; i++)
+						{
+							tempMaps[i] = map & intersectionMaps[region, i];
+						}
+
+						var ptr1 = (GridMap)default;
+						var ptr2 = (GridMap)default;
+						int count = 0;
+						for (int i = 0; i < 3; i++)
+						{
+							if (tempMaps[i].IsNotEmpty)
+							{
+								count++;
+								switch (count)
+								{
+									case 1:
+									{
+										ptr1 = tempMaps[i];
+										break;
+									}
+									case 2:
+									{
+										ptr2 = tempMaps[i];
+										break;
+									}
+									default:
+									{
+										goto Label_Judge;
+									}
+								}
+							}
+						}
+
+					Label_Judge:
+						if (count != 2)
 						{
 							continue;
 						}
 
-						var startCandidates = (map & _regionMaps[coveredBlocks[0]]).Offsets;
-						var endCandidates = (map & _regionMaps[coveredBlocks[1]]).Offsets;
+						var start = (map & ptr1).Offsets;
+						var end = (map & ptr2).Offsets;
 						result.Add(
 							new Inference(
 								new Node(
-									startCandidates, startCandidates.HasOnlyOneElement()
+									from cell in start select cell * 9 + digit,
+									start.HasOnlyOneElement()
 										? NodeType.Candidate
 										: NodeType.LockedCandidates),
 								false,
 								new Node(
-									endCandidates, endCandidates.HasOnlyOneElement()
+									from cell in end select cell * 9 + digit,
+									end.HasOnlyOneElement()
 										? NodeType.Candidate
 										: NodeType.LockedCandidates),
 								true));

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data.Extensions;
 
@@ -54,11 +53,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates all candidates used.
 		/// </summary>
-		public IEnumerable<int> Candidates
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => CandidatesMap.Offsets;
-		}
+		public IEnumerable<int> Candidates => CandidatesMap.Offsets;
 
 
 		/// <summary>
@@ -66,22 +61,14 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="index">The index.</param>
 		/// <returns>The candidate offset.</returns>
-		public int this[int index]
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => CandidatesMap.SetAt(index);
-		}
+		public int this[int index] => CandidatesMap.SetAt(index);
 
 		/// <summary>
 		/// Get a candidate offset in the specified index.
 		/// </summary>
 		/// <param name="index">The index.</param>
 		/// <returns>The candidate offset.</returns>
-		public int this[Index index]
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => CandidatesMap.SetAt(index);
-		}
+		public int this[Index index] => CandidatesMap.SetAt(index);
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
@@ -133,10 +120,7 @@ namespace Sudoku.Data
 			const string separator = ", ";
 			var sb = new StringBuilder();
 			foreach (var candidateGroupByDigit in
-				from candidate in
-					from cand in CandidatesMap.Offsets
-					orderby cand
-					select cand
+				from candidate in from cand in CandidatesMap.Offsets orderby cand select cand
 				group candidate by candidate % 9)
 			{
 				int digit = candidateGroupByDigit.Key;
@@ -167,8 +151,7 @@ namespace Sudoku.Data
 				sb.Append($"({digit + 1}){separator}");
 			}
 
-			sb.RemoveFromEnd(separator.Length);
-			return sb.ToString();
+			return sb.RemoveFromEnd(separator.Length).ToString();
 		}
 
 

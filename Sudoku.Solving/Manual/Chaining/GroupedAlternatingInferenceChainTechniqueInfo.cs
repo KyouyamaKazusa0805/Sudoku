@@ -60,7 +60,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		{
 			get
 			{
-				string groupedSuffix() => IsGroupedChain() ? string.Empty : "Grouped ";
+				string groupedSuffix() => IsGroupedChain() ? "Grouped " : string.Empty;
 				return IsContinuousNiceLoop switch
 				{
 					true => true switch
@@ -120,8 +120,20 @@ namespace Sudoku.Solving.Manual.Chaining
 					"XY-X-Chain" => 4.9M,
 					"Discontinuous Nice Loop" => 4.9M,
 					"Alternating Inference Chain" => 4.9M,
+					"Grouped W-Wing" => 4.6M,
+					"Grouped M-Wing" => 4.7M,
+					"Grouped Local-Wing" => 4.9M,
+					"Grouped Split-Wing" => 4.9M,
+					"Grouped Hybrid-Wing" => 4.9M,
+					"Grouped X-Chain" => 4.7M,
+					"Grouped Fishy Cycle" => 4.7M,
+					"Grouped XY-X-Chain" => 5.1M,
+					"Grouped Discontinuous Nice Loop" => 5.1M,
 					"Grouped Alternating Inference Chain" => 5M,
 					"Grouped Continuous Nice Loop" => 5M,
+					"Grouped XY-Wing" => throw Throwing.ImpossibleCase,
+					"Grouped XY-Chain" => throw Throwing.ImpossibleCase,
+					"Grouped XY-Cycle" => throw Throwing.ImpossibleCase,
 					_ => 4.9M
 				} + ChainingDifficultyRatingUtils.GetExtraDifficultyByLength(Length);
 			}
