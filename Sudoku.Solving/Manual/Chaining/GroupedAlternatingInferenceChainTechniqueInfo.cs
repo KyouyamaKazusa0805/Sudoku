@@ -131,9 +131,9 @@ namespace Sudoku.Solving.Manual.Chaining
 					"Grouped Discontinuous Nice Loop" => 5.1M,
 					"Grouped Alternating Inference Chain" => 5M,
 					"Grouped Continuous Nice Loop" => 5M,
-					"Grouped XY-Wing" => throw Throwing.ImpossibleCase,
-					"Grouped XY-Chain" => throw Throwing.ImpossibleCase,
-					"Grouped XY-Cycle" => throw Throwing.ImpossibleCase,
+					"Grouped XY-Wing" => 4.4M,
+					"Grouped XY-Chain" => 5M,
+					"Grouped XY-Cycle" => 4.9M,
 					_ => 4.9M
 				} + ChainingDifficultyRatingUtils.GetExtraDifficultyByLength(Length);
 			}

@@ -53,6 +53,22 @@ namespace Sudoku.Solving.Manual.Chaining
 		};
 
 		/// <summary>
+		/// The intersection table.
+		/// </summary>
+		private static readonly int[][] IntersectionTable = new int[9][]
+		{
+			new[] { 9, 10, 11, 18, 19, 20 },
+			new[] { 9, 10, 11, 21, 22, 23 },
+			new[] { 9, 10, 11, 24, 25, 26 },
+			new[] { 12, 13, 14, 18, 19, 20 },
+			new[] { 12, 13, 14, 21, 22, 23 },
+			new[] { 12, 13, 14, 24, 25, 26 },
+			new[] { 15, 16, 17, 18, 19, 20 },
+			new[] { 15, 16, 17, 21, 22, 23 },
+			new[] { 15, 16, 17, 24, 25, 26 }
+		};
+
+		/// <summary>
 		/// Indicates the last index of the collection.
 		/// </summary>
 		private static readonly Index LastIndex = ^1;
@@ -469,10 +485,15 @@ namespace Sudoku.Solving.Manual.Chaining
 					{
 						foreach (var nextNode in GetLcNodes(digitDistributions, currentCell, currentDigit))
 						{
+							if ((nextNode.CandidatesMap | candidatesUsed) == candidatesUsed)
+							{
+								continue;
+							}
+
 							var tempMap = (nextNode.CandidatesMap | currentNode.CandidatesMap)
 								.Reduct(currentDigit);
-							if ((tempMap - digitDistributions[currentDigit]).IsNotEmpty
-									|| nextNode.FullCovered(currentNode))
+							if (((digitDistributions[currentDigit] & _regionMaps[tempMap.CoveredRegions.First()]) - tempMap).IsNotEmpty
+								|| nextNode.FullCovered(currentNode))
 							{
 								continue;
 							}
@@ -508,7 +529,8 @@ namespace Sudoku.Solving.Manual.Chaining
 
 					// Search for same regions.
 					foreach (int region in
-						new GridMap(currentCells, GridMap.InitializeOption.ProcessPeersWithoutItself).CoveredRegions)
+						new GridMap(currentCells, GridMap.InitializeOption.ProcessPeersWithoutItself)
+							.CoveredRegions)
 					{
 						var map = grid.GetDigitAppearingCells(currentDigit, region);
 						if (map.Count != 1)
@@ -553,9 +575,14 @@ namespace Sudoku.Solving.Manual.Chaining
 					{
 						foreach (var nextNode in GetLcNodes(digitDistributions, currentCells, currentDigit))
 						{
+							if ((nextNode.CandidatesMap | candidatesUsed) == candidatesUsed)
+							{
+								continue;
+							}
+
 							var tempMap = (nextNode.CandidatesMap | currentNode.CandidatesMap)
 								.Reduct(currentDigit);
-							if ((tempMap - digitDistributions[currentDigit]).IsNotEmpty
+							if (((digitDistributions[currentDigit] & _regionMaps[tempMap.CoveredRegions.First()]) - tempMap).IsNotEmpty
 								|| nextNode == currentNode)
 							{
 								continue;
@@ -597,65 +624,55 @@ namespace Sudoku.Solving.Manual.Chaining
 			GridMap[] digitDistributions, int currentCell, int currentDigit)
 		{
 			var result = new List<Node>();
-			var (r, c, b) = CellUtils.GetRegion(currentCell);
-			foreach (int nonblock in stackalloc[] { r + 9, c + 18 })
+			int b = CellUtils.GetRegion(currentCell)._block;
+			foreach (int region in IntersectionTable[b])
 			{
-				var tempMap = _regionMaps[nonblock] & digitDistributions[currentDigit];
-				if (tempMap.IsEmpty)
+				var map = _regionMaps[b] & _regionMaps[region] & digitDistributions[currentDigit];
+				if (map.Count < 2)
 				{
-					// No candidates left in this region.
 					continue;
 				}
 
-				var anotherMap = tempMap & _regionMaps[b];
-				if (anotherMap.IsEmpty || anotherMap.Count < 2)
-				{
-					// No candidates in this region
-					// or the node is not a locked candidates node.
-					continue;
-				}
-
-				// Group node found.
 				result.Add(
 					new Node(
-						from cell in anotherMap.Offsets select cell * 9 + currentDigit,
+						from cell in map.Offsets select cell * 9 + currentDigit,
 						NodeType.LockedCandidates));
 			}
 
 			return result;
 		}
 
+		/// <summary>
+		/// Get all locked candidates nodes at current cells and digit.
+		/// </summary>
+		/// <param name="digitDistributions">The digit distributions.</param>
+		/// <param name="currentCells">The current cells.</param>
+		/// <param name="currentDigit">The current digit.</param>
+		/// <returns>All locked candidates nodes.</returns>
 		private IEnumerable<Node> GetLcNodes(
 			GridMap[] digitDistributions, IEnumerable<int> currentCells, int currentDigit)
 		{
 			var result = new List<Node>();
-			foreach (int nonblock in from region in new GridMap(currentCells).CoveredRegions
-									 where region >= 9
-									 select region)
+			int[] coveredRegions = new GridMap(currentCells).CoveredRegions.ToArray();
+			int b = coveredRegions[0];
+			foreach (int region in IntersectionTable[b])
 			{
-				var tempMap = _regionMaps[nonblock] & digitDistributions[currentDigit];
-				if (tempMap.IsEmpty)
+				if (region == coveredRegions[1])
 				{
-					// No candidates left in this region.
+					// Same line.
 					continue;
 				}
 
-				foreach (int block in BlockTable[nonblock])
+				var map = _regionMaps[b] & _regionMaps[region] & digitDistributions[currentDigit];
+				if (map.Count < 2)
 				{
-					var anotherMap = tempMap & _regionMaps[block];
-					if (anotherMap.IsEmpty || anotherMap.Count < 2)
-					{
-						// No candidates in this region
-						// or the node is not a locked candidates node.
-						continue;
-					}
-
-					// Group node found.
-					result.Add(
-						new Node(
-							from cell in anotherMap.Offsets select cell * 9 + currentDigit,
-							NodeType.LockedCandidates));
+					continue;
 				}
+
+				result.Add(
+					new Node(
+						from cell in map.Offsets select cell * 9 + currentDigit,
+						NodeType.LockedCandidates));
 			}
 
 			return result;
@@ -1032,85 +1049,224 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			if (_searchLcNodes)
 			{
-				var intersectionMaps = (GridMap[,])Array.CreateInstance(typeof(GridMap), new[] { 18, 3 }, new[] { 9, 0 });
-				for (int region = 9; region < 27; region++)
-				{
-					int[] cells = GridMap.GetCellsIn(region);
-					int[][] z = new int[3][] { cells[0..3], cells[3..6], cells[6..9] };
+				RecordLineLcStrongInferences(result, digitDistributions);
+				RecordBlockLcStrongInferences(result, digitDistributions);
+			}
 
-					for (int i = 0; i < 3; i++)
+			return result;
+		}
+
+		/// <summary>
+		/// To record all strong inferences in a block.
+		/// </summary>
+		/// <param name="result">The result accumulator.</param>
+		/// <param name="digitDistributions">The digit distributions.</param>
+		private void RecordBlockLcStrongInferences(IList<Inference> result, GridMap[] digitDistributions)
+		{
+			var intersectionMaps = new GridMap[9][];
+			for (int region = 0; region < 9; region++)
+			{
+				int[] cells = GridMap.GetCellsIn(region);
+				int[][] y = new int[3][] { cells[0..3], cells[3..6], cells[6..9] };
+				int[][] z = new int[3][]
+				{
+					new[] { cells[0], cells[3], cells[6] },
+					new[] { cells[1], cells[4], cells[7] },
+					new[] { cells[2], cells[5], cells[8] }
+				};
+
+				for (int i = 0; i < 3; i++)
+				{
+					intersectionMaps[region] = new GridMap[6];
+					int j = 0;
+					for (; j < 3; j++)
 					{
-						intersectionMaps[region, i] = new GridMap(z[i]);
+						intersectionMaps[region][j] = new GridMap(y[j]);
 					}
-				}
-
-				// Search for each digit and each regions.
-				var tempMaps = (Span<GridMap>)stackalloc GridMap[3];
-				for (int digit = 0; digit < 9; digit++)
-				{
-					for (int region = 9; region < 27; region++)
+					for (; j < 6; j++)
 					{
-						var map = digitDistributions[digit] & _regionMaps[region];
-						for (int i = 0; i < 3; i++)
-						{
-							tempMaps[i] = map & intersectionMaps[region, i];
-						}
-
-						var ptr1 = (GridMap)default;
-						var ptr2 = (GridMap)default;
-						int count = 0;
-						for (int i = 0; i < 3; i++)
-						{
-							if (tempMaps[i].IsNotEmpty)
-							{
-								count++;
-								switch (count)
-								{
-									case 1:
-									{
-										ptr1 = tempMaps[i];
-										break;
-									}
-									case 2:
-									{
-										ptr2 = tempMaps[i];
-										break;
-									}
-									default:
-									{
-										goto Label_Judge;
-									}
-								}
-							}
-						}
-
-					Label_Judge:
-						if (count != 2)
-						{
-							continue;
-						}
-
-						var start = (map & ptr1).Offsets;
-						var end = (map & ptr2).Offsets;
-						result.Add(
-							new Inference(
-								new Node(
-									from cell in start select cell * 9 + digit,
-									start.HasOnlyOneElement()
-										? NodeType.Candidate
-										: NodeType.LockedCandidates),
-								false,
-								new Node(
-									from cell in end select cell * 9 + digit,
-									end.HasOnlyOneElement()
-										? NodeType.Candidate
-										: NodeType.LockedCandidates),
-								true));
+						intersectionMaps[region][j - 3] = new GridMap(z[j - 3]);
 					}
 				}
 			}
 
-			return result;
+			// Search for each digit and each regions.
+			var tempMaps = (Span<GridMap>)stackalloc GridMap[6];
+			for (int digit = 0; digit < 9; digit++)
+			{
+				if (digitDistributions[digit].IsEmpty)
+				{
+					continue;
+				}
+
+				for (int region = 0; region < 9; region++)
+				{
+					var map = digitDistributions[digit] & _regionMaps[region];
+					if (map.IsEmpty)
+					{
+						continue;
+					}
+
+					for (int i = 0; i < 6; i++)
+					{
+						tempMaps[i] = map & intersectionMaps[region][i];
+					}
+
+					var ptr1 = (GridMap)default;
+					var ptr2 = (GridMap)default;
+					int count = 0;
+					for (int i = 0; i < 6; i++)
+					{
+						if (tempMaps[i].IsEmpty)
+						{
+							continue;
+						}
+
+						count++;
+						switch (count)
+						{
+							case 1:
+							{
+								ptr1 = tempMaps[i];
+								break;
+							}
+							case 2:
+							{
+								ptr2 = tempMaps[i];
+								break;
+							}
+							default:
+							{
+								goto Label_Judge;
+							}
+						}
+					}
+
+				Label_Judge:
+					if (count > 2)
+					{
+						continue;
+					}
+
+					var start = (map & ptr1).Offsets;
+					var end = (map & ptr2).Offsets;
+					bool s = start.HasOnlyOneElement(), e = end.HasOnlyOneElement();
+					if (!start.Any() || !end.Any() || s && e)
+					{
+						continue;
+					}
+
+					result.Add(
+						new Inference(
+							new Node(
+								from cell in start select cell * 9 + digit,
+								s ? NodeType.Candidate : NodeType.LockedCandidates),
+							false,
+							new Node(
+								from cell in end select cell * 9 + digit,
+								e ? NodeType.Candidate : NodeType.LockedCandidates),
+							true));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To record all strong inferences in a line.
+		/// </summary>
+		/// <param name="result">The result accumulator.</param>
+		/// <param name="digitDistributions">The digit distributions.</param>
+		private void RecordLineLcStrongInferences(IList<Inference> result, GridMap[] digitDistributions)
+		{
+			var intersectionMaps = (GridMap[,])Array.CreateInstance(typeof(GridMap), new[] { 18, 3 }, new[] { 9, 0 });
+			for (int region = 9; region < 27; region++)
+			{
+				int[] cells = GridMap.GetCellsIn(region);
+				int[][] z = new int[3][] { cells[0..3], cells[3..6], cells[6..9] };
+
+				for (int i = 0; i < 3; i++)
+				{
+					intersectionMaps[region, i] = new GridMap(z[i]);
+				}
+			}
+
+			// Search for each digit and each regions.
+			var tempMaps = (Span<GridMap>)stackalloc GridMap[3];
+			for (int digit = 0; digit < 9; digit++)
+			{
+				if (digitDistributions[digit].IsEmpty)
+				{
+					continue;
+				}
+
+				for (int region = 9; region < 27; region++)
+				{
+					var map = digitDistributions[digit] & _regionMaps[region];
+					if (map.IsEmpty)
+					{
+						continue;
+					}
+
+					for (int i = 0; i < 3; i++)
+					{
+						tempMaps[i] = map & intersectionMaps[region, i];
+					}
+
+					var ptr1 = (GridMap)default;
+					var ptr2 = (GridMap)default;
+					int count = 0;
+					for (int i = 0; i < 3; i++)
+					{
+						if (tempMaps[i].IsEmpty)
+						{
+							continue;
+						}
+
+						count++;
+						switch (count)
+						{
+							case 1:
+							{
+								ptr1 = tempMaps[i];
+								break;
+							}
+							case 2:
+							{
+								ptr2 = tempMaps[i];
+								break;
+							}
+							default:
+							{
+								goto Label_Judge;
+							}
+						}
+					}
+
+				Label_Judge:
+					if (count > 2)
+					{
+						continue;
+					}
+
+					var start = (map & ptr1).Offsets;
+					var end = (map & ptr2).Offsets;
+					bool s = start.HasOnlyOneElement(), e = end.HasOnlyOneElement();
+					if (!start.Any() || !end.Any() || s && e)
+					{
+						continue;
+					}
+
+					result.Add(
+						new Inference(
+							new Node(
+								from cell in start select cell * 9 + digit,
+								s ? NodeType.Candidate : NodeType.LockedCandidates),
+							false,
+							new Node(
+								from cell in end select cell * 9 + digit,
+								e ? NodeType.Candidate : NodeType.LockedCandidates),
+							true));
+				}
+			}
 		}
 
 

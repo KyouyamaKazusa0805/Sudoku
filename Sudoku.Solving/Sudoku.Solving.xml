@@ -1667,6 +1667,11 @@
             The table of blocks.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.IntersectionTable">
+            <summary>
+            The intersection table.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.LastIndex">
             <summary>
             Indicates the last index of the collection.
@@ -1792,6 +1797,15 @@
             <param name="currentDigit">The current digit.</param>
             <returns>All locked candidates nodes.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.GetLcNodes(Sudoku.Data.GridMap[],System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+            <summary>
+            Get all locked candidates nodes at current cells and digit.
+            </summary>
+            <param name="digitDistributions">The digit distributions.</param>
+            <param name="currentCells">The current cells.</param>
+            <param name="currentDigit">The current digit.</param>
+            <returns>All locked candidates nodes.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Collections.Generic.IList{Sudoku.Data.Node})">
             <summary>
             Check the elimination, and save the chain into the accumulator
@@ -1837,6 +1851,20 @@
             <param name="grid">The grid.</param>
             <param name="digitDistributions">All digits' distributions.</param>
             <returns>All strong relations.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.RecordBlockLcStrongInferences(System.Collections.Generic.IList{Sudoku.Data.Inference},Sudoku.Data.GridMap[])">
+            <summary>
+            To record all strong inferences in a block.
+            </summary>
+            <param name="result">The result accumulator.</param>
+            <param name="digitDistributions">The digit distributions.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.RecordLineLcStrongInferences(System.Collections.Generic.IList{Sudoku.Data.Inference},Sudoku.Data.GridMap[])">
+            <summary>
+            To record all strong inferences in a line.
+            </summary>
+            <param name="result">The result accumulator.</param>
+            <param name="digitDistributions">The digit distributions.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAlternatingInferenceChainTechniqueSearcher.AddNode(Sudoku.Data.Node,Sudoku.Data.FullGridMap@)">
             <summary>
