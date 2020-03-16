@@ -35,12 +35,16 @@ namespace Sudoku.Data
 
 
 		/// <summary>
+		/// <para>
 		/// Indicates the internal two <see cref="long"/> values,
-		/// which represents 81 bits.
+		/// which represents 81 bits. <see cref="_high"/> represent the higher
+		/// 40 bits and <see cref="_low"/> represents the lower 41 bits.
+		/// </para>
+		/// <para>
+		/// This data structure is mutable because of these two fields (these
+		/// two fields are not <see langword="readonly"/>, but Roslyn lies).
+		/// </para>
 		/// </summary>
-		/// <remarks>
-		/// These two fields does not <see langword="readonly"/>! Roslyn lies!
-		/// </remarks>
 		[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
 		private long _high, _low;
 
@@ -93,27 +97,18 @@ namespace Sudoku.Data
 		/// Same behavior of the initializer as <see cref="GridMap(IEnumerable{int})"/>.
 		/// </summary>
 		/// <param name="offsets">All offsets.</param>
+		/// <remarks>
+		/// This initializer is defined after another initializer with
+		/// <see cref="ReadOnlySpan{T}"/> had defined. Although this initializer
+		/// does not initialize something (use the other one instead),
+		/// while initializing with the type <see cref="int"/>[], the complier
+		/// gives me an error without this initializer (ambiguity of two
+		/// initializers). However, unfortunately, <see cref="ReadOnlySpan{T}"/>
+		/// does not implemented the interface <see cref="IEnumerable{T}"/>...
+		/// </remarks>
 		/// <seealso cref="GridMap(IEnumerable{int})"/>
 		public GridMap(int[] offsets) : this((IEnumerable<int>)offsets)
 		{
-		}
-
-		/// <summary>
-		/// Initializes an instance with a series of cell offsets.
-		/// </summary>
-		/// <param name="offsets">cell offsets.</param>
-		/// <remarks>
-		/// Note that all offsets will be set <see langword="true"/>, but their own peers
-		/// will not be set <see langword="true"/>.
-		/// </remarks>
-		public GridMap(ReadOnlySpan<int> offsets)
-		{
-			(_low, _high, Count) = (0, 0, 0);
-			foreach (int offset in offsets)
-			{
-				(offset / Shifting == 0 ? ref _low : ref _high) |= 1L << offset % Shifting;
-				Count++;
-			}
 		}
 
 		/// <summary>
@@ -131,6 +126,124 @@ namespace Sudoku.Data
 			{
 				(offset / Shifting == 0 ? ref _low : ref _high) |= 1L << offset % Shifting;
 				Count++;
+			}
+		}
+
+		/// <summary>
+		/// Initializes an instance with the specified cell offset
+		/// with an initialize option.
+		/// </summary>
+		/// <param name="offset">The cell offset.</param>
+		/// <param name="initializeOption">
+		/// Indicates the behavior of the initialization.
+		/// </param>
+		/// <exception cref="ArgumentException">
+		/// Throws when the specified initialize option is invalid.
+		/// </exception>
+		public GridMap(int offset, InitializeOption initializeOption)
+		{
+			(_low, _high, Count) = (0, 0, 0);
+			switch (initializeOption)
+			{
+				case InitializeOption.Ordinary:
+				{
+					this[offset] = true;
+
+					break;
+				}
+				case InitializeOption.ProcessPeersAlso:
+				case InitializeOption.ProcessPeersWithoutItself:
+				{
+					foreach (int peer in PeerTable[offset])
+					{
+						this[peer] = true;
+					}
+
+					if (initializeOption == InitializeOption.ProcessPeersAlso)
+					{
+						this[offset] = true;
+					}
+
+					break;
+				}
+				default:
+				{
+					throw new ArgumentException("The specified option does not exist.");
+				}
+			}
+		}
+
+		/// <summary>
+		/// Initializes an instance with cell offsets with an initialize option.
+		/// </summary>
+		/// <param name="offsets">The offsets to be processed.</param>
+		/// <param name="initializeOption">
+		/// Indicates the behavior of the initialization.
+		/// </param>
+		/// <remarks>
+		/// This method is same behavior of <see cref="GridMap(IEnumerable{int}, InitializeOption)"/>
+		/// </remarks>
+		/// <seealso cref="GridMap(IEnumerable{int}, InitializeOption)"/>
+		public GridMap(int[] offsets, InitializeOption initializeOption)
+			: this((IEnumerable<int>)offsets, initializeOption)
+		{
+		}
+
+		/// <summary>
+		/// Initializes an instance with cell offsets with an initialize option.
+		/// </summary>
+		/// <param name="offsets">The offsets to be processed.</param>
+		/// <param name="initializeOption">
+		/// Indicates the behavior of the initialization.
+		/// </param>
+		/// <exception cref="ArgumentException">
+		/// Throws when the specified initialize option is invalid.
+		/// </exception>
+		public GridMap(IEnumerable<int> offsets, InitializeOption initializeOption)
+		{
+			(_low, _high, Count) = (0, 0, 0);
+			switch (initializeOption)
+			{
+				case InitializeOption.Ordinary:
+				{
+					foreach (int offset in offsets)
+					{
+						this[offset] = true;
+					}
+
+					break;
+				}
+				case InitializeOption.ProcessPeersAlso:
+				case InitializeOption.ProcessPeersWithoutItself:
+				{
+					static void process(ref long low, ref long high, int peer) =>
+						(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
+
+					int i = 0;
+					foreach (int offset in offsets)
+					{
+						long low = 0, high = 0;
+						foreach (int peer in PeerTable[offset])
+						{
+							process(ref low, ref high, peer);
+						}
+
+						if (initializeOption == InitializeOption.ProcessPeersAlso)
+						{
+							process(ref low, ref high, offset);
+						}
+
+						(_low, _high) = i++ == 0 ? (low, high) : (_low & low, _high & high);
+					}
+
+					Count = _low.CountSet() + _high.CountSet();
+
+					break;
+				}
+				default:
+				{
+					throw new ArgumentException("The specified option does not exist.");
+				}
 			}
 		}
 
@@ -528,6 +641,7 @@ namespace Sudoku.Data
 		/// <param name="cellList">The cell list.</param>
 		/// <returns>An intersection map.</returns>
 		/// <seealso cref="GridMap(IEnumerable{int})"/>
+		[Obsolete("Please use 'GridMap..ctor(IEnumerable`1(int), InitializeOption)' instead.")]
 		public static GridMap CreateInstance(IEnumerable<int> cellList)
 		{
 			var result = default(GridMap);
@@ -559,6 +673,7 @@ namespace Sudoku.Data
 		/// <returns>An intersection map.</returns>
 		/// <seealso cref="GridMap(IEnumerable{int})"/>
 		/// <seealso cref="GridMap(int, bool)"/>
+		[Obsolete("Please use 'GridMap..ctor(IEnumerable`1(int), InitializeOption)' instead.")]
 		public static GridMap CreateInstance(IEnumerable<int> cellList, bool setItself)
 		{
 			var result = default(GridMap);

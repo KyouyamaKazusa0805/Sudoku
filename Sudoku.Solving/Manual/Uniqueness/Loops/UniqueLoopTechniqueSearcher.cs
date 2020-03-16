@@ -122,7 +122,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 								// Record all eliminations.
 								var conclusions = new List<Conclusion>();
-								var elimMap = GridMap.CreateInstance(extraCells, false);
+								var elimMap = new GridMap(extraCells, GridMap.InitializeOption.ProcessPeersWithoutItself);
 								foreach (int elimCell in elimMap.Offsets)
 								{
 									if (grid.CandidateExists(elimCell, extraDigit))
@@ -238,7 +238,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		{
 			// Record all eliminations.
 			var conclusions = new List<Conclusion>();
-			var elimMap = GridMap.CreateInstance(extraCells, false);
+			var elimMap = new GridMap(extraCells, GridMap.InitializeOption.ProcessPeersWithoutItself);
 
 			foreach (int cell in elimMap.Offsets)
 			{

@@ -1595,21 +1595,29 @@
         </member>
         <member name="F:Sudoku.Data.GridMap._high">
             <summary>
+            <para>
             Indicates the internal two <see cref="T:System.Int64"/> values,
-            which represents 81 bits.
+            which represents 81 bits. <see cref="F:Sudoku.Data.GridMap._high"/> represent the higher
+            40 bits and <see cref="F:Sudoku.Data.GridMap._low"/> represents the lower 41 bits.
+            </para>
+            <para>
+            This data structure is mutable because of these two fields (these
+            two fields are not <see langword="readonly"/>, but Roslyn lies).
+            </para>
             </summary>
-            <remarks>
-            These two fields does not <see langword="readonly"/>! Roslyn lies!
-            </remarks>
         </member>
         <member name="F:Sudoku.Data.GridMap._low">
             <summary>
+            <para>
             Indicates the internal two <see cref="T:System.Int64"/> values,
-            which represents 81 bits.
+            which represents 81 bits. <see cref="F:Sudoku.Data.GridMap._high"/> represent the higher
+            40 bits and <see cref="F:Sudoku.Data.GridMap._low"/> represents the lower 41 bits.
+            </para>
+            <para>
+            This data structure is mutable because of these two fields (these
+            two fields are not <see langword="readonly"/>, but Roslyn lies).
+            </para>
             </summary>
-            <remarks>
-            These two fields does not <see langword="readonly"/>! Roslyn lies!
-            </remarks>
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32)">
             <summary>
@@ -1655,17 +1663,16 @@
             Same behavior of the initializer as <see cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>.
             </summary>
             <param name="offsets">All offsets.</param>
-            <seealso cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>
-        </member>
-        <member name="M:Sudoku.Data.GridMap.#ctor(System.ReadOnlySpan{System.Int32})">
-            <summary>
-            Initializes an instance with a series of cell offsets.
-            </summary>
-            <param name="offsets">cell offsets.</param>
             <remarks>
-            Note that all offsets will be set <see langword="true"/>, but their own peers
-            will not be set <see langword="true"/>.
+            This initializer is defined after another initializer with
+            <see cref="T:System.ReadOnlySpan`1"/> had defined. Although this initializer
+            does not initialize something (use the other one instead),
+            while initializing with the type <see cref="T:System.Int32"/>[], the complier
+            gives me an error without this initializer (ambiguity of two
+            initializers). However, unfortunately, <see cref="T:System.ReadOnlySpan`1"/>
+            does not implemented the interface <see cref="T:System.Collections.Generic.IEnumerable`1"/>...
             </remarks>
+            <seealso cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
@@ -1676,6 +1683,38 @@
             Note that all offsets will be set <see langword="true"/>, but their own peers
             will not be set <see langword="true"/>.
             </remarks>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32,Sudoku.Data.GridMap.InitializeOption)">
+            <summary>
+            Initializes an instance with the specified cell offset
+            with an initialize option.
+            </summary>
+            <param name="offset">The cell offset.</param>
+            <param name="initializeOption">
+            Indicates the behavior of the initialization.
+            </param>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32[],Sudoku.Data.GridMap.InitializeOption)">
+            <summary>
+            Initializes an instance with cell offsets with an initialize option.
+            </summary>
+            <param name="offsets">The offsets to be processed.</param>
+            <param name="initializeOption">
+            Indicates the behavior of the initialization.
+            </param>
+            <remarks>
+            This method is same behavior of <see cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap.InitializeOption)"/>
+            </remarks>
+            <seealso cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap.InitializeOption)"/>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap.InitializeOption)">
+            <summary>
+            Initializes an instance with cell offsets with an initialize option.
+            </summary>
+            <param name="offsets">The offsets to be processed.</param>
+            <param name="initializeOption">
+            Indicates the behavior of the initialization.
+            </param>
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Int64,System.Int64)">
             <summary>
@@ -1946,6 +1985,30 @@
             <param name="right">The right instance.</param>
             <returns>The result.</returns>
             <seealso cref="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap,Sudoku.Data.GridMap)"/>
+        </member>
+        <member name="T:Sudoku.Data.GridMap.InitializeOption">
+            <summary>
+            Provides an option for initialization of the base type <see cref="T:Sudoku.Data.GridMap"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridMap.InitializeOption.Ordinary">
+            <summary>
+            Indicates each candidate will be processed with the normal case.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridMap.InitializeOption.ProcessPeersAlso">
+            <summary>
+            Indicates each candidate will be processed with its peer cells.
+            For example, if set the cell of the index 0, this option
+            will let the initializer set its peer cells also.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridMap.InitializeOption.ProcessPeersWithoutItself">
+            <summary>
+            Indicates each candidate will be processed with its peer cells,
+            but itself will be set <see langword="false"/> rather than
+            <see langword="true"/> value.
+            </summary>
         </member>
         <member name="F:Sudoku.Data.GridMap.PeerTable">
             <summary>

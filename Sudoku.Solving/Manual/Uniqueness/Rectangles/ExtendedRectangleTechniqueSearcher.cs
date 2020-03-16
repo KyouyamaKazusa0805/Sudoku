@@ -236,7 +236,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 							{
 								// Type 2.
 								// Check eliminations.
-								var elimMap = GridMap.CreateInstance(extraCells, false);
+								var elimMap = new GridMap(extraCells, GridMap.InitializeOption.ProcessPeersWithoutItself);
 								foreach (int cell in elimMap.Offsets)
 								{
 									if (grid.CandidateExists(cell, extraDigit))

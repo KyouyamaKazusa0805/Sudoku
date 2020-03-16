@@ -232,7 +232,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 								// Check eliminations.
 								int extraDigit = otherDigits.First();
 								var conclusions = new List<Conclusion>();
-								var elimMap = GridMap.CreateInstance(extraCells);
+								var elimMap = new GridMap(extraCells, GridMap.InitializeOption.ProcessPeersAlso);
 								if (elimMap.Count == 0)
 								{
 									continue;
@@ -994,7 +994,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 								// Check eliminations.
 								int extraDigit = otherDigits.First();
 								var conclusions = new List<Conclusion>();
-								var elimMap = GridMap.CreateInstance(extraCells);
+								var elimMap = new GridMap(extraCells, GridMap.InitializeOption.ProcessPeersAlso);
 								if (elimMap.Count == 0)
 								{
 									continue;

@@ -717,10 +717,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 							{
 								if ((temp & 1) != 0)
 								{
-									var elimMap = GridMap.CreateInstance(
+									var elimMap = new GridMap(
 										from cell in allCells
 										where grid.CandidateExists(cell, digit)
-										select cell, false);
+										select cell,
+										GridMap.InitializeOption.ProcessPeersWithoutItself);
 
 									foreach (int cell in elimMap.Offsets)
 									{
@@ -833,10 +834,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 									{
 										if ((temp & 1) != 0)
 										{
-											var elimMap = GridMap.CreateInstance(
+											var elimMap = new GridMap(
 												from cell in allCells
 												where grid.CandidateExists(cell, digit)
-												select cell, false);
+												select cell,
+												GridMap.InitializeOption.ProcessPeersWithoutItself);
 
 											foreach (int cell in elimMap.Offsets)
 											{
@@ -947,10 +949,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										{
 											if ((temp & 1) != 0)
 											{
-												var elimMap = GridMap.CreateInstance(
+												var elimMap = new GridMap(
 													from cell in allCells
 													where grid.CandidateExists(cell, digit)
-													select cell, false);
+													select cell,
+													GridMap.InitializeOption.ProcessPeersWithoutItself);
 
 												foreach (int cell in elimMap.Offsets)
 												{

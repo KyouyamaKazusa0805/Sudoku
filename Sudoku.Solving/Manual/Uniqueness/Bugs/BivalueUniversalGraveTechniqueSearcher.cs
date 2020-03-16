@@ -132,7 +132,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			var trueCandidateCells = from candGroupByCell in candsGroupByCell
 									 select candGroupByCell.Key;
 			int trueCandidateCellsCount = 0;
-			var map = GridMap.CreateInstance(trueCandidateCells);
+			var map = new GridMap(trueCandidateCells, GridMap.InitializeOption.ProcessPeersAlso);
 			if (map.Count != 9)
 			{
 				return;
@@ -712,7 +712,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			else
 			{
 				// Degenerated to BUG type 2.
-				var map = GridMap.CreateInstance(trueCandidates);
+				var map = new GridMap(trueCandidates, GridMap.InitializeOption.ProcessPeersAlso);
 				if (map.Count != 0)
 				{
 					// BUG type 2 (or BUG + n, but special) found.
@@ -762,7 +762,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		private static void CheckType2(
 			IBag<TechniqueInfo> result, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
 		{
-			var map = GridMap.CreateInstance(from cand in trueCandidates select cand / 9);
+			var map = new GridMap(
+				from cand in trueCandidates select cand / 9,
+				GridMap.InitializeOption.ProcessPeersAlso);
 			if (map.Count == 0)
 			{
 				return;

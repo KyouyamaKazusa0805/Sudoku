@@ -310,7 +310,8 @@ namespace Sudoku.Solving.Manual.Chaining
 									   select cand / 9;
 
 					// Search for same regions.
-					foreach (int nextCell in GridMap.CreateInstance(currentCells, false).Offsets)
+					foreach (int nextCell in
+						new GridMap(currentCells, GridMap.InitializeOption.ProcessPeersWithoutItself).Offsets)
 					{
 						if (!grid.CandidateExists(nextCell, currentDigit))
 						{
@@ -507,7 +508,8 @@ namespace Sudoku.Solving.Manual.Chaining
 									   select cand / 9;
 
 					// Search for same regions.
-					foreach (int region in GridMap.CreateInstance(currentCells, false).CoveredRegions)
+					foreach (int region in
+						new GridMap(currentCells, GridMap.InitializeOption.ProcessPeersWithoutItself).CoveredRegions)
 					{
 						var map = grid.GetDigitAppearingCells(currentDigit, region);
 						if (map.Count != 1)
