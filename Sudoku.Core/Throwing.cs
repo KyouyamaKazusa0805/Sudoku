@@ -25,7 +25,7 @@ namespace Sudoku
 		/// Indicates an exception throwing when the format string is invalid.
 		/// </summary>
 		public static FormatException FormatError =>
-			throw new FormatException("The specified format is invalid.");
+			new FormatException("The specified format is invalid.");
 
 
 		/// <summary>
