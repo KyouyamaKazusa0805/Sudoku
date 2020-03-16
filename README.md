@@ -170,6 +170,16 @@ Here display all conditional compliation symbols in this solution.
 
 
 
+## About Tutorial
+
+标题：**关于教程**
+
+This repo all stores a sudoku technique tutorial, but in Chinese (English version is too difficult to translate because I have been learning English always). Click [here](https://gitee.com/Sunnie-Shine/Sudoku/raw/master/ref/tutorial/%E6%A0%87%E5%87%86%E6%95%B0%E7%8B%AC%E6%8A%80%E5%B7%A7%E6%95%99%E7%A8%8B%EF%BC%88%E4%BF%AE%E8%AE%A2%E7%89%88%EF%BC%8C20200223%EF%BC%89.pdf).
+
+这个仓库存了一个数独的技巧教程，不过是全中文的（英语对我来说有点难翻译），戳此[链接](https://gitee.com/Sunnie-Shine/Sudoku/raw/master/ref/tutorial/%E6%A0%87%E5%87%86%E6%95%B0%E7%8B%AC%E6%8A%80%E5%B7%A7%E6%95%99%E7%A8%8B%EF%BC%88%E4%BF%AE%E8%AE%A2%E7%89%88%EF%BC%8C20200223%EF%BC%89.pdf)进入。
+
+
+
 ## Author
 
 标题：**作者**
