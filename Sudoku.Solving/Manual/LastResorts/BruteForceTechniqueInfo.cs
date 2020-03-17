@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {
 	/// <summary>
-	/// Provides a usage of brute force technique.
+	/// Provides a usage of <b>brute force</b> technique.
 	/// </summary>
 	public sealed class BruteForceTechniqueInfo : LastResortTechniqueInfo
 	{

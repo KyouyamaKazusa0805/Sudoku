@@ -9,7 +9,7 @@ using System.Linq;
 namespace Sudoku.Solving.Manual.Fishes
 {
 	/// <summary>
-	/// Provides a usage of Hobiwan's fish.
+	/// Provides a usage of <b>Hobiwan's fish</b> technique.
 	/// </summary>
 	public sealed class HobiwanFishTechniqueInfo : FishTechniqueInfo
 	{

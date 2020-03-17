@@ -4,7 +4,7 @@ using Sudoku.Drawing;
 namespace Sudoku.Solving.Manual.Wings.Irregular
 {
 	/// <summary>
-	/// Encapsulates a usage of irregular wing technique.
+	/// Encapsulates a usage of <b>irregular wing</b> technique.
 	/// </summary>
 	public abstract class IrregularWingTechniqueInfo : TechniqueInfo
 	{

@@ -6,7 +6,7 @@ using Sudoku.Solving.Utils;
 namespace Sudoku.Solving.Manual.Wings.Regular
 {
 	/// <summary>
-	/// Provides a usage of regular wing technique.
+	/// Provides a usage of <b>regular wing</b> technique.
 	/// </summary>
 	public sealed class RegularWingTechniqueInfo : WingTechniqueInfo
 	{

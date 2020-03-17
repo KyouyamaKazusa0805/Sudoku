@@ -8,7 +8,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <summary>
 	/// Provides a usage of two strong links technique.
 	/// </summary>
-	public sealed class TwoStrongLinksTechniqueInfo : SingleDigitPatternTechniqueInfo
+	public sealed class TwoStrongLinksTechniqueInfo : SdpTechniqueInfo
 	{
 		/// <summary>
 		/// Initializes an instance with the specified information.

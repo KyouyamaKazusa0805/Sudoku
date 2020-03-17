@@ -4,7 +4,7 @@ using Sudoku.Drawing;
 namespace Sudoku.Solving.Manual.Fishes
 {
 	/// <summary>
-	/// Provides a usage of fish technique.
+	/// Provides a usage of <b>fish</b> technique.
 	/// </summary>
 	public abstract class FishTechniqueInfo : TechniqueInfo
 	{

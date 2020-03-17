@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Fishes
 {
 	/// <summary>
-	/// Provides a usage of normal fish technique.
+	/// Provides a usage of <b>normal fish</b> technique.
 	/// </summary>
 	public sealed class NormalFishTechniqueInfo : FishTechniqueInfo
 	{

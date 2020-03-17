@@ -7,7 +7,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <summary>
 	/// Provides a usage of empty rectangle technique.
 	/// </summary>
-	public sealed class EmptyRectangleTechniqueInfo : SingleDigitPatternTechniqueInfo
+	public sealed class EmptyRectangleTechniqueInfo : SdpTechniqueInfo
 	{
 		/// <summary>
 		/// Initializes an instance with the specified information.

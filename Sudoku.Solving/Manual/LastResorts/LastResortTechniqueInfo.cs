@@ -4,7 +4,7 @@ using Sudoku.Drawing;
 namespace Sudoku.Solving.Manual.LastResorts
 {
 	/// <summary>
-	/// Provides a usage of last resort.
+	/// Provides a usage of <b>last resort</b> technique.
 	/// </summary>
 	public abstract class LastResortTechniqueInfo : TechniqueInfo
 	{

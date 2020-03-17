@@ -11,7 +11,7 @@ using Action = System.Action<System.Collections.Generic.IBag<Sudoku.Solving.Tech
 namespace Sudoku.Solving.Manual.Subsets
 {
 	/// <summary>
-	/// Encapsulates a subset technique searcher.
+	/// Encapsulates a <b>subset</b> technique searcher.
 	/// </summary>
 	public sealed class SubsetTechniqueSearcher : TechniqueSearcher
 	{

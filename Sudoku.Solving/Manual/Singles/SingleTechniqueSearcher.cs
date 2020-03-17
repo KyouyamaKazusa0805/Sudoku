@@ -7,7 +7,7 @@ using Sudoku.Solving.Utils;
 namespace Sudoku.Solving.Manual.Singles
 {
 	/// <summary>
-	/// Encapsulates a single technique searcher.
+	/// Encapsulates a <b>single</b> technique searcher.
 	/// </summary>
 	public sealed class SingleTechniqueSearcher : TechniqueSearcher
 	{

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Singles
 {
 	/// <summary>
-	/// Indicates a usage of full house technique.
+	/// Indicates a usage of <b>full house</b> technique.
 	/// </summary>
 	public sealed class FullHouseTechniqueInfo : SingleTechniqueInfo
 	{

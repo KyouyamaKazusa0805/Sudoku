@@ -8,7 +8,7 @@ using Sudoku.Solving.Extensions;
 namespace Sudoku.Solving.Manual.LastResorts
 {
 	/// <summary>
-	/// Encapsulates a template technique searcher.
+	/// Encapsulates a <b>template</b> technique searcher.
 	/// </summary>
 	public sealed class TemplateTechniqueSearcher : LastResortTechniqueSearcher
 	{

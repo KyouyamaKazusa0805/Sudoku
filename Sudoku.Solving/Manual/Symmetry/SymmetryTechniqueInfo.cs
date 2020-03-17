@@ -4,7 +4,7 @@ using Sudoku.Drawing;
 namespace Sudoku.Solving.Manual.Symmetry
 {
 	/// <summary>
-	/// Provides a usage of symmetry technique.
+	/// Provides a usage of <b>symmetry</b> technique.
 	/// </summary>
 	public abstract class SymmetryTechniqueInfo : TechniqueInfo
 	{

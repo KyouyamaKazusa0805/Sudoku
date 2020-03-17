@@ -13,7 +13,7 @@ using Templates = Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher;
 namespace Sudoku.Solving.Manual.Fishes
 {
 	/// <summary>
-	/// Encapsulates a Hobiwan's fish technique searcher.
+	/// Encapsulates a <b>Hobiwan's fish</b> technique searcher.
 	/// </summary>
 	[Slow]
 	public sealed class HobiwanFishTechniqueSearcher : FishTechniqueSearcher

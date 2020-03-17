@@ -5,8 +5,14 @@ using Sudoku.Drawing;
 namespace Sudoku.Solving.Manual.LastResorts
 {
 	/// <summary>
-	/// Encapsulates a brute force technique searcher.
+	/// Encapsulates a <b>brute force</b> technique searcher.
+	/// The searcher is not executed until all searchers whose priority
+	/// is higher than this one cannot find out any technique steps.
 	/// </summary>
+	/// <remarks>
+	/// This searcher is a trick, because it will check the assignments on
+	/// the terminal grid (I mean, the answer grid).
+	/// </remarks>
 	public sealed class BruteForceTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <summary>

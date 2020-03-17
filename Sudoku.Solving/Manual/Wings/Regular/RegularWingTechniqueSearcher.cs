@@ -9,7 +9,7 @@ using Sudoku.Solving.Utils;
 namespace Sudoku.Solving.Manual.Wings.Regular
 {
 	/// <summary>
-	/// Encapsulates a regular wing technique solver.
+	/// Encapsulates a <b>regular wing</b> technique solver.
 	/// </summary>
 	public sealed class RegularWingTechniqueSearcher : WingTechniqueSearcher
 	{

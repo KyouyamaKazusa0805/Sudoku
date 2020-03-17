@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Manual.Chaining
 {
 	/// <summary>
-	/// Encapsulates a chain technique searcher.
+	/// Encapsulates a <b>chain</b> technique searcher.
 	/// </summary>
 	public abstract class ChainTechniqueSearcher : TechniqueSearcher
 	{

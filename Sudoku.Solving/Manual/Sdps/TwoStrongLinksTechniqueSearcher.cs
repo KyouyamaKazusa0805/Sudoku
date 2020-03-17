@@ -9,7 +9,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <summary>
 	/// Encapsulates a two strong links technique searcher.
 	/// </summary>
-	public sealed class TwoStrongLinksTechniqueSearcher : SingleDigitPatternTechniqueSearcher
+	public sealed class TwoStrongLinksTechniqueSearcher : SdpTechniqueSearcher
 	{
 		/// <inheritdoc/>
 		public override int Priority { get; set; } = 40;

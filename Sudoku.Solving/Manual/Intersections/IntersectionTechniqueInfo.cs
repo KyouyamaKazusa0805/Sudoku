@@ -4,7 +4,7 @@ using Sudoku.Drawing;
 namespace Sudoku.Solving.Manual.Intersections
 {
 	/// <summary>
-	/// Provides a usage of intersection technique.
+	/// Provides a usage of <b>intersection</b> technique.
 	/// </summary>
 	public abstract class IntersectionTechniqueInfo : TechniqueInfo
 	{

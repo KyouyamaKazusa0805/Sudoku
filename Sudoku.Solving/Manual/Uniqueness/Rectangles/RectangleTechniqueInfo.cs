@@ -4,7 +4,7 @@ using Sudoku.Drawing;
 namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 {
 	/// <summary>
-	/// Provides a usage of rectangle technique.
+	/// Provides a usage of <b>rectangle</b> technique.
 	/// </summary>
 	public abstract class RectangleTechniqueInfo : UniquenessTechniqueInfo
 	{

@@ -6,7 +6,7 @@ using Sudoku.Solving.Utils;
 namespace Sudoku.Solving.Manual.Subsets
 {
 	/// <summary>
-	/// Provides a usage of hidden subset technique.
+	/// Provides a usage of <b>hidden subset</b> technique.
 	/// </summary>
 	public sealed class HiddenSubsetTechniqueInfo : SubsetTechniqueInfo
 	{
@@ -29,7 +29,7 @@ namespace Sudoku.Solving.Manual.Subsets
 					2 => 3.4M,
 					3 => 4M,
 					4 => 5.4M,
-					_ => throw new NotSupportedException($"{nameof(Size)} is out of valid range.")
+					_ => throw Throwing.ImpossibleCase
 				};
 			}
 		}

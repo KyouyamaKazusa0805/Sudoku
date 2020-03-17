@@ -6,7 +6,7 @@ using Sudoku.Solving.Utils;
 namespace Sudoku.Solving.Manual.Subsets
 {
 	/// <summary>
-	/// Provides a usage of naked subset technique.
+	/// Provides a usage of <b>naked subset</b> technique.
 	/// </summary>
 	public sealed class NakedSubsetTechniqueInfo : SubsetTechniqueInfo
 	{
@@ -63,13 +63,12 @@ namespace Sudoku.Solving.Manual.Subsets
 		{
 			get
 			{
-				var ex = new NotSupportedException($"{nameof(Size)} is out of valid range.");
 				return Size switch
 				{
 					2 => 3M,
 					3 => 3.6M,
 					4 => 5M,
-					_ => throw ex
+					_ => throw Throwing.ImpossibleCase
 				} + IsLocked switch
 				{
 					null => 0,
@@ -77,7 +76,7 @@ namespace Sudoku.Solving.Manual.Subsets
 					{
 						2 => -1M,
 						3 => -1.1M,
-						_ => throw ex
+						_ => throw Throwing.ImpossibleCase
 					},
 					false => .1M
 				};

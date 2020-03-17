@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Subsets
 {
 	/// <summary>
-	/// Provides a usage of subset technique.
+	/// Provides a usage of <b>subset</b> technique.
 	/// </summary>
 	public abstract class SubsetTechniqueInfo : TechniqueInfo
 	{

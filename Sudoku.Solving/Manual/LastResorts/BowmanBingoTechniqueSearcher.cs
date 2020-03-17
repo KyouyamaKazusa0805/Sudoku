@@ -9,7 +9,7 @@ using Sudoku.Solving.Utils;
 namespace Sudoku.Solving.Manual.LastResorts
 {
 	/// <summary>
-	/// Encapsulates a bowman bingo technique searcher.
+	/// Encapsulates a <b>Bowman's bingo</b> technique searcher.
 	/// </summary>
 	public sealed class BowmanBingoTechniqueSearcher : LastResortTechniqueSearcher
 	{

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Singles
 {
 	/// <summary>
-	/// Indicates a using of hidden single technique.
+	/// Indicates a using of <b>hidden single</b> technique.
 	/// </summary>
 	public sealed class HiddenSingleTechniqueInfo : SingleTechniqueInfo
 	{

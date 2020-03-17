@@ -4,7 +4,7 @@ using Sudoku.Drawing;
 namespace Sudoku.Solving.Manual.Chaining
 {
 	/// <summary>
-	/// Provides a usage of chain technique.
+	/// Provides a usage of <b>chain</b> technique.
 	/// </summary>
 	public abstract class ChainTechniqueInfo : TechniqueInfo
 	{

@@ -4,7 +4,7 @@ using Sudoku.Drawing;
 namespace Sudoku.Solving.Manual.Singles
 {
 	/// <summary>
-	/// Provides a usage of single technique.
+	/// Provides a usage of <b>single</b> technique.
 	/// </summary>
 	public abstract class SingleTechniqueInfo : TechniqueInfo
 	{

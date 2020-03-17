@@ -5,7 +5,7 @@ using Sudoku.Solving.Utils;
 namespace Sudoku.Solving.Manual.Singles
 {
 	/// <summary>
-	/// Indicates a usage of naked single technique.
+	/// Indicates a usage of <b>naked single</b> technique.
 	/// </summary>
 	public sealed class NakedSingleTechniqueInfo : SingleTechniqueInfo
 	{

@@ -5,7 +5,7 @@ using Sudoku.Solving.Utils;
 namespace Sudoku.Solving.Manual.LastResorts
 {
 	/// <summary>
-	/// Provides a usage of template technique.
+	/// Provides a usage of <b>template</b> technique.
 	/// </summary>
 	public sealed class TemplateTechniqueInfo : LastResortTechniqueInfo
 	{

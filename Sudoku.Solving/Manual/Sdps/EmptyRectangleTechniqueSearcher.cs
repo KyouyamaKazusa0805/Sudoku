@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <summary>
 	/// Encapsulates an empty rectangle technique searcher.
 	/// </summary>
-	public sealed class EmptyRectangleTechniqueSearcher : SingleDigitPatternTechniqueSearcher
+	public sealed class EmptyRectangleTechniqueSearcher : SdpTechniqueSearcher
 	{
 		/// <summary>
 		/// Indicates all regions iterating on the specified block

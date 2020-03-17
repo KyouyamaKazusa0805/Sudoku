@@ -9,7 +9,7 @@ using Sudoku.Solving.Utils;
 namespace Sudoku.Solving.Manual.Wings.Irregular
 {
 	/// <summary>
-	/// Encapsulates an irregular wing technique searcher.
+	/// Encapsulates an <b>irregular wing</b> technique searcher.
 	/// </summary>
 	public sealed class IrregularWingTechniqueSearcher : TechniqueSearcher
 	{
@@ -28,11 +28,11 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 			var pair = (bivalueCellsMap, bivalueCellsCount);
 
 			// Finally search all irregular wings.
+			// Hybrid-Wings, Local-Wings, Split-Wings and M-Wings can
+			// be found in another searcher.
+			// These wings are not elementary and necessary techniques
+			// so we does not need to list them.
 			TakeAllWWings(accumulator, grid, in pair);
-			// TODO: Check M-Wings.
-			// TODO: Check Local-Wings.
-			// TODO: Check Split-Wings.
-			// TODO: Check Hybrid-Wings.
 		}
 
 		/// <summary>

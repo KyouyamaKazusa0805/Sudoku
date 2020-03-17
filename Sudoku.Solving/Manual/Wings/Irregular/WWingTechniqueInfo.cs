@@ -5,7 +5,7 @@ using Sudoku.Solving.Utils;
 namespace Sudoku.Solving.Manual.Wings.Irregular
 {
 	/// <summary>
-	/// Provides a usage of W-Wing technique.
+	/// Provides a usage of <b>W-Wing</b> technique.
 	/// </summary>
 	public sealed class WWingTechniqueInfo : IrregularWingTechniqueInfo
 	{

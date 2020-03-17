@@ -119,7 +119,7 @@ namespace Sudoku.Solving.Manual
 			var searchers = new TechniqueSearcher[][]
 			{
 				new[] { new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit) },
-				new[] { new LockedCandidatesTechniqueSearcher(intersection) },
+				new[] { new LcTechniqueSearcher(intersection) },
 				new TechniqueSearcher[]
 				{
 					new SubsetTechniqueSearcher(),
@@ -127,23 +127,23 @@ namespace Sudoku.Solving.Manual
 					new RegularWingTechniqueSearcher(CheckRegularWingSize),
 					new IrregularWingTechniqueSearcher(),
 					new TwoStrongLinksTechniqueSearcher(),
-					new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
-					new ExtendedRectangleTechniqueSearcher(),
-					new UniqueLoopTechniqueSearcher(),
+					new UrTechniqueSearcher(CheckIncompletedUniquenessPatterns),
+					new XrTechniqueSearcher(),
+					new UlTechniqueSearcher(),
 					new EmptyRectangleTechniqueSearcher(regionMaps),
-					new AlmostLockedCandidatesTechniqueSearcher(intersection, CheckAlmostLockedQuadruple),
-					new SueDeCoqTechniqueSearcher(regionMaps),
-					new BorescoperDeadlyPatternTechniqueSearcher(),
-					new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
-					new GroupedAlternatingInferenceChainTechniqueSearcher(
+					new AlcTechniqueSearcher(intersection, CheckAlmostLockedQuadruple),
+					new SdcTechniqueSearcher(regionMaps),
+					new BdpTechniqueSearcher(),
+					new BugTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
+					new GroupedAicTechniqueSearcher(
 						true, false, false, AicMaximumLength, ReductDifferentPathAic,
 						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
 						regionMaps),
-					new GroupedAlternatingInferenceChainTechniqueSearcher(
+					new GroupedAicTechniqueSearcher(
 						false, true, false, AicMaximumLength, ReductDifferentPathAic,
 						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
 						regionMaps),
-					new GroupedAlternatingInferenceChainTechniqueSearcher(
+					new GroupedAicTechniqueSearcher(
 						false, false, true, AicMaximumLength, ReductDifferentPathAic,
 						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
 						regionMaps),
@@ -154,12 +154,12 @@ namespace Sudoku.Solving.Manual
 				new TechniqueSearcher[]
 				{
 					new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
-					new PatternOverlayMethodTechniqueSearcher(),
+					new PomTechniqueSearcher(),
 					new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
 				},
 				new TechniqueSearcher[]
 				{
-					new ChuteClueCoverTechniqueSearcher(),
+					new CccTechniqueSearcher(),
 				},
 				new[] { new BruteForceTechniqueSearcher(solution) }
 			};
@@ -181,7 +181,7 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
-					if (!EnablePatternOverlayMethod && searcher is PatternOverlayMethodTechniqueSearcher
+					if (!EnablePatternOverlayMethod && searcher is PomTechniqueSearcher
 						|| !EnableTemplate && searcher is TemplateTechniqueSearcher
 						|| !EnableBruteForce && searcher is BruteForceTechniqueSearcher
 						|| !EnableBowmanBingo && searcher is BowmanBingoTechniqueSearcher)
@@ -383,7 +383,7 @@ namespace Sudoku.Solving.Manual
 			IReadOnlyGrid solution, Intersection[,] intersection, GridMap[] regionMaps)
 		{
 			// Check symmetry first.
-			var symmetrySearcher = new GurthSymmetricalPlacementTechniqueSearcher();
+			var symmetrySearcher = new GspTechniqueSearcher();
 			var tempStep = symmetrySearcher.TakeOne(cloneation);
 			if (!(tempStep is null))
 			{
@@ -404,29 +404,29 @@ namespace Sudoku.Solving.Manual
 			var searchers = new TechniqueSearcher[]
 			{
 				new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit),
-				new LockedCandidatesTechniqueSearcher(intersection),
+				new LcTechniqueSearcher(intersection),
 				new SubsetTechniqueSearcher(),
 				new NormalFishTechniqueSearcher(),
 				new RegularWingTechniqueSearcher(CheckRegularWingSize),
 				new IrregularWingTechniqueSearcher(),
 				new TwoStrongLinksTechniqueSearcher(),
-				new UniqueRectangleTechniqueSearcher(CheckIncompletedUniquenessPatterns),
-				new ExtendedRectangleTechniqueSearcher(),
-				new UniqueLoopTechniqueSearcher(),
+				new UrTechniqueSearcher(CheckIncompletedUniquenessPatterns),
+				new XrTechniqueSearcher(),
+				new UlTechniqueSearcher(),
 				new EmptyRectangleTechniqueSearcher(regionMaps),
-				new AlmostLockedCandidatesTechniqueSearcher(intersection, CheckAlmostLockedQuadruple),
-				new SueDeCoqTechniqueSearcher(regionMaps),
-				new BorescoperDeadlyPatternTechniqueSearcher(),
-				new BivalueUniversalGraveTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
-				new GroupedAlternatingInferenceChainTechniqueSearcher(
+				new AlcTechniqueSearcher(intersection, CheckAlmostLockedQuadruple),
+				new SdcTechniqueSearcher(regionMaps),
+				new BdpTechniqueSearcher(),
+				new BugTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
+				new GroupedAicTechniqueSearcher(
 					true, false, false, AicMaximumLength, ReductDifferentPathAic,
 					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
 					regionMaps),
-				new GroupedAlternatingInferenceChainTechniqueSearcher(
+				new GroupedAicTechniqueSearcher(
 					false, true, false, AicMaximumLength, ReductDifferentPathAic,
 					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
 					regionMaps),
-				new GroupedAlternatingInferenceChainTechniqueSearcher(
+				new GroupedAicTechniqueSearcher(
 					false, false, true, AicMaximumLength, ReductDifferentPathAic,
 					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
 					regionMaps),
@@ -434,9 +434,9 @@ namespace Sudoku.Solving.Manual
 					HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
 					HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
 				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
-				new PatternOverlayMethodTechniqueSearcher(),
+				new PomTechniqueSearcher(),
 				new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
-				new ChuteClueCoverTechniqueSearcher(),
+				new CccTechniqueSearcher(),
 				new BruteForceTechniqueSearcher(solution),
 			};
 			if (UseCalculationPriority)
@@ -460,7 +460,7 @@ namespace Sudoku.Solving.Manual
 					continue;
 				}
 
-				if (!EnablePatternOverlayMethod && searcher is PatternOverlayMethodTechniqueSearcher
+				if (!EnablePatternOverlayMethod && searcher is PomTechniqueSearcher
 					|| !EnableTemplate && searcher is TemplateTechniqueSearcher
 					|| !EnableBruteForce && searcher is BruteForceTechniqueSearcher
 					|| !EnableBowmanBingo && searcher is BowmanBingoTechniqueSearcher)

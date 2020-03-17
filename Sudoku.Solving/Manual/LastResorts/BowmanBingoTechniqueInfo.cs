@@ -6,7 +6,7 @@ using static Sudoku.Solving.Utils.ChainingDifficultyRatingUtils;
 namespace Sudoku.Solving.Manual.LastResorts
 {
 	/// <summary>
-	/// Provides a usage of bowman bingo technique.
+	/// Provides a usage of <b>Bowman's bingo</b> technique.
 	/// </summary>
 	public sealed class BowmanBingoTechniqueInfo : LastResortTechniqueInfo
 	{
