@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
-using System.Text.RegularExpressions;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Solving.Checking;
@@ -56,7 +56,7 @@ namespace Sudoku.Solving
 			{
 				throw new ArgumentNullException(nameof(format));
 			}
-			if (Regex.IsMatch(format, @"[^\^\-\.\?#@!ab]"))
+			if (format.IsMatch(@"[^\^\-\.\?#@!abd]"))
 			{
 				throw new FormatException("The specified format is invalid due to with invalid characters.");
 			}
@@ -71,6 +71,7 @@ namespace Sudoku.Solving
 			bool showStepsAfterBottleneck = c('.');
 			bool showAttributes = c('a');
 			bool showBackdoors = c('b');
+			bool showTechniqueDetail = c('d');
 
 			// Get all information.
 			var (solverName, hasSolved) = Result;
@@ -130,17 +131,41 @@ namespace Sudoku.Solving
 			if (!(solvingStepsGrouped is null) && solvingStepsGrouped.Count() != 0)
 			{
 				sb.AppendLine("Technique used:");
+				if (showTechniqueDetail)
+				{
+					sb.AppendLine($"{"min",6}, {"total",6}  technique using");
+				}
+
 				foreach (var solvingStepsGroup in solvingStepsGrouped)
 				{
-					sb.AppendLine($"{solvingStepsGroup.Count()} * {solvingStepsGroup.Key}");
+					if (showTechniqueDetail)
+					{
+						decimal currentTotal = 0, currentMinimum = decimal.MaxValue;
+						foreach (var solvingStep in solvingStepsGroup)
+						{
+							decimal difficulty = solvingStep.Difficulty;
+							currentTotal += difficulty;
+							currentMinimum = Math.Min(currentMinimum, difficulty);
+						}
+						sb.Append($"{$"({currentMinimum:0.0}",6}, {currentTotal,6:0.0}) ");
+					}
+
+					sb.AppendLine($"{solvingStepsGroup.Count(),3} * {solvingStepsGroup.Key}");
 				}
+
+				if (showTechniqueDetail)
+				{
+					sb.Append($"{"(---",6}, {total,6}) ");
+				}
+
+				sb.AppendLine($"{stepsCount,3}");
 
 				appendSeparator();
 			}
 
 			// Print detail data.
-			sb.AppendLine($"Total solving steps count: {stepsCount}");
-			sb.AppendLine($"Difficulty total: {total}");
+			//sb.AppendLine($"Total solving steps count: {stepsCount}");
+			//sb.AppendLine($"Difficulty total: {total}");
 			sb.AppendLine($"Puzzle rating: {max:0.0}/{pearl:0.0}/{diamond:0.0}");
 
 			// Print the solution (if not null).
@@ -160,12 +185,15 @@ namespace Sudoku.Solving
 			if (showAttributes)
 			{
 				sb.AppendLine("Attributes:");
+
+				static bool isSpecifiedMethod(ParameterInfo[] parameters, MethodInfo methodInfo) =>
+					parameters.Length == 1
+					&& parameters[0].ParameterType == typeof(IReadOnlyGrid)
+					&& methodInfo.ReturnType == typeof(bool);
 				foreach (var methodInfo in
 					from methodInfo in typeof(PuzzleAttributeChecker).GetMethods()
 					let parameters = methodInfo.GetParameters()
-					where parameters.Length == 1
-						&& parameters[0].ParameterType == typeof(IReadOnlyGrid)
-						&& methodInfo.ReturnType == typeof(bool)
+					where isSpecifiedMethod(parameters, methodInfo)
 					select methodInfo)
 				{
 					bool attributeResult = (bool)methodInfo.Invoke(null, new object[] { puzzle })!;
@@ -204,7 +232,7 @@ namespace Sudoku.Solving
 		/// <seealso cref="AnalysisResult.SolvingSteps"/>
 		private IEnumerable<IGrouping<string, TechniqueInfo>>? GetSolvingStepsGrouped()
 		{
-			var (_, _, solvingSteps) = Result;
+			(_, _, var solvingSteps) = Result;
 			return solvingSteps is null
 				? null
 				: from solvingStep in solvingSteps

@@ -22,6 +22,7 @@ You can use all format string below to print the result.
 | `'.'`                            | All technique steps after the bottleneck will not be displayed, and they will be replaced by an ellipsis `...`.<br/>Bottlenecks are the last steps that follow all single technique steps. When this step will be applied to the grid, all steps after this one will contain only Hidden Singles and Naked Singles.<br/>输出将不显示卡点后的步骤，取而代之的是 6 个小数点 `......`。<br/>卡点指的是本题目里最后一个引出出数步骤的步骤。当该步骤完成后，后续的所有步骤，直至完成题目都不再含有比排除和唯一余数外的其余任何技巧。 |
 | `'a'`                            | All attributes of the puzzle will be shown here.<br/>所有的题目的特性都会显示在这里。 |
 | `'b'`                            | All assigment backdoors will be shown here.<br/>所有的填数后门都会显示在这里。 |
+| `'d'`                            | The detail of each technique type will be shown here. For example, the minimum value and total difficulty rating value will be shown at left side of the its technique group.<br/>所有的技巧分类的详情信息会被显示出来。比如，这个技巧名的所有技巧的最小值、难度系数总和将显示在该技巧统计信息的对应左侧。 |
 
 The usage is `analysisResult.ToString(formatString)`.
 

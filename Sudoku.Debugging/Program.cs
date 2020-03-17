@@ -24,7 +24,7 @@ namespace Sudoku.Debugging
 			var grid = Grid.Parse(
 				"400003000008000000160094000000000000700051964501200008050000400000002095310040600");
 			var analysisResult = solver.Solve(grid);
-			WriteLine($"{analysisResult:-#!.}");
+			WriteLine($"{analysisResult:-#!.d}");
 		}
 	}
 }
