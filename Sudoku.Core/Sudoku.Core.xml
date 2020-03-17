@@ -3382,6 +3382,30 @@
             </summary>
             <param name="directory">The directory information instance.</param>
         </member>
+        <member name="T:Sudoku.Diagnostics.ColorConsole">
+            <summary>
+            Provides a <see cref="T:System.Console"/> that output the strings with colors.
+            </summary>
+            <seealso cref="T:System.Console"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.ColorConsole.WriteLine(System.Object,System.ConsoleColor,System.ConsoleColor)">
+            <summary>
+            Writes the text representation of the specified object, followed by the
+            current line terminator, to the standard output stream.
+            </summary>
+            <param name="obj">The object.</param>
+            <param name="foreground">The foreground color.</param>
+            <param name="background">The background color.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.ColorConsole.Write(System.Object,System.ConsoleColor,System.ConsoleColor)">
+            <summary>
+            Writes the text representation of the specified object,
+            to the standard output stream.
+            </summary>
+            <param name="obj">The object.</param>
+            <param name="foreground">The foreground color.</param>
+            <param name="background">The background color.</param>
+        </member>
         <member name="T:Sudoku.Diagnostics.Solution">
             <summary>
             Provides the solution constant values.
