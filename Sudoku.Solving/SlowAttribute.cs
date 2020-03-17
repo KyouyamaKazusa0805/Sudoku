@@ -21,6 +21,7 @@ namespace Sudoku.Solving
 		/// The value is <see langword="false"/> in default case.
 		/// </para>
 		/// </summary>
+		/// <seealso cref="ManualSolver"/>
 		public bool SlowButNecessary { get; set; }
 	}
 }

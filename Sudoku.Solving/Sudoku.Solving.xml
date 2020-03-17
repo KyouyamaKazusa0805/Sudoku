@@ -5752,6 +5752,7 @@
             The value is <see langword="false"/> in default case.
             </para>
             </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
         </member>
         <member name="T:Sudoku.Solving.Solver">
             <summary>
