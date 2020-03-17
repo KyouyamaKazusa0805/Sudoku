@@ -2828,7 +2828,7 @@
             <param name="cloneation">The cloneation (playground).</param>
             <param name="stopwatch">The stopwatch.</param>
             <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
-            <returns></returns>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
             <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:],Sudoku.Data.GridMap[])"/>
             <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:],Sudoku.Data.GridMap[])"/>
         </member>

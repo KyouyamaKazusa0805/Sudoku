@@ -308,7 +308,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="cloneation">The cloneation (playground).</param>
 		/// <param name="stopwatch">The stopwatch.</param>
 		/// <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
-		/// <returns></returns>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <seealso cref="SolveNaively(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, Intersection[,], GridMap[])"/>
 		/// <seealso cref="SolveWithStrictDifficultyRating(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, Intersection[,], GridMap[])"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
