@@ -48,7 +48,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 			}
 			catch (Exception ex)
 			{
-				stopwatch.StopAnyway();
+				stopwatch.Stop();
 
 				return new AnalysisResult(
 					puzzle: grid,

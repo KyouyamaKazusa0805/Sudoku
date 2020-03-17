@@ -938,19 +938,6 @@
             <param name="grid">The grid.</param>
             <returns>All grid maps.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Extensions.StopwatchEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Diagnostics.Stopwatch"/>.
-            </summary>
-            <seealso cref="T:System.Diagnostics.Stopwatch"/>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.StopwatchEx.StopAnyway(System.Diagnostics.Stopwatch)">
-            <summary>
-            To stop the stopwatch anyway. If the stopwatch is running at present,
-            this method will stop it; otherwise, do nothing.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The stopwatch.</param>
-        </member>
         <member name="T:Sudoku.Solving.Generating.BasicPuzzleGenerator">
             <summary>
             Encapsulates a puzzle generator, which provides the symmetrical type constraint

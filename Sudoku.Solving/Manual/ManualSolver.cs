@@ -221,7 +221,7 @@ namespace Sudoku.Solving.Manual
 						{
 							if (RecordTechnique(steps, step, grid, cloneation, stopwatch, out var result))
 							{
-								stopwatch.StopAnyway();
+								stopwatch.Stop();
 								return result;
 							}
 						}
@@ -266,7 +266,7 @@ namespace Sudoku.Solving.Manual
 						{
 							// The puzzle has been solved.
 							// :)
-							stopwatch.StopAnyway();
+							stopwatch.Stop();
 							return result;
 						}
 						else
@@ -288,7 +288,7 @@ namespace Sudoku.Solving.Manual
 
 			// All solver cannot finish the puzzle...
 			// :(
-			stopwatch.StopAnyway();
+			stopwatch.Stop();
 			return new AnalysisResult(
 				puzzle: grid,
 				solverName: SolverName,
@@ -484,7 +484,7 @@ namespace Sudoku.Solving.Manual
 						{
 							if (RecordTechnique(steps, step, grid, cloneation, stopwatch, out var result))
 							{
-								stopwatch.StopAnyway();
+								stopwatch.Stop();
 								return result;
 							}
 						}
@@ -535,7 +535,7 @@ namespace Sudoku.Solving.Manual
 					{
 						if (RecordTechnique(steps, step, grid, cloneation, stopwatch, out var result))
 						{
-							stopwatch.StopAnyway();
+							stopwatch.Stop();
 							return result;
 						}
 						else
@@ -563,7 +563,7 @@ namespace Sudoku.Solving.Manual
 
 			// All solver cannot finish the puzzle...
 			// :(
-			stopwatch.StopAnyway();
+			stopwatch.Stop();
 			return new AnalysisResult(
 				puzzle: grid,
 				solverName: SolverName,
