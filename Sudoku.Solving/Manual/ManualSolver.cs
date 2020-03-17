@@ -7,7 +7,6 @@ using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Solving.Checking;
-using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Manual.Alses;
 using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.Fishes;
