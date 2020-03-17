@@ -14,7 +14,7 @@ A sudoku handling SDK using brute forces and logical techniques (Update files gr
 
 * C# version: 8.0<br/>C# 版本：8.0
 * Framework using: .NET Core 3.1<br/>框架使用：.NET Core 3.1
-* IDE using: Visual Studio 2019 V16.4<br/>IDE 使用：Visual Studio 2019 V16.4
+* Integrated Development Environment: Visual Studio 2019 V16.4<br/>集成开发环境：Visual Studio 2019 V16.4
 
 
 
@@ -130,9 +130,9 @@ Puzzle has been solved.
 Time elapsed: 00:00.00.154
 ```
 
-> Format strings in the analysis result is shown in the description of file *How to use 'AnalysisResult'.md*.
+> Format strings in the analysis result is shown in the description of file *How-to-use-analysis-result.md*.
 >
-> 分析结果的格式化字符串可以参照“How to use 'AnalysisResult'.md”文件里呈现的描述。
+> 分析结果的格式化字符串可以参照“How-to-use-analysis-result.md”文件里呈现的描述。
 
 
 
