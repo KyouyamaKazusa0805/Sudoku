@@ -22,9 +22,14 @@ A sudoku handling SDK using brute forces and logical techniques (Update files gr
 
 标题：**如何使用**
 
-Clone this repo, and you can take all codes! This solution does not support forms at present, but forms will appear in the future.
+Clone this repo, and you can take all codes!
 
-只需要你克隆这个仓库就可以带走所有的代码了！这个解决方案目前还不支持可视化界面，但是以后会支持的。
+只需要你克隆这个仓库就可以带走所有的代码了！
+
+```bash
+Username@ComputerName MINGW64 ~/Desktop
+$ git clone https://github.com/Sunnie-Shine/Sudoku.git
+```
 
 
 
