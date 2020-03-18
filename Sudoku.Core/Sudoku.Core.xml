@@ -1857,6 +1857,13 @@
             value; otherwise, <see langword="false"/>.
             </returns>
         </member>
+        <member name="M:Sudoku.Data.GridMap.Overlaps(Sudoku.Data.GridMap)">
+            <summary>
+            Indicates whether this map overlaps another one.
+            </summary>
+            <param name="other">The other map.</param>
+            <returns>The <see cref="T:System.Boolean"/> value.</returns>
+        </member>
         <member name="M:Sudoku.Data.GridMap.AllCellCovers(System.Int32)">
             <summary>
             Check whether the grid map is fully covered all cells in the specified region.

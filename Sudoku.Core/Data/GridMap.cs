@@ -472,6 +472,14 @@ namespace Sudoku.Data
 			_high == other._high && _low == other._low;
 
 		/// <summary>
+		/// Indicates whether this map overlaps another one.
+		/// </summary>
+		/// <param name="other">The other map.</param>
+		/// <returns>The <see cref="bool"/> value.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly bool Overlaps(GridMap other) => (this & other).IsNotEmpty;
+
+		/// <summary>
 		/// Check whether the grid map is fully covered all cells in the specified region.
 		/// </summary>
 		/// <param name="regionOffset">The region offset.</param>

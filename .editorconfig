@@ -334,6 +334,9 @@ dotnet_diagnostic.CS8656.severity = error
 # CS8714: The type cannot be used as type parameter in the generic type or method. Nullability of type argument doesn't match 'notnull' constraint.
 dotnet_diagnostic.CS8714.severity = error
 
+# CS8762: Parameter may not have a null value when exiting in some condition.
+dotnet_diagnostic.CS8762.severity = error
+
 
 # CA1031: Do not catch general exception types
 dotnet_diagnostic.CA1031.severity = none

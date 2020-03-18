@@ -134,6 +134,7 @@ namespace Sudoku.Solving.Manual
 					new SdcTechniqueSearcher(regionMaps),
 					new BdpTechniqueSearcher(),
 					new BugTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
+					new AlsXzTechniqueSearcher(),
 					new GroupedAicTechniqueSearcher(
 						true, false, false, AicMaximumLength, ReductDifferentPathAic,
 						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
@@ -299,72 +300,6 @@ namespace Sudoku.Solving.Manual
 		}
 
 		/// <summary>
-		/// Bound with on-solving methods returns the solving state.
-		/// </summary>
-		/// <param name="steps">The steps.</param>
-		/// <param name="step">The step.</param>
-		/// <param name="grid">The grid.</param>
-		/// <param name="cloneation">The cloneation (playground).</param>
-		/// <param name="stopwatch">The stopwatch.</param>
-		/// <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		/// <seealso cref="SolveNaively(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, Intersection[,], GridMap[])"/>
-		/// <seealso cref="SolveWithStrictDifficultyRating(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, Intersection[,], GridMap[])"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private bool RecordTechnique(
-			List<TechniqueInfo> steps, TechniqueInfo step, IReadOnlyGrid grid, Grid cloneation,
-			Stopwatch stopwatch, [NotNullWhen(true)] out AnalysisResult? result)
-		{
-			bool needAdd = false;
-			foreach (var conclusion in step.Conclusions)
-			{
-				switch (conclusion.ConclusionType)
-				{
-					case ConclusionType.Assignment:
-					{
-						if (cloneation.GetCellStatus(conclusion.CellOffset) == CellStatus.Empty)
-						{
-							needAdd = true;
-						}
-
-						break;
-					}
-					case ConclusionType.Elimination:
-					{
-						if (cloneation.CandidateExists(conclusion.CellOffset, conclusion.Digit))
-						{
-							needAdd = true;
-						}
-
-						break;
-					}
-				}
-			}
-
-			if (needAdd)
-			{
-				step.ApplyTo(cloneation);
-				steps.Add(step);
-
-				if (cloneation.HasSolved)
-				{
-					result = new AnalysisResult(
-						puzzle: grid,
-						solverName: SolverName,
-						hasSolved: true,
-						solution: cloneation,
-						elapsedTime: stopwatch.Elapsed,
-						solvingList: steps,
-						additional: null);
-					return true;
-				}
-			}
-
-			result = null;
-			return false;
-		}
-
-		/// <summary>
 		/// Solve naively.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
@@ -382,19 +317,22 @@ namespace Sudoku.Solving.Manual
 			IReadOnlyGrid solution, Intersection[,] intersection, GridMap[] regionMaps)
 		{
 			// Check symmetry first.
-			var symmetrySearcher = new GspTechniqueSearcher();
-			var tempStep = symmetrySearcher.TakeOne(cloneation);
-			if (!(tempStep is null))
+			if (CheckGurthSymmetricalPlacement)
 			{
-				if (CheckConclusionsValidity(solution, tempStep.Conclusions))
+				var symmetrySearcher = new GspTechniqueSearcher();
+				var tempStep = symmetrySearcher.TakeOne(cloneation);
+				if (!(tempStep is null))
 				{
-					tempStep.ApplyTo(cloneation);
-					steps.Add(tempStep);
-					goto Label_Searching;
-				}
-				else
-				{
-					throw new WrongHandlingException(grid);
+					if (CheckConclusionsValidity(solution, tempStep.Conclusions))
+					{
+						tempStep.ApplyTo(cloneation);
+						steps.Add(tempStep);
+						goto Label_Searching;
+					}
+					else
+					{
+						throw new WrongHandlingException(grid);
+					}
 				}
 			}
 
@@ -417,6 +355,7 @@ namespace Sudoku.Solving.Manual
 				new SdcTechniqueSearcher(regionMaps),
 				new BdpTechniqueSearcher(),
 				new BugTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
+				new AlsXzTechniqueSearcher(),
 				new GroupedAicTechniqueSearcher(
 					true, false, false, AicMaximumLength, ReductDifferentPathAic,
 					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
@@ -571,6 +510,72 @@ namespace Sudoku.Solving.Manual
 				elapsedTime: stopwatch.Elapsed,
 				solvingList: steps,
 				additional: null);
+		}
+
+		/// <summary>
+		/// Bound with on-solving methods returns the solving state.
+		/// </summary>
+		/// <param name="steps">The steps.</param>
+		/// <param name="step">The step.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="cloneation">The cloneation (playground).</param>
+		/// <param name="stopwatch">The stopwatch.</param>
+		/// <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		/// <seealso cref="SolveNaively(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, Intersection[,], GridMap[])"/>
+		/// <seealso cref="SolveWithStrictDifficultyRating(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, Intersection[,], GridMap[])"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private bool RecordTechnique(
+			List<TechniqueInfo> steps, TechniqueInfo step, IReadOnlyGrid grid, Grid cloneation,
+			Stopwatch stopwatch, [NotNullWhen(true)] out AnalysisResult? result)
+		{
+			bool needAdd = false;
+			foreach (var conclusion in step.Conclusions)
+			{
+				switch (conclusion.ConclusionType)
+				{
+					case ConclusionType.Assignment:
+					{
+						if (cloneation.GetCellStatus(conclusion.CellOffset) == CellStatus.Empty)
+						{
+							needAdd = true;
+						}
+
+						break;
+					}
+					case ConclusionType.Elimination:
+					{
+						if (cloneation.CandidateExists(conclusion.CellOffset, conclusion.Digit))
+						{
+							needAdd = true;
+						}
+
+						break;
+					}
+				}
+			}
+
+			if (needAdd)
+			{
+				step.ApplyTo(cloneation);
+				steps.Add(step);
+
+				if (cloneation.HasSolved)
+				{
+					result = new AnalysisResult(
+						puzzle: grid,
+						solverName: SolverName,
+						hasSolved: true,
+						solution: cloneation,
+						elapsedTime: stopwatch.Elapsed,
+						solvingList: steps,
+						additional: null);
+					return true;
+				}
+			}
+
+			result = null;
+			return false;
 		}
 
 

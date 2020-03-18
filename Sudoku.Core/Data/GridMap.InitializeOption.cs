@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Data
 {
-	public partial struct GridMap
+	partial struct GridMap
 	{
 		/// <summary>
 		/// Provides an option for initialization of the base type <see cref="GridMap"/>.

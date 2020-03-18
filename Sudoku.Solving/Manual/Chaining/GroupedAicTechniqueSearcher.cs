@@ -171,7 +171,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 
 		/// <inheritdoc/>
-		public override int Priority { get; set; } = 45;
+		public override int Priority { get; set; } = 55;
 
 
 		/// <inheritdoc/>

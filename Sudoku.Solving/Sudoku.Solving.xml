@@ -938,6 +938,20 @@
             <param name="grid">The grid.</param>
             <returns>All grid maps.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Extensions.MaskExtensions">
+            <summary>
+            Provides extensions for a mask.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Extensions.MaskExtensions.GetCells(System.Int32,System.Int16)">
+            <summary>
+            Get cells with specified mask, which consist of 9 bits and 1 is
+            for yielding.
+            </summary>
+            <param name="region">The region.</param>
+            <param name="mask">The mask.</param>
+            <returns>The cells.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Generating.BasicPuzzleGenerator">
             <summary>
             Encapsulates a puzzle generator, which provides the symmetrical type constraint
@@ -1041,6 +1055,116 @@
             after finished. 
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.Als">
+            <summary>
+            Provides an ALS with specified digits in a specified region.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.Als._mask">
+            <summary>
+            The internal mask of this data structure.
+            </summary>
+            <remarks>
+            The mask consists of 23 bits.
+            The lower 9 bits is used for representing all digits used. for example,
+            the mask 259 (or in binary <c>0b100_000_011</c>) represents an ALS holds
+            digits { <c>1, 2, 9 </c> }; the middle 9 bits means the relative positions
+            in a region, while the higher 5 bits means which region this ALS
+            lies on (Region indices 0..27 is no more than 5 bits used in binary).
+            The last 2 bits are reserved for future considerations.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance with the specified mask.
+            </summary>
+            <param name="mask">The mask.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.#ctor(System.Int32,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Initializes an instance with the specified region, relative positions
+            and digits.
+            </summary>
+            <param name="region">The region.</param>
+            <param name="relativePos">All relative positions.</param>
+            <param name="digits">All digits.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Als.Region">
+            <summary>
+            Indicates the region .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Als.RelativePosMask">
+            <summary>
+            Indicates the relative positions mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Als.DigitsMask">
+            <summary>
+            Indicates the digits mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Als.Map">
+            <summary>
+            Indicates the cells used in this ALS.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Als.Digits">
+            <summary>
+            Indicates all digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Als.RelativePos">
+            <summary>
+            Indicates the relative positions (offsets) in a region.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Int32@,System.Collections.Generic.IEnumerable{System.Int32}@,System.Collections.Generic.IEnumerable{System.Int32}@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="region">(<see langword="out" /> parameter) The region.</param>
+            <param name="relativePos">
+            (<see langword="out" /> parameter) The relative positions.
+            </param>
+            <param name="digits">(<see langword="out" /> parameter) The digits.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.Equals(Sudoku.Solving.Manual.Alses.Als)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.GetHashCode">
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.op_Equality(Sudoku.Solving.Manual.Alses.Als,Sudoku.Solving.Manual.Alses.Als)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.op_Inequality(Sudoku.Solving.Manual.Alses.Als,Sudoku.Solving.Manual.Alses.Als)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsTechniqueInfo">
             <summary>
             Provides a usage of <b>almost locked set</b> (ALS) technique.
@@ -1053,6 +1177,159 @@
             <summary>
             Encapsulates an <b>almost locked set</b> (ALS) technique searcher.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo">
+            <summary>
+            Provides a usage of <b>ALS-XZ</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Rcc)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="rcc">The RCC used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.Rcc">
+            <summary>
+            Indicates the RCC used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher">
+            <summary>
+            Encapsulates an <b>ALS-XZ</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.Priority">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.GetAllAlses(Sudoku.Data.IReadOnlyGrid,System.Int32)">
+            <summary>
+            To search for all ALSes in the specified grid and the region to iterate on.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="region">The region.</param>
+            <returns>All ALSes searched.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.Rcc">
+            <summary>
+            Encapsulates a data structure for restricted common candidates (RCC).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.#ctor(Sudoku.Solving.Manual.Alses.Als,Sudoku.Solving.Manual.Alses.Als,System.Int32)">
+            <summary>
+            Initializes an instance with two ALSes and their common digit.
+            </summary>
+            <param name="als1">The ALS 1.</param>
+            <param name="als2">The ALS 2.</param>
+            <param name="commonDigit">The common digit.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Rcc.Als1">
+            <summary>
+            Indicates the ALS 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Rcc.Als2">
+            <summary>
+            Indicates the ALS 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Rcc.CommonDigit">
+            <summary>
+            Indicates the digit that two ALSes share.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.Deconstruct(Sudoku.Solving.Manual.Alses.Als@,Sudoku.Solving.Manual.Alses.Als@,System.Int32@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="als1">(<see langword="out" /> parameter) The ALS 1.</param>
+            <param name="als2">(<see langword="out" /> parameter) The ALS 2.</param>
+            <param name="commonDigit">
+            (<see langword="out" /> parameter) The common digit.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.Equals(Sudoku.Solving.Manual.Alses.Rcc)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.GetHashCode">
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.GetCommonDigit(Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Alses.Als,Sudoku.Solving.Manual.Alses.Als,System.Int16@,System.Nullable{System.Int32}@)">
+            <summary>
+            Get the common digit that two ALSes share.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="als1">The ALS 1.</param>
+            <param name="als2">The ALS 2.</param>
+            <param name="digitsMask">
+            (<see langword="out"/> parameter) The mask of appearing digits.
+            </param>
+            <param name="region">
+            (<see langword="out"/> parameter) The region of the common digit shares in.
+            </param>
+            <returns>
+            The digit. If the method cannot find out a digit,
+            it will return <see langword="null"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.DigitAppears(Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Alses.Als,System.Int32,System.Nullable{Sudoku.Data.GridMap}@)">
+            <summary>
+            Check whether the digit appears at least once in the specified ALS.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="als">The ALS.</param>
+            <param name="digit">The digit.</param>
+            <param name="cellsIfUnique">
+            (<see langword="out"/> parameter) The cells if not empty.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.op_Equality(Sudoku.Solving.Manual.Alses.Rcc,Sudoku.Solving.Manual.Alses.Rcc)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.op_Inequality(Sudoku.Solving.Manual.Alses.Rcc,Sudoku.Solving.Manual.Alses.Rcc)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.SdcTechniqueInfo">
             <summary>
@@ -2818,20 +3095,6 @@
             Throws when the solver cannot solved due to wrong handling.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.RecordTechnique(System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.TechniqueInfo,Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Diagnostics.Stopwatch,Sudoku.Solving.AnalysisResult@)">
-            <summary>
-            Bound with on-solving methods returns the solving state.
-            </summary>
-            <param name="steps">The steps.</param>
-            <param name="step">The step.</param>
-            <param name="grid">The grid.</param>
-            <param name="cloneation">The cloneation (playground).</param>
-            <param name="stopwatch">The stopwatch.</param>
-            <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:],Sudoku.Data.GridMap[])"/>
-            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:],Sudoku.Data.GridMap[])"/>
-        </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:],Sudoku.Data.GridMap[])">
             <summary>
             Solve naively.
@@ -2846,6 +3109,20 @@
             <exception cref="T:Sudoku.WrongHandlingException">
             Throws when the solver cannot solved due to wrong handling.
             </exception>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.RecordTechnique(System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.TechniqueInfo,Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Diagnostics.Stopwatch,Sudoku.Solving.AnalysisResult@)">
+            <summary>
+            Bound with on-solving methods returns the solving state.
+            </summary>
+            <param name="steps">The steps.</param>
+            <param name="step">The step.</param>
+            <param name="grid">The grid.</param>
+            <param name="cloneation">The cloneation (playground).</param>
+            <param name="stopwatch">The stopwatch.</param>
+            <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:],Sudoku.Data.GridMap[])"/>
+            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:],Sudoku.Data.GridMap[])"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.CheckConclusionsValidity(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
             <summary>
