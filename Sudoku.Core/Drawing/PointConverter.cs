@@ -1,11 +1,14 @@
 ﻿using System.Drawing;
+using System.Runtime.CompilerServices;
 using Sudoku.Drawing.Extensions;
 
 namespace Sudoku.Drawing
 {
 	/// <summary>
 	/// Provides converting operations for <see cref="Point"/> and
-	/// <see cref="PointF"/> usages in the form.
+	/// <see cref="PointF"/> usages in the form. For example, this class
+	/// will calculate and convert between the drawing coordinates and
+	/// the mouse coordinates.
 	/// </summary>
 	/// <seealso cref="Point"/>
 	/// <seealso cref="PointF"/>
@@ -77,6 +80,7 @@ namespace Sudoku.Drawing
 		/// <param name="size">The size.</param>
 		/// <seealso cref="PointConverter(int, int)"/>
 		/// <seealso cref="PointConverter(Size)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void InitializeSizes(Size size)
 		{
 			var (width, height) = ControlSize = size;

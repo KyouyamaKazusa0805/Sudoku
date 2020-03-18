@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using Sudoku.Drawing.Extensions;
 
 namespace Sudoku.Drawing.Layers
 {
@@ -16,6 +17,23 @@ namespace Sudoku.Drawing.Layers
 			Alignment = StringAlignment.Center,
 			LineAlignment = StringAlignment.Center
 		};
+
+		/// <summary>
+		/// The internal pointer converter.
+		/// </summary>
+		protected readonly PointConverter _pointConverter;
+
+
+		/// <summary>
+		/// Provides initialization for inherit instances.
+		/// </summary>
+		/// <param name="pointConverter">The point converter.</param>
+		protected Layer(PointConverter pointConverter)
+		{
+			_pointConverter = pointConverter;
+			var (width, height) = _pointConverter.PanelSize;
+			(Width, Height) = (width, height);
+		}
 
 
 		/// <summary>
@@ -40,9 +58,10 @@ namespace Sudoku.Drawing.Layers
 		public abstract string LayerName { get; }
 
 		/// <summary>
-		/// Indicates the internal bitmap.
+		/// Indicates the internal bitmap. If the value is <see langword="null"/>,
+		/// the current state is invalid (unavailable).
 		/// </summary>
-		public Image Target { get; protected set; }
+		public Image? Target { get; protected set; }
 
 
 		/// <inheritdoc/>
@@ -59,7 +78,7 @@ namespace Sudoku.Drawing.Layers
 		public sealed override string ToString() => LayerName;
 
 		/// <inheritdoc/>
-		public void Dispose() => Target.Dispose();
+		public void Dispose() => Target?.Dispose();
 
 		/// <inheritdoc/>
 		public int CompareTo(Layer other) => Priority.CompareTo(other.Priority);

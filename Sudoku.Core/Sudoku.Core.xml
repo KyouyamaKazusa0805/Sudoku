@@ -3423,6 +3423,209 @@
             The root path of this whole solution.
             </summary>
         </member>
+        <member name="T:Sudoku.Drawing.Extensions.PointEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Drawing.Point"/>.
+            </summary>
+            <seealso cref="T:System.Drawing.Point"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.PointEx.Deconstruct(System.Drawing.Point,System.Int32@,System.Int32@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="this">(<see langword="this" /> parameter) The instance.</param>
+            <param name="x">(<see langword="out" /> parameter) The x component.</param>
+            <param name="y">(<see langword="out" /> parameter) The y component.</param>
+        </member>
+        <member name="T:Sudoku.Drawing.Extensions.SizeEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Drawing.Size"/>.
+            </summary>
+            <seealso cref="T:System.Drawing.Size"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.SizeEx.Deconstruct(System.Drawing.Size,System.Int32@,System.Int32@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="this">(<see langword="this" /> parameter) The size instance.</param>
+            <param name="width">(<see langword="out" /> parameter) The width.</param>
+            <param name="height">(<see langword="out" /> parameter) The height.</param>
+        </member>
+        <member name="T:Sudoku.Drawing.LayerCollection">
+            <summary>
+            The collection of <see cref="T:Sudoku.Drawing.Layers.Layer"/>s.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.LayerCollection._internalList">
+            <summary>
+            The internal list.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Drawing.Layers.Layer">
+            <summary>
+            Define a layer for displaying on the form controls.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.Layers.Layer.DefaultStringFormat">
+            <summary>
+            Indicates a basic string format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.Layers.Layer._pointConverter">
+            <summary>
+            The internal pointer converter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Layers.Layer.#ctor(Sudoku.Drawing.PointConverter)">
+            <summary>
+            Provides initialization for inherit instances.
+            </summary>
+            <param name="pointConverter">The point converter.</param>
+        </member>
+        <member name="P:Sudoku.Drawing.Layers.Layer.Width">
+            <summary>
+            Indicates the width of the target image.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Layers.Layer.Height">
+            <summary>
+            Indicates the height of the target image.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Layers.Layer.Priority">
+            <summary>
+            Indicates the priority of the layer.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Layers.Layer.LayerName">
+            <summary>
+            Indicates the name of each kind of layers.
+            This value is used for compare two layers.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Layers.Layer.Target">
+            <summary>
+            Indicates the internal bitmap. If the value is <see langword="null"/>,
+            the current state is invalid (unavailable).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Layers.Layer.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Layers.Layer.Equals(Sudoku.Drawing.Layers.Layer)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Layers.Layer.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Layers.Layer.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Layers.Layer.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Layers.Layer.CompareTo(Sudoku.Drawing.Layers.Layer)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Layers.Layer.Draw">
+            <summary>
+            To draw into the <see cref="P:Sudoku.Drawing.Layers.Layer.Target"/> image.
+            </summary>
+            <seealso cref="P:Sudoku.Drawing.Layers.Layer.Target"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Layers.Layer.op_Equality(Sudoku.Drawing.Layers.Layer,Sudoku.Drawing.Layers.Layer)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Drawing.Layers.Layer.op_Inequality(Sudoku.Drawing.Layers.Layer,Sudoku.Drawing.Layers.Layer)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="T:Sudoku.Drawing.PointConverter">
+            <summary>
+            Provides converting operations for <see cref="T:System.Drawing.Point"/> and
+            <see cref="T:System.Drawing.PointF"/> usages in the form. For example, this class
+            will calculate and convert between the drawing coordinates and
+            the mouse coordinates.
+            </summary>
+            <seealso cref="T:System.Drawing.Point"/>
+            <seealso cref="T:System.Drawing.PointF"/>
+        </member>
+        <member name="F:Sudoku.Drawing.PointConverter.Offset">
+            <summary>
+            Indicates the width of the gap between the picture box outline
+            and the sudoku grid outline.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.PointConverter.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance with the width and height.
+            </summary>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.PointConverter.#ctor(System.Drawing.Size)">
+            <summary>
+            Initializes an instance with the specified <see cref="T:System.Drawing.Size"/>.
+            </summary>
+            <param name="size">The size.</param>
+            <seealso cref="T:System.Drawing.Size"/>
+        </member>
+        <member name="P:Sudoku.Drawing.PointConverter.GridPoints">
+            <summary>
+            Indicates the absolutely points in grid cross-lines.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.PointConverter.PanelSize">
+            <summary>
+            Indicates the panel size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.PointConverter.ControlSize">
+            <summary>
+            Indicates the control size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.PointConverter.GridSize">
+            <summary>
+            Indicates the grid size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.PointConverter.CellSize">
+            <summary>
+            Indicates the cell size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.PointConverter.CandidateSize">
+            <summary>
+            Indicates the candidate size.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.PointConverter.InitializeSizes(System.Drawing.Size)">
+            <summary>
+            Bound with the initializer <see cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Int32,System.Int32)"/>
+            and <see cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Drawing.Size)"/>.
+            </summary>
+            <param name="size">The size.</param>
+            <seealso cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Int32,System.Int32)"/>
+            <seealso cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Drawing.Size)"/>
+        </member>
+        <member name="M:Sudoku.Drawing.PointConverter.InitializePoints">
+            <summary>
+            Bound with the initializer <see cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Int32,System.Int32)"/>
+            and <see cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Drawing.Size)"/>.
+            </summary>
+            <seealso cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Int32,System.Int32)"/>
+            <seealso cref="M:Sudoku.Drawing.PointConverter.#ctor(System.Drawing.Size)"/>
+        </member>
         <member name="T:Sudoku.Drawing.View">
             <summary>
             Encapsulates a view when displaying the information on forms.
