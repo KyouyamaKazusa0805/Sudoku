@@ -15,4 +15,8 @@
 		<DocumentationFile>P:\Projects\Common\Sudoku\Sudoku.Core\Sudoku.Core.xml</DocumentationFile>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+	</ItemGroup>
+
 </Project>
