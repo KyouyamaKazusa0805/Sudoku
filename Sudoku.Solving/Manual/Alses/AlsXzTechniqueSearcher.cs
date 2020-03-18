@@ -45,13 +45,16 @@ namespace Sudoku.Solving.Manual.Alses
 		{
 			foreach (var rcc in Rcc.GetAllRccs(grid, _allowOverlapping))
 			{
-				var (als1, als2, commonDigit, region) = rcc;
+				var (
+					(region1, _, digitMask1, relativePos1, digits1, map1),
+					(region2, _, digitMask2, relativePos2, digits2, map2),
+					commonDigit, commonRegion) = rcc;
 
 				// ALS-XZ found.
 				// Now we should check elimination.
 				// But firstly, we should check all digits appearing
 				// in two ALSes.
-				foreach (int elimDigit in (als1.DigitsMask | als2.DigitsMask).GetAllSets())
+				foreach (int elimDigit in (digitMask1 | digitMask2).GetAllSets())
 				{
 					if (elimDigit == commonDigit)
 					{
@@ -60,7 +63,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 					// To check whether both ALSes contain this digit.
 					// If not (either containing), continue to next iteration.
-					if (((als1.DigitsMask ^ als2.DigitsMask) >> elimDigit & 1) != 0)
+					if (((digitMask1 ^ digitMask2) >> elimDigit & 1) != 0)
 					{
 						continue;
 					}
@@ -69,11 +72,11 @@ namespace Sudoku.Solving.Manual.Alses
 					// Now check elimination set.
 					var tempList = new HashSet<int>();
 					var als1RegionCells =
-						from pos in als1.RelativePos
-						select RegionUtils.GetCellOffset(als1.Region, pos);
+						from pos in relativePos1
+						select RegionUtils.GetCellOffset(region1, pos);
 					var als2RegionCells =
-						from pos in als2.RelativePos
-						select RegionUtils.GetCellOffset(als2.Region, pos);
+						from pos in relativePos2
+						select RegionUtils.GetCellOffset(region2, pos);
 					foreach (int cell in als1RegionCells)
 					{
 						if (!grid.CandidateExists(cell, elimDigit))
@@ -115,8 +118,8 @@ namespace Sudoku.Solving.Manual.Alses
 
 					// Record highlight cells.
 					var cellOffsets = new List<(int, int)>();
-					cellOffsets.AddRange(from cell in als1.Map.Offsets select (0, cell));
-					cellOffsets.AddRange(from cell in als2.Map.Offsets select (1, cell));
+					cellOffsets.AddRange(from cell in map1.Offsets select (0, cell));
+					cellOffsets.AddRange(from cell in map2.Offsets select (1, cell));
 
 					// Record highlight candidates.
 					var candidateOffsets = new List<(int, int)>();
@@ -161,7 +164,7 @@ namespace Sudoku.Solving.Manual.Alses
 									},
 									regionOffsets: _alsShowRegions switch
 									{
-										true => new[] { (0, als1.Region), (0, als2.Region), (1, region) },
+										true => new[] { (0, region1), (0, region2), (1, commonRegion) },
 										false => null
 									},
 									links: null)

@@ -103,9 +103,33 @@ namespace Sudoku.Solving.Manual.Alses
 		/// (<see langword="out"/> parameter) The relative positions.
 		/// </param>
 		/// <param name="digits">(<see langword="out"/> parameter) The digits.</param>
+		/// <param name="map">
+		/// (<see langword="out"/> parameter) The map of all cells used.
+		/// </param>
 		public void Deconstruct(
-			out int region, out IEnumerable<int> relativePos, out IEnumerable<int> digits) =>
-			(region, relativePos, digits) = (Region, RelativePos, Digits);
+			out int region, out IEnumerable<int> relativePos, out IEnumerable<int> digits,
+			out GridMap map) =>
+			(region, relativePos, digits, map) = (Region, RelativePos, Digits, Map);
+
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <param name="region">(<see langword="out"/> parameter) The region.</param>
+		/// <param name="digitsMask">
+		/// (<see langword="out"/> parameter) The mask of all digits used.
+		/// </param>
+		/// <param name="relativePosMask">
+		/// (<see langword="out"/> parameter) The mask of all relative positions used.
+		/// </param>
+		/// <param name="relativePos">
+		/// (<see langword="out"/> parameter) The relative positions.
+		/// </param>
+		/// <param name="digits">(<see langword="out"/> parameter) The digits.</param>
+		/// <param name="map">
+		/// (<see langword="out"/> parameter) The map of all cells used.
+		/// </param>
+		public void Deconstruct(
+			out int region, out short relativePosMask, out short digitsMask,
+			out IEnumerable<int> relativePos, out IEnumerable<int> digits, out GridMap map) =>
+			(region, relativePos, digits, relativePosMask, digitsMask, map) = (Region, RelativePos, Digits, RelativePosMask, DigitsMask, Map);
 
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is Als comparer && Equals(comparer);

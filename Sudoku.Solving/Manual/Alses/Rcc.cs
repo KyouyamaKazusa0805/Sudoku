@@ -252,7 +252,7 @@ namespace Sudoku.Solving.Manual.Alses
 		private static bool DigitAppears(
 			IReadOnlyGrid grid, Als als, int digit, [NotNullWhen(true)] out GridMap? cellsIfUnique)
 		{
-			var (region, relativePos, _) = als;
+			var (region, relativePos, _, _) = als;
 
 			var map = GridMap.Empty;
 			foreach (int cell in from pos in relativePos
