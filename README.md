@@ -14,7 +14,7 @@ A sudoku handling SDK using brute forces and logical techniques (Update files gr
 
 * C# version: 8.0<br/>C# 版本：8.0
 * Framework using: .NET Core 3.1<br/>框架使用：.NET Core 3.1
-* Integrated development environment: Visual Studio 2019 V16.4<br/>集成开发环境：Visual Studio 2019 V16.4
+* Integrated development environment: Visual Studio 2019 V16.5<br/>集成开发环境：Visual Studio 2019 V16.5
 
 
 
@@ -22,9 +22,9 @@ A sudoku handling SDK using brute forces and logical techniques (Update files gr
 
 标题：**如何使用**
 
-Clone this repo, and you can take all codes! This solution does not provide you with GUI at present because DNC may not support the form designer for some internal bugs. I may write forms part in later version of IDE.
+Clone this repo, and you can take all codes! This solution does not support forms at present, but forms will appear in the future.
 
-只需要你克隆这个仓库就可以带走所有的代码了！这个解决方案目前还不支持可视化界面，因为 .NET Core 框架由于一些内部 bug，暂时不支持窗体设计器。我可能将在下一个 IDE 更新版本才会写窗体部分。
+只需要你克隆这个仓库就可以带走所有的代码了！这个解决方案目前还不支持可视化界面，但是以后会支持的。
 
 
 
