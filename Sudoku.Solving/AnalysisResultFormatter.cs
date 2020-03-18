@@ -158,7 +158,7 @@ namespace Sudoku.Solving
 					sb.Append($"{"(---",6}, {total,6}) ");
 				}
 
-				sb.AppendLine($"{stepsCount,3}");
+				sb.AppendLine($"{stepsCount,3} {(stepsCount == 1 ? "step" : "steps")} in total");
 
 				appendSeparator();
 			}
