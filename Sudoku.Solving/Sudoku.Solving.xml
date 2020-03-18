@@ -952,6 +952,14 @@
             <param name="mask">The mask.</param>
             <returns>The cells.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Extensions.MaskExtensions.Deconstruct(System.Int16,Sudoku.Data.CellStatus@,System.Int16@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="this">(<see langword="this" /> parameter) The value.</param>
+            <param name="cellStatus">(<see langword="out" /> parameter) The cell status.</param>
+            <param name="candidatesMask">(<see langword="out" /> parameter) The candidate mask.</param>
+        </member>
         <member name="T:Sudoku.Solving.Generating.BasicPuzzleGenerator">
             <summary>
             Encapsulates a puzzle generator, which provides the symmetrical type constraint
@@ -1119,7 +1127,7 @@
             Indicates the relative positions (offsets) in a region.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Int32@,System.Collections.Generic.IEnumerable{System.Int32}@,System.Collections.Generic.IEnumerable{System.Int32}@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Int32@,System.Collections.Generic.IEnumerable{System.Int32}@,System.Collections.Generic.IEnumerable{System.Int32}@,Sudoku.Data.GridMap@)">
             <method name="Deconstruct">
 		<summary>Deconstruct this instance.</summary>
 	</method>
@@ -1128,6 +1136,28 @@
             (<see langword="out" /> parameter) The relative positions.
             </param>
             <param name="digits">(<see langword="out" /> parameter) The digits.</param>
+            <param name="map">
+            (<see langword="out" /> parameter) The map of all cells used.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Int32@,System.Int16@,System.Int16@,System.Collections.Generic.IEnumerable{System.Int32}@,System.Collections.Generic.IEnumerable{System.Int32}@,Sudoku.Data.GridMap@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="region">(<see langword="out" /> parameter) The region.</param>
+            <param name="digitsMask">
+            (<see langword="out" /> parameter) The mask of all digits used.
+            </param>
+            <param name="relativePosMask">
+            (<see langword="out" /> parameter) The mask of all relative positions used.
+            </param>
+            <param name="relativePos">
+            (<see langword="out" /> parameter) The relative positions.
+            </param>
+            <param name="digits">(<see langword="out" /> parameter) The digits.</param>
+            <param name="map">
+            (<see langword="out" /> parameter) The map of all cells used.
+            </param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.Equals(System.Object)">
             <inheritdoc/>
@@ -6665,19 +6695,6 @@
             This parameter is only used for quickening the code running.
             </param>
             <returns>The grid map.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Utils.MaskDeconstruction">
-            <summary>
-            Provides a deconstruction method for grid mask (<see cref="T:System.Int16"/> value).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.MaskDeconstruction.Deconstruct(System.Int16,Sudoku.Data.CellStatus@,System.Int16@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
-            <param name="this">(<see langword="this" /> parameter) The value.</param>
-            <param name="cellStatus">(<see langword="out" /> parameter) The cell status.</param>
-            <param name="candidatesMask">(<see langword="out" /> parameter) The candidate mask.</param>
         </member>
         <member name="T:Sudoku.Solving.Utils.NodeCollection">
             <summary>

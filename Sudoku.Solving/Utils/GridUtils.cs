@@ -3,6 +3,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using Sudoku.Solving.Extensions;
 
 namespace Sudoku.Solving.Utils
 {
