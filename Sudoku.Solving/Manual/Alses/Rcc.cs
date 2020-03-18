@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data;
@@ -70,30 +71,27 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <param name="digitsMask">
 		/// (<see langword="out"/> parameter) The mask of appearing digits.
 		/// </param>
-		/// <param name="region">
-		/// (<see langword="out"/> parameter) The region of the common digit shares in.
-		/// </param>
 		/// <returns>
 		/// The digit. If the method cannot find out a digit,
 		/// it will return <see langword="null"/>.
 		/// </returns>
-		public static int? GetCommonDigit(
-			IReadOnlyGrid grid, Als als1, Als als2, out short digitsMask,
-			[NotNullWhen(true)] out int? region)
+		public static IEnumerable<(int _digit, int _region)> GetCommonDigits(
+			IReadOnlyGrid grid, Als als1, Als als2, out short digitsMask)
 		{
+			var result = new List<(int, int)>();
 			foreach (int digit in (digitsMask = (short)(als1.DigitsMask | als2.DigitsMask)).GetAllSets())
 			{
 				if (!DigitAppears(grid, als1, digit, out var map1)
 					|| !DigitAppears(grid, als2, digit, out var map2)
-					|| !((GridMap)(map1 | map2)).AllSetsAreInOneRegion(out region))
+					|| !((GridMap)(map1 | map2)).AllSetsAreInOneRegion(out int? region))
 				{
 					continue;
 				}
 
-				return digit;
+				result.Add((digit, (int)region));
 			}
 
-			return region = null;
+			return result;
 		}
 
 		/// <summary>

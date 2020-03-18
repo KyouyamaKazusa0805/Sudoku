@@ -1213,6 +1213,19 @@
             Encapsulates an <b>ALS-XZ</b> technique.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher._allowOverlapping">
+            <summary>
+            Indicates whether the ALSes can be overlapped with each other.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.#ctor(System.Boolean)">
+            <summary>
+            Initialize an instance with the specified information.
+            </summary>
+            <param name="allowOverlapping">
+            Indicates whether the ALSes can be overlapped with each other.
+            </param>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.Priority">
             <inheritdoc/>
         </member>
@@ -1285,7 +1298,7 @@
 		<returns>A string that represents the current object.</returns>
 	</method>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.GetCommonDigit(Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Alses.Als,Sudoku.Solving.Manual.Alses.Als,System.Int16@,System.Nullable{System.Int32}@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.GetCommonDigits(Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Alses.Als,Sudoku.Solving.Manual.Alses.Als,System.Int16@)">
             <summary>
             Get the common digit that two ALSes share.
             </summary>
@@ -1294,9 +1307,6 @@
             <param name="als2">The ALS 2.</param>
             <param name="digitsMask">
             (<see langword="out"/> parameter) The mask of appearing digits.
-            </param>
-            <param name="region">
-            (<see langword="out"/> parameter) The region of the common digit shares in.
             </param>
             <returns>
             The digit. If the method cannot find out a digit,
@@ -3138,6 +3148,14 @@
             Indicates the maximum length of a chain to search.
             </para>
             <para>The value is <c>10</c> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.AllowOverlapAlses">
+            <summary>
+            <para>
+            Indicates whether two ALSes can be overlapped with each other.
+            </para>
+            <para>The value is <see langword="true"/> in default case.</para>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly">

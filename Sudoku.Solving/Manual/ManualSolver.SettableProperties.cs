@@ -12,6 +12,14 @@
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether two ALSes can be overlapped with each other.
+		/// </para>
+		/// <para>The value is <see langword="true"/> in default case.</para>
+		/// </summary>
+		public bool AllowOverlapAlses { get; set; } = true;
+
+		/// <summary>
+		/// <para>
 		/// Indicates whether the solver should check all technique
 		/// information using the strict technique searchers order.
 		/// </para>
