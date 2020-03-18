@@ -20,6 +20,15 @@
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether all ALSes shows highlight regions
+		/// instead of cells.
+		/// </para>
+		/// <para>The value is <see langword="true"/> in default case.</para>
+		/// </summary>
+		public bool AlsHighlightRegionInsteadOfCell { get; set; } = true;
+
+		/// <summary>
+		/// <para>
 		/// Indicates whether the solver should check all technique
 		/// information using the strict technique searchers order.
 		/// </para>

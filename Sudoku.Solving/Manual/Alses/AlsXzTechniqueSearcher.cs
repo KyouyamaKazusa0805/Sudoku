@@ -3,7 +3,6 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
-using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Alses
@@ -18,6 +17,11 @@ namespace Sudoku.Solving.Manual.Alses
 		/// </summary>
 		private readonly bool _allowOverlapping;
 
+		/// <summary>
+		/// Indicates whether the ALSes shows their region rather than cells.
+		/// </summary>
+		private readonly bool _alsShowRegions;
+
 
 		/// <summary>
 		/// Initialize an instance with the specified information.
@@ -25,8 +29,11 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <param name="allowOverlapping">
 		/// Indicates whether the ALSes can be overlapped with each other.
 		/// </param>
-		public AlsXzTechniqueSearcher(bool allowOverlapping) =>
-			_allowOverlapping = allowOverlapping;
+		/// <param name="alsShowRegions">
+		/// Indicates whether all ALSes shows their regions rather than cells.
+		/// </param>
+		public AlsXzTechniqueSearcher(bool allowOverlapping, bool alsShowRegions) =>
+			(_allowOverlapping, _alsShowRegions) = (allowOverlapping, alsShowRegions);
 
 
 		/// <inheritdoc/>
@@ -106,7 +113,12 @@ namespace Sudoku.Solving.Manual.Alses
 						continue;
 					}
 
-					// Add.
+					// Record highlight cells.
+					var cellOffsets = new List<(int, int)>();
+					cellOffsets.AddRange(from cell in als1.Map.Offsets select (0, cell));
+					cellOffsets.AddRange(from cell in als2.Map.Offsets select (1, cell));
+
+					// Record highlight candidates.
 					var candidateOffsets = new List<(int, int)>();
 					foreach (int cell in als1RegionCells)
 					{
@@ -137,68 +149,24 @@ namespace Sudoku.Solving.Manual.Alses
 							views: new[]
 							{
 								new View(
-									cellOffsets: null,
-									candidateOffsets,
-									regionOffsets: new[] { (0, als1.Region), (0, als2.Region) },
+									cellOffsets: _alsShowRegions switch
+									{
+										true => null,
+										false => cellOffsets
+									},
+									candidateOffsets: _alsShowRegions switch
+									{
+										true => candidateOffsets,
+										false => null
+									},
+									regionOffsets: _alsShowRegions switch
+									{
+										true => new[] { (0, als1.Region), (0, als2.Region), (1, region) },
+										false => null
+									},
 									links: null)
 							},
 							rcc));
-				}
-			}
-		}
-
-
-		/// <summary>
-		/// To search for all ALSes in the specified grid and the region to iterate on.
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <param name="region">The region.</param>
-		/// <returns>All ALSes searched.</returns>
-		private static IEnumerable<Als> GetAllAlses(IReadOnlyGrid grid, int region)
-		{
-			short posMask = 0;
-			int i = 0;
-			foreach (int cell in GridMap.GetCellsIn(region))
-			{
-				if (grid.GetCellStatus(cell) == CellStatus.Empty)
-				{
-					posMask |= (short)(1 << i);
-				}
-
-				i++;
-			}
-			int count = posMask.CountSet();
-			if (count < 2)
-			{
-				yield break;
-			}
-
-			for (int size = 2; size <= count; size++)
-			{
-				foreach (short relativePosMask in new BitCombinationGenerator(9, size))
-				{
-					short digitsMask = 0;
-					foreach (int cell in MaskExtensions.GetCells(region, relativePosMask))
-					{
-						if (grid.GetCellStatus(cell) != CellStatus.Empty)
-						{
-							goto Label_Continue;
-						}
-
-						digitsMask |= grid.GetCandidatesReversal(cell);
-					}
-
-					if (digitsMask.CountSet() - 1 != size)
-					{
-						// Not an ALS.
-						continue;
-					}
-
-#pragma warning disable CS0675 // Bitwise-or operator used on a sign-extended operand
-					yield return new Als(region << 18 | relativePosMask << 9 | digitsMask);
-#pragma warning restore CS0675 // Bitwise-or operator used on a sign-extended operand
-
-				Label_Continue:;
 				}
 			}
 		}

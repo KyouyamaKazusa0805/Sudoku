@@ -1218,12 +1218,20 @@
             Indicates whether the ALSes can be overlapped with each other.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.#ctor(System.Boolean)">
+        <member name="F:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher._alsShowRegions">
+            <summary>
+            Indicates whether the ALSes shows their region rather than cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.#ctor(System.Boolean,System.Boolean)">
             <summary>
             Initialize an instance with the specified information.
             </summary>
             <param name="allowOverlapping">
             Indicates whether the ALSes can be overlapped with each other.
+            </param>
+            <param name="alsShowRegions">
+            Indicates whether all ALSes shows their regions rather than cells.
             </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.Priority">
@@ -1231,14 +1239,6 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.GetAllAlses(Sudoku.Data.IReadOnlyGrid,System.Int32)">
-            <summary>
-            To search for all ALSes in the specified grid and the region to iterate on.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="region">The region.</param>
-            <returns>All ALSes searched.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Rcc">
             <summary>
@@ -3181,6 +3181,15 @@
             <summary>
             <para>
             Indicates whether two ALSes can be overlapped with each other.
+            </para>
+            <para>The value is <see langword="true"/> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.AlsHighlightRegionInsteadOfCell">
+            <summary>
+            <para>
+            Indicates whether all ALSes shows highlight regions
+            instead of cells.
             </para>
             <para>The value is <see langword="true"/> in default case.</para>
             </summary>
