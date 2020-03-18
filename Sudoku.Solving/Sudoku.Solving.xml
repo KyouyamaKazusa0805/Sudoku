@@ -1245,13 +1245,14 @@
             Encapsulates a data structure for restricted common candidates (RCC).
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.#ctor(Sudoku.Solving.Manual.Alses.Als,Sudoku.Solving.Manual.Alses.Als,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.#ctor(Sudoku.Solving.Manual.Alses.Als,Sudoku.Solving.Manual.Alses.Als,System.Int32,System.Int32)">
             <summary>
             Initializes an instance with two ALSes and their common digit.
             </summary>
             <param name="als1">The ALS 1.</param>
             <param name="als2">The ALS 2.</param>
             <param name="commonDigit">The common digit.</param>
+            <param name="commonRegion">The common region.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Rcc.Als1">
             <summary>
@@ -1268,7 +1269,12 @@
             Indicates the digit that two ALSes share.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.Deconstruct(Sudoku.Solving.Manual.Alses.Als@,Sudoku.Solving.Manual.Alses.Als@,System.Int32@)">
+        <member name="P:Sudoku.Solving.Manual.Alses.Rcc.CommonRegion">
+            <summary>
+            Indicates the common region.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.Deconstruct(Sudoku.Solving.Manual.Alses.Als@,Sudoku.Solving.Manual.Alses.Als@,System.Int32@,System.Int32@)">
             <method name="Deconstruct">
 		<summary>Deconstruct this instance.</summary>
 	</method>
@@ -1276,6 +1282,9 @@
             <param name="als2">(<see langword="out" /> parameter) The ALS 2.</param>
             <param name="commonDigit">
             (<see langword="out" /> parameter) The common digit.
+            </param>
+            <param name="commonRegion">
+            (<see langword="out" /> parameter) The common region.
             </param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Rcc.Equals(System.Object)">
@@ -1298,6 +1307,16 @@
 		<returns>A string that represents the current object.</returns>
 	</method>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.GetAllRccs(Sudoku.Data.IReadOnlyGrid,System.Boolean)">
+            <summary>
+            Get all RCCs in the specified grid.
+            </summary>
+            <param name="grid">The grid to check.</param>
+            <param name="allowOverlap">
+            Indicates whether the specified searcher allows ALSes overlapping.
+            </param>
+            <returns>All RCCs searched.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Rcc.GetCommonDigits(Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Alses.Als,Sudoku.Solving.Manual.Alses.Als,System.Int16@)">
             <summary>
             Get the common digit that two ALSes share.
@@ -1312,6 +1331,14 @@
             The digit. If the method cannot find out a digit,
             it will return <see langword="null"/>.
             </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.GetAllAlses(Sudoku.Data.IReadOnlyGrid,System.Int32)">
+            <summary>
+            To search for all ALSes in the specified grid and the region to iterate on.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="region">The region.</param>
+            <returns>All ALSes searched.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Rcc.DigitAppears(Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Alses.Als,System.Int32,System.Nullable{Sudoku.Data.GridMap}@)">
             <summary>

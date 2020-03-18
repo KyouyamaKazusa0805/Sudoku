@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Alses
@@ -19,8 +20,9 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <param name="als1">The ALS 1.</param>
 		/// <param name="als2">The ALS 2.</param>
 		/// <param name="commonDigit">The common digit.</param>
-		public Rcc(Als als1, Als als2, int commonDigit) =>
-			(Als1, Als2, CommonDigit) = (als1, als2, commonDigit);
+		/// <param name="commonRegion">The common region.</param>
+		public Rcc(Als als1, Als als2, int commonDigit, int commonRegion) =>
+			(Als1, Als2, CommonDigit, CommonRegion) = (als1, als2, commonDigit, commonRegion);
 
 
 		/// <summary>
@@ -38,6 +40,11 @@ namespace Sudoku.Solving.Manual.Alses
 		/// </summary>
 		public int CommonDigit { get; }
 
+		/// <summary>
+		/// Indicates the common region.
+		/// </summary>
+		public int CommonRegion { get; }
+
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="als1">(<see langword="out"/> parameter) The ALS 1.</param>
@@ -45,22 +52,105 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <param name="commonDigit">
 		/// (<see langword="out"/> parameter) The common digit.
 		/// </param>
-		public void Deconstruct(out Als als1, out Als als2, out int commonDigit) =>
-			(als1, als2, commonDigit) = (Als1, Als2, CommonDigit);
+		/// <param name="commonRegion">
+		/// (<see langword="out"/> parameter) The common region.
+		/// </param>
+		public void Deconstruct(
+			out Als als1, out Als als2, out int commonDigit, out int commonRegion) =>
+			(als1, als2, commonDigit, commonRegion) = (Als1, Als2, CommonDigit, CommonRegion);
 
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is Rcc comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(Rcc other) =>
-			Als1 == other.Als1 && Als2 == other.Als2 && CommonDigit == other.CommonDigit;
+		public bool Equals(Rcc other)
+		{
+			return Als1 == other.Als1
+				&& Als2 == other.Als2
+				&& CommonDigit == other.CommonDigit
+				&& CommonRegion == other.CommonRegion;
+		}
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
-		public override int GetHashCode() => base.GetHashCode();
+		public override int GetHashCode() =>
+			Als1.GetHashCode() ^ Als2.GetHashCode() ^ CommonDigit ^ CommonRegion;
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString() => $"{CommonDigit + 1} in {Als1} and {Als2}";
 
+		
+		/// <summary>
+		/// Get all RCCs in the specified grid.
+		/// </summary>
+		/// <param name="grid">The grid to check.</param>
+		/// <param name="allowOverlap">
+		/// Indicates whether the specified searcher allows ALSes overlapping.
+		/// </param>
+		/// <returns>All RCCs searched.</returns>
+		public static IEnumerable<Rcc> GetAllRccs(IReadOnlyGrid grid, bool allowOverlap)
+		{
+			for (int r1 = 0; r1 < 26; r1++)
+			{
+				for (int r2 = r1 + 1; r2 < 27; r2++)
+				{
+					var alses1 = GetAllAlses(grid, r1);
+					if (!alses1.Any())
+					{
+						continue;
+					}
+
+					foreach (var als1 in alses1)
+					{
+						var alses2 = GetAllAlses(grid, r2);
+						if (!alses2.Any())
+						{
+							continue;
+						}
+
+						foreach (var als2 in alses2)
+						{
+							// Check whether two ALSes hold same cells.
+							foreach (var (commonDigit, region) in
+								GetCommonDigits(grid, als1, als2, out short digitsMask))
+							{
+								var overlapMap = als1.Map & als2.Map;
+								if (allowOverlap && overlapMap.IsNotEmpty)
+								{
+									// Check overlap regions contain common digits or not.
+									if (overlapMap
+										.Offsets
+										.Any(cell => grid.CandidateExists(cell, commonDigit)))
+									{
+										continue;
+									}
+								}
+
+								// ALS-XZ found.
+								// Now we should check elimination.
+								// But firstly, we should check all digits appearing
+								// in two ALSes.
+								foreach (int elimDigit in digitsMask.GetAllSets())
+								{
+									if (elimDigit == commonDigit)
+									{
+										continue;
+									}
+
+									// To check whether both ALSes contain this digit.
+									// If not (either containing), continue to next iteration.
+									if (((als1.DigitsMask ^ als2.DigitsMask) >> elimDigit & 1) != 0)
+									{
+										continue;
+									}
+
+									yield return new Rcc(als1, als2, commonDigit, region);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 
 		/// <summary>
 		/// Get the common digit that two ALSes share.
@@ -92,6 +182,61 @@ namespace Sudoku.Solving.Manual.Alses
 			}
 
 			return result;
+		}
+
+		/// <summary>
+		/// To search for all ALSes in the specified grid and the region to iterate on.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="region">The region.</param>
+		/// <returns>All ALSes searched.</returns>
+		private static IEnumerable<Als> GetAllAlses(IReadOnlyGrid grid, int region)
+		{
+			short posMask = 0;
+			int i = 0;
+			foreach (int cell in GridMap.GetCellsIn(region))
+			{
+				if (grid.GetCellStatus(cell) == CellStatus.Empty)
+				{
+					posMask |= (short)(1 << i);
+				}
+
+				i++;
+			}
+			int count = posMask.CountSet();
+			if (count < 2)
+			{
+				yield break;
+			}
+
+			for (int size = 2; size <= count; size++)
+			{
+				foreach (short relativePosMask in new BitCombinationGenerator(9, size))
+				{
+					short digitsMask = 0;
+					foreach (int cell in MaskExtensions.GetCells(region, relativePosMask))
+					{
+						if (grid.GetCellStatus(cell) != CellStatus.Empty)
+						{
+							goto Label_Continue;
+						}
+
+						digitsMask |= grid.GetCandidatesReversal(cell);
+					}
+
+					if (digitsMask.CountSet() - 1 != size)
+					{
+						// Not an ALS.
+						continue;
+					}
+
+#pragma warning disable CS0675 // Bitwise-or operator used on a sign-extended operand
+					yield return new Als(region << 18 | relativePosMask << 9 | digitsMask);
+#pragma warning restore CS0675 // Bitwise-or operator used on a sign-extended operand
+
+				Label_Continue:;
+				}
+			}
 		}
 
 		/// <summary>

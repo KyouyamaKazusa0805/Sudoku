@@ -36,149 +36,113 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			for (int r1 = 0; r1 < 26; r1++)
+			foreach (var rcc in Rcc.GetAllRccs(grid, _allowOverlapping))
 			{
-				for (int r2 = r1 + 1; r2 < 27; r2++)
+				var (als1, als2, commonDigit, region) = rcc;
+
+				// ALS-XZ found.
+				// Now we should check elimination.
+				// But firstly, we should check all digits appearing
+				// in two ALSes.
+				foreach (int elimDigit in (als1.DigitsMask | als2.DigitsMask).GetAllSets())
 				{
-					var alses1 = GetAllAlses(grid, r1);
-					if (!alses1.Any())
+					if (elimDigit == commonDigit)
 					{
 						continue;
 					}
 
-					foreach (var als1 in alses1)
+					// To check whether both ALSes contain this digit.
+					// If not (either containing), continue to next iteration.
+					if (((als1.DigitsMask ^ als2.DigitsMask) >> elimDigit & 1) != 0)
 					{
-						var alses2 = GetAllAlses(grid, r2);
-						if (!alses2.Any())
+						continue;
+					}
+
+					// Both ALSes contain the digit.
+					// Now check elimination set.
+					var tempList = new HashSet<int>();
+					var als1RegionCells =
+						from pos in als1.RelativePos
+						select RegionUtils.GetCellOffset(als1.Region, pos);
+					var als2RegionCells =
+						from pos in als2.RelativePos
+						select RegionUtils.GetCellOffset(als2.Region, pos);
+					foreach (int cell in als1RegionCells)
+					{
+						if (!grid.CandidateExists(cell, elimDigit))
 						{
 							continue;
 						}
 
-						foreach (var als2 in alses2)
+						tempList.Add(cell);
+					}
+					foreach (int cell in als2RegionCells)
+					{
+						if (!grid.CandidateExists(cell, elimDigit))
 						{
-							// Check whether two ALSes hold same cells.
-							foreach (var (commonDigit, region) in
-								Rcc.GetCommonDigits(grid, als1, als2, out short digitsMask))
-							{
-								var overlapMap = als1.Map & als2.Map;
-								if (_allowOverlapping && overlapMap.IsNotEmpty)
-								{
-									// Check overlap regions contain common digits or not.
-									if (overlapMap
-										.Offsets
-										.Any(cell => grid.CandidateExists(cell, commonDigit)))
-									{
-										continue;
-									}
-								}
+							continue;
+						}
 
-								// ALS-XZ found.
-								// Now we should check elimination.
-								// But firstly, we should check all digits appearing
-								// in two ALSes.
-								foreach (int elimDigit in digitsMask.GetAllSets())
-								{
-									if (elimDigit == commonDigit)
-									{
-										continue;
-									}
+						tempList.Add(cell);
+					}
 
-									// To check whether both ALSes contain this digit.
-									// If not (either containing), continue to next iteration.
-									if (((als1.DigitsMask ^ als2.DigitsMask) >> elimDigit & 1) != 0)
-									{
-										continue;
-									}
+					var elimMap = new GridMap(tempList, GridMap.InitializeOption.ProcessPeersWithoutItself);
+					if (elimMap.Count == 0)
+					{
+						continue;
+					}
 
-									// Both ALSes contain the digit.
-									// Now check elimination set.
-									var tempList = new HashSet<int>();
-									var als1RegionCells =
-										from pos in als1.RelativePos
-										select RegionUtils.GetCellOffset(r1, pos);
-									var als2RegionCells =
-										from pos in als2.RelativePos
-										select RegionUtils.GetCellOffset(r2, pos);
-									foreach (int cell in als1RegionCells)
-									{
-										if (!grid.CandidateExists(cell, elimDigit))
-										{
-											continue;
-										}
-
-										tempList.Add(cell);
-									}
-									foreach (int cell in als2RegionCells)
-									{
-										if (!grid.CandidateExists(cell, elimDigit))
-										{
-											continue;
-										}
-
-										tempList.Add(cell);
-									}
-
-									var elimMap = new GridMap(tempList, GridMap.InitializeOption.ProcessPeersWithoutItself);
-									if (elimMap.Count == 0)
-									{
-										continue;
-									}
-
-									var conclusions = new List<Conclusion>();
-									foreach (int cell in elimMap.Offsets)
-									{
-										if (grid.CandidateExists(cell, elimDigit))
-										{
-											conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, elimDigit));
-										}
-									}
-
-									if (conclusions.Count == 0)
-									{
-										continue;
-									}
-
-									// Add.
-									var candidateOffsets = new List<(int, int)>();
-									foreach (int cell in als1RegionCells)
-									{
-										foreach (int als1Digit in grid.GetCandidatesReversal(cell).GetAllSets())
-										{
-											int z = -1;
-											if (als1Digit == commonDigit) z = 1;
-											else if (als1Digit == elimDigit) z = 2;
-
-											candidateOffsets.Add((z, cell * 9 + als1Digit));
-										}
-									}
-									foreach (int cell in als2RegionCells)
-									{
-										foreach (int als2Digit in grid.GetCandidatesReversal(cell).GetAllSets())
-										{
-											int z = -2;
-											if (als2Digit == commonDigit) z = 1;
-											else if (als2Digit == elimDigit) z = 2;
-
-											candidateOffsets.Add((z, cell * 9 + als2Digit));
-										}
-									}
-
-									accumulator.Add(
-										new AlsXzTechniqueInfo(
-											conclusions,
-											views: new[]
-											{
-											new View(
-												cellOffsets: null,
-												candidateOffsets,
-												regionOffsets: new[] { (0, r1), (0, r2) },
-												links: null)
-											},
-											new Rcc(als1, als2, commonDigit)));
-								}
-							}
+					var conclusions = new List<Conclusion>();
+					foreach (int cell in elimMap.Offsets)
+					{
+						if (grid.CandidateExists(cell, elimDigit))
+						{
+							conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, elimDigit));
 						}
 					}
+
+					if (conclusions.Count == 0)
+					{
+						continue;
+					}
+
+					// Add.
+					var candidateOffsets = new List<(int, int)>();
+					foreach (int cell in als1RegionCells)
+					{
+						foreach (int als1Digit in grid.GetCandidatesReversal(cell).GetAllSets())
+						{
+							int z = -1;
+							if (als1Digit == commonDigit) z = 1;
+							else if (als1Digit == elimDigit) z = 2;
+
+							candidateOffsets.Add((z, cell * 9 + als1Digit));
+						}
+					}
+					foreach (int cell in als2RegionCells)
+					{
+						foreach (int als2Digit in grid.GetCandidatesReversal(cell).GetAllSets())
+						{
+							int z = -2;
+							if (als2Digit == commonDigit) z = 1;
+							else if (als2Digit == elimDigit) z = 2;
+
+							candidateOffsets.Add((z, cell * 9 + als2Digit));
+						}
+					}
+
+					accumulator.Add(
+						new AlsXzTechniqueInfo(
+							conclusions,
+							views: new[]
+							{
+								new View(
+									cellOffsets: null,
+									candidateOffsets,
+									regionOffsets: new[] { (0, als1.Region), (0, als2.Region) },
+									links: null)
+							},
+							rcc));
 				}
 			}
 		}
