@@ -60,7 +60,7 @@ namespace Sudoku.Solving.Manual.Alses
 							foreach (var (commonDigit, region) in
 								Rcc.GetCommonDigits(grid, als1, als2, out short digitsMask))
 							{
-								var overlapMap = (als1.Map & als2.Map);
+								var overlapMap = als1.Map & als2.Map;
 								if (_allowOverlapping && overlapMap.IsNotEmpty)
 								{
 									// Check overlap regions contain common digits or not.
