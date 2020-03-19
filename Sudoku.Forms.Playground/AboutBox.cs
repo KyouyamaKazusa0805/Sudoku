@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace Sudoku.Forms.Playground
+namespace Sudoku.Forms
 {
 	partial class AboutBox : Form
 	{

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Forms.Playground
+﻿namespace Sudoku.Forms
 {
 	partial class AboutBox
 	{

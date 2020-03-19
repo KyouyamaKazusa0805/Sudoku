@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Sudoku.Data;
@@ -8,7 +7,7 @@ using Sudoku.Drawing;
 using Sudoku.Drawing.Layers;
 using PointConverter = Sudoku.Drawing.PointConverter;
 
-namespace Sudoku.Forms.Playground.Subpages
+namespace Sudoku.Forms.Subpages
 {
 	public partial class GridPanel : UserControl
 	{
@@ -60,20 +59,6 @@ namespace Sudoku.Forms.Playground.Subpages
 					_settings.GivenFontName, _settings.ModifiableFontName,
 					_settings.CandidateFontName, _grid)
 			};
-		}
-
-		/// <summary>
-		/// To show the title using default text (<see cref="Control.Text"/>).
-		/// </summary>
-		/// <seealso cref="Control.Text"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void ShowTitle()
-		{
-			var assembly = Assembly.GetExecutingAssembly();
-			string version = assembly.GetName().Version.ToString();
-			string title = assembly.GetCustomAttribute<AssemblyTitleAttribute>().Title;
-
-			Text = $"{title} Ver {version}";
 		}
 
 		/// <summary>
@@ -144,5 +129,11 @@ namespace Sudoku.Forms.Playground.Subpages
 				return bitmap;
 			}
 		}
+
+		private void GridPanel_Load(object sender, EventArgs e) =>
+			InitializeAfterBase();
+
+		private void GridPanel_SizeChanged(object sender, EventArgs e) =>
+			_pictureBoxGrid.Width = _pictureBoxGrid.Height;
 	}
 }

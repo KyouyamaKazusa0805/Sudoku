@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Windows.Forms;
 
-namespace Sudoku.Forms.Playground
+namespace Sudoku.Forms
 {
 	public partial class MainForm : Form
 	{

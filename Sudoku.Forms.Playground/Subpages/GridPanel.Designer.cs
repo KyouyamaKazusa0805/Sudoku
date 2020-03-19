@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Forms.Playground.Subpages
+﻿namespace Sudoku.Forms.Subpages
 {
 	partial class GridPanel
 	{
@@ -50,6 +50,8 @@
 			this.Controls.Add(this._pictureBoxGrid);
 			this.Name = "GridPanel";
 			this.Size = new System.Drawing.Size(948, 540);
+			this.Load += new System.EventHandler(this.GridPanel_Load);
+			this.SizeChanged += new System.EventHandler(this.GridPanel_SizeChanged);
 			((System.ComponentModel.ISupportInitialize)(this._pictureBoxGrid)).EndInit();
 			this.ResumeLayout(false);
 

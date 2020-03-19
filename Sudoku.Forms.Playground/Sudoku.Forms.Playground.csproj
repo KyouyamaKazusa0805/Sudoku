@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7331360B-AB54-4A56-A11D-42184EB796E1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Sudoku.Forms.Playground</RootNamespace>
+    <RootNamespace>Sudoku.Forms</RootNamespace>
     <AssemblyName>Sudoku.Forms.Playground</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -161,6 +161,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Subpages\GridPanel.resx">
       <DependentUpon>GridPanel.cs</DependentUpon>
