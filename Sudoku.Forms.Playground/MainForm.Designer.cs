@@ -36,6 +36,7 @@
 			this._buttonFile = new System.Windows.Forms.Button();
 			this._buttonMainGrid = new System.Windows.Forms.Button();
 			this._panelSubpage = new System.Windows.Forms.Panel();
+			this.panel1 = new System.Windows.Forms.Panel();
 			this._panelMenu.SuspendLayout();
 			this._panelSolutionName.SuspendLayout();
 			this.SuspendLayout();
@@ -127,11 +128,19 @@
 			// 
 			// _panelSubpage
 			// 
-			this._panelSubpage.Dock = System.Windows.Forms.DockStyle.Fill;
-			this._panelSubpage.Location = new System.Drawing.Point(200, 0);
+			this._panelSubpage.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this._panelSubpage.Location = new System.Drawing.Point(200, 85);
 			this._panelSubpage.Name = "_panelSubpage";
-			this._panelSubpage.Size = new System.Drawing.Size(1088, 721);
+			this._panelSubpage.Size = new System.Drawing.Size(1088, 636);
 			this._panelSubpage.TabIndex = 1;
+			// 
+			// panel1
+			// 
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel1.Location = new System.Drawing.Point(200, 0);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(1088, 85);
+			this.panel1.TabIndex = 2;
 			// 
 			// MainForm
 			// 
@@ -139,6 +148,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1288, 721);
+			this.Controls.Add(this.panel1);
 			this.Controls.Add(this._panelSubpage);
 			this.Controls.Add(this._panelMenu);
 			this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -162,6 +172,7 @@
 		private System.Windows.Forms.Panel _panelSelection;
 		private System.Windows.Forms.Button _buttonAbout;
 		private System.Windows.Forms.Button _buttonFile;
+		private System.Windows.Forms.Panel panel1;
 	}
 }
 
