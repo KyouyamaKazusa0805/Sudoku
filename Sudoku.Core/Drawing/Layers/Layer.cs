@@ -18,6 +18,7 @@ namespace Sudoku.Drawing.Layers
 			LineAlignment = StringAlignment.Center
 		};
 
+
 		/// <summary>
 		/// The internal pointer converter.
 		/// </summary>
@@ -48,6 +49,7 @@ namespace Sudoku.Drawing.Layers
 
 		/// <summary>
 		/// Indicates the priority of the layer.
+		/// If the value is greater, the order of drawing is more forward.
 		/// </summary>
 		public abstract int Priority { get; }
 
@@ -55,7 +57,7 @@ namespace Sudoku.Drawing.Layers
 		/// Indicates the name of each kind of layers.
 		/// This value is used for compare two layers.
 		/// </summary>
-		public abstract string LayerName { get; }
+		public virtual string Name => GetType().Name;
 
 		/// <summary>
 		/// Indicates the internal bitmap. If the value is <see langword="null"/>,
@@ -69,13 +71,13 @@ namespace Sudoku.Drawing.Layers
 			obj is Layer comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(Layer other) => LayerName == other.LayerName;
+		public bool Equals(Layer other) => Name == other.Name;
 
 		/// <inheritdoc/>
-		public sealed override int GetHashCode() => LayerName.GetHashCode();
+		public sealed override int GetHashCode() => Name.GetHashCode();
 
 		/// <inheritdoc/>
-		public sealed override string ToString() => LayerName;
+		public sealed override string ToString() => Name;
 
 		/// <inheritdoc/>
 		public void Dispose() => Target?.Dispose();
@@ -96,13 +98,40 @@ namespace Sudoku.Drawing.Layers
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(Layer left, Layer right) => !(left == right);
 
-
+		/// <summary>
+		/// Decide whether the priority of the <paramref name="left"/> layer is greater than
+		/// the <paramref name="right"/> one.
+		/// </summary>
+		/// <param name="left">The left layer.</param>
+		/// <param name="right">The right layer.</param>
+		/// <returns>The <see cref="bool"/> result.</returns>
 		public static bool operator >(Layer left, Layer right) => left.CompareTo(right) > 0;
 
+		/// <summary>
+		/// Decide whether the priority of the <paramref name="left"/> layer is greater than
+		/// or equals to the <paramref name="right"/> one.
+		/// </summary>
+		/// <param name="left">The left layer.</param>
+		/// <param name="right">The right layer.</param>
+		/// <returns>The <see cref="bool"/> result.</returns>
 		public static bool operator >=(Layer left, Layer right) => left.CompareTo(right) >= 0;
 
+		/// <summary>
+		/// Decide whether the priority of the <paramref name="left"/> layer is less than
+		/// the <paramref name="right"/> one.
+		/// </summary>
+		/// <param name="left">The left layer.</param>
+		/// <param name="right">The right layer.</param>
+		/// <returns>The <see cref="bool"/> result.</returns>
 		public static bool operator <(Layer left, Layer right) => left.CompareTo(right) < 0;
 
+		/// <summary>
+		/// Decide whether the priority of the <paramref name="left"/> layer is less than
+		/// or equals to the <paramref name="right"/> one.
+		/// </summary>
+		/// <param name="left">The left layer.</param>
+		/// <param name="right">The right layer.</param>
+		/// <returns>The <see cref="bool"/> result.</returns>
 		public static bool operator <=(Layer left, Layer right) => left.CompareTo(right) <= 0;
 	}
 }
