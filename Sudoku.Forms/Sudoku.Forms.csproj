@@ -6,4 +6,8 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+  </ItemGroup>
+
 </Project>

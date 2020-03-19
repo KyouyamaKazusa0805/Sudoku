@@ -28,23 +28,26 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+			this._menuStripMain = new System.Windows.Forms.MenuStrip();
 			this._toolStripMenuItem_file = new System.Windows.Forms.ToolStripMenuItem();
 			this._toolStripMenuItem_about = new System.Windows.Forms.ToolStripMenuItem();
-			this.menuStrip1.SuspendLayout();
+			this._pictureBoxGrid = new System.Windows.Forms.PictureBox();
+			this._menuStripMain.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this._pictureBoxGrid)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// menuStrip1
+			// _menuStripMain
 			// 
-			this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this._toolStripMenuItem_file,
-			this._toolStripMenuItem_about});
-			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(1092, 28);
-			this.menuStrip1.TabIndex = 0;
-			this.menuStrip1.Text = "menuStrip1";
+			this._menuStripMain.ImageScalingSize = new System.Drawing.Size(20, 20);
+			this._menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._toolStripMenuItem_file,
+            this._toolStripMenuItem_about});
+			this._menuStripMain.Location = new System.Drawing.Point(0, 0);
+			this._menuStripMain.Name = "_menuStripMain";
+			this._menuStripMain.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
+			this._menuStripMain.Size = new System.Drawing.Size(1228, 30);
+			this._menuStripMain.TabIndex = 0;
+			this._menuStripMain.Text = "menuStrip1";
 			// 
 			// _toolStripMenuItem_file
 			// 
@@ -58,17 +61,28 @@
 			this._toolStripMenuItem_about.Size = new System.Drawing.Size(94, 24);
 			this._toolStripMenuItem_about.Text = "About (&A)";
 			// 
-			// Form1
+			// _pictureBoxGrid
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+			this._pictureBoxGrid.Location = new System.Drawing.Point(12, 33);
+			this._pictureBoxGrid.Name = "_pictureBoxGrid";
+			this._pictureBoxGrid.Size = new System.Drawing.Size(540, 540);
+			this._pictureBoxGrid.TabIndex = 1;
+			this._pictureBoxGrid.TabStop = false;
+			// 
+			// MainForm
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1092, 743);
-			this.Controls.Add(this.menuStrip1);
-			this.MainMenuStrip = this.menuStrip1;
-			this.Name = "Form1";
-			this.Text = "Form1";
-			this.menuStrip1.ResumeLayout(false);
-			this.menuStrip1.PerformLayout();
+			this.ClientSize = new System.Drawing.Size(1228, 991);
+			this.Controls.Add(this._pictureBoxGrid);
+			this.Controls.Add(this._menuStripMain);
+			this.MainMenuStrip = this._menuStripMain;
+			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.Name = "MainForm";
+			this.Text = "[MainForm]";
+			this.Load += new System.EventHandler(this.MainForm_Load);
+			this._menuStripMain.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this._pictureBoxGrid)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -76,9 +90,10 @@
 
 		#endregion
 
-		private System.Windows.Forms.MenuStrip menuStrip1;
+		private System.Windows.Forms.MenuStrip _menuStripMain;
 		private System.Windows.Forms.ToolStripMenuItem _toolStripMenuItem_file;
 		private System.Windows.Forms.ToolStripMenuItem _toolStripMenuItem_about;
+		private System.Windows.Forms.PictureBox _pictureBoxGrid;
 	}
 }
 

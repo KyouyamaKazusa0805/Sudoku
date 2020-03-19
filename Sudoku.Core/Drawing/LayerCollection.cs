@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using Sudoku.Drawing.Layers;
 
 namespace Sudoku.Drawing
@@ -8,7 +9,7 @@ namespace Sudoku.Drawing
 	/// <summary>
 	/// The collection of <see cref="Layer"/>s.
 	/// </summary>
-	public sealed class LayerCollection : IEnumerable<Layer>
+	public sealed class LayerCollection : IEnumerable<Layer>, IDisposable
 	{
 		/// <summary>
 		/// The internal list.
@@ -16,11 +17,45 @@ namespace Sudoku.Drawing
 		private readonly ISet<Layer> _internalList = new HashSet<Layer>();
 
 
+		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		public LayerCollection() { }
+
 		/// <summary>
-		/// Add a layer to this collection.
+		/// Initializes an instance with specified layers.
+		/// </summary>
+		/// <param name="layers">The layers.</param>
+		public LayerCollection(IEnumerable<Layer> layers)
+		{
+			foreach (var layer in layers)
+			{
+				_internalList.Add(layer);
+			}
+		}
+
+
+		/// <inheritdoc/>
+		public void Dispose()
+		{
+			foreach (var layer in _internalList)
+			{
+				layer.Dispose();
+			}
+		}
+
+		/// <summary>
+		/// Add a layer to this collection. If the list contains the layer,
+		/// it will be replaced.
 		/// </summary>
 		/// <param name="layer">The layer.</param>
-		public void Add(Layer layer) => _internalList.Add(layer);
+		public void Add(Layer layer)
+		{
+			if (_internalList.Contains(layer))
+			{
+				_internalList.Remove(layer);
+			}
+
+			_internalList.Add(layer);
+		}
 
 		/// <summary>
 		/// Remove a layer from this collection.
@@ -61,6 +96,47 @@ namespace Sudoku.Drawing
 				}
 			}
 		}
+
+		/// <summary>
+		/// To integrate to the target bitmap.
+		/// </summary>
+		/// <param name="bitmap">The bitmap.</param>
+		public void IntegrateTo(Bitmap bitmap)
+		{
+			using var g = Graphics.FromImage(bitmap);
+			foreach (var layer in _internalList)
+			{
+				layer.Redraw();
+				g.DrawImage(layer.Target, 0, 0);
+			}
+		}
+
+		/// <summary>
+		/// Returns a <see cref="bool"/> value indicating whether the specified collection
+		/// contains the specified layer whose name is same as specified argument.
+		/// </summary>
+		/// <param name="layerName">The layer name.</param>
+		/// <returns>A <see cref="bool"/> value.</returns>
+		public bool Contains(string layerName)
+		{
+			foreach (var layer in _internalList)
+			{
+				if (layer.Name == layerName)
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Returns a <see cref="bool"/> value indicating whether the specified collection
+		/// contains the specified layer.
+		/// </summary>
+		/// <param name="layer">The layer.</param>
+		/// <returns>A <see cref="bool"/> value.</returns>
+		public bool Contains(Layer layer) => _internalList.Contains(layer);
 
 		/// <inheritdoc/>
 		public IEnumerator<Layer> GetEnumerator() => _internalList.GetEnumerator();

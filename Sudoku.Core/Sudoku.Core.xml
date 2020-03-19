@@ -3491,9 +3491,24 @@
             The internal list.
             </summary>
         </member>
+        <member name="M:Sudoku.Drawing.LayerCollection.#ctor">
+            <defaultConstructor>
+		<summary>Create an instance with default initialization.</summary>
+	</defaultConstructor>
+        </member>
+        <member name="M:Sudoku.Drawing.LayerCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Drawing.Layers.Layer})">
+            <summary>
+            Initializes an instance with specified layers.
+            </summary>
+            <param name="layers">The layers.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.LayerCollection.Dispose">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Drawing.LayerCollection.Add(Sudoku.Drawing.Layers.Layer)">
             <summary>
-            Add a layer to this collection.
+            Add a layer to this collection. If the list contains the layer,
+            it will be replaced.
             </summary>
             <param name="layer">The layer.</param>
         </member>
@@ -3514,6 +3529,28 @@
             Remove a series of layers that match the specified condition.
             </summary>
             <param name="predicate">The condition.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.LayerCollection.IntegrateTo(System.Drawing.Bitmap)">
+            <summary>
+            To integrate to the target bitmap.
+            </summary>
+            <param name="bitmap">The bitmap.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.LayerCollection.Contains(System.String)">
+            <summary>
+            Returns a <see cref="T:System.Boolean"/> value indicating whether the specified collection
+            contains the specified layer whose name is same as specified argument.
+            </summary>
+            <param name="layerName">The layer name.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.LayerCollection.Contains(Sudoku.Drawing.Layers.Layer)">
+            <summary>
+            Returns a <see cref="T:System.Boolean"/> value indicating whether the specified collection
+            contains the specified layer.
+            </summary>
+            <param name="layer">The layer.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="M:Sudoku.Drawing.LayerCollection.GetEnumerator">
             <inheritdoc/>
@@ -3719,6 +3756,11 @@
         </member>
         <member name="M:Sudoku.Drawing.Layers.Layer.CompareTo(Sudoku.Drawing.Layers.Layer)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Layers.Layer.Redraw">
+            <summary>
+            To redraw the to the bitmap.
+            </summary>
         </member>
         <member name="M:Sudoku.Drawing.Layers.Layer.Draw">
             <summary>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Sudoku.Forms.Playground
@@ -14,8 +15,16 @@ namespace Sudoku.Forms.Playground
 
 		private void InitializeAfterBase()
 		{
-			// TODO: Initialization for other controls.
-			//_grid.Width = _grid.Height;
+			ShowTitle();
+		}
+
+		private void ShowTitle()
+		{
+			var assembly = Assembly.GetExecutingAssembly();
+			string version = assembly.GetName().Version.ToString();
+			string title = assembly.GetCustomAttribute<AssemblyTitleAttribute>().Title;
+
+			Text = $"{title} Ver {version}";
 		}
 
 		private void ShowForm<TForm>(bool byDialog)

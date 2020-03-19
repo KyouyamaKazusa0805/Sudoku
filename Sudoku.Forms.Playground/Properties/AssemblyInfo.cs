@@ -1,16 +1,15 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Sudoku.Forms.Playground")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Sunnie's Sudoku Solution")]
+[assembly: AssemblyDescription("This is Sunnie's sudoku solution.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Sudoku.Forms.Playground")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyCompany("Sunnie")]
+[assembly: AssemblyProduct("Sunnie")]
+[assembly: AssemblyCopyright("Copyright © Sunnie 2019-2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
