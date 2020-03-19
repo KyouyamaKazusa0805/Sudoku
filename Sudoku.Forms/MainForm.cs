@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Sudoku.Data;
 using Sudoku.Drawing;
@@ -112,6 +113,20 @@ namespace Sudoku.Forms
 		}
 
 		/// <summary>
+		/// Rearrange the location of the control.
+		/// </summary>
+		/// <param name="sender">The sender triggered the event.</param>
+		/// <param name="control">The control to rearrange the location.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void RearrangeLocationOf(object sender, Control control)
+		{
+			if (sender is Control senderControl)
+			{
+				control.Top = senderControl.Top;
+			}
+		}
+
+		/// <summary>
 		/// To get the mouse point at present.
 		/// </summary>
 		/// <returns>The point.</returns>
@@ -132,17 +147,85 @@ namespace Sudoku.Forms
 		}
 
 
-		private void ToolStripMenuItem_aboutAuthor_Click(object sender, EventArgs e) =>
-			ShowForm<AboutBox>(false);
-
-		private void ToolStripMenuItem_fileQuit_Click(object sender, EventArgs e) =>
-			Close();
-
 		private void MainForm_Load(object sender, EventArgs e)
 		{
 			InitializeAfterBase();
 			ShowTitle();
 			ShowImage();
 		}
+
+		private void MainForm_MouseDown(object sender, MouseEventArgs e)
+		{
+			ReleaseCapture();
+			SendMessage(Handle, WM_SYSCOMMAND, SC_MOVE + HTCAPTION, 0);
+		}
+
+		private void ButtonExit_Click(object sender, EventArgs e) => Close();
+
+		private void ButtonAbout_Click(object sender, EventArgs e) =>
+			ShowForm<AboutBox>(false);
+
+		private void ButtonMainGrid_MouseUp(object sender, MouseEventArgs e) =>
+			RearrangeLocationOf(sender, _panelSelection);
+
+		private void ButtonExit_MouseUp(object sender, MouseEventArgs e) =>
+			RearrangeLocationOf(sender, _panelSelection);
+
+		private void ButtonAbout_MouseUp(object sender, MouseEventArgs e) =>
+			RearrangeLocationOf(sender, _panelSelection);
+
+
+		#region Extern utils
+		[DllImport("user32.dll")]
+		private static extern bool ReleaseCapture();
+
+		/// <summary>
+		/// <para>
+		/// Sends the specified message to a window or windows. This function calls
+		/// the window procedure for the specified window and does not return until the window
+		/// procedure has processed the message.
+		/// To send a message and return immediately, use the
+		/// <a href="https://docs.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-sendmessagecallbacka">
+		/// SendMessageCallback</a> or
+		/// <a href="https://docs.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-sendnotifymessagea">
+		/// SendNotifyMessage</a> function. To post a message to a thread's message queue
+		/// and return immediately, use the
+		/// <a href="https://docs.microsoft.com/windows/desktop/api/winuser/nf-winuser-postmessagea">
+		/// PostMessage</a> or
+		/// <a href="https://docs.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-postthreadmessagea">
+		/// PostThreadMessage</a> function.
+		/// </para>
+		/// <para>For more information, please see this
+		/// <a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendmessage">
+		/// link</a>.
+		/// </para>
+		/// </summary>
+		/// <param name="hwnd">
+		/// A handle to the window whose window procedure will receive the message.
+		/// If this parameter is <b><c>HWND_BROADCAST</c></b> (<c>(HWND)0xffff</c>), the message is sent
+		/// to all top-level windows in the system, including disabled or invisible unowned windows,
+		/// overlapped windows, and pop-up windows; but the message is not sent to child windows.
+		/// Message sending is subject to UIPI. The thread of a process can send messages only
+		/// to message queues of threads in processes of lesser or equal integrity level.
+		/// </param>
+		/// <param name="wMsg">
+		/// The message to be sent.
+		/// For lists of the system-provided messages, see
+		/// <a href="https://docs.microsoft.com/zh-cn/windows/win32/winmsg/about-messages-and-message-queues">
+		/// System-Defined Messages</a>.
+		/// </param>
+		/// <param name="wParam">Additional message-specific information.</param>
+		/// <param name="lParam">Additional message-specific information.</param>
+		/// <returns>
+		/// The return value specifies the result of the message processing; it depends on
+		/// the message sent.
+		/// </returns>
+		[DllImport("user32.dll")]
+		private static extern bool SendMessage(IntPtr hwnd, int wMsg, int wParam, int lParam);
+
+		private const int WM_SYSCOMMAND = 0x0112;
+		private const int SC_MOVE = 0xF010;
+		private const int HTCAPTION = 0x0002;
+		#endregion
 	}
 }
