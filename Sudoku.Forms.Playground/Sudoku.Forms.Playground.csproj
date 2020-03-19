@@ -37,6 +37,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,6 +47,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -67,14 +69,84 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Data\CellStatus.cs" />
+    <Compile Include="Data\Extensions\ByteEx.cs" />
+    <Compile Include="Data\Extensions\CollectionEx.cs" />
+    <Compile Include="Data\Extensions\DictionaryEx.cs" />
+    <Compile Include="Data\Extensions\FormatProviderEx.cs" />
+    <Compile Include="Data\Extensions\KeyValuePairEx.cs" />
+    <Compile Include="Data\Extensions\Int16Ex.cs" />
+    <Compile Include="Data\Extensions\Int32Ex.cs" />
+    <Compile Include="Data\Extensions\Int64Ex.cs" />
+    <Compile Include="Data\Extensions\ListEx.cs" />
+    <Compile Include="Data\Extensions\ObjectEx.cs" />
+    <Compile Include="Data\Extensions\StringBuilderEx.cs" />
+    <Compile Include="Data\Extensions\StringEx.cs" />
+    <Compile Include="Data\FullGridMap.cs" />
+    <Compile Include="Data\Grid.cs" />
+    <Compile Include="Data\GridFormatFactory.cs" />
+    <Compile Include="Data\GridFormatter.cs" />
+    <Compile Include="Data\GridFormatter.SettableProperties.cs" />
+    <Compile Include="Data\GridMap.cs" />
+    <Compile Include="Data\GridMap.InitializeOption.cs" />
+    <Compile Include="Data\GridMap.Tables.cs" />
+    <Compile Include="Data\GridOutputOptions.cs" />
+    <Compile Include="Data\GridParser.cs" />
+    <Compile Include="Data\GridParsingOption.cs" />
+    <Compile Include="Data\GridTransformations.cs" />
+    <Compile Include="Data\Inference.cs" />
+    <Compile Include="Data\IReadOnlyGrid.cs" />
+    <Compile Include="Data\Node.cs" />
+    <Compile Include="Data\NodeType.cs" />
+    <Compile Include="Data\Stepping\AntiEliminationStep.cs" />
+    <Compile Include="Data\Stepping\AssignmentStep.cs" />
+    <Compile Include="Data\Stepping\EliminationStep.cs" />
+    <Compile Include="Data\Stepping\FixStep.cs" />
+    <Compile Include="Data\Stepping\IUndoable.cs" />
+    <Compile Include="Data\Stepping\ResetStep.cs" />
+    <Compile Include="Data\Stepping\SetCellStatusStep.cs" />
+    <Compile Include="Data\Stepping\SetMaskStep.cs" />
+    <Compile Include="Data\Stepping\Step.cs" />
+    <Compile Include="Data\Stepping\UndoableGrid.cs" />
+    <Compile Include="Data\Stepping\UnfixStep.cs" />
+    <Compile Include="Data\SymmetricalType.cs" />
+    <Compile Include="Data\ValueChangedEventArgs.cs" />
+    <Compile Include="Data\ValueChangedEventHandler.cs" />
+    <Compile Include="Drawing\Extensions\ImageEx.cs" />
+    <Compile Include="Drawing\Extensions\PointEx.cs" />
+    <Compile Include="Drawing\Extensions\RectangleEx.cs" />
+    <Compile Include="Drawing\Extensions\SizeEx.cs" />
+    <Compile Include="Drawing\LayerCollection.cs" />
+    <Compile Include="Drawing\Layers\BackLayer.cs" />
+    <Compile Include="Drawing\Layers\BlockLineLayer.cs" />
+    <Compile Include="Drawing\Layers\GridLineLayer.cs" />
+    <Compile Include="Drawing\Layers\Layer.cs" />
+    <Compile Include="Drawing\Layers\ValueLayer.cs" />
+    <Compile Include="Drawing\Layers\ViewLayer.cs" />
+    <Compile Include="Drawing\PointConverter.cs" />
+    <Compile Include="Drawing\View.cs" />
+    <Compile Include="Externals\Bag.cs" />
+    <Compile Include="Externals\Eumerable.cs" />
+    <Compile Include="Externals\IBag.cs" />
+    <Compile Include="Externals\ICloneableGeneric.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NameAttribute.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Settings.SettableProperties.cs" />
+    <Compile Include="Subpages\GridPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Subpages\GridPanel.Designer.cs">
+      <DependentUpon>GridPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Throwing.cs" />
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -90,6 +162,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Subpages\GridPanel.resx">
+      <DependentUpon>GridPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -115,5 +190,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

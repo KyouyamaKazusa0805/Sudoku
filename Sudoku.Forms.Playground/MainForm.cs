@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Windows.Forms;
 
 namespace Sudoku.Forms.Playground
@@ -40,12 +39,5 @@ namespace Sudoku.Forms.Playground
 				form.Show();
 			}
 		}
-
-
-		private void ToolStripMenuItem_aboutAuthor_Click(object sender, EventArgs e) =>
-			ShowForm<AboutBox>(false);
-
-		private void ToolStripMenuItem_fileQuit_Click(object sender, EventArgs e) =>
-			Close();
 	}
 }

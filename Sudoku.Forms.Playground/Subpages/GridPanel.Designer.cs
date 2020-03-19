@@ -1,16 +1,16 @@
-﻿namespace Sudoku.Forms
+﻿namespace Sudoku.Forms.Playground.Subpages
 {
-	partial class MainForm
+	partial class GridPanel
 	{
-		/// <summary>
-		/// Required designer variable.
+		/// <summary> 
+		/// 必需的设计器变量。
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
 
-		/// <summary>
-		/// Clean up any resources being used.
+		/// <summary> 
+		/// 清理所有正在使用的资源。
 		/// </summary>
-		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		/// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && (components != null))
@@ -20,11 +20,11 @@
 			base.Dispose(disposing);
 		}
 
-		#region Windows Form Designer generated code
+		#region 组件设计器生成的代码
 
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
+		/// <summary> 
+		/// 设计器支持所需的方法 - 不要修改
+		/// 使用代码编辑器修改此方法的内容。
 		/// </summary>
 		private void InitializeComponent()
 		{
@@ -34,32 +34,29 @@
 			// 
 			// _pictureBoxGrid
 			// 
-			this._pictureBoxGrid.Location = new System.Drawing.Point(398, 110);
+			this._pictureBoxGrid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this._pictureBoxGrid.Dock = System.Windows.Forms.DockStyle.Left;
+			this._pictureBoxGrid.Location = new System.Drawing.Point(0, 0);
 			this._pictureBoxGrid.Margin = new System.Windows.Forms.Padding(0);
 			this._pictureBoxGrid.Name = "_pictureBoxGrid";
 			this._pictureBoxGrid.Size = new System.Drawing.Size(540, 540);
-			this._pictureBoxGrid.TabIndex = 1;
+			this._pictureBoxGrid.TabIndex = 2;
 			this._pictureBoxGrid.TabStop = false;
 			// 
-			// MainForm
+			// GridPanel
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Control;
-			this.ClientSize = new System.Drawing.Size(1228, 775);
 			this.Controls.Add(this._pictureBoxGrid);
-			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.Name = "MainForm";
-			this.Text = "[MainForm]";
-			this.Load += new System.EventHandler(this.MainForm_Load);
-			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
+			this.Name = "GridPanel";
+			this.Size = new System.Drawing.Size(948, 540);
 			((System.ComponentModel.ISupportInitialize)(this._pictureBoxGrid)).EndInit();
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
+
 		private System.Windows.Forms.PictureBox _pictureBoxGrid;
 	}
 }
-
