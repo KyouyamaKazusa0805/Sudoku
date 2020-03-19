@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using Sudoku.Drawing.Extensions;
+using Sudoku.Forms;
 
 namespace Sudoku.Drawing
 {
@@ -23,6 +24,12 @@ namespace Sudoku.Drawing
 
 
 		/// <summary>
+		/// The control size.
+		/// </summary>
+		private Size _controlSize;
+
+
+		/// <summary>
 		/// Initializes an instance with the width and height.
 		/// </summary>
 		/// <param name="width">The width.</param>
@@ -38,8 +45,13 @@ namespace Sudoku.Drawing
 		/// <seealso cref="Size"/>
 		public PointConverter(Size size)
 		{
-			InitializeSizes(size);
-			InitializePoints();
+			SizeChanged += (_, e) =>
+			{
+				InitializeSizes(e.Size);
+				InitializePoints();
+			};
+
+			SizeChanged.Invoke(this, new SizeChangedEventArgs(size));
 		}
 
 
@@ -57,7 +69,11 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Indicates the control size.
 		/// </summary>
-		public Size ControlSize { get; private set; }
+		public Size ControlSize
+		{
+			get => _controlSize;
+			set => SizeChanged.Invoke(this, new SizeChangedEventArgs(value));
+		}
 
 		/// <summary>
 		/// Indicates the grid size.
@@ -73,6 +89,12 @@ namespace Sudoku.Drawing
 		/// Indicates the candidate size.
 		/// </summary>
 		public Size CandidateSize { get; private set; }
+
+
+		/// <summary>
+		/// Indicates the event being triggered when the size changed.
+		/// </summary>
+		public event SizeChangedEventHandler SizeChanged;
 
 
 		/// <summary>
@@ -140,7 +162,7 @@ namespace Sudoku.Drawing
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void InitializeSizes(Size size)
 		{
-			var (width, height) = ControlSize = size;
+			var (width, height) = _controlSize = size;
 			var (gridWidth, gridHeight) = GridSize = new Size(width - (Offset << 1), height - (Offset << 1));
 			var (cellWidth, cellHeight) = CellSize = new Size(gridWidth / 9, gridHeight / 9);
 			CandidateSize = new Size(gridWidth / 27, gridHeight / 27);

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Runtime.CompilerServices;
-using System.Windows.Forms;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Layers;
@@ -9,7 +8,7 @@ using PointConverter = Sudoku.Drawing.PointConverter;
 
 namespace Sudoku.Forms.Subpages
 {
-	public partial class GridPanel : UserControl
+	public partial class GridPanel : SubpagePanel
 	{
 		/// <summary>
 		/// Indicates the settings.
@@ -24,7 +23,7 @@ namespace Sudoku.Forms.Subpages
 		/// <summary>
 		/// The sudoku grid.
 		/// </summary>
-		private Grid _grid;
+		private Grid _grid = ((Grid)Grid.Empty).Clone();
 
 		/// <summary>
 		/// The point converter.
@@ -32,10 +31,8 @@ namespace Sudoku.Forms.Subpages
 		private PointConverter _pointConverter;
 
 
-		public GridPanel()
-		{
-			InitializeComponent();
-		}
+		public GridPanel() => InitializeComponent();
+
 
 		/// <summary>
 		/// Initialization after the initializer <see cref="MainForm.MainForm"/>.
@@ -45,7 +42,6 @@ namespace Sudoku.Forms.Subpages
 		private void InitializeAfterBase()
 		{
 			_pointConverter = new PointConverter(_pictureBoxGrid.Width, _pictureBoxGrid.Height);
-			_grid = ((Grid)Grid.Empty).Clone();
 			_layerCollection = new LayerCollection
 			{
 				new BackLayer(_pointConverter, _settings.BackgroundColor),
@@ -62,26 +58,6 @@ namespace Sudoku.Forms.Subpages
 		}
 
 		/// <summary>
-		/// To show the specified form.
-		/// </summary>
-		/// <typeparam name="TForm">The form type.</typeparam>
-		/// <param name="byDialog">Indicates whether the form is shown by dialog.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void ShowForm<TForm>(bool byDialog)
-			where TForm : Form, new()
-		{
-			var form = new TForm();
-			if (byDialog)
-			{
-				form.ShowDialog();
-			}
-			else
-			{
-				form.Show();
-			}
-		}
-
-		/// <summary>
 		/// To show the image.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -92,20 +68,6 @@ namespace Sudoku.Forms.Subpages
 			_pictureBoxGrid.Image = bitmap;
 
 			GC.Collect();
-		}
-
-		/// <summary>
-		/// Rearrange the location of the control.
-		/// </summary>
-		/// <param name="sender">The sender triggered the event.</param>
-		/// <param name="control">The control to rearrange the location.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void RearrangeLocationOf(object sender, Control control)
-		{
-			if (sender is Control senderControl)
-			{
-				control.Top = senderControl.Top;
-			}
 		}
 
 		/// <summary>
@@ -130,10 +92,19 @@ namespace Sudoku.Forms.Subpages
 			}
 		}
 
-		private void GridPanel_Load(object sender, EventArgs e) =>
-			InitializeAfterBase();
 
-		private void GridPanel_SizeChanged(object sender, EventArgs e) =>
+		private void GridPanel_Load(object sender, EventArgs e)
+		{
 			_pictureBoxGrid.Width = _pictureBoxGrid.Height;
+			InitializeAfterBase();
+			ShowImage();
+		}
+
+		private void GridPanel_SizeChanged(object sender, EventArgs e)
+		{
+			_pictureBoxGrid.Width = _pictureBoxGrid.Height;
+			InitializeAfterBase();
+			ShowImage();
+		}
 	}
 }

@@ -29,17 +29,23 @@
 		private void InitializeComponent()
 		{
 			this._pictureBoxGrid = new System.Windows.Forms.PictureBox();
+			this._groupBoxPageName.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this._pictureBoxGrid)).BeginInit();
 			this.SuspendLayout();
+			// 
+			// _groupBoxPageName
+			// 
+			this._groupBoxPageName.Controls.Add(this._pictureBoxGrid);
+			this._groupBoxPageName.Text = "Grid Panel";
 			// 
 			// _pictureBoxGrid
 			// 
 			this._pictureBoxGrid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this._pictureBoxGrid.Dock = System.Windows.Forms.DockStyle.Left;
-			this._pictureBoxGrid.Location = new System.Drawing.Point(0, 0);
+			this._pictureBoxGrid.Location = new System.Drawing.Point(3, 23);
 			this._pictureBoxGrid.Margin = new System.Windows.Forms.Padding(0);
 			this._pictureBoxGrid.Name = "_pictureBoxGrid";
-			this._pictureBoxGrid.Size = new System.Drawing.Size(540, 540);
+			this._pictureBoxGrid.Size = new System.Drawing.Size(616, 616);
 			this._pictureBoxGrid.TabIndex = 2;
 			this._pictureBoxGrid.TabStop = false;
 			// 
@@ -47,11 +53,10 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this._pictureBoxGrid);
 			this.Name = "GridPanel";
-			this.Size = new System.Drawing.Size(948, 540);
 			this.Load += new System.EventHandler(this.GridPanel_Load);
 			this.SizeChanged += new System.EventHandler(this.GridPanel_SizeChanged);
+			this._groupBoxPageName.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this._pictureBoxGrid)).EndInit();
 			this.ResumeLayout(false);
 

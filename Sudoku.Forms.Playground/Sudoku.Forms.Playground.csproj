@@ -63,12 +63,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutBox.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AboutBox.Designer.cs">
-      <DependentUpon>AboutBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="Data\CellStatus.cs" />
     <Compile Include="Data\Extensions\ByteEx.cs" />
     <Compile Include="Data\Extensions\CollectionEx.cs" />
@@ -140,16 +134,27 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Settings.SettableProperties.cs" />
+    <Compile Include="SizeChangedEventArgs.cs" />
+    <Compile Include="SizeChangedEventHandler.cs" />
+    <Compile Include="Subpages\AboutPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Subpages\AboutPanel.Designer.cs">
+      <DependentUpon>AboutPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Subpages\GridPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Subpages\GridPanel.Designer.cs">
       <DependentUpon>GridPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Subpages\SubpagePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Subpages\SubpagePanel.Designer.cs">
+      <DependentUpon>SubpagePanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Throwing.cs" />
-    <EmbeddedResource Include="AboutBox.resx">
-      <DependentUpon>AboutBox.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -163,8 +168,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Subpages\AboutPanel.resx">
+      <DependentUpon>AboutPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Subpages\GridPanel.resx">
       <DependentUpon>GridPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Subpages\SubpagePanel.resx">
+      <DependentUpon>SubpagePanel.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
