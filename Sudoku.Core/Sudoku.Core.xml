@@ -3859,6 +3859,35 @@
             <param name="scale">The scale.</param>
             <returns>The font.</returns>
         </member>
+        <member name="T:Sudoku.Drawing.Layers.ViewLayer">
+            <summary>
+            Provides a view layer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.Layers.ViewLayer._colorDic">
+            <summary>
+            Indicates the color dictionary.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.Layers.ViewLayer._view">
+            <summary>
+            The view.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Layers.ViewLayer.#ctor(Sudoku.Drawing.PointConverter,Sudoku.Drawing.View,System.Collections.Generic.IDictionary{System.Int32,System.Drawing.Color})">
+            <summary>
+            Initializes an instance with the specified view and the color dictionary.
+            </summary>
+            <param name="pointConverter">The point converter.</param>
+            <param name="view">The view.</param>
+            <param name="colorDic">The color dictionary.</param>
+        </member>
+        <member name="P:Sudoku.Drawing.Layers.ViewLayer.Priority">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Layers.ViewLayer.Draw">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Drawing.PointConverter">
             <summary>
             Provides converting operations for <see cref="T:System.Drawing.Point"/> and
