@@ -25,6 +25,9 @@ namespace Sudoku.Forms
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		public static RoutedCommand CustomCommands = new RoutedCommand();
+
+
 		/// <summary>
 		/// Internal layer collection.
 		/// </summary>
@@ -53,13 +56,7 @@ namespace Sudoku.Forms
 		{
 			InitializeComponent();
 
-			static void canExecuteRoute(object sender, CanExecuteRoutedEventArgs e) =>
-				e.CanExecute = true;
-			CommandBindings.Add(
-				new CommandBinding(
-					CustomCommands.QuitCommand,
-					MenuItemFileQuit_Click,
-					canExecuteRoute));
+			CustomCommands.InputGestures.Add(new KeyGesture(Key.F4, ModifierKeys.Alt));
 
 			Title = $"{SolutionName} Ver {Version}";
 		}
@@ -168,5 +165,8 @@ namespace Sudoku.Forms
 
 		private void MenuItemAboutMe_Click(object sender, RoutedEventArgs e) =>
 			new AboutMe().Show();
+
+		private void MenuItemFileQuit_Executed(object sender, ExecutedRoutedEventArgs e) =>
+			Close();
 	}
 }

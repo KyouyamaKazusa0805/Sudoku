@@ -5,6 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:Sudoku.Forms"
 		mc:Ignorable="d" Height="800" Width="1200">
+	<Window.CommandBindings>
+		<CommandBinding Command="{x:Static local:MainWindow.CustomCommands}"
+						Executed="MenuItemFileQuit_Executed"/>
+	</Window.CommandBindings>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*" />
@@ -21,7 +25,7 @@
 				<MenuItem Header="Get Snapshot" Click="MenuItemFileGetSnapshot_Click"/>
 				<Separator />
 				<MenuItem Header="Quit App" Click="MenuItemFileQuit_Click"
-						  InputGestureText="Alt+F4" Command="local:CustomCommands.QuitCommand"/>
+						  InputGestureText="Alt + F4"/>
 			</MenuItem>
 			<MenuItem Header="About">
 				<MenuItem Header="Me" Click="MenuItemAboutMe_Click"/>
