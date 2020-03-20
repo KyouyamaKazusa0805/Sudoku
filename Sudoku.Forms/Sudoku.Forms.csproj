@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<Nullable>Enable</Nullable>
+		<PackageId>Sunnie's sudoku solution</PackageId>
+		<Authors>Sunnie</Authors>
+		<Product>Sunnie's sudoku solution</Product>
+		<Description>This is Sunnie's sudoku solution, you can use this to analyze, generate or solve sudokus.</Description>
+		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,33 @@
+﻿<Window x:Class="Sudoku.Forms.AboutMe"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d"
+        Title="AboutMe" Width="700" Height="200" ResizeMode="NoResize">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Label Grid.Row="0" Grid.Column="0" Content="Name" HorizontalAlignment="Center"
+			   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0"/>
+		<Label Grid.Row="0" Grid.Column="1" Content="Sunnie" HorizontalAlignment="Center"
+			   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0"/>
+		<Label Grid.Row="1" Grid.Column="0" Content="QQ" HorizontalAlignment="Center"
+			   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0"/>
+		<Label Grid.Row="1" Grid.Column="1" Content="747507738" HorizontalAlignment="Center"
+			   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0"/>
+		<Label Grid.Row="2" Grid.Column="0" Content="GitHub" HorizontalAlignment="Center"
+			   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0"/>
+		<TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center"
+				   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0">
+			<Hyperlink NavigateUri="https://github.com/Sunnie-Shine" Click="GitHubLink_Click">https://github.com/Sunnie-Shine</Hyperlink>
+		</TextBlock>
+	</Grid>
+</Window>

@@ -14,7 +14,7 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// The internal list.
 		/// </summary>
-		private readonly ISet<Layer> _internalList = new HashSet<Layer>();
+		private readonly ISet<Layer> _internalList = new SortedSet<Layer>();
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
