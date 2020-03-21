@@ -11,10 +11,8 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Layers;
 using Sudoku.Forms.Extensions;
-using ControlBase = System.Windows.FrameworkElement;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
-using w = System.Windows;
 
 namespace Sudoku.Forms
 {
@@ -123,42 +121,6 @@ namespace Sudoku.Forms
 			var bitmap = new Bitmap(w, h);
 			_layerCollection.IntegrateTo(bitmap);
 			_imageGrid.Source = bitmap.ToImageSource();
-		}
-
-
-		private void MenuItemFileGetSnapshot_Click(object sender, RoutedEventArgs e)
-		{
-			try
-			{
-				Clipboard.SetImage((BitmapSource)_imageGrid.Source);
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show($"Save failed due to:{Environment.NewLine}{ex.Message}.", "Warning");
-			}
-		}
-
-		private void MenuItemFileQuit_Click(object sender, RoutedEventArgs e) =>
-			Close();
-
-		private void MenuItemAboutMe_Click(object sender, RoutedEventArgs e) =>
-			new AboutMe().Show();
-
-		private void MenuItemFileQuit_Executed(object sender, ExecutedRoutedEventArgs e) =>
-			Close();
-
-		private void ImageGrid_MouseMove(object sender, MouseEventArgs e)
-		{
-			if (sender is w::Controls.Image imageControl)
-			{
-				var (x, y) = e.GetPosition(imageControl);
-				_textBoxInfo.Text = $"{(int)x}, {(int)y}";
-			}
-		}
-
-		private void ImageGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-
 		}
 	}
 }
