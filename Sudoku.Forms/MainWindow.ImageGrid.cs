@@ -1,8 +1,5 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Sudoku.Forms.Drawing.Layers;
-using Sudoku.Forms.Extensions;
 using ImageControl = System.Windows.Controls.Image;
 
 namespace Sudoku.Forms
@@ -31,11 +28,7 @@ namespace Sudoku.Forms
 					new FocusLayer(
 						_pointConverter, _focusedCells, _settings.FocusedCellColor));
 
-				var bitmap = new Bitmap((int)_imageGrid.Width, (int)_imageGrid.Height);
-				_layerCollection.IntegrateTo(bitmap);
-				_imageGrid.Source = bitmap.ToImageSource();
-
-				GC.Collect();
+				UpdateImageGrid();
 			}
 		}
 
@@ -52,11 +45,7 @@ namespace Sudoku.Forms
 					_layerCollection.RemoveAll(typeof(FocusLayer).Name);
 				}
 
-				var bitmap = new Bitmap((int)_imageGrid.Width, (int)_imageGrid.Height);
-				_layerCollection.IntegrateTo(bitmap);
-				_imageGrid.Source = bitmap.ToImageSource();
-
-				GC.Collect();
+				UpdateImageGrid();
 			}
 		}
 	}

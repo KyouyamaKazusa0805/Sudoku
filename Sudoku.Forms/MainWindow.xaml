@@ -6,10 +6,6 @@
 		xmlns:local="clr-namespace:Sudoku.Forms"
 		mc:Ignorable="d" Height="800" Width="1200" Name="_window"
 		KeyDown="Window_KeyDown">
-	<Window.CommandBindings>
-		<CommandBinding Command="{x:Static local:MainWindow.CustomCommands}"
-						Executed="MenuItemFileQuit_Executed"/>
-	</Window.CommandBindings>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*" />
@@ -23,9 +19,14 @@
 		<Menu VerticalAlignment="Top" IsMainMenu="True" Name="_mainMenu"
 			  Grid.Row="0" Grid.ColumnSpan="2">
 			<MenuItem Header="File">
+				<MenuItem Header="Fix grid" InputGestureText="Ctrl + `"
+						  Click="MenuItemFileFix_Click"/>
+				<MenuItem Header="Unfix grid" InputGestureText="Ctrl + Shift + `"
+						  Click="MenuItemFileUnfix_Click"/>
+				<Separator/>
 				<MenuItem Header="Get Snapshot" Click="MenuItemFileGetSnapshot_Click"/>
-				<Separator />
-				<MenuItem Header="Quit App" InputGestureText="Alt + F4"
+				<Separator/>
+				<MenuItem Header="Quit app" InputGestureText="Alt + F4"
 						  Click="MenuItemFileQuit_Click"/>
 			</MenuItem>
 			<MenuItem Header="About">

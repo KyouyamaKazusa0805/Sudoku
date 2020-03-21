@@ -24,14 +24,6 @@ namespace Sudoku.Forms
 	public partial class MainWindow : Window
 	{
 		/// <summary>
-		/// Indicates the custom commands list, which is used for binding onto the
-		/// <see cref="MenuItem"/>s.
-		/// </summary>
-		/// <seealso cref="MenuItem"/>
-		public static RoutedCommand CustomCommands = new RoutedCommand();
-
-
-		/// <summary>
 		/// Indicates all focused cells.
 		/// </summary>
 		private readonly IList<int> _focusedCells = new List<int>();
@@ -102,7 +94,9 @@ namespace Sudoku.Forms
 			base.OnInitialized(e);
 
 			// Define a series of hot keys.
-			CustomCommands.InputGestures.Add(new KeyGesture(Key.F4, ModifierKeys.Alt));
+			AddShortCut(Key.F4, ModifierKeys.Alt, MenuItemFileQuit_Click);
+			AddShortCut(Key.OemTilde, ModifierKeys.Control, MenuItemFileFix_Click);
+			AddShortCut(Key.OemTilde, ModifierKeys.Control | ModifierKeys.Shift, MenuItemFileUnfix_Click);
 
 			// Show title.
 			Title = $"{SolutionName} Ver {Version}";
@@ -148,6 +142,38 @@ namespace Sudoku.Forms
 		private w::Point ToWindowPoint(d::PointF point) =>
 			new w::Point(point.X, point.Y);
 
+		/// <summary>
+		/// Bind a shortcut to a method (mounted to an event) to execute.
+		/// </summary>
+		/// <param name="key">The key.</param>
+		/// <param name="modifierKeys">The modifiers.</param>
+		/// <param name="executed">The execution.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void AddShortCut(Key key, ModifierKeys modifierKeys, ExecutedRoutedEventHandler executed)
+		{
+			var routedCommand = new RoutedCommand();
+			routedCommand.InputGestures.Add(new KeyGesture(key, modifierKeys));
+			CommandBindings.Add(new CommandBinding(routedCommand, executed));
+		}
+
+		/// <summary>
+		/// Repaint the <see cref="_imageGrid"/> to show the newer grid image.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void UpdateImageGrid()
+		{
+			var bitmap = new Bitmap((int)_imageGrid.Width, (int)_imageGrid.Height);
+			_layerCollection.IntegrateTo(bitmap);
+			_imageGrid.Source = bitmap.ToImageSource();
+
+			GC.Collect();
+		}
+
+		private void OnShortcutRoute(object sender, ExecutedRoutedEventArgs e)
+		{
+
+		}
+
 
 		private void Window_KeyDown(object sender, KeyEventArgs e)
 		{
@@ -168,10 +194,7 @@ namespace Sudoku.Forms
 					int cell = _pointConverter.GetCellOffset(ToDrawingPoint(pt));
 					_grid[cell] = e.Key - Key.D1;
 
-					// Re-paint the control now.
-					var bitmap = new Bitmap((int)_imageGrid.Width, (int)_imageGrid.Height);
-					_layerCollection.IntegrateTo(bitmap);
-					_imageGrid.Source = bitmap.ToImageSource();
+					UpdateImageGrid();
 				}
 			}
 		}

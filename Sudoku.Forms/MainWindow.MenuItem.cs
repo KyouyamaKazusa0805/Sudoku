@@ -7,6 +7,20 @@ namespace Sudoku.Forms
 {
 	partial class MainWindow
 	{
+		private void MenuItemFileFix_Click(object sender, RoutedEventArgs e)
+		{
+			_grid.Fix();
+
+			UpdateImageGrid();
+		}
+
+		private void MenuItemFileUnfix_Click(object sender, RoutedEventArgs e)
+		{
+			_grid.Unfix();
+
+			UpdateImageGrid();
+		}
+
 		private void MenuItemFileGetSnapshot_Click(object sender, RoutedEventArgs e)
 		{
 			try
@@ -24,8 +38,5 @@ namespace Sudoku.Forms
 
 		private void MenuItemAboutMe_Click(object sender, RoutedEventArgs e) =>
 			new AboutMe().Show();
-
-		private void MenuItemFileQuit_Executed(object sender, ExecutedRoutedEventArgs e) =>
-			Close();
 	}
 }
