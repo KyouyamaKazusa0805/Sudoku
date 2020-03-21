@@ -90,11 +90,11 @@ namespace Sudoku.Drawing
 		/// <param name="point">The mouse point.</param>
 		/// <returns>The cell offset.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public float GetCellOffset(PointF point)
+		public int GetCellOffset(PointF point)
 		{
 			var (x, y) = point;
 			var (cw, ch) = CellSize;
-			return y / ch * 9 + x / cw;
+			return (int)(y / ch) * 9 + (int)(x / cw);
 		}
 
 		/// <summary>
@@ -103,11 +103,11 @@ namespace Sudoku.Drawing
 		/// <param name="point">The mouse point.</param>
 		/// <returns>The candidate offset.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public float GetCandidateOffset(PointF point)
+		public int GetCandidateOffset(PointF point)
 		{
 			var (x, y) = point;
 			var (cw, ch) = CandidateSize;
-			return GetCellOffset(point) * 9 + y / ch % 3 * 3 + x / cw % 3;
+			return GetCellOffset(point) * 9 + (int)(y / ch) % 3 * 3 + (int)(x / cw) % 3;
 		}
 
 		/// <summary>

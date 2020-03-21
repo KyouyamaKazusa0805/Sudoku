@@ -6,11 +6,12 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Layers;
 using Sudoku.Forms.Extensions;
+using d = System.Drawing;
+using w = System.Windows;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
 
@@ -122,5 +123,25 @@ namespace Sudoku.Forms
 			_layerCollection.IntegrateTo(bitmap);
 			_imageGrid.Source = bitmap.ToImageSource();
 		}
+
+		/// <summary>
+		/// Convert the point to <see cref="d.PointF"/>.
+		/// </summary>
+		/// <param name="point">The point.</param>
+		/// <returns>The target point.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[SuppressMessage("Style", "IDE0001:Simplify Names", Justification = "<Pending>")]
+		private d::PointF ToDrawingPoint(w::Point point) =>
+			new d::PointF((float)point.X, (float)point.Y);
+
+		/// <summary>
+		/// Convert the point to <see cref="d.PointF"/>.
+		/// </summary>
+		/// <param name="point">The point.</param>
+		/// <returns>The target point.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[SuppressMessage("Style", "IDE0001:Simplify Names", Justification = "<Pending>")]
+		private w::Point ToWindowPoint(d::PointF point) =>
+			new w::Point(point.X, point.Y);
 	}
 }
