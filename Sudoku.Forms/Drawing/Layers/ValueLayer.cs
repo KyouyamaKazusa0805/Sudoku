@@ -88,7 +88,7 @@ namespace Sudoku.Drawing.Layers
 			using var bCandidate = new SolidBrush(_candidateColor);
 			using var fGiven = GetFontByScale(_givenFont, cellWidth / 2F, _valueScale);
 			using var fModifiable = GetFontByScale(_modifiableFont, cellWidth / 2F, _valueScale);
-			using var fCandidate = GetFontByScale(_candidateFont, candidateWidth, _candidateScale);
+			using var fCandidate = GetFontByScale(_candidateFont, cellWidth / 2F, _candidateScale);
 			g.TextRenderingHint = TextRenderingHint.AntiAlias;
 
 			for (int cell = 0; cell < 81; cell++)
