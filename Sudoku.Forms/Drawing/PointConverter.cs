@@ -110,12 +110,30 @@ namespace Sudoku.Drawing
 			return GetCellOffset(point) * 9 + (int)(y / ch) % 3 * 3 + (int)(x / cw) % 3;
 		}
 
-
+		/// <summary>
+		/// Get the rectangle (4 mouse points) for the specified cell.
+		/// </summary>
+		/// <param name="cell">The cell.</param>
+		/// <returns>The rectangle.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public RectangleF GetMousePointRectangle(int cell)
 		{
 			var (cw, ch) = CellSize;
 			var (x, y) = GetMousePointInCenter(cell);
+			return new RectangleF(x - cw / 2, y - ch / 2, cw, ch);
+		}
+
+		/// <summary>
+		/// Get the rectangle (4 mouse points) for the specified cell
+		/// and digit of a candidate.
+		/// </summary>
+		/// <param name="cell">The cell.</param>
+		/// <returns>The rectangle.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public RectangleF GetMousePointRectangle(int cell, int digit)
+		{
+			var (cw, ch) = CandidateSize;
+			var (x, y) = GetMousePointInCenter(cell, digit);
 			return new RectangleF(x - cw / 2, y - ch / 2, cw, ch);
 		}
 
