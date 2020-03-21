@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using Sudoku.Drawing.Extensions;
 using Sudoku.Forms.Drawing.Layers;
 using ImageControl = System.Windows.Controls.Image;
 
@@ -22,7 +23,7 @@ namespace Sudoku.Forms
 			{
 				_focusedCells.Add(
 					_pointConverter.GetCellOffset(
-						ToDrawingPoint(e.GetPosition(imageControl))));
+						e.GetPosition(imageControl).ToDPointF()));
 
 				_layerCollection.Add(
 					new FocusLayer(
@@ -38,7 +39,7 @@ namespace Sudoku.Forms
 			{
 				_focusedCells.Remove(
 					_pointConverter.GetCellOffset(
-						ToDrawingPoint(e.GetPosition(imageControl))));
+						e.GetPosition(imageControl).ToDPointF()));
 
 				if (_focusedCells.Count == 0)
 				{

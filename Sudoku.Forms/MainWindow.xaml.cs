@@ -1,20 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using Sudoku.Drawing.Extensions;
 using Sudoku.Drawing.Layers;
 using Sudoku.Forms.Extensions;
-using d = System.Drawing;
-using w = System.Windows;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
-using System.Collections.Generic;
 
 namespace Sudoku.Forms
 {
@@ -123,26 +121,6 @@ namespace Sudoku.Forms
 		}
 
 		/// <summary>
-		/// Convert the point to <see cref="d.PointF"/>.
-		/// </summary>
-		/// <param name="point">The point.</param>
-		/// <returns>The target point.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[SuppressMessage("Style", "IDE0001:Simplify Names", Justification = "<Pending>")]
-		private d::PointF ToDrawingPoint(w::Point point) =>
-			new d::PointF((float)point.X, (float)point.Y);
-
-		/// <summary>
-		/// Convert the point to <see cref="d.PointF"/>.
-		/// </summary>
-		/// <param name="point">The point.</param>
-		/// <returns>The target point.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[SuppressMessage("Style", "IDE0001:Simplify Names", Justification = "<Pending>")]
-		private w::Point ToWindowPoint(d::PointF point) =>
-			new w::Point(point.X, point.Y);
-
-		/// <summary>
 		/// Bind a shortcut to a method (mounted to an event) to execute.
 		/// </summary>
 		/// <param name="key">The key.</param>
@@ -191,7 +169,7 @@ namespace Sudoku.Forms
 				// Get all cases for being pressed keys.
 				if (e.Key >= Key.D0 && e.Key <= Key.D9)
 				{
-					int cell = _pointConverter.GetCellOffset(ToDrawingPoint(pt));
+					int cell = _pointConverter.GetCellOffset(pt.ToDPointF());
 					_grid[cell] = e.Key - Key.D1;
 
 					UpdateImageGrid();
