@@ -76,12 +76,12 @@ namespace Sudoku.Drawing.Layers
 		/// <inheritdoc/>
 		protected override void Draw()
 		{
-			int cellWidth = _pointConverter.CellSize.Width;
-			int candidateWidth = _pointConverter.CandidateSize.Width;
-			int vOffsetValue = cellWidth / 9; // The vertical offset of rendering each value.
-			int vOffsetCandidate = candidateWidth / 9; // The vertical offset of rendering each candidate.
+			float cellWidth = _pointConverter.CellSize.Width;
+			float candidateWidth = _pointConverter.CandidateSize.Width;
+			float vOffsetValue = cellWidth / 9; // The vertical offset of rendering each value.
+			float vOffsetCandidate = candidateWidth / 9; // The vertical offset of rendering each candidate.
 
-			var result = new Bitmap(Width, Height);
+			var result = new Bitmap((int)Width, (int)Height);
 			using var g = Graphics.FromImage(result);
 			using var bGiven = new SolidBrush(_givenColor);
 			using var bModifiable = new SolidBrush(_modifiableColor);
@@ -144,7 +144,7 @@ namespace Sudoku.Drawing.Layers
 		/// <param name="scale">The scale.</param>
 		/// <returns>The font.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private Font GetFontByScale(string fontName, int size, float scale) =>
+		private Font GetFontByScale(string fontName, float size, float scale) =>
 			new Font(fontName, size * scale, FontStyle.Regular);
 	}
 }

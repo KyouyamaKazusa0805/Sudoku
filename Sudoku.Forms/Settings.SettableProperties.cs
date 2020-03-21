@@ -16,9 +16,9 @@ namespace Sudoku.Forms
 		/// <para>
 		/// Indicates the block line width of the sudoku grid to render.
 		/// </para>
-		/// <para>The value is <c>3F</c> in default case.</para>
+		/// <para>The value is <c>5F</c> in default case.</para>
 		/// </summary>
-		public float BlockLineWidth { get; set; } = 3F;
+		public float BlockLineWidth { get; set; } = 5F;
 
 		/// <summary>
 		/// <para>Indicates the scale of values.</para>

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace Sudoku.Drawing.Layers
 {
@@ -30,7 +29,7 @@ namespace Sudoku.Drawing.Layers
 		/// <inheritdoc/>
 		protected override void Draw()
 		{
-			var result = new Bitmap(Width, Height);
+			var result = new Bitmap((int)Width, (int)Height);
 			using var g = Graphics.FromImage(result);
 			g.Clear(_color);
 			Target = result;

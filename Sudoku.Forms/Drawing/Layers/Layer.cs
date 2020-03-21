@@ -40,12 +40,12 @@ namespace Sudoku.Drawing.Layers
 		/// <summary>
 		/// Indicates the width of the target image.
 		/// </summary>
-		public int Width { get; }
+		public float Width { get; }
 
 		/// <summary>
 		/// Indicates the height of the target image.
 		/// </summary>
-		public int Height { get; }
+		public float Height { get; }
 
 		/// <summary>
 		/// Indicates the priority of the layer.

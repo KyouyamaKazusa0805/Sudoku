@@ -40,7 +40,7 @@ namespace Sudoku.Drawing.Layers
 		/// <inheritdoc/>
 		protected override void Draw()
 		{
-			var bitmap = new Bitmap(Width, Height);
+			var bitmap = new Bitmap((int)Width, (int)Height);
 			using var g = Graphics.FromImage(bitmap);
 
 			foreach (var (id, cell) in _view.CellOffsets ?? Array.Empty<(int, int)>())
@@ -51,7 +51,7 @@ namespace Sudoku.Drawing.Layers
 					var (x, y) = _pointConverter.GetMousePointInCenter(cell);
 					using var brush = new SolidBrush(Color.FromArgb(64, color));
 					g.FillRectangle(
-						brush, new Rectangle(x - (cw >> 1), y - (ch >> 1), cw, ch));
+						brush, new RectangleF(x - cw * 2, y - ch * 2, cw, ch));
 				}
 			}
 
@@ -63,7 +63,7 @@ namespace Sudoku.Drawing.Layers
 					var (x, y) = _pointConverter.GetMousePointInCenter(candidate / 9, candidate % 9);
 					using var brush = new SolidBrush(Color.FromArgb(64, color));
 					g.FillRectangle(
-						brush, new Rectangle(x - (cw >> 1), y - (ch >> 1), cw, ch));
+						brush, new RectangleF(x - cw * 2, y - ch * 2, cw, ch));
 				}
 			}
 

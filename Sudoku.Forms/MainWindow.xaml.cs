@@ -1,21 +1,19 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Layers;
 using Sudoku.Forms.Extensions;
 using ControlBase = System.Windows.FrameworkElement;
-using d = System.Drawing;
 using PointConverter = Sudoku.Drawing.PointConverter;
+using SudokuGrid = Sudoku.Data.Grid;
 using w = System.Windows;
 
 namespace Sudoku.Forms
@@ -25,6 +23,11 @@ namespace Sudoku.Forms
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		/// <summary>
+		/// Indicates the custom commands list, which is used for binding onto the
+		/// <see cref="MenuItem"/>s.
+		/// </summary>
+		/// <seealso cref="MenuItem"/>
 		public static RoutedCommand CustomCommands = new RoutedCommand();
 
 
@@ -43,7 +46,7 @@ namespace Sudoku.Forms
 		/// The grid.
 		/// </summary>
 		[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
-		private Grid _grid = ((Grid)Grid.Empty).Clone();
+		private SudokuGrid _grid = ((SudokuGrid)SudokuGrid.Empty).Clone();
 
 		/// <summary>
 		/// The point converter.
@@ -56,6 +59,7 @@ namespace Sudoku.Forms
 		{
 			InitializeComponent();
 
+			// Define a series of hot keys.
 			CustomCommands.InputGestures.Add(new KeyGesture(Key.F4, ModifierKeys.Alt));
 
 			Title = $"{SolutionName} Ver {Version}";
@@ -121,44 +125,18 @@ namespace Sudoku.Forms
 			_imageGrid.Source = bitmap.ToImageSource();
 		}
 
-		/// <summary>
-		/// Get the snapshot of a control in WPF.
-		/// </summary>
-		/// <param name="control">The control.</param>
-		/// <returns>The snapshot.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private Bitmap GetSnapshotOf(ControlBase control)
+
+		private void MenuItemFileGetSnapshot_Click(object sender, RoutedEventArgs e)
 		{
-			var (w, h) = ((int)control.Width, (int)control.Height);
-			var (x, y) = control.TranslatePoint(new w::Point(0, 0), this);
-
-			var shot = new Bitmap(w, h);
-			using var g = Graphics.FromImage(shot);
-			g.CompositingQuality = CompositingQuality.HighQuality;
-			g.CopyFromScreen(
-				(int)x, (int)y, 0, 0, new d::Size(w, h), CopyPixelOperation.SourceCopy);
-
-			return shot;
+			try
+			{
+				Clipboard.SetImage((BitmapSource)_imageGrid.Source);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"Save failed due to:{Environment.NewLine}{ex.Message}.", "Warning");
+			}
 		}
-
-		/// <summary>
-		/// Get the point relative to the whole form <see cref="MainWindow"/>.
-		/// </summary>
-		/// <returns>The point relative to <see cref="MainWindow"/>.</returns>
-		/// <seealso cref="MainWindow"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private w::Point GetMousePoint() => Mouse.GetPosition(this);
-
-		/// <summary>
-		/// Get the point relative to the specified control.
-		/// </summary>
-		/// <returns>The point relative to specified control.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private w::Point GetMousePoint(ControlBase control) => Mouse.GetPosition(control);
-
-
-		private void MenuItemFileGetSnapshot_Click(object sender, RoutedEventArgs e) =>
-			Clipboard.SetImage((BitmapSource)GetSnapshotOf(_imageGrid).ToImageSource());
 
 		private void MenuItemFileQuit_Click(object sender, RoutedEventArgs e) =>
 			Close();
@@ -168,5 +146,19 @@ namespace Sudoku.Forms
 
 		private void MenuItemFileQuit_Executed(object sender, ExecutedRoutedEventArgs e) =>
 			Close();
+
+		private void ImageGrid_MouseMove(object sender, MouseEventArgs e)
+		{
+			if (sender is w::Controls.Image imageControl)
+			{
+				var (x, y) = e.GetPosition(imageControl);
+				_textBoxInfo.Text = $"{(int)x}, {(int)y}";
+			}
+		}
+
+		private void ImageGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+
+		}
 	}
 }
