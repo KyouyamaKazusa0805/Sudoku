@@ -101,10 +101,10 @@ namespace Sudoku.Forms
 		/// <summary>
 		/// <para>Indicates the color used for painting for focused cells.</para>
 		/// <para>
-		/// The value is <c>#40000000</c> (<see cref="Color.Black"/>
-		/// with alpha <c>64</c>) in default case.
+		/// The value is <c>#20000000</c> (<see cref="Color.Black"/>
+		/// with alpha <c>32</c>) in default case.
 		/// </para>
 		/// </summary>
-		public Color FocusedCellColor { get; set; } = Color.FromArgb(64, Color.Black);
+		public Color FocusedCellColor { get; set; } = Color.FromArgb(32, Color.Black);
 	}
 }
