@@ -59,12 +59,16 @@ namespace Sudoku.Drawing
 
 		/// <summary>
 		/// Remove a layer from this collection.
+		/// If the collection does not contain any layers with the specified value,
+		/// the method will do nothing rather than throwing an exception.
 		/// </summary>
 		/// <param name="layer">The layer.</param>
 		public void Remove(Layer layer) => _internalList.Remove(layer);
 
 		/// <summary>
 		/// Remove a series of layers from this collection.
+		/// If the collection does not contain any layers with the specified value,
+		/// the method will do nothing rather than throwing an exception.
 		/// </summary>
 		/// <param name="layerName">The layer name.</param>
 		public void RemoveAll(string layerName)
@@ -82,6 +86,8 @@ namespace Sudoku.Drawing
 
 		/// <summary>
 		/// Remove a series of layers that match the specified condition.
+		/// If the collection does not contain any layers with the specified value,
+		/// the method will do nothing rather than throwing an exception.
 		/// </summary>
 		/// <param name="predicate">The condition.</param>
 		public void RemoveWhen(Predicate<Layer> predicate)

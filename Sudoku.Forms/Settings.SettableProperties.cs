@@ -97,5 +97,14 @@ namespace Sudoku.Forms
 		/// <para>The value is <see cref="Color.DimGray"/> in default case.</para>
 		/// </summary>
 		public Color CandidateColor { get; set; } = Color.DimGray;
+
+		/// <summary>
+		/// <para>Indicates the color used for painting for focused cells.</para>
+		/// <para>
+		/// The value is <c>#40000000</c> (<see cref="Color.Black"/>
+		/// with alpha <c>64</c>) in default case.
+		/// </para>
+		/// </summary>
+		public Color FocusedCellColor { get; set; } = Color.FromArgb(64, Color.Black);
 	}
 }

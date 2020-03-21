@@ -34,7 +34,7 @@
 		<Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 			   Name="_imageGrid" Grid.Row="1" Grid.Column="0" Width="540" Height="540"
 			   MouseMove="ImageGrid_MouseMove"
-			   MouseLeftButtonDown="ImageGrid_MouseLeftButtonDown"/>
+			   MouseLeftButtonDown="ImageGrid_MouseLeftButtonDown" MouseRightButtonDown="ImageGrid_MouseRightButtonDown"/>
 		<TabControl Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"
 					VerticalAlignment="Stretch">
 			<TabItem Header="Summary">

@@ -1,4 +1,8 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Drawing;
+using System.Windows.Input;
+using Sudoku.Forms.Drawing.Layers;
+using Sudoku.Forms.Extensions;
 using w = System.Windows;
 
 namespace Sudoku.Forms
@@ -19,10 +23,40 @@ namespace Sudoku.Forms
 		{
 			if (sender is w::Controls.Image imageControl)
 			{
-				int cell = _pointConverter.GetCellOffset(
-					ToDrawingPoint(e.GetPosition(imageControl)));
+				_focusedCells.Add(
+					_pointConverter.GetCellOffset(
+						ToDrawingPoint(e.GetPosition(imageControl))));
 
-				_textBoxInfo.Text = $"r{cell / 9 + 1}c{cell % 9 + 1}";
+				_layerCollection.Add(
+					new FocusLayer(
+						_pointConverter, _focusedCells, _settings.FocusedCellColor));
+
+				var bitmap = new Bitmap((int)_imageGrid.Width, (int)_imageGrid.Height);
+				_layerCollection.IntegrateTo(bitmap);
+				_imageGrid.Source = bitmap.ToImageSource();
+
+				GC.Collect();
+			}
+		}
+
+		private void ImageGrid_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			if (sender is w::Controls.Image imageControl)
+			{
+				_focusedCells.Remove(
+					_pointConverter.GetCellOffset(
+						ToDrawingPoint(e.GetPosition(imageControl))));
+
+				if (_focusedCells.Count == 0)
+				{
+					_layerCollection.RemoveAll(typeof(FocusLayer).Name);
+				}
+
+				var bitmap = new Bitmap((int)_imageGrid.Width, (int)_imageGrid.Height);
+				_layerCollection.IntegrateTo(bitmap);
+				_imageGrid.Source = bitmap.ToImageSource();
+
+				GC.Collect();
 			}
 		}
 	}

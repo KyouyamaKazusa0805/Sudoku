@@ -110,6 +110,15 @@ namespace Sudoku.Drawing
 			return GetCellOffset(point) * 9 + (int)(y / ch) % 3 * 3 + (int)(x / cw) % 3;
 		}
 
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public RectangleF GetMousePointRectangle(int cell)
+		{
+			var (cw, ch) = CellSize;
+			var (x, y) = GetMousePointInCenter(cell);
+			return new RectangleF(x - cw / 2, y - ch / 2, cw, ch);
+		}
+
 		/// <summary>
 		/// Get the mouse point of the center of a cell via its offset.
 		/// </summary>
@@ -119,8 +128,8 @@ namespace Sudoku.Drawing
 		public PointF GetMousePointInCenter(int cellOffset)
 		{
 			var (cw, ch) = CellSize;
-			var (x, y) = GridPoints[cellOffset % 9, cellOffset / 9];
-			return new PointF(x + Offset + cw * 2, y + Offset + ch * 2);
+			var (x, y) = GridPoints[cellOffset % 9 * 3, cellOffset / 9 * 3];
+			return new PointF(x + cw / 2, y + ch / 2);
 		}
 
 		/// <summary>
@@ -133,10 +142,8 @@ namespace Sudoku.Drawing
 		public PointF GetMousePointInCenter(int cellOffset, int digit)
 		{
 			var (cw, ch) = CandidateSize;
-			var (x, y) = GridPoints[cellOffset / 9, cellOffset % 9];
-			return new PointF(
-				digit % 3 * cw + Offset + x + cw * 2,
-				digit / 3 * ch + Offset + y + ch * 2);
+			var (x, y) = GridPoints[cellOffset % 9 * 3 + digit % 9, cellOffset / 9 * 3 + digit / 9];
+			return new PointF(x + cw / 2, y + ch / 2);
 		}
 
 		/// <summary>

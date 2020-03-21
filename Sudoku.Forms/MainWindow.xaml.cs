@@ -14,6 +14,7 @@ using d = System.Drawing;
 using w = System.Windows;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
+using System.Collections.Generic;
 
 namespace Sudoku.Forms
 {
@@ -29,6 +30,11 @@ namespace Sudoku.Forms
 		/// <seealso cref="MenuItem"/>
 		public static RoutedCommand CustomCommands = new RoutedCommand();
 
+
+		/// <summary>
+		/// Indicates all focused cells.
+		/// </summary>
+		private readonly IList<int> _focusedCells = new List<int>();
 
 		/// <summary>
 		/// Internal layer collection.
