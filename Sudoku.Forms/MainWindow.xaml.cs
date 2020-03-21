@@ -60,15 +60,7 @@ namespace Sudoku.Forms
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
-		public MainWindow()
-		{
-			InitializeComponent();
-
-			// Define a series of hot keys.
-			CustomCommands.InputGestures.Add(new KeyGesture(Key.F4, ModifierKeys.Alt));
-
-			Title = $"{SolutionName} Ver {Version}";
-		}
+		public MainWindow() => InitializeComponent();
 
 
 		/// <summary>
@@ -108,6 +100,12 @@ namespace Sudoku.Forms
 		protected override void OnInitialized(EventArgs e)
 		{
 			base.OnInitialized(e);
+
+			// Define a series of hot keys.
+			CustomCommands.InputGestures.Add(new KeyGesture(Key.F4, ModifierKeys.Alt));
+
+			// Show title.
+			Title = $"{SolutionName} Ver {Version}";
 
 			var (w, h) = ((int)_imageGrid.Width, (int)_imageGrid.Height);
 			_pointConverter = new PointConverter(w, h);
@@ -149,5 +147,33 @@ namespace Sudoku.Forms
 		[SuppressMessage("Style", "IDE0001:Simplify Names", Justification = "<Pending>")]
 		private w::Point ToWindowPoint(d::PointF point) =>
 			new w::Point(point.X, point.Y);
+
+
+		private void Window_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (sender == this)
+			{
+				// Get the current cell.
+				var pt = Mouse.GetPosition(_imageGrid);
+				var (x, y) = pt;
+				if (x < 0 || x > _imageGrid.Width || y < 0 || y > _imageGrid.Height)
+				{
+					e.Handled = true;
+					return;
+				}
+
+				// Get all cases for being pressed keys.
+				if (e.Key >= Key.D0 && e.Key <= Key.D9)
+				{
+					int cell = _pointConverter.GetCellOffset(ToDrawingPoint(pt));
+					_grid[cell] = e.Key - Key.D1;
+
+					// Re-paint the control now.
+					var bitmap = new Bitmap((int)_imageGrid.Width, (int)_imageGrid.Height);
+					_layerCollection.IntegrateTo(bitmap);
+					_imageGrid.Source = bitmap.ToImageSource();
+				}
+			}
+		}
 	}
 }

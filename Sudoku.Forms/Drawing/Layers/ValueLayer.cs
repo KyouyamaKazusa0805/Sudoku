@@ -14,12 +14,12 @@ namespace Sudoku.Drawing.Layers
 		/// <summary>
 		/// Indicates the value scale.
 		/// </summary>
-		private readonly float _valueScale;
+		private readonly decimal _valueScale;
 
 		/// <summary>
 		/// Indicates the candidate scale.
 		/// </summary>
-		private readonly float _candidateScale;
+		private readonly decimal _candidateScale;
 
 		/// <summary>
 		/// Indicates the color of the status of each digit.
@@ -52,7 +52,7 @@ namespace Sudoku.Drawing.Layers
 		/// <param name="candidateFont">The candidate font.</param>
 		/// <param name="grid">The grid.</param>
 		public ValueLayer(
-			PointConverter pointConverter, float valueScale, float candidateScale,
+			PointConverter pointConverter, decimal valueScale, decimal candidateScale,
 			Color givenColor, Color modifiableColor, Color candidateColor,
 			string givenFont, string modifiableFont, string candidateFont, Grid grid)
 			: base(pointConverter)
@@ -86,8 +86,8 @@ namespace Sudoku.Drawing.Layers
 			using var bGiven = new SolidBrush(_givenColor);
 			using var bModifiable = new SolidBrush(_modifiableColor);
 			using var bCandidate = new SolidBrush(_candidateColor);
-			using var fGiven = GetFontByScale(_givenFont, cellWidth, _valueScale);
-			using var fModifiable = GetFontByScale(_modifiableFont, cellWidth, _valueScale);
+			using var fGiven = GetFontByScale(_givenFont, cellWidth / 2F, _valueScale);
+			using var fModifiable = GetFontByScale(_modifiableFont, cellWidth / 2F, _valueScale);
 			using var fCandidate = GetFontByScale(_candidateFont, candidateWidth, _candidateScale);
 			g.TextRenderingHint = TextRenderingHint.AntiAlias;
 
@@ -102,7 +102,7 @@ namespace Sudoku.Drawing.Layers
 					case CellStatus.Empty:
 					{
 						// Draw candidates.
-						short candidateMask = (short)(mask & 511);
+						short candidateMask = (short)(~mask & 511);
 						foreach (int digit in candidateMask.GetAllSets())
 						{
 							var point = _pointConverter.GetMousePointInCenter(cell, digit);
@@ -111,7 +111,8 @@ namespace Sudoku.Drawing.Layers
 								s: (digit + 1).ToString(),
 								font: fCandidate,
 								brush: bCandidate,
-								point);
+								point,
+								format: DefaultStringFormat);
 						}
 
 						break;
@@ -126,7 +127,8 @@ namespace Sudoku.Drawing.Layers
 							s: (_grid[cell] + 1).ToString(),
 							font: status == CellStatus.Given ? fGiven : fModifiable,
 							brush: status == CellStatus.Given ? bGiven : bModifiable,
-							point);
+							point,
+							format: DefaultStringFormat);
 
 						break;
 					}
@@ -144,7 +146,7 @@ namespace Sudoku.Drawing.Layers
 		/// <param name="scale">The scale.</param>
 		/// <returns>The font.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private Font GetFontByScale(string fontName, float size, float scale) =>
-			new Font(fontName, size * scale, FontStyle.Regular);
+		private Font GetFontByScale(string fontName, float size, decimal scale) =>
+			new Font(fontName, size * (float)scale, FontStyle.Regular);
 	}
 }

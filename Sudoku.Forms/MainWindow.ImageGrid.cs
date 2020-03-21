@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Input;
 using Sudoku.Forms.Drawing.Layers;
 using Sudoku.Forms.Extensions;
-using w = System.Windows;
+using ImageControl = System.Windows.Controls.Image;
 
 namespace Sudoku.Forms
 {
@@ -12,7 +12,7 @@ namespace Sudoku.Forms
 		private void ImageGrid_MouseMove(object sender, MouseEventArgs e)
 		{
 			// This method is only used for testing the coordinates.
-			//if (sender is w::Controls.Image imageControl)
+			//if (sender is ImageControl imageControl)
 			//{
 			//	var (x, y) = e.GetPosition(imageControl);
 			//	_textBoxInfo.Text = $"{(int)x}, {(int)y}";
@@ -21,7 +21,7 @@ namespace Sudoku.Forms
 
 		private void ImageGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			if (sender is w::Controls.Image imageControl)
+			if (sender is ImageControl imageControl)
 			{
 				_focusedCells.Add(
 					_pointConverter.GetCellOffset(
@@ -41,7 +41,7 @@ namespace Sudoku.Forms
 
 		private void ImageGrid_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			if (sender is w::Controls.Image imageControl)
+			if (sender is ImageControl imageControl)
 			{
 				_focusedCells.Remove(
 					_pointConverter.GetCellOffset(

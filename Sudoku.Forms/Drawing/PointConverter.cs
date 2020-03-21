@@ -160,7 +160,7 @@ namespace Sudoku.Drawing
 		public PointF GetMousePointInCenter(int cellOffset, int digit)
 		{
 			var (cw, ch) = CandidateSize;
-			var (x, y) = GridPoints[cellOffset % 9 * 3 + digit % 9, cellOffset / 9 * 3 + digit / 9];
+			var (x, y) = GridPoints[cellOffset % 9 * 3 + digit % 3, cellOffset / 9 * 3 + digit / 3];
 			return new PointF(x + cw / 2, y + ch / 2);
 		}
 

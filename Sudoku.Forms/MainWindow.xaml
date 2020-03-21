@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:Sudoku.Forms"
-		mc:Ignorable="d" Height="800" Width="1200">
+		mc:Ignorable="d" Height="800" Width="1200" Name="_window"
+		KeyDown="Window_KeyDown">
 	<Window.CommandBindings>
 		<CommandBinding Command="{x:Static local:MainWindow.CustomCommands}"
 						Executed="MenuItemFileQuit_Executed"/>
@@ -34,7 +35,8 @@
 		<Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 			   Name="_imageGrid" Grid.Row="1" Grid.Column="0" Width="540" Height="540"
 			   MouseMove="ImageGrid_MouseMove"
-			   MouseLeftButtonDown="ImageGrid_MouseLeftButtonDown" MouseRightButtonDown="ImageGrid_MouseRightButtonDown"/>
+			   MouseLeftButtonDown="ImageGrid_MouseLeftButtonDown"
+			   MouseRightButtonDown="ImageGrid_MouseRightButtonDown"/>
 		<TabControl Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"
 					VerticalAlignment="Stretch">
 			<TabItem Header="Summary">

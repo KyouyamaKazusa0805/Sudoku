@@ -22,15 +22,15 @@ namespace Sudoku.Forms
 
 		/// <summary>
 		/// <para>Indicates the scale of values.</para>
-		/// <para>The value is <c>0.8F</c> in default case.</para>
+		/// <para>The value is <c>0.8M</c> in default case.</para>
 		/// </summary>
-		public float ValueScale { get; set; } = .8F;
+		public decimal ValueScale { get; set; } = .8M;
 
 		/// <summary>
 		/// <para>Indicates the scale of candidates.</para>
-		/// <para>The value is <c>0.3F</c> in default case.</para>
+		/// <para>The value is <c>0.3M</c> in default case.</para>
 		/// </summary>
-		public float CandidateScale { get; set; } = .3F;
+		public decimal CandidateScale { get; set; } = .3M;
 
 		/// <summary>
 		/// <para>
