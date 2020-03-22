@@ -87,7 +87,6 @@ namespace Sudoku.Forms
 
 
 		/// <inheritdoc/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		protected override void OnInitialized(EventArgs e)
 		{
 			base.OnInitialized(e);
@@ -128,6 +127,30 @@ namespace Sudoku.Forms
 			}
 
 			base.OnClosing(e);
+		}
+
+		/// <inheritdoc/>
+		protected override void OnKeyDown(KeyEventArgs e)
+		{
+			base.OnKeyDown(e);
+
+			// Get the current cell.
+			var pt = Mouse.GetPosition(_imageGrid);
+			var (x, y) = pt;
+			if (x < 0 || x > _imageGrid.Width || y < 0 || y > _imageGrid.Height)
+			{
+				e.Handled = true;
+				return;
+			}
+
+			// Get all cases for being pressed keys.
+			if (e.Key >= Key.D0 && e.Key <= Key.D9)
+			{
+				int cell = _pointConverter.GetCellOffset(pt.ToDPointF());
+				_grid[cell] = e.Key - Key.D1;
+
+				UpdateImageGrid();
+			}
 		}
 
 		/// <summary>
