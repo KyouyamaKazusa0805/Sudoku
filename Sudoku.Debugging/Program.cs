@@ -21,9 +21,10 @@ namespace Sudoku.Debugging
 				CheckAlmostLockedQuadruple = true,
 				OnlySaveShortestPathAic = true,
 				UseCalculationPriority = false,
+				FastSearch = true
 			};
 			var grid = Grid.Parse(
-				"+3+4512+8+900+97+6000+28+1+28+10003450000000+10+100600030402081+509+70+4000+128+8+190406+5+30+2+38+107+94");
+				"8..4...3...5..18...7.38...568...3.....91..6....42....3.2..7...4...6...5......49..");
 			var analysisResult = solver.Solve(grid);
 			WriteLine($"{analysisResult:-#!.}");
 		}
