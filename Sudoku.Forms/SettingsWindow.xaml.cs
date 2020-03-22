@@ -1,7 +1,8 @@
-﻿using System;
-using System.ComponentModel;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
+using Sudoku.Forms.Drawing.Extensions;
+using Sudoku.Forms.Tooling;
+using w = System.Windows;
 
 namespace Sudoku.Forms
 {
@@ -30,19 +31,31 @@ namespace Sudoku.Forms
 			_textBoxValueScale.Text = Settings.ValueScale.ToString();
 			_textBoxCandidateScale.Text = Settings.CandidateScale.ToString();
 			_labelGivenFontName.Content = Settings.GivenFontName;
+			_labelGivenFontName.FontFamily = new w::Media.FontFamily(Settings.GivenFontName);
 			_labelModifiableFontName.Content = Settings.ModifiableFontName;
+			_labelModifiableFontName.FontFamily = new w::Media.FontFamily(Settings.ModifiableFontName);
 			_labelCandidateFontName.Content = Settings.CandidateFontName;
+			_labelCandidateFontName.FontFamily = new w::Media.FontFamily(Settings.CandidateFontName);
+			_buttonBackgroundColor.Background = new w::Media.SolidColorBrush(Settings.BackgroundColor.ToWColor());
+			_buttonGivenColor.Background = new w::Media.SolidColorBrush(Settings.GivenColor.ToWColor());
+			_buttonModifiableColor.Background = new w::Media.SolidColorBrush(Settings.ModifiableColor.ToWColor());
+			_buttonCandidateColor.Background = new w::Media.SolidColorBrush(Settings.CandidateColor.ToWColor());
 		}
 
 
-		/// <inheritdoc/>
-		protected override void OnClosing(CancelEventArgs e)
+		private void ButtonApply_Click(object sender, RoutedEventArgs e)
 		{
 			DialogResult = true;
 
-			base.OnClosing(e);
+			Close();
 		}
 
+		private void ButtonCancel_Click(object sender, RoutedEventArgs e)
+		{
+			DialogResult = false;
+
+			Close();
+		}
 
 		private void CheckBoxShowCandidates_Click(object sender, RoutedEventArgs e) =>
 			_checkBoxShowCandidates.IsChecked = Settings.ShowCandidates ^= true;
@@ -105,17 +118,93 @@ namespace Sudoku.Forms
 
 		private void ButtonGivenFontName_Click(object sender, RoutedEventArgs e)
 		{
-			// TODO: Design a font dialog.
+			var dialog = new FontDialog();
+			if (!(dialog.ShowDialog() is true))
+			{
+				e.Handled = true;
+				return;
+			}
+
+			_labelGivenFontName.FontFamily = new w::Media.FontFamily(
+				Settings.GivenFontName = dialog.SelectedFont.Name);
 		}
 
 		private void ButtonModifiableFontName_Click(object sender, RoutedEventArgs e)
 		{
-			// TODO: Design a font dialog.
+			var dialog = new FontDialog();
+			if (!(dialog.ShowDialog() is true))
+			{
+				e.Handled = true;
+				return;
+			}
+
+			_labelModifiableFontName.FontFamily = new w::Media.FontFamily(
+				Settings.ModifiableFontName = dialog.SelectedFont.Name);
 		}
 
 		private void ButtonCandidateFontName_Click(object sender, RoutedEventArgs e)
 		{
-			// TODO: Design a font dialog.
+			var dialog = new FontDialog();
+			if (!(dialog.ShowDialog() is true))
+			{
+				e.Handled = true;
+				return;
+			}
+
+			_labelCandidateFontName.FontFamily = new w::Media.FontFamily(
+				Settings.CandidateFontName = dialog.SelectedFont.Name);
+		}
+
+		private void ButtonBackgroundColor_Click(object sender, RoutedEventArgs e)
+		{
+			var dialog = new ColorDialog();
+			if (!(dialog.ShowDialog() is true))
+			{
+				e.Handled = true;
+				return;
+			}
+
+			Settings.BackgroundColor = dialog.SelectedColor;
+			_buttonBackgroundColor.Background = new w::Media.SolidColorBrush(Settings.BackgroundColor.ToWColor());
+		}
+
+		private void ButtonGivenColor_Click(object sender, RoutedEventArgs e)
+		{
+			var dialog = new ColorDialog();
+			if (!(dialog.ShowDialog() is true))
+			{
+				e.Handled = true;
+				return;
+			}
+
+			Settings.GivenColor = dialog.SelectedColor;
+			_buttonGivenColor.Background = new w::Media.SolidColorBrush(Settings.GivenColor.ToWColor());
+		}
+
+		private void ButtonModifiableColor_Click(object sender, RoutedEventArgs e)
+		{
+			var dialog = new ColorDialog();
+			if (!(dialog.ShowDialog() is true))
+			{
+				e.Handled = true;
+				return;
+			}
+
+			Settings.ModifiableColor = dialog.SelectedColor;
+			_buttonModifiableColor.Background = new w::Media.SolidColorBrush(Settings.ModifiableColor.ToWColor());
+		}
+
+		private void ButtonCandidateColor_Click(object sender, RoutedEventArgs e)
+		{
+			var dialog = new ColorDialog();
+			if (!(dialog.ShowDialog() is true))
+			{
+				e.Handled = true;
+				return;
+			}
+
+			Settings.CandidateColor = dialog.SelectedColor;
+			_buttonCandidateColor.Background = new w::Media.SolidColorBrush(Settings.ModifiableColor.ToWColor());
 		}
 	}
 }

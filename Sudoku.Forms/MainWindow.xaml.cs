@@ -160,7 +160,7 @@ namespace Sudoku.Forms
 			base.OnKeyDown(e);
 
 			// Get all cases for being pressed keys.
-			if (e.Key >= Key.D0 && e.Key <= Key.D9)
+			if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
 			{
 				// Get the current cell.
 				var pt = Mouse.GetPosition(_imageGrid);
@@ -171,7 +171,9 @@ namespace Sudoku.Forms
 				}
 
 				int cell = _pointConverter.GetCellOffset(pt.ToDPointF());
-				_grid[cell] = e.Key - Key.D1;
+				_grid[cell] = e.Key >= Key.D0 && e.Key <= Key.D9
+					? e.Key - Key.D1
+					: e.Key - Key.NumPad1;
 
 				UpdateImageGrid();
 			}

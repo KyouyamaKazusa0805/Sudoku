@@ -1,0 +1,58 @@
+﻿<Window x:Class="Sudoku.Forms.Tooling.ColorDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d"
+        Title="ColorDialog" Height="450" Width="300" ResizeMode="CanMinimize">
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="7*"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Image Name="_imageMap" Grid.Row="0" Grid.ColumnSpan="5" Width="280" Height="280"/>
+		<Image Name="_imagePreview" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0"
+			   Width="60" Height="60"/>
+		<Label Content="Alpha" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right"
+			   VerticalAlignment="Center" FontSize="16"/>
+		<TextBox Name="_textBoxA" Grid.Row="1" Grid.Column="2"
+				 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+				 TextChanged="TextBoxA_TextChanged"
+				 PreviewKeyDown="TextBoxA_PreviewKeyDown"/>
+		<Label Content="Red" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right"
+			   VerticalAlignment="Center" FontSize="16" Foreground="Red"/>
+		<TextBox Name="_textBoxR" Grid.Row="1" Grid.Column="4"
+				 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+				 TextChanged="TextBoxR_TextChanged"
+				 PreviewKeyDown="TextBoxR_PreviewKeyDown"/>
+		<Label Content="Green" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right"
+			   VerticalAlignment="Center" FontSize="16" Foreground="Green"/>
+		<TextBox Name="_textBoxG" Grid.Row="2" Grid.Column="2" HorizontalContentAlignment="Center"
+				 VerticalContentAlignment="Center"
+				 TextChanged="TextBoxG_TextChanged"
+				 PreviewKeyDown="TextBoxG_PreviewKeyDown"/>
+		<Label Content="Blue" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right"
+			   VerticalAlignment="Center" FontSize="16" Foreground="Blue"/>
+		<TextBox Name="_textBoxB" Grid.Row="2" Grid.Column="4" HorizontalContentAlignment="Center"
+				 VerticalContentAlignment="Center"
+				 TextChanged="TextBoxB_TextChanged"
+				 PreviewKeyDown="TextBoxB_PreviewKeyDown"/>
+		<Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5">
+			<Button Content="Apply" Margin="0,0,70,10" Name="_buttonApply" HorizontalAlignment="Right"
+					VerticalAlignment="Bottom"
+				Click="ButtonApply_Click"/>
+			<Button Content="Cancel" Margin="0,0,10,10" Name="_buttonCancel" HorizontalAlignment="Right"
+					VerticalAlignment="Bottom"
+				Click="ButtonCancel_Click"/>
+		</Grid>
+	</Grid>
+</Window>
