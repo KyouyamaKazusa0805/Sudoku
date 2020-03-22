@@ -6,11 +6,11 @@ using System.Windows.Documents;
 namespace Sudoku.Forms
 {
 	/// <summary>
-	/// Interaction logic for AboutMe.xaml
+	/// Interaction logic for <c>AboutMeWindow.xaml</c>.
 	/// </summary>
-	public partial class AboutMe : Window
+	public partial class AboutMeWindow : Window
 	{
-		public AboutMe() => InitializeComponent();
+		public AboutMeWindow() => InitializeComponent();
 
 
 		private void GitHubLink_Click(object sender, RoutedEventArgs e)

@@ -62,7 +62,7 @@ namespace Sudoku.Forms
 		{
 			InitializeComponent();
 
-			_updateControlStatus += (sender, e) =>
+			_updateControlStatus += (_, e) =>
 			{
 				_menuItemOptionsShowCandidates.IsChecked = Settings.ShowCandidates;
 

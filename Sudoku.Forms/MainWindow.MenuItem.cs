@@ -163,6 +163,6 @@ namespace Sudoku.Forms
 		}
 
 		private void MenuItemAboutMe_Click(object sender, RoutedEventArgs e) =>
-			new AboutMe().Show();
+			new AboutMeWindow().Show();
 	}
 }
