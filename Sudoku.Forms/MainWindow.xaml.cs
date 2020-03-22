@@ -24,9 +24,15 @@ namespace Sudoku.Forms
 	public partial class MainWindow : Window
 	{
 		/// <summary>
-		/// Indicates all focused cells.
+		/// The synchronized root.
 		/// </summary>
-		private readonly IList<int> _focusedCells = new List<int>();
+		private static readonly object SyncRoot = new object();
+
+
+		/// <summary>
+		/// Indicates the delegate field bound with <see cref="UpdateControlStatus"/>.
+		/// </summary>
+		internal EventHandler _updateControlStatus;
 
 		/// <summary>
 		/// Internal layer collection.
@@ -34,9 +40,9 @@ namespace Sudoku.Forms
 		private readonly LayerCollection _layerCollection = new LayerCollection();
 
 		/// <summary>
-		/// Internal settings.
+		/// Indicates all focused cells.
 		/// </summary>
-		private readonly Settings _settings = Settings.DefaultSetting.Clone();
+		private readonly IList<int> _focusedCells = new List<int>();
 
 
 		/// <summary>
@@ -52,7 +58,18 @@ namespace Sudoku.Forms
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
-		public MainWindow() => InitializeComponent();
+		public MainWindow()
+		{
+			InitializeComponent();
+
+			_updateControlStatus += (sender, e) =>
+			{
+				_menuItemOptionsShowCandidates.IsChecked = Settings.ShowCandidates;
+
+
+				UpdateImageGrid();
+			};
+		}
 
 
 		/// <summary>
@@ -86,6 +103,46 @@ namespace Sudoku.Forms
 			}
 		}
 
+		/// <summary>
+		/// Indicates the internal settings.
+		/// </summary>
+		public Settings Settings { get; internal set; } = Settings.DefaultSetting.Clone();
+
+
+		/// <summary>
+		/// Indicates the event to trigger while updating the statuses of controls.
+		/// </summary>
+		public event EventHandler UpdateControlStatus
+		{
+			add
+			{
+				lock (SyncRoot)
+				{
+					_updateControlStatus += value;
+				}
+			}
+			remove
+			{
+				lock (SyncRoot)
+				{
+					_updateControlStatus = (_updateControlStatus - value)!;
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// Repaint the <see cref="_imageGrid"/> to show the newer grid image.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal void UpdateImageGrid()
+		{
+			var bitmap = new Bitmap((int)_imageGrid.Width, (int)_imageGrid.Height);
+			_layerCollection.IntegrateTo(bitmap);
+			_imageGrid.Source = bitmap.ToImageSource();
+
+			GC.Collect();
+		}
 
 		/// <inheritdoc/>
 		protected override void OnInitialized(EventArgs e)
@@ -105,25 +162,25 @@ namespace Sudoku.Forms
 			AddShortCut(Key.C, ModifierKeys.Control | ModifierKeys.Shift, MenuItemEditCopyCurrentGrid_Click);
 			AddShortCut(Key.V, ModifierKeys.Control, MenuItemEditPaste_Click);
 
-			// Show title.
+			// Initializes some controls.
 			Title = $"{SolutionName} Ver {Version}";
 
 			// Then initialize the layer collection and point converter
 			// for later utility.
 			_pointConverter = new PointConverter((float)_imageGrid.Width, (float)_imageGrid.Height);
-			_layerCollection.Add(new BackLayer(_pointConverter, _settings.BackgroundColor));
+			_layerCollection.Add(new BackLayer(_pointConverter, Settings.BackgroundColor));
 			_layerCollection.Add(
 				new GridLineLayer(
-					_pointConverter, _settings.GridLineWidth, _settings.GridLineColor));
+					_pointConverter, Settings.GridLineWidth, Settings.GridLineColor));
 			_layerCollection.Add(
 				new BlockLineLayer(
-					_pointConverter, _settings.BlockLineWidth, _settings.BlockLineColor));
+					_pointConverter, Settings.BlockLineWidth, Settings.BlockLineColor));
 			_layerCollection.Add(
 				new ValueLayer(
-					_pointConverter, _settings.ValueScale, _settings.CandidateScale,
-					_settings.GivenColor, _settings.ModifiableColor, _settings.CandidateColor,
-					_settings.GivenFontName, _settings.ModifiableFontName,
-					_settings.CandidateFontName, _grid));
+					_pointConverter, Settings.ValueScale, Settings.CandidateScale,
+					Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
+					Settings.GivenFontName, Settings.ModifiableFontName,
+					Settings.CandidateFontName, _grid, Settings.ShowCandidates));
 
 			// Update the grid image.
 			UpdateImageGrid();
@@ -179,19 +236,6 @@ namespace Sudoku.Forms
 		}
 
 		/// <summary>
-		/// Repaint the <see cref="_imageGrid"/> to show the newer grid image.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void UpdateImageGrid()
-		{
-			var bitmap = new Bitmap((int)_imageGrid.Width, (int)_imageGrid.Height);
-			_layerCollection.IntegrateTo(bitmap);
-			_imageGrid.Source = bitmap.ToImageSource();
-
-			GC.Collect();
-		}
-
-		/// <summary>
 		/// The internal copy method to process the operation of copying value to clipboard.
 		/// </summary>
 		/// <param name="format">
@@ -233,11 +277,11 @@ namespace Sudoku.Forms
 			{
 				_layerCollection.Add(
 					new ValueLayer(
-						_pointConverter, _settings.ValueScale, _settings.CandidateScale,
-						_settings.GivenColor, _settings.ModifiableColor, _settings.CandidateColor,
-						_settings.GivenFontName, _settings.ModifiableFontName,
-						_settings.CandidateFontName,
-						_grid = new UndoableGrid(SudokuGrid.Parse(puzzleStr))));
+						_pointConverter, Settings.ValueScale, Settings.CandidateScale,
+						Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
+						Settings.GivenFontName, Settings.ModifiableFontName,
+						Settings.CandidateFontName,
+						_grid = new UndoableGrid(SudokuGrid.Parse(puzzleStr)), Settings.ShowCandidates));
 
 				_menuItemUndo.IsEnabled = _menuItemRedo.IsEnabled = false;
 				UpdateImageGrid();

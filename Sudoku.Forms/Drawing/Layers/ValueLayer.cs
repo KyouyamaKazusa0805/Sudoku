@@ -22,6 +22,11 @@ namespace Sudoku.Drawing.Layers
 		private readonly decimal _candidateScale;
 
 		/// <summary>
+		/// Indicates whether the layer will display candidates.
+		/// </summary>
+		private readonly bool _showCandidates;
+
+		/// <summary>
 		/// Indicates the color of the status of each digit.
 		/// </summary>
 		private readonly Color _givenColor, _modifiableColor, _candidateColor;
@@ -51,10 +56,12 @@ namespace Sudoku.Drawing.Layers
 		/// <param name="modifiableFont">The modifiable font.</param>
 		/// <param name="candidateFont">The candidate font.</param>
 		/// <param name="grid">The grid.</param>
+		/// <param name="showCandidates">Indicates whether the layer will show the candidates.</param>
 		public ValueLayer(
 			PointConverter pointConverter, decimal valueScale, decimal candidateScale,
 			Color givenColor, Color modifiableColor, Color candidateColor,
-			string givenFont, string modifiableFont, string candidateFont, Grid grid)
+			string givenFont, string modifiableFont, string candidateFont, Grid grid,
+			bool showCandidates)
 			: base(pointConverter)
 		{
 			_valueScale = valueScale;
@@ -66,6 +73,7 @@ namespace Sudoku.Drawing.Layers
 			_modifiableFont = modifiableFont;
 			_candidateFont = candidateFont;
 			_grid = grid;
+			_showCandidates = showCandidates;
 		}
 
 
@@ -99,7 +107,7 @@ namespace Sudoku.Drawing.Layers
 				var status = (CellStatus)(mask >> 9 & (int)CellStatus.All);
 				switch (status)
 				{
-					case CellStatus.Empty:
+					case CellStatus.Empty when _showCandidates:
 					{
 						// Draw candidates.
 						short candidateMask = (short)(~mask & 511);

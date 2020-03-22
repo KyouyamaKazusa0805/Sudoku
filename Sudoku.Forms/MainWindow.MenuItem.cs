@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using Sudoku.Data;
+using Sudoku.Drawing.Layers;
 
 namespace Sudoku.Forms
 {
@@ -53,6 +54,22 @@ namespace Sudoku.Forms
 
 		private void MenuItemFileQuit_Click(object sender, RoutedEventArgs e) =>
 			Close();
+
+		private void MenuItemOptionsShowCandidates_Click(object sender, RoutedEventArgs e)
+		{
+			_layerCollection.Add(
+				new ValueLayer(
+					_pointConverter, Settings.ValueScale, Settings.CandidateScale,
+					Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
+					Settings.GivenFontName, Settings.ModifiableFontName,
+					Settings.CandidateFontName, _grid,
+					Settings.ShowCandidates = _menuItemOptionsShowCandidates.IsChecked ^= true));
+
+			UpdateImageGrid();
+		}
+
+		private void MenuItemOptionsSettings_Click(object sender, RoutedEventArgs e) =>
+			new SettingsWindow(this).ShowDialog();
 
 		private void MenuItemEditUndo_Click(object sender, RoutedEventArgs e)
 		{
@@ -111,7 +128,7 @@ namespace Sudoku.Forms
 
 			LoadPuzzle(puzzleStr);
 		}
-		
+
 		private void MenuItemEditFix_Click(object sender, RoutedEventArgs e)
 		{
 			_grid.Fix();

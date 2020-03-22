@@ -17,7 +17,7 @@ namespace Sudoku.Forms
 
 				_layerCollection.Add(
 					new FocusLayer(
-						_pointConverter, _focusedCells, _settings.FocusedCellColor));
+						_pointConverter, _focusedCells, Settings.FocusedCellColor));
 
 				UpdateImageGrid();
 			}

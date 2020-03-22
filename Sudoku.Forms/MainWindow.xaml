@@ -6,13 +6,13 @@
 		mc:Ignorable="d" Height="800" Width="1200">
 	<Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="*" />
-			<RowDefinition Height="600" />
-			<RowDefinition Height="*" />
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="600"/>
+			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*" />
-			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
 		<Menu VerticalAlignment="Top" IsMainMenu="True" Name="_mainMenu"
 			  Grid.Row="0" Grid.ColumnSpan="2">
@@ -26,6 +26,14 @@
 				<Separator/>
 				<MenuItem Header="Quit app" InputGestureText="Alt + F4"
 						  Click="MenuItemFileQuit_Click"/>
+			</MenuItem>
+			<MenuItem Header="Options">
+				<MenuItem Header="Show candidates" Name="_menuItemOptionsShowCandidates"
+						  IsChecked="True"
+						  Click="MenuItemOptionsShowCandidates_Click"/>
+				<Separator/>
+				<MenuItem Header="Settings..."
+						  Click="MenuItemOptionsSettings_Click"/>
 			</MenuItem>
 			<MenuItem Header="Edit">
 				<MenuItem Header="Undo" InputGestureText="Ctrl + Z" Name="_menuItemUndo" IsEnabled="False"
