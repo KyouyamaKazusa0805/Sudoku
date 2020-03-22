@@ -5,9 +5,12 @@ using w = System.Windows;
 namespace Sudoku.Drawing.Extensions
 {
 	/// <summary>
-	/// Provides extension methods on <see cref="Point"/>.
+	/// Provides extension methods on <see cref="w.Point"/>, <see cref="d.Point"/>
+	/// and <see cref="d.PointF"/>.
 	/// </summary>
-	/// <seealso cref="Point"/>
+	/// <seealso cref="w.Point"/>
+	/// <seealso cref="d.Point"/>
+	/// <seealso cref="d.PointF"/>
 	[DebuggerStepThrough]
 	public static class PointEx
 	{
@@ -23,6 +26,13 @@ namespace Sudoku.Drawing.Extensions
 		/// <param name="x">(<see langword="out"/> parameter) The x component.</param>
 		/// <param name="y">(<see langword="out"/> parameter) The y component.</param>
 		public static void Deconstruct(this d::PointF @this, out float x, out float y) =>
+			(x, y) = (@this.X, @this.Y);
+
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <param name="x">(<see langword="out"/> parameter) The x component.</param>
+		/// <param name="y">(<see langword="out"/> parameter) The y component.</param>
+		public static void Deconstruct(this w::Point @this, out double x, out double y) =>
 			(x, y) = (@this.X, @this.Y);
 
 		/// <summary>

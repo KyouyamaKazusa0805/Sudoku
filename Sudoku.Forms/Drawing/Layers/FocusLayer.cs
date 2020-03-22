@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using Sudoku.Drawing.Layers;
 using PointConverter = Sudoku.Drawing.PointConverter;
@@ -8,6 +9,7 @@ namespace Sudoku.Forms.Drawing.Layers
 	/// <summary>
 	/// Provides a focus layer.
 	/// </summary>
+	[DebuggerStepThrough]
 	public sealed class FocusLayer : Layer
 	{
 		/// <summary>

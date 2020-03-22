@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using Sudoku.Drawing.Extensions;
 
@@ -7,6 +8,7 @@ namespace Sudoku.Drawing.Layers
 	/// <summary>
 	/// Define a layer for displaying on the form controls.
 	/// </summary>
+	[DebuggerStepThrough]
 	public abstract class Layer : IComparable<Layer>, IDisposable, IEquatable<Layer>
 	{
 		/// <summary>

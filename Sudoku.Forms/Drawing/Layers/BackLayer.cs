@@ -1,10 +1,12 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics;
+using System.Drawing;
 
 namespace Sudoku.Drawing.Layers
 {
 	/// <summary>
 	/// Provides a background layer.
 	/// </summary>
+	[DebuggerStepThrough]
 	public sealed class BackLayer : Layer
 	{
 		/// <summary>

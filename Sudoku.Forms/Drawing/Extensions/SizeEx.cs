@@ -4,9 +4,10 @@ using System.Drawing;
 namespace Sudoku.Drawing.Extensions
 {
 	/// <summary>
-	/// Provides extension methods on <see cref="Size"/>.
+	/// Provides extension methods on <see cref="Size"/> and <see cref="SizeF"/>.
 	/// </summary>
 	/// <seealso cref="Size"/>
+	/// <seealso cref="SizeF"/>
 	[DebuggerStepThrough]
 	public static class SizeEx
 	{
