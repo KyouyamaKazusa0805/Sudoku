@@ -7,16 +7,6 @@ namespace Sudoku.Forms
 {
 	partial class MainWindow
 	{
-		private void ImageGrid_MouseMove(object sender, MouseEventArgs e)
-		{
-			// This method is only used for testing the coordinates.
-			//if (sender is ImageControl imageControl)
-			//{
-			//	var (x, y) = e.GetPosition(imageControl);
-			//	_textBoxInfo.Text = $"{(int)x}, {(int)y}";
-			//}
-		}
-
 		private void ImageGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			if (sender is ImageControl imageControl)

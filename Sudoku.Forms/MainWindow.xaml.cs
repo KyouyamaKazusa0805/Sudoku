@@ -231,7 +231,13 @@ namespace Sudoku.Forms
 		{
 			try
 			{
-				_grid = new UndoableGrid(SudokuGrid.Parse(puzzleStr));
+				_layerCollection.Add(
+					new ValueLayer(
+						_pointConverter, _settings.ValueScale, _settings.CandidateScale,
+						_settings.GivenColor, _settings.ModifiableColor, _settings.CandidateColor,
+						_settings.GivenFontName, _settings.ModifiableFontName,
+						_settings.CandidateFontName,
+						_grid = new UndoableGrid(SudokuGrid.Parse(puzzleStr))));
 
 				UpdateImageGrid();
 			}

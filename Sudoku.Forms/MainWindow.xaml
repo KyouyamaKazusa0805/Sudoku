@@ -37,6 +37,8 @@
 						  Click="MenuItemEditCopy_Click"/>
 				<MenuItem Header="Copy current grid" InputGestureText="Ctrl + Shift + C"
 						  Click="MenuItemEditCopyCurrentGrid_Click"/>
+				<MenuItem Header="Copy hodoku library format"
+						  Click="MenuItemEditCopyHodokuLibrary_Click"/>
 				<MenuItem Header="Copy PM grid"
 						  Click="MenuItemEditCopyPmGrid_Click"/>
 				<MenuItem Header="Paste" InputGestureText="Ctrl + V"
@@ -55,8 +57,7 @@
 			</MenuItem>
 		</Menu>
 		<Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-			   Name="_imageGrid" Grid.Row="1" Grid.Column="0" Width="540" Height="540"
-			   MouseMove="ImageGrid_MouseMove"
+			   Name="_imageGrid" Grid.Row="1" Grid.Column="0" Width="576" Height="576"
 			   MouseLeftButtonDown="ImageGrid_MouseLeftButtonDown"
 			   MouseRightButtonDown="ImageGrid_MouseRightButtonDown"/>
 		<TabControl Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"

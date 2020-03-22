@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
+using Sudoku.Data;
 
 namespace Sudoku.Forms
 {
@@ -84,6 +85,19 @@ namespace Sudoku.Forms
 
 		private void MenuItemEditCopyPmGrid_Click(object sender, RoutedEventArgs e) =>
 			InternalCopy("@");
+
+		private void MenuItemEditCopyHodokuLibrary_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				Clipboard.SetText(_grid.ToString(GridOutputOptions.HodokuCompatible));
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(
+					$"Cannot save text to clipboard due to:{Environment.NewLine}{ex.Message}", "Warning");
+			}
+		}
 
 		private void MenuItemEditPaste_Click(object sender, RoutedEventArgs e)
 		{
