@@ -40,24 +40,20 @@ namespace Sudoku.Forms
 			}
 		}
 
-		private void MenuIteEditCopy_Click(object sender, RoutedEventArgs e)
-		{
-			try
-			{
-				Clipboard.SetText(_grid.ToString());
-			}
-			catch (ArgumentNullException ex)
-			{
-				MessageBox.Show(
-					$"Cannot save text to clipboard due to:{Environment.NewLine}{ex.Message}", "Warning");
-			}
-		}
+		private void MenuItemEditCopy_Click(object sender, RoutedEventArgs e) => InternalCopy(null);
+
+		private void MenuItemEditCopyCurrentGrid_Click(object sender, RoutedEventArgs e) =>
+			InternalCopy("#");
+
+		private void MenuItemEditCopyPmGrid_Click(object sender, RoutedEventArgs e) =>
+			InternalCopy("@");
 
 		private void MenuItemEditPaste_Click(object sender, RoutedEventArgs e)
 		{
 			string value = Clipboard.GetText();
 			if (value is null)
 			{
+				// 'value' is not null always.
 				e.Handled = true;
 				return;
 			}
@@ -84,6 +80,13 @@ namespace Sudoku.Forms
 		private void MenuItemEditUnfix_Click(object sender, RoutedEventArgs e)
 		{
 			_grid.Unfix();
+
+			UpdateImageGrid();
+		}
+
+		private void MenuItemEditReset_Click(object sender, RoutedEventArgs e)
+		{
+			_grid.Reset();
 
 			UpdateImageGrid();
 		}

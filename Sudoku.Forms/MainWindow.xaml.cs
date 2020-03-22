@@ -99,7 +99,8 @@ namespace Sudoku.Forms
 			AddShortCut(Key.OemTilde, ModifierKeys.Control | ModifierKeys.Shift, MenuItemEditUnfix_Click);
 			AddShortCut(Key.Z, ModifierKeys.Control, MenuItemEditUndo_Click);
 			AddShortCut(Key.Y, ModifierKeys.Control, MenuItemEditRedo_Click);
-			AddShortCut(Key.C, ModifierKeys.Control, MenuIteEditCopy_Click);
+			AddShortCut(Key.C, ModifierKeys.Control, MenuItemEditCopy_Click);
+			AddShortCut(Key.C, ModifierKeys.Control | ModifierKeys.Shift, MenuItemEditCopyCurrentGrid_Click);
 			AddShortCut(Key.V, ModifierKeys.Control, MenuItemEditPaste_Click);
 
 			// Show title.
@@ -186,6 +187,37 @@ namespace Sudoku.Forms
 			_imageGrid.Source = bitmap.ToImageSource();
 
 			GC.Collect();
+		}
+
+		/// <summary>
+		/// The internal copy method to process the operation of copying value to clipboard.
+		/// </summary>
+		/// <param name="format">
+		/// The grid format. If the value is <see langword="null"/>, it will call the method
+		/// <see cref="SudokuGrid.ToString(string?, IFormatProvider?)"/>; otherwise,
+		/// <see cref="SudokuGrid.ToString(string)"/>.
+		/// </param>
+		/// <seealso cref="SudokuGrid.ToString(string)"/>
+		/// <seealso cref="SudokuGrid.ToString(string?, IFormatProvider?)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void InternalCopy(string? format)
+		{
+			try
+			{
+				if (format is null)
+				{
+					Clipboard.SetText(_grid.ToString(null, null));
+				}
+				else
+				{
+					Clipboard.SetText(_grid.ToString(format));
+				}
+			}
+			catch (ArgumentNullException ex)
+			{
+				MessageBox.Show(
+					$"Cannot save text to clipboard due to:{Environment.NewLine}{ex.Message}", "Warning");
+			}
 		}
 
 		/// <summary>

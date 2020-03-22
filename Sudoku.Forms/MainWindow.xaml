@@ -1,10 +1,10 @@
 ﻿<Window x:Class="Sudoku.Forms.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:Sudoku.Forms"
-		mc:Ignorable="d" Height="800" Width="1200" Name="_window">
+		mc:Ignorable="d" Height="800" Width="1200">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*" />
@@ -29,8 +29,12 @@
 				<MenuItem Header="Redo" InputGestureText="Ctrl + Y"
 						  Click="MenuItemEditRedo_Click"/>
 				<Separator/>
-				<MenuItem Header="Copy" InputGestureText="Ctrl + C"
-						  Click="MenuIteEditCopy_Click"/>
+				<MenuItem Header="Copy normal grid" InputGestureText="Ctrl + C"
+						  Click="MenuItemEditCopy_Click"/>
+				<MenuItem Header="Copy current grid" InputGestureText="Ctrl + Shift + C"
+						  Click="MenuItemEditCopyCurrentGrid_Click"/>
+				<MenuItem Header="Copy PM grid"
+						  Click="MenuItemEditCopyPmGrid_Click"/>
 				<MenuItem Header="Paste" InputGestureText="Ctrl + V"
 						  Click="MenuItemEditPaste_Click"/>
 				<Separator/>
@@ -38,6 +42,9 @@
 						  Click="MenuItemEditFix_Click"/>
 				<MenuItem Header="Unfix grid" InputGestureText="Ctrl + Shift + `"
 						  Click="MenuItemEditUnfix_Click"/>
+				<Separator/>
+				<MenuItem Header="Reset grid"
+						  Click="MenuItemEditReset_Click"/>
 			</MenuItem>
 			<MenuItem Header="About">
 				<MenuItem Header="Me" Click="MenuItemAboutMe_Click"/>
