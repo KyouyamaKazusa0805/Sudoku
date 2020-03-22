@@ -3116,6 +3116,16 @@
             </summary>
             <param name="grid">The grid.</param>
         </member>
+        <member name="P:Sudoku.Data.Stepping.UndoableGrid.HasUndoSteps">
+            <summary>
+            Indicates whether the grid has any undo steps available.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.UndoableGrid.HasRedoSteps">
+            <summary>
+            Indicates whether the grid has any redo steps available.
+            </summary>
+        </member>
         <member name="P:Sudoku.Data.Stepping.UndoableGrid.Item(System.Int32)">
             <inheritdoc/>
         </member>

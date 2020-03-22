@@ -8,12 +8,14 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 using Sudoku.Data.Extensions;
+using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Drawing.Layers;
 using Sudoku.Forms.Extensions;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
+using w = System.Windows;
 
 namespace Sudoku.Forms
 {
@@ -42,7 +44,7 @@ namespace Sudoku.Forms
 		/// The grid.
 		/// </summary>
 		[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
-		private SudokuGrid _grid = ((SudokuGrid)SudokuGrid.Empty).Clone();
+		private UndoableGrid _grid = new UndoableGrid(SudokuGrid.Empty.Clone());
 
 		/// <summary>
 		/// The point converter.
@@ -89,16 +91,21 @@ namespace Sudoku.Forms
 		/// <inheritdoc/>
 		protected override void OnInitialized(EventArgs e)
 		{
+			// Call the base method.
 			base.OnInitialized(e);
 
-			// Define a series of hot keys.
+			// Define shortcuts.
 			AddShortCut(Key.F4, ModifierKeys.Alt, MenuItemFileQuit_Click);
 			AddShortCut(Key.OemTilde, ModifierKeys.Control, MenuItemFileFix_Click);
 			AddShortCut(Key.OemTilde, ModifierKeys.Control | ModifierKeys.Shift, MenuItemFileUnfix_Click);
+			AddShortCut(Key.Z, ModifierKeys.Control, MenuItemFileUndo_Click);
+			AddShortCut(Key.Y, ModifierKeys.Control, MenuItemFileRedo_Click);
 
 			// Show title.
 			Title = $"{SolutionName} Ver {Version}";
 
+			// Then initialize the layer collection and point converter
+			// for later utility.
 			_pointConverter = new PointConverter((float)_imageGrid.Width, (float)_imageGrid.Height);
 			_layerCollection.Add(new BackLayer(_pointConverter, _settings.BackgroundColor));
 			_layerCollection.Add(
@@ -114,6 +121,7 @@ namespace Sudoku.Forms
 					_settings.GivenFontName, _settings.ModifiableFontName,
 					_settings.CandidateFontName, _grid));
 
+			// Update the grid image.
 			UpdateImageGrid();
 		}
 
@@ -136,8 +144,7 @@ namespace Sudoku.Forms
 
 			// Get the current cell.
 			var pt = Mouse.GetPosition(_imageGrid);
-			var (x, y) = pt;
-			if (x < 0 || x > _imageGrid.Width || y < 0 || y > _imageGrid.Height)
+			if (IsPointOutOfRange(_imageGrid, pt))
 			{
 				e.Handled = true;
 				return;
@@ -178,6 +185,19 @@ namespace Sudoku.Forms
 			_imageGrid.Source = bitmap.ToImageSource();
 
 			GC.Collect();
+		}
+
+		/// <summary>
+		/// To check whether the specified point is out of range of a control.
+		/// </summary>
+		/// <param name="control">The control.</param>
+		/// <param name="point">The point.</param>
+		/// <returns>A <see cref="bool"/> value.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private bool IsPointOutOfRange(FrameworkElement control, w::Point point)
+		{
+			var (x, y) = point;
+			return x < 0 || x > control.Width || y < 0 || y > control.Height;
 		}
 	}
 }

@@ -6,6 +6,24 @@ namespace Sudoku.Forms
 {
 	partial class MainWindow
 	{
+		private void MenuItemFileUndo_Click(object sender, RoutedEventArgs e)
+		{
+			if (_grid.HasUndoSteps)
+			{
+				_grid.Undo();
+				UpdateImageGrid();
+			}
+		}
+
+		private void MenuItemFileRedo_Click(object sender, RoutedEventArgs e)
+		{
+			if (_grid.HasRedoSteps)
+			{
+				_grid.Redo();
+				UpdateImageGrid();
+			}
+		}
+
 		private void MenuItemFileFix_Click(object sender, RoutedEventArgs e)
 		{
 			_grid.Fix();

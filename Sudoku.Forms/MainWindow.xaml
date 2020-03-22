@@ -18,6 +18,10 @@
 		<Menu VerticalAlignment="Top" IsMainMenu="True" Name="_mainMenu"
 			  Grid.Row="0" Grid.ColumnSpan="2">
 			<MenuItem Header="File">
+				<MenuItem Header="Undo" InputGestureText="Ctrl + Z"
+						  Click="MenuItemFileUndo_Click"/>
+				<MenuItem Header="Redo" InputGestureText="Ctrl + Y"
+						  Click="MenuItemFileRedo_Click"/>
 				<MenuItem Header="Fix grid" InputGestureText="Ctrl + `"
 						  Click="MenuItemFileFix_Click"/>
 				<MenuItem Header="Unfix grid" InputGestureText="Ctrl + Shift + `"

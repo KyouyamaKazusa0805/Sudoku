@@ -38,6 +38,17 @@ namespace Sudoku.Data.Stepping
 		}
 
 
+		/// <summary>
+		/// Indicates whether the grid has any undo steps available.
+		/// </summary>
+		public bool HasUndoSteps => _undoStack.Count != 0;
+
+		/// <summary>
+		/// Indicates whether the grid has any redo steps available.
+		/// </summary>
+		public bool HasRedoSteps => _redoStack.Count != 0;
+
+
 		/// <inheritdoc/>
 		public override int this[int offset]
 		{
@@ -153,7 +164,7 @@ namespace Sudoku.Data.Stepping
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Redo()
 		{
-			if (_redoStack.Count == 0)
+			if (!HasRedoSteps)
 			{
 				throw new InvalidOperationException("The redo stack is already empty.");
 			}
@@ -170,7 +181,7 @@ namespace Sudoku.Data.Stepping
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Undo()
 		{
-			if (_undoStack.Count == 0)
+			if (!HasUndoSteps)
 			{
 				throw new InvalidOperationException("The undo stack is already empty.");
 			}
