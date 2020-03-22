@@ -24,17 +24,6 @@ namespace Sudoku.Forms
 	public partial class MainWindow : Window
 	{
 		/// <summary>
-		/// The synchronized root.
-		/// </summary>
-		private static readonly object SyncRoot = new object();
-
-
-		/// <summary>
-		/// Indicates the delegate field bound with <see cref="UpdateControlStatus"/>.
-		/// </summary>
-		internal EventHandler _updateControlStatus;
-
-		/// <summary>
 		/// Internal layer collection.
 		/// </summary>
 		private readonly LayerCollection _layerCollection = new LayerCollection();
@@ -58,19 +47,13 @@ namespace Sudoku.Forms
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
-		public MainWindow()
-		{
-			InitializeComponent();
-
-			_updateControlStatus += (_, e) =>
-			{
-				_menuItemOptionsShowCandidates.IsChecked = Settings.ShowCandidates;
+		public MainWindow() => InitializeComponent();
 
 
-				UpdateImageGrid();
-			};
-		}
-
+		/// <summary>
+		/// Indicates the settings used.
+		/// </summary>
+		public Settings Settings { get; } = Settings.DefaultSetting.Clone();
 
 		/// <summary>
 		/// Indicates the name of this solution.
@@ -100,33 +83,6 @@ namespace Sudoku.Forms
 					.GetName()
 					.Version
 					.NullableToString("Unknown version");
-			}
-		}
-
-		/// <summary>
-		/// Indicates the internal settings.
-		/// </summary>
-		public Settings Settings { get; internal set; } = Settings.DefaultSetting.Clone();
-
-
-		/// <summary>
-		/// Indicates the event to trigger while updating the statuses of controls.
-		/// </summary>
-		public event EventHandler UpdateControlStatus
-		{
-			add
-			{
-				lock (SyncRoot)
-				{
-					_updateControlStatus += value;
-				}
-			}
-			remove
-			{
-				lock (SyncRoot)
-				{
-					_updateControlStatus = (_updateControlStatus - value)!;
-				}
 			}
 		}
 
@@ -264,6 +220,18 @@ namespace Sudoku.Forms
 				MessageBox.Show(
 					$"Cannot save text to clipboard due to:{Environment.NewLine}{ex.Message}", "Warning");
 			}
+		}
+
+		/// <summary>
+		/// To update the control status.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void UpdateControls()
+		{
+			_menuItemOptionsShowCandidates.IsChecked = Settings.ShowCandidates;
+
+
+			UpdateImageGrid();
 		}
 
 		/// <summary>

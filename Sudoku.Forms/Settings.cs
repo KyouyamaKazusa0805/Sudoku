@@ -13,6 +13,18 @@ namespace Sudoku.Forms
 		public static readonly Settings DefaultSetting = new Settings();
 
 
+		/// <summary>
+		/// To cover all settings.
+		/// </summary>
+		/// <param name="newSetting">The new settings instance.</param>
+		public void CoverBy(Settings newSetting)
+		{
+			foreach (var property in GetType().GetProperties())
+			{
+				property.SetValue(this, property.GetValue(newSetting));
+			}
+		}
+
 		/// <inheritdoc/>
 		public Settings Clone()
 		{

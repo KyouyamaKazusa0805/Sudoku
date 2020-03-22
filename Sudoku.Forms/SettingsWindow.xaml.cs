@@ -11,9 +11,9 @@ namespace Sudoku.Forms
 	public partial class SettingsWindow : Window
 	{
 		/// <summary>
-		/// The base window.
+		/// Indicates the result settings.
 		/// </summary>
-		private readonly MainWindow _baseWindow;
+		public Settings Settings { get; }
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
@@ -21,40 +21,31 @@ namespace Sudoku.Forms
 		{
 			InitializeComponent();
 
-			_baseWindow = baseWindow;
+			Settings = baseWindow.Settings;
 
 			// Show controls with the specified settings.
-			_checkBoxShowCandidates.IsChecked = _baseWindow.Settings.ShowCandidates;
-			_textBoxGridLineWidth.Text = _baseWindow.Settings.GridLineWidth.ToString();
-			_textBoxBlockLineWidth.Text = _baseWindow.Settings.BlockLineWidth.ToString();
-			_textBoxValueScale.Text = _baseWindow.Settings.ValueScale.ToString();
-			_textBoxCandidateScale.Text = _baseWindow.Settings.CandidateScale.ToString();
-			_labelGivenFontName.Content = _baseWindow.Settings.GivenFontName;
-			_labelModifiableFontName.Content = _baseWindow.Settings.ModifiableFontName;
-			_labelCandidateFontName.Content = _baseWindow.Settings.CandidateFontName;
-
-			Callback += () => baseWindow._updateControlStatus.Invoke(this, EventArgs.Empty);
+			_checkBoxShowCandidates.IsChecked = Settings.ShowCandidates;
+			_textBoxGridLineWidth.Text = Settings.GridLineWidth.ToString();
+			_textBoxBlockLineWidth.Text = Settings.BlockLineWidth.ToString();
+			_textBoxValueScale.Text = Settings.ValueScale.ToString();
+			_textBoxCandidateScale.Text = Settings.CandidateScale.ToString();
+			_labelGivenFontName.Content = Settings.GivenFontName;
+			_labelModifiableFontName.Content = Settings.ModifiableFontName;
+			_labelCandidateFontName.Content = Settings.CandidateFontName;
 		}
-
-
-		/// <summary>
-		/// Indicates an event triggering when the form closed, the data will be
-		/// called back to the main form (i.e. <see cref="MainWindow"/>).
-		/// </summary>
-		public event CallbackEventHandler Callback;
 
 
 		/// <inheritdoc/>
 		protected override void OnClosing(CancelEventArgs e)
 		{
-			Callback.Invoke();
+			DialogResult = true;
 
 			base.OnClosing(e);
 		}
 
 
 		private void CheckBoxShowCandidates_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxShowCandidates.IsChecked = _baseWindow.Settings.ShowCandidates ^= true;
+			_checkBoxShowCandidates.IsChecked = Settings.ShowCandidates ^= true;
 
 		private void TextBoxGridLineWidth_TextChanged(object sender, TextChangedEventArgs e)
 		{
@@ -66,7 +57,7 @@ namespace Sudoku.Forms
 					return;
 				}
 
-				_baseWindow.Settings.GridLineWidth = value;
+				Settings.GridLineWidth = value;
 			}
 		}
 
@@ -80,7 +71,7 @@ namespace Sudoku.Forms
 					return;
 				}
 
-				_baseWindow.Settings.BlockLineWidth = value;
+				Settings.BlockLineWidth = value;
 			}
 		}
 
@@ -94,7 +85,7 @@ namespace Sudoku.Forms
 					return;
 				}
 
-				_baseWindow.Settings.ValueScale = value;
+				Settings.ValueScale = value;
 			}
 		}
 
@@ -108,7 +99,7 @@ namespace Sudoku.Forms
 					return;
 				}
 
-				_baseWindow.Settings.CandidateScale = value;
+				Settings.CandidateScale = value;
 			}
 		}
 

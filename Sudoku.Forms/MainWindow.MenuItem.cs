@@ -68,8 +68,18 @@ namespace Sudoku.Forms
 			UpdateImageGrid();
 		}
 
-		private void MenuItemOptionsSettings_Click(object sender, RoutedEventArgs e) =>
-			new SettingsWindow(this).ShowDialog();
+		private void MenuItemOptionsSettings_Click(object sender, RoutedEventArgs e)
+		{
+			var settingsWindow = new SettingsWindow(this);
+			if (!(settingsWindow.ShowDialog() is true))
+			{
+				e.Handled = true;
+				return;
+			}
+
+			Settings.CoverBy(settingsWindow.Settings);
+			UpdateControls();
+		}
 
 		private void MenuItemEditUndo_Click(object sender, RoutedEventArgs e)
 		{
