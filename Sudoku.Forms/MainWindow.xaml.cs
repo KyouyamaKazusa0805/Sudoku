@@ -95,10 +95,12 @@ namespace Sudoku.Forms
 
 			// Define shortcuts.
 			AddShortCut(Key.F4, ModifierKeys.Alt, MenuItemFileQuit_Click);
-			AddShortCut(Key.OemTilde, ModifierKeys.Control, MenuItemFileFix_Click);
-			AddShortCut(Key.OemTilde, ModifierKeys.Control | ModifierKeys.Shift, MenuItemFileUnfix_Click);
-			AddShortCut(Key.Z, ModifierKeys.Control, MenuItemFileUndo_Click);
-			AddShortCut(Key.Y, ModifierKeys.Control, MenuItemFileRedo_Click);
+			AddShortCut(Key.OemTilde, ModifierKeys.Control, MenuItemEditFix_Click);
+			AddShortCut(Key.OemTilde, ModifierKeys.Control | ModifierKeys.Shift, MenuItemEditUnfix_Click);
+			AddShortCut(Key.Z, ModifierKeys.Control, MenuItemEditUndo_Click);
+			AddShortCut(Key.Y, ModifierKeys.Control, MenuItemEditRedo_Click);
+			AddShortCut(Key.C, ModifierKeys.Control, MenuIteEditCopy_Click);
+			AddShortCut(Key.V, ModifierKeys.Control, MenuItemEditPaste_Click);
 
 			// Show title.
 			Title = $"{SolutionName} Ver {Version}";

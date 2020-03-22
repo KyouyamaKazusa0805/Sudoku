@@ -289,20 +289,17 @@ namespace Sudoku.Data
 						{
 							// Why isn't the character a digit character?
 							// Throws an exception to report this case.
-							throw new ArgumentException(
-								message: $"Argument cannot be parsed and converted to target type {typeof(Grid)}.",
-								innerException: new ArgumentException(
-									message: "The value after the specified argument is not a digit.",
-									paramName: nameof(i)));
+							//throw new ArgumentException(
+							//	message: $"Argument cannot be parsed and converted to target type {typeof(Grid)}.",
+							//	innerException: new ArgumentException(
+							//		message: "The value after the specified argument is not a digit.",
+							//		paramName: nameof(i)));
+							return null;
 						}
 					}
 					else
 					{
-						throw new ArgumentException(
-							message: $"Argument cannot be parsed and converted to target type {typeof(Grid)}.",
-							innerException: new ArgumentOutOfRangeException(
-								paramName: nameof(i),
-								message: "The specified iteration argument is out of range due to invalid grid string."));
+						return null;
 					}
 				}
 				else if (c == '.' || c == '0')
@@ -331,7 +328,8 @@ namespace Sudoku.Data
 				else
 				{
 					// Other invalid characters. Throws an exception.
-					throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
+					//throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
+					return null;
 				}
 			}
 

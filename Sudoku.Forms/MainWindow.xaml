@@ -18,19 +18,26 @@
 		<Menu VerticalAlignment="Top" IsMainMenu="True" Name="_mainMenu"
 			  Grid.Row="0" Grid.ColumnSpan="2">
 			<MenuItem Header="File">
-				<MenuItem Header="Undo" InputGestureText="Ctrl + Z"
-						  Click="MenuItemFileUndo_Click"/>
-				<MenuItem Header="Redo" InputGestureText="Ctrl + Y"
-						  Click="MenuItemFileRedo_Click"/>
-				<MenuItem Header="Fix grid" InputGestureText="Ctrl + `"
-						  Click="MenuItemFileFix_Click"/>
-				<MenuItem Header="Unfix grid" InputGestureText="Ctrl + Shift + `"
-						  Click="MenuItemFileUnfix_Click"/>
-				<Separator/>
 				<MenuItem Header="Get Snapshot" Click="MenuItemFileGetSnapshot_Click"/>
 				<Separator/>
 				<MenuItem Header="Quit app" InputGestureText="Alt + F4"
 						  Click="MenuItemFileQuit_Click"/>
+			</MenuItem>
+			<MenuItem Header="Edit">
+				<MenuItem Header="Undo" InputGestureText="Ctrl + Z"
+						  Click="MenuItemEditUndo_Click"/>
+				<MenuItem Header="Redo" InputGestureText="Ctrl + Y"
+						  Click="MenuItemEditRedo_Click"/>
+				<Separator/>
+				<MenuItem Header="Copy" InputGestureText="Ctrl + C"
+						  Click="MenuIteEditCopy_Click"/>
+				<MenuItem Header="Paste" InputGestureText="Ctrl + V"
+						  Click="MenuItemEditPaste_Click"/>
+				<Separator/>
+				<MenuItem Header="Fix grid" InputGestureText="Ctrl + `"
+						  Click="MenuItemEditFix_Click"/>
+				<MenuItem Header="Unfix grid" InputGestureText="Ctrl + Shift + `"
+						  Click="MenuItemEditUnfix_Click"/>
 			</MenuItem>
 			<MenuItem Header="About">
 				<MenuItem Header="Me" Click="MenuItemAboutMe_Click"/>
