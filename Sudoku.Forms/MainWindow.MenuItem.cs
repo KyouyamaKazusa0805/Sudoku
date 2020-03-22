@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
 namespace Sudoku.Forms
@@ -8,19 +9,29 @@ namespace Sudoku.Forms
 	{
 		private void MenuItemFileUndo_Click(object sender, RoutedEventArgs e)
 		{
-			if (_grid.HasUndoSteps)
+			if (sender is MenuItem menuItem)
 			{
-				_grid.Undo();
-				UpdateImageGrid();
+				if (_grid.HasUndoSteps)
+				{
+					_grid.Undo();
+					UpdateImageGrid();
+				}
+
+				menuItem.IsEnabled = _grid.HasUndoSteps;
 			}
 		}
 
 		private void MenuItemFileRedo_Click(object sender, RoutedEventArgs e)
 		{
-			if (_grid.HasRedoSteps)
+			if (sender is MenuItem menuItem)
 			{
-				_grid.Redo();
-				UpdateImageGrid();
+				if (_grid.HasRedoSteps)
+				{
+					_grid.Redo();
+					UpdateImageGrid();
+				}
+
+				menuItem.IsEnabled = _grid.HasRedoSteps;
 			}
 		}
 
