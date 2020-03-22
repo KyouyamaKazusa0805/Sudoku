@@ -239,6 +239,7 @@ namespace Sudoku.Forms
 						_settings.CandidateFontName,
 						_grid = new UndoableGrid(SudokuGrid.Parse(puzzleStr))));
 
+				_menuItemUndo.IsEnabled = _menuItemRedo.IsEnabled = false;
 				UpdateImageGrid();
 			}
 			catch (ArgumentException)
