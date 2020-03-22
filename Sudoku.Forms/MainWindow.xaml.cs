@@ -94,6 +94,8 @@ namespace Sudoku.Forms
 			base.OnInitialized(e);
 
 			// Define shortcuts.
+			AddShortCut(Key.O, ModifierKeys.Control, MenuItemFileOpen_Click);
+			AddShortCut(Key.S, ModifierKeys.Control, MenuItemFileSave_Click);
 			AddShortCut(Key.F4, ModifierKeys.Alt, MenuItemFileQuit_Click);
 			AddShortCut(Key.OemTilde, ModifierKeys.Control, MenuItemEditFix_Click);
 			AddShortCut(Key.OemTilde, ModifierKeys.Control | ModifierKeys.Shift, MenuItemEditUnfix_Click);
@@ -144,17 +146,17 @@ namespace Sudoku.Forms
 		{
 			base.OnKeyDown(e);
 
-			// Get the current cell.
-			var pt = Mouse.GetPosition(_imageGrid);
-			if (IsPointOutOfRange(_imageGrid, pt))
-			{
-				e.Handled = true;
-				return;
-			}
-
 			// Get all cases for being pressed keys.
 			if (e.Key >= Key.D0 && e.Key <= Key.D9)
 			{
+				// Get the current cell.
+				var pt = Mouse.GetPosition(_imageGrid);
+				if (IsPointOutOfRange(_imageGrid, pt))
+				{
+					e.Handled = true;
+					return;
+				}
+
 				int cell = _pointConverter.GetCellOffset(pt.ToDPointF());
 				_grid[cell] = e.Key - Key.D1;
 
@@ -217,6 +219,25 @@ namespace Sudoku.Forms
 			{
 				MessageBox.Show(
 					$"Cannot save text to clipboard due to:{Environment.NewLine}{ex.Message}", "Warning");
+			}
+		}
+
+		/// <summary>
+		/// To load a puzzle with a specified possible puzzle string.
+		/// </summary>
+		/// <param name="puzzleStr">The puzzle string.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void LoadPuzzle(string puzzleStr)
+		{
+			try
+			{
+				_grid = new UndoableGrid(SudokuGrid.Parse(puzzleStr));
+
+				UpdateImageGrid();
+			}
+			catch (ArgumentException)
+			{
+				MessageBox.Show("The specified puzzle is invalid.", "Warning");
 			}
 		}
 

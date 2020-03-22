@@ -1,43 +1,80 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using Sudoku.Data.Stepping;
-using SudokuGrid = Sudoku.Data.Grid;
+using Microsoft.Win32;
 
 namespace Sudoku.Forms
 {
 	partial class MainWindow
 	{
+		private void MenuItemFileOpen_Click(object sender, RoutedEventArgs e)
+		{
+			var dialog = new OpenFileDialog
+			{
+				AddExtension = true,
+				DefaultExt = "sudoku",
+				Filter = "Text file|*.txt|Sudoku file|*.sudoku|All files|*.*",
+				Multiselect = false,
+				Title = "Open file from..."
+			};
+
+			if (!(dialog.ShowDialog() is true))
+			{
+				e.Handled = true;
+				return;
+			}
+
+			using var sr = new StreamReader(dialog.FileName);
+			LoadPuzzle(sr.ReadToEnd());
+		}
+
+		private void MenuItemFileSave_Click(object sender, RoutedEventArgs e)
+		{
+			var dialog = new SaveFileDialog
+			{
+				AddExtension = true,
+				CheckPathExists = true,
+				DefaultExt = "sudoku",
+				Filter = "Text file|*.txt|Sudoku file|*.sudoku",
+				Title = "Save file to..."
+			};
+
+			if (!(dialog.ShowDialog() is true))
+			{
+				e.Handled = true;
+				return;
+			}
+
+			using var sw = new StreamWriter(dialog.FileName);
+			sw.Write(_grid.ToString("#"));
+		}
+
 		private void MenuItemFileQuit_Click(object sender, RoutedEventArgs e) =>
 			Close();
 
 		private void MenuItemEditUndo_Click(object sender, RoutedEventArgs e)
 		{
-			if (sender is MenuItem menuItem)
+			if (_grid.HasUndoSteps)
 			{
-				if (_grid.HasUndoSteps)
-				{
-					_grid.Undo();
-					UpdateImageGrid();
-				}
-
-				menuItem.IsEnabled = _grid.HasUndoSteps;
+				_grid.Undo();
+				UpdateImageGrid();
 			}
+
+			_menuItemUndo.IsEnabled = _grid.HasUndoSteps;
+			_menuItemRedo.IsEnabled = _grid.HasRedoSteps;
 		}
 
 		private void MenuItemEditRedo_Click(object sender, RoutedEventArgs e)
 		{
-			if (sender is MenuItem menuItem)
+			if (_grid.HasRedoSteps)
 			{
-				if (_grid.HasRedoSteps)
-				{
-					_grid.Redo();
-					UpdateImageGrid();
-				}
-
-				menuItem.IsEnabled = _grid.HasRedoSteps;
+				_grid.Redo();
+				UpdateImageGrid();
 			}
+
+			_menuItemUndo.IsEnabled = _grid.HasUndoSteps;
+			_menuItemRedo.IsEnabled = _grid.HasRedoSteps;
 		}
 
 		private void MenuItemEditCopy_Click(object sender, RoutedEventArgs e) => InternalCopy(null);
@@ -50,26 +87,17 @@ namespace Sudoku.Forms
 
 		private void MenuItemEditPaste_Click(object sender, RoutedEventArgs e)
 		{
-			string value = Clipboard.GetText();
-			if (value is null)
+			string puzzleStr = Clipboard.GetText();
+			if (puzzleStr is null)
 			{
 				// 'value' is not null always.
 				e.Handled = true;
 				return;
 			}
 
-			try
-			{
-				_grid = new UndoableGrid(SudokuGrid.Parse(value));
-
-				UpdateImageGrid();
-			}
-			catch (ArgumentException)
-			{
-				MessageBox.Show("The specified value from clipboard is invalid grid string.", "Warning");
-			}
+			LoadPuzzle(puzzleStr);
 		}
-
+		
 		private void MenuItemEditFix_Click(object sender, RoutedEventArgs e)
 		{
 			_grid.Fix();
