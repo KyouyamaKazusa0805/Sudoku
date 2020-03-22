@@ -14,8 +14,31 @@
 					Grid.Row="0">
 			<TabItem Header="Behavior">
 				<Grid Background="#FFE5E5E5">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
 					<CheckBox Content="Show candidates" Name="_checkBoxShowCandidates"
+							  Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"
 							  Click="CheckBoxShowCandidates_Click"/>
+					<CheckBox Content="Ask while quitting" Name="_checkBoxAskWhileQuitting"
+							  Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"
+							  Click="CheckBoxAskWhileQuitting_Click"/>
 				</Grid>
 			</TabItem>
 			<TabItem Header="Drawing">

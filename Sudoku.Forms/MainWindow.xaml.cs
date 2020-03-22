@@ -145,7 +145,8 @@ namespace Sudoku.Forms
 		/// <inheritdoc/>
 		protected override void OnClosing(CancelEventArgs e)
 		{
-			if (MessageBox.Show("Are you sure to quit?", "Info", MessageBoxButton.YesNo) == MessageBoxResult.No)
+			if (Settings.AskWhileQuitting
+				&& MessageBox.Show("Are you sure to quit?", "Info", MessageBoxButton.YesNo) == MessageBoxResult.No)
 			{
 				e.Cancel = true;
 				return;

@@ -12,6 +12,15 @@ namespace Sudoku.Forms
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether the program ask you "Do you want to quit?" while
+		/// you clicked the close button.
+		/// </para>
+		/// <para>The value is <see langword="true"/> in default case.</para>
+		/// </summary>
+		public bool AskWhileQuitting { get; set; } = true;
+
+		/// <summary>
+		/// <para>
 		/// Indicates the grid line width of the sudoku grid to render.
 		/// </para>
 		/// <para>The value is <c>1.5F</c> in default case.</para>

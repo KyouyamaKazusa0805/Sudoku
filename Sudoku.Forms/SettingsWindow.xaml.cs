@@ -26,6 +26,7 @@ namespace Sudoku.Forms
 
 			// Show controls with the specified settings.
 			_checkBoxShowCandidates.IsChecked = Settings.ShowCandidates;
+			_checkBoxAskWhileQuitting.IsChecked = Settings.AskWhileQuitting;
 			_textBoxGridLineWidth.Text = Settings.GridLineWidth.ToString();
 			_textBoxBlockLineWidth.Text = Settings.BlockLineWidth.ToString();
 			_textBoxValueScale.Text = Settings.ValueScale.ToString();
@@ -62,6 +63,9 @@ namespace Sudoku.Forms
 
 		private void CheckBoxShowCandidates_Click(object sender, RoutedEventArgs e) =>
 			_checkBoxShowCandidates.IsChecked = Settings.ShowCandidates ^= true;
+
+		private void CheckBoxAskWhileQuitting_Click(object sender, RoutedEventArgs e) =>
+			_checkBoxAskWhileQuitting.IsChecked = Settings.AskWhileQuitting ^= true;
 
 		private void TextBoxGridLineWidth_TextChanged(object sender, TextChangedEventArgs e)
 		{
