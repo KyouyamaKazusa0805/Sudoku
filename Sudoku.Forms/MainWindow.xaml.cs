@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Reflection;
@@ -99,8 +100,7 @@ namespace Sudoku.Forms
 			// Show title.
 			Title = $"{SolutionName} Ver {Version}";
 
-			var (w, h) = ((int)_imageGrid.Width, (int)_imageGrid.Height);
-			_pointConverter = new PointConverter(w, h);
+			_pointConverter = new PointConverter((float)_imageGrid.Width, (float)_imageGrid.Height);
 			_layerCollection.Add(new BackLayer(_pointConverter, _settings.BackgroundColor));
 			_layerCollection.Add(
 				new GridLineLayer(
@@ -115,9 +115,19 @@ namespace Sudoku.Forms
 					_settings.GivenFontName, _settings.ModifiableFontName,
 					_settings.CandidateFontName, _grid));
 
-			var bitmap = new Bitmap(w, h);
-			_layerCollection.IntegrateTo(bitmap);
-			_imageGrid.Source = bitmap.ToImageSource();
+			UpdateImageGrid();
+		}
+
+		/// <inheritdoc/>
+		protected override void OnClosing(CancelEventArgs e)
+		{
+			if (MessageBox.Show("Are you sure to quit?", "Info", MessageBoxButton.YesNo) == MessageBoxResult.No)
+			{
+				e.Cancel = true;
+				return;
+			}
+
+			base.OnClosing(e);
 		}
 
 		/// <summary>
@@ -145,36 +155,6 @@ namespace Sudoku.Forms
 			_imageGrid.Source = bitmap.ToImageSource();
 
 			GC.Collect();
-		}
-
-		private void OnShortcutRoute(object sender, ExecutedRoutedEventArgs e)
-		{
-
-		}
-
-
-		private void Window_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (sender == this)
-			{
-				// Get the current cell.
-				var pt = Mouse.GetPosition(_imageGrid);
-				var (x, y) = pt;
-				if (x < 0 || x > _imageGrid.Width || y < 0 || y > _imageGrid.Height)
-				{
-					e.Handled = true;
-					return;
-				}
-
-				// Get all cases for being pressed keys.
-				if (e.Key >= Key.D0 && e.Key <= Key.D9)
-				{
-					int cell = _pointConverter.GetCellOffset(pt.ToDPointF());
-					_grid[cell] = e.Key - Key.D1;
-
-					UpdateImageGrid();
-				}
-			}
 		}
 	}
 }
