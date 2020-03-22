@@ -40,6 +40,9 @@ namespace Sudoku.Forms
 			_buttonGivenColor.Background = new w::Media.SolidColorBrush(Settings.GivenColor.ToWColor());
 			_buttonModifiableColor.Background = new w::Media.SolidColorBrush(Settings.ModifiableColor.ToWColor());
 			_buttonCandidateColor.Background = new w::Media.SolidColorBrush(Settings.CandidateColor.ToWColor());
+			_buttonFocusColor.Background = new w::Media.SolidColorBrush(Settings.FocusedCellColor.ToWColor());
+			_buttonGridLineColor.Background = new w::Media.SolidColorBrush(Settings.GridLineColor.ToWColor());
+			_buttonBlockLineColor.Background = new w::Media.SolidColorBrush(Settings.BlockLineColor.ToWColor());
 		}
 
 
@@ -164,8 +167,8 @@ namespace Sudoku.Forms
 				return;
 			}
 
-			Settings.BackgroundColor = dialog.SelectedColor;
-			_buttonBackgroundColor.Background = new w::Media.SolidColorBrush(Settings.BackgroundColor.ToWColor());
+			_buttonBackgroundColor.Background = new w::Media.SolidColorBrush(
+				(Settings.BackgroundColor = dialog.SelectedColor).ToWColor());
 		}
 
 		private void ButtonGivenColor_Click(object sender, RoutedEventArgs e)
@@ -177,8 +180,8 @@ namespace Sudoku.Forms
 				return;
 			}
 
-			Settings.GivenColor = dialog.SelectedColor;
-			_buttonGivenColor.Background = new w::Media.SolidColorBrush(Settings.GivenColor.ToWColor());
+			_buttonGivenColor.Background = new w::Media.SolidColorBrush(
+				(Settings.GivenColor = dialog.SelectedColor).ToWColor());
 		}
 
 		private void ButtonModifiableColor_Click(object sender, RoutedEventArgs e)
@@ -190,8 +193,8 @@ namespace Sudoku.Forms
 				return;
 			}
 
-			Settings.ModifiableColor = dialog.SelectedColor;
-			_buttonModifiableColor.Background = new w::Media.SolidColorBrush(Settings.ModifiableColor.ToWColor());
+			_buttonModifiableColor.Background = new w::Media.SolidColorBrush(
+				(Settings.ModifiableColor = dialog.SelectedColor).ToWColor());
 		}
 
 		private void ButtonCandidateColor_Click(object sender, RoutedEventArgs e)
@@ -203,8 +206,47 @@ namespace Sudoku.Forms
 				return;
 			}
 
-			Settings.CandidateColor = dialog.SelectedColor;
-			_buttonCandidateColor.Background = new w::Media.SolidColorBrush(Settings.ModifiableColor.ToWColor());
+			_buttonCandidateColor.Background = new w::Media.SolidColorBrush(
+				(Settings.CandidateColor = dialog.SelectedColor).ToWColor());
+		}
+
+		private void ButtonFocusColor_Click(object sender, RoutedEventArgs e)
+		{
+			var dialog = new ColorDialog();
+			if (!(dialog.ShowDialog() is true))
+			{
+				e.Handled = true;
+				return;
+			}
+
+			_buttonCandidateColor.Background = new w::Media.SolidColorBrush(
+				(Settings.FocusedCellColor = dialog.SelectedColor).ToWColor());
+		}
+
+		private void ButtonGridLineColor_Click(object sender, RoutedEventArgs e)
+		{
+			var dialog = new ColorDialog();
+			if (!(dialog.ShowDialog() is true))
+			{
+				e.Handled = true;
+				return;
+			}
+
+			_buttonCandidateColor.Background = new w::Media.SolidColorBrush(
+				(Settings.GridLineColor = dialog.SelectedColor).ToWColor());
+		}
+
+		private void ButtonBlockLineColor_Click(object sender, RoutedEventArgs e)
+		{
+			var dialog = new ColorDialog();
+			if (!(dialog.ShowDialog() is true))
+			{
+				e.Handled = true;
+				return;
+			}
+
+			_buttonCandidateColor.Background = new w::Media.SolidColorBrush(
+				(Settings.BlockLineColor = dialog.SelectedColor).ToWColor());
 		}
 	}
 }

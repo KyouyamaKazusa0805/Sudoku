@@ -82,6 +82,18 @@
 					<Button Name="_buttonCandidateColor" Grid.Row="10" Grid.Column="1"
 							Content="Change color"
 							Click="ButtonCandidateColor_Click"/>
+					<Label Grid.Row="11" Grid.Column="0" Content="Focus color:"/>
+					<Button Name="_buttonFocusColor" Grid.Row="11" Grid.Column="1"
+							Content="Change color"
+							Click="ButtonFocusColor_Click"/>
+					<Label Grid.Row="0" Grid.Column="3" Content="Grid line color:"/>
+					<Button Name="_buttonGridLineColor" Grid.Row="0" Grid.Column="4"
+							Content="Change color"
+							Click="ButtonGridLineColor_Click"/>
+					<Label Grid.Row="1" Grid.Column="3" Content="Block line color:"/>
+					<Button Name="_buttonBlockLineColor" Grid.Row="1" Grid.Column="4"
+							Content="Change color"
+							Click="ButtonBlockLineColor_Click"/>
 				</Grid>
 			</TabItem>
 		</TabControl>
