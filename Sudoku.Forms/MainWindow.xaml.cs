@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
+using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -53,7 +54,7 @@ namespace Sudoku.Forms
 		/// <summary>
 		/// Indicates the settings used.
 		/// </summary>
-		public Settings Settings { get; } = Settings.DefaultSetting.Clone();
+		public Settings Settings { get; private set; } = null!;
 
 		/// <summary>
 		/// Indicates the name of this solution.
@@ -121,6 +122,36 @@ namespace Sudoku.Forms
 			// Initializes some controls.
 			Title = $"{SolutionName} Ver {Version}";
 
+			// Load configurations if worth.
+			if (File.Exists("configurations.scfg"))
+			{
+				Settings = new Settings();
+				StreamReader? sr = null;
+				try
+				{
+					sr = new StreamReader("configurations.scfg");
+					string? s;
+					while (!((s = sr.ReadLine()) is null))
+					{
+						string[] splitation = s.Split('=', StringSplitOptions.RemoveEmptyEntries);
+						var prop = typeof(Settings).GetProperty(splitation[0].Trim());
+						prop!.SetValue(Settings, Parse(splitation[1], prop.PropertyType));
+					}
+				}
+				catch
+				{
+					Settings = Settings.DefaultSetting.Clone();
+				}
+				finally
+				{
+					sr?.Dispose();
+				}
+			}
+			else
+			{
+				Settings = Settings.DefaultSetting.Clone();
+			}
+
 			// Then initialize the layer collection and point converter
 			// for later utility.
 			_pointConverter = new PointConverter((float)_imageGrid.Width, (float)_imageGrid.Height);
@@ -150,6 +181,25 @@ namespace Sudoku.Forms
 			{
 				e.Cancel = true;
 				return;
+			}
+
+			// Save configurations.
+			StreamWriter? sw = null;
+			try
+			{
+				sw = new StreamWriter("configurations.scfg");
+				foreach (var prop in typeof(Settings).GetProperties())
+				{
+					sw.WriteLine($"{prop.Name}={ToString(prop, Settings)}");
+				}
+			}
+			catch
+			{
+				MessageBox.Show("Fatal error while saving configurations.", "Warning");
+			}
+			finally
+			{
+				sw?.Dispose();
 			}
 
 			base.OnClosing(e);
@@ -223,6 +273,57 @@ namespace Sudoku.Forms
 				MessageBox.Show(
 					$"Cannot save text to clipboard due to:{Environment.NewLine}{ex.Message}", "Warning");
 			}
+		}
+
+		private string? ToString(PropertyInfo propertyInfo, object? obj)
+		{
+			var type = propertyInfo.PropertyType;
+			object value = propertyInfo.GetValue(obj)!;
+			if (type == typeof(float) || type == typeof(decimal) || type == typeof(string)
+				|| type == typeof(bool))
+			{
+				return value.ToString();
+			}
+			if (type == typeof(w::Media.Color) || type == typeof(Color))
+			{
+				var color = (dynamic)value;
+				return $"{color.A},{color.R},{color.G},{color.B}";
+			}
+
+			return null;
+		}
+
+		private object? Parse(string value, Type type)
+		{
+			if (type == typeof(float))
+			{
+				return float.Parse(value);
+			}
+			if (type == typeof(decimal))
+			{
+				return decimal.Parse(value);
+			}
+			if (type == typeof(bool))
+			{
+				return bool.Parse(value);
+			}
+			if (type == typeof(string))
+			{
+				return value;
+			}
+			if (type == typeof(w::Media.Color))
+			{
+				string[] s = value.Split(',');
+				return w::Media.Color.FromArgb(
+					byte.Parse(s[0]), byte.Parse(s[1]), byte.Parse(s[2]), byte.Parse(s[3]));
+			}
+			if (type == typeof(Color))
+			{
+				string[] s = value.Split(',');
+				return Color.FromArgb(int.Parse(s[0]), int.Parse(s[1]), int.Parse(s[2]), int.Parse(s[3]));
+			}
+
+			return null;
 		}
 
 		/// <summary>
