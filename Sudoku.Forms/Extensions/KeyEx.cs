@@ -30,7 +30,8 @@ namespace Sudoku.Forms.Extensions
 			@this >= Key.NumPad0 && @this <= Key.NumPad9;
 
 		/// <summary>
-		/// Check whether the specified key is a digit key above those alphabets.
+		/// Check whether the specified key is a digit key above those alphabets
+		/// in keyboard.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The key.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>

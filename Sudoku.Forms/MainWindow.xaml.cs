@@ -281,7 +281,8 @@ namespace Sudoku.Forms
 			catch (ArgumentNullException ex)
 			{
 				MessageBox.Show(
-					$"Cannot save text to clipboard due to:{Environment.NewLine}{ex.Message}", "Warning");
+					$"Cannot save text to clipboard due to:{Environment.NewLine}{ex.Message}",
+					"Warning");
 			}
 		}
 

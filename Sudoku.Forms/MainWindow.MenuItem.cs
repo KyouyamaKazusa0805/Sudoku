@@ -60,7 +60,9 @@ namespace Sudoku.Forms
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show($"Save failed due to:{Environment.NewLine}{ex.Message}.", "Warning");
+				MessageBox.Show(
+					$"Save failed due to:{Environment.NewLine}{ex.Message}.",
+					"Warning");
 			}
 		}
 
@@ -134,7 +136,8 @@ namespace Sudoku.Forms
 			catch (Exception ex)
 			{
 				MessageBox.Show(
-					$"Cannot save text to clipboard due to:{Environment.NewLine}{ex.Message}", "Warning");
+					$"Cannot save text to clipboard due to:{Environment.NewLine}{ex.Message}",
+					"Warning");
 			}
 		}
 
