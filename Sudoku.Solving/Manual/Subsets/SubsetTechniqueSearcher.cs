@@ -290,7 +290,7 @@ namespace Sudoku.Solving.Manual.Subsets
 					{
 						// The candidate does exist in the current grid,
 						// which should be highlight.
-						result.Add((0, offset));
+						result.Add((0, offset * 9 + digit));
 					}
 				}
 			}
