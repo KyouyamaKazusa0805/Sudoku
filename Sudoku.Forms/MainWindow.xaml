@@ -60,6 +60,13 @@
 				<MenuItem Header="Reset grid"
 						  Click="MenuItemEditReset_Click"/>
 			</MenuItem>
+			<MenuItem Header="Mode">
+				<MenuItem Header="Sudoku Explainer Compatible" Name="_menuItemModeSeMode"
+						  Click="MenuItemModeSeMode_Click"/>
+				<Separator/>
+				<MenuItem Header="FastSearch" Name="_menuItemModeFastSearch"
+						  Click="MenuItemModeFastSearch_Click"/>
+			</MenuItem>
 			<MenuItem Header="About">
 				<MenuItem Header="Me" Click="MenuItemAboutMe_Click"/>
 			</MenuItem>

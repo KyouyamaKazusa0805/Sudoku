@@ -15,6 +15,7 @@ using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Drawing.Layers;
+using Sudoku.Forms.Extensions;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
 using w = System.Windows;
@@ -156,7 +157,7 @@ namespace Sudoku.Forms
 			base.OnKeyDown(e);
 
 			// Get all cases for being pressed keys.
-			if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+			if (e.Key.IsDigit())
 			{
 				// Get the current cell.
 				var pt = Mouse.GetPosition(_imageGrid);
@@ -166,10 +167,8 @@ namespace Sudoku.Forms
 					return;
 				}
 
-				int cell = _pointConverter.GetCellOffset(pt.ToDPointF());
-				_grid[cell] = e.Key >= Key.D0 && e.Key <= Key.D9
-					? e.Key - Key.D1
-					: e.Key - Key.NumPad1;
+				_grid[_pointConverter.GetCellOffset(pt.ToDPointF())] =
+					e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1;
 
 				UpdateImageGrid();
 			}
@@ -286,57 +285,6 @@ namespace Sudoku.Forms
 			}
 		}
 
-		private string? ToString(PropertyInfo propertyInfo, object? obj)
-		{
-			var type = propertyInfo.PropertyType;
-			object value = propertyInfo.GetValue(obj)!;
-			if (type == typeof(float) || type == typeof(decimal) || type == typeof(string)
-				|| type == typeof(bool))
-			{
-				return value.ToString();
-			}
-			if (type == typeof(w::Media.Color) || type == typeof(Color))
-			{
-				var color = (dynamic)value;
-				return $"{color.A},{color.R},{color.G},{color.B}";
-			}
-
-			return null;
-		}
-
-		private object? Parse(string value, Type type)
-		{
-			if (type == typeof(float))
-			{
-				return float.Parse(value);
-			}
-			if (type == typeof(decimal))
-			{
-				return decimal.Parse(value);
-			}
-			if (type == typeof(bool))
-			{
-				return bool.Parse(value);
-			}
-			if (type == typeof(string))
-			{
-				return value;
-			}
-			if (type == typeof(w::Media.Color))
-			{
-				string[] s = value.Split(',');
-				return w::Media.Color.FromArgb(
-					byte.Parse(s[0]), byte.Parse(s[1]), byte.Parse(s[2]), byte.Parse(s[3]));
-			}
-			if (type == typeof(Color))
-			{
-				string[] s = value.Split(',');
-				return Color.FromArgb(int.Parse(s[0]), int.Parse(s[1]), int.Parse(s[2]), int.Parse(s[3]));
-			}
-
-			return null;
-		}
-
 		/// <summary>
 		/// To update the control status.
 		/// </summary>
@@ -344,7 +292,8 @@ namespace Sudoku.Forms
 		private void UpdateControls()
 		{
 			_menuItemOptionsShowCandidates.IsChecked = Settings.ShowCandidates;
-
+			_menuItemModeSeMode.IsChecked = Settings.SeMode;
+			_menuItemModeFastSearch.IsChecked = Settings.FastSearch;
 
 			UpdateImageGrid();
 		}

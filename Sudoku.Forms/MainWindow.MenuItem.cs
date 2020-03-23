@@ -52,6 +52,18 @@ namespace Sudoku.Forms
 			sw.Write(_grid.ToString("#"));
 		}
 
+		private void MenuItemFileGetSnapshot_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				Clipboard.SetImage((BitmapSource)_imageGrid.Source);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"Save failed due to:{Environment.NewLine}{ex.Message}.", "Warning");
+			}
+		}
+
 		private void MenuItemFileQuit_Click(object sender, RoutedEventArgs e) =>
 			Close();
 
@@ -160,17 +172,11 @@ namespace Sudoku.Forms
 			UpdateImageGrid();
 		}
 
-		private void MenuItemFileGetSnapshot_Click(object sender, RoutedEventArgs e)
-		{
-			try
-			{
-				Clipboard.SetImage((BitmapSource)_imageGrid.Source);
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show($"Save failed due to:{Environment.NewLine}{ex.Message}.", "Warning");
-			}
-		}
+		private void MenuItemModeSeMode_Click(object sender, RoutedEventArgs e) =>
+			_menuItemModeSeMode.IsChecked = Settings.SeMode ^= true;
+
+		private void MenuItemModeFastSearch_Click(object sender, RoutedEventArgs e) =>
+			_menuItemModeFastSearch.IsChecked = Settings.FastSearch ^= true;
 
 		private void MenuItemAboutMe_Click(object sender, RoutedEventArgs e) =>
 			new AboutMeWindow().Show();

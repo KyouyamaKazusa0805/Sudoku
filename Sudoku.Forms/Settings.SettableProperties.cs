@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using Sudoku.Solving.Manual;
 
 namespace Sudoku.Forms
 {
@@ -18,6 +19,30 @@ namespace Sudoku.Forms
 		/// <para>The value is <see langword="true"/> in default case.</para>
 		/// </summary>
 		public bool AskWhileQuitting { get; set; } = true;
+
+		/// <summary>
+		/// <para>
+		/// Indicates whether the program use Sudoku Explainer mode to check
+		/// the difficulty rating of each puzzle strictly.
+		/// </para>
+		/// <para>
+		/// The value is <see langword="false"/> in default case. If the value
+		/// is <see langword="false"/>, the mode will be Hodoku compatible mode,
+		/// where all puzzles will be solved preferring techniques instead of
+		/// their difficulty ratings.
+		/// </para>
+		/// </summary>
+		public bool SeMode { get; set; } = false;
+
+		/// <summary>
+		/// <para>
+		/// Indicates whether the searcher will use fast search to search all
+		/// steps. This option is equivalent to <see cref="ManualSolver.FastSearch"/>.
+		/// </para>
+		/// <para>The value is <see langword="false"/> in default case.</para>
+		/// </summary>
+		/// <seealso cref="ManualSolver.FastSearch"/>
+		public bool FastSearch { get; set; } = false;
 
 		/// <summary>
 		/// <para>
