@@ -9,12 +9,12 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.Drawing.Layers;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
-using w = System.Windows;
 using Grid = System.Windows.Controls.Grid;
-using Sudoku.Data.Extensions;
+using w = System.Windows;
 
 namespace Sudoku.Forms
 {
@@ -103,6 +103,7 @@ namespace Sudoku.Forms
 
 			Settings.CoverBy(settingsWindow.Settings);
 			UpdateControls();
+			UpdateImageGrid();
 		}
 
 		private void MenuItemEditUndo_Click(object sender, RoutedEventArgs e)
