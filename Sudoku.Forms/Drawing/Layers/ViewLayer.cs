@@ -51,7 +51,7 @@ namespace Sudoku.Drawing.Layers
 				{
 					var (cw, ch) = _pointConverter.CellSize;
 					var (x, y) = _pointConverter.GetMousePointInCenter(cell);
-					using var brush = new SolidBrush(color);
+					using var brush = new SolidBrush(Color.FromArgb(64, color));
 					g.FillRectangle(
 						brush, _pointConverter.GetMousePointRectangle(cell));
 				}

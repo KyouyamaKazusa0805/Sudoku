@@ -171,9 +171,12 @@ namespace Sudoku.Solving.Manual.Fishes
 											from cellOffset in bodyMap.Offsets
 											where grid.CandidateExists(cellOffset, digit)
 											select (0, cellOffset * 9 + digit));
-										highlightCandidates.AddRange(
-											from cell in finCells
-											select (1, cell * 9 + digit));
+										if (!(finCells is null))
+										{
+											highlightCandidates.AddRange(
+												from cell in finCells
+												select (1, cell * 9 + digit));
+										}
 
 										// Check the fish is sashimi, normal finned or normal.
 										bool? isSashimi = null;
@@ -346,9 +349,12 @@ namespace Sudoku.Solving.Manual.Fishes
 														from cellOffset in bodyMap.Offsets
 														where grid.CandidateExists(cellOffset, digit)
 														select (0, cellOffset * 9 + digit));
-													highlightCandidates.AddRange(
-														from cell in finCells
-														select (1, cell * 9 + digit));
+													if (!(finCells is null))
+													{
+														highlightCandidates.AddRange(
+															from cell in finCells
+															select (1, cell * 9 + digit));
+													}
 
 													// Check the fish is sashimi, normal finned or normal.
 													bool? isSashimi = null;
@@ -528,9 +534,12 @@ namespace Sudoku.Solving.Manual.Fishes
 																from cellOffset in bodyMap.Offsets
 																where grid.CandidateExists(cellOffset, digit)
 																select (0, cellOffset * 9 + digit));
-															highlightCandidates.AddRange(
-																from cell in finCells
-																select (1, cell * 9 + digit));
+															if (!(finCells is null))
+															{
+																highlightCandidates.AddRange(
+																	from cell in finCells
+																	select (1, cell * 9 + digit));
+															}
 
 															// Check the fish is sashimi, normal finned or normal.
 															bool? isSashimi = null;
