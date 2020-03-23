@@ -207,7 +207,7 @@ namespace Sudoku.Forms
 			{
 				foreach (var step in analysisResult.SolvingSteps!)
 				{
-					_listBoxPaths.Items.Add(step.ToString());
+					_listBoxPaths.Items.Add(step);
 				}
 
 				var collection = new List<(string?, int, decimal?, decimal?)>();
