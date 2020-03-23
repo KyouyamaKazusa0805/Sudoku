@@ -9,7 +9,6 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using System.Windows.Input;
-using System.Xml.Serialization;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
@@ -42,7 +41,7 @@ namespace Sudoku.Forms
 		/// The grid.
 		/// </summary>
 		[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
-		private UndoableGrid _grid = new UndoableGrid(SudokuGrid.Empty.Clone());
+		private UndoableGrid _puzzle = new UndoableGrid(SudokuGrid.Empty.Clone());
 
 		/// <summary>
 		/// The point converter.
@@ -90,6 +89,20 @@ namespace Sudoku.Forms
 			}
 		}
 
+		private UndoableGrid Puzzle
+		{
+			get => _puzzle;
+			set
+			{
+				_layerCollection.Add(
+					new ValueLayer(
+						_pointConverter, Settings.ValueScale, Settings.CandidateScale,
+						Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
+						Settings.GivenFontName, Settings.ModifiableFontName,
+						Settings.CandidateFontName, _puzzle = value, Settings.ShowCandidates));
+			}
+		}
+
 
 		/// <inheritdoc/>
 		protected override void OnInitialized(EventArgs e)
@@ -130,7 +143,7 @@ namespace Sudoku.Forms
 					_pointConverter, Settings.ValueScale, Settings.CandidateScale,
 					Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
 					Settings.GivenFontName, Settings.ModifiableFontName,
-					Settings.CandidateFontName, _grid, Settings.ShowCandidates));
+					Settings.CandidateFontName, Puzzle, Settings.ShowCandidates));
 
 			// Update the grid image.
 			UpdateImageGrid();
@@ -167,7 +180,7 @@ namespace Sudoku.Forms
 					return;
 				}
 
-				_grid[_pointConverter.GetCellOffset(pt.ToDPointF())] =
+				Puzzle[_pointConverter.GetCellOffset(pt.ToDPointF())] =
 					e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1;
 
 				UpdateImageGrid();
@@ -271,11 +284,11 @@ namespace Sudoku.Forms
 			{
 				if (format is null)
 				{
-					Clipboard.SetText(_grid.ToString(null, null));
+					Clipboard.SetText(Puzzle.ToString(null, null));
 				}
 				else
 				{
-					Clipboard.SetText(_grid.ToString(format));
+					Clipboard.SetText(Puzzle.ToString(format));
 				}
 			}
 			catch (ArgumentNullException ex)
@@ -314,7 +327,7 @@ namespace Sudoku.Forms
 						Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
 						Settings.GivenFontName, Settings.ModifiableFontName,
 						Settings.CandidateFontName,
-						_grid = new UndoableGrid(SudokuGrid.Parse(puzzleStr)), Settings.ShowCandidates));
+						Puzzle = new UndoableGrid(SudokuGrid.Parse(puzzleStr)), Settings.ShowCandidates));
 
 				_menuItemUndo.IsEnabled = _menuItemRedo.IsEnabled = false;
 				UpdateImageGrid();

@@ -10,10 +10,13 @@ using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using Sudoku.Data.Stepping;
 using Sudoku.Drawing.Layers;
 using Sudoku.Solving;
+using Sudoku.Solving.Generating;
 using Sudoku.Solving.Manual;
 using Grid = System.Windows.Controls.Grid;
+using SudokuGrid = Sudoku.Data.Grid;
 using w = System.Windows;
 
 namespace Sudoku.Forms
@@ -59,7 +62,7 @@ namespace Sudoku.Forms
 			}
 
 			using var sw = new StreamWriter(dialog.FileName);
-			sw.Write(_grid.ToString("#"));
+			sw.Write(Puzzle.ToString("#"));
 		}
 
 		private void MenuItemFileGetSnapshot_Click(object sender, RoutedEventArgs e)
@@ -86,7 +89,7 @@ namespace Sudoku.Forms
 					_pointConverter, Settings.ValueScale, Settings.CandidateScale,
 					Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
 					Settings.GivenFontName, Settings.ModifiableFontName,
-					Settings.CandidateFontName, _grid,
+					Settings.CandidateFontName, Puzzle,
 					Settings.ShowCandidates = _menuItemOptionsShowCandidates.IsChecked ^= true));
 
 			UpdateImageGrid();
@@ -108,26 +111,26 @@ namespace Sudoku.Forms
 
 		private void MenuItemEditUndo_Click(object sender, RoutedEventArgs e)
 		{
-			if (_grid.HasUndoSteps)
+			if (Puzzle.HasUndoSteps)
 			{
-				_grid.Undo();
+				Puzzle.Undo();
 				UpdateImageGrid();
 			}
 
-			_menuItemUndo.IsEnabled = _grid.HasUndoSteps;
-			_menuItemRedo.IsEnabled = _grid.HasRedoSteps;
+			_menuItemUndo.IsEnabled = Puzzle.HasUndoSteps;
+			_menuItemRedo.IsEnabled = Puzzle.HasRedoSteps;
 		}
 
 		private void MenuItemEditRedo_Click(object sender, RoutedEventArgs e)
 		{
-			if (_grid.HasRedoSteps)
+			if (Puzzle.HasRedoSteps)
 			{
-				_grid.Redo();
+				Puzzle.Redo();
 				UpdateImageGrid();
 			}
 
-			_menuItemUndo.IsEnabled = _grid.HasUndoSteps;
-			_menuItemRedo.IsEnabled = _grid.HasRedoSteps;
+			_menuItemUndo.IsEnabled = Puzzle.HasUndoSteps;
+			_menuItemRedo.IsEnabled = Puzzle.HasRedoSteps;
 		}
 
 		private void MenuItemEditCopy_Click(object sender, RoutedEventArgs e) => InternalCopy(null);
@@ -142,7 +145,7 @@ namespace Sudoku.Forms
 		{
 			try
 			{
-				Clipboard.SetText(_grid.ToString(GridOutputOptions.HodokuCompatible));
+				Clipboard.SetText(Puzzle.ToString(GridOutputOptions.HodokuCompatible));
 			}
 			catch (Exception ex)
 			{
@@ -167,21 +170,37 @@ namespace Sudoku.Forms
 
 		private void MenuItemEditFix_Click(object sender, RoutedEventArgs e)
 		{
-			_grid.Fix();
+			Puzzle.Fix();
 
 			UpdateImageGrid();
 		}
 
 		private void MenuItemEditUnfix_Click(object sender, RoutedEventArgs e)
 		{
-			_grid.Unfix();
+			Puzzle.Unfix();
 
 			UpdateImageGrid();
 		}
 
 		private void MenuItemEditReset_Click(object sender, RoutedEventArgs e)
 		{
-			_grid.Reset();
+			Puzzle.Reset();
+
+			UpdateImageGrid();
+		}
+
+		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+		private async void MenuItemGenerateHardPattern_Click(object sender, RoutedEventArgs e)
+		{
+			_textBoxInfo.Text = "Generating...";
+
+			var puzzle = await Task.Run(new HardPatternPuzzleGenerator().Generate);
+
+			_textBoxInfo.Text = string.Empty;
+
+			Puzzle = new UndoableGrid((SudokuGrid)puzzle);
+			_gridSummary.Children.Clear();
+			_listBoxPaths.Items.Clear();
 
 			UpdateImageGrid();
 		}
@@ -201,7 +220,7 @@ namespace Sudoku.Forms
 				{
 					FastSearch = Settings.FastSearch,
 					AnalyzeDifficultyStrictly = Settings.SeMode
-				}.Solve(_grid);
+				}.Solve(Puzzle);
 			});
 
 			// Solved. Now update the technique summary.

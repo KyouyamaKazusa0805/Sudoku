@@ -60,6 +60,10 @@
 				<MenuItem Header="Reset grid"
 						  Click="MenuItemEditReset_Click"/>
 			</MenuItem>
+			<MenuItem Header="Generate">
+				<MenuItem Header="Hard pattern mode" Name="_menuItemGenerateHardPattern"
+						  Click="MenuItemGenerateHardPattern_Click"/>
+			</MenuItem>
 			<MenuItem Header="Mode">
 				<MenuItem Header="Solve" Name="_menuItemModeSolve" InputGestureText="F9"
 						  Click="MenuItemModeSolve_Click"/>
