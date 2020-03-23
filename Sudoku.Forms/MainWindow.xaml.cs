@@ -94,7 +94,7 @@ namespace Sudoku.Forms
 		/// Repaint the <see cref="_imageGrid"/> to show the newer grid image.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal void UpdateImageGrid()
+		private void UpdateImageGrid()
 		{
 			var bitmap = new Bitmap((int)_imageGrid.Width, (int)_imageGrid.Height);
 			_layerCollection.IntegrateTo(bitmap);
