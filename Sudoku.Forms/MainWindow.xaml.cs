@@ -163,9 +163,35 @@ namespace Sudoku.Forms
 			base.OnClosing(e);
 		}
 
+		/// <inheritdoc/>
+		protected override void OnKeyDown(KeyEventArgs e)
+		{
+			base.OnKeyDown(e);
+
+			// Get all cases for being pressed keys.
+			if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+			{
+				// Get the current cell.
+				var pt = Mouse.GetPosition(_imageGrid);
+				if (IsPointOutOfRange(_imageGrid, pt))
+				{
+					e.Handled = true;
+					return;
+				}
+
+				int cell = _pointConverter.GetCellOffset(pt.ToDPointF());
+				_grid[cell] = e.Key >= Key.D0 && e.Key <= Key.D9
+					? e.Key - Key.D1
+					: e.Key - Key.NumPad1;
+
+				UpdateImageGrid();
+			}
+		}
+
 		/// <summary>
 		/// Save configurations if worth.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void LoadConfig()
 		{
 			Settings = new Settings();
@@ -194,6 +220,7 @@ namespace Sudoku.Forms
 		/// <summary>
 		/// Save configurations.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void SaveConfig()
 		{
 			var fs = new FileStream("configurations.scfg", FileMode.Create);
@@ -211,31 +238,6 @@ namespace Sudoku.Forms
 			finally
 			{
 				fs.Close();
-			}
-		}
-
-		/// <inheritdoc/>
-		protected override void OnKeyDown(KeyEventArgs e)
-		{
-			base.OnKeyDown(e);
-
-			// Get all cases for being pressed keys.
-			if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
-			{
-				// Get the current cell.
-				var pt = Mouse.GetPosition(_imageGrid);
-				if (IsPointOutOfRange(_imageGrid, pt))
-				{
-					e.Handled = true;
-					return;
-				}
-
-				int cell = _pointConverter.GetCellOffset(pt.ToDPointF());
-				_grid[cell] = e.Key >= Key.D0 && e.Key <= Key.D9
-					? e.Key - Key.D1
-					: e.Key - Key.NumPad1;
-
-				UpdateImageGrid();
 			}
 		}
 
