@@ -188,10 +188,12 @@ namespace Sudoku.Forms
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemModeSolve_Click(object sender, RoutedEventArgs e)
 		{
+			// Update status.
 			_listBoxPaths.Items.Clear();
 			_gridSummary.Children.Clear();
+			_textBoxInfo.Text = "Solving, please wait. During solving you can do some other work...";
 
-			_textBoxInfo.Text = "Solving...";
+			// Run the solver asynchronizedly, during solving you can do other work.
 			var analysisResult = await Task.Run(() =>
 			{
 				return new ManualSolver
@@ -201,6 +203,7 @@ namespace Sudoku.Forms
 				}.Solve(_grid);
 			});
 
+			// Solved. Now update the technique summary.
 			_gridSummary.RowDefinitions.Clear();
 			_textBoxInfo.Text = string.Empty;
 			if (analysisResult.HasSolved)
