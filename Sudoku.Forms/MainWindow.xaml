@@ -61,6 +61,9 @@
 						  Click="MenuItemEditReset_Click"/>
 			</MenuItem>
 			<MenuItem Header="Mode">
+				<MenuItem Header="Solve" Name="_menuItemModeSolve" InputGestureText="F9"
+						  Click="MenuItemModeSolve_Click"/>
+				<Separator/>
 				<MenuItem Header="Sudoku Explainer Compatible" Name="_menuItemModeSeMode"
 						  Click="MenuItemModeSeMode_Click"/>
 				<Separator/>
@@ -81,7 +84,9 @@
 				<Grid Background="#FFE5E5E5"/>
 			</TabItem>
 			<TabItem Header="Solution path">
-				<Grid Background="#FFE5E5E5"/>
+				<Grid Background="#FFE5E5E5">
+					<ListBox Name="_listBoxPaths"/>
+				</Grid>
 			</TabItem>
 			<TabItem Header="All possible steps">
 				<Grid Background="#FFE5E5E5"/>

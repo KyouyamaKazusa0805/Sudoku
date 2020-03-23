@@ -1,10 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using Sudoku.Data;
 using Sudoku.Drawing.Layers;
+using Sudoku.Solving;
+using Sudoku.Solving.Manual;
+using w = System.Windows;
 
 namespace Sudoku.Forms
 {
@@ -173,6 +179,35 @@ namespace Sudoku.Forms
 			_grid.Reset();
 
 			UpdateImageGrid();
+		}
+
+		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+		private async void MenuItemModeSolve_Click(object sender, RoutedEventArgs e)
+		{
+			_listBoxPaths.Items.Clear();
+
+			_textBoxInfo.Text = "Solving...";
+			var analysisResult = await Task.Run(() =>
+			{
+				return new ManualSolver
+				{
+					FastSearch = Settings.FastSearch,
+					AnalyzeDifficultyStrictly = Settings.SeMode
+				}.Solve(_grid);
+			}).ConfigureAwait(false);
+
+			_textBoxInfo.Text = string.Empty;
+			if (analysisResult.HasSolved)
+			{
+				foreach (var step in analysisResult.SolvingSteps!)
+				{
+					_listBoxPaths.Items.Add(step.ToString());
+				}
+			}
+			else
+			{
+				MessageBox.Show("The puzzle cannot be solved due to internal error.", "Warning");
+			}
 		}
 
 		private void MenuItemModeSeMode_Click(object sender, RoutedEventArgs e) =>
