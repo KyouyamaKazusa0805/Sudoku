@@ -31,7 +31,7 @@ namespace Sudoku.Forms
 				DefaultExt = "sudoku",
 				Filter = "Text file|*.txt|Sudoku file|*.sudoku|All files|*.*",
 				Multiselect = false,
-				Title = "Open file from..."
+				Title = "Open sudoku file from..."
 			};
 
 			if (!(dialog.ShowDialog() is true))
@@ -52,7 +52,7 @@ namespace Sudoku.Forms
 				CheckPathExists = true,
 				DefaultExt = "sudoku",
 				Filter = "Text file|*.txt|Sudoku file|*.sudoku",
-				Title = "Save file to..."
+				Title = "Save sudoku file to..."
 			};
 
 			if (!(dialog.ShowDialog() is true))
@@ -63,6 +63,33 @@ namespace Sudoku.Forms
 
 			using var sw = new StreamWriter(dialog.FileName);
 			sw.Write(Puzzle.ToString("#"));
+		}
+
+		private void MenuItemBackupConfig_Click(object sender, RoutedEventArgs e)
+		{
+			var dialog = new SaveFileDialog
+			{
+				AddExtension = true,
+				CheckPathExists = true,
+				DefaultExt = "sudoku",
+				Filter = "Configuration file|*.scfg",
+				Title = "Save configuration file to..."
+			};
+
+			if (!(dialog.ShowDialog() is true))
+			{
+				e.Handled = true;
+				return;
+			}
+
+			try
+			{
+				SaveConfig(dialog.FileName);
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("Configuration file is failed to save due to internal error.", "Warning");
+			}
 		}
 
 		private void MenuItemFileGetSnapshot_Click(object sender, RoutedEventArgs e)

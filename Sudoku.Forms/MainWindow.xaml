@@ -22,6 +22,8 @@
 				<MenuItem Header="Save puzzle..." InputGestureText="Ctrl + S"
 						  Click="MenuItemFileSave_Click"/>
 				<Separator/>
+				<MenuItem Header="Backup configurations" Name="_menuItemBackupConfig"
+						  Click="MenuItemBackupConfig_Click"/>
 				<MenuItem Header="Get Snapshot" Click="MenuItemFileGetSnapshot_Click"/>
 				<Separator/>
 				<MenuItem Header="Quit app" InputGestureText="Alt + F4"

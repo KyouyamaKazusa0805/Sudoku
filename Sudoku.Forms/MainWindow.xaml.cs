@@ -205,12 +205,12 @@ namespace Sudoku.Forms
 		/// Save configurations if worth.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void LoadConfig()
+		private void LoadConfig(string path = "configurations.scfg")
 		{
 			Settings = new Settings();
-			if (File.Exists("configurations.scfg"))
+			if (File.Exists(path))
 			{
-				var fs = new FileStream("configurations.scfg", FileMode.Open);
+				var fs = new FileStream(path, FileMode.Open);
 				try
 				{
 					Settings = (Settings)new BinaryFormatter().Deserialize(fs);
@@ -234,9 +234,9 @@ namespace Sudoku.Forms
 		/// Save configurations.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void SaveConfig()
+		private void SaveConfig(string path = "configurations.scfg")
 		{
-			var fs = new FileStream("configurations.scfg", FileMode.Create);
+			var fs = new FileStream(path, FileMode.Create);
 			try
 			{
 				var formatter = new BinaryFormatter();
