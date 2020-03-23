@@ -6,8 +6,10 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using System.Windows.Input;
+using System.Xml.Serialization;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
@@ -123,34 +125,7 @@ namespace Sudoku.Forms
 			Title = $"{SolutionName} Ver {Version}";
 
 			// Load configurations if worth.
-			if (File.Exists("configurations.scfg"))
-			{
-				Settings = new Settings();
-				StreamReader? sr = null;
-				try
-				{
-					sr = new StreamReader("configurations.scfg");
-					string? s;
-					while (!((s = sr.ReadLine()) is null))
-					{
-						string[] splitation = s.Split('=', StringSplitOptions.RemoveEmptyEntries);
-						var prop = typeof(Settings).GetProperty(splitation[0].Trim());
-						prop!.SetValue(Settings, Parse(splitation[1], prop.PropertyType));
-					}
-				}
-				catch
-				{
-					Settings = Settings.DefaultSetting.Clone();
-				}
-				finally
-				{
-					sr?.Dispose();
-				}
-			}
-			else
-			{
-				Settings = Settings.DefaultSetting.Clone();
-			}
+			LoadConfig();
 
 			// Then initialize the layer collection and point converter
 			// for later utility.
@@ -183,26 +158,60 @@ namespace Sudoku.Forms
 				return;
 			}
 
-			// Save configurations.
-			StreamWriter? sw = null;
-			try
+			SaveConfig();
+
+			base.OnClosing(e);
+		}
+
+		/// <summary>
+		/// Save configurations if worth.
+		/// </summary>
+		private void LoadConfig()
+		{
+			Settings = new Settings();
+			if (File.Exists("configurations.scfg"))
 			{
-				sw = new StreamWriter("configurations.scfg");
-				foreach (var prop in typeof(Settings).GetProperties())
+				var fs = new FileStream("configurations.scfg", FileMode.Open);
+				try
 				{
-					sw.WriteLine($"{prop.Name}={ToString(prop, Settings)}");
+					Settings = (Settings)new BinaryFormatter().Deserialize(fs);
+				}
+				catch
+				{
+					// Do nothing.
+				}
+				finally
+				{
+					fs.Close();
 				}
 			}
-			catch
+			else
 			{
-				MessageBox.Show("Fatal error while saving configurations.", "Warning");
+				Settings.CoverBy(Settings.DefaultSetting);
+			}
+		}
+
+		/// <summary>
+		/// Save configurations.
+		/// </summary>
+		private void SaveConfig()
+		{
+			var fs = new FileStream("configurations.scfg", FileMode.Create);
+			try
+			{
+				var formatter = new BinaryFormatter();
+				formatter.Serialize(fs, Settings);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(
+					$"The configuration file cannot be saved due to exception throws:{Environment.NewLine}{ex.Message}",
+					"Warning");
 			}
 			finally
 			{
-				sw?.Dispose();
+				fs.Close();
 			}
-
-			base.OnClosing(e);
 		}
 
 		/// <inheritdoc/>

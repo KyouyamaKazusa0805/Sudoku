@@ -5,11 +5,13 @@ namespace Sudoku.Forms
 	/// <summary>
 	/// To encapsulates a series of setting options for <see cref="MainForm"/> utility.
 	/// </summary>
+	[Serializable]
 	public sealed partial class Settings : ICloneable<Settings>
 	{
 		/// <summary>
 		/// To provides a default setting instance.
 		/// </summary>
+		[NonSerialized]
 		public static readonly Settings DefaultSetting = new Settings();
 
 
