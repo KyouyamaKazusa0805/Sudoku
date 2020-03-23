@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Sudoku.Data.Extensions
 {
@@ -23,6 +24,7 @@ namespace Sudoku.Data.Extensions
 		/// If the current object is <see langword="null"/>, this value will be
 		/// <see cref="string.Empty"/>. Therefore, this method will never throw.
 		/// </returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static string NullableToString(this object? @this) =>
 			@this.NullableToString(string.Empty);
 
@@ -39,6 +41,7 @@ namespace Sudoku.Data.Extensions
 		/// If the current object is <see langword="null"/>, this value will be
 		/// <paramref name="defaultValue"/>. Therefore, this method will never throw.
 		/// </returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static string NullableToString(this object? @this, string defaultValue) =>
 			@this?.ToString() ?? defaultValue;
 
@@ -59,6 +62,7 @@ namespace Sudoku.Data.Extensions
 		/// (<see langword="out"/> parameter) All attributes found.
 		/// </param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasMarkedAttribute<TAttribute>(
 			this object @this, bool inherit,
 			[NotNullWhen(true)] out IEnumerable<TAttribute>? attributes)
@@ -97,6 +101,7 @@ namespace Sudoku.Data.Extensions
 		/// but the type of the specified object is used only.
 		/// </remarks>
 		/// <seealso cref="HasMarkedAttribute{TAttribute}(object, bool, out IEnumerable{TAttribute})"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasMarkedAttribute<T, TAttribute>(
 			bool inherit, [NotNullWhen(true)] out IEnumerable<TAttribute>? attributes)
 			where TAttribute : Attribute

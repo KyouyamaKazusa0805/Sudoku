@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
@@ -11,6 +13,8 @@ using Sudoku.Drawing.Layers;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 using w = System.Windows;
+using Grid = System.Windows.Controls.Grid;
+using Sudoku.Data.Extensions;
 
 namespace Sudoku.Forms
 {
@@ -185,6 +189,7 @@ namespace Sudoku.Forms
 		private async void MenuItemModeSolve_Click(object sender, RoutedEventArgs e)
 		{
 			_listBoxPaths.Items.Clear();
+			_gridSummary.Children.Clear();
 
 			_textBoxInfo.Text = "Solving...";
 			var analysisResult = await Task.Run(() =>
@@ -194,8 +199,9 @@ namespace Sudoku.Forms
 					FastSearch = Settings.FastSearch,
 					AnalyzeDifficultyStrictly = Settings.SeMode
 				}.Solve(_grid);
-			}).ConfigureAwait(false);
+			});
 
+			_gridSummary.RowDefinitions.Clear();
 			_textBoxInfo.Text = string.Empty;
 			if (analysisResult.HasSolved)
 			{
@@ -203,10 +209,95 @@ namespace Sudoku.Forms
 				{
 					_listBoxPaths.Items.Add(step.ToString());
 				}
+
+				var collection = new List<(string?, int, decimal?, decimal?)>();
+				decimal summary = 0, summaryMax = 0;
+				int summaryCount = 0;
+				foreach (var techniqueGroup in GetGroupedSteps())
+				{
+					string name = techniqueGroup.Key;
+					int count = techniqueGroup.Count();
+					decimal total = 0, maximum = 0;
+					foreach (var step in techniqueGroup)
+					{
+						summary += step.Difficulty;
+						summaryCount++;
+						total += step.Difficulty;
+						maximum = Math.Max(step.Difficulty, maximum);
+						summaryMax = Math.Max(step.Difficulty, maximum);
+					}
+
+					collection.Add((name, count, total, maximum));
+				}
+
+				collection.Add((null, summaryCount, summary, summaryMax));
+
+				_gridSummary.RowDefinitions.Add(
+					new w.Controls.RowDefinition
+					{
+						Height = new GridLength(FontSize, GridUnitType.Auto)
+					});
+				_gridSummary.Children.Add(
+					CreateLabelInGrid(
+						"Technique", HorizontalAlignment.Left, VerticalAlignment.Center, 0, 0));
+				_gridSummary.Children.Add(
+					CreateLabelInGrid(
+						"Count", HorizontalAlignment.Center, VerticalAlignment.Center, 0, 1));
+				_gridSummary.Children.Add(
+					CreateLabelInGrid(
+						"Total", HorizontalAlignment.Center, VerticalAlignment.Center, 0, 2));
+				_gridSummary.Children.Add(
+					CreateLabelInGrid(
+						"Max", HorizontalAlignment.Center, VerticalAlignment.Center, 0, 3));
+
+				int i = 1;
+				foreach (ITuple quadruple in collection)
+				{
+					_gridSummary.RowDefinitions.Add(
+						new w::Controls.RowDefinition
+						{
+							Height = new GridLength(FontSize, GridUnitType.Auto)
+						});
+					for (int j = 0; j < 4; j++)
+					{
+						_gridSummary.Children.Add(
+							CreateLabelInGrid(
+								quadruple[j].NullableToString(),
+								j != 0 ? HorizontalAlignment.Center : HorizontalAlignment.Left,
+								VerticalAlignment.Center,
+								i,
+								j));
+					}
+
+					i++;
+				}
 			}
 			else
 			{
 				MessageBox.Show("The puzzle cannot be solved due to internal error.", "Warning");
+			}
+
+			IEnumerable<IGrouping<string, TechniqueInfo>> GetGroupedSteps()
+			{
+				(_, _, var solvingSteps) = analysisResult;
+				return from solvingStep in solvingSteps!
+					   orderby solvingStep.Difficulty
+					   group solvingStep by solvingStep.Name;
+			}
+
+			static w::Controls.Label CreateLabelInGrid(
+				string content, HorizontalAlignment horizontalAlignment,
+				VerticalAlignment verticalAlignment, int row, int column)
+			{
+				var z = new w::Controls.Label
+				{
+					Content = content,
+					HorizontalAlignment = horizontalAlignment,
+					VerticalAlignment = verticalAlignment
+				};
+				z.SetValue(Grid.RowProperty, row);
+				z.SetValue(Grid.ColumnProperty, column);
+				return z;
 			}
 		}
 

@@ -81,7 +81,14 @@
 		<TabControl Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"
 					VerticalAlignment="Stretch">
 			<TabItem Header="Summary">
-				<Grid Background="#FFE5E5E5"/>
+				<Grid Background="#FFE5E5E5" Name="_gridSummary">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="2*"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+				</Grid>
 			</TabItem>
 			<TabItem Header="Solution path">
 				<Grid Background="#FFE5E5E5">
