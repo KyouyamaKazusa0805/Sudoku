@@ -114,6 +114,7 @@ namespace Sudoku.Forms
 			AddShortCut(Key.O, ModifierKeys.Control, MenuItemFileOpen_Click);
 			AddShortCut(Key.S, ModifierKeys.Control, MenuItemFileSave_Click);
 			AddShortCut(Key.F4, ModifierKeys.Alt, MenuItemFileQuit_Click);
+			AddShortCut(Key.F9, ModifierKeys.None, MenuItemModeSolve_Click); ;
 			AddShortCut(Key.OemTilde, ModifierKeys.Control, MenuItemEditFix_Click);
 			AddShortCut(Key.OemTilde, ModifierKeys.Control | ModifierKeys.Shift, MenuItemEditUnfix_Click);
 			AddShortCut(Key.Z, ModifierKeys.Control, MenuItemEditUndo_Click);
