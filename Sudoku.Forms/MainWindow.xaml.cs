@@ -89,6 +89,11 @@ namespace Sudoku.Forms
 			}
 		}
 
+		/// <summary>
+		/// Indicates the puzzle, which is equivalent to <see cref="_puzzle"/>,
+		/// but add the auto-update value layer.
+		/// </summary>
+		/// <seealso cref="_puzzle"/>
 		private UndoableGrid Puzzle
 		{
 			get => _puzzle;

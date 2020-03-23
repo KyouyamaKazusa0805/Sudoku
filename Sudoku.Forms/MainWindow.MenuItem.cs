@@ -18,6 +18,7 @@ using Sudoku.Solving.Manual;
 using Grid = System.Windows.Controls.Grid;
 using SudokuGrid = Sudoku.Data.Grid;
 using w = System.Windows;
+using d = System.Drawing;
 
 namespace Sudoku.Forms
 {
@@ -235,6 +236,9 @@ namespace Sudoku.Forms
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemModeSolve_Click(object sender, RoutedEventArgs e)
 		{
+			// Record the backup.
+			var initialiGrid = Puzzle;
+
 			// Update status.
 			_listBoxPaths.Items.Clear();
 			_gridSummary.Children.Clear();
@@ -255,10 +259,50 @@ namespace Sudoku.Forms
 			_textBoxInfo.Text = string.Empty;
 			if (analysisResult.HasSolved)
 			{
+				int i = 0;
 				foreach (var step in analysisResult.SolvingSteps!)
 				{
-					_listBoxPaths.Items.Add(step);
+					_listBoxPaths.Items.Add(new InfoPair(i++, step));
 				}
+
+				// Add handlers.
+				_listBoxPaths.SelectionChanged += (o, e) =>
+				{
+					if (_listBoxPaths.SelectedIndex == -1)
+					{
+						Puzzle = initialiGrid;
+						UpdateImageGrid();
+
+						e.Handled = true;
+						return;
+					}
+
+					if (!(o is w::Controls.ListBox b && b.SelectedItem is InfoPair pair))
+					{
+						e.Handled = true;
+						return;
+					}
+
+					var (n, s) = pair;
+					Puzzle = new UndoableGrid((SudokuGrid)analysisResult.StepGrids![n]);
+					_layerCollection.Add(
+						new ViewLayer(
+							_pointConverter, s.Views[0], new Dictionary<int, d::Color>
+							{
+								[0] = d::Color.FromArgb(128, 255, 192, 89),
+								[1] = d::Color.FromArgb(128, 177, 165, 243),
+								[2] = d::Color.FromArgb(128, 134, 242, 128),
+								[-1] = d::Color.FromArgb(128, 247, 165, 167),
+								[-2] = d::Color.FromArgb(128, 134, 232, 208),
+							}));
+
+					UpdateImageGrid();
+				};
+				_listBoxPaths.LostFocus += (_, e) =>
+				{
+					Puzzle = initialiGrid;
+					UpdateImageGrid();
+				};
 
 				var collection = new List<(string?, int, decimal?, decimal?)>();
 				decimal summary = 0, summaryMax = 0;
@@ -300,7 +344,7 @@ namespace Sudoku.Forms
 					CreateLabelInGrid(
 						"Max", HorizontalAlignment.Center, VerticalAlignment.Center, 0, 3));
 
-				int i = 1;
+				i = 1;
 				foreach (ITuple quadruple in collection)
 				{
 					_gridSummary.RowDefinitions.Add(
@@ -359,5 +403,26 @@ namespace Sudoku.Forms
 
 		private void MenuItemAboutMe_Click(object sender, RoutedEventArgs e) =>
 			new AboutMeWindow().Show();
+
+
+		private readonly struct InfoPair
+		{
+			public InfoPair(int index, TechniqueInfo techniqueInfo) =>
+				(Index, TechniqueInfo) = (index, techniqueInfo);
+
+			public InfoPair((int _index, TechniqueInfo _info) pair) =>
+				(Index, TechniqueInfo) = (pair._index, pair._info);
+
+
+			public int Index { get; }
+
+			public TechniqueInfo TechniqueInfo { get; }
+
+
+			public void Deconstruct(out int index, out TechniqueInfo techniqueInfo) =>
+				(index, techniqueInfo) = (Index, TechniqueInfo);
+
+			public override string ToString() => TechniqueInfo.ToString();
+		}
 	}
 }

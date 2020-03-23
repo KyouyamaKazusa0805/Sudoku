@@ -36,7 +36,8 @@ namespace Sudoku.Solving.BruteForces.Linqing
 					solution: Grid.Parse(results[0]),
 					elapsedTime: stopwatch.Elapsed,
 					solvingList: null,
-					additional: null),
+					additional: null,
+					stepGrids: null),
 				_ => throw new MultipleSolutionsException(grid)
 			};
 		}

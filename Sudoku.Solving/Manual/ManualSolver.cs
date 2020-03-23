@@ -82,7 +82,8 @@ namespace Sudoku.Solving.Manual
 						solution: null,
 						elapsedTime: TimeSpan.Zero,
 						solvingList: null,
-						additional: ex.Message);
+						additional: ex.Message,
+						stepGrids: null);
 				}
 			}
 			else
@@ -94,7 +95,8 @@ namespace Sudoku.Solving.Manual
 					solution: null,
 					elapsedTime: TimeSpan.Zero,
 					solvingList: null,
-					additional: "The puzzle does not have a unique solution (multiple solutions or no solution).");
+					additional: "The puzzle does not have a unique solution (multiple solutions or no solution).",
+					stepGrids: null);
 			}
 		}
 
@@ -164,6 +166,7 @@ namespace Sudoku.Solving.Manual
 				new[] { new BruteForceTechniqueSearcher(solution) }
 			};
 
+			var stepGrids = new Bag<IReadOnlyGrid>();
 			var bag = new Bag<TechniqueInfo>();
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
@@ -219,7 +222,8 @@ namespace Sudoku.Solving.Manual
 					{
 						foreach (var step in selection)
 						{
-							if (RecordTechnique(steps, step, grid, cloneation, stopwatch, out var result))
+							if (RecordTechnique(
+								steps, step, grid, cloneation, stopwatch, stepGrids, out var result))
 							{
 								stopwatch.Stop();
 								return result;
@@ -262,7 +266,8 @@ namespace Sudoku.Solving.Manual
 						? CheckConclusionsValidity(solution, step.Conclusions)
 						: true)
 					{
-						if (RecordTechnique(steps, step, grid, cloneation, stopwatch, out var result))
+						if (RecordTechnique(
+							steps, step, grid, cloneation, stopwatch, stepGrids, out var result))
 						{
 							// The puzzle has been solved.
 							// :)
@@ -296,7 +301,8 @@ namespace Sudoku.Solving.Manual
 				solution: null,
 				elapsedTime: stopwatch.Elapsed,
 				solvingList: steps,
-				additional: null);
+				additional: null,
+				stepGrids);
 		}
 
 		/// <summary>
@@ -382,6 +388,7 @@ namespace Sudoku.Solving.Manual
 				Array.Sort(searchers, (a, b) => a.Priority.CompareTo(b.Priority));
 			}
 
+			var stepGrids = new Bag<IReadOnlyGrid>();
 			var bag = new Bag<TechniqueInfo>();
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
@@ -420,7 +427,8 @@ namespace Sudoku.Solving.Manual
 					{
 						foreach (var step in bag)
 						{
-							if (RecordTechnique(steps, step, grid, cloneation, stopwatch, out var result))
+							if (RecordTechnique(
+								steps, step, grid, cloneation, stopwatch, stepGrids, out var result))
 							{
 								stopwatch.Stop();
 								return result;
@@ -471,7 +479,8 @@ namespace Sudoku.Solving.Manual
 						? CheckConclusionsValidity(solution, step.Conclusions)
 						: true)
 					{
-						if (RecordTechnique(steps, step, grid, cloneation, stopwatch, out var result))
+						if (RecordTechnique(
+							steps, step, grid, cloneation, stopwatch, stepGrids, out var result))
 						{
 							stopwatch.Stop();
 							return result;
@@ -509,7 +518,8 @@ namespace Sudoku.Solving.Manual
 				solution: null,
 				elapsedTime: stopwatch.Elapsed,
 				solvingList: steps,
-				additional: null);
+				additional: null,
+				stepGrids);
 		}
 
 		/// <summary>
@@ -520,6 +530,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="grid">The grid.</param>
 		/// <param name="cloneation">The cloneation (playground).</param>
 		/// <param name="stopwatch">The stopwatch.</param>
+		/// <param name="stepGrids">The step grids.</param>
 		/// <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <seealso cref="SolveNaively(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, Intersection[,], GridMap[])"/>
@@ -527,7 +538,8 @@ namespace Sudoku.Solving.Manual
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool RecordTechnique(
 			List<TechniqueInfo> steps, TechniqueInfo step, IReadOnlyGrid grid, Grid cloneation,
-			Stopwatch stopwatch, [NotNullWhen(true)] out AnalysisResult? result)
+			Stopwatch stopwatch, IBag<IReadOnlyGrid> stepGrids,
+			[NotNullWhen(true)] out AnalysisResult? result)
 		{
 			bool needAdd = false;
 			foreach (var conclusion in step.Conclusions)
@@ -559,6 +571,7 @@ namespace Sudoku.Solving.Manual
 			{
 				step.ApplyTo(cloneation);
 				steps.Add(step);
+				stepGrids.Add(cloneation.Clone());
 
 				if (cloneation.HasSolved)
 				{
@@ -569,7 +582,8 @@ namespace Sudoku.Solving.Manual
 						solution: cloneation,
 						elapsedTime: stopwatch.Elapsed,
 						solvingList: steps,
-						additional: null);
+						additional: null,
+						stepGrids);
 					return true;
 				}
 			}

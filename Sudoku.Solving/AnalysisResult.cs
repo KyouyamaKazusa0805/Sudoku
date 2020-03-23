@@ -23,10 +23,12 @@ namespace Sudoku.Solving
 		/// <param name="elapsedTime">The elapsed time while solving.</param>
 		/// <param name="solvingList">All steps produced in solving.</param>
 		/// <param name="additional">The additional message.</param>
+		/// <param name="stepGrids">All intermediate grids.</param>
 		public AnalysisResult(
 			IReadOnlyGrid puzzle, string solverName, bool hasSolved, IReadOnlyGrid? solution,
-			TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? solvingList, string? additional) =>
-			(Puzzle, SolverName, HasSolved, Solution, SolvingSteps, ElapsedTime, Additional) = (puzzle, solverName, hasSolved, solution, solvingList, elapsedTime, additional);
+			TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? solvingList, string? additional,
+			IBag<IReadOnlyGrid>? stepGrids) =>
+			(Puzzle, SolverName, HasSolved, Solution, SolvingSteps, ElapsedTime, Additional, StepGrids) = (puzzle, solverName, hasSolved, solution, solvingList, elapsedTime, additional, stepGrids);
 
 
 		/// <summary>
@@ -219,6 +221,11 @@ namespace Sudoku.Solving
 		}
 
 		/// <summary>
+		/// Indicates the intermediate grids while solving.
+		/// </summary>
+		public IBag<IReadOnlyGrid>? StepGrids { get; }
+
+		/// <summary>
 		/// Indicates the solving steps during solving. If the puzzle is not
 		/// solved and the manual solver cannot find out any steps, or else
 		/// the puzzle is solved by other solvers, this value will be <see langword="null"/>.
@@ -309,11 +316,14 @@ namespace Sudoku.Solving
 		/// <param name="solvingSteps">
 		/// (<see langword="out"/> parameter) All steps.
 		/// </param>
+		/// <param name="stepGrids">
+		/// (<see langword="out"/> parameter) All intermediate grids.
+		/// </param>
 		public void Deconstruct(
 			out IReadOnlyGrid puzzle, out bool hasSolved, out IReadOnlyGrid? solution,
 			out DifficultyLevel difficultyLevel, out TechniqueInfo? bottleneck,
-			out IReadOnlyList<TechniqueInfo>? solvingSteps) =>
-			(puzzle, hasSolved, solution, difficultyLevel, bottleneck, solvingSteps) = (Puzzle, HasSolved, Solution, DifficultyLevel, Bottleneck, SolvingSteps);
+			out IReadOnlyList<TechniqueInfo>? solvingSteps, out IBag<IReadOnlyGrid>? stepGrids) =>
+			(puzzle, hasSolved, solution, difficultyLevel, bottleneck, solvingSteps, stepGrids) = (Puzzle, HasSolved, Solution, DifficultyLevel, Bottleneck, SolvingSteps, StepGrids);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="puzzle">

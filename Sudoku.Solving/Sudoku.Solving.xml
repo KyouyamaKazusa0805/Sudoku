@@ -9,7 +9,7 @@
             Provides an analysis result after a puzzle solved.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.#ctor(Sudoku.Data.IReadOnlyGrid,System.String,System.Boolean,Sudoku.Data.IReadOnlyGrid,System.TimeSpan,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo},System.String)">
+        <member name="M:Sudoku.Solving.AnalysisResult.#ctor(Sudoku.Data.IReadOnlyGrid,System.String,System.Boolean,Sudoku.Data.IReadOnlyGrid,System.TimeSpan,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo},System.String,System.Collections.Generic.IBag{Sudoku.Data.IReadOnlyGrid})">
             <summary>
             Initializes an instance with some information.
             </summary>
@@ -20,6 +20,7 @@
             <param name="elapsedTime">The elapsed time while solving.</param>
             <param name="solvingList">All steps produced in solving.</param>
             <param name="additional">The additional message.</param>
+            <param name="stepGrids">All intermediate grids.</param>
         </member>
         <member name="P:Sudoku.Solving.AnalysisResult.HasSolved">
             <summary>
@@ -134,6 +135,11 @@
             Indicates the bottle neck during the whole grid solving.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.StepGrids">
+            <summary>
+            Indicates the intermediate grids while solving.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.AnalysisResult.SolvingSteps">
             <summary>
             Indicates the solving steps during solving. If the puzzle is not
@@ -203,7 +209,7 @@
             (<see langword="out" /> parameter) The difficulty level.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.IReadOnlyGrid@,System.Boolean@,Sudoku.Data.IReadOnlyGrid@,Sudoku.Solving.DifficultyLevel@,Sudoku.Solving.TechniqueInfo@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo}@)">
+        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.IReadOnlyGrid@,System.Boolean@,Sudoku.Data.IReadOnlyGrid@,Sudoku.Solving.DifficultyLevel@,Sudoku.Solving.TechniqueInfo@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo}@,System.Collections.Generic.IBag{Sudoku.Data.IReadOnlyGrid}@)">
             <method name="Deconstruct">
 		<summary>Deconstruct this instance.</summary>
 	</method>
@@ -224,6 +230,9 @@
             </param>
             <param name="solvingSteps">
             (<see langword="out" /> parameter) All steps.
+            </param>
+            <param name="stepGrids">
+            (<see langword="out" /> parameter) All intermediate grids.
             </param>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(Sudoku.Data.IReadOnlyGrid@,System.Boolean@,System.TimeSpan@,Sudoku.Data.IReadOnlyGrid@,Sudoku.Solving.DifficultyLevel@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo}@,System.String@)">
@@ -3177,7 +3186,7 @@
             Throws when the solver cannot solved due to wrong handling.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.RecordTechnique(System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.TechniqueInfo,Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Diagnostics.Stopwatch,Sudoku.Solving.AnalysisResult@)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.RecordTechnique(System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.TechniqueInfo,Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Diagnostics.Stopwatch,System.Collections.Generic.IBag{Sudoku.Data.IReadOnlyGrid},Sudoku.Solving.AnalysisResult@)">
             <summary>
             Bound with on-solving methods returns the solving state.
             </summary>
@@ -3186,6 +3195,7 @@
             <param name="grid">The grid.</param>
             <param name="cloneation">The cloneation (playground).</param>
             <param name="stopwatch">The stopwatch.</param>
+            <param name="stepGrids">The step grids.</param>
             <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
             <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:],Sudoku.Data.GridMap[])"/>

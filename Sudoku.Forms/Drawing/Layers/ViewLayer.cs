@@ -51,7 +51,7 @@ namespace Sudoku.Drawing.Layers
 					var (x, y) = _pointConverter.GetMousePointInCenter(cell);
 					using var brush = new SolidBrush(Color.FromArgb(64, color));
 					g.FillRectangle(
-						brush, new RectangleF(x - cw * 2, y - ch * 2, cw, ch));
+						brush, _pointConverter.GetMousePointRectangle(cell));
 				}
 			}
 
@@ -63,7 +63,7 @@ namespace Sudoku.Drawing.Layers
 					var (x, y) = _pointConverter.GetMousePointInCenter(candidate / 9, candidate % 9);
 					using var brush = new SolidBrush(Color.FromArgb(64, color));
 					g.FillRectangle(
-						brush, new RectangleF(x - cw * 2, y - ch * 2, cw, ch));
+						brush, _pointConverter.GetMousePointRectangle(candidate / 9, candidate % 9));
 				}
 			}
 
