@@ -98,7 +98,9 @@
 			</TabItem>
 			<TabItem Header="Solution path">
 				<Grid Background="#FFE5E5E5">
-					<ListBox Name="_listBoxPaths"/>
+					<ListBox Name="_listBoxPaths"
+							 SelectionChanged="ListBoxPaths_SelectionChanged"
+							 LostFocus="ListBoxPaths_LostFocus"/>
 				</Grid>
 			</TabItem>
 			<TabItem Header="All possible steps">

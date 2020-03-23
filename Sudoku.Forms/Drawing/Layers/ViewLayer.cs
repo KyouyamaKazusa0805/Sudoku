@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using Sudoku.Data;
 using Sudoku.Drawing.Extensions;
 
@@ -42,6 +43,7 @@ namespace Sudoku.Drawing.Layers
 		{
 			var bitmap = new Bitmap((int)Width, (int)Height);
 			using var g = Graphics.FromImage(bitmap);
+			g.SmoothingMode = SmoothingMode.AntiAlias;
 
 			foreach (var (id, cell) in _view.CellOffsets ?? Array.Empty<(int, int)>())
 			{
@@ -49,7 +51,7 @@ namespace Sudoku.Drawing.Layers
 				{
 					var (cw, ch) = _pointConverter.CellSize;
 					var (x, y) = _pointConverter.GetMousePointInCenter(cell);
-					using var brush = new SolidBrush(Color.FromArgb(64, color));
+					using var brush = new SolidBrush(color);
 					g.FillRectangle(
 						brush, _pointConverter.GetMousePointRectangle(cell));
 				}
@@ -61,8 +63,8 @@ namespace Sudoku.Drawing.Layers
 				{
 					var (cw, ch) = _pointConverter.CandidateSize;
 					var (x, y) = _pointConverter.GetMousePointInCenter(candidate / 9, candidate % 9);
-					using var brush = new SolidBrush(Color.FromArgb(64, color));
-					g.FillRectangle(
+					using var brush = new SolidBrush(color);
+					g.FillEllipse(
 						brush, _pointConverter.GetMousePointRectangle(candidate / 9, candidate % 9));
 				}
 			}

@@ -569,9 +569,9 @@ namespace Sudoku.Solving.Manual
 
 			if (needAdd)
 			{
+				stepGrids.Add(cloneation.Clone());
 				step.ApplyTo(cloneation);
 				steps.Add(step);
-				stepGrids.Add(cloneation.Clone());
 
 				if (cloneation.HasSolved)
 				{

@@ -18,7 +18,6 @@ using Sudoku.Solving.Manual;
 using Grid = System.Windows.Controls.Grid;
 using SudokuGrid = Sudoku.Data.Grid;
 using w = System.Windows;
-using d = System.Drawing;
 
 namespace Sudoku.Forms
 {
@@ -236,16 +235,13 @@ namespace Sudoku.Forms
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemModeSolve_Click(object sender, RoutedEventArgs e)
 		{
-			// Record the backup.
-			var initialiGrid = Puzzle;
-
 			// Update status.
 			_listBoxPaths.Items.Clear();
 			_gridSummary.Children.Clear();
 			_textBoxInfo.Text = "Solving, please wait. During solving you can do some other work...";
 
 			// Run the solver asynchronizedly, during solving you can do other work.
-			var analysisResult = await Task.Run(() =>
+			_analyisResult = await Task.Run(() =>
 			{
 				return new ManualSolver
 				{
@@ -257,52 +253,13 @@ namespace Sudoku.Forms
 			// Solved. Now update the technique summary.
 			_gridSummary.RowDefinitions.Clear();
 			_textBoxInfo.Text = string.Empty;
-			if (analysisResult.HasSolved)
+			if (_analyisResult.HasSolved)
 			{
 				int i = 0;
-				foreach (var step in analysisResult.SolvingSteps!)
+				foreach (var step in _analyisResult.SolvingSteps!)
 				{
 					_listBoxPaths.Items.Add(new InfoPair(i++, step));
 				}
-
-				// Add handlers.
-				_listBoxPaths.SelectionChanged += (o, e) =>
-				{
-					if (_listBoxPaths.SelectedIndex == -1)
-					{
-						Puzzle = initialiGrid;
-						UpdateImageGrid();
-
-						e.Handled = true;
-						return;
-					}
-
-					if (!(o is w::Controls.ListBox b && b.SelectedItem is InfoPair pair))
-					{
-						e.Handled = true;
-						return;
-					}
-
-					var (n, s) = pair;
-					Puzzle = new UndoableGrid((SudokuGrid)analysisResult.StepGrids![n]);
-					_layerCollection.Add(
-						new ViewLayer(
-							_pointConverter, s.Views[0], new Dictionary<int, d::Color>
-							{
-								[0] = d::Color.FromArgb(128, 255, 192, 89),
-								[1] = d::Color.FromArgb(128, 177, 165, 243),
-								[2] = d::Color.FromArgb(128, 134, 242, 128),
-								[-1] = d::Color.FromArgb(128, 247, 165, 167),
-								[-2] = d::Color.FromArgb(128, 134, 232, 208),
-							}));
-
-					UpdateImageGrid();
-				};
-				_listBoxPaths.LostFocus += (_, e) =>
-				{
-					Puzzle = initialiGrid;
-					UpdateImageGrid();
-				};
 
 				var collection = new List<(string?, int, decimal?, decimal?)>();
 				decimal summary = 0, summaryMax = 0;
@@ -373,7 +330,7 @@ namespace Sudoku.Forms
 
 			IEnumerable<IGrouping<string, TechniqueInfo>> GetGroupedSteps()
 			{
-				(_, _, var solvingSteps) = analysisResult;
+				(_, _, var solvingSteps) = _analyisResult;
 				return from solvingStep in solvingSteps!
 					   orderby solvingStep.Difficulty
 					   group solvingStep by solvingStep.Name;

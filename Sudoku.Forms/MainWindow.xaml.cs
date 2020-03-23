@@ -9,12 +9,14 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using System.Windows.Input;
+using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Drawing.Layers;
 using Sudoku.Forms.Extensions;
+using Sudoku.Solving;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
 using w = System.Windows;
@@ -26,6 +28,8 @@ namespace Sudoku.Forms
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		
+
 		/// <summary>
 		/// Internal layer collection.
 		/// </summary>
@@ -36,6 +40,16 @@ namespace Sudoku.Forms
 		/// </summary>
 		private readonly IList<int> _focusedCells = new List<int>();
 
+
+		/// <summary>
+		/// Indicates the analysis result after solving of the current grid.
+		/// </summary>
+		private AnalysisResult? _analyisResult = null;
+
+		/// <summary>
+		/// The initial grid.
+		/// </summary>
+		private IReadOnlyGrid _initialPuzzle = null!;
 
 		/// <summary>
 		/// The grid.
@@ -105,6 +119,10 @@ namespace Sudoku.Forms
 						Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
 						Settings.GivenFontName, Settings.ModifiableFontName,
 						Settings.CandidateFontName, _puzzle = value, Settings.ShowCandidates));
+				_layerCollection.RemoveAll(typeof(ViewLayer).Name);
+				_initialPuzzle = value;
+
+				GC.Collect();
 			}
 		}
 
@@ -151,8 +169,7 @@ namespace Sudoku.Forms
 					Settings.GivenFontName, Settings.ModifiableFontName,
 					Settings.CandidateFontName, Puzzle, Settings.ShowCandidates));
 
-			// Update the grid image.
-			UpdateImageGrid();
+			UpdateControls();
 		}
 
 		/// <inheritdoc/>
@@ -327,13 +344,7 @@ namespace Sudoku.Forms
 		{
 			try
 			{
-				_layerCollection.Add(
-					new ValueLayer(
-						_pointConverter, Settings.ValueScale, Settings.CandidateScale,
-						Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
-						Settings.GivenFontName, Settings.ModifiableFontName,
-						Settings.CandidateFontName,
-						Puzzle = new UndoableGrid(SudokuGrid.Parse(puzzleStr)), Settings.ShowCandidates));
+				_initialPuzzle = Puzzle = new UndoableGrid(SudokuGrid.Parse(puzzleStr));
 
 				_menuItemUndo.IsEnabled = _menuItemRedo.IsEnabled = false;
 				UpdateImageGrid();
