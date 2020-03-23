@@ -90,19 +90,6 @@ namespace Sudoku.Forms
 		}
 
 
-		/// <summary>
-		/// Repaint the <see cref="_imageGrid"/> to show the newer grid image.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void UpdateImageGrid()
-		{
-			var bitmap = new Bitmap((int)_imageGrid.Width, (int)_imageGrid.Height);
-			_layerCollection.IntegrateTo(bitmap);
-			_imageGrid.Source = bitmap.ToImageSource();
-
-			GC.Collect();
-		}
-
 		/// <inheritdoc/>
 		protected override void OnInitialized(EventArgs e)
 		{
@@ -186,6 +173,19 @@ namespace Sudoku.Forms
 
 				UpdateImageGrid();
 			}
+		}
+
+		/// <summary>
+		/// Repaint the <see cref="_imageGrid"/> to show the newer grid image.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void UpdateImageGrid()
+		{
+			var bitmap = new Bitmap((int)_imageGrid.Width, (int)_imageGrid.Height);
+			_layerCollection.IntegrateTo(bitmap);
+			_imageGrid.Source = bitmap.ToImageSource();
+
+			GC.Collect();
 		}
 
 		/// <summary>
