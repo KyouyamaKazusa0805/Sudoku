@@ -1,9 +1,8 @@
 ﻿using System.Windows;
-using w = System.Windows;
-using d = System.Drawing;
-using SudokuGrid = Sudoku.Data.Grid;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing.Layers;
+using SudokuGrid = Sudoku.Data.Grid;
+using w = System.Windows;
 
 namespace Sudoku.Forms
 {
@@ -28,10 +27,12 @@ namespace Sudoku.Forms
 
 			var (n, s) = pair;
 			Puzzle = new UndoableGrid((SudokuGrid)_analyisResult!.StepGrids![n]);
+			var techniqueInfo = _analyisResult.SolvingSteps![n];
 			_layerCollection.Add(
 				new ViewLayer(
-					_pointConverter, s.Views[0], _analyisResult!.SolvingSteps![n].Conclusions,
+					_pointConverter, s.Views[0], techniqueInfo.Conclusions,
 					Settings.ColorDictionary, Settings.EliminationColor, Settings.CannibalismColor));
+			_textBoxInfo.Text = techniqueInfo.ToString();
 
 			UpdateImageGrid();
 		}

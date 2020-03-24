@@ -63,6 +63,7 @@ namespace Sudoku.Drawing.Layers
 		/// <inheritdoc/>
 		protected override void Draw()
 		{
+			const float offset = 6F;
 			var bitmap = new Bitmap((int)Width, (int)Height);
 			using var g = Graphics.FromImage(bitmap);
 			g.SmoothingMode = SmoothingMode.AntiAlias;
@@ -73,9 +74,8 @@ namespace Sudoku.Drawing.Layers
 				{
 					var (cw, ch) = _pointConverter.CellSize;
 					var (x, y) = _pointConverter.GetMousePointInCenter(cell);
-					using var brush = new SolidBrush(Color.FromArgb(64, color));
-					g.FillRectangle(
-						brush, _pointConverter.GetMousePointRectangle(cell));
+					using var brush = new SolidBrush(Color.FromArgb(32, color));
+					g.FillRectangle(brush, _pointConverter.GetMousePointRectangle(cell).Zoom(-offset));
 				}
 			}
 
@@ -83,11 +83,12 @@ namespace Sudoku.Drawing.Layers
 			{
 				if (_colorDic.TryGetValue(id, out var color))
 				{
+					int cell = candidate / 9, digit = candidate % 9;
 					var (cw, ch) = _pointConverter.CandidateSize;
-					var (x, y) = _pointConverter.GetMousePointInCenter(candidate / 9, candidate % 9);
+					var (x, y) = _pointConverter.GetMousePointInCenter(cell, digit);
 					using var brush = new SolidBrush(color);
 					g.FillEllipse(
-						brush, _pointConverter.GetMousePointRectangle(candidate / 9, candidate % 9));
+						brush, _pointConverter.GetMousePointRectangle(cell, digit).Zoom(-offset / 3));
 				}
 			}
 
@@ -119,7 +120,7 @@ namespace Sudoku.Drawing.Layers
 							_view.CandidateOffsets.Any(pair => pair._candidateOffset == c * 9 + d)
 								? cannibalBrush
 								: eliminationBrush,
-							_pointConverter.GetMousePointRectangle(c, d));
+							_pointConverter.GetMousePointRectangle(c, d).Zoom(-offset / 3));
 						break;
 					}
 				}
