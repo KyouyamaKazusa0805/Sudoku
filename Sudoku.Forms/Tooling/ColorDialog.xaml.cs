@@ -30,8 +30,6 @@ namespace Sudoku.Forms.Tooling
 			base.OnInitialized(e);
 
 			SelectedColor = Color.FromArgb(255, Color.Black);
-			_textBoxA.Text = 255.ToString();
-			_textBoxR.Text = _textBoxG.Text = _textBoxB.Text = 0.ToString();
 
 			UpdatePreview();
 		}
@@ -72,6 +70,7 @@ namespace Sudoku.Forms.Tooling
 				}
 
 				SelectedColor = Color.FromArgb(value, SelectedColor);
+				UpdatePreview();
 			}
 		}
 
@@ -91,6 +90,7 @@ namespace Sudoku.Forms.Tooling
 				}
 
 				SelectedColor = Color.FromArgb(SelectedColor.A, value, SelectedColor.G, SelectedColor.B);
+				UpdatePreview();
 			}
 		}
 
@@ -110,6 +110,7 @@ namespace Sudoku.Forms.Tooling
 				}
 
 				SelectedColor = Color.FromArgb(SelectedColor.A, SelectedColor.R, value, SelectedColor.B);
+				UpdatePreview();
 			}
 		}
 
@@ -129,6 +130,7 @@ namespace Sudoku.Forms.Tooling
 				}
 
 				SelectedColor = Color.FromArgb(SelectedColor.A, SelectedColor.R, SelectedColor.G, value);
+				UpdatePreview();
 			}
 		}
 
