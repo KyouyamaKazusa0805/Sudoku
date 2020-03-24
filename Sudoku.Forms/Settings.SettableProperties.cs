@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using Sudoku.Solving.Manual;
 
 namespace Sudoku.Forms
@@ -146,5 +148,108 @@ namespace Sudoku.Forms
 		/// </para>
 		/// </summary>
 		public Color FocusedCellColor { get; set; } = Color.FromArgb(32, Color.Black);
+
+		/// <summary>
+		/// Indicates the color dictionary.
+		/// </summary>
+		public IDictionary<int, Color> ColorDictionary
+		{
+			get
+			{
+				return new Dictionary<int, Color>
+				{
+					[-4] = Color8, [-3] = Color7, [-2] = Color6, [-1] = Color5,
+					[0] = Color1, [1] = Color2, [2] = Color3,
+					[3] = Color4, [4] = Color9, [5] = Color10,
+					[6] = Color11, [7] = Color12, [8] = Color13,
+					[9] = Color14, [10] = Color15,
+				};
+			}
+		}
+
+		/// <summary>
+		/// Indicates the elimination color.
+		/// </summary>
+		public Color EliminationColor { get; set; } = Color.FromArgb(255, 255, 118, 132);
+
+		/// <summary>
+		/// Indicates the cannibalism color.
+		/// </summary>
+		public Color CannibalismColor { get; set; } = Color.FromArgb(255, 235, 0, 0);
+
+		/// <summary>
+		/// Indicates the color 1.
+		/// </summary>
+		public Color Color1 { get; set; } = Color.FromArgb(255, 63, 218, 101);
+
+		/// <summary>
+		/// Indicates the color 2.
+		/// </summary>
+		public Color Color2 { get; set; } = Color.FromArgb(255, 255, 192, 89);
+
+		/// <summary>
+		/// Indicates the color 3.
+		/// </summary>
+		public Color Color3 { get; set; } = Color.FromArgb(255, 127, 187, 255);
+
+		/// <summary>
+		/// Indicates the color 4.
+		/// </summary>
+		public Color Color4 { get; set; } = Color.FromArgb(255, 216, 178, 255);
+
+		/// <summary>
+		/// Indicates the color 5.
+		/// </summary>
+		public Color Color5 { get; set; } = Color.FromArgb(255, 197, 232, 140);
+
+		/// <summary>
+		/// Indicates the color 6.
+		/// </summary>
+		public Color Color6 { get; set; } = Color.FromArgb(255, 255, 203, 203);
+
+		/// <summary>
+		/// Indicates the color 7.
+		/// </summary>
+		public Color Color7 { get; set; } = Color.FromArgb(255, 178, 223, 223);
+
+		/// <summary>
+		/// Indicates the color 8.
+		/// </summary>
+		public Color Color8 { get; set; } = Color.FromArgb(255, 252, 220, 165);
+
+		/// <summary>
+		/// Indicates the color 9.
+		/// </summary>
+		public Color Color9 { get; set; } = Color.FromArgb(255, 255, 255, 150);
+
+		/// <summary>
+		/// Indicates the color 10.
+		/// </summary>
+		public Color Color10 { get; set; } = Color.FromArgb(255, 247, 222, 143);
+
+		/// <summary>
+		/// Indicates the color 11.
+		/// </summary>
+		public Color Color11 { get; set; } = Color.FromArgb(255, 220, 212, 252);
+
+		/// <summary>
+		/// Indicates the color 12.
+		/// </summary>
+		public Color Color12 { get; set; } = Color.FromArgb(255, 255, 210, 210);
+
+		/// <summary>
+		/// Indicates the color 13.
+		/// </summary>
+		public Color Color13 { get; set; } = Color.FromArgb(255, 206, 251, 237);
+
+		/// <summary>
+		/// Indicates the color 14.
+		/// </summary>
+		public Color Color14 { get; set; } = Color.FromArgb(255, 215, 255, 215);
+
+		/// <summary>
+		/// Indicates the color 15.
+		/// </summary>
+		public Color Color15 { get; set; } = Color.FromArgb(255, 192, 192, 192);
 	}
 }

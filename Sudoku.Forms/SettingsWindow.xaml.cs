@@ -25,7 +25,6 @@ namespace Sudoku.Forms
 			Settings = baseWindow.Settings;
 
 			// Show controls with the specified settings.
-			_checkBoxShowCandidates.IsChecked = Settings.ShowCandidates;
 			_checkBoxAskWhileQuitting.IsChecked = Settings.AskWhileQuitting;
 			_textBoxGridLineWidth.Text = Settings.GridLineWidth.ToString();
 			_textBoxBlockLineWidth.Text = Settings.BlockLineWidth.ToString();
@@ -44,6 +43,43 @@ namespace Sudoku.Forms
 			_buttonFocusColor.Background = new w::Media.SolidColorBrush(Settings.FocusedCellColor.ToWColor());
 			_buttonGridLineColor.Background = new w::Media.SolidColorBrush(Settings.GridLineColor.ToWColor());
 			_buttonBlockLineColor.Background = new w::Media.SolidColorBrush(Settings.BlockLineColor.ToWColor());
+			_buttonColor1.Background = new w::Media.SolidColorBrush(Settings.Color1.ToWColor());
+			_buttonColor2.Background = new w::Media.SolidColorBrush(Settings.Color2.ToWColor());
+			_buttonColor3.Background = new w::Media.SolidColorBrush(Settings.Color3.ToWColor());
+			_buttonColor4.Background = new w::Media.SolidColorBrush(Settings.Color4.ToWColor());
+			_buttonColor5.Background = new w::Media.SolidColorBrush(Settings.Color5.ToWColor());
+			_buttonColor6.Background = new w::Media.SolidColorBrush(Settings.Color6.ToWColor());
+			_buttonColor7.Background = new w::Media.SolidColorBrush(Settings.Color7.ToWColor());
+			_buttonColor8.Background = new w::Media.SolidColorBrush(Settings.Color8.ToWColor());
+			_buttonColor9.Background = new w::Media.SolidColorBrush(Settings.Color9.ToWColor());
+			_buttonColor10.Background = new w::Media.SolidColorBrush(Settings.Color10.ToWColor());
+			_buttonColor11.Background = new w::Media.SolidColorBrush(Settings.Color11.ToWColor());
+			_buttonColor12.Background = new w::Media.SolidColorBrush(Settings.Color12.ToWColor());
+			_buttonColor13.Background = new w::Media.SolidColorBrush(Settings.Color13.ToWColor());
+			_buttonColor14.Background = new w::Media.SolidColorBrush(Settings.Color14.ToWColor());
+			_buttonColor15.Background = new w::Media.SolidColorBrush(Settings.Color15.ToWColor());
+		}
+
+
+		/// <summary>
+		/// To handle the color settings.
+		/// </summary>
+		/// <param name="sender">The object to trigger the event.</param>
+		/// <param name="e">The event.</param>
+		/// <param name="settings">The setting target instance.</param>
+		/// <param name="colorIndex">The index.</param>
+		private void HandleColor(object sender, RoutedEventArgs e, Settings settings, int colorIndex)
+		{
+			var dialog = new ColorDialog();
+
+			if (!(sender is Button button) || !(dialog.ShowDialog() is true))
+			{
+				e.Handled = true;
+				return;
+			}
+
+			typeof(Settings).GetProperty($"Color{colorIndex}")!.SetValue(settings, dialog.SelectedColor);
+			button.Foreground = new w::Media.SolidColorBrush(dialog.SelectedColor.ToWColor());
 		}
 
 
@@ -60,9 +96,6 @@ namespace Sudoku.Forms
 
 			Close();
 		}
-
-		private void CheckBoxShowCandidates_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxShowCandidates.IsChecked = Settings.ShowCandidates ^= true;
 
 		private void CheckBoxAskWhileQuitting_Click(object sender, RoutedEventArgs e) =>
 			_checkBoxAskWhileQuitting.IsChecked = Settings.AskWhileQuitting ^= true;
@@ -252,5 +285,50 @@ namespace Sudoku.Forms
 			_buttonCandidateColor.Background = new w::Media.SolidColorBrush(
 				(Settings.BlockLineColor = dialog.SelectedColor).ToWColor());
 		}
+
+		private void ButtonColor1_Click(object sender, RoutedEventArgs e) =>
+			HandleColor(sender, e, Settings, 1);
+
+		private void ButtonColor2_Click(object sender, RoutedEventArgs e) =>
+			HandleColor(sender, e, Settings, 2);
+
+		private void ButtonColor3_Click(object sender, RoutedEventArgs e) =>
+			HandleColor(sender, e, Settings, 3);
+
+		private void ButtonColor4_Click(object sender, RoutedEventArgs e) =>
+			HandleColor(sender, e, Settings, 4);
+
+		private void ButtonColor5_Click(object sender, RoutedEventArgs e) =>
+			HandleColor(sender, e, Settings, 5);
+
+		private void ButtonColor6_Click(object sender, RoutedEventArgs e) =>
+			HandleColor(sender, e, Settings, 6);
+
+		private void ButtonColor7_Click(object sender, RoutedEventArgs e) =>
+			HandleColor(sender, e, Settings, 7);
+
+		private void ButtonColor8_Click(object sender, RoutedEventArgs e) =>
+			HandleColor(sender, e, Settings, 8);
+
+		private void ButtonColor9_Click(object sender, RoutedEventArgs e) =>
+			HandleColor(sender, e, Settings, 9);
+
+		private void ButtonColor10_Click(object sender, RoutedEventArgs e) =>
+			HandleColor(sender, e, Settings, 10);
+
+		private void ButtonColor11_Click(object sender, RoutedEventArgs e) =>
+			HandleColor(sender, e, Settings, 11);
+
+		private void ButtonColor12_Click(object sender, RoutedEventArgs e) =>
+			HandleColor(sender, e, Settings, 12);
+
+		private void ButtonColor13_Click(object sender, RoutedEventArgs e) =>
+			HandleColor(sender, e, Settings, 13);
+
+		private void ButtonColor14_Click(object sender, RoutedEventArgs e) =>
+			HandleColor(sender, e, Settings, 14);
+
+		private void ButtonColor15_Click(object sender, RoutedEventArgs e) =>
+			HandleColor(sender, e, Settings, 15);
 	}
 }

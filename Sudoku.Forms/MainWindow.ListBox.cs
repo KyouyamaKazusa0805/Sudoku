@@ -30,15 +30,7 @@ namespace Sudoku.Forms
 			var (n, s) = pair;
 			Puzzle = new UndoableGrid((SudokuGrid)_analyisResult!.StepGrids![n]);
 			_layerCollection.Add(
-				new ViewLayer(
-					_pointConverter, s.Views[0], new Dictionary<int, d::Color>
-					{
-						[0] = d::Color.FromArgb(255, 134, 242, 128),
-						[1] = d::Color.FromArgb(255, 255, 192, 89),
-						[2] = d::Color.FromArgb(255, 177, 165, 243),
-						[-1] = d::Color.FromArgb(255, 247, 165, 167),
-						[-2] = d::Color.FromArgb(255, 134, 232, 208),
-					}));
+				new ViewLayer(_pointConverter, s.Views[0], Settings.ColorDictionary));
 
 			UpdateImageGrid();
 		}

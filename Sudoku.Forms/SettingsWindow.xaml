@@ -31,13 +31,9 @@
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"/>
 						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="*"/>
 					</Grid.ColumnDefinitions>
-					<CheckBox Content="Show candidates" Name="_checkBoxShowCandidates"
-							  Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"
-							  Click="CheckBoxShowCandidates_Click"/>
 					<CheckBox Content="Ask while quitting" Name="_checkBoxAskWhileQuitting"
-							  Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"
+							  Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"
 							  Click="CheckBoxAskWhileQuitting_Click"/>
 				</Grid>
 			</TabItem>
@@ -117,6 +113,87 @@
 					<Button Name="_buttonBlockLineColor" Grid.Row="1" Grid.Column="4"
 							Content="Change color"
 							Click="ButtonBlockLineColor_Click"/>
+				</Grid>
+			</TabItem>
+			<TabItem Header="Palette">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<Label Grid.Row="0" Grid.Column="0" Content="Color1:"
+						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+					<Button Grid.Row="0" Grid.Column="1" Content="Change color" Name="_buttonColor1"
+							Click="ButtonColor1_Click"/>
+					<Label Grid.Row="0" Grid.Column="2" Content="Color2:"
+						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+					<Button Grid.Row="0" Grid.Column="3" Content="Change color" Name="_buttonColor2"
+							Click="ButtonColor2_Click"/>
+					<Label Grid.Row="0" Grid.Column="4" Content="Color3:"
+						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+					<Button Grid.Row="0" Grid.Column="5" Content="Change color" Name="_buttonColor3"
+							Click="ButtonColor3_Click"/>
+					<Label Grid.Row="1" Grid.Column="0" Content="Color4:"
+						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+					<Button Grid.Row="1" Grid.Column="1" Content="Change color" Name="_buttonColor4"
+							Click="ButtonColor4_Click"/>
+					<Label Grid.Row="1" Grid.Column="2" Content="Color5:"
+						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+					<Button Grid.Row="1" Grid.Column="3" Content="Change color" Name="_buttonColor5"
+							Click="ButtonColor5_Click"/>
+					<Label Grid.Row="1" Grid.Column="4" Content="Color6:"
+						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+					<Button Grid.Row="1" Grid.Column="5" Content="Change color" Name="_buttonColor6"
+							Click="ButtonColor6_Click"/>
+					<Label Grid.Row="2" Grid.Column="0" Content="Color7:"
+						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+					<Button Grid.Row="2" Grid.Column="1" Content="Change color" Name="_buttonColor7"
+							Click="ButtonColor7_Click"/>
+					<Label Grid.Row="2" Grid.Column="2" Content="Color8:"
+						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+					<Button Grid.Row="2" Grid.Column="3" Content="Change color" Name="_buttonColor8"
+							Click="ButtonColor8_Click"/>
+					<Label Grid.Row="2" Grid.Column="4" Content="Color9:"
+						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+					<Button Grid.Row="2" Grid.Column="5" Content="Change color" Name="_buttonColor9"
+							Click="ButtonColor9_Click"/>
+					<Label Grid.Row="3" Grid.Column="0" Content="Color10:"
+						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+					<Button Grid.Row="3" Grid.Column="1" Content="Change color" Name="_buttonColor10"
+							Click="ButtonColor10_Click"/>
+					<Label Grid.Row="3" Grid.Column="2" Content="Color11:"
+						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+					<Button Grid.Row="3" Grid.Column="3" Content="Change color" Name="_buttonColor11"
+							Click="ButtonColor11_Click"/>
+					<Label Grid.Row="3" Grid.Column="4" Content="Color12:"
+						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+					<Button Grid.Row="3" Grid.Column="5" Content="Change color" Name="_buttonColor12"
+							Click="ButtonColor12_Click"/>
+					<Label Grid.Row="4" Grid.Column="0" Content="Color13:"
+						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+					<Button Grid.Row="4" Grid.Column="1" Content="Change color" Name="_buttonColor13"
+							Click="ButtonColor13_Click"/>
+					<Label Grid.Row="4" Grid.Column="2" Content="Color14:"
+						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+					<Button Grid.Row="4" Grid.Column="3" Content="Change color" Name="_buttonColor14"
+							Click="ButtonColor14_Click"/>
+					<Label Grid.Row="4" Grid.Column="4" Content="Color15:"
+						   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+					<Button Grid.Row="4" Grid.Column="5" Content="Change color" Name="_buttonColor15"
+							Click="ButtonColor15_Click"/>
 				</Grid>
 			</TabItem>
 		</TabControl>

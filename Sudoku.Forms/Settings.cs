@@ -23,7 +23,10 @@ namespace Sudoku.Forms
 		{
 			foreach (var property in GetType().GetProperties())
 			{
-				property.SetValue(this, property.GetValue(newSetting));
+				if (property.CanWrite)
+				{
+					property.SetValue(this, property.GetValue(newSetting));
+				}
 			}
 		}
 
