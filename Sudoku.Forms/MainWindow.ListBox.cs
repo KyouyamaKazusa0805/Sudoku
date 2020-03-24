@@ -3,7 +3,6 @@ using w = System.Windows;
 using d = System.Drawing;
 using SudokuGrid = Sudoku.Data.Grid;
 using Sudoku.Data.Stepping;
-using System.Collections.Generic;
 using Sudoku.Drawing.Layers;
 
 namespace Sudoku.Forms
@@ -30,7 +29,9 @@ namespace Sudoku.Forms
 			var (n, s) = pair;
 			Puzzle = new UndoableGrid((SudokuGrid)_analyisResult!.StepGrids![n]);
 			_layerCollection.Add(
-				new ViewLayer(_pointConverter, s.Views[0], Settings.ColorDictionary));
+				new ViewLayer(
+					_pointConverter, s.Views[0], _analyisResult!.SolvingSteps![n].Conclusions,
+					Settings.ColorDictionary, Settings.EliminationColor, Settings.CannibalismColor));
 
 			UpdateImageGrid();
 		}
