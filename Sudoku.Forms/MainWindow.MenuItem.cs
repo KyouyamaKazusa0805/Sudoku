@@ -233,7 +233,7 @@ namespace Sudoku.Forms
 		}
 
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-		private async void MenuItemModeSolve_Click(object sender, RoutedEventArgs e)
+		private async void MenuItemAnalyzeSolve_Click(object sender, RoutedEventArgs e)
 		{
 			// Update status.
 			_listBoxPaths.Items.Clear();
@@ -325,7 +325,9 @@ namespace Sudoku.Forms
 			}
 			else
 			{
-				MessageBox.Show("The puzzle cannot be solved due to internal error.", "Warning");
+				MessageBox.Show(
+					"The puzzle cannot be solved. The possible case is that the puzzle has no or multiple solutions.",
+					"Warning");
 			}
 
 			IEnumerable<IGrouping<string, TechniqueInfo>> GetGroupedSteps()
@@ -352,34 +354,16 @@ namespace Sudoku.Forms
 			}
 		}
 
-		private void MenuItemModeSeMode_Click(object sender, RoutedEventArgs e) =>
-			_menuItemModeSeMode.IsChecked = Settings.SeMode ^= true;
+		private void MenuItemAnalyzeSeMode_Click(object sender, RoutedEventArgs e) =>
+			_menuItemAnalyzeSeMode.IsChecked = Settings.SeMode ^= true;
 
-		private void MenuItemModeFastSearch_Click(object sender, RoutedEventArgs e) =>
-			_menuItemModeFastSearch.IsChecked = Settings.FastSearch ^= true;
+		private void MenuItemAnalyzeFastSearch_Click(object sender, RoutedEventArgs e) =>
+			_menuItemAnalyzeFastSearch.IsChecked = Settings.FastSearch ^= true;
+
+		private void MenuItemAnalyzeBackdoor_Click(object sender, RoutedEventArgs e) =>
+			new BackdoorWindow(_puzzle).ShowDialog();
 
 		private void MenuItemAboutMe_Click(object sender, RoutedEventArgs e) =>
 			new AboutMeWindow().Show();
-
-
-		private readonly struct InfoPair
-		{
-			public InfoPair(int index, TechniqueInfo techniqueInfo) =>
-				(Index, TechniqueInfo) = (index, techniqueInfo);
-
-			public InfoPair((int _index, TechniqueInfo _info) pair) =>
-				(Index, TechniqueInfo) = (pair._index, pair._info);
-
-
-			public int Index { get; }
-
-			public TechniqueInfo TechniqueInfo { get; }
-
-
-			public void Deconstruct(out int index, out TechniqueInfo techniqueInfo) =>
-				(index, techniqueInfo) = (Index, TechniqueInfo);
-
-			public override string ToString() => TechniqueInfo.ToString();
-		}
 	}
 }

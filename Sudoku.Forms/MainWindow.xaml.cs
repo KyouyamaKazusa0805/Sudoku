@@ -137,7 +137,7 @@ namespace Sudoku.Forms
 			AddShortCut(Key.O, ModifierKeys.Control, MenuItemFileOpen_Click);
 			AddShortCut(Key.S, ModifierKeys.Control, MenuItemFileSave_Click);
 			AddShortCut(Key.F4, ModifierKeys.Alt, MenuItemFileQuit_Click);
-			AddShortCut(Key.F9, ModifierKeys.None, MenuItemModeSolve_Click); ;
+			AddShortCut(Key.F9, ModifierKeys.None, MenuItemAnalyzeSolve_Click); ;
 			AddShortCut(Key.OemTilde, ModifierKeys.Control, MenuItemEditFix_Click);
 			AddShortCut(Key.OemTilde, ModifierKeys.Control | ModifierKeys.Shift, MenuItemEditUnfix_Click);
 			AddShortCut(Key.Z, ModifierKeys.Control, MenuItemEditUndo_Click);
@@ -329,8 +329,8 @@ namespace Sudoku.Forms
 		private void UpdateControls()
 		{
 			_menuItemOptionsShowCandidates.IsChecked = Settings.ShowCandidates;
-			_menuItemModeSeMode.IsChecked = Settings.SeMode;
-			_menuItemModeFastSearch.IsChecked = Settings.FastSearch;
+			_menuItemAnalyzeSeMode.IsChecked = Settings.SeMode;
+			_menuItemAnalyzeFastSearch.IsChecked = Settings.FastSearch;
 
 			UpdateImageGrid();
 		}
@@ -367,5 +367,7 @@ namespace Sudoku.Forms
 			var (x, y) = point;
 			return x < 0 || x > control.Width || y < 0 || y > control.Height;
 		}
+
+		
 	}
 }

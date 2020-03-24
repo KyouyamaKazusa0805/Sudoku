@@ -495,6 +495,9 @@
             where value 0 is for searching for assignments.
             </param>
             <returns>All backdoors.</returns>
+            <exception cref="T:Sudoku.SudokuRuntimeException">
+            Throws when the specified grid is invalid.
+            </exception>
         </member>
         <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchForBackdoorsExact(Sudoku.Data.IReadOnlyGrid,System.Int32)">
             <summary>

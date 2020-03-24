@@ -40,11 +40,19 @@ namespace Sudoku.Solving.Checking
 		/// where value 0 is for searching for assignments.
 		/// </param>
 		/// <returns>All backdoors.</returns>
+		/// <exception cref="SudokuRuntimeException">
+		/// Throws when the specified grid is invalid.
+		/// </exception>
 		public IEnumerable<IBackdoorSet> SearchForBackdoors(IReadOnlyGrid grid, int depth)
 		{
 			if (depth < 0 || depth > 3)
 			{
 				return Array.Empty<IBackdoorSet>();
+			}
+
+			if (!grid.IsValid(out _))
+			{
+				throw new SudokuRuntimeException();
 			}
 
 			var result = new List<IBackdoorSet>();
