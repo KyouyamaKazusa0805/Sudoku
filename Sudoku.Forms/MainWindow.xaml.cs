@@ -367,7 +367,5 @@ namespace Sudoku.Forms
 			var (x, y) = point;
 			return x < 0 || x > control.Width || y < 0 || y > control.Height;
 		}
-
-		
 	}
 }
