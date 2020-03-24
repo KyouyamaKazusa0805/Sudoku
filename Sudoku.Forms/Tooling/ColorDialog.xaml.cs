@@ -19,12 +19,17 @@ namespace Sudoku.Forms.Tooling
 		private readonly Brush _brush = new SolidBrush(Color.Black);
 
 
+		/// <include file='../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public ColorDialog() => InitializeComponent();
 
 
+		/// <summary>
+		/// Indicates the selected color.
+		/// </summary>
 		public Color SelectedColor { get; private set; }
 
 
+		/// <inheritdoc/>
 		protected override void OnInitialized(EventArgs e)
 		{
 			base.OnInitialized(e);
@@ -34,6 +39,9 @@ namespace Sudoku.Forms.Tooling
 			UpdatePreview();
 		}
 
+		/// <summary>
+		/// To update the preview.
+		/// </summary>
 		private void UpdatePreview()
 		{
 			var bitmap = new Bitmap((int)_imagePreview.Width, (int)_imagePreview.Height);
