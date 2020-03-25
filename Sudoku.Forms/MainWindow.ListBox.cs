@@ -19,7 +19,10 @@ namespace Sudoku.Forms
 				return;
 			}
 
-			if (!(sender is w::Controls.ListBox b && b.SelectedItem is InfoPair pair))
+			if (!(
+				sender is w::Controls.ListBox b
+				&& b.SelectedItem is w::Controls.ListBoxItem listBoxItem
+				&& listBoxItem.Content is InfoPair pair))
 			{
 				e.Handled = true;
 				return;

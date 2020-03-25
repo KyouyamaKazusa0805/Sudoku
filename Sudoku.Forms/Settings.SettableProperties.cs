@@ -419,12 +419,12 @@ namespace Sudoku.Forms
 		/// <summary>
 		/// Indicates the elimination color.
 		/// </summary>
-		public Color EliminationColor { get; set; } = Color.FromArgb(255, 255, 118, 132);
+		public Color EliminationColor { get; set; } = Color.FromArgb(255, 118, 132);
 
 		/// <summary>
 		/// Indicates the cannibalism color.
 		/// </summary>
-		public Color CannibalismColor { get; set; } = Color.FromArgb(255, 235, 0, 0);
+		public Color CannibalismColor { get; set; } = Color.FromArgb(235, 0, 0);
 
 		/// <summary>
 		/// Indicates the chain color.
@@ -434,77 +434,100 @@ namespace Sudoku.Forms
 		/// <summary>
 		/// Indicates the color 1.
 		/// </summary>
-		public Color Color1 { get; set; } = Color.FromArgb(255, 63, 218, 101);
+		public Color Color1 { get; set; } = Color.FromArgb(63, 218, 101);
 
 		/// <summary>
 		/// Indicates the color 2.
 		/// </summary>
-		public Color Color2 { get; set; } = Color.FromArgb(255, 255, 192, 89);
+		public Color Color2 { get; set; } = Color.FromArgb(255, 192, 89);
 
 		/// <summary>
 		/// Indicates the color 3.
 		/// </summary>
-		public Color Color3 { get; set; } = Color.FromArgb(255, 127, 187, 255);
+		public Color Color3 { get; set; } = Color.FromArgb(127, 187, 255);
 
 		/// <summary>
 		/// Indicates the color 4.
 		/// </summary>
-		public Color Color4 { get; set; } = Color.FromArgb(255, 216, 178, 255);
+		public Color Color4 { get; set; } = Color.FromArgb(216, 178, 255);
 
 		/// <summary>
 		/// Indicates the color 5.
 		/// </summary>
-		public Color Color5 { get; set; } = Color.FromArgb(255, 197, 232, 140);
+		public Color Color5 { get; set; } = Color.FromArgb(197, 232, 140);
 
 		/// <summary>
 		/// Indicates the color 6.
 		/// </summary>
-		public Color Color6 { get; set; } = Color.FromArgb(255, 255, 203, 203);
+		public Color Color6 { get; set; } = Color.FromArgb(255, 203, 203);
 
 		/// <summary>
 		/// Indicates the color 7.
 		/// </summary>
-		public Color Color7 { get; set; } = Color.FromArgb(255, 178, 223, 223);
+		public Color Color7 { get; set; } = Color.FromArgb(178, 223, 223);
 
 		/// <summary>
 		/// Indicates the color 8.
 		/// </summary>
-		public Color Color8 { get; set; } = Color.FromArgb(255, 252, 220, 165);
+		public Color Color8 { get; set; } = Color.FromArgb(252, 220, 165);
 
 		/// <summary>
 		/// Indicates the color 9.
 		/// </summary>
-		public Color Color9 { get; set; } = Color.FromArgb(255, 255, 255, 150);
+		public Color Color9 { get; set; } = Color.FromArgb(255, 255, 150);
 
 		/// <summary>
 		/// Indicates the color 10.
 		/// </summary>
-		public Color Color10 { get; set; } = Color.FromArgb(255, 247, 222, 143);
+		public Color Color10 { get; set; } = Color.FromArgb(247, 222, 143);
 
 		/// <summary>
 		/// Indicates the color 11.
 		/// </summary>
-		public Color Color11 { get; set; } = Color.FromArgb(255, 220, 212, 252);
+		public Color Color11 { get; set; } = Color.FromArgb(220, 212, 252);
 
 		/// <summary>
 		/// Indicates the color 12.
 		/// </summary>
-		public Color Color12 { get; set; } = Color.FromArgb(255, 255, 210, 210);
+		public Color Color12 { get; set; } = Color.FromArgb(255, 210, 210);
 
 		/// <summary>
 		/// Indicates the color 13.
 		/// </summary>
-		public Color Color13 { get; set; } = Color.FromArgb(255, 206, 251, 237);
+		public Color Color13 { get; set; } = Color.FromArgb(206, 251, 237);
 
 		/// <summary>
 		/// Indicates the color 14.
 		/// </summary>
-		public Color Color14 { get; set; } = Color.FromArgb(255, 215, 255, 215);
+		public Color Color14 { get; set; } = Color.FromArgb(215, 255, 215);
 
 		/// <summary>
 		/// Indicates the color 15.
 		/// </summary>
-		public Color Color15 { get; set; } = Color.FromArgb(255, 192, 192, 192);
+		public Color Color15 { get; set; } = Color.FromArgb(192, 192, 192);
+
+		public IDictionary<DifficultyLevel, (Color _foreground, Color _background)> DiffColors
+		{
+			get
+			{
+				return new Dictionary<DifficultyLevel, (Color, Color)>
+				{
+					[DifficultyLevel.Unknown] = (Color.Black, Color.Gray),
+					[DifficultyLevel.VeryEasy] = (Color.Black, Color.FromArgb(204, 204, 255)),
+					[DifficultyLevel.Easy] = (Color.Black, Color.FromArgb(204, 204, 255)),
+					[DifficultyLevel.Moderate] = (Color.Black, Color.FromArgb(100, 255, 100)),
+					[DifficultyLevel.Advanced] = (Color.Black, Color.FromArgb(100, 255, 100)),
+					[DifficultyLevel.Hard] = (Color.Black, Color.FromArgb(255, 255, 100)),
+					[DifficultyLevel.VeryHard] = (Color.Black, Color.FromArgb(255, 255, 100)),
+					[DifficultyLevel.Fiendish] = (Color.Black, Color.FromArgb(255, 150, 80)),
+					[DifficultyLevel.Diabolical] = (Color.Black, Color.FromArgb(255, 150, 80)),
+					[DifficultyLevel.Crazy] = (Color.Black, Color.FromArgb(255, 100, 100)),
+					[DifficultyLevel.Nightmare] = (Color.Black, Color.FromArgb(255, 100, 100)),
+					[DifficultyLevel.BeyondNightmare] = (Color.Black, Color.FromArgb(255, 100, 100)),
+					[DifficultyLevel.LastResort] = (Color.Black, Color.FromArgb(255, 100, 100))
+				};
+			}
+		}
 
 		/// <summary>
 		/// Indicates the color dictionary.

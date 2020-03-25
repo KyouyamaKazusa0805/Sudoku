@@ -13,6 +13,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing.Layers;
+using Sudoku.Forms.Drawing.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Generating;
 using Grid = System.Windows.Controls.Grid;
@@ -254,7 +255,12 @@ namespace Sudoku.Forms
 				int i = 0;
 				foreach (var step in _analyisResult.SolvingSteps!)
 				{
-					_listBoxPaths.Items.Add(new InfoPair(i++, step));
+					var item = new w::Controls.ListBoxItem();
+					var (fore, back) = Settings.DiffColors[step.DifficultyLevel];
+					item.Foreground = new w::Media.SolidColorBrush(fore.ToWColor());
+					item.Background = new w::Media.SolidColorBrush(back.ToWColor());
+					item.Content = new InfoPair(i++, step);
+					_listBoxPaths.Items.Add(item);
 				}
 
 				var collection = new List<(string?, int, decimal?, decimal?)>();
