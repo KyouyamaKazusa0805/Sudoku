@@ -75,6 +75,9 @@
 				<MenuItem Header="FastSearch" Name="_menuItemAnalyzeFastSearch"
 						  Click="MenuItemAnalyzeFastSearch_Click"/>
 				<Separator/>
+				<MenuItem Header="Export..." Name="_menuItemExport"
+						  Click="MenuItemExport_Click"/>
+				<Separator/>
 				<MenuItem Header="Backdoor search..." Name="_menuItemAnalyzeBackdoor"
 						  Click="MenuItemAnalyzeBackdoor_Click"/>
 			</MenuItem>

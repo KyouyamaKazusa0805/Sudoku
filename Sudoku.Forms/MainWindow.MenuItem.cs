@@ -361,6 +361,18 @@ namespace Sudoku.Forms
 		private void MenuItemAnalyzeFastSearch_Click(object sender, RoutedEventArgs e) =>
 			_menuItemAnalyzeFastSearch.IsChecked = Settings.FastSearch ^= true;
 
+		private void MenuItemExport_Click(object sender, RoutedEventArgs e)
+		{
+			if (_analyisResult is null)
+			{
+				MessageBox.Show("You should solve the puzzle first.", "Information");
+				e.Handled = true;
+				return;
+			}
+
+			new ExportAnalysisResultWindow(_analyisResult).Show();
+		}
+
 		private void MenuItemAnalyzeBackdoor_Click(object sender, RoutedEventArgs e) =>
 			new BackdoorWindow(_puzzle).ShowDialog();
 
