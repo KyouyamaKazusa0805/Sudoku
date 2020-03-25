@@ -182,6 +182,7 @@ namespace Sudoku.Forms
 
 			_labelGivenFontName.FontFamily = new w::Media.FontFamily(
 				Settings.GivenFontName = dialog.SelectedFont.Name);
+			_labelGivenFontName.Content = dialog.SelectedFont.Name;
 		}
 
 		private void ButtonModifiableFontName_Click(object sender, RoutedEventArgs e)
@@ -195,6 +196,7 @@ namespace Sudoku.Forms
 
 			_labelModifiableFontName.FontFamily = new w::Media.FontFamily(
 				Settings.ModifiableFontName = dialog.SelectedFont.Name);
+			_labelModifiableFontName.Content = dialog.SelectedFont.Name;
 		}
 
 		private void ButtonCandidateFontName_Click(object sender, RoutedEventArgs e)
@@ -208,6 +210,7 @@ namespace Sudoku.Forms
 
 			_labelCandidateFontName.FontFamily = new w::Media.FontFamily(
 				Settings.CandidateFontName = dialog.SelectedFont.Name);
+			_labelCandidateFontName.Content = dialog.SelectedFont.Name;
 		}
 
 		private void ButtonBackgroundColor_Click(object sender, RoutedEventArgs e)

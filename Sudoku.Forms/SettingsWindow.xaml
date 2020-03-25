@@ -179,37 +179,45 @@
 						<RowDefinition/>
 					</Grid.RowDefinitions>
 					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="2*"/>
+						<ColumnDefinition Width="1.5*"/>
 						<ColumnDefinition/>
 						<ColumnDefinition/>
-						<ColumnDefinition Width="2*"/>
+						<ColumnDefinition Width="1.5*"/>
 						<ColumnDefinition/>
 						<ColumnDefinition/>
 					</Grid.ColumnDefinitions>
 					<Label Grid.Row="0" Grid.Column="0" Content="Grid line width:"/>
 					<TextBox Grid.Row="0" Grid.Column="1" Name="_textBoxGridLineWidth"
+							 HorizontalContentAlignment="Center"
+							 VerticalContentAlignment="Center"
 							 TextChanged="TextBoxGridLineWidth_TextChanged"/>
 					<Label Grid.Row="1" Grid.Column="0" Content="Block line width:"/>
 					<TextBox Grid.Row="1" Grid.Column="1" Name="_textBoxBlockLineWidth"
+							 HorizontalContentAlignment="Center"
+							 VerticalContentAlignment="Center"
 							 TextChanged="TextBoxBlockLineWidth_TextChanged"/>
 					<Label Grid.Row="2" Grid.Column="0" Content="Value scale:"/>
 					<TextBox Grid.Row="2" Grid.Column="1" Name="_textBoxValueScale"
+							 HorizontalContentAlignment="Center"
+							 VerticalContentAlignment="Center"
 							 TextChanged="TextBoxValueScale_TextChanged"/>
 					<Label Grid.Row="3" Grid.Column="0" Content="Candidate scale:"/>
 					<TextBox Grid.Row="3" Grid.Column="1" Name="_textBoxCandidateScale"
+							 HorizontalContentAlignment="Center"
+							 VerticalContentAlignment="Center"
 							 TextChanged="TextBoxCandidateScale_TextChanged"/>
 					<Label Grid.Row="4" Grid.Column="0" Content="Given font name:"/>
-					<Label Grid.Row="4" Grid.Column="1" Name="_labelGivenFontName"/>
-					<Button Grid.Row="4" Grid.Column="2" Content="Change font" Name="_buttonGivenFontName"
+					<Button Grid.Row="4" Grid.Column="1" Content="Change font" Name="_buttonGivenFontName"
 							Click="ButtonGivenFontName_Click"/>
+					<Label Grid.Row="4" Grid.Column="2" Name="_labelGivenFontName"/>
 					<Label Grid.Row="5" Grid.Column="0" Content="Modifiable font name:"/>
-					<Label Grid.Row="5" Grid.Column="1" Name="_labelModifiableFontName"/>
-					<Button Grid.Row="5" Grid.Column="2" Content="Change font" Name="_buttonModifiableFontName"
+					<Button Grid.Row="5" Grid.Column="1" Content="Change font" Name="_buttonModifiableFontName"
 							Click="ButtonModifiableFontName_Click"/>
+					<Label Grid.Row="5" Grid.Column="2" Name="_labelModifiableFontName"/>
 					<Label Grid.Row="6" Grid.Column="0" Content="Candidate font name:"/>
-					<Label Grid.Row="6" Grid.Column="1" Name="_labelCandidateFontName"/>
-					<Button Grid.Row="6" Grid.Column="2" Content="Change font" Name="_buttonCandidateFontName"
+					<Button Grid.Row="6" Grid.Column="1" Content="Change font" Name="_buttonCandidateFontName"
 							Click="ButtonCandidateFontName_Click"/>
+					<Label Grid.Row="6" Grid.Column="2" Name="_labelCandidateFontName"/>
 					<Label Grid.Row="7" Grid.Column="0" Content="Background color:"/>
 					<Button Name="_buttonBackgroundColor" Grid.Row="7" Grid.Column="1"
 							Content="Change color"
