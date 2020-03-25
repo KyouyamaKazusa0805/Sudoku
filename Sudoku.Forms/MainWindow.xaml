@@ -152,6 +152,8 @@
 				<Grid Background="#FFE5E5E5"/>
 			</TabItem>
 		</TabControl>
-		<TextBox Grid.Row="2" Grid.ColumnSpan="2" IsReadOnly="True" Name="_textBoxInfo"/>
+		<TextBox Grid.Row="2" Grid.ColumnSpan="2" IsReadOnly="True" Cursor="Arrow"
+				 TextWrapping="Wrap"
+				 Name="_textBoxInfo"/>
 	</Grid>
 </Window>
