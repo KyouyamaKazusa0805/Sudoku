@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
@@ -365,5 +366,41 @@ namespace Sudoku.Forms
 
 		private void MenuItemAboutMe_Click(object sender, RoutedEventArgs e) =>
 			new AboutMeWindow().Show();
+		
+		private void ContextListBoxPathsCopyCurrentStep_Click(object sender, RoutedEventArgs e)
+		{
+			if (sender is w::Controls.MenuItem)
+			{
+				try
+				{
+					Clipboard.SetText(_listBoxPaths.SelectedItem.ToString());
+				}
+				catch
+				{
+					MessageBox.Show("Cannot copy due to internal error, please try later.", "Warning");
+				}
+			}
+		}
+
+		private void ContextListBoxPathsCopyAllSteps_Click(object sender, RoutedEventArgs e)
+		{
+			if (sender is w::Controls.MenuItem)
+			{
+				var sb = new StringBuilder();
+				foreach (var step in from object item in _listBoxPaths.Items select item.ToString())
+				{
+					sb.AppendLine(step);
+				}
+
+				try
+				{
+					Clipboard.SetText(sb.ToString());
+				}
+				catch
+				{
+					MessageBox.Show("Cannot copy due to internal error, please try later.", "Warning");
+				}
+			}
+		}
 	}
 }

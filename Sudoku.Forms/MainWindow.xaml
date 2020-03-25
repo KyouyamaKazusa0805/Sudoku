@@ -6,13 +6,13 @@
 		mc:Ignorable="d" Height="800" Width="1200" ResizeMode="CanMinimize">
 	<Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="*"/>
+			<RowDefinition/>
 			<RowDefinition Height="600"/>
-			<RowDefinition Height="*"/>
+			<RowDefinition/>
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*"/>
-			<ColumnDefinition Width="*"/>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
 		<Menu VerticalAlignment="Top" IsMainMenu="True" Name="_mainMenu"
 			  Grid.Row="0" Grid.ColumnSpan="2">
@@ -85,16 +85,25 @@
 		<Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 			   Name="_imageGrid" Grid.Row="1" Grid.Column="0" Width="576" Height="576"
 			   MouseLeftButtonDown="ImageGrid_MouseLeftButtonDown"
-			   MouseRightButtonDown="ImageGrid_MouseRightButtonDown"/>
+			   MouseRightButtonDown="ImageGrid_MouseRightButtonDown">
+			<Image.ContextMenu>
+				<ContextMenu>
+					<MenuItem Header="Copy the grid"
+							  Click="MenuItemEditCopyCurrentGrid_Click"/>
+					<MenuItem Header="Past the grid"
+							  Click="MenuItemEditPaste_Click"/>
+				</ContextMenu>
+			</Image.ContextMenu>
+		</Image>
 		<TabControl Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"
 					VerticalAlignment="Stretch">
 			<TabItem Header="Summary">
 				<Grid Background="#FFE5E5E5" Name="_gridSummary">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="2*"/>
-						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="*"/>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
 					</Grid.ColumnDefinitions>
 				</Grid>
 			</TabItem>
@@ -102,7 +111,18 @@
 				<Grid Background="#FFE5E5E5">
 					<ListBox Name="_listBoxPaths"
 							 SelectionChanged="ListBoxPaths_SelectionChanged"
-							 LostFocus="ListBoxPaths_LostFocus"/>
+							 LostFocus="ListBoxPaths_LostFocus">
+						<ListBox.ContextMenu>
+							<ContextMenu>
+								<MenuItem Header="Copy current step"
+										  Name="_contextListBoxPathsCopyCurrentStep"
+										  Click="ContextListBoxPathsCopyCurrentStep_Click"/>
+								<MenuItem Header="Copy all steps"
+										  Name="_contextListBoxPathsCopyAllSteps"
+										  Click="ContextListBoxPathsCopyAllSteps_Click"/>
+							</ContextMenu>
+						</ListBox.ContextMenu>
+					</ListBox>
 				</Grid>
 			</TabItem>
 			<TabItem Header="All possible steps">

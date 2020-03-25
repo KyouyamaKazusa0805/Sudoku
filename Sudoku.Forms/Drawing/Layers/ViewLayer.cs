@@ -111,10 +111,10 @@ namespace Sudoku.Drawing.Layers
 
 			if (!(_view.Links is null))
 			{
+				float width = _pointConverter.CandidateSize.Width;
 				using var pen = new Pen(_chainColor, 3)
 				{
-					CustomEndCap = new AdjustableArrowCap(
-						_pointConverter.CandidateSize.Width / 6, _pointConverter.CandidateSize.Width / 3)
+					CustomEndCap = new AdjustableArrowCap(width / 6, width / 3)
 				};
 				foreach (var ((startCandidates, startNodeType), (endCandidates, endNodeType)) in _view.Links)
 				{
