@@ -142,7 +142,7 @@ namespace Sudoku.Solving.Manual.Intersections
 						{
 							if (grid.CandidateExists(cell, digit))
 							{
-								candidateOffsets.Add((0, cell * 9 + digit));
+								candidateOffsets.Add((1, cell * 9 + digit));
 							}
 						}
 					}
@@ -263,7 +263,7 @@ namespace Sudoku.Solving.Manual.Intersections
 								{
 									if (grid.CandidateExists(cell, digit))
 									{
-										candidateOffsets.Add((0, cell * 9 + digit));
+										candidateOffsets.Add((1, cell * 9 + digit));
 									}
 								}
 							}
@@ -403,7 +403,7 @@ namespace Sudoku.Solving.Manual.Intersections
 									{
 										if (grid.CandidateExists(cell, digit))
 										{
-											candidateOffsets.Add((0, cell * 9 + digit));
+											candidateOffsets.Add((1, cell * 9 + digit));
 										}
 									}
 								}
