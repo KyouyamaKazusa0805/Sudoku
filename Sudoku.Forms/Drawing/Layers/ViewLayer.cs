@@ -111,7 +111,11 @@ namespace Sudoku.Drawing.Layers
 
 			if (!(_view.Links is null))
 			{
-				using var pen = new Pen(_chainColor, 3) { EndCap = LineCap.ArrowAnchor };
+				using var pen = new Pen(_chainColor, 3)
+				{
+					CustomEndCap = new AdjustableArrowCap(
+						_pointConverter.CandidateSize.Width / 6, _pointConverter.CandidateSize.Width / 3)
+				};
 				foreach (var ((startCandidates, startNodeType), (endCandidates, endNodeType)) in _view.Links)
 				{
 					g.DrawLine(
@@ -127,12 +131,12 @@ namespace Sudoku.Drawing.Layers
 			{
 				switch (t)
 				{
-					case ConclusionType.Assignment:
-					{
-						// Every assignment conclusion will be painted
-						// in its technique information view.
-						break;
-					}
+					//case ConclusionType.Assignment:
+					//{
+					//	// Every assignment conclusion will be painted
+					//	// in its technique information view.
+					//	break;
+					//}
 					case ConclusionType.Elimination:
 					{
 						g.FillEllipse(
