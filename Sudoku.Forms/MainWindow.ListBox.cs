@@ -30,8 +30,8 @@ namespace Sudoku.Forms
 			var techniqueInfo = _analyisResult.SolvingSteps![n];
 			_layerCollection.Add(
 				new ViewLayer(
-					_pointConverter, s.Views[0], techniqueInfo.Conclusions,
-					Settings.ColorDictionary, Settings.EliminationColor, Settings.CannibalismColor));
+					_pointConverter, s.Views[0], techniqueInfo.Conclusions, Settings.ColorDictionary,
+					Settings.EliminationColor, Settings.CannibalismColor, Settings.ChainColor));
 			_textBoxInfo.Text = techniqueInfo.ToString();
 
 			UpdateImageGrid();

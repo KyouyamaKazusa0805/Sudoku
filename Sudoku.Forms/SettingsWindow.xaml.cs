@@ -286,6 +286,19 @@ namespace Sudoku.Forms
 				(Settings.BlockLineColor = dialog.SelectedColor).ToWColor());
 		}
 
+		private void ButtonChainColor_Click(object sender, RoutedEventArgs e)
+		{
+			var dialog = new ColorDialog();
+			if (!(dialog.ShowDialog() is true))
+			{
+				e.Handled = true;
+				return;
+			}
+
+			_buttonChainColor.Background = new w::Media.SolidColorBrush(
+				(Settings.ChainColor = dialog.SelectedColor).ToWColor());
+		}
+
 		private void ButtonColor1_Click(object sender, RoutedEventArgs e) =>
 			HandleColor(sender, e, Settings, 1);
 

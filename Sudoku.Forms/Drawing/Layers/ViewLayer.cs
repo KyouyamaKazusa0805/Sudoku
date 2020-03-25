@@ -25,6 +25,11 @@ namespace Sudoku.Drawing.Layers
 		private readonly Color _cannibalismColor;
 
 		/// <summary>
+		/// Indicates the chain color.
+		/// </summary>
+		private readonly Color _chainColor;
+
+		/// <summary>
 		/// The technique information.
 		/// </summary>
 		private readonly View _view;
@@ -49,11 +54,13 @@ namespace Sudoku.Drawing.Layers
 		/// <param name="colorDic">The color dictionary.</param>
 		/// <param name="eliminationColor">The elimination color.</param>
 		/// <param name="cannibalismColor">The cannibalism color.</param>
+		/// <param name="chainColor">The chain color.</param>
 		public ViewLayer(
 			PointConverter pointConverter, View view, IEnumerable<Conclusion> conclusions,
-			IDictionary<int, Color> colorDic, Color eliminationColor, Color cannibalismColor)
+			IDictionary<int, Color> colorDic, Color eliminationColor, Color cannibalismColor,
+			Color chainColor)
 			: base(pointConverter) =>
-			(_view, _conclusions, _colorDic, _eliminationColor, _cannibalismColor) = (view, conclusions, colorDic, eliminationColor, cannibalismColor);
+			(_view, _conclusions, _colorDic, _eliminationColor, _cannibalismColor, _chainColor) = (view, conclusions, colorDic, eliminationColor, cannibalismColor, chainColor);
 
 
 		/// <inheritdoc/>
@@ -102,9 +109,16 @@ namespace Sudoku.Drawing.Layers
 				}
 			}
 
-			foreach (var inference in _view.Links ?? Array.Empty<Inference>())
+			if (!(_view.Links is null))
 			{
-				// TODO: Draw chains.
+				using var pen = new Pen(_chainColor, 3) { EndCap = LineCap.ArrowAnchor };
+				foreach (var ((startCandidates, startNodeType), (endCandidates, endNodeType)) in _view.Links)
+				{
+					g.DrawLine(
+						pen,
+						_pointConverter.GetMouseCenterOfCandidates(startCandidates),
+						_pointConverter.GetMouseCenterOfCandidates(endCandidates));
+				}
 			}
 
 			using var eliminationBrush = new SolidBrush(_eliminationColor);

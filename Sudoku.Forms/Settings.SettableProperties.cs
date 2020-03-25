@@ -177,6 +177,11 @@ namespace Sudoku.Forms
 		public Color CannibalismColor { get; set; } = Color.FromArgb(255, 235, 0, 0);
 
 		/// <summary>
+		/// Indicates the chain color.
+		/// </summary>
+		public Color ChainColor { get; set; } = Color.Red;
+
+		/// <summary>
 		/// Indicates the color 1.
 		/// </summary>
 		public Color Color1 { get; set; } = Color.FromArgb(255, 63, 218, 101);

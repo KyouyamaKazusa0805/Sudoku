@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using Sudoku.Data;
 using Sudoku.Drawing.Extensions;
 
 namespace Sudoku.Drawing
@@ -108,6 +109,21 @@ namespace Sudoku.Drawing
 			var (x, y) = point;
 			var (cw, ch) = CandidateSize;
 			return GetCellOffset(point) * 9 + (int)(y / ch) % 3 * 3 + (int)(x / cw) % 3;
+		}
+
+		/// <summary>
+		/// Get the center mouse point of all candidates.
+		/// </summary>
+		/// <param name="map">The map of candidates.</param>
+		/// <returns>The center mouse point.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public PointF GetMouseCenterOfCandidates(FullGridMap map)
+		{
+			int min = map.SetAt(0);
+			int max = map.SetAt(^1);
+			var (x1, y1) = GetMousePointInCenter(min / 9, min % 9);
+			var (x2, y2) = GetMousePointInCenter(max / 9, max % 9);
+			return new PointF((x1 + x2) / 2, (y1 + y2) / 2);
 		}
 
 		/// <summary>

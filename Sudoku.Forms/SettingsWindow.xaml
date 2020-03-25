@@ -113,6 +113,10 @@
 					<Button Name="_buttonBlockLineColor" Grid.Row="1" Grid.Column="4"
 							Content="Change color"
 							Click="ButtonBlockLineColor_Click"/>
+					<Label Grid.Row="2" Grid.Column="3" Content="Chain color:"/>
+					<Button Name="_buttonChainColor" Grid.Row="2" Grid.Column="4"
+							Content="Change color"
+							Click="ButtonChainColor_Click"/>
 				</Grid>
 			</TabItem>
 			<TabItem Header="Palette">
