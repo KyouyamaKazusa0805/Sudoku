@@ -371,7 +371,7 @@ namespace Sudoku.Solving.Manual.Alses
 							{
 								candidateOffsets.Add((2, cand));
 							}
-							else if (takenCellsInBlockMap[cell])
+							else if (digitRegions[digit].First() < 9)
 							{
 								candidateOffsets.Add((0, cand));
 							}
@@ -390,7 +390,7 @@ namespace Sudoku.Solving.Manual.Alses
 								new View(
 									cellOffsets: null,
 									candidateOffsets,
-									regionOffsets: new[] { (0, nonblock), (0, block) },
+									regionOffsets: new[] { (0, nonblock), (1, block) },
 									links: null)
 							},
 							als1Cells: new List<int>(takenCellsInBlockMap.Offsets),
