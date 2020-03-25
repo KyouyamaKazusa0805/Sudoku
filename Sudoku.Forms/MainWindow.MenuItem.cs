@@ -193,6 +193,9 @@ namespace Sudoku.Forms
 			}
 
 			LoadPuzzle(puzzleStr);
+
+			_listBoxPaths.Items.Clear();
+			_gridSummary.Children.Clear();
 		}
 
 		private void MenuItemEditFix_Click(object sender, RoutedEventArgs e)
