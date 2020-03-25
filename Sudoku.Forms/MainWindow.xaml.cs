@@ -327,6 +327,13 @@ namespace Sudoku.Forms
 			_menuItemOptionsShowCandidates.IsChecked = Settings.ShowCandidates;
 			_menuItemAnalyzeSeMode.IsChecked = Settings.SeMode;
 			_menuItemAnalyzeFastSearch.IsChecked = Settings.FastSearch;
+			_menuItemCheckGurthSymmetricalPlacement.IsChecked = Settings.CheckGurthSymmetricalPlacement;
+			_menuItemDisableSlowTechniques.IsChecked = Settings.DisableSlowTechniques;
+			_menuItemShowFullHouses.IsChecked = Settings.EnableFullHouse;
+			_menuItemShowLastDigits.IsChecked = Settings.EnableLastDigit;
+			_menuItemOptimizeApplyingOrder.IsChecked = Settings.OptimizedApplyingOrder;
+			_menuItemUseCalculationPriority.IsChecked = Settings.UseCalculationPriority;
+			_menuItemCheckConclusionValidityAfterSearched.IsChecked = Settings.CheckConclusionValidityAfterSearched;
 
 			UpdateImageGrid();
 		}

@@ -70,10 +70,27 @@
 				<MenuItem Header="Solve puzzle" Name="_menuItemAnalyzeSolve" InputGestureText="F9"
 						  Click="MenuItemAnalyzeSolve_Click"/>
 				<Separator/>
+				<MenuItem Header="Show Full Houses" Name="_menuItemShowFullHouses"
+						  Click="MenuItemShowFullHouses_Click"/>
+				<MenuItem Header="Show Last Digits" Name="_menuItemShowLastDigits"
+						  Click="MenuItemShowLastDigits_Click"/>
+				<Separator/>
 				<MenuItem Header="Analyze difficulty strictly" Name="_menuItemAnalyzeSeMode"
 						  Click="MenuItemAnalyzeSeMode_Click"/>
-				<MenuItem Header="FastSearch" Name="_menuItemAnalyzeFastSearch"
+				<MenuItem Header="Fast search" Name="_menuItemAnalyzeFastSearch"
 						  Click="MenuItemAnalyzeFastSearch_Click"/>
+				<MenuItem Header="Check validity of each conclusion"
+						  Name="_menuItemCheckConclusionValidityAfterSearched"
+						  Click="MenuItemCheckConclusionValidityAfterSearched_Click"/>
+				<MenuItem Header="Check Gurth's Symmetrical Placement"
+						  Name="_menuItemCheckGurthSymmetricalPlacement"
+						  Click="MenuItemCheckGurthSymmetricalPlacement_Click"/>
+				<MenuItem Header="Disable slow techniques" Name="_menuItemDisableSlowTechniques"
+						  Click="MenuItemDisableSlowTechniques_Click"/>
+				<MenuItem Header="Optimize applying order" Name="_menuItemOptimizeApplyingOrder"
+						  Click="MenuItemOptimizeApplyingOrder_Click"/>
+				<MenuItem Header="Use calculation priority" Name="_menuItemUseCalculationPriority"
+						  Click="MenuItemUseCalculationPriority_Click"/>
 				<Separator/>
 				<MenuItem Header="Export..." Name="_menuItemExport"
 						  Click="MenuItemExport_Click"/>

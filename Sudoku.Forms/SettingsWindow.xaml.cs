@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using Sudoku.Forms.Drawing.Extensions;
+using Sudoku.Forms.Extensions;
 using Sudoku.Forms.Tooling;
 using w = System.Windows;
 
@@ -26,6 +27,19 @@ namespace Sudoku.Forms
 
 			// Show controls with the specified settings.
 			_checkBoxAskWhileQuitting.IsChecked = Settings.AskWhileQuitting;
+			_checkBoxEnableGcForcedly.IsChecked = Settings.EnableGarbageCollectionForcedly;
+			_textBoxMaxLength.Text = Settings.AicMaximumLength.ToString();
+			_checkBoxCheckLoop.IsChecked = Settings.CheckContinuousNiceLoop;
+			_checkBoxCheckHeadCollision.IsChecked = Settings.CheckHeadCollision;
+			_checkBoxOnlyRecordShortestPathAic.IsChecked = Settings.OnlySaveShortestPathAic;
+			_checkBoxReductDifferentPathAic.IsChecked = Settings.ReductDifferentPathAic;
+			_checkBoxAllowOverlappingAlses.IsChecked = Settings.AllowOverlapAlses;
+			_checkBoxHighlightRegions.IsChecked = Settings.AlsHighlightRegionInsteadOfCell;
+			_textBoxBowmanBingoMaxLength.Text = Settings.BowmanBingoMaximumLength.ToString();
+			_checkBoxAllowAlq.IsChecked = Settings.CheckAlmostLockedQuadruple;
+			_checkBoxCheckUncompletedUr.IsChecked = Settings.CheckIncompletedUniquenessPatterns;
+			_textBoxMaxRegularWingSize.Text = Settings.CheckRegularWingSize.ToString();
+			_checkBoxUseExtendedBugSearcher.IsChecked = Settings.UseExtendedBugSearcher;
 			_textBoxGridLineWidth.Text = Settings.GridLineWidth.ToString();
 			_textBoxBlockLineWidth.Text = Settings.BlockLineWidth.ToString();
 			_textBoxValueScale.Text = Settings.ValueScale.ToString();
@@ -43,6 +57,7 @@ namespace Sudoku.Forms
 			_buttonFocusColor.Background = new w::Media.SolidColorBrush(Settings.FocusedCellColor.ToWColor());
 			_buttonGridLineColor.Background = new w::Media.SolidColorBrush(Settings.GridLineColor.ToWColor());
 			_buttonBlockLineColor.Background = new w::Media.SolidColorBrush(Settings.BlockLineColor.ToWColor());
+			_buttonChainColor.Background = new w::Media.SolidColorBrush(Settings.ChainColor.ToWColor());
 			_buttonColor1.Background = new w::Media.SolidColorBrush(Settings.Color1.ToWColor());
 			_buttonColor2.Background = new w::Media.SolidColorBrush(Settings.Color2.ToWColor());
 			_buttonColor3.Background = new w::Media.SolidColorBrush(Settings.Color3.ToWColor());
@@ -343,5 +358,157 @@ namespace Sudoku.Forms
 
 		private void ButtonColor15_Click(object sender, RoutedEventArgs e) =>
 			HandleColor(sender, e, Settings, 15);
+
+		private void TextBoxMaxLength_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			if (sender is TextBox textBox && int.TryParse(textBox.Text, out int value))
+			{
+				if (value >= 3 && value <= 20)
+				{
+					Settings.AicMaximumLength = value;
+				}
+				else
+				{
+					textBox.Text = (value < 3 ? 3 : 20).ToString();
+				}
+			}
+		}
+
+		private void CheckBoxAllowOverlappingAlses_Click(object sender, RoutedEventArgs e)
+		{
+			if (sender is CheckBox checkBox)
+			{
+				checkBox.IsChecked = Settings.AllowOverlapAlses ^= true;
+			}
+		}
+
+		private void CheckBoxHighlightRegions_Click(object sender, RoutedEventArgs e)
+		{
+			if (sender is CheckBox checkBox)
+			{
+				checkBox.IsChecked = Settings.AlsHighlightRegionInsteadOfCell ^= true;
+			}
+		}
+
+		private void TextBoxBowmanBingoMaxLength_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			if (sender is TextBox textBox && int.TryParse(textBox.Text, out int value))
+			{
+				if (value >= 1 && value <= 64)
+				{
+					Settings.AicMaximumLength = value;
+				}
+				else
+				{
+					textBox.Text = (value < 1 ? 1 : 64).ToString();
+				}
+			}
+		}
+
+		private void CheckBoxAllowAlq_Click(object sender, RoutedEventArgs e)
+		{
+			if (sender is CheckBox checkBox)
+			{
+				checkBox.IsChecked = Settings.CheckAlmostLockedQuadruple ^= true;
+			}
+		}
+
+		private void CheckBoxCheckLoop_Click(object sender, RoutedEventArgs e)
+		{
+			if (sender is CheckBox checkBox)
+			{
+				checkBox.IsChecked = Settings.CheckContinuousNiceLoop ^= true;
+			}
+		}
+
+		private void CheckBoxCheckHeadCollision_Click(object sender, RoutedEventArgs e)
+		{
+			if (sender is CheckBox checkBox)
+			{
+				checkBox.IsChecked = Settings.CheckHeadCollision ^= true;
+			}
+		}
+
+		private void CheckBoxCheckUncompletedUr_Click(object sender, RoutedEventArgs e)
+		{
+			if (sender is CheckBox checkBox)
+			{
+				checkBox.IsChecked = Settings.CheckIncompletedUniquenessPatterns ^= true;
+			}
+		}
+
+		private void TextBoxMaxRegularWingSize_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			if (sender is TextBox textBox && int.TryParse(textBox.Text, out int value))
+			{
+				if (value >= 3 && value <= 5)
+				{
+					Settings.AicMaximumLength = value;
+				}
+				else
+				{
+					textBox.Text = (value < 3 ? 3 : 5).ToString();
+				}
+			}
+		}
+
+		private void CheckBoxOnlyRecordShortestPathAic_Click(object sender, RoutedEventArgs e)
+		{
+			if (sender is CheckBox checkBox)
+			{
+				checkBox.IsChecked = Settings.OnlySaveShortestPathAic ^= true;
+			}
+		}
+
+		private void CheckBoxReductDifferentPathAic_Click(object sender, RoutedEventArgs e)
+		{
+			if (sender is CheckBox checkBox)
+			{
+				checkBox.IsChecked = Settings.ReductDifferentPathAic ^= true;
+			}
+		}
+
+		private void CheckBoxUseExtendedBugSearcher_Click(object sender, RoutedEventArgs e)
+		{
+			if (sender is CheckBox checkBox)
+			{
+				checkBox.IsChecked = Settings.UseExtendedBugSearcher ^= true;
+			}
+		}
+
+		private void TextBoxBowmanBingoMaxLength_PreviewKeyDown(object sender, w::Input.KeyEventArgs e)
+		{
+			if (!(sender is TextBox textBox && e.Key.IsDigit() && string.IsNullOrEmpty(textBox.Text)))
+			{
+				e.Handled = true;
+				return;
+			}
+		}
+
+		private void TextBoxMaxRegularWingSize_PreviewKeyDown(object sender, w::Input.KeyEventArgs e)
+		{
+			if (!(sender is TextBox textBox && e.Key.IsDigit() && string.IsNullOrEmpty(textBox.Text)))
+			{
+				e.Handled = true;
+				return;
+			}
+		}
+
+		private void TextBoxMaxLength_PreviewKeyDown(object sender, w::Input.KeyEventArgs e)
+		{
+			if (!(sender is TextBox textBox && e.Key.IsDigit() && string.IsNullOrEmpty(textBox.Text)))
+			{
+				e.Handled = true;
+				return;
+			}
+		}
+
+		private void CheckBoxEnableGcForcedly_Click(object sender, RoutedEventArgs e)
+		{
+			if (sender is CheckBox checkBox)
+			{
+				checkBox.IsEnabled = Settings.EnableGarbageCollectionForcedly ^= true;
+			}
+		}
 	}
 }

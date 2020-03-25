@@ -35,6 +35,131 @@
 					<CheckBox Content="Ask while quitting" Name="_checkBoxAskWhileQuitting"
 							  Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"
 							  Click="CheckBoxAskWhileQuitting_Click"/>
+					<CheckBox Content="Enable Garbage collection forcedly" Name="_checkBoxEnableGcForcedly"
+							  Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"
+							  Click="CheckBoxEnableGcForcedly_Click"/>
+				</Grid>
+			</TabItem>
+			<TabItem Header="Solving">
+				<Grid Background="#FFE5E5E5">
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+					</Grid.RowDefinitions>
+					<GroupBox Grid.Row="0" Grid.Column="0" Header="Chains">
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+							</Grid.ColumnDefinitions>
+							<Label Grid.Row="0" Grid.Column="0" Content="Max length:"
+								   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+							<TextBox Grid.Row="0" Grid.Column="1"
+									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+									 Name="_textBoxMaxLength"
+									 TextChanged="TextBoxMaxLength_TextChanged"
+									 PreviewKeyDown="TextBoxMaxLength_PreviewKeyDown"/>
+							<CheckBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+									  HorizontalAlignment="Left" VerticalAlignment="Center"
+									  Name="_checkBoxCheckLoop" Content="Check continuous nice loops"
+									  Click="CheckBoxCheckLoop_Click"/>
+							<CheckBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+									  HorizontalAlignment="Left" VerticalAlignment="Center"
+									  Name="_checkBoxCheckHeadCollision" Content="Check head collision"
+									  Click="CheckBoxCheckHeadCollision_Click"/>
+							<CheckBox Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3"
+									  HorizontalAlignment="Left" VerticalAlignment="Center"
+									  Name="_checkBoxOnlyRecordShortestPathAic"
+									  Content="Only record shortest path"
+									  Click="CheckBoxOnlyRecordShortestPathAic_Click"/>
+							<CheckBox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3"
+									  HorizontalAlignment="Left" VerticalAlignment="Center"
+									  Name="_checkBoxReductDifferentPathAic"
+									  Content="Reduct different paths"
+									  Click="CheckBoxReductDifferentPathAic_Click"/>
+						</Grid>
+					</GroupBox>
+					<GroupBox Grid.Row="1" Grid.Column="0" Header="Almost Locked Sets">
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+							</Grid.ColumnDefinitions>
+							<CheckBox Content="Allow overlapping ALSes" Grid.ColumnSpan="3"
+									  Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left"
+									  VerticalAlignment="Center" Name="_checkBoxAllowOverlappingAlses"
+									  Click="CheckBoxAllowOverlappingAlses_Click"/>
+							<CheckBox Content="Highlight regions rather than cells" Grid.ColumnSpan="3"
+									  Grid.Row="1" Grid.Column="0" Name="_checkBoxHighlightRegions"
+									  HorizontalAlignment="Left" VerticalAlignment="Center"
+									  Click="CheckBoxHighlightRegions_Click"/>
+						</Grid>
+					</GroupBox>
+					<GroupBox Grid.Row="2" Grid.Column="0" Header="Miscellaneous">
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+							</Grid.ColumnDefinitions>
+							<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+								   HorizontalAlignment="Left" VerticalAlignment="Center"
+								   Content="Bowman's bingo max length:"/>
+							<TextBox Grid.Row="0" Grid.Column="2"
+									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+									 Name="_textBoxBowmanBingoMaxLength"
+									 TextChanged="TextBoxBowmanBingoMaxLength_TextChanged"
+									 PreviewKeyDown="TextBoxBowmanBingoMaxLength_PreviewKeyDown"/>
+							<CheckBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+									  HorizontalAlignment="Left" VerticalAlignment="Center"
+									  Name="_checkBoxAllowAlq" Content="Search Almost Locked Quads"
+									  Click="CheckBoxAllowAlq_Click"/>
+							<CheckBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+									  HorizontalAlignment="Left" VerticalAlignment="Center"
+									  Name="_checkBoxCheckUncompletedUr" Content="Check uncompleted URs"
+									  Click="CheckBoxCheckUncompletedUr_Click"/>
+							<Label Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2"
+								   HorizontalAlignment="Left" VerticalAlignment="Center"
+								   Content="Max regular wing size:"/>
+							<TextBox Grid.Row="0" Grid.Column="5"
+									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+									 Name="_textBoxMaxRegularWingSize"
+									 TextChanged="TextBoxMaxRegularWingSize_TextChanged"
+									 PreviewKeyDown="TextBoxMaxRegularWingSize_PreviewKeyDown"/>
+							<CheckBox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3"
+									  HorizontalAlignment="Left" VerticalAlignment="Center"
+									  Name="_checkBoxUseExtendedBugSearcher"
+									  Content="Use extended BUG searcher"
+									  Click="CheckBoxUseExtendedBugSearcher_Click"/>
+						</Grid>
+					</GroupBox>
 				</Grid>
 			</TabItem>
 			<TabItem Header="Drawing">
@@ -127,8 +252,9 @@
 						<RowDefinition/>
 						<RowDefinition/>
 						<RowDefinition/>
-						<RowDefinition/>
-						<RowDefinition/>
+						<RowDefinition Height="2*"/>
+						<RowDefinition Height="2*"/>
+						<RowDefinition Height="2*"/>
 					</Grid.RowDefinitions>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition/>

@@ -361,6 +361,27 @@ namespace Sudoku.Forms
 		private void MenuItemAnalyzeFastSearch_Click(object sender, RoutedEventArgs e) =>
 			_menuItemAnalyzeFastSearch.IsChecked = Settings.FastSearch ^= true;
 
+		private void MenuItemCheckConclusionValidityAfterSearched_Click(object sender, RoutedEventArgs e) =>
+			_menuItemCheckConclusionValidityAfterSearched.IsChecked = Settings.CheckConclusionValidityAfterSearched ^= true;
+
+		private void MenuItemCheckGurthSymmetricalPlacement_Click(object sender, RoutedEventArgs e) =>
+			_menuItemCheckGurthSymmetricalPlacement.IsChecked = Settings.CheckGurthSymmetricalPlacement ^= true;
+
+		private void MenuItemDisableSlowTechniques_Click(object sender, RoutedEventArgs e) =>
+			_menuItemDisableSlowTechniques.IsChecked = Settings.DisableSlowTechniques ^= true;
+
+		private void MenuItemShowFullHouses_Click(object sender, RoutedEventArgs e) =>
+			_menuItemShowFullHouses.IsChecked = Settings.EnableFullHouse ^= true;
+
+		private void MenuItemShowLastDigits_Click(object sender, RoutedEventArgs e) =>
+			_menuItemShowLastDigits.IsChecked = Settings.EnableLastDigit ^= true;
+
+		private void MenuItemOptimizeApplyingOrder_Click(object sender, RoutedEventArgs e) =>
+			_menuItemOptimizeApplyingOrder.IsChecked = Settings.OptimizedApplyingOrder ^= true;
+
+		private void MenuItemUseCalculationPriority_Click(object sender, RoutedEventArgs e) =>
+			_menuItemUseCalculationPriority.IsChecked = Settings.UseCalculationPriority ^= true;
+
 		private void MenuItemExport_Click(object sender, RoutedEventArgs e)
 		{
 			if (_analyisResult is null)
