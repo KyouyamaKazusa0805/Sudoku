@@ -15,7 +15,6 @@ using Sudoku.Data.Stepping;
 using Sudoku.Drawing.Layers;
 using Sudoku.Solving;
 using Sudoku.Solving.Generating;
-using Sudoku.Solving.Manual;
 using Grid = System.Windows.Controls.Grid;
 using SudokuGrid = Sudoku.Data.Grid;
 using w = System.Windows;
@@ -125,7 +124,7 @@ namespace Sudoku.Forms
 
 		private void MenuItemOptionsSettings_Click(object sender, RoutedEventArgs e)
 		{
-			var settingsWindow = new SettingsWindow(this);
+			var settingsWindow = new SettingsWindow(Settings, _manualSolver);
 			if (!(settingsWindow.ShowDialog() is true))
 			{
 				e.Handled = true;
@@ -242,14 +241,7 @@ namespace Sudoku.Forms
 			_textBoxInfo.Text = "Solving, please wait. During solving you can do some other work...";
 
 			// Run the solver asynchronizedly, during solving you can do other work.
-			_analyisResult = await Task.Run(() =>
-			{
-				return new ManualSolver
-				{
-					FastSearch = Settings.FastSearch,
-					AnalyzeDifficultyStrictly = Settings.SeMode
-				}.Solve(Puzzle);
-			});
+			_analyisResult = await Task.Run(() => _manualSolver.Solve(Puzzle));
 
 			// Solved. Now update the technique summary.
 			_gridSummary.RowDefinitions.Clear();
@@ -285,7 +277,7 @@ namespace Sudoku.Forms
 				collection.Add((null, summaryCount, summary, summaryMax));
 
 				_gridSummary.RowDefinitions.Add(
-					new w.Controls.RowDefinition
+					new w::Controls.RowDefinition
 					{
 						Height = new GridLength(FontSize, GridUnitType.Auto)
 					});
@@ -356,31 +348,31 @@ namespace Sudoku.Forms
 		}
 
 		private void MenuItemAnalyzeSeMode_Click(object sender, RoutedEventArgs e) =>
-			_menuItemAnalyzeSeMode.IsChecked = Settings.SeMode ^= true;
+			_manualSolver.AnalyzeDifficultyStrictly = _menuItemAnalyzeSeMode.IsChecked = Settings.SeMode ^= true;
 
 		private void MenuItemAnalyzeFastSearch_Click(object sender, RoutedEventArgs e) =>
-			_menuItemAnalyzeFastSearch.IsChecked = Settings.FastSearch ^= true;
+			_manualSolver.FastSearch = _menuItemAnalyzeFastSearch.IsChecked = Settings.FastSearch ^= true;
 
 		private void MenuItemCheckConclusionValidityAfterSearched_Click(object sender, RoutedEventArgs e) =>
-			_menuItemCheckConclusionValidityAfterSearched.IsChecked = Settings.CheckConclusionValidityAfterSearched ^= true;
+			_manualSolver.CheckConclusionValidityAfterSearched = _menuItemCheckConclusionValidityAfterSearched.IsChecked = Settings.CheckConclusionValidityAfterSearched ^= true;
 
 		private void MenuItemCheckGurthSymmetricalPlacement_Click(object sender, RoutedEventArgs e) =>
-			_menuItemCheckGurthSymmetricalPlacement.IsChecked = Settings.CheckGurthSymmetricalPlacement ^= true;
+			_manualSolver.CheckGurthSymmetricalPlacement = _menuItemCheckGurthSymmetricalPlacement.IsChecked = Settings.CheckGurthSymmetricalPlacement ^= true;
 
 		private void MenuItemDisableSlowTechniques_Click(object sender, RoutedEventArgs e) =>
-			_menuItemDisableSlowTechniques.IsChecked = Settings.DisableSlowTechniques ^= true;
+			_manualSolver.DisableSlowTechniques = _menuItemDisableSlowTechniques.IsChecked = Settings.DisableSlowTechniques ^= true;
 
 		private void MenuItemShowFullHouses_Click(object sender, RoutedEventArgs e) =>
-			_menuItemShowFullHouses.IsChecked = Settings.EnableFullHouse ^= true;
+			_manualSolver.EnableFullHouse = _menuItemShowFullHouses.IsChecked = Settings.EnableFullHouse ^= true;
 
 		private void MenuItemShowLastDigits_Click(object sender, RoutedEventArgs e) =>
-			_menuItemShowLastDigits.IsChecked = Settings.EnableLastDigit ^= true;
+			_manualSolver.EnableLastDigit = _menuItemShowLastDigits.IsChecked = Settings.EnableLastDigit ^= true;
 
 		private void MenuItemOptimizeApplyingOrder_Click(object sender, RoutedEventArgs e) =>
-			_menuItemOptimizeApplyingOrder.IsChecked = Settings.OptimizedApplyingOrder ^= true;
+			_manualSolver.OptimizedApplyingOrder = _menuItemOptimizeApplyingOrder.IsChecked = Settings.OptimizedApplyingOrder ^= true;
 
 		private void MenuItemUseCalculationPriority_Click(object sender, RoutedEventArgs e) =>
-			_menuItemUseCalculationPriority.IsChecked = Settings.UseCalculationPriority ^= true;
+			_manualSolver.UseCalculationPriority = _menuItemUseCalculationPriority.IsChecked = Settings.UseCalculationPriority ^= true;
 
 		private void MenuItemExport_Click(object sender, RoutedEventArgs e)
 		{

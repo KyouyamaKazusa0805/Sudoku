@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using Sudoku.Forms.Drawing.Extensions;
 using Sudoku.Forms.Extensions;
 using Sudoku.Forms.Tooling;
+using Sudoku.Solving.Manual;
 using w = System.Windows;
 
 namespace Sudoku.Forms
@@ -13,17 +14,24 @@ namespace Sudoku.Forms
 	public partial class SettingsWindow : Window
 	{
 		/// <summary>
+		/// The manual solver used.
+		/// </summary>
+		private readonly ManualSolver _manualSolver;
+
+
+		/// <summary>
 		/// Indicates the result settings.
 		/// </summary>
 		public Settings Settings { get; }
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
-		public SettingsWindow(MainWindow baseWindow)
+		public SettingsWindow(Settings settings, ManualSolver manualSolver)
 		{
 			InitializeComponent();
 
-			Settings = baseWindow.Settings;
+			_manualSolver = manualSolver;
+			Settings = settings;
 
 			// Show controls with the specified settings.
 			_checkBoxAskWhileQuitting.IsChecked = Settings.AskWhileQuitting;
@@ -368,7 +376,7 @@ namespace Sudoku.Forms
 			{
 				if (value >= 3 && value <= 20)
 				{
-					Settings.AicMaximumLength = value;
+					_manualSolver.AicMaximumLength = Settings.AicMaximumLength = value;
 				}
 				else
 				{
@@ -377,21 +385,11 @@ namespace Sudoku.Forms
 			}
 		}
 
-		private void CheckBoxAllowOverlappingAlses_Click(object sender, RoutedEventArgs e)
-		{
-			if (sender is CheckBox checkBox)
-			{
-				checkBox.IsChecked = Settings.AllowOverlapAlses ^= true;
-			}
-		}
+		private void CheckBoxAllowOverlappingAlses_Click(object sender, RoutedEventArgs e) =>
+			_checkBoxAllowOverlappingAlses.IsChecked = _manualSolver.AllowOverlapAlses = Settings.AllowOverlapAlses ^= true;
 
-		private void CheckBoxHighlightRegions_Click(object sender, RoutedEventArgs e)
-		{
-			if (sender is CheckBox checkBox)
-			{
-				checkBox.IsChecked = Settings.AlsHighlightRegionInsteadOfCell ^= true;
-			}
-		}
+		private void CheckBoxHighlightRegions_Click(object sender, RoutedEventArgs e) =>
+			_checkBoxHighlightRegions.IsChecked = Settings.AlsHighlightRegionInsteadOfCell = _manualSolver.AlsHighlightRegionInsteadOfCell ^= true;
 
 		private void TextBoxBowmanBingoMaxLength_TextChanged(object sender, TextChangedEventArgs e)
 		{
@@ -399,7 +397,7 @@ namespace Sudoku.Forms
 			{
 				if (value >= 1 && value <= 64)
 				{
-					Settings.AicMaximumLength = value;
+					_manualSolver.BowmanBingoMaximumLength = Settings.BowmanBingoMaximumLength = value;
 				}
 				else
 				{
@@ -408,37 +406,17 @@ namespace Sudoku.Forms
 			}
 		}
 
-		private void CheckBoxAllowAlq_Click(object sender, RoutedEventArgs e)
-		{
-			if (sender is CheckBox checkBox)
-			{
-				checkBox.IsChecked = Settings.CheckAlmostLockedQuadruple ^= true;
-			}
-		}
+		private void CheckBoxAllowAlq_Click(object sender, RoutedEventArgs e) =>
+			_checkBoxAllowAlq.IsChecked = _manualSolver.CheckAlmostLockedQuadruple = Settings.CheckAlmostLockedQuadruple ^= true;
 
-		private void CheckBoxCheckLoop_Click(object sender, RoutedEventArgs e)
-		{
-			if (sender is CheckBox checkBox)
-			{
-				checkBox.IsChecked = Settings.CheckContinuousNiceLoop ^= true;
-			}
-		}
+		private void CheckBoxCheckLoop_Click(object sender, RoutedEventArgs e) =>
+			_checkBoxCheckLoop.IsChecked = Settings.CheckContinuousNiceLoop = _manualSolver.CheckContinuousNiceLoop ^= true;
 
-		private void CheckBoxCheckHeadCollision_Click(object sender, RoutedEventArgs e)
-		{
-			if (sender is CheckBox checkBox)
-			{
-				checkBox.IsChecked = Settings.CheckHeadCollision ^= true;
-			}
-		}
+		private void CheckBoxCheckHeadCollision_Click(object sender, RoutedEventArgs e) =>
+			_checkBoxCheckHeadCollision.IsChecked = Settings.CheckHeadCollision = _manualSolver.CheckHeadCollision ^= true;
 
-		private void CheckBoxCheckUncompletedUr_Click(object sender, RoutedEventArgs e)
-		{
-			if (sender is CheckBox checkBox)
-			{
-				checkBox.IsChecked = Settings.CheckIncompletedUniquenessPatterns ^= true;
-			}
-		}
+		private void CheckBoxCheckUncompletedUr_Click(object sender, RoutedEventArgs e) =>
+			_checkBoxCheckUncompletedUr.IsChecked = Settings.CheckIncompletedUniquenessPatterns = _manualSolver.CheckIncompletedUniquenessPatterns ^= true;
 
 		private void TextBoxMaxRegularWingSize_TextChanged(object sender, TextChangedEventArgs e)
 		{
@@ -446,7 +424,7 @@ namespace Sudoku.Forms
 			{
 				if (value >= 3 && value <= 5)
 				{
-					Settings.AicMaximumLength = value;
+					_manualSolver.CheckRegularWingSize = Settings.CheckRegularWingSize = value;
 				}
 				else
 				{
@@ -455,29 +433,14 @@ namespace Sudoku.Forms
 			}
 		}
 
-		private void CheckBoxOnlyRecordShortestPathAic_Click(object sender, RoutedEventArgs e)
-		{
-			if (sender is CheckBox checkBox)
-			{
-				checkBox.IsChecked = Settings.OnlySaveShortestPathAic ^= true;
-			}
-		}
+		private void CheckBoxOnlyRecordShortestPathAic_Click(object sender, RoutedEventArgs e) =>
+			_checkBoxOnlyRecordShortestPathAic.IsChecked = Settings.OnlySaveShortestPathAic = _manualSolver.OnlySaveShortestPathAic ^= true;
 
-		private void CheckBoxReductDifferentPathAic_Click(object sender, RoutedEventArgs e)
-		{
-			if (sender is CheckBox checkBox)
-			{
-				checkBox.IsChecked = Settings.ReductDifferentPathAic ^= true;
-			}
-		}
+		private void CheckBoxReductDifferentPathAic_Click(object sender, RoutedEventArgs e) =>
+			_checkBoxReductDifferentPathAic.IsChecked = Settings.ReductDifferentPathAic = _manualSolver.ReductDifferentPathAic ^= true;
 
-		private void CheckBoxUseExtendedBugSearcher_Click(object sender, RoutedEventArgs e)
-		{
-			if (sender is CheckBox checkBox)
-			{
-				checkBox.IsChecked = Settings.UseExtendedBugSearcher ^= true;
-			}
-		}
+		private void CheckBoxUseExtendedBugSearcher_Click(object sender, RoutedEventArgs e) =>
+			_checkBoxUseExtendedBugSearcher.IsChecked = Settings.UseExtendedBugSearcher = _manualSolver.UseExtendedBugSearcher ^= true;
 
 		private void TextBoxBowmanBingoMaxLength_PreviewKeyDown(object sender, w::Input.KeyEventArgs e)
 		{
@@ -506,12 +469,7 @@ namespace Sudoku.Forms
 			}
 		}
 
-		private void CheckBoxEnableGcForcedly_Click(object sender, RoutedEventArgs e)
-		{
-			if (sender is CheckBox checkBox)
-			{
-				checkBox.IsEnabled = Settings.EnableGarbageCollectionForcedly ^= true;
-			}
-		}
+		private void CheckBoxEnableGcForcedly_Click(object sender, RoutedEventArgs e) =>
+			_checkBoxEnableGcForcedly.IsEnabled = Settings.EnableGarbageCollectionForcedly = _manualSolver.EnableGarbageCollectionForcedly ^= true;
 	}
 }

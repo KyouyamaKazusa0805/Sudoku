@@ -16,6 +16,7 @@ using Sudoku.Drawing.Extensions;
 using Sudoku.Drawing.Layers;
 using Sudoku.Forms.Extensions;
 using Sudoku.Solving;
+using Sudoku.Solving.Manual;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
 using w = System.Windows;
@@ -27,6 +28,11 @@ namespace Sudoku.Forms
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		/// <summary>
+		/// Indicates the internal manual solver.
+		/// </summary>
+		private readonly ManualSolver _manualSolver = new ManualSolver();
+
 		/// <summary>
 		/// Internal layer collection.
 		/// </summary>
