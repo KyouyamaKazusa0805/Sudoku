@@ -4,7 +4,7 @@
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<UseWPF>true</UseWPF>
-		<Nullable>Enable</Nullable>
+		<Nullable>enable</Nullable>
 		<PackageId>Sunnie's sudoku solution</PackageId>
 		<Authors>Sunnie</Authors>
 		<Product>Sunnie's sudoku solution</Product>

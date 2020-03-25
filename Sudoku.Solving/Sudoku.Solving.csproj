@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
-		<Nullable>Enable</Nullable>
+		<Nullable>enable</Nullable>
 		<Authors>Sunnie</Authors>
 		<Description>Provides all solving operations for a sudoku grid.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>

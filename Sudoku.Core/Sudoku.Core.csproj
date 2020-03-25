@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
-		<Nullable>Enable</Nullable>
+		<Nullable>enable</Nullable>
 		<RootNamespace>Sudoku</RootNamespace>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<Authors>Sunnie</Authors>
