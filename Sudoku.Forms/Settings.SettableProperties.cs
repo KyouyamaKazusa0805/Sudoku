@@ -506,6 +506,9 @@ namespace Sudoku.Forms
 		/// </summary>
 		public Color Color15 { get; set; } = Color.FromArgb(192, 192, 192);
 
+		/// <summary>
+		/// The color table for each difficulty level.
+		/// </summary>
 		public IDictionary<DifficultyLevel, (Color _foreground, Color _background)> DiffColors
 		{
 			get
