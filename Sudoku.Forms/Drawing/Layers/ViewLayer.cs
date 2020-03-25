@@ -116,8 +116,16 @@ namespace Sudoku.Drawing.Layers
 				{
 					CustomEndCap = new AdjustableArrowCap(width / 6, width / 3)
 				};
-				foreach (var ((startCandidates, startNodeType), (endCandidates, endNodeType)) in _view.Links)
+				foreach (var inference in _view.Links)
 				{
+					var ((startCandidates, startNodeType), (endCandidates, endNodeType)) = inference;
+					pen.DashStyle = true switch
+					{
+						_ when inference.IsStrong => DashStyle.Solid,
+						_ when inference.IsWeak => DashStyle.Dash,
+						_ => DashStyle.Dot
+					};
+
 					g.DrawLine(
 						pen,
 						_pointConverter.GetMouseCenterOfCandidates(startCandidates),
