@@ -92,9 +92,14 @@ namespace Sudoku.Drawing.Layers
 				}
 			}
 
-			foreach (var (id, region) in _view.CandidateOffsets ?? Array.Empty<(int, int)>())
+			foreach (var (id, region) in _view.RegionOffsets ?? Array.Empty<(int, int)>())
 			{
-				// TODO: Draw regions.
+				if (_colorDic.TryGetValue(id, out var color))
+				{
+					using var brush = new SolidBrush(Color.FromArgb(32, color));
+					g.FillRectangle(
+						brush, _pointConverter.GetMousePointRectangleForRegion(region).Zoom(-offset / 3));
+				}
 			}
 
 			foreach (var inference in _view.Links ?? Array.Empty<Inference>())

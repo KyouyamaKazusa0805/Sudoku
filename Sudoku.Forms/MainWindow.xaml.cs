@@ -28,8 +28,6 @@ namespace Sudoku.Forms
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		
-
 		/// <summary>
 		/// Internal layer collection.
 		/// </summary>
@@ -47,14 +45,8 @@ namespace Sudoku.Forms
 		private AnalysisResult? _analyisResult = null;
 
 		/// <summary>
-		/// The initial grid.
-		/// </summary>
-		private IReadOnlyGrid _initialPuzzle = null!;
-
-		/// <summary>
 		/// The grid.
 		/// </summary>
-		[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
 		private UndoableGrid _puzzle = new UndoableGrid(SudokuGrid.Empty.Clone());
 
 		/// <summary>
@@ -62,15 +54,15 @@ namespace Sudoku.Forms
 		/// </summary>
 		private PointConverter _pointConverter = null!;
 
+		/// <summary>
+		/// The initial grid.
+		/// </summary>
+		private IReadOnlyGrid _initialPuzzle = null!;
+
 
 		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public MainWindow() => InitializeComponent();
 
-
-		/// <summary>
-		/// Indicates the settings used.
-		/// </summary>
-		public Settings Settings { get; private set; } = null!;
 
 		/// <summary>
 		/// Indicates the name of this solution.
@@ -125,6 +117,11 @@ namespace Sudoku.Forms
 				GC.Collect();
 			}
 		}
+
+		/// <summary>
+		/// Indicates the settings used.
+		/// </summary>
+		public Settings Settings { get; private set; } = null!;
 
 
 		/// <inheritdoc/>
