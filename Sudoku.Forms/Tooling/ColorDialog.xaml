@@ -26,26 +26,26 @@
 			   VerticalAlignment="Center" FontSize="16"/>
 		<TextBox Name="_textBoxA" Grid.Row="1" Grid.Column="2" Text="255"
 				 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-				 TextChanged="TextBoxA_TextChanged"
-				 PreviewKeyDown="TextBoxA_PreviewKeyDown"/>
+				 PreviewKeyDown="TextBoxA_PreviewKeyDown"
+				 PreviewTextInput="TextBoxA_PreviewTextInput"/>
 		<Label Content="Red" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right"
 			   VerticalAlignment="Center" FontSize="16" Foreground="Red"/>
 		<TextBox Name="_textBoxR" Grid.Row="1" Grid.Column="4" Text="0"
 				 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-				 TextChanged="TextBoxR_TextChanged"
-				 PreviewKeyDown="TextBoxR_PreviewKeyDown"/>
+				 PreviewKeyDown="TextBoxR_PreviewKeyDown"
+				 PreviewTextInput="TextBoxR_PreviewTextInput"/>
 		<Label Content="Green" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right"
 			   VerticalAlignment="Center" FontSize="16" Foreground="Green"/>
 		<TextBox Name="_textBoxG" Grid.Row="2" Grid.Column="2" Text="0"
 				 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-				 TextChanged="TextBoxG_TextChanged"
-				 PreviewKeyDown="TextBoxG_PreviewKeyDown"/>
+				 PreviewKeyDown="TextBoxG_PreviewKeyDown"
+				 PreviewTextInput="TextBoxG_PreviewTextInput"/>
 		<Label Content="Blue" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right"
 			   VerticalAlignment="Center" FontSize="16" Foreground="Blue"/>
 		<TextBox Name="_textBoxB" Grid.Row="2" Grid.Column="4"  Text="0"
 				 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-				 TextChanged="TextBoxB_TextChanged"
-				 PreviewKeyDown="TextBoxB_PreviewKeyDown"/>
+				 PreviewKeyDown="TextBoxB_PreviewKeyDown"
+				 PreviewTextInput="TextBoxB_PreviewTextInput"/>
 		<Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5">
 			<Button Content="Apply" Margin="0,0,70,10" Name="_buttonApply" HorizontalAlignment="Right"
 					VerticalAlignment="Bottom"

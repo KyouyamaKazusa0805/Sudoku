@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Sudoku.Drawing.Extensions;
+using Sudoku.Forms.Extensions;
 
 namespace Sudoku.Forms.Tooling
 {
@@ -61,87 +62,6 @@ namespace Sudoku.Forms.Tooling
 			GC.Collect();
 		}
 
-
-		private void TextBoxA_TextChanged(object sender, TextChangedEventArgs e)
-		{
-			if (sender is TextBox textBox)
-			{
-				if (!int.TryParse(textBox.Text, out int value))
-				{
-					e.Handled = true;
-					return;
-				}
-
-				if (value < 0 || value > 255)
-				{
-					_textBoxA.Text = (value = 255).ToString();
-				}
-
-				SelectedColor = Color.FromArgb(value, SelectedColor);
-				UpdatePreview();
-			}
-		}
-
-		private void TextBoxR_TextChanged(object sender, TextChangedEventArgs e)
-		{
-			if (sender is TextBox textBox)
-			{
-				if (!int.TryParse(textBox.Text, out int value))
-				{
-					e.Handled = true;
-					return;
-				}
-
-				if (value < 0 || value > 255)
-				{
-					_textBoxR.Text = (value = 255).ToString();
-				}
-
-				SelectedColor = Color.FromArgb(SelectedColor.A, value, SelectedColor.G, SelectedColor.B);
-				UpdatePreview();
-			}
-		}
-
-		private void TextBoxG_TextChanged(object sender, TextChangedEventArgs e)
-		{
-			if (sender is TextBox textBox)
-			{
-				if (!int.TryParse(textBox.Text, out int value))
-				{
-					e.Handled = true;
-					return;
-				}
-
-				if (value < 0 || value > 255)
-				{
-					_textBoxG.Text = (value = 255).ToString();
-				}
-
-				SelectedColor = Color.FromArgb(SelectedColor.A, SelectedColor.R, value, SelectedColor.B);
-				UpdatePreview();
-			}
-		}
-
-		private void TextBoxB_TextChanged(object sender, TextChangedEventArgs e)
-		{
-			if (sender is TextBox textBox)
-			{
-				if (!int.TryParse(textBox.Text, out int value))
-				{
-					e.Handled = true;
-					return;
-				}
-
-				if (value < 0 || value > 255)
-				{
-					_textBoxB.Text = (value = 255).ToString();
-				}
-
-				SelectedColor = Color.FromArgb(SelectedColor.A, SelectedColor.R, SelectedColor.G, value);
-				UpdatePreview();
-			}
-		}
-
 		private void ButtonApply_Click(object sender, RoutedEventArgs e)
 		{
 			DialogResult = true;
@@ -160,46 +80,50 @@ namespace Sudoku.Forms.Tooling
 
 		private void TextBoxA_PreviewKeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.Key != Key.Back && e.Key != Key.Delete && !(
-				e.Key >= Key.D0 && e.Key <= Key.D9
-				|| e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9))
+			if (e.Key != Key.Back && e.Key != Key.Delete && !e.Key.IsDigit())
 			{
-				e.Handled = true;
+				e.Handled = false;
 				return;
 			}
 		}
 
 		private void TextBoxR_PreviewKeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.Key != Key.Back && e.Key != Key.Delete && !(
-				e.Key >= Key.D0 && e.Key <= Key.D9
-				|| e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9))
+			if (e.Key != Key.Back && e.Key != Key.Delete && !e.Key.IsDigit())
 			{
-				e.Handled = true;
+				e.Handled = false;
 				return;
 			}
 		}
 
 		private void TextBoxG_PreviewKeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.Key != Key.Back && e.Key != Key.Delete && !(
-				e.Key >= Key.D0 && e.Key <= Key.D9
-				|| e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9))
+			if (e.Key != Key.Back && e.Key != Key.Delete && !e.Key.IsDigit())
 			{
-				e.Handled = true;
+				e.Handled = false;
 				return;
 			}
 		}
 
 		private void TextBoxB_PreviewKeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.Key != Key.Back && e.Key != Key.Delete && !(
-				e.Key >= Key.D0 && e.Key <= Key.D9
-				|| e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9))
+			if (e.Key != Key.Back && e.Key != Key.Delete && !e.Key.IsDigit())
 			{
-				e.Handled = true;
+				e.Handled = false;
 				return;
 			}
 		}
+
+		private void TextBoxA_PreviewTextInput(object sender, TextCompositionEventArgs e) =>
+			e.Handled = byte.TryParse(e.Text, out _);
+
+		private void TextBoxR_PreviewTextInput(object sender, TextCompositionEventArgs e) =>
+			e.Handled = byte.TryParse(e.Text, out _);
+
+		private void TextBoxG_PreviewTextInput(object sender, TextCompositionEventArgs e) =>
+			e.Handled = byte.TryParse(e.Text, out _);
+
+		private void TextBoxB_PreviewTextInput(object sender, TextCompositionEventArgs e) =>
+			e.Handled = byte.TryParse(e.Text, out _);
 	}
 }
