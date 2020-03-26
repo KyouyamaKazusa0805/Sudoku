@@ -234,13 +234,11 @@ namespace Sudoku.Forms
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemGenerateHardPattern_Click(object sender, RoutedEventArgs e)
 		{
-			_textBoxInfo.Text = "Generating...";
-			_menuItemGenerateHardPattern.IsEnabled = false;
+			DisableGeneratingControls();
 
 			var puzzle = await Task.Run(new HardPatternPuzzleGenerator().Generate);
 
-			_textBoxInfo.Text = string.Empty;
-			_menuItemGenerateHardPattern.IsEnabled = true;
+			EnableGeneratingControls();
 
 			Puzzle = new UndoableGrid((SudokuGrid)puzzle);
 			_listBoxPaths.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
@@ -256,8 +254,7 @@ namespace Sudoku.Forms
 			_listBoxPaths.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
 			_listViewSummary.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
 
-			_menuItemAnalyzeSolve.IsEnabled = false;
-			_textBoxInfo.Text = "Solving, please wait. During solving you can do some other work...";
+			DisableSolvingControls();
 
 			// Run the solver asynchronizedly, during solving you can do other work.
 			_analyisResult = await Task.Run(() =>
@@ -271,8 +268,8 @@ namespace Sudoku.Forms
 			});
 
 			// Solved. Now update the technique summary.
-			_textBoxInfo.Text = string.Empty;
-			_menuItemAnalyzeSolve.IsEnabled = true;
+			EnableSolvingControls();
+
 			if (_analyisResult.HasSolved)
 			{
 				int i = 0;

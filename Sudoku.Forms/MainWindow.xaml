@@ -51,15 +51,15 @@
 						  Click="MenuItemEditCopyHodokuLibrary_Click"/>
 				<MenuItem Header="Copy PM grid"
 						  Click="MenuItemEditCopyPmGrid_Click"/>
-				<MenuItem Header="Paste" InputGestureText="Ctrl + V"
+				<MenuItem Header="Paste" InputGestureText="Ctrl + V" Name="_menuItemEditPaste"
 						  Click="MenuItemEditPaste_Click"/>
 				<Separator/>
-				<MenuItem Header="Fix grid" InputGestureText="Ctrl + `"
+				<MenuItem Header="Fix grid" InputGestureText="Ctrl + `" Name="_menuItemEditFix"
 						  Click="MenuItemEditFix_Click"/>
-				<MenuItem Header="Unfix grid" InputGestureText="Ctrl + Shift + `"
+				<MenuItem Header="Unfix grid" InputGestureText="Ctrl + Shift + `" Name="_menuItemEditUnfix"
 						  Click="MenuItemEditUnfix_Click"/>
 				<Separator/>
-				<MenuItem Header="Reset grid"
+				<MenuItem Header="Reset grid" Name="_menuItemEditReset"
 						  Click="MenuItemEditReset_Click"/>
 			</MenuItem>
 			<MenuItem Header="Generate">

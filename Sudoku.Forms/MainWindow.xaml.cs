@@ -376,5 +376,71 @@ namespace Sudoku.Forms
 			var (x, y) = point;
 			return x < 0 || x > control.Width || y < 0 || y > control.Height;
 		}
+
+		private void DisableGeneratingControls()
+		{
+			_textBoxInfo.Text = "Generating...";
+			_menuItemGenerateHardPattern.IsEnabled = false;
+			_menuItemAnalyzeSolve.IsEnabled = false;
+			_menuItemEditPaste.IsEnabled = false;
+			_menuItemEditFix.IsEnabled = false;
+			_menuItemEditUnfix.IsEnabled = false;
+			_menuItemEditReset.IsEnabled = false;
+			_menuItemExport.IsEnabled = false;
+		}
+
+		private void EnableGeneratingControls()
+		{
+			_textBoxInfo.ClearValue(w::Controls.TextBox.TextProperty);
+			_menuItemGenerateHardPattern.IsEnabled = true;
+			_menuItemAnalyzeSolve.IsEnabled = true;
+			_menuItemEditPaste.IsEnabled = true;
+			_menuItemEditFix.IsEnabled = true;
+			_menuItemEditUnfix.IsEnabled = true;
+			_menuItemEditReset.IsEnabled = true;
+			_menuItemExport.IsEnabled = true;
+		}
+
+		private void DisableSolvingControls()
+		{
+			_textBoxInfo.Text = "Solving, please wait. During solving you can do some other work...";
+			_menuItemAnalyzeSolve.IsEnabled = false;
+			_menuItemGenerateHardPattern.IsEnabled = false;
+			_menuItemEditPaste.IsEnabled = false;
+			_menuItemEditFix.IsEnabled = false;
+			_menuItemEditUnfix.IsEnabled = false;
+			_menuItemEditReset.IsEnabled = false;
+			_menuItemShowFullHouses.IsEnabled = false;
+			_menuItemShowLastDigits.IsEnabled = false;
+			_menuItemAnalyzeSeMode.IsEnabled = false;
+			_menuItemAnalyzeFastSearch.IsEnabled = false;
+			_menuItemCheckConclusionValidityAfterSearched.IsEnabled = false;
+			_menuItemCheckGurthSymmetricalPlacement.IsEnabled = false;
+			_menuItemDisableSlowTechniques.IsEnabled = false;
+			_menuItemOptimizeApplyingOrder.IsEnabled = false;
+			_menuItemUseCalculationPriority.IsEnabled = false;
+			_menuItemExport.IsEnabled = false;
+		}
+
+		private void EnableSolvingControls()
+		{
+			_textBoxInfo.ClearValue(w::Controls.TextBox.TextProperty);
+			_menuItemAnalyzeSolve.IsEnabled = true;
+			_menuItemGenerateHardPattern.IsEnabled = true;
+			_menuItemEditPaste.IsEnabled = true;
+			_menuItemEditFix.IsEnabled = true;
+			_menuItemEditUnfix.IsEnabled = true;
+			_menuItemEditReset.IsEnabled = true;
+			_menuItemShowFullHouses.IsEnabled = true;
+			_menuItemShowLastDigits.IsEnabled = true;
+			_menuItemAnalyzeSeMode.IsEnabled = true;
+			_menuItemAnalyzeFastSearch.IsEnabled = true;
+			_menuItemCheckConclusionValidityAfterSearched.IsEnabled = true;
+			_menuItemCheckGurthSymmetricalPlacement.IsEnabled = true;
+			_menuItemDisableSlowTechniques.IsEnabled = true;
+			_menuItemOptimizeApplyingOrder.IsEnabled = true;
+			_menuItemUseCalculationPriority.IsEnabled = true;
+			_menuItemExport.IsEnabled = true;
+		}
 	}
 }
