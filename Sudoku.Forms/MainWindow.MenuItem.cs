@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,15 +10,14 @@ using System.Windows.Data;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing.Layers;
 using Sudoku.Forms.Drawing.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Generating;
-using Grid = System.Windows.Controls.Grid;
 using SudokuGrid = Sudoku.Data.Grid;
 using w = System.Windows;
+using AnonymousType = System.Object;
 
 namespace Sudoku.Forms
 {
@@ -262,7 +260,7 @@ namespace Sudoku.Forms
 					_listBoxPaths.Items.Add(item);
 				}
 
-				var collection = new List<object>(); // Here 'object' is an anonymous type.
+				var collection = new List<AnonymousType>();
 				decimal summary = 0, summaryMax = 0;
 				int summaryCount = 0;
 				foreach (var techniqueGroup in GetGroupedSteps())
