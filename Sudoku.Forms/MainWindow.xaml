@@ -118,13 +118,8 @@
 		<TabControl Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"
 					VerticalAlignment="Stretch">
 			<TabItem Header="Summary">
-				<Grid Background="#FFE5E5E5" Name="_gridSummary">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="2*"/>
-						<ColumnDefinition/>
-						<ColumnDefinition/>
-						<ColumnDefinition/>
-					</Grid.ColumnDefinitions>
+				<Grid Background="#FFE5E5E5">
+					<ListView Name="_listViewSummary"/>
 				</Grid>
 			</TabItem>
 			<TabItem Header="Solution path">

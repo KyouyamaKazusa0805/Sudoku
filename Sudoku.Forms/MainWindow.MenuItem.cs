@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using Sudoku.Data;
@@ -196,7 +197,6 @@ namespace Sudoku.Forms
 			LoadPuzzle(puzzleStr);
 
 			_listBoxPaths.Items.Clear();
-			_gridSummary.Children.Clear();
 		}
 
 		private void MenuItemEditFix_Click(object sender, RoutedEventArgs e)
@@ -230,8 +230,8 @@ namespace Sudoku.Forms
 			_textBoxInfo.Text = string.Empty;
 
 			Puzzle = new UndoableGrid((SudokuGrid)puzzle);
-			_gridSummary.Children.Clear();
 			_listBoxPaths.Items.Clear();
+			_listViewSummary.Items.Clear();
 
 			UpdateImageGrid();
 		}
@@ -241,14 +241,13 @@ namespace Sudoku.Forms
 		{
 			// Update status.
 			_listBoxPaths.Items.Clear();
-			_gridSummary.Children.Clear();
+			_listViewSummary.Items.Clear();
 			_textBoxInfo.Text = "Solving, please wait. During solving you can do some other work...";
 
 			// Run the solver asynchronizedly, during solving you can do other work.
 			_analyisResult = await Task.Run(() => _manualSolver.Solve(Puzzle));
 
 			// Solved. Now update the technique summary.
-			_gridSummary.RowDefinitions.Clear();
 			_textBoxInfo.Text = string.Empty;
 			if (_analyisResult.HasSolved)
 			{
@@ -263,7 +262,7 @@ namespace Sudoku.Forms
 					_listBoxPaths.Items.Add(item);
 				}
 
-				var collection = new List<(string?, int, decimal?, decimal?)>();
+				var collection = new List<object>(); // Here 'object' is an anonymous type.
 				decimal summary = 0, summaryMax = 0;
 				int summaryCount = 0;
 				foreach (var techniqueGroup in GetGroupedSteps())
@@ -280,55 +279,34 @@ namespace Sudoku.Forms
 						summaryMax = Math.Max(step.Difficulty, maximum);
 					}
 
-					collection.Add((name, count, total, maximum));
+					collection.Add(
+						new { Technique = name, Count = count, Total = total, Max = maximum });
 				}
 
-				collection.Add((null, summaryCount, summary, summaryMax));
-
-				_gridSummary.RowDefinitions.Add(
-					new w::Controls.RowDefinition
+				collection.Add(
+					new
 					{
-						Height = new GridLength(FontSize, GridUnitType.Auto)
+						Technique = default(string?),
+						Count = summaryCount,
+						Total = summary,
+						Max = summaryMax
 					});
-				_gridSummary.Children.Add(
-					CreateLabelInGrid(
-						"Technique", HorizontalAlignment.Left, VerticalAlignment.Center, 0, 0));
-				_gridSummary.Children.Add(
-					CreateLabelInGrid(
-						"Count", HorizontalAlignment.Center, VerticalAlignment.Center, 0, 1));
-				_gridSummary.Children.Add(
-					CreateLabelInGrid(
-						"Total", HorizontalAlignment.Center, VerticalAlignment.Center, 0, 2));
-				_gridSummary.Children.Add(
-					CreateLabelInGrid(
-						"Max", HorizontalAlignment.Center, VerticalAlignment.Center, 0, 3));
 
-				i = 1;
-				foreach (ITuple quadruple in collection)
-				{
-					_gridSummary.RowDefinitions.Add(
-						new w::Controls.RowDefinition
-						{
-							Height = new GridLength(FontSize, GridUnitType.Auto)
-						});
-					for (int j = 0; j < 4; j++)
-					{
-						_gridSummary.Children.Add(
-							CreateLabelInGrid(
-								quadruple[j].NullableToString(),
-								j != 0 ? HorizontalAlignment.Center : HorizontalAlignment.Left,
-								VerticalAlignment.Center,
-								i,
-								j));
-					}
-
-					i++;
-				}
+				w::Controls.GridView view;
+				_listViewSummary.ItemsSource = collection;
+				_listViewSummary.View = view = new w::Controls.GridView();
+				view.Columns.Add(CreateGridViewColumn("Technique"));
+				view.Columns.Add(CreateGridViewColumn("Count"));
+				view.Columns.Add(CreateGridViewColumn("Total"));
+				view.Columns.Add(CreateGridViewColumn("Max"));
 			}
 			else
 			{
 				MessageBox.Show(
-					"The puzzle cannot be solved. The possible case is that the puzzle has no or multiple solutions.",
+					$"The puzzle cannot be solved. The cases are below:{Environment.NewLine}" +
+					$"    Case 1: The puzzle has no or multiple solutions.{Environment.NewLine}" +
+					$"    Case 2: The solver has found a wrong conclusion to apply.{Environment.NewLine}" +
+					$"You should check the program or notify the author first.",
 					"Warning");
 			}
 
@@ -340,19 +318,13 @@ namespace Sudoku.Forms
 					   group solvingStep by solvingStep.Name;
 			}
 
-			static w::Controls.Label CreateLabelInGrid(
-				string content, HorizontalAlignment horizontalAlignment,
-				VerticalAlignment verticalAlignment, int row, int column)
+			static w::Controls.GridViewColumn CreateGridViewColumn(string name)
 			{
-				var z = new w::Controls.Label
+				return new w::Controls.GridViewColumn
 				{
-					Content = content,
-					HorizontalAlignment = horizontalAlignment,
-					VerticalAlignment = verticalAlignment
+					Header = name,
+					DisplayMemberBinding = new Binding(name)
 				};
-				z.SetValue(Grid.RowProperty, row);
-				z.SetValue(Grid.ColumnProperty, column);
-				return z;
 			}
 		}
 
@@ -400,7 +372,7 @@ namespace Sudoku.Forms
 
 		private void MenuItemAboutMe_Click(object sender, RoutedEventArgs e) =>
 			new AboutMeWindow().Show();
-		
+
 		private void ContextListBoxPathsCopyCurrentStep_Click(object sender, RoutedEventArgs e)
 		{
 			if (sender is w::Controls.MenuItem)
