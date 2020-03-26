@@ -153,7 +153,7 @@ namespace Sudoku.Forms
 			}
 
 			typeof(Settings).GetProperty($"Color{colorIndex}")!.SetValue(settings, dialog.SelectedColor);
-			button.Foreground = new w::Media.SolidColorBrush(dialog.SelectedColor.ToWColor());
+			button.Background = new w::Media.SolidColorBrush(dialog.SelectedColor.ToWColor());
 		}
 
 
