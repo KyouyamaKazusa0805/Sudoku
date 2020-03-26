@@ -15,9 +15,9 @@ using Sudoku.Drawing.Layers;
 using Sudoku.Forms.Drawing.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Generating;
+using AnonymousType = System.Object;
 using SudokuGrid = Sudoku.Data.Grid;
 using w = System.Windows;
-using AnonymousType = System.Object;
 
 namespace Sudoku.Forms
 {
@@ -203,6 +203,8 @@ namespace Sudoku.Forms
 			Puzzle.Fix();
 
 			UpdateImageGrid();
+			_listBoxPaths.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
+			_listViewSummary.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
 		}
 
 		private void MenuItemEditUnfix_Click(object sender, RoutedEventArgs e)
@@ -210,23 +212,35 @@ namespace Sudoku.Forms
 			Puzzle.Unfix();
 
 			UpdateImageGrid();
+			_listBoxPaths.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
+			_listViewSummary.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
 		}
 
 		private void MenuItemEditReset_Click(object sender, RoutedEventArgs e)
 		{
-			Puzzle.Reset();
+			_layerCollection.Add(
+				new ValueLayer(
+					_pointConverter, Settings.ValueScale, Settings.CandidateScale,
+					Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
+					Settings.GivenFontName, Settings.ModifiableFontName, Settings.CandidateFontName,
+					_puzzle = new UndoableGrid((SudokuGrid)_initialPuzzle), Settings.ShowCandidates));
+			_layerCollection.Remove(typeof(ViewLayer).Name);
 
 			UpdateImageGrid();
+			_listBoxPaths.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
+			_listViewSummary.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
 		}
 
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemGenerateHardPattern_Click(object sender, RoutedEventArgs e)
 		{
 			_textBoxInfo.Text = "Generating...";
+			_menuItemGenerateHardPattern.IsEnabled = false;
 
 			var puzzle = await Task.Run(new HardPatternPuzzleGenerator().Generate);
 
 			_textBoxInfo.Text = string.Empty;
+			_menuItemGenerateHardPattern.IsEnabled = true;
 
 			Puzzle = new UndoableGrid((SudokuGrid)puzzle);
 			_listBoxPaths.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
@@ -241,13 +255,24 @@ namespace Sudoku.Forms
 			// Update status.
 			_listBoxPaths.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
 			_listViewSummary.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
+
+			_menuItemAnalyzeSolve.IsEnabled = false;
 			_textBoxInfo.Text = "Solving, please wait. During solving you can do some other work...";
 
 			// Run the solver asynchronizedly, during solving you can do other work.
-			_analyisResult = await Task.Run(() => _manualSolver.Solve(Puzzle));
+			_analyisResult = await Task.Run(() =>
+			{
+				if (!Settings.SolveFromCurrent)
+				{
+					_puzzle.Reset();
+				}
+
+				return _manualSolver.Solve(_puzzle);
+			});
 
 			// Solved. Now update the technique summary.
 			_textBoxInfo.Text = string.Empty;
+			_menuItemAnalyzeSolve.IsEnabled = true;
 			if (_analyisResult.HasSolved)
 			{
 				int i = 0;

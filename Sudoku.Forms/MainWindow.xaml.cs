@@ -117,7 +117,7 @@ namespace Sudoku.Forms
 						Settings.GivenFontName, Settings.ModifiableFontName,
 						Settings.CandidateFontName, _puzzle = value, Settings.ShowCandidates));
 				_layerCollection.Remove(typeof(ViewLayer).Name);
-				_initialPuzzle = value;
+				_initialPuzzle = value.Clone();
 
 				GC.Collect();
 			}
@@ -353,7 +353,7 @@ namespace Sudoku.Forms
 		{
 			try
 			{
-				_initialPuzzle = Puzzle = new UndoableGrid(SudokuGrid.Parse(puzzleStr));
+				Puzzle = new UndoableGrid(SudokuGrid.Parse(puzzleStr));
 
 				_menuItemUndo.IsEnabled = _menuItemRedo.IsEnabled = false;
 				UpdateImageGrid();

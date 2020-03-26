@@ -125,8 +125,7 @@
 			<TabItem Header="Solution path">
 				<Grid Background="#FFE5E5E5">
 					<ListBox Name="_listBoxPaths"
-							 SelectionChanged="ListBoxPaths_SelectionChanged"
-							 LostFocus="ListBoxPaths_LostFocus">
+							 SelectionChanged="ListBoxPaths_SelectionChanged">
 						<ListBox.ContextMenu>
 							<ContextMenu>
 								<MenuItem Header="Copy current step"

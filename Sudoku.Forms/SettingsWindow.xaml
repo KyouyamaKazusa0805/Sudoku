@@ -38,6 +38,9 @@
 					<CheckBox Content="Enable Garbage collection forcedly" Name="_checkBoxEnableGcForcedly"
 							  Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"
 							  Click="CheckBoxEnableGcForcedly_Click"/>
+					<CheckBox Content="Solve from the current puzzle" Name="_checkBoxSolveFromCurrent"
+							  Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"
+							  Click="CheckBoxSolveFromCurrent_Click"/>
 				</Grid>
 			</TabItem>
 			<TabItem Header="Solving">

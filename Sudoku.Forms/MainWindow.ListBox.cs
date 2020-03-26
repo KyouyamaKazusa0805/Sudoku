@@ -12,7 +12,7 @@ namespace Sudoku.Forms
 		{
 			if (_listBoxPaths.SelectedIndex == -1)
 			{
-				Puzzle = new UndoableGrid((SudokuGrid)_initialPuzzle);
+				_puzzle = new UndoableGrid((SudokuGrid)_initialPuzzle);
 				UpdateImageGrid();
 
 				e.Handled = true;
@@ -29,26 +29,20 @@ namespace Sudoku.Forms
 			}
 
 			var (n, s) = pair;
-			Puzzle = new UndoableGrid((SudokuGrid)_analyisResult!.StepGrids![n]);
-			var techniqueInfo = _analyisResult.SolvingSteps![n];
+			var techniqueInfo = _analyisResult!.SolvingSteps![n];
+			_layerCollection.Add(
+				new ValueLayer(
+					_pointConverter, Settings.ValueScale, Settings.CandidateScale,
+					Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
+					Settings.GivenFontName, Settings.ModifiableFontName, Settings.CandidateFontName,
+					_puzzle = new UndoableGrid((SudokuGrid)_analyisResult.StepGrids![n]),
+					Settings.ShowCandidates));
 			_layerCollection.Add(
 				new ViewLayer(
 					_pointConverter, s.Views[0], techniqueInfo.Conclusions, Settings.PaletteColors,
 					Settings.EliminationColor, Settings.CannibalismColor, Settings.ChainColor));
 			_textBoxInfo.Text = techniqueInfo.ToString();
 
-			UpdateImageGrid();
-		}
-
-		private void ListBoxPaths_LostFocus(object sender, RoutedEventArgs e)
-		{
-			if (_initialPuzzle is null)
-			{
-				e.Handled = true;
-				return;
-			}
-
-			Puzzle = new UndoableGrid((SudokuGrid)_initialPuzzle);
 			UpdateImageGrid();
 		}
 	}

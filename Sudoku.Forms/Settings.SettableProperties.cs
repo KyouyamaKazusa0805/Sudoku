@@ -279,6 +279,15 @@ namespace Sudoku.Forms
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether the solver will solve and analyze the puzzle
+		/// from the current grid, if the current grid has applied some steps.
+		/// </para>
+		/// <para>The value is <see langword="false"/> in default case.</para>
+		/// </summary>
+		public bool SolveFromCurrent { get; set; } = false;
+
+		/// <summary>
+		/// <para>
 		/// Indicates the grid line width of the sudoku grid to render.
 		/// </para>
 		/// <para>The value is <c>1.5F</c> in default case.</para>

@@ -41,6 +41,7 @@ namespace Sudoku.Forms
 			// Show controls with the specified settings.
 			_checkBoxAskWhileQuitting.IsChecked = Settings.AskWhileQuitting;
 			_checkBoxEnableGcForcedly.IsChecked = Settings.EnableGarbageCollectionForcedly;
+			_checkBoxSolveFromCurrent.IsChecked = Settings.SolveFromCurrent;
 			_textBoxMaxLength.Text = Settings.AicMaximumLength.ToString();
 			_checkBoxCheckLoop.IsChecked = Settings.CheckContinuousNiceLoop;
 			_checkBoxCheckHeadCollision.IsChecked = Settings.CheckHeadCollision;
@@ -159,6 +160,9 @@ namespace Sudoku.Forms
 
 		private void CheckBoxAskWhileQuitting_Click(object sender, RoutedEventArgs e) =>
 			_checkBoxAskWhileQuitting.IsChecked = Settings.AskWhileQuitting ^= true;
+
+		private void CheckBoxSolveFromCurrent_Click(object sender, RoutedEventArgs e) =>
+			_checkBoxSolveFromCurrent.IsChecked = Settings.SolveFromCurrent ^= true;
 
 		private void TextBoxGridLineWidth_TextChanged(object sender, TextChangedEventArgs e)
 		{
