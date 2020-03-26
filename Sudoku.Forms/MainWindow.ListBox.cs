@@ -1,6 +1,7 @@
-﻿using System.Windows;
+﻿using System;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing.Layers;
+using Sudoku.Solving;
 using SudokuGrid = Sudoku.Data.Grid;
 using w = System.Windows;
 
@@ -22,7 +23,7 @@ namespace Sudoku.Forms
 			if (!(
 				sender is w::Controls.ListBox b
 				&& b.SelectedItem is w::Controls.ListBoxItem listBoxItem
-				&& listBoxItem.Content is InfoPair pair))
+				&& listBoxItem.Content is PrimaryElementTuple<int, TechniqueInfo> pair))
 			{
 				e.Handled = true;
 				return;

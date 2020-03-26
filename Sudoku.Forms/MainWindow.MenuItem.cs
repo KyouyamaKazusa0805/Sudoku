@@ -283,7 +283,7 @@ namespace Sudoku.Forms
 					var (fore, back) = Settings.DiffColors[step.DifficultyLevel];
 					item.Foreground = new w::Media.SolidColorBrush(fore.ToWColor());
 					item.Background = new w::Media.SolidColorBrush(back.ToWColor());
-					item.Content = new InfoPair(i++, step);
+					item.Content = new PrimaryElementTuple<int, TechniqueInfo>(i++, step, 2);
 					pathList.Add(item);
 				}
 				_listBoxPaths.ItemsSource = pathList;
