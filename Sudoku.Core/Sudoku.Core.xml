@@ -3914,5 +3914,71 @@
         <member name="M:System.ICloneable`1.System#ICloneable#Clone">
             <inheritdoc/>
         </member>
+        <member name="T:System.PrimaryElementTuple`3">
+            <summary>
+            Provides a tuple with a primary element.
+            </summary>
+            <typeparam name="T1">The type of value 1.</typeparam>
+            <typeparam name="T2">The type of value 2.</typeparam>
+            <typeparam name="T3">The type of value 3.</typeparam>
+        </member>
+        <member name="M:System.PrimaryElementTuple`3.#ctor(`0,`1,`2)">
+            <summary>
+            Initializes an instance with three values, and the first one
+            is the primary key.
+            </summary>
+            <param name="v1">The value 1.</param>
+            <param name="v2">The value 2.</param>
+            <param name="v3">The value 3.</param>
+        </member>
+        <member name="M:System.PrimaryElementTuple`3.#ctor(`0,`1,`2,System.Int32)">
+            <summary>
+            Initializes an instance with three values and a primary key.
+            </summary>
+            <param name="v1">The value 1.</param>
+            <param name="v2">The value 2.</param>
+            <param name="v3">The value 3.</param>
+            <param name="primaryElementKey">The primary key.</param>
+        </member>
+        <member name="P:System.PrimaryElementTuple`3.Value1">
+            <summary>
+            Indicates the value 1.
+            </summary>
+        </member>
+        <member name="P:System.PrimaryElementTuple`3.Value2">
+            <summary>
+            Indicates the value 2.
+            </summary>
+        </member>
+        <member name="P:System.PrimaryElementTuple`3.Value3">
+            <summary>
+            Indicates the value 3.
+            </summary>
+        </member>
+        <member name="P:System.PrimaryElementTuple`3.PrimaryElementKey">
+            <summary>
+            Indicates the index of the primary value.
+            </summary>
+        </member>
+        <member name="P:System.PrimaryElementTuple`3.System#Runtime#CompilerServices#ITuple#Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.PrimaryElementTuple`3.System#Runtime#CompilerServices#ITuple#Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.PrimaryElementTuple`3.Deconstruct(`0@,`1@,`2@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="v1">(<see langword="out" /> parameter) The value 1.</param>
+            <param name="v2">(<see langword="out" /> parameter) The value 2.</param>
+            <param name="v3">(<see langword="out" /> parameter) The value 3.</param>
+        </member>
+        <member name="M:System.PrimaryElementTuple`3.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
     </members>
 </doc>
