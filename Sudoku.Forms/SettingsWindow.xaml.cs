@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,12 +25,6 @@ namespace Sudoku.Forms
 		private readonly ManualSolver _manualSolver;
 
 
-		/// <summary>
-		/// Indicates the result settings.
-		/// </summary>
-		public Settings Settings { get; }
-
-
 		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public SettingsWindow(Settings settings, ManualSolver manualSolver)
 		{
@@ -38,7 +33,22 @@ namespace Sudoku.Forms
 			_manualSolver = manualSolver;
 			Settings = settings;
 
-			// Show controls with the specified settings.
+			InitializeSettingControls();
+			InitializePriorityControls();
+		}
+
+
+		/// <summary>
+		/// Indicates the result settings.
+		/// </summary>
+		public Settings Settings { get; }
+
+
+		/// <summary>
+		/// Initialize setting controls.
+		/// </summary>
+		private void InitializeSettingControls()
+		{
 			_checkBoxAskWhileQuitting.IsChecked = Settings.AskWhileQuitting;
 			_checkBoxEnableGcForcedly.IsChecked = Settings.EnableGarbageCollectionForcedly;
 			_checkBoxSolveFromCurrent.IsChecked = Settings.SolveFromCurrent;
@@ -87,17 +97,16 @@ namespace Sudoku.Forms
 			_buttonColor13.Background = new w::Media.SolidColorBrush(Settings.Color13.ToWColor());
 			_buttonColor14.Background = new w::Media.SolidColorBrush(Settings.Color14.ToWColor());
 			_buttonColor15.Background = new w::Media.SolidColorBrush(Settings.Color15.ToWColor());
-
-			InitializePriorityControls();
 		}
-
 
 		/// <summary>
 		/// Initialize priority controls.
 		/// </summary>
 		private void InitializePriorityControls()
 		{
-			_listBoxPriority.Items.Clear();
+			_listBoxPriority.ClearValue(ItemsControl.ItemsSourceProperty);
+
+			var list = new List<ListBoxItem>();
 			foreach (var type in from type in Assembly.Load("Sudoku.Solving").GetTypes()
 								 where !type.IsAbstract && type.IsSubclassOf(typeof(TechniqueSearcher))
 								 select type)
@@ -111,12 +120,16 @@ namespace Sudoku.Forms
 				var attribute = attributes.First();
 				int priority = (int)(
 					type.GetProperty("Priority", BindingFlags.Public | BindingFlags.Static)!.GetValue(null)!);
-				_listBoxPriority.Items.Add(new ListBoxItem
-				{
-					Content = new Triplet(attribute.DisplayName, priority, type)
-				});
+				list.Add(new ListBoxItem { Content = new Triplet(attribute.DisplayName, priority, type) });
 			}
 
+			list.Sort((a, b) =>
+			{
+				(_, int priority1, _) = (Triplet)a.Content;
+				(_, int priority2, _) = (Triplet)b.Content;
+				return priority1.CompareTo(priority2);
+			});
+			_listBoxPriority.ItemsSource = list;
 			_listBoxPriority.SelectedIndex = 0;
 			(_, int selectionPriority, _) = (Triplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
 			_textBoxPriority.Text = selectionPriority.ToString();
