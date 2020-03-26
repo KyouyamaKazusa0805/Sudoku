@@ -58,20 +58,17 @@ namespace Sudoku.Drawing
 		}
 
 		/// <summary>
-		/// Remove a layer from this collection.
-		/// If the collection does not contain any layers with the specified value,
-		/// the method will do nothing rather than throwing an exception.
-		/// </summary>
-		/// <param name="layer">The layer.</param>
-		public void Remove(Layer layer) => _internalList.Remove(layer);
-
-		/// <summary>
+		/// <para>
 		/// Remove a series of layers from this collection.
 		/// If the collection does not contain any layers with the specified value,
 		/// the method will do nothing rather than throwing an exception.
+		/// </para>
+		/// <para>
+		/// Please use code '<c>Remove(typeof(LayerName).Name)</c>' to remove.
+		/// </para>
 		/// </summary>
 		/// <param name="layerName">The layer name.</param>
-		public void RemoveAll(string layerName)
+		public void Remove(string layerName)
 		{
 		Label_Start:
 			foreach (var layer in _internalList)
@@ -83,6 +80,14 @@ namespace Sudoku.Drawing
 				}
 			}
 		}
+
+		/// <summary>
+		/// Remove a layer from this collection.
+		/// If the collection does not contain any layers with the specified value,
+		/// the method will do nothing rather than throwing an exception.
+		/// </summary>
+		/// <param name="layer">The layer.</param>
+		public void Remove(Layer layer) => _internalList.Remove(layer);
 
 		/// <summary>
 		/// Remove a series of layers that match the specified condition.
@@ -190,7 +195,7 @@ namespace Sudoku.Drawing
 		/// <returns>The reference of this collection.</returns>
 		public static LayerCollection operator -(LayerCollection layers, string layerName)
 		{
-			layers.RemoveAll(layerName);
+			layers.Remove(layerName);
 			return layers;
 		}
 

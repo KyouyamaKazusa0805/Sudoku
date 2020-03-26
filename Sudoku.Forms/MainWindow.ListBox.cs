@@ -33,7 +33,7 @@ namespace Sudoku.Forms
 			var techniqueInfo = _analyisResult.SolvingSteps![n];
 			_layerCollection.Add(
 				new ViewLayer(
-					_pointConverter, s.Views[0], techniqueInfo.Conclusions, Settings.ColorDictionary,
+					_pointConverter, s.Views[0], techniqueInfo.Conclusions, Settings.PaletteColors,
 					Settings.EliminationColor, Settings.CannibalismColor, Settings.ChainColor));
 			_textBoxInfo.Text = techniqueInfo.ToString();
 

@@ -33,7 +33,7 @@ namespace Sudoku.Forms
 
 				if (_focusedCells.Count == 0)
 				{
-					_layerCollection.RemoveAll(typeof(FocusLayer).Name);
+					_layerCollection.Remove(typeof(FocusLayer).Name);
 				}
 
 				UpdateImageGrid();

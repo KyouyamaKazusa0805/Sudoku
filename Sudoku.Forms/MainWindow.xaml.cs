@@ -116,7 +116,7 @@ namespace Sudoku.Forms
 						Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
 						Settings.GivenFontName, Settings.ModifiableFontName,
 						Settings.CandidateFontName, _puzzle = value, Settings.ShowCandidates));
-				_layerCollection.RemoveAll(typeof(ViewLayer).Name);
+				_layerCollection.Remove(typeof(ViewLayer).Name);
 				_initialPuzzle = value;
 
 				GC.Collect();

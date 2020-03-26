@@ -533,9 +533,9 @@ namespace Sudoku.Forms
 		}
 
 		/// <summary>
-		/// Indicates the color dictionary.
+		/// Indicates the palette colors.
 		/// </summary>
-		public IDictionary<int, Color> ColorDictionary
+		public IDictionary<int, Color> PaletteColors
 		{
 			get
 			{
