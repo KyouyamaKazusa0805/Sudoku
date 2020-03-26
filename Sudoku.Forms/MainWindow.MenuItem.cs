@@ -195,6 +195,7 @@ namespace Sudoku.Forms
 			LoadPuzzle(puzzleStr);
 
 			_listBoxPaths.Items.Clear();
+			_listViewSummary.Items.Clear();
 		}
 
 		private void MenuItemEditFix_Click(object sender, RoutedEventArgs e)
@@ -228,8 +229,8 @@ namespace Sudoku.Forms
 			_textBoxInfo.Text = string.Empty;
 
 			Puzzle = new UndoableGrid((SudokuGrid)puzzle);
-			_listBoxPaths.Items.Clear();
-			_listViewSummary.Items.Clear();
+			_listBoxPaths.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
+			_listViewSummary.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
 
 			UpdateImageGrid();
 		}
@@ -238,8 +239,8 @@ namespace Sudoku.Forms
 		private async void MenuItemAnalyzeSolve_Click(object sender, RoutedEventArgs e)
 		{
 			// Update status.
-			_listBoxPaths.Items.Clear();
-			_listViewSummary.Items.Clear();
+			_listBoxPaths.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
+			_listViewSummary.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
 			_textBoxInfo.Text = "Solving, please wait. During solving you can do some other work...";
 
 			// Run the solver asynchronizedly, during solving you can do other work.
@@ -250,6 +251,7 @@ namespace Sudoku.Forms
 			if (_analyisResult.HasSolved)
 			{
 				int i = 0;
+				var pathList = new List<w::Controls.ListBoxItem>();
 				foreach (var step in _analyisResult.SolvingSteps!)
 				{
 					var item = new w::Controls.ListBoxItem();
@@ -257,8 +259,9 @@ namespace Sudoku.Forms
 					item.Foreground = new w::Media.SolidColorBrush(fore.ToWColor());
 					item.Background = new w::Media.SolidColorBrush(back.ToWColor());
 					item.Content = new InfoPair(i++, step);
-					_listBoxPaths.Items.Add(item);
+					pathList.Add(item);
 				}
+				_listBoxPaths.ItemsSource = pathList;
 
 				var collection = new List<AnonymousType>();
 				decimal summary = 0, summaryMax = 0;
@@ -297,6 +300,7 @@ namespace Sudoku.Forms
 				view.Columns.Add(CreateGridViewColumn("Count"));
 				view.Columns.Add(CreateGridViewColumn("Total"));
 				view.Columns.Add(CreateGridViewColumn("Max"));
+				view.AllowsColumnReorder = false;
 			}
 			else
 			{
