@@ -385,7 +385,10 @@ namespace Sudoku.Solving.Manual
 			};
 			if (UseCalculationPriority)
 			{
-				Array.Sort(searchers, (a, b) => a.Priority.CompareTo(b.Priority));
+				static int GetPriority(TechniqueSearcher s) =>
+					(int)s.GetType().GetProperty("Priority")!.GetValue(null)!;
+
+				Array.Sort(searchers, (a, b) => GetPriority(a).CompareTo(GetPriority(b)));
 			}
 
 			var stepGrids = new Bag<IReadOnlyGrid>();

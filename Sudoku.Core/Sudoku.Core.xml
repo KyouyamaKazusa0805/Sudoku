@@ -874,6 +874,28 @@
             <param name="this">(<see langword="this"/> parameter) The value to check.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
+        <member name="T:Sudoku.Data.Extensions.TypeEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Type"/>.
+            </summary>
+            <seealso cref="T:System.Type"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.TypeEx.HasMarkedAttribute``1(System.Type,System.Boolean,System.Collections.Generic.IEnumerable{``0}@)">
+            <summary>
+            To check whether the specified type has marked the specified attribute.
+            </summary>
+            <typeparam name="TAttribute">The type of the attribute.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The type.</param>
+            <param name="inherit">
+            <see langword="true"/> to search this member's inheritance chain
+            to find the attributes; otherwise, <see langword="false"/>.
+            This parameter is ignored for properties and events.
+            </param>
+            <param name="attributes">
+            (<see langword="out"/> parameter) All attributes found.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Data.FullGridMap">
             <summary>
             Encapsulates a binary series of candidate status table consisting of 729 bits,

@@ -1,9 +1,14 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Reflection;
+using System.Windows;
 using System.Windows.Controls;
+using Sudoku.Data.Extensions;
 using Sudoku.Forms.Drawing.Extensions;
 using Sudoku.Forms.Extensions;
 using Sudoku.Forms.Tooling;
+using Sudoku.Solving;
 using Sudoku.Solving.Manual;
+using Triplet = System.PrimaryElementTuple<string, int, System.Type>;
 using w = System.Windows;
 
 namespace Sudoku.Forms
@@ -81,8 +86,40 @@ namespace Sudoku.Forms
 			_buttonColor13.Background = new w::Media.SolidColorBrush(Settings.Color13.ToWColor());
 			_buttonColor14.Background = new w::Media.SolidColorBrush(Settings.Color14.ToWColor());
 			_buttonColor15.Background = new w::Media.SolidColorBrush(Settings.Color15.ToWColor());
+
+			InitializePriorityControls();
 		}
 
+
+		/// <summary>
+		/// Initialize priority controls.
+		/// </summary>
+		private void InitializePriorityControls()
+		{
+			_listBoxPriority.Items.Clear();
+			foreach (var type in from type in Assembly.Load("Sudoku.Solving").GetTypes()
+								 where !type.IsAbstract && type.IsSubclassOf(typeof(TechniqueSearcher))
+								 select type)
+			{
+				if (!type.HasMarkedAttribute<TechniqueDisplayAttribute>(false, out var attributes))
+				{
+					throw new SudokuRuntimeException(
+						"The specified searcher does not contain any displaying information.");
+				}
+
+				var attribute = attributes.First();
+				int priority = (int)(
+					type.GetProperty("Priority", BindingFlags.Public | BindingFlags.Static)!.GetValue(null)!);
+				_listBoxPriority.Items.Add(new ListBoxItem
+				{
+					Content = new Triplet(attribute.DisplayName, priority, type)
+				});
+			}
+
+			_listBoxPriority.SelectedIndex = 0;
+			(_, int selectionPriority, _) = (Triplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
+			_textBoxPriority.Text = selectionPriority.ToString();
+		}
 
 		/// <summary>
 		/// To handle the color settings.
@@ -471,5 +508,16 @@ namespace Sudoku.Forms
 
 		private void CheckBoxEnableGcForcedly_Click(object sender, RoutedEventArgs e) =>
 			_checkBoxEnableGcForcedly.IsEnabled = Settings.EnableGarbageCollectionForcedly = _manualSolver.EnableGarbageCollectionForcedly ^= true;
+
+		private void ListBoxPriority_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (sender is ListBox listBox
+				&& listBox.SelectedItem is ListBoxItem listBoxItem
+				&& listBoxItem.Content is Triplet triplet)
+			{
+				(_, int priority, _) = triplet;
+				_textBoxPriority.Text = priority.ToString();
+			}
+		}
 	}
 }

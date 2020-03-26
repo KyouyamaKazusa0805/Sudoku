@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// <summary>
 	/// Encapsulates a <b>Hobiwan's fish</b> technique searcher.
 	/// </summary>
-	[Slow]
+	[Slow, TechniqueDisplay("Hobiwan's Fish")]
 	public sealed class HobiwanFishTechniqueSearcher : FishTechniqueSearcher
 	{
 		/// <summary>
@@ -63,7 +63,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 
 		/// <inheritdoc/>
-		public override int Priority { get; set; } = 80;
+		public static int Priority { get; set; } = 80;
 
 
 		/// <inheritdoc/>

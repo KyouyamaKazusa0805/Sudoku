@@ -17,6 +17,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// <summary>
 	/// Encapsulates a <b>bivalue universal grave</b> (BUG) technique searcher.
 	/// </summary>
+	[TechniqueDisplay("Bivalue Universal Grave")]
 	public sealed class BugTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>
@@ -45,7 +46,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 
 		/// <inheritdoc/>
-		public override int Priority { get; set; } = 56;
+		public static int Priority { get; set; } = 56;
 
 
 		/// <inheritdoc/>

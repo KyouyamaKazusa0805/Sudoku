@@ -12,6 +12,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 	/// <summary>
 	/// Encapsulates a <b>regular wing</b> technique solver.
 	/// </summary>
+	[TechniqueDisplay("Regular Wing")]
 	public sealed class RegularWingTechniqueSearcher : WingTechniqueSearcher
 	{
 		/// <summary>
@@ -28,7 +29,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 
 
 		/// <inheritdoc/>
-		public override int Priority { get; set; } = 42;
+		public static int Priority { get; set; } = 42;
 
 
 		/// <inheritdoc/>

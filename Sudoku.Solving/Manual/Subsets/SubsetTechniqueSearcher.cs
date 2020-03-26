@@ -13,10 +13,11 @@ namespace Sudoku.Solving.Manual.Subsets
 	/// <summary>
 	/// Encapsulates a <b>subset</b> technique searcher.
 	/// </summary>
+	[TechniqueDisplay("Subsets")]
 	public sealed class SubsetTechniqueSearcher : TechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override int Priority { get; set; } = 30;
+		public static int Priority { get; set; } = 30;
 
 
 		/// <inheritdoc/>

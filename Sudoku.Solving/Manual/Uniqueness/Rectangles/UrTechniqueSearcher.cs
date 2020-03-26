@@ -20,6 +20,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 	/// Encapsulates a <b>unique rectangle</b> (UR) technique searcher.
 	/// In fact, ARs can also be found.
 	/// </summary>
+	[TechniqueDisplay("Unique rectangle")]
 	public sealed partial class UrTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>
@@ -39,7 +40,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 
 		/// <inheritdoc/>
-		public override int Priority { get; set; } = 45;
+		public static int Priority { get; set; } = 45;
 
 
 		/// <inheritdoc/>

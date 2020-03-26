@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -12,6 +11,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <summary>
 	/// Encapsulates an empty rectangle technique searcher.
 	/// </summary>
+	[TechniqueDisplay("Empty Rectangle")]
 	public sealed class EmptyRectangleTechniqueSearcher : SdpTechniqueSearcher
 	{
 		/// <summary>
@@ -52,7 +52,7 @@ namespace Sudoku.Solving.Manual.Sdps
 
 
 		/// <inheritdoc/>
-		public override int Priority { get; set; } = 46;
+		public static int Priority { get; set; } = 46;
 
 
 		/// <inheritdoc/>

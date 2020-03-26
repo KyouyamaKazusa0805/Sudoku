@@ -16,10 +16,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// Encapsulates a <b>unique loop</b> (UL) technique searcher.
 	/// In fact the unique loop can also search for URs.
 	/// </summary>
+	[TechniqueDisplay("Unique Loop")]
 	public sealed class UlTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override int Priority { get; set; } = 46;
+		public static int Priority { get; set; } = 46;
 
 
 		/// <inheritdoc/>

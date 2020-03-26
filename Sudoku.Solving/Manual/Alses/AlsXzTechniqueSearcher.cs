@@ -10,6 +10,7 @@ namespace Sudoku.Solving.Manual.Alses
 	/// <summary>
 	/// Encapsulates an <b>ALS-XZ</b> technique.
 	/// </summary>
+	[TechniqueDisplay("Almost Locked Sets XZ Rule")]
 	public sealed class AlsXzTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <summary>
@@ -37,7 +38,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 
 		/// <inheritdoc/>
-		public override int Priority { get; set; } = 55;
+		public static int Priority { get; set; } = 55;
 
 
 		/// <inheritdoc/>

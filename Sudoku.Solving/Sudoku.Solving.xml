@@ -6179,6 +6179,24 @@
             An <see cref="T:Sudoku.Solving.AnalysisResult"/> displaying all information of solving.
             </returns>
         </member>
+        <member name="T:Sudoku.Solving.TechniqueDisplayAttribute">
+            <summary>
+            To mark on a technique searcher class (i.e. <see cref="T:Sudoku.Solving.TechniqueSearcher"/>,
+            to provide additional displaying messages which are used in UI forms, such as
+            technique priority settings form.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueDisplayAttribute.#ctor(System.String)">
+            <summary>
+            Initializes an instance with the specified displaying name.
+            </summary>
+            <param name="displayName">The name.</param>
+        </member>
+        <member name="P:Sudoku.Solving.TechniqueDisplayAttribute.DisplayName">
+            <summary>
+            Indicates the display name of this technique.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.TechniqueInfo">
             <summary>
             Encapsulates all information after searched a solving step,
@@ -6302,11 +6320,7 @@
             Encapsulates a step finder that used in solving in
             <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
             </summary>
-        </member>
-        <member name="P:Sudoku.Solving.TechniqueSearcher.Priority">
-            <summary>
-            Indicates the priority of this technique searcher.
-            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.TakeOne(Sudoku.Data.IReadOnlyGrid)">
             <summary>
@@ -6336,6 +6350,23 @@
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.ToString">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueSearcher.GetPriority``1">
+            <summary>
+            To get the priority of the technique searcher.
+            </summary>
+            <typeparam name="TTechniqueSearcher">The type of the specified technique searcher.</typeparam>
+            <returns>The priority.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueSearcher.GetPriority(Sudoku.Solving.TechniqueSearcher)">
+            <summary>
+            To get the priority of the technique searcher.
+            </summary>
+            <param name="instance">The technique searcher.</param>
+            <returns>The priority.</returns>
+            <remarks>
+            This method uses reflection to get the specified value.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.op_Equality(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
             <operator name="op_Equality">

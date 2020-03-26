@@ -9,6 +9,7 @@ namespace Sudoku.Solving.Manual.Singles
 	/// <summary>
 	/// Encapsulates a <b>single</b> technique searcher.
 	/// </summary>
+	[TechniqueDisplay("Singles")]
 	public sealed class SingleTechniqueSearcher : TechniqueSearcher
 	{
 		/// <summary>
@@ -31,7 +32,7 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		/// <inheritdoc/>
-		public override int Priority { get; set; } = 10;
+		public static int Priority { get; set; } = 10;
 
 
 		/// <inheritdoc/>

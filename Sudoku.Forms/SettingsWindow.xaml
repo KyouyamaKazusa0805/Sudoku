@@ -252,8 +252,23 @@
 							Click="ButtonChainColor_Click"/>
 				</Grid>
 			</TabItem>
+			<TabItem Header="Priority">
+				<Grid Background="#FFE5E5E5">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<ListBox Grid.Row="0" Grid.Column="0" Name="_listBoxPriority"
+							 SelectionChanged="ListBoxPriority_SelectionChanged"/>
+					<GroupBox Grid.Row="0" Grid.Column="1" Header="Priority">
+						<TextBox Name="_textBoxPriority" HorizontalContentAlignment="Center"
+								 VerticalContentAlignment="Center" FontSize="50"
+								 IsReadOnly="True"/>
+					</GroupBox>
+				</Grid>
+			</TabItem>
 			<TabItem Header="Palette">
-				<Grid>
+				<Grid Background="#FFE5E5E5">
 					<Grid.RowDefinitions>
 						<RowDefinition/>
 						<RowDefinition/>

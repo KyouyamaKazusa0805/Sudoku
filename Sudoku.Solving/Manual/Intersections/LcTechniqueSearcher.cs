@@ -9,6 +9,7 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// <summary>
 	/// Encapsulates a <b>locked candidates</b> (LC) technique searcher.
 	/// </summary>
+	[TechniqueDisplay("Locked Candidates")]
 	public sealed class LcTechniqueSearcher : IntersectionTechniqueSearcher
 	{
 		/// <summary>
@@ -26,7 +27,7 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		/// <inheritdoc/>
-		public override int Priority { get; set; } = 26;
+		public static int Priority { get; set; } = 26;
 
 
 		/// <inheritdoc/>

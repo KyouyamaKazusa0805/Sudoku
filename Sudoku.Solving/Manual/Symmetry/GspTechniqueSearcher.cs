@@ -9,10 +9,11 @@ namespace Sudoku.Solving.Manual.Symmetry
 	/// <summary>
 	/// Encapsulates a <b>Gurth's symmetrical placement</b> (GSP) technique searcher.
 	/// </summary>
+	[TechniqueDisplay("Gurth's Symmetrical Placement")]
 	public sealed partial class GspTechniqueSearcher : SymmetryTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override int Priority { get; set; } = 0;
+		public static int Priority { get; set; } = 0;
 
 
 		/// <inheritdoc/>

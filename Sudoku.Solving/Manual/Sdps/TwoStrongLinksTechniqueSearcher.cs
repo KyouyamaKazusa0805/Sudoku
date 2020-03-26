@@ -9,10 +9,11 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <summary>
 	/// Encapsulates a two strong links technique searcher.
 	/// </summary>
+	[TechniqueDisplay("Two Strong Links")]
 	public sealed class TwoStrongLinksTechniqueSearcher : SdpTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override int Priority { get; set; } = 40;
+		public static int Priority { get; set; } = 40;
 
 
 		/// <inheritdoc/>

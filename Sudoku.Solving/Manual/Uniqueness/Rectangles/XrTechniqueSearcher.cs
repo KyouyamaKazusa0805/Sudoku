@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -14,6 +13,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 	/// <summary>
 	/// Encapsulates an <b>extended rectangle</b> (XR) technique searcher.
 	/// </summary>
+	[TechniqueDisplay("Extended Rectangle")]
 	public sealed class XrTechniqueSearcher : RectangleTechniqueSearcher
 	{
 		/// <summary>
@@ -65,7 +65,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 
 		/// <inheritdoc/>
-		public override int Priority { get; set; } = 46;
+		public static int Priority { get; set; } = 46;
 
 
 		/// <inheritdoc/>

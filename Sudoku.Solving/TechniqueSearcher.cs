@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Sudoku.Data;
+using Sudoku.Solving.Manual;
 
 namespace Sudoku.Solving
 {
 	/// <summary>
 	/// Encapsulates a step finder that used in solving in
-	/// <see cref="Manual.ManualSolver"/>.
+	/// <see cref="ManualSolver"/>.
 	/// </summary>
+	/// <seealso cref="ManualSolver"/>
 	public abstract class TechniqueSearcher : IComparable<TechniqueSearcher>, IEquatable<TechniqueSearcher>
 	{
-		/// <summary>
-		/// Indicates the priority of this technique searcher.
-		/// </summary>
-		public abstract int Priority { get; set; }
-
-
 		/// <summary>
 		/// Take a technique step after searched all solving steps.
 		/// </summary>
@@ -38,13 +35,13 @@ namespace Sudoku.Solving
 
 		/// <inheritdoc/>
 		public virtual int CompareTo(TechniqueSearcher other) =>
-			Priority.CompareTo(other.Priority);
+			GetPriority(this).CompareTo(GetPriority(other));
 
 		/// <inheritdoc/>
-		public sealed override int GetHashCode() => Priority * 17 + 0xDEAD & 0xC0DE;
+		public sealed override int GetHashCode() => GetPriority(this) * 17 + 0xDEAD & 0xC0DE;
 
 		/// <inheritdoc/>
-		public virtual bool Equals(TechniqueSearcher other) => Priority == other.Priority;
+		public virtual bool Equals(TechniqueSearcher other) => GetPriority(this) == GetPriority(other);
 
 		/// <inheritdoc/>
 		public sealed override bool Equals(object? obj) =>
@@ -52,6 +49,28 @@ namespace Sudoku.Solving
 
 		/// <inheritdoc/>
 		public override string ToString() => GetType().Name;
+
+
+		/// <summary>
+		/// To get the priority of the technique searcher.
+		/// </summary>
+		/// <typeparam name="TTechniqueSearcher">The type of the specified technique searcher.</typeparam>
+		/// <returns>The priority.</returns>
+		public static int GetPriority<TTechniqueSearcher>()
+			where TTechniqueSearcher : TechniqueSearcher =>
+			(int)typeof(TTechniqueSearcher).GetProperty("Priority", BindingFlags.Static)!.GetValue(null)!;
+
+
+		/// <summary>
+		/// To get the priority of the technique searcher.
+		/// </summary>
+		/// <param name="instance">The technique searcher.</param>
+		/// <returns>The priority.</returns>
+		/// <remarks>
+		/// This method uses reflection to get the specified value.
+		/// </remarks>
+		private static int GetPriority(TechniqueSearcher instance) =>
+			(int)instance.GetType().GetProperty("Priority", BindingFlags.Static)!.GetValue(null)!;
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>

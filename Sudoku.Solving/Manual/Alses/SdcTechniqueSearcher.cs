@@ -12,6 +12,7 @@ namespace Sudoku.Solving.Manual.Alses
 	/// <summary>
 	/// Encapsulates a <b>sue de coq</b> (SdC) technique searcher.
 	/// </summary>
+	[TechniqueDisplay("Sue de Coq")]
 	public sealed class SdcTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <summary>
@@ -78,7 +79,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 
 		/// <inheritdoc/>
-		public override int Priority { get; set; } = 50;
+		public static int Priority { get; set; } = 50;
 
 
 		/// <inheritdoc/>

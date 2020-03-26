@@ -11,10 +11,11 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 	/// <summary>
 	/// Encapsulates an <b>irregular wing</b> technique searcher.
 	/// </summary>
+	[TechniqueDisplay("Irregular Wing")]
 	public sealed class IrregularWingTechniqueSearcher : TechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override int Priority { get; set; } = 44;
+		public static int Priority { get; set; } = 44;
 
 
 		/// <inheritdoc/>

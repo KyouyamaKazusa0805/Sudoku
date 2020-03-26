@@ -11,6 +11,7 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// <summary>
 	/// Encapsulates an <b>almost locked candidates</b> (ALC) technique searcher.
 	/// </summary>
+	[TechniqueDisplay("Almost Locked Candidates")]
 	public sealed class AlcTechniqueSearcher : IntersectionTechniqueSearcher
 	{
 		/// <summary>
@@ -37,7 +38,7 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		/// <inheritdoc/>
-		public override int Priority { get; set; } = 45;
+		public static int Priority { get; set; } = 45;
 
 
 		/// <inheritdoc/>

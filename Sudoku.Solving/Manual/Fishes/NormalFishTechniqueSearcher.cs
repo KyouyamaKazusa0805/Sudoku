@@ -11,10 +11,11 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// <summary>
 	/// Encapsulates a <b>normal fish</b> technique searcher. Fins can also be found.
 	/// </summary>
+	[TechniqueDisplay("(Finned, Sashimi) Fish")]
 	public sealed class NormalFishTechniqueSearcher : FishTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override int Priority { get; set; } = 32;
+		public static int Priority { get; set; } = 32;
 
 
 		/// <inheritdoc/>

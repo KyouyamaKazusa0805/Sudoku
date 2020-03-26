@@ -13,6 +13,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// This searcher is a trick, because it will check the assignments on
 	/// the terminal grid (I mean, the answer grid).
 	/// </remarks>
+	[TechniqueDisplay("Brute Force")]
 	public sealed class BruteForceTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <summary>
@@ -49,7 +50,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
-		public override int Priority { get; set; } = 200;
+		public static int Priority { get; set; } = 200;
 
 
 		/// <inheritdoc/>

@@ -11,6 +11,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// <summary>
 	/// Encapsulates a <b>Bowman's bingo</b> technique searcher.
 	/// </summary>
+	[TechniqueDisplay("Bowman's Bingo")]
 	public sealed class BowmanBingoTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <summary>
@@ -37,7 +38,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
-		public override int Priority { get; set; } = 80;
+		public static int Priority { get; set; } = 80;
 
 
 		/// <inheritdoc/>

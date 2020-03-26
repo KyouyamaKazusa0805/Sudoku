@@ -10,6 +10,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// <summary>
 	/// Encapsulates a <b>template</b> technique searcher.
 	/// </summary>
+	[TechniqueDisplay("Template")]
 	public sealed class TemplateTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <summary>
@@ -29,7 +30,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
-		public override int Priority { get; set; } = 80;
+		public static int Priority { get; set; } = 80;
 
 
 		/// <inheritdoc/>
