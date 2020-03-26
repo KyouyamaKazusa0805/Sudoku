@@ -5735,6 +5735,39 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.XrTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.XrTechniqueSearcher.CheckType14(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Check type 1 or 4.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="allCellsMap">All cells map.</param>
+            <param name="normalDigits">The normal digits.</param>
+            <param name="extraDigits">The extra digits.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.XrTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap,System.Int32,System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Check type 3 naked subsets.
+            </summary>
+            <param name="accumulator">The result accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="allCellsMap">All cells map.</param>
+            <param name="size">The size to check.</param>
+            <param name="r1">The region 1.</param>
+            <param name="r2">The region 2.</param>
+            <param name="pairs">The pairs.</param>
+            <param name="normalDigits">The normal digits.</param>
+            <param name="extraDigits">The extra digits.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.XrTechniqueSearcher.GetRegions(System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}})">
+            <summary>
+            Get all regions to iterate (used for type 3).
+            </summary>
+            <param name="r1">The region 1.</param>
+            <param name="r2">The region 2.</param>
+            <param name="pairs">The pairs.</param>
+            <returns>All regions.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.XrType1DetailData">
             <summary>
             Indicates the detail data of XR type 1.

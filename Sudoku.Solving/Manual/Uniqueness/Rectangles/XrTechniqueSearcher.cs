@@ -7,6 +7,7 @@ using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 using XrType1 = Sudoku.Solving.Manual.Uniqueness.Rectangles.XrType1DetailData;
 using XrType2 = Sudoku.Solving.Manual.Uniqueness.Rectangles.XrType2DetailData;
+using XrType3 = Sudoku.Solving.Manual.Uniqueness.Rectangles.XrType3DetailData;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 {
@@ -39,8 +40,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		/// </summary>
 		static XrTechniqueSearcher()
 		{
-			//static bool check(int size, short value) => value.CountSet() << 1 > size;
-
 			var list = new Dictionary<int, IEnumerable<short>>();
 			for (int size = 3; size <= 7; size++)
 			{
@@ -54,13 +53,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					{
 						continue;
 					}
-
-					// Optimize the combinations.
-					// Note that some combinations are proved impossible.
-					//if (check(size, a) || check(size, b) || check(size, c))
-					//{
-					//	continue;
-					//}
 
 					innerList.Add(mask);
 				}
@@ -128,43 +120,42 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						}
 
 						int resultMask = m1 | m2;
+						var normalDigits = new List<int>();
+						var extraDigits = new List<int>();
+						var digits = resultMask.GetAllSets();
+						foreach (int digit in digits)
+						{
+							int count = 0;
+							foreach (var (l, r) in pairs)
+							{
+								if (((grid.GetCandidates(l) | grid.GetCandidates(r)) >> digit & 1) == 0)
+								{
+									// Both two cells contain same digit.
+									count++;
+								}
+							}
+
+							if (count >= 2)
+							{
+								// This candidate must be in the structure.
+								normalDigits.Add(digit);
+							}
+							else
+							{
+								// This candidate must be the extra digit.
+								extraDigits.Add(digit);
+							}
+						}
+
+						if (normalDigits.Count != size)
+						{
+							// The number of normal digits are not enough.
+							continue;
+						}
+
 						if (resultMask.CountSet() == size + 1)
 						{
 							// Possible type 1 or 2 found.
-							// Check all digits.
-							var normalDigits = new List<int>();
-							var extraDigits = new List<int>();
-							var digits = resultMask.GetAllSets();
-							foreach (int digit in digits)
-							{
-								int count = 0;
-								foreach (var (l, r) in pairs)
-								{
-									if (((grid.GetCandidates(l) | grid.GetCandidates(r)) >> digit & 1) == 0)
-									{
-										// Both two cells contain same digit.
-										count++;
-									}
-								}
-
-								if (count >= 2)
-								{
-									// This candidate must be in the structure.
-									normalDigits.Add(digit);
-								}
-								else
-								{
-									// This candidate must be the extra digit.
-									extraDigits.Add(digit);
-								}
-							}
-
-							if (normalDigits.Count != size)
-							{
-								// The number of normal digits are not enough.
-								continue;
-							}
-
 							// Now check extra cells.
 							var extraCells = new List<int>();
 							foreach (int cell in allCellsMap.Offsets)
@@ -279,76 +270,253 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 											extraDigit: extraDigit)));
 							}
 						}
-						//else
-						//{
-						//	// Check type 3 or 4.
-						//	int[] digits = resultMask.GetAllSets().ToArray();
-						//	if (digits.Length >= 8)
-						//	{
-						//		continue;
-						//	}
-						//
-						//	foreach (var normalDigits in GetAllNormalDigitCombinations(digits))
-						//	{
-						//		 TODO: Check XR type 3 and 4.
-						//	}
-						//}
+						else
+						{
+							// Check type 3 or 4.
+							for (int subsetSize = 2; subsetSize <= 8 - size; subsetSize++)
+							{
+								CheckType3Naked(
+									accumulator, grid, allCellsMap, subsetSize, r1, r2, pairs,
+									normalDigits, extraDigits);
+							}
+
+							CheckType14(accumulator, grid, allCellsMap, normalDigits, extraDigits);
+						}
 					}
 				}
 			}
 		}
 
-		[SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-		private static IEnumerable<int>[] GetAllNormalDigitCombinations(IReadOnlyList<int> digits)
+		/// <summary>
+		/// Check type 1 or 4.
+		/// </summary>
+		/// <param name="accumulator">The accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="allCellsMap">All cells map.</param>
+		/// <param name="normalDigits">The normal digits.</param>
+		/// <param name="extraDigits">The extra digits.</param>
+		private void CheckType14(
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap allCellsMap,
+			IReadOnlyList<int> normalDigits, IReadOnlyList<int> extraDigits)
 		{
-			System.Diagnostics.Contracts.Contract.Requires(digits.Count >= 3 && digits.Count <= 7);
-
-			// A trick.
-			// List all combinations rather than using recursion.
-			return digits.Count switch
+			// Now check extra cells.
+			var extraCells = new List<int>();
+			foreach (int cell in allCellsMap.Offsets)
 			{
-				3 => new[]
+				foreach (int digit in extraDigits)
 				{
-					new[] { digits[0], digits[1] },
-					new[] { digits[0], digits[2] },
-					new[] { digits[1], digits[2] }
-				},
-				4 => new[]
+					if ((grid.GetCandidates(cell) >> digit & 1) == 0)
+					{
+						extraCells.Add(cell);
+					}
+				}
+			}
+
+			int extraCellsCount = extraCells.Count;
+			if (extraCellsCount == 1)
+			{
+				// Type 1 found.
+				// Check eliminations.
+				var conclusions = new List<Conclusion>();
+				int extraCell = extraCells[0];
+				foreach (int digit in normalDigits)
 				{
-					new[] { digits[0], digits[1], digits[2] },
-					new[] { digits[0], digits[1], digits[3] },
-					new[] { digits[0], digits[2], digits[3] },
-					new[] { digits[1], digits[2], digits[3] }
-				},
-				5 => new[]
+					if (grid.CandidateExists(extraCell, digit))
+					{
+						conclusions.Add(
+							new Conclusion(ConclusionType.Elimination, extraCell, digit));
+					}
+				}
+
+				if (conclusions.Count == 0)
 				{
-					new[] { digits[0], digits[1], digits[2], digits[3] },
-					new[] { digits[0], digits[1], digits[2], digits[4] },
-					new[] { digits[0], digits[1], digits[3], digits[4] },
-					new[] { digits[0], digits[2], digits[3], digits[4] },
-					new[] { digits[1], digits[2], digits[3], digits[4] }
-				},
-				6 => new[]
+					return;
+				}
+
+				// Record all highlight candidates.
+				var candidateOffsets = new List<(int, int)>();
+				foreach (int cell in allCellsMap.Offsets)
 				{
-					new[] { digits[0], digits[1], digits[2], digits[3], digits[4] },
-					new[] { digits[0], digits[1], digits[2], digits[3], digits[5] },
-					new[] { digits[0], digits[1], digits[2], digits[4], digits[5] },
-					new[] { digits[0], digits[1], digits[3], digits[4], digits[5] },
-					new[] { digits[0], digits[2], digits[3], digits[4], digits[5] },
-					new[] { digits[1], digits[2], digits[3], digits[4], digits[5] }
-				},
-				7 => new[]
+					if (cell == extraCell)
+					{
+						continue;
+					}
+
+					foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+					{
+						candidateOffsets.Add((0, cell * 9 + digit));
+					}
+				}
+
+				accumulator.Add(
+					new XrTechniqueInfo(
+						conclusions,
+						views: new[]
+						{
+							new View(
+								cellOffsets: null,
+								candidateOffsets,
+								regionOffsets: null,
+								links: null)
+						},
+						detailData: new XrType1(
+							cells: allCellsMap.ToArray(),
+							digits: normalDigits)));
+			}
+			else
+			{
+				// TODO: Check XR type 4.
+			}
+		}
+
+		/// <summary>
+		/// Check type 3 naked subsets.
+		/// </summary>
+		/// <param name="accumulator">The result accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="allCellsMap">All cells map.</param>
+		/// <param name="size">The size to check.</param>
+		/// <param name="r1">The region 1.</param>
+		/// <param name="r2">The region 2.</param>
+		/// <param name="pairs">The pairs.</param>
+		/// <param name="normalDigits">The normal digits.</param>
+		/// <param name="extraDigits">The extra digits.</param>
+		private void CheckType3Naked(
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap allCellsMap,
+			int size, int r1, int r2, IReadOnlyList<(int, int)> pairs, IReadOnlyList<int> normalDigits,
+			IReadOnlyList<int> extraDigits)
+		{
+			foreach (int region in GetRegions(r1, r2, pairs))
+			{
+				// Firstly, we should check all cells to iterate,
+				// which are empty cells and not in the structure.
+				var unavailableCellsMap = GridMap.CreateInstance(region);
+				foreach (int cell in GridMap.GetCellsIn(region))
 				{
-					new[] { digits[0], digits[1], digits[2], digits[3], digits[4], digits[5] },
-					new[] { digits[0], digits[1], digits[2], digits[3], digits[4], digits[6] },
-					new[] { digits[0], digits[1], digits[2], digits[3], digits[5], digits[6] },
-					new[] { digits[0], digits[1], digits[2], digits[4], digits[5], digits[6] },
-					new[] { digits[0], digits[1], digits[3], digits[4], digits[5], digits[6] },
-					new[] { digits[0], digits[2], digits[3], digits[4], digits[5], digits[6] },
-					new[] { digits[1], digits[2], digits[3], digits[4], digits[5], digits[6] },
-				},
-				_ => throw Throwing.ImpossibleCase
-			};
+					if (grid.GetCellStatus(cell) == CellStatus.Empty && !allCellsMap[cell])
+					{
+						unavailableCellsMap.Remove(cell);
+					}
+				}
+
+				if (8 - unavailableCellsMap.Count < size)
+				{
+					// The number of last cells are not enough to form a light subset.
+					continue;
+				}
+
+				// Get the mask.
+				short unavailableCellsMask = 0;
+				short index = 0;
+				foreach (int cell in GridMap.GetCellsIn(region))
+				{
+					if (unavailableCellsMap[cell])
+					{
+						unavailableCellsMask |= index;
+					}
+
+					index++;
+				}
+
+				// Now iterate on them.
+				foreach (short mask in new BitCombinationGenerator(9, size - 1))
+				{
+					if ((mask & unavailableCellsMask) != 0)
+					{
+						continue;
+					}
+
+					short subsetMask = 0;
+					var usedCellsMap = GridMap.CreateInstance(region) - unavailableCellsMap;
+					foreach (int cell in usedCellsMap.Offsets)
+					{
+						subsetMask |= grid.GetCandidatesReversal(cell);
+					}
+
+					short extraMask = 0;
+					foreach (int digit in extraDigits)
+					{
+						extraMask |= (short)(1 << digit);
+					}
+
+					subsetMask |= extraMask;
+					if (subsetMask.CountSet() != size)
+					{
+						continue;
+					}
+
+					// XR type 3 found.
+					// Record all eliminations.
+					var conclusions = new List<Conclusion>();
+					var elimMap = GridMap.CreateInstance(region) - unavailableCellsMap - usedCellsMap;
+					foreach (int cell in elimMap.Offsets)
+					{
+						foreach (int digit in extraDigits)
+						{
+							if (grid.CandidateExists(cell, digit))
+							{
+								conclusions.Add(
+									new Conclusion(ConclusionType.Elimination, cell, digit));
+							}
+						}
+					}
+
+					if (conclusions.Count == 0)
+					{
+						continue;
+					}
+
+					// Record all highlight candidates.
+					var candidateOffsets = new List<(int, int)>();
+					foreach (int cell in allCellsMap.Offsets)
+					{
+						foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+						{
+							candidateOffsets.Add((extraMask >> digit & 1, cell * 9 + digit));
+						}
+					}
+
+					accumulator.Add(
+						new XrTechniqueInfo(
+							conclusions,
+							views: new[]
+							{
+								new View(
+									cellOffsets: null,
+									candidateOffsets,
+									regionOffsets: new[] { (0, region) },
+									links: null)
+							},
+							detailData: new XrType3(
+								cells: allCellsMap.ToArray(),
+								digits: normalDigits,
+								subsetCells: usedCellsMap.ToArray(),
+								subsetDigits: extraDigits,
+								isNaked: true)));
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// Get all regions to iterate (used for type 3).
+		/// </summary>
+		/// <param name="r1">The region 1.</param>
+		/// <param name="r2">The region 2.</param>
+		/// <param name="pairs">The pairs.</param>
+		/// <returns>All regions.</returns>
+		private static IEnumerable<int> GetRegions(int r1, int r2, IReadOnlyList<(int, int)> pairs)
+		{
+			foreach (var (l, r) in pairs)
+			{
+				foreach (int region in new GridMap { l, r }.CoveredRegions)
+				{
+					yield return region;
+				}
+			}
+
+			yield return r1;
+			yield return r2;
 		}
 	}
 }
