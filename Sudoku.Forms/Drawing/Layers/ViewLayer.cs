@@ -15,6 +15,12 @@ namespace Sudoku.Drawing.Layers
 	public sealed class ViewLayer : Layer
 	{
 		/// <summary>
+		/// The square root of 2.
+		/// </summary>
+		private const float SqrtOf2 = 1.41421356F;
+
+
+		/// <summary>
 		/// Indicates the elimination color.
 		/// </summary>
 		private readonly Color _eliminationColor;
@@ -112,11 +118,12 @@ namespace Sudoku.Drawing.Layers
 
 			if (!(_view.Links is null))
 			{
-				float width = _pointConverter.CandidateSize.Width;
+				var (cw, ch) = _pointConverter.CandidateSize;
 				using var pen = new Pen(_chainColor, 3)
 				{
-					CustomEndCap = new AdjustableArrowCap(width / 6, width / 3)
+					CustomEndCap = new AdjustableArrowCap(cw / 6, cw / 4.5F)
 				};
+				using var groupedNodeBrush = new SolidBrush(Color.FromArgb(16, Color.Black));
 				foreach (var inference in _view.Links)
 				{
 					var ((startCandidates, startNodeType), (endCandidates, endNodeType)) = inference;
@@ -127,10 +134,83 @@ namespace Sudoku.Drawing.Layers
 						_ => DashStyle.Dot
 					};
 
-					g.DrawLine(
-						pen,
-						_pointConverter.GetMouseCenterOfCandidates(startCandidates),
-						_pointConverter.GetMouseCenterOfCandidates(endCandidates));
+					var pt1 = _pointConverter.GetMouseCenterOfCandidates(startCandidates);
+					var pt2 = _pointConverter.GetMouseCenterOfCandidates(endCandidates);
+					var (pt1x, pt1y) = pt1;
+					var (pt2x, pt2y) = pt2;
+
+					// If the distance of two points is lower than the one of two adjacent candidates,
+					// the link will be emitted because of narrow.
+					double distance = Math.Sqrt((pt1x - pt2x) * (pt1x - pt2x) + (pt1y - pt2y) * (pt1y - pt2y));
+					if (distance <= cw * SqrtOf2 || distance <= ch * SqrtOf2)
+					{
+						continue;
+					}
+
+					// Now calculate the slope of the link.
+					float slope = Math.Abs((pt2y - pt1y) / (pt2x - pt1x));
+					float x = cw / (float)Math.Sqrt(1 + slope * slope);
+					float y = ch * (float)Math.Sqrt(slope * slope / (1 + slope * slope));
+
+					const float o = offset / 8;
+					if (pt1y > pt2y && pt1x == pt2x)
+					{
+						pt1.Y -= ch / 2 - o;
+						pt2.Y += ch / 2 - o;
+					}
+					else if (pt1y < pt2y && pt1x == pt2x)
+					{
+						pt1.Y += ch / 2 - o;
+						pt2.Y -= ch / 2 - o;
+					}
+					else if (pt1y == pt2y && pt1x > pt2x)
+					{
+						pt1.X -= cw / 2 - o;
+						pt2.X += cw / 2 - o;
+					}
+					else if (pt1y == pt2y && pt1x < pt2x)
+					{
+						pt1.X += cw / 2 - o;
+						pt2.X -= cw / 2 - o;
+					}
+					else if (pt1y > pt2y && pt1x > pt2x)
+					{
+						pt1.X -= x / 2 - o; pt1.Y -= y / 2 - o;
+						pt2.X += x / 2 - o; pt2.Y += y / 2 - o;
+					}
+					else if (pt1y > pt2y && pt1x < pt2x)
+					{
+						pt1.X += x / 2 - o; pt1.Y -= y / 2 - o;
+						pt2.X -= x / 2 - o; pt2.Y += y / 2 - o;
+					}
+					else if (pt1y < pt2y && pt1x > pt2x)
+					{
+						pt1.X -= x / 2 - o; pt1.Y += y / 2 - o;
+						pt2.X += x / 2 - o; pt2.Y -= y / 2 - o;
+					}
+					else if (pt1y < pt2y && pt1x < pt2x)
+					{
+						pt1.X += x / 2 - o; pt1.Y += y / 2 - o;
+						pt2.X -= x / 2 - o; pt2.Y -= y / 2 - o;
+					}
+
+					g.DrawLine(pen, pt1, pt2);
+
+					// Then draw grouped node regions.
+					if (startNodeType != NodeType.Candidate)
+					{
+						g.FillRoundedRectangle(
+							groupedNodeBrush,
+							_pointConverter.GetMouseRectangleOfCandidates(startCandidates),
+							offset / 3);
+					}
+					if (endNodeType != NodeType.Candidate)
+					{
+						g.FillRoundedRectangle(
+							groupedNodeBrush,
+							_pointConverter.GetMouseRectangleOfCandidates(endCandidates),
+							offset / 3);
+					}
 				}
 			}
 

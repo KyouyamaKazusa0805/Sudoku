@@ -127,6 +127,26 @@ namespace Sudoku.Drawing
 		}
 
 		/// <summary>
+		/// Get the rectangle from all candidates.
+		/// </summary>
+		/// <param name="map">The candidates.</param>
+		/// <returns>The rectangle.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public RectangleF GetMouseRectangleOfCandidates(FullGridMap map)
+		{
+			var (cw, ch) = CandidateSize;
+			int min = map.SetAt(0);
+			int max = map.SetAt(^1);
+			var pt1 = GetMousePointInCenter(min / 9, min % 9);
+			var pt2 = GetMousePointInCenter(max / 9, max % 9);
+			pt1.X -= cw / 2;
+			pt1.Y -= ch / 2;
+			pt2.X += cw / 2;
+			pt2.Y += ch / 2;
+			return RectangleEx.CreateInstance(pt1, pt2);
+		}
+
+		/// <summary>
 		/// Get the rectangle (4 mouse points) for the specified cell.
 		/// </summary>
 		/// <param name="cell">The cell.</param>

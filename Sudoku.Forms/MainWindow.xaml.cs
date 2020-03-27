@@ -385,6 +385,7 @@ namespace Sudoku.Forms
 			_menuItemEditUnfix.IsEnabled = false;
 			_menuItemEditReset.IsEnabled = false;
 			_menuItemExport.IsEnabled = false;
+			_menuItemFileOpen.IsEnabled = false;
 		}
 
 		/// <summary>
@@ -401,6 +402,7 @@ namespace Sudoku.Forms
 			_menuItemEditUnfix.IsEnabled = true;
 			_menuItemEditReset.IsEnabled = true;
 			_menuItemExport.IsEnabled = true;
+			_menuItemFileOpen.IsEnabled = true;
 		}
 
 		/// <summary>

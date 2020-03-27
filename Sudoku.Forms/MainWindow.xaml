@@ -17,7 +17,7 @@
 		<Menu VerticalAlignment="Top" IsMainMenu="True" Name="_mainMenu"
 			  Grid.Row="0" Grid.ColumnSpan="2">
 			<MenuItem Header="File">
-				<MenuItem Header="Open puzzle..." InputGestureText="Ctrl + O"
+				<MenuItem Header="Open puzzle..." InputGestureText="Ctrl + O" Name="_menuItemFileOpen"
 						  Click="MenuItemFileOpen_Click"/>
 				<MenuItem Header="Save puzzle..." InputGestureText="Ctrl + S"
 						  Click="MenuItemFileSave_Click"/>
