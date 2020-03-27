@@ -428,6 +428,7 @@ namespace Sudoku.Forms
 			_menuItemOptimizeApplyingOrder.IsEnabled = false;
 			_menuItemUseCalculationPriority.IsEnabled = false;
 			_menuItemExport.IsEnabled = false;
+			_menuItemFileOpen.IsEnabled = false;
 		}
 
 		/// <summary>
@@ -453,6 +454,7 @@ namespace Sudoku.Forms
 			_menuItemOptimizeApplyingOrder.IsEnabled = true;
 			_menuItemUseCalculationPriority.IsEnabled = true;
 			_menuItemExport.IsEnabled = true;
+			_menuItemFileOpen.IsEnabled = true;
 		}
 	}
 }
