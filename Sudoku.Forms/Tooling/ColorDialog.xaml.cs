@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Drawing.Text;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Forms.Extensions;
@@ -10,7 +9,7 @@ using Sudoku.Forms.Extensions;
 namespace Sudoku.Forms.Tooling
 {
 	/// <summary>
-	/// Interaction logic for ColorDialog.xaml
+	/// Interaction logic for <c>ColorDialog.xaml</c>.
 	/// </summary>
 	public partial class ColorDialog : Window
 	{
