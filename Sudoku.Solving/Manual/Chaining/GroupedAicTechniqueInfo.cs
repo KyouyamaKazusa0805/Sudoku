@@ -200,24 +200,21 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <returns>A <see cref="bool"/> value.</returns>
 		private bool IsXChain()
 		{
-			if (IsGroupedChain())
-			{
-				return false;
-			}
-
-			int i = 0;
-			int cand = default;
+			int i = 0, cand = default;
 			bool isX = true;
 			foreach (var node in Nodes)
 			{
-				if (i++ == 0)
+				foreach (int candidate in node.Candidates)
 				{
-					cand = node[0] % 9;
-				}
-				else if (cand != node[0] % 9)
-				{
-					isX = false;
-					break;
+					if (i++ == 0)
+					{
+						cand = candidate % 9;
+					}
+					else if (cand != candidate % 9)
+					{
+						isX = false;
+						break;
+					}
 				}
 			}
 
@@ -401,7 +398,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <see langword="true"/> is for same digit; otherwise, <see langword="false"/>.
 		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private bool IsHeadTailSame() => Nodes[0].CandidatesMap == Nodes[LastIndex].CandidatesMap;
+		private bool IsHeadTailSame() => Nodes[0][0] % 9 == Nodes[LastIndex][0] % 9;
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
