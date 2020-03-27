@@ -50,12 +50,13 @@ namespace Sudoku.Solving.Manual
 
 				// Get intersection table in order to run faster in intersection technique searchers.
 				var intersectionTable = new Intersection[18, 3];
+				int[] key = { 0, 3, 6, 1, 4, 7, 2, 5, 8 };
 				for (int i = 0; i < 18; i++)
 				{
 					for (int j = 0; j < 3; j++)
 					{
 						int baseSet = i + 9;
-						int coverSet = i < 9 ? i / 3 * 3 + j : ((i - 9) / 3 * 3 + j) * 3 % 8;
+						int coverSet = i < 9 ? i / 3 * 3 + j : key[(i - 9) / 3 * 3 + j];
 						intersectionTable[i, j] = (
 							baseSet, coverSet, regionMaps[baseSet],
 							regionMaps[coverSet]);
