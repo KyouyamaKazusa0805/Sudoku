@@ -377,6 +377,10 @@ namespace Sudoku.Forms
 			return x < 0 || x > control.Width || y < 0 || y > control.Height;
 		}
 
+		/// <summary>
+		/// Disable generating controls.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void DisableGeneratingControls()
 		{
 			_textBoxInfo.Text = "Generating...";
@@ -389,6 +393,10 @@ namespace Sudoku.Forms
 			_menuItemExport.IsEnabled = false;
 		}
 
+		/// <summary>
+		/// Enable generating controls.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void EnableGeneratingControls()
 		{
 			_textBoxInfo.ClearValue(w::Controls.TextBox.TextProperty);
@@ -401,6 +409,10 @@ namespace Sudoku.Forms
 			_menuItemExport.IsEnabled = true;
 		}
 
+		/// <summary>
+		/// Disable solving controls.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void DisableSolvingControls()
 		{
 			_textBoxInfo.Text = "Solving, please wait. During solving you can do some other work...";
@@ -422,6 +434,10 @@ namespace Sudoku.Forms
 			_menuItemExport.IsEnabled = false;
 		}
 
+		/// <summary>
+		/// Enable solving controls.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void EnableSolvingControls()
 		{
 			_textBoxInfo.ClearValue(w::Controls.TextBox.TextProperty);
