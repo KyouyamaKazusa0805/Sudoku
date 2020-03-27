@@ -23,6 +23,12 @@ namespace Sudoku.Forms
 {
 	partial class MainWindow
 	{
+		/// <summary>
+		/// The item source property.
+		/// </summary>
+		private static DependencyProperty ItemSourceProperty => w::Controls.ItemsControl.ItemsSourceProperty;
+
+
 		private void MenuItemFileOpen_Click(object sender, RoutedEventArgs e)
 		{
 			var dialog = new OpenFileDialog
@@ -194,8 +200,8 @@ namespace Sudoku.Forms
 
 			LoadPuzzle(puzzleStr);
 
-			_listBoxPaths.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
-			_listViewSummary.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
+			_listBoxPaths.ClearValue(ItemSourceProperty);
+			_listViewSummary.ClearValue(ItemSourceProperty);
 		}
 
 		private void MenuItemEditFix_Click(object sender, RoutedEventArgs e)
@@ -203,8 +209,8 @@ namespace Sudoku.Forms
 			Puzzle.Fix();
 
 			UpdateImageGrid();
-			_listBoxPaths.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
-			_listViewSummary.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
+			_listBoxPaths.ClearValue(ItemSourceProperty);
+			_listViewSummary.ClearValue(ItemSourceProperty);
 		}
 
 		private void MenuItemEditUnfix_Click(object sender, RoutedEventArgs e)
@@ -212,8 +218,8 @@ namespace Sudoku.Forms
 			Puzzle.Unfix();
 
 			UpdateImageGrid();
-			_listBoxPaths.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
-			_listViewSummary.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
+			_listBoxPaths.ClearValue(ItemSourceProperty);
+			_listViewSummary.ClearValue(ItemSourceProperty);
 		}
 
 		private void MenuItemEditReset_Click(object sender, RoutedEventArgs e)
@@ -227,8 +233,8 @@ namespace Sudoku.Forms
 			_layerCollection.Remove(typeof(ViewLayer).Name);
 
 			UpdateImageGrid();
-			_listBoxPaths.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
-			_listViewSummary.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
+			_listBoxPaths.ClearValue(ItemSourceProperty);
+			_listViewSummary.ClearValue(ItemSourceProperty);
 		}
 
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
@@ -241,8 +247,8 @@ namespace Sudoku.Forms
 			EnableGeneratingControls();
 
 			Puzzle = new UndoableGrid((SudokuGrid)puzzle);
-			_listBoxPaths.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
-			_listViewSummary.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
+			_listBoxPaths.ClearValue(ItemSourceProperty);
+			_listViewSummary.ClearValue(ItemSourceProperty);
 
 			UpdateImageGrid();
 		}
@@ -251,8 +257,8 @@ namespace Sudoku.Forms
 		private async void MenuItemAnalyzeSolve_Click(object sender, RoutedEventArgs e)
 		{
 			// Update status.
-			_listBoxPaths.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
-			_listViewSummary.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
+			_listBoxPaths.ClearValue(ItemSourceProperty);
+			_listViewSummary.ClearValue(ItemSourceProperty);
 
 			DisableSolvingControls();
 

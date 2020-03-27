@@ -106,14 +106,6 @@
 			   Name="_imageGrid" Grid.Row="1" Grid.Column="0" Width="576" Height="576"
 			   MouseLeftButtonDown="ImageGrid_MouseLeftButtonDown"
 			   MouseRightButtonDown="ImageGrid_MouseRightButtonDown">
-			<Image.ContextMenu>
-				<ContextMenu>
-					<MenuItem Header="Copy the grid"
-							  Click="MenuItemEditCopyCurrentGrid_Click"/>
-					<MenuItem Header="Past the grid"
-							  Click="MenuItemEditPaste_Click"/>
-				</ContextMenu>
-			</Image.ContextMenu>
 		</Image>
 		<TabControl Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"
 					VerticalAlignment="Stretch">
