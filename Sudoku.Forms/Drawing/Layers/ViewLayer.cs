@@ -88,9 +88,10 @@ namespace Sudoku.Drawing.Layers
 
 			foreach (var (id, candidate) in _view.CandidateOffsets ?? Array.Empty<(int, int)>())
 			{
-				if (_colorDic.TryGetValue(id, out var color))
+				int cell = candidate / 9, digit = candidate % 9;
+				if (!_conclusions.Any(c => c.CellOffset == cell && c.Digit == digit)
+					&& _colorDic.TryGetValue(id, out var color))
 				{
-					int cell = candidate / 9, digit = candidate % 9;
 					var (cw, ch) = _pointConverter.CandidateSize;
 					var (x, y) = _pointConverter.GetMousePointInCenter(cell, digit);
 					using var brush = new SolidBrush(color);
