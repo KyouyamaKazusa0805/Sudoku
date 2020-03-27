@@ -2,6 +2,7 @@
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Solving.Utils;
 using Intersection = System.ValueTuple<int, int, Sudoku.Data.GridMap, Sudoku.Data.GridMap>;
 
 namespace Sudoku.Solving.Manual.Intersections
@@ -55,11 +56,11 @@ namespace Sudoku.Solving.Manual.Intersections
 						continue;
 					}
 
-					// Locked candidates found.
-					var candidatesList = new List<(int, int)>();
 					short temp = mask;
 					for (int digit = 0; digit < 9; digit++, temp >>= 1)
 					{
+						// Locked candidates found.
+						var candidatesList = new List<(int, int)>();
 						if ((temp & 1) != 0)
 						{
 							continue;
@@ -68,8 +69,7 @@ namespace Sudoku.Solving.Manual.Intersections
 						// 'digit' is locked number.
 						foreach (int offset in intersection.Offsets)
 						{
-							if (grid.GetCellStatus(offset) != CellStatus.Empty
-								|| grid[offset, digit])
+							if (!grid.CandidateExists(offset, digit))
 							{
 								continue;
 							}
