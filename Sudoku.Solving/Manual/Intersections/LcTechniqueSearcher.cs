@@ -135,7 +135,7 @@ namespace Sudoku.Solving.Manual.Intersections
 									new View(
 										cellOffsets: null,
 										candidateOffsets: candidatesList,
-										regionOffsets: null,
+										regionOffsets: new[] { (0, lockedRegions[0]), (1, lockedRegions[1]) },
 										links: null)
 								},
 								digit,
