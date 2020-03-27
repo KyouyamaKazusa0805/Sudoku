@@ -307,14 +307,8 @@ namespace Sudoku.Forms
 		{
 			try
 			{
-				if (format is null)
-				{
-					Clipboard.SetText(Puzzle.ToString(null, null));
-				}
-				else
-				{
-					Clipboard.SetText(Puzzle.ToString(format));
-				}
+				// Even though the value is null, the formatter can be processed.
+				Clipboard.SetText(Puzzle.ToString(format!));
 			}
 			catch (ArgumentNullException ex)
 			{
