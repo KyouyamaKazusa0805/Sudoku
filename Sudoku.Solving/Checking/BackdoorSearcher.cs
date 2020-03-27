@@ -23,11 +23,7 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// The temporary test solver used in this searcher.
 		/// </summary>
-		private static readonly ManualSolver TestSolver = new ManualSolver
-		{
-			EnableFullHouse = false,
-			EnableLastDigit = false
-		};
+		private static readonly LightManualSolver TestSolver = new LightManualSolver();
 
 
 		/// <summary>

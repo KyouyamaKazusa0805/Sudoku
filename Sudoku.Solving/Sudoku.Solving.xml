@@ -3148,6 +3148,19 @@
             <param name="digitDistributions">All digit distributions.</param>
             <returns>All template deletes.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.LightManualSolver">
+            <summary>
+            Provides a light manual solver used for testing and checking backdoors.
+            This solver will use mankind logic to solve a puzzle, but only
+            <b>Hidden Single</b>s and <b>Naked Single</b>s will be used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LightManualSolver.SolverName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LightManualSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.ManualSolver">
             <summary>
             Provides a solver that use logical methods to solve a specified sudoku puzzle.
