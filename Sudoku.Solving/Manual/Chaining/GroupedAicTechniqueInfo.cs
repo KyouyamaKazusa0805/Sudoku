@@ -74,6 +74,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					{
 						5 => true switch
 						{
+							_ when IsXChain() => $"{groupedSuffix()}X-Chain",
 							_ when IsXyChain() => $"{groupedSuffix()}XY-Wing",
 							_ when IsWWing() => $"{groupedSuffix()}W-Wing",
 							_ when IsMWing() => $"{groupedSuffix()}M-Wing",
@@ -85,13 +86,13 @@ namespace Sudoku.Solving.Manual.Chaining
 						_ => true switch
 						{
 							_ when IsXChain() => $"{groupedSuffix()}X-Chain",
+							_ when IsXyChain() => $"{groupedSuffix()}XY-Chain",
 							_ when !IsHeadTailSame() => Conclusions.Count switch
 							{
 								1 => $"{groupedSuffix()}Discontinuous Nice Loop",
 								2 => $"{groupedSuffix()}XY-X-Chain",
 								_ => throw Throwing.ImpossibleCase
 							},
-							_ when IsXyChain() => $"{groupedSuffix()}XY-Chain",
 							_ when IsHeadCollisionChain() => $"{groupedSuffix()}Discontinuous Nice Loop",
 							_ => $"{groupedSuffix()}Alternating Inference Chain"
 						}
