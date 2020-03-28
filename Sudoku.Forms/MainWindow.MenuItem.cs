@@ -238,6 +238,13 @@ namespace Sudoku.Forms
 			_listViewSummary.ClearValue(ItemsSourceProperty);
 		}
 
+		private void MenuItemClear_Click(object sender, RoutedEventArgs e)
+		{
+			Puzzle = new UndoableGrid((SudokuGrid)SudokuGrid.Empty);
+
+			UpdateImageGrid();
+		}
+
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemGenerateHardPattern_Click(object sender, RoutedEventArgs e)
 		{

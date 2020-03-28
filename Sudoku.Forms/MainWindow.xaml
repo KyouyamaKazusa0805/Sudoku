@@ -26,7 +26,7 @@
 						  Click="MenuItemBackupConfig_Click"/>
 				<MenuItem Header="Get Snapshot" Click="MenuItemFileGetSnapshot_Click"/>
 				<Separator/>
-				<MenuItem Header="Quit app" InputGestureText="Alt + F4"
+				<MenuItem Header="Quit app" InputGestureText="Alt + F4" BorderBrush="Red"
 						  Click="MenuItemFileQuit_Click"/>
 			</MenuItem>
 			<MenuItem Header="Options">
@@ -59,8 +59,10 @@
 				<MenuItem Header="Unfix grid" InputGestureText="Ctrl + Shift + `" Name="_menuItemEditUnfix"
 						  Click="MenuItemEditUnfix_Click"/>
 				<Separator/>
-				<MenuItem Header="Reset grid" Name="_menuItemEditReset"
+				<MenuItem Header="Reset grid" Name="_menuItemEditReset" BorderBrush="Red"
 						  Click="MenuItemEditReset_Click"/>
+				<MenuItem Header="Clear grid" Name="_menuItemClear" BorderBrush="Red"
+						  Click="MenuItemClear_Click"/>
 			</MenuItem>
 			<MenuItem Header="Generate">
 				<MenuItem Header="Hard pattern mode" Name="_menuItemGenerateHardPattern"
