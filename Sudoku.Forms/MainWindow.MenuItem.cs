@@ -370,9 +370,6 @@ namespace Sudoku.Forms
 		private void MenuItemCheckGurthSymmetricalPlacement_Click(object sender, RoutedEventArgs e) =>
 			_manualSolver.CheckGurthSymmetricalPlacement = _menuItemCheckGurthSymmetricalPlacement.IsChecked = Settings.CheckGurthSymmetricalPlacement ^= true;
 
-		private void MenuItemDisableSlowTechniques_Click(object sender, RoutedEventArgs e) =>
-			_manualSolver.DisableSlowTechniques = _menuItemDisableSlowTechniques.IsChecked = Settings.DisableSlowTechniques ^= true;
-
 		private void MenuItemShowFullHouses_Click(object sender, RoutedEventArgs e) =>
 			_manualSolver.EnableFullHouse = _menuItemShowFullHouses.IsChecked = Settings.EnableFullHouse ^= true;
 

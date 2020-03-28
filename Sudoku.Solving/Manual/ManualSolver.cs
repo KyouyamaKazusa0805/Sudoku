@@ -183,14 +183,6 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
-					// Skip all searchers marked slow running attribute.
-					if (DisableSlowTechniques
-						&& searcher.HasMarkedAttribute<SlowAttribute>(false, out var attributes)
-						&& !attributes.First().SlowButNecessary)
-					{
-						continue;
-					}
-
 					if (!EnablePatternOverlayMethod && searcher is PomTechniqueSearcher
 						|| !EnableTemplate && searcher is TemplateTechniqueSearcher
 						|| !EnableBruteForce && searcher is BruteForceTechniqueSearcher
@@ -410,14 +402,6 @@ namespace Sudoku.Solving.Manual
 				if (!(bool)searcher.GetType().GetProperty("IsEnabled")!.GetValue(null)!)
 				{
 					// Skip the technique when the static property 'IsEnabled' is set false.
-					continue;
-				}
-
-				// Skip all searchers marked slow running attribute.
-				if (DisableSlowTechniques
-					&& searcher.HasMarkedAttribute<SlowAttribute>(false, out var attributes)
-					&& !attributes.First().SlowButNecessary)
-				{
 					continue;
 				}
 

@@ -85,8 +85,6 @@
 				<MenuItem Header="Check Gurth's Symmetrical Placement"
 						  Name="_menuItemCheckGurthSymmetricalPlacement"
 						  Click="MenuItemCheckGurthSymmetricalPlacement_Click"/>
-				<MenuItem Header="Disable slow techniques" Name="_menuItemDisableSlowTechniques"
-						  Click="MenuItemDisableSlowTechniques_Click"/>
 				<MenuItem Header="Optimize applying order" Name="_menuItemOptimizeApplyingOrder"
 						  Click="MenuItemOptimizeApplyingOrder_Click"/>
 				<MenuItem Header="Use calculation priority" Name="_menuItemUseCalculationPriority"

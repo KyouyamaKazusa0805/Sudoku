@@ -152,23 +152,6 @@ namespace Sudoku.Forms
 
 		/// <summary>
 		/// <para>
-		/// Indicates whether the solver will disable all technique searchers
-		/// whose running is extremely slow.
-		/// </para>
-		/// <para>
-		/// If the technique searcher marks the attribute <see cref="SlowAttribute"/>,
-		/// the searcher will be regarded as slow one. However, if the technique
-		/// searcher marked this attribute, but its property
-		/// <see cref="SlowAttribute.SlowButNecessary"/> is <see langword="true"/>,
-		/// the searcher will not be disabled.
-		/// </para>
-		/// <para>The value is <see langword="true"/> in default case.</para>
-		/// </summary>
-		/// <seealso cref="SlowAttribute"/>
-		public bool DisableSlowTechniques { get; set; } = true;
-
-		/// <summary>
-		/// <para>
 		/// Indicates whether the solver will record the step
 		/// whose name or kind is full house.
 		/// </para>

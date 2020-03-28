@@ -328,7 +328,6 @@ namespace Sudoku.Forms
 			_menuItemAnalyzeSeMode.IsChecked = Settings.SeMode;
 			_menuItemAnalyzeFastSearch.IsChecked = Settings.FastSearch;
 			_menuItemCheckGurthSymmetricalPlacement.IsChecked = Settings.CheckGurthSymmetricalPlacement;
-			_menuItemDisableSlowTechniques.IsChecked = Settings.DisableSlowTechniques;
 			_menuItemShowFullHouses.IsChecked = Settings.EnableFullHouse;
 			_menuItemShowLastDigits.IsChecked = Settings.EnableLastDigit;
 			_menuItemOptimizeApplyingOrder.IsChecked = Settings.OptimizedApplyingOrder;
@@ -424,7 +423,6 @@ namespace Sudoku.Forms
 			_menuItemAnalyzeFastSearch.IsEnabled = false;
 			_menuItemCheckConclusionValidityAfterSearched.IsEnabled = false;
 			_menuItemCheckGurthSymmetricalPlacement.IsEnabled = false;
-			_menuItemDisableSlowTechniques.IsEnabled = false;
 			_menuItemOptimizeApplyingOrder.IsEnabled = false;
 			_menuItemUseCalculationPriority.IsEnabled = false;
 			_menuItemExport.IsEnabled = false;
@@ -450,7 +448,6 @@ namespace Sudoku.Forms
 			_menuItemAnalyzeFastSearch.IsEnabled = true;
 			_menuItemCheckConclusionValidityAfterSearched.IsEnabled = true;
 			_menuItemCheckGurthSymmetricalPlacement.IsEnabled = true;
-			_menuItemDisableSlowTechniques.IsEnabled = true;
 			_menuItemOptimizeApplyingOrder.IsEnabled = true;
 			_menuItemUseCalculationPriority.IsEnabled = true;
 			_menuItemExport.IsEnabled = true;
