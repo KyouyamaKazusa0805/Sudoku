@@ -37,8 +37,15 @@ namespace Sudoku.Solving.Manual.Alses
 			(_allowOverlapping, _alsShowRegions) = (allowOverlapping, alsShowRegions);
 
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the priority of this technique.
+		/// </summary>
 		public static int Priority { get; set; } = 55;
+
+		/// <summary>
+		/// Indicates whether the technique is enabled.
+		/// </summary>
+		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

@@ -20,8 +20,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	[TechniqueDisplay("Borescoper's Deadly Pattern")]
 	public sealed partial class BdpTechniqueSearcher : UniquenessTechniqueSearcher
 	{
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the priority of this technique.
+		/// </summary>
 		public static int Priority { get; set; } = 53;
+
+		/// <summary>
+		/// Indicates whether the technique is enabled.
+		/// </summary>
+		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

@@ -12,8 +12,15 @@ namespace Sudoku.Solving.Manual.Sdps
 	[TechniqueDisplay("Two Strong Links")]
 	public sealed class TwoStrongLinksTechniqueSearcher : SdpTechniqueSearcher
 	{
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the priority of this technique.
+		/// </summary>
 		public static int Priority { get; set; } = 40;
+
+		/// <summary>
+		/// Indicates whether the technique is enabled.
+		/// </summary>
+		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

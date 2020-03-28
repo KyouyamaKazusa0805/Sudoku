@@ -12,8 +12,15 @@ namespace Sudoku.Solving.Manual.Symmetry
 	[TechniqueDisplay("Gurth's Symmetrical Placement")]
 	public sealed partial class GspTechniqueSearcher : SymmetryTechniqueSearcher
 	{
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the priority of this technique.
+		/// </summary>
 		public static int Priority { get; set; } = 0;
+
+		/// <summary>
+		/// Indicates whether the technique is enabled.
+		/// </summary>
+		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

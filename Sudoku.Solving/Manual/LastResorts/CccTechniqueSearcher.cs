@@ -14,8 +14,15 @@ namespace Sudoku.Solving.Manual.LastResorts
 	[Slow, HighAllocation, TechniqueDisplay("Chute Clue Cover")]
 	public sealed class CccTechniqueSearcher : LastResortTechniqueSearcher
 	{
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the priority of this technique.
+		/// </summary>
 		public static int Priority { get; set; } = 90;
+
+		/// <summary>
+		/// Indicates whether the technique is enabled.
+		/// </summary>
+		public static bool IsEnabled { get; set; } = false;
 
 
 		/// <inheritdoc/>
@@ -25,7 +32,11 @@ namespace Sudoku.Solving.Manual.LastResorts
 			//SearchForTowers(accumulator, grid);
 		}
 
-
+		/// <summary>
+		/// Search for floors.
+		/// </summary>
+		/// <param name="result">The result accumulator.</param>
+		/// <param name="grid">The grid.</param>
 		private void SearchForFloors(IBag<TechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			var series = (Span<int>)stackalloc int[27];
@@ -94,6 +105,11 @@ namespace Sudoku.Solving.Manual.LastResorts
 			}
 		}
 
+		/// <summary>
+		/// Search for towers. The method has bugs to fix so I may not use this method.
+		/// </summary>
+		/// <param name="result">The result accumulator.</param>
+		/// <param name="grid">The grid.</param>
 		private void SearchForTowers(IBag<TechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			var series = (Span<int>)stackalloc int[27];
@@ -162,6 +178,14 @@ namespace Sudoku.Solving.Manual.LastResorts
 			}
 		}
 
+		/// <summary>
+		/// Get all partial solution for towers recursively.
+		/// </summary>
+		/// <param name="series">The series.</param>
+		/// <param name="solutions">All solutions.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="i">The current index.</param>
+		/// <param name="n">The current cell to fill.</param>
 		private static void GetAllPartialSolutionsForTowersRecursively(
 			int[] series, IList<int[]> solutions, IReadOnlyGrid grid, int i, int n)
 		{
@@ -192,7 +216,15 @@ namespace Sudoku.Solving.Manual.LastResorts
 				series[n] = 0;
 			}
 		}
-		
+
+		/// <summary>
+		/// Get all partial solution for floors recursively.
+		/// </summary>
+		/// <param name="series">The series.</param>
+		/// <param name="solutions">All solutions.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="i">The current index.</param>
+		/// <param name="n">The current cell to fill.</param>
 		private static void GetAllPartialSolutionsForFloorsRecursively(
 			int[] series, IList<int[]> solutions, IReadOnlyGrid grid, int i, int n)
 		{
@@ -224,6 +256,14 @@ namespace Sudoku.Solving.Manual.LastResorts
 			}
 		}
 
+		/// <summary>
+		/// Check whether the specified position is valid.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="series">The series.</param>
+		/// <param name="i">The current index.</param>
+		/// <param name="n">The current cell to fill.</param>
+		/// <returns>A <see cref="bool"/> value.</returns>
 		private static bool IsValidTower(IReadOnlyGrid grid, int[] series, int i, int n)
 		{
 			int r = n / 3, c = n % 3 + i * 3;
@@ -304,6 +344,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 			return true;
 		}
 
+		/// <summary>
+		/// Check whether the specified position is valid.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="series">The series.</param>
+		/// <param name="n">The current cell to fill.</param>
+		/// <returns>A <see cref="bool"/> value.</returns>
 		private static bool IsValidFloor(IReadOnlyGrid grid, int[] series, int n)
 		{
 			int r = n / 9, c = n % 9;

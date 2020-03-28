@@ -177,6 +177,12 @@ namespace Sudoku.Solving.Manual
 				var searcherListGroup = searchers[i];
 				foreach (var searcher in searcherListGroup)
 				{
+					if (!(bool)searcher.GetType().GetProperty("IsEnabled")!.GetValue(null)!)
+					{
+						// Skip the technique when the static property 'IsEnabled' is set false.
+						continue;
+					}
+
 					// Skip all searchers marked slow running attribute.
 					if (DisableSlowTechniques
 						&& searcher.HasMarkedAttribute<SlowAttribute>(false, out var attributes)
@@ -400,6 +406,12 @@ namespace Sudoku.Solving.Manual
 			for (int i = 0, length = searchers.Length; i < length; i++)
 			{
 				var searcher = searchers[i];
+
+				if (!(bool)searcher.GetType().GetProperty("IsEnabled")!.GetValue(null)!)
+				{
+					// Skip the technique when the static property 'IsEnabled' is set false.
+					continue;
+				}
 
 				// Skip all searchers marked slow running attribute.
 				if (DisableSlowTechniques

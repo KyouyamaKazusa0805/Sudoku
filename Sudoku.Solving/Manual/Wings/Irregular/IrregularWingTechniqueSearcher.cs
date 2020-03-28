@@ -14,8 +14,15 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 	[TechniqueDisplay("Irregular Wing")]
 	public sealed class IrregularWingTechniqueSearcher : TechniqueSearcher
 	{
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the priority of this technique.
+		/// </summary>
 		public static int Priority { get; set; } = 44;
+
+		/// <summary>
+		/// Indicates whether the technique is enabled.
+		/// </summary>
+		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

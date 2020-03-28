@@ -45,8 +45,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			(_regionMaps, _extended) = (regionMaps, extended);
 
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the priority of this technique.
+		/// </summary>
 		public static int Priority { get; set; } = 56;
+
+		/// <summary>
+		/// Indicates whether the technique is enabled.
+		/// </summary>
+		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

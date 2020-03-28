@@ -14,8 +14,15 @@ namespace Sudoku.Solving.Manual.Fishes
 	[TechniqueDisplay("(Finned, Sashimi) Fish")]
 	public sealed class NormalFishTechniqueSearcher : FishTechniqueSearcher
 	{
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the priority of this technique.
+		/// </summary>
 		public static int Priority { get; set; } = 32;
+
+		/// <summary>
+		/// Indicates whether the technique is enabled.
+		/// </summary>
+		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

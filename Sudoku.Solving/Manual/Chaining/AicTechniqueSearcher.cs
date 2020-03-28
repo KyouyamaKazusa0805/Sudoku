@@ -23,7 +23,9 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// static analysis is fine, which is different with dynamic chains.
 	/// </para>
 	/// </remarks>
-	[Obsolete, Slow(SlowButNecessary = true), TechniqueDisplay("Alternating Inference Chain")]
+	[Obsolete("Please use 'GroupedAicTechniqueSearcher' instead.", false)]
+	[Slow(SlowButNecessary = true)]
+	[TechniqueDisplay("Alternating Inference Chain")]
 	public sealed class AicTechniqueSearcher : ChainTechniqueSearcher
 	{
 		/// <summary>
@@ -110,8 +112,15 @@ namespace Sudoku.Solving.Manual.Chaining
 		}
 
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the priority of this technique.
+		/// </summary>
 		public static int Priority { get; set; } = 45;
+
+		/// <summary>
+		/// Indicates whether the technique is enabled.
+		/// </summary>
+		public static bool IsEnabled { get; set; } = false;
 
 
 		/// <inheritdoc/>

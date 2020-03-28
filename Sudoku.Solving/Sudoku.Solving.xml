@@ -1277,7 +1277,14 @@
             </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -1510,7 +1517,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.SdcTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.SdcTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.SdcTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -1745,7 +1759,14 @@
             </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -2102,7 +2123,14 @@
             <param name="regionMaps">All region maps.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -2410,7 +2438,14 @@
             <param name="regionMaps">The region maps.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -2613,7 +2648,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -2712,7 +2754,14 @@
             </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -2811,7 +2860,14 @@
             <param name="intersection">The intersection table.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Intersections.LcTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.LcTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.LcTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -2881,7 +2937,14 @@
             <param name="length">The length.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -2967,7 +3030,14 @@
             <param name="solution">The solution.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -3008,10 +3078,70 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.CccTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.CccTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.CccTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.CccTechniqueSearcher.SearchForFloors(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Search for floors.
+            </summary>
+            <param name="result">The result accumulator.</param>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.CccTechniqueSearcher.SearchForTowers(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Search for towers. The method has bugs to fix so I may not use this method.
+            </summary>
+            <param name="result">The result accumulator.</param>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.CccTechniqueSearcher.GetAllPartialSolutionsForTowersRecursively(System.Int32[],System.Collections.Generic.IList{System.Int32[]},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32)">
+            <summary>
+            Get all partial solution for towers recursively.
+            </summary>
+            <param name="series">The series.</param>
+            <param name="solutions">All solutions.</param>
+            <param name="grid">The grid.</param>
+            <param name="i">The current index.</param>
+            <param name="n">The current cell to fill.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.CccTechniqueSearcher.GetAllPartialSolutionsForFloorsRecursively(System.Int32[],System.Collections.Generic.IList{System.Int32[]},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32)">
+            <summary>
+            Get all partial solution for floors recursively.
+            </summary>
+            <param name="series">The series.</param>
+            <param name="solutions">All solutions.</param>
+            <param name="grid">The grid.</param>
+            <param name="i">The current index.</param>
+            <param name="n">The current cell to fill.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.CccTechniqueSearcher.IsValidTower(Sudoku.Data.IReadOnlyGrid,System.Int32[],System.Int32,System.Int32)">
+            <summary>
+            Check whether the specified position is valid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="series">The series.</param>
+            <param name="i">The current index.</param>
+            <param name="n">The current cell to fill.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.CccTechniqueSearcher.IsValidFloor(Sudoku.Data.IReadOnlyGrid,System.Int32[],System.Int32)">
+            <summary>
+            Check whether the specified position is valid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="series">The series.</param>
+            <param name="n">The current cell to fill.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.LastResorts.LastResortTechniqueInfo">
             <summary>
@@ -3061,7 +3191,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -3122,7 +3259,14 @@
             </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -3702,7 +3846,14 @@
             <param name="regionMaps">All region maps.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -3783,7 +3934,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -3927,7 +4085,14 @@
             </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -4038,7 +4203,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -4156,7 +4328,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Symmetry.GspTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Symmetry.GspTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Symmetry.GspTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -4282,7 +4461,14 @@
             </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -4590,7 +4776,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -4857,7 +5050,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -5373,7 +5573,14 @@
             </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -5743,7 +5950,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.XrTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.XrTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.XrTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -5909,7 +6123,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
@@ -6051,7 +6272,14 @@
             <param name="size">The size.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.Priority">
-            <inheritdoc/>
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>

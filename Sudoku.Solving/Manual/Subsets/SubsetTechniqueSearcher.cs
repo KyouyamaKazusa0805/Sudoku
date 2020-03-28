@@ -16,8 +16,15 @@ namespace Sudoku.Solving.Manual.Subsets
 	[TechniqueDisplay("Subsets")]
 	public sealed class SubsetTechniqueSearcher : TechniqueSearcher
 	{
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the priority of this technique.
+		/// </summary>
 		public static int Priority { get; set; } = 30;
+
+		/// <summary>
+		/// Indicates whether the technique is enabled.
+		/// </summary>
+		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

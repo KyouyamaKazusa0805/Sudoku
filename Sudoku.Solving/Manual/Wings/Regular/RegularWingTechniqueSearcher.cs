@@ -28,8 +28,15 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		public RegularWingTechniqueSearcher(int size) => _size = size;
 
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the priority of this technique.
+		/// </summary>
 		public static int Priority { get; set; } = 42;
+
+		/// <summary>
+		/// Indicates whether the technique is enabled.
+		/// </summary>
+		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

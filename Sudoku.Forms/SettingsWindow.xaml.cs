@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
@@ -9,7 +10,6 @@ using Sudoku.Forms.Extensions;
 using Sudoku.Forms.Tooling;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
-using Triplet = System.PrimaryElementTuple<string, int, System.Type>;
 using w = System.Windows;
 
 namespace Sudoku.Forms
@@ -102,6 +102,9 @@ namespace Sudoku.Forms
 		/// <summary>
 		/// Initialize priority controls.
 		/// </summary>
+		/// <exception cref="SudokuRuntimeException">
+		/// Throws when the technique searcher is not marked <see cref="TechniqueDisplayAttribute"/>.
+		/// </exception>
 		private void InitializePriorityControls()
 		{
 			_listBoxPriority.ClearValue(ItemsControl.ItemsSourceProperty);
@@ -120,18 +123,23 @@ namespace Sudoku.Forms
 				var attribute = attributes.First();
 				int priority = (int)(
 					type.GetProperty("Priority", BindingFlags.Public | BindingFlags.Static)!.GetValue(null)!);
-				list.Add(new ListBoxItem { Content = new Triplet(attribute.DisplayName, priority, type) });
+				var item = new ListBoxItem
+				{
+					Content = new PrimaryElementTuple<string, int, Type>(attribute.DisplayName, priority, type)
+				};
+
+				list.Add(item);
 			}
 
 			list.Sort((a, b) =>
 			{
-				(_, int priority1, _) = (Triplet)a.Content;
-				(_, int priority2, _) = (Triplet)b.Content;
+				(_, int priority1, _) = (PrimaryElementTuple<string, int, Type>)a.Content;
+				(_, int priority2, _) = (PrimaryElementTuple<string, int, Type>)b.Content;
 				return priority1.CompareTo(priority2);
 			});
 			_listBoxPriority.ItemsSource = list;
 			_listBoxPriority.SelectedIndex = 0;
-			(_, int selectionPriority, _) = (Triplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
+			(_, int selectionPriority, _) = (PrimaryElementTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
 			_textBoxPriority.Text = selectionPriority.ToString();
 		}
 
@@ -529,10 +537,12 @@ namespace Sudoku.Forms
 		private void ListBoxPriority_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			if (sender is ListBox listBox
+				&& listBox.SelectedIndex != -1
 				&& listBox.SelectedItem is ListBoxItem listBoxItem
-				&& listBoxItem.Content is Triplet triplet)
+				&& listBoxItem.Content is PrimaryElementTuple<string, int, Type> triplet)
 			{
-				(_, int priority, _) = triplet;
+				var (_, priority, type) = triplet;
+				_checkBoxIsEnabled.IsChecked = (bool)type.GetProperty("IsEnabled")!.GetValue(null)!;
 				_textBoxPriority.Text = priority.ToString();
 			}
 		}

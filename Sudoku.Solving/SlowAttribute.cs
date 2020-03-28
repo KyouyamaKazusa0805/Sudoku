@@ -7,6 +7,7 @@ namespace Sudoku.Solving
 	/// To mark on a technique searcher, it means that this technique searcher
 	/// will have a slow speed to calculate.
 	/// </summary>
+	[Obsolete("This attribute is replaced by static property 'IsEnabled'.", false)]
 	[AttributeUsage(AttributeTargets.Class)]
 	public sealed class SlowAttribute : Attribute
 	{

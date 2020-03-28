@@ -37,8 +37,15 @@ namespace Sudoku.Solving.Manual.Intersections
 			(_intersection, _checkAlq) = (intersection, checkAlq);
 
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the priority of this technique.
+		/// </summary>
 		public static int Priority { get; set; } = 45;
+
+		/// <summary>
+		/// Indicates whether the technique is enabled.
+		/// </summary>
+		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

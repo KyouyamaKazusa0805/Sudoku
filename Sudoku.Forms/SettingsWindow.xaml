@@ -263,10 +263,27 @@
 					</Grid.ColumnDefinitions>
 					<ListBox Grid.Row="0" Grid.Column="0" Name="_listBoxPriority"
 							 SelectionChanged="ListBoxPriority_SelectionChanged"/>
-					<GroupBox Grid.Row="0" Grid.Column="1" Header="Priority">
-						<TextBox Name="_textBoxPriority" HorizontalContentAlignment="Center"
-								 VerticalContentAlignment="Center" FontSize="50"
-								 IsReadOnly="True"/>
+					<GroupBox Grid.Row="0" Grid.Column="1" Header="Priority"
+							  Width="200" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top">
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+							</Grid.ColumnDefinitions>
+							<CheckBox Content="Is enabled" Grid.Row="0" Grid.Column="0"
+									  Grid.ColumnSpan="2" Name="_checkBoxIsEnabled"
+									  IsEnabled="False"
+									  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							<Label Content="Priority value:" HorizontalAlignment="Right"
+								   VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+							<TextBox Grid.Row="1" Grid.Column="1" Name="_textBoxPriority"
+									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+									 IsReadOnly="True"/>
+						</Grid>
 					</GroupBox>
 				</Grid>
 			</TabItem>

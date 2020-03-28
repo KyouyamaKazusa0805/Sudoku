@@ -61,7 +61,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// </summary>
 		static SdcTechniqueSearcher()
 		{
-			static IReadOnlyList<long>[] Z(int m)
+			static IReadOnlyList<long>[] z(int m)
 			{
 				var temp = new List<long>[m + 1];
 				temp[0] = null!; // Only be a placeholder.
@@ -73,13 +73,20 @@ namespace Sudoku.Solving.Manual.Alses
 				return temp;
 			}
 
-			TakingCombinations6 = Z(6);
-			TakingCombinations7 = Z(7);
+			TakingCombinations6 = z(6);
+			TakingCombinations7 = z(7);
 		}
 
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the priority of this technique.
+		/// </summary>
 		public static int Priority { get; set; } = 50;
+
+		/// <summary>
+		/// Indicates whether the technique is enabled.
+		/// </summary>
+		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

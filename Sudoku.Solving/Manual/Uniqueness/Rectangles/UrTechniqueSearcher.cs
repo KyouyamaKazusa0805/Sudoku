@@ -39,8 +39,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			_checkIncompleted = checkIncompletedUniquenessPatterns;
 
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the priority of this technique.
+		/// </summary>
 		public static int Priority { get; set; } = 45;
+
+		/// <summary>
+		/// Indicates whether the technique is enabled.
+		/// </summary>
+		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

@@ -31,8 +31,15 @@ namespace Sudoku.Solving.Manual.Singles
 			(_enableFullHouse, _enableLastDigit) = (enableFullHouse, enableLastDigit);
 
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the priority of this technique.
+		/// </summary>
 		public static int Priority { get; set; } = 10;
+
+		/// <summary>
+		/// Indicates whether the technique is enabled.
+		/// </summary>
+		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

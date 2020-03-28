@@ -19,8 +19,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	[TechniqueDisplay("Unique Loop")]
 	public sealed class UlTechniqueSearcher : UniquenessTechniqueSearcher
 	{
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the priority of this technique.
+		/// </summary>
 		public static int Priority { get; set; } = 46;
+
+		/// <summary>
+		/// Indicates whether the technique is enabled.
+		/// </summary>
+		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>
