@@ -260,6 +260,7 @@ namespace Sudoku.Forms
 		}
 
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+		[SuppressMessage("", "IDE0050")]
 		private async void MenuItemAnalyzeSolve_Click(object sender, RoutedEventArgs e)
 		{
 			await internalOperation();
@@ -307,7 +308,7 @@ namespace Sudoku.Forms
 					var collection = new List<AnonymousType>();
 					decimal summary = 0, summaryMax = 0;
 					int summaryCount = 0;
-					foreach (var techniqueGroup in GetGroupedSteps())
+					foreach (var techniqueGroup in getGroupedSteps())
 					{
 						string name = techniqueGroup.Key;
 						int count = techniqueGroup.Count();
@@ -321,26 +322,24 @@ namespace Sudoku.Forms
 							summaryMax = Math.Max(step.Difficulty, maximum);
 						}
 
-						collection.Add(
-							new { Technique = name, Count = count, Total = total, Max = maximum });
+						collection.Add(new { Technique = name, Count = count, Total = total, Max = maximum });
 					}
 
-					collection.Add(
-						new
-						{
-							Technique = default(string?),
-							Count = summaryCount,
-							Total = summary,
-							Max = summaryMax
-						});
+					collection.Add(new
+					{
+						Technique = default(string?),
+						Count = summaryCount,
+						Total = summary,
+						Max = summaryMax
+					});
 
 					w::Controls.GridView view;
 					_listViewSummary.ItemsSource = collection;
 					_listViewSummary.View = view = new w::Controls.GridView();
-					view.Columns.Add(CreateGridViewColumn("Technique"));
-					view.Columns.Add(CreateGridViewColumn("Count"));
-					view.Columns.Add(CreateGridViewColumn("Total"));
-					view.Columns.Add(CreateGridViewColumn("Max"));
+					view.Columns.Add(createGridViewColumn("Technique"));
+					view.Columns.Add(createGridViewColumn("Count"));
+					view.Columns.Add(createGridViewColumn("Total"));
+					view.Columns.Add(createGridViewColumn("Max"));
 					view.AllowsColumnReorder = false;
 				}
 				else
@@ -354,14 +353,14 @@ namespace Sudoku.Forms
 				}
 			}
 
-			IEnumerable<IGrouping<string, TechniqueInfo>> GetGroupedSteps()
+			IEnumerable<IGrouping<string, TechniqueInfo>> getGroupedSteps()
 			{
 				return from solvingStep in _analyisResult.SolvingSteps!
 					   orderby solvingStep.Difficulty
 					   group solvingStep by solvingStep.Name;
 			}
 
-			static w::Controls.GridViewColumn CreateGridViewColumn(string name)
+			static w::Controls.GridViewColumn createGridViewColumn(string name)
 			{
 				return new w::Controls.GridViewColumn
 				{
