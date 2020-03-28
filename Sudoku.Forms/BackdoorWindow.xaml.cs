@@ -39,37 +39,42 @@ namespace Sudoku.Forms
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void ButtonStartSearching_Click(object sender, RoutedEventArgs e)
 		{
-			_listBoxBackdoors.Items.Clear();
-			_labelStatus.Content = "Searching... The searching should be slow. Please wait.";
+			await internalOperation();
 
-			var collections = await Task.Run(() =>
+			async Task internalOperation()
 			{
-				try
+				_listBoxBackdoors.Items.Clear();
+				_labelStatus.Content = "Searching... The searching should be slow. Please wait.";
+
+				var collections = await Task.Run(() =>
 				{
-					return new BackdoorSearcher().SearchForBackdoors(_puzzle, _depth);
+					try
+					{
+						return new BackdoorSearcher().SearchForBackdoors(_puzzle, _depth);
+					}
+					catch (SudokuRuntimeException)
+					{
+						return null;
+					}
+				});
+
+				_labelStatus.Content = string.Empty;
+				if (collections is null)
+				{
+					MessageBox.Show(
+						"The specified grid is invalid. The possible case is that the grid has no or multiple solutions.",
+						"Warning");
+
+					e.Handled = true;
+					return;
 				}
-				catch (SudokuRuntimeException)
+
+				foreach (var collection in collections)
 				{
-					return null;
-				}
-			});
-
-			_labelStatus.Content = string.Empty;
-			if (collections is null)
-			{
-				MessageBox.Show(
-					"The specified grid is invalid. The possible case is that the grid has no or multiple solutions.",
-					"Warning");
-
-				e.Handled = true;
-				return;
-			}
-
-			foreach (var collection in collections)
-			{
-				foreach (var z in collection)
-				{
-					_listBoxBackdoors.Items.Add(z);
+					foreach (var z in collection)
+					{
+						_listBoxBackdoors.Items.Add(z);
+					}
 				}
 			}
 		}

@@ -139,7 +139,8 @@ namespace Sudoku.Forms
 			});
 			_listBoxPriority.ItemsSource = list;
 			_listBoxPriority.SelectedIndex = 0;
-			(_, int selectionPriority, _) = (PrimaryElementTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
+			(_, int selectionPriority, _) = (PrimaryElementTuple<string, int, Type>)(
+				(ListBoxItem)_listBoxPriority.SelectedItem).Content;
 			_textBoxPriority.Text = selectionPriority.ToString();
 		}
 

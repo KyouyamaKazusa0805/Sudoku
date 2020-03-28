@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using System.Windows;
 using Sudoku.Forms.Drawing.Extensions;
 using Sudoku.Solving;
@@ -14,40 +15,43 @@ namespace Sudoku.Forms
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void ButtonFindAllSteps_Click(object sender, RoutedEventArgs e)
 		{
-			_listBoxTechniques.ClearValue(ItemsSourceProperty);
-			_textBoxInfo.Text = "The solver is running slowly, please wait...";
-			_buttonFindAllSteps.IsEnabled = false;
-			DisableSolvingControls();
+			await internalOperation();
 
-			var techniqueGroups = await new StepFinder(Settings).SearchAsync(_puzzle);
-
-			EnableSolvingControls();
-			_buttonFindAllSteps.IsEnabled = true;
-			_textBoxInfo.ClearValue(w::Controls.TextBox.TextProperty);
-
-			// The boolean value stands for whether the technique is enabled.
-			var list = new List<w::Controls.ListBoxItem>();
-			foreach (var techniqueGroup in techniqueGroups)
+			async Task internalOperation()
 			{
-				string name = techniqueGroup.Key;
-				foreach (var info in techniqueGroup)
-				{
-					var (fore, back) = Settings.DiffColors[info.DifficultyLevel];
-					list.Add(
-						new w::Controls.ListBoxItem
-						{
-							Content = new PrimaryElementTuple<string, TechniqueInfo, bool>(
-								info.ToSimpleString(),
-								info,
-								true),
-							BorderThickness = new Thickness(),
-							Foreground = new w::Media.SolidColorBrush(fore.ToWColor()),
-							Background = new w::Media.SolidColorBrush(back.ToWColor()),
-						});
-				}
-			}
+				_listBoxTechniques.ClearValue(ItemsSourceProperty);
+				_textBoxInfo.Text = "The solver is running slowly, please wait...";
+				_buttonFindAllSteps.IsEnabled = false;
+				DisableSolvingControls();
 
-			_listBoxTechniques.ItemsSource = list;
+				var techniqueGroups = await new StepFinder(Settings).SearchAsync(_puzzle);
+
+				EnableSolvingControls();
+				_buttonFindAllSteps.IsEnabled = true;
+				_textBoxInfo.ClearValue(w::Controls.TextBox.TextProperty);
+
+				// The boolean value stands for whether the technique is enabled.
+				var list = new List<w::Controls.ListBoxItem>();
+				foreach (var techniqueGroup in techniqueGroups)
+				{
+					string name = techniqueGroup.Key;
+					foreach (var info in techniqueGroup)
+					{
+						var (fore, back) = Settings.DiffColors[info.DifficultyLevel];
+						list.Add(
+							new w::Controls.ListBoxItem
+							{
+								Content = new PrimaryElementTuple<string, TechniqueInfo, bool>(
+									info.ToSimpleString(), info, true),
+								BorderThickness = new Thickness(),
+								Foreground = new w::Media.SolidColorBrush(fore.ToWColor()),
+								Background = new w::Media.SolidColorBrush(back.ToWColor()),
+							});
+					}
+				}
+
+				_listBoxTechniques.ItemsSource = list;
+			}
 
 			#region Obsolete code
 			//_treeView.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);

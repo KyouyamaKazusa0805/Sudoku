@@ -241,113 +241,122 @@ namespace Sudoku.Forms
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemGenerateHardPattern_Click(object sender, RoutedEventArgs e)
 		{
-			DisableGeneratingControls();
+			await internalOperation();
 
-			var puzzle = await Task.Run(new HardPatternPuzzleGenerator().Generate);
+			async Task internalOperation()
+			{
+				DisableGeneratingControls();
 
-			EnableGeneratingControls();
+				var puzzle = await Task.Run(new HardPatternPuzzleGenerator().Generate);
 
-			Puzzle = new UndoableGrid((SudokuGrid)puzzle);
-			_listBoxPaths.ClearValue(ItemsSourceProperty);
-			_listViewSummary.ClearValue(ItemsSourceProperty);
+				EnableGeneratingControls();
 
-			UpdateImageGrid();
+				Puzzle = new UndoableGrid((SudokuGrid)puzzle);
+				_listBoxPaths.ClearValue(ItemsSourceProperty);
+				_listViewSummary.ClearValue(ItemsSourceProperty);
+
+				UpdateImageGrid();
+			}
 		}
 
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemAnalyzeSolve_Click(object sender, RoutedEventArgs e)
 		{
-			// Update status.
-			_listBoxPaths.ClearValue(ItemsSourceProperty);
-			_listViewSummary.ClearValue(ItemsSourceProperty);
-			_textBoxInfo.Text = "Solving, please wait. During solving you can do some other work...";
-			DisableSolvingControls();
+			await internalOperation();
 
-			// Run the solver asynchronizedly, during solving you can do other work.
-			_analyisResult = await Task.Run(() =>
+			async Task internalOperation()
 			{
-				if (!Settings.SolveFromCurrent)
+				// Update status.
+				_listBoxPaths.ClearValue(ItemsSourceProperty);
+				_listViewSummary.ClearValue(ItemsSourceProperty);
+				_textBoxInfo.Text = "Solving, please wait. During solving you can do some other work...";
+				DisableSolvingControls();
+
+				// Run the solver asynchronizedly, during solving you can do other work.
+				_analyisResult = await Task.Run(() =>
 				{
-					_puzzle.Reset();
-				}
-
-				return _manualSolver.Solve(_puzzle);
-			});
-
-			// Solved. Now update the technique summary.
-			EnableSolvingControls();
-
-			if (_analyisResult.HasSolved)
-			{
-				int i = 0;
-				var pathList = new List<w::Controls.ListBoxItem>();
-				foreach (var step in _analyisResult.SolvingSteps!)
-				{
-					var (fore, back) = Settings.DiffColors[step.DifficultyLevel];
-					var item = new w::Controls.ListBoxItem
+					if (!Settings.SolveFromCurrent)
 					{
-						Foreground = new w::Media.SolidColorBrush(fore.ToWColor()),
-						Background = new w::Media.SolidColorBrush(back.ToWColor()),
-						Content = new PrimaryElementTuple<int, TechniqueInfo>(i++, step, 2),
-						BorderThickness = new Thickness()
-					};
-					pathList.Add(item);
-				}
-				_listBoxPaths.ItemsSource = pathList;
+						_puzzle.Reset();
+					}
 
-				var collection = new List<AnonymousType>();
-				decimal summary = 0, summaryMax = 0;
-				int summaryCount = 0;
-				foreach (var techniqueGroup in GetGroupedSteps())
+					return _manualSolver.Solve(_puzzle);
+				});
+
+				// Solved. Now update the technique summary.
+				EnableSolvingControls();
+
+				if (_analyisResult.HasSolved)
 				{
-					string name = techniqueGroup.Key;
-					int count = techniqueGroup.Count();
-					decimal total = 0, maximum = 0;
-					foreach (var step in techniqueGroup)
+					int i = 0;
+					var pathList = new List<w::Controls.ListBoxItem>();
+					foreach (var step in _analyisResult.SolvingSteps!)
 					{
-						summary += step.Difficulty;
-						summaryCount++;
-						total += step.Difficulty;
-						maximum = Math.Max(step.Difficulty, maximum);
-						summaryMax = Math.Max(step.Difficulty, maximum);
+						var (fore, back) = Settings.DiffColors[step.DifficultyLevel];
+						var item = new w::Controls.ListBoxItem
+						{
+							Foreground = new w::Media.SolidColorBrush(fore.ToWColor()),
+							Background = new w::Media.SolidColorBrush(back.ToWColor()),
+							Content = new PrimaryElementTuple<int, TechniqueInfo>(i++, step, 2),
+							BorderThickness = new Thickness()
+						};
+						pathList.Add(item);
+					}
+					_listBoxPaths.ItemsSource = pathList;
+
+					var collection = new List<AnonymousType>();
+					decimal summary = 0, summaryMax = 0;
+					int summaryCount = 0;
+					foreach (var techniqueGroup in GetGroupedSteps())
+					{
+						string name = techniqueGroup.Key;
+						int count = techniqueGroup.Count();
+						decimal total = 0, maximum = 0;
+						foreach (var step in techniqueGroup)
+						{
+							summary += step.Difficulty;
+							summaryCount++;
+							total += step.Difficulty;
+							maximum = Math.Max(step.Difficulty, maximum);
+							summaryMax = Math.Max(step.Difficulty, maximum);
+						}
+
+						collection.Add(
+							new { Technique = name, Count = count, Total = total, Max = maximum });
 					}
 
 					collection.Add(
-						new { Technique = name, Count = count, Total = total, Max = maximum });
+						new
+						{
+							Technique = default(string?),
+							Count = summaryCount,
+							Total = summary,
+							Max = summaryMax
+						});
+
+					w::Controls.GridView view;
+					_listViewSummary.ItemsSource = collection;
+					_listViewSummary.View = view = new w::Controls.GridView();
+					view.Columns.Add(CreateGridViewColumn("Technique"));
+					view.Columns.Add(CreateGridViewColumn("Count"));
+					view.Columns.Add(CreateGridViewColumn("Total"));
+					view.Columns.Add(CreateGridViewColumn("Max"));
+					view.AllowsColumnReorder = false;
 				}
-
-				collection.Add(
-					new
-					{
-						Technique = default(string?),
-						Count = summaryCount,
-						Total = summary,
-						Max = summaryMax
-					});
-
-				w::Controls.GridView view;
-				_listViewSummary.ItemsSource = collection;
-				_listViewSummary.View = view = new w::Controls.GridView();
-				view.Columns.Add(CreateGridViewColumn("Technique"));
-				view.Columns.Add(CreateGridViewColumn("Count"));
-				view.Columns.Add(CreateGridViewColumn("Total"));
-				view.Columns.Add(CreateGridViewColumn("Max"));
-				view.AllowsColumnReorder = false;
-			}
-			else
-			{
-				MessageBox.Show(
-					$"The puzzle cannot be solved. The cases are below:{Environment.NewLine}" +
-					$"    Case 1: The puzzle has no or multiple solutions.{Environment.NewLine}" +
-					$"    Case 2: The solver has found a wrong conclusion to apply.{Environment.NewLine}" +
-					$"You should check the program or notify the author first.",
-					"Warning");
+				else
+				{
+					MessageBox.Show(
+						$"The puzzle cannot be solved. The cases are below:{Environment.NewLine}" +
+						$"    Case 1: The puzzle has no or multiple solutions.{Environment.NewLine}" +
+						$"    Case 2: The solver has found a wrong conclusion to apply.{Environment.NewLine}" +
+						$"You should check the program or notify the author first.",
+						"Warning");
+				}
 			}
 
 			IEnumerable<IGrouping<string, TechniqueInfo>> GetGroupedSteps()
 			{
-				(_, _, var solvingSteps) = _analyisResult;
-				return from solvingStep in solvingSteps!
+				return from solvingStep in _analyisResult.SolvingSteps!
 					   orderby solvingStep.Difficulty
 					   group solvingStep by solvingStep.Name;
 			}
