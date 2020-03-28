@@ -6,7 +6,7 @@
 		mc:Ignorable="d" Height="800" Width="1200" ResizeMode="CanMinimize">
 	<Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition/>
+			<RowDefinition Height="20"/>
 			<RowDefinition Height="600"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
