@@ -115,8 +115,7 @@ namespace Sudoku.Solving.Checking
 					int digit = solution[cellOffset];
 					tempGrid[cellOffset] = digit;
 
-					var (_, hasSolved, _, _, difficultyLevel) = TestSolver.Solve(tempGrid);
-					if (hasSolved && difficultyLevel == Easy)
+					if (TestSolver.Solve(tempGrid).HasSolved)
 					{
 						// Solve successfully.
 						result.Add(new[] { new Conclusion(Assignment, cellOffset, digit) });
@@ -168,8 +167,12 @@ namespace Sudoku.Solving.Checking
 
 					tempList.Add(new Conclusion(Elimination, c1, d1));
 
-					var (_, hasSolved, _, _, difficultyLevel) = TestSolver.Solve(tempGrid);
-					if (!hasSolved || difficultyLevel != Easy)
+					if (TestSolver.Solve(tempGrid).HasSolved)
+					{
+						// Solve successfully.
+						result.Add(new List<Conclusion>(tempList));
+					}
+					else
 					{
 						// Fail to solve.
 						if (depth > 1)
@@ -188,8 +191,12 @@ namespace Sudoku.Solving.Checking
 
 									tempList.Add(new Conclusion(Elimination, c2, d2));
 
-									(_, hasSolved, _, _, difficultyLevel) = TestSolver.Solve(tempGrid);
-									if (!hasSolved || difficultyLevel != Easy)
+									if (TestSolver.Solve(tempGrid).HasSolved)
+									{
+										// Solve successfully.
+										result.Add(new List<Conclusion>(tempList));
+									}
+									else
 									{
 										// Fail to solve.
 										if (depth > 2)
@@ -208,42 +215,28 @@ namespace Sudoku.Solving.Checking
 
 													tempList.Add(new Conclusion(Elimination, c3, d3));
 
-													(_, hasSolved, _, _, difficultyLevel) = TestSolver.Solve(tempGrid);
-													if (hasSolved && difficultyLevel == Easy)
+													if (TestSolver.Solve(tempGrid).HasSolved)
 													{
 														// Solve successfully.
-														// Note this condition.
 														result.Add(new List<Conclusion>(tempList));
 													}
 
 													tempGrid[c3, d3] = false;
-													tempList.Clear();
+													tempList.RemoveLastElement();
 												}
 											}
 										}
 									}
-									else
-									{
-										// Solve successfully.
-										result.Add(new List<Conclusion>(tempList));
-										tempList.RemoveLastElement();
-									}
 
 									tempGrid[c2, d2] = false;
-									tempList.Clear();
+									tempList.RemoveLastElement();
 								}
 							}
 						}
 					}
-					else
-					{
-						// Solve successfully.
-						result.Add(new List<Conclusion>(tempList));
-						tempList.RemoveLastElement();
-					}
 
 					tempGrid[c1, d1] = false;
-					tempList.Clear();
+					tempList.RemoveLastElement();
 				}
 			}
 		}

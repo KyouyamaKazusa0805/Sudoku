@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data;
@@ -16,6 +17,7 @@ namespace Sudoku.Solving.Manual
 	public sealed class LightManualSolver : Solver
 	{
 		/// <inheritdoc/>
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		public override string SolverName => "Manual (Light)";
 
 
