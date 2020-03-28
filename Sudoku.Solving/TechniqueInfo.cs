@@ -102,7 +102,7 @@ namespace Sudoku.Solving
 		}
 
 		/// <inheritdoc/>
-		public sealed override bool Equals(object? obj) =>
+		public override bool Equals(object? obj) =>
 			obj is TechniqueInfo comparer && Equals(comparer);
 
 		/// <inheritdoc/>

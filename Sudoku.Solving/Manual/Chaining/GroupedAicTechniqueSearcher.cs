@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// static analysis is fine, which is different with dynamic chains.
 	/// </para>
 	/// </remarks>
-	[Slow(SlowButNecessary = true), TechniqueDisplay("(Grouped) Alternating Inference Chain")]
+	[TechniqueDisplay("(Grouped) Alternating Inference Chain")]
 	public sealed class GroupedAicTechniqueSearcher : ChainTechniqueSearcher
 	{
 		/// <summary>

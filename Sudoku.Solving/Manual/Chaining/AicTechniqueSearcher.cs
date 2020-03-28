@@ -24,7 +24,6 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// </para>
 	/// </remarks>
 	[Obsolete("Please use 'GroupedAicTechniqueSearcher' instead.", false)]
-	[Slow(SlowButNecessary = true)]
 	[TechniqueDisplay("Alternating Inference Chain")]
 	public sealed class AicTechniqueSearcher : ChainTechniqueSearcher
 	{

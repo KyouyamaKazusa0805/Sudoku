@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
@@ -13,7 +12,6 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// Provides a usage of (<b>grouped</b>) <b>alternating inference chain</b> (AIC) technique.
 	/// In fact this searcher can also search for basic AICs.
 	/// </summary>
-	[SuppressMessage("", "CS0660")]
 	public sealed class GroupedAicTechniqueInfo : ChainTechniqueInfo
 	{
 		/// <summary>
@@ -152,6 +150,10 @@ namespace Sudoku.Solving.Manual.Chaining
 			string nodesStr = NodeCollection.ToString(Nodes);
 			return $"{Name}: {nodesStr} => {elimStr}";
 		}
+
+		/// <inheritdoc/>
+		public override bool Equals(object? obj) =>
+			obj is GroupedAicTechniqueInfo comparer && Equals(comparer);
 
 		/// <inheritdoc/>
 		public override bool Equals(TechniqueInfo obj) =>
@@ -402,15 +404,11 @@ namespace Sudoku.Solving.Manual.Chaining
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
-		public static bool operator ==(
-			GroupedAicTechniqueInfo left,
-			GroupedAicTechniqueInfo right) =>
+		public static bool operator ==(GroupedAicTechniqueInfo left, GroupedAicTechniqueInfo right) =>
 			left.Equals(right);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
-		public static bool operator !=(
-			GroupedAicTechniqueInfo left,
-			GroupedAicTechniqueInfo right) =>
+		public static bool operator !=(GroupedAicTechniqueInfo left, GroupedAicTechniqueInfo right) =>
 			!(left == right);
 	}
 }

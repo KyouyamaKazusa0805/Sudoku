@@ -12,7 +12,6 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// Provides a usage of <b>alternating inference chain</b> (AIC) technique.
 	/// </summary>
 	[Obsolete]
-	[SuppressMessage("", "CS0660")]
 	public sealed class AicTechniqueInfo : ChainTechniqueInfo, IEquatable<AicTechniqueInfo>
 	{
 		/// <summary>
@@ -135,6 +134,9 @@ namespace Sudoku.Solving.Manual.Chaining
 			string nodesStr = NodeCollection.ToString(Nodes);
 			return $"{Name}: {nodesStr} => {elimStr}";
 		}
+
+		/// <inheritdoc/>
+		public override bool Equals(object? obj) => obj is AicTechniqueInfo comparer && Equals(comparer);
 
 		/// <inheritdoc/>
 		public override bool Equals(TechniqueInfo obj) =>

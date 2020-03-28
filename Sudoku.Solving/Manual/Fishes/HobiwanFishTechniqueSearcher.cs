@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// <summary>
 	/// Encapsulates a <b>Hobiwan's fish</b> technique searcher.
 	/// </summary>
-	[Slow, TechniqueDisplay("Hobiwan's Fish")]
+	[TechniqueDisplay("Hobiwan's Fish")]
 	public sealed class HobiwanFishTechniqueSearcher : FishTechniqueSearcher
 	{
 		/// <summary>

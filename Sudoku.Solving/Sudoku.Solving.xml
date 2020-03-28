@@ -1577,6 +1577,9 @@
         <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.Equals(Sudoku.Solving.TechniqueInfo)">
             <inheritdoc/>
         </member>
@@ -1902,6 +1905,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.Equals(System.Object)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.Equals(Sudoku.Solving.TechniqueInfo)">
@@ -6363,26 +6369,6 @@
             <summary>
             Encapsulates a <b>wing</b> technique solver.
             </summary>
-        </member>
-        <member name="T:Sudoku.Solving.SlowAttribute">
-            <summary>
-            To mark on a technique searcher, it means that this technique searcher
-            will have a slow speed to calculate.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.SlowAttribute.SlowButNecessary">
-            <summary>
-            <para>
-            Indicates whether the searcher is slow but necessary.
-            If the value is <see langword="true"/>, the search will not
-            be optimized by <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>, and skip this searcher;
-            otherwise, this searcher will be skipped.
-            </para>
-            <para>
-            The value is <see langword="false"/> in default case.
-            </para>
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
         </member>
         <member name="T:Sudoku.Solving.Solver">
             <summary>
