@@ -135,13 +135,9 @@
 						<RowDefinition Height="15*"/>
 						<RowDefinition/>
 					</Grid.RowDefinitions>
-					<TreeView Grid.Row="0" Grid.Column="0" Name="_treeView">
-						<TreeView.ItemContainerStyle>
-							<Style TargetType="TreeViewItem">
-								<Setter Property="IsExpanded" Value="True"/>
-							</Style>
-						</TreeView.ItemContainerStyle>
-					</TreeView>
+					<ListBox Grid.Row="0" Grid.Column="0" Name="_listBoxTechniques"
+							 SelectionChanged="ListBoxTechniques_SelectionChanged"/>
+					<!--<TreeView Grid.Row="0" Grid.Column="0" Name="_treeView"/>-->
 					<Button Grid.Row="1" Grid.Column="0" Name="_buttonFindAllSteps"
 							Content="Find all steps"
 							Click="ButtonFindAllSteps_Click"/>

@@ -46,5 +46,26 @@ namespace Sudoku.Forms
 
 			UpdateImageGrid();
 		}
+
+		private void ListBoxTechniques_SelectionChanged(object sender, w::Controls.SelectionChangedEventArgs e)
+		{
+			if (sender is w::Controls.ListBox listBox
+				&& listBox.SelectedIndex != -1
+				&& listBox.SelectedItem is w::Controls.ListBoxItem listBoxItem
+				&& listBoxItem.Content is PrimaryElementTuple<string, TechniqueInfo, bool> triplet)
+			{
+				var (_, info, isEnabled) = triplet;
+				if (isEnabled)
+				{
+					_layerCollection.Add(
+					new ViewLayer(
+						_pointConverter, info.Views[0], info.Conclusions, Settings.PaletteColors,
+						Settings.EliminationColor, Settings.CannibalismColor, Settings.ChainColor));
+					_textBoxInfo.Text = info.ToString();
+
+					UpdateImageGrid();
+				}
+			}
+		}
 	}
 }

@@ -48,7 +48,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="grid">The grid.</param>
 		public async Task<IEnumerable<TechniqueGroup>> SearchAsync(IReadOnlyGrid grid)
 		{
-			if (grid.HasSolved || !grid.IsValid(out var solution))
+			if (grid.HasSolved || !grid.IsValid(out _))
 			{
 				return Array.Empty<TechniqueGroup>();
 			}
@@ -112,7 +112,6 @@ namespace Sudoku.Solving.Manual
 				new PomTechniqueSearcher(),
 				new TemplateTechniqueSearcher(false),
 				new CccTechniqueSearcher(),
-				new BruteForceTechniqueSearcher(solution),
 			};
 
 			var bag = new Bag<TechniqueInfo>();

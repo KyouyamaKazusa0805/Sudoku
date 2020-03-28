@@ -112,7 +112,7 @@ namespace Sudoku.Drawing.Layers
 					case ConclusionType.Elimination:
 					{
 						g.FillEllipse(
-							_view.CandidateOffsets.Any(pair => pair._candidateOffset == c * 9 + d)
+							_view.CandidateOffsets?.Any(pair => pair._candidateOffset == c * 9 + d) ?? false
 								? cannibalBrush
 								: eliminationBrush,
 							_pointConverter.GetMousePointRectangle(c, d).Zoom(-offset / 3));

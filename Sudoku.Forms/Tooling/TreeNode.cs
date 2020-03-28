@@ -6,11 +6,11 @@ namespace Sudoku.Forms.Tooling
 {
 	public sealed class TreeNode
 	{
-		public object? Header { get; set; } = null;
+		public object? DisplayName { get; set; } = null;
 
 		public List<TreeViewItem> Children { get; set; } = new List<TreeViewItem>();
 
 
-		public override string ToString() => Header.NullableToString();
+		public override string ToString() => DisplayName.NullableToString();
 	}
 }
