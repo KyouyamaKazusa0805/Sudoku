@@ -15,7 +15,7 @@ using w = System.Windows;
 namespace Sudoku.Forms
 {
 	/// <summary>
-	/// Interaction logic for SettingsWindow.xaml
+	/// Interaction logic for <c>SettingsWindow.xaml</c>.
 	/// </summary>
 	public partial class SettingsWindow : Window
 	{
