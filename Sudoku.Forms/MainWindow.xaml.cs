@@ -15,7 +15,6 @@ using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Drawing.Layers;
 using Sudoku.Forms.Extensions;
-using Sudoku.Forms.Tooling;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 using PointConverter = Sudoku.Drawing.PointConverter;
