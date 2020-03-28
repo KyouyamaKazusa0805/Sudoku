@@ -5,7 +5,6 @@ using Sudoku.Data.Extensions;
 using Sudoku.Solving.Manual;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Solving.ConclusionType;
-using static Sudoku.Solving.DifficultyLevel;
 using IBackdoorSet = System.Collections.Generic.IReadOnlyList<Sudoku.Solving.Conclusion>;
 
 namespace Sudoku.Solving.Checking
