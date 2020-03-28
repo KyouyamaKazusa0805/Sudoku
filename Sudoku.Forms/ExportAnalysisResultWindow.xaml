@@ -18,7 +18,7 @@
 		</Grid.ColumnDefinitions>
 		<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
 			   Content="Please select the options to export:"/>
-		<Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+		<Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Name="_gridMain">
 			<Grid.RowDefinitions>
 				<RowDefinition/>
 				<RowDefinition/>
@@ -33,45 +33,54 @@
 			<CheckBox Grid.Row="0" Grid.Column="0"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="Show separators" Name="_checkBoxShowSeparators"
-					  IsEnabledChanged="CheckBoxShowSeparators_IsEnabledChanged"/>
+					  Tag="-"
+					  Click="CheckBoxShowSeparators_Click"/>
 			<CheckBox Grid.Row="0" Grid.Column="1"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="Show step indices" Name="_checkBoxShowStepIndices"
-					  IsEnabledChanged="CheckBoxShowStepIndices_IsEnabledChanged"/>
+					  Tag="#"
+					  Click="CheckBoxShowStepIndices_Click"/>
 			<CheckBox Grid.Row="1" Grid.Column="0" IsEnabled="True"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="Show logic of each step" Name="_checkBoxShowLogic"
-					  IsEnabledChanged="CheckBoxShowLogic_IsEnabledChanged"/>
+					  Tag="@"
+					  Click="CheckBoxShowLogic_Click"/>
 			<CheckBox Grid.Row="1" Grid.Column="1"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="Show bottleneck step" Name="_checkBoxShowBottleneck"
-					  IsEnabledChanged="CheckBoxShowBottleneck_IsEnabledChanged"/>
+					  Tag="?"
+					  Click="CheckBoxShowBottleneck_Click"/>
 			<CheckBox Grid.Row="2" Grid.Column="0"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="Show difficulty rating of each step" Name="_checkBoxShowDifficulty"
-					  IsEnabledChanged="CheckBoxShowDifficulty_IsEnabledChanged"/>
+					  Tag="!"
+					  Click="CheckBoxShowDifficulty_Click"/>
 			<CheckBox Grid.Row="2" Grid.Column="1"
 					  HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="True"
 					  Content="Show steps after bottleneck" Name="_checkboxShowStepsAfterBottleneck"
-					  IsEnabledChanged="CheckboxShowStepsAfterBottleneck_IsEnabledChanged"/>
+					  Tag="."
+					  Click="CheckboxShowStepsAfterBottleneck_Click"/>
 			<CheckBox Grid.Row="3" Grid.Column="0"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="Show attributes of puzzle" Name="_checkBoxShowAttributesOfPuzzle"
-					  IsEnabledChanged="CheckBoxShowAttributesOfPuzzle_IsEnabledChanged"/>
+					  Tag="a"
+					  Click="CheckBoxShowAttributesOfPuzzle_Click"/>
 			<CheckBox Grid.Row="3" Grid.Column="1"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="Show magic cells" Name="_checkBoxShowMagicCells"
-					  IsEnabledChanged="CheckBoxShowMagicCells_IsEnabledChanged"/>
+					  Tag="b"
+					  Click="CheckBoxShowMagicCells_Click"/>
 			<CheckBox Grid.Row="4" Grid.Column="0"
 					  HorizontalAlignment="Left" VerticalAlignment="Center"
 					  Content="Show difficulty rating details" Name="_checkBoxShowDifficultyDetail"
-					  IsEnabledChanged="CheckBoxShowDifficultyDetail_IsEnabledChanged"/>
+					  Tag="d"
+					  Click="CheckBoxShowDifficultyDetail_Click"/>
 		</Grid>
 		<Label Grid.Row="2" Grid.Column="0" Content="Analysis result:"/>
 		<Button Grid.Row="2" Grid.Column="1" Name="_buttonExport"
 				HorizontalAlignment="Right" VerticalAlignment="Bottom"
 				Content="Export" Click="ButtonExport_Click"/>
 		<TextBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="_textBoxAnalysisResult"
-				 IsReadOnly="True"/>
+				 IsReadOnly="True" FontFamily="Consolas"/>
 	</Grid>
 </Window>

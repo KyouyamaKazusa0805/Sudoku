@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using Sudoku.Solving;
 
 namespace Sudoku.Forms
@@ -35,53 +36,31 @@ namespace Sudoku.Forms
 		};
 
 
-
 		public ExportAnalysisResultWindow(AnalysisResult analysisResult)
 		{
 			InitializeComponent();
+			InitializeControls();
 
 			_analysisResult = analysisResult;
 		}
 
 
-		private void CheckBoxShowSeparators_IsEnabledChanged(
-			object sender, DependencyPropertyChangedEventArgs e) =>
-			_dic['-'] ^= true;
+		/// <summary>
+		/// Initialize controls.
+		/// </summary>
+		private void InitializeControls()
+		{
+			foreach (var control in _gridMain.Children)
+			{
+				if (control is CheckBox checkBox)
+				{
+					checkBox.IsChecked = _dic[checkBox.Tag!.ToString()![0]];
+				}
+			}
+		}
 
-		private void CheckBoxShowStepIndices_IsEnabledChanged(
-			object sender, DependencyPropertyChangedEventArgs e) =>
-			_dic['#'] ^= true;
 
-		private void CheckBoxShowLogic_IsEnabledChanged(
-			object sender, DependencyPropertyChangedEventArgs e) =>
-			_dic['@'] ^= true;
-
-		private void CheckBoxShowBottleneck_IsEnabledChanged(
-			object sender, DependencyPropertyChangedEventArgs e) =>
-			_dic['?'] ^= true;
-
-		private void CheckBoxShowDifficulty_IsEnabledChanged(
-			object sender, DependencyPropertyChangedEventArgs e) =>
-			_dic['!'] ^= true;
-
-		private void CheckboxShowStepsAfterBottleneck_IsEnabledChanged(
-			object sender, DependencyPropertyChangedEventArgs e) =>
-			_dic['.'] ^= true;
-
-		private void CheckBoxShowAttributesOfPuzzle_IsEnabledChanged(
-			object sender, DependencyPropertyChangedEventArgs e) =>
-			_dic['a'] ^= true;
-
-		private void CheckBoxShowMagicCells_IsEnabledChanged(
-			object sender, DependencyPropertyChangedEventArgs e) =>
-			_dic['b'] ^= true;
-
-		private void CheckBoxShowDifficultyDetail_IsEnabledChanged(
-			object sender, DependencyPropertyChangedEventArgs e) =>
-			_dic['d'] ^= true;
-
-		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-		private async void ButtonExport_Click(object sender, RoutedEventArgs e)
+		private void ButtonExport_Click(object sender, RoutedEventArgs e)
 		{
 			var format = new StringBuilder();
 			foreach (char key in from pair in _dic where pair.Value select pair.Key)
@@ -89,8 +68,34 @@ namespace Sudoku.Forms
 				format.Append(key);
 			}
 
-			_textBoxAnalysisResult.Text = await Task.Run(
-				() => _analysisResult.ToString(format.ToString()));
+			_textBoxAnalysisResult.Text = _analysisResult.ToString(format.ToString());
 		}
+
+		private void CheckBoxShowSeparators_Click(object sender, RoutedEventArgs e) =>
+			_dic['-'] ^= true;
+
+		private void CheckBoxShowStepIndices_Click(object sender, RoutedEventArgs e) =>
+			_dic['#'] ^= true;
+
+		private void CheckBoxShowLogic_Click(object sender, RoutedEventArgs e) =>
+			_dic['@'] ^= true;
+
+		private void CheckBoxShowBottleneck_Click(object sender, RoutedEventArgs e) =>
+			_dic['?'] ^= true;
+
+		private void CheckBoxShowDifficulty_Click(object sender, RoutedEventArgs e) =>
+			_dic['!'] ^= true;
+
+		private void CheckboxShowStepsAfterBottleneck_Click(object sender, RoutedEventArgs e) =>
+			_dic['.'] ^= true;
+
+		private void CheckBoxShowAttributesOfPuzzle_Click(object sender, RoutedEventArgs e) =>
+			_dic['a'] ^= true;
+
+		private void CheckBoxShowMagicCells_Click(object sender, RoutedEventArgs e) =>
+			_dic['b'] ^= true;
+
+		private void CheckBoxShowDifficultyDetail_Click(object sender, RoutedEventArgs e) =>
+			_dic['d'] ^= true;
 	}
 }
