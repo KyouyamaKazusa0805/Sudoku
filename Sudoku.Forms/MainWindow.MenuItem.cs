@@ -202,6 +202,7 @@ namespace Sudoku.Forms
 
 			_listBoxPaths.ClearValue(ItemsSourceProperty);
 			_listViewSummary.ClearValue(ItemsSourceProperty);
+			_listBoxTechniques.ClearValue(ItemsSourceProperty);
 		}
 
 		private void MenuItemEditFix_Click(object sender, RoutedEventArgs e)
@@ -282,11 +283,14 @@ namespace Sudoku.Forms
 				var pathList = new List<w::Controls.ListBoxItem>();
 				foreach (var step in _analyisResult.SolvingSteps!)
 				{
-					var item = new w::Controls.ListBoxItem();
 					var (fore, back) = Settings.DiffColors[step.DifficultyLevel];
-					item.Foreground = new w::Media.SolidColorBrush(fore.ToWColor());
-					item.Background = new w::Media.SolidColorBrush(back.ToWColor());
-					item.Content = new PrimaryElementTuple<int, TechniqueInfo>(i++, step, 2);
+					var item = new w::Controls.ListBoxItem
+					{
+						Foreground = new w::Media.SolidColorBrush(fore.ToWColor()),
+						Background = new w::Media.SolidColorBrush(back.ToWColor()),
+						Content = new PrimaryElementTuple<int, TechniqueInfo>(i++, step, 2),
+						BorderThickness = new Thickness()
+					};
 					pathList.Add(item);
 				}
 				_listBoxPaths.ItemsSource = pathList;

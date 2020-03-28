@@ -40,8 +40,9 @@ namespace Sudoku.Forms
 								info.ToSimpleString(),
 								info,
 								true),
+							BorderThickness = new Thickness(),
 							Foreground = new w::Media.SolidColorBrush(fore.ToWColor()),
-							Background = new w::Media.SolidColorBrush(back.ToWColor())
+							Background = new w::Media.SolidColorBrush(back.ToWColor()),
 						});
 				}
 			}
