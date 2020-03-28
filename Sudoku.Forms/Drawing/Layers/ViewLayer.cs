@@ -242,7 +242,7 @@ namespace Sudoku.Drawing.Layers
 			foreach (var (id, candidate) in _view.CandidateOffsets ?? Array.Empty<(int, int)>())
 			{
 				int cell = candidate / 9, digit = candidate % 9;
-				if (!_conclusions.Any(c => c.CellOffset == cell && c.Digit == digit)
+				if (!_conclusions.Any(c => c.CellOffset == cell && c.Digit == digit && c.ConclusionType == ConclusionType.Elimination)
 					&& _colorDic.TryGetValue(id, out var color))
 				{
 					var (cw, ch) = _pointConverter.CandidateSize;

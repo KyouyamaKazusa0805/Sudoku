@@ -96,8 +96,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 								cellOffsets: null,
 								candidateOffsets:
 									new List<(int, int)>(
-										from cand in conclusions
-										select (0, cand.CellOffset * 9 + cand.Digit)),
+										from conclusion in conclusions
+										select (0, conclusion.CellOffset * 9 + conclusion.Digit)),
 								regionOffsets: null,
 								links: null)
 						},
@@ -133,17 +133,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				result.Add(
 					new TemplateTechniqueInfo(
 						conclusions,
-						views: new[]
-						{
-							new View(
-								cellOffsets: null,
-								candidateOffsets:
-									new List<(int, int)>(
-										from cand in conclusions
-										select (0, cand.CellOffset * 9 + cand.Digit)),
-								regionOffsets: null,
-								links: null)
-						},
+						views: new[] { new View() },
 						isTemplateDeletion: true));
 			}
 		}

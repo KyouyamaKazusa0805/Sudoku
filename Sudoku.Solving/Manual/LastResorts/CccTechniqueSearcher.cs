@@ -93,7 +93,12 @@ namespace Sudoku.Solving.Manual.LastResorts
 							new View(
 								cellOffsets: null,
 								candidateOffsets: null,
-								regionOffsets: null,
+								regionOffsets: new[]
+								{
+									(0, i * 3 + 9),
+									(0, i * 3 + 10),
+									(0, i * 3 + 11)
+								},
 								links: null)
 						},
 						count: solutions.Count));
@@ -166,7 +171,12 @@ namespace Sudoku.Solving.Manual.LastResorts
 							new View(
 								cellOffsets: null,
 								candidateOffsets: null,
-								regionOffsets: null,
+								regionOffsets: new[]
+								{
+									(0, i * 3 + 18),
+									(0, i * 3 + 19),
+									(0, i * 3 + 20)
+								},
 								links: null)
 						},
 						count: solutions.Count));

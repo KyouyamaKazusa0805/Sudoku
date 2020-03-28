@@ -10,6 +10,12 @@ namespace Sudoku.Drawing
 	[DebuggerStepThrough]
 	public sealed class View
 	{
+		/// <include file='../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <remarks>
+		/// The initializer is equivalent to <c>new View(null, null, null, null)</c>
+		/// </remarks>
+		public View() { }
+
 		/// <summary>
 		/// Initializes an instance with information.
 		/// </summary>
