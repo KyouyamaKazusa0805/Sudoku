@@ -238,7 +238,7 @@ namespace Sudoku.Forms
 			_listViewSummary.ClearValue(ItemsSourceProperty);
 		}
 
-		private void MenuItemClear_Click(object sender, RoutedEventArgs e)
+		private void MenuItemEditClear_Click(object sender, RoutedEventArgs e)
 		{
 			Puzzle = new UndoableGrid((SudokuGrid)SudokuGrid.Empty);
 
@@ -384,22 +384,22 @@ namespace Sudoku.Forms
 			_manualSolver.FastSearch = _menuItemAnalyzeFastSearch.IsChecked = Settings.FastSearch ^= true;
 
 		private void MenuItemCheckConclusionValidityAfterSearched_Click(object sender, RoutedEventArgs e) =>
-			_manualSolver.CheckConclusionValidityAfterSearched = _menuItemCheckConclusionValidityAfterSearched.IsChecked = Settings.CheckConclusionValidityAfterSearched ^= true;
+			_manualSolver.CheckConclusionValidityAfterSearched = _menuItemAnalyzeCheckConclusionValidityAfterSearched.IsChecked = Settings.CheckConclusionValidityAfterSearched ^= true;
 
 		private void MenuItemCheckGurthSymmetricalPlacement_Click(object sender, RoutedEventArgs e) =>
-			_manualSolver.CheckGurthSymmetricalPlacement = _menuItemCheckGurthSymmetricalPlacement.IsChecked = Settings.CheckGurthSymmetricalPlacement ^= true;
+			_manualSolver.CheckGurthSymmetricalPlacement = _menuItemAnalyzeCheckGurthSymmetricalPlacement.IsChecked = Settings.CheckGurthSymmetricalPlacement ^= true;
 
 		private void MenuItemShowFullHouses_Click(object sender, RoutedEventArgs e) =>
-			_manualSolver.EnableFullHouse = _menuItemShowFullHouses.IsChecked = Settings.EnableFullHouse ^= true;
+			_manualSolver.EnableFullHouse = _menuItemAnalyzeShowFullHouses.IsChecked = Settings.EnableFullHouse ^= true;
 
 		private void MenuItemShowLastDigits_Click(object sender, RoutedEventArgs e) =>
-			_manualSolver.EnableLastDigit = _menuItemShowLastDigits.IsChecked = Settings.EnableLastDigit ^= true;
+			_manualSolver.EnableLastDigit = _menuItemAnalyzeShowLastDigits.IsChecked = Settings.EnableLastDigit ^= true;
 
 		private void MenuItemOptimizeApplyingOrder_Click(object sender, RoutedEventArgs e) =>
-			_manualSolver.OptimizedApplyingOrder = _menuItemOptimizeApplyingOrder.IsChecked = Settings.OptimizedApplyingOrder ^= true;
+			_manualSolver.OptimizedApplyingOrder = _menuItemAnalyzeOptimizeApplyingOrder.IsChecked = Settings.OptimizedApplyingOrder ^= true;
 
 		private void MenuItemUseCalculationPriority_Click(object sender, RoutedEventArgs e) =>
-			_manualSolver.UseCalculationPriority = _menuItemUseCalculationPriority.IsChecked = Settings.UseCalculationPriority ^= true;
+			_manualSolver.UseCalculationPriority = _menuItemAnalyzeUseCalculationPriority.IsChecked = Settings.UseCalculationPriority ^= true;
 
 		private void MenuItemExport_Click(object sender, RoutedEventArgs e)
 		{

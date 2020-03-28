@@ -61,8 +61,9 @@
 				<Separator/>
 				<MenuItem Header="Reset grid" Name="_menuItemEditReset" BorderBrush="Red"
 						  Click="MenuItemEditReset_Click"/>
-				<MenuItem Header="Clear grid" Name="_menuItemClear" BorderBrush="Red"
-						  Click="MenuItemClear_Click"/>
+				<MenuItem Header="Clear grid" Name="_menuItemEditClear" BorderBrush="Red"
+						  InputGestureText="Ctrl + Shift + N"
+						  Click="MenuItemEditClear_Click"/>
 			</MenuItem>
 			<MenuItem Header="Generate">
 				<MenuItem Header="Hard pattern mode" Name="_menuItemGenerateHardPattern"
@@ -72,9 +73,9 @@
 				<MenuItem Header="Solve puzzle" Name="_menuItemAnalyzeSolve" InputGestureText="F9"
 						  Click="MenuItemAnalyzeSolve_Click"/>
 				<Separator/>
-				<MenuItem Header="Show Full Houses" Name="_menuItemShowFullHouses"
+				<MenuItem Header="Show Full Houses" Name="_menuItemAnalyzeShowFullHouses"
 						  Click="MenuItemShowFullHouses_Click"/>
-				<MenuItem Header="Show Last Digits" Name="_menuItemShowLastDigits"
+				<MenuItem Header="Show Last Digits" Name="_menuItemAnalyzeShowLastDigits"
 						  Click="MenuItemShowLastDigits_Click"/>
 				<Separator/>
 				<MenuItem Header="Analyze difficulty strictly" Name="_menuItemAnalyzeSeMode"
@@ -82,17 +83,17 @@
 				<MenuItem Header="Fast search" Name="_menuItemAnalyzeFastSearch"
 						  Click="MenuItemAnalyzeFastSearch_Click"/>
 				<MenuItem Header="Check validity of each conclusion"
-						  Name="_menuItemCheckConclusionValidityAfterSearched"
+						  Name="_menuItemAnalyzeCheckConclusionValidityAfterSearched"
 						  Click="MenuItemCheckConclusionValidityAfterSearched_Click"/>
 				<MenuItem Header="Check Gurth's Symmetrical Placement"
-						  Name="_menuItemCheckGurthSymmetricalPlacement"
+						  Name="_menuItemAnalyzeCheckGurthSymmetricalPlacement"
 						  Click="MenuItemCheckGurthSymmetricalPlacement_Click"/>
-				<MenuItem Header="Optimize applying order" Name="_menuItemOptimizeApplyingOrder"
+				<MenuItem Header="Optimize applying order" Name="_menuItemAnalyzeOptimizeApplyingOrder"
 						  Click="MenuItemOptimizeApplyingOrder_Click"/>
-				<MenuItem Header="Use calculation priority" Name="_menuItemUseCalculationPriority"
+				<MenuItem Header="Use calculation priority" Name="_menuItemAnalyzeUseCalculationPriority"
 						  Click="MenuItemUseCalculationPriority_Click"/>
 				<Separator/>
-				<MenuItem Header="Export..." Name="_menuItemExport"
+				<MenuItem Header="Export..." Name="_menuItemAnalyzeExport"
 						  Click="MenuItemExport_Click"/>
 				<Separator/>
 				<MenuItem Header="Backdoor search..." Name="_menuItemAnalyzeBackdoor"

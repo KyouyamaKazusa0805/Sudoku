@@ -136,17 +136,18 @@ namespace Sudoku.Forms
 			base.OnInitialized(e);
 
 			// Define shortcuts.
+			AddShortCut(Key.C, ModifierKeys.Control, MenuItemEditCopy_Click);
 			AddShortCut(Key.O, ModifierKeys.Control, MenuItemFileOpen_Click);
 			AddShortCut(Key.S, ModifierKeys.Control, MenuItemFileSave_Click);
-			AddShortCut(Key.F4, ModifierKeys.Alt, MenuItemFileQuit_Click);
-			AddShortCut(Key.F9, ModifierKeys.None, MenuItemAnalyzeSolve_Click); ;
-			AddShortCut(Key.OemTilde, ModifierKeys.Control, MenuItemEditFix_Click);
-			AddShortCut(Key.OemTilde, ModifierKeys.Control | ModifierKeys.Shift, MenuItemEditUnfix_Click);
-			AddShortCut(Key.Z, ModifierKeys.Control, MenuItemEditUndo_Click);
-			AddShortCut(Key.Y, ModifierKeys.Control, MenuItemEditRedo_Click);
-			AddShortCut(Key.C, ModifierKeys.Control, MenuItemEditCopy_Click);
-			AddShortCut(Key.C, ModifierKeys.Control | ModifierKeys.Shift, MenuItemEditCopyCurrentGrid_Click);
 			AddShortCut(Key.V, ModifierKeys.Control, MenuItemEditPaste_Click);
+			AddShortCut(Key.Y, ModifierKeys.Control, MenuItemEditRedo_Click);
+			AddShortCut(Key.Z, ModifierKeys.Control, MenuItemEditUndo_Click);
+			AddShortCut(Key.F4, ModifierKeys.Alt, MenuItemFileQuit_Click);
+			AddShortCut(Key.F9, ModifierKeys.None, MenuItemAnalyzeSolve_Click);
+			AddShortCut(Key.OemTilde, ModifierKeys.Control, MenuItemEditFix_Click);
+			AddShortCut(Key.N, ModifierKeys.Control | ModifierKeys.Shift, MenuItemEditClear_Click);
+			AddShortCut(Key.C, ModifierKeys.Control | ModifierKeys.Shift, MenuItemEditCopyCurrentGrid_Click);
+			AddShortCut(Key.OemTilde, ModifierKeys.Control | ModifierKeys.Shift, MenuItemEditUnfix_Click);
 
 			// Initializes some controls.
 			Title = $"{SolutionName} Ver {Version}";
@@ -327,12 +328,12 @@ namespace Sudoku.Forms
 			_menuItemOptionsShowCandidates.IsChecked = Settings.ShowCandidates;
 			_menuItemAnalyzeSeMode.IsChecked = Settings.SeMode;
 			_menuItemAnalyzeFastSearch.IsChecked = Settings.FastSearch;
-			_menuItemCheckGurthSymmetricalPlacement.IsChecked = Settings.CheckGurthSymmetricalPlacement;
-			_menuItemShowFullHouses.IsChecked = Settings.EnableFullHouse;
-			_menuItemShowLastDigits.IsChecked = Settings.EnableLastDigit;
-			_menuItemOptimizeApplyingOrder.IsChecked = Settings.OptimizedApplyingOrder;
-			_menuItemUseCalculationPriority.IsChecked = Settings.UseCalculationPriority;
-			_menuItemCheckConclusionValidityAfterSearched.IsChecked = Settings.CheckConclusionValidityAfterSearched;
+			_menuItemAnalyzeCheckGurthSymmetricalPlacement.IsChecked = Settings.CheckGurthSymmetricalPlacement;
+			_menuItemAnalyzeShowFullHouses.IsChecked = Settings.EnableFullHouse;
+			_menuItemAnalyzeShowLastDigits.IsChecked = Settings.EnableLastDigit;
+			_menuItemAnalyzeOptimizeApplyingOrder.IsChecked = Settings.OptimizedApplyingOrder;
+			_menuItemAnalyzeUseCalculationPriority.IsChecked = Settings.UseCalculationPriority;
+			_menuItemAnalyzeCheckConclusionValidityAfterSearched.IsChecked = Settings.CheckConclusionValidityAfterSearched;
 
 			UpdateImageGrid();
 		}
@@ -377,14 +378,15 @@ namespace Sudoku.Forms
 		private void DisableGeneratingControls()
 		{
 			_textBoxInfo.Text = "Generating...";
+			_menuItemFileOpen.IsEnabled = false;
 			_menuItemGenerateHardPattern.IsEnabled = false;
-			_menuItemAnalyzeSolve.IsEnabled = false;
 			_menuItemEditPaste.IsEnabled = false;
 			_menuItemEditFix.IsEnabled = false;
 			_menuItemEditUnfix.IsEnabled = false;
 			_menuItemEditReset.IsEnabled = false;
-			_menuItemExport.IsEnabled = false;
-			_menuItemFileOpen.IsEnabled = false;
+			_menuItemEditClear.IsEnabled = false;
+			_menuItemAnalyzeSolve.IsEnabled = false;
+			_menuItemAnalyzeExport.IsEnabled = false;
 		}
 
 		/// <summary>
@@ -394,14 +396,15 @@ namespace Sudoku.Forms
 		private void EnableGeneratingControls()
 		{
 			_textBoxInfo.ClearValue(w::Controls.TextBox.TextProperty);
+			_menuItemFileOpen.IsEnabled = true;
 			_menuItemGenerateHardPattern.IsEnabled = true;
-			_menuItemAnalyzeSolve.IsEnabled = true;
 			_menuItemEditPaste.IsEnabled = true;
 			_menuItemEditFix.IsEnabled = true;
 			_menuItemEditUnfix.IsEnabled = true;
 			_menuItemEditReset.IsEnabled = true;
-			_menuItemExport.IsEnabled = true;
-			_menuItemFileOpen.IsEnabled = true;
+			_menuItemEditClear.IsEnabled = true;
+			_menuItemAnalyzeSolve.IsEnabled = true;
+			_menuItemAnalyzeExport.IsEnabled = true;
 		}
 
 		/// <summary>
@@ -410,22 +413,23 @@ namespace Sudoku.Forms
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void DisableSolvingControls()
 		{
-			_menuItemAnalyzeSolve.IsEnabled = false;
+			_menuItemFileOpen.IsEnabled = false;
 			_menuItemGenerateHardPattern.IsEnabled = false;
 			_menuItemEditPaste.IsEnabled = false;
 			_menuItemEditFix.IsEnabled = false;
 			_menuItemEditUnfix.IsEnabled = false;
 			_menuItemEditReset.IsEnabled = false;
-			_menuItemShowFullHouses.IsEnabled = false;
-			_menuItemShowLastDigits.IsEnabled = false;
+			_menuItemEditClear.IsEnabled = false;
+			_menuItemAnalyzeSolve.IsEnabled = false;
+			_menuItemAnalyzeShowFullHouses.IsEnabled = false;
+			_menuItemAnalyzeShowLastDigits.IsEnabled = false;
 			_menuItemAnalyzeSeMode.IsEnabled = false;
 			_menuItemAnalyzeFastSearch.IsEnabled = false;
-			_menuItemCheckConclusionValidityAfterSearched.IsEnabled = false;
-			_menuItemCheckGurthSymmetricalPlacement.IsEnabled = false;
-			_menuItemOptimizeApplyingOrder.IsEnabled = false;
-			_menuItemUseCalculationPriority.IsEnabled = false;
-			_menuItemExport.IsEnabled = false;
-			_menuItemFileOpen.IsEnabled = false;
+			_menuItemAnalyzeCheckConclusionValidityAfterSearched.IsEnabled = false;
+			_menuItemAnalyzeCheckGurthSymmetricalPlacement.IsEnabled = false;
+			_menuItemAnalyzeOptimizeApplyingOrder.IsEnabled = false;
+			_menuItemAnalyzeUseCalculationPriority.IsEnabled = false;
+			_menuItemAnalyzeExport.IsEnabled = false;
 		}
 
 		/// <summary>
@@ -435,22 +439,23 @@ namespace Sudoku.Forms
 		private void EnableSolvingControls()
 		{
 			_textBoxInfo.ClearValue(w::Controls.TextBox.TextProperty);
-			_menuItemAnalyzeSolve.IsEnabled = true;
+			_menuItemFileOpen.IsEnabled = true;
 			_menuItemGenerateHardPattern.IsEnabled = true;
 			_menuItemEditPaste.IsEnabled = true;
 			_menuItemEditFix.IsEnabled = true;
 			_menuItemEditUnfix.IsEnabled = true;
 			_menuItemEditReset.IsEnabled = true;
-			_menuItemShowFullHouses.IsEnabled = true;
-			_menuItemShowLastDigits.IsEnabled = true;
+			_menuItemEditClear.IsEnabled = true;
+			_menuItemAnalyzeSolve.IsEnabled = true;
+			_menuItemAnalyzeShowFullHouses.IsEnabled = true;
+			_menuItemAnalyzeShowLastDigits.IsEnabled = true;
 			_menuItemAnalyzeSeMode.IsEnabled = true;
 			_menuItemAnalyzeFastSearch.IsEnabled = true;
-			_menuItemCheckConclusionValidityAfterSearched.IsEnabled = true;
-			_menuItemCheckGurthSymmetricalPlacement.IsEnabled = true;
-			_menuItemOptimizeApplyingOrder.IsEnabled = true;
-			_menuItemUseCalculationPriority.IsEnabled = true;
-			_menuItemExport.IsEnabled = true;
-			_menuItemFileOpen.IsEnabled = true;
+			_menuItemAnalyzeCheckConclusionValidityAfterSearched.IsEnabled = true;
+			_menuItemAnalyzeCheckGurthSymmetricalPlacement.IsEnabled = true;
+			_menuItemAnalyzeOptimizeApplyingOrder.IsEnabled = true;
+			_menuItemAnalyzeUseCalculationPriority.IsEnabled = true;
+			_menuItemAnalyzeExport.IsEnabled = true;
 		}
 	}
 }
