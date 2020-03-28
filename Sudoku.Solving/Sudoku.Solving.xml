@@ -1986,9 +1986,25 @@
             <param name="nodes">The nodes.</param>
             <returns>The list.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.IsHeadTailSame">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.IsHeadTailSameDigit">
             <summary>
             Indicates whether the head and tail node contain the different digit.
+            </summary>
+            <returns>
+            <see langword="true"/> is for same digit; otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.IsHeadTailSameCell">
+            <summary>
+            Indicates whether the head and tail node are in different cells.
+            </summary>
+            <returns>
+            <see langword="true"/> is for same digit; otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.IsHeadTailSame">
+            <summary>
+            Indicates whether the head and tail node are difference values.
             </summary>
             <returns>
             <see langword="true"/> is for same digit; otherwise, <see langword="false"/>.
@@ -3310,6 +3326,17 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.LightManualSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LightManualSolver.RecordTechnique(System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.TechniqueInfo,Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,Sudoku.Solving.AnalysisResult@)">
+            <summary>
+            To record the current technique step.
+            </summary>
+            <param name="steps">The steps have been found.</param>
+            <param name="step">The current step.</param>
+            <param name="grid">The grid.</param>
+            <param name="cloneation">The cloneation of the grid.</param>
+            <param name="result">The result.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.ManualSolver">
             <summary>

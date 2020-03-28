@@ -15,6 +15,7 @@ using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Drawing.Layers;
 using Sudoku.Forms.Extensions;
+using Sudoku.Forms.Tooling;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 using PointConverter = Sudoku.Drawing.PointConverter;
@@ -410,7 +411,6 @@ namespace Sudoku.Forms
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void DisableSolvingControls()
 		{
-			_textBoxInfo.Text = "Solving, please wait. During solving you can do some other work...";
 			_menuItemAnalyzeSolve.IsEnabled = false;
 			_menuItemGenerateHardPattern.IsEnabled = false;
 			_menuItemEditPaste.IsEnabled = false;

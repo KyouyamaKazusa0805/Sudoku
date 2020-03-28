@@ -85,7 +85,8 @@ namespace Sudoku.Solving.Manual.Chaining
 						{
 							_ when IsXChain() => $"{groupedSuffix()}X-Chain",
 							_ when IsXyChain() => $"{groupedSuffix()}XY-Chain",
-							_ when !IsHeadTailSame() => Conclusions.Count switch
+							_ when IsHeadTailSame() => $"{groupedSuffix()}Discontinuous Nice Loop",
+							_ when !IsHeadTailSameDigit() => Conclusions.Count switch
 							{
 								1 => $"{groupedSuffix()}Discontinuous Nice Loop",
 								2 => $"{groupedSuffix()}XY-X-Chain",
@@ -400,7 +401,25 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <see langword="true"/> is for same digit; otherwise, <see langword="false"/>.
 		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private bool IsHeadTailSame() => Nodes[0][0] % 9 == Nodes[LastIndex][0] % 9;
+		private bool IsHeadTailSameDigit() => Nodes[0][0] % 9 == Nodes[LastIndex][0] % 9;
+
+		/// <summary>
+		/// Indicates whether the head and tail node are in different cells.
+		/// </summary>
+		/// <returns>
+		/// <see langword="true"/> is for same digit; otherwise, <see langword="false"/>.
+		/// </returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private bool IsHeadTailSameCell() => Nodes[0][0] / 9 == Nodes[LastIndex][0] / 9;
+
+		/// <summary>
+		/// Indicates whether the head and tail node are difference values.
+		/// </summary>
+		/// <returns>
+		/// <see langword="true"/> is for same digit; otherwise, <see langword="false"/>.
+		/// </returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private bool IsHeadTailSame() => Nodes[0][0] == Nodes[LastIndex][0];
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>

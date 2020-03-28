@@ -26,7 +26,7 @@ namespace Sudoku.Forms
 		/// <summary>
 		/// The item source property.
 		/// </summary>
-		private static DependencyProperty ItemSourceProperty => w::Controls.ItemsControl.ItemsSourceProperty;
+		private static DependencyProperty ItemsSourceProperty => w::Controls.ItemsControl.ItemsSourceProperty;
 
 
 		private void MenuItemFileOpen_Click(object sender, RoutedEventArgs e)
@@ -200,8 +200,8 @@ namespace Sudoku.Forms
 
 			LoadPuzzle(puzzleStr);
 
-			_listBoxPaths.ClearValue(ItemSourceProperty);
-			_listViewSummary.ClearValue(ItemSourceProperty);
+			_listBoxPaths.ClearValue(ItemsSourceProperty);
+			_listViewSummary.ClearValue(ItemsSourceProperty);
 		}
 
 		private void MenuItemEditFix_Click(object sender, RoutedEventArgs e)
@@ -209,8 +209,8 @@ namespace Sudoku.Forms
 			Puzzle.Fix();
 
 			UpdateImageGrid();
-			_listBoxPaths.ClearValue(ItemSourceProperty);
-			_listViewSummary.ClearValue(ItemSourceProperty);
+			_listBoxPaths.ClearValue(ItemsSourceProperty);
+			_listViewSummary.ClearValue(ItemsSourceProperty);
 		}
 
 		private void MenuItemEditUnfix_Click(object sender, RoutedEventArgs e)
@@ -218,8 +218,8 @@ namespace Sudoku.Forms
 			Puzzle.Unfix();
 
 			UpdateImageGrid();
-			_listBoxPaths.ClearValue(ItemSourceProperty);
-			_listViewSummary.ClearValue(ItemSourceProperty);
+			_listBoxPaths.ClearValue(ItemsSourceProperty);
+			_listViewSummary.ClearValue(ItemsSourceProperty);
 		}
 
 		private void MenuItemEditReset_Click(object sender, RoutedEventArgs e)
@@ -233,8 +233,8 @@ namespace Sudoku.Forms
 			_layerCollection.Remove(typeof(ViewLayer).Name);
 
 			UpdateImageGrid();
-			_listBoxPaths.ClearValue(ItemSourceProperty);
-			_listViewSummary.ClearValue(ItemSourceProperty);
+			_listBoxPaths.ClearValue(ItemsSourceProperty);
+			_listViewSummary.ClearValue(ItemsSourceProperty);
 		}
 
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
@@ -247,8 +247,8 @@ namespace Sudoku.Forms
 			EnableGeneratingControls();
 
 			Puzzle = new UndoableGrid((SudokuGrid)puzzle);
-			_listBoxPaths.ClearValue(ItemSourceProperty);
-			_listViewSummary.ClearValue(ItemSourceProperty);
+			_listBoxPaths.ClearValue(ItemsSourceProperty);
+			_listViewSummary.ClearValue(ItemsSourceProperty);
 
 			UpdateImageGrid();
 		}
@@ -257,9 +257,9 @@ namespace Sudoku.Forms
 		private async void MenuItemAnalyzeSolve_Click(object sender, RoutedEventArgs e)
 		{
 			// Update status.
-			_listBoxPaths.ClearValue(ItemSourceProperty);
-			_listViewSummary.ClearValue(ItemSourceProperty);
-
+			_listBoxPaths.ClearValue(ItemsSourceProperty);
+			_listViewSummary.ClearValue(ItemsSourceProperty);
+			_textBoxInfo.Text = "Solving, please wait. During solving you can do some other work...";
 			DisableSolvingControls();
 
 			// Run the solver asynchronizedly, during solving you can do other work.

@@ -130,7 +130,22 @@
 				</Grid>
 			</TabItem>
 			<TabItem Header="All possible steps">
-				<Grid Background="#FFE5E5E5"/>
+				<Grid Background="#FFE5E5E5">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="15*"/>
+						<RowDefinition/>
+					</Grid.RowDefinitions>
+					<TreeView Grid.Row="0" Grid.Column="0" Name="_treeView">
+						<TreeView.ItemContainerStyle>
+							<Style TargetType="TreeViewItem">
+								<Setter Property="IsExpanded" Value="True"/>
+							</Style>
+						</TreeView.ItemContainerStyle>
+					</TreeView>
+					<Button Grid.Row="1" Grid.Column="0" Name="_buttonFindAllSteps"
+							Content="Find all steps"
+							Click="ButtonFindAllSteps_Click"/>
+				</Grid>
 			</TabItem>
 			<TabItem Header="Drawing">
 				<Grid Background="#FFE5E5E5"/>

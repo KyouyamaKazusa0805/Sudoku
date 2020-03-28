@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data;
@@ -58,6 +57,15 @@ namespace Sudoku.Solving.Manual
 				stepGrids: null);
 		}
 
+		/// <summary>
+		/// To record the current technique step.
+		/// </summary>
+		/// <param name="steps">The steps have been found.</param>
+		/// <param name="step">The current step.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="cloneation">The cloneation of the grid.</param>
+		/// <param name="result">The result.</param>
+		/// <returns>A <see cref="bool"/> value.</returns>
 		private bool RecordTechnique(
 			List<TechniqueInfo> steps, TechniqueInfo step, IReadOnlyGrid grid, Grid cloneation,
 			[NotNullWhen(true)] out AnalysisResult? result)
