@@ -484,6 +484,7 @@ namespace Sudoku.Forms
 			_menuItemEditUnfix.IsEnabled = false;
 			_menuItemEditReset.IsEnabled = false;
 			_menuItemEditClear.IsEnabled = false;
+			_menuItemGenerateWithSymmetry.IsEnabled = false;
 			_menuItemAnalyzeSolve.IsEnabled = false;
 			_menuItemAnalyzeExport.IsEnabled = false;
 			_buttonFindAllSteps.IsEnabled = false;
@@ -504,6 +505,7 @@ namespace Sudoku.Forms
 			_menuItemEditUnfix.IsEnabled = true;
 			_menuItemEditReset.IsEnabled = true;
 			_menuItemEditClear.IsEnabled = true;
+			_menuItemGenerateWithSymmetry.IsEnabled = true;
 			_menuItemAnalyzeSolve.IsEnabled = true;
 			_menuItemAnalyzeExport.IsEnabled = true;
 			_buttonFindAllSteps.IsEnabled = true;
@@ -523,6 +525,7 @@ namespace Sudoku.Forms
 			_menuItemEditUnfix.IsEnabled = false;
 			_menuItemEditReset.IsEnabled = false;
 			_menuItemEditClear.IsEnabled = false;
+			_menuItemGenerateWithSymmetry.IsEnabled = false;
 			_menuItemAnalyzeSolve.IsEnabled = false;
 			_menuItemAnalyzeShowFullHouses.IsEnabled = false;
 			_menuItemAnalyzeShowLastDigits.IsEnabled = false;
@@ -551,6 +554,7 @@ namespace Sudoku.Forms
 			_menuItemEditUnfix.IsEnabled = true;
 			_menuItemEditReset.IsEnabled = true;
 			_menuItemEditClear.IsEnabled = true;
+			_menuItemGenerateWithSymmetry.IsEnabled = true;
 			_menuItemAnalyzeSolve.IsEnabled = true;
 			_menuItemAnalyzeShowFullHouses.IsEnabled = true;
 			_menuItemAnalyzeShowLastDigits.IsEnabled = true;
