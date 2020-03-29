@@ -47,5 +47,14 @@ namespace Sudoku.Forms.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsAlphabet(this Key @this) =>
 			@this >= Key.A && @this <= Key.Z;
+
+		/// <summary>
+		/// Check whether the specified key is a arrow key (up, down, left or right).
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The key.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool IsArrow(this Key @this) =>
+			@this == Key.Up || @this == Key.Down || @this == Key.Left || @this == Key.Right;
 	}
 }

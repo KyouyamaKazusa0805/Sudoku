@@ -14,6 +14,7 @@ using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Drawing.Layers;
+using Sudoku.Forms.Drawing.Layers;
 using Sudoku.Forms.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
@@ -38,11 +39,19 @@ namespace Sudoku.Forms
 		/// </summary>
 		private readonly LayerCollection _layerCollection = new LayerCollection();
 
+
 		/// <summary>
 		/// Indicates all focused cells.
 		/// </summary>
-		private readonly IList<int> _focusedCells = new List<int>();
+		private GridMap _focusedCells = GridMap.Empty;
 
+		/// <summary>
+		/// The preview map. This field is only used for
+		/// <see cref="OnKeyDown(KeyEventArgs)"/> and <see cref="OnKeyUp(KeyEventArgs)"/>.
+		/// </summary>
+		/// <seealso cref="OnKeyDown(KeyEventArgs)"/>
+		/// <seealso cref="OnKeyUp(KeyEventArgs)"/>
+		private GridMap? _previewMap;
 
 		/// <summary>
 		/// Indicates the analysis result after solving of the current grid.
@@ -199,7 +208,7 @@ namespace Sudoku.Forms
 			// Get all cases for being pressed keys.
 			if (e.Key.IsDigit())
 			{
-				// Get the current cell.
+				// Input.
 				var pt = Mouse.GetPosition(_imageGrid);
 				if (IsPointOutOfRange(_imageGrid, pt))
 				{
@@ -209,6 +218,74 @@ namespace Sudoku.Forms
 
 				Puzzle[_pointConverter.GetCellOffset(pt.ToDPointF())] =
 					e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1;
+
+				UpdateImageGrid();
+			}
+			else if (e.Key.IsArrow() && _focusedCells.Count == 1)
+			{
+				// Move the focused cell.
+				int cell = _focusedCells.SetAt(0);
+				_focusedCells.Clear();
+				_focusedCells.Add(e.Key switch
+				{
+					Key.Up => cell - 9 < 0 ? cell + 72 : cell - 9,
+					Key.Down => cell + 9 >= 81 ? cell - 72 : cell + 9,
+					Key.Left => cell - 1 < 0 ? cell + 8 : cell - 1,
+					Key.Right => (cell + 1) % 81,
+					_ => throw Throwing.ImpossibleCase
+				});
+
+				_layerCollection.Add(
+					new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
+
+				UpdateImageGrid();
+			}
+			else if (e.Key == Key.Space)
+			{
+				// View the intersection.
+				_previewMap = _focusedCells;
+				_focusedCells = new GridMap(
+					_focusedCells.Offsets, GridMap.InitializeOption.ProcessPeersWithoutItself);
+
+				_layerCollection.Add(
+					new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
+
+				UpdateImageGrid();
+			}
+			else if (e.Key == Key.Tab)
+			{
+				// Move to next box row.
+				int cell = _focusedCells.IsEmpty ? 0 : _focusedCells.SetAt(0);
+				_focusedCells.Clear();
+				_focusedCells.Add((cell + 3) % 81);
+
+				_layerCollection.Add(
+					new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
+
+				UpdateImageGrid();
+			}
+			else if (e.Key == Key.Escape)
+			{
+				// Clear focused cells.
+				_focusedCells.Clear();
+				_layerCollection.Remove(typeof(FocusLayer).Name);
+
+				UpdateImageGrid();
+			}
+
+			GC.Collect();
+		}
+
+		protected override void OnKeyUp(KeyEventArgs e)
+		{
+			base.OnKeyUp(e);
+
+			if (e.Key == Key.Space && !(_previewMap is null))
+			{
+				_focusedCells = _previewMap.Value;
+
+				_layerCollection.Add(
+					new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
 
 				UpdateImageGrid();
 			}

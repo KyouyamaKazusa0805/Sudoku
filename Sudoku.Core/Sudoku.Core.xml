@@ -1730,6 +1730,11 @@
             </summary>
             <param name="offset">The cell offset.</param>
         </member>
+        <member name="M:Sudoku.Data.GridMap.Clear">
+            <summary>
+            Clear all bits.
+            </summary>
+        </member>
         <member name="M:Sudoku.Data.GridMap.GetCellsIn(System.Int32)">
             <summary>
             Get all cell offsets in the specified region.

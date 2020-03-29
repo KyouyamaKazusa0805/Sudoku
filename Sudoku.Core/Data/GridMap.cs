@@ -583,6 +583,12 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Remove(int offset) => this[offset] = false;
 
+		/// <summary>
+		/// Clear all bits.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public void Clear() => _low = _high = Count = 0;
+
 
 		/// <summary>
 		/// Get all cell offsets in the specified region.

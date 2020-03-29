@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Drawing;
+using Sudoku.Data;
 using Sudoku.Drawing.Layers;
 using PointConverter = Sudoku.Drawing.PointConverter;
 
@@ -20,7 +20,7 @@ namespace Sudoku.Forms.Drawing.Layers
 		/// <summary>
 		/// The internal list of focused cells.
 		/// </summary>
-		private readonly IEnumerable<int> _cells;
+		private readonly GridMap _cells;
 
 
 		/// <summary>
@@ -30,7 +30,7 @@ namespace Sudoku.Forms.Drawing.Layers
 		/// <param name="cells">The cells.</param>
 		/// <param name="color">The colors.</param>
 		public FocusLayer(
-			PointConverter pointConverter, IEnumerable<int> cells, Color color)
+			PointConverter pointConverter, GridMap cells, Color color)
 			: base(pointConverter) => (_color, _cells) = (color, cells);
 
 
@@ -44,7 +44,7 @@ namespace Sudoku.Forms.Drawing.Layers
 			var bitmap = new Bitmap((int)Width, (int)Height);
 			using var g = Graphics.FromImage(bitmap);
 			using var brush = new SolidBrush(_color);
-			foreach (int cell in _cells)
+			foreach (int cell in _cells.Offsets)
 			{
 				g.FillRectangle(brush, _pointConverter.GetMousePointRectangle(cell));
 			}
