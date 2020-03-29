@@ -37,9 +37,14 @@ namespace Sudoku.Solving.Generating
 
 			// Now we remove some digits from the grid.
 			var allTypes = from st in EnumEx.GetValues<SymmetricalType>()
-						   where symmetricalType.HasFlag(st)
+						   where st != None && symmetricalType.HasFlag(st)
 						   select st;
 			int count = allTypes.Count();
+			if (count == 0)
+			{
+				allTypes = new[] { None };
+			}
+
 			var tempSb = new StringBuilder(solution.ToString());
 			string result;
 			do
