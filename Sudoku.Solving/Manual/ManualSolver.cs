@@ -449,7 +449,7 @@ namespace Sudoku.Solving.Manual
 					}
 					else
 					{
-						var wrongStep = (TechniqueInfo?)null;
+						TechniqueInfo? wrongStep = null;
 						foreach (var step in bag)
 						{
 							if (!CheckConclusionsValidity(solution, step.Conclusions))

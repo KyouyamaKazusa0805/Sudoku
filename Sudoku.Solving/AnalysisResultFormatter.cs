@@ -52,11 +52,8 @@ namespace Sudoku.Solving
 				return result;
 			}
 
-			if (format is null)
-			{
-				throw new ArgumentNullException(nameof(format));
-			}
-			if (format.IsMatch(@"[^\^\-\.\?#@!abd]"))
+			format ??= ".-!l";
+			if (format.IsMatch(@"[^\^\-\.\?#@!abdl]"))
 			{
 				throw new FormatException("The specified format is invalid due to with invalid characters.");
 			}
@@ -72,6 +69,7 @@ namespace Sudoku.Solving
 			bool showAttributes = c('a');
 			bool showBackdoors = c('b');
 			bool showTechniqueDetail = c('d');
+			bool showTechniqueSteps = c('l');
 
 			// Get all information.
 			var (solverName, hasSolved) = Result;
@@ -87,7 +85,7 @@ namespace Sudoku.Solving
 			var bottleneckData = GetBottleneckData();
 			string separator = $"{new string('-', 10)}{Environment.NewLine}";
 			void appendSeparator() => sb.Append(showSeparator ? separator : string.Empty);
-			if (!(steps is null) && steps.Count != 0)
+			if (!(steps is null) && steps.Count != 0 && showTechniqueSteps)
 			{
 				sb.AppendLine("Solving steps:");
 				if (!(bottleneckData is null))

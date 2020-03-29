@@ -75,6 +75,11 @@
 					  Content="Show difficulty rating details" Name="_checkBoxShowDifficultyDetail"
 					  Tag="d"
 					  Click="CheckBoxShowDifficultyDetail_Click"/>
+			<CheckBox Grid.Row="4" Grid.Column="1"
+					  HorizontalAlignment="Left" VerticalAlignment="Center"
+					  Content="Show technique steps" Name="_checkBoxShowTechniqueSteps"
+					  Tag="l"
+					  Click="CheckBoxShowTechniqueSteps_Click"/>
 		</Grid>
 		<Label Grid.Row="2" Grid.Column="0" Content="Analysis result:"/>
 		<Button Grid.Row="2" Grid.Column="1" Name="_buttonExport"

@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Sudoku.Solving;
@@ -32,7 +30,8 @@ namespace Sudoku.Forms
 			['.'] = true, // Don't show steps after bottleneck.
 			['a'] = false, // Show attributes of this puzzle (if exists).
 			['b'] = false, // Show magic cells.
-			['d'] = false // Show difficulty details.
+			['d'] = false, // Show difficulty details.
+			['l'] = true // Show technique steps.
 		};
 
 
@@ -97,5 +96,8 @@ namespace Sudoku.Forms
 
 		private void CheckBoxShowDifficultyDetail_Click(object sender, RoutedEventArgs e) =>
 			_dic['d'] ^= true;
+
+		private void CheckBoxShowTechniqueSteps_Click(object sender, RoutedEventArgs e) =>
+			_dic['l'] ^= true;
 	}
 }

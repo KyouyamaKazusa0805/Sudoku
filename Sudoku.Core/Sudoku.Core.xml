@@ -2945,6 +2945,8 @@
             and <see cref="M:Sudoku.Data.Stepping.UndoableGrid.Redo"/>.
             </summary>
             <seealso cref="T:Sudoku.Data.Grid"/>
+            <seealso cref="M:Sudoku.Data.Stepping.UndoableGrid.Undo"/>
+            <seealso cref="M:Sudoku.Data.Stepping.UndoableGrid.Redo"/>
         </member>
         <member name="F:Sudoku.Data.Stepping.UndoableGrid._undoStack">
             <summary>
@@ -2971,6 +2973,9 @@
             Initializes an instance with the specified read only grid.
             </summary>
             <param name="grid">The grid.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the type is invalid (invalid grid type).
+            </exception>
         </member>
         <member name="P:Sudoku.Data.Stepping.UndoableGrid.HasUndoSteps">
             <summary>

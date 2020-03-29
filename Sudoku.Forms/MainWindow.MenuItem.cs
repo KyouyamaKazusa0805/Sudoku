@@ -296,6 +296,8 @@ namespace Sudoku.Forms
 
 				if (_analyisResult.HasSolved)
 				{
+					_textBoxInfo.Text = _analyisResult.ToString(string.Empty);
+
 					int i = 0;
 					var pathList = new List<w::Controls.ListBoxItem>();
 					foreach (var step in _analyisResult.SolvingSteps!)
