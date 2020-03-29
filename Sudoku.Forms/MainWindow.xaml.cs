@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
@@ -413,6 +412,9 @@ namespace Sudoku.Forms
 			_menuItemAnalyzeUseCalculationPriority.IsChecked = Settings.UseCalculationPriority;
 			_menuItemAnalyzeCheckConclusionValidityAfterSearched.IsChecked = Settings.CheckConclusionValidityAfterSearched;
 
+			_comboBoxDifficulty.ItemsSource = EnumEx.GetValues<DifficultyLevel>();
+			_comboBoxSymmetry.ItemsSource = EnumEx.GetValues<SymmetricalType>();
+
 			UpdateImageGrid();
 		}
 
@@ -466,6 +468,7 @@ namespace Sudoku.Forms
 			_menuItemAnalyzeSolve.IsEnabled = false;
 			_menuItemAnalyzeExport.IsEnabled = false;
 			_buttonFindAllSteps.IsEnabled = false;
+			_imageGeneratingIcon.IsEnabled = false;
 		}
 
 		/// <summary>
@@ -485,6 +488,7 @@ namespace Sudoku.Forms
 			_menuItemAnalyzeSolve.IsEnabled = true;
 			_menuItemAnalyzeExport.IsEnabled = true;
 			_buttonFindAllSteps.IsEnabled = true;
+			_imageGeneratingIcon.IsEnabled = true;
 		}
 
 		/// <summary>
@@ -511,6 +515,7 @@ namespace Sudoku.Forms
 			_menuItemAnalyzeUseCalculationPriority.IsEnabled = false;
 			_menuItemAnalyzeExport.IsEnabled = false;
 			_buttonFindAllSteps.IsEnabled = false;
+			_imageGeneratingIcon.IsEnabled = false;
 		}
 
 		/// <summary>
@@ -538,6 +543,7 @@ namespace Sudoku.Forms
 			_menuItemAnalyzeUseCalculationPriority.IsEnabled = true;
 			_menuItemAnalyzeExport.IsEnabled = true;
 			_buttonFindAllSteps.IsEnabled = true;
+			_imageGeneratingIcon.IsEnabled = true;
 		}
 	}
 }

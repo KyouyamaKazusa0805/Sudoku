@@ -150,8 +150,16 @@ namespace Sudoku.Forms
 				UpdateImageGrid();
 			}
 
-			_menuItemUndo.IsEnabled = Puzzle.HasUndoSteps;
-			_menuItemRedo.IsEnabled = Puzzle.HasRedoSteps;
+			_imageUndoIcon.Source =
+				new BitmapImage(
+					new Uri(
+						$"Resources/ImageIcon-Undo{((_menuItemUndo.IsEnabled = Puzzle.HasUndoSteps) ? string.Empty : "Disable")}.png",
+						UriKind.Relative));
+			_imageRedoIcon.Source =
+				new BitmapImage(
+					new Uri(
+						$"Resources/ImageIcon-Redo{((_menuItemRedo.IsEnabled = Puzzle.HasRedoSteps) ? string.Empty : "Disable")}.png",
+						UriKind.Relative));
 		}
 
 		private void MenuItemEditRedo_Click(object sender, RoutedEventArgs e)
@@ -162,8 +170,16 @@ namespace Sudoku.Forms
 				UpdateImageGrid();
 			}
 
-			_menuItemUndo.IsEnabled = Puzzle.HasUndoSteps;
-			_menuItemRedo.IsEnabled = Puzzle.HasRedoSteps;
+			_imageUndoIcon.Source =
+				new BitmapImage(
+					new Uri(
+						$"Resources/ImageIcon-Undo{((_menuItemUndo.IsEnabled = Puzzle.HasUndoSteps) ? string.Empty : "Disable")}.png",
+						UriKind.Relative));
+			_imageRedoIcon.Source =
+				new BitmapImage(
+					new Uri(
+						$"Resources/ImageIcon-Redo{((_menuItemRedo.IsEnabled = Puzzle.HasRedoSteps) ? string.Empty : "Disable")}.png",
+						UriKind.Relative));
 		}
 
 		private void MenuItemEditCopy_Click(object sender, RoutedEventArgs e) => InternalCopy(null);
@@ -243,6 +259,12 @@ namespace Sudoku.Forms
 			Puzzle = new UndoableGrid(SudokuGrid.Empty);
 
 			UpdateImageGrid();
+		}
+
+		private void MenuItemGenerateWithSymmetry_Click(object sender, RoutedEventArgs e)
+		{
+			// TODO: Generate with symmetry.
+			MenuItemGenerateHardPattern_Click(sender, e);
 		}
 
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]

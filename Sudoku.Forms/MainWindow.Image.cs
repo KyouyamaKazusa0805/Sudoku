@@ -49,5 +49,14 @@ namespace Sudoku.Forms
 
 			UpdateImageGrid();
 		}
+
+		private void ImageUndoIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
+			MenuItemEditUndo_Click(sender, e);
+
+		private void ImageRedoIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
+			MenuItemEditRedo_Click(sender, e);
+
+		private void ImageGeneratingIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
+			MenuItemGenerateWithSymmetry_Click(sender, e);
 	}
 }

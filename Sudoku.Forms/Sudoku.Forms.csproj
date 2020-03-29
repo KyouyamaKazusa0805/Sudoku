@@ -14,8 +14,32 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\icon-128.ico" />
+	  <None Remove="Resources\icon-256.ico" />
+	  <None Remove="Resources\icon-32.ico" />
+	  <None Remove="Resources\icon-64.ico" />
+	  <None Remove="Resources\ImageIcon-Generate.png" />
+	  <None Remove="Resources\ImageIcon-Redo.png" />
+	  <None Remove="Resources\ImageIcon-RedoDisable.png" />
+	  <None Remove="Resources\ImageIcon-Undo.png" />
+	  <None Remove="Resources\ImageIcon-UndoDisable.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
 	  <ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Resources\icon-128.ico" />
+	  <Resource Include="Resources\icon-256.ico" />
+	  <Resource Include="Resources\icon-32.ico" />
+	  <Resource Include="Resources\icon-64.ico" />
+	  <Resource Include="Resources\ImageIcon-Generate.png" />
+	  <Resource Include="Resources\ImageIcon-Redo.png" />
+	  <Resource Include="Resources\ImageIcon-RedoDisable.png" />
+	  <Resource Include="Resources\ImageIcon-Undo.png" />
+	  <Resource Include="Resources\ImageIcon-UndoDisable.png" />
 	</ItemGroup>
 
 	<ItemGroup>

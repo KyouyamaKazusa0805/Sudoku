@@ -6,7 +6,8 @@
 		mc:Ignorable="d" Height="800" Width="1200" ResizeMode="CanMinimize">
 	<Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="25"/>
+			<RowDefinition Height="20"/>
+			<RowDefinition Height="50"/>
 			<RowDefinition Height="600"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
@@ -14,8 +15,9 @@
 			<ColumnDefinition/>
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
-		<Menu VerticalAlignment="Top" IsMainMenu="True" Name="_mainMenu"
-			  Grid.Row="0" Grid.ColumnSpan="2">
+		<!-- Row 0 -->
+		<Menu VerticalAlignment="Top" IsMainMenu="True" Grid.Row="0" Grid.ColumnSpan="2">
+			<!-- File... -->
 			<MenuItem Header="File" IsTabStop="False">
 				<MenuItem Header="Open puzzle..." InputGestureText="Ctrl + O" Name="_menuItemFileOpen"
 						  Click="MenuItemFileOpen_Click"/>
@@ -31,6 +33,8 @@
 						  BorderThickness="2,2,2,2"
 						  Click="MenuItemFileQuit_Click"/>
 			</MenuItem>
+			
+			<!-- Options... -->
 			<MenuItem Header="Options" IsTabStop="False">
 				<MenuItem Header="Show candidates" Name="_menuItemOptionsShowCandidates"
 						  IsChecked="True"
@@ -39,6 +43,8 @@
 				<MenuItem Header="Settings..."
 						  Click="MenuItemOptionsSettings_Click"/>
 			</MenuItem>
+			
+			<!-- Edit... -->
 			<MenuItem Header="Edit" IsTabStop="False">
 				<MenuItem Header="Undo" InputGestureText="Ctrl + Z" Name="_menuItemUndo" IsEnabled="False"
 						  Click="MenuItemEditUndo_Click"/>
@@ -68,10 +74,16 @@
 						  InputGestureText="Ctrl + Shift + N"  BorderThickness="2,2,2,2"
 						  Click="MenuItemEditClear_Click"/>
 			</MenuItem>
+			
+			<!-- Generate... -->
 			<MenuItem Header="Generate" IsTabStop="False">
-				<MenuItem Header="Hard pattern mode" Name="_menuItemGenerateHardPattern"
+				<MenuItem Header="Symmetry pattern" Name="_menuItemGenerateWithSymmetry"
+						  Click="MenuItemGenerateWithSymmetry_Click"/>
+				<MenuItem Header="Hard pattern" Name="_menuItemGenerateHardPattern"
 						  Click="MenuItemGenerateHardPattern_Click"/>
 			</MenuItem>
+			
+			<!-- Analyze... -->
 			<MenuItem Header="Analyze" IsTabStop="False">
 				<MenuItem Header="Solve puzzle" Name="_menuItemAnalyzeSolve" InputGestureText="F9"
 						  Click="MenuItemAnalyzeSolve_Click"/>
@@ -102,21 +114,44 @@
 				<MenuItem Header="Backdoor search..." Name="_menuItemAnalyzeBackdoor"
 						  Click="MenuItemAnalyzeBackdoor_Click"/>
 			</MenuItem>
+			
+			<!-- About... -->
 			<MenuItem Header="About" IsTabStop="False">
 				<MenuItem Header="Me" Click="MenuItemAboutMe_Click"/>
 			</MenuItem>
 		</Menu>
+		
+		<!-- Row 1 -->
+		<ToolBar Grid.Row="1" Grid.ColumnSpan="2" Name="_toolBarMain">
+			<Image Source="Resources\ImageIcon-UndoDisable.png" Name="_imageUndoIcon"
+				   MouseLeftButtonDown="ImageUndoIcon_MouseLeftButtonDown"/>
+			<Image Source="Resources\ImageIcon-RedoDisable.png" Name="_imageRedoIcon"
+				   MouseLeftButtonDown="ImageRedoIcon_MouseLeftButtonDown"/>
+			<Separator/>
+			<Image Source="Resources\ImageIcon-Generate.png" Name="_imageGeneratingIcon"
+				   MouseLeftButtonDown="ImageGeneratingIcon_MouseLeftButtonDown"/>
+			<Label Content="Difficulty:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+			<ComboBox Name="_comboBoxDifficulty" SelectedIndex="0"/>
+			<Label Content="Symmetry:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+			<ComboBox Name="_comboBoxSymmetry" SelectedIndex="0"/>
+			<Separator/>
+		</ToolBar>
+		
+		<!-- Row 2 -->
 		<Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-			   Name="_imageGrid" Grid.Row="1" Grid.Column="0" Width="576" Height="576"
+			   Name="_imageGrid" Grid.Row="2" Grid.Column="0" Width="576" Height="576"
 			   MouseLeftButtonDown="ImageGrid_MouseLeftButtonDown">
 		</Image>
-		<TabControl Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"
+		<TabControl Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch"
 					VerticalAlignment="Stretch" IsTabStop="False">
+			<!-- Summary -->
 			<TabItem Header="Summary">
 				<Grid Background="#FFE5E5E5">
 					<ListView Name="_listViewSummary"/>
 				</Grid>
 			</TabItem>
+			
+			<!-- Solution Path -->
 			<TabItem Header="Solution path">
 				<Grid Background="#FFE5E5E5">
 					<ListBox Name="_listBoxPaths"
@@ -134,6 +169,8 @@
 					</ListBox>
 				</Grid>
 			</TabItem>
+			
+			<!-- All possible steps -->
 			<TabItem Header="All possible steps">
 				<Grid Background="#FFE5E5E5">
 					<Grid.RowDefinitions>
@@ -148,11 +185,15 @@
 							Click="ButtonFindAllSteps_Click"/>
 				</Grid>
 			</TabItem>
+			
+			<!-- Drawing -->
 			<TabItem Header="Drawing">
 				<Grid Background="#FFE5E5E5"/>
 			</TabItem>
 		</TabControl>
-		<TextBox Grid.Row="2" Grid.ColumnSpan="2" IsReadOnly="True" Cursor="Arrow"
+		
+		<!-- Row 3 -->
+		<TextBox Grid.Row="3" Grid.ColumnSpan="2" IsReadOnly="True" Cursor="Arrow"
 				 TextWrapping="Wrap" Name="_textBoxInfo" IsTabStop="False"/>
 	</Grid>
 </Window>
