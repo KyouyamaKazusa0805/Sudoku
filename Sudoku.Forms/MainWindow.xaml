@@ -129,6 +129,7 @@
 				   MouseLeftButtonDown="ImageRedoIcon_MouseLeftButtonDown"/>
 			<Separator/>
 			<Image Source="Resources\ImageIcon-Generate.png" Name="_imageGeneratingIcon"
+				   Cursor="Hand"
 				   MouseLeftButtonDown="ImageGeneratingIcon_MouseLeftButtonDown"/>
 			<Label Content="Difficulty:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 			<ComboBox Name="_comboBoxDifficulty" SelectedIndex="0"/>

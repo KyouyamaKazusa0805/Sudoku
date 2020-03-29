@@ -150,16 +150,7 @@ namespace Sudoku.Forms
 				UpdateImageGrid();
 			}
 
-			_imageUndoIcon.Source =
-				new BitmapImage(
-					new Uri(
-						$"Resources/ImageIcon-Undo{((_menuItemUndo.IsEnabled = Puzzle.HasUndoSteps) ? string.Empty : "Disable")}.png",
-						UriKind.Relative));
-			_imageRedoIcon.Source =
-				new BitmapImage(
-					new Uri(
-						$"Resources/ImageIcon-Redo{((_menuItemRedo.IsEnabled = Puzzle.HasRedoSteps) ? string.Empty : "Disable")}.png",
-						UriKind.Relative));
+			UpdateUndoRedoControls();
 		}
 
 		private void MenuItemEditRedo_Click(object sender, RoutedEventArgs e)
@@ -170,16 +161,7 @@ namespace Sudoku.Forms
 				UpdateImageGrid();
 			}
 
-			_imageUndoIcon.Source =
-				new BitmapImage(
-					new Uri(
-						$"Resources/ImageIcon-Undo{((_menuItemUndo.IsEnabled = Puzzle.HasUndoSteps) ? string.Empty : "Disable")}.png",
-						UriKind.Relative));
-			_imageRedoIcon.Source =
-				new BitmapImage(
-					new Uri(
-						$"Resources/ImageIcon-Redo{((_menuItemRedo.IsEnabled = Puzzle.HasRedoSteps) ? string.Empty : "Disable")}.png",
-						UriKind.Relative));
+			UpdateUndoRedoControls();
 		}
 
 		private void MenuItemEditCopy_Click(object sender, RoutedEventArgs e) => InternalCopy(null);

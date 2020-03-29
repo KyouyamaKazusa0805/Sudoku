@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
@@ -218,6 +219,7 @@ namespace Sudoku.Forms
 				Puzzle[_pointConverter.GetCellOffset(pt.ToDPointF())] =
 					e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1;
 
+				UpdateUndoRedoControls();
 				UpdateImageGrid();
 			}
 			else if (e.Key.IsArrow() && _focusedCells.Count == 1)
@@ -449,6 +451,23 @@ namespace Sudoku.Forms
 		{
 			var (x, y) = point;
 			return x < 0 || x > control.Width || y < 0 || y > control.Height;
+		}
+
+		/// <summary>
+		/// Update undo and redo controls.
+		/// </summary>
+		private void UpdateUndoRedoControls()
+		{
+			_imageUndoIcon.Source =
+				new BitmapImage(
+					new Uri(
+						$"Resources/ImageIcon-Undo{((_menuItemUndo.IsEnabled = Puzzle.HasUndoSteps) ? string.Empty : "Disable")}.png",
+						UriKind.Relative));
+			_imageRedoIcon.Source =
+				new BitmapImage(
+					new Uri(
+						$"Resources/ImageIcon-Redo{((_menuItemRedo.IsEnabled = Puzzle.HasRedoSteps) ? string.Empty : "Disable")}.png",
+						UriKind.Relative));
 		}
 
 		/// <summary>
