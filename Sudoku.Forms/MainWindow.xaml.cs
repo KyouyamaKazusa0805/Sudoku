@@ -52,7 +52,7 @@ namespace Sudoku.Forms
 		/// <summary>
 		/// The grid.
 		/// </summary>
-		private UndoableGrid _puzzle = new UndoableGrid(SudokuGrid.Empty.Clone());
+		private UndoableGrid _puzzle = new UndoableGrid(SudokuGrid.Empty);
 
 		/// <summary>
 		/// The point converter.
