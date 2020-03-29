@@ -24,9 +24,11 @@
 				<Separator/>
 				<MenuItem Header="Backup configurations" Name="_menuItemBackupConfig"
 						  Click="MenuItemBackupConfig_Click"/>
-				<MenuItem Header="Get Snapshot" Click="MenuItemFileGetSnapshot_Click"/>
+				<MenuItem Header="Get Snapshot" InputGestureText="Ctrl + P"
+						  Click="MenuItemFileGetSnapshot_Click"/>
 				<Separator/>
 				<MenuItem Header="Quit app" InputGestureText="Alt + F4" BorderBrush="Red"
+						  BorderThickness="2,2,2,2"
 						  Click="MenuItemFileQuit_Click"/>
 			</MenuItem>
 			<MenuItem Header="Options">
@@ -60,9 +62,10 @@
 						  Click="MenuItemEditUnfix_Click"/>
 				<Separator/>
 				<MenuItem Header="Reset grid" Name="_menuItemEditReset" BorderBrush="Red"
+						  BorderThickness="2,2,2,2"
 						  Click="MenuItemEditReset_Click"/>
 				<MenuItem Header="Clear grid" Name="_menuItemEditClear" BorderBrush="Red"
-						  InputGestureText="Ctrl + Shift + N"
+						  InputGestureText="Ctrl + Shift + N"  BorderThickness="2,2,2,2"
 						  Click="MenuItemEditClear_Click"/>
 			</MenuItem>
 			<MenuItem Header="Generate">
@@ -151,7 +154,6 @@
 			</TabItem>
 		</TabControl>
 		<TextBox Grid.Row="2" Grid.ColumnSpan="2" IsReadOnly="True" Cursor="Arrow"
-				 TextWrapping="Wrap"
-				 Name="_textBoxInfo"/>
+				 TextWrapping="Wrap" Name="_textBoxInfo"/>
 	</Grid>
 </Window>
