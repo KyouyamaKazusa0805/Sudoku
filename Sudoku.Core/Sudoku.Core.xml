@@ -2966,6 +2966,12 @@
             </summary>
             <param name="grid">The grid.</param>
         </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.#ctor(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Initializes an instance with the specified read only grid.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
         <member name="P:Sudoku.Data.Stepping.UndoableGrid.HasUndoSteps">
             <summary>
             Indicates whether the grid has any undo steps available.

@@ -13,7 +13,7 @@ namespace Sudoku.Forms
 		{
 			if (_listBoxPaths.SelectedIndex == -1)
 			{
-				_puzzle = new UndoableGrid((SudokuGrid)_initialPuzzle);
+				_puzzle = new UndoableGrid(_initialPuzzle);
 				UpdateImageGrid();
 
 				e.Handled = true;
@@ -36,7 +36,7 @@ namespace Sudoku.Forms
 					_pointConverter, Settings.ValueScale, Settings.CandidateScale,
 					Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
 					Settings.GivenFontName, Settings.ModifiableFontName, Settings.CandidateFontName,
-					_puzzle = new UndoableGrid((SudokuGrid)_analyisResult.StepGrids![n]),
+					_puzzle = new UndoableGrid(_analyisResult.StepGrids![n]),
 					Settings.ShowCandidates));
 			_layerCollection.Add(
 				new ViewLayer(

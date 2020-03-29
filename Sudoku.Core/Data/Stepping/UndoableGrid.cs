@@ -10,6 +10,8 @@ namespace Sudoku.Data.Stepping
 	/// and <see cref="Redo"/>.
 	/// </summary>
 	/// <seealso cref="Grid"/>
+	/// <seealso cref="Undo"/>
+	/// <seealso cref="Redo"/>
 	public sealed class UndoableGrid : Grid, IEquatable<UndoableGrid>, IUndoable
 	{
 		/// <summary>
@@ -34,6 +36,20 @@ namespace Sudoku.Data.Stepping
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		public UndoableGrid(Grid grid) : this((short[])grid._masks.Clone())
+		{
+		}
+
+		/// <summary>
+		/// Initializes an instance with the specified read only grid.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <exception cref="ArgumentException">
+		/// Throws when the type is invalid (invalid grid type).
+		/// </exception>
+		public UndoableGrid(IReadOnlyGrid grid)
+			: this((short[])(
+				(grid as Grid)?._masks.Clone()
+				?? throw new ArgumentException("The type is invalid.", nameof(grid))))
 		{
 		}
 

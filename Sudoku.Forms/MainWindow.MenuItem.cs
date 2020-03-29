@@ -230,7 +230,7 @@ namespace Sudoku.Forms
 					_pointConverter, Settings.ValueScale, Settings.CandidateScale,
 					Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
 					Settings.GivenFontName, Settings.ModifiableFontName, Settings.CandidateFontName,
-					_puzzle = new UndoableGrid((SudokuGrid)_initialPuzzle), Settings.ShowCandidates));
+					_puzzle = new UndoableGrid(_initialPuzzle), Settings.ShowCandidates));
 			_layerCollection.Remove(typeof(ViewLayer).Name);
 
 			UpdateImageGrid();
@@ -240,7 +240,7 @@ namespace Sudoku.Forms
 
 		private void MenuItemEditClear_Click(object sender, RoutedEventArgs e)
 		{
-			Puzzle = new UndoableGrid((SudokuGrid)SudokuGrid.Empty);
+			Puzzle = new UndoableGrid(SudokuGrid.Empty);
 
 			UpdateImageGrid();
 		}
@@ -258,7 +258,7 @@ namespace Sudoku.Forms
 
 				EnableGeneratingControls();
 
-				Puzzle = new UndoableGrid((SudokuGrid)puzzle);
+				Puzzle = new UndoableGrid(puzzle);
 				_listBoxPaths.ClearValue(ItemsSourceProperty);
 				_listViewSummary.ClearValue(ItemsSourceProperty);
 
