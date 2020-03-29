@@ -243,10 +243,49 @@ namespace Sudoku.Forms
 			UpdateImageGrid();
 		}
 
-		private void MenuItemGenerateWithSymmetry_Click(object sender, RoutedEventArgs e)
+		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+		private async void MenuItemGenerateWithSymmetry_Click(object sender, RoutedEventArgs e)
 		{
-			// TODO: Generate with symmetry.
-			MenuItemGenerateHardPattern_Click(sender, e);
+			await internalOperation();
+
+			async Task internalOperation()
+			{
+				//if (_comboBoxDifficulty.SelectedIndex == 0)
+				//{
+				//	MessageBox.Show(
+				//		"We may not allow you to generate the puzzle whose difficulty is unknown.", "Warning");
+				//
+				//	e.Handled = true;
+				//	return;
+				//}
+				//
+				//if (_comboBoxDifficulty.SelectedIndex >= 5
+				//	&& MessageBox.Show(
+				//		"You selected a difficulty that generate a puzzle will be too slow " +
+				//		"and you may not cancel the operation when generating. " +
+				//		"Would you like to generate anyway?", "Info", MessageBoxButton.YesNo
+				//	) != MessageBoxResult.Yes)
+				//{
+				//	e.Handled = true;
+				//	return;
+				//}
+
+				DisableGeneratingControls();
+
+				// These two value should be assigned first, rather than 
+				// inlining in the asynchronized environment.
+				var symmetry = (SymmetricalType)_comboBoxSymmetry.SelectedItem;
+				//var diff = (DifficultyLevel)_comboBoxDifficulty.SelectedItem;
+				var puzzle = await Task.Run(() => new BasicPuzzleGenerator().Generate(36, symmetry));
+
+				EnableGeneratingControls();
+
+				Puzzle = new UndoableGrid(puzzle);
+				_listBoxPaths.ClearValue(ItemsSourceProperty);
+				_listViewSummary.ClearValue(ItemsSourceProperty);
+
+				UpdateImageGrid();
+			}
 		}
 
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]

@@ -60,7 +60,10 @@ namespace Sudoku.Solving.Generating
 					} while (totalMap[cell]);
 
 					int r = cell / 9, c = cell % 9;
-					int[] series = selectedType switch
+
+					// Get new value of 'last'.
+					var tempMap = GridMap.Empty;
+					foreach (int tCell in selectedType switch
 					{
 						Central => new[] { r * 9 + c, (8 - r) * 9 + 8 - c },
 						Diagonal => new[] { r * 9 + c, c * 9 + r },
@@ -82,11 +85,7 @@ namespace Sudoku.Solving.Generating
 						},
 						None => new[] { r * 9 + c },
 						_ => throw Throwing.ImpossibleCaseWithMessage("You should not add an option that does not contain in the table of symmetrical types.")
-					};
-
-					// Get new value of 'last'.
-					var tempMap = GridMap.Empty;
-					foreach (int tCell in series)
+					})
 					{
 						solution[tCell] = '0';
 						totalMap.Add(tCell);

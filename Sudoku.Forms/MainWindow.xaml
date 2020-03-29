@@ -131,8 +131,10 @@
 			<Image Source="Resources\ImageIcon-Generate.png" Name="_imageGeneratingIcon"
 				   Cursor="Hand"
 				   MouseLeftButtonDown="ImageGeneratingIcon_MouseLeftButtonDown"/>
+			<!--
 			<Label Content="Difficulty:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 			<ComboBox Name="_comboBoxDifficulty" SelectedIndex="0"/>
+			-->
 			<Label Content="Symmetry:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 			<ComboBox Name="_comboBoxSymmetry" SelectedIndex="0"/>
 			<Separator/>

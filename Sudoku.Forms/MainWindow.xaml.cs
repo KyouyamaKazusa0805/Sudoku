@@ -277,6 +277,7 @@ namespace Sudoku.Forms
 			GC.Collect();
 		}
 
+		/// <inheritdoc/>
 		protected override void OnKeyUp(KeyEventArgs e)
 		{
 			base.OnKeyUp(e);
@@ -414,7 +415,7 @@ namespace Sudoku.Forms
 			_menuItemAnalyzeUseCalculationPriority.IsChecked = Settings.UseCalculationPriority;
 			_menuItemAnalyzeCheckConclusionValidityAfterSearched.IsChecked = Settings.CheckConclusionValidityAfterSearched;
 
-			_comboBoxDifficulty.ItemsSource = EnumEx.GetValues<DifficultyLevel>();
+			//_comboBoxDifficulty.ItemsSource = EnumEx.GetValues<DifficultyLevel>();
 			_comboBoxSymmetry.ItemsSource = EnumEx.GetValues<SymmetricalType>();
 
 			UpdateImageGrid();
@@ -489,6 +490,8 @@ namespace Sudoku.Forms
 			_menuItemAnalyzeExport.IsEnabled = false;
 			_buttonFindAllSteps.IsEnabled = false;
 			_imageGeneratingIcon.IsEnabled = false;
+
+			UpdateUndoRedoControls();
 		}
 
 		/// <summary>
@@ -510,6 +513,8 @@ namespace Sudoku.Forms
 			_menuItemAnalyzeExport.IsEnabled = true;
 			_buttonFindAllSteps.IsEnabled = true;
 			_imageGeneratingIcon.IsEnabled = true;
+
+			UpdateUndoRedoControls();
 		}
 
 		/// <summary>
@@ -538,6 +543,8 @@ namespace Sudoku.Forms
 			_menuItemAnalyzeExport.IsEnabled = false;
 			_buttonFindAllSteps.IsEnabled = false;
 			_imageGeneratingIcon.IsEnabled = false;
+
+			UpdateUndoRedoControls();
 		}
 
 		/// <summary>
@@ -567,6 +574,8 @@ namespace Sudoku.Forms
 			_menuItemAnalyzeExport.IsEnabled = true;
 			_buttonFindAllSteps.IsEnabled = true;
 			_imageGeneratingIcon.IsEnabled = true;
+
+			UpdateUndoRedoControls();
 		}
 	}
 }
