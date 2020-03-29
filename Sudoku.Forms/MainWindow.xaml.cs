@@ -387,6 +387,7 @@ namespace Sudoku.Forms
 			_menuItemEditClear.IsEnabled = false;
 			_menuItemAnalyzeSolve.IsEnabled = false;
 			_menuItemAnalyzeExport.IsEnabled = false;
+			_buttonFindAllSteps.IsEnabled = false;
 		}
 
 		/// <summary>
@@ -405,6 +406,7 @@ namespace Sudoku.Forms
 			_menuItemEditClear.IsEnabled = true;
 			_menuItemAnalyzeSolve.IsEnabled = true;
 			_menuItemAnalyzeExport.IsEnabled = true;
+			_buttonFindAllSteps.IsEnabled = true;
 		}
 
 		/// <summary>
@@ -430,6 +432,7 @@ namespace Sudoku.Forms
 			_menuItemAnalyzeOptimizeApplyingOrder.IsEnabled = false;
 			_menuItemAnalyzeUseCalculationPriority.IsEnabled = false;
 			_menuItemAnalyzeExport.IsEnabled = false;
+			_buttonFindAllSteps.IsEnabled = false;
 		}
 
 		/// <summary>
@@ -456,6 +459,7 @@ namespace Sudoku.Forms
 			_menuItemAnalyzeOptimizeApplyingOrder.IsEnabled = true;
 			_menuItemAnalyzeUseCalculationPriority.IsEnabled = true;
 			_menuItemAnalyzeExport.IsEnabled = true;
+			_buttonFindAllSteps.IsEnabled = true;
 		}
 	}
 }
