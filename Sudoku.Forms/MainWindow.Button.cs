@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Sudoku.Forms.Drawing.Extensions;
 using Sudoku.Solving;
+using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
 using w = System.Windows;
 
@@ -19,6 +20,14 @@ namespace Sudoku.Forms
 
 			async Task internalOperation()
 			{
+				if (!_puzzle.IsValid(out _))
+				{
+					MessageBox.Show("The puzzle is invalid, so you cannot use this function.", "Warning");
+
+					e.Handled = true;
+					return;
+				}
+
 				_listBoxTechniques.ClearValue(ItemsSourceProperty);
 				_textBoxInfo.Text = "The solver is running slowly, please wait...";
 				_buttonFindAllSteps.IsEnabled = false;

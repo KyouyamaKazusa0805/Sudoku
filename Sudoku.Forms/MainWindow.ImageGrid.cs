@@ -12,6 +12,7 @@ namespace Sudoku.Forms
 		{
 			if (!(sender is ImageControl imageControl))
 			{
+				e.Handled = true;
 				return;
 			}
 
