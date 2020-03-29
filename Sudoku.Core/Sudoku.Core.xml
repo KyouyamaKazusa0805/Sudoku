@@ -2571,6 +2571,9 @@
             to describe the type of the node.
             </remarks>
         </member>
+        <member name="M:Sudoku.Data.Node.CompareTo(Sudoku.Data.Node)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Data.Node.ToString">
             <inheritdoc/>
             <remarks>
@@ -2593,6 +2596,42 @@
 		<param name="right">The right instance.</param>
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
+        </member>
+        <member name="M:Sudoku.Data.Node.op_GreaterThan(Sudoku.Data.Node,Sudoku.Data.Node)">
+            <summary>
+            Check whether the <paramref name="left"/> node is greater than <paramref name="right"/>
+            node.
+            </summary>
+            <param name="left">The left node.</param>
+            <param name="right">The right node.</param>
+            <returns>The <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Node.op_GreaterThanOrEqual(Sudoku.Data.Node,Sudoku.Data.Node)">
+            <summary>
+            Check whether the <paramref name="left"/> node is greater than
+            or equals to <paramref name="right"/> node.
+            </summary>
+            <param name="left">The left node.</param>
+            <param name="right">The right node.</param>
+            <returns>The <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Node.op_LessThan(Sudoku.Data.Node,Sudoku.Data.Node)">
+            <summary>
+            Check whether the <paramref name="left"/> node is less than <paramref name="right"/>
+            node.
+            </summary>
+            <param name="left">The left node.</param>
+            <param name="right">The right node.</param>
+            <returns>The <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Node.op_LessThanOrEqual(Sudoku.Data.Node,Sudoku.Data.Node)">
+            <summary>
+            Check whether the <paramref name="left"/> node is less than or equals to
+            <paramref name="right"/> node.
+            </summary>
+            <param name="left">The left node.</param>
+            <param name="right">The right node.</param>
+            <returns>The <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="M:Sudoku.Data.Node.op_BitwiseAnd(Sudoku.Data.Node,Sudoku.Data.Node)">
             <summary>

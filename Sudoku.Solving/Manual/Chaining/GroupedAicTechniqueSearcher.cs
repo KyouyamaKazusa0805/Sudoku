@@ -774,6 +774,24 @@ namespace Sudoku.Solving.Manual.Chaining
 				// Continuous nice loop should be a loop.
 				links.Add(new Inference(stack[LastIndex], true, stack[0], false));
 
+				// Keep head minimum.
+				List<Inference> resultLinks;
+				if (links[0].Start > links[LastIndex].End)
+				{
+					// Reverse all links.
+					resultLinks = new List<Inference>();
+					bool @switch = false;
+					for (int i = links.Count - 1; i >= 0; i--, @switch = !@switch)
+					{
+						var (l, r) = links[i];
+						resultLinks.Add(new Inference(r, @switch, l, !@switch));
+					}
+				}
+				else
+				{
+					resultLinks = links;
+				}
+
 				SumUpResult(
 					accumulator,
 					new GroupedAicTechniqueInfo(
@@ -784,7 +802,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								cellOffsets: null,
 								candidateOffsets,
 								regionOffsets: null,
-								links)
+								links: resultLinks)
 						},
 						nodes,
 						isContinuousNiceLoop: true));
@@ -859,7 +877,25 @@ namespace Sudoku.Solving.Manual.Chaining
 					@switch = !@switch;
 				}
 
-				// Step 3: Record it into the result accumulator.
+				// Step 3: Keep head minimum.
+				List<Inference> resultLinks;
+				if (links[0].Start > links[LastIndex].End)
+				{
+					// Reverse all links.
+					resultLinks = new List<Inference>();
+					@switch = false;
+					for (int i = links.Count - 1; i >= 0; i--, @switch = !@switch)
+					{
+						var (l, r) = links[i];
+						resultLinks.Add(new Inference(r, @switch, l, !@switch));
+					}
+				}
+				else
+				{
+					resultLinks = links;
+				}
+
+				// Step 4: Record it into the result accumulator.
 				SumUpResult(
 					accumulator,
 					new GroupedAicTechniqueInfo(
@@ -870,7 +906,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								cellOffsets: null,
 								candidateOffsets,
 								regionOffsets: null,
-								links)
+								links: resultLinks)
 						},
 						nodes,
 						isContinuousNiceLoop: false));

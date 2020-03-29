@@ -9,7 +9,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Provides an elementary unit in a chain.
 	/// </summary>
-	public sealed class Node : IEquatable<Node>
+	public sealed class Node : IComparable<Node>, IEquatable<Node>
 	{
 		/// <summary>
 		/// Initializes an instance with a specified candidate and its type.
@@ -111,6 +111,9 @@ namespace Sudoku.Data
 		public override int GetHashCode() => CandidatesMap.GetHashCode();
 
 		/// <inheritdoc/>
+		public int CompareTo(Node other) => this[0].CompareTo(other[^1]);
+
+		/// <inheritdoc/>
 		/// <remarks>
 		/// If you get a derived class, we recommend you override this method
 		/// to describe the type of the node.
@@ -160,6 +163,42 @@ namespace Sudoku.Data
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(Node left, Node right) => !(left == right);
+
+		/// <summary>
+		/// Check whether the <paramref name="left"/> node is greater than <paramref name="right"/>
+		/// node.
+		/// </summary>
+		/// <param name="left">The left node.</param>
+		/// <param name="right">The right node.</param>
+		/// <returns>The <see cref="bool"/> value.</returns>
+		public static bool operator >(Node left, Node right) => left.CompareTo(right) > 0;
+
+		/// <summary>
+		/// Check whether the <paramref name="left"/> node is greater than
+		/// or equals to <paramref name="right"/> node.
+		/// </summary>
+		/// <param name="left">The left node.</param>
+		/// <param name="right">The right node.</param>
+		/// <returns>The <see cref="bool"/> value.</returns>
+		public static bool operator >=(Node left, Node right) => left.CompareTo(right) >= 0;
+
+		/// <summary>
+		/// Check whether the <paramref name="left"/> node is less than <paramref name="right"/>
+		/// node.
+		/// </summary>
+		/// <param name="left">The left node.</param>
+		/// <param name="right">The right node.</param>
+		/// <returns>The <see cref="bool"/> value.</returns>
+		public static bool operator <(Node left, Node right) => left.CompareTo(right) < 0;
+
+		/// <summary>
+		/// Check whether the <paramref name="left"/> node is less than or equals to
+		/// <paramref name="right"/> node.
+		/// </summary>
+		/// <param name="left">The left node.</param>
+		/// <param name="right">The right node.</param>
+		/// <returns>The <see cref="bool"/> value.</returns>
+		public static bool operator <=(Node left, Node right) => left.CompareTo(right) <= 0;
 
 		/// <summary>
 		/// Get all candidates that <paramref name="left"/> and <paramref name="right"/>
