@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Solving.Manual;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Solving.ConclusionType;
