@@ -1220,6 +1220,81 @@
             Encapsulates an <b>almost locked set</b> (ALS) technique searcher.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueInfo">
+            <summary>
+            Provides a usage of <b>ALS-XY-Wing</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Rcc,Sudoku.Solving.Manual.Alses.Rcc)">
+            <summary>
+            Initializes an instance with specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="rcc1">The RCC 1.</param>
+            <param name="rcc2">The RCC 2.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueInfo.Rcc1">
+            <summary>
+            Indicates the RCC 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueInfo.Rcc2">
+            <summary>
+            Indicates the RCC 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueSearcher">
+            <summary>
+            Encapsulates an <b>ALS-XY-Wing</b> technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueSearcher._allowOverlapping">
+            <summary>
+            Indicates whether the ALSes can be overlapped with each other.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueSearcher._alsShowRegions">
+            <summary>
+            Indicates whether the ALSes shows their region rather than cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueSearcher.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            Initialize an instance with the specified information.
+            </summary>
+            <param name="allowOverlapping">
+            Indicates whether the ALSes can be overlapped with each other.
+            </param>
+            <param name="alsShowRegions">
+            Indicates whether all ALSes shows their regions rather than cells.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueSearcher.Priority">
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo">
             <summary>
             Provides a usage of <b>ALS-XZ</b> technique.

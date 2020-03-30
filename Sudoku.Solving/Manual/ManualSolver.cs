@@ -138,6 +138,7 @@ namespace Sudoku.Solving.Manual
 					new BdpTechniqueSearcher(),
 					new BugTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
 					new AlsXzTechniqueSearcher(AllowOverlapAlses, AlsHighlightRegionInsteadOfCell),
+					new AlsXyWingTechniqueSearcher(AllowOverlapAlses, AlsHighlightRegionInsteadOfCell),
 					new GroupedAicTechniqueSearcher(
 						true, false, false, AicMaximumLength, ReductDifferentPathAic,
 						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
@@ -361,6 +362,7 @@ namespace Sudoku.Solving.Manual
 				new BdpTechniqueSearcher(),
 				new BugTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
 				new AlsXzTechniqueSearcher(AllowOverlapAlses, AlsHighlightRegionInsteadOfCell),
+				new AlsXyWingTechniqueSearcher(AllowOverlapAlses, AlsHighlightRegionInsteadOfCell),
 				new GroupedAicTechniqueSearcher(
 					true, false, false, AicMaximumLength, ReductDifferentPathAic,
 					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,

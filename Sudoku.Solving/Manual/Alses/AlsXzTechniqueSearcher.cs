@@ -64,6 +64,8 @@ namespace Sudoku.Solving.Manual.Alses
 				// in two ALSes.
 				foreach (int elimDigit in (digitMask1 | digitMask2).GetAllSets())
 				{
+					// Check the current digit to iterate ('elimDigit') is same as
+					// common digit. If so, the digit is always not the elimination.
 					if (elimDigit == commonDigit)
 					{
 						continue;
@@ -172,7 +174,7 @@ namespace Sudoku.Solving.Manual.Alses
 									},
 									regionOffsets: _alsShowRegions switch
 									{
-										true => new[] { (0, region1), (0, region2), (1, commonRegion) },
+										true => new[] { (0, region1), (1, region2) },
 										false => null
 									},
 									links: null)

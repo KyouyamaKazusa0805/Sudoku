@@ -125,7 +125,6 @@ namespace Sudoku.Solving.Manual.Alses
 									}
 								}
 
-								// ALS-XZ found.
 								// Now we should check elimination.
 								// But firstly, we should check all digits appearing
 								// in two ALSes.
