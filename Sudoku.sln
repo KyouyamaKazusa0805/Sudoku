@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global Files", "Global File
 		.editorconfig = .editorconfig
 		GlobalDocComments.xml = GlobalDocComments.xml
 		Priority-of-operators.md = Priority-of-operators.md
+		Todos.md = Todos.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Debugging", "Sudoku.Debugging\Sudoku.Debugging.csproj", "{0E1D4D29-4563-4709-ADD9-C80C30F9A010}"
@@ -16,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Solving", "Sudoku.So
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Core", "Sudoku.Core\Sudoku.Core.csproj", "{FCD247BE-77B3-4091-BDB5-1EEB768938B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Forms", "Sudoku.Forms\Sudoku.Forms.csproj", "{69F5249F-4D5F-4633-BD27-09B728B893C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Forms", "Sudoku.Forms\Sudoku.Forms.csproj", "{69F5249F-4D5F-4633-BD27-09B728B893C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
