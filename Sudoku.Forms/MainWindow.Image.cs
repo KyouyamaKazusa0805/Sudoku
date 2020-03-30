@@ -66,5 +66,8 @@ namespace Sudoku.Forms
 				_ => throw new NotImplementedException()
 			}))(sender, e);
 		}
+
+		private void ImageSolve_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
+			MenuItemAnalyzeSolve_Click(sender, e);
 	}
 }

@@ -491,6 +491,9 @@ namespace Sudoku.Forms
 			_menuItemAnalyzeExport.IsEnabled = false;
 			_buttonFindAllSteps.IsEnabled = false;
 			_imageGeneratingIcon.IsEnabled = false;
+			_imageSolve.IsEnabled = false;
+			_comboBoxSymmetry.IsEnabled = false;
+			_comboBoxMode.IsEnabled = false;
 
 			UpdateUndoRedoControls();
 		}
@@ -514,6 +517,9 @@ namespace Sudoku.Forms
 			_menuItemAnalyzeExport.IsEnabled = true;
 			_buttonFindAllSteps.IsEnabled = true;
 			_imageGeneratingIcon.IsEnabled = true;
+			_imageSolve.IsEnabled = true;
+			_comboBoxMode.IsEnabled = true;
+			_comboBoxSymmetry.IsEnabled = true;
 
 			UpdateUndoRedoControls();
 		}
@@ -544,6 +550,9 @@ namespace Sudoku.Forms
 			_menuItemAnalyzeExport.IsEnabled = false;
 			_buttonFindAllSteps.IsEnabled = false;
 			_imageGeneratingIcon.IsEnabled = false;
+			_imageSolve.IsEnabled = false;
+			_comboBoxSymmetry.IsEnabled = false;
+			_comboBoxMode.IsEnabled = false;
 
 			UpdateUndoRedoControls();
 		}
@@ -575,6 +584,9 @@ namespace Sudoku.Forms
 			_menuItemAnalyzeExport.IsEnabled = true;
 			_buttonFindAllSteps.IsEnabled = true;
 			_imageGeneratingIcon.IsEnabled = true;
+			_imageSolve.IsEnabled = true;
+			_comboBoxMode.IsEnabled = true;
+			_comboBoxSymmetry.IsEnabled = true;
 
 			UpdateUndoRedoControls();
 		}

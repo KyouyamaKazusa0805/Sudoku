@@ -23,6 +23,7 @@
 	  <None Remove="Resources\ImageIcon-RedoDisable.png" />
 	  <None Remove="Resources\ImageIcon-Undo.png" />
 	  <None Remove="Resources\ImageIcon-UndoDisable.png" />
+	  <None Remove="Resources\Solve.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -40,6 +41,7 @@
 	  <Resource Include="Resources\ImageIcon-RedoDisable.png" />
 	  <Resource Include="Resources\ImageIcon-Undo.png" />
 	  <Resource Include="Resources\ImageIcon-UndoDisable.png" />
+	  <Resource Include="Resources\Solve.png" />
 	</ItemGroup>
 
 	<ItemGroup>

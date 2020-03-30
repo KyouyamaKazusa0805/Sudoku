@@ -146,6 +146,9 @@
 				   Name="_labelSymmetry"/>
 			<ComboBox Name="_comboBoxSymmetry" SelectedIndex="0"/>
 			<Separator/>
+			<Image Source="Resources\Solve.png" Name="_imageSolve"
+				   Cursor="Hand"
+				   MouseLeftButtonDown="ImageSolve_MouseLeftButtonDown"/>
 		</ToolBar>
 		
 		<!-- Row 2 -->
