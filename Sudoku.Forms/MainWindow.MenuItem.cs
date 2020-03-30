@@ -386,10 +386,10 @@ namespace Sudoku.Forms
 					w::Controls.GridView view;
 					_listViewSummary.ItemsSource = collection;
 					_listViewSummary.View = view = new w::Controls.GridView();
-					view.Columns.Add(createGridViewColumn("Technique"));
-					view.Columns.Add(createGridViewColumn("Count"));
-					view.Columns.Add(createGridViewColumn("Total"));
-					view.Columns.Add(createGridViewColumn("Max"));
+					view.Columns.Add(createGridViewColumn("Technique", .6));
+					view.Columns.Add(createGridViewColumn("Count", .1));
+					view.Columns.Add(createGridViewColumn("Total", .2));
+					view.Columns.Add(createGridViewColumn("Max", .1));
 					view.AllowsColumnReorder = false;
 				}
 				else
@@ -410,12 +410,13 @@ namespace Sudoku.Forms
 					   group solvingStep by solvingStep.Name;
 			}
 
-			static w::Controls.GridViewColumn createGridViewColumn(string name)
+			w::Controls.GridViewColumn createGridViewColumn(string name, double widthScale)
 			{
 				return new w::Controls.GridViewColumn
 				{
 					Header = name,
-					DisplayMemberBinding = new Binding(name)
+					DisplayMemberBinding = new Binding(name),
+					Width = _tabControlInfo.ActualWidth * widthScale - 4,
 				};
 			}
 		}

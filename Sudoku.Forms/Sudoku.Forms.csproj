@@ -13,6 +13,10 @@
 		<ApplicationIcon>Resources\icon-32.ico</ApplicationIcon>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <Optimize>true</Optimize>
+	</PropertyGroup>
+
 	<ItemGroup>
 	  <None Remove="Resources\icon-128.ico" />
 	  <None Remove="Resources\icon-256.ico" />
