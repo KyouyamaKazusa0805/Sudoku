@@ -3025,6 +3025,11 @@
             Throws when the undo stack is empty.
             </exception>
         </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.ClearStack">
+            <summary>
+            To clear step stacks.
+            </summary>
+        </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.Equals(System.Object)">
             <inheritdoc/>
         </member>

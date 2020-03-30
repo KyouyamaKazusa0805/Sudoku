@@ -146,6 +146,7 @@ namespace Sudoku.Forms
 
 			// Define shortcuts.
 			AddShortCut(Key.C, ModifierKeys.Control, MenuItemEditCopy_Click);
+			AddShortCut(Key.H, ModifierKeys.Control, MenuItemGenerateHardPattern_Click);
 			AddShortCut(Key.O, ModifierKeys.Control, MenuItemFileOpen_Click);
 			AddShortCut(Key.P, ModifierKeys.Control, MenuItemFileGetSnapshot_Click);
 			AddShortCut(Key.S, ModifierKeys.Control, MenuItemFileSave_Click);

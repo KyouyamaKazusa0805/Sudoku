@@ -329,6 +329,7 @@ namespace Sudoku.Forms
 					if (!Settings.SolveFromCurrent)
 					{
 						_puzzle.Reset();
+						_puzzle.ClearStack();
 					}
 
 					return _manualSolver.Solve(_puzzle);

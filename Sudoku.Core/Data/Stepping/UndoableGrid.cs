@@ -207,6 +207,16 @@ namespace Sudoku.Data.Stepping
 			step.UndoStepTo(this);
 		}
 
+		/// <summary>
+		/// To clear step stacks.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public void ClearStack()
+		{
+			_undoStack.Clear();
+			_redoStack.Clear();
+		}
+
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override bool Equals(object? obj) =>

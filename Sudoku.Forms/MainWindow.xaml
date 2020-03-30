@@ -80,6 +80,7 @@
 				<MenuItem Header="Symmetry pattern" Name="_menuItemGenerateWithSymmetry"
 						  Click="MenuItemGenerateWithSymmetry_Click"/>
 				<MenuItem Header="Hard pattern" Name="_menuItemGenerateHardPattern"
+						  InputGestureText="Ctrl + H"
 						  Click="MenuItemGenerateHardPattern_Click"/>
 			</MenuItem>
 			
