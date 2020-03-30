@@ -147,6 +147,7 @@
 			   MouseLeftButtonDown="ImageGrid_MouseLeftButtonDown">
 		</Image>
 		<TabControl Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch"
+					Name="_tabControlInfo"
 					VerticalAlignment="Stretch" IsTabStop="False">
 			<!-- Summary -->
 			<TabItem Header="Summary">

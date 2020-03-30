@@ -578,5 +578,24 @@ namespace Sudoku.Forms
 
 			UpdateUndoRedoControls();
 		}
+
+		/// <summary>
+		/// Clear item sources when generated.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void ClearItemSourcesWhenGeneratedOrSolving()
+		{
+			_listBoxPaths.ClearValue(ItemsSourceProperty);
+			_listViewSummary.ClearValue(ItemsSourceProperty);
+			_listBoxTechniques.ClearValue(ItemsSourceProperty);
+
+			SwitchTabItemWhenGeneratedOrSolving();
+		}
+
+		/// <summary>
+		/// Switch <see cref="w.Controls.TabItem"/>s when generated or solving.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void SwitchTabItemWhenGeneratedOrSolving() => _tabControlInfo.SelectedIndex = 0;
 	}
 }

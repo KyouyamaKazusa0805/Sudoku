@@ -276,14 +276,11 @@ namespace Sudoku.Forms
 				// inlining in the asynchronized environment.
 				var symmetry = (SymmetricalType)_comboBoxSymmetry.SelectedItem;
 				//var diff = (DifficultyLevel)_comboBoxDifficulty.SelectedItem;
-				var puzzle = await Task.Run(() => new BasicPuzzleGenerator().Generate(36, symmetry));
+				Puzzle = new UndoableGrid(
+					await Task.Run(() => new BasicPuzzleGenerator().Generate(33, symmetry)));
 
 				EnableGeneratingControls();
-
-				Puzzle = new UndoableGrid(puzzle);
-				_listBoxPaths.ClearValue(ItemsSourceProperty);
-				_listViewSummary.ClearValue(ItemsSourceProperty);
-
+				ClearItemSourcesWhenGeneratedOrSolving();
 				UpdateImageGrid();
 			}
 		}
@@ -297,14 +294,10 @@ namespace Sudoku.Forms
 			{
 				DisableGeneratingControls();
 
-				var puzzle = await Task.Run(new HardPatternPuzzleGenerator().Generate);
+				Puzzle = new UndoableGrid(await Task.Run(new HardPatternPuzzleGenerator().Generate));
 
 				EnableGeneratingControls();
-
-				Puzzle = new UndoableGrid(puzzle);
-				_listBoxPaths.ClearValue(ItemsSourceProperty);
-				_listViewSummary.ClearValue(ItemsSourceProperty);
-
+				ClearItemSourcesWhenGeneratedOrSolving();
 				UpdateImageGrid();
 			}
 		}
@@ -318,8 +311,7 @@ namespace Sudoku.Forms
 			async Task internalOperation()
 			{
 				// Update status.
-				_listBoxPaths.ClearValue(ItemsSourceProperty);
-				_listViewSummary.ClearValue(ItemsSourceProperty);
+				ClearItemSourcesWhenGeneratedOrSolving();
 				_textBoxInfo.Text = "Solving, please wait. During solving you can do some other work...";
 				DisableSolvingControls();
 
@@ -358,6 +350,11 @@ namespace Sudoku.Forms
 					}
 					_listBoxPaths.ItemsSource = pathList;
 
+					// Gather the information.
+					// GridView should list the instance with each property, not fields,
+					// even if fields are public.
+					// Therefore, here may use anonymous type is okay, but using value tuples
+					// is bad.
 					var collection = new List<AnonymousType>();
 					decimal summary = 0, summaryMax = 0;
 					int summaryCount = 0;
