@@ -169,24 +169,6 @@
 
 		/// <summary>
 		/// <para>
-		/// Indicates whether the solver should check all bowman bingos.
-		/// </para>
-		/// <para>The value is <see langword="true"/> in default case.</para>
-		/// </summary>
-		public bool EnableBowmanBingo { get; set; } = true;
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether the solver should add brute force technique information
-		/// when the puzzle has a unique solution but cannot be found any manual
-		/// techniques.
-		/// </para>
-		/// <para>The value is <see langword="true"/> in default case.</para>
-		/// </summary>
-		public bool EnableBruteForce { get; set; } = true;
-
-		/// <summary>
-		/// <para>
 		/// Indicates whether the solver will record the step
 		/// whose name or kind is full house.
 		/// </para>
@@ -224,34 +206,6 @@
 		/// which is last digit.
 		/// </remarks>
 		public bool EnableLastDigit { get; set; } = true;
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether the solver will record all pattern overlay
-		/// method technique steps.
-		/// </para>
-		/// <para>
-		/// The value is <see langword="false"/> in default case. Note that
-		/// this option makes the solver search single-digit patterns
-		/// <c>much more slower</c> because it will use enumeration to iterate on
-		/// all possible patterns of a single digit (46656 patterns in total).
-		/// </para>
-		/// </summary>
-		public bool EnablePatternOverlayMethod { get; set; } = false;
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether the solver will record template techniques
-		/// if worth.
-		/// </para>
-		/// <para>
-		/// The value is <see langword="false"/> in default case. In addition,
-		/// if the value is <see langword="true"/>, the option
-		/// <see cref="OnlyRecordTemplateDelete"/> will be disabled.
-		/// </para>
-		/// </summary>
-		/// <seealso cref="OnlyRecordTemplateDelete"/>.
-		public bool EnableTemplate { get; set; } = false;
 
 		/// <summary>
 		/// <para>
