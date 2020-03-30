@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Forms.Drawing.Layers;
+using w = System.Windows;
 using ImageControl = System.Windows.Controls.Image;
 
 namespace Sudoku.Forms
@@ -56,7 +57,14 @@ namespace Sudoku.Forms
 		private void ImageRedoIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
 			MenuItemEditRedo_Click(sender, e);
 
-		private void ImageGeneratingIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
-			MenuItemGenerateWithSymmetry_Click(sender, e);
+		private void ImageGeneratingIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			((Action<object, w::RoutedEventArgs>)(_comboBoxMode.SelectedIndex switch
+			{
+				0 => (sender, e) => MenuItemGenerateWithSymmetry_Click(sender, e),
+				1 => (sender, e) => MenuItemGenerateHardPattern_Click(sender, e),
+				_ => throw new NotImplementedException()
+			}))(sender, e);
+		}
 	}
 }

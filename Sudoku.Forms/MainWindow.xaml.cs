@@ -41,6 +41,11 @@ namespace Sudoku.Forms
 
 
 		/// <summary>
+		/// Indicates the selected generating mode.
+		/// </summary>
+		private int _seletedGeneratingMode = 0;
+
+		/// <summary>
 		/// Indicates all focused cells.
 		/// </summary>
 		private GridMap _focusedCells = GridMap.Empty;

@@ -3367,30 +3367,6 @@
             All link masks.
             </summary>
         </member>
-        <member name="T:Sudoku.IO.GridIO">
-            <summary>
-            Provides with I/O operations for <see cref="T:Sudoku.Data.Grid"/>s and <see cref="T:Sudoku.Data.IReadOnlyGrid"/>s.
-            </summary>
-            <seealso cref="T:Sudoku.Data.Grid"/>
-            <seealso cref="T:Sudoku.Data.IReadOnlyGrid"/>
-        </member>
-        <member name="M:Sudoku.IO.GridIO.WriteToFile(Sudoku.Data.IReadOnlyGrid,System.String,System.String)">
-            <summary>
-            Write the grid to the file.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <param name="path">The path.</param>
-            <param name="format">The format.</param>
-        </member>
-        <member name="M:Sudoku.IO.GridIO.WriteToFileAsync(Sudoku.Data.IReadOnlyGrid,System.String,System.String)">
-            <summary>
-            Write the grid to the file.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <param name="path">The path.</param>
-            <param name="format">The format.</param>
-            <returns>The task of this operation.</returns>
-        </member>
         <member name="T:Sudoku.MultipleSolutionsException">
             <summary>
             Represents an error that the puzzle has multiple solutions while solving.
