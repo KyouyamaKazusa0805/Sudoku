@@ -48,8 +48,8 @@ namespace Sudoku.Forms
 				// To be honest, the true candidates can be searched very fast so
 				// that we do not need use 'async' keyword...
 				var list = new List<PrimaryElementTuple<int, string>>(
-					from candidate in
-						await Task.Run(() => new BugChecker(_puzzle).TrueCandidates)
+					from candidate in await Task.Run(() => new BugChecker(_puzzle).TrueCandidates)
+					orderby candidate
 					select new PrimaryElementTuple<int, string>(
 						candidate, CandidateUtils.ToString(candidate), 2));
 
