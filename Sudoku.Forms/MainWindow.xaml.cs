@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using Sudoku.Data;
@@ -20,7 +21,7 @@ using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
-using w = System.Windows;
+using WPoint = System.Windows.Point;
 
 namespace Sudoku.Forms
 {
@@ -449,7 +450,7 @@ namespace Sudoku.Forms
 		/// <param name="point">The point.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private bool IsPointOutOfRange(FrameworkElement control, w::Point point)
+		private bool IsPointOutOfRange(FrameworkElement control, WPoint point)
 		{
 			var (x, y) = point;
 			return x < 0 || x > control.Width || y < 0 || y > control.Height;
@@ -504,7 +505,7 @@ namespace Sudoku.Forms
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void EnableGeneratingControls()
 		{
-			_textBoxInfo.ClearValue(w::Controls.TextBox.TextProperty);
+			_textBoxInfo.ClearValue(TextBox.TextProperty);
 			_menuItemFileOpen.IsEnabled = true;
 			_menuItemGenerateHardPattern.IsEnabled = true;
 			_menuItemEditPaste.IsEnabled = true;
@@ -563,7 +564,7 @@ namespace Sudoku.Forms
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void EnableSolvingControls()
 		{
-			_textBoxInfo.ClearValue(w::Controls.TextBox.TextProperty);
+			_textBoxInfo.ClearValue(TextBox.TextProperty);
 			_menuItemFileOpen.IsEnabled = true;
 			_menuItemGenerateHardPattern.IsEnabled = true;
 			_menuItemEditPaste.IsEnabled = true;
@@ -597,9 +598,9 @@ namespace Sudoku.Forms
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void ClearItemSourcesWhenGeneratedOrSolving()
 		{
-			_listBoxPaths.ClearValue(ItemsSourceProperty);
-			_listViewSummary.ClearValue(ItemsSourceProperty);
-			_listBoxTechniques.ClearValue(ItemsSourceProperty);
+			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
+			_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
+			_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 
 			SwitchTabItemWhenGeneratedOrSolving();
 		}

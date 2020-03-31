@@ -1,15 +1,14 @@
 ﻿using System;
+using System.Windows.Controls;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing.Layers;
 using Sudoku.Solving;
-using SudokuGrid = Sudoku.Data.Grid;
-using w = System.Windows;
 
 namespace Sudoku.Forms
 {
 	partial class MainWindow
 	{
-		private void ListBoxPaths_SelectionChanged(object sender, w::Controls.SelectionChangedEventArgs e)
+		private void ListBoxPaths_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			if (_listBoxPaths.SelectedIndex == -1)
 			{
@@ -21,8 +20,7 @@ namespace Sudoku.Forms
 			}
 
 			if (!(
-				sender is w::Controls.ListBox b
-				&& b.SelectedItem is w::Controls.ListBoxItem listBoxItem
+				sender is ListBox b && b.SelectedItem is ListBoxItem listBoxItem
 				&& listBoxItem.Content is PrimaryElementTuple<int, TechniqueInfo> pair))
 			{
 				e.Handled = true;
@@ -47,11 +45,10 @@ namespace Sudoku.Forms
 			UpdateImageGrid();
 		}
 
-		private void ListBoxTechniques_SelectionChanged(object sender, w::Controls.SelectionChangedEventArgs e)
+		private void ListBoxTechniques_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			if (sender is w::Controls.ListBox listBox
-				&& listBox.SelectedIndex != -1
-				&& listBox.SelectedItem is w::Controls.ListBoxItem listBoxItem
+			if (sender is ListBox listBox && listBox.SelectedIndex != -1
+				&& listBox.SelectedItem is ListBoxItem listBoxItem
 				&& listBoxItem.Content is PrimaryElementTuple<string, TechniqueInfo, bool> triplet)
 			{
 				var (_, info, isEnabled) = triplet;

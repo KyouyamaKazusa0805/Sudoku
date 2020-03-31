@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Forms.Drawing.Layers;
-using w = System.Windows;
-using ImageControl = System.Windows.Controls.Image;
 
 namespace Sudoku.Forms
 {
@@ -11,13 +11,13 @@ namespace Sudoku.Forms
 	{
 		private void ImageGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			if (!(sender is ImageControl imageControl))
+			if (!(sender is Image image))
 			{
 				e.Handled = true;
 				return;
 			}
 
-			int getCell() => _pointConverter.GetCellOffset(e.GetPosition(imageControl).ToDPointF());
+			int getCell() => _pointConverter.GetCellOffset(e.GetPosition(image).ToDPointF());
 			if (Keyboard.Modifiers == ModifierKeys.Shift)
 			{
 				// Select a region of cells.
@@ -59,7 +59,7 @@ namespace Sudoku.Forms
 
 		private void ImageGeneratingIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			((Action<object, w::RoutedEventArgs>)(_comboBoxMode.SelectedIndex switch
+			((Action<object, RoutedEventArgs>)(_comboBoxMode.SelectedIndex switch
 			{
 				0 => (sender, e) => MenuItemGenerateWithSymmetry_Click(sender, e),
 				1 => (sender, e) => MenuItemGenerateHardPattern_Click(sender, e),

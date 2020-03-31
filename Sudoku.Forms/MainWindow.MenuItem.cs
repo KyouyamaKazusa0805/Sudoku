@@ -6,7 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using Sudoku.Data;
@@ -18,18 +20,11 @@ using Sudoku.Solving;
 using Sudoku.Solving.Generating;
 using AnonymousType = System.Object;
 using SudokuGrid = Sudoku.Data.Grid;
-using w = System.Windows;
 
 namespace Sudoku.Forms
 {
 	partial class MainWindow
 	{
-		/// <summary>
-		/// The item source property.
-		/// </summary>
-		private static DependencyProperty ItemsSourceProperty => w::Controls.ItemsControl.ItemsSourceProperty;
-
-
 		private void MenuItemFileOpen_Click(object sender, RoutedEventArgs e)
 		{
 			var dialog = new OpenFileDialog
@@ -199,9 +194,9 @@ namespace Sudoku.Forms
 
 			LoadPuzzle(puzzleStr);
 
-			_listBoxPaths.ClearValue(ItemsSourceProperty);
-			_listViewSummary.ClearValue(ItemsSourceProperty);
-			_listBoxTechniques.ClearValue(ItemsSourceProperty);
+			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
+			_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
+			_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 		}
 
 		private void MenuItemEditFix_Click(object sender, RoutedEventArgs e)
@@ -209,8 +204,8 @@ namespace Sudoku.Forms
 			Puzzle.Fix();
 
 			UpdateImageGrid();
-			_listBoxPaths.ClearValue(ItemsSourceProperty);
-			_listViewSummary.ClearValue(ItemsSourceProperty);
+			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
+			_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
 		}
 
 		private void MenuItemEditUnfix_Click(object sender, RoutedEventArgs e)
@@ -218,8 +213,8 @@ namespace Sudoku.Forms
 			Puzzle.Unfix();
 
 			UpdateImageGrid();
-			_listBoxPaths.ClearValue(ItemsSourceProperty);
-			_listViewSummary.ClearValue(ItemsSourceProperty);
+			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
+			_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
 		}
 
 		private void MenuItemEditReset_Click(object sender, RoutedEventArgs e)
@@ -233,8 +228,8 @@ namespace Sudoku.Forms
 			_layerCollection.Remove(typeof(ViewLayer).Name);
 
 			UpdateImageGrid();
-			_listBoxPaths.ClearValue(ItemsSourceProperty);
-			_listViewSummary.ClearValue(ItemsSourceProperty);
+			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
+			_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
 		}
 
 		private void MenuItemEditClear_Click(object sender, RoutedEventArgs e)
@@ -336,14 +331,14 @@ namespace Sudoku.Forms
 					_textBoxInfo.Text = _analyisResult.ToString(string.Empty);
 
 					int i = 0;
-					var pathList = new List<w::Controls.ListBoxItem>();
+					var pathList = new List<ListBoxItem>();
 					foreach (var step in _analyisResult.SolvingSteps!)
 					{
 						var (fore, back) = Settings.DiffColors[step.DifficultyLevel];
-						var item = new w::Controls.ListBoxItem
+						var item = new ListBoxItem
 						{
-							Foreground = new w::Media.SolidColorBrush(fore.ToWColor()),
-							Background = new w::Media.SolidColorBrush(back.ToWColor()),
+							Foreground = new SolidColorBrush(fore.ToWColor()),
+							Background = new SolidColorBrush(back.ToWColor()),
 							Content = new PrimaryElementTuple<int, TechniqueInfo>(i++, step, 2),
 							BorderThickness = new Thickness()
 						};
@@ -384,9 +379,9 @@ namespace Sudoku.Forms
 						Max = summaryMax
 					});
 
-					w::Controls.GridView view;
+					GridView view;
 					_listViewSummary.ItemsSource = collection;
-					_listViewSummary.View = view = new w::Controls.GridView();
+					_listViewSummary.View = view = new GridView();
 					view.Columns.AddRange(new[]
 					{
 						createGridViewColumn("Technique", .6),
@@ -414,9 +409,9 @@ namespace Sudoku.Forms
 					   group solvingStep by solvingStep.Name;
 			}
 
-			w::Controls.GridViewColumn createGridViewColumn(string name, double widthScale)
+			GridViewColumn createGridViewColumn(string name, double widthScale)
 			{
-				return new w::Controls.GridViewColumn
+				return new GridViewColumn
 				{
 					Header = name,
 					DisplayMemberBinding = new Binding(name),
@@ -469,7 +464,7 @@ namespace Sudoku.Forms
 
 		private void ContextListBoxPathsCopyCurrentStep_Click(object sender, RoutedEventArgs e)
 		{
-			if (sender is w::Controls.MenuItem)
+			if (sender is MenuItem)
 			{
 				try
 				{
@@ -484,7 +479,7 @@ namespace Sudoku.Forms
 
 		private void ContextListBoxPathsCopyAllSteps_Click(object sender, RoutedEventArgs e)
 		{
-			if (sender is w::Controls.MenuItem)
+			if (sender is MenuItem)
 			{
 				var sb = new StringBuilder();
 				foreach (var step in from object item in _listBoxPaths.Items select item.ToString())

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 using Sudoku.Forms.Drawing.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
-using w = System.Windows;
 
 namespace Sudoku.Forms
 {
@@ -28,7 +29,7 @@ namespace Sudoku.Forms
 					return;
 				}
 
-				_listBoxTechniques.ClearValue(ItemsSourceProperty);
+				_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 				_textBoxInfo.Text = "The solver is running slowly, please wait...";
 				_buttonFindAllSteps.IsEnabled = false;
 				DisableSolvingControls();
@@ -37,10 +38,10 @@ namespace Sudoku.Forms
 
 				EnableSolvingControls();
 				_buttonFindAllSteps.IsEnabled = true;
-				_textBoxInfo.ClearValue(w::Controls.TextBox.TextProperty);
+				_textBoxInfo.ClearValue(TextBox.TextProperty);
 
 				// The boolean value stands for whether the technique is enabled.
-				var list = new List<w::Controls.ListBoxItem>();
+				var list = new List<ListBoxItem>();
 				foreach (var techniqueGroup in techniqueGroups)
 				{
 					string name = techniqueGroup.Key;
@@ -48,13 +49,13 @@ namespace Sudoku.Forms
 					{
 						var (fore, back) = Settings.DiffColors[info.DifficultyLevel];
 						list.Add(
-							new w::Controls.ListBoxItem
+							new ListBoxItem
 							{
 								Content = new PrimaryElementTuple<string, TechniqueInfo, bool>(
 									info.ToSimpleString(), info, true),
 								BorderThickness = new Thickness(),
-								Foreground = new w::Media.SolidColorBrush(fore.ToWColor()),
-								Background = new w::Media.SolidColorBrush(back.ToWColor()),
+								Foreground = new SolidColorBrush(fore.ToWColor()),
+								Background = new SolidColorBrush(back.ToWColor()),
 							});
 					}
 				}
@@ -63,7 +64,7 @@ namespace Sudoku.Forms
 			}
 
 			#region Obsolete code
-			//_treeView.ClearValue(w::Controls.ItemsControl.ItemsSourceProperty);
+			//_treeView.ClearValue(ItemsControl.ItemsSourceProperty);
 			//_textBoxInfo.Text = "The solver is running to find all possible steps, please wait...";
 			//_buttonFindAllSteps.IsEnabled = false;
 			//DisableSolvingControls();
@@ -72,9 +73,9 @@ namespace Sudoku.Forms
 			//
 			//EnableSolvingControls();
 			//_buttonFindAllSteps.IsEnabled = true;
-			//_textBoxInfo.ClearValue(w::Controls.TextBox.TextProperty);
+			//_textBoxInfo.ClearValue(TextBox.TextProperty);
 			//
-			//var itemList = new List<w::Controls.TreeViewItem>();
+			//var itemList = new List<TreeViewItem>();
 			//foreach (var techniqueGroup in techniqueGroups)
 			//{
 			//	var techniqueRoot = new TreeNode
@@ -84,7 +85,7 @@ namespace Sudoku.Forms
 			//	};
 			//	foreach (var info in techniqueGroup)
 			//	{
-			//		techniqueRoot.Children.Add(new w::Controls.TreeViewItem
+			//		techniqueRoot.Children.Add(new TreeViewItem
 			//		{
 			//			Header = new TreeNode
 			//			{
@@ -94,7 +95,7 @@ namespace Sudoku.Forms
 			//		});
 			//	}
 			//
-			//	itemList.Add(new w::Controls.TreeViewItem
+			//	itemList.Add(new TreeViewItem
 			//	{
 			//		Header = techniqueRoot,
 			//		IsExpanded = true
