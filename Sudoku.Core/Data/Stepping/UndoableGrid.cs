@@ -127,6 +127,8 @@ namespace Sudoku.Data.Stepping
 				ref short mask = ref _masks[cell];
 				mask = (short)((int)CellStatus.Given << 9 | mask & 511);
 			}
+
+			Array.Copy(_masks, _initialMasks, 81);
 		}
 
 		/// <inheritdoc/>

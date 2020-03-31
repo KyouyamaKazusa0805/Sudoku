@@ -67,6 +67,7 @@ namespace Sudoku.Data
 		/// </summary>
 		protected internal readonly short[] _initialMasks;
 
+
 		/// <summary>
 		/// Initializes an instance with the binary mask array.
 		/// </summary>
@@ -224,6 +225,8 @@ namespace Sudoku.Data
 					SetCellStatus(i, CellStatus.Given);
 				}
 			}
+
+			Array.Copy(_masks, _initialMasks, 81);
 		}
 
 		/// <summary>

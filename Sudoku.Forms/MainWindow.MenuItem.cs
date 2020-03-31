@@ -18,6 +18,7 @@ using Sudoku.Drawing;
 using Sudoku.Drawing.Layers;
 using Sudoku.Forms.Drawing.Extensions;
 using Sudoku.Solving;
+using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Generating;
 using Sudoku.Solving.Utils;
@@ -164,6 +165,30 @@ namespace Sudoku.Forms
 			UpdateUndoRedoControls();
 		}
 
+		private void MenuItemEditRecomputeCandidates_Click(object sender, RoutedEventArgs e)
+		{
+			int[] z = new int[81];
+			for (int cell = 0; cell < 81; cell++)
+			{
+				z[cell] = _puzzle[cell] + 1;
+			}
+
+			var grid = SudokuGrid.CreateInstance(z);
+			if (new BitwiseSolver().Solve(grid.ToString(), null, 2) == 0)
+			{
+				MessageBox.Show("The puzzle is invalid. Please check your input and retry.", "Info");
+				e.Handled = true;
+				return;
+			}
+
+			Puzzle = new UndoableGrid(grid);
+			Puzzle.Unfix();
+			Puzzle.ClearStack();
+
+			UpdateImageGrid();
+			UpdateUndoRedoControls();
+		}
+
 		private void MenuItemEditCopy_Click(object sender, RoutedEventArgs e) => InternalCopy(null);
 
 		private void MenuItemEditCopyCurrentGrid_Click(object sender, RoutedEventArgs e) =>
@@ -234,6 +259,19 @@ namespace Sudoku.Forms
 			UpdateImageGrid();
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
 			_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
+		}
+
+		private void MenuItemClearStack_Click(object sender, RoutedEventArgs e)
+		{
+			if ((_puzzle.HasUndoSteps || _puzzle.HasRedoSteps)
+				&& MessageBox.Show(
+					$"The steps will be cleared. If cleared, you cannot undo any steps to previous puzzle status.{Environment.NewLine}" +
+					$"Do you want to clear anyway?", "Info", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+			{
+				_puzzle.ClearStack();
+
+				UpdateUndoRedoControls();
+			}
 		}
 
 		private void MenuItemEditClear_Click(object sender, RoutedEventArgs e)
@@ -310,6 +348,27 @@ namespace Sudoku.Forms
 
 			async Task internalOperation()
 			{
+				int[] z = new int[81];
+				for (int cell = 0; cell < 81; cell++)
+				{
+					z[cell] = _puzzle[cell] + 1;
+				}
+
+				var grid = SudokuGrid.CreateInstance(z);
+				if (new BitwiseSolver().Solve(grid.ToString(), null, 2) != 1)
+				{
+					MessageBox.Show("The puzzle is invalid. Please check your input and retry.", "Info");
+					e.Handled = true;
+					return;
+				}
+
+				Puzzle = new UndoableGrid(grid);
+				Puzzle.Unfix();
+				Puzzle.ClearStack();
+
+				UpdateImageGrid();
+				UpdateUndoRedoControls();
+
 				// Update status.
 				ClearItemSourcesWhenGeneratedOrSolving();
 				_textBoxInfo.Text = "Solving, please wait. During solving you can do some other work...";
@@ -398,9 +457,8 @@ namespace Sudoku.Forms
 				else
 				{
 					MessageBox.Show(
-						$"The puzzle cannot be solved. The cases are below:{Environment.NewLine}" +
-						$"    Case 1: The puzzle has no or multiple solutions.{Environment.NewLine}" +
-						$"    Case 2: The solver has found a wrong conclusion to apply.{Environment.NewLine}" +
+						$"The puzzle cannot be solved because " +
+						$"the solver has found a wrong conclusion to apply.{Environment.NewLine}" +
 						$"You should check the program or notify the author first.",
 						"Warning");
 				}
