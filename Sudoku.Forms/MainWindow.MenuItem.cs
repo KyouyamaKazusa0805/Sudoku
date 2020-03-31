@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing.Layers;
 using Sudoku.Forms.Drawing.Extensions;
@@ -77,7 +78,7 @@ namespace Sudoku.Forms
 			{
 				AddExtension = true,
 				CheckPathExists = true,
-				DefaultExt = "sudoku",
+				DefaultExt = "scfg",
 				Filter = "Configuration file|*.scfg",
 				Title = "Save configuration file to..."
 			};
@@ -386,10 +387,13 @@ namespace Sudoku.Forms
 					w::Controls.GridView view;
 					_listViewSummary.ItemsSource = collection;
 					_listViewSummary.View = view = new w::Controls.GridView();
-					view.Columns.Add(createGridViewColumn("Technique", .6));
-					view.Columns.Add(createGridViewColumn("Count", .1));
-					view.Columns.Add(createGridViewColumn("Total", .2));
-					view.Columns.Add(createGridViewColumn("Max", .1));
+					view.Columns.AddRange(new[]
+					{
+						createGridViewColumn("Technique", .6),
+						createGridViewColumn("Count", .1),
+						createGridViewColumn("Total", .2),
+						createGridViewColumn("Max", .1)
+					});
 					view.AllowsColumnReorder = false;
 				}
 				else
