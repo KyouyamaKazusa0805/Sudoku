@@ -499,6 +499,11 @@ namespace Sudoku.Forms
 		public Color Color15 { get; set; } = Color.FromArgb(192, 192, 192);
 
 		/// <summary>
+		/// The main manual solver.
+		/// </summary>
+		public ManualSolver MainManualSolver { get; set; } = new ManualSolver();
+
+		/// <summary>
 		/// The color table for each difficulty level.
 		/// </summary>
 		public IDictionary<DifficultyLevel, (Color _foreground, Color _background)> DiffColors

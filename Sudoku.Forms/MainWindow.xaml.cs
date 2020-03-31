@@ -52,13 +52,6 @@ namespace Sudoku.Forms
 
 
 		/// <summary>
-		/// Indicates the internal manual solver.
-		/// This field is mutable.
-		/// </summary>
-		[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
-		private ManualSolver _manualSolver = new ManualSolver();
-
-		/// <summary>
 		/// Indicates the analysis result after solving of the current grid.
 		/// </summary>
 		private AnalysisResult? _analyisResult = null;
@@ -67,6 +60,12 @@ namespace Sudoku.Forms
 		/// The grid.
 		/// </summary>
 		private UndoableGrid _puzzle = new UndoableGrid(SudokuGrid.Empty);
+
+		/// <summary>
+		/// Indicates the internal manual solver.
+		/// This field is mutable.
+		/// </summary>
+		private ManualSolver _manualSolver = null!;
 
 		/// <summary>
 		/// The point converter.
@@ -412,33 +411,16 @@ namespace Sudoku.Forms
 		private void UpdateControls()
 		{
 			_menuItemOptionsShowCandidates.IsChecked = Settings.ShowCandidates;
-			_manualSolver.AnalyzeDifficultyStrictly = _menuItemAnalyzeSeMode.IsChecked = Settings.SeMode;
-			_manualSolver.FastSearch = _menuItemAnalyzeFastSearch.IsChecked = Settings.FastSearch;
-			_manualSolver.CheckGurthSymmetricalPlacement = _menuItemAnalyzeCheckGurthSymmetricalPlacement.IsChecked = Settings.CheckGurthSymmetricalPlacement;
-			_manualSolver.EnableFullHouse = _menuItemAnalyzeShowFullHouses.IsChecked = Settings.EnableFullHouse;
-			_manualSolver.EnableLastDigit = _menuItemAnalyzeShowLastDigits.IsChecked = Settings.EnableLastDigit;
-			_manualSolver.OptimizedApplyingOrder = _menuItemAnalyzeOptimizeApplyingOrder.IsChecked = Settings.OptimizedApplyingOrder;
-			_manualSolver.UseCalculationPriority = _menuItemAnalyzeUseCalculationPriority.IsChecked = Settings.UseCalculationPriority;
-			_manualSolver.CheckConclusionValidityAfterSearched = _menuItemAnalyzeCheckConclusionValidityAfterSearched.IsChecked = Settings.CheckConclusionValidityAfterSearched;
+			_menuItemAnalyzeSeMode.IsChecked = Settings.SeMode;
+			_menuItemAnalyzeFastSearch.IsChecked = Settings.FastSearch;
+			_menuItemAnalyzeCheckGurthSymmetricalPlacement.IsChecked = Settings.CheckGurthSymmetricalPlacement;
+			_menuItemAnalyzeShowFullHouses.IsChecked = Settings.EnableFullHouse;
+			_menuItemAnalyzeShowLastDigits.IsChecked = Settings.EnableLastDigit;
+			_menuItemAnalyzeOptimizeApplyingOrder.IsChecked = Settings.OptimizedApplyingOrder;
+			_menuItemAnalyzeUseCalculationPriority.IsChecked = Settings.UseCalculationPriority;
+			_menuItemAnalyzeCheckConclusionValidityAfterSearched.IsChecked = Settings.CheckConclusionValidityAfterSearched;
 
-			_manualSolver.UseExtendedBugSearcher = Settings.UseExtendedBugSearcher;
-			_manualSolver.ReductDifferentPathAic = Settings.ReductDifferentPathAic;
-			_manualSolver.OnlySaveShortestPathAic = Settings.OnlySaveShortestPathAic;
-			//_manualSolver.OnlyRecordTemplateDelete = Settings.OnlyRecordTemplateDelete;
-			//_manualSolver.HobiwanFishCheckTemplates = Settings.HobiwanFishCheckTemplates;
-			//_manualSolver.HobiwanFishMaximumEndofinsCount = Settings.HobiwanFishMaximumEndofinsCount;
-			//_manualSolver.HobiwanFishMaximumExofinsCount = Settings.HobiwanFishMaximumExofinsCount;
-			//_manualSolver.HobiwanFishMaximumSize = Settings.HobiwanFishMaximumSize;
-			_manualSolver.EnableGarbageCollectionForcedly = Settings.EnableGarbageCollectionForcedly;
-			_manualSolver.CheckRegularWingSize = Settings.CheckRegularWingSize;
-			_manualSolver.CheckIncompletedUniquenessPatterns = Settings.CheckIncompletedUniquenessPatterns;
-			_manualSolver.CheckHeadCollision = Settings.CheckHeadCollision;
-			_manualSolver.CheckContinuousNiceLoop = Settings.CheckContinuousNiceLoop;
-			_manualSolver.CheckAlmostLockedQuadruple = Settings.CheckAlmostLockedQuadruple;
-			_manualSolver.BowmanBingoMaximumLength = Settings.BowmanBingoMaximumLength;
-			_manualSolver.AlsHighlightRegionInsteadOfCell = Settings.AlsHighlightRegionInsteadOfCell;
-			_manualSolver.AllowOverlapAlses = Settings.AllowOverlapAlses;
-			_manualSolver.AicMaximumLength = Settings.AicMaximumLength;
+			_manualSolver = Settings.MainManualSolver;
 
 			//_comboBoxDifficulty.ItemsSource = EnumEx.GetValues<DifficultyLevel>();
 			_comboBoxSymmetry.ItemsSource = EnumEx.GetValues<SymmetricalType>();
