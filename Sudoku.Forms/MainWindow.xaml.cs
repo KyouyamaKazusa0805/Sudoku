@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
@@ -31,11 +32,6 @@ namespace Sudoku.Forms
 	public partial class MainWindow : Window
 	{
 		/// <summary>
-		/// Indicates the internal manual solver.
-		/// </summary>
-		private ManualSolver _manualSolver = new ManualSolver();
-
-		/// <summary>
 		/// Internal layer collection.
 		/// </summary>
 		private readonly LayerCollection _layerCollection = new LayerCollection();
@@ -53,6 +49,14 @@ namespace Sudoku.Forms
 		/// <seealso cref="OnKeyDown(KeyEventArgs)"/>
 		/// <seealso cref="OnKeyUp(KeyEventArgs)"/>
 		private GridMap? _previewMap;
+
+
+		/// <summary>
+		/// Indicates the internal manual solver.
+		/// This field is mutable.
+		/// </summary>
+		[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
+		private ManualSolver _manualSolver = new ManualSolver();
 
 		/// <summary>
 		/// Indicates the analysis result after solving of the current grid.
