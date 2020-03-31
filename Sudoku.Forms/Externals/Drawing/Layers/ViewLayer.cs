@@ -49,7 +49,7 @@ namespace Sudoku.Drawing.Layers
 		/// <summary>
 		/// The all conclusions.
 		/// </summary>
-		private readonly IEnumerable<Conclusion> _conclusions;
+		private readonly IEnumerable<Conclusion>? _conclusions;
 
 
 		/// <summary>
@@ -63,7 +63,7 @@ namespace Sudoku.Drawing.Layers
 		/// <param name="cannibalismColor">The cannibalism color.</param>
 		/// <param name="chainColor">The chain color.</param>
 		public ViewLayer(
-			PointConverter pointConverter, View view, IEnumerable<Conclusion> conclusions,
+			PointConverter pointConverter, View view, IEnumerable<Conclusion>? conclusions,
 			IDictionary<int, Color> colorDic, Color eliminationColor, Color cannibalismColor,
 			Color chainColor) : base(pointConverter) =>
 			(_view, _conclusions, _colorDic, _eliminationColor, _cannibalismColor, _chainColor) = (view, conclusions, colorDic, eliminationColor, cannibalismColor, chainColor);
@@ -99,7 +99,7 @@ namespace Sudoku.Drawing.Layers
 		{
 			using var eliminationBrush = new SolidBrush(_eliminationColor);
 			using var cannibalBrush = new SolidBrush(_cannibalismColor);
-			foreach (var (t, c, d) in _conclusions)
+			foreach (var (t, c, d) in _conclusions ?? Array.Empty<Conclusion>())
 			{
 				switch (t)
 				{
@@ -242,7 +242,14 @@ namespace Sudoku.Drawing.Layers
 			foreach (var (id, candidate) in _view.CandidateOffsets ?? Array.Empty<(int, int)>())
 			{
 				int cell = candidate / 9, digit = candidate % 9;
-				if (!_conclusions.Any(c => c.CellOffset == cell && c.Digit == digit && c.ConclusionType == ConclusionType.Elimination)
+				if (!(
+					_conclusions?.Any(
+						c =>
+						{
+							return c.CellOffset == cell
+								&& c.Digit == digit
+								&& c.ConclusionType == ConclusionType.Elimination;
+						}) ?? false)
 					&& _colorDic.TryGetValue(id, out var color))
 				{
 					var (cw, ch) = _pointConverter.CandidateSize;

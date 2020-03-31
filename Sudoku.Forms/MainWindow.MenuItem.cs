@@ -14,12 +14,15 @@ using Microsoft.Win32;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
+using Sudoku.Drawing;
 using Sudoku.Drawing.Layers;
 using Sudoku.Forms.Drawing.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Generating;
+using Sudoku.Solving.Utils;
 using AnonymousType = System.Object;
+using DColor = System.Drawing.Color;
 using SudokuGrid = Sudoku.Data.Grid;
 
 namespace Sudoku.Forms
@@ -470,6 +473,51 @@ namespace Sudoku.Forms
 			}
 
 			new BugNSearchWindow(_puzzle).ShowDialog();
+		}
+
+		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+		private async void MenuItemAnalyzeShowBugN_Click(object sender, RoutedEventArgs e)
+		{
+			await internalOperation();
+
+			async ValueTask internalOperation()
+			{
+				if (!_puzzle.IsValid(out _))
+				{
+					MessageBox.Show("The puzzle is invalid.", "Warning");
+					e.Handled = true;
+					return;
+				}
+
+				_textBoxInfo.Text = 
+					"The program is running as quickly as possible to search " +
+					"all non-BUG candidates (true candidates). Please wait.";
+
+				var trueCandidates = await Task.Run(() => new BugChecker(_puzzle).TrueCandidates);
+
+				_textBoxInfo.ClearValue(TextBox.TextProperty);
+				if (trueCandidates.Count == 0)
+				{
+					MessageBox.Show("The puzzle is not a valid BUG pattern.", "Info");
+					e.Handled = true;
+					return;
+				}
+
+				_layerCollection.Add(
+					new ViewLayer(
+						_pointConverter,
+						new View(
+							null,
+							new List<(int, int)>(from candidate in trueCandidates select (0, candidate)),
+							null,
+							null),
+						null,
+						Settings.PaletteColors, DColor.Empty, DColor.Empty, DColor.Empty));
+
+				UpdateImageGrid();
+
+				_textBoxInfo.Text = $"All true candidate(s): {CandidateCollection.ToString(trueCandidates)}";
+			}
 		}
 
 		private void MenuItemAboutMe_Click(object sender, RoutedEventArgs e) =>
