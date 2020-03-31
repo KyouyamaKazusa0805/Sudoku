@@ -13,7 +13,7 @@
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DefineConstants></DefineConstants>
 		<DocumentationFile>P:\Projects\Common\Sudoku\Sudoku.Core\Sudoku.Core.xml</DocumentationFile>
-		<Optimize>true</Optimize>
+		<Optimize>false</Optimize>
 	</PropertyGroup>
 
 	<ItemGroup>

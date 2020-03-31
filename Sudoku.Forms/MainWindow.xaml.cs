@@ -33,7 +33,7 @@ namespace Sudoku.Forms
 		/// <summary>
 		/// Indicates the internal manual solver.
 		/// </summary>
-		private readonly ManualSolver _manualSolver = new ManualSolver();
+		private ManualSolver _manualSolver = new ManualSolver();
 
 		/// <summary>
 		/// Internal layer collection.
