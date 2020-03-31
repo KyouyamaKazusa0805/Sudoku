@@ -17,6 +17,7 @@ using Sudoku.Data.Stepping;
 using Sudoku.Drawing.Layers;
 using Sudoku.Forms.Drawing.Extensions;
 using Sudoku.Solving;
+using Sudoku.Solving.Checking;
 using Sudoku.Solving.Generating;
 using AnonymousType = System.Object;
 using SudokuGrid = Sudoku.Data.Grid;
@@ -459,8 +460,17 @@ namespace Sudoku.Forms
 		private void MenuItemAnalyzeBackdoor_Click(object sender, RoutedEventArgs e) =>
 			new BackdoorWindow(_puzzle).ShowDialog();
 
-		private void MenuItemAnalyzeBugN_Click(object sender, RoutedEventArgs e) =>
+		private void MenuItemAnalyzeBugN_Click(object sender, RoutedEventArgs e)
+		{
+			if (!_puzzle.IsValid(out _))
+			{
+				MessageBox.Show("The puzzle is invalid.", "Warning");
+				e.Handled = true;
+				return;
+			}
+
 			new BugNSearchWindow(_puzzle).ShowDialog();
+		}
 
 		private void MenuItemAboutMe_Click(object sender, RoutedEventArgs e) =>
 			new AboutMeWindow().Show();

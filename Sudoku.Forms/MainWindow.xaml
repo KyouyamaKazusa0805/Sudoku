@@ -5,6 +5,9 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		mc:Ignorable="d" Height="800" Width="1200" ResizeMode="CanMinimize">
 	<Window.Resources>
+		<Style TargetType="MenuItem">
+			<Setter Property="IsTabStop" Value="False"/>
+		</Style>
 		<Style TargetType="ListViewItem">
 			<Setter Property="HorizontalContentAlignment" Value="Right"/>
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -24,7 +27,7 @@
 		<!-- Row 0 -->
 		<Menu VerticalAlignment="Top" IsMainMenu="True" Grid.Row="0" Grid.ColumnSpan="2">
 			<!-- File... -->
-			<MenuItem Header="File" IsTabStop="False">
+			<MenuItem Header="File">
 				<MenuItem Header="Open puzzle..." InputGestureText="Ctrl + O" Name="_menuItemFileOpen"
 						  Click="MenuItemFileOpen_Click"/>
 				<MenuItem Header="Save puzzle..." InputGestureText="Ctrl + S"
@@ -41,7 +44,7 @@
 			</MenuItem>
 			
 			<!-- Options... -->
-			<MenuItem Header="Options" IsTabStop="False">
+			<MenuItem Header="Options">
 				<MenuItem Header="Show candidates" Name="_menuItemOptionsShowCandidates"
 						  IsChecked="True"
 						  Click="MenuItemOptionsShowCandidates_Click"/>
@@ -51,7 +54,7 @@
 			</MenuItem>
 			
 			<!-- Edit... -->
-			<MenuItem Header="Edit" IsTabStop="False">
+			<MenuItem Header="Edit">
 				<MenuItem Header="Undo" InputGestureText="Ctrl + Z" Name="_menuItemUndo" IsEnabled="False"
 						  Click="MenuItemEditUndo_Click"/>
 				<MenuItem Header="Redo" InputGestureText="Ctrl + Y" Name="_menuItemRedo" IsEnabled="False"
@@ -82,7 +85,7 @@
 			</MenuItem>
 			
 			<!-- Generate... -->
-			<MenuItem Header="Generate" IsTabStop="False">
+			<MenuItem Header="Generate">
 				<MenuItem Header="Symmetry pattern" Name="_menuItemGenerateWithSymmetry"
 						  Click="MenuItemGenerateWithSymmetry_Click"/>
 				<MenuItem Header="Hard pattern" Name="_menuItemGenerateHardPattern"
@@ -91,7 +94,7 @@
 			</MenuItem>
 			
 			<!-- Analyze... -->
-			<MenuItem Header="Analyze" IsTabStop="False">
+			<MenuItem Header="Analyze">
 				<MenuItem Header="Solve puzzle" Name="_menuItemAnalyzeSolve" InputGestureText="F9"
 						  Click="MenuItemAnalyzeSolve_Click"/>
 				<Separator/>
@@ -125,7 +128,7 @@
 			</MenuItem>
 			
 			<!-- About... -->
-			<MenuItem Header="About" IsTabStop="False">
+			<MenuItem Header="About">
 				<MenuItem Header="Me" Click="MenuItemAboutMe_Click"/>
 			</MenuItem>
 		</Menu>
