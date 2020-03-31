@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -43,7 +44,7 @@ namespace Sudoku.Forms
 		{
 			await internalOperation();
 
-			async Task internalOperation()
+			async ValueTask internalOperation()
 			{
 				_listBoxBackdoors.ClearValue(ItemsControl.ItemsSourceProperty);
 				_labelStatus.Content = "Searching... The searching should be slow. Please wait.";
@@ -60,7 +61,7 @@ namespace Sudoku.Forms
 					}
 				});
 
-				_labelStatus.Content = string.Empty;
+				_labelStatus.ClearValue(ContentProperty);
 				if (collections is null)
 				{
 					MessageBox.Show(
@@ -71,13 +72,9 @@ namespace Sudoku.Forms
 					return;
 				}
 
-				var bindList = new List<string>();
-				foreach (var collection in collections)
-				{
-					bindList.Add(ConclusionCollection.ToString(collection));
-				}
-
-				_listBoxBackdoors.ItemsSource = bindList;
+				_listBoxBackdoors.ItemsSource =
+					from collection in collections
+					select ConclusionCollection.ToString(collection);
 			}
 		}
 

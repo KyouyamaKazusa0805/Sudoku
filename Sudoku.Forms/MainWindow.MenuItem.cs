@@ -459,6 +459,9 @@ namespace Sudoku.Forms
 		private void MenuItemAnalyzeBackdoor_Click(object sender, RoutedEventArgs e) =>
 			new BackdoorWindow(_puzzle).ShowDialog();
 
+		private void MenuItemAnalyzeBugN_Click(object sender, RoutedEventArgs e) =>
+			new BugNSearchWindow(_puzzle).ShowDialog();
+
 		private void MenuItemAboutMe_Click(object sender, RoutedEventArgs e) =>
 			new AboutMeWindow().Show();
 
