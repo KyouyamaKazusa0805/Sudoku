@@ -1,31 +1,31 @@
 ﻿using System.Diagnostics;
-using d = System.Drawing;
-using w = System.Windows;
+using DColor = System.Drawing.Color;
+using WColor = System.Windows.Media.Color;
 
 namespace Sudoku.Forms.Drawing.Extensions
 {
 	/// <summary>
-	/// Provides extension methods on <see cref="d.Color"/> and <see cref="w.Media.Color"/>.
+	/// Provides extension methods on <see cref="DColor"/> and <see cref="WColor"/>.
 	/// </summary>
-	/// <seealso cref="d.Color"/>
-	/// <seealso cref="w.Media.Color"/>
+	/// <seealso cref="DColor"/>
+	/// <seealso cref="WColor"/>
 	[DebuggerStepThrough]
 	public static class ColorEx
 	{
 		/// <summary>
-		/// Convert <see cref="w.Media.Color"/> to <see cref="d.Color"/>.
+		/// Convert <see cref="WColor"/> to <see cref="DColor"/>.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The color.</param>
 		/// <returns>The target color.</returns>
-		public static d::Color ToDColor(this w::Media.Color @this) =>
-			d::Color.FromArgb(@this.A, @this.R, @this.G, @this.B);
+		public static DColor ToDColor(this WColor @this) =>
+			DColor.FromArgb(@this.A, @this.R, @this.G, @this.B);
 
 		/// <summary>
-		/// Convert <see cref="d.Color"/> to <see cref="w.Media.Color"/>.
+		/// Convert <see cref="d.Color"/> to <see cref="WColor"/>.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The color.</param>
 		/// <returns>The target color.</returns>
-		public static w::Media.Color ToWColor(this d::Color @this) =>
-			w::Media.Color.FromArgb(@this.A, @this.R, @this.G, @this.B);
+		public static WColor ToWColor(this DColor @this) =>
+			WColor.FromArgb(@this.A, @this.R, @this.G, @this.B);
 	}
 }

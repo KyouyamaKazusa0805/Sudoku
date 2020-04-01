@@ -609,7 +609,7 @@ namespace Sudoku.Forms
 		}
 
 		/// <summary>
-		/// Switch <see cref="w.Controls.TabItem"/>s when generated or solving.
+		/// Switch <see cref="TabItem"/>s when generated or solving.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void SwitchTabItemWhenGeneratedOrSolving() => _tabControlInfo.SelectedIndex = 0;
