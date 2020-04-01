@@ -338,6 +338,14 @@ namespace Sudoku.Forms
 		public int GeneratingSymmetryModeComboBoxSelectedIndex { get; set; } = 0;
 
 		/// <summary>
+		/// <para>
+		/// Indicates the combo box of backdoor depth you selected.
+		/// </para>
+		/// <para>The default value is <c>0</c>.</para>
+		/// </summary>
+		public int GeneratingBackdoorSelectedIndex { get; set; } = 0;
+
+		/// <summary>
 		/// <para>Indicates the scale of values.</para>
 		/// <para>The value is <c>0.8M</c> in default case.</para>
 		/// </summary>

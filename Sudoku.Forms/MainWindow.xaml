@@ -127,7 +127,6 @@
 						  Click="MenuItemExport_Click"/>
 				<Separator/>
 				<MenuItem Header="BUG + n search..." Name="_menuItemAnalyzeBugN"
-						  BorderBrush="GreenYellow" BorderThickness="2,2,2,2"
 						  Click="MenuItemAnalyzeBugN_Click"/>
 				<MenuItem Header="Backdoor search..." Name="_menuItemAnalyzeBackdoor"
 						  Click="MenuItemAnalyzeBackdoor_Click"/>
@@ -168,6 +167,18 @@
 				   Name="_labelSymmetry"/>
 			<ComboBox Name="_comboBoxSymmetry"
 					  SelectionChanged="ComboBoxSymmetry_SelectionChanged"/>
+			<Label Content="Backdoor filtering depth:" HorizontalAlignment="Left"
+				   VerticalAlignment="Center" Name="_labelBackdoorFilteringDepth"/>
+			<ComboBox Name="_comboBoxBackdoorFilteringDepth"
+					  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+					  SelectedIndex="0"
+					  SelectionChanged="ComboBoxBackdoorFilteringDepth_SelectionChanged">
+				<ComboBoxItem Content="-1 (Disable)"/>
+				<ComboBoxItem Content="0"/>
+				<ComboBoxItem Content="1"/>
+				<ComboBoxItem Content="2"/>
+				<ComboBoxItem Content="3"/>
+			</ComboBox>
 			<Separator/>
 			<Image Source="Resources\Solve.png" Name="_imageSolve"
 				   Cursor="Hand"

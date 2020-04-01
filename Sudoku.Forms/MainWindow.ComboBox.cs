@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace Sudoku.Forms
 {
@@ -11,37 +10,29 @@ namespace Sudoku.Forms
 			// During changing, the label or combo box may be null in this case.
 			// So here need null checking.
 			if (sender is ComboBox comboBox
-				&& !(_labelSymmetry is null) && !(_comboBoxSymmetry is null))
+				&& !(_labelSymmetry is null) && !(_comboBoxSymmetry is null)
+				&& !(_labelBackdoorFilteringDepth is null) && !(_comboBoxBackdoorFilteringDepth is null))
 			{
-				switch (Settings.GeneratingModeComboBoxSelectedIndex = comboBox.SelectedIndex)
-				{
-					case 0: // Symmetry mode.
-					{
-						_labelSymmetry.Visibility = Visibility.Visible;
-						_comboBoxSymmetry.Visibility = Visibility.Visible;
-						return;
-					}
-					case 1: // Hard pattern mode.
-					{
-						_labelSymmetry.Visibility = Visibility.Hidden;
-						_comboBoxSymmetry.Visibility = Visibility.Hidden;
-						return;
-					}
-					default:
-					{
-						// What the hell is this selection???
-						e.Handled = true;
-						return;
-					}
-				}
+				Settings.GeneratingModeComboBoxSelectedIndex = comboBox.SelectedIndex;
+				SwitchOnGeneratingComboBoxesDisplaying();
 			}
 		}
 
 		private void ComboBoxSymmetry_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			if (sender is ComboBox comboBox)
+			// When initializing, 'Settings' may be null.
+			if (sender is ComboBox comboBox && !(Settings is null))
 			{
 				Settings.GeneratingSymmetryModeComboBoxSelectedIndex = comboBox.SelectedIndex;
+			}
+		}
+
+		private void ComboBoxBackdoorFilteringDepth_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			// When initializing, 'Settings' may be null.
+			if (sender is ComboBox comboBox && !(Settings is null))
+			{
+				Settings.GeneratingBackdoorSelectedIndex = comboBox.SelectedIndex;
 			}
 		}
 	}

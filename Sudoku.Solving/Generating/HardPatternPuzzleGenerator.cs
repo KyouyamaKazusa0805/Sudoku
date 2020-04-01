@@ -1,6 +1,8 @@
-﻿using System.Text;
+﻿using System.Linq;
+using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using Sudoku.Solving.Checking;
 
 namespace Sudoku.Solving.Generating
 {
@@ -9,44 +11,14 @@ namespace Sudoku.Solving.Generating
 	/// </summary>
 	public sealed class HardPatternPuzzleGenerator : DiggingPuzzleGenerator
 	{
+		/// <summary>
+		/// The backdoor searcher.
+		/// </summary>
+		private static readonly BackdoorSearcher BackdoorSearcher = new BackdoorSearcher();
+
+
 		/// <inheritdoc/>
-		public override IReadOnlyGrid Generate()
-		{
-			var puzzle = new StringBuilder() { Length = 81 };
-			var solution = new StringBuilder() { Length = 81 };
-			var emptyGridStr = new StringBuilder(Grid.EmptyString);
-			while (true)
-			{
-				emptyGridStr.CopyTo(puzzle);
-				emptyGridStr.CopyTo(solution);
-				GenerateAnswerGrid(puzzle, solution);
-
-				int[] holeCells = new int[81];
-				CreatePattern(holeCells);
-				for (int trial = 0; trial < 1000; trial++)
-				{
-					for (int cell = 0; cell < 81; cell++)
-					{
-						int p = holeCells[cell];
-						char temp = solution[p];
-						solution[p] = '0';
-
-						if (!FastSolver.CheckValidity(solution.ToString(), out _))
-						{
-							// Reset the value.
-							solution[p] = temp;
-						}
-					}
-
-					if (FastSolver.CheckValidity(solution.ToString(), out _))
-					{
-						return Grid.Parse(solution.ToString());
-					}
-
-					RecreatePattern(holeCells);
-				}
-			}
-		}
+		public override IReadOnlyGrid Generate() => Generate(-1);
 
 		/// <inheritdoc/>
 		protected override void CreatePattern(int[] pattern)
@@ -88,6 +60,61 @@ namespace Sudoku.Solving.Generating
 				swap(ref pattern[i], ref pattern[54 + (int)(27 * rnd())]);
 			}
 		}
+
+		/// <summary>
+		/// To generate a sudoku grid with a backdoor filter depth.
+		/// </summary>
+		/// <param name="backdoorFilterDepth">
+		/// The backdoor filter depth. When the value is -1, the generator will not check
+		/// any backdoors.
+		/// </param>
+		/// <returns>The grid.</returns>
+		public IReadOnlyGrid Generate(int backdoorFilterDepth)
+		{
+			var puzzle = new StringBuilder() { Length = 81 };
+			var solution = new StringBuilder() { Length = 81 };
+			var emptyGridStr = new StringBuilder(Grid.EmptyString);
+			static string valueOf(StringBuilder solution) => solution.ToString();
+
+			while (true)
+			{
+				emptyGridStr.CopyTo(puzzle);
+				emptyGridStr.CopyTo(solution);
+				GenerateAnswerGrid(puzzle, solution);
+
+				int[] holeCells = new int[81];
+				CreatePattern(holeCells);
+				for (int trial = 0; trial < 1000; trial++)
+				{
+					for (int cell = 0; cell < 81; cell++)
+					{
+						int p = holeCells[cell];
+						char temp = solution[p];
+						solution[p] = '0';
+
+						if (!FastSolver.CheckValidity(valueOf(solution), out _))
+						{
+							// Reset the value.
+							solution[p] = temp;
+						}
+					}
+
+					if (FastSolver.CheckValidity(valueOf(solution), out _))
+					{
+						var grid = Grid.Parse(valueOf(solution));
+						if (backdoorFilterDepth != -1
+							&& !BackdoorSearcher.SearchForBackdoors(grid, backdoorFilterDepth).Any()
+							|| backdoorFilterDepth == -1)
+						{
+							return grid;
+						}
+					}
+
+					RecreatePattern(holeCells);
+				}
+			}
+		}
+
 
 		/// <summary>
 		/// To re-create the pattern.

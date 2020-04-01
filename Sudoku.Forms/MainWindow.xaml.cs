@@ -164,29 +164,10 @@ namespace Sudoku.Forms
 			AddShortCut(Key.C, ModifierKeys.Control | ModifierKeys.Shift, null, MenuItemEditCopyCurrentGrid_Click);
 			AddShortCut(Key.OemTilde, ModifierKeys.Control | ModifierKeys.Shift, _menuItemEditUnfix, MenuItemEditUnfix_Click);
 
-			// Initializes some controls.
 			Title = $"{SolutionName} Ver {Version}";
 
-			// Load configurations if worth.
-			LoadConfig();
-
-			// Then initialize the layer collection and point converter
-			// for later utility.
-			_pointConverter = new PointConverter((float)_imageGrid.Width, (float)_imageGrid.Height);
-			_layerCollection.Add(new BackLayer(_pointConverter, Settings.BackgroundColor));
-			_layerCollection.Add(
-				new GridLineLayer(
-					_pointConverter, Settings.GridLineWidth, Settings.GridLineColor));
-			_layerCollection.Add(
-				new BlockLineLayer(
-					_pointConverter, Settings.BlockLineWidth, Settings.BlockLineColor));
-			_layerCollection.Add(
-				new ValueLayer(
-					_pointConverter, Settings.ValueScale, Settings.CandidateScale,
-					Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
-					Settings.GivenFontName, Settings.ModifiableFontName,
-					Settings.CandidateFontName, _puzzle, Settings.ShowCandidates));
-
+			LoadConfigIfWorth();
+			InitializePointConverterAndLayers();
 			UpdateControls();
 		}
 
@@ -315,7 +296,7 @@ namespace Sudoku.Forms
 		/// Save configurations if worth.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void LoadConfig(string path = "configurations.scfg")
+		private void LoadConfigIfWorth(string path = "configurations.scfg")
 		{
 			Settings = new Settings();
 			if (File.Exists(path))
@@ -448,12 +429,55 @@ namespace Sudoku.Forms
 						.GetCustomAttribute<NameAttribute>()!
 						.Name, field);
 			_comboBoxSymmetry.SelectedIndex = Settings.GeneratingSymmetryModeComboBoxSelectedIndex;
-			if ((_comboBoxMode.SelectedIndex = Settings.GeneratingModeComboBoxSelectedIndex) != 0)
-			{
-				_comboBoxSymmetry.Visibility = Visibility.Hidden;
-			}
+			_comboBoxMode.SelectedIndex = Settings.GeneratingModeComboBoxSelectedIndex;
+			SwitchOnGeneratingComboBoxesDisplaying();
 
 			UpdateImageGrid();
+		}
+
+		/// <summary>
+		/// Switch on displaying view of generating combo boxes.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void SwitchOnGeneratingComboBoxesDisplaying()
+		{
+			switch (Settings.GeneratingModeComboBoxSelectedIndex)
+			{
+				case 0:
+				{
+					_comboBoxSymmetry.IsEnabled = true;
+					_comboBoxBackdoorFilteringDepth.IsEnabled = false;
+					break;
+				}
+				case 1:
+				{
+					_comboBoxSymmetry.IsEnabled = false;
+					_comboBoxBackdoorFilteringDepth.IsEnabled = true;
+					break;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Initializes point converter and layer instances.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void InitializePointConverterAndLayers()
+		{
+			_pointConverter = new PointConverter((float)_imageGrid.Width, (float)_imageGrid.Height);
+			_layerCollection.Add(new BackLayer(_pointConverter, Settings.BackgroundColor));
+			_layerCollection.Add(
+				new GridLineLayer(
+					_pointConverter, Settings.GridLineWidth, Settings.GridLineColor));
+			_layerCollection.Add(
+				new BlockLineLayer(
+					_pointConverter, Settings.BlockLineWidth, Settings.BlockLineColor));
+			_layerCollection.Add(
+				new ValueLayer(
+					_pointConverter, Settings.ValueScale, Settings.CandidateScale,
+					Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
+					Settings.GivenFontName, Settings.ModifiableFontName,
+					Settings.CandidateFontName, _puzzle, Settings.ShowCandidates));
 		}
 
 		/// <summary>
@@ -529,6 +553,7 @@ namespace Sudoku.Forms
 			_imageSolve.IsEnabled = false;
 			_comboBoxSymmetry.IsEnabled = false;
 			_comboBoxMode.IsEnabled = false;
+			_comboBoxBackdoorFilteringDepth.IsEnabled = false;
 
 			UpdateUndoRedoControls();
 		}
@@ -555,6 +580,7 @@ namespace Sudoku.Forms
 			_imageSolve.IsEnabled = true;
 			_comboBoxMode.IsEnabled = true;
 			_comboBoxSymmetry.IsEnabled = true;
+			_comboBoxBackdoorFilteringDepth.IsEnabled = true;
 
 			UpdateUndoRedoControls();
 		}
@@ -588,6 +614,7 @@ namespace Sudoku.Forms
 			_imageSolve.IsEnabled = false;
 			_comboBoxSymmetry.IsEnabled = false;
 			_comboBoxMode.IsEnabled = false;
+			_comboBoxBackdoorFilteringDepth.IsEnabled = false;
 
 			UpdateUndoRedoControls();
 		}
@@ -622,6 +649,7 @@ namespace Sudoku.Forms
 			_imageSolve.IsEnabled = true;
 			_comboBoxMode.IsEnabled = true;
 			_comboBoxSymmetry.IsEnabled = true;
+			_comboBoxBackdoorFilteringDepth.IsEnabled = true;
 
 			UpdateUndoRedoControls();
 		}
@@ -636,13 +664,13 @@ namespace Sudoku.Forms
 			_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
 			_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 
-			SwitchTabItemWhenGeneratedOrSolving();
+			SwitchOnTabItemWhenGeneratedOrSolving();
 		}
 
 		/// <summary>
 		/// Switch <see cref="TabItem"/>s when generated or solving.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void SwitchTabItemWhenGeneratedOrSolving() => _tabControlInfo.SelectedIndex = 0;
+		private void SwitchOnTabItemWhenGeneratedOrSolving() => _tabControlInfo.SelectedIndex = 0;
 	}
 }

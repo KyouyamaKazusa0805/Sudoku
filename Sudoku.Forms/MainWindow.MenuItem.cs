@@ -318,6 +318,7 @@ namespace Sudoku.Forms
 					await Task.Run(() => new BasicPuzzleGenerator().Generate(33, symmetry)));
 
 				EnableGeneratingControls();
+				SwitchOnGeneratingComboBoxesDisplaying();
 				ClearItemSourcesWhenGeneratedOrSolving();
 				UpdateImageGrid();
 			}
@@ -332,9 +333,12 @@ namespace Sudoku.Forms
 			{
 				DisableGeneratingControls();
 
-				Puzzle = new UndoableGrid(await Task.Run(new HardPatternPuzzleGenerator().Generate));
+				int depth = _comboBoxBackdoorFilteringDepth.SelectedIndex;
+				Puzzle = new UndoableGrid(
+					await Task.Run(() => new HardPatternPuzzleGenerator().Generate(depth - 1)));
 
 				EnableGeneratingControls();
+				SwitchOnGeneratingComboBoxesDisplaying();
 				ClearItemSourcesWhenGeneratedOrSolving();
 				UpdateImageGrid();
 			}
@@ -388,6 +392,7 @@ namespace Sudoku.Forms
 
 				// Solved. Now update the technique summary.
 				EnableSolvingControls();
+				SwitchOnGeneratingComboBoxesDisplaying();
 
 				if (_analyisResult.HasSolved)
 				{

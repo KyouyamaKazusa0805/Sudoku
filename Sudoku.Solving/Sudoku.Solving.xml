@@ -1039,11 +1039,26 @@
             Provides an extended puzzle generator.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.BackdoorSearcher">
+            <summary>
+            The backdoor searcher.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.Generate">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.CreatePattern(System.Int32[])">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.Generate(System.Int32)">
+            <summary>
+            To generate a sudoku grid with a backdoor filter depth.
+            </summary>
+            <param name="backdoorFilterDepth">
+            The backdoor filter depth. When the value is -1, the generator will not check
+            any backdoors.
+            </param>
+            <returns>The grid.</returns>
         </member>
         <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.RecreatePattern(System.Int32[])">
             <summary>
