@@ -418,7 +418,7 @@ namespace Sudoku.Forms
 		/// <summary>
 		/// <para>Indicates the color used for painting for focused cells.</para>
 		/// <para>
-		/// The value is <c>#20000000</c> (<see cref="Color.Black"/>
+		/// The value is <c>#20FFFF00</c> (<see cref="Color.Yellow"/>
 		/// with alpha <c>32</c>) in default case.
 		/// </para>
 		/// </summary>
