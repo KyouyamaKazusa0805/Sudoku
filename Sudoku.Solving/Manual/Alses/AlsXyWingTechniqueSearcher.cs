@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -51,6 +52,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
+			var span = (Span<(Als, Als, Als, Als)>)stackalloc (Als, Als, Als, Als)[4];
 			var rccs = Rcc.GetAllRccs(grid, _allowOverlapping).ToArray();
 			for (int i = 0, length = rccs.Length; i < length - 1; i++)
 			{
@@ -69,13 +71,11 @@ namespace Sudoku.Solving.Manual.Alses
 
 					Als l = default, m = default, r = default;
 					bool findSame = false;
-					foreach (var (als1, als2, als3, als4) in new[]
-					{
-						(als11, als21, als12, als22),
-						(als11, als22, als12, als21),
-						(als12, als21, als11, als22),
-						(als12, als22, als11, als21)
-					})
+					span[0] = (als11, als21, als12, als22);
+					span[1] = (als11, als22, als12, als21);
+					span[2] = (als12, als21, als11, als22);
+					span[3] = (als12, als22, als11, als21);
+					foreach (var (als1, als2, als3, als4) in span)
 					{
 						if (als1 == als2)
 						{
