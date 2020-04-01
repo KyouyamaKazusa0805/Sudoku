@@ -4,13 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		mc:Ignorable="d"
-        Title="ColorDialog" Height="450" Width="300" ResizeMode="CanMinimize">
+        Title="ColorDialog" Height="150" Width="300" ResizeMode="CanMinimize">
     <Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="7*"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*"/>
@@ -19,34 +18,29 @@
 			<ColumnDefinition Width="*"/>
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
-		<Image Name="_imageMap" Grid.Row="0" Grid.ColumnSpan="5" Width="280" Height="280"/>
-		<Image Name="_imagePreview" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0"
+		<Image Name="_imagePreview" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"
 			   Width="60" Height="60"/>
-		<Label Content="Alpha" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right"
+		<Label Content="Alpha" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right"
 			   VerticalAlignment="Center" FontSize="16"/>
-		<TextBox Name="_textBoxA" Grid.Row="1" Grid.Column="2" Text="255"
+		<TextBox Name="_textBoxA" Grid.Row="0" Grid.Column="2" Text="255"
 				 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-				 PreviewKeyDown="TextBoxA_PreviewKeyDown"
-				 PreviewTextInput="TextBoxA_PreviewTextInput"/>
-		<Label Content="Red" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right"
+				 TextChanged="TextBoxA_TextChanged"/>
+		<Label Content="Red" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right"
 			   VerticalAlignment="Center" FontSize="16" Foreground="Red"/>
-		<TextBox Name="_textBoxR" Grid.Row="1" Grid.Column="4" Text="0"
+		<TextBox Name="_textBoxR" Grid.Row="0" Grid.Column="4" Text="0"
 				 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-				 PreviewKeyDown="TextBoxR_PreviewKeyDown"
-				 PreviewTextInput="TextBoxR_PreviewTextInput"/>
-		<Label Content="Green" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right"
+				 TextChanged="TextBoxR_TextChanged"/>
+		<Label Content="Green" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right"
 			   VerticalAlignment="Center" FontSize="16" Foreground="Green"/>
-		<TextBox Name="_textBoxG" Grid.Row="2" Grid.Column="2" Text="0"
+		<TextBox Name="_textBoxG" Grid.Row="1" Grid.Column="2" Text="0"
 				 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-				 PreviewKeyDown="TextBoxG_PreviewKeyDown"
-				 PreviewTextInput="TextBoxG_PreviewTextInput"/>
-		<Label Content="Blue" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right"
+				 TextChanged="TextBoxG_TextChanged"/>
+		<Label Content="Blue" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right"
 			   VerticalAlignment="Center" FontSize="16" Foreground="Blue"/>
-		<TextBox Name="_textBoxB" Grid.Row="2" Grid.Column="4"  Text="0"
+		<TextBox Name="_textBoxB" Grid.Row="1" Grid.Column="4"  Text="0"
 				 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-				 PreviewKeyDown="TextBoxB_PreviewKeyDown"
-				 PreviewTextInput="TextBoxB_PreviewTextInput"/>
-		<Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5">
+				 TextChanged="TextBoxB_TextChanged"/>
+		<Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5">
 			<Button Content="Apply" Margin="0,0,70,10" Name="_buttonApply" HorizontalAlignment="Right"
 					VerticalAlignment="Bottom"
 				Click="ButtonApply_Click"/>

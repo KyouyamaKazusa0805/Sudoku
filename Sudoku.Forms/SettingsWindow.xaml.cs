@@ -345,7 +345,7 @@ namespace Sudoku.Forms
 				return;
 			}
 
-			_buttonCandidateColor.Background = new w::Media.SolidColorBrush(
+			_buttonFocusColor.Background = new w::Media.SolidColorBrush(
 				(Settings.FocusedCellColor = dialog.SelectedColor).ToWColor());
 		}
 
@@ -358,7 +358,7 @@ namespace Sudoku.Forms
 				return;
 			}
 
-			_buttonCandidateColor.Background = new w::Media.SolidColorBrush(
+			_buttonGridLineColor.Background = new w::Media.SolidColorBrush(
 				(Settings.GridLineColor = dialog.SelectedColor).ToWColor());
 		}
 
@@ -371,7 +371,7 @@ namespace Sudoku.Forms
 				return;
 			}
 
-			_buttonCandidateColor.Background = new w::Media.SolidColorBrush(
+			_buttonBlockLineColor.Background = new w::Media.SolidColorBrush(
 				(Settings.BlockLineColor = dialog.SelectedColor).ToWColor());
 		}
 

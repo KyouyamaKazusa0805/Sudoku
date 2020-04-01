@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Forms.Extensions;
@@ -77,52 +78,64 @@ namespace Sudoku.Forms.Tooling
 			Close();
 		}
 
-		private void TextBoxA_PreviewKeyDown(object sender, KeyEventArgs e)
+		private void TextBoxA_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			if (e.Key != Key.Back && e.Key != Key.Delete && !e.Key.IsDigit())
+			if (sender is TextBox textBox)
 			{
-				e.Handled = false;
-				return;
+				if (!byte.TryParse(textBox.Text, out byte value))
+				{
+					e.Handled = true;
+					return;
+				}
+
+				SelectedColor = Color.FromArgb(value, SelectedColor);
+				UpdatePreview();
 			}
 		}
 
-		private void TextBoxR_PreviewKeyDown(object sender, KeyEventArgs e)
+		private void TextBoxR_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			if (e.Key != Key.Back && e.Key != Key.Delete && !e.Key.IsDigit())
+			if (sender is TextBox textBox)
 			{
-				e.Handled = false;
-				return;
+				if (!byte.TryParse(textBox.Text, out byte value))
+				{
+					e.Handled = true;
+					return;
+				}
+
+				SelectedColor = Color.FromArgb(SelectedColor.A, value, SelectedColor.G, SelectedColor.B);
+				UpdatePreview();
 			}
 		}
 
-		private void TextBoxG_PreviewKeyDown(object sender, KeyEventArgs e)
+		private void TextBoxG_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			if (e.Key != Key.Back && e.Key != Key.Delete && !e.Key.IsDigit())
+			if (sender is TextBox textBox)
 			{
-				e.Handled = false;
-				return;
+				if (!byte.TryParse(textBox.Text, out byte value))
+				{
+					e.Handled = true;
+					return;
+				}
+
+				SelectedColor = Color.FromArgb(SelectedColor.A, SelectedColor.R, value, SelectedColor.B);
+				UpdatePreview();
 			}
 		}
 
-		private void TextBoxB_PreviewKeyDown(object sender, KeyEventArgs e)
+		private void TextBoxB_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			if (e.Key != Key.Back && e.Key != Key.Delete && !e.Key.IsDigit())
+			if (sender is TextBox textBox)
 			{
-				e.Handled = false;
-				return;
+				if (!byte.TryParse(textBox.Text, out byte value))
+				{
+					e.Handled = true;
+					return;
+				}
+
+				SelectedColor = Color.FromArgb(SelectedColor.A, SelectedColor.R, SelectedColor.G, value);
+				UpdatePreview();
 			}
 		}
-
-		private void TextBoxA_PreviewTextInput(object sender, TextCompositionEventArgs e) =>
-			e.Handled = byte.TryParse(e.Text, out _);
-
-		private void TextBoxR_PreviewTextInput(object sender, TextCompositionEventArgs e) =>
-			e.Handled = byte.TryParse(e.Text, out _);
-
-		private void TextBoxG_PreviewTextInput(object sender, TextCompositionEventArgs e) =>
-			e.Handled = byte.TryParse(e.Text, out _);
-
-		private void TextBoxB_PreviewTextInput(object sender, TextCompositionEventArgs e) =>
-			e.Handled = byte.TryParse(e.Text, out _);
 	}
 }

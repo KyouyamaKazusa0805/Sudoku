@@ -422,7 +422,7 @@ namespace Sudoku.Forms
 		/// with alpha <c>32</c>) in default case.
 		/// </para>
 		/// </summary>
-		public Color FocusedCellColor { get; set; } = Color.FromArgb(32, Color.Black);
+		public Color FocusedCellColor { get; set; } = Color.FromArgb(32, Color.Yellow);
 
 		/// <summary>
 		/// Indicates the elimination color.
