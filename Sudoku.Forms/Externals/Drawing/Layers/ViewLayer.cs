@@ -81,10 +81,14 @@ namespace Sudoku.Drawing.Layers
 			using var g = Graphics.FromImage(bitmap);
 			g.SmoothingMode = SmoothingMode.AntiAlias;
 
-			DrawCells(g, offset);
-			DrawCandidates(g, offset);
-			DrawRegions(g, offset);
-			DrawLinks(g, offset);
+			if (!(_view is null))
+			{
+				DrawCells(g, offset);
+				DrawCandidates(g, offset);
+				DrawRegions(g, offset);
+				DrawLinks(g, offset);
+			}
+
 			DrawEliminations(g, offset);
 
 			Target = bitmap;
@@ -112,7 +116,7 @@ namespace Sudoku.Drawing.Layers
 					case ConclusionType.Elimination:
 					{
 						g.FillEllipse(
-							_view.CandidateOffsets?.Any(pair => pair._candidateOffset == c * 9 + d) ?? false
+							_view?.CandidateOffsets?.Any(pair => pair._candidateOffset == c * 9 + d) ?? false
 								? cannibalBrush
 								: eliminationBrush,
 							_pointConverter.GetMousePointRectangle(c, d).Zoom(-offset / 3));

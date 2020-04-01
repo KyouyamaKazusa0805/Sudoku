@@ -578,6 +578,73 @@ namespace Sudoku.Forms
 			}
 		}
 
+		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+		private async void MenuItemAnalyzeBackdoorView_Click(object sender, RoutedEventArgs e)
+		{
+			await internalOperation();
+
+			async ValueTask internalOperation()
+			{
+				if (!_puzzle.IsValid(out _))
+				{
+					MessageBox.Show("The puzzle is invalid.", "Warning");
+					e.Handled = true;
+					return;
+				}
+
+				_textBoxInfo.Text =
+					"The program is running as quickly as possible to search " +
+					"all backdoors (at level 0 or 1). Please wait.";
+
+				var backdoors = new List<Conclusion>();
+				for (int level = 0; level <= 1; level++)
+				{
+					foreach (var backdoor in
+						await Task.Run(() => new BackdoorSearcher().SearchForBackdoorsExact(_puzzle, level)))
+					{
+						backdoors.AddRange(backdoor);
+					}
+				}
+
+				_textBoxInfo.ClearValue(TextBox.TextProperty);
+				if (!backdoors.Any())
+				{
+					MessageBox.Show(
+						"The puzzle does not have any backdoors whose level is 0 or 1, " +
+						"which means the puzzle can be solved difficultly with brute forces.", "Info");
+					e.Handled = true;
+					return;
+				}
+
+				var highlightCandidates = new List<(int, int)>();
+				int currentLevel = 0;
+				foreach (var (_, candidate) in backdoors)
+				{
+					highlightCandidates.Add((currentLevel, candidate));
+
+					currentLevel++;
+				}
+
+				_layerCollection.Add(
+					new ViewLayer(
+						_pointConverter,
+						new View(
+							null,
+							new List<(int, int)>(
+								from conclusion in backdoors
+								where conclusion.ConclusionType == ConclusionType.Assignment
+								select (0, conclusion.CellOffset * 9 + conclusion.Digit)),
+							null,
+							null),
+						backdoors,
+						Settings.PaletteColors, Settings.EliminationColor, DColor.Empty, DColor.Empty));
+
+				UpdateImageGrid();
+
+				_textBoxInfo.Text = $"All backdoor(s) at level 0 or 1: {ConclusionCollection.ToString(backdoors)}";
+			}
+		}
+
 		private void MenuItemAboutMe_Click(object sender, RoutedEventArgs e) =>
 			new AboutMeWindow().Show();
 

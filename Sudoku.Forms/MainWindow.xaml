@@ -129,10 +129,13 @@
 				<MenuItem Header="BUG + n search..." Name="_menuItemAnalyzeBugN"
 						  BorderBrush="GreenYellow" BorderThickness="2,2,2,2"
 						  Click="MenuItemAnalyzeBugN_Click"/>
-				<MenuItem Header="BUG + n view!" Name="_menuItemAnalyzeShowBugN"
-						  Click="MenuItemAnalyzeShowBugN_Click"/>
 				<MenuItem Header="Backdoor search..." Name="_menuItemAnalyzeBackdoor"
 						  Click="MenuItemAnalyzeBackdoor_Click"/>
+				<Separator/>
+				<MenuItem Header="True candidates view!" Name="_menuItemAnalyzeShowBugN"
+						  Click="MenuItemAnalyzeShowBugN_Click"/>
+				<MenuItem Header="Backdoor (level 0 &amp; 1) view!" Name="_menuItemAnalyzeBackdoorView"
+						  Click="MenuItemAnalyzeBackdoorView_Click"/>
 			</MenuItem>
 			
 			<!-- About... -->
