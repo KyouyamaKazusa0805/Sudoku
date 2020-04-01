@@ -3,12 +3,12 @@ using System.Linq;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
-using static Sudoku.Data.SymmetricalType;
+using static Sudoku.Data.SymmetryType;
 
 namespace Sudoku.Solving.Generating
 {
 	/// <summary>
-	/// Encapsulates a puzzle generator, which provides the symmetrical type constraint
+	/// Encapsulates a puzzle generator, which provides the symmetry type constraint
 	/// and the maximum clues constraint.
 	/// </summary>
 	public sealed class BasicPuzzleGenerator : DiggingPuzzleGenerator
@@ -21,22 +21,22 @@ namespace Sudoku.Solving.Generating
 		/// </summary>
 		/// <param name="max">The maximum hints of the puzzle.</param>
 		/// <param name="symmetricalType">
-		/// The symmetrical type flags. The <see cref="SymmetricalType"/> is
+		/// The symmetry type flags. The <see cref="SymmetryType"/> is
 		/// a flag type, you can use bit operators to accumulate multiple
 		/// symmetrical types such as <c><see cref="AntiDiagonal"/> | <see cref="Diagonal"/></c>,
 		/// which means that the solver will generate anti-diagonal type or
 		/// diagonal type puzzles.
 		/// </param>
 		/// <returns>The grid.</returns>
-		/// <seealso cref="SymmetricalType"/>
-		public IReadOnlyGrid Generate(int max, SymmetricalType symmetricalType)
+		/// <seealso cref="SymmetryType"/>
+		public IReadOnlyGrid Generate(int max, SymmetryType symmetricalType)
 		{
 			var puzzle = new StringBuilder(Grid.EmptyString);
 			var solution = new StringBuilder(Grid.EmptyString);
 			GenerateAnswerGrid(puzzle, solution);
 
 			// Now we remove some digits from the grid.
-			var allTypes = from st in EnumEx.GetValues<SymmetricalType>()
+			var allTypes = from st in EnumEx.GetValues<SymmetryType>()
 						   where st != None && symmetricalType.HasFlag(st)
 						   select st;
 			int count = allTypes.Count();

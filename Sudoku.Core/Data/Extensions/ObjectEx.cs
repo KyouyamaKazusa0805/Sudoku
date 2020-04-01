@@ -11,7 +11,7 @@ namespace Sudoku.Data.Extensions
 	/// Provides extension methods on <see cref="object"/>.
 	/// </summary>
 	/// <seealso cref="object"/>
-	[DebuggerStepThrough]
+	//[DebuggerStepThrough]
 	public static class ObjectEx
 	{
 		/// <summary>

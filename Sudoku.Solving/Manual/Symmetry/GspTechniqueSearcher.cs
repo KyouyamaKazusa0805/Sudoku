@@ -163,7 +163,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 							regionOffsets: null,
 							links: null)
 					},
-					symmetricalType: SymmetricalType.Diagonal,
+					symmetricalType: SymmetryType.Diagonal,
 					mappingTable: mapping));
 		}
 
@@ -296,7 +296,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 							regionOffsets: null,
 							links: null)
 					},
-					symmetricalType: SymmetricalType.AntiDiagonal,
+					symmetricalType: SymmetryType.AntiDiagonal,
 					mappingTable: mapping));
 		}
 
@@ -320,7 +320,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 				bool condition = grid.GetCellStatus(cell) == CellStatus.Empty;
 				if (condition ^ grid.GetCellStatus(anotherCell) == CellStatus.Empty)
 				{
-					// One of two cell is empty, not central symmetrical type.
+					// One of two cell is empty, not central symmetry type.
 					return;
 				}
 
@@ -385,7 +385,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 									regionOffsets: null,
 									links: null)
 							},
-							symmetricalType: SymmetricalType.Central,
+							symmetricalType: SymmetryType.Central,
 							mappingTable: mapping));
 
 					return;

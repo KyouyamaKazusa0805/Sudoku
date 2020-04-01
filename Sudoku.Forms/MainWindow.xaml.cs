@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -417,11 +419,17 @@ namespace Sudoku.Forms
 			_menuItemAnalyzeOptimizeApplyingOrder.IsChecked = Settings.OptimizedApplyingOrder;
 			_menuItemAnalyzeUseCalculationPriority.IsChecked = Settings.UseCalculationPriority;
 			_menuItemAnalyzeCheckConclusionValidityAfterSearched.IsChecked = Settings.CheckConclusionValidityAfterSearched;
-			
+
 			_manualSolver = Settings.MainManualSolver;
 
 			//_comboBoxDifficulty.ItemsSource = EnumEx.GetValues<DifficultyLevel>();
-			_comboBoxSymmetry.ItemsSource = EnumEx.GetValues<SymmetricalType>();
+			_comboBoxSymmetry.ItemsSource =
+				from field in EnumEx.GetValues<SymmetryType>()
+				select new PrimaryElementTuple<string, SymmetryType>(
+					typeof(SymmetryType)
+						.GetField(Enum.GetName(typeof(SymmetryType), field)!)!
+						.GetCustomAttribute<NameAttribute>()!
+						.Name, field);
 			_comboBoxSymmetry.SelectedIndex = Settings.GeneratingSymmetryModeComboBoxSelectedIndex;
 			if ((_comboBoxMode.SelectedIndex = Settings.GeneratingModeComboBoxSelectedIndex) != 0)
 			{
@@ -467,6 +475,7 @@ namespace Sudoku.Forms
 		/// <summary>
 		/// Update undo and redo controls.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void UpdateUndoRedoControls()
 		{
 			_imageUndoIcon.Source =

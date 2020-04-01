@@ -3109,54 +3109,54 @@
         <member name="M:Sudoku.Data.Stepping.UnfixStep.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Data.SymmetricalType">
+        <member name="T:Sudoku.Data.SymmetryType">
             <summary>
-            Define a symmetrical type.
+            Define a symmetry type.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.SymmetricalType.None">
+        <member name="F:Sudoku.Data.SymmetryType.None">
             <summary>
-            Indicates none of symmetrical type.
+            Indicates none of symmetry type.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.SymmetricalType.Central">
+        <member name="F:Sudoku.Data.SymmetryType.Central">
             <summary>
-            Indicates the central symmetrical type.
+            Indicates the central symmetry type.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.SymmetricalType.Diagonal">
+        <member name="F:Sudoku.Data.SymmetryType.Diagonal">
             <summary>
-            Indicates the diagonal symmetrical type.
+            Indicates the diagonal symmetry type.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.SymmetricalType.AntiDiagonal">
+        <member name="F:Sudoku.Data.SymmetryType.AntiDiagonal">
             <summary>
-            Indicates the anti-diagonal symmetrical type.
+            Indicates the anti-diagonal symmetry type.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.SymmetricalType.XAxis">
+        <member name="F:Sudoku.Data.SymmetryType.XAxis">
             <summary>
-            Indicates the x-axis symmetrical type.
+            Indicates the x-axis symmetry type.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.SymmetricalType.YAxis">
+        <member name="F:Sudoku.Data.SymmetryType.YAxis">
             <summary>
-            Indicates the y-axis symmetrical type.
+            Indicates the y-axis symmetry type.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.SymmetricalType.AxisBoth">
+        <member name="F:Sudoku.Data.SymmetryType.AxisBoth">
             <summary>
-            Indicates both X-axis and Y-axis type.
+            Indicates both X-axis and Y-axis symmetry types.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.SymmetricalType.DiagonalBoth">
+        <member name="F:Sudoku.Data.SymmetryType.DiagonalBoth">
             <summary>
-            Indicates both diagonal and anti-diagonal type.
+            Indicates both diagonal and anti-diagonal symmetry types.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.SymmetricalType.All">
+        <member name="F:Sudoku.Data.SymmetryType.All">
             <summary>
-            Indicates all symmetrical types should be satisfied.
+            Indicates all symmetry types should be satisfied.
             </summary>
         </member>
         <member name="T:Sudoku.Data.ValueChangedEventArgs">

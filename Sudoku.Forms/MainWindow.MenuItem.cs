@@ -312,7 +312,7 @@ namespace Sudoku.Forms
 
 				// These two value should be assigned first, rather than 
 				// inlining in the asynchronized environment.
-				var symmetry = (SymmetricalType)_comboBoxSymmetry.SelectedItem;
+				var symmetry = ((PrimaryElementTuple<string, SymmetryType>)_comboBoxSymmetry.SelectedItem).Value2;
 				//var diff = (DifficultyLevel)_comboBoxDifficulty.SelectedItem;
 				Puzzle = new UndoableGrid(
 					await Task.Run(() => new BasicPuzzleGenerator().Generate(33, symmetry)));

@@ -17,19 +17,19 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// </summary>
 		/// <param name="conclusions">All conclusions.</param>
 		/// <param name="views">All views.</param>
-		/// <param name="symmetricalType">The symmetrical type.</param>
+		/// <param name="symmetricalType">The symmetry type.</param>
 		/// <param name="mappingTable">The mapping table.</param>
 		public GspTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			SymmetricalType symmetricalType, int?[] mappingTable)
+			SymmetryType symmetricalType, int?[] mappingTable)
 			: base(conclusions, views) =>
 			(SymmetricalType, MappingTable) = (symmetricalType, mappingTable);
 
 
 		/// <summary>
-		/// Indicates the symmetrical type.
+		/// Indicates the symmetry type.
 		/// </summary>
-		public SymmetricalType SymmetricalType { get; }
+		public SymmetryType SymmetricalType { get; }
 
 		/// <summary>
 		/// Indicates the mapping table.

@@ -974,27 +974,27 @@
         </member>
         <member name="T:Sudoku.Solving.Generating.BasicPuzzleGenerator">
             <summary>
-            Encapsulates a puzzle generator, which provides the symmetrical type constraint
+            Encapsulates a puzzle generator, which provides the symmetry type constraint
             and the maximum clues constraint.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Generating.BasicPuzzleGenerator.Generate">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Generating.BasicPuzzleGenerator.Generate(System.Int32,Sudoku.Data.SymmetricalType)">
+        <member name="M:Sudoku.Solving.Generating.BasicPuzzleGenerator.Generate(System.Int32,Sudoku.Data.SymmetryType)">
             <summary>
             Generate a puzzle with the specified information.
             </summary>
             <param name="max">The maximum hints of the puzzle.</param>
             <param name="symmetricalType">
-            The symmetrical type flags. The <see cref="T:Sudoku.Data.SymmetricalType"/> is
+            The symmetry type flags. The <see cref="T:Sudoku.Data.SymmetryType"/> is
             a flag type, you can use bit operators to accumulate multiple
-            symmetrical types such as <c><see cref="F:Sudoku.Data.SymmetricalType.AntiDiagonal"/> | <see cref="F:Sudoku.Data.SymmetricalType.Diagonal"/></c>,
+            symmetrical types such as <c><see cref="F:Sudoku.Data.SymmetryType.AntiDiagonal"/> | <see cref="F:Sudoku.Data.SymmetryType.Diagonal"/></c>,
             which means that the solver will generate anti-diagonal type or
             diagonal type puzzles.
             </param>
             <returns>The grid.</returns>
-            <seealso cref="T:Sudoku.Data.SymmetricalType"/>
+            <seealso cref="T:Sudoku.Data.SymmetryType"/>
         </member>
         <member name="M:Sudoku.Solving.Generating.BasicPuzzleGenerator.CreatePattern(System.Int32[])">
             <inheritdoc/>
@@ -4017,18 +4017,18 @@
             Provides a usage of <b>Gurth's symmetrical placement</b> (GSP) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.GspTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.SymmetricalType,System.Nullable{System.Int32}[])">
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GspTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.SymmetryType,System.Nullable{System.Int32}[])">
             <summary>
             Initializes an instance with the specified information.
             </summary>
             <param name="conclusions">All conclusions.</param>
             <param name="views">All views.</param>
-            <param name="symmetricalType">The symmetrical type.</param>
+            <param name="symmetricalType">The symmetry type.</param>
             <param name="mappingTable">The mapping table.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Symmetry.GspTechniqueInfo.SymmetricalType">
             <summary>
-            Indicates the symmetrical type.
+            Indicates the symmetry type.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Symmetry.GspTechniqueInfo.MappingTable">
