@@ -119,7 +119,6 @@ namespace Sudoku.Forms
 		/// <seealso cref="_puzzle"/>
 		private UndoableGrid Puzzle
 		{
-			get => _puzzle;
 			set
 			{
 				_layerCollection.Add(
@@ -184,7 +183,7 @@ namespace Sudoku.Forms
 					_pointConverter, Settings.ValueScale, Settings.CandidateScale,
 					Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
 					Settings.GivenFontName, Settings.ModifiableFontName,
-					Settings.CandidateFontName, Puzzle, Settings.ShowCandidates));
+					Settings.CandidateFontName, _puzzle, Settings.ShowCandidates));
 
 			UpdateControls();
 		}
@@ -220,7 +219,7 @@ namespace Sudoku.Forms
 					return;
 				}
 
-				Puzzle[_pointConverter.GetCellOffset(pt.ToDPointF())] =
+				_puzzle[_pointConverter.GetCellOffset(pt.ToDPointF())] =
 					e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1;
 
 				UpdateUndoRedoControls();
@@ -393,7 +392,7 @@ namespace Sudoku.Forms
 			try
 			{
 				// Even though the value is null, the formatter can be processed.
-				Clipboard.SetText(Puzzle.ToString(format!));
+				Clipboard.SetText(_puzzle.ToString(format!));
 			}
 			catch (ArgumentNullException ex)
 			{
@@ -468,12 +467,12 @@ namespace Sudoku.Forms
 			_imageUndoIcon.Source =
 				new BitmapImage(
 					new Uri(
-						$"Resources/ImageIcon-Undo{((_menuItemUndo.IsEnabled = Puzzle.HasUndoSteps) ? string.Empty : "Disable")}.png",
+						$"Resources/ImageIcon-Undo{((_menuItemUndo.IsEnabled = _puzzle.HasUndoSteps) ? string.Empty : "Disable")}.png",
 						UriKind.Relative));
 			_imageRedoIcon.Source =
 				new BitmapImage(
 					new Uri(
-						$"Resources/ImageIcon-Redo{((_menuItemRedo.IsEnabled = Puzzle.HasRedoSteps) ? string.Empty : "Disable")}.png",
+						$"Resources/ImageIcon-Redo{((_menuItemRedo.IsEnabled = _puzzle.HasRedoSteps) ? string.Empty : "Disable")}.png",
 						UriKind.Relative));
 		}
 

@@ -69,7 +69,7 @@ namespace Sudoku.Forms
 			}
 
 			using var sw = new StreamWriter(dialog.FileName);
-			sw.Write(Puzzle.ToString("#"));
+			sw.Write(_puzzle.ToString("#"));
 		}
 
 		private void MenuItemBackupConfig_Click(object sender, RoutedEventArgs e)
@@ -123,7 +123,7 @@ namespace Sudoku.Forms
 					_pointConverter, Settings.ValueScale, Settings.CandidateScale,
 					Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
 					Settings.GivenFontName, Settings.ModifiableFontName,
-					Settings.CandidateFontName, Puzzle,
+					Settings.CandidateFontName, _puzzle,
 					Settings.ShowCandidates = _menuItemOptionsShowCandidates.IsChecked ^= true));
 
 			UpdateImageGrid();
@@ -145,9 +145,9 @@ namespace Sudoku.Forms
 
 		private void MenuItemEditUndo_Click(object sender, RoutedEventArgs e)
 		{
-			if (Puzzle.HasUndoSteps)
+			if (_puzzle.HasUndoSteps)
 			{
-				Puzzle.Undo();
+				_puzzle.Undo();
 				UpdateImageGrid();
 			}
 
@@ -156,9 +156,9 @@ namespace Sudoku.Forms
 
 		private void MenuItemEditRedo_Click(object sender, RoutedEventArgs e)
 		{
-			if (Puzzle.HasRedoSteps)
+			if (_puzzle.HasRedoSteps)
 			{
-				Puzzle.Redo();
+				_puzzle.Redo();
 				UpdateImageGrid();
 			}
 
@@ -181,9 +181,9 @@ namespace Sudoku.Forms
 				return;
 			}
 
-			Puzzle = new UndoableGrid(grid);
-			Puzzle.Unfix();
-			Puzzle.ClearStack();
+			_puzzle = new UndoableGrid(grid);
+			_puzzle.Unfix();
+			_puzzle.ClearStack();
 
 			UpdateImageGrid();
 			UpdateUndoRedoControls();
@@ -201,7 +201,7 @@ namespace Sudoku.Forms
 		{
 			try
 			{
-				Clipboard.SetText(Puzzle.ToString(GridOutputOptions.HodokuCompatible));
+				Clipboard.SetText(_puzzle.ToString(GridOutputOptions.HodokuCompatible));
 			}
 			catch (Exception ex)
 			{
@@ -230,7 +230,7 @@ namespace Sudoku.Forms
 
 		private void MenuItemEditFix_Click(object sender, RoutedEventArgs e)
 		{
-			Puzzle.Fix();
+			_puzzle.Fix();
 
 			UpdateImageGrid();
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
@@ -239,7 +239,7 @@ namespace Sudoku.Forms
 
 		private void MenuItemEditUnfix_Click(object sender, RoutedEventArgs e)
 		{
-			Puzzle.Unfix();
+			_puzzle.Unfix();
 
 			UpdateImageGrid();
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
@@ -362,9 +362,9 @@ namespace Sudoku.Forms
 					return;
 				}
 
-				Puzzle = new UndoableGrid(grid);
-				Puzzle.Unfix();
-				Puzzle.ClearStack();
+				_puzzle = new UndoableGrid(grid);
+				_puzzle.Unfix();
+				_puzzle.ClearStack();
 
 				UpdateImageGrid();
 				UpdateUndoRedoControls();
