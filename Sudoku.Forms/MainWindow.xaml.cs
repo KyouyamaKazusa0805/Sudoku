@@ -409,7 +409,7 @@ namespace Sudoku.Forms
 		private void UpdateControls()
 		{
 			_menuItemOptionsShowCandidates.IsChecked = Settings.ShowCandidates;
-			_menuItemAnalyzeSeMode.IsChecked = Settings.SeMode;
+			_menuItemAnalyzeSeMode.IsChecked = Settings.AnalyzeDifficultyStrictly;
 			_menuItemAnalyzeFastSearch.IsChecked = Settings.FastSearch;
 			_menuItemAnalyzeCheckGurthSymmetricalPlacement.IsChecked = Settings.CheckGurthSymmetricalPlacement;
 			_menuItemAnalyzeShowFullHouses.IsChecked = Settings.EnableFullHouse;
@@ -417,11 +417,16 @@ namespace Sudoku.Forms
 			_menuItemAnalyzeOptimizeApplyingOrder.IsChecked = Settings.OptimizedApplyingOrder;
 			_menuItemAnalyzeUseCalculationPriority.IsChecked = Settings.UseCalculationPriority;
 			_menuItemAnalyzeCheckConclusionValidityAfterSearched.IsChecked = Settings.CheckConclusionValidityAfterSearched;
-
+			
 			_manualSolver = Settings.MainManualSolver;
 
 			//_comboBoxDifficulty.ItemsSource = EnumEx.GetValues<DifficultyLevel>();
 			_comboBoxSymmetry.ItemsSource = EnumEx.GetValues<SymmetricalType>();
+			_comboBoxSymmetry.SelectedIndex = Settings.GeneratingSymmetryModeComboBoxSelectedIndex;
+			if ((_comboBoxMode.SelectedIndex = Settings.GeneratingModeComboBoxSelectedIndex) != 0)
+			{
+				_comboBoxSymmetry.Visibility = Visibility.Hidden;
+			}
 
 			UpdateImageGrid();
 		}

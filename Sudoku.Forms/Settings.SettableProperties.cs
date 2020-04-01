@@ -34,7 +34,7 @@ namespace Sudoku.Forms
 		/// their difficulty ratings.
 		/// </para>
 		/// </summary>
-		public bool SeMode { get; set; } = false;
+		public bool AnalyzeDifficultyStrictly { get; set; } = false;
 
 		/// <summary>
 		/// <para>
@@ -320,6 +320,22 @@ namespace Sudoku.Forms
 		/// is too low so I do not allow them.
 		/// </remarks>
 		public int CheckRegularWingSize { get; set; } = 5;
+
+		/// <summary>
+		/// <para>
+		/// Indicates which item you selected the generating combo box.
+		/// </para>
+		/// <para>The default value is <c>0</c>.</para>
+		/// </summary>
+		public int GeneratingModeComboBoxSelectedIndex { get; set; } = 0;
+
+		/// <summary>
+		/// <para>
+		/// Indicates which item you selected the generating symmetry combo box.
+		/// </para>
+		/// <para>The default value is <c>0</c>.</para>
+		/// </summary>
+		public int GeneratingSymmetryModeComboBoxSelectedIndex { get; set; } = 0;
 
 		/// <summary>
 		/// <para>Indicates the scale of values.</para>

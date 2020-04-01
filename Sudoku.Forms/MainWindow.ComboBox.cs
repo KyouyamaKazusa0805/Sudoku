@@ -13,7 +13,7 @@ namespace Sudoku.Forms
 			if (sender is ComboBox comboBox
 				&& !(_labelSymmetry is null) && !(_comboBoxSymmetry is null))
 			{
-				switch (comboBox.SelectedIndex)
+				switch (Settings.GeneratingModeComboBoxSelectedIndex = comboBox.SelectedIndex)
 				{
 					case 0: // Symmetry mode.
 					{
@@ -34,6 +34,14 @@ namespace Sudoku.Forms
 						return;
 					}
 				}
+			}
+		}
+
+		private void ComboBoxSymmetry_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (sender is ComboBox comboBox)
+			{
+				Settings.GeneratingSymmetryModeComboBoxSelectedIndex = comboBox.SelectedIndex;
 			}
 		}
 	}

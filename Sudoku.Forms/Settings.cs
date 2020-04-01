@@ -3,7 +3,7 @@
 namespace Sudoku.Forms
 {
 	/// <summary>
-	/// To encapsulates a series of setting options for <see cref="MainForm"/> utility.
+	/// To encapsulates a series of setting options for <see cref="MainWindow"/> utility.
 	/// </summary>
 	[Serializable]
 	public sealed partial class Settings : ICloneable<Settings>
@@ -41,8 +41,5 @@ namespace Sudoku.Forms
 
 			return resultInstance;
 		}
-
-		/// <inheritdoc/>
-		object ICloneable.Clone() => Clone();
 	}
 }

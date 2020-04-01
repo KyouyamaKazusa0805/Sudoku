@@ -157,14 +157,15 @@
 			<ComboBox Name="_comboBoxDifficulty" SelectedIndex="0"/>
 			-->
 			<Label Content="Mode:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-			<ComboBox Name="_comboBoxMode" SelectedIndex="0"
+			<ComboBox Name="_comboBoxMode"
 					  SelectionChanged="ComboBoxMode_SelectionChanged">
 				<ComboBoxItem Content="Symmetry pattern" Name="_comboBoxItemSymmetryMode"/>
 				<ComboBoxItem Content="Hard pattern" Name="_comboBoxItemHardMode"/>
 			</ComboBox>
 			<Label Content="Symmetry:" HorizontalAlignment="Left" VerticalAlignment="Center"
 				   Name="_labelSymmetry"/>
-			<ComboBox Name="_comboBoxSymmetry" SelectedIndex="0"/>
+			<ComboBox Name="_comboBoxSymmetry"
+					  SelectionChanged="ComboBoxSymmetry_SelectionChanged"/>
 			<Separator/>
 			<Image Source="Resources\Solve.png" Name="_imageSolve"
 				   Cursor="Hand"

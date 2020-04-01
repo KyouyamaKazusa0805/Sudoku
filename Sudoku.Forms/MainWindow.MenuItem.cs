@@ -483,7 +483,7 @@ namespace Sudoku.Forms
 		}
 
 		private void MenuItemAnalyzeSeMode_Click(object sender, RoutedEventArgs e) =>
-			_manualSolver.AnalyzeDifficultyStrictly = _menuItemAnalyzeSeMode.IsChecked = Settings.SeMode ^= true;
+			_manualSolver.AnalyzeDifficultyStrictly = _menuItemAnalyzeSeMode.IsChecked = Settings.AnalyzeDifficultyStrictly ^= true;
 
 		private void MenuItemAnalyzeFastSearch_Click(object sender, RoutedEventArgs e) =>
 			_manualSolver.FastSearch = _menuItemAnalyzeFastSearch.IsChecked = Settings.FastSearch ^= true;
