@@ -29,8 +29,7 @@ namespace Sudoku.Forms.Drawing.Layers
 		/// <param name="pointConverter">The point converter.</param>
 		/// <param name="cells">The cells.</param>
 		/// <param name="color">The colors.</param>
-		public FocusLayer(
-			PointConverter pointConverter, GridMap cells, Color color)
+		public FocusLayer(PointConverter pointConverter, GridMap cells, Color color)
 			: base(pointConverter) => (_color, _cells) = (color, cells);
 
 
