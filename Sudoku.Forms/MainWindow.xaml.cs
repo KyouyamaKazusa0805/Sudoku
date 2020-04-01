@@ -149,20 +149,21 @@ namespace Sudoku.Forms
 			base.OnInitialized(e);
 
 			// Define shortcuts.
-			AddShortCut(Key.C, ModifierKeys.Control, MenuItemEditCopy_Click);
-			AddShortCut(Key.H, ModifierKeys.Control, MenuItemGenerateHardPattern_Click);
-			AddShortCut(Key.O, ModifierKeys.Control, MenuItemFileOpen_Click);
-			AddShortCut(Key.P, ModifierKeys.Control, MenuItemFileGetSnapshot_Click);
-			AddShortCut(Key.S, ModifierKeys.Control, MenuItemFileSave_Click);
-			AddShortCut(Key.V, ModifierKeys.Control, MenuItemEditPaste_Click);
-			AddShortCut(Key.Y, ModifierKeys.Control, MenuItemEditRedo_Click);
-			AddShortCut(Key.Z, ModifierKeys.Control, MenuItemEditUndo_Click);
-			AddShortCut(Key.F4, ModifierKeys.Alt, MenuItemFileQuit_Click);
-			AddShortCut(Key.F9, ModifierKeys.None, MenuItemAnalyzeSolve_Click);
-			AddShortCut(Key.OemTilde, ModifierKeys.Control, MenuItemEditFix_Click);
-			AddShortCut(Key.N, ModifierKeys.Control | ModifierKeys.Shift, MenuItemEditClear_Click);
-			AddShortCut(Key.C, ModifierKeys.Control | ModifierKeys.Shift, MenuItemEditCopyCurrentGrid_Click);
-			AddShortCut(Key.OemTilde, ModifierKeys.Control | ModifierKeys.Shift, MenuItemEditUnfix_Click);
+			AddShortCut(Key.C, ModifierKeys.Control, null, MenuItemEditCopy_Click);
+			AddShortCut(Key.H, ModifierKeys.Control, _menuItemGenerateHardPattern, MenuItemGenerateHardPattern_Click);
+			AddShortCut(Key.O, ModifierKeys.Control, _menuItemFileOpen, MenuItemFileOpen_Click);
+			AddShortCut(Key.P, ModifierKeys.Control, null, MenuItemFileGetSnapshot_Click);
+			AddShortCut(Key.S, ModifierKeys.Control, null, MenuItemFileSave_Click);
+			AddShortCut(Key.V, ModifierKeys.Control, _menuItemEditPaste, MenuItemEditPaste_Click);
+			AddShortCut(Key.Y, ModifierKeys.Control, _menuItemEditRedo, MenuItemEditRedo_Click);
+			AddShortCut(Key.Z, ModifierKeys.Control, _menuItemEditUndo, MenuItemEditUndo_Click);
+			AddShortCut(Key.F5, ModifierKeys.Control, _menuItemEditRecomputeCandidates, MenuItemEditRecomputeCandidates_Click);
+			AddShortCut(Key.OemTilde, ModifierKeys.Control, _menuItemEditFix, MenuItemEditFix_Click);
+			AddShortCut(Key.F9, ModifierKeys.None, _menuItemAnalyzeSolve, MenuItemAnalyzeSolve_Click);
+			AddShortCut(Key.F4, ModifierKeys.Alt, null, MenuItemFileQuit_Click);
+			AddShortCut(Key.N, ModifierKeys.Control | ModifierKeys.Shift, _menuItemEditClear, MenuItemEditClear_Click);
+			AddShortCut(Key.C, ModifierKeys.Control | ModifierKeys.Shift, null, MenuItemEditCopyCurrentGrid_Click);
+			AddShortCut(Key.OemTilde, ModifierKeys.Control | ModifierKeys.Shift, _menuItemEditUnfix, MenuItemEditUnfix_Click);
 
 			// Initializes some controls.
 			Title = $"{SolutionName} Ver {Version}";
@@ -369,13 +370,30 @@ namespace Sudoku.Forms
 		/// </summary>
 		/// <param name="key">The key.</param>
 		/// <param name="modifierKeys">The modifiers.</param>
+		/// <param name="matchControl">
+		/// The matching control. The hot-key can be executed if and only if this control
+		/// is enabled, in other words, the <see cref="UIElement.IsEnabled"/>
+		/// is <see langword="true"/>.
+		/// </param>
 		/// <param name="executed">The execution.</param>
+		/// <seealso cref="UIElement.IsEnabled"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void AddShortCut(Key key, ModifierKeys modifierKeys, ExecutedRoutedEventHandler executed)
+		private void AddShortCut(
+			Key key, ModifierKeys modifierKeys, UIElement? matchControl,
+			ExecutedRoutedEventHandler executed)
 		{
 			var routedCommand = new RoutedCommand();
 			routedCommand.InputGestures.Add(new KeyGesture(key, modifierKeys));
-			CommandBindings.Add(new CommandBinding(routedCommand, executed));
+			CommandBindings.Add(
+				new CommandBinding(
+					routedCommand,
+					(sender, e) =>
+					{
+						if (matchControl?.IsEnabled ?? true)
+						{
+							executed(sender, e);
+						}
+					}));
 		}
 
 		/// <summary>
@@ -450,7 +468,7 @@ namespace Sudoku.Forms
 			{
 				Puzzle = new UndoableGrid(SudokuGrid.Parse(puzzleStr));
 
-				_menuItemUndo.IsEnabled = _menuItemRedo.IsEnabled = false;
+				_menuItemEditUndo.IsEnabled = _menuItemEditRedo.IsEnabled = false;
 				UpdateImageGrid();
 			}
 			catch (ArgumentException)
@@ -481,12 +499,12 @@ namespace Sudoku.Forms
 			_imageUndoIcon.Source =
 				new BitmapImage(
 					new Uri(
-						$"Resources/ImageIcon-Undo{((_menuItemUndo.IsEnabled = _puzzle.HasUndoSteps) ? string.Empty : "Disable")}.png",
+						$"Resources/ImageIcon-Undo{((_menuItemEditUndo.IsEnabled = _puzzle.HasUndoSteps) ? string.Empty : "Disable")}.png",
 						UriKind.Relative));
 			_imageRedoIcon.Source =
 				new BitmapImage(
 					new Uri(
-						$"Resources/ImageIcon-Redo{((_menuItemRedo.IsEnabled = _puzzle.HasRedoSteps) ? string.Empty : "Disable")}.png",
+						$"Resources/ImageIcon-Redo{((_menuItemEditRedo.IsEnabled = _puzzle.HasRedoSteps) ? string.Empty : "Disable")}.png",
 						UriKind.Relative));
 		}
 

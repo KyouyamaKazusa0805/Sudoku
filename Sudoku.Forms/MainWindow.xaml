@@ -55,10 +55,12 @@
 			
 			<!-- Edit... -->
 			<MenuItem Header="Edit">
-				<MenuItem Header="Undo" InputGestureText="Ctrl + Z" Name="_menuItemUndo" IsEnabled="False"
+				<MenuItem Header="Undo" InputGestureText="Ctrl + Z" Name="_menuItemEditUndo" IsEnabled="False"
 						  Click="MenuItemEditUndo_Click"/>
-				<MenuItem Header="Redo" InputGestureText="Ctrl + Y" Name="_menuItemRedo" IsEnabled="False"
+				<MenuItem Header="Redo" InputGestureText="Ctrl + Y" Name="_menuItemEditRedo" IsEnabled="False"
 						  Click="MenuItemEditRedo_Click"/>
+				<MenuItem Header="Clear undo &amp; redo steps" Name="_menuItemClearStack"
+						  Click="MenuItemClearStack_Click"/>
 				<MenuItem Header="Re-compute candidates manually" InputGestureText="F5"
 						  Name="_menuItemEditRecomputeCandidates"
 						  Click="MenuItemEditRecomputeCandidates_Click"/>
@@ -78,9 +80,6 @@
 						  Click="MenuItemEditFix_Click"/>
 				<MenuItem Header="Unfix grid" InputGestureText="Ctrl + Shift + `" Name="_menuItemEditUnfix"
 						  Click="MenuItemEditUnfix_Click"/>
-				<Separator/>
-				<MenuItem Header="Clear undo &amp; redo steps" Name="_menuItemClearStack"
-						  Click="MenuItemClearStack_Click"/>
 				<Separator/>
 				<MenuItem Header="Reset grid" Name="_menuItemEditReset" BorderBrush="Red"
 						  BorderThickness="2,2,2,2"
