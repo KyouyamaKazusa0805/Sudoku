@@ -2,6 +2,7 @@
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Solving.Extensions;
 using static Sudoku.Solving.Utils.PatternOverlayMethodUtils;
 
 namespace Sudoku.Solving.Manual.LastResorts
@@ -20,21 +21,22 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <summary>
 		/// Indicates whether the technique is enabled.
 		/// </summary>
-		public static bool IsEnabled { get; set; } = false;
+		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>
 		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
+			(_, _, var digitDistributions) = grid;
 			for (int digit = 0; digit < 9; digit++)
 			{
 				int count = 0;
-				var valueCells = new List<int>();
+				var valueCellsMap = GridMap.Empty;
 				for (int cell = 0; cell < 81; cell++)
 				{
 					if (grid.GetCellStatus(cell) != CellStatus.Empty && grid[cell] == digit)
 					{
-						valueCells.Add(cell);
+						valueCellsMap.Add(cell);
 						count++;
 					}
 				}
@@ -50,18 +52,23 @@ namespace Sudoku.Solving.Manual.LastResorts
 				var filters = new List<GridMap>();
 				foreach (var template in Templates)
 				{
-					var templateCells = template.Offsets;
-					if (valueCells.Any(c => !templateCells.Contains(c)))
+					if ((valueCellsMap & template).IsNotEmpty
+						|| template.Offsets.Any(c => grid.GetCellStatus(c) != CellStatus.Empty && grid[c] != digit))
 					{
 						continue;
 					}
 
-					if (templateCells.Any(c => grid.GetCellStatus(c) != CellStatus.Empty && grid[c] != digit))
+					if (valueCellsMap.Count != 0
+						&& valueCellsMap.Offsets.Any(c => (new GridMap(c, false) & template).IsNotEmpty))
 					{
 						continue;
 					}
 
 					filters.Add(template);
+				}
+				if (filters.Count == 0)
+				{
+					continue;
 				}
 
 				// Iterate on filters.
@@ -73,15 +80,9 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 				// Search for all uncover cells.
 				var conclusions = new List<Conclusion>();
-				foreach (int cell in (~unionMap).Offsets)
+				foreach (int cell in (digitDistributions[digit] - unionMap).Offsets)
 				{
-					if (grid.GetCellStatus(cell) != CellStatus.Empty || grid[cell, digit])
-					{
-						continue;
-					}
-
-					conclusions.Add(
-						new Conclusion(ConclusionType.Elimination, cell, digit));
+					conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, digit));
 				}
 
 				if (conclusions.Count == 0)
@@ -92,14 +93,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				accumulator.Add(
 					new PomTechniqueInfo(
 						conclusions,
-						views: new[]
-						{
-							new View(
-								cellOffsets: null,
-								candidateOffsets: null,
-								regionOffsets: null,
-								links: null)
-						}));
+						views: new[] { new View() }));
 			}
 		}
 	}
