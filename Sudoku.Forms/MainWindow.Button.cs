@@ -37,6 +37,7 @@ namespace Sudoku.Forms
 				var techniqueGroups = await new StepFinder(Settings).SearchAsync(_puzzle);
 
 				EnableSolvingControls();
+				SwitchOnGeneratingComboBoxesDisplaying();
 				_buttonFindAllSteps.IsEnabled = true;
 				_textBoxInfo.ClearValue(TextBox.TextProperty);
 
