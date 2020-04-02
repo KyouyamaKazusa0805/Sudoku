@@ -144,10 +144,6 @@ namespace Sudoku.Drawing.Layers
 				return;
 			}
 
-			#region Obsolete code
-			//var drawedLinks = new List<DrawingLine>();
-			#endregion
-
 			// Record all points used.
 			var points = new HashSet<PointF>();
 			foreach (var inference in _view.Links)
@@ -261,34 +257,6 @@ namespace Sudoku.Drawing.Layers
 					// Draw the link.
 					g.DrawLine(pen, pt1, pt2);
 				}
-
-				#region Obsolete code
-				//var line = new DrawingLine((int)pt1x, (int)pt1y, (int)pt2x, (int)pt2y);
-				//bool hasOverlapped = false;
-				//foreach (var drawedLink in drawedLinks)
-				//{
-				//	if (line.Overlaps(drawedLink))
-				//	{
-				//		hasOverlapped = true;
-				//		break;
-				//	}
-				//}
-				//
-				//if (hasOverlapped)
-				//{
-				//
-				//}
-				//else
-				//{
-				//	// Now cut the link.
-				//	CutLink(ref pt1, ref pt2, offset, cw, ch, pt1x, pt1y, pt2x, pt2y);
-				//
-				//	// Draw the link.
-				//	g.DrawLine(pen, pt1, pt2);
-				//}
-				//
-				//drawedLinks.Add(line);
-				#endregion
 			}
 		}
 
