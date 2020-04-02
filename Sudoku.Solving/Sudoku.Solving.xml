@@ -2999,6 +2999,20 @@
         <member name="M:Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher.GetInvalidPos(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap[])">
+            <summary>
+            Get all invalid positions.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digitDistributions">The distributions for each digit.</param>
+            <returns>The 9 maps for invalid positions of each digit.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher.GetTemplates">
+            <summary>
+            Get templates.
+            </summary>
+            <returns>The templates.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo">
             <summary>
             Provides a usage of <b>template</b> technique.

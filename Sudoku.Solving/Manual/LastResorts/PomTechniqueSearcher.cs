@@ -3,7 +3,6 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Solving.Extensions;
-using static Sudoku.Solving.Utils.PatternOverlayMethodUtils;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {
@@ -28,72 +27,128 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			(_, _, var digitDistributions) = grid;
+			var templates = GetInvalidPos(grid, digitDistributions);
 			for (int digit = 0; digit < 9; digit++)
 			{
-				int count = 0;
-				var valueCellsMap = GridMap.Empty;
-				for (int cell = 0; cell < 81; cell++)
-				{
-					if (grid.GetCellStatus(cell) != CellStatus.Empty && grid[cell] == digit)
-					{
-						valueCellsMap.Add(cell);
-						count++;
-					}
-				}
-
-				if (count == 9)
-				{
-					// All placements of a single digit are values.
-					continue;
-				}
-
-				// Enumerate on all 46656 templates.
-				// 46656 = 9 * 6 * 3 * 6 * 4 * 2 * 3 * 2 * 1.
-				var filters = new List<GridMap>();
-				foreach (var template in Templates)
-				{
-					if ((valueCellsMap & template).IsNotEmpty
-						|| template.Offsets.Any(c => grid.GetCellStatus(c) != CellStatus.Empty && grid[c] != digit))
-					{
-						continue;
-					}
-
-					if (valueCellsMap.Count != 0
-						&& valueCellsMap.Offsets.Any(c => (new GridMap(c, false) & template).IsNotEmpty))
-					{
-						continue;
-					}
-
-					filters.Add(template);
-				}
-				if (filters.Count == 0)
-				{
-					continue;
-				}
-
-				// Iterate on filters.
-				var unionMap = GridMap.Empty;
-				foreach (var filter in filters)
-				{
-					unionMap |= filter;
-				}
-
-				// Search for all uncover cells.
-				var conclusions = new List<Conclusion>();
-				foreach (int cell in (digitDistributions[digit] - unionMap).Offsets)
-				{
-					conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, digit));
-				}
-
-				if (conclusions.Count == 0)
+				var template = templates[digit];
+				if (template.IsEmpty)
 				{
 					continue;
 				}
 
 				accumulator.Add(
 					new PomTechniqueInfo(
-						conclusions,
+						conclusions:
+							new List<Conclusion>(
+								from cell in template.Offsets
+								select new Conclusion(ConclusionType.Elimination, cell, digit)),
 						views: new[] { new View() }));
+			}
+		}
+
+		/// <summary>
+		/// Get all invalid positions.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="digitDistributions">The distributions for each digit.</param>
+		/// <returns>The 9 maps for invalid positions of each digit.</returns>
+		private static GridMap[] GetInvalidPos(IReadOnlyGrid grid, GridMap[] digitDistributions)
+		{
+			var result = new GridMap[9];
+			var invalidPos = new GridMap[9];
+			var mustPos = new GridMap[9];
+			for (int digit = 0; digit < 9; digit++)
+			{
+				for (int cell = 0; cell < 81; cell++)
+				{
+					if ((grid.GetCandidates(cell) >> digit & 1) != 0)
+					{
+						invalidPos[digit].Add(cell);
+					}
+					else if (grid[cell] == digit)
+					{
+						mustPos[digit].Add(cell);
+					}
+				}
+			}
+
+			for (int digit = 0; digit < 9; digit++)
+			{
+				foreach (var map in GetTemplates())
+				{
+					if ((mustPos[digit] - map).IsNotEmpty || (invalidPos[digit] & map).IsNotEmpty)
+					{
+						continue;
+					}
+
+					result[digit] |= map;
+				}
+
+				result[digit] = digitDistributions[digit] - result[digit];
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// Get templates.
+		/// </summary>
+		/// <returns>The templates.</returns>
+		private static IEnumerable<GridMap> GetTemplates()
+		{
+			for (int i1 = 0; i1 < 9; i1++)
+			{
+				for (int i2 = 0; i2 < 9; i2++)
+				{
+					if (i2 / 3 == i1 / 3) continue;
+
+					for (int i3 = 0; i3 < 9; i3++)
+					{
+						if (i3 / 3 == i1 / 3 || i3 / 3 == i2 / 3) continue;
+
+						for (int i4 = 0; i4 < 9; i4++)
+						{
+							if (i4 == i1 || i4 == i2 || i4 == i3) continue;
+
+							for (int i5 = 0; i5 < 9; i5++)
+							{
+								if (i5 == i1 || i5 == i2 || i5 == i3
+									|| i5 / 3 == i4 / 3) continue;
+
+								for (int i6 = 0; i6 < 9; i6++)
+								{
+									if (i6 == i1 || i6 == i2 || i6 == i3
+										|| i6 / 3 == i4 / 3 || i6 / 3 == i5 / 3) continue;
+
+									for (int i7 = 0; i7 < 9; i7++)
+									{
+										if (i7 == i1 || i7 == i2 || i7 == i3
+											|| i7 == i4 || i7 == i5 || i7 == i6) continue;
+
+										for (int i8 = 0; i8 < 9; i8++)
+										{
+											if (i8 == i1 || i8 == i2 || i8 == i3
+												|| i8 == i4 || i8 == i5 || i8 == i6
+												|| i8 / 3 == i7 / 3) continue;
+
+											for (int i9 = 0; i9 < 9; i9++)
+											{
+												if (i9 == i1 || i9 == i2 || i9 == i3
+													|| i9 == i4 || i9 == i5 || i9 == i6
+													|| i9 / 3 == i7 / 3 || i9 / 3 == i8 / 3) continue;
+
+												yield return new GridMap(
+													1 << i1 | 1 << (i2 + 9) | 1 << (i3 + 18),
+													1 << i4 | 1 << (i5 + 9) | 1 << (i6 + 18),
+													1 << i7 | 1 << (i8 + 9) | 1 << (i9 + 18));
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 	}

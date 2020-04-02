@@ -152,13 +152,13 @@ namespace Sudoku.Solving.Manual
 						false, false, true, AicMaximumLength, ReductDifferentPathAic,
 						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
 						regionMaps),
-					new HobiwanFishTechniqueSearcher(
-						HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
-						HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
 				},
 				new TechniqueSearcher[]
 				{
 					new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
+					new HobiwanFishTechniqueSearcher(
+						HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
+						HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
 					new PomTechniqueSearcher(),
 					new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
 				},
@@ -371,18 +371,19 @@ namespace Sudoku.Solving.Manual
 				new HobiwanFishTechniqueSearcher(
 					HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
 					HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
-				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 				new PomTechniqueSearcher(),
+				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 				new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
 				new CccTechniqueSearcher(),
 				new BruteForceTechniqueSearcher(solution),
 			};
+
+			static T getValue<T>(TechniqueSearcher s, string p) => (T)s.GetType().GetProperty(p)!.GetValue(null)!;
 			if (UseCalculationPriority)
 			{
-				static int GetPriority(TechniqueSearcher s) =>
-					(int)s.GetType().GetProperty("Priority")!.GetValue(null)!;
-
-				Array.Sort(searchers, (a, b) => GetPriority(a).CompareTo(GetPriority(b)));
+				Array.Sort(
+					searchers,
+					(a, b) => getValue<int>(a, "Priority").CompareTo(getValue<int>(b, "Priority")));
 			}
 
 			var stepGrids = new Bag<IReadOnlyGrid>();
@@ -394,7 +395,7 @@ namespace Sudoku.Solving.Manual
 			{
 				var searcher = searchers[i];
 
-				if (!(bool)searcher.GetType().GetProperty("IsEnabled")!.GetValue(null)!)
+				if (!getValue<bool>(searcher, "IsEnabled"))
 				{
 					// Skip the technique when the static property 'IsEnabled' is set false.
 					continue;

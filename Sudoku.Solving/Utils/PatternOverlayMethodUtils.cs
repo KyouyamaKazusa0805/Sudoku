@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Data;
 
 namespace Sudoku.Solving.Utils
@@ -7,6 +7,7 @@ namespace Sudoku.Solving.Utils
 	/// <summary>
 	/// Provides extension method used for pattern overlay method (POM).
 	/// </summary>
+	[Obsolete]
 	public static class PatternOverlayMethodUtils
 	{
 		/// <summary>

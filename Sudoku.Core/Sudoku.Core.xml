@@ -1569,9 +1569,17 @@
             Throws when the specified initialize option is invalid.
             </exception>
         </member>
+        <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance with three binary values.
+            </summary>
+            <param name="high">Higher 27 bits.</param>
+            <param name="mid">Medium 27 bits.</param>
+            <param name="low">Lower 27 bits.</param>
+        </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Int64,System.Int64)">
             <summary>
-            Initializes an instance with three binary value.
+            Initializes an instance with two binary values.
             </summary>
             <param name="high">Higher 40 bits.</param>
             <param name="low">Lower 41 bits.</param>

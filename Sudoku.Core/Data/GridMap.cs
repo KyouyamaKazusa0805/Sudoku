@@ -248,7 +248,21 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Initializes an instance with three binary value.
+		/// Initializes an instance with three binary values.
+		/// </summary>
+		/// <param name="high">Higher 27 bits.</param>
+		/// <param name="mid">Medium 27 bits.</param>
+		/// <param name="low">Lower 27 bits.</param>
+		[SuppressMessage("", "IDE0004")]
+		public GridMap(int high, int mid, int low)
+			: this(
+				  ((long)high & 134217727) << 13 | (long)(mid >> 14 & 8191),
+				  ((long)mid & 16383) << 27 | (long)(low & 134217727))
+		{
+		}
+
+		/// <summary>
+		/// Initializes an instance with two binary values.
 		/// </summary>
 		/// <param name="high">Higher 40 bits.</param>
 		/// <param name="low">Lower 41 bits.</param>

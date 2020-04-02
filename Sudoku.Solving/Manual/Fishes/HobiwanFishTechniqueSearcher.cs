@@ -8,7 +8,7 @@ using Sudoku.Drawing;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
 using Pair = System.ValueTuple<int, int>;
-using Templates = Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher;
+using Templates = Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher;
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -105,7 +105,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				{
 					// Check templates.
 					// Now sum up all possible eliminations.
-					var searcher = new Templates(true);
+					var searcher = new Templates();
 					var bag = new Bag<TechniqueInfo>();
 					for (int digit = 0; digit < 9; digit++)
 					{
