@@ -552,12 +552,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 					foreach (int cell in extraCells)
 					{
-						foreach (int digit in digits)
+						foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 						{
-							if (grid.CandidateExists(cell, digit))
-							{
-								candidateOffsets.Add((1, cell * 9 + digit));
-							}
+							candidateOffsets.Add((digits.Contains(digit) ? 0 : 1, cell * 9 + digit));
 						}
 					}
 
@@ -582,12 +579,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						}
 					}
 
-					if (conclusions.Count == 0
-						|| urMode && !_checkIncompleted && candidateOffsets.Count != 8)
-					{
-						continue;
-					}
-
 					// Check if the type number is 2 or 5.
 					bool isType5 = i switch
 					{
@@ -599,6 +590,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						3 => true,
 						_ => throw Throwing.ImpossibleCase
 					};
+
+					if (conclusions.Count == 0
+						|| urMode && !_checkIncompleted && candidateOffsets.Count != (isType5 ? 11 : 10))
+					{
+						continue;
+					}
 
 					// Type 2 / 5.
 					result.Add(
@@ -1502,11 +1499,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 				{
 					// Type 6 found.
 					var conclusions = new List<Conclusion>();
-					foreach (int cell in cellPair)
+					foreach (int cell in extraCells)
 					{
-						if (grid.GetCellStatus(cell) == CellStatus.Empty)
+						if ((grid.GetCandidates(cell) >> digit & 1) == 0)
 						{
-							conclusions.Add(new Conclusion(ConclusionType.Assignment, cell, digit));
+							conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, digit));
 						}
 					}
 
@@ -1569,11 +1566,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 				{
 					// Type 6 found.
 					var conclusions = new List<Conclusion>();
-					foreach (int cell in cellPair)
+					foreach (int cell in extraCells)
 					{
-						if (grid.GetCellStatus(cell) == CellStatus.Empty)
+						if ((grid.GetCandidates(cell) >> digit & 1) == 0)
 						{
-							conclusions.Add(new Conclusion(ConclusionType.Assignment, cell, digit));
+							conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, digit));
 						}
 					}
 
@@ -1684,6 +1681,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						}
 						foreach (int cell in extraCells)
 						{
+							if (grid.CandidateExists(cell, elimDigit))
+							{
+								candidateOffsets.Add((0, cell * 9 + elimDigit));
+							}
 							if (grid.CandidateExists(cell, digit))
 							{
 								candidateOffsets.Add((1, cell * 9 + digit));
@@ -1704,7 +1705,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 						int elimCount = conclusions.Count;
 						if (elimCount == 0
-							|| !_checkIncompleted && (candidateOffsets.Count != 6 || elimCount != 2))
+							|| !_checkIncompleted && (candidateOffsets.Count != 8 || elimCount != 2))
 						{
 							continue;
 						}

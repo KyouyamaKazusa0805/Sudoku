@@ -882,29 +882,6 @@
             unless using last resort methods.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Extensions.AnalysisResultIO">
-            <summary>
-            Provides with operations to output to files for <see cref="T:Sudoku.Solving.AnalysisResult"/>s.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.AnalysisResult"/>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.AnalysisResultIO.WriteToFile(Sudoku.Solving.AnalysisResult,System.String,System.String)">
-            <summary>
-            Output the text to file.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The analysis result.</param>
-            <param name="path">The path.</param>
-            <param name="format">The format.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.AnalysisResultIO.WriteToFileAsync(Sudoku.Solving.AnalysisResult,System.String,System.String)">
-            <summary>
-            Output the text to file.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The analysis result.</param>
-            <param name="path">The path.</param>
-            <param name="format">The format.</param>
-            <returns>The task of this operation.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Extensions.GridSolvingExtensions">
             <summary>
             Provides extension methods on <see cref="T:Sudoku.Data.Grid"/> and <see cref="T:Sudoku.Data.IReadOnlyGrid"/>.
