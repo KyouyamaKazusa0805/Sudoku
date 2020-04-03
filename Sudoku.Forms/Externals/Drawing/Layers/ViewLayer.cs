@@ -22,9 +22,9 @@ namespace Sudoku.Drawing.Layers
 		private const float SqrtOf2 = 1.41421356F;
 
 		/// <summary>
-		/// The rotate angle.
+		/// The rotate angle (45 degrees, i.e. <c><see cref="PI"/> / 4</c>).
 		/// </summary>
-		private const float RotateAngle = (float)(PI / 4);
+		private const float RotateAngle = .78539816F;
 
 
 		/// <summary>
