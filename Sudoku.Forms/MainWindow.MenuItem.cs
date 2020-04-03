@@ -189,19 +189,21 @@ namespace Sudoku.Forms
 			UpdateUndoRedoControls();
 		}
 
-		private void MenuItemEditCopy_Click(object sender, RoutedEventArgs e) => InternalCopy(null);
+		private void MenuItemEditCopy_Click(object sender, RoutedEventArgs e) =>
+			InternalCopy(Settings.TextFormatPlaceholdersAreZero ? "0" : ".");
 
 		private void MenuItemEditCopyCurrentGrid_Click(object sender, RoutedEventArgs e) =>
-			InternalCopy("#");
+			InternalCopy(Settings.TextFormatPlaceholdersAreZero ? "#0" : "#.");
 
 		private void MenuItemEditCopyPmGrid_Click(object sender, RoutedEventArgs e) =>
-			InternalCopy("@");
+			InternalCopy(Settings.PmGridCompatible ? "@:*!" : "@:*");
 
 		private void MenuItemEditCopyHodokuLibrary_Click(object sender, RoutedEventArgs e)
 		{
 			try
 			{
-				Clipboard.SetText(_puzzle.ToString(GridOutputOptions.HodokuCompatible));
+				string z = _puzzle.ToString(Settings.TextFormatPlaceholdersAreZero ? "#0" : "#.");
+				Clipboard.SetText($":0000:x:{z}{(z.Contains(':') ? "::" : ":::")}");
 			}
 			catch (Exception ex)
 			{
@@ -352,26 +354,18 @@ namespace Sudoku.Forms
 
 			async Task internalOperation()
 			{
-				int[] z = new int[81];
+				var sb = new StringBuilder(SudokuGrid.EmptyString);
 				for (int cell = 0; cell < 81; cell++)
 				{
-					z[cell] = _puzzle[cell] + 1;
+					sb[cell] += (char)(_puzzle[cell] + 1);
 				}
 
-				var grid = SudokuGrid.CreateInstance(z);
-				if (new BitwiseSolver().Solve(grid.ToString(), null, 2) != 1)
+				if (new BitwiseSolver().Solve(sb.ToString(), null, 2) != 1)
 				{
 					MessageBox.Show("The puzzle is invalid. Please check your input and retry.", "Info");
 					e.Handled = true;
 					return;
 				}
-
-				_puzzle = new UndoableGrid(grid);
-				_puzzle.Unfix();
-				_puzzle.ClearStack();
-
-				UpdateImageGrid();
-				UpdateUndoRedoControls();
 
 				// Update status.
 				ClearItemSourcesWhenGeneratedOrSolving();
@@ -463,8 +457,9 @@ namespace Sudoku.Forms
 				{
 					MessageBox.Show(
 						$"The puzzle cannot be solved because " +
-						$"the solver has found a wrong conclusion to apply.{Environment.NewLine}" +
-						$"You should check the program or notify the author first.",
+						$"the solver has found a wrong conclusion to apply " +
+						$"or else the puzzle has eliminated the correct value.{Environment.NewLine}" +
+						$"You should check the puzzle or notify the author.",
 						"Warning");
 				}
 			}

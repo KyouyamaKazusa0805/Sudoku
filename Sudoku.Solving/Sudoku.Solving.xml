@@ -5879,7 +5879,7 @@
             <param name="pair">(<see langword="in"/> parameter) bivalue cell information pair.</param>
             <returns>All technique information instances.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.SearchWWingByRegions(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32[],System.Int32,System.Int32,System.Int32,System.ValueTuple{System.Int32,System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32,System.Int32}@,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.SearchWWingByRegions(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32[],System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
             <summary>
             Searches W-Wing technique by region.
             </summary>
@@ -5889,8 +5889,6 @@
             <param name="region">The region.</param>
             <param name="c1">Cell 1.</param>
             <param name="c2">Cell 2.</param>
-            <param name="triplet1">(<see langword="in"/> parameter) The triplet 1.</param>
-            <param name="triplet2">(<see langword="in"/> parameter) The triplet 2.</param>
             <param name="intersection">The intersection.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Wings.Irregular.WWingTechniqueInfo">

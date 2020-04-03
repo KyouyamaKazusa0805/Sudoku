@@ -41,6 +41,12 @@
 					<CheckBox Content="Solve from the current puzzle" Name="_checkBoxSolveFromCurrent"
 							  Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"
 							  Click="CheckBoxSolveFromCurrent_Click"/>
+					<CheckBox Content="Text format placeholders are '0'" Name="_checkBoxTextFormatPlaceholdersAreZero"
+							  Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"
+							  Click="CheckBoxTextFormatPlaceholdersAreZero_Click"/>
+					<CheckBox Content="PM grid compatible" Name="_checkBoxPmGridCompatible"
+							  Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"
+							  Click="CheckBoxPmGridCompatible_Click"/>
 				</Grid>
 			</TabItem>
 			<TabItem Header="Solving">

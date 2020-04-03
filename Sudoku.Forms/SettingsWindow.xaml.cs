@@ -52,6 +52,8 @@ namespace Sudoku.Forms
 			_checkBoxAskWhileQuitting.IsChecked = Settings.AskWhileQuitting;
 			_checkBoxEnableGcForcedly.IsChecked = Settings.EnableGarbageCollectionForcedly;
 			_checkBoxSolveFromCurrent.IsChecked = Settings.SolveFromCurrent;
+			_checkBoxTextFormatPlaceholdersAreZero.IsChecked = Settings.TextFormatPlaceholdersAreZero;
+			_checkBoxPmGridCompatible.IsChecked = Settings.PmGridCompatible;
 			_textBoxMaxLength.Text = Settings.AicMaximumLength.ToString();
 			_checkBoxCheckLoop.IsChecked = Settings.CheckContinuousNiceLoop;
 			_checkBoxCheckHeadCollision.IsChecked = Settings.CheckHeadCollision;
@@ -185,6 +187,12 @@ namespace Sudoku.Forms
 
 		private void CheckBoxSolveFromCurrent_Click(object sender, RoutedEventArgs e) =>
 			_checkBoxSolveFromCurrent.IsChecked = Settings.SolveFromCurrent ^= true;
+
+		private void CheckBoxTextFormatPlaceholdersAreZero_Click(object sender, RoutedEventArgs e) =>
+			_checkBoxTextFormatPlaceholdersAreZero.IsChecked = Settings.TextFormatPlaceholdersAreZero ^= true;
+
+		private void CheckBoxPmGridCompatible_Click(object sender, RoutedEventArgs e) =>
+			_checkBoxPmGridCompatible.IsChecked = Settings.PmGridCompatible ^= true;
 
 		private void TextBoxGridLineWidth_TextChanged(object sender, TextChangedEventArgs e)
 		{

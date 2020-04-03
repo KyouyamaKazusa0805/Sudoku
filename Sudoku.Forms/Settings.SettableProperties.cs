@@ -271,6 +271,29 @@ namespace Sudoku.Forms
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether the text format of the sudoku grid will use zero
+		/// character '<c>0</c>' to be placeholders instead of dot character
+		/// '<c>.</c>'.
+		/// </para>
+		/// <para>
+		/// The value is <see langword="true"/> in default case. If the value is
+		/// <see langword="true"/>, the placeholders will be '<c>.</c>'.
+		/// </para>
+		/// </summary>
+		public bool TextFormatPlaceholdersAreZero { get; set; } = true;
+
+		/// <summary>
+		/// <para>
+		/// Indicates whether the text format of pencil-marked grid will use
+		/// compatible mode to output (without given and modifiable values
+		/// notations).
+		/// </para>
+		/// <para>The value is <see langword="false"/> in default case.</para>
+		/// </summary>
+		public bool PmGridCompatible { get; set; } = false;
+
+		/// <summary>
+		/// <para>
 		/// Indicates the grid line width of the sudoku grid to render.
 		/// </para>
 		/// <para>The value is <c>1.5F</c> in default case.</para>

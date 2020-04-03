@@ -60,7 +60,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 			}
 
 			// Iterate on each cells.
-			for (int c1 = 0; c1 < 81; c1++)
+			for (int c1 = 0; c1 < 72; c1++)
 			{
 				if (!bivalueMap[c1] || grid.GetCellStatus(c1) != CellStatus.Empty)
 				{
@@ -71,14 +71,12 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 				int[] digits = grid.GetCandidatesReversal(c1).GetAllSets().ToArray();
 				foreach (int c2 in (~new GridMap(c1)).Offsets)
 				{
-					if (c2 <= c1
-						|| grid.GetCellStatus(c2) != CellStatus.Empty
-						|| grid.GetCandidates(c1) != grid.GetCandidates(c2))
+					if (c2 < c1 || grid.GetCandidates(c1) != grid.GetCandidates(c2))
 					{
 						continue;
 					}
 
-					var intersection = new GridMap(c1) & new GridMap(c2);
+					var intersection = new GridMap(c1, false) & new GridMap(c2, false);
 					if (intersection.Offsets.All(o => grid.GetCellStatus(o) != CellStatus.Empty))
 					{
 						continue;
@@ -97,9 +95,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 							continue;
 						}
 
-						SearchWWingByRegions(
-							result, grid, digits, region, c1, c2,
-							in triplet1, in triplet2, intersection);
+						SearchWWingByRegions(result, grid, digits, region, c1, c2, intersection);
 					}
 
 					// Each columns.
@@ -110,9 +106,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 							continue;
 						}
 
-						SearchWWingByRegions(
-							result, grid, digits, region, c1, c2,
-							in triplet1, in triplet2, intersection);
+						SearchWWingByRegions(result, grid, digits, region, c1, c2, intersection);
 					}
 				}
 			}
@@ -127,77 +121,76 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		/// <param name="region">The region.</param>
 		/// <param name="c1">Cell 1.</param>
 		/// <param name="c2">Cell 2.</param>
-		/// <param name="triplet1">(<see langword="in"/> parameter) The triplet 1.</param>
-		/// <param name="triplet2">(<see langword="in"/> parameter) The triplet 2.</param>
 		/// <param name="intersection">The intersection.</param>
 		private static void SearchWWingByRegions(
 			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int[] digits, int region,
-			int c1, int c2, in (int _row, int _column, int _block) triplet1,
-			in (int _row, int _column, int _block) triplet2, GridMap intersection)
+			int c1, int c2, GridMap intersection)
 		{
 			for (int i = 0; i < 2; i++)
 			{
 				int digit = digits[i];
-				int elimDigit = i == 0 ? digits[1] : digits[0];
 				short mask = grid.GetDigitAppearingMask(digit, region);
-				if (mask.CountSet() == 2)
+				if (mask.CountSet() != 2)
 				{
-					int[] pos = mask.GetAllSets().ToArray();
-					int bridgeStart = RegionUtils.GetCellOffset(region, pos[0]);
-					int bridgeEnd = RegionUtils.GetCellOffset(region, pos[1]);
-					if (c1 == bridgeStart || c2 == bridgeStart
-						|| c1 == bridgeEnd || c2 == bridgeEnd)
+					continue;
+				}
+
+				int[] pos = mask.GetAllSets().ToArray();
+				int bridgeStart = RegionUtils.GetCellOffset(region, pos[0]);
+				int bridgeEnd = RegionUtils.GetCellOffset(region, pos[1]);
+				if (c1 == bridgeStart || c2 == bridgeStart || c1 == bridgeEnd || c2 == bridgeEnd)
+				{
+					continue;
+				}
+
+				static bool condition(int c1, int c2) =>
+					(new GridMap(c1, false) & new GridMap(c2, false)).CoveredRegions.Any();
+				if (!(condition(bridgeStart, c1) && condition(bridgeEnd, c2))
+					&& !(condition(bridgeStart, c2) && condition(bridgeEnd, c1)))
+				{
+					continue;
+				}
+
+				// W-Wing found.
+				var conclusions = new List<Conclusion>();
+				int elimDigit = i == 0 ? digits[1] : digits[0];
+				foreach (int offset in intersection.Offsets)
+				{
+					if (!grid.CandidateExists(offset, elimDigit))
 					{
 						continue;
 					}
 
-					var (a, b) = region switch
-					{
-						_ when region >= 9 && region < 18 => (triplet1._column, triplet2._column),
-						_ when region >= 18 && region < 27 => (triplet1._row, triplet2._row),
-						_ => throw new NotSupportedException("Out of range.")
-					};
-					if (pos[0] == a && pos[1] == b || pos[0] == b && pos[1] == a)
-					{
-						// W-Wing found.
-						var conclusions = new List<Conclusion>();
-						foreach (int offset in intersection.Offsets)
-						{
-							if (grid.CandidateExists(offset, elimDigit))
-							{
-								conclusions.Add(
-									new Conclusion(
-										ConclusionType.Elimination, offset, elimDigit));
-							}
-						}
-
-						if (conclusions.Count != 0)
-						{
-							result.Add(
-								new WWingTechniqueInfo(
-									conclusions,
-									views: new[]
-									{
-										new View(
-											cellOffsets: null,
-											candidateOffsets: new List<(int, int)>
-											{
-												(1, c1 * 9 + elimDigit),
-												(0, c1 * 9 + digit),
-												(0, bridgeStart * 9 + digit),
-												(0, bridgeEnd * 9 + digit),
-												(0, c2 * 9 + digit),
-												(1, c2 * 9 + elimDigit)
-											},
-											regionOffsets: new[] { (0, region) },
-											links: null)
-									},
-									startCellOffset: c1,
-									endCellOffset: c2,
-									conjugatePair: new ConjugatePair(bridgeStart, bridgeEnd, digit)));
-						}
-					}
+					conclusions.Add(new Conclusion(ConclusionType.Elimination, offset, elimDigit));
 				}
+
+				if (conclusions.Count == 0)
+				{
+					continue;
+				}
+
+				result.Add(
+					new WWingTechniqueInfo(
+						conclusions,
+						views: new[]
+						{
+							new View(
+								cellOffsets: null,
+								candidateOffsets: new List<(int, int)>
+								{
+									(1, c1 * 9 + elimDigit),
+									(0, c1 * 9 + digit),
+									(0, bridgeStart * 9 + digit),
+									(0, bridgeEnd * 9 + digit),
+									(0, c2 * 9 + digit),
+									(1, c2 * 9 + elimDigit)
+								},
+								regionOffsets: new[] { (0, region) },
+								links: null)
+						},
+						startCellOffset: c1,
+						endCellOffset: c2,
+						conjugatePair: new ConjugatePair(bridgeStart, bridgeEnd, digit)));
 			}
 		}
 	}

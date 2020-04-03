@@ -143,16 +143,13 @@ namespace Sudoku.Data
 					};
 				}
 				case "#":
+				case "#.":
 				{
 					// Formats representing 'intelligence processor' is equal to
 					// format '.+:' and '0+:'.
 					goto case ".+:";
 				}
 				case "#0":
-				{
-					goto case ".+:";
-				}
-				case "#.":
 				{
 					goto case "0+:";
 				}
