@@ -1,1 +1,0 @@
-﻿The namespace corresponding to this folder is 'Sudoku.Drawing' instead of 'Sudoku.Forms.Drawing'.
