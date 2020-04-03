@@ -5,6 +5,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
+using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {
@@ -323,7 +324,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			}
 
 			// Check blocks.
-			foreach (int currentCell in GridMap.GetCellsIn(r / 3 * 3 + c / 3))
+			foreach (int currentCell in RegionCells[r / 3 * 3 + c / 3])
 			{
 				if (n == currentCell)
 				{
@@ -410,7 +411,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			}
 
 			// Check blocks.
-			foreach (int currentCell in GridMap.GetCellsIn(r / 3 * 3 + c / 3))
+			foreach (int currentCell in RegionCells[r / 3 * 3 + c / 3])
 			{
 				if (n == currentCell)
 				{

@@ -58,7 +58,7 @@ namespace Sudoku.Data.Stepping
 			if (Digit >= 0 && Digit < 9)
 			{
 				grid._masks[Cell] = (short)((short)CellStatus.Modifiable << 9 | 511 & ~(1 << Digit));
-				foreach (int cell in GridMap.PeerTable[Cell])
+				foreach (int cell in GridProcessings.Peers[Cell])
 				{
 					if (grid.GetCellStatus(cell) != CellStatus.Empty)
 					{

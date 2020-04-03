@@ -6,6 +6,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Utils;
+using static Sudoku.GridProcessings;
 using BugMultiple = Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleTechniqueInfo;
 using BugType1 = Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueInfo;
 using BugType2 = Sudoku.Solving.Manual.Uniqueness.Bugs.BugType2TechniqueInfo;
@@ -70,17 +71,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				trueCandidates = GetTrueCandidatesSimply(grid);
 			}
 
-			if (trueCandidates.Count == 0)
-			{
-				return;
-			}
-
-			int trueCandidatesCount = trueCandidates.Count;
-			switch (trueCandidatesCount)
+			switch (trueCandidates.Count)
 			{
 				case 0:
 				{
-					throw new WrongHandlingException(grid);
+					return;
 				}
 				case 1:
 				{
@@ -115,7 +110,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						for (int size = 2; size <= 5; size++)
 						{
 							CheckType3Naked(accumulator, grid, trueCandidates, size);
-							// TODO: Check BUG type 3 with hidden subset.
 						}
 					}
 
@@ -159,7 +153,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					}
 				}
 
-				int[] cells = GridMap.GetCellsIn(region);
+				int[] cells = RegionCells[region];
 				if (cells.Count(c => grid.GetCellStatus(c) == CellStatus.Empty)
 					- trueCandidateCellsCount <= size - 1)
 				{
@@ -630,135 +624,51 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			var digits = new List<int>();
 			foreach (int cand in trueCandidates)
 			{
-				int digit = cand % 9;
-				if (!digits.Contains(digit))
-				{
-					digits.Add(digit);
-				}
+				digits.AddIfDoesNotContain(cand % 9);
 			}
 
-			if (digits.Count >= 3)
+			if (digits.Count > 2)
 			{
 				return;
 			}
 
-			var digitsDic = new Dictionary<int, int>();
-			foreach (int cand in trueCandidates)
-			{
-				int digit = cand % 9;
-				if (digitsDic.TryGetValue(digit, out _))
-				{
-					digitsDic[digit]++;
-				}
-				else
-				{
-					digitsDic.Add(digit, 1);
-				}
-			}
-
-			if (digitsDic.All(pair => pair.Value >= 2))
+			var map = FullGridMap.CreateInstance(trueCandidates);
+			if (map.Count == 0)
 			{
 				return;
 			}
 
-			if (digitsDic.Count == 2)
+			// BUG + n found.
+			// Check eliminations.
+			var conclusions = new List<Conclusion>();
+			foreach (int candidate in map.Offsets)
 			{
-				var map = default(FullGridMap);
-				for (int i = 0; i < trueCandidates.Count; i++)
+				if (grid.CandidateExists(candidate / 9, candidate % 9))
 				{
-					int cand = trueCandidates[i];
-					if (i == 0)
-					{
-						map = new FullGridMap(cand);
-					}
-					else
-					{
-						map &= new FullGridMap(cand);
-					}
-				}
-
-				if (map.Count == 0)
-				{
-					return;
-				}
-
-
-				// BUG + n found.
-				// Check eliminations.
-				var conclusions = new List<Conclusion>();
-				foreach (int candidate in map.Offsets)
-				{
-					if (grid.CandidateExists(candidate / 9, candidate % 9))
-					{
-						conclusions.Add(
-							new Conclusion(
-								ConclusionType.Elimination, candidate));
-					}
-				}
-
-				if (conclusions.Count == 0)
-				{
-					return;
-				}
-
-				// BUG + n.
-				result.Add(
-					new BugMultiple(
-						conclusions,
-						views: new[]
-						{
-							new View(
-								cellOffsets: null,
-								candidateOffsets:
-									new List<(int, int)>(
-										from cand in trueCandidates select (0, cand)),
-								regionOffsets: null,
-								links: null)
-						},
-						candidates: trueCandidates));
-			}
-			else
-			{
-				// Degenerated to BUG type 2.
-				var map = new GridMap(trueCandidates, GridMap.InitializeOption.ProcessPeersAlso);
-				if (map.Count != 0)
-				{
-					// BUG type 2 (or BUG + n, but special) found.
-					// Check eliminations.
-					var conclusions = new List<Conclusion>();
-					int digit = trueCandidates[0] % 9;
-					foreach (int cell in map.Offsets)
-					{
-						if (grid.CandidateExists(cell, digit))
-						{
-							conclusions.Add(
-								new Conclusion(
-									ConclusionType.Elimination, cell, digit));
-						}
-					}
-
-					if (conclusions.Count == 0)
-					{
-						return;
-					}
-
-					// BUG type 2 (or BUG + n, but special).
-					result.Add(
-						new BugMultiple(
-							conclusions,
-							views: new[]
-							{
-								new View(
-									cellOffsets: null,
-									candidateOffsets:
-										new List<(int, int)>(
-											from cand in trueCandidates select (0, cand)),
-									regionOffsets: null,
-									links: null)
-							},
-							candidates: trueCandidates));
+					conclusions.Add(new Conclusion(ConclusionType.Elimination, candidate));
 				}
 			}
+
+			if (conclusions.Count == 0)
+			{
+				return;
+			}
+
+			// BUG + n.
+			result.Add(
+				new BugMultiple(
+					conclusions,
+					views: new[]
+					{
+						new View(
+							cellOffsets: null,
+							candidateOffsets:
+								new List<(int, int)>(
+									from cand in trueCandidates select (0, cand)),
+							regionOffsets: null,
+							links: null)
+					},
+					candidates: trueCandidates));
 		}
 
 		/// <summary>

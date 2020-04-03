@@ -1,4 +1,5 @@
-﻿using Sudoku.Data.Extensions;
+﻿using System.Diagnostics;
+using Sudoku.Data.Extensions;
 
 namespace System.Collections.Generic
 {
@@ -12,6 +13,7 @@ namespace System.Collections.Generic
 	/// <typeparam name="T">
 	/// The type of each element. The type should not be <see langword="null"/>.
 	/// </typeparam>
+	[DebuggerStepThrough]
 	public sealed class Bag<T> : IBag<T> where T : notnull
 	{
 		/// <summary>

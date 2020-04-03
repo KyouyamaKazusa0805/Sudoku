@@ -5,6 +5,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
+using static Sudoku.GridProcessings;
 using UlType1 = Sudoku.Solving.Manual.Uniqueness.Loops.UlType1DetailData;
 using UlType2 = Sudoku.Solving.Manual.Uniqueness.Loops.UlType2DetailData;
 using UlType3 = Sudoku.Solving.Manual.Uniqueness.Loops.UlType3DetailData;
@@ -305,7 +306,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		{
 			foreach (int region in regions)
 			{
-				int[] cells = GridMap.GetCellsIn(region);
+				int[] cells = RegionCells[region];
 				for (int i1 = 0; i1 < 11 - size; i1++)
 				{
 					int c1 = cells[i1];
@@ -667,7 +668,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 										candidateOffsets.Add((0, cell * 9 + digits[1]));
 									}
 								}
-								foreach (int cell in GridMap.GetCellsIn(region))
+								foreach (int cell in RegionCells[region])
 								{
 									if (loop.Contains(cell))
 									{
@@ -779,7 +780,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 												candidateOffsets.Add((0, cell * 9 + digits[1]));
 											}
 										}
-										foreach (int cell in GridMap.GetCellsIn(region))
+										foreach (int cell in RegionCells[region])
 										{
 											if (loop.Contains(cell))
 											{
@@ -893,7 +894,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 													candidateOffsets.Add((0, cell * 9 + digits[1]));
 												}
 											}
-											foreach (int cell in GridMap.GetCellsIn(region))
+											foreach (int cell in RegionCells[region])
 											{
 												if (loop.Contains(cell))
 												{
@@ -1110,7 +1111,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						continue;
 					}
 
-					if (loop[0] == nextCell && loop.Count >= 4)
+					// loop.Count == 4 is for URs.
+					if (loop[0] == nextCell && loop.Count >= 6)
 					{
 						// The loop is closed. Now save as a copy.
 						loops.Add(new List<int>(loop));

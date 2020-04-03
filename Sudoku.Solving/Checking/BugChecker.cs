@@ -5,6 +5,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
+using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Checking
 {
@@ -243,7 +244,7 @@ namespace Sudoku.Solving.Checking
 			var result = new GridMap[27];
 			for (int region = 0; region < 27; region++)
 			{
-				foreach (int offset in GridMap.GetCellsIn(region))
+				foreach (int offset in RegionCells[region])
 				{
 					result[region].Add(offset);
 				}

@@ -15,7 +15,7 @@
 			/// <summary>
 			/// Indicates each candidate will be processed with its peer cells.
 			/// For example, if set the cell of the index 0, this option
-			/// will let the initializer set its peer cells also.
+			/// will let the constructor set its peer cells also.
 			/// </summary>
 			ProcessPeersAlso,
 

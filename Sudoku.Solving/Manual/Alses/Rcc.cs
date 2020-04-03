@@ -6,6 +6,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
+using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Manual.Alses
 {
@@ -193,7 +194,7 @@ namespace Sudoku.Solving.Manual.Alses
 		{
 			short posMask = 0;
 			int i = 0;
-			foreach (int cell in GridMap.GetCellsIn(region))
+			foreach (int cell in RegionCells[region])
 			{
 				if (grid.GetCellStatus(cell) == CellStatus.Empty)
 				{

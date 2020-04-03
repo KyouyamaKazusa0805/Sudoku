@@ -57,7 +57,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 
 		/// <summary>
-		/// The static initializer of this class.
+		/// The static constructor of this class.
 		/// </summary>
 		static SdcTechniqueSearcher()
 		{

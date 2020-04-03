@@ -3,6 +3,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
+using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Manual.Singles
 {
@@ -115,7 +116,7 @@ namespace Sudoku.Solving.Manual.Singles
 				for (int region = 0; region < 27; region++)
 				{
 					int hiddenSingleCellOffset = 0, count = 0;
-					foreach (int cellOffset in GridMap.GetCellsIn(region))
+					foreach (int cellOffset in RegionCells[region])
 					{
 						if (grid.GetCellStatus(cellOffset) == CellStatus.Empty && !grid[cellOffset, digit])
 						{

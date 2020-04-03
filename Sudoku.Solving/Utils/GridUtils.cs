@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Solving.Extensions;
+using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Utils
 {
@@ -124,11 +125,8 @@ namespace Sudoku.Solving.Utils
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasDigitValue(
-			this IReadOnlyGrid @this, int digit, int regionOffset)
-		{
-			return GridMap.GetCellsIn(regionOffset).Any(
-				o => @this.GetCellStatus(o) != CellStatus.Empty && @this[o] == digit);
-		}
+			this IReadOnlyGrid @this, int digit, int regionOffset) =>
+			RegionCells[regionOffset].Any(o => @this.GetCellStatus(o) != CellStatus.Empty && @this[o] == digit);
 
 		/// <summary>
 		/// <para>
@@ -151,7 +149,7 @@ namespace Sudoku.Solving.Utils
 			this IReadOnlyGrid @this, int digit, int regionOffset)
 		{
 			int result = 0, i = 0;
-			foreach (int cellOffset in GridMap.GetCellsIn(regionOffset))
+			foreach (int cellOffset in RegionCells[regionOffset])
 			{
 				result += @this.CandidateExists(cellOffset, digit) ? 1 : 0;
 
@@ -187,7 +185,7 @@ namespace Sudoku.Solving.Utils
 			this IReadOnlyGrid @this, int digit, int regionOffset)
 		{
 			var result = GridMap.Empty;
-			foreach (int cell in GridMap.GetCellsIn(regionOffset))
+			foreach (int cell in RegionCells[regionOffset])
 			{
 				if (!@this.CandidateExists(cell, digit))
 				{
@@ -224,7 +222,7 @@ namespace Sudoku.Solving.Utils
 			this IReadOnlyGrid @this, int digit, int regionOffset, GridMap map)
 		{
 			int result = 0, i = 0;
-			foreach (int cell in GridMap.GetCellsIn(regionOffset))
+			foreach (int cell in RegionCells[regionOffset])
 			{
 				result += @this.CandidateExists(cell, digit) && map[cell] ? 1 : 0;
 

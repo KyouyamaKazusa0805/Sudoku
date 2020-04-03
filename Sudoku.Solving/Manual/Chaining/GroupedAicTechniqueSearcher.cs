@@ -7,6 +7,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
+using static Sudoku.GridProcessings;
 using static Sudoku.Solving.Utils.RegionUtils;
 
 namespace Sudoku.Solving.Manual.Chaining
@@ -1110,7 +1111,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			var intersectionMaps = new GridMap[9, 6];
 			for (int region = 0; region < 9; region++)
 			{
-				int[] cells = GridMap.GetCellsIn(region);
+				int[] cells = RegionCells[region];
 				int[][] y = new int[3][] { cells[0..3], cells[3..6], cells[6..9] };
 				int[][] z = new int[3][]
 				{
@@ -1306,7 +1307,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			var intersectionMaps = (GridMap[,])Array.CreateInstance(typeof(GridMap), new[] { 18, 3 }, new[] { 9, 0 });
 			for (int region = 9; region < 27; region++)
 			{
-				int[] cells = GridMap.GetCellsIn(region);
+				int[] cells = RegionCells[region];
 				int[][] z = new int[3][] { cells[0..3], cells[3..6], cells[6..9] };
 
 				for (int i = 0; i < 3; i++)

@@ -4,6 +4,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
+using static Sudoku.GridProcessings;
 using XrType1 = Sudoku.Solving.Manual.Uniqueness.Rectangles.XrType1DetailData;
 using XrType2 = Sudoku.Solving.Manual.Uniqueness.Rectangles.XrType2DetailData;
 using XrType3 = Sudoku.Solving.Manual.Uniqueness.Rectangles.XrType3DetailData;
@@ -36,7 +37,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 
 		/// <summary>
-		/// The static initializer of this class.
+		/// The static constructor of this class.
 		/// </summary>
 		static XrTechniqueSearcher()
 		{
@@ -398,7 +399,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 				// Firstly, we should check all cells to iterate,
 				// which are empty cells and not in the structure.
 				var unavailableCellsMap = GridMap.CreateInstance(region);
-				foreach (int cell in GridMap.GetCellsIn(region))
+				foreach (int cell in RegionCells[region])
 				{
 					if (grid.GetCellStatus(cell) == CellStatus.Empty && !allCellsMap[cell])
 					{
@@ -415,7 +416,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 				// Get the mask.
 				short unavailableCellsMask = 0;
 				short index = 0;
-				foreach (int cell in GridMap.GetCellsIn(region))
+				foreach (int cell in RegionCells[region])
 				{
 					if (unavailableCellsMap[cell])
 					{

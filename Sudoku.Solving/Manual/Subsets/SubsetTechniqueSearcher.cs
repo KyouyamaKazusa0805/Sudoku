@@ -6,6 +6,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
+using static Sudoku.GridProcessings;
 using Action = System.Action<System.Collections.Generic.IBag<Sudoku.Solving.TechniqueInfo>, Sudoku.Data.IReadOnlyGrid, int>;
 
 namespace Sudoku.Solving.Manual.Subsets
@@ -496,9 +497,8 @@ namespace Sudoku.Solving.Manual.Subsets
 			var tempCellList = new List<int>();
 			var tempCandList = new List<(int, int)>();
 			var result = new List<Conclusion>();
-			var offsets = GridMap.GetCellsIn(region);
 			int i = 0;
-			foreach (int offset in offsets)
+			foreach (int offset in RegionCells[region])
 			{
 				if ((mask & 1) != 0)
 				{

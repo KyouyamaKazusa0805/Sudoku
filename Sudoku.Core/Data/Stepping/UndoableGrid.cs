@@ -74,7 +74,7 @@ namespace Sudoku.Data.Stepping
 			set
 			{
 				var map = GridMap.Empty;
-				foreach (int cell in GridMap.PeerTable[offset])
+				foreach (int cell in GridProcessings.Peers[offset])
 				{
 					if (cell == offset || GetCellStatus(cell) != CellStatus.Empty)
 					{

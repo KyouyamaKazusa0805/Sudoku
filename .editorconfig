@@ -276,6 +276,9 @@ dotnet_naming_style.start_with__t_.capitalization = pascal_case
 # IDE0001: Simplify Names
 dotnet_diagnostic.IDE0001.severity = suggestion
 
+# IDE0002: Simplify Member Access
+dotnet_diagnostic.IDE0002.severity = suggestion
+
 # IDE0010: Add missing cases
 dotnet_diagnostic.IDE0010.severity = silent
 

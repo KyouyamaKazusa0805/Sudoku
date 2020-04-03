@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data.Extensions;
+using static Sudoku.GridProcessings;
 
 namespace Sudoku.Data
 {
@@ -23,8 +24,13 @@ namespace Sudoku.Data
 	public partial struct GridMap : IEnumerable<bool>, IEquatable<GridMap>
 	{
 		/// <summary>
-		/// Indicates an empty instance (all bits are 0).
+		/// <para>Indicates an empty instance (all bits are 0).</para>
+		/// <para>
+		/// I strongly recommend you should use this instance instead of default constructor
+		/// <see cref="GridMap()"/>.
+		/// </para>
 		/// </summary>
+		/// <seealso cref="GridMap()"/>
 		public static readonly GridMap Empty = new GridMap();
 
 
@@ -74,8 +80,7 @@ namespace Sudoku.Data
 		/// var map = new GridMap(offset) { [offset] = false };
 		/// </code>
 		/// </param>
-		public GridMap(int offset, bool setItself)
-			: this((IEnumerable<int>)PeerTable[offset]) =>
+		public GridMap(int offset, bool setItself) : this((IEnumerable<int>)Peers[offset]) =>
 			this[offset] = setItself;
 
 		/// <summary>
@@ -94,16 +99,16 @@ namespace Sudoku.Data
 			(_high, _low, Count) = (another._high, another._low, another.Count);
 
 		/// <summary>
-		/// Same behavior of the initializer as <see cref="GridMap(IEnumerable{int})"/>.
+		/// Same behavior of the constructor as <see cref="GridMap(IEnumerable{int})"/>.
 		/// </summary>
 		/// <param name="offsets">All offsets.</param>
 		/// <remarks>
-		/// This initializer is defined after another initializer with
-		/// <see cref="ReadOnlySpan{T}"/> had defined. Although this initializer
+		/// This constructor is defined after another constructor with
+		/// <see cref="ReadOnlySpan{T}"/> had defined. Although this constructor
 		/// does not initialize something (use the other one instead),
 		/// while initializing with the type <see cref="int"/>[], the complier
-		/// gives me an error without this initializer (ambiguity of two
-		/// initializers). However, unfortunately, <see cref="ReadOnlySpan{T}"/>
+		/// gives me an error without this constructor (ambiguity of two
+		/// constructors). However, unfortunately, <see cref="ReadOnlySpan{T}"/>
 		/// does not implemented the interface <see cref="IEnumerable{T}"/>...
 		/// </remarks>
 		/// <seealso cref="GridMap(IEnumerable{int})"/>
@@ -154,7 +159,7 @@ namespace Sudoku.Data
 				case InitializeOption.ProcessPeersAlso:
 				case InitializeOption.ProcessPeersWithoutItself:
 				{
-					foreach (int peer in PeerTable[offset])
+					foreach (int peer in Peers[offset])
 					{
 						Add(peer);
 					}
@@ -223,7 +228,7 @@ namespace Sudoku.Data
 					foreach (int offset in offsets)
 					{
 						long low = 0, high = 0;
-						foreach (int peer in PeerTable[offset])
+						foreach (int peer in Peers[offset])
 						{
 							process(ref low, ref high, peer);
 						}
@@ -605,14 +610,6 @@ namespace Sudoku.Data
 
 
 		/// <summary>
-		/// Get all cell offsets in the specified region.
-		/// </summary>
-		/// <param name="regionOffset">The region offset.</param>
-		/// <returns>All cell offsets.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int[] GetCellsIn(int regionOffset) => RegionTable[regionOffset];
-
-		/// <summary>
 		/// Create a <see cref="GridMap"/> instance with the specified region offset.
 		/// This will set all bits <see langword="true"/> in this region.
 		/// </summary>
@@ -621,7 +618,7 @@ namespace Sudoku.Data
 		public static GridMap CreateInstance(int regionOffset)
 		{
 			var result = Empty;
-			foreach (int cell in RegionTable[regionOffset])
+			foreach (int cell in RegionCells[regionOffset])
 			{
 				result.Add(cell);
 			}
@@ -658,66 +655,6 @@ namespace Sudoku.Data
 					result.Add(cell);
 				}
 			}
-			return result;
-		}
-
-		/// <summary>
-		/// Different with <see cref="GridMap(IEnumerable{int})"/>,
-		/// this method will generate the intersection table of all peers from
-		/// the argument.
-		/// </summary>
-		/// <param name="cellList">The cell list.</param>
-		/// <returns>An intersection map.</returns>
-		/// <seealso cref="GridMap(IEnumerable{int})"/>
-		[Obsolete("Please use 'GridMap..ctor(IEnumerable`1(int), InitializeOption)' instead.")]
-		public static GridMap CreateInstance(IEnumerable<int> cellList)
-		{
-			var result = default(GridMap);
-			int i = 0;
-			foreach (int cell in cellList)
-			{
-				if (i++ == 0)
-				{
-					result = new GridMap(cell);
-				}
-				else
-				{
-					result &= new GridMap(cell);
-				}
-			}
-
-			return result;
-		}
-
-		/// <summary>
-		/// Different with <see cref="GridMap(IEnumerable{int})"/> and
-		/// <see cref="GridMap(int, bool)"/>, this method will generate
-		/// the intersection table of all peers from the argument.
-		/// </summary>
-		/// <param name="cellList">The cell list.</param>
-		/// <param name="setItself">
-		/// Indicates whether the initializer will set peer center itself.
-		/// </param>
-		/// <returns>An intersection map.</returns>
-		/// <seealso cref="GridMap(IEnumerable{int})"/>
-		/// <seealso cref="GridMap(int, bool)"/>
-		[Obsolete("Please use 'GridMap..ctor(IEnumerable`1(int), InitializeOption)' instead.")]
-		public static GridMap CreateInstance(IEnumerable<int> cellList, bool setItself)
-		{
-			var result = default(GridMap);
-			int i = 0;
-			foreach (int cell in cellList)
-			{
-				if (i++ == 0)
-				{
-					result = new GridMap(cell, setItself);
-				}
-				else
-				{
-					result &= new GridMap(cell, setItself);
-				}
-			}
-
 			return result;
 		}
 

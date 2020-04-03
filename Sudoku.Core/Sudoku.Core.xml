@@ -1432,8 +1432,13 @@
         </member>
         <member name="F:Sudoku.Data.GridMap.Empty">
             <summary>
-            Indicates an empty instance (all bits are 0).
+            <para>Indicates an empty instance (all bits are 0).</para>
+            <para>
+            I strongly recommend you should use this instance instead of default constructor
+            <see cref="M:Sudoku.Data.GridMap.#ctor"/>.
+            </para>
             </summary>
+            <seealso cref="M:Sudoku.Data.GridMap.#ctor"/>
         </member>
         <member name="F:Sudoku.Data.GridMap.Shifting">
             <summary>
@@ -1507,16 +1512,16 @@
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32[])">
             <summary>
-            Same behavior of the initializer as <see cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>.
+            Same behavior of the constructor as <see cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>.
             </summary>
             <param name="offsets">All offsets.</param>
             <remarks>
-            This initializer is defined after another initializer with
-            <see cref="T:System.ReadOnlySpan`1"/> had defined. Although this initializer
+            This constructor is defined after another constructor with
+            <see cref="T:System.ReadOnlySpan`1"/> had defined. Although this constructor
             does not initialize something (use the other one instead),
             while initializing with the type <see cref="T:System.Int32"/>[], the complier
-            gives me an error without this initializer (ambiguity of two
-            initializers). However, unfortunately, <see cref="T:System.ReadOnlySpan`1"/>
+            gives me an error without this constructor (ambiguity of two
+            constructors). However, unfortunately, <see cref="T:System.ReadOnlySpan`1"/>
             does not implemented the interface <see cref="T:System.Collections.Generic.IEnumerable`1"/>...
             </remarks>
             <seealso cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>
@@ -1743,13 +1748,6 @@
             Clear all bits.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.GridMap.GetCellsIn(System.Int32)">
-            <summary>
-            Get all cell offsets in the specified region.
-            </summary>
-            <param name="regionOffset">The region offset.</param>
-            <returns>All cell offsets.</returns>
-        </member>
         <member name="M:Sudoku.Data.GridMap.CreateInstance(System.Int32)">
             <summary>
             Create a <see cref="T:Sudoku.Data.GridMap"/> instance with the specified region offset.
@@ -1773,30 +1771,6 @@
             <exception cref="T:System.ArgumentException">
             Throws when the puzzle has not been solved.
             </exception>
-        </member>
-        <member name="M:Sudoku.Data.GridMap.CreateInstance(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Different with <see cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>,
-            this method will generate the intersection table of all peers from
-            the argument.
-            </summary>
-            <param name="cellList">The cell list.</param>
-            <returns>An intersection map.</returns>
-            <seealso cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>
-        </member>
-        <member name="M:Sudoku.Data.GridMap.CreateInstance(System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
-            <summary>
-            Different with <see cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/> and
-            <see cref="M:Sudoku.Data.GridMap.#ctor(System.Int32,System.Boolean)"/>, this method will generate
-            the intersection table of all peers from the argument.
-            </summary>
-            <param name="cellList">The cell list.</param>
-            <param name="setItself">
-            Indicates whether the initializer will set peer center itself.
-            </param>
-            <returns>An intersection map.</returns>
-            <seealso cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>
-            <seealso cref="M:Sudoku.Data.GridMap.#ctor(System.Int32,System.Boolean)"/>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_Equality(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <operator name="op_Equality">
@@ -1873,7 +1847,7 @@
             <summary>
             Indicates each candidate will be processed with its peer cells.
             For example, if set the cell of the index 0, this option
-            will let the initializer set its peer cells also.
+            will let the constructor set its peer cells also.
             </summary>
         </member>
         <member name="F:Sudoku.Data.GridMap.InitializeOption.ProcessPeersWithoutItself">
@@ -1881,18 +1855,6 @@
             Indicates each candidate will be processed with its peer cells,
             but itself will be set <see langword="false"/> rather than
             <see langword="true"/> value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.GridMap.PeerTable">
-            <summary>
-            The peer table used in intersection.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.GridMap.RegionTable">
-            <summary>
-            The map of all cell offsets in its specified region.
-            For example, '<c>RegionTable[0]</c>' means that all cell offsets
-            in the region 0 (block 1).
             </summary>
         </member>
         <member name="F:Sudoku.Data.GridMap.CoverTable">
@@ -3322,7 +3284,7 @@
 		<summary>Create an instance with default initialization.</summary>
 	</defaultConstructor>
             <remarks>
-            The initializer is equivalent to <c>new View(null, null, null, null)</c>
+            The constructor is equivalent to <c>new View(null, null, null, null)</c>
             </remarks>
         </member>
         <member name="M:Sudoku.Drawing.View.#ctor(System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Inference})">
@@ -3374,6 +3336,37 @@
             <summary>
             All link masks.
             </summary>
+        </member>
+        <member name="T:Sudoku.GridProcessings">
+            <summary>
+            The tables for grid processing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.GridProcessings.Peers">
+            <summary>
+            <para>Indicates a table for each cell's peers.</para>
+            <para>
+            I strongly recommend that you <b>should not</b> modify any values in this array.
+            </para>
+            </summary>
+            <example>
+            '<c>Peers[0]</c>': the array of peers for the cell 0 (row 1 column 1).
+            </example>
+        </member>
+        <member name="F:Sudoku.GridProcessings.RegionCells">
+            <summary>
+            <para>
+            The map of all cell offsets in its specified region.
+            The indices is between 0 and 26, where 0..9 is for block 1 to 9,
+            9..18 is for row 1 to 9 and 18..27 is for column 1 to 9.
+            </para>
+            <para>
+            I strongly recommend that you <b>should not</b> modify any values in this array.
+            </para>
+            </summary>
+            <example>
+            '<c>RegionTable[0]</c>': all cell offsets in the region 0 (block 1).
+            </example>
         </member>
         <member name="T:Sudoku.MultipleSolutionsException">
             <summary>

@@ -6,7 +6,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Provides a read-only sudoku grid.
 	/// </summary>
-	public interface IReadOnlyGrid : IEnumerable<short>, IEquatable<Grid>, IFormattable
+	public interface IReadOnlyGrid : IEnumerable<short>, IFormattable
 	{
 		/// <summary>
 		/// Indicates the grid has already solved. If the value is <see langword="true"/>,

@@ -1603,7 +1603,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.SdcTechniqueSearcher.#cctor">
             <summary>
-            The static initializer of this class.
+            The static constructor of this class.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.SdcTechniqueSearcher.Priority">
@@ -5704,7 +5704,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.XrTechniqueSearcher.#cctor">
             <summary>
-            The static initializer of this class.
+            The static constructor of this class.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.XrTechniqueSearcher.Priority">

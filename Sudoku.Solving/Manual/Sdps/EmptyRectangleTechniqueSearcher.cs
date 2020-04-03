@@ -5,6 +5,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
+using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Manual.Sdps
 {
@@ -115,7 +116,7 @@ namespace Sudoku.Solving.Manual.Sdps
 						// Record all highlight candidates.
 						var candidateOffsets = new List<(int, int)>();
 						var cpCells = new List<int>(2);
-						foreach (int cell in GridMap.GetCellsIn(block))
+						foreach (int cell in RegionCells[block])
 						{
 							if (grid.CandidateExists(cell, digit))
 							{

@@ -7,6 +7,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
+using static Sudoku.GridProcessings;
 using BdpType1 = Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1DetailData;
 using BdpType2 = Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2DetailData;
 using BdpType3 = Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3DetailData;
@@ -240,7 +241,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 								// Check eliminations.
 								int extraDigit = otherDigits.First();
 								var conclusions = new List<Conclusion>();
-								var elimMap = new GridMap(extraCells, GridMap.InitializeOption.ProcessPeersAlso);
+								var elimMap = new GridMap(extraCells, GridMap.InitializeOption.ProcessPeersWithoutItself);
 								if (elimMap.Count == 0)
 								{
 									continue;
@@ -344,7 +345,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							// Naked pair found.
 							// Record all eliminations.
 							var conclusions = new List<Conclusion>();
-							foreach (int cell in GridMap.GetCellsIn(region))
+							foreach (int cell in RegionCells[region])
 							{
 								if (extraCells.Contains(cell) && cell != c1)
 								{
@@ -437,7 +438,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 									// Naked pair found.
 									// Record all eliminations.
 									var conclusions = new List<Conclusion>();
-									foreach (int cell in GridMap.GetCellsIn(region))
+									foreach (int cell in RegionCells[region])
 									{
 										if (extraCells.Contains(cell) && cell != c1 && cell != c2)
 										{
@@ -535,7 +536,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 											// Naked pair found.
 											// Record all eliminations.
 											var conclusions = new List<Conclusion>();
-											foreach (int cell in GridMap.GetCellsIn(region))
+											foreach (int cell in RegionCells[region])
 											{
 												if (extraCells.Contains(cell) && cell != c1
 													&& cell != c2 && cell != c3)
@@ -637,7 +638,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 												// Naked pair found.
 												// Record all eliminations.
 												var conclusions = new List<Conclusion>();
-												foreach (int cell in GridMap.GetCellsIn(region))
+												foreach (int cell in RegionCells[region])
 												{
 													if (extraCells.Contains(cell) && cell != c1
 														&& cell != c2 && cell != c3 && cell != c4)
@@ -1002,7 +1003,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 								// Check eliminations.
 								int extraDigit = otherDigits.First();
 								var conclusions = new List<Conclusion>();
-								var elimMap = new GridMap(extraCells, GridMap.InitializeOption.ProcessPeersAlso);
+								var elimMap = new GridMap(extraCells, GridMap.InitializeOption.ProcessPeersWithoutItself);
 								if (elimMap.Count == 0)
 								{
 									continue;

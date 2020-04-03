@@ -237,7 +237,7 @@ namespace Sudoku.Drawing
 		}
 
 		/// <summary>
-		/// Bound with the initializer <see cref="PointConverter(int, int)"/>,
+		/// Bound with the constructor <see cref="PointConverter(int, int)"/>,
 		/// <see cref="PointConverter(float, float)"/> and
 		/// <see cref="PointConverter(SizeF)"/>.
 		/// </summary>
@@ -256,7 +256,7 @@ namespace Sudoku.Drawing
 		}
 
 		/// <summary>
-		/// Bound with the initializer <see cref="PointConverter(int, int)"/>,
+		/// Bound with the constructor <see cref="PointConverter(int, int)"/>,
 		/// <see cref="PointConverter(float, float)"/> and
 		/// <see cref="PointConverter(SizeF)"/>.
 		/// </summary>

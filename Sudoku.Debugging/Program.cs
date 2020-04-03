@@ -14,13 +14,19 @@ namespace Sudoku.Debugging
 		/// </summary>
 		private static void Main()
 		{
-			var grid = Sudoku.Data.Grid.Parse(".4...93......3..........8...9...5.1.8....47...5..7......23.749.7..4....858.......");
-			var manual = new Sudoku.Solving.Manual.ManualSolver
+			var manual = new Sudoku.Solving.Manual.ManualSolver();
+			var hdg = new Sudoku.Solving.Generating.HardPatternPuzzleGenerator();
+			while (true)
 			{
-				FastSearch = true,
-			};
-			var result = manual.Solve(grid);
-			System.Console.WriteLine(result);
+				var grid = hdg.Generate();
+				manual.Solve(grid);
+				System.Console.WriteLine(grid);
+			}
+
+
+			//var grid = Sudoku.Data.Grid.Parse("....4..1....9.1..3.7.3..6..3....58.6..52.....89.....4...46...5..5..3....93...2...");
+			//var analysis = manual.Solve(grid);
+			//System.Console.WriteLine(analysis);
 		}
 	}
 }
