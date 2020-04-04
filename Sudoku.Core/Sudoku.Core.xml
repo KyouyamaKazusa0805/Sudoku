@@ -3274,6 +3274,44 @@
             The root path of this whole solution.
             </summary>
         </member>
+        <member name="T:Sudoku.Drawing.Extensions.BitmapEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Drawing.Bitmap"/>.
+            </summary>
+            <remarks>
+            Some methods of this file is copied by the <see cref="N:Emgu.CV"/>'s
+            <a href="https://github.com/emgucv/emgucv/blob/6ee487ad2709d1258cc014103deab2719b026303/Emgu.CV.NativeImage/BitmapExtension.cs">site</a>.
+            </remarks>
+            <seealso cref="T:System.Drawing.Bitmap"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.BitmapEx.CorectOrientation(System.Drawing.Bitmap)">
+            <summary>
+            Co-rect orientation.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The bitmap.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.BitmapEx.ToImage``2(System.Drawing.Bitmap)">
+            <summary>
+            Create an Image &lt; TColor, TDepth &gt; from Bitmap
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.BitmapEx.ColorPaletteToLookupTable(System.Drawing.Imaging.ColorPalette,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@)">
+            <summary>
+            Convert the color palette to four lookup tables
+            </summary>
+            <param name="palette">The color palette to transform</param>
+            <param name="bTable">Lookup table for the B channel</param>
+            <param name="gTable">Lookup table for the G channel</param>
+            <param name="rTable">Lookup table for the R channel</param>
+            <param name="aTable">Lookup table for the A channel</param>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.BitmapEx.CopyFromBitmap``2(Emgu.CV.Image{``0,``1},System.Drawing.Bitmap)">
+            <summary>
+            Utility function for converting Bitmap to Image
+            </summary>
+            <param name="bmp">the bitmap to copy data from</param>
+            <param name="image">The image to copy data to</param>
+        </member>
         <member name="T:Sudoku.Drawing.View">
             <summary>
             Encapsulates a view when displaying the information on forms.
@@ -3473,6 +3511,110 @@
             <summary>
             The grid.
             </summary>
+        </member>
+        <member name="T:Sudoku.Recognizations.CellRecognizer">
+            <summary>
+            Define a cell recognizer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognizations.CellRecognizer._ocr">
+            <summary>
+            The internal <see cref="T:Emgu.CV.OCR.Tesseract"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Recognizations.CellRecognizer.InitTesseractAsync(System.String,System.String)">
+            <summary>
+            Initializes <see cref="T:Emgu.CV.OCR.Tesseract"/> instance.
+            </summary>
+            <param name="dir">The directory.</param>
+            <param name="lang">The language. The default value is <c>"eng"</c>.</param>
+            <returns>The task.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified trained data cannot be found and cannot be downloaded.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Recognizations.CellRecognizer.RecognizeDigits(Emgu.CV.Image{Emgu.CV.Structure.Bgr,System.Byte},System.Drawing.Rectangle[]@)">
+            <summary>
+            Recognizes digits.
+            </summary>
+            <param name="field">The field.</param>
+            <param name="rectangles">(<see langword="out"/> parameter) The rectangles.</param>
+            <returns>The grid.</returns>
+            <exception cref="T:System.Exception">
+            Throws when the processing is wrong or unhandleable.
+            </exception>
+        </member>
+        <member name="T:Sudoku.Recognizations.GridRecognizer">
+            <summary>
+            Provides a grid recognizer.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Recognizations.GridRecognizer.#ctor(System.Drawing.Bitmap)">
+            <summary>
+            Initializes an instance with the specified photo.
+            </summary>
+            <param name="photo">The photo.</param>
+        </member>
+        <member name="P:Sudoku.Recognizations.GridRecognizer.Image">
+            <summary>
+            The image.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Recognizations.GridRecognizer.Recognize">
+            <summary>
+            Recognize.
+            </summary>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Recognizations.GridRecognizer.PrepareImage">
+            <summary>
+            Prepare the image.
+            </summary>
+            <returns>The <see cref="T:Emgu.CV.UMat"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Recognizations.GridRecognizer.FindField(Emgu.CV.UMat)">
+            <summary>
+            Find the field.
+            </summary>
+            <param name="edges">The edges.</param>
+            <returns>The points.</returns>
+        </member>
+        <member name="M:Sudoku.Recognizations.GridRecognizer.CutField(System.Drawing.PointF[])">
+            <summary>
+            To cut the field.
+            </summary>
+            <param name="field">The field.</param>
+            <returns>The image.</returns>
+        </member>
+        <member name="M:Sudoku.Recognizations.GridRecognizer.GetFourCornerPoints(System.Drawing.Point[])">
+            <summary>
+            Getting four corner points from contour points.
+            </summary>
+            <param name="points">The points.</param>
+            <returns>The points.</returns>
+        </member>
+        <member name="M:Sudoku.Recognizations.GridRecognizer.IsRectangle(System.Drawing.PointF[],System.Int32,System.Int32,System.Double)">
+            <summary>
+            Get true if contour is rectangle with angles within [lowAngle, upAngle] degree.
+            Default: [75, 105].
+            </summary>
+            <param name="contour">The contour.</param>
+            <param name="lowAngle">The lower angle. The default value is 75.</param>
+            <param name="upAngle">The upper angle. The default value is 105.</param>
+            <param name="ratio">The ratio. The default value is .35</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="T:Sudoku.Recognizations.RecognizationUtils">
+            <summary>
+            Define a grid that can be recognized.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Recognizations.RecognizationUtils.Recorgnize(System.Drawing.Bitmap)">
+            <summary>
+            Recognize the image.
+            </summary>
+            <param name="image">The image.</param>
+            <returns>The grid.</returns>
         </member>
         <member name="T:Sudoku.SudokuRuntimeException">
             <summary>

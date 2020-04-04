@@ -32,9 +32,11 @@
 						  Click="MenuItemFileOpen_Click"/>
 				<MenuItem Header="Save puzzle..." InputGestureText="Ctrl + S"
 						  Click="MenuItemFileSave_Click"/>
-				<Separator/>
 				<MenuItem Header="Backup configurations" Name="_menuItemBackupConfig"
 						  Click="MenuItemBackupConfig_Click"/>
+				<MenuItem Header="Load picture..." Name="_menuItemFileLoadPicture"
+						  Click="MenuItemFileLoadPicture_Click"/>
+				<Separator/>
 				<MenuItem Header="Get Snapshot" InputGestureText="Ctrl + P"
 						  Click="MenuItemFileGetSnapshot_Click"/>
 				<Separator/>

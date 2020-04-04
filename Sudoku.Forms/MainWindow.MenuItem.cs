@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Layers;
 using Sudoku.Forms.Drawing.Extensions;
+using Sudoku.Recognizations;
 using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Checking;
@@ -97,6 +99,43 @@ namespace Sudoku.Forms
 			{
 				MessageBox.Show("Configuration file is failed to save due to internal error.", "Warning");
 			}
+		}
+
+		private void MenuItemFileLoadPicture_Click(object sender, RoutedEventArgs e)
+		{
+#if SUDOKU_RECOGNIZING
+			var dialog = new OpenFileDialog
+			{
+				AddExtension = true,
+				DefaultExt = "png",
+				Filter = "PNG file|*.png|JPEG file|*.jpg;*.jpeg|BMP file|*.bmp|GIF file|*.gif",
+				Multiselect = false,
+				Title = "Load picture from..."
+			};
+
+			if (!(dialog.ShowDialog() is true))
+			{
+				e.Handled = true;
+				return;
+			}
+
+			try
+			{
+				using var bitmap = new Bitmap(dialog.FileName);
+				var recognizer = new GridRecognizer(bitmap);
+				var grid = CellRecognizer.RecognizeDigits(recognizer.Recognize(), out var rectangles);
+				grid.Fix();
+				MessageBox.Show($"{grid:.}");
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message, "Warning");
+			}
+#else
+			MessageBox.Show(
+				"Your machine cannot use image recognization because of some vulnerables.",
+				"Info");
+#endif
 		}
 
 		private void MenuItemFileGetSnapshot_Click(object sender, RoutedEventArgs e)

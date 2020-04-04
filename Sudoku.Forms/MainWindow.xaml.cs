@@ -18,6 +18,7 @@ using Sudoku.Drawing.Extensions;
 using Sudoku.Drawing.Layers;
 using Sudoku.Forms.Drawing.Layers;
 using Sudoku.Forms.Extensions;
+using Sudoku.Recognizations;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 using PointConverter = Sudoku.Drawing.PointConverter;
@@ -146,6 +147,27 @@ namespace Sudoku.Forms
 		{
 			// Call the base method.
 			base.OnInitialized(e);
+
+#if SUDOKU_RECOGNIZING
+			// Then initialize for recognizer.
+			try
+			{
+				var path = $@"{Directory.GetCurrentDirectory()}\tessdata";
+				CellRecognizer.InitTesseractAsync(path).Wait();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(
+					$"Cannot to calculate{Environment.NewLine}" +
+					$"Source: {ex.Source}{Environment.NewLine}" +
+					$"Message: {ex.Message}",
+					"Fatal error",
+					MessageBoxButton.OK,
+					MessageBoxImage.Error);
+
+				throw;
+			}
+#endif
 
 			// Define shortcuts.
 			AddShortCut(Key.C, ModifierKeys.Control, null, MenuItemEditCopy_Click);
