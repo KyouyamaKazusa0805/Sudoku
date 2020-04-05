@@ -216,6 +216,7 @@ namespace Sudoku.Forms
 			SaveConfig();
 
 			// Dispose the instance.
+			// If the service provider is not initialized, this value will be null.
 			_recognition?.Dispose();
 
 			GC.Collect();
@@ -445,6 +446,10 @@ namespace Sudoku.Forms
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void UpdateControls()
 		{
+#if !SUDOKU_RECOGNIZING
+			_menuItemFileLoadPicture.IsEnabled = false;
+#endif
+
 			_menuItemOptionsShowCandidates.IsChecked = Settings.ShowCandidates;
 			_menuItemAnalyzeSeMode.IsChecked = Settings.AnalyzeDifficultyStrictly;
 			_menuItemAnalyzeFastSearch.IsChecked = Settings.FastSearch;
