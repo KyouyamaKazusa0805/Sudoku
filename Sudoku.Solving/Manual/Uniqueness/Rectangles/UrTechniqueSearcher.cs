@@ -1081,23 +1081,32 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 							continue;
 						}
 
-						short cellMask = (short)(
+						short cellMaskOr = (short)(
 							grid.GetCandidatesReversal(extraCells[0])
 							| grid.GetCandidatesReversal(extraCells[1]));
+						short cellMaskXor = (short)(
+							grid.GetCandidatesReversal(extraCells[0])
+							^ grid.GetCandidatesReversal(extraCells[1]));
 						if (size == 1)
 						{
 							// Check light hidden pair.
 							short mask = (short)(mask1 | mask2);
 							if (mask.CountSet() == 3
-								&& (cellMask & (short)(1 << d1 | 1 << d2)).CountSet() == 2)
+								&& (cellMaskOr & (short)(1 << d1 | 1 << d2)).CountSet() == 2)
 							{
+								int[] subsetDigits = new[] { d1, d2 };
+								if (subsetDigits.All(d => (cellMaskXor >> d & 1) != 0))
+								{
+									// Subset digits are in a same cell.
+									continue;
+								}
+
 								// Type 3 (+ hidden) found.
 								// Record all highlight candidates and eliminations.
 								var candidateOffsets = new List<(int, int)>();
 								var conclusions = new List<Conclusion>();
 								var otherDigits = new List<int>();
 								var otherCells = new List<int>();
-								int[] subsetDigits = new[] { d1, d2 };
 								int[] cellsToTraverse = RegionCells[region];
 								foreach (int cell in cells)
 								{
@@ -1212,15 +1221,21 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 									short mask = (short)((short)(mask1 | mask2) | mask3);
 									if (mask.CountSet() == 4
 										&& extraCells.All(c => grid.CandidateDoesNotExist(c, d3))
-										&& (cellMask & (short)(1 << d1 | 1 << d2 | 1 << d3)).CountSet() == 3)
+										&& (cellMaskOr & (short)(1 << d1 | 1 << d2 | 1 << d3)).CountSet() == 3)
 									{
+										int[] subsetDigits = new[] { d1, d2, d3 };
+										if (subsetDigits.All(d => (cellMaskXor >> d & 1) != 0))
+										{
+											// Subset digits are in a same cell.
+											continue;
+										}
+
 										// Type 3 (+ hidden) found.
 										// Record all highlight candidates and eliminations.
 										var candidateOffsets = new List<(int, int)>();
 										var conclusions = new List<Conclusion>();
 										var otherDigits = new List<int>();
 										var otherCells = new List<int>();
-										int[] subsetDigits = new[] { d1, d2, d3 };
 										int[] cellsToTraverse = RegionCells[region];
 										foreach (int cell in cells)
 										{
@@ -1337,15 +1352,21 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										short mask = (short)((short)((short)(mask1 | mask2) | mask3) | mask4);
 										if (mask.CountSet() == 5
 											&& extraCells.All(c => grid.CandidateDoesNotExist(c, d3) && grid.CandidateDoesNotExist(c, d4))
-											&& (cellMask & (short)(1 << d1 | 1 << d2 | 1 << d3 | 1 << d4)).CountSet() == 4)
+											&& (cellMaskOr & (short)(1 << d1 | 1 << d2 | 1 << d3 | 1 << d4)).CountSet() == 4)
 										{
+											int[] subsetDigits = new[] { d1, d2, d3, d4 };
+											if (subsetDigits.All(d => (cellMaskXor >> d & 1) != 0))
+											{
+												// Subset digits are in a same cell.
+												continue;
+											}
+
 											// Type 3 (+ hidden) found.
 											// Record all highlight candidates and eliminations.
 											var candidateOffsets = new List<(int, int)>();
 											var conclusions = new List<Conclusion>();
 											var otherDigits = new List<int>();
 											var otherCells = new List<int>();
-											int[] subsetDigits = new[] { d1, d2, d3, d4 };
 											int[] cellsToTraverse = RegionCells[region];
 											foreach (int cell in cells)
 											{
