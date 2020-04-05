@@ -685,6 +685,14 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
+        <member name="M:Sudoku.Data.Extensions.TypeEx.TypeEquals``2">
+            <summary>
+            Indicates whether two types are same.
+            </summary>
+            <typeparam name="T1">The type 1.</typeparam>
+            <typeparam name="T2">The type 2.</typeparam>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
         <member name="T:Sudoku.Data.FullGridMap">
             <summary>
             Encapsulates a binary series of candidate status table consisting of 729 bits,
@@ -3304,20 +3312,20 @@
         </member>
         <member name="M:Sudoku.Drawing.Extensions.BitmapEx.ColorPaletteToLookupTable(System.Drawing.Imaging.ColorPalette,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@)">
             <summary>
-            Convert the color palette to four lookup tables
+            Convert the color palette to four lookup tables.
             </summary>
-            <param name="palette">The color palette to transform</param>
-            <param name="bTable">Lookup table for the B channel</param>
-            <param name="gTable">Lookup table for the G channel</param>
-            <param name="rTable">Lookup table for the R channel</param>
-            <param name="aTable">Lookup table for the A channel</param>
+            <param name="palette">The color palette to transform.</param>
+            <param name="bTable">Lookup table for the B channel.</param>
+            <param name="gTable">Lookup table for the G channel.</param>
+            <param name="rTable">Lookup table for the R channel.</param>
+            <param name="aTable">Lookup table for the A channel.</param>
         </member>
         <member name="M:Sudoku.Drawing.Extensions.BitmapEx.CopyFromBitmap``2(Emgu.CV.Image{``0,``1},System.Drawing.Bitmap)">
             <summary>
-            Utility function for converting Bitmap to Image
+            Utility function for converting <see cref="T:System.Drawing.Bitmap"/> to <see cref="T:System.Drawing.Image"/>.
             </summary>
-            <param name="bmp">the bitmap to copy data from</param>
-            <param name="image">The image to copy data to</param>
+            <param name="bmp">the bitmap to copy data from.</param>
+            <param name="image">The image to copy data to.</param>
         </member>
         <member name="T:Sudoku.Drawing.View">
             <summary>

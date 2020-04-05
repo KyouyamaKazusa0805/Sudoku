@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if SUDOKU_RECOGNIZING
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -6,6 +7,7 @@ using System.Runtime.InteropServices;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.Util;
+using static Sudoku.Data.Extensions.TypeEx;
 
 namespace Sudoku.Drawing.Extensions
 {
@@ -28,8 +30,7 @@ namespace Sudoku.Drawing.Extensions
 		{
 			if (Array.IndexOf(@this.PropertyIdList, 274) > -1)
 			{
-				int orientation = @this.GetPropertyItem(274).Value[0];
-				switch (orientation)
+				switch (@this.GetPropertyItem(274).Value[0])
 				{
 					case 1:
 					{
@@ -91,7 +92,8 @@ namespace Sudoku.Drawing.Extensions
 			switch (bitmap.PixelFormat)
 			{
 				case PixelFormat.Format32bppRgb:
-					if (typeof(TColor) == typeof(Bgr) && typeof(TDepth) == typeof(byte))
+				{
+					if (TypeEquals<TColor, Bgr>() && TypeEquals<TDepth, byte>())
 					{
 						var data = bitmap.LockBits(
 							new Rectangle(Point.Empty, size),
@@ -112,9 +114,13 @@ namespace Sudoku.Drawing.Extensions
 					}
 
 					break;
+				}
 				case PixelFormat.Format32bppArgb:
-					if (typeof(TColor) == typeof(Bgra) && typeof(TDepth) == typeof(byte))
+				{
+					if (TypeEquals<TColor, Bgra>() && TypeEquals<TDepth, byte>())
+					{
 						image.CopyFromBitmap(bitmap);
+					}
 					else
 					{
 						var data = bitmap.LockBits(
@@ -128,34 +134,41 @@ namespace Sudoku.Drawing.Extensions
 					}
 
 					break;
+				}
 				case PixelFormat.Format8bppIndexed:
-					if (typeof(TColor) == typeof(Bgra) && typeof(TDepth) == typeof(byte))
+				{
+					if (TypeEquals<TColor, Bgra>() && TypeEquals<TDepth, byte>())
 					{
-						ColorPaletteToLookupTable(bitmap.Palette, out var bTable, out var gTable, out var rTable, out var aTable);
+						ColorPaletteToLookupTable(
+							bitmap.Palette, out var bTable, out var gTable, out var rTable, out var aTable);
+
 						var data = bitmap.LockBits(
 							new Rectangle(Point.Empty, size),
 							ImageLockMode.ReadOnly,
 							bitmap.PixelFormat);
-						using (var indexValue =
-							new Image<Gray, byte>(size.Width, size.Height, data.Stride, data.Scan0))
+						using var indexValue = new Image<Gray, byte>(size.Width, size.Height, data.Stride, data.Scan0);
+						using var b = new Mat();
+						using var g = new Mat();
+						using var r = new Mat();
+						using var a = new Mat();
+						using var mv = new VectorOfMat(new Mat[] { b, g, r, a });
+						try
 						{
-							using var b = new Mat();
-							using var g = new Mat();
-							using var r = new Mat();
-							using var a = new Mat();
 							CvInvoke.LUT(indexValue, bTable, b);
 							CvInvoke.LUT(indexValue, gTable, g);
 							CvInvoke.LUT(indexValue, rTable, r);
 							CvInvoke.LUT(indexValue, aTable, a);
-							using var mv = new VectorOfMat(new Mat[] { b, g, r, a });
 							CvInvoke.Merge(mv, image);
-						}
 
-						bitmap.UnlockBits(data);
-						bTable.Dispose();
-						gTable.Dispose();
-						rTable.Dispose();
-						aTable.Dispose();
+							bitmap.UnlockBits(data);
+						}
+						finally
+						{
+							bTable?.Dispose();
+							gTable?.Dispose();
+							rTable?.Dispose();
+							aTable?.Dispose();
+						}
 					}
 					else
 					{
@@ -164,9 +177,13 @@ namespace Sudoku.Drawing.Extensions
 					}
 
 					break;
+				}
 				case PixelFormat.Format24bppRgb:
-					if (typeof(TColor) == typeof(Bgr) && typeof(TDepth) == typeof(byte))
+				{
+					if (TypeEquals<TColor, Bgr>() && TypeEquals<TDepth, byte>())
+					{
 						image.CopyFromBitmap(bitmap);
+					}
 					else
 					{
 						var data = bitmap.LockBits(
@@ -179,8 +196,10 @@ namespace Sudoku.Drawing.Extensions
 					}
 
 					break;
+				}
 				case PixelFormat.Format1bppIndexed:
-					if (typeof(TColor) == typeof(Gray) && typeof(TDepth) == typeof(byte))
+				{
+					if (TypeEquals<TColor, Gray>() && TypeEquals<TDepth, byte>())
 					{
 						int rows = size.Height;
 						int cols = size.Width;
@@ -223,48 +242,39 @@ namespace Sudoku.Drawing.Extensions
 					}
 
 					break;
+				}
 				default:
-
-					#region Handle other image type
-
-					//         Bitmap bgraImage = new Bitmap(value.Width, value.Height, PixelFormat.Format32bppArgb);
-					//         using (Graphics g = Graphics.FromImage(bgraImage))
-					//         {
-					//            g.DrawImageUnscaled(value, 0, 0, value.Width, value.Height);
-					//         }
-					//         Bitmap = bgraImage;
-					using (var tmp1 = new Image<Bgra, byte>(size))
+				{
+					using var tmp1 = new Image<Bgra, byte>(size);
+					byte[,,] data = tmp1.Data;
+					for (int i = 0; i < size.Width; i++)
 					{
-						byte[,,] data = tmp1.Data;
-						for (int i = 0; i < size.Width; i++)
-							for (int j = 0; j < size.Height; j++)
-							{
-								var color = bitmap.GetPixel(i, j);
-								data[j, i, 0] = color.B;
-								data[j, i, 1] = color.G;
-								data[j, i, 2] = color.R;
-								data[j, i, 3] = color.A;
-							}
-
-						image.ConvertFrom(tmp1);
+						for (int j = 0; j < size.Height; j++)
+						{
+							var color = bitmap.GetPixel(i, j);
+							data[j, i, 0] = color.B;
+							data[j, i, 1] = color.G;
+							data[j, i, 2] = color.R;
+							data[j, i, 3] = color.A;
+						}
 					}
 
-					#endregion
-
+					image.ConvertFrom(tmp1);
 					break;
+				}
 			}
 
 			return image;
 		}
 
 		/// <summary>
-		/// Convert the color palette to four lookup tables
+		/// Convert the color palette to four lookup tables.
 		/// </summary>
-		/// <param name="palette">The color palette to transform</param>
-		/// <param name="bTable">Lookup table for the B channel</param>
-		/// <param name="gTable">Lookup table for the G channel</param>
-		/// <param name="rTable">Lookup table for the R channel</param>
-		/// <param name="aTable">Lookup table for the A channel</param>
+		/// <param name="palette">The color palette to transform.</param>
+		/// <param name="bTable">Lookup table for the B channel.</param>
+		/// <param name="gTable">Lookup table for the G channel.</param>
+		/// <param name="rTable">Lookup table for the R channel.</param>
+		/// <param name="aTable">Lookup table for the A channel.</param>
 		public static void ColorPaletteToLookupTable(
 			ColorPalette palette, out Matrix<byte> bTable,
 			out Matrix<byte> gTable, out Matrix<byte> rTable, out Matrix<byte> aTable)
@@ -290,10 +300,10 @@ namespace Sudoku.Drawing.Extensions
 		}
 
 		/// <summary>
-		/// Utility function for converting Bitmap to Image
+		/// Utility function for converting <see cref="Bitmap"/> to <see cref="Image"/>.
 		/// </summary>
-		/// <param name="bmp">the bitmap to copy data from</param>
-		/// <param name="image">The image to copy data to</param>
+		/// <param name="bmp">the bitmap to copy data from.</param>
+		/// <param name="image">The image to copy data to.</param>
 		private static void CopyFromBitmap<TColor, TDepth>(this Image<TColor, TDepth> image, Bitmap bmp)
 			where TColor : struct, IColor
 			where TDepth : new()
@@ -309,3 +319,4 @@ namespace Sudoku.Drawing.Extensions
 		}
 	}
 }
+#endif

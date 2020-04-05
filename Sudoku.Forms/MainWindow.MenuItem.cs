@@ -134,18 +134,28 @@ namespace Sudoku.Forms
 				{
 					if (_recognition.ToolIsInitialized)
 					{
-						_textBoxInfo.Text = "Load picture successfully, now grab all digits in the picture, please wait...";
-						using (var bitmap = new Bitmap(dialog.FileName))
+						if (MessageBox.Show(
+							$"Ensure your picture be clear.{Environment.NewLine}" +
+							$"Due to the limitation of the OCR algorithm, " +
+							$"the program can only recognize the puzzle picture with given values. " +
+							$"All modifiable values will be treated as given ones " +
+							$"because OCR engine cannot recognize the color of the value.{Environment.NewLine}" +
+							$"If you are not sure, please click NO button.",
+							"Info", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
 						{
-							var grid = (await Task.Run(() => _recognition.Recorgnize(bitmap))).ToMutable();
-							grid.Fix();
-							Puzzle = new UndoableGrid(grid);
+							_textBoxInfo.Text = "Load picture successfully, now grab all digits in the picture, please wait...";
+							using (var bitmap = new Bitmap(dialog.FileName))
+							{
+								var grid = (await Task.Run(() => _recognition.Recorgnize(bitmap))).ToMutable();
+								grid.Fix();
+								Puzzle = new UndoableGrid(grid);
+							}
+
+							_textBoxInfo.ClearValue(TextBox.TextProperty);
+
+							UpdateUndoRedoControls();
+							UpdateImageGrid();
 						}
-
-						_textBoxInfo.ClearValue(TextBox.TextProperty);
-
-						UpdateUndoRedoControls();
-						UpdateImageGrid();
 					}
 					else
 					{
