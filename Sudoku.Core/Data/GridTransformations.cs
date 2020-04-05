@@ -123,6 +123,14 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
+		/// Transpose the grid.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <returns>The result grid.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Grid Transpose(this IReadOnlyGrid @this) => @this.MirrorDiagonal();
+
+		/// <summary>
 		/// Mirror anti-diagonal the grid.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>

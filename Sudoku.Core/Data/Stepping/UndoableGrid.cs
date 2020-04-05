@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Sudoku.Extensions;
 
 namespace Sudoku.Data.Stepping
 {
@@ -226,7 +227,7 @@ namespace Sudoku.Data.Stepping
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool Equals(UndoableGrid other) => Equals((Grid)other);
+		public bool Equals(UndoableGrid other) => Equals(other.ToMutable());
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

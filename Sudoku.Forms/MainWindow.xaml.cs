@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -18,7 +19,7 @@ using Sudoku.Drawing.Extensions;
 using Sudoku.Drawing.Layers;
 using Sudoku.Forms.Drawing.Layers;
 using Sudoku.Forms.Extensions;
-using Sudoku.Recognizations;
+using Sudoku.Recognitions;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 using PointConverter = Sudoku.Drawing.PointConverter;
@@ -51,6 +52,14 @@ namespace Sudoku.Forms
 		/// <seealso cref="OnKeyUp(KeyEventArgs)"/>
 		private GridMap? _previewMap;
 
+
+		/// <summary>
+		/// Indicates an recognition instance.
+		/// </summary>
+#if !SUDOKU_RECOGNIZING
+		[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
+#endif
+		private RecognitionServiceProvider _recognition = null!;
 
 		/// <summary>
 		/// Indicates the analysis result after solving of the current grid.
@@ -152,8 +161,7 @@ namespace Sudoku.Forms
 			// Then initialize for recognizer.
 			try
 			{
-				var path = $@"{Directory.GetCurrentDirectory()}\tessdata";
-				CellRecognizer.InitTesseractAsync(path).Wait();
+				_recognition = new RecognitionServiceProvider();
 			}
 			catch (Exception ex)
 			{
@@ -196,6 +204,7 @@ namespace Sudoku.Forms
 		/// <inheritdoc/>
 		protected override void OnClosing(CancelEventArgs e)
 		{
+			// Ask when worth.
 			if (Settings.AskWhileQuitting
 				&& MessageBox.Show("Are you sure to quit?", "Info", MessageBoxButton.YesNo) == MessageBoxResult.No)
 			{
@@ -203,7 +212,13 @@ namespace Sudoku.Forms
 				return;
 			}
 
+			// Save configuration.
 			SaveConfig();
+
+			// Dispose the instance.
+			_recognition?.Dispose();
+
+			GC.Collect();
 
 			base.OnClosing(e);
 		}

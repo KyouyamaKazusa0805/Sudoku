@@ -2167,6 +2167,13 @@
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result grid.</returns>
         </member>
+        <member name="M:Sudoku.Data.GridTransformations.Transpose(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Transpose the grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
         <member name="M:Sudoku.Data.GridTransformations.MirrorAntidiagonal(Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Mirror anti-diagonal the grid.
@@ -3375,6 +3382,23 @@
             All link masks.
             </summary>
         </member>
+        <member name="T:Sudoku.Extensions.ReadOnlyGridEx">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Data.IReadOnlyGrid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.IReadOnlyGrid"/>
+        </member>
+        <member name="M:Sudoku.Extensions.ReadOnlyGridEx.ToMutable(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Convert the current read-only grid to mutable one.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The mutable one.</returns>
+            <remarks>
+            This method is only use type conversion, so the return value has a same
+            reference with this specified argument holds.
+            </remarks>
+        </member>
         <member name="T:Sudoku.GridProcessings">
             <summary>
             The tables for grid processing.
@@ -3512,17 +3536,117 @@
             The grid.
             </summary>
         </member>
-        <member name="T:Sudoku.Recognizations.CellRecognizer">
+        <member name="T:Sudoku.Recognitions.GridRecognizer">
             <summary>
-            Define a cell recognizer.
+            Provides a grid field recognizer. If you want to know what is a <b>field</b>,
+            please see the 'remark' part of <see cref="T:Sudoku.Recognitions.InternalServiceProvider"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Recognitions.InternalServiceProvider"/>
+        </member>
+        <member name="F:Sudoku.Recognitions.GridRecognizer._image">
+            <summary>
+            The image.
             </summary>
         </member>
-        <member name="F:Sudoku.Recognizations.CellRecognizer._ocr">
+        <member name="M:Sudoku.Recognitions.GridRecognizer.#ctor(System.Drawing.Bitmap)">
+            <summary>
+            Initializes an instance with the specified photo.
+            </summary>
+            <param name="photo">The photo.</param>
+        </member>
+        <member name="M:Sudoku.Recognitions.GridRecognizer.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recognitions.GridRecognizer.Recognize">
+            <summary>
+            Recognize.
+            </summary>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Recognitions.GridRecognizer.PrepareImage">
+            <summary>
+            Prepare the image.
+            </summary>
+            <returns>The <see cref="T:Emgu.CV.UMat"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Recognitions.GridRecognizer.FindField(Emgu.CV.UMat)">
+            <summary>
+            Find the field.
+            </summary>
+            <param name="edges">The edges.</param>
+            <returns>The points.</returns>
+        </member>
+        <member name="M:Sudoku.Recognitions.GridRecognizer.CutField(System.Drawing.PointF[])">
+            <summary>
+            To cut the field.
+            </summary>
+            <param name="field">The field.</param>
+            <returns>The image.</returns>
+        </member>
+        <member name="M:Sudoku.Recognitions.GridRecognizer.GetFourCornerPoints(System.Drawing.Point[])">
+            <summary>
+            Getting four corner points from contour points.
+            </summary>
+            <param name="points">The points.</param>
+            <returns>The points.</returns>
+        </member>
+        <member name="M:Sudoku.Recognitions.GridRecognizer.IsRectangle(System.Drawing.PointF[],System.Int32,System.Int32,System.Double)">
+            <summary>
+            Get true if contour is rectangle with angles within <c>[lowAngle, upAngle]</c> degree.
+            The default case is <c>[75, 105]</c> given by <paramref name="lowerAngle"/> and
+            <paramref name="upperAngle"/>.
+            </summary>
+            <param name="contour">The contour.</param>
+            <param name="lowerAngle">The lower angle. The default value is <c>75</c>.</param>
+            <param name="upperAngle">The upper angle. The default value is <c>105</c>.</param>
+            <param name="ratio">The ratio. The default value is <c>.35</c>.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="T:Sudoku.Recognitions.InternalServiceProvider">
+            <summary>
+            Define a recognizer.
+            </summary>
+            <remarks>
+            During the recognizing, the <b>field</b> indicates the whole outline of a grid.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Recognitions.InternalServiceProvider._ocr">
             <summary>
             The internal <see cref="T:Emgu.CV.OCR.Tesseract"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Recognizations.CellRecognizer.InitTesseractAsync(System.String,System.String)">
+        <member name="P:Sudoku.Recognitions.InternalServiceProvider.Initialized">
+            <summary>
+            Indicates whether the current recognizer has already initialized.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Recognitions.InternalServiceProvider.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recognitions.InternalServiceProvider.RecognizeDigits(Emgu.CV.Image{Emgu.CV.Structure.Bgr,System.Byte})">
+            <summary>
+            Recognizes digits.
+            </summary>
+            <param name="field">The field.</param>
+            <returns>The grid.</returns>
+            <exception cref="T:Sudoku.SudokuRuntimeException">
+            Throws when the processing is wrong or unhandleable.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Recognitions.InternalServiceProvider.RecognizeCellNumber(Emgu.CV.Image{Emgu.CV.Structure.Bgr,System.Byte})">
+            <summary>
+            Recognize the number of a cell.
+            </summary>
+            <param name="cellImg">The image of a cell.</param>
+            <returns>
+            The result value (must be between 1 and 9). If the recognition is failed,
+            the value will be <c>0</c>.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the OCR engine error.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Recognitions.InternalServiceProvider.InitTesseractAsync(System.String,System.String)">
             <summary>
             Initializes <see cref="T:Emgu.CV.OCR.Tesseract"/> instance.
             </summary>
@@ -3533,88 +3657,47 @@
             Throws when the specified trained data cannot be found and cannot be downloaded.
             </exception>
         </member>
-        <member name="M:Sudoku.Recognizations.CellRecognizer.RecognizeDigits(Emgu.CV.Image{Emgu.CV.Structure.Bgr,System.Byte},System.Drawing.Rectangle[]@)">
+        <member name="M:Sudoku.Recognitions.InternalServiceProvider.TesseractDownloadLangFileAsync(System.String,System.String)">
             <summary>
-            Recognizes digits.
+            When the trained data is failed to find in the local machine, this method will download
+            the file online.
             </summary>
-            <param name="field">The field.</param>
-            <param name="rectangles">(<see langword="out"/> parameter) The rectangles.</param>
-            <returns>The grid.</returns>
-            <exception cref="T:System.Exception">
-            Throws when the processing is wrong or unhandleable.
-            </exception>
-        </member>
-        <member name="T:Sudoku.Recognizations.GridRecognizer">
-            <summary>
-            Provides a grid recognizer.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Recognizations.GridRecognizer.#ctor(System.Drawing.Bitmap)">
-            <summary>
-            Initializes an instance with the specified photo.
-            </summary>
-            <param name="photo">The photo.</param>
-        </member>
-        <member name="P:Sudoku.Recognizations.GridRecognizer.Image">
-            <summary>
-            The image.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Recognizations.GridRecognizer.Recognize">
-            <summary>
-            Recognize.
-            </summary>
+            <param name="dir">The directory to find.</param>
+            <param name="lang">The language.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Recognizations.GridRecognizer.PrepareImage">
+        <member name="T:Sudoku.Recognitions.RecognitionServiceProvider">
             <summary>
-            Prepare the image.
-            </summary>
-            <returns>The <see cref="T:Emgu.CV.UMat"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Recognizations.GridRecognizer.FindField(Emgu.CV.UMat)">
-            <summary>
-            Find the field.
-            </summary>
-            <param name="edges">The edges.</param>
-            <returns>The points.</returns>
-        </member>
-        <member name="M:Sudoku.Recognizations.GridRecognizer.CutField(System.Drawing.PointF[])">
-            <summary>
-            To cut the field.
-            </summary>
-            <param name="field">The field.</param>
-            <returns>The image.</returns>
-        </member>
-        <member name="M:Sudoku.Recognizations.GridRecognizer.GetFourCornerPoints(System.Drawing.Point[])">
-            <summary>
-            Getting four corner points from contour points.
-            </summary>
-            <param name="points">The points.</param>
-            <returns>The points.</returns>
-        </member>
-        <member name="M:Sudoku.Recognizations.GridRecognizer.IsRectangle(System.Drawing.PointF[],System.Int32,System.Int32,System.Double)">
-            <summary>
-            Get true if contour is rectangle with angles within [lowAngle, upAngle] degree.
-            Default: [75, 105].
-            </summary>
-            <param name="contour">The contour.</param>
-            <param name="lowAngle">The lower angle. The default value is 75.</param>
-            <param name="upAngle">The upper angle. The default value is 105.</param>
-            <param name="ratio">The ratio. The default value is .35</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="T:Sudoku.Recognizations.RecognizationUtils">
-            <summary>
-            Define a grid that can be recognized.
+            Define a sudoku recognition service provider.
             </summary>
         </member>
-        <member name="M:Sudoku.Recognizations.RecognizationUtils.Recorgnize(System.Drawing.Bitmap)">
+        <member name="F:Sudoku.Recognitions.RecognitionServiceProvider._recognizingServiceProvider">
+            <summary>
+            Indicates the internal recognition service provider.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Recognitions.RecognitionServiceProvider.#ctor">
+            <defaultConstructor>
+		<summary>Create an instance with default initialization.</summary>
+	</defaultConstructor>
+        </member>
+        <member name="P:Sudoku.Recognitions.RecognitionServiceProvider.ToolIsInitialized">
+            <summary>
+            Indicates whether the OCR tool has already initialized.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Recognitions.RecognitionServiceProvider.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recognitions.RecognitionServiceProvider.Recorgnize(System.Drawing.Bitmap)">
             <summary>
             Recognize the image.
             </summary>
             <param name="image">The image.</param>
             <returns>The grid.</returns>
+            <exception cref="T:Sudoku.SudokuRuntimeException">
+            Throws when the tool has not initialized yet.
+            </exception>
         </member>
         <member name="T:Sudoku.SudokuRuntimeException">
             <summary>

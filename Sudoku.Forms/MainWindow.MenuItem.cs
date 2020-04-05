@@ -17,8 +17,8 @@ using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Layers;
+using Sudoku.Extensions;
 using Sudoku.Forms.Drawing.Extensions;
-using Sudoku.Recognizations;
 using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Checking;
@@ -101,39 +101,65 @@ namespace Sudoku.Forms
 			}
 		}
 
-		private void MenuItemFileLoadPicture_Click(object sender, RoutedEventArgs e)
+#if SUDOKU_RECOGNIZING
+		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+#endif
+		private
+#if SUDOKU_RECOGNIZING
+			async
+#endif
+			void MenuItemFileLoadPicture_Click(object sender, RoutedEventArgs e)
 		{
 #if SUDOKU_RECOGNIZING
-			var dialog = new OpenFileDialog
-			{
-				AddExtension = true,
-				DefaultExt = "png",
-				Filter = "PNG file|*.png|JPEG file|*.jpg;*.jpeg|BMP file|*.bmp|GIF file|*.gif",
-				Multiselect = false,
-				Title = "Load picture from..."
-			};
+			await internalOperation();
 
-			if (!(dialog.ShowDialog() is true))
+			async Task internalOperation()
 			{
-				e.Handled = true;
-				return;
-			}
+				var dialog = new OpenFileDialog
+				{
+					AddExtension = true,
+					DefaultExt = "png",
+					Filter = "PNG file|*.png|JPEG file|*.jpg;*.jpeg|BMP file|*.bmp|GIF file|*.gif",
+					Multiselect = false,
+					Title = "Load picture from..."
+				};
 
-			try
-			{
-				using var bitmap = new Bitmap(dialog.FileName);
-				var recognizer = new GridRecognizer(bitmap);
-				var grid = CellRecognizer.RecognizeDigits(recognizer.Recognize(), out var rectangles);
-				grid.Fix();
-				MessageBox.Show($"{grid:.}");
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.Message, "Warning");
+				if (!(dialog.ShowDialog() is true))
+				{
+					e.Handled = true;
+					return;
+				}
+
+				try
+				{
+					if (_recognition.ToolIsInitialized)
+					{
+						_textBoxInfo.Text = "Load picture successfully, now grab all digits in the picture, please wait...";
+						using (var bitmap = new Bitmap(dialog.FileName))
+						{
+							var grid = (await Task.Run(() => _recognition.Recorgnize(bitmap))).ToMutable();
+							grid.Fix();
+							Puzzle = new UndoableGrid(grid);
+						}
+
+						_textBoxInfo.ClearValue(TextBox.TextProperty);
+
+						UpdateUndoRedoControls();
+						UpdateImageGrid();
+					}
+					else
+					{
+						MessageBox.Show("The OCR tool has not recognized yet.", "Info");
+					}
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.Message, "Warning");
+				}
 			}
 #else
 			MessageBox.Show(
-				"Your machine cannot use image recognization because of some vulnerables.",
+				"Your machine cannot use image recognition because of some vulnerables.",
 				"Info");
 #endif
 		}

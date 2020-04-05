@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sudoku.Extensions;
 
 namespace Sudoku.Data
 {
@@ -103,10 +104,10 @@ namespace Sudoku.Data
 		/// Creates a new instance that is a copy of the current instance.
 		/// </summary>
 		/// <returns>The cloneation.</returns>
-		public Grid Clone() => ((Grid)this).Clone();
+		public Grid Clone() => this.ToMutable().Clone();
 
 		/// <inheritdoc/>
 		string IFormattable.ToString(string? format, IFormatProvider? formatProvider) =>
-			((Grid)this).ToString(format, formatProvider);
+			this.ToMutable().ToString(format, formatProvider);
 	}
 }
