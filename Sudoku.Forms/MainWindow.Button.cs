@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using Sudoku.Forms.Drawing.Extensions;
+using Sudoku.Drawing.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;

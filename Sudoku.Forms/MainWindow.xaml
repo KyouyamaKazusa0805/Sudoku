@@ -194,7 +194,48 @@
 		<!-- Row 2 -->
 		<Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 			   Name="_imageGrid" Grid.Row="2" Grid.Column="0" Width="576" Height="576"
-			   MouseLeftButtonDown="ImageGrid_MouseLeftButtonDown">
+			   MouseLeftButtonDown="ImageGrid_MouseLeftButtonDown"
+			   MouseRightButtonDown="ImageGrid_MouseRightButtonDown">
+			<Image.ContextMenu>
+				<ContextMenu Name="_imageGridContextMenu">
+					<MenuItem Header="Set 1" Name="_menuItemImageGridSet1"
+							  Click="MenuItemImageGridSet1_Click"/>
+					<MenuItem Header="Set 2" Name="_menuItemImageGridSet2"
+							  Click="MenuItemImageGridSet2_Click"/>
+					<MenuItem Header="Set 3" Name="_menuItemImageGridSet3"
+							  Click="MenuItemImageGridSet3_Click"/>
+					<MenuItem Header="Set 4" Name="_menuItemImageGridSet4"
+							  Click="MenuItemImageGridSet4_Click"/>
+					<MenuItem Header="Set 5" Name="_menuItemImageGridSet5"
+							  Click="MenuItemImageGridSet5_Click"/>
+					<MenuItem Header="Set 6" Name="_menuItemImageGridSet6"
+							  Click="MenuItemImageGridSet6_Click"/>
+					<MenuItem Header="Set 7" Name="_menuItemImageGridSet7"
+							  Click="MenuItemImageGridSet7_Click"/>
+					<MenuItem Header="Set 8" Name="_menuItemImageGridSet8"
+							  Click="MenuItemImageGridSet8_Click"/>
+					<MenuItem Header="Set 9" Name="_menuItemImageGridSet9"
+							  Click="MenuItemImageGridSet9_Click"/>
+					<MenuItem Header="Delete 1" Name="_menuItemImageGridDelete1"
+							  Click="MenuItemImageGridDelete1_Click"/>
+					<MenuItem Header="Delete 2" Name="_menuItemImageGridDelete2"
+							  Click="MenuItemImageGridDelete2_Click"/>
+					<MenuItem Header="Delete 3" Name="_menuItemImageGridDelete3"
+							  Click="MenuItemImageGridDelete3_Click"/>
+					<MenuItem Header="Delete 4" Name="_menuItemImageGridDelete4"
+							  Click="MenuItemImageGridDelete4_Click"/>
+					<MenuItem Header="Delete 5" Name="_menuItemImageGridDelete5"
+							  Click="MenuItemImageGridDelete5_Click"/>
+					<MenuItem Header="Delete 6" Name="_menuItemImageGridDelete6"
+							  Click="MenuItemImageGridDelete6_Click"/>
+					<MenuItem Header="Delete 7" Name="_menuItemImageGridDelete7"
+							  Click="MenuItemImageGridDelete7_Click"/>
+					<MenuItem Header="Delete 8" Name="_menuItemImageGridDelete8"
+							  Click="MenuItemImageGridDelete8_Click"/>
+					<MenuItem Header="Delete 9" Name="_menuItemImageGridDelete9"
+							  Click="MenuItemImageGridDelete9_Click"/>
+				</ContextMenu>
+			</Image.ContextMenu>
 		</Image>
 		<TabControl Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch"
 					Name="_tabControlInfo"

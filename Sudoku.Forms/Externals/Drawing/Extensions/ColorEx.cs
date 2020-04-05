@@ -2,7 +2,7 @@
 using DColor = System.Drawing.Color;
 using WColor = System.Windows.Media.Color;
 
-namespace Sudoku.Forms.Drawing.Extensions
+namespace Sudoku.Drawing.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="DColor"/> and <see cref="WColor"/>.

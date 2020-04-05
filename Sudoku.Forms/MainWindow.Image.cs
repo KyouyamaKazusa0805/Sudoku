@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Sudoku.Data.Extensions;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Forms.Drawing.Layers;
 
@@ -69,5 +71,40 @@ namespace Sudoku.Forms
 
 		private void ImageSolve_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
 			MenuItemAnalyzeSolve_Click(sender, e);
+
+		private void ImageGrid_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			_currentRightClickPos = e.GetPosition(_imageGrid);
+
+			// Disable all menu items.
+			for (int i = 0; i < 9; i++)
+			{
+				((MenuItem)GetType()
+					.GetField($"_menuItemImageGridSet{i + 1}", BindingFlags.NonPublic | BindingFlags.Instance)!
+					.GetValue(this)!
+				).IsEnabled = false;
+				((MenuItem)GetType()
+					.GetField($"_menuItemImageGridDelete{i + 1}", BindingFlags.NonPublic | BindingFlags.Instance)!
+					.GetValue(this)!
+				).IsEnabled = false;
+			}
+
+			// Then enable some of them.
+			foreach (int i in
+				_puzzle.GetCandidatesReversal(
+					_pointConverter.GetCellOffset(
+						_currentRightClickPos.ToDPointF())
+					).GetAllSets())
+			{
+				((MenuItem)GetType()
+					.GetField($"_menuItemImageGridSet{i + 1}", BindingFlags.NonPublic | BindingFlags.Instance)!
+					.GetValue(this)!
+				).IsEnabled = true;
+				((MenuItem)GetType()
+					.GetField($"_menuItemImageGridDelete{i + 1}", BindingFlags.NonPublic | BindingFlags.Instance)!
+					.GetValue(this)!
+				).IsEnabled = true;
+			}
+		}
 	}
 }

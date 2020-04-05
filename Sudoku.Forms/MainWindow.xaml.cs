@@ -51,6 +51,12 @@ namespace Sudoku.Forms
 		private string[]? _puzzlesText;
 
 		/// <summary>
+		/// Indicates the current right click position, which is used for
+		/// check the cell (set and delete a candidate from a grid using context menu).
+		/// </summary>
+		private WPoint _currentRightClickPos;
+
+		/// <summary>
 		/// Indicates all focused cells.
 		/// </summary>
 		private GridMap _focusedCells = GridMap.Empty;
@@ -243,7 +249,6 @@ namespace Sudoku.Forms
 			// Get all cases for being pressed keys.
 			if (e.Key.IsDigit())
 			{
-				// Input.
 				var pt = Mouse.GetPosition(_imageGrid);
 				if (IsPointOutOfRange(_imageGrid, pt))
 				{
@@ -251,8 +256,20 @@ namespace Sudoku.Forms
 					return;
 				}
 
-				_puzzle[_pointConverter.GetCellOffset(pt.ToDPointF())] =
-					e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1;
+				// Input or eliminate a digit.
+				if (Keyboard.Modifiers == ModifierKeys.Shift)
+				{
+					// Eliminate a digit.
+					_puzzle[
+						_pointConverter.GetCellOffset(pt.ToDPointF()),
+						e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1] = true;
+				}
+				else if (Keyboard.Modifiers == ModifierKeys.None)
+				{
+					// Input a digit.
+					_puzzle[_pointConverter.GetCellOffset(pt.ToDPointF())] =
+						e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1;
+				}
 
 				UpdateUndoRedoControls();
 				UpdateImageGrid();
@@ -790,5 +807,29 @@ namespace Sudoku.Forms
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void SwitchOnTabItemWhenGeneratedOrSolving() => _tabControlInfo.SelectedIndex = 0;
+
+		/// <summary>
+		/// Set a digit.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void SetADigit(int cell, int digit)
+		{
+			_puzzle[cell] = digit;
+
+			UpdateUndoRedoControls();
+			UpdateImageGrid();
+		}
+
+		/// <summary>
+		/// Delete a digit.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void DeleteADigit(int cell, int digit)
+		{
+			_puzzle[cell, digit] = true;
+
+			UpdateUndoRedoControls();
+			UpdateImageGrid();
+		}
 	}
 }

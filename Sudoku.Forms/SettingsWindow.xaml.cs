@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using Sudoku.Data.Extensions;
-using Sudoku.Forms.Drawing.Extensions;
+using Sudoku.Drawing.Extensions;
 using Sudoku.Forms.Extensions;
 using Sudoku.Forms.Tooling;
 using Sudoku.Solving;
