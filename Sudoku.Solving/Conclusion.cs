@@ -51,6 +51,10 @@ namespace Sudoku.Solving
 		/// Put this instance into the specified grid.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
+		/// <exception cref="InvalidOperationException">
+		/// Throws when the specified conclusion type is neither <see cref="ConclusionType.Assignment"/>
+		/// nor <see cref="ConclusionType.Elimination"/>.
+		/// </exception>
 		public void ApplyTo(Grid grid)
 		{
 			switch (ConclusionType)

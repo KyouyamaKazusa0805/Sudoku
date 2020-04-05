@@ -66,16 +66,19 @@ namespace Sudoku.Solving.Utils
 		}
 
 		/// <inheritdoc/>
+		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public override readonly bool Equals(object? obj) =>
 			throw new NotSupportedException("The instance does not support this method.");
 
 		/// <inheritdoc/>
+		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public override readonly int GetHashCode() =>
 			throw new NotSupportedException("The instance does not support this method.");
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public override readonly string ToString() =>
 			throw new NotSupportedException("The instance does not support this method.");

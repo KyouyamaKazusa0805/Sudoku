@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.Solving.Manual.Singles;
 using Sudoku.Solving.Utils;
+using static Sudoku.Data.CellStatus;
+using static Sudoku.Solving.ConclusionType;
 
 namespace Sudoku.Solving.Manual
 {
@@ -32,7 +33,7 @@ namespace Sudoku.Solving.Manual
 			while (!cloneation.HasSolved)
 			{
 				searcher.AccumulateAll(bag, cloneation);
-				if (!bag.Any())
+				if (bag.Count == 0)
 				{
 					break;
 				}
@@ -77,27 +78,17 @@ namespace Sudoku.Solving.Manual
 			{
 				switch (conclusion.ConclusionType)
 				{
-					case ConclusionType.Assignment:
+					case Assignment when cloneation.GetCellStatus(conclusion.CellOffset) == Empty:
+					case Elimination when cloneation.CandidateExists(conclusion.CellOffset, conclusion.Digit):
 					{
-						if (cloneation.GetCellStatus(conclusion.CellOffset) == CellStatus.Empty)
-						{
-							needAdd = true;
-						}
+						needAdd = true;
 
-						break;
-					}
-					case ConclusionType.Elimination:
-					{
-						if (cloneation.CandidateExists(conclusion.CellOffset, conclusion.Digit))
-						{
-							needAdd = true;
-						}
-
-						break;
+						goto Label_Checking;
 					}
 				}
 			}
 
+		Label_Checking:
 			if (needAdd)
 			{
 				step.ApplyTo(cloneation);

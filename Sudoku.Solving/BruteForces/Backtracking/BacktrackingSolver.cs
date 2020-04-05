@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using Sudoku.Data;
-using Sudoku.Solving.Extensions;
 using static Sudoku.Solving.Utils.CellUtils;
 
 namespace Sudoku.Solving.BruteForces.Backtracking

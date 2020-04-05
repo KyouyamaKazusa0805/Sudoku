@@ -342,7 +342,8 @@ namespace Sudoku.Forms
 		{
 			if ((_puzzle.HasUndoSteps || _puzzle.HasRedoSteps)
 				&& MessageBox.Show(
-					$"The steps will be cleared. If cleared, you cannot undo any steps to previous puzzle status.{Environment.NewLine}" +
+					$"The steps will be cleared. " +
+					$"If so, you cannot undo any steps to previous puzzle status.{Environment.NewLine}" +
 					$"Do you want to clear anyway?", "Info", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
 			{
 				_puzzle.ClearStack();

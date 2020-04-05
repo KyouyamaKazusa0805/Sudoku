@@ -68,8 +68,7 @@ namespace Sudoku.Solving.Checking
 		/// where value 0 is for searching for assignments.
 		/// </param>
 		/// <returns>All backdoors.</returns>
-		public IEnumerable<IBackdoorSet> SearchForBackdoorsExact(
-			IReadOnlyGrid grid, int depth)
+		public IEnumerable<IBackdoorSet> SearchForBackdoorsExact(IReadOnlyGrid grid, int depth)
 		{
 			if (depth < 0 || depth > 3)
 			{
