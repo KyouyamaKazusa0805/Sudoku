@@ -22,6 +22,7 @@ using Sudoku.Forms.Extensions;
 using Sudoku.Recognitions;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
+using static Sudoku.Forms.Constants.Processing;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
 using WPoint = System.Windows.Point;
@@ -40,6 +41,16 @@ namespace Sudoku.Forms
 
 
 		/// <summary>
+		/// Indicates the database of puzzles used current.
+		/// </summary>
+		private string? _database;
+
+		/// <summary>
+		/// Indicates the puzzles text loaded.
+		/// </summary>
+		private string[]? _puzzlesText;
+
+		/// <summary>
 		/// Indicates all focused cells.
 		/// </summary>
 		private GridMap _focusedCells = GridMap.Empty;
@@ -51,7 +62,6 @@ namespace Sudoku.Forms
 		/// <seealso cref="OnKeyDown(KeyEventArgs)"/>
 		/// <seealso cref="OnKeyUp(KeyEventArgs)"/>
 		private GridMap? _previewMap;
-
 
 		/// <summary>
 		/// Indicates an recognition instance.
@@ -198,6 +208,7 @@ namespace Sudoku.Forms
 
 			LoadConfigIfWorth();
 			InitializePointConverterAndLayers();
+			LoadDatabaseIfWorth();
 			UpdateControls();
 		}
 
@@ -318,6 +329,40 @@ namespace Sudoku.Forms
 		}
 
 		/// <summary>
+		/// Load database if worth.
+		/// </summary>
+		private void LoadDatabaseIfWorth()
+		{
+			if (Settings.CurrentPuzzleDatabase is null
+				|| MessageBox.Show(
+					"You have used a database at the previous time you use the program. " +
+					"Do you want to load now?",
+					"Info", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+			{
+				return;
+			}
+
+			if (!File.Exists(Settings.CurrentPuzzleDatabase))
+			{
+				MessageBox.Show("File is missing... Load failed >_<", "Warning");
+
+				Settings.CurrentPuzzleDatabase = null;
+				Settings.CurrentPuzzleNumber = -1;
+
+				return;
+			}
+
+			using var sr = new StreamReader(_database = Settings.CurrentPuzzleDatabase);
+			_puzzlesText = sr.ReadToEnd().Split(Splitter, StringSplitOptions.RemoveEmptyEntries);
+
+			int current = Settings.CurrentPuzzleNumber;
+			int max = _puzzlesText.Length;
+			LoadPuzzle(_puzzlesText[current].TrimEnd(Splitter));
+			_labelPuzzleNumber.Content = $"{current + 1}/{max}";
+			UpdateDatabaseControls(current != 0, current != 0, current != max - 1, current != max - 1);
+		}
+
+		/// <summary>
 		/// Repaint the <see cref="_imageGrid"/> to show the newer grid image.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -328,6 +373,34 @@ namespace Sudoku.Forms
 			_imageGrid.Source = bitmap.ToImageSource();
 
 			GC.Collect();
+		}
+
+		/// <summary>
+		/// Update database controls.
+		/// </summary>
+		/// <param name="first">
+		/// Indicates the next operation will set the property
+		/// <see cref="UIElement.IsEnabled"/> of <see cref="_buttonFirst"/> at once.
+		/// </param>
+		/// <param name="prev">
+		/// Indicates the next operation will set the property
+		/// <see cref="UIElement.IsEnabled"/> of <see cref="_buttonPrev"/> at once.
+		/// </param>
+		/// <param name="next">
+		/// Indicates the next operation will set the property
+		/// <see cref="UIElement.IsEnabled"/> of <see cref="_buttonNext"/> at once.
+		/// </param>
+		/// <param name="last">
+		/// Indicates the next operation will set the property
+		/// <see cref="UIElement.IsEnabled"/> of <see cref="_buttonLast"/> at once.
+		/// </param>
+		/// <seealso cref="UIElement.IsEnabled"/>
+		private void UpdateDatabaseControls(bool first, bool prev, bool next, bool last)
+		{
+			_buttonFirst.IsEnabled = first;
+			_buttonPrev.IsEnabled = prev;
+			_buttonNext.IsEnabled = next;
+			_buttonLast.IsEnabled = last;
 		}
 
 		/// <summary>
@@ -596,6 +669,9 @@ namespace Sudoku.Forms
 			_comboBoxSymmetry.IsEnabled = false;
 			_comboBoxMode.IsEnabled = false;
 			_comboBoxBackdoorFilteringDepth.IsEnabled = false;
+
+			UpdateDatabaseControls(false, false, false, false);
+			_labelPuzzleNumber.ClearValue(ContentProperty);
 
 			UpdateUndoRedoControls();
 		}

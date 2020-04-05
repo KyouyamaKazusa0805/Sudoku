@@ -16,16 +16,19 @@ using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Layers;
-using Sudoku.Extensions;
 using Sudoku.Forms.Drawing.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Generating;
 using Sudoku.Solving.Utils;
+using static Sudoku.Forms.Constants.Processing;
 using AnonymousType = System.Object;
 using DColor = System.Drawing.Color;
 using SudokuGrid = Sudoku.Data.Grid;
+#if SUDOKU_RECOGNIZING
+using Sudoku.Extensions;
+#endif
 
 namespace Sudoku.Forms
 {
@@ -35,7 +38,6 @@ namespace Sudoku.Forms
 		{
 			var dialog = new OpenFileDialog
 			{
-				AddExtension = true,
 				DefaultExt = "sudoku",
 				Filter = "Text file|*.txt|Sudoku file|*.sudoku|All files|*.*",
 				Multiselect = false,
@@ -71,6 +73,38 @@ namespace Sudoku.Forms
 
 			using var sw = new StreamWriter(dialog.FileName);
 			sw.Write(_puzzle.ToString("#"));
+		}
+
+		private void MenuItemFileOpenDatabase_Click(object sender, RoutedEventArgs e)
+		{
+			var dialog = new OpenFileDialog
+			{
+				DefaultExt = ".sudokus",
+				Filter = "Text file|*.txt|Sudoku database file|*.sudokus|All files|*.*",
+				Multiselect = false,
+				Title = "Open sudoku file from..."
+			};
+
+			if (!(dialog.ShowDialog() is true))
+			{
+				e.Handled = true;
+				return;
+			}
+
+			using var sr = new StreamReader(Settings.CurrentPuzzleDatabase = _database = dialog.FileName);
+			_puzzlesText = sr.ReadToEnd().Split(Splitter, StringSplitOptions.RemoveEmptyEntries);
+
+			MessageBox.Show($"Load {_puzzlesText.Length} puzzles.", "Info");
+			if (_puzzlesText.Length == 0)
+			{
+				e.Handled = true;
+				return;
+			}
+
+			LoadPuzzle(_puzzlesText[Settings.CurrentPuzzleNumber = 0].TrimEnd(Splitter));
+			UpdateDatabaseControls(false, false, true, true);
+
+			_labelPuzzleNumber.Content = $"1/{_puzzlesText.Length}";
 		}
 
 		private void MenuItemBackupConfig_Click(object sender, RoutedEventArgs e)
@@ -385,6 +419,22 @@ namespace Sudoku.Forms
 				//	return;
 				//}
 
+				if (!(_database is null)
+					&& MessageBox.Show(
+						"You are now working on the puzzle database. " +
+						"If you click YES button, the generating will start, " +
+						"but the database history will be cleared." +
+						"A hard decision, isn't it?", "Info", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+				{
+					e.Handled = true;
+					return;
+				}
+
+				// Disable relative database controls.
+				Settings.CurrentPuzzleDatabase = _database = null;
+				Settings.CurrentPuzzleNumber = -1;
+				UpdateDatabaseControls(false, false, false, false);
+
 				DisableGeneratingControls();
 
 				// These two value should be assigned first, rather than 
@@ -408,6 +458,23 @@ namespace Sudoku.Forms
 
 			async Task internalOperation()
 			{
+				if (!(_database is null)
+					&& MessageBox.Show(
+						"You are now working on the puzzle database, isn't it? " +
+						"If you click YES button, the generating will start, " +
+						"but the database history will be cleared. " +
+						"That's a hard decision, isn't it?", "Info", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+				{
+					e.Handled = true;
+					return;
+				}
+
+				// Disable relative database controls.
+				Settings.CurrentPuzzleDatabase = _database = null;
+				Settings.CurrentPuzzleNumber = -1;
+				UpdateDatabaseControls(false, false, false, false);
+				_labelPuzzleNumber.ClearValue(ContentProperty);
+
 				DisableGeneratingControls();
 
 				int depth = _comboBoxBackdoorFilteringDepth.SelectedIndex;
@@ -622,7 +689,7 @@ namespace Sudoku.Forms
 					return;
 				}
 
-				_textBoxInfo.Text = 
+				_textBoxInfo.Text =
 					"The program is running as quickly as possible to search " +
 					"all non-BUG candidates (true candidates). Please wait.";
 

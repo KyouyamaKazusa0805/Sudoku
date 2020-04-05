@@ -16,8 +16,9 @@
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="20"/>
-			<RowDefinition Height="50"/>
+			<RowDefinition Height="40"/>
 			<RowDefinition Height="600"/>
+			<RowDefinition Height=".5*"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
@@ -32,6 +33,8 @@
 						  Click="MenuItemFileOpen_Click"/>
 				<MenuItem Header="Save puzzle..." InputGestureText="Ctrl + S"
 						  Click="MenuItemFileSave_Click"/>
+				<MenuItem Header="Open puzzle database..." Name="_menuItemFileOpenDatabase"
+						  Click="MenuItemFileOpenDatabase_Click"/>
 				<MenuItem Header="Backup configurations" Name="_menuItemBackupConfig"
 						  Click="MenuItemBackupConfig_Click"/>
 				<MenuItem Header="Load picture..." Name="_menuItemFileLoadPicture"
@@ -193,7 +196,7 @@
 			   Name="_imageGrid" Grid.Row="2" Grid.Column="0" Width="576" Height="576"
 			   MouseLeftButtonDown="ImageGrid_MouseLeftButtonDown">
 		</Image>
-		<TabControl Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch"
+		<TabControl Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch"
 					Name="_tabControlInfo"
 					VerticalAlignment="Stretch" IsTabStop="False">
 			<!-- Summary -->
@@ -245,7 +248,30 @@
 		</TabControl>
 		
 		<!-- Row 3 -->
-		<TextBox Grid.Row="3" Grid.ColumnSpan="2" IsReadOnly="True" Cursor="Arrow"
+		<Grid Grid.Row="3" Grid.Column="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="3*"/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition Width="2*"/>
+			</Grid.ColumnDefinitions>
+			<Button Grid.Column="1" Name="_buttonFirst" Content="&lt;&lt;"
+					Click="ButtonFirst_Click" IsEnabled="False"/>
+			<Button Grid.Column="2" Name="_buttonPrev" Content="&lt;"
+					Click="ButtonPrev_Click" IsEnabled="False"/>
+			<Button Grid.Column="3" Name="_buttonNext" Content="&gt;"
+					Click="ButtonNext_Click" IsEnabled="False"/>
+			<Button Grid.Column="4" Name="_buttonLast" Content="&gt;&gt;"
+					Click="ButtonLast_Click" IsEnabled="False"/>
+			<Label Grid.Column="5" Grid.ColumnSpan="2" Name="_labelPuzzleNumber"
+				   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+		</Grid>
+		
+		<!-- Row 4 -->
+		<TextBox Grid.Row="4" Grid.ColumnSpan="2" IsReadOnly="True" Cursor="Arrow"
 				 TextWrapping="Wrap" Name="_textBoxInfo" IsTabStop="False"/>
 	</Grid>
 </Window>

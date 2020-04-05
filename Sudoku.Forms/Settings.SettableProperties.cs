@@ -369,6 +369,16 @@ namespace Sudoku.Forms
 		public int GeneratingBackdoorSelectedIndex { get; set; } = 0;
 
 		/// <summary>
+		/// <para>
+		/// Indicates the current puzzle number used in the database.
+		/// </para>
+		/// <para>
+		/// The default value is <c>-1</c>, which means the database is unavailable.
+		/// </para>
+		/// </summary>
+		public int CurrentPuzzleNumber { get; set; } = -1;
+
+		/// <summary>
 		/// <para>Indicates the scale of values.</para>
 		/// <para>The value is <c>0.8M</c> in default case.</para>
 		/// </summary>
@@ -403,6 +413,14 @@ namespace Sudoku.Forms
 		/// <para>The value is <c>"Arial"</c> in default case.</para>
 		/// </summary>
 		public string CandidateFontName { get; set; } = "Arial";
+
+		/// <summary>
+		/// <para>
+		/// Indicates the current puzzle database used.
+		/// </para>
+		/// <para>The default value is <c><see langword="null"/></c>.</para>
+		/// </summary>
+		public string? CurrentPuzzleDatabase { get; set; } = null;
 
 		/// <summary>
 		/// <para>

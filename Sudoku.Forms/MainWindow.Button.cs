@@ -9,6 +9,7 @@ using Sudoku.Forms.Drawing.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
+using static Sudoku.Forms.Constants.Processing;
 
 namespace Sudoku.Forms
 {
@@ -52,8 +53,9 @@ namespace Sudoku.Forms
 						list.Add(
 							new ListBoxItem
 							{
-								Content = new PrimaryElementTuple<string, TechniqueInfo, bool>(
-									info.ToSimpleString(), info, true),
+								Content =
+									new PrimaryElementTuple<string, TechniqueInfo, bool>(
+										info.ToSimpleString(), info, true),
 								BorderThickness = new Thickness(),
 								Foreground = new SolidColorBrush(fore.ToWColor()),
 								Background = new SolidColorBrush(back.ToWColor()),
@@ -105,6 +107,50 @@ namespace Sudoku.Forms
 			//
 			//_treeView.ItemsSource = itemList;
 			#endregion
+		}
+
+		private void ButtonFirst_Click(object sender, RoutedEventArgs e)
+		{
+			int current = Settings.CurrentPuzzleNumber = 0;
+			int max = _puzzlesText!.Length;
+			LoadPuzzle(_puzzlesText[current].TrimEnd(Splitter));
+			UpdateDatabaseControls(false, false, true, true);
+
+			_labelPuzzleNumber.Content = $"{current + 1}/{max}";
+		}
+
+		private void ButtonPrev_Click(object sender, RoutedEventArgs e)
+		{
+			int current = --Settings.CurrentPuzzleNumber;
+			int max = _puzzlesText!.Length;
+			LoadPuzzle(_puzzlesText![current].TrimEnd(Splitter));
+
+			bool condition = Settings.CurrentPuzzleNumber != 0;
+			UpdateDatabaseControls(condition, condition, true, true);
+
+			_labelPuzzleNumber.Content = $"{current + 1}/{max}";
+		}
+
+		private void ButtonNext_Click(object sender, RoutedEventArgs e)
+		{
+			int current = ++Settings.CurrentPuzzleNumber;
+			int max = _puzzlesText!.Length;
+			LoadPuzzle(_puzzlesText![current].TrimEnd(Splitter));
+
+			bool condition = Settings.CurrentPuzzleNumber != _puzzlesText.Length - 1;
+			UpdateDatabaseControls(true, true, condition, condition);
+
+			_labelPuzzleNumber.Content = $"{current + 1}/{max}";
+		}
+
+		private void ButtonLast_Click(object sender, RoutedEventArgs e)
+		{
+			int current = Settings.CurrentPuzzleNumber = _puzzlesText!.Length - 1;
+			int max = _puzzlesText.Length;
+			LoadPuzzle(_puzzlesText![current].TrimEnd(Splitter));
+			UpdateDatabaseControls(true, true, false, false);
+
+			_labelPuzzleNumber.Content = $"{current + 1}/{max}";
 		}
 	}
 }

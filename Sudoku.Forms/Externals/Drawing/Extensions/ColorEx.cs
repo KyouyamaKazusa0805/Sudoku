@@ -21,7 +21,7 @@ namespace Sudoku.Forms.Drawing.Extensions
 			DColor.FromArgb(@this.A, @this.R, @this.G, @this.B);
 
 		/// <summary>
-		/// Convert <see cref="d.Color"/> to <see cref="WColor"/>.
+		/// Convert <see cref="DColor"/> to <see cref="WColor"/>.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The color.</param>
 		/// <returns>The target color.</returns>
