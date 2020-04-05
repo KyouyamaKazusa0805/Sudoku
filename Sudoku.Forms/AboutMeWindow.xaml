@@ -27,7 +27,9 @@
 			   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0"/>
 		<TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center"
 				   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0">
-			<Hyperlink NavigateUri="https://github.com/Sunnie-Shine" Click="GitHubLink_Click">https://github.com/Sunnie-Shine</Hyperlink>
+			<Hyperlink NavigateUri="https://github.com/Sunnie-Shine" Click="GitHubLink_Click">
+				https://github.com/Sunnie-Shine
+			</Hyperlink>
 		</TextBlock>
 	</Grid>
 </Window>

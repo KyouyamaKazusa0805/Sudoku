@@ -142,6 +142,7 @@
 			<!-- About... -->
 			<MenuItem Header="About">
 				<MenuItem Header="Me" Click="MenuItemAboutMe_Click"/>
+				<MenuItem Header="Special thanks..." Click="MenuItemAboutSpecialThanks_Click"/>
 			</MenuItem>
 		</Menu>
 		

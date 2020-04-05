@@ -10,6 +10,7 @@ namespace Sudoku.Forms
 	/// </summary>
 	public partial class AboutMeWindow : Window
 	{
+		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public AboutMeWindow() => InitializeComponent();
 
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -723,6 +722,9 @@ namespace Sudoku.Forms
 
 		private void MenuItemAboutMe_Click(object sender, RoutedEventArgs e) =>
 			new AboutMeWindow().Show();
+
+		private void MenuItemAboutSpecialThanks_Click(object sender, RoutedEventArgs e) =>
+			new SpecialThanksWindow().Show();
 
 		private void ContextListBoxPathsCopyCurrentStep_Click(object sender, RoutedEventArgs e)
 		{
