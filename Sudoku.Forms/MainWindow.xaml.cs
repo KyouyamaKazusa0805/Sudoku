@@ -376,6 +376,7 @@ namespace Sudoku.Forms
 			int max = _puzzlesText.Length;
 			LoadPuzzle(_puzzlesText[current].TrimEnd(Splitter));
 			_labelPuzzleNumber.Content = $"{current + 1}/{max}";
+			_textBoxJumpTo.IsEnabled = true;
 			UpdateDatabaseControls(current != 0, current != 0, current != max - 1, current != max - 1);
 		}
 
@@ -689,6 +690,7 @@ namespace Sudoku.Forms
 			_comboBoxBackdoorFilteringDepth.IsEnabled = false;
 
 			UpdateDatabaseControls(false, false, false, false);
+			_textBoxJumpTo.IsEnabled = false;
 			_labelPuzzleNumber.ClearValue(ContentProperty);
 
 			UpdateUndoRedoControls();

@@ -104,6 +104,7 @@ namespace Sudoku.Forms
 			LoadPuzzle(_puzzlesText[Settings.CurrentPuzzleNumber = 0].TrimEnd(Splitter));
 			UpdateDatabaseControls(false, false, true, true);
 
+			_textBoxJumpTo.IsEnabled = true;
 			_labelPuzzleNumber.Content = $"1/{_puzzlesText.Length}";
 		}
 

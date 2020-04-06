@@ -291,7 +291,8 @@
 		<!-- Row 3 -->
 		<Grid Grid.Row="3" Grid.Column="0">
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="3*"/>
+				<ColumnDefinition Width="2*"/>
+				<ColumnDefinition/>
 				<ColumnDefinition/>
 				<ColumnDefinition/>
 				<ColumnDefinition/>
@@ -299,15 +300,18 @@
 				<ColumnDefinition/>
 				<ColumnDefinition Width="2*"/>
 			</Grid.ColumnDefinitions>
-			<Button Grid.Column="1" Name="_buttonFirst" Content="&lt;&lt;"
+			<TextBox Grid.Column="1" Name="_textBoxJumpTo" HorizontalContentAlignment="Center"
+					 VerticalContentAlignment="Center" MaxLength="9" IsEnabled="False"
+					 TextChanged="TextBoxJumpTo_TextChanged"/>
+			<Button Grid.Column="2" Name="_buttonFirst" Content="&lt;&lt;"
 					Click="ButtonFirst_Click" IsEnabled="False"/>
-			<Button Grid.Column="2" Name="_buttonPrev" Content="&lt;"
+			<Button Grid.Column="3" Name="_buttonPrev" Content="&lt;"
 					Click="ButtonPrev_Click" IsEnabled="False"/>
-			<Button Grid.Column="3" Name="_buttonNext" Content="&gt;"
+			<Button Grid.Column="4" Name="_buttonNext" Content="&gt;"
 					Click="ButtonNext_Click" IsEnabled="False"/>
-			<Button Grid.Column="4" Name="_buttonLast" Content="&gt;&gt;"
+			<Button Grid.Column="5" Name="_buttonLast" Content="&gt;&gt;"
 					Click="ButtonLast_Click" IsEnabled="False"/>
-			<Label Grid.Column="5" Grid.ColumnSpan="2" Name="_labelPuzzleNumber"
+			<Label Grid.Column="6" Grid.ColumnSpan="2" Name="_labelPuzzleNumber"
 				   HorizontalAlignment="Center" VerticalAlignment="Center"/>
 		</Grid>
 		
