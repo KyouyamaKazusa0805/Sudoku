@@ -32,7 +32,7 @@ namespace Sudoku.Data
 		/// <remarks>
 		/// You had better use this field on cases when processing
 		/// the bitwise operations in a sudoku <see cref="Grid"/>.
-		/// This field is not used to process cell status comparison.
+		/// This field should not be used to process cell status comparison.
 		/// </remarks>
 		/// <seealso cref="Grid.GetCellStatus(int)"/>
 		All = Empty | Modifiable | Given

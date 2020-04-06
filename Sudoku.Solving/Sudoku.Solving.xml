@@ -1087,7 +1087,7 @@
             digits { <c>1, 2, 9 </c> }; the middle 9 bits means the relative positions
             in a region, while the higher 5 bits means which region this ALS
             lies on (Region indices 0..27 is no more than 5 bits used in binary).
-            The last 2 bits are reserved for future considerations.
+            The last 9 bits are reserved for future considerations.
             </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.#ctor(System.Int32)">
@@ -1173,6 +1173,15 @@
         <member name="M:Sudoku.Solving.Manual.Alses.Als.Equals(Sudoku.Solving.Manual.Alses.Als)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.ContainsDigit(Sudoku.Data.IReadOnlyGrid,System.Int32,Sudoku.Data.GridMap@)">
+            <summary>
+            Indicates whether the specified grid contains the digit.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="result">(<see langword="out"/> parameter) The result.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.GetHashCode">
             <method name="GetHashCode">
 		<summary>
@@ -1186,6 +1195,14 @@
 		<summary>Returns a string that represents the current object.</summary>
 		<returns>A string that represents the current object.</returns>
 	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.GetAllAlses(Sudoku.Data.IReadOnlyGrid,System.Int32)">
+            <summary>
+            To search for all ALSes in the specified grid and the region to iterate on.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="region">The region.</param>
+            <returns>All ALSes searched.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.op_Equality(Sudoku.Solving.Manual.Alses.Als,Sudoku.Solving.Manual.Alses.Als)">
             <operator name="op_Equality">
@@ -1451,14 +1468,6 @@
             The digit. If the method cannot find out a digit,
             it will return <see langword="null"/>.
             </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.GetAllAlses(Sudoku.Data.IReadOnlyGrid,System.Int32)">
-            <summary>
-            To search for all ALSes in the specified grid and the region to iterate on.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="region">The region.</param>
-            <returns>All ALSes searched.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Rcc.DigitAppears(Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Alses.Als,System.Int32,System.Nullable{Sudoku.Data.GridMap}@)">
             <summary>

@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
+using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Manual.Alses
 {
@@ -23,7 +25,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// digits { <c>1, 2, 9 </c> }; the middle 9 bits means the relative positions
 		/// in a region, while the higher 5 bits means which region this ALS
 		/// lies on (Region indices 0..27 is no more than 5 bits used in binary).
-		/// The last 2 bits are reserved for future considerations.
+		/// The last 9 bits are reserved for future considerations.
 		/// </remarks>
 		private readonly int _mask;
 
@@ -82,7 +84,8 @@ namespace Sudoku.Solving.Manual.Alses
 			get
 			{
 				var @this = this; // Query expression cannot capture 'this'.
-				return new GridMap(from pos in RelativePos select RegionUtils.GetCellOffset(@this.Region, pos));
+				return new GridMap(
+					from pos in RelativePos select RegionUtils.GetCellOffset(@this.Region, pos));
 			}
 		}
 
@@ -137,6 +140,30 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public bool Equals(Als other) => _mask == other._mask;
 
+		/// <summary>
+		/// Indicates whether the specified grid contains the digit.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="digit">The digit.</param>
+		/// <param name="result">(<see langword="out"/> parameter) The result.</param>
+		/// <returns>A <see cref="bool"/> value.</returns>
+		public bool ContainsDigit(IReadOnlyGrid grid, int digit, out GridMap result)
+		{
+			var @this = this; // Query expression cannot capture 'this'.
+			result = GridMap.Empty;
+			foreach	(int cell in
+				from pos in RelativePos
+				select RegionUtils.GetCellOffset(@this.Region, pos))
+			{
+				if ((grid.GetCandidates(cell) >> digit & 1) == 0)
+				{
+					result.Add(cell);
+				}
+			}
+
+			return result.IsNotEmpty;
+		}
+
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		public override int GetHashCode() => _mask;
 
@@ -153,6 +180,60 @@ namespace Sudoku.Solving.Manual.Alses
 						select RegionUtils.GetCellOffset(@this.Region, pos)))
 				.Append($" in {RegionUtils.ToString(Region)}")
 				.ToString();
+		}
+
+
+		/// <summary>
+		/// To search for all ALSes in the specified grid and the region to iterate on.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="region">The region.</param>
+		/// <returns>All ALSes searched.</returns>
+		public static IEnumerable<Als> GetAllAlses(IReadOnlyGrid grid, int region)
+		{
+			short posMask = 0;
+			int i = 0;
+			foreach (int cell in RegionCells[region])
+			{
+				if (grid.GetCellStatus(cell) == CellStatus.Empty)
+				{
+					posMask |= (short)(1 << i);
+				}
+
+				i++;
+			}
+			int count = posMask.CountSet();
+			if (count < 2)
+			{
+				yield break;
+			}
+
+			for (int size = 2; size <= count; size++)
+			{
+				foreach (short relativePosMask in new BitCombinationGenerator(9, size))
+				{
+					short digitsMask = 0;
+					foreach (int cell in MaskExtensions.GetCells(region, relativePosMask))
+					{
+						if (grid.GetCellStatus(cell) != CellStatus.Empty)
+						{
+							goto Label_Continue;
+						}
+
+						digitsMask |= grid.GetCandidatesReversal(cell);
+					}
+
+					if (digitsMask.CountSet() - 1 != size)
+					{
+						// Not an ALS.
+						continue;
+					}
+
+					yield return new Als(digitsMask | (short)(relativePosMask << 9) | region << 18);
+
+				Label_Continue:;
+				}
+			}
 		}
 
 

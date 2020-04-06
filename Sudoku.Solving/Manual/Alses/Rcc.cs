@@ -4,9 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
-using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
-using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Manual.Alses
 {
@@ -94,7 +92,7 @@ namespace Sudoku.Solving.Manual.Alses
 			{
 				for (int r2 = r1 + 1; r2 < 27; r2++)
 				{
-					var alses1 = GetAllAlses(grid, r1);
+					var alses1 = Als.GetAllAlses(grid, r1);
 					if (!alses1.Any())
 					{
 						continue;
@@ -102,7 +100,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 					foreach (var als1 in alses1)
 					{
-						var alses2 = GetAllAlses(grid, r2);
+						var alses2 = Als.GetAllAlses(grid, r2);
 						if (!alses2.Any())
 						{
 							continue;
@@ -182,61 +180,6 @@ namespace Sudoku.Solving.Manual.Alses
 			}
 
 			return result;
-		}
-
-		/// <summary>
-		/// To search for all ALSes in the specified grid and the region to iterate on.
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <param name="region">The region.</param>
-		/// <returns>All ALSes searched.</returns>
-		private static IEnumerable<Als> GetAllAlses(IReadOnlyGrid grid, int region)
-		{
-			short posMask = 0;
-			int i = 0;
-			foreach (int cell in RegionCells[region])
-			{
-				if (grid.GetCellStatus(cell) == CellStatus.Empty)
-				{
-					posMask |= (short)(1 << i);
-				}
-
-				i++;
-			}
-			int count = posMask.CountSet();
-			if (count < 2)
-			{
-				yield break;
-			}
-
-			for (int size = 2; size <= count; size++)
-			{
-				foreach (short relativePosMask in new BitCombinationGenerator(9, size))
-				{
-					short digitsMask = 0;
-					foreach (int cell in MaskExtensions.GetCells(region, relativePosMask))
-					{
-						if (grid.GetCellStatus(cell) != CellStatus.Empty)
-						{
-							goto Label_Continue;
-						}
-
-						digitsMask |= grid.GetCandidatesReversal(cell);
-					}
-
-					if (digitsMask.CountSet() - 1 != size)
-					{
-						// Not an ALS.
-						continue;
-					}
-
-#pragma warning disable CS0675 // Bitwise-or operator used on a sign-extended operand
-					yield return new Als(region << 18 | relativePosMask << 9 | digitsMask);
-#pragma warning restore CS0675 // Bitwise-or operator used on a sign-extended operand
-
-				Label_Continue:;
-				}
-			}
 		}
 
 		/// <summary>

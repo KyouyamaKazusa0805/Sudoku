@@ -34,7 +34,7 @@
             <remarks>
             You had better use this field on cases when processing
             the bitwise operations in a sudoku <see cref="T:Sudoku.Data.Grid"/>.
-            This field is not used to process cell status comparison.
+            This field should not be used to process cell status comparison.
             </remarks>
             <seealso cref="M:Sudoku.Data.Grid.GetCellStatus(System.Int32)"/>
         </member>

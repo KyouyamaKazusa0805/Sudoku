@@ -841,7 +841,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 				// Step 2: if the chain is worth, we will construct a node list.
 				// Record all highlight candidates.
-				var lastCand = (Node?)default;
+				var lastCand = default(Node?);
 				var candidateOffsets = new List<(int, int)>();
 				var nodes = new List<Node>();
 				var links = new List<Inference>();
@@ -1173,8 +1173,8 @@ namespace Sudoku.Solving.Manual.Chaining
 					tempMaps[i] = map & intersectionMaps[region, i];
 				}
 
-				var ptr1 = (GridMap)default;
-				var ptr2 = (GridMap)default;
+				var ptr1 = default(GridMap);
+				var ptr2 = default(GridMap);
 				int count = 0;
 				for (int i = 0; i < 6; i++)
 				{
@@ -1241,8 +1241,8 @@ namespace Sudoku.Solving.Manual.Chaining
 					tempMaps[i] = map & intersectionMaps[region, i];
 				}
 
-				var ptr1 = (GridMap)default;
-				var ptr2 = (GridMap)default;
+				var ptr1 = default(GridMap);
+				var ptr2 = default(GridMap);
 				int count = 0;
 				for (int i = 0; i < 3; i++)
 				{
