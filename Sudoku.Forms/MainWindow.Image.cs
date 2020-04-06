@@ -65,7 +65,7 @@ namespace Sudoku.Forms
 			{
 				0 => (sender, e) => MenuItemGenerateWithSymmetry_Click(sender, e),
 				1 => (sender, e) => MenuItemGenerateHardPattern_Click(sender, e),
-				_ => throw new NotImplementedException()
+				_ => throw Throwing.ImpossibleCase
 			}))(sender, e);
 		}
 
