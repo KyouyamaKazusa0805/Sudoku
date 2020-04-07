@@ -106,6 +106,8 @@ namespace Sudoku.Solving.Manual
 					false, false, true, _settings.AicMaximumLength, _settings.ReductDifferentPathAic,
 					_settings.OnlySaveShortestPathAic, _settings.CheckHeadCollision,
 					_settings.CheckContinuousNiceLoop, regionMaps),
+				new DeathBlossomTechniqueSearcher(
+					regionMaps, _settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
 				//new HobiwanFishTechniqueSearcher(
 				//	HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
 				//	HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
