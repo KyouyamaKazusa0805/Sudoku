@@ -508,20 +508,14 @@ namespace Sudoku.Forms
 		/// <summary>
 		/// The internal copy method to process the operation of copying value to clipboard.
 		/// </summary>
-		/// <param name="format">
-		/// The grid format. If the value is <see langword="null"/>, it will call the method
-		/// <see cref="SudokuGrid.ToString(string?, IFormatProvider?)"/>; otherwise,
-		/// <see cref="SudokuGrid.ToString(string)"/>.
-		/// </param>
-		/// <seealso cref="SudokuGrid.ToString(string)"/>
-		/// <seealso cref="SudokuGrid.ToString(string?, IFormatProvider?)"/>
+		/// <param name="format">The grid format.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void InternalCopy(string? format)
+		private void InternalCopy(string format)
 		{
 			try
 			{
 				// Even though the value is null, the formatter can be processed.
-				Clipboard.SetText(_puzzle.ToString(format!));
+				Clipboard.SetText(_puzzle.ToString(format));
 			}
 			catch (ArgumentNullException ex)
 			{
@@ -622,7 +616,7 @@ namespace Sudoku.Forms
 		{
 			try
 			{
-				Puzzle = new UndoableGrid(SudokuGrid.Parse(puzzleStr));
+				Puzzle = new UndoableGrid(SudokuGrid.Parse(puzzleStr, Settings.PmGridCompatible));
 
 				_menuItemEditUndo.IsEnabled = _menuItemEditRedo.IsEnabled = false;
 				UpdateImageGrid();

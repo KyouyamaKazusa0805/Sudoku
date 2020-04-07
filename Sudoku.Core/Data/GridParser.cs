@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data.Extensions;
 using System.Linq;
+using static Sudoku.Data.CellStatus;
+using static Sudoku.Data.GridParsingOption;
 
 namespace Sudoku.Data
 {
@@ -20,11 +21,31 @@ namespace Sudoku.Data
 		/// <param name="parsingValue">The string to parse.</param>
 		public GridParser(string parsingValue) => ParsingValue = parsingValue;
 
+		/// <summary>
+		/// Initializes an instance with parsing data and a bool value
+		/// indicating whether the parsing operation should use compatible mode.
+		/// </summary>
+		/// <param name="parsingValue">The string to parse.</param>
+		/// <param name="compatibleFirst">
+		/// Indicates whether the parsing operation should use compatible mode to check
+		/// PM grid. See <see cref="CompatibleFirst"/> to learn more.
+		/// </param>
+		/// <seealso cref="CompatibleFirst"/>
+		public GridParser(string parsingValue, bool compatibleFirst) =>
+			(ParsingValue, CompatibleFirst) = (parsingValue, compatibleFirst);
+
 
 		/// <summary>
 		/// The value to parse.
 		/// </summary>
 		public string ParsingValue { get; private set; }
+
+		/// <summary>
+		/// Indicates whether the parser will change the execution order of PM grid.
+		/// If the value is <see langword="true"/>, the parser will check compatible one
+		/// first, and then check recommended parsing plan ('<c>&lt;d&gt;</c>' and '<c>*d*</c>').
+		/// </summary>
+		public bool CompatibleFirst { get; }
 
 
 		/// <summary>
@@ -37,8 +58,8 @@ namespace Sudoku.Data
 			return OnParsingSimpleTable()
 				?? OnParsingSusser()
 				?? OnParsingSimpleMultilineGrid()
-				?? OnParsingPencilMarked(false)
-				?? OnParsingPencilMarked(true)
+				?? (CompatibleFirst ? OnParsingPencilMarked(true) : OnParsingPencilMarked(false))
+				?? (CompatibleFirst ? OnParsingPencilMarked(false) : OnParsingPencilMarked(true))
 				?? throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
 		}
 
@@ -54,11 +75,11 @@ namespace Sudoku.Data
 		{
 			return new Dictionary<GridParsingOption, Func<Grid?>>
 			{
-				[GridParsingOption.Susser] = OnParsingSusser,
-				[GridParsingOption.Table] = OnParsingSimpleMultilineGrid,
-				[GridParsingOption.PencilMarked] = () => OnParsingPencilMarked(false),
-				[GridParsingOption.PencilMarkedTreatSingleAsGiven] = () => OnParsingPencilMarked(true),
-				[GridParsingOption.SimpleTable] = OnParsingSimpleTable
+				[Susser] = OnParsingSusser,
+				[Table] = OnParsingSimpleMultilineGrid,
+				[PencilMarked] = () => OnParsingPencilMarked(false),
+				[PencilMarkedTreatSingleAsGiven] = () => OnParsingPencilMarked(true),
+				[SimpleTable] = OnParsingSimpleTable
 			}[gridParsingOption]() ?? throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
 		}
 
@@ -132,7 +153,7 @@ namespace Sudoku.Data
 							// To assign the value, and to trigger the event
 							// to modify all information of peers.
 							result[offset] = s[0] - '1';
-							result.SetCellStatus(offset, CellStatus.Given);
+							result.SetCellStatus(offset, Given);
 						}
 						else if (length > 9)
 						{
@@ -141,7 +162,7 @@ namespace Sudoku.Data
 						}
 						else
 						{
-							bool[] series = GetDefaultCheckingArray();
+							bool[] series = DefaultCheckingArray;
 							foreach (char c in s)
 							{
 								series[c - '1'] = false;
@@ -165,7 +186,7 @@ namespace Sudoku.Data
 						if (c >= '1' && c <= '9')
 						{
 							result[offset] = c - '1';
-							result.SetCellStatus(offset, CellStatus.Given);
+							result.SetCellStatus(offset, Given);
 						}
 						else
 						{
@@ -188,7 +209,7 @@ namespace Sudoku.Data
 						if (c >= '1' && c <= '9')
 						{
 							result[offset] = c - '1';
-							result.SetCellStatus(offset, CellStatus.Modifiable);
+							result.SetCellStatus(offset, Modifiable);
 						}
 						else
 						{
@@ -207,7 +228,7 @@ namespace Sudoku.Data
 					// Candidates.
 					// Here do not need to check the length of the string,
 					// and also all characters are digit characters.
-					bool[] series = GetDefaultCheckingArray();
+					bool[] series = DefaultCheckingArray;
 					foreach (char c in s)
 					{
 						series[c - '1'] = false;
@@ -320,7 +341,7 @@ namespace Sudoku.Data
 					// If the code below does not make sense to you,
 					// you can see the comments in method 'OnParsingSusser(string)'
 					// to know the meaning also.
-					result.SetCellStatus(realPos, CellStatus.Given);
+					result.SetCellStatus(realPos, Given);
 
 					// Finally moves 1 step forward.
 					i++;
@@ -335,7 +356,7 @@ namespace Sudoku.Data
 
 			// Step 2: eliminates candidates if exist.
 			// If we have met the colon sign ':', this loop would not be executed. 
-			string? elimMatch = ParsingValue.Match(@"(?<=\:)(\d{3}\s+)*\d{3}");
+			string? elimMatch = match.Match(@"(?<=\:)(\d{3}\s+)*\d{3}");
 			if (!(elimMatch is null))
 			{
 				string[] eliminationBlocks = elimMatch.MatchAll(@"\d{3}");
@@ -359,8 +380,7 @@ namespace Sudoku.Data
 		/// Here must use method instead of property or field.
 		/// Because the return value should be mutable.
 		/// </remarks>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static bool[] GetDefaultCheckingArray() =>
+		private static bool[] DefaultCheckingArray =>
 			new[] { true, true, true, true, true, true, true, true, true };
 	}
 }
