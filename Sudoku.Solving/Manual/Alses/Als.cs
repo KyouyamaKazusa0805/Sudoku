@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using Sudoku.Data;
@@ -189,6 +190,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <param name="grid">The grid.</param>
 		/// <param name="region">The region.</param>
 		/// <returns>All ALSes searched.</returns>
+		[SuppressMessage("", "CS0675")]
 		public static IEnumerable<Als> GetAllAlses(IReadOnlyGrid grid, int region)
 		{
 			short posMask = 0;
@@ -203,10 +205,10 @@ namespace Sudoku.Solving.Manual.Alses
 				i++;
 			}
 			int count = posMask.CountSet();
-			if (count < 2)
-			{
-				yield break;
-			}
+			//if (count < 2)
+			//{
+			//	yield break;
+			//}
 
 			for (int size = 2; size <= count; size++)
 			{
@@ -229,7 +231,7 @@ namespace Sudoku.Solving.Manual.Alses
 						continue;
 					}
 
-					yield return new Als(digitsMask | (short)(relativePosMask << 9) | region << 18);
+					yield return new Als(digitsMask | relativePosMask << 9 | region << 18);
 
 				Label_Continue:;
 				}

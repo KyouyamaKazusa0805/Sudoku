@@ -1377,6 +1377,116 @@
         <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo">
+            <summary>
+            Provides a usage of <b>death blossom</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Solving.Manual.Alses.Als})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="pivot">The pivot cell.</param>
+            <param name="alses">All ALSes used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo.PetalsCount">
+            <summary>
+            Indicates how many petals used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo.Pivot">
+            <summary>
+            Indicates the pivot cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo.Alses">
+            <summary>
+            Indicates all ALSes used sorted by digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo.GetAlsesStr">
+            <summary>
+            Get ALSes string.
+            </summary>
+            <returns>The string.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher">
+            <summary>
+            Encapsulates a <b>death blossom</b> technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher._allowOverlapping">
+            <summary>
+            Indicates whether the ALSes can be overlapped with each other.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher._alsShowRegions">
+            <summary>
+            Indicates whether the ALSes shows their region rather than cells.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher._regionMaps">
+            <summary>
+            The region maps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher.#ctor(Sudoku.Data.GridMap[],System.Boolean,System.Boolean)">
+            <summary>
+            Initialize an instance with the specified information.
+            </summary>
+            <param name="regionMaps">The region maps.</param>
+            <param name="allowOverlapping">
+            Indicates whether the ALSes can be overlapped with each other.
+            </param>
+            <param name="alsShowRegions">
+            Indicates whether all ALSes shows their regions rather than cells.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher.Priority">
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher.ProcessDeathAlsInfo(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap[],System.Int16[],System.Int32[0:,0:],System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Alses.Als})">
+            <summary>
+            Process death ALSes information.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digitDistributions">The digit distributions.</param>
+            <param name="checkedCandidates">All checked candidates.</param>
+            <param name="death">The death table.</param>
+            <param name="list">The ALS list.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher.PreprocessAndRecordAlses(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap)">
+            <summary>
+            To preprocess and record all ALSes.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="emptyCells">The empty cells.</param>
+            <returns>All ALSes.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Rcc">
             <summary>
             Encapsulates a data structure for restricted common candidates (RCC).

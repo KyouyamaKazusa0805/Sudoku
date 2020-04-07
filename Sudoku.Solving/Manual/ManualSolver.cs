@@ -156,6 +156,7 @@ namespace Sudoku.Solving.Manual
 				new TechniqueSearcher[]
 				{
 					new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
+					new DeathBlossomTechniqueSearcher(regionMaps, AllowOverlapAlses, AlsHighlightRegionInsteadOfCell),
 					new HobiwanFishTechniqueSearcher(
 						HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
 						HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
@@ -372,6 +373,7 @@ namespace Sudoku.Solving.Manual
 					HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
 					HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
 				new PomTechniqueSearcher(),
+				new DeathBlossomTechniqueSearcher(regionMaps, AllowOverlapAlses, AlsHighlightRegionInsteadOfCell),
 				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 				new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
 				new CccTechniqueSearcher(),

@@ -5,6 +5,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
+using static Sudoku.Data.CellStatus;
 using static Sudoku.GridProcessings;
 using ArType1 = Sudoku.Solving.Manual.Uniqueness.Rectangles.ArType1DetailData;
 using ArType2 = Sudoku.Solving.Manual.Uniqueness.Rectangles.ArType2DetailData;
@@ -58,9 +59,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			{
 				foreach (int[] cells in TraversingTable)
 				{
-					if (cells.All(cell => grid.GetCellStatus(cell) == CellStatus.Modifiable)
-						|| urMode && cells.Any(c => grid.GetCellStatus(c) != CellStatus.Empty)
-						|| !urMode && cells.Any(c => grid.GetCellStatus(c) == CellStatus.Given))
+					if (cells.All(cell => grid.GetCellStatus(cell) == Modifiable)
+						|| urMode && cells.Any(c => grid.GetCellStatus(c) != Empty)
+						|| !urMode && cells.Any(c => grid.GetCellStatus(c) == Given))
 					{
 						continue;
 					}
@@ -136,8 +137,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						// abc ab
 						// Therefore, type 5 found.
 						if (!urMode && (
-							grid.GetCellStatus(extraCell) == CellStatus.Empty
-							|| cellTriplet.Any(cell => grid.GetCellStatus(cell) != CellStatus.Empty)))
+							grid.GetCellStatus(extraCell) == Empty
+							|| cellTriplet.Any(cell => grid.GetCellStatus(cell) != Empty)))
 						{
 							continue;
 						}
@@ -158,7 +159,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						foreach (int cell in cells)
 						{
 							if (urMode
-								|| !urMode && grid.GetCellStatus(cell) == CellStatus.Empty)
+								|| !urMode && grid.GetCellStatus(cell) == Empty)
 							{
 								foreach (int digit in digits)
 								{
@@ -177,9 +178,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 						// Record all eliminations.
 						var conclusions = new List<Conclusion>();
-						var elimMap = new GridMap(cellTriplet[0])
-							& new GridMap(cellTriplet[1])
-							& new GridMap(cellTriplet[2]);
+						var elimMap = new GridMap(cellTriplet, GridMap.InitializeOption.ProcessPeersWithoutItself);
 						foreach (int cell in elimMap.Offsets)
 						{
 							if (grid.CandidateExists(cell, extraDigitReal))
@@ -231,7 +230,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					// Pattern found:
 					// ab ab
 					// ab ab+
-					if (!urMode && cellTriplet.Any(cell => grid.GetCellStatus(cell) == CellStatus.Empty))
+					if (!urMode && cellTriplet.Any(cell => grid.GetCellStatus(cell) == Empty))
 					{
 						continue;
 					}
@@ -349,8 +348,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 			for (int digit = 0; digit < 9; digit++)
 			{
 				if (!urMode && (
-					grid.GetCellStatus(extraCell) == CellStatus.Empty
-					|| cellTriple.Any(cell => grid.GetCellStatus(cell) != CellStatus.Empty)))
+					grid.GetCellStatus(extraCell) == Empty
+					|| cellTriple.Any(cell => grid.GetCellStatus(cell) != Empty)))
 				{
 					continue;
 				}
@@ -528,7 +527,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 				if (totalMask.CountSet() == 6)
 				{
-					if (!urMode && cellPair.Any(cell => grid.GetCellStatus(cell) == CellStatus.Empty))
+					if (!urMode && cellPair.Any(cell => grid.GetCellStatus(cell) == Empty))
 					{
 						continue;
 					}
@@ -540,7 +539,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					{
 						foreach (int digit in digits)
 						{
-							if (urMode || !urMode && grid.GetCellStatus(cell) == CellStatus.Empty)
+							if (urMode || !urMode && grid.GetCellStatus(cell) == Empty)
 							{
 								if (grid.CandidateExists(cell, digit))
 								{
@@ -645,8 +644,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 					// Check type 3.
 					if (!urMode && (
-						cellPair.Any(cell => grid.GetCellStatus(cell) == CellStatus.Empty)
-						|| extraCells.Any(cell => grid.GetCellStatus(cell) != CellStatus.Empty)))
+						cellPair.Any(cell => grid.GetCellStatus(cell) == Empty)
+						|| extraCells.Any(cell => grid.GetCellStatus(cell) != Empty)))
 					{
 						continue;
 					}
@@ -692,7 +691,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 				for (int i1 = 0; i1 < 10 - size; i1++)
 				{
 					int c1 = cellsToTraverse[i1];
-					if (cells.Contains(c1) || grid.GetCellStatus(c1) != CellStatus.Empty)
+					if (cells.Contains(c1) || grid.GetCellStatus(c1) != Empty)
 					{
 						continue;
 					}
@@ -720,7 +719,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 									}
 								}
 								if (urMode
-									|| !urMode && grid.GetCellStatus(cell) == CellStatus.Empty)
+									|| !urMode && grid.GetCellStatus(cell) == Empty)
 								{
 									for (int x = 0, temp = digitKindsMask & ~otherDigitMask; x < 9; x++, temp >>= 1)
 									{
@@ -809,7 +808,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						for (int i2 = i1 + 1; i2 < 11 - size; i2++)
 						{
 							int c2 = cellsToTraverse[i2];
-							if (cells.Contains(c2) || grid.GetCellStatus(c2) != CellStatus.Empty)
+							if (cells.Contains(c2) || grid.GetCellStatus(c2) != Empty)
 							{
 								continue;
 							}
@@ -837,7 +836,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 											}
 										}
 										if (urMode
-											|| !urMode && grid.GetCellStatus(cell) == CellStatus.Empty)
+											|| !urMode && grid.GetCellStatus(cell) == Empty)
 										{
 											for (int x = 0, temp = digitKindsMask & ~otherDigitMask; x < 9; x++, temp >>= 1)
 											{
@@ -926,7 +925,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 								for (int i3 = i2 + 1; i3 < 9; i3++)
 								{
 									int c3 = cellsToTraverse[i3];
-									if (cells.Contains(c3) || grid.GetCellStatus(c3) != CellStatus.Empty)
+									if (cells.Contains(c3) || grid.GetCellStatus(c3) != Empty)
 									{
 										continue;
 									}
@@ -952,7 +951,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 												}
 											}
 											if (urMode
-												|| !urMode && grid.GetCellStatus(cell) == CellStatus.Empty)
+												|| !urMode && grid.GetCellStatus(cell) == Empty)
 											{
 												for (int x = 0, temp = digitKindsMask & ~otherDigitMask; x < 9; x++, temp >>= 1)
 												{
@@ -1113,7 +1112,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 									foreach (int digit in digits)
 									{
 										if (urMode
-											|| !urMode && grid.GetCellStatus(cell) == CellStatus.Empty)
+											|| !urMode && grid.GetCellStatus(cell) == Empty)
 										{
 											if (grid.CandidateExists(cell, digit))
 											{
@@ -1242,7 +1241,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 											foreach (int digit in digits)
 											{
 												if (urMode
-													|| !urMode && grid.GetCellStatus(cell) == CellStatus.Empty)
+													|| !urMode && grid.GetCellStatus(cell) == Empty)
 												{
 													if (grid.CandidateExists(cell, digit))
 													{
@@ -1372,8 +1371,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 											{
 												foreach (int digit in digits)
 												{
-													if (urMode
-														|| !urMode && grid.GetCellStatus(cell) == CellStatus.Empty)
+													if (urMode || !urMode && grid.GetCellStatus(cell) == Empty)
 													{
 														if (grid.CandidateExists(cell, digit))
 														{
