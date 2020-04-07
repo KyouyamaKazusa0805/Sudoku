@@ -196,7 +196,7 @@ namespace Sudoku.Solving.Manual.Alses
 								from pos in a.RelativePos
 								select RegionUtils.GetCellOffset(a.Region, pos))
 							{
-								cellOffsets.Add((-z, c));
+								cellOffsets.Add((-z - 1, c));
 							}
 
 							z = (z + 1) % 4;
@@ -213,7 +213,7 @@ namespace Sudoku.Solving.Manual.Alses
 							{
 								foreach (int dd in grid.GetCandidatesReversal(c).GetAllSets())
 								{
-									candidateOffsets.Add((d == dd ? 1 : -z, c * 9 + dd));
+									candidateOffsets.Add((d == dd ? 1 : -z - 1, c * 9 + dd));
 								}
 							}
 
@@ -225,7 +225,7 @@ namespace Sudoku.Solving.Manual.Alses
 						z = 0;
 						foreach (var als in dic.Values)
 						{
-							regionOffsets.Add((-z, als.Region));
+							regionOffsets.Add((-z - 1, als.Region));
 
 							z = (z + 1) % 4;
 						}
@@ -318,7 +318,6 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <param name="grid">The grid.</param>
 		/// <param name="emptyCells">The empty cells.</param>
 		/// <returns>All ALSes.</returns>
-		[SuppressMessage("", "CS0675")]
 		private IReadOnlyList<Als> PreprocessAndRecordAlses(IReadOnlyGrid grid, GridMap emptyCells)
 		{
 			var list = new List<Als>();
@@ -369,7 +368,7 @@ namespace Sudoku.Solving.Manual.Alses
 							continue;
 						}
 
-						list.Add(new Als(region << 18 | mask << 9 | cands));
+						list.Add(new Als(region << 18 | mask << 9 | (int)cands));
 					}
 				}
 			}

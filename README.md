@@ -172,7 +172,7 @@ Here display all conditional compliation symbols in this solution.
 这里罗列本解决方案里用到的条件编译符号。
 
 * `TARGET_64BIT`: Indicates your computer is 32 bits or 64 bits. If 64, please add `TARGET_64BIT` into the solution; otherwise, do nothing. This conditional compliation symbol is used in calling C/C++ functions in dynamic link library (i.e. DLL).<br/>指示系统是多少位的。当你的电脑是 64 位的时候，请添加 `TARGET_64BIT` 条件编译符号；否则就不管。这个条件编译符号用于调用位于动态链接库里的 C/C++ 函数。
-* `SUDOKU_RECOGNIZING`: Indicates whether your machine can use OCR tools to recognize an image, and convert to a sudoku grid data structure instance. Due to some vunlerables, the symbol is not defined in the project `Sudoku.Forms`, but it has already defined in `Sudoku.Core`.<br/>表示是否你的电脑上可以使用 OCR 识别工具来识别一个图片，并将其转换为一个数独盘面的实例对象。由于一些致命漏洞的问题的出现，这个编译符号暂时没有在 `Sudoku.Forms` 里定义，但它已经定义在 `Sudoku.Core` 里。
+* `SUDOKU_RECOGNIZING`: Indicates whether your machine can use OCR tools to recognize an image, and convert to a sudoku grid data structure instance. Due to some vunlerables, the symbol is not defined in the project `Sudoku.Forms`, but it has been already defined in `Sudoku.Core`.<br/>表示是否你的电脑上可以使用 OCR 识别工具来识别一个图片，并将其转换为一个数独盘面的实例对象。由于一些致命漏洞的问题的出现，这个编译符号暂时没有在 `Sudoku.Forms` 里定义，但它已经定义在 `Sudoku.Core` 里。
 
 
 
@@ -180,7 +180,7 @@ Here display all conditional compliation symbols in this solution.
 
 标题：**关于教程**
 
-This repo all stores a sudoku technique tutorial, but in Chinese (English version is a little bit difficult for me to translate). Click [here](https://gitee.com/Sunnie-Shine/Sudoku/raw/master/ref/tutorial/%E6%A0%87%E5%87%86%E6%95%B0%E7%8B%AC%E6%8A%80%E5%B7%A7%E6%95%99%E7%A8%8B%EF%BC%88%E4%BF%AE%E8%AE%A2%E7%89%88%EF%BC%8C20200223%EF%BC%89.pdf) (A chinese site).
+This repo all stores a sudoku technique tutorial, but in Chinese (English version is a little bit difficult for me to translate). Click [here](https://gitee.com/Sunnie-Shine/Sudoku/raw/master/ref/tutorial/%E6%A0%87%E5%87%86%E6%95%B0%E7%8B%AC%E6%8A%80%E5%B7%A7%E6%95%99%E7%A8%8B%EF%BC%88%E4%BF%AE%E8%AE%A2%E7%89%88%EF%BC%8C20200223%EF%BC%89.pdf) (A Chinese site).
 
 这个仓库存了一个数独的技巧教程，不过是全中文的（英语对我来说有点难翻译），戳此[链接](https://gitee.com/Sunnie-Shine/Sudoku/raw/master/ref/tutorial/%E6%A0%87%E5%87%86%E6%95%B0%E7%8B%AC%E6%8A%80%E5%B7%A7%E6%95%99%E7%A8%8B%EF%BC%88%E4%BF%AE%E8%AE%A2%E7%89%88%EF%BC%8C20200223%EF%BC%89.pdf)进入（是一个中国站点）。
 
