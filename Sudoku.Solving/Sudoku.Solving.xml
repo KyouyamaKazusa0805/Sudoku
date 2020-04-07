@@ -1313,6 +1313,11 @@
             Provides a usage of <b>ALS-XZ</b> technique.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.InternalNames">
+            <summary>
+            The internal names.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Rcc)">
             <summary>
             Initializes an instance with the specified information.
@@ -1337,6 +1342,18 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.ToString">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.IsGeneralizedWing(System.Nullable{System.Boolean}@,System.Nullable{System.Int32}@)">
+            <summary>
+            Indicates whether this instance is a generalized regular wing.
+            </summary>
+            <param name="isAls1Bivalue">
+            (<see langword="out"/> parameter) Indicates whether the ALS1 is a bivalue cell.
+            </param>
+            <param name="value">
+            (<see langword="out"/> parameter) The candidate mask of another ALS
+            (non-bivalue cell ALS).
+            </param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher">
             <summary>
