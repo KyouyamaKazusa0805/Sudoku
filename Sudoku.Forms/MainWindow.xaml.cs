@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -26,6 +25,9 @@ using static Sudoku.Forms.Constants.Processing;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
 using WPoint = System.Windows.Point;
+#if SUDOKU_RECOGNIZING
+using System.Diagnostics;
+#endif
 
 namespace Sudoku.Forms
 {
@@ -239,6 +241,15 @@ namespace Sudoku.Forms
 			GC.Collect();
 
 			base.OnClosing(e);
+
+#if SUDOKU_RECOGNIZING
+			// If you don't use this feature, the program will not need to use
+			// this method to KILL itself... KILL... sounds terrible and dangerous, isn't it?
+			// To be honest, I don't know why the program fails to exit... The background
+			// threads still running after base close method executed completely. If you
+			// know the detail of Emgu.CV, please tell me, thx!
+			Process.GetCurrentProcess().Kill();
+#endif
 		}
 
 		/// <inheritdoc/>

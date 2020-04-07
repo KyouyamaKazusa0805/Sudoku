@@ -27,6 +27,7 @@ using AnonymousType = System.Object;
 using DColor = System.Drawing.Color;
 using SudokuGrid = Sudoku.Data.Grid;
 #if SUDOKU_RECOGNIZING
+using System.Drawing;
 using Sudoku.Extensions;
 #endif
 
