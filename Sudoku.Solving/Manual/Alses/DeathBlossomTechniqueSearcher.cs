@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -100,12 +102,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 					if (flag)
 					{
-						for (int k = n; k < digitsCount; k++)
-						{
-							stack[n] = 0;
-						}
-
-						n--;
+						stack[n--] = 0;
 					}
 					else if (n == digitsCount - 1)
 					{
@@ -114,7 +111,7 @@ namespace Sudoku.Solving.Manual.Alses
 						foreach (int d in digits)
 						{
 							var map = alsList[death[pivot * 9 + d, stack[k]]].Map;
-							if (k == 0)
+							if (k++ == 0)
 							{
 								temp = map;
 							}
@@ -122,8 +119,6 @@ namespace Sudoku.Solving.Manual.Alses
 							{
 								temp |= map;
 							}
-
-							k++;
 						}
 
 						if (temp.AllSetsAreInOneRegion(out _) || allZ[n] == 0)
@@ -170,16 +165,38 @@ namespace Sudoku.Solving.Manual.Alses
 							dic.Add(d, alsList[death[pivot * 9 + d, stack[k++]]]);
 						}
 
+						// Check overlap ALSes.
+						if (!_allowOverlapping)
+						{
+							var alsesUsed = dic.Values.ToArray();
+							bool overlap = false;
+							for (int i = 0, length = alsesUsed.Length; i < length - 1; i++)
+							{
+								for (int j = i + 1; j < length; j++)
+								{
+									if ((alsesUsed[i].Map & alsesUsed[j].Map).IsNotEmpty)
+									{
+										overlap = true;
+									}
+								}
+							}
+
+							if (overlap)
+							{
+								continue;
+							}
+						}
+
 						// Record all highlight cells.
 						var cellOffsets = new List<(int, int)> { (0, pivot) };
 						int z = 0;
 						foreach (var (d, a) in dic)
 						{
-							foreach (var c in
+							foreach (int c in
 								from pos in a.RelativePos
 								select RegionUtils.GetCellOffset(a.Region, pos))
 							{
-								cellOffsets.Add((z, c));
+								cellOffsets.Add((-z, c));
 							}
 
 							z = (z + 1) % 4;
@@ -196,11 +213,11 @@ namespace Sudoku.Solving.Manual.Alses
 							{
 								foreach (int dd in grid.GetCandidatesReversal(c).GetAllSets())
 								{
-									candidateOffsets.Add((d == dd ? 1 : z, c * 9 + dd));
+									candidateOffsets.Add((d == dd ? 1 : -z, c * 9 + dd));
 								}
-
-								z = (z + 1) % 4;
 							}
+
+							z = (z + 1) % 4;
 						}
 
 						// Record all highlight regions.
@@ -208,7 +225,7 @@ namespace Sudoku.Solving.Manual.Alses
 						z = 0;
 						foreach (var als in dic.Values)
 						{
-							regionOffsets.Add((z, als.Region));
+							regionOffsets.Add((-z, als.Region));
 
 							z = (z + 1) % 4;
 						}
@@ -220,7 +237,10 @@ namespace Sudoku.Solving.Manual.Alses
 								views: new[]
 								{
 									new View(
-										cellOffsets: _alsShowRegions ? null : cellOffsets,
+										cellOffsets:
+											_alsShowRegions
+												? (IReadOnlyList<(int, int)>)new[] { (0, pivot) }
+												: cellOffsets,
 										candidateOffsets: _alsShowRegions ? candidateOffsets : null,
 										regionOffsets: _alsShowRegions ? regionOffsets : null,
 										links: null)
@@ -243,14 +263,14 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <param name="digitDistributions">The digit distributions.</param>
 		/// <param name="checkedCandidates">All checked candidates.</param>
 		/// <param name="death">The death table.</param>
-		/// <param name="list">The ALS list.</param>
+		/// <param name="alses">The ALS list.</param>
 		private static void ProcessDeathAlsInfo(
 			IReadOnlyGrid grid, GridMap[] digitDistributions,
-			short[] checkedCandidates, int[,] death, IReadOnlyList<Als> list)
+			short[] checkedCandidates, int[,] death, IReadOnlyList<Als> alses)
 		{
-			int maxt = 0;
+			int max = 0;
 			int i = 0;
-			foreach (var als in list)
+			foreach (var als in alses)
 			{
 				var (region, relativePos, digits, map) = als;
 				short digitsMask = als.DigitsMask;
@@ -274,16 +294,17 @@ namespace Sudoku.Solving.Manual.Alses
 							continue;
 						}
 
-						checkedCandidates[cell] |= digitsMask;
-						ref int value = ref death[cell * 9 + digit, 0];
-						value++;
+						checkedCandidates[cell] |= (short)(1 << digit);
+						int candidate = cell * 9 + digit;
+						death[candidate, 0]++;
 
-						if (value > maxt)
+						int value = death[candidate, 0];
+						if (value > max)
 						{
-							maxt = value;
+							max = value;
 						}
 
-						death[cell * 9 + digit, value] = i;
+						death[candidate, value] = i;
 					}
 				}
 
@@ -297,6 +318,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <param name="grid">The grid.</param>
 		/// <param name="emptyCells">The empty cells.</param>
 		/// <returns>All ALSes.</returns>
+		[SuppressMessage("", "CS0675")]
 		private IReadOnlyList<Als> PreprocessAndRecordAlses(IReadOnlyGrid grid, GridMap emptyCells)
 		{
 			var list = new List<Als>();

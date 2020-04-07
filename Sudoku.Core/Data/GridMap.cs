@@ -33,6 +33,11 @@ namespace Sudoku.Data
 		/// <seealso cref="GridMap()"/>
 		public static readonly GridMap Empty = new GridMap();
 
+		/// <summary>
+		/// Indicates the instance that all bits are set <see langword="true"/> ahead of time.
+		/// </summary>
+		public static readonly GridMap Full;
+
 
 		/// <summary>
 		/// The value used for shifting.
@@ -276,6 +281,13 @@ namespace Sudoku.Data
 			(_high, _low) = (high, low);
 			Count = _high.CountSet() + _low.CountSet();
 		}
+
+
+		/// <summary>
+		/// The static constructor of struct <see cref="GridMap"/>.
+		/// </summary>
+		static GridMap() => (Full._high, Full._low, Full.Count) = (-1, -1, 81);
+
 
 		/// <summary>
 		/// Indicates whether the map has no set bits.

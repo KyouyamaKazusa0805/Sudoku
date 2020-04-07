@@ -1477,7 +1477,7 @@
             <param name="digitDistributions">The digit distributions.</param>
             <param name="checkedCandidates">All checked candidates.</param>
             <param name="death">The death table.</param>
-            <param name="list">The ALS list.</param>
+            <param name="alses">The ALS list.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher.PreprocessAndRecordAlses(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap)">
             <summary>
