@@ -49,7 +49,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <summary>
 		/// Indicates the priority of this technique.
 		/// </summary>
-		public static int Priority { get; set; } = 83;
+		public static int Priority { get; set; } = 80;
 
 		/// <summary>
 		/// Indicates whether the technique is enabled.
