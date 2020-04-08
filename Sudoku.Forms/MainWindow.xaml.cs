@@ -18,7 +18,6 @@ using Sudoku.Drawing.Extensions;
 using Sudoku.Drawing.Layers;
 using Sudoku.Forms.Drawing.Layers;
 using Sudoku.Forms.Extensions;
-using Sudoku.Recognitions;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 using static Sudoku.Forms.Constants.Processing;
@@ -27,6 +26,8 @@ using SudokuGrid = Sudoku.Data.Grid;
 using WPoint = System.Windows.Point;
 #if SUDOKU_RECOGNIZING
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using Sudoku.Recognitions;
 #endif
 
 namespace Sudoku.Forms
@@ -71,13 +72,13 @@ namespace Sudoku.Forms
 		/// <seealso cref="OnKeyUp(KeyEventArgs)"/>
 		private GridMap? _previewMap;
 
+#if SUDOKU_RECOGNIZING
 		/// <summary>
 		/// Indicates an recognition instance.
 		/// </summary>
-#if !SUDOKU_RECOGNIZING
 		[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
-#endif
 		private RecognitionServiceProvider _recognition = null!;
+#endif
 
 		/// <summary>
 		/// Indicates the analysis result after solving of the current grid.
@@ -203,9 +204,11 @@ namespace Sudoku.Forms
 			// Save configuration.
 			SaveConfig();
 
+#if SUDOKU_RECOGNIZING
 			// Dispose the instance.
 			// If the service provider is not initialized, this value will be null.
 			_recognition?.Dispose();
+#endif
 
 			GC.Collect();
 
