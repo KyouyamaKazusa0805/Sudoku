@@ -1,0 +1,324 @@
+﻿<Window x:Class="Sudoku.Windows.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d" Height="800" Width="1200" ResizeMode="CanMinimize">
+	<Window.Resources>
+		<Style TargetType="MenuItem">
+			<Setter Property="IsTabStop" Value="False"/>
+		</Style>
+		<Style TargetType="ListViewItem">
+			<Setter Property="HorizontalContentAlignment" Value="Right"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+	</Window.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="20"/>
+			<RowDefinition Height="40"/>
+			<RowDefinition Height="600"/>
+			<RowDefinition Height=".5*"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<!-- Row 0 -->
+		<Menu VerticalAlignment="Top" IsMainMenu="True" Grid.Row="0" Grid.ColumnSpan="2">
+			<!-- File... -->
+			<MenuItem Header="File">
+				<MenuItem Header="Open puzzle..." InputGestureText="Ctrl + O" Name="_menuItemFileOpen"
+						  Click="MenuItemFileOpen_Click"/>
+				<MenuItem Header="Save puzzle..." InputGestureText="Ctrl + S"
+						  Click="MenuItemFileSave_Click"/>
+				<MenuItem Header="Open puzzle database..." Name="_menuItemFileOpenDatabase"
+						  Click="MenuItemFileOpenDatabase_Click"/>
+				<MenuItem Header="Backup configurations" Name="_menuItemBackupConfig"
+						  Click="MenuItemBackupConfig_Click"/>
+				<MenuItem Header="Load picture..." Name="_menuItemFileLoadPicture"
+						  Click="MenuItemFileLoadPicture_Click"/>
+				<Separator/>
+				<MenuItem Header="Get Snapshot" InputGestureText="Ctrl + P"
+						  Click="MenuItemFileGetSnapshot_Click"/>
+				<Separator/>
+				<MenuItem Header="Quit app" InputGestureText="Alt + F4" BorderBrush="Red"
+						  BorderThickness="2,2,2,2"
+						  Click="MenuItemFileQuit_Click"/>
+			</MenuItem>
+
+			<!-- Options... -->
+			<MenuItem Header="Options">
+				<MenuItem Header="Show candidates" Name="_menuItemOptionsShowCandidates"
+						  IsChecked="True"
+						  Click="MenuItemOptionsShowCandidates_Click"/>
+				<Separator/>
+				<MenuItem Header="Settings..."
+						  Click="MenuItemOptionsSettings_Click"/>
+			</MenuItem>
+
+			<!-- Edit... -->
+			<MenuItem Header="Edit">
+				<MenuItem Header="Undo" InputGestureText="Ctrl + Z" Name="_menuItemEditUndo" IsEnabled="False"
+						  Click="MenuItemEditUndo_Click"/>
+				<MenuItem Header="Redo" InputGestureText="Ctrl + Y" Name="_menuItemEditRedo" IsEnabled="False"
+						  Click="MenuItemEditRedo_Click"/>
+				<MenuItem Header="Clear undo &amp; redo steps" Name="_menuItemClearStack"
+						  Click="MenuItemClearStack_Click"/>
+				<MenuItem Header="Re-compute candidates manually" InputGestureText="F5"
+						  Name="_menuItemEditRecomputeCandidates"
+						  Click="MenuItemEditRecomputeCandidates_Click"/>
+				<Separator/>
+				<MenuItem Header="Copy normal grid" InputGestureText="Ctrl + C"
+						  Click="MenuItemEditCopy_Click"/>
+				<MenuItem Header="Copy current grid" InputGestureText="Ctrl + Shift + C"
+						  Click="MenuItemEditCopyCurrentGrid_Click"/>
+				<MenuItem Header="Copy hodoku library format"
+						  Click="MenuItemEditCopyHodokuLibrary_Click"/>
+				<MenuItem Header="Copy PM grid"
+						  Click="MenuItemEditCopyPmGrid_Click"/>
+				<MenuItem Header="Paste" InputGestureText="Ctrl + V" Name="_menuItemEditPaste"
+						  Click="MenuItemEditPaste_Click"/>
+				<Separator/>
+				<MenuItem Header="Fix grid" InputGestureText="Ctrl + `" Name="_menuItemEditFix"
+						  Click="MenuItemEditFix_Click"/>
+				<MenuItem Header="Unfix grid" InputGestureText="Ctrl + Shift + `" Name="_menuItemEditUnfix"
+						  Click="MenuItemEditUnfix_Click"/>
+				<Separator/>
+				<MenuItem Header="Reset grid" Name="_menuItemEditReset" BorderBrush="Red"
+						  BorderThickness="2,2,2,2"
+						  Click="MenuItemEditReset_Click"/>
+				<MenuItem Header="Clear grid" Name="_menuItemEditClear" BorderBrush="Red"
+						  InputGestureText="Ctrl + Shift + N"  BorderThickness="2,2,2,2"
+						  Click="MenuItemEditClear_Click"/>
+			</MenuItem>
+
+			<!-- Generate... -->
+			<MenuItem Header="Generate">
+				<MenuItem Header="Symmetry pattern" Name="_menuItemGenerateWithSymmetry"
+						  Click="MenuItemGenerateWithSymmetry_Click"/>
+				<MenuItem Header="Hard pattern" Name="_menuItemGenerateHardPattern"
+						  InputGestureText="Ctrl + H"
+						  Click="MenuItemGenerateHardPattern_Click"/>
+			</MenuItem>
+
+			<!-- Analyze... -->
+			<MenuItem Header="Analyze">
+				<MenuItem Header="Solve puzzle" Name="_menuItemAnalyzeSolve" InputGestureText="F9"
+						  Click="MenuItemAnalyzeSolve_Click"/>
+				<Separator/>
+				<MenuItem Header="Show Full Houses" Name="_menuItemAnalyzeShowFullHouses"
+						  Click="MenuItemShowFullHouses_Click"/>
+				<MenuItem Header="Show Last Digits" Name="_menuItemAnalyzeShowLastDigits"
+						  Click="MenuItemShowLastDigits_Click"/>
+				<Separator/>
+				<MenuItem Header="Analyze difficulty strictly" Name="_menuItemAnalyzeSeMode"
+						  Click="MenuItemAnalyzeSeMode_Click"/>
+				<MenuItem Header="Fast search" Name="_menuItemAnalyzeFastSearch"
+						  Click="MenuItemAnalyzeFastSearch_Click"/>
+				<MenuItem Header="Check validity of each conclusion"
+						  Name="_menuItemAnalyzeCheckConclusionValidityAfterSearched"
+						  Click="MenuItemCheckConclusionValidityAfterSearched_Click"/>
+				<MenuItem Header="Check Gurth's Symmetrical Placement"
+						  Name="_menuItemAnalyzeCheckGurthSymmetricalPlacement"
+						  Click="MenuItemCheckGurthSymmetricalPlacement_Click"/>
+				<MenuItem Header="Optimize applying order" Name="_menuItemAnalyzeOptimizeApplyingOrder"
+						  Click="MenuItemOptimizeApplyingOrder_Click"/>
+				<MenuItem Header="Use calculation priority" Name="_menuItemAnalyzeUseCalculationPriority"
+						  Click="MenuItemUseCalculationPriority_Click"/>
+				<Separator/>
+				<MenuItem Header="Export..." Name="_menuItemAnalyzeExport"
+						  Click="MenuItemExport_Click"/>
+				<Separator/>
+				<MenuItem Header="BUG + n search..." Name="_menuItemAnalyzeBugN"
+						  Click="MenuItemAnalyzeBugN_Click"/>
+				<MenuItem Header="Backdoor search..." Name="_menuItemAnalyzeBackdoor"
+						  Click="MenuItemAnalyzeBackdoor_Click"/>
+			</MenuItem>
+
+			<MenuItem Header="Views">
+				<MenuItem Header="True candidates view!" Name="_menuItemAnalyzeShowBugN"
+						  Click="MenuItemViewsShowBugN_Click"/>
+				<MenuItem Header="Backdoor (level 0 &amp; 1) view!" Name="_menuItemAnalyzeBackdoorView"
+						  Click="MenuItemViewsBackdoorView_Click"/>
+			</MenuItem>
+
+			<!-- About... -->
+			<MenuItem Header="About">
+				<MenuItem Header="Me" Click="MenuItemAboutMe_Click"/>
+				<MenuItem Header="Special thanks..." Click="MenuItemAboutSpecialThanks_Click"/>
+			</MenuItem>
+		</Menu>
+
+		<!-- Row 1 -->
+		<ToolBar Grid.Row="1" Grid.ColumnSpan="2" Name="_toolBarMain">
+			<Image Source="Resources\ImageIcon-UndoDisable.png" Name="_imageUndoIcon"
+				   MouseLeftButtonDown="ImageUndoIcon_MouseLeftButtonDown"/>
+			<Image Source="Resources\ImageIcon-RedoDisable.png" Name="_imageRedoIcon"
+				   MouseLeftButtonDown="ImageRedoIcon_MouseLeftButtonDown"/>
+			<Separator/>
+			<Image Source="Resources\ImageIcon-Generate.png" Name="_imageGeneratingIcon"
+				   Cursor="Hand"
+				   MouseLeftButtonDown="ImageGeneratingIcon_MouseLeftButtonDown"/>
+			<!--
+			<Label Content="Difficulty:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+			<ComboBox Name="_comboBoxDifficulty" SelectedIndex="0"/>
+			-->
+			<Label Content="Mode:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+			<ComboBox Name="_comboBoxMode"
+					  SelectionChanged="ComboBoxMode_SelectionChanged">
+				<ComboBoxItem Content="Symmetry pattern" Name="_comboBoxItemSymmetryMode"/>
+				<ComboBoxItem Content="Hard pattern" Name="_comboBoxItemHardMode"/>
+			</ComboBox>
+			<Label Content="Symmetry:" HorizontalAlignment="Left" VerticalAlignment="Center"
+				   Name="_labelSymmetry"/>
+			<ComboBox Name="_comboBoxSymmetry"
+					  SelectionChanged="ComboBoxSymmetry_SelectionChanged"/>
+			<Label Content="Backdoor filtering depth:" HorizontalAlignment="Left"
+				   VerticalAlignment="Center" Name="_labelBackdoorFilteringDepth"/>
+			<ComboBox Name="_comboBoxBackdoorFilteringDepth"
+					  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+					  SelectedIndex="0"
+					  SelectionChanged="ComboBoxBackdoorFilteringDepth_SelectionChanged">
+				<ComboBoxItem Content="-1 (Disable)"/>
+				<ComboBoxItem Content="0"/>
+				<ComboBoxItem Content="1"/>
+				<ComboBoxItem Content="2"/>
+				<ComboBoxItem Content="3"/>
+			</ComboBox>
+			<Separator/>
+			<Image Source="Resources\Solve.png" Name="_imageSolve"
+				   Cursor="Hand"
+				   MouseLeftButtonDown="ImageSolve_MouseLeftButtonDown"/>
+		</ToolBar>
+
+		<!-- Row 2 -->
+		<Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+			   Name="_imageGrid" Grid.Row="2" Grid.Column="0" Width="576" Height="576"
+			   MouseLeftButtonDown="ImageGrid_MouseLeftButtonDown"
+			   MouseRightButtonDown="ImageGrid_MouseRightButtonDown">
+			<Image.ContextMenu>
+				<ContextMenu Name="_imageGridContextMenu">
+					<MenuItem Header="Set 1" Name="_menuItemImageGridSet1"
+							  Click="MenuItemImageGridSet1_Click"/>
+					<MenuItem Header="Set 2" Name="_menuItemImageGridSet2"
+							  Click="MenuItemImageGridSet2_Click"/>
+					<MenuItem Header="Set 3" Name="_menuItemImageGridSet3"
+							  Click="MenuItemImageGridSet3_Click"/>
+					<MenuItem Header="Set 4" Name="_menuItemImageGridSet4"
+							  Click="MenuItemImageGridSet4_Click"/>
+					<MenuItem Header="Set 5" Name="_menuItemImageGridSet5"
+							  Click="MenuItemImageGridSet5_Click"/>
+					<MenuItem Header="Set 6" Name="_menuItemImageGridSet6"
+							  Click="MenuItemImageGridSet6_Click"/>
+					<MenuItem Header="Set 7" Name="_menuItemImageGridSet7"
+							  Click="MenuItemImageGridSet7_Click"/>
+					<MenuItem Header="Set 8" Name="_menuItemImageGridSet8"
+							  Click="MenuItemImageGridSet8_Click"/>
+					<MenuItem Header="Set 9" Name="_menuItemImageGridSet9"
+							  Click="MenuItemImageGridSet9_Click"/>
+					<MenuItem Header="Delete 1" Name="_menuItemImageGridDelete1"
+							  Click="MenuItemImageGridDelete1_Click"/>
+					<MenuItem Header="Delete 2" Name="_menuItemImageGridDelete2"
+							  Click="MenuItemImageGridDelete2_Click"/>
+					<MenuItem Header="Delete 3" Name="_menuItemImageGridDelete3"
+							  Click="MenuItemImageGridDelete3_Click"/>
+					<MenuItem Header="Delete 4" Name="_menuItemImageGridDelete4"
+							  Click="MenuItemImageGridDelete4_Click"/>
+					<MenuItem Header="Delete 5" Name="_menuItemImageGridDelete5"
+							  Click="MenuItemImageGridDelete5_Click"/>
+					<MenuItem Header="Delete 6" Name="_menuItemImageGridDelete6"
+							  Click="MenuItemImageGridDelete6_Click"/>
+					<MenuItem Header="Delete 7" Name="_menuItemImageGridDelete7"
+							  Click="MenuItemImageGridDelete7_Click"/>
+					<MenuItem Header="Delete 8" Name="_menuItemImageGridDelete8"
+							  Click="MenuItemImageGridDelete8_Click"/>
+					<MenuItem Header="Delete 9" Name="_menuItemImageGridDelete9"
+							  Click="MenuItemImageGridDelete9_Click"/>
+				</ContextMenu>
+			</Image.ContextMenu>
+		</Image>
+		<TabControl Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch"
+					Name="_tabControlInfo"
+					VerticalAlignment="Stretch" IsTabStop="False">
+			<!-- Summary -->
+			<TabItem Header="Summary">
+				<Grid Background="#FFE5E5E5">
+					<ListView Name="_listViewSummary"/>
+				</Grid>
+			</TabItem>
+
+			<!-- Solution Path -->
+			<TabItem Header="Solution path">
+				<Grid Background="#FFE5E5E5">
+					<ListBox Name="_listBoxPaths"
+							 SelectionChanged="ListBoxPaths_SelectionChanged">
+						<ListBox.ContextMenu>
+							<ContextMenu>
+								<MenuItem Header="Copy current step"
+										  Name="_contextListBoxPathsCopyCurrentStep"
+										  Click="ContextListBoxPathsCopyCurrentStep_Click"/>
+								<MenuItem Header="Copy all steps"
+										  Name="_contextListBoxPathsCopyAllSteps"
+										  Click="ContextListBoxPathsCopyAllSteps_Click"/>
+							</ContextMenu>
+						</ListBox.ContextMenu>
+					</ListBox>
+				</Grid>
+			</TabItem>
+
+			<!-- All possible steps -->
+			<TabItem Header="All possible steps">
+				<Grid Background="#FFE5E5E5">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="15*"/>
+						<RowDefinition/>
+					</Grid.RowDefinitions>
+					<ListBox Grid.Row="0" Grid.Column="0" Name="_listBoxTechniques"
+							 SelectionChanged="ListBoxTechniques_SelectionChanged"/>
+					<!--<TreeView Grid.Row="0" Grid.Column="0" Name="_treeView"/>-->
+					<Button Grid.Row="1" Grid.Column="0" Name="_buttonFindAllSteps"
+							Content="Find all steps"
+							Click="ButtonFindAllSteps_Click"/>
+				</Grid>
+			</TabItem>
+
+			<!-- Drawing -->
+			<TabItem Header="Drawing">
+				<Grid Background="#FFE5E5E5"/>
+			</TabItem>
+		</TabControl>
+
+		<!-- Row 3 -->
+		<Grid Grid.Row="3" Grid.Column="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="2*"/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition Width="2*"/>
+			</Grid.ColumnDefinitions>
+			<TextBox Grid.Column="1" Name="_textBoxJumpTo" HorizontalContentAlignment="Center"
+					 VerticalContentAlignment="Center" MaxLength="9" IsEnabled="False"
+					 TextChanged="TextBoxJumpTo_TextChanged"/>
+			<Button Grid.Column="2" Name="_buttonFirst" Content="&lt;&lt;"
+					Click="ButtonFirst_Click" IsEnabled="False"/>
+			<Button Grid.Column="3" Name="_buttonPrev" Content="&lt;"
+					Click="ButtonPrev_Click" IsEnabled="False"/>
+			<Button Grid.Column="4" Name="_buttonNext" Content="&gt;"
+					Click="ButtonNext_Click" IsEnabled="False"/>
+			<Button Grid.Column="5" Name="_buttonLast" Content="&gt;&gt;"
+					Click="ButtonLast_Click" IsEnabled="False"/>
+			<Label Grid.Column="6" Grid.ColumnSpan="2" Name="_labelPuzzleNumber"
+				   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+		</Grid>
+
+		<!-- Row 4 -->
+		<TextBox Grid.Row="4" Grid.ColumnSpan="2" IsReadOnly="True" Cursor="Arrow"
+				 TextWrapping="Wrap" Name="_textBoxInfo" IsTabStop="False"/>
+	</Grid>
+</Window>

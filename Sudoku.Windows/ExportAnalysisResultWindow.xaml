@@ -1,0 +1,91 @@
+﻿<Window x:Class="Sudoku.Windows.ExportAnalysisResultWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d"
+		Title="Export analysis result..." Height="450" Width="800">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="30"/>
+			<RowDefinition/>
+			<RowDefinition Height="30"/>
+			<RowDefinition Height="2*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+			   Content="Please select the options to export:"/>
+		<Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Name="_gridMain">
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<CheckBox Grid.Row="0" Grid.Column="0"
+					  HorizontalAlignment="Left" VerticalAlignment="Center"
+					  Content="Show separators" Name="_checkBoxShowSeparators"
+					  Tag="-"
+					  Click="CheckBoxShowSeparators_Click"/>
+			<CheckBox Grid.Row="0" Grid.Column="1"
+					  HorizontalAlignment="Left" VerticalAlignment="Center"
+					  Content="Show step indices" Name="_checkBoxShowStepIndices"
+					  Tag="#"
+					  Click="CheckBoxShowStepIndices_Click"/>
+			<CheckBox Grid.Row="1" Grid.Column="0" IsEnabled="True"
+					  HorizontalAlignment="Left" VerticalAlignment="Center"
+					  Content="Show logic of each step" Name="_checkBoxShowLogic"
+					  Tag="@"
+					  Click="CheckBoxShowLogic_Click"/>
+			<CheckBox Grid.Row="1" Grid.Column="1"
+					  HorizontalAlignment="Left" VerticalAlignment="Center"
+					  Content="Show bottleneck step" Name="_checkBoxShowBottleneck"
+					  Tag="?"
+					  Click="CheckBoxShowBottleneck_Click"/>
+			<CheckBox Grid.Row="2" Grid.Column="0"
+					  HorizontalAlignment="Left" VerticalAlignment="Center"
+					  Content="Show difficulty rating of each step" Name="_checkBoxShowDifficulty"
+					  Tag="!"
+					  Click="CheckBoxShowDifficulty_Click"/>
+			<CheckBox Grid.Row="2" Grid.Column="1"
+					  HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="True"
+					  Content="Show steps after bottleneck" Name="_checkboxShowStepsAfterBottleneck"
+					  Tag="."
+					  Click="CheckboxShowStepsAfterBottleneck_Click"/>
+			<CheckBox Grid.Row="3" Grid.Column="0"
+					  HorizontalAlignment="Left" VerticalAlignment="Center"
+					  Content="Show attributes of puzzle" Name="_checkBoxShowAttributesOfPuzzle"
+					  Tag="a"
+					  Click="CheckBoxShowAttributesOfPuzzle_Click"/>
+			<CheckBox Grid.Row="3" Grid.Column="1"
+					  HorizontalAlignment="Left" VerticalAlignment="Center"
+					  Content="Show magic cells" Name="_checkBoxShowMagicCells"
+					  Tag="b"
+					  Click="CheckBoxShowMagicCells_Click"/>
+			<CheckBox Grid.Row="4" Grid.Column="0"
+					  HorizontalAlignment="Left" VerticalAlignment="Center"
+					  Content="Show difficulty rating details" Name="_checkBoxShowDifficultyDetail"
+					  Tag="d"
+					  Click="CheckBoxShowDifficultyDetail_Click"/>
+			<CheckBox Grid.Row="4" Grid.Column="1"
+					  HorizontalAlignment="Left" VerticalAlignment="Center"
+					  Content="Show technique steps" Name="_checkBoxShowTechniqueSteps"
+					  Tag="l"
+					  Click="CheckBoxShowTechniqueSteps_Click"/>
+		</Grid>
+		<Label Grid.Row="2" Grid.Column="0" Content="Analysis result:"/>
+		<Button Grid.Row="2" Grid.Column="1" Name="_buttonExport"
+				HorizontalAlignment="Right" VerticalAlignment="Bottom"
+				Content="Export" Click="ButtonExport_Click"/>
+		<TextBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="_textBoxAnalysisResult"
+				 IsReadOnly="True" FontFamily="Consolas"/>
+	</Grid>
+</Window>
