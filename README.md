@@ -172,7 +172,7 @@ Here display all conditional compliation symbols in this solution.
 这里罗列本解决方案里用到的条件编译符号。
 
 * `TARGET_64BIT`: Indicates your computer is 32 bits or 64 bits. If 64, please add `TARGET_64BIT` into the solution; otherwise, do nothing. This conditional compliation symbol is used in calling C/C++ functions in dynamic link library (i.e. DLL).<br/>指示系统是多少位的。当你的电脑是 64 位的时候，请添加 `TARGET_64BIT` 条件编译符号；否则就不管。这个条件编译符号用于调用位于动态链接库里的 C/C++ 函数。
-* `SUDOKU_RECOGNIZING`: Indicates whether your machine can use OCR tools to recognize an image, and convert to a sudoku grid data structure instance. If you want to use this feature, please add this symbol to two projects `Sudoku.Core` and `Sudoku.Forms`.<br/>表示是否你的电脑上可以使用 OCR 识别工具来识别一个图片，并将其转换为一个数独盘面的实例对象。如果你希望启用这个功能的话，需要你为 `Sudoku.Core` 和 `Sudoku.Forms` 这两个项目添加这个编译符号。
+* `SUDOKU_RECOGNIZING`: Indicates whether your machine can use OCR tools to recognize an image, and convert to a sudoku grid data structure instance. If you want to use this feature, please add this symbol to two projects `Sudoku.Core` and `Sudoku.Windows`.<br/>表示是否你的电脑上可以使用 OCR 识别工具来识别一个图片，并将其转换为一个数独盘面的实例对象。如果你希望启用这个功能的话，需要你为 `Sudoku.Core` 和 `Sudoku.Windows` 这两个项目添加这个编译符号。
 
 
 
