@@ -203,9 +203,7 @@ namespace Sudoku.Forms
 				}
 			}
 #else
-			MessageBox.Show(
-				"Your machine cannot use image recognition because of some vulnerables.",
-				"Info");
+			MessageBox.Show("Your machine cannot use image recognition.", "Info");
 #endif
 		}
 

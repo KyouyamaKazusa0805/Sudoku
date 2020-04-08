@@ -40,7 +40,7 @@ namespace Sudoku.Recognitions
 		/// </summary>
 		/// <param name="image">The image.</param>
 		/// <returns>The grid.</returns>
-		/// <exception cref="SudokuRuntimeException">
+		/// <exception cref="RecognizingException">
 		/// Throws when the tool has not initialized yet.
 		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -53,7 +53,9 @@ namespace Sudoku.Recognitions
 				return grid;
 			}
 
-			throw new SudokuRuntimeException("The recognizer has not initialized.");
+			throw new RecognizingException(
+				message: "The recognizer has not initialized.",
+				innerException: new NullReferenceException());
 		}
 	}
 }

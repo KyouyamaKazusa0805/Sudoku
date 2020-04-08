@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Runtime.Serialization;
 
 namespace Sudoku
@@ -7,7 +6,7 @@ namespace Sudoku
 	/// <summary>
 	/// Represents an error that the puzzle has no solution while solving.
 	/// </summary>
-	[Serializable, DebuggerStepThrough]
+	[Serializable]
 	public class SudokuRuntimeException : Exception
 	{
 		/// <inheritdoc/>

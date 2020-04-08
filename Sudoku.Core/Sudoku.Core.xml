@@ -3687,7 +3687,7 @@
             </summary>
             <param name="field">The field.</param>
             <returns>The grid.</returns>
-            <exception cref="T:Sudoku.SudokuRuntimeException">
+            <exception cref="T:Sudoku.Recognitions.RecognizingException">
             Throws when the processing is wrong or unhandleable.
             </exception>
         </member>
@@ -3753,9 +3753,26 @@
             </summary>
             <param name="image">The image.</param>
             <returns>The grid.</returns>
-            <exception cref="T:Sudoku.SudokuRuntimeException">
+            <exception cref="T:Sudoku.Recognitions.RecognizingException">
             Throws when the tool has not initialized yet.
             </exception>
+        </member>
+        <member name="T:Sudoku.Recognitions.RecognizingException">
+            <summary>
+            Represents an error that the OCR tools cannot work normally.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Recognitions.RecognizingException.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recognitions.RecognizingException.#ctor(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recognitions.RecognizingException.#ctor(System.String,System.Exception)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recognitions.RecognizingException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.SudokuRuntimeException">
             <summary>
