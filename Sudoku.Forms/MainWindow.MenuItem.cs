@@ -676,7 +676,7 @@ namespace Sudoku.Forms
 		}
 
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-		private async void MenuItemAnalyzeShowBugN_Click(object sender, RoutedEventArgs e)
+		private async void MenuItemViewsShowBugN_Click(object sender, RoutedEventArgs e)
 		{
 			await internalOperation();
 
@@ -721,7 +721,7 @@ namespace Sudoku.Forms
 		}
 
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-		private async void MenuItemAnalyzeBackdoorView_Click(object sender, RoutedEventArgs e)
+		private async void MenuItemViewsBackdoorView_Click(object sender, RoutedEventArgs e)
 		{
 			await internalOperation();
 

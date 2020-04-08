@@ -111,37 +111,6 @@ namespace Sudoku.Forms
 
 
 		/// <summary>
-		/// Indicates the name of this solution.
-		/// </summary>
-		private string SolutionName
-		{
-			get
-			{
-				return Assembly
-					.GetExecutingAssembly()
-					.GetCustomAttribute<AssemblyProductAttribute>()
-					is AssemblyProductAttribute attr
-					? attr.Product
-					: "Sunnie's Sudoku Solution";
-			}
-		}
-
-		/// <summary>
-		/// Indicates the version.
-		/// </summary>
-		private string Version
-		{
-			get
-			{
-				return Assembly
-					.GetExecutingAssembly()
-					.GetName()
-					.Version
-					.NullableToString("Unknown version");
-			}
-		}
-
-		/// <summary>
 		/// Indicates the puzzle, which is equivalent to <see cref="_puzzle"/>,
 		/// but add the auto-update value layer.
 		/// </summary>
@@ -184,8 +153,8 @@ namespace Sudoku.Forms
 			catch (Exception ex)
 			{
 				MessageBox.Show(
-					$"Cannot to calculate{Environment.NewLine}" +
-					$"Source: {ex.Source}{Environment.NewLine}" +
+					$"Cannot to calculate{NewLine}" +
+					$"Source: {ex.Source}{NewLine}" +
 					$"Message: {ex.Message}",
 					"Fatal error",
 					MessageBoxButton.OK,
@@ -212,7 +181,7 @@ namespace Sudoku.Forms
 			AddShortCut(Key.C, ModifierKeys.Control | ModifierKeys.Shift, null, MenuItemEditCopyCurrentGrid_Click);
 			AddShortCut(Key.OemTilde, ModifierKeys.Control | ModifierKeys.Shift, _menuItemEditUnfix, MenuItemEditUnfix_Click);
 
-			Title = $"{SolutionName} Ver {Version}";
+			Title = $"{SolutionName} Ver {SolutionVersion}";
 
 			LoadConfigIfWorth();
 			InitializePointConverterAndLayers();
@@ -243,12 +212,15 @@ namespace Sudoku.Forms
 			base.OnClosing(e);
 
 #if SUDOKU_RECOGNIZING
-			// If you don't use this feature, the program will not need to use
-			// this method to KILL itself... KILL... sounds terrible and dangerous, isn't it?
-			// To be honest, I don't know why the program fails to exit... The background
-			// threads still running after base close method executed completely. If you
-			// know the detail of Emgu.CV, please tell me, thx!
-			Process.GetCurrentProcess().Kill();
+			if (_recognition?.ToolIsInitialized ?? false)
+			{
+				// If you don't use this feature, the program will not need to use
+				// this method to KILL itself... KILL... sounds terrible and dangerous, isn't it?
+				// To be honest, I don't know why the program fails to exit... The background
+				// threads still running after base close method executed completely. If you
+				// know the detail of Emgu.CV, please tell me, thx!
+				Process.GetCurrentProcess().Kill();
+			}
 #endif
 		}
 
@@ -476,7 +448,7 @@ namespace Sudoku.Forms
 			catch (Exception ex)
 			{
 				MessageBox.Show(
-					$"The configuration file cannot be saved due to exception throws:{Environment.NewLine}{ex.Message}",
+					$"The configuration file cannot be saved due to exception throws:{NewLine}{ex.Message}",
 					"Warning");
 			}
 			finally
@@ -531,7 +503,7 @@ namespace Sudoku.Forms
 			catch (ArgumentNullException ex)
 			{
 				MessageBox.Show(
-					$"Cannot save text to clipboard due to:{Environment.NewLine}{ex.Message}",
+					$"Cannot save text to clipboard due to:{NewLine}{ex.Message}",
 					"Warning");
 			}
 		}

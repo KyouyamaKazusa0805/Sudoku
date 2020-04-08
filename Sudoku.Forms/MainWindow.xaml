@@ -47,7 +47,7 @@
 						  BorderThickness="2,2,2,2"
 						  Click="MenuItemFileQuit_Click"/>
 			</MenuItem>
-			
+
 			<!-- Options... -->
 			<MenuItem Header="Options">
 				<MenuItem Header="Show candidates" Name="_menuItemOptionsShowCandidates"
@@ -57,7 +57,7 @@
 				<MenuItem Header="Settings..."
 						  Click="MenuItemOptionsSettings_Click"/>
 			</MenuItem>
-			
+
 			<!-- Edit... -->
 			<MenuItem Header="Edit">
 				<MenuItem Header="Undo" InputGestureText="Ctrl + Z" Name="_menuItemEditUndo" IsEnabled="False"
@@ -93,7 +93,7 @@
 						  InputGestureText="Ctrl + Shift + N"  BorderThickness="2,2,2,2"
 						  Click="MenuItemEditClear_Click"/>
 			</MenuItem>
-			
+
 			<!-- Generate... -->
 			<MenuItem Header="Generate">
 				<MenuItem Header="Symmetry pattern" Name="_menuItemGenerateWithSymmetry"
@@ -102,7 +102,7 @@
 						  InputGestureText="Ctrl + H"
 						  Click="MenuItemGenerateHardPattern_Click"/>
 			</MenuItem>
-			
+
 			<!-- Analyze... -->
 			<MenuItem Header="Analyze">
 				<MenuItem Header="Solve puzzle" Name="_menuItemAnalyzeSolve" InputGestureText="F9"
@@ -135,20 +135,22 @@
 						  Click="MenuItemAnalyzeBugN_Click"/>
 				<MenuItem Header="Backdoor search..." Name="_menuItemAnalyzeBackdoor"
 						  Click="MenuItemAnalyzeBackdoor_Click"/>
-				<Separator/>
-				<MenuItem Header="True candidates view!" Name="_menuItemAnalyzeShowBugN"
-						  Click="MenuItemAnalyzeShowBugN_Click"/>
-				<MenuItem Header="Backdoor (level 0 &amp; 1) view!" Name="_menuItemAnalyzeBackdoorView"
-						  Click="MenuItemAnalyzeBackdoorView_Click"/>
 			</MenuItem>
-			
+
+			<MenuItem Header="Views">
+				<MenuItem Header="True candidates view!" Name="_menuItemAnalyzeShowBugN"
+						  Click="MenuItemViewsShowBugN_Click"/>
+				<MenuItem Header="Backdoor (level 0 &amp; 1) view!" Name="_menuItemAnalyzeBackdoorView"
+						  Click="MenuItemViewsBackdoorView_Click"/>
+			</MenuItem>
+
 			<!-- About... -->
 			<MenuItem Header="About">
 				<MenuItem Header="Me" Click="MenuItemAboutMe_Click"/>
 				<MenuItem Header="Special thanks..." Click="MenuItemAboutSpecialThanks_Click"/>
 			</MenuItem>
 		</Menu>
-		
+
 		<!-- Row 1 -->
 		<ToolBar Grid.Row="1" Grid.ColumnSpan="2" Name="_toolBarMain">
 			<Image Source="Resources\ImageIcon-UndoDisable.png" Name="_imageUndoIcon"
@@ -190,7 +192,7 @@
 				   Cursor="Hand"
 				   MouseLeftButtonDown="ImageSolve_MouseLeftButtonDown"/>
 		</ToolBar>
-		
+
 		<!-- Row 2 -->
 		<Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 			   Name="_imageGrid" Grid.Row="2" Grid.Column="0" Width="576" Height="576"
@@ -246,7 +248,7 @@
 					<ListView Name="_listViewSummary"/>
 				</Grid>
 			</TabItem>
-			
+
 			<!-- Solution Path -->
 			<TabItem Header="Solution path">
 				<Grid Background="#FFE5E5E5">
@@ -265,7 +267,7 @@
 					</ListBox>
 				</Grid>
 			</TabItem>
-			
+
 			<!-- All possible steps -->
 			<TabItem Header="All possible steps">
 				<Grid Background="#FFE5E5E5">
@@ -281,13 +283,13 @@
 							Click="ButtonFindAllSteps_Click"/>
 				</Grid>
 			</TabItem>
-			
+
 			<!-- Drawing -->
 			<TabItem Header="Drawing">
 				<Grid Background="#FFE5E5E5"/>
 			</TabItem>
 		</TabControl>
-		
+
 		<!-- Row 3 -->
 		<Grid Grid.Row="3" Grid.Column="0">
 			<Grid.ColumnDefinitions>
@@ -314,7 +316,7 @@
 			<Label Grid.Column="6" Grid.ColumnSpan="2" Name="_labelPuzzleNumber"
 				   HorizontalAlignment="Center" VerticalAlignment="Center"/>
 		</Grid>
-		
+
 		<!-- Row 4 -->
 		<TextBox Grid.Row="4" Grid.ColumnSpan="2" IsReadOnly="True" Cursor="Arrow"
 				 TextWrapping="Wrap" Name="_textBoxInfo" IsTabStop="False"/>
