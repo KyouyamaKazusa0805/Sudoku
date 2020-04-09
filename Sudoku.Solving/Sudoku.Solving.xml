@@ -1135,6 +1135,12 @@
             Indicates the relative positions (offsets) in a region.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Als.StrongLinksMask">
+            <summary>
+            Indicates all strong links in this ALS. The result will be represented
+            as a <see cref="T:System.Int16"/> mask of 9 bits indicating which bits used.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Int32@,System.Collections.Generic.IEnumerable{System.Int32}@,System.Collections.Generic.IEnumerable{System.Int32}@,Sudoku.Data.GridMap@)">
             <method name="Deconstruct">
 		<summary>Deconstruct this instance.</summary>
@@ -1233,6 +1239,99 @@
             Encapsulates an <b>almost locked set</b> (ALS) technique searcher.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueInfo">
+            <summary>
+            Provides a usage of <b>almost locked sets W-Wing</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Als,Sudoku.Solving.Manual.Alses.Als,System.Int32,System.Int32,Sudoku.Solving.ConjugatePair)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="als1">The ALS 1.</param>
+            <param name="als2">The ALS 2.</param>
+            <param name="w">The W digit.</param>
+            <param name="x">The X digit.</param>
+            <param name="conjugatePair">The conjugate pair.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueInfo.Als1">
+            <summary>
+            Indicates the ALS 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueInfo.Als2">
+            <summary>
+            Indicates the ALS 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueInfo.WDigit">
+            <summary>
+            Indicates the W digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueInfo.XDigit">
+            <summary>
+            Indicates the X digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueInfo.ConjugatePair">
+            <summary>
+            Indicates the conjugate pair in the structure.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueSearcher">
+            <summary>
+            Encapsulates an <b>almost locked sets W-Wing</b> technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueSearcher._allowOverlapping">
+            <summary>
+            Indicates whether the ALSes can be overlapped with each other.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueSearcher._alsShowRegions">
+            <summary>
+            Indicates whether the ALSes shows their region rather than cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueSearcher.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            Initialize an instance with the specified information.
+            </summary>
+            <param name="allowOverlapping">
+            Indicates whether the ALSes can be overlapped with each other.
+            </param>
+            <param name="alsShowRegions">
+            Indicates whether all ALSes shows their regions rather than cells.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueSearcher.Priority">
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueInfo">
             <summary>
             Provides a usage of <b>ALS-XY-Wing</b> technique.
@@ -1310,7 +1409,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo">
             <summary>
-            Provides a usage of <b>ALS-XZ</b> technique.
+            Provides a usage of <b>almost locked sets XZ rule</b> technique.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.InternalNames">
@@ -1357,7 +1456,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher">
             <summary>
-            Encapsulates an <b>ALS-XZ</b> technique.
+            Encapsulates an <b>almost locked sets XZ rule</b> technique.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher._allowOverlapping">

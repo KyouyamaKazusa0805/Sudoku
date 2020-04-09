@@ -20,7 +20,6 @@ using Sudoku.Solving.Manual.Uniqueness.Rectangles;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using Intersection = System.ValueTuple<int, int, Sudoku.Data.GridMap, Sudoku.Data.GridMap>;
-using TechniqueGroup = System.Linq.IGrouping<string, Sudoku.Solving.TechniqueInfo>;
 
 namespace Sudoku.Solving.Manual
 {
@@ -46,11 +45,11 @@ namespace Sudoku.Solving.Manual
 		/// Search for all possible steps in a grid.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
-		public async Task<IEnumerable<TechniqueGroup>> SearchAsync(IReadOnlyGrid grid)
+		public async Task<IEnumerable<IGrouping<string, TechniqueInfo>>> SearchAsync(IReadOnlyGrid grid)
 		{
 			if (grid.HasSolved || !grid.IsValid(out _))
 			{
-				return Array.Empty<TechniqueGroup>();
+				return Array.Empty<IGrouping<string, TechniqueInfo>>();
 			}
 
 			// Get all region maps.
@@ -94,6 +93,7 @@ namespace Sudoku.Solving.Manual
 				new BugTechniqueSearcher(regionMaps, _settings.UseExtendedBugSearcher),
 				new AlsXzTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
 				new AlsXyWingTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
+				new AlsWWingTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
 				new DeathBlossomTechniqueSearcher(
 					regionMaps, _settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
 				new GroupedAicTechniqueSearcher(

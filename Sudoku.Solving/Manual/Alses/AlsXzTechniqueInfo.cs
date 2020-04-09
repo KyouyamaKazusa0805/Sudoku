@@ -7,7 +7,7 @@ using Sudoku.Solving.Utils;
 namespace Sudoku.Solving.Manual.Alses
 {
 	/// <summary>
-	/// Provides a usage of <b>ALS-XZ</b> technique.
+	/// Provides a usage of <b>almost locked sets XZ rule</b> technique.
 	/// </summary>
 	public sealed class AlsXzTechniqueInfo : AlsTechniqueInfo
 	{

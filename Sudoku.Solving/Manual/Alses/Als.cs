@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using Sudoku.Data;
@@ -99,6 +98,26 @@ namespace Sudoku.Solving.Manual.Alses
 		/// Indicates the relative positions (offsets) in a region.
 		/// </summary>
 		public IEnumerable<int> RelativePos => RelativePosMask.GetAllSets();
+
+		/// <summary>
+		/// Indicates all strong links in this ALS. The result will be represented
+		/// as a <see cref="short"/> mask of 9 bits indicating which bits used.
+		/// </summary>
+		public IEnumerable<short> StrongLinksMask
+		{
+			get
+			{
+				int[] digits = Digits.ToArray();
+				for (int i = 0, length = digits.Length; i < length - 1; i++)
+				{
+					for (int j = i + 1; j < length; j++)
+					{
+						yield return (short)(1 << i | 1 << j);
+					}
+				}
+			}
+		}
+
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>

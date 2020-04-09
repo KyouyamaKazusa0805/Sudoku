@@ -35,7 +35,7 @@ namespace Sudoku.Solving.Manual.Alses
 		public override string Name => "Almost Locked Sets XY-Wing";
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 6.0M;
+		public override decimal Difficulty => 6M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
