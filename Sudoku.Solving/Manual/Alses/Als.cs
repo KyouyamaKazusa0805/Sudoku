@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using Sudoku.Data;
@@ -13,6 +14,7 @@ namespace Sudoku.Solving.Manual.Alses
 	/// <summary>
 	/// Provides an ALS with specified digits in a specified region.
 	/// </summary>
+	[DebuggerStepThrough]
 	public readonly struct Als : IEquatable<Als>
 	{
 		/// <summary>
@@ -112,12 +114,11 @@ namespace Sudoku.Solving.Manual.Alses
 				{
 					for (int j = i + 1; j < length; j++)
 					{
-						yield return (short)(1 << i | 1 << j);
+						yield return (short)(1 << digits[i] | 1 << digits[j]);
 					}
 				}
 			}
 		}
-
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>

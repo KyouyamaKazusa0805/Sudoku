@@ -38,8 +38,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			{
 				if (grid.IsBivalueCell(cell, out short mask))
 				{
-					int d1 = mask.GetNextSetBit(-1);
-					int d2 = mask.GetNextSetBit(d1);
+					int d1 = mask.GetNextSet(-1);
+					int d2 = mask.GetNextSet(d1);
 					int[] digits = new[] { d1, d2 };
 
 					var tempLoop = new List<int>();

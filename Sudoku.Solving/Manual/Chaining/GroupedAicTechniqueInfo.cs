@@ -90,7 +90,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							{
 								1 => $"{groupedSuffix()}Discontinuous Nice Loop",
 								2 => $"{groupedSuffix()}XY-X-Chain",
-								_ => throw Throwing.ImpossibleCase
+								_ => $"{groupedSuffix()}Alternating Inference Chain"
 							},
 							_ when IsHeadCollisionChain() => $"{groupedSuffix()}Discontinuous Nice Loop",
 							_ => $"{groupedSuffix()}Alternating Inference Chain"

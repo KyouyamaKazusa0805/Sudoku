@@ -500,7 +500,6 @@ namespace Sudoku.Windows
 		{
 			try
 			{
-				// Even though the value is null, the formatter can be processed.
 				Clipboard.SetText(_puzzle.ToString(format));
 			}
 			catch (ArgumentNullException ex)

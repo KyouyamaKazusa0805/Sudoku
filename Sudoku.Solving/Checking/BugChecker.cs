@@ -149,7 +149,7 @@ namespace Sudoku.Solving.Checking
 					mask = pairs[pt - 1, i];
 					for (int j = 1; j <= 2; j++)
 					{
-						var temp = stack[pt - 1, mask.GetSetBitIndex(j)];
+						var temp = stack[pt - 1, mask.GetSetIndex(j)];
 						temp.Add(ps);
 						var (r, c, b) = CellUtils.GetRegion(ps);
 

@@ -216,7 +216,7 @@
             <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
             <seealso cref="M:Sudoku.Data.Extensions.Int32Ex.CountSet(System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Data.Extensions.Int16Ex.GetNextSetBit(System.Int16,System.Int32)">
+        <member name="M:Sudoku.Data.Extensions.Int16Ex.GetNextSet(System.Int16,System.Int32)">
             <summary>
             Find a index of the binary representation of a value
             after the specified index, whose bit is set <see langword="true"/>.
@@ -225,7 +225,7 @@
             <param name="index">The index.</param>
             <returns>The index.</returns>
         </member>
-        <member name="M:Sudoku.Data.Extensions.Int16Ex.GetSetBitIndex(System.Int16,System.Int32)">
+        <member name="M:Sudoku.Data.Extensions.Int16Ex.GetSetIndex(System.Int16,System.Int32)">
             <summary>
             Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
             all set bits with the specified set bit order.

@@ -1066,7 +1066,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							false,
 							new Node(
 								GetCellOffset(
-									region, mask.GetNextSetBit(pos1)) * 9 + digit,
+									region, mask.GetNextSet(pos1)) * 9 + digit,
 								NodeType.Candidate),
 							true));
 				}
@@ -1087,7 +1087,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						new Inference(
 							new Node(cell * 9 + digit1, NodeType.Candidate),
 							false,
-							new Node(cell * 9 + mask.GetNextSetBit(digit1), NodeType.Candidate),
+							new Node(cell * 9 + mask.GetNextSet(digit1), NodeType.Candidate),
 							true));
 				}
 			}

@@ -3,6 +3,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
 using static Sudoku.GridProcessings;
 
@@ -52,6 +53,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
+			(_, _, var digitDistributions) = grid;
 			for (int r1 = 0; r1 < 26; r1++)
 			{
 				if (RegionCells[r1].All(c => grid.GetCellStatus(c) != CellStatus.Empty))
@@ -80,8 +82,10 @@ namespace Sudoku.Solving.Manual.Alses
 
 					foreach (var als1 in alses1)
 					{
+						var als1Cells = als1.Map.Offsets;
 						foreach (var als2 in alses2)
 						{
+							var als2Cells = als2.Map.Offsets;
 							foreach (short mask1 in als1.StrongLinksMask)
 							{
 								foreach (short mask2 in als2.StrongLinksMask)
@@ -94,38 +98,25 @@ namespace Sudoku.Solving.Manual.Alses
 									// We checked the mask, and got the W and X digit.
 									// Then we should check the conjugate pair, where this instance
 									// should satisfy the following conditions:
-									// 1) Both two ALSes contains the X digit.
-									// 2) If the overlapping option is on, the overlapping cells
-									//    cannot contain X digit.
-									// 3) The region of the conjugate pair should not the same as
+									// 1) Both two ALSes contains the W and X digit.
+									// 2) The region of the conjugate pair should not the same as
 									//    neither one of ALS1 nor ALS2.
-									// 4) The conjugate pair should be about the X digit.
-									// 5) Both two endpoints of the conjugate pair should lie on
+									// 3) The conjugate pair should be about the X digit.
+									// 4) Both two endpoints of the conjugate pair should lie on
 									//    the same region of all cells containing X digit in
 									//    ALS1 and ALS2.
 									int a = mask1.FindFirstSet();
-									int b = mask1.GetNextSetBit(a);
+									int b = mask1.GetNextSet(a);
 									int[,] cases = new int[2, 2] { { a, b }, { b, a } };
 									for (int i = 0; i < 2; i++)
 									{
 										int w = cases[i, 0], x = cases[i, 1];
-										if ((
-											new GridMap(
-												from cell in als1.Map.Offsets
-												where grid.CandidateExists(cell, x)
-												select cell)
-											& new GridMap(
-												from cell in als2.Map.Offsets
-												where grid.CandidateExists(cell, x)
-												select cell)).IsNotEmpty)
+										if ((digitDistributions[w] & als1.Map).IsEmpty
+											|| (digitDistributions[x] & als1.Map).IsEmpty
+											|| (digitDistributions[w] & als2.Map).IsEmpty
+											|| (digitDistributions[x] & als2.Map).IsEmpty)
 										{
 											// Condition #1.
-											continue;
-										}
-										if (als1.Map.Offsets.All(c => grid.CandidateDoesNotExist(c, x))
-											|| als2.Map.Offsets.All(c => grid.CandidateDoesNotExist(c, x)))
-										{
-											// Condition #2.
 											continue;
 										}
 
@@ -133,124 +124,139 @@ namespace Sudoku.Solving.Manual.Alses
 										{
 											if (region == r1 || region == r2)
 											{
-												// Condition #3.
+												// Condition #2.
 												continue;
 											}
 
 											short mask = grid.GetDigitAppearingMask(x, region);
 											if (mask.CountSet() != 2)
 											{
-												// Condition #4.
+												// Condition #3.
 												continue;
 											}
 
-											int pos = mask.FindFirstSet();
-											int c1 = RegionUtils.GetCellOffset(region, pos);
-											int c2 = RegionUtils.GetCellOffset(region, mask.GetNextSetBit(pos));
-											var (row1, column1, block1) = CellUtils.GetRegion(c1);
-											var (row2, column2, block2) = CellUtils.GetRegion(c2);
-											if (!(
-												(row1 + 9 == r1 || column1 + 18 == r1 || block1 == r1)
-												&& (row2 + 9 == r2 || column2 + 18 == r2 || block2 == r2)
-												|| (row1 + 9 == r2 || column1 + 18 == r2 || block1 == r2)
-												&& (row2 + 9 == r1 || column2 + 18 == r1 || block2 == r1))
-												|| als1.Map[c1] || als1.Map[c2] || als2.Map[c1] || als2.Map[c2])
+											foreach (int xRegion1 in
+												new GridMap(
+													from cell in als1Cells
+													where grid.CandidateExists(cell, x)
+													select cell).CoveredRegions)
 											{
-												// Condition #5.
-												continue;
-											}
-
-											// Now check eliminations.
-											var conclusions = new List<Conclusion>();
-											var elimMap = new GridMap(
-												from cell in (als1.Map & als2.Map).Offsets
-												where grid.CandidateExists(cell, w)
-												select cell,
-												GridMap.InitializeOption.ProcessPeersWithoutItself);
-											if (elimMap.Count == 0)
-											{
-												continue;
-											}
-
-											foreach (int cell in elimMap.Offsets)
-											{
-												if (!grid.CandidateExists(cell, w))
+												foreach (int xRegion2 in
+													new GridMap(
+														from cell in als2Cells
+														where grid.CandidateExists(cell, x)
+														select cell).CoveredRegions)
 												{
-													continue;
-												}
-
-												conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, w));
-											}
-											if (conclusions.Count == 0)
-											{
-												continue;
-											}
-
-											if (!_allowOverlapping && (als1.Map & als2.Map).IsNotEmpty)
-											{
-												continue;
-											}
-
-											// Record all highlight elements.
-											var cellOffsets = new List<(int, int)>();
-											var candidateOffsets = new List<(int, int)>
-											{
-												(0, c1 * 9 + x),
-												(0, c2 * 9 + x)
-											};
-											var regionOffsets = new List<(int, int)>
-											{
-												(-1, r1),
-												(-2, r2),
-												(0, region)
-											};
-											foreach (int cell in als1.Map.Offsets)
-											{
-												foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
-												{
-													candidateOffsets.Add((
-														true switch
-														{
-															_ when digit == w => 0,
-															_ when digit == x => 1,
-															_ => -1
-														}, cell * 9 + digit));
-												}
-
-												cellOffsets.Add((-1, cell));
-											}
-											foreach (int cell in als2.Map.Offsets)
-											{
-												foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
-												{
-													candidateOffsets.Add((
-														true switch
-														{
-															_ when digit == w => 0,
-															_ when digit == x => 1,
-															_ => -2
-														}, cell * 9 + digit));
-												}
-
-												cellOffsets.Add((-2, cell));
-											}
-
-											accumulator.Add(
-												new AlsWWingTechniqueInfo(
-													conclusions,
-													views: new[]
+													int pos = mask.FindFirstSet();
+													int c1 = RegionUtils.GetCellOffset(region, pos);
+													int c2 = RegionUtils.GetCellOffset(region, mask.GetNextSet(pos));
+													var (row1, column1, block1) = CellUtils.GetRegion(c1);
+													var (row2, column2, block2) = CellUtils.GetRegion(c2);
+													if (!(
+														(row1 + 9 == xRegion1 || column1 + 18 == xRegion1 || block1 == xRegion1)
+														&& (row2 + 9 == xRegion2 || column2 + 18 == xRegion2 || block2 == xRegion2)
+														|| (row1 + 9 == xRegion2 || column1 + 18 == xRegion2 || block1 == xRegion2)
+														&& (row2 + 9 == xRegion1 || column2 + 18 == xRegion1 || block2 == xRegion1))
+														|| als1.Map[c1] || als1.Map[c2] || als2.Map[c1] || als2.Map[c2])
 													{
-														new View(
-															cellOffsets: _alsShowRegions ? null : cellOffsets,
-															candidateOffsets: _alsShowRegions ? candidateOffsets : null,
-															regionOffsets: _alsShowRegions ? regionOffsets: null,
-															links: null)
-													},
-													als1,
-													als2,
-													w,
-													x,
-													conjugatePair: new ConjugatePair(c1, c2, x)));
+														// Condition #4.
+														continue;
+													}
+
+													// Now check eliminations.
+													var conclusions = new List<Conclusion>();
+													var elimMap =
+														new GridMap(
+															from cell in (als1.Map | als2.Map).Offsets
+															where grid.CandidateExists(cell, w)
+															select cell,
+															GridMap.InitializeOption.ProcessPeersWithoutItself);
+													if (elimMap.Count == 0)
+													{
+														continue;
+													}
+
+													foreach (int cell in elimMap.Offsets)
+													{
+														if (!grid.CandidateExists(cell, w))
+														{
+															continue;
+														}
+
+														conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, w));
+													}
+													if (conclusions.Count == 0)
+													{
+														continue;
+													}
+
+													if (!_allowOverlapping && (als1.Map & als2.Map).IsNotEmpty)
+													{
+														continue;
+													}
+
+													// Record all highlight elements.
+													var cellOffsets = new List<(int, int)>();
+													var candidateOffsets = new List<(int, int)>
+													{
+														(0, c1 * 9 + x),
+														(0, c2 * 9 + x)
+													};
+													var regionOffsets = new List<(int, int)>
+													{
+														(-1, r1),
+														(-2, r2),
+														(0, region)
+													};
+													foreach (int cell in als1Cells)
+													{
+														foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+														{
+															candidateOffsets.Add((
+																true switch
+																{
+																	_ when digit == w => 0,
+																	_ when digit == x => 1,
+																	_ => -1
+																}, cell * 9 + digit));
+														}
+
+														cellOffsets.Add((-1, cell));
+													}
+													foreach (int cell in als2Cells)
+													{
+														foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+														{
+															candidateOffsets.Add((
+																true switch
+																{
+																	_ when digit == w => 0,
+																	_ when digit == x => 1,
+																	_ => -2
+																}, cell * 9 + digit));
+														}
+
+														cellOffsets.Add((-2, cell));
+													}
+
+													accumulator.Add(
+														new AlsWWingTechniqueInfo(
+															conclusions,
+															views: new[]
+															{
+																new View(
+																	cellOffsets: _alsShowRegions ? null : cellOffsets,
+																	candidateOffsets: _alsShowRegions ? candidateOffsets : null,
+																	regionOffsets: _alsShowRegions ? regionOffsets: null,
+																	links: null)
+															},
+															als1,
+															als2,
+															w,
+															x,
+															conjugatePair: new ConjugatePair(c1, c2, x)));
+												}
+											}
 										}
 									}
 								}
