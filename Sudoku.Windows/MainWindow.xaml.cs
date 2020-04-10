@@ -24,6 +24,7 @@ using static Sudoku.Windows.Constants.Processing;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
 using WPoint = System.Windows.Point;
+using System.Runtime.InteropServices;
 #if SUDOKU_RECOGNIZING
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -500,13 +501,23 @@ namespace Sudoku.Windows
 		{
 			try
 			{
-				Clipboard.SetText(_puzzle.ToString(format));
+				// This may throw exception.
+				//Clipboard.SetText(_puzzle.ToString(format));
+				Clipboard.SetDataObject(_puzzle.ToString(format));
 			}
 			catch (ArgumentNullException ex)
 			{
 				MessageBox.Show(
 					$"Cannot save text to clipboard due to:{NewLine}{ex.Message}",
 					"Warning");
+			}
+			catch (COMException ex) when (ex.HResult == unchecked((int)2147746256))
+			{
+				MessageBox.Show(
+					"Your clipboard is unavailable now, " +
+					"because the program is running for generating or solving." +
+					"Please close this program or wait for finishing and try later.",
+					"Info");
 			}
 		}
 
