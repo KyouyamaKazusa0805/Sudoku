@@ -22,9 +22,7 @@ namespace System.Collections.Generic
 		private readonly IList<T> _internalList = new List<T>();
 
 
-		/// <summary>
-		/// Initializes a default <see cref="Bag{T}"/>.
-		/// </summary>
+		/// <include file='../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public Bag() { }
 
 		/// <summary>

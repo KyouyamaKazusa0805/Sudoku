@@ -3962,9 +3962,9 @@
             </summary>
         </member>
         <member name="M:System.Collections.Generic.Bag`1.#ctor">
-            <summary>
-            Initializes a default <see cref="T:System.Collections.Generic.Bag`1"/>.
-            </summary>
+            <defaultConstructor>
+		<summary>Create an instance with default initialization.</summary>
+	</defaultConstructor>
         </member>
         <member name="M:System.Collections.Generic.Bag`1.#ctor(`0)">
             <summary>
