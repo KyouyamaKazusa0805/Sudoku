@@ -248,18 +248,17 @@ namespace Sudoku.Data
 		/// Get the cell offset of the relative position in the specified
 		/// region.
 		/// </summary>
-		/// <param name="regionOffset">The region offset.</param>
-		/// <param name="relativePos">The relative position.</param>
+		/// <param name="region">The region offset.</param>
+		/// <param name="rPos">The relative position.</param>
 		/// <returns>The cell offset.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static int GetCellOffset(int regionOffset, int relativePos)
+		private static int GetCellOffset(int region, int rPos)
 		{
-			return regionOffset switch
+			return region switch
 			{
-				_ when regionOffset < 9 =>
-					(regionOffset / 3 * 3 + relativePos / 3) * 9 + regionOffset % 3 * 3 + relativePos % 3,
-				_ when regionOffset < 18 => (regionOffset - 9) * 9 + relativePos,
-				_ => relativePos * 9 + (regionOffset - 18)
+				_ when region < 9 => (region / 3 * 3 + rPos / 3) * 9 + region % 3 * 3 + rPos % 3,
+				_ when region < 18 => (region - 9) * 9 + rPos,
+				_ => rPos * 9 + (region - 18)
 			};
 		}
 	}

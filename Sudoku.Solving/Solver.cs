@@ -10,13 +10,13 @@ namespace Sudoku.Solving
 	public abstract class Solver
 	{
 		/// <summary>
-		/// The name of this solver.
+		/// Indicates the name of this solver.
 		/// </summary>
 		public abstract string SolverName { get; }
 
 
 		/// <summary>
-		/// Solves the specified puzzle.
+		/// To solve the specified puzzle.
 		/// </summary>
 		/// <param name="grid">The puzzle.</param>
 		/// <returns>

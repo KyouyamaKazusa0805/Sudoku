@@ -23,6 +23,7 @@ using Sudoku.Solving.Manual.Uniqueness.Rectangles;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using Sudoku.Solving.Utils;
+using static Sudoku.Solving.ConclusionType;
 using Intersection = System.ValueTuple<int, int, Sudoku.Data.GridMap, Sudoku.Data.GridMap>;
 
 namespace Sudoku.Solving.Manual
@@ -530,36 +531,26 @@ namespace Sudoku.Solving.Manual
 		/// <seealso cref="SolveWithStrictDifficultyRating(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, Intersection[,], GridMap[])"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool RecordTechnique(
-			List<TechniqueInfo> steps, TechniqueInfo step, IReadOnlyGrid grid, Grid cloneation,
-			Stopwatch stopwatch, IBag<IReadOnlyGrid> stepGrids,
+			List<TechniqueInfo> steps, TechniqueInfo step, IReadOnlyGrid grid,
+			Grid cloneation, Stopwatch stopwatch, IBag<IReadOnlyGrid> stepGrids,
 			[NotNullWhen(true)] out AnalysisResult? result)
 		{
 			bool needAdd = false;
-			foreach (var conclusion in step.Conclusions)
+			foreach (var (t, c, d) in step.Conclusions)
 			{
-				switch (conclusion.ConclusionType)
+				switch (t)
 				{
-					case ConclusionType.Assignment:
+					case Assignment when cloneation.GetCellStatus(c) == CellStatus.Empty:
+					case Elimination when cloneation.CandidateExists(c, d):
 					{
-						if (cloneation.GetCellStatus(conclusion.CellOffset) == CellStatus.Empty)
-						{
-							needAdd = true;
-						}
+						needAdd = true;
 
-						break;
-					}
-					case ConclusionType.Elimination:
-					{
-						if (cloneation.CandidateExists(conclusion.CellOffset, conclusion.Digit))
-						{
-							needAdd = true;
-						}
-
-						break;
+						goto Label_Decide;
 					}
 				}
 			}
 
+		Label_Decide:
 			if (needAdd)
 			{
 				stepGrids.Add(cloneation.Clone());
@@ -595,16 +586,13 @@ namespace Sudoku.Solving.Manual
 		private static bool CheckConclusionsValidity(
 			IReadOnlyGrid solution, IEnumerable<Conclusion> conclusions)
 		{
-			foreach (var conclusion in conclusions)
+			foreach (var (t, c, d) in conclusions)
 			{
-				int digit = solution[conclusion.CellOffset];
-				switch (conclusion.ConclusionType)
+				int digit = solution[c];
+				switch (t)
 				{
-					case ConclusionType.Assignment when digit != conclusion.Digit:
-					{
-						return false;
-					}
-					case ConclusionType.Elimination when digit == conclusion.Digit:
+					case Assignment when digit != d:
+					case Elimination when digit == d:
 					{
 						return false;
 					}

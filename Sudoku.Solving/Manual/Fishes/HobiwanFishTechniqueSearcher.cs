@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
 using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
 using Pair = System.ValueTuple<int, int>;
@@ -642,7 +643,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				int p1 = value.FindFirstSet();
 
 				// Endo-fins are cells that lie on two base sets at the same time.
-				result |= _regionMaps[baseSets[p1]] & _regionMaps[baseSets[value.GetNextSetBit(p1)]];
+				result |= _regionMaps[baseSets[p1]] & _regionMaps[baseSets[value.GetNextSet(p1)]];
 			}
 
 			return result;

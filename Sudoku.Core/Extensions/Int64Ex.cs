@@ -46,7 +46,7 @@ namespace Sudoku.Data.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
 		/// <param name="index">The index.</param>
 		/// <returns>The index.</returns>
-		public static int GetNextSetBit(this long @this, int index)
+		public static int GetNextSet(this long @this, int index)
 		{
 			for (int i = index + 1; i < 64; i++)
 			{
@@ -66,7 +66,7 @@ namespace Sudoku.Data.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
 		/// <param name="order">The number of the order of set bits.</param>
 		/// <returns>The position.</returns>
-		public static int GetSetBitIndex(this long @this, int order)
+		public static int GetSetIndex(this long @this, int order)
 		{
 			for (int i = 0, count = 0; i < 64; i++, @this >>= 1)
 			{

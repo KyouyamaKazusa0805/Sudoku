@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
@@ -12,6 +13,7 @@ namespace Sudoku.Solving.Utils
 	/// Provides extension method used for grid calculating.
 	/// </summary>
 	[DebuggerStepThrough]
+	[Obsolete("Please use static class 'ReadOnlyGridEx' instead.")]
 	public static class GridUtils
 	{
 		/// <summary>
@@ -30,6 +32,7 @@ namespace Sudoku.Solving.Utils
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[Obsolete("Please use 'ReadOnlyGridEx.IsBivalueCell(IReadOnlyGrid, int, out short)' instead.")]
 		public static bool IsBivalueCell(
 			this IReadOnlyGrid @this, int cellOffset, out short mask)
 		{
@@ -58,6 +61,7 @@ namespace Sudoku.Solving.Utils
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[Obsolete("Please use 'ReadOnlyGridEx.IsBilocationRegion(IReadOnlyGrid, int, int, out short)' instead.")]
 		public static bool IsBilocationRegion(
 			this IReadOnlyGrid @this, int digit, int region, out short mask)
 		{
@@ -89,6 +93,7 @@ namespace Sudoku.Solving.Utils
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <seealso cref="CandidateDoesNotExist(IReadOnlyGrid, int, int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[Obsolete("Please use 'ReadOnlyGridEx.Exists(IReadOnlyGrid, int, int)' instead.")]
 		public static bool CandidateExists(
 			this IReadOnlyGrid @this, int cellOffset, int digit) =>
 			@this.GetCellStatus(cellOffset) == CellStatus.Empty && !@this[cellOffset, digit];
@@ -111,6 +116,7 @@ namespace Sudoku.Solving.Utils
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <seealso cref="CandidateExists(IReadOnlyGrid, int, int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[Obsolete("Please use 'ReadOnlyGridEx.Exists(IReadOnlyGrid, int, int)' instead.")]
 		public static bool CandidateDoesNotExist(
 			this IReadOnlyGrid @this, int cellOffset, int digit) =>
 			@this.GetCellStatus(cellOffset) == CellStatus.Empty && @this[cellOffset, digit];
@@ -145,6 +151,7 @@ namespace Sudoku.Solving.Utils
 		/// in a specified region. The mask uses 1 to make the cell 'have this digit',
 		/// and 0 to make the cell 'does not have this digit'.
 		/// </returns>
+		[Obsolete("Please use 'ReadOnlyGridEx.GetDigitAppearingMask(IReadOnlyGrid, int, int)' instead.")]
 		public static short GetDigitAppearingMask(
 			this IReadOnlyGrid @this, int digit, int regionOffset)
 		{
@@ -181,6 +188,7 @@ namespace Sudoku.Solving.Utils
 		/// <param name="digit">The digit.</param>
 		/// <param name="regionOffset">The region.</param>
 		/// <returns>The cells' map.</returns>
+		[Obsolete("Please use 'ReadOnlyGridEx.GetDigitAppearingCells(IReadOnlyGrid, int, int)' instead.")]
 		public static GridMap GetDigitAppearingCells(
 			this IReadOnlyGrid @this, int digit, int regionOffset)
 		{
@@ -218,6 +226,7 @@ namespace Sudoku.Solving.Utils
 		/// in a specified region. The mask uses 1 to make the cell 'have this digit',
 		/// and 0 to make the cell 'does not have this digit'.
 		/// </returns>
+		[Obsolete("Please use 'ReadOnlyGridEx.GetDigitAppearingMask(IReadOnlyGrid, int, int, GridMap)' instead.")]
 		public static short GetDigitAppearingMask(
 			this IReadOnlyGrid @this, int digit, int regionOffset, GridMap map)
 		{

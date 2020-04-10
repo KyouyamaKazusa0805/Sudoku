@@ -3,7 +3,7 @@
 namespace Sudoku.Solving
 {
 	/// <summary>
-	/// To mark on a technique searcher class (i.e. <see cref="TechniqueSearcher"/>,
+	/// To mark on a technique searcher class (i.e. <see cref="TechniqueSearcher"/>),
 	/// to provide additional displaying messages which are used in UI forms, such as
 	/// technique priority settings form.
 	/// </summary>

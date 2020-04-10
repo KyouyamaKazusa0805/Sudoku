@@ -26,9 +26,9 @@ using static Sudoku.Windows.Constants.Processing;
 using AnonymousType = System.Object;
 using DColor = System.Drawing.Color;
 using SudokuGrid = Sudoku.Data.Grid;
+using Sudoku.Extensions;
 #if SUDOKU_RECOGNIZING
 using System.Drawing;
-using Sudoku.Extensions;
 #endif
 
 namespace Sudoku.Windows

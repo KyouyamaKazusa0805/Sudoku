@@ -4,6 +4,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
 using static Sudoku.GridProcessings;
 using UlType1 = Sudoku.Solving.Manual.Uniqueness.Loops.UlType1DetailData;

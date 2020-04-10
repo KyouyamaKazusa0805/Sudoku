@@ -38,661 +38,6 @@
             </remarks>
             <seealso cref="M:Sudoku.Data.Grid.GetCellStatus(System.Int32)"/>
         </member>
-        <member name="T:Sudoku.Data.Extensions.ByteEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Byte"/>.
-            </summary>
-            <seealso cref="T:System.Byte"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.ByteEx.FindFirstSet(System.Byte)">
-            <summary>
-            Find the first offset of set bit of the binary representation
-            of the specified value. If the value is 0, this method
-            will always return -1.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
-            <returns>
-            An <see cref="T:System.Int32"/> value indicating that.
-            </returns>
-            <seealso cref="M:Sudoku.Data.Extensions.Int32Ex.FindFirstSet(System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.ByteEx.CountSet(System.Byte)">
-            <summary>
-            Get the total number of set bits of the binary representation of a specified value.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
-            <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
-            <seealso cref="M:Sudoku.Data.Extensions.Int32Ex.CountSet(System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.ByteEx.GetNextSetBit(System.Byte,System.Int32)">
-            <summary>
-            Find a index of the binary representation of a value
-            after the specified index, whose bit is set <see langword="true"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
-            <param name="index">The index.</param>
-            <returns>The index.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.ByteEx.GetSetBitIndex(System.Byte,System.Int32)">
-            <summary>
-            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
-            all set bits with the specified set bit order.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
-            <param name="order">The number of the order of set bits.</param>
-            <returns>The position.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.ByteEx.GetAllSets(System.Byte)">
-            <summary>
-            Find all offsets of set bits of the binary representation of a specified value.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
-            <returns>All offsets.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.ByteEx.ReverseBits(System.Byte@)">
-            <summary>
-            <para>Reverse all bits in a specified value.</para>
-            <para>
-            Note that the value is passed by <b>reference</b> though the
-            method is an extension method, and returns nothing.
-            </para>
-            </summary>
-            <param name="this">(<see langword="this ref"/> parameter) The value.</param>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.CollectionEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.Generic.ICollection`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.ICollection`1"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.CollectionEx.AddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Adds the elements of the specified collection to the end of the
-            <see cref="T:System.Collections.Generic.ICollection`1"/>.
-            </summary>
-            <typeparam name="T">
-            The type of each element. Should be not <see langword="null"/>.
-            </typeparam>
-            <param name="this">(<see langword="this"/> parameter) The collection.</param>
-            <param name="values">
-            The values you want to add to the end of the collection.
-            </param>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.CollectionEx.AddIfDoesNotContain``1(System.Collections.Generic.ICollection{``0},``0)">
-            <summary>
-            Adds an object to the end of the <see cref="T:System.Collections.Generic.ICollection`1"/> when
-            the specified list does not contain the specified element.
-            </summary>
-            <typeparam name="T">
-            The type of all elements. Should be not <see langword="null"/>.
-            </typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
-            <param name="item">The item to add.</param>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.DictionaryEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.Generic.IDictionary`2"/>
-            </summary>
-            <seealso cref="T:System.Collections.Generic.IDictionary`2"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.DictionaryEx.AddIfKeyDoesNotContain``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
-            <summary>
-            Adds an element with the provided key and value to the
-            <see cref="T:System.Collections.Generic.IDictionary`2"/> when the key does
-            not contain in the dictionary.
-            </summary>
-            <typeparam name="TKey">
-            The type of keys. The key should be not <see langword="null"/>.
-            </typeparam>
-            <typeparam name="TValue">The type of elements.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The dictionary.</param>
-            <param name="key">The key.</param>
-            <param name="value">The value.</param>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.EnumEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Enum"/>.
-            </summary>
-            <seealso cref="T:System.Enum"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.EnumEx.GetCustomName``1(``0)">
-            <summary>
-            Get the custom name of the specified enumeration field.
-            </summary>
-            <typeparam name="TEnum">The type of the enumeration field.</typeparam>
-            <param name="this">The instance.</param>
-            <returns>The custom name.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.EnumEx.GetValues``1">
-            <summary>
-            Get all enumeration fields.
-            </summary>
-            <typeparam name="TEnum">The type of enumeration type.</typeparam>
-            <returns>The fields.</returns>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.FormatProviderEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.IFormatProvider"/>.
-            </summary>
-            <seealso cref="T:System.IFormatProvider"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.FormatProviderEx.HasFormatted(System.IFormatProvider,System.Object,System.String,System.String@)">
-            <summary>
-            To check whether the format provider has defined the format rule.
-            If the rule is defined, this method will return the string representation
-            according to the format rule.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The format provider.</param>
-            <param name="obj">The object.</param>
-            <param name="format">The format string.</param>
-            <param name="result">
-            (<see langword="out"/> parameter) The result. If the format has been defined,
-            this value will not be <see langword="null"/>.
-            </param>
-            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.Int16Ex">
-            <summary>
-            Provides extension methods on <see cref="T:System.Int16"/>.
-            </summary>
-            <seealso cref="T:System.Int16"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.Int16Ex.FindFirstSet(System.Int16)">
-            <summary>
-            Find the first offset of set bit of the binary representation of the specified value.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
-            <returns>
-            An <see cref="T:System.Int32"/> value indicating that. If the value is 0, this method
-            will always return 0.
-            </returns>
-            <seealso cref="M:Sudoku.Data.Extensions.Int32Ex.FindFirstSet(System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.Int16Ex.CountSet(System.Int16)">
-            <summary>
-            Get the total number of set bits of the binary representation of a specified value.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
-            <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
-            <seealso cref="M:Sudoku.Data.Extensions.Int32Ex.CountSet(System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.Int16Ex.GetNextSet(System.Int16,System.Int32)">
-            <summary>
-            Find a index of the binary representation of a value
-            after the specified index, whose bit is set <see langword="true"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
-            <param name="index">The index.</param>
-            <returns>The index.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.Int16Ex.GetSetIndex(System.Int16,System.Int32)">
-            <summary>
-            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
-            all set bits with the specified set bit order.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
-            <param name="order">The number of the order of set bits.</param>
-            <returns>The position.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.Int16Ex.GetAllSets(System.Int16)">
-            <summary>
-            Find all offsets of set bits of the binary representation of a specified value.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
-            <returns>All offsets.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.Int16Ex.ReverseBits(System.Int16@)">
-            <summary>
-            <para>Reverse all bits in a specified value.</para>
-            <para>
-            Note that the value is passed by <b>reference</b> though the
-            method is an extension method, and returns nothing.
-            </para>
-            </summary>
-            <param name="this">(<see langword="this ref"/> parameter) The value.</param>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.Int32Ex">
-            <summary>
-            Provides extension methods on <see cref="T:System.Int32"/>.
-            </summary>
-            <seealso cref="T:System.Int32"/>
-        </member>
-        <member name="F:Sudoku.Data.Extensions.Int32Ex.Table">
-            <summary>
-            The return value table used in <see cref="M:Sudoku.Data.Extensions.Int32Ex.FindFirstSet(System.Int32)"/>.
-            </summary>
-            <seealso cref="M:Sudoku.Data.Extensions.Int32Ex.FindFirstSet(System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.Int32Ex.FindFirstSet(System.Int32)">
-            <summary>
-            Find the first offset of set bit of the binary representation of the specified value.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
-            <returns>
-            An <see cref="T:System.Int32"/> value indicating that. If the value is 0, this method
-            will always return -1.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.Int32Ex.CountSet(System.Int32)">
-            <summary>
-            Get the total number of set bits of the binary representation of a specified value.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
-            <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.Int32Ex.GetNextSetBit(System.Int32,System.Int32)">
-            <summary>
-            Find a index of the binary representation of a value
-            after the specified index, whose bit is set <see langword="true"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
-            <param name="index">The index.</param>
-            <returns>The index.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.Int32Ex.GetSetBitIndex(System.Int32,System.Int32)">
-            <summary>
-            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
-            all set bits with the specified set bit order.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
-            <param name="order">The number of the order of set bits.</param>
-            <returns>The position.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.Int32Ex.GetAllSets(System.Int32)">
-            <summary>
-            Find all offsets of set bits of the binary representation of a specified value.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
-            <returns>All offsets.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.Int32Ex.ReverseBits(System.Int32@)">
-            <summary>
-            <para>Reverse all bits in a specified value.</para>
-            <para>
-            Note that the value is passed by <b>reference</b> though the
-            method is an extension method, and returns nothing.
-            </para>
-            </summary>
-            <param name="this">(<see langword="this ref"/> parameter) The value.</param>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.Int64Ex">
-            <summary>
-            Provides extension methods on <see cref="T:System.Int64"/>.
-            </summary>
-            <seealso cref="T:System.Int64"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.Int64Ex.CountSet(System.Int64)">
-            <summary>
-            Get the total number of set bits of the binary representation
-            of the specified value.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
-            <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.Int64Ex.GetAllSets(System.Int64)">
-            <summary>
-            Find all offsets of set bits of the binary representation of a specified value.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
-            <returns>All offsets.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.Int64Ex.GetNextSetBit(System.Int64,System.Int32)">
-            <summary>
-            Find a index of the binary representation of a value
-            after the specified index, whose bit is set <see langword="true"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
-            <param name="index">The index.</param>
-            <returns>The index.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.Int64Ex.GetSetBitIndex(System.Int64,System.Int32)">
-            <summary>
-            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
-            all set bits with the specified set bit order.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
-            <param name="order">The number of the order of set bits.</param>
-            <returns>The position.</returns>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.ListEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.Generic.IList`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.IList`1"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.ListEx.RemoveLastElement``1(System.Collections.Generic.IList{``0})">
-            <summary>
-            Remove the last element of the specified list, which is equivalent to code:
-            <code>
-            list.RemoveAt(list.Count - 1);
-            </code>
-            or
-            <code>
-            list.RemoveAt(^1); // Call extension method 'RemoveAt'.
-            </code>
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
-            <seealso cref="M:Sudoku.Data.Extensions.ListEx.RemoveAt``1(System.Collections.Generic.IList{``0},System.Index)"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.ListEx.RemoveAt``1(System.Collections.Generic.IList{``0},System.Index)">
-            <summary>
-            Remove at the element in the specified index.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
-            <param name="index">The index to remove.</param>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.ObjectEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Object"/>.
-            </summary>
-            <seealso cref="T:System.Object"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.ObjectEx.NullableToString(System.Object)">
-            <summary>
-            Returns a <see cref="T:System.String"/> that represents the current object
-            though the object is <see langword="null"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The object.</param>
-            <returns>
-            A <see cref="T:System.String"/> represents the current object.
-            If the current object is <see langword="null"/>, this value will be
-            <see cref="F:System.String.Empty"/>. Therefore, this method will never throw.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.ObjectEx.NullableToString(System.Object,System.String)">
-            <summary>
-            Returns a <see cref="T:System.String"/> that represents the current object
-            though the object is <see langword="null"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The object.</param>
-            <param name="defaultValue">
-            The default return value when the current object is <see langword="null"/>.
-            </param>
-            <returns>
-            A <see cref="T:System.String"/> represents the current object.
-            If the current object is <see langword="null"/>, this value will be
-            <paramref name="defaultValue"/>. Therefore, this method will never throw.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.ObjectEx.HasMarkedAttribute``1(System.Object,System.Boolean,System.Collections.Generic.IEnumerable{``0}@)">
-            <summary>
-            To check whether the specified type has marked the specified attribute.
-            </summary>
-            <typeparam name="TAttribute">The type of the attribute.</typeparam>
-            <param name="this">
-            (<see langword="this"/> parameter) The instance. This instance will
-            never be useful except to get its type.
-            </param>
-            <param name="inherit">
-            <see langword="true"/> to search this member's inheritance chain
-            to find the attributes; otherwise, <see langword="false"/>.
-            This parameter is ignored for properties and events.
-            </param>
-            <param name="attributes">
-            (<see langword="out"/> parameter) All attributes found.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.ObjectEx.HasMarkedAttribute``2(System.Boolean,System.Collections.Generic.IEnumerable{``1}@)">
-            <summary>
-            To check whether the specified type has marked the specified attribute.
-            </summary>
-            <typeparam name="T">The type of the instance.</typeparam>
-            <typeparam name="TAttribute">The type of the attribute.</typeparam>
-            <param name="inherit">
-            <see langword="true"/> to search this member's inheritance chain
-            to find the attributes; otherwise, <see langword="false"/>.
-            This parameter is ignored for properties and events.
-            </param>
-            <param name="attributes">
-            (<see langword="out"/> parameter) All attributes found.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
-            <remarks>
-            This method is same as
-            <see cref="M:Sudoku.Data.Extensions.ObjectEx.HasMarkedAttribute``1(System.Object,System.Boolean,System.Collections.Generic.IEnumerable{``0}@)"/>,
-            but the type of the specified object is used only.
-            </remarks>
-            <seealso cref="M:Sudoku.Data.Extensions.ObjectEx.HasMarkedAttribute``1(System.Object,System.Boolean,System.Collections.Generic.IEnumerable{``0}@)"/>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.SpanEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Span`1"/> and <see cref="T:System.ReadOnlySpan`1"/>.
-            </summary>
-            <seealso cref="T:System.Span`1"/>
-            <seealso cref="T:System.ReadOnlySpan`1"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.SpanEx.CountWhen``1(System.Span{``0},System.Predicate{``0})">
-            <summary>
-            Sum up the number of all elements satisfied the specified condition.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The elements.</param>
-            <param name="predicate">The condition.</param>
-            <returns>The number of elements satisfied the condition.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.SpanEx.CountWhen``1(System.ReadOnlySpan{``0},System.Predicate{``0})">
-            <summary>
-            Sum up the number of all elements satisfied the specified condition.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The elements.</param>
-            <param name="predicate">The condition.</param>
-            <returns>The number of elements satisfied the condition.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.SpanEx.ElementAt``1(System.Span{``0},System.Int32,System.Predicate{``0})">
-            <summary>
-            Get the specified element with the specified index of all elements that
-            satisfied the specified condition.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The elements.</param>
-            <param name="index">The index.</param>
-            <param name="predicate">The condition.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.StringBuilderEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Text.StringBuilder"/>.
-            </summary>
-            <seealso cref="T:System.Text.StringBuilder"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.StringBuilderEx.Reverse(System.Text.StringBuilder)">
-            <summary>
-            Reverse all characters in a specified string builder instance.
-            </summary>
-            <param name="this">
-            (<see langword="this"/> parameter) The instance to reverse all characters.
-            </param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.StringBuilderEx.RemoveFromEnd(System.Text.StringBuilder,System.Int32)">
-            <summary>
-            Remove the specified number of characters from the end of the string builder
-            instance.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The instance to remove characters.</param>
-            <param name="length">The number of characters you want to remove.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.StringBuilderEx.AppendLine(System.Text.StringBuilder,System.Char)">
-            <summary>
-            Append a character to the end of the specified string builder instance,
-            and then append a <see cref="P:System.Environment.NewLine"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
-            <param name="value">The character you want to append.</param>
-            <returns>The reference of the current instance.</returns>
-            <remarks>
-            The extension method is used in order to avoid implicit conversion from
-            <see cref="T:System.Char"/> to <see cref="T:System.Int32"/>. If you want to append everything,
-            please use the method <see cref="M:Sudoku.Data.Extensions.StringBuilderEx.AppendLine(System.Text.StringBuilder,System.Object)"/>.
-            </remarks>
-            <seealso cref="M:Sudoku.Data.Extensions.StringBuilderEx.AppendLine(System.Text.StringBuilder,System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.StringBuilderEx.AppendLine(System.Text.StringBuilder,System.Object)">
-            <summary>
-            Append a <see cref="T:System.String"/> representation of an object
-            to the end of the specified string builder instance,
-            and then append a <see cref="P:System.Environment.NewLine"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
-            <param name="obj">
-            The <see cref="T:System.String"/> representation of an object you want to append.
-            </param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.StringBuilderEx.CopyTo(System.Text.StringBuilder,System.Text.StringBuilder)">
-            <summary>
-            Copy the specified string builder to the specified target.
-            </summary>
-            <param name="this">The base string builder.</param>
-            <param name="to">The target builder.</param>
-            <exception cref="T:System.ArgumentException">
-            Throws if the target instance does not have enough space to store all characters
-            from the base one.
-            </exception>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.StringEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.String"/>.
-            </summary>
-            <seealso cref="T:System.String"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.StringEx.SatisfyPattern(System.String,System.String)">
-            <summary>
-            Check whether the specified string instance is satisfied
-            the specified regular expression pattern or not.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value to check.</param>
-            <param name="pattern">The regular expression pattern.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.StringEx.IsMatch(System.String,System.String)">
-            <summary>
-            Check whether the specified string instance can match the value
-            using the specified regular expression pattern or not.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value to match.</param>
-            <param name="pattern">The regular expression pattern.</param>
-            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
-            <remarks>
-            This method is a syntactic sugar of the calling
-            method <see cref="M:System.Text.RegularExpressions.Regex.IsMatch(System.String,System.String)"/>.
-            </remarks>
-            <seealso cref="M:System.Text.RegularExpressions.Regex.IsMatch(System.String,System.String)"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.StringEx.Match(System.String,System.String)">
-            <summary>
-            Searches the specified input string for the first occurrence of
-            the specified regular expression pattern.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value to match.</param>
-            <param name="pattern">The regular expression pattern.</param>
-            <returns>
-            The value after matching. If failed to match,
-            the value will be <see langword="null"/>.
-            </returns>
-            <remarks>
-            This method is a syntactic sugar of the calling
-            method <see cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String)"/>.
-            </remarks>
-            <seealso cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String)"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.StringEx.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
-            <summary>
-            Searches the input string for the first occurrence of the specified regular
-            expression, using the specified matching options.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value to match.</param>
-            <param name="pattern">The regular expression pattern.</param>
-            <param name="regexOption">The matching options.</param>
-            <returns>
-            The matched string value. If failed to match,
-            the value will be <see langword="null"/>.
-            </returns>
-            <remarks>
-            This method is a syntactic sugar of the calling
-            method <see cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>.
-            </remarks>
-            <seealso cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.StringEx.MatchAll(System.String,System.String)">
-            <summary>
-            Searches the specified input string for all occurrences of a
-            specified regular expression pattern.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value to match.</param>
-            <param name="pattern">The regular expression pattern.</param>
-            <returns>
-            The result after matching. If failed to match,
-            the returning array will be an empty string array (has no elements).
-            </returns>
-            <remarks>
-            This method is a syntactic sugar of the calling
-            method <see cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String)"/>.
-            </remarks>
-            <seealso cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String)"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.StringEx.MatchAll(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
-            <summary>
-            Searches the specified input string for all occurrences of a
-            specified regular expression pattern, using the specified matching
-            options.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value to match.</param>
-            <param name="pattern">The regular expression pattern.</param>
-            <param name="regexOption">The matching options.</param>
-            <returns>
-            The result after matching. If failed to match,
-            the returning array will be an empty string array (has no elements).
-            </returns>
-            <remarks>
-            This method is a syntactic sugar of the calling
-            method <see cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>.
-            </remarks>
-            <seealso cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.StringEx.IsRegexPattern(System.String)">
-            <summary>
-            To check if the current string value is a valid regular
-            expression pattern or not.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The value to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.TypeEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Type"/>.
-            </summary>
-            <seealso cref="T:System.Type"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.TypeEx.HasMarkedAttribute``1(System.Type,System.Boolean,System.Collections.Generic.IEnumerable{``0}@)">
-            <summary>
-            To check whether the specified type has marked the specified attribute.
-            </summary>
-            <typeparam name="TAttribute">The type of the attribute.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The type.</param>
-            <param name="inherit">
-            <see langword="true"/> to search this member's inheritance chain
-            to find the attributes; otherwise, <see langword="false"/>.
-            This parameter is ignored for properties and events.
-            </param>
-            <param name="attributes">
-            (<see langword="out"/> parameter) All attributes found.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.TypeEx.TypeEquals``2">
-            <summary>
-            Indicates whether two types are same.
-            </summary>
-            <typeparam name="T1">The type 1.</typeparam>
-            <typeparam name="T2">The type 2.</typeparam>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
         <member name="T:Sudoku.Data.FullGridMap">
             <summary>
             Encapsulates a binary series of candidate status table consisting of 729 bits,
@@ -2182,106 +1527,6 @@
             </para>	
             </summary>
         </member>
-        <member name="T:Sudoku.Data.GridTransformations">
-            <summary>
-            Provides a series of methods for <see cref="T:Sudoku.Data.IReadOnlyGrid"/>
-            using in transformations.
-            </summary>
-            <seealso cref="T:Sudoku.Data.IReadOnlyGrid"/>
-        </member>
-        <member name="F:Sudoku.Data.GridTransformations.ClockwiseTable">
-            <summary>
-            The table of clockwise rotation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.GridTransformations.CounterClockwiseTable">
-            <summary>
-            The table of counter-clockwise rotation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.GridTransformations.PiRotateTable">
-            <summary>
-            The table of pi-rotation.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.GridTransformations.MirrorLeftRight(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Mirror left-right the grid.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.GridTransformations.MirrorTopBottom(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Mirror top-bottom the grid.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.GridTransformations.MirrorDiagonal(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Mirror diagonal the grid.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.GridTransformations.Transpose(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Transpose the grid.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.GridTransformations.MirrorAntidiagonal(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Mirror anti-diagonal the grid.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.GridTransformations.RotateClockwise(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Rotate the grid clockwise.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.GridTransformations.RotateCounterClockwise(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Rotate the grid counter-clockwise.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.GridTransformations.RotatePi(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.GridTransformations.SwapTwoRegions(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32)">
-            <summary>
-            Swap to regions.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <param name="region1">The region 1.</param>
-            <param name="region2">The region 2.</param>
-            <returns>The result.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when two specified region argument is not in valid range (0..27)
-            or two regions are not in same region type.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Data.GridTransformations.GetCellOffset(System.Int32,System.Int32)">
-            <summary>
-            Get the cell offset of the relative position in the specified
-            region.
-            </summary>
-            <param name="regionOffset">The region offset.</param>
-            <param name="relativePos">The relative position.</param>
-            <returns>The cell offset.</returns>
-        </member>
         <member name="T:Sudoku.Data.Inference">
             <summary>
             Provides an inference between two nodes.
@@ -3247,6 +2492,761 @@
             <param name="sender">The object triggering the event.</param>
             <param name="e">The data while triggering.</param>
         </member>
+        <member name="T:Sudoku.Data.Extensions.ByteEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Byte"/>.
+            </summary>
+            <seealso cref="T:System.Byte"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ByteEx.FindFirstSet(System.Byte)">
+            <summary>
+            Find the first offset of set bit of the binary representation
+            of the specified value. If the value is 0, this method
+            will always return -1.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>
+            An <see cref="T:System.Int32"/> value indicating that.
+            </returns>
+            <seealso cref="M:Sudoku.Data.Extensions.Int32Ex.FindFirstSet(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ByteEx.CountSet(System.Byte)">
+            <summary>
+            Get the total number of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
+            <seealso cref="M:Sudoku.Data.Extensions.Int32Ex.CountSet(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ByteEx.GetNextSet(System.Byte,System.Int32)">
+            <summary>
+            Find a index of the binary representation of a value
+            after the specified index, whose bit is set <see langword="true"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="index">The index.</param>
+            <returns>The index.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ByteEx.GetSetIndex(System.Byte,System.Int32)">
+            <summary>
+            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
+            all set bits with the specified set bit order.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="order">The number of the order of set bits.</param>
+            <returns>The position.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ByteEx.GetAllSets(System.Byte)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ByteEx.ReverseBits(System.Byte@)">
+            <summary>
+            <para>Reverse all bits in a specified value.</para>
+            <para>
+            Note that the value is passed by <b>reference</b> though the
+            method is an extension method, and returns nothing.
+            </para>
+            </summary>
+            <param name="this">(<see langword="this ref"/> parameter) The value.</param>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.CollectionEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.ICollection`1"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.CollectionEx.AddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Adds the elements of the specified collection to the end of the
+            <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <typeparam name="T">
+            The type of each element. Should be not <see langword="null"/>.
+            </typeparam>
+            <param name="this">(<see langword="this"/> parameter) The collection.</param>
+            <param name="values">
+            The values you want to add to the end of the collection.
+            </param>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.CollectionEx.AddIfDoesNotContain``1(System.Collections.Generic.ICollection{``0},``0)">
+            <summary>
+            Adds an object to the end of the <see cref="T:System.Collections.Generic.ICollection`1"/> when
+            the specified list does not contain the specified element.
+            </summary>
+            <typeparam name="T">
+            The type of all elements. Should be not <see langword="null"/>.
+            </typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="item">The item to add.</param>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.DictionaryEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.IDictionary`2"/>
+            </summary>
+            <seealso cref="T:System.Collections.Generic.IDictionary`2"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.DictionaryEx.AddIfKeyDoesNotContain``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+            <summary>
+            Adds an element with the provided key and value to the
+            <see cref="T:System.Collections.Generic.IDictionary`2"/> when the key does
+            not contain in the dictionary.
+            </summary>
+            <typeparam name="TKey">
+            The type of keys. The key should be not <see langword="null"/>.
+            </typeparam>
+            <typeparam name="TValue">The type of elements.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The dictionary.</param>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.EnumEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Enum"/>.
+            </summary>
+            <seealso cref="T:System.Enum"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.EnumEx.GetCustomName``1(``0)">
+            <summary>
+            Get the custom name of the specified enumeration field.
+            </summary>
+            <typeparam name="TEnum">The type of the enumeration field.</typeparam>
+            <param name="this">The instance.</param>
+            <returns>The custom name.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.EnumEx.GetValues``1">
+            <summary>
+            Get all enumeration fields.
+            </summary>
+            <typeparam name="TEnum">The type of enumeration type.</typeparam>
+            <returns>The fields.</returns>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.FormatProviderEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.IFormatProvider"/>.
+            </summary>
+            <seealso cref="T:System.IFormatProvider"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.FormatProviderEx.HasFormatted(System.IFormatProvider,System.Object,System.String,System.String@)">
+            <summary>
+            To check whether the format provider has defined the format rule.
+            If the rule is defined, this method will return the string representation
+            according to the format rule.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The format provider.</param>
+            <param name="obj">The object.</param>
+            <param name="format">The format string.</param>
+            <param name="result">
+            (<see langword="out"/> parameter) The result. If the format has been defined,
+            this value will not be <see langword="null"/>.
+            </param>
+            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.Int16Ex">
+            <summary>
+            Provides extension methods on <see cref="T:System.Int16"/>.
+            </summary>
+            <seealso cref="T:System.Int16"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int16Ex.FindFirstSet(System.Int16)">
+            <summary>
+            Find the first offset of set bit of the binary representation of the specified value.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>
+            An <see cref="T:System.Int32"/> value indicating that. If the value is 0, this method
+            will always return 0.
+            </returns>
+            <seealso cref="M:Sudoku.Data.Extensions.Int32Ex.FindFirstSet(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int16Ex.CountSet(System.Int16)">
+            <summary>
+            Get the total number of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
+            <seealso cref="M:Sudoku.Data.Extensions.Int32Ex.CountSet(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int16Ex.GetNextSet(System.Int16,System.Int32)">
+            <summary>
+            Find a index of the binary representation of a value
+            after the specified index, whose bit is set <see langword="true"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="index">The index.</param>
+            <returns>The index.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int16Ex.GetSetIndex(System.Int16,System.Int32)">
+            <summary>
+            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
+            all set bits with the specified set bit order.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="order">The number of the order of set bits.</param>
+            <returns>The position.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int16Ex.GetAllSets(System.Int16)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int16Ex.ReverseBits(System.Int16@)">
+            <summary>
+            <para>Reverse all bits in a specified value.</para>
+            <para>
+            Note that the value is passed by <b>reference</b> though the
+            method is an extension method, and returns nothing.
+            </para>
+            </summary>
+            <param name="this">(<see langword="this ref"/> parameter) The value.</param>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.Int32Ex">
+            <summary>
+            Provides extension methods on <see cref="T:System.Int32"/>.
+            </summary>
+            <seealso cref="T:System.Int32"/>
+        </member>
+        <member name="F:Sudoku.Data.Extensions.Int32Ex.Table">
+            <summary>
+            The return value table used in <see cref="M:Sudoku.Data.Extensions.Int32Ex.FindFirstSet(System.Int32)"/>.
+            </summary>
+            <seealso cref="M:Sudoku.Data.Extensions.Int32Ex.FindFirstSet(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int32Ex.FindFirstSet(System.Int32)">
+            <summary>
+            Find the first offset of set bit of the binary representation of the specified value.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>
+            An <see cref="T:System.Int32"/> value indicating that. If the value is 0, this method
+            will always return -1.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int32Ex.CountSet(System.Int32)">
+            <summary>
+            Get the total number of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int32Ex.GetNextSet(System.Int32,System.Int32)">
+            <summary>
+            Find a index of the binary representation of a value
+            after the specified index, whose bit is set <see langword="true"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="index">The index.</param>
+            <returns>The index.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int32Ex.GetSetIndex(System.Int32,System.Int32)">
+            <summary>
+            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
+            all set bits with the specified set bit order.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="order">The number of the order of set bits.</param>
+            <returns>The position.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int32Ex.GetAllSets(System.Int32)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int32Ex.ReverseBits(System.Int32@)">
+            <summary>
+            <para>Reverse all bits in a specified value.</para>
+            <para>
+            Note that the value is passed by <b>reference</b> though the
+            method is an extension method, and returns nothing.
+            </para>
+            </summary>
+            <param name="this">(<see langword="this ref"/> parameter) The value.</param>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.Int64Ex">
+            <summary>
+            Provides extension methods on <see cref="T:System.Int64"/>.
+            </summary>
+            <seealso cref="T:System.Int64"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int64Ex.CountSet(System.Int64)">
+            <summary>
+            Get the total number of set bits of the binary representation
+            of the specified value.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int64Ex.GetAllSets(System.Int64)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int64Ex.GetNextSet(System.Int64,System.Int32)">
+            <summary>
+            Find a index of the binary representation of a value
+            after the specified index, whose bit is set <see langword="true"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="index">The index.</param>
+            <returns>The index.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int64Ex.GetSetIndex(System.Int64,System.Int32)">
+            <summary>
+            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
+            all set bits with the specified set bit order.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="order">The number of the order of set bits.</param>
+            <returns>The position.</returns>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.ListEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.IList`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.IList`1"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ListEx.RemoveLastElement``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            Remove the last element of the specified list, which is equivalent to code:
+            <code>
+            list.RemoveAt(list.Count - 1);
+            </code>
+            or
+            <code>
+            list.RemoveAt(^1); // Call extension method 'RemoveAt'.
+            </code>
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <seealso cref="M:Sudoku.Data.Extensions.ListEx.RemoveAt``1(System.Collections.Generic.IList{``0},System.Index)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ListEx.RemoveAt``1(System.Collections.Generic.IList{``0},System.Index)">
+            <summary>
+            Remove at the element in the specified index.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="index">The index to remove.</param>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.ObjectEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Object"/>.
+            </summary>
+            <seealso cref="T:System.Object"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ObjectEx.NullableToString(System.Object)">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current object
+            though the object is <see langword="null"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The object.</param>
+            <returns>
+            A <see cref="T:System.String"/> represents the current object.
+            If the current object is <see langword="null"/>, this value will be
+            <see cref="F:System.String.Empty"/>. Therefore, this method will never throw.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ObjectEx.NullableToString(System.Object,System.String)">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current object
+            though the object is <see langword="null"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The object.</param>
+            <param name="defaultValue">
+            The default return value when the current object is <see langword="null"/>.
+            </param>
+            <returns>
+            A <see cref="T:System.String"/> represents the current object.
+            If the current object is <see langword="null"/>, this value will be
+            <paramref name="defaultValue"/>. Therefore, this method will never throw.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ObjectEx.HasMarkedAttribute``1(System.Object,System.Boolean,System.Collections.Generic.IEnumerable{``0}@)">
+            <summary>
+            To check whether the specified type has marked the specified attribute.
+            </summary>
+            <typeparam name="TAttribute">The type of the attribute.</typeparam>
+            <param name="this">
+            (<see langword="this"/> parameter) The instance. This instance will
+            never be useful except to get its type.
+            </param>
+            <param name="inherit">
+            <see langword="true"/> to search this member's inheritance chain
+            to find the attributes; otherwise, <see langword="false"/>.
+            This parameter is ignored for properties and events.
+            </param>
+            <param name="attributes">
+            (<see langword="out"/> parameter) All attributes found.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.ObjectEx.HasMarkedAttribute``2(System.Boolean,System.Collections.Generic.IEnumerable{``1}@)">
+            <summary>
+            To check whether the specified type has marked the specified attribute.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <typeparam name="TAttribute">The type of the attribute.</typeparam>
+            <param name="inherit">
+            <see langword="true"/> to search this member's inheritance chain
+            to find the attributes; otherwise, <see langword="false"/>.
+            This parameter is ignored for properties and events.
+            </param>
+            <param name="attributes">
+            (<see langword="out"/> parameter) All attributes found.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+            <remarks>
+            This method is same as
+            <see cref="M:Sudoku.Data.Extensions.ObjectEx.HasMarkedAttribute``1(System.Object,System.Boolean,System.Collections.Generic.IEnumerable{``0}@)"/>,
+            but the type of the specified object is used only.
+            </remarks>
+            <seealso cref="M:Sudoku.Data.Extensions.ObjectEx.HasMarkedAttribute``1(System.Object,System.Boolean,System.Collections.Generic.IEnumerable{``0}@)"/>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.SpanEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Span`1"/> and <see cref="T:System.ReadOnlySpan`1"/>.
+            </summary>
+            <seealso cref="T:System.Span`1"/>
+            <seealso cref="T:System.ReadOnlySpan`1"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.SpanEx.CountWhen``1(System.Span{``0},System.Predicate{``0})">
+            <summary>
+            Sum up the number of all elements satisfied the specified condition.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The elements.</param>
+            <param name="predicate">The condition.</param>
+            <returns>The number of elements satisfied the condition.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.SpanEx.CountWhen``1(System.ReadOnlySpan{``0},System.Predicate{``0})">
+            <summary>
+            Sum up the number of all elements satisfied the specified condition.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The elements.</param>
+            <param name="predicate">The condition.</param>
+            <returns>The number of elements satisfied the condition.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.SpanEx.ElementAt``1(System.Span{``0},System.Int32,System.Predicate{``0})">
+            <summary>
+            Get the specified element with the specified index of all elements that
+            satisfied the specified condition.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The elements.</param>
+            <param name="index">The index.</param>
+            <param name="predicate">The condition.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.StringBuilderEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <seealso cref="T:System.Text.StringBuilder"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringBuilderEx.Reverse(System.Text.StringBuilder)">
+            <summary>
+            Reverse all characters in a specified string builder instance.
+            </summary>
+            <param name="this">
+            (<see langword="this"/> parameter) The instance to reverse all characters.
+            </param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringBuilderEx.RemoveFromEnd(System.Text.StringBuilder,System.Int32)">
+            <summary>
+            Remove the specified number of characters from the end of the string builder
+            instance.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The instance to remove characters.</param>
+            <param name="length">The number of characters you want to remove.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringBuilderEx.AppendLine(System.Text.StringBuilder,System.Char)">
+            <summary>
+            Append a character to the end of the specified string builder instance,
+            and then append a <see cref="P:System.Environment.NewLine"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="value">The character you want to append.</param>
+            <returns>The reference of the current instance.</returns>
+            <remarks>
+            The extension method is used in order to avoid implicit conversion from
+            <see cref="T:System.Char"/> to <see cref="T:System.Int32"/>. If you want to append everything,
+            please use the method <see cref="M:Sudoku.Data.Extensions.StringBuilderEx.AppendLine(System.Text.StringBuilder,System.Object)"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Data.Extensions.StringBuilderEx.AppendLine(System.Text.StringBuilder,System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringBuilderEx.AppendLine(System.Text.StringBuilder,System.Object)">
+            <summary>
+            Append a <see cref="T:System.String"/> representation of an object
+            to the end of the specified string builder instance,
+            and then append a <see cref="P:System.Environment.NewLine"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="obj">
+            The <see cref="T:System.String"/> representation of an object you want to append.
+            </param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringBuilderEx.CopyTo(System.Text.StringBuilder,System.Text.StringBuilder)">
+            <summary>
+            Copy the specified string builder to the specified target.
+            </summary>
+            <param name="this">The base string builder.</param>
+            <param name="to">The target builder.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws if the target instance does not have enough space to store all characters
+            from the base one.
+            </exception>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.StringEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.String"/>.
+            </summary>
+            <seealso cref="T:System.String"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringEx.SatisfyPattern(System.String,System.String)">
+            <summary>
+            Check whether the specified string instance is satisfied
+            the specified regular expression pattern or not.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value to check.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringEx.IsMatch(System.String,System.String)">
+            <summary>
+            Check whether the specified string instance can match the value
+            using the specified regular expression pattern or not.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.IsMatch(System.String,System.String)"/>.
+            </remarks>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.IsMatch(System.String,System.String)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringEx.Match(System.String,System.String)">
+            <summary>
+            Searches the specified input string for the first occurrence of
+            the specified regular expression pattern.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <returns>
+            The value after matching. If failed to match,
+            the value will be <see langword="null"/>.
+            </returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String)"/>.
+            </remarks>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringEx.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
+            <summary>
+            Searches the input string for the first occurrence of the specified regular
+            expression, using the specified matching options.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <param name="regexOption">The matching options.</param>
+            <returns>
+            The matched string value. If failed to match,
+            the value will be <see langword="null"/>.
+            </returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>.
+            </remarks>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringEx.MatchAll(System.String,System.String)">
+            <summary>
+            Searches the specified input string for all occurrences of a
+            specified regular expression pattern.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <returns>
+            The result after matching. If failed to match,
+            the returning array will be an empty string array (has no elements).
+            </returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String)"/>.
+            </remarks>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringEx.MatchAll(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
+            <summary>
+            Searches the specified input string for all occurrences of a
+            specified regular expression pattern, using the specified matching
+            options.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <param name="regexOption">The matching options.</param>
+            <returns>
+            The result after matching. If failed to match,
+            the returning array will be an empty string array (has no elements).
+            </returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>.
+            </remarks>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.StringEx.IsRegexPattern(System.String)">
+            <summary>
+            To check if the current string value is a valid regular
+            expression pattern or not.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.TypeEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Type"/>.
+            </summary>
+            <seealso cref="T:System.Type"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.TypeEx.HasMarkedAttribute``1(System.Type,System.Boolean,System.Collections.Generic.IEnumerable{``0}@)">
+            <summary>
+            To check whether the specified type has marked the specified attribute.
+            </summary>
+            <typeparam name="TAttribute">The type of the attribute.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The type.</param>
+            <param name="inherit">
+            <see langword="true"/> to search this member's inheritance chain
+            to find the attributes; otherwise, <see langword="false"/>.
+            This parameter is ignored for properties and events.
+            </param>
+            <param name="attributes">
+            (<see langword="out"/> parameter) All attributes found.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.TypeEx.TypeEquals``2">
+            <summary>
+            Indicates whether two types are same.
+            </summary>
+            <typeparam name="T1">The type 1.</typeparam>
+            <typeparam name="T2">The type 2.</typeparam>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="T:Sudoku.Data.GridTransformations">
+            <summary>
+            Provides a series of methods for <see cref="T:Sudoku.Data.IReadOnlyGrid"/>
+            using in transformations.
+            </summary>
+            <seealso cref="T:Sudoku.Data.IReadOnlyGrid"/>
+        </member>
+        <member name="F:Sudoku.Data.GridTransformations.ClockwiseTable">
+            <summary>
+            The table of clockwise rotation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridTransformations.CounterClockwiseTable">
+            <summary>
+            The table of counter-clockwise rotation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridTransformations.PiRotateTable">
+            <summary>
+            The table of pi-rotation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.GridTransformations.MirrorLeftRight(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Mirror left-right the grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridTransformations.MirrorTopBottom(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Mirror top-bottom the grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridTransformations.MirrorDiagonal(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Mirror diagonal the grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridTransformations.Transpose(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Transpose the grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridTransformations.MirrorAntidiagonal(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Mirror anti-diagonal the grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridTransformations.RotateClockwise(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Rotate the grid clockwise.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridTransformations.RotateCounterClockwise(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Rotate the grid counter-clockwise.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridTransformations.RotatePi(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridTransformations.SwapTwoRegions(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32)">
+            <summary>
+            Swap to regions.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="region1">The region 1.</param>
+            <param name="region2">The region 2.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when two specified region argument is not in valid range (0..27)
+            or two regions are not in same region type.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Data.GridTransformations.GetCellOffset(System.Int32,System.Int32)">
+            <summary>
+            Get the cell offset of the relative position in the specified
+            region.
+            </summary>
+            <param name="region">The region offset.</param>
+            <param name="rPos">The relative position.</param>
+            <returns>The cell offset.</returns>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeCounter">
             <summary>
             Encapsulates a code line counter.
@@ -3456,6 +3456,9 @@
             This method is only use type conversion, so the return value has a same
             reference with this specified argument holds.
             </remarks>
+            <exception cref="T:Sudoku.SudokuRuntimeException">
+            Throws when <see cref="T:Sudoku.Data.IReadOnlyGrid"/> cannot convert to a <see cref="T:Sudoku.Data.Grid"/>.
+            </exception>
         </member>
         <member name="T:Sudoku.GridProcessings">
             <summary>

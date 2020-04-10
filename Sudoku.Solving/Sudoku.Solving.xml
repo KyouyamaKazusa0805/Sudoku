@@ -6360,12 +6360,12 @@
         </member>
         <member name="P:Sudoku.Solving.Solver.SolverName">
             <summary>
-            The name of this solver.
+            Indicates the name of this solver.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Solver.Solve(Sudoku.Data.IReadOnlyGrid)">
             <summary>
-            Solves the specified puzzle.
+            To solve the specified puzzle.
             </summary>
             <param name="grid">The puzzle.</param>
             <returns>
@@ -6374,7 +6374,7 @@
         </member>
         <member name="T:Sudoku.Solving.TechniqueDisplayAttribute">
             <summary>
-            To mark on a technique searcher class (i.e. <see cref="T:Sudoku.Solving.TechniqueSearcher"/>,
+            To mark on a technique searcher class (i.e. <see cref="T:Sudoku.Solving.TechniqueSearcher"/>),
             to provide additional displaying messages which are used in UI forms, such as
             technique priority settings form.
             </summary>
