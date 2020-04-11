@@ -24,7 +24,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 
 
 		/// <inheritdoc/>
-		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			// To verify all kinds of symmetry.
 			// Note that Gurth's symmetrical placement does not have X-axis and Y-axis type.

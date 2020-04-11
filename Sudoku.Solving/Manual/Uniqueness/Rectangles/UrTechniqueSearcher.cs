@@ -54,7 +54,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 
 		/// <inheritdoc/>
-		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			foreach (bool urMode in new[] { true, false })
 			{

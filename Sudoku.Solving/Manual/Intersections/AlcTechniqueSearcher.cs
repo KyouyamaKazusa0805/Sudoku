@@ -50,7 +50,7 @@ namespace Sudoku.Solving.Manual.Intersections
 
 
 		/// <inheritdoc/>
-		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			for (int size = 2; size <= (_checkAlq ? 4 : 3); size++)
 			{

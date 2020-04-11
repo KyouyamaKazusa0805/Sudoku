@@ -44,7 +44,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the puzzle is not unique.
 		/// </exception>
-		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			if (grid.IsValid(out var solution))
 			{

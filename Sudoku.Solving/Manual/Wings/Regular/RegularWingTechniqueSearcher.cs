@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 
 
 		/// <inheritdoc/>
-		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			// Search for all bivalue cells.
 			var map = grid.GetBivalueCellsMap(out int count);

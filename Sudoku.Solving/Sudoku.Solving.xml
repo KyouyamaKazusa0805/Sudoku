@@ -1262,7 +1262,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueInfo">
@@ -1337,7 +1337,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo">
@@ -1423,7 +1423,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo">
@@ -1515,7 +1515,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher.ProcessDeathAlsInfo(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap[],System.Int16[],System.Int32[0:,0:],System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Alses.Als})">
@@ -1765,7 +1765,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.SdcTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Alses.SdcTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.ChainTechniqueInfo">
@@ -2077,7 +2077,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetOnToOffRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,Sudoku.Data.Node,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Inference},Sudoku.Data.GridMap[],System.Collections.Generic.IList{Sudoku.Data.Node},System.Int32)">
@@ -2392,7 +2392,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.AccumulateAllBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,Sudoku.Data.GridMap[],Sudoku.Data.GridMap[])">
@@ -2602,7 +2602,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher.AccumulateAllBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Boolean)">
@@ -2708,7 +2708,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher.AccumulateAllBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32)">
@@ -2814,7 +2814,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.LcTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.LcTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.LcTechniqueSearcher.BitwiseAndMasks(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap)">
@@ -2891,7 +2891,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.RecordUndoInfo(Sudoku.Data.Grid,System.Int32,System.Int32)">
@@ -2984,7 +2984,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.LastResorts.CccTechniqueInfo">
@@ -3032,7 +3032,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.CccTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.CccTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.CccTechniqueSearcher.SearchForFloors(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
@@ -3145,7 +3145,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher.GetInvalidPos(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap[])">
@@ -3227,7 +3227,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
             <exception cref="T:Sudoku.WrongHandlingException">
             Throws when the puzzle is not unique.
@@ -3263,16 +3263,29 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.LightManualSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
+            <remarks>
+            You should use the simple version of the solving method <see cref="M:Sudoku.Solving.Manual.LightManualSolver.CanSolve(Sudoku.Data.IReadOnlyGrid)"/>.
+            </remarks>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+            <seealso cref="M:Sudoku.Solving.Manual.LightManualSolver.CanSolve(Sudoku.Data.IReadOnlyGrid)"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LightManualSolver.RecordTechnique(System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.TechniqueInfo,Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,Sudoku.Solving.AnalysisResult@)">
+        <member name="M:Sudoku.Solving.Manual.LightManualSolver.CanSolve(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            To check whether the specified solver can solve the puzzle.
+            </summary>
+            <param name="grid">The puzzle.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> value indicating whether the solver
+            solved the puzzle successfully.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LightManualSolver.RecordTechnique(System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.TechniqueInfo,Sudoku.Data.Grid)">
             <summary>
             To record the current technique step.
             </summary>
             <param name="steps">The steps have been found.</param>
             <param name="step">The current step.</param>
-            <param name="grid">The grid.</param>
             <param name="cloneation">The cloneation of the grid.</param>
-            <param name="result">The result.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.ManualSolver">
@@ -3762,7 +3775,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.IsEmptyRectangle(Sudoku.Data.GridMap,System.Int32,System.Int32@,System.Int32@)">
@@ -3850,7 +3863,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo">
@@ -4001,7 +4014,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo">
@@ -4119,7 +4132,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.TakeAllNakedSubsetsBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32)">
@@ -4244,7 +4257,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.GspTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GspTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Symmetry.GspTechniqueSearcher.CheckDiagonal(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
@@ -4377,7 +4390,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
@@ -4692,7 +4705,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.CheckType2(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32})">
@@ -4966,7 +4979,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.Quads">
@@ -5489,7 +5502,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrTechniqueSearcher.CheckType15AndHidden(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32[],System.Int32[][],System.Boolean)">
@@ -5866,7 +5879,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.XrTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.XrTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.XrTechniqueSearcher.CheckType14(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
@@ -6039,7 +6052,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.TakeAllWWings(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{Sudoku.Data.GridMap,System.Int32}@)">
@@ -6186,7 +6199,7 @@
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.TakeAllBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{Sudoku.Data.GridMap,System.Int32}@,System.Int32)">
@@ -6455,7 +6468,7 @@
             <param name="grid">The grid to search steps.</param>
             <returns>A technique information.</returns>
         </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.AccumulateAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.TechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Accumulate all technique information instances into the specified accumulator.
             </summary>
@@ -6476,13 +6489,6 @@
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.ToString">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.GetPriority``1">
-            <summary>
-            To get the priority of the technique searcher.
-            </summary>
-            <typeparam name="TTechniqueSearcher">The type of the specified technique searcher.</typeparam>
-            <returns>The priority.</returns>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.GetPriority(Sudoku.Solving.TechniqueSearcher)">
             <summary>

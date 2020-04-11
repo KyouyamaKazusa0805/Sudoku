@@ -50,7 +50,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 
 		/// <inheritdoc/>
-		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			foreach (var rcc in Rcc.GetAllRccs(grid, _allowOverlapping))
 			{

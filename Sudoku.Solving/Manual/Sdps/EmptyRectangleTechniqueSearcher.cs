@@ -63,7 +63,7 @@ namespace Sudoku.Solving.Manual.Sdps
 
 
 		/// <inheritdoc/>
-		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			(_, _, _digitDistributions) = grid;
 			for (int digit = 0; digit < 9; digit++)

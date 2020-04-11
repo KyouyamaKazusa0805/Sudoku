@@ -120,7 +120,7 @@ namespace Sudoku.Solving.Manual
 			var bag = new Bag<TechniqueInfo>();
 			foreach (var searcher in searchers)
 			{
-				await Task.Run(() => searcher.AccumulateAll(bag, grid));
+				await Task.Run(() => searcher.GetAll(bag, grid));
 			}
 
 			return await Task.Run(() => from step in bag group step by step.Name);

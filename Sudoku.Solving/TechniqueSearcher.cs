@@ -22,7 +22,7 @@ namespace Sudoku.Solving
 		public TechniqueInfo? TakeOne(IReadOnlyGrid grid)
 		{
 			var bag = new Bag<TechniqueInfo>();
-			AccumulateAll(bag, grid);
+			GetAll(bag, grid);
 			return bag.FirstOrDefault();
 		}
 
@@ -31,7 +31,7 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <param name="accumulator">The accumulator to store technique information.</param>
 		/// <param name="grid">The grid to search for techniques.</param>
-		public abstract void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid);
+		public abstract void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid);
 
 		/// <inheritdoc/>
 		public virtual int CompareTo(TechniqueSearcher other) =>
@@ -49,16 +49,6 @@ namespace Sudoku.Solving
 
 		/// <inheritdoc/>
 		public override string ToString() => GetType().Name;
-
-
-		/// <summary>
-		/// To get the priority of the technique searcher.
-		/// </summary>
-		/// <typeparam name="TTechniqueSearcher">The type of the specified technique searcher.</typeparam>
-		/// <returns>The priority.</returns>
-		public static int GetPriority<TTechniqueSearcher>()
-			where TTechniqueSearcher : TechniqueSearcher =>
-			(int)typeof(TTechniqueSearcher).GetProperty("Priority", BindingFlags.Static)!.GetValue(null)!;
 
 
 		/// <summary>

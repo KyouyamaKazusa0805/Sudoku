@@ -74,7 +74,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 
 		/// <inheritdoc/>
-		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			(_, _, var digitDistributions) = grid;
 
@@ -109,7 +109,7 @@ namespace Sudoku.Solving.Manual.Fishes
 					var bag = new Bag<TechniqueInfo>();
 					for (int digit = 0; digit < 9; digit++)
 					{
-						searcher.AccumulateAll(bag, grid);
+						searcher.GetAll(bag, grid);
 
 						// Store all eliminations.
 						ref var map = ref elimMaps[digit];

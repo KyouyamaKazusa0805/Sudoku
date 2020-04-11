@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 
 		/// <inheritdoc/>
-		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			for (int cell = 0; cell < 81; cell++)
 			{

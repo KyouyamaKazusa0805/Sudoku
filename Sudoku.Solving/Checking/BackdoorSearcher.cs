@@ -5,7 +5,6 @@ using Sudoku.Data;
 using Sudoku.Solving.Manual;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Solving.ConclusionType;
-using IBackdoorSet = System.Collections.Generic.IReadOnlyList<Sudoku.Solving.Conclusion>;
 
 namespace Sudoku.Solving.Checking
 {
@@ -38,11 +37,11 @@ namespace Sudoku.Solving.Checking
 		/// <exception cref="SudokuRuntimeException">
 		/// Throws when the specified grid is invalid.
 		/// </exception>
-		public IEnumerable<IBackdoorSet> SearchForBackdoors(IReadOnlyGrid grid, int depth)
+		public IEnumerable<IReadOnlyList<Conclusion>> SearchForBackdoors(IReadOnlyGrid grid, int depth)
 		{
 			if (depth < 0 || depth > 3)
 			{
-				return Array.Empty<IBackdoorSet>();
+				return Array.Empty<IReadOnlyList<Conclusion>>();
 			}
 
 			if (!grid.IsValid(out _))
@@ -50,7 +49,7 @@ namespace Sudoku.Solving.Checking
 				throw new SudokuRuntimeException();
 			}
 
-			var result = new List<IBackdoorSet>();
+			var result = new List<IReadOnlyList<Conclusion>>();
 			for (int dep = 0; dep <= depth; dep++)
 			{
 				SearchForBackdoors(result, grid, dep);
@@ -68,14 +67,14 @@ namespace Sudoku.Solving.Checking
 		/// where value 0 is for searching for assignments.
 		/// </param>
 		/// <returns>All backdoors.</returns>
-		public IEnumerable<IBackdoorSet> SearchForBackdoorsExact(IReadOnlyGrid grid, int depth)
+		public IEnumerable<IReadOnlyList<Conclusion>> SearchForBackdoorsExact(IReadOnlyGrid grid, int depth)
 		{
 			if (depth < 0 || depth > 3)
 			{
-				return Array.Empty<IBackdoorSet>();
+				return Array.Empty<IReadOnlyList<Conclusion>>();
 			}
 
-			var result = new List<IBackdoorSet>();
+			var result = new List<IReadOnlyList<Conclusion>>();
 			SearchForBackdoors(result, grid, depth);
 			return result;
 		}
@@ -91,7 +90,7 @@ namespace Sudoku.Solving.Checking
 		/// Throws when the grid is invalid (has no solution or multiple solutions).
 		/// </exception>
 		private static void SearchForBackdoors(
-			IList<IBackdoorSet> result, IReadOnlyGrid grid, int depth)
+			IList<IReadOnlyList<Conclusion>> result, IReadOnlyGrid grid, int depth)
 		{
 			if (!grid.IsValid(out var solution))
 			{
@@ -113,7 +112,7 @@ namespace Sudoku.Solving.Checking
 					int digit = solution[cell];
 					tempGrid[cell] = digit;
 
-					if (TestSolver.Solve(tempGrid).HasSolved)
+					if (TestSolver.CanSolve(tempGrid))
 					{
 						// Solve successfully.
 						result.Add(new[] { new Conclusion(Assignment, cell, digit) });
@@ -144,7 +143,7 @@ namespace Sudoku.Solving.Checking
 
 				if (depth == 1)
 				{
-					if (TestSolver.Solve(tempGrid).HasSolved)
+					if (TestSolver.CanSolve(tempGrid))
 					{
 						result.Add(new[] { new Conclusion(Elimination, c1) });
 					}
@@ -158,7 +157,7 @@ namespace Sudoku.Solving.Checking
 
 						if (depth == 2)
 						{
-							if (TestSolver.Solve(tempGrid).HasSolved)
+							if (TestSolver.CanSolve(tempGrid))
 							{
 								result.Add(new[]
 								{
@@ -174,7 +173,7 @@ namespace Sudoku.Solving.Checking
 								int c3 = incorrectCandidates[i3];
 								tempGrid[c3 / 9, c3 % 9] = true;
 
-								if (TestSolver.Solve(tempGrid).HasSolved)
+								if (TestSolver.CanSolve(tempGrid))
 								{
 									result.Add(new[]
 									{

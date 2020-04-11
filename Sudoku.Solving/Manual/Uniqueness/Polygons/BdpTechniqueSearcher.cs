@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 
 		/// <inheritdoc/>
-		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			(var emptyCells, _, _) = grid;
 			if (emptyCells.Count < 7)

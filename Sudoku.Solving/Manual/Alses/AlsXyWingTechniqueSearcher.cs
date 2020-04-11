@@ -51,7 +51,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 
 		/// <inheritdoc/>
-		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			var span = (Span<(Als, Als, Als, Als)>)stackalloc (Als, Als, Als, Als)[4];
 			var rccs = Rcc.GetAllRccs(grid, _allowOverlapping).ToArray();

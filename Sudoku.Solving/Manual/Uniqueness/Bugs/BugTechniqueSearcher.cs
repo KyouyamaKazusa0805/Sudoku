@@ -59,7 +59,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 
 		/// <inheritdoc/>
-		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			IReadOnlyList<int> trueCandidates;
 			if (_extended)

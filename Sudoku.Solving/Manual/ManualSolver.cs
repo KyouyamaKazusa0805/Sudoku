@@ -195,7 +195,7 @@ namespace Sudoku.Solving.Manual
 						GC.Collect();
 					}
 
-					searcher.AccumulateAll(bag, cloneation);
+					searcher.GetAll(bag, cloneation);
 				}
 				if (!bag.Any())
 				{
@@ -408,7 +408,7 @@ namespace Sudoku.Solving.Manual
 					continue;
 				}
 
-				searcher.AccumulateAll(bag, cloneation);
+				searcher.GetAll(bag, cloneation);
 				if (!bag.Any())
 				{
 					continue;

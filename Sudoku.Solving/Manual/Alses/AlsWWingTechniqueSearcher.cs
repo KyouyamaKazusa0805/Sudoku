@@ -51,7 +51,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 
 		/// <inheritdoc/>
-		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			(_, _, var digitDistributions) = grid;
 			for (int r1 = 0; r1 < 26; r1++)

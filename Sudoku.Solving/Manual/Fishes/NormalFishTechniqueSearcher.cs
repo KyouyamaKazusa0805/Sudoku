@@ -27,7 +27,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 
 		/// <inheritdoc/>
-		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			for (int size = 2; size <= 4; size++)
 			{

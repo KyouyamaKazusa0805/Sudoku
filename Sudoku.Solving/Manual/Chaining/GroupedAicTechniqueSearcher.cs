@@ -183,7 +183,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 
 		/// <inheritdoc/>
-		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			(_, _, var digitDistributions) = grid;
 

@@ -78,7 +78,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 
 
 		/// <inheritdoc/>
-		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			// Iterate on each region pair.
 			for (int index = 0; index < 18; index++)

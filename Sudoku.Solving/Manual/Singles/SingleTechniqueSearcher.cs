@@ -45,7 +45,7 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		/// <inheritdoc/>
-		public override void AccumulateAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			// Search for full houses.
 			if (_enableFullHouse)
