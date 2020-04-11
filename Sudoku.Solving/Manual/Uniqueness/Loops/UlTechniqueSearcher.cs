@@ -136,12 +136,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								var elimMap = new GridMap(extraCells, GridMap.InitializeOption.ProcessPeersWithoutItself);
 								foreach (int elimCell in elimMap.Offsets)
 								{
-									if (grid.CandidateExists(elimCell, extraDigit))
+									if (!(grid.Exists(elimCell, extraDigit) is true))
 									{
-										conclusions.Add(
-											new Conclusion(
-												ConclusionType.Elimination, elimCell, extraDigit));
+										continue;
 									}
+
+									conclusions.Add(
+										new Conclusion(
+											ConclusionType.Elimination, elimCell, extraDigit));
 								}
 
 								if (conclusions.Count == 0)
@@ -253,10 +255,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 			foreach (int cell in elimMap.Offsets)
 			{
-				if (grid.CandidateExists(cell, extraDigit))
+				if (!(grid.Exists(cell, extraDigit) is true))
 				{
-					conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, extraDigit));
+					continue;
 				}
+
+				conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, extraDigit));
 			}
 
 			if (conclusions.Count == 0)
@@ -338,12 +342,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 							foreach (int digit in extraDigits.GetAllSets())
 							{
-								if (grid.CandidateExists(cell, digit))
+								if (!(grid.Exists(cell, digit) is true))
 								{
-									conclusions.Add(
-										new Conclusion(
-											ConclusionType.Elimination, cell, digit));
+									continue;
 								}
+
+								conclusions.Add(
+									new Conclusion(
+										ConclusionType.Elimination, cell, digit));
 							}
 						}
 
@@ -418,12 +424,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 									foreach (int digit in extraDigits.GetAllSets())
 									{
-										if (grid.CandidateExists(cell, digit))
+										if (!(grid.Exists(cell, digit) is true))
 										{
-											conclusions.Add(
-												new Conclusion(
-													ConclusionType.Elimination, cell, digit));
+											continue;
 										}
+
+										conclusions.Add(
+											new Conclusion(
+												ConclusionType.Elimination, cell, digit));
 									}
 								}
 
@@ -501,12 +509,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 										foreach (int digit in extraDigits.GetAllSets())
 										{
-											if (grid.CandidateExists(cell, digit))
+											if (!(grid.Exists(cell, digit) is true))
 											{
-												conclusions.Add(
-													new Conclusion(
-														ConclusionType.Elimination, cell, digit));
+												continue;
 											}
+
+											conclusions.Add(
+												new Conclusion(
+													ConclusionType.Elimination, cell, digit));
 										}
 									}
 
@@ -640,7 +650,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 									{
 										if (!loop.Contains(cell)
 											&& !digits.Contains(digit)
-											&& grid.CandidateExists(cell, digit))
+											&& grid.Exists(cell, digit) is true)
 										{
 											conclusions.Add(
 												new Conclusion(
@@ -676,11 +686,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 										continue;
 									}
 
-									if (grid.CandidateExists(cell, d1))
+									if (grid.Exists(cell, d1) is true)
 									{
 										candidateOffsets.Add((1, cell * 9 + d1));
 									}
-									if (grid.CandidateExists(cell, d2))
+									if (grid.Exists(cell, d2) is true)
 									{
 										candidateOffsets.Add((1, cell * 9 + d2));
 									}
@@ -752,7 +762,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 											{
 												if (!loop.Contains(cell)
 													&& !digits.Contains(digit)
-													&& grid.CandidateExists(cell, digit))
+													&& grid.Exists(cell, digit) is true)
 												{
 													conclusions.Add(
 														new Conclusion(
@@ -788,15 +798,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 												continue;
 											}
 
-											if (grid.CandidateExists(cell, d1))
+											if (grid.Exists(cell, d1) is true)
 											{
 												candidateOffsets.Add((1, cell * 9 + d1));
 											}
-											if (grid.CandidateExists(cell, d2))
+											if (grid.Exists(cell, d2) is true)
 											{
 												candidateOffsets.Add((1, cell * 9 + d2));
 											}
-											if (grid.CandidateExists(cell, d3))
+											if (grid.Exists(cell, d3) is true)
 											{
 												candidateOffsets.Add((1, cell * 9 + d3));
 											}
@@ -866,7 +876,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 												{
 													if (!loop.Contains(cell)
 														&& !digits.Contains(digit)
-														&& grid.CandidateExists(cell, digit))
+														&& grid.Exists(cell, digit) is true)
 													{
 														conclusions.Add(
 															new Conclusion(
@@ -902,19 +912,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 													continue;
 												}
 
-												if (grid.CandidateExists(cell, d1))
+												if (grid.Exists(cell, d1) is true)
 												{
 													candidateOffsets.Add((1, cell * 9 + d1));
 												}
-												if (grid.CandidateExists(cell, d2))
+												if (grid.Exists(cell, d2) is true)
 												{
 													candidateOffsets.Add((1, cell * 9 + d2));
 												}
-												if (grid.CandidateExists(cell, d3))
+												if (grid.Exists(cell, d3) is true)
 												{
 													candidateOffsets.Add((1, cell * 9 + d3));
 												}
-												if (grid.CandidateExists(cell, d4))
+												if (grid.Exists(cell, d4) is true)
 												{
 													candidateOffsets.Add((1, cell * 9 + d4));
 												}
@@ -977,12 +987,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						var conclusions = new List<Conclusion>();
 						foreach (int cell in extraCells)
 						{
-							if (grid.CandidateExists(cell, elimDigit))
+							if (!(grid.Exists(cell, elimDigit) is true))
 							{
-								conclusions.Add(
-									new Conclusion(
-										ConclusionType.Elimination, cell, elimDigit));
+								continue;
 							}
+
+							conclusions.Add(
+								new Conclusion(ConclusionType.Elimination, cell, elimDigit));
 						}
 
 						if (conclusions.Count == 0)

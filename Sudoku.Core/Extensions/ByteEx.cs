@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
-namespace Sudoku.Data.Extensions
+namespace Sudoku.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="byte"/>.
@@ -44,7 +44,7 @@ namespace Sudoku.Data.Extensions
 		{
 			for (int i = index + 1; i < 8; i++)
 			{
-				if ((@this & (1 << i)) != 0)
+				if ((@this & 1 << i) != 0)
 				{
 					return i;
 				}
@@ -99,9 +99,9 @@ namespace Sudoku.Data.Extensions
 		/// <param name="this">(<see langword="this ref"/> parameter) The value.</param>
 		public static void ReverseBits(this ref byte @this)
 		{
-			@this = (byte)(((@this >> 1) & 0x55) | ((@this & 0x55) << 1));
-			@this = (byte)(((@this >> 2) & 0x33) | ((@this & 0x33) << 2));
-			@this = (byte)((@this >> 4) | (@this << 4));
+			@this = (byte)(@this >> 1 & 0x55 | (@this & 0x55) << 1);
+			@this = (byte)(@this >> 2 & 0x33 | (@this & 0x33) << 2);
+			@this = (byte)(@this >> 4 | @this << 4);
 		}
 	}
 }

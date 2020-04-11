@@ -4,8 +4,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
-using Sudoku.Solving.Extensions;
-using Sudoku.Solving.Utils;
+using Sudoku.Extensions;
 
 namespace Sudoku.Solving.Manual.Wings.Regular
 {
@@ -419,10 +418,12 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			}
 			foreach (int offset in map.Offsets)
 			{
-				if (grid.CandidateExists(offset, zDigit))
+				if (!(grid.Exists(offset, zDigit) is true))
 				{
-					conclusions.Add(new Conclusion(ConclusionType.Elimination, offset, zDigit));
+					continue;
 				}
+
+				conclusions.Add(new Conclusion(ConclusionType.Elimination, offset, zDigit));
 			}
 
 			return conclusions;

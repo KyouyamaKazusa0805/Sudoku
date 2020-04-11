@@ -6,7 +6,6 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
 using static Sudoku.GridProcessings;
 using static Sudoku.Solving.Utils.RegionUtils;
@@ -250,7 +249,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					// Search for same regions.
 					foreach (int nextCell in new GridMap(currentCell, false).Offsets)
 					{
-						if (!grid.CandidateExists(nextCell, currentDigit))
+						if (!(grid.Exists(nextCell, currentDigit) is true))
 						{
 							continue;
 						}
@@ -337,7 +336,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					foreach (int nextCell in
 						new GridMap(currentCells, GridMap.InitializeOption.ProcessPeersWithoutItself).Offsets)
 					{
-						if (!grid.CandidateExists(nextCell, currentDigit))
+						if (!(grid.Exists(nextCell, currentDigit) is true))
 						{
 							continue;
 						}
@@ -725,7 +724,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				{
 					foreach (int candidate in eliminationSet.Offsets)
 					{
-						if (grid.CandidateExists(candidate / 9, candidate % 9))
+						if (grid.Exists(candidate / 9, candidate % 9) is true)
 						{
 							conclusions.Add(new Conclusion(ConclusionType.Elimination, candidate));
 						}
@@ -829,7 +828,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				var conclusions = new List<Conclusion>();
 				foreach (int candidate in elimMap.Offsets)
 				{
-					if (grid.CandidateExists(candidate / 9, candidate % 9))
+					if (grid.Exists(candidate / 9, candidate % 9) is true)
 					{
 						conclusions.Add(new Conclusion(ConclusionType.Elimination, candidate));
 					}

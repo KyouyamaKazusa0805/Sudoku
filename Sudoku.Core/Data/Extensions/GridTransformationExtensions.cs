@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using Sudoku.Data;
 
-namespace Sudoku.Data
+namespace Sudoku.Data.Extensions
 {
 	/// <summary>
 	/// Provides a series of methods for <see cref="IReadOnlyGrid"/>
 	/// using in transformations.
 	/// </summary>
 	/// <seealso cref="IReadOnlyGrid"/>
-	public static class GridTransformations
+	public static class GridTransformationExtensions
 	{
 		/// <summary>
 		/// The table of clockwise rotation.

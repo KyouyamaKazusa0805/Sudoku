@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Text;
 
-namespace Sudoku.Data.Extensions
+namespace Sudoku.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="StringBuilder"/>.
@@ -93,9 +93,7 @@ namespace Sudoku.Data.Extensions
 			}
 
 			for (int i = 0; i < @this.Length; i++)
-			{
 				@to[i] = @this[i];
-			}
 		}
 	}
 }

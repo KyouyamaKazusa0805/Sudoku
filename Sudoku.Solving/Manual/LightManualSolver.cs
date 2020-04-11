@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.Solving.Manual.Singles;
-using Sudoku.Solving.Utils;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Solving.ConclusionType;
 
@@ -79,7 +79,7 @@ namespace Sudoku.Solving.Manual
 				switch (conclusion.ConclusionType)
 				{
 					case Assignment when cloneation.GetCellStatus(conclusion.CellOffset) == Empty:
-					case Elimination when cloneation.CandidateExists(conclusion.CellOffset, conclusion.Digit):
+					case Elimination when cloneation.Exists(conclusion.CellOffset, conclusion.Digit) is true:
 					{
 						needAdd = true;
 

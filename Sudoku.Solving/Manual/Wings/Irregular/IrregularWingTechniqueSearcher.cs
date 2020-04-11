@@ -157,7 +157,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 				int elimDigit = i == 0 ? digits[1] : digits[0];
 				foreach (int offset in intersection.Offsets)
 				{
-					if (!grid.CandidateExists(offset, elimDigit))
+					if (!(grid.Exists(offset, elimDigit) is true))
 					{
 						continue;
 					}

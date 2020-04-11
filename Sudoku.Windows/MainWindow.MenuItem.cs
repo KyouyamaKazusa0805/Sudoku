@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
@@ -27,6 +26,7 @@ using AnonymousType = System.Object;
 using DColor = System.Drawing.Color;
 using SudokuGrid = Sudoku.Data.Grid;
 using Sudoku.Extensions;
+using Sudoku.Data.Extensions;
 #if SUDOKU_RECOGNIZING
 using System.Drawing;
 #endif

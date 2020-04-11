@@ -2,6 +2,7 @@
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
 using static Sudoku.GridProcessings;
 
@@ -118,19 +119,21 @@ namespace Sudoku.Solving.Manual.Singles
 					int hiddenSingleCellOffset = 0, count = 0;
 					foreach (int cellOffset in RegionCells[region])
 					{
-						if (grid.GetCellStatus(cellOffset) == CellStatus.Empty && !grid[cellOffset, digit])
+						if (!(grid.Exists(cellOffset, digit) is true))
 						{
-							switch (++count)
+							continue;
+						}
+
+						switch (++count)
+						{
+							case 1:
 							{
-								case 1:
-								{
-									hiddenSingleCellOffset = cellOffset;
-									break;
-								}
-								case 2:
-								{
-									goto Label_ToNextRegion;
-								}
+								hiddenSingleCellOffset = cellOffset;
+								break;
+							}
+							case 2:
+							{
+								goto Label_ToNextRegion;
 							}
 						}
 					}
@@ -180,23 +183,33 @@ namespace Sudoku.Solving.Manual.Singles
 			for (int i = 0; i < 81; i++)
 			{
 				short mask = grid.GetCandidatesReversal(i);
-				if (grid.GetCellStatus(i) == CellStatus.Empty && (mask & (mask - 1)) == 0)
+				if (grid.GetCellStatus(i) != CellStatus.Empty || (mask & (mask - 1)) != 0)
 				{
-					int digit = mask.FindFirstSet();
-					accumulator.Add(
-						new NakedSingleTechniqueInfo(
-							conclusions: new[] { new Conclusion(ConclusionType.Assignment, i, digit) },
-							views: new[]
-							{
+					// 'a & (a - 1) == 0' means the number 'a' has only one
+					// bit is set.
+					// For example, 0b001_000_000:
+					//     a: 0b001_000_000
+					// a - 1: 0b000_111_111
+					//     &: 0b000_000_000
+					// If and only if the result is 0, the value will contain
+					// only one set bit.
+					continue;
+				}
+
+				int digit = mask.FindFirstSet();
+				accumulator.Add(
+					new NakedSingleTechniqueInfo(
+						conclusions: new[] { new Conclusion(ConclusionType.Assignment, i, digit) },
+						views: new[]
+						{
 								new View(
 									cellOffsets: null,
 									candidateOffsets: new[] { (0, i * 9 + digit) },
 									regionOffsets: null,
 									links: null)
-							},
-							cellOffset: i,
-							digit));
-				}
+						},
+						cellOffset: i,
+						digit));
 			}
 		}
 	}

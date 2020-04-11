@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
+using Sudoku.Extensions;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Singles;
 

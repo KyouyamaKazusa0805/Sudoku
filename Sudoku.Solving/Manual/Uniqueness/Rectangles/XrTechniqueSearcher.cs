@@ -3,6 +3,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
 using static Sudoku.GridProcessings;
 using XrType1 = Sudoku.Solving.Manual.Uniqueness.Rectangles.XrType1DetailData;
@@ -238,12 +239,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 								var elimMap = new GridMap(extraCells, GridMap.InitializeOption.ProcessPeersWithoutItself);
 								foreach (int cell in elimMap.Offsets)
 								{
-									if (grid.CandidateExists(cell, extraDigit))
+									if (!(grid.Exists(cell, extraDigit) is true))
 									{
-										conclusions.Add(
-											new Conclusion(
-												ConclusionType.Elimination, cell, extraDigit));
+										continue;
 									}
+
+									conclusions.Add(
+										new Conclusion(
+											ConclusionType.Elimination, cell, extraDigit));
 								}
 
 								if (conclusions.Count == 0)
@@ -329,11 +332,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 				int extraCell = extraCells[0];
 				foreach (int digit in normalDigits)
 				{
-					if (grid.CandidateExists(extraCell, digit))
+					if (!(grid.Exists(extraCell, digit) is true))
 					{
-						conclusions.Add(
-							new Conclusion(ConclusionType.Elimination, extraCell, digit));
+						continue;
 					}
+
+					conclusions.Add(
+						new Conclusion(ConclusionType.Elimination, extraCell, digit));
 				}
 
 				if (conclusions.Count == 0)
@@ -461,11 +466,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					{
 						foreach (int digit in extraDigits)
 						{
-							if (grid.CandidateExists(cell, digit))
+							if (!(grid.Exists(cell, digit) is true))
 							{
-								conclusions.Add(
-									new Conclusion(ConclusionType.Elimination, cell, digit));
+								continue;
 							}
+
+							conclusions.Add(
+								new Conclusion(ConclusionType.Elimination, cell, digit));
 						}
 					}
 

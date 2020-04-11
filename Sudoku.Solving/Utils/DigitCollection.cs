@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using Sudoku.Data.Extensions;
+using Sudoku.Extensions;
 
 namespace Sudoku.Solving.Utils
 {

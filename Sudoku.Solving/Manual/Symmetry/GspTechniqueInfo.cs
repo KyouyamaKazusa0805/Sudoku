@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Symmetry
@@ -17,19 +17,19 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// </summary>
 		/// <param name="conclusions">All conclusions.</param>
 		/// <param name="views">All views.</param>
-		/// <param name="symmetricalType">The symmetry type.</param>
+		/// <param name="symmetryType">The symmetry type.</param>
 		/// <param name="mappingTable">The mapping table.</param>
 		public GspTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			SymmetryType symmetricalType, int?[] mappingTable)
+			SymmetryType symmetryType, int?[] mappingTable)
 			: base(conclusions, views) =>
-			(SymmetricalType, MappingTable) = (symmetricalType, mappingTable);
+			(SymmetryType, MappingTable) = (symmetryType, mappingTable);
 
 
 		/// <summary>
 		/// Indicates the symmetry type.
 		/// </summary>
-		public SymmetryType SymmetricalType { get; }
+		public SymmetryType SymmetryType { get; }
 
 		/// <summary>
 		/// Indicates the mapping table.
@@ -62,9 +62,9 @@ namespace Sudoku.Solving.Manual.Symmetry
 				sb.Append($"{i + 1}{(value is null || value == i ? "" : $" -> {(int)value + 1}")}{separator}");
 			}
 
-			string customName = SymmetricalType.GetCustomName()!.ToLower();
+			string customName = SymmetryType.GetCustomName()!.ToLower();
 			string mapping = sb.RemoveFromEnd(separator.Length).ToString();
-			return $"{Name}: Symmetrical type: {customName}, mapping relations: {mapping} => {conclusions}";
+			return $"{Name}: Symmetry type: {customName}, mapping relations: {mapping} => {conclusions}";
 		}
 	}
 }

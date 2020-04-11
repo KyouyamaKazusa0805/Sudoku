@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using Sudoku.Data.Extensions;
+using Sudoku.Extensions;
 
 namespace Sudoku.Windows.Constants
 {

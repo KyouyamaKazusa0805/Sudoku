@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
-namespace Sudoku.Data.Extensions
+namespace Sudoku.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="int"/>.
@@ -48,7 +48,7 @@ namespace Sudoku.Data.Extensions
 		public static int FindFirstSet(this int @this)
 		{
 			int x = @this & -@this;
-			int a = x <= 0xffff ? (x <= 0xff ? 0 : 8) : (x <= 0xffffff ? 16 : 24);
+			int a = x <= 0xffff ? x <= 0xff ? 0 : 8 : x <= 0xffffff ? 16 : 24;
 			return Table[x >> a] + a - 1;
 		}
 
@@ -75,7 +75,7 @@ namespace Sudoku.Data.Extensions
 		{
 			for (int i = index + 1; i < 32; i++)
 			{
-				if ((@this & (1 << i)) != 0)
+				if ((@this & 1 << i) != 0)
 				{
 					return i;
 				}
@@ -131,11 +131,11 @@ namespace Sudoku.Data.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void ReverseBits(this ref int @this)
 		{
-			@this = ((@this >> 1) & 0x55555555) | ((@this & 0x55555555) << 1);
-			@this = ((@this >> 2) & 0x33333333) | ((@this & 0x33333333) << 2);
-			@this = ((@this >> 4) & 0x0f0f0f0f) | ((@this & 0x0f0f0f0f) << 4);
-			@this = ((@this >> 8) & 0x00ff00ff) | ((@this & 0x00ff00ff) << 8);
-			@this = (@this >> 16) | (@this << 16);
+			@this = @this >> 1 & 0x55555555 | (@this & 0x55555555) << 1;
+			@this = @this >> 2 & 0x33333333 | (@this & 0x33333333) << 2;
+			@this = @this >> 4 & 0x0f0f0f0f | (@this & 0x0f0f0f0f) << 4;
+			@this = @this >> 8 & 0x00ff00ff | (@this & 0x00ff00ff) << 8;
+			@this = @this >> 16 | @this << 16;
 		}
 	}
 }

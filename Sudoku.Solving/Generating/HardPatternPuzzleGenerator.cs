@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Text;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
+using Sudoku.Extensions;
 using Sudoku.Solving.Checking;
 
 namespace Sudoku.Solving.Generating

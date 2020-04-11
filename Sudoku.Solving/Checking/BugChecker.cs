@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
-using Sudoku.Solving.Extensions;
+using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
 using static Sudoku.GridProcessings;
 

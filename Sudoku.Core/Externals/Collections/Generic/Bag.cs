@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics;
-using Sudoku.Data.Extensions;
+using Sudoku.Extensions;
 
 namespace System.Collections.Generic
 {
@@ -22,7 +22,7 @@ namespace System.Collections.Generic
 		private readonly IList<T> _internalList = new List<T>();
 
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public Bag() { }
 
 		/// <summary>

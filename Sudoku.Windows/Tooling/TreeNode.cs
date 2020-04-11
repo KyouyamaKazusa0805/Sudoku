@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Controls;
-using Sudoku.Data.Extensions;
+using Sudoku.Extensions;
 
 namespace Sudoku.Windows.Tooling
 {

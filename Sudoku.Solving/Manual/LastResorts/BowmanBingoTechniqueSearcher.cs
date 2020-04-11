@@ -3,8 +3,8 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
 using Sudoku.Solving.Manual.Singles;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {
@@ -54,14 +54,15 @@ namespace Sudoku.Solving.Manual.LastResorts
 			var tempGrid = grid.Clone();
 			for (int cell = 0; cell < 81; cell++)
 			{
-				if (tempGrid.GetCellStatus(cell) != CellStatus.Empty)
-				{
-					continue;
-				}
+				// Redundant.
+				//if (tempGrid.GetCellStatus(cell) != CellStatus.Empty)
+				//{
+				//	continue;
+				//}
 
 				for (int digit = 0; digit < 9; digit++)
 				{
-					if (tempGrid.CandidateDoesNotExist(cell, digit))
+					if (!(tempGrid.Exists(cell, digit) is true))
 					{
 						continue;
 					}
@@ -175,10 +176,12 @@ namespace Sudoku.Solving.Manual.LastResorts
 			var list = new List<int>();
 			foreach (int c in new GridMap(cell, false).Offsets)
 			{
-				if (grid.CandidateExists(c, digit))
+				if (!(grid.Exists(c, digit) is true))
 				{
-					list.Add(c * 9 + digit);
+					continue;
 				}
+
+				list.Add(c * 9 + digit);
 			}
 
 			return (list, grid.GetMask(cell));

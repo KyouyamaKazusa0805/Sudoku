@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
+using Sudoku.Extensions;
 using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Manual.LastResorts
@@ -73,7 +73,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				{
 					int cell = i * 27 + z / 9;
 					int digit = z % 9;
-					if (!(v ?? true) && grid.CandidateExists(cell, digit))
+					if (!(v ?? true) && grid.Exists(cell, digit) is true)
 					{
 						conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, digit));
 					}
@@ -151,7 +151,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				{
 					int cell = z / 3 * 9 + z % 3 + i * 3;
 					int digit = z % 9;
-					if (!(v ?? true) && grid.CandidateExists(cell, digit))
+					if (!(v ?? true) && grid.Exists(cell, digit) is true)
 					{
 						conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, digit));
 					}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
-namespace Sudoku.Data.Extensions
+namespace Sudoku.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="IList{T}"/>.

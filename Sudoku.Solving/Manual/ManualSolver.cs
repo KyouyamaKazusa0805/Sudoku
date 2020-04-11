@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using Sudoku.Extensions;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Alses;
 using Sudoku.Solving.Manual.Chaining;
@@ -541,7 +542,7 @@ namespace Sudoku.Solving.Manual
 				switch (t)
 				{
 					case Assignment when cloneation.GetCellStatus(c) == CellStatus.Empty:
-					case Elimination when cloneation.CandidateExists(c, d):
+					case Elimination when cloneation.Exists(c, d) is true:
 					{
 						needAdd = true;
 

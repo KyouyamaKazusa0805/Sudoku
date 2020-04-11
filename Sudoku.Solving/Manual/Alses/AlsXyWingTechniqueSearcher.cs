@@ -4,12 +4,13 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Alses
 {
 	/// <summary>
-	/// Encapsulates an <b>ALS-XY-Wing</b> technique.
+	/// Encapsulates an <b>almost locked sets XY-Wing</b> technique.
 	/// </summary>
 	[TechniqueDisplay("Almost Locked Sets XY-Wing")]
 	public sealed class AlsXyWingTechniqueSearcher : AlsTechniqueSearcher
@@ -120,7 +121,7 @@ namespace Sudoku.Solving.Manual.Alses
 							select RegionUtils.GetCellOffset(region2, pos);
 						foreach (int cell in als1RegionCells)
 						{
-							if (!grid.CandidateExists(cell, elimDigit))
+							if (!(grid.Exists(cell, elimDigit) is true))
 							{
 								continue;
 							}
@@ -129,7 +130,7 @@ namespace Sudoku.Solving.Manual.Alses
 						}
 						foreach (int cell in als2RegionCells)
 						{
-							if (!grid.CandidateExists(cell, elimDigit))
+							if (!(grid.Exists(cell, elimDigit) is true))
 							{
 								continue;
 							}
@@ -146,7 +147,7 @@ namespace Sudoku.Solving.Manual.Alses
 						var conclusions = new List<Conclusion>();
 						foreach (int cell in elimMap.Offsets)
 						{
-							if (grid.CandidateExists(cell, elimDigit))
+							if (grid.Exists(cell, elimDigit) is true)
 							{
 								conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, elimDigit));
 							}

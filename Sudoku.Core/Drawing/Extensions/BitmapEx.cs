@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.Util;
-using static Sudoku.Data.Extensions.TypeEx;
+using static Sudoku.Extensions.TypeEx;
 
 namespace Sudoku.Drawing.Extensions
 {

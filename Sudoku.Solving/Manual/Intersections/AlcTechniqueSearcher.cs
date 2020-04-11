@@ -140,27 +140,33 @@ namespace Sudoku.Solving.Manual.Intersections
 					var candidateOffsets = new List<(int, int)>();
 					foreach (int digit in digits)
 					{
-						if (grid.CandidateExists(c1, digit))
+						if (!(grid.Exists(c1, digit) is true))
 						{
-							candidateOffsets.Add((0, c1 * 9 + digit));
+							continue;
 						}
+
+						candidateOffsets.Add((0, c1 * 9 + digit));
 					}
 					foreach (int cell in intersection.Offsets)
 					{
 						foreach (int digit in digits)
 						{
-							if (grid.CandidateExists(cell, digit))
+							if (!(grid.Exists(cell, digit) is true))
 							{
-								candidateOffsets.Add((1, cell * 9 + digit));
+								continue;
 							}
+
+							candidateOffsets.Add((1, cell * 9 + digit));
 						}
 					}
 					foreach (int digit in digits)
 					{
-						if (grid.CandidateExists(ahsCell, digit))
+						if (!(grid.Exists(ahsCell, digit) is true))
 						{
-							candidateOffsets.Add((0, ahsCell * 9 + digit));
+							continue;
 						}
+
+						candidateOffsets.Add((0, ahsCell * 9 + digit));
 					}
 
 					// Record all eliminations.
@@ -174,21 +180,25 @@ namespace Sudoku.Solving.Manual.Intersections
 
 						foreach (int digit in digits)
 						{
-							if (grid.CandidateExists(aCell, digit))
+							if (!(grid.Exists(aCell, digit) is true))
 							{
-								conclusions.Add(
-									new Conclusion(ConclusionType.Elimination, aCell, digit));
+								continue;
 							}
+
+							conclusions.Add(
+								new Conclusion(ConclusionType.Elimination, aCell, digit));
 						}
 					}
 
 					for (int digit = 0, temp = (short)(511 & (short)~mask1); digit < 9; digit++, temp >>= 1)
 					{
-						if ((temp & 1) != 0 && grid.CandidateExists(ahsCell, digit))
+						if ((temp & 1) == 0 || !(grid.Exists(ahsCell, digit) is true))
 						{
-							conclusions.Add(
-								new Conclusion(ConclusionType.Elimination, ahsCell, digit));
+							continue;
 						}
+
+						conclusions.Add(
+							new Conclusion(ConclusionType.Elimination, ahsCell, digit));
 					}
 
 					if (conclusions.Count == 0)
@@ -257,11 +267,11 @@ namespace Sudoku.Solving.Manual.Intersections
 							var candidateOffsets = new List<(int, int)>();
 							foreach (int digit in digits)
 							{
-								if (grid.CandidateExists(c1, digit))
+								if (grid.Exists(c1, digit) is true)
 								{
 									candidateOffsets.Add((0, c1 * 9 + digit));
 								}
-								if (grid.CandidateExists(c2, digit))
+								if (grid.Exists(c2, digit) is true)
 								{
 									candidateOffsets.Add((0, c2 * 9 + digit));
 								}
@@ -270,19 +280,21 @@ namespace Sudoku.Solving.Manual.Intersections
 							{
 								foreach (int digit in digits)
 								{
-									if (grid.CandidateExists(cell, digit))
+									if (!(grid.Exists(cell, digit) is true))
 									{
-										candidateOffsets.Add((1, cell * 9 + digit));
+										continue;
 									}
+
+									candidateOffsets.Add((1, cell * 9 + digit));
 								}
 							}
 							foreach (int digit in digits)
 							{
-								if (grid.CandidateExists(ahsCell1, digit))
+								if (grid.Exists(ahsCell1, digit) is true)
 								{
 									candidateOffsets.Add((0, ahsCell1 * 9 + digit));
 								}
-								if (grid.CandidateExists(ahsCell2, digit))
+								if (grid.Exists(ahsCell2, digit) is true)
 								{
 									candidateOffsets.Add((0, ahsCell2 * 9 + digit));
 								}
@@ -299,30 +311,34 @@ namespace Sudoku.Solving.Manual.Intersections
 
 								foreach (int digit in digits)
 								{
-									if (grid.CandidateExists(aCell, digit))
+									if (!(grid.Exists(aCell, digit) is true))
 									{
-										conclusions.Add(
-											new Conclusion(ConclusionType.Elimination, aCell, digit));
+										continue;
 									}
+
+									conclusions.Add(
+										new Conclusion(ConclusionType.Elimination, aCell, digit));
 								}
 							}
 
 							for (int digit = 0, temp = (short)(511 & (short)~m); digit < 9; digit++, temp >>= 1)
 							{
-								if ((temp & 1) != 0)
+								if ((temp & 1) == 0)
 								{
-									if (grid.CandidateExists(ahsCell1, digit))
-									{
-										conclusions.Add(
-											new Conclusion(
-												ConclusionType.Elimination, ahsCell1, digit));
-									}
-									if (grid.CandidateExists(ahsCell2, digit))
-									{
-										conclusions.Add(
-											new Conclusion(
-												ConclusionType.Elimination, ahsCell2, digit));
-									}
+									continue;
+								}
+
+								if (grid.Exists(ahsCell1, digit) is true)
+								{
+									conclusions.Add(
+										new Conclusion(
+											ConclusionType.Elimination, ahsCell1, digit));
+								}
+								if (grid.Exists(ahsCell2, digit) is true)
+								{
+									conclusions.Add(
+										new Conclusion(
+											ConclusionType.Elimination, ahsCell2, digit));
 								}
 							}
 
@@ -393,15 +409,15 @@ namespace Sudoku.Solving.Manual.Intersections
 								var candidateOffsets = new List<(int, int)>();
 								foreach (int digit in digits)
 								{
-									if (grid.CandidateExists(c1, digit))
+									if (grid.Exists(c1, digit) is true)
 									{
 										candidateOffsets.Add((0, c1 * 9 + digit));
 									}
-									if (grid.CandidateExists(c2, digit))
+									if (grid.Exists(c2, digit) is true)
 									{
 										candidateOffsets.Add((0, c2 * 9 + digit));
 									}
-									if (grid.CandidateExists(c3, digit))
+									if (grid.Exists(c3, digit) is true)
 									{
 										candidateOffsets.Add((0, c3 * 9 + digit));
 									}
@@ -410,23 +426,25 @@ namespace Sudoku.Solving.Manual.Intersections
 								{
 									foreach (int digit in digits)
 									{
-										if (grid.CandidateExists(cell, digit))
+										if (!(grid.Exists(cell, digit) is true))
 										{
-											candidateOffsets.Add((1, cell * 9 + digit));
+											continue;
 										}
+
+										candidateOffsets.Add((1, cell * 9 + digit));
 									}
 								}
 								foreach (int digit in digits)
 								{
-									if (grid.CandidateExists(ahsCell1, digit))
+									if (grid.Exists(ahsCell1, digit) is true)
 									{
 										candidateOffsets.Add((0, ahsCell1 * 9 + digit));
 									}
-									if (grid.CandidateExists(ahsCell2, digit))
+									if (grid.Exists(ahsCell2, digit) is true)
 									{
 										candidateOffsets.Add((0, ahsCell2 * 9 + digit));
 									}
-									if (grid.CandidateExists(ahsCell3, digit))
+									if (grid.Exists(ahsCell3, digit) is true)
 									{
 										candidateOffsets.Add((0, ahsCell3 * 9 + digit));
 									}
@@ -443,36 +461,40 @@ namespace Sudoku.Solving.Manual.Intersections
 
 									foreach (int digit in digits)
 									{
-										if (grid.CandidateExists(aCell, digit))
+										if (!(grid.Exists(aCell, digit) is true))
 										{
-											conclusions.Add(
-												  new Conclusion(ConclusionType.Elimination, aCell, digit));
+											continue;
 										}
+
+										conclusions.Add(
+											new Conclusion(ConclusionType.Elimination, aCell, digit));
 									}
 								}
 
 								for (int digit = 0, temp = (short)(511 & (short)~m); digit < 9; digit++, temp >>= 1)
 								{
-									if ((temp & 1) != 0)
+									if ((temp & 1) == 0)
 									{
-										if (grid.CandidateExists(ahsCell1, digit))
-										{
-											conclusions.Add(
-												new Conclusion(
-													ConclusionType.Elimination, ahsCell1, digit));
-										}
-										if (grid.CandidateExists(ahsCell2, digit))
-										{
-											conclusions.Add(
-												new Conclusion(
-													ConclusionType.Elimination, ahsCell2, digit));
-										}
-										if (grid.CandidateExists(ahsCell3, digit))
-										{
-											conclusions.Add(
-												new Conclusion(
-													ConclusionType.Elimination, ahsCell3, digit));
-										}
+										continue;
+									}
+
+									if (grid.Exists(ahsCell1, digit) is true)
+									{
+										conclusions.Add(
+											new Conclusion(
+												ConclusionType.Elimination, ahsCell1, digit));
+									}
+									if (grid.Exists(ahsCell2, digit) is true)
+									{
+										conclusions.Add(
+											new Conclusion(
+												ConclusionType.Elimination, ahsCell2, digit));
+									}
+									if (grid.Exists(ahsCell3, digit) is true)
+									{
+										conclusions.Add(
+											new Conclusion(
+												ConclusionType.Elimination, ahsCell3, digit));
 									}
 								}
 

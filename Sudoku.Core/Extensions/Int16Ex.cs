@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
-namespace Sudoku.Data.Extensions
+namespace Sudoku.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="short"/>.
@@ -43,7 +43,7 @@ namespace Sudoku.Data.Extensions
 		{
 			for (int i = index + 1; i < 16; i++)
 			{
-				if ((@this & (1 << i)) != 0)
+				if ((@this & 1 << i) != 0)
 				{
 					return i;
 				}
@@ -98,10 +98,10 @@ namespace Sudoku.Data.Extensions
 		/// <param name="this">(<see langword="this ref"/> parameter) The value.</param>
 		public static void ReverseBits(this ref short @this)
 		{
-			@this = (short)(((@this >> 1) & 0x5555) | ((@this & 0x5555) << 1));
-			@this = (short)(((@this >> 2) & 0x3333) | ((@this & 0x3333) << 2));
-			@this = (short)(((@this >> 4) & 0x0f0f) | ((@this & 0x0f0f) << 4));
-			@this = (short)((@this >> 8) | (@this << 8));
+			@this = (short)(@this >> 1 & 0x5555 | (@this & 0x5555) << 1);
+			@this = (short)(@this >> 2 & 0x3333 | (@this & 0x3333) << 2);
+			@this = (short)(@this >> 4 & 0x0f0f | (@this & 0x0f0f) << 4);
+			@this = (short)(@this >> 8 | @this << 8);
 		}
 	}
 }

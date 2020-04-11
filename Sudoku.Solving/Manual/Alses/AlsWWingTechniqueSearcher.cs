@@ -4,7 +4,6 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
 using static Sudoku.GridProcessings;
 
@@ -139,13 +138,13 @@ namespace Sudoku.Solving.Manual.Alses
 											foreach (int xRegion1 in
 												new GridMap(
 													from cell in als1Cells
-													where grid.CandidateExists(cell, x)
+													where grid.Exists(cell, x) is true
 													select cell).CoveredRegions)
 											{
 												foreach (int xRegion2 in
 													new GridMap(
 														from cell in als2Cells
-														where grid.CandidateExists(cell, x)
+														where grid.Exists(cell, x) is true
 														select cell).CoveredRegions)
 												{
 													int pos = mask.FindFirstSet();
@@ -169,7 +168,7 @@ namespace Sudoku.Solving.Manual.Alses
 													var elimMap =
 														new GridMap(
 															from cell in (als1.Map | als2.Map).Offsets
-															where grid.CandidateExists(cell, w)
+															where grid.Exists(cell, w) is true
 															select cell,
 															GridMap.InitializeOption.ProcessPeersWithoutItself);
 													if (elimMap.Count == 0)
@@ -179,7 +178,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 													foreach (int cell in elimMap.Offsets)
 													{
-														if (!grid.CandidateExists(cell, w))
+														if (!(grid.Exists(cell, w) is true))
 														{
 															continue;
 														}

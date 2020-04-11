@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using Sudoku;
-using Sudoku.Data.Extensions;
+using Sudoku.Extensions;
 
 namespace System
 {

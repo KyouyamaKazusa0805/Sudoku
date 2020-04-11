@@ -194,12 +194,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 							foreach (int digit in digits)
 							{
-								if (grid.CandidateExists(cell, digit))
+								if (!(grid.Exists(cell, digit) is true))
 								{
-									conclusions.Add(
-										new Conclusion(
-											ConclusionType.Elimination, cell, digit));
+									continue;
 								}
+
+								conclusions.Add(
+									new Conclusion(ConclusionType.Elimination, cell, digit));
 							}
 						}
 
@@ -266,12 +267,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 									foreach (int digit in digits)
 									{
-										if (grid.CandidateExists(cell, digit))
+										if (!(grid.Exists(cell, digit) is true))
 										{
-											conclusions.Add(
-												new Conclusion(
-													ConclusionType.Elimination, cell, digit));
+											continue;
 										}
+
+										conclusions.Add(
+											new Conclusion(ConclusionType.Elimination, cell, digit));
 									}
 								}
 
@@ -342,12 +344,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 											foreach (int digit in digits)
 											{
-												if (grid.CandidateExists(cell, digit))
+												if (!(grid.Exists(cell, digit) is true))
 												{
-													conclusions.Add(
-														new Conclusion(
-															ConclusionType.Elimination, cell, digit));
+													continue;
 												}
+
+												conclusions.Add(
+													new Conclusion(
+														ConclusionType.Elimination, cell, digit));
 											}
 										}
 
@@ -422,12 +426,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 												foreach (int digit in digits)
 												{
-													if (grid.CandidateExists(cell, digit))
+													if (!(grid.Exists(cell, digit) is true))
 													{
-														conclusions.Add(
-															new Conclusion(
-																ConclusionType.Elimination, cell, digit));
+														continue;
 													}
+
+													conclusions.Add(
+														new Conclusion(
+															ConclusionType.Elimination, cell, digit));
 												}
 											}
 
@@ -567,14 +573,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						digitMask = (short)(~digitMask & 511);
 						foreach (int d in digitMask.GetAllSets())
 						{
-							if (conjuagtePairDigit == d || grid.CandidateDoesNotExist(cell, d))
+							if (conjuagtePairDigit == d || !(grid.Exists(cell, d) is true))
 							{
 								continue;
 							}
 
 							conclusions.Add(
-								new Conclusion(
-									ConclusionType.Elimination, cell, d));
+								new Conclusion(ConclusionType.Elimination, cell, d));
 						}
 					}
 
@@ -644,10 +649,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			var conclusions = new List<Conclusion>();
 			foreach (int candidate in map.Offsets)
 			{
-				if (grid.CandidateExists(candidate / 9, candidate % 9))
+				if (!(grid.Exists(candidate / 9, candidate % 9) is true))
 				{
-					conclusions.Add(new Conclusion(ConclusionType.Elimination, candidate));
+					continue;
 				}
+
+				conclusions.Add(new Conclusion(ConclusionType.Elimination, candidate));
 			}
 
 			if (conclusions.Count == 0)
@@ -695,10 +702,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			int digit = trueCandidates[0] % 9;
 			foreach (int cell in map.Offsets)
 			{
-				if (grid.CandidateExists(cell, digit))
+				if (!(grid.Exists(cell, digit) is true))
 				{
-					conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, digit));
+					continue;
 				}
+
+				conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, digit));
 			}
 
 			if (conclusions.Count == 0)

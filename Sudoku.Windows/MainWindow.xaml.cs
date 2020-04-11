@@ -11,7 +11,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
@@ -25,6 +24,7 @@ using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
 using WPoint = System.Windows.Point;
 using System.Runtime.InteropServices;
+using Sudoku.Extensions;
 #if SUDOKU_RECOGNIZING
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;

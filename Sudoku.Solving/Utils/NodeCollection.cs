@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
+using Sudoku.Extensions;
 
 namespace Sudoku.Solving.Utils
 {

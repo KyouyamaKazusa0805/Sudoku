@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Solving.Checking;
-using Sudoku.Solving.Extensions;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {

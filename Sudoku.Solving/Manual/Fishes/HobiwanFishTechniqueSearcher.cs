@@ -6,7 +6,6 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
 using Pair = System.ValueTuple<int, int>;
 using Templates = Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher;
@@ -357,10 +356,12 @@ namespace Sudoku.Solving.Manual.Fishes
 				// otherwise, all cells in the elimination map will be the result.
 				foreach (int cell in finMap.Offsets)
 				{
-					if (grid.CandidateExists(cell, digit))
+					if (!(grid.Exists(cell, digit) is true))
 					{
-						elimMap &= new GridMap(cell);
+						continue;
 					}
+
+					elimMap &= new GridMap(cell);
 				}
 				if (elimMap.IsEmpty)
 				{
@@ -371,10 +372,12 @@ namespace Sudoku.Solving.Manual.Fishes
 				var conclusions = new List<Conclusion>();
 				foreach (int cell in elimMap.Offsets)
 				{
-					if (grid.CandidateExists(cell, digit))
+					if (!(grid.Exists(cell, digit) is true))
 					{
-						conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, digit));
+						continue;
 					}
+
+					conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, digit));
 				}
 				if (conclusions.Count == 0)
 				{
@@ -485,24 +488,23 @@ namespace Sudoku.Solving.Manual.Fishes
 			IReadOnlyGrid grid, int digit, GridMap bodyMap, GridMap exofinsMap,
 			GridMap endofinsMap, IList<Pair> candidateOffsets)
 		{
-			bool candExists(int cell, int digit) => grid.CandidateExists(cell, digit);
 			foreach (int cell in bodyMap.Offsets)
 			{
-				if (candExists(cell, digit))
+				if (grid.Exists(cell, digit) is true)
 				{
 					candidateOffsets.Add((0, cell * 9 + digit));
 				}
 			}
 			foreach (int cell in exofinsMap.Offsets)
 			{
-				if (candExists(cell, digit))
+				if (grid.Exists(cell, digit) is true)
 				{
 					candidateOffsets.Add((1, cell * 9 + digit));
 				}
 			}
 			foreach (int cell in endofinsMap.Offsets)
 			{
-				if (candExists(cell, digit))
+				if (grid.Exists(cell, digit) is true)
 				{
 					candidateOffsets.Add((2, cell * 9 + digit));
 				}

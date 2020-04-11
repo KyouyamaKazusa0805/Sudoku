@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
 using Action = System.Action<System.Collections.Generic.IBag<Sudoku.Solving.TechniqueInfo>, Sudoku.Data.IReadOnlyGrid>;
 
 namespace Sudoku.Solving.Manual.Symmetry
@@ -163,7 +163,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 							regionOffsets: null,
 							links: null)
 					},
-					symmetricalType: SymmetryType.Diagonal,
+					symmetryType: SymmetryType.Diagonal,
 					mappingTable: mapping));
 		}
 
@@ -296,7 +296,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 							regionOffsets: null,
 							links: null)
 					},
-					symmetricalType: SymmetryType.AntiDiagonal,
+					symmetryType: SymmetryType.AntiDiagonal,
 					mappingTable: mapping));
 		}
 
@@ -385,7 +385,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 									regionOffsets: null,
 									links: null)
 							},
-							symmetricalType: SymmetryType.Central,
+							symmetryType: SymmetryType.Central,
 							mappingTable: mapping));
 
 					return;

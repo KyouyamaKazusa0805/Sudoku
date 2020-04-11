@@ -8,6 +8,7 @@ using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.OCR;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Field = Emgu.CV.Image<Emgu.CV.Structure.Bgr, byte>;
 
 namespace Sudoku.Recognitions

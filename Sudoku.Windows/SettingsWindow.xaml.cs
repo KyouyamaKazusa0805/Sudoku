@@ -4,13 +4,13 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Windows.Extensions;
 using Sudoku.Windows.Tooling;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 using w = System.Windows;
+using Sudoku.Extensions;
 
 namespace Sudoku.Windows
 {

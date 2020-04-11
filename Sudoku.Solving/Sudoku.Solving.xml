@@ -886,73 +886,6 @@
             unless using last resort methods.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Extensions.GridSolvingExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Data.Grid"/> and <see cref="T:Sudoku.Data.IReadOnlyGrid"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.Grid"/>
-            <seealso cref="T:Sudoku.Data.IReadOnlyGrid"/>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.GridSolvingExtensions.Deconstruct(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap[]@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
-            <param name="this">(<see langword="this" /> parameter) The grid.</param>
-            <param name="emptyCells">
-            (<see langword="out" /> parameter) The distribution of all empty cells.
-            </param>
-            <param name="bivalueCells">
-            (<see langword="out" /> parameter) The distributions of all bivalue cells.
-            </param>
-            <param name="digitsDistributions">
-            (<see langword="out" /> parameter) The distributions of all digits.
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.GridSolvingExtensions.GetBivalueCellsMap(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Get the grid map instance with all bivalue cells
-            set <see langword="true"/>.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.GridSolvingExtensions.GetEmptyCellsGridMap(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Get the grid map instance with all empty cells set
-            <see langword="true"/>.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.GridSolvingExtensions.GetAllDigitDistributionMaps(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Get 9 grid maps representing all digits' distributions.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>All grid maps.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Extensions.MaskExtensions">
-            <summary>
-            Provides extensions for a mask.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.MaskExtensions.GetCells(System.Int32,System.Int16)">
-            <summary>
-            Get cells with specified mask, which consist of 9 bits and 1 is
-            for yielding.
-            </summary>
-            <param name="region">The region.</param>
-            <param name="mask">The mask.</param>
-            <returns>The cells.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.MaskExtensions.Deconstruct(System.Int16,Sudoku.Data.CellStatus@,System.Int16@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
-            <param name="this">(<see langword="this" /> parameter) The value.</param>
-            <param name="cellStatus">(<see langword="out" /> parameter) The cell status.</param>
-            <param name="candidatesMask">(<see langword="out" /> parameter) The candidate mask.</param>
-        </member>
         <member name="T:Sudoku.Solving.Generating.BasicPuzzleGenerator">
             <summary>
             Encapsulates a puzzle generator, which provides the symmetry type constraint
@@ -1370,7 +1303,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueSearcher">
             <summary>
-            Encapsulates an <b>ALS-XY-Wing</b> technique.
+            Encapsulates an <b>almost locked sets XY-Wing</b> technique.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueSearcher._allowOverlapping">
@@ -4268,10 +4201,10 @@
             </summary>
             <param name="conclusions">All conclusions.</param>
             <param name="views">All views.</param>
-            <param name="symmetricalType">The symmetry type.</param>
+            <param name="symmetryType">The symmetry type.</param>
             <param name="mappingTable">The mapping table.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Symmetry.GspTechniqueInfo.SymmetricalType">
+        <member name="P:Sudoku.Solving.Manual.Symmetry.GspTechniqueInfo.SymmetryType">
             <summary>
             Indicates the symmetry type.
             </summary>
@@ -6814,160 +6747,6 @@
             </summary>
             <param name="size">The size.</param>
             <returns>The name.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Utils.GridUtils">
-            <summary>
-            Provides extension method used for grid calculating.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.GridUtils.IsBivalueCell(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int16@)">
-            <summary>
-            <para>Indicates whether the specified cell is a bivalue cell.</para>
-            <para>
-            Note that given and modifiable cells always make this method
-            return <see langword="false"/>.
-            </para>
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <param name="cellOffset">The cell offset.</param>
-            <param name="mask">
-            (<see langword="out"/> parameter) The result mask. The mask consists of
-            9 bits, where the set bits means the digit exists in this cell; otherwise,
-            the bit will not be set.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.GridUtils.IsBilocationRegion(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int16@)">
-            <summary>
-            <para>
-            Indicates whether the specified region is a bi-location region
-            for the specified digit.
-            </para>
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="region">The region.</param>
-            <param name="mask">
-            (<see langword="out"/> parameter) The mask off digit appearing mask.
-            If the region has the value cell with this digit, this value will be 0.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.GridUtils.CandidateExists(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32)">
-            <summary>
-            <para>
-            Indicates whether the specified grid contains the candidate.
-            </para>
-            <para>
-            If you want to check the reversal case, please use the method
-            <see cref="M:Sudoku.Solving.Utils.GridUtils.CandidateDoesNotExist(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32)"/> instead
-            of '<c>!grid.CandidateExists</c>'.
-            Note that given and modifiable cells always make this method
-            return <see langword="false"/>.
-            </para>
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <param name="cellOffset">The cell offset.</param>
-            <param name="digit">The digit.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <seealso cref="M:Sudoku.Solving.Utils.GridUtils.CandidateDoesNotExist(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.GridUtils.CandidateDoesNotExist(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32)">
-            <summary>
-            <para>
-            Indicates whether the specified grid <b>does not</b> contain the candidate.
-            </para>
-            <para>
-            If you want to check the reversal case, please use the method
-            <see cref="M:Sudoku.Solving.Utils.GridUtils.CandidateExists(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32)"/> instead
-            of '<c>!grid.CandidateDoesNotExist</c>'.
-            Note that given and modifiable cells always make this method
-            return <see langword="false"/>.
-            </para>
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <param name="cellOffset">The cell offset.</param>
-            <param name="digit">The digit.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <seealso cref="M:Sudoku.Solving.Utils.GridUtils.CandidateExists(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.GridUtils.HasDigitValue(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32)">
-            <summary>
-            Checks whether the specified digit has given or modifiable values in
-            the specified region.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="regionOffset">The region.</param>
-            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.GridUtils.GetDigitAppearingMask(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32)">
-            <summary>
-            <para>
-            Gets a mask of digit appearing in the specified region offset.
-            </para>
-            <para>
-            Note that given and modifiable cells always make this method
-            return <see langword="false"/>.
-            </para>
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="regionOffset">The region.</param>
-            <returns>
-            The mask. This value consists of 9 bits, which represents all nine cells
-            in a specified region. The mask uses 1 to make the cell 'have this digit',
-            and 0 to make the cell 'does not have this digit'.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.GridUtils.GetDigitAppearingCells(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32)">
-            <summary>
-            <para>
-            Gets a <see cref="T:Sudoku.Data.GridMap"/> of cells whose input digit appearing
-            in the specified region offset.
-            </para>
-            <para>
-            Note that given and modifiable cells always make this method
-            return <see langword="false"/>.
-            </para>
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="regionOffset">The region.</param>
-            <returns>The cells' map.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.GridUtils.GetDigitAppearingMask(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,Sudoku.Data.GridMap)">
-            <summary>
-            <para>
-            Gets a mask of digit appearing in the specified region offset.
-            If the cell is not in <paramref name="map"/>, its mask will
-            not calculated to the result.
-            </para>
-            <para>
-            Note that given and modifiable cells always make this method
-            return <see langword="false"/>.
-            </para>
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="regionOffset">The region offset.</param>
-            <param name="map">The grid map.</param>
-            <returns>
-            The mask. This value consists of 9 bits, which represents all nine cells
-            in a specified region. The mask uses 1 to make the cell 'have this digit',
-            and 0 to make the cell 'does not have this digit'.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.GridUtils.GetBivalueCellsMap(Sudoku.Data.IReadOnlyGrid,System.Int32@)">
-            <summary>
-            Find all bivalue cells displaying with a <see cref="T:Sudoku.Data.GridMap"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <param name="count">
-            (<see langword="out"/> parameter) The number of bivalue cells.
-            This parameter is only used for quickening the code running.
-            </param>
-            <returns>The grid map.</returns>
         </member>
         <member name="T:Sudoku.Solving.Utils.NodeCollection">
             <summary>

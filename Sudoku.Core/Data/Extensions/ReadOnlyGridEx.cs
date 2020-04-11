@@ -2,20 +2,38 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Data.Extensions;
-using Sudoku.Solving.Extensions;
+using Sudoku.Extensions;
 using static Sudoku.GridProcessings;
 
-namespace Sudoku.Solving.Utils
+namespace Sudoku.Data.Extensions
 {
 	/// <summary>
-	/// Provides extension method used for grid calculating.
+	/// Provides extension methods on <see cref="IReadOnlyGrid"/>.
 	/// </summary>
+	/// <seealso cref="IReadOnlyGrid"/>
 	[DebuggerStepThrough]
-	[Obsolete("Please use static class 'ReadOnlyGridEx' instead.")]
-	public static class GridUtils
+	public static class ReadOnlyGridEx
 	{
+		/// <summary>
+		/// Convert the current read-only grid to mutable one.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <returns>The mutable one.</returns>
+		/// <remarks>
+		/// This method is only use type conversion, so the return value has a same
+		/// reference with this specified argument holds.
+		/// </remarks>
+		/// <exception cref="InvalidCastException">
+		/// Throws when <see cref="IReadOnlyGrid"/> cannot convert to a <see cref="Grid"/>.
+		/// </exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Grid ToMutable(this IReadOnlyGrid @this)
+		{
+			return @this is Grid result
+				? result
+				: throw new InvalidCastException("The specified read-only grid cannot converted to a normal sudoku grid.");
+		}
+
 		/// <summary>
 		/// <para>Indicates whether the specified cell is a bivalue cell.</para>
 		/// <para>
@@ -32,7 +50,6 @@ namespace Sudoku.Solving.Utils
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[Obsolete("Please use 'ReadOnlyGridEx.IsBivalueCell(IReadOnlyGrid, int, out short)' instead.")]
 		public static bool IsBivalueCell(
 			this IReadOnlyGrid @this, int cellOffset, out short mask)
 		{
@@ -61,7 +78,6 @@ namespace Sudoku.Solving.Utils
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[Obsolete("Please use 'ReadOnlyGridEx.IsBilocationRegion(IReadOnlyGrid, int, int, out short)' instead.")]
 		public static bool IsBilocationRegion(
 			this IReadOnlyGrid @this, int digit, int region, out short mask)
 		{
@@ -77,49 +93,93 @@ namespace Sudoku.Solving.Utils
 
 		/// <summary>
 		/// <para>
-		/// Indicates whether the specified grid contains the candidate.
+		/// Indicates whether the specified grid contains the specified candidate.
 		/// </para>
 		/// <para>
-		/// If you want to check the reversal case, please use the method
-		/// <see cref="CandidateDoesNotExist(IReadOnlyGrid, int, int)"/> instead
-		/// of '<c>!grid.CandidateExists</c>'.
-		/// Note that given and modifiable cells always make this method
-		/// return <see langword="false"/>.
+		/// The return value will be <see langword="true"/> if and only if
+		/// the cell that the candidate lies on is empty and the cell contains that digit.
+		/// The cases of the return value are below:
+		/// <list type="table">
+		/// <item>
+		/// <term><c><see langword="true"/></c></term>
+		/// <description>
+		/// The cell is an empty cell <b>and</b> contains the specified digit.
+		/// </description>
+		/// </item>
+		/// <item>
+		/// <term><c><see langword="false"/></c></term>
+		/// <description>
+		/// The cell is an empty cell <b>but doesn't</b> contain the specified digit.
+		/// </description>
+		/// </item>
+		/// <item>
+		/// <term><c><see langword="null"/></c></term>
+		/// <description>The cell is <b>not</b> an empty cell.</description>
+		/// </item>
+		/// </list>
+		/// </para>
+		/// <para>
+		/// Note that the method will return a <see cref="bool"/>?, so you should use the code
+		/// to decide whether a condition is true: '<c>grid.Exists(candidate) is true</c>'
+		/// or nullable-equal-style code '<c>grid.Exists(candidate) == true</c>'.
 		/// </para>
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
-		/// <param name="cellOffset">The cell offset.</param>
-		/// <param name="digit">The digit.</param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		/// <seealso cref="CandidateDoesNotExist(IReadOnlyGrid, int, int)"/>
+		/// <param name="candidateOffset">The candidate offset.</param>
+		/// <returns>
+		/// A <see cref="bool"/>? value indicating that.
+		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[Obsolete("Please use 'ReadOnlyGridEx.Exists(IReadOnlyGrid, int, int)' instead.")]
-		public static bool CandidateExists(
-			this IReadOnlyGrid @this, int cellOffset, int digit) =>
-			@this.GetCellStatus(cellOffset) == CellStatus.Empty && !@this[cellOffset, digit];
+		public static bool? Exists(this IReadOnlyGrid @this, int candidateOffset) =>
+			@this.Exists(candidateOffset / 9, candidateOffset % 9);
 
 		/// <summary>
 		/// <para>
-		/// Indicates whether the specified grid <b>does not</b> contain the candidate.
+		/// Indicates whether the specified grid contains the digit in the specified cell.
 		/// </para>
 		/// <para>
-		/// If you want to check the reversal case, please use the method
-		/// <see cref="CandidateExists(IReadOnlyGrid, int, int)"/> instead
-		/// of '<c>!grid.CandidateDoesNotExist</c>'.
-		/// Note that given and modifiable cells always make this method
-		/// return <see langword="false"/>.
+		/// The return value will be <see langword="true"/> if and only if
+		/// the cell is empty and contains that digit. The cases of the return value are below:
+		/// <list type="table">
+		/// <item>
+		/// <term><c><see langword="true"/></c></term>
+		/// <description>
+		/// The cell is an empty cell <b>and</b> contains the specified digit.
+		/// </description>
+		/// </item>
+		/// <item>
+		/// <term><c><see langword="false"/></c></term>
+		/// <description>
+		/// The cell is an empty cell <b>but doesn't</b> contain the specified digit.
+		/// </description>
+		/// </item>
+		/// <item>
+		/// <term><c><see langword="null"/></c></term>
+		/// <description>The cell is <b>not</b> an empty cell.</description>
+		/// </item>
+		/// </list>
+		/// </para>
+		/// <para>
+		/// Note that the method will return a <see cref="bool"/>?, so you should use the code
+		/// to decide whether a condition is true: '<c>grid.Exists(candidate) is true</c>'
+		/// or nullable-equal-style code '<c>grid.Exists(candidate) == true</c>'.
 		/// </para>
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <param name="cellOffset">The cell offset.</param>
 		/// <param name="digit">The digit.</param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		/// <seealso cref="CandidateExists(IReadOnlyGrid, int, int)"/>
+		/// <returns>
+		/// A <see cref="bool"/>? value indicating that.
+		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[Obsolete("Please use 'ReadOnlyGridEx.Exists(IReadOnlyGrid, int, int)' instead.")]
-		public static bool CandidateDoesNotExist(
-			this IReadOnlyGrid @this, int cellOffset, int digit) =>
-			@this.GetCellStatus(cellOffset) == CellStatus.Empty && @this[cellOffset, digit];
+		public static bool? Exists(this IReadOnlyGrid @this, int cellOffset, int digit)
+		{
+			return @this.GetCellStatus(cellOffset) switch
+			{
+				CellStatus.Empty => !@this[cellOffset, digit],
+				_ => null
+			};
+		}
 
 		/// <summary>
 		/// Checks whether the specified digit has given or modifiable values in
@@ -151,59 +211,20 @@ namespace Sudoku.Solving.Utils
 		/// in a specified region. The mask uses 1 to make the cell 'have this digit',
 		/// and 0 to make the cell 'does not have this digit'.
 		/// </returns>
-		[Obsolete("Please use 'ReadOnlyGridEx.GetDigitAppearingMask(IReadOnlyGrid, int, int)' instead.")]
 		public static short GetDigitAppearingMask(
 			this IReadOnlyGrid @this, int digit, int regionOffset)
 		{
-			int result = 0, i = 0;
-			foreach (int cellOffset in RegionCells[regionOffset])
+			int result = 0;
+			int[] cells = RegionCells[regionOffset];
+			for (int i = 0, length = cells.Length; i < length; result = i != 8 ? result << 1 : result, i++)
 			{
-				result += @this.CandidateExists(cellOffset, digit) ? 1 : 0;
-
-				if (i++ == 8)
-				{
-					continue;
-				}
-
-				result <<= 1;
+				result += @this.Exists(cells[i], digit) is true ? 1 : 0;
 			}
 
 			// Now should reverse all bits. Note that this extension method
 			// will be passed a ref value ('ref int', not 'int').
 			result.ReverseBits();
 			return (short)(result >> 23 & 511); // 23 == 32 - 9
-		}
-
-		/// <summary>
-		/// <para>
-		/// Gets a <see cref="GridMap"/> of cells whose input digit appearing
-		/// in the specified region offset.
-		/// </para>
-		/// <para>
-		/// Note that given and modifiable cells always make this method
-		/// return <see langword="false"/>.
-		/// </para>
-		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
-		/// <param name="digit">The digit.</param>
-		/// <param name="regionOffset">The region.</param>
-		/// <returns>The cells' map.</returns>
-		[Obsolete("Please use 'ReadOnlyGridEx.GetDigitAppearingCells(IReadOnlyGrid, int, int)' instead.")]
-		public static GridMap GetDigitAppearingCells(
-			this IReadOnlyGrid @this, int digit, int regionOffset)
-		{
-			var result = GridMap.Empty;
-			foreach (int cell in RegionCells[regionOffset])
-			{
-				if (!@this.CandidateExists(cell, digit))
-				{
-					continue;
-				}
-
-				result.Add(cell);
-			}
-
-			return result;
 		}
 
 		/// <summary>
@@ -226,14 +247,13 @@ namespace Sudoku.Solving.Utils
 		/// in a specified region. The mask uses 1 to make the cell 'have this digit',
 		/// and 0 to make the cell 'does not have this digit'.
 		/// </returns>
-		[Obsolete("Please use 'ReadOnlyGridEx.GetDigitAppearingMask(IReadOnlyGrid, int, int, GridMap)' instead.")]
 		public static short GetDigitAppearingMask(
 			this IReadOnlyGrid @this, int digit, int regionOffset, GridMap map)
 		{
 			int result = 0, i = 0;
 			foreach (int cell in RegionCells[regionOffset])
 			{
-				result += @this.CandidateExists(cell, digit) && map[cell] ? 1 : 0;
+				result += @this.Exists(cell, digit) is true && map[cell] ? 1 : 0;
 
 				if (i++ != 8)
 				{
@@ -243,6 +263,37 @@ namespace Sudoku.Solving.Utils
 
 			result.ReverseBits();
 			return (short)(result >> 23 & 511); // 23 == 32 - 9
+		}
+
+		/// <summary>
+		/// <para>
+		/// Gets a <see cref="GridMap"/> of cells whose input digit appearing
+		/// in the specified region offset.
+		/// </para>
+		/// <para>
+		/// Note that given and modifiable cells always make this method
+		/// return <see langword="false"/>.
+		/// </para>
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="digit">The digit.</param>
+		/// <param name="regionOffset">The region.</param>
+		/// <returns>The cells' map.</returns>
+		public static GridMap GetDigitAppearingCells(
+			this IReadOnlyGrid @this, int digit, int regionOffset)
+		{
+			var result = GridMap.Empty;
+			foreach (int cell in RegionCells[regionOffset])
+			{
+				if (!(@this.Exists(cell, digit) is true))
+				{
+					continue;
+				}
+
+				result.Add(cell);
+			}
+
+			return result;
 		}
 
 		/// <summary>

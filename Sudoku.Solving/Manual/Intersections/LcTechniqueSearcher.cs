@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 using Intersection = System.ValueTuple<int, int, Sudoku.Data.GridMap, Sudoku.Data.GridMap>;
 
 namespace Sudoku.Solving.Manual.Intersections
@@ -76,7 +76,7 @@ namespace Sudoku.Solving.Manual.Intersections
 						// 'digit' is locked number.
 						foreach (int offset in intersection.Offsets)
 						{
-							if (!grid.CandidateExists(offset, digit))
+							if (!(grid.Exists(offset, digit) is true))
 							{
 								continue;
 							}

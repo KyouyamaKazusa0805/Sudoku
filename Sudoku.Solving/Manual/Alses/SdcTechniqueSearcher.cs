@@ -4,7 +4,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
-using Sudoku.Solving.Extensions;
+using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Alses
@@ -287,24 +287,30 @@ namespace Sudoku.Solving.Manual.Alses
 						var tempMap = GridMap.Empty;
 						foreach (int cell in takenCellsInBlockMap.Offsets)
 						{
-							if (grid.CandidateExists(cell, digit))
+							if (!(grid.Exists(cell, digit) is true))
 							{
-								tempMap.Add(cell);
+								continue;
 							}
+
+							tempMap.Add(cell);
 						}
 						foreach (int cell in takenCellsInNonblockMap.Offsets)
 						{
-							if (grid.CandidateExists(cell, digit))
+							if (!(grid.Exists(cell, digit) is true))
 							{
-								tempMap.Add(cell);
+								continue;
 							}
+
+							tempMap.Add(cell);
 						}
 						foreach (int cell in interEmptyCells)
 						{
-							if (grid.CandidateExists(cell, digit))
+							if (!(grid.Exists(cell, digit) is true))
 							{
-								tempMap.Add(cell);
+								continue;
 							}
+
+							tempMap.Add(cell);
 						}
 
 						if (tempMap.Count == 1)
@@ -353,11 +359,13 @@ namespace Sudoku.Solving.Manual.Alses
 						{
 							foreach (int cell in (elimUnion & _regionMaps[region]).Offsets)
 							{
-								if (grid.CandidateExists(cell, digit))
+								if (!(grid.Exists(cell, digit) is true))
 								{
-									conclusions.AddIfDoesNotContain(
-										new Conclusion(ConclusionType.Elimination, cell, digit));
+									continue;
 								}
+
+								conclusions.AddIfDoesNotContain(
+									new Conclusion(ConclusionType.Elimination, cell, digit));
 							}
 						}
 					}

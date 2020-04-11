@@ -4,8 +4,8 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing.Extensions;
+using Sudoku.Extensions;
 using Sudoku.Solving;
 using static System.Math;
 

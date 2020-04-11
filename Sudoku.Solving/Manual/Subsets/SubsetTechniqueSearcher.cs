@@ -268,7 +268,7 @@ namespace Sudoku.Solving.Manual.Subsets
 				// Add eliminations by each digit.
 				foreach (int offset in tempMap.Offsets)
 				{
-					if (grid.CandidateExists(offset, digit))
+					if (grid.Exists(offset, digit) is true)
 					{
 						result.Add(new Conclusion(ConclusionType.Elimination, offset, digit));
 					}

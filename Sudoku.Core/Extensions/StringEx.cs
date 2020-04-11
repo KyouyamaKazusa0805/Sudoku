@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.Contracts;
 using System.Text.RegularExpressions;
 
-namespace Sudoku.Data.Extensions
+namespace Sudoku.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="string"/>.
@@ -20,9 +19,16 @@ namespace Sudoku.Data.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The value to check.</param>
 		/// <param name="pattern">The regular expression pattern.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		/// <exception cref="InvalidRegexStringException">
+		/// Throws when the specified <paramref name="pattern"/> is not an valid regular
+		/// expression pattern.
+		/// </exception>
 		public static bool SatisfyPattern(this string @this, string pattern)
 		{
-			Contract.Requires(pattern.IsRegexPattern());
+			if (!pattern.IsRegexPattern())
+			{
+				throw new InvalidRegexStringException();
+			}
 
 			string? match = @this.Match(pattern);
 			return !(match is null) && match == @this;
@@ -40,9 +46,16 @@ namespace Sudoku.Data.Extensions
 		/// method <see cref="Regex.IsMatch(string, string)"/>.
 		/// </remarks>
 		/// <seealso cref="Regex.IsMatch(string, string)"/>
+		/// <exception cref="InvalidRegexStringException">
+		/// Throws when the specified <paramref name="pattern"/> is not an valid regular
+		/// expression pattern.
+		/// </exception>
 		public static bool IsMatch(this string @this, string pattern)
 		{
-			Contract.Requires(pattern.IsRegexPattern());
+			if (!pattern.IsRegexPattern())
+			{
+				throw new InvalidRegexStringException();
+			}
 
 			return Regex.IsMatch(@this, pattern);
 		}
@@ -62,9 +75,16 @@ namespace Sudoku.Data.Extensions
 		/// method <see cref="Regex.Match(string, string)"/>.
 		/// </remarks>
 		/// <seealso cref="Regex.Match(string, string)"/>
+		/// <exception cref="InvalidRegexStringException">
+		/// Throws when the specified <paramref name="pattern"/> is not an valid regular
+		/// expression pattern.
+		/// </exception>
 		public static string? Match(this string @this, string pattern)
 		{
-			Contract.Requires(pattern.IsRegexPattern());
+			if (!pattern.IsRegexPattern())
+			{
+				throw new InvalidRegexStringException();
+			}
 
 			return @this.Match(pattern, RegexOptions.None);
 		}
@@ -84,11 +104,17 @@ namespace Sudoku.Data.Extensions
 		/// This method is a syntactic sugar of the calling
 		/// method <see cref="Regex.Match(string, string, RegexOptions)"/>.
 		/// </remarks>
+		/// <exception cref="InvalidRegexStringException">
+		/// Throws when the specified <paramref name="pattern"/> is not an valid regular
+		/// expression pattern.
+		/// </exception>
 		/// <seealso cref="Regex.Match(string, string, RegexOptions)"/>
-		public static string? Match(
-			this string @this, string pattern, RegexOptions regexOption)
+		public static string? Match(this string @this, string pattern, RegexOptions regexOption)
 		{
-			Contract.Requires(pattern.IsRegexPattern());
+			if (!pattern.IsRegexPattern())
+			{
+				throw new InvalidRegexStringException();
+			}
 
 			var match = Regex.Match(@this, pattern, regexOption);
 			return match.Success ? match.Value : null;
@@ -108,10 +134,17 @@ namespace Sudoku.Data.Extensions
 		/// This method is a syntactic sugar of the calling
 		/// method <see cref="Regex.Matches(string, string)"/>.
 		/// </remarks>
+		/// <exception cref="InvalidRegexStringException">
+		/// Throws when the specified <paramref name="pattern"/> is not an valid regular
+		/// expression pattern.
+		/// </exception>
 		/// <seealso cref="Regex.Matches(string, string)"/>
 		public static string[] MatchAll(this string @this, string pattern)
 		{
-			Contract.Requires(pattern.IsRegexPattern());
+			if (!pattern.IsRegexPattern())
+			{
+				throw new InvalidRegexStringException();
+			}
 
 			return @this.MatchAll(pattern, RegexOptions.None);
 		}
@@ -132,11 +165,18 @@ namespace Sudoku.Data.Extensions
 		/// This method is a syntactic sugar of the calling
 		/// method <see cref="Regex.Matches(string, string, RegexOptions)"/>.
 		/// </remarks>
+		/// <exception cref="InvalidRegexStringException">
+		/// Throws when the specified <paramref name="pattern"/> is not an valid regular
+		/// expression pattern.
+		/// </exception>
 		/// <seealso cref="Regex.Matches(string, string, RegexOptions)"/>
 		public static string[] MatchAll(
 			this string @this, string pattern, RegexOptions regexOption)
 		{
-			Contract.Requires(pattern.IsRegexPattern());
+			if (!pattern.IsRegexPattern())
+			{
+				throw new InvalidRegexStringException();
+			}
 
 			var matches = Regex.Matches(@this, pattern, regexOption);
 			var result = new List<string>();

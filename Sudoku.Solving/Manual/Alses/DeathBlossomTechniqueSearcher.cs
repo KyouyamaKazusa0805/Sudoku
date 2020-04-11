@@ -3,7 +3,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
-using Sudoku.Solving.Extensions;
+using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Alses
@@ -11,7 +11,7 @@ namespace Sudoku.Solving.Manual.Alses
 	/// <summary>
 	/// Encapsulates a <b>death blossom</b> technique.
 	/// </summary>
-	[TechniqueDisplay("Almost Locked Sets XY-Wing")]
+	[TechniqueDisplay("Death Blossom")]
 	public sealed class DeathBlossomTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <summary>
@@ -141,7 +141,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 							foreach (int cell in elimMap.Offsets)
 							{
-								if (!grid.CandidateExists(cell, d))
+								if (!(grid.Exists(cell, d) is true))
 								{
 									continue;
 								}

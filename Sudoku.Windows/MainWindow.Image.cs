@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing.Extensions;
+using Sudoku.Extensions;
 using Sudoku.Windows.Drawing.Layers;
 
 namespace Sudoku.Windows

@@ -99,10 +99,12 @@ namespace Sudoku.Solving.Manual.Sdps
 
 						foreach (int cell in gridMap.Offsets)
 						{
-							if (grid.CandidateExists(cell, digit))
+							if (!(grid.Exists(cell, digit) is true))
 							{
-								conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, digit));
+								continue;
 							}
+
+							conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, digit));
 						}
 
 						if (conclusions.Count == 0)
@@ -128,7 +130,7 @@ namespace Sudoku.Solving.Manual.Sdps
 										{
 											(0, r1),
 											(0, r2),
-											(1, (int)sameRegion)
+											(1, sameRegion.Value)
 										},
 										links: null)
 								},

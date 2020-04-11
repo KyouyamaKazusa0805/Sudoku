@@ -129,7 +129,7 @@ namespace Sudoku.Solving.Manual.Fishes
 											if ((temp & 1) != 0)
 											{
 												int possibleFinCellOffset = RegionUtils.GetCellOffset(baseSet, x);
-												if (!grid.CandidateExists(possibleFinCellOffset, digit))
+												if (!(grid.Exists(possibleFinCellOffset, digit) is true))
 												{
 													continue;
 												}
@@ -161,7 +161,7 @@ namespace Sudoku.Solving.Manual.Fishes
 										var elimList = new List<int>();
 										foreach (int offset in elimMap.Offsets)
 										{
-											if (!grid.CandidateExists(offset, digit))
+											if (!(grid.Exists(offset, digit) is true))
 											{
 												continue;
 											}
@@ -178,7 +178,7 @@ namespace Sudoku.Solving.Manual.Fishes
 										// Check all highlight candidates.
 										var highlightCandidates = new List<(int, int)>(
 											from cellOffset in bodyMap.Offsets
-											where grid.CandidateExists(cellOffset, digit)
+											where grid.Exists(cellOffset, digit) is true
 											select (0, cellOffset * 9 + digit));
 										if (!(finCells is null))
 										{
@@ -197,7 +197,7 @@ namespace Sudoku.Solving.Manual.Fishes
 											foreach (int offset in bodyMap.Offsets)
 											{
 												if (offset / 9 / 3 * 3 + offset % 9 / 3 == block
-													&& grid.CandidateExists(offset, digit))
+													&& grid.Exists(offset, digit) is true)
 												{
 													isSashimi = false;
 													break;
@@ -307,7 +307,7 @@ namespace Sudoku.Solving.Manual.Fishes
 														if ((temp & 1) != 0)
 														{
 															int possibleFinCellOffset = RegionUtils.GetCellOffset(baseSet, x);
-															if (!grid.CandidateExists(possibleFinCellOffset, digit))
+															if (!(grid.Exists(possibleFinCellOffset, digit) is true))
 															{
 																continue;
 															}
@@ -339,7 +339,7 @@ namespace Sudoku.Solving.Manual.Fishes
 													var elimList = new List<int>();
 													foreach (int offset in elimMap.Offsets)
 													{
-														if (!grid.CandidateExists(offset, digit))
+														if (!(grid.Exists(offset, digit) is true))
 														{
 															continue;
 														}
@@ -356,7 +356,7 @@ namespace Sudoku.Solving.Manual.Fishes
 													// Check all highlight candidates.
 													var highlightCandidates = new List<(int, int)>(
 														from cellOffset in bodyMap.Offsets
-														where grid.CandidateExists(cellOffset, digit)
+														where grid.Exists(cellOffset, digit) is true
 														select (0, cellOffset * 9 + digit));
 													if (!(finCells is null))
 													{
@@ -375,7 +375,7 @@ namespace Sudoku.Solving.Manual.Fishes
 														foreach (int offset in bodyMap.Offsets)
 														{
 															if (offset / 9 / 3 * 3 + offset % 9 / 3 == block
-																&& grid.CandidateExists(offset, digit))
+																&& grid.Exists(offset, digit) is true)
 															{
 																isSashimi = false;
 																break;
@@ -492,7 +492,7 @@ namespace Sudoku.Solving.Manual.Fishes
 																if ((temp & 1) != 0)
 																{
 																	int possibleFinCellOffset = RegionUtils.GetCellOffset(baseSet, x);
-																	if (!grid.CandidateExists(possibleFinCellOffset, digit))
+																	if (!(grid.Exists(possibleFinCellOffset, digit) is true))
 																	{
 																		continue;
 																	}
@@ -524,7 +524,7 @@ namespace Sudoku.Solving.Manual.Fishes
 															var elimList = new List<int>();
 															foreach (int offset in elimMap.Offsets)
 															{
-																if (!grid.CandidateExists(offset, digit))
+																if (!(grid.Exists(offset, digit) is true))
 																{
 																	continue;
 																}
@@ -541,7 +541,7 @@ namespace Sudoku.Solving.Manual.Fishes
 															// Check all highlight candidates.
 															var highlightCandidates = new List<(int, int)>(
 																from cellOffset in bodyMap.Offsets
-																where grid.CandidateExists(cellOffset, digit)
+																where grid.Exists(cellOffset, digit) is true
 																select (0, cellOffset * 9 + digit));
 															if (!(finCells is null))
 															{
@@ -560,7 +560,7 @@ namespace Sudoku.Solving.Manual.Fishes
 																foreach (int offset in bodyMap.Offsets)
 																{
 																	if (offset / 9 / 3 * 3 + offset % 9 / 3 == block
-																		&& grid.CandidateExists(offset, digit))
+																		&& grid.Exists(offset, digit) is true)
 																	{
 																		isSashimi = false;
 																		break;

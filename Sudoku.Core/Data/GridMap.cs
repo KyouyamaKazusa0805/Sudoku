@@ -6,7 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using Sudoku.Data.Extensions;
+using Sudoku.Extensions;
 using static Sudoku.GridProcessings;
 
 namespace Sudoku.Data

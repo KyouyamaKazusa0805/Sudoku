@@ -3,8 +3,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
-using Sudoku.Solving.Extensions;
-using Sudoku.Solving.Utils;
+using Sudoku.Extensions;
 using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Manual.Sdps
@@ -108,7 +107,7 @@ namespace Sudoku.Solving.Manual.Sdps
 						}
 
 						int elimCell = elimCellMap.Offsets.First();
-						if (!grid.CandidateExists(elimCell, digit))
+						if (!(grid.Exists(elimCell, digit) is true))
 						{
 							continue;
 						}
@@ -118,10 +117,12 @@ namespace Sudoku.Solving.Manual.Sdps
 						var cpCells = new List<int>(2);
 						foreach (int cell in RegionCells[block])
 						{
-							if (grid.CandidateExists(cell, digit))
+							if (!(grid.Exists(cell, digit) is true))
 							{
-								candidateOffsets.Add((1, cell * 9 + digit));
+								continue;
 							}
+
+							candidateOffsets.Add((1, cell * 9 + digit));
 						}
 						foreach (int cell in linkMap.Offsets)
 						{
@@ -166,31 +167,37 @@ namespace Sudoku.Solving.Manual.Sdps
 			int c = block % 3 * 3 + 18;
 			for (int i = r, count = 0; i < r + 3; i++)
 			{
-				if ((blockMap & _regionMaps[i]).IsEmpty && ++count > 1)
+				if ((blockMap & _regionMaps[i]).IsNotEmpty || ++count <= 1)
 				{
-					row = column = -1;
-					return false;
+					continue;
 				}
+
+				row = column = -1;
+				return false;
 			}
 
 			for (int i = c, count = 0; i < c + 3; i++)
 			{
-				if ((blockMap & _regionMaps[i]).IsEmpty && ++count > 1)
+				if ((blockMap & _regionMaps[i]).IsNotEmpty || ++count <= 1)
 				{
-					row = column = -1;
-					return false;
+					continue;
 				}
+
+				row = column = -1;
+				return false;
 			}
 
 			for (int i = r; i < r + 3; i++)
 			{
 				for (int j = c; j < c + 3; j++)
 				{
-					if ((blockMap - (_regionMaps[i] | _regionMaps[j])).IsEmpty)
+					if ((blockMap - (_regionMaps[i] | _regionMaps[j])).IsNotEmpty)
 					{
-						(row, column) = (i, j);
-						return true;
+						continue;
 					}
+
+					(row, column) = (i, j);
+					return true;
 				}
 			}
 

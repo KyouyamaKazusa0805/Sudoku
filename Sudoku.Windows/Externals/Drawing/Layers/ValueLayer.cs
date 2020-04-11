@@ -3,6 +3,7 @@ using System.Drawing.Text;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using Sudoku.Extensions;
 
 namespace Sudoku.Drawing.Layers
 {

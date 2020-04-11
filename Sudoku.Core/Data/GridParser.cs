@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using Sudoku.Data.Extensions;
 using System.Linq;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridParsingOption;
+using Sudoku.Extensions;
 
 namespace Sudoku.Data
 {

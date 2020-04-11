@@ -1,9 +1,7 @@
 ﻿using System.Diagnostics;
-using Sudoku.Data;
-using Sudoku.Data.Extensions;
-using Sudoku.Solving.Utils;
+using Sudoku.Extensions;
 
-namespace Sudoku.Solving.Extensions
+namespace Sudoku.Data.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Grid"/> and <see cref="IReadOnlyGrid"/>.
@@ -13,7 +11,7 @@ namespace Sudoku.Solving.Extensions
 	[DebuggerStepThrough]
 	public static class GridSolvingExtensions
 	{
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <param name="emptyCells">
 		/// (<see langword="out"/> parameter) The distribution of all empty cells.
@@ -89,10 +87,12 @@ namespace Sudoku.Solving.Extensions
 
 				for (int cell = 0; cell < 81; cell++)
 				{
-					if (grid.CandidateExists(cell, i))
+					if (!(grid.Exists(cell, i) is true))
 					{
-						map.Add(cell);
+						continue;
 					}
+
+					map.Add(cell);
 				}
 			}
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using Sudoku.Extensions;
+using Sudoku.Data.Extensions;
 
 namespace Sudoku.Data.Stepping
 {

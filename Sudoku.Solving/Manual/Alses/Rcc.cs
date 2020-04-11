@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Alses
@@ -118,7 +119,7 @@ namespace Sudoku.Solving.Manual.Alses
 									// Check overlap regions contain common digits or not.
 									if (overlapMap
 										.Offsets
-										.Any(cell => grid.CandidateExists(cell, commonDigit)))
+										.Any(cell => grid.Exists(cell, commonDigit) is true))
 									{
 										continue;
 									}
@@ -201,10 +202,12 @@ namespace Sudoku.Solving.Manual.Alses
 			foreach (int cell in from pos in relativePos
 								 select RegionUtils.GetCellOffset(region, pos))
 			{
-				if (grid.CandidateExists(cell, digit))
+				if (!(grid.Exists(cell, digit) is true))
 				{
-					map.Add(cell);
+					continue;
 				}
+
+				map.Add(cell);
 			}
 
 			if (map.IsEmpty)

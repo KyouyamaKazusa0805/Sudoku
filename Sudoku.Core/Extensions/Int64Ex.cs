@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Sudoku.Data.Extensions
+namespace Sudoku.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="long"/>.
@@ -50,7 +50,7 @@ namespace Sudoku.Data.Extensions
 		{
 			for (int i = index + 1; i < 64; i++)
 			{
-				if ((@this & (1 << i)) != 0)
+				if ((@this & 1 << i) != 0)
 				{
 					return i;
 				}

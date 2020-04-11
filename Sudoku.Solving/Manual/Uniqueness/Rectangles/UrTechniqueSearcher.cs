@@ -164,17 +164,21 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 							{
 								foreach (int digit in digits)
 								{
-									if (grid.CandidateExists(cell, digit))
+									if (!(grid.Exists(cell, digit) is true))
 									{
-										candidateOffsets.Add((0, cell * 9 + digit));
+										continue;
 									}
+
+									candidateOffsets.Add((0, cell * 9 + digit));
 								}
 							}
 
-							if (grid.CandidateExists(cell, extraDigitReal))
+							if (!(grid.Exists(cell, extraDigitReal) is true))
 							{
-								candidateOffsets.Add((1, cell * 9 + extraDigitReal));
+								continue;
 							}
+
+							candidateOffsets.Add((1, cell * 9 + extraDigitReal));
 						}
 
 						// Record all eliminations.
@@ -182,12 +186,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						var elimMap = new GridMap(cellTriplet, GridMap.InitializeOption.ProcessPeersWithoutItself);
 						foreach (int cell in elimMap.Offsets)
 						{
-							if (grid.CandidateExists(cell, extraDigitReal))
+							if (!(grid.Exists(cell, extraDigitReal) is true))
 							{
-								conclusions.Add(
-									new Conclusion(
-										ConclusionType.Elimination, cell, extraDigitReal));
+								continue;
 							}
+
+							conclusions.Add(
+								new Conclusion(
+									ConclusionType.Elimination, cell, extraDigitReal));
 						}
 
 						// Check if worth.
@@ -250,10 +256,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						{
 							foreach (int digit in digits)
 							{
-								if (grid.CandidateExists(cell, digit))
+								if (!(grid.Exists(cell, digit) is true))
 								{
-									candidateOffsets.Add((0, cell * 9 + digit));
+									continue;
 								}
+
+								candidateOffsets.Add((0, cell * 9 + digit));
 							}
 						}
 					}
@@ -262,7 +270,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					var conclusions = new List<Conclusion>();
 					foreach (int digit in grid.GetCandidatesReversal(extraCell).GetAllSets())
 					{
-						if (grid.CandidateExists(extraCell, digit) && digits.Contains(digit))
+						if (grid.Exists(extraCell, digit) is true && digits.Contains(digit))
 						{
 							conclusions.Add(
 								new Conclusion(
@@ -392,26 +400,28 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						var candidateOffsets = new List<(int, int)>();
 						foreach (int cell in cellTriple)
 						{
-							if (grid.CandidateExists(cell, digit))
+							if (grid.Exists(cell, digit) is true)
 							{
 								candidateOffsets.Add((1, cell * 9 + digit));
 							}
-							if (grid.CandidateExists(cell, elimDigit))
+							if (grid.Exists(cell, elimDigit) is true)
 							{
 								candidateOffsets.Add((0, cell * 9 + elimDigit));
 							}
 						}
 						foreach (int d in digits)
 						{
-							if (grid.CandidateExists(extraCell, d))
+							if (!(grid.Exists(extraCell, d) is true))
 							{
-								candidateOffsets.Add((0, extraCell * 9 + d));
+								continue;
 							}
+
+							candidateOffsets.Add((0, extraCell * 9 + d));
 						}
 
 						// Record all eliminations.
 						var conclusions = new List<Conclusion>();
-						if (grid.CandidateExists(elimCell, elimDigit))
+						if (grid.Exists(elimCell, elimDigit) is true)
 						{
 							conclusions.Add(
 								new Conclusion(ConclusionType.Elimination, elimCell, elimDigit));
@@ -540,13 +550,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					{
 						foreach (int digit in digits)
 						{
-							if (urMode || !urMode && grid.GetCellStatus(cell) == Empty)
+							if (!urMode && (urMode || grid.GetCellStatus(cell) != Empty)
+								|| !(grid.Exists(cell, digit) is true))
 							{
-								if (grid.CandidateExists(cell, digit))
-								{
-									candidateOffsets.Add((0, cell * 9 + digit));
-								}
+								continue;
 							}
+
+							candidateOffsets.Add((0, cell * 9 + digit));
 						}
 					}
 
@@ -571,12 +581,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					var conclusions = new List<Conclusion>();
 					foreach (int cell in elimMap.Offsets)
 					{
-						if (grid.CandidateExists(cell, extraDigit))
+						if (!(grid.Exists(cell, extraDigit) is true))
 						{
-							conclusions.Add(
-								new Conclusion(
-									ConclusionType.Elimination, cell, extraDigit));
+							continue;
 						}
+
+						conclusions.Add(
+							new Conclusion(ConclusionType.Elimination, cell, extraDigit));
 					}
 
 					// Check if the type number is 2 or 5.
@@ -714,20 +725,24 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 							{
 								for (int x = 0, temp = otherDigitMask; x < 9; x++, temp >>= 1)
 								{
-									if ((temp & 1) != 0 && grid.CandidateExists(cell, x))
+									if ((temp & 1) == 0 || !(grid.Exists(cell, x) is true))
 									{
-										candidateOffsets.Add((1, cell * 9 + x));
+										continue;
 									}
+
+									candidateOffsets.Add((1, cell * 9 + x));
 								}
 								if (urMode
 									|| !urMode && grid.GetCellStatus(cell) == Empty)
 								{
 									for (int x = 0, temp = digitKindsMask & ~otherDigitMask; x < 9; x++, temp >>= 1)
 									{
-										if ((temp & 1) != 0 && grid.CandidateExists(cell, x))
+										if ((temp & 1) == 0 || !(grid.Exists(cell, x) is true))
 										{
-											candidateOffsets.Add((0, cell * 9 + x));
+											continue;
 										}
+
+										candidateOffsets.Add((0, cell * 9 + x));
 									}
 								}
 							}
@@ -740,18 +755,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 								{
 									var elimMap = new GridMap(
 										from cell in allCells
-										where grid.CandidateExists(cell, digit)
+										where grid.Exists(cell, digit) is true
 										select cell,
 										GridMap.InitializeOption.ProcessPeersWithoutItself);
 
 									foreach (int cell in elimMap.Offsets)
 									{
-										if (grid.CandidateExists(cell, digit))
+										if (!(grid.Exists(cell, digit) is true))
 										{
-											conclusions.Add(
-												new Conclusion(
-													ConclusionType.Elimination, cell, digit));
+											continue;
 										}
+
+										conclusions.Add(
+											new Conclusion(
+												ConclusionType.Elimination, cell, digit));
 									}
 								}
 							}
@@ -831,20 +848,24 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 									{
 										for (int x = 0, temp = otherDigitMask; x < 9; x++, temp >>= 1)
 										{
-											if ((temp & 1) != 0 && grid.CandidateExists(cell, x))
+											if ((temp & 1) == 0 || !(grid.Exists(cell, x) is true))
 											{
-												candidateOffsets.Add((1, cell * 9 + x));
+												continue;
 											}
+
+											candidateOffsets.Add((1, cell * 9 + x));
 										}
 										if (urMode
 											|| !urMode && grid.GetCellStatus(cell) == Empty)
 										{
 											for (int x = 0, temp = digitKindsMask & ~otherDigitMask; x < 9; x++, temp >>= 1)
 											{
-												if ((temp & 1) != 0 && grid.CandidateExists(cell, x))
+												if ((temp & 1) == 0 || !(grid.Exists(cell, x) is true))
 												{
-													candidateOffsets.Add((0, cell * 9 + x));
+													continue;
 												}
+
+												candidateOffsets.Add((0, cell * 9 + x));
 											}
 										}
 									}
@@ -857,18 +878,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										{
 											var elimMap = new GridMap(
 												from cell in allCells
-												where grid.CandidateExists(cell, digit)
+												where grid.Exists(cell, digit) is true
 												select cell,
 												GridMap.InitializeOption.ProcessPeersWithoutItself);
 
 											foreach (int cell in elimMap.Offsets)
 											{
-												if (grid.CandidateExists(cell, digit))
+												if (!(grid.Exists(cell, digit) is true))
 												{
-													conclusions.Add(
-														new Conclusion(
-															ConclusionType.Elimination, cell, digit));
+													continue;
 												}
+
+												conclusions.Add(
+													new Conclusion(
+														ConclusionType.Elimination, cell, digit));
 											}
 										}
 									}
@@ -946,20 +969,24 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										{
 											for (int x = 0, temp = otherDigitMask; x < 9; x++, temp >>= 1)
 											{
-												if ((temp & 1) != 0 && grid.CandidateExists(cell, x))
+												if ((temp & 1) == 0 || !(grid.Exists(cell, x) is true))
 												{
-													candidateOffsets.Add((1, cell * 9 + x));
+													continue;
 												}
+
+												candidateOffsets.Add((1, cell * 9 + x));
 											}
 											if (urMode
 												|| !urMode && grid.GetCellStatus(cell) == Empty)
 											{
 												for (int x = 0, temp = digitKindsMask & ~otherDigitMask; x < 9; x++, temp >>= 1)
 												{
-													if ((temp & 1) != 0 && grid.CandidateExists(cell, x))
+													if ((temp & 1) == 0 || !(grid.Exists(cell, x) is true))
 													{
-														candidateOffsets.Add((0, cell * 9 + x));
+														continue;
 													}
+
+													candidateOffsets.Add((0, cell * 9 + x));
 												}
 											}
 										}
@@ -972,18 +999,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 											{
 												var elimMap = new GridMap(
 													from cell in allCells
-													where grid.CandidateExists(cell, digit)
+													where grid.Exists(cell, digit) is true
 													select cell,
 													GridMap.InitializeOption.ProcessPeersWithoutItself);
 
 												foreach (int cell in elimMap.Offsets)
 												{
-													if (grid.CandidateExists(cell, digit))
+													if (!(grid.Exists(cell, digit) is true))
 													{
-														conclusions.Add(
-															new Conclusion(
-																ConclusionType.Elimination, cell, digit));
+														continue;
 													}
+
+													conclusions.Add(
+														new Conclusion(
+															ConclusionType.Elimination, cell, digit));
 												}
 											}
 										}
@@ -1112,14 +1141,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 								{
 									foreach (int digit in digits)
 									{
-										if (urMode
-											|| !urMode && grid.GetCellStatus(cell) == Empty)
+										if (!urMode
+											&& (urMode || grid.GetCellStatus(cell) != Empty)
+											|| !(grid.Exists(cell, digit) is true))
 										{
-											if (grid.CandidateExists(cell, digit))
-											{
-												candidateOffsets.Add((0, cell * 9 + digit));
-											}
+											continue;
 										}
+
+										candidateOffsets.Add((0, cell * 9 + digit));
 									}
 								}
 								for (int x = 0, temp = mask; x < 9; x++, temp >>= 1)
@@ -1130,11 +1159,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										if (!cells.Contains(cell))
 										{
 											otherCells.Add(cell);
-											if (grid.CandidateExists(cell, d1))
+											if (grid.Exists(cell, d1) is true)
 											{
 												candidateOffsets.Add((1, cell * 9 + d1));
 											}
-											if (grid.CandidateExists(cell, d2))
+											if (grid.Exists(cell, d2) is true)
 											{
 												candidateOffsets.Add((1, cell * 9 + d2));
 											}
@@ -1144,12 +1173,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 												if (!subsetDigits.Contains(elimDigit))
 												{
 													otherDigits.Add(elimDigit);
-													if (grid.CandidateExists(cell, elimDigit))
+													if (!(grid.Exists(cell, elimDigit) is true))
 													{
-														conclusions.Add(
-															new Conclusion(
-																ConclusionType.Elimination, cell, elimDigit));
+														continue;
 													}
+
+													conclusions.Add(
+														new Conclusion(
+															ConclusionType.Elimination, cell, elimDigit));
 												}
 											}
 										}
@@ -1220,7 +1251,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 									// Check light hidden triple.
 									short mask = (short)((short)(mask1 | mask2) | mask3);
 									if (mask.CountSet() == 4
-										&& extraCells.All(c => grid.CandidateDoesNotExist(c, d3))
+										&& extraCells.All(c => !(grid.Exists(c, d3) is true))
 										&& (cellMaskOr & (short)(1 << d1 | 1 << d2 | 1 << d3)).CountSet() == 3)
 									{
 										int[] subsetDigits = new[] { d1, d2, d3 };
@@ -1241,14 +1272,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										{
 											foreach (int digit in digits)
 											{
-												if (urMode
-													|| !urMode && grid.GetCellStatus(cell) == Empty)
+												if (!urMode
+													&& (urMode || grid.GetCellStatus(cell) != Empty)
+													|| !(grid.Exists(cell, digit) is true))
 												{
-													if (grid.CandidateExists(cell, digit))
-													{
-														candidateOffsets.Add((0, cell * 9 + digit));
-													}
+													continue;
 												}
+
+												candidateOffsets.Add((0, cell * 9 + digit));
 											}
 										}
 										for (int x = 0, temp = mask; x < 9; x++, temp >>= 1)
@@ -1259,15 +1290,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 												if (!cells.Contains(cell))
 												{
 													otherCells.Add(cell);
-													if (grid.CandidateExists(cell, d1))
+													if (grid.Exists(cell, d1) is true)
 													{
 														candidateOffsets.Add((1, cell * 9 + d1));
 													}
-													if (grid.CandidateExists(cell, d2))
+													if (grid.Exists(cell, d2) is true)
 													{
 														candidateOffsets.Add((1, cell * 9 + d2));
 													}
-													if (grid.CandidateExists(cell, d3))
+													if (grid.Exists(cell, d3) is true)
 													{
 														candidateOffsets.Add((1, cell * 9 + d3));
 													}
@@ -1277,12 +1308,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 														if (!subsetDigits.Contains(elimDigit))
 														{
 															otherDigits.Add(elimDigit);
-															if (grid.CandidateExists(cell, elimDigit))
+															if (!(grid.Exists(cell, elimDigit) is true))
 															{
-																conclusions.Add(
-																	new Conclusion(
-																		ConclusionType.Elimination, cell, elimDigit));
+																continue;
 															}
+
+															conclusions.Add(
+																new Conclusion(
+																	ConclusionType.Elimination, cell, elimDigit));
 														}
 													}
 												}
@@ -1351,7 +1384,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										// Check light hidden quadruple.
 										short mask = (short)((short)((short)(mask1 | mask2) | mask3) | mask4);
 										if (mask.CountSet() == 5
-											&& extraCells.All(c => grid.CandidateDoesNotExist(c, d3) && grid.CandidateDoesNotExist(c, d4))
+											&& extraCells.All(c => !(grid.Exists(c, d3) is true) && !(grid.Exists(c, d4) is true))
 											&& (cellMaskOr & (short)(1 << d1 | 1 << d2 | 1 << d3 | 1 << d4)).CountSet() == 4)
 										{
 											int[] subsetDigits = new[] { d1, d2, d3, d4 };
@@ -1374,10 +1407,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 												{
 													if (urMode || !urMode && grid.GetCellStatus(cell) == Empty)
 													{
-														if (grid.CandidateExists(cell, digit))
+														if (!(grid.Exists(cell, digit) is true))
 														{
-															candidateOffsets.Add((0, cell * 9 + digit));
+															continue;
 														}
+
+														candidateOffsets.Add((0, cell * 9 + digit));
 													}
 												}
 											}
@@ -1389,19 +1424,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 													if (!cells.Contains(cell))
 													{
 														otherCells.Add(cell);
-														if (grid.CandidateExists(cell, d1))
+														if (grid.Exists(cell, d1) is true)
 														{
 															candidateOffsets.Add((1, cell * 9 + d1));
 														}
-														if (grid.CandidateExists(cell, d2))
+														if (grid.Exists(cell, d2) is true)
 														{
 															candidateOffsets.Add((1, cell * 9 + d2));
 														}
-														if (grid.CandidateExists(cell, d3))
+														if (grid.Exists(cell, d3) is true)
 														{
 															candidateOffsets.Add((1, cell * 9 + d3));
 														}
-														if (grid.CandidateExists(cell, d4))
+														if (grid.Exists(cell, d4) is true)
 														{
 															candidateOffsets.Add((1, cell * 9 + d4));
 														}
@@ -1411,12 +1446,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 															if (!subsetDigits.Contains(elimDigit))
 															{
 																otherDigits.Add(elimDigit);
-																if (grid.CandidateExists(cell, elimDigit))
+																if (!(grid.Exists(cell, elimDigit) is true))
 																{
-																	conclusions.Add(
-																		new Conclusion(
-																			ConclusionType.Elimination, cell, elimDigit));
+																	continue;
 																}
+
+																conclusions.Add(
+																	new Conclusion(
+																		ConclusionType.Elimination, cell, elimDigit));
 															}
 														}
 													}
@@ -1530,22 +1567,22 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					var candidateOffsets = new List<(int, int)>();
 					foreach (int cell in cellPair)
 					{
-						if (grid.CandidateExists(cell, digit))
+						if (grid.Exists(cell, digit) is true)
 						{
 							candidateOffsets.Add((1, cell * 9 + digit));
 						}
-						if (grid.CandidateExists(cell, otherDigit))
+						if (grid.Exists(cell, otherDigit) is true)
 						{
 							candidateOffsets.Add((0, cell * 9 + otherDigit));
 						}
 					}
 					foreach (int cell in extraCells)
 					{
-						if (grid.CandidateExists(cell, digit))
+						if (grid.Exists(cell, digit) is true)
 						{
 							candidateOffsets.Add((1, cell * 9 + digit));
 						}
-						if (grid.CandidateExists(cell, otherDigit))
+						if (grid.Exists(cell, otherDigit) is true)
 						{
 							candidateOffsets.Add((0, cell * 9 + otherDigit));
 						}
@@ -1597,22 +1634,22 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					var candidateOffsets = new List<(int, int)>();
 					foreach (int cell in cellPair)
 					{
-						if (grid.CandidateExists(cell, digit))
+						if (grid.Exists(cell, digit) is true)
 						{
 							candidateOffsets.Add((1, cell * 9 + digit));
 						}
-						if (grid.CandidateExists(cell, otherDigit))
+						if (grid.Exists(cell, otherDigit) is true)
 						{
 							candidateOffsets.Add((0, cell * 9 + otherDigit));
 						}
 					}
 					foreach (int cell in extraCells)
 					{
-						if (grid.CandidateExists(cell, digit))
+						if (grid.Exists(cell, digit) is true)
 						{
 							candidateOffsets.Add((1, cell * 9 + digit));
 						}
-						if (grid.CandidateExists(cell, otherDigit))
+						if (grid.Exists(cell, otherDigit) is true)
 						{
 							candidateOffsets.Add((0, cell * 9 + otherDigit));
 						}
@@ -1693,19 +1730,21 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						{
 							foreach (int d in digits)
 							{
-								if (grid.CandidateExists(cell, d))
+								if (!(grid.Exists(cell, d) is true))
 								{
-									candidateOffsets.Add((0, cell * 9 + d));
+									continue;
 								}
+
+								candidateOffsets.Add((0, cell * 9 + d));
 							}
 						}
 						foreach (int cell in extraCells)
 						{
-							if (grid.CandidateExists(cell, elimDigit))
+							if (grid.Exists(cell, elimDigit) is true)
 							{
 								candidateOffsets.Add((0, cell * 9 + elimDigit));
 							}
-							if (grid.CandidateExists(cell, digit))
+							if (grid.Exists(cell, digit) is true)
 							{
 								candidateOffsets.Add((1, cell * 9 + digit));
 							}
@@ -1715,12 +1754,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						var conclusions = new List<Conclusion>();
 						foreach (int cell in extraCells)
 						{
-							if (grid.CandidateExists(cell, elimDigit))
+							if (!(grid.Exists(cell, elimDigit) is true))
 							{
-								conclusions.Add(
-									new Conclusion(
-										ConclusionType.Elimination, cell, elimDigit));
+								continue;
 							}
+
+							conclusions.Add(
+								new Conclusion(
+									ConclusionType.Elimination, cell, elimDigit));
 						}
 
 						int elimCount = conclusions.Count;

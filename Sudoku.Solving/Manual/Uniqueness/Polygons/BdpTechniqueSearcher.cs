@@ -6,7 +6,6 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Extensions;
 using Sudoku.Solving.Utils;
 using static Sudoku.GridProcessings;
 using BdpType1 = Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1DetailData;
@@ -175,7 +174,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						var extraCells = new List<int>();
 						foreach (int cell in allCells)
 						{
-							if (otherDigits.Any(digit => grid.CandidateExists(cell, digit)))
+							if (otherDigits.Any(digit => grid.Exists(cell, digit) is true))
 							{
 								extraCells.Add(cell);
 							}
@@ -250,12 +249,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 								foreach (int cell in elimMap.Offsets)
 								{
-									if (grid.CandidateExists(cell, extraDigit))
+									if (!(grid.Exists(cell, extraDigit) is true))
 									{
-										conclusions.Add(
-											new Conclusion(
-												ConclusionType.Elimination, cell, extraDigit));
+										continue;
 									}
+
+									conclusions.Add(
+										new Conclusion(
+											ConclusionType.Elimination, cell, extraDigit));
 								}
 
 								if (conclusions.Count == 0)
@@ -769,11 +770,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			var conclusions = new List<Conclusion>();
 			foreach (int cell in triplet)
 			{
-				if (grid.CandidateExists(cell, elimDigit))
+				if (!(grid.Exists(cell, elimDigit) is true))
 				{
-					conclusions.Add(
-						new Conclusion(ConclusionType.Elimination, cell, elimDigit));
+					continue;
 				}
+
+				conclusions.Add(
+					new Conclusion(ConclusionType.Elimination, cell, elimDigit));
 			}
 
 			if (conclusions.Count == 0)
@@ -937,10 +940,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						var extraCells = new List<int>();
 						foreach (int cell in allCells)
 						{
-							if (otherDigits.Any(digit => grid.CandidateExists(cell, digit)))
+							if (!otherDigits.Any(digit => grid.Exists(cell, digit) is true))
 							{
-								extraCells.Add(cell);
+								continue;
 							}
+
+							extraCells.Add(cell);
 						}
 
 						if (otherDigits.HasOnlyOneElement())
@@ -1012,12 +1017,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 								foreach (int cell in elimMap.Offsets)
 								{
-									if (grid.CandidateExists(cell, extraDigit))
+									if (!(grid.Exists(cell, extraDigit) is true))
 									{
-										conclusions.Add(
-											new Conclusion(
-												ConclusionType.Elimination, cell, extraDigit));
+										continue;
 									}
+
+									conclusions.Add(
+										new Conclusion(
+											ConclusionType.Elimination, cell, extraDigit));
 								}
 
 								if (conclusions.Count == 0)
