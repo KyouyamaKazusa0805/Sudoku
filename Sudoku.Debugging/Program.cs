@@ -15,18 +15,18 @@ namespace Sudoku.Debugging
 		private static void Main()
 		{
 			var manual = new Sudoku.Solving.Manual.ManualSolver();
-			var hdg = new Sudoku.Solving.Generating.HardPatternPuzzleGenerator();
-			while (true)
-			{
-				var grid = hdg.Generate();
-				manual.Solve(grid);
-				System.Console.WriteLine(grid);
-			}
+			//var hdg = new Sudoku.Solving.Generating.HardPatternPuzzleGenerator();
+			//while (true)
+			//{
+			//	var grid = hdg.Generate();
+			//	manual.Solve(grid);
+			//	System.Console.WriteLine(grid);
+			//}
 
 
-			//var grid = Sudoku.Data.Grid.Parse("....4..1....9.1..3.7.3..6..3....58.6..52.....89.....4...46...5..5..3....93...2...");
-			//var analysis = manual.Solve(grid);
-			//System.Console.WriteLine(analysis);
+			var grid = Sudoku.Data.Grid.Parse("009080270000700001020005008003000025000030000170000600400300090300006000082090300");
+			var analysis = manual.Solve(grid);
+			System.Console.WriteLine(analysis);
 		}
 	}
 }

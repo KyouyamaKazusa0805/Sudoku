@@ -52,7 +52,7 @@ var grid = Grid.Parse("009080270000700001020005008003000025000030000170000600400
 var analysisResult = solver.Solve(grid);
 
 // Print the result onto the console screen.
-Console.WriteLine($"{analysisResult:-!.}");
+Console.WriteLine(analysisResult);
 ```
 
 And the puzzle solution and analysis result will be displayed on console screen, like this!
@@ -63,62 +63,61 @@ And the puzzle solution and analysis result will be displayed on console screen,
 Puzzle: ..9.8.27....7....1.2...5..8..3....25....3....17....6..4..3...9.3....6....82.9.3..
 Solving tool: Manual
 Solving steps:
- (1.2) Hidden Single (In Block) => r5c1 = 2
- (1.5) Hidden Single (In Row) => r3c8 = 3
- (1.2) Hidden Single (In Block) => r6c9 = 3
- (1.2) Hidden Single (In Block) => r8c2 = 9
- (1.2) Hidden Single (In Block) => r4c1 = 9
- (1.5) Hidden Single (In Column) => r2c1 = 8
- (1.5) Hidden Single (In Column) => r5c9 = 9
- (2.8) Claiming => r2c23 <> 5
- (2.6) Pointing => r7c7 <> 7, r8c7 <> 7
- (3.5) Sashimi X-Wing => r2c23 <> 6
- (2.3) Naked single => r2c3 = 4
- (2.3) Naked single => r2c2 = 3
- (1.1) Last Digit => r1c6 = 3
- (3.4) Finned X-Wing => r5c6 <> 8, r6c6 <> 8
- (5.1) Generalized TUVWXYZ-Wing => r7c6 <> 2
- (3.4) Hidden Pair => r6c6 <> 4
- (5.2) Discontinuous Nice Loop => r7c9 <> 6
- (2.8) Claiming => r9c1 <> 6
- (2.8) Claiming => r1c2 <> 6, r3c3 <> 6
- (4.4) XYZ-Wing => r7c3 <> 7
- (5.5) Almost Locked Sets XZ Rule => r9c9 <> 7
-   (3) Naked Pair => r8c9 <> 4
- (5.1) Discontinuous Nice Loop => r6c4 <> 4
- (5.2) Discontinuous Nice Loop => r8c4 <> 4
- (3.4) Finned X-Wing => r9c8 <> 4
- (5.2) Discontinuous Nice Loop => r3c4 <> 6
- (5.2) Alternating Inference Chain => r8c3 <> 7
- (1.2) Hidden Single (In Block) => r9c1 = 7
- (1.5) Hidden Single (In Column) => r1c1 = 5
-   (1) Full House => r3c1 = 6
- (1.2) Hidden Single (In Block) => r3c3 = 7
-   (1) Full House => r1c2 = 1
- (4.4) W-Wing => r4c4 <> 4
- (4.7) Unique Rectangle (Type 3) => r7c6 <> 1, r8c4 <> 1, r8c4 <> 5
- (4.2) XY-Wing => r7c5 <> 2, r8c9 <> 2
- (1.2) Hidden Single (In Block) => r7c9 = 2
- (1.2) Hidden Single (In Block) => r8c9 = 7
- (5.5) Almost Locked Sets XZ Rule => r4c5 <> 1
- (5.5) Almost Locked Sets XZ Rule => r7c5 <> 1
- (5.5) Almost Locked Sets XZ Rule => r4c6 <> 4
- (5.2) Alternating Inference Chain => r4c7 <> 4
- (5.2) XY-X-Chain => r4c5 <> 4, r4c2 <> 6
- (1.5) Hidden Single (In Row) => r4c2 = 4
- (2.8) Claiming => r5c4 <> 6
- (4.8) Hidden Rectangle => r7c3 <> 5
- (4.6) Unique Rectangle (Type 4) => r5c3 <> 5
- (5.2) Almost Locked Triple => r6c5 <> 2
- (3.4) Hidden Pair => r6c4 <> 5, r6c4 <> 8
- (3.5) Sashimi X-Wing => r7c5 <> 5
+ (1.2) Hidden Single (In Block): r5c1 = 2 in b4
+ (1.5) Hidden Single (In Row): r3c8 = 3 in r3
+ (1.2) Hidden Single (In Block): r6c9 = 3 in b6
+ (1.2) Hidden Single (In Block): r8c2 = 9 in b7
+ (1.2) Hidden Single (In Block): r4c1 = 9 in b4
+ (1.5) Hidden Single (In Column): r2c1 = 8 in c1
+ (1.5) Hidden Single (In Column): r5c9 = 9 in c9
+ (2.8) Claiming: 5 in r1\b1 => r2c23 <> 5
+ (2.6) Pointing: 7 in b6\c7 => r7c7 <> 7, r8c7 <> 7
+ (3.5) Sashimi X-Wing: 6 in c18\r29 f{ r1c1, r3c1 } => r2c23 <> 6
+ (2.3) Naked single: r2c3 = 4
+ (2.3) Naked single: r2c2 = 3
+ (1.1) Last Digit: r1c6 = 3
+ (3.4) Finned X-Wing: 8 in r47\c67 fr4c4 => r5c6 <> 8, r6c6 <> 8
+ (5.1) Generalized TUVWXYZ-Wing: 9 in 29/r2c6 in b2 and 1245689/{ r1c4, r3c4, r4c4, r5c4, r8c4, r9c4 } in c4 => r7c6 <> 2
+ (3.4) Hidden Pair: 2, 9 in c6 => r6c6 <> 4
+ (5.2) Discontinuous Nice Loop: !r1c9(6) -> r2c8(6) -> !r2c5(6) -> r2c5(2) -> !r2c6(2) -> r6c6(2) -> !r6c4(2) -> r8c4(2) -> !r7c5(2) -> r7c9(2) => r7c9 <> 6
+ (2.8) Claiming: 6 in r7\b7 => r9c1 <> 6
+ (2.8) Claiming: 6 in c1\b1 => r1c2 <> 6, r3c3 <> 6
+ (4.4) XYZ-Wing: 1, 5, 7 in r8c3 with { r3c3, r9c1 } => r7c3 <> 7
+ (5.5) Almost Locked Sets XZ Rule: 6 in 567/{ r1c1, r9c1 } in c1 and 2467/{ r1c9, r7c9, r8c9 } in c9 => r9c9 <> 7
+   (3) Naked Pair: 4, 6 in c9 => r8c9 <> 4
+ (5.1) Discontinuous Nice Loop: !r1c4(4) -> r1c9(4) -> !r3c7(4) -> r3c7(9) -> !r2c7(9) -> r2c6(9) -> !r6c6(9) -> r6c4(9) => r6c4 <> 4
+ (5.2) Discontinuous Nice Loop: !r1c4(4) -> r1c9(4) -> !r3c7(4) -> r3c7(9) -> !r2c7(9) -> r2c6(9) -> !r3c4(9) -> r6c4(9) -> !r6c4(2) -> r8c4(2) => r8c4 <> 4
+ (3.4) Finned X-Wing: 4 in r68\c58 fr8c7 => r9c8 <> 4
+ (5.2) Discontinuous Nice Loop: !r3c1(6) -> r3c1(7) -> !r3c3(7) -> r8c3(7) -> !r8c9(7) -> r8c9(2) -> !r8c4(2) -> r6c4(2) -> !r6c4(9) -> r3c4(9) => r3c4 <> 6
+ (5.2) Alternating Inference Chain: !r3c3(7) -> r3c1(7) -> !r3c1(6) -> r3c5(6) -> !r2c5(6) -> r2c5(2) -> !r7c5(2) -> r7c9(2) -> !r8c9(2) -> r8c9(7) => r8c3 <> 7
+ (1.2) Hidden Single (In Block): r9c1 = 7 in b7
+ (1.5) Hidden Single (In Column): r1c1 = 5 in c1
+   (1) Full House: r3c1 = 6
+ (1.2) Hidden Single (In Block): r3c3 = 7 in b1
+   (1) Full House: r1c2 = 1
+ (4.4) W-Wing: r1c4 to r4c2 with conjugate pair r2c5==r4c5(6) => r4c4 <> 4
+ (4.7) Unique Rectangle (Type 3): 2, 7 in cells { r7c59, r8c59 } with naked triple: digits 1, 4, 5 in cells r9c46 => r7c6 <> 1, r8c4 <> 1, r8c4 <> 5
+ (4.2) XY-Wing: 2, 7, 8 in r7c6 with { r7c9, r8c4 } => r7c5 <> 2, r8c9 <> 2
+ (1.2) Hidden Single (In Block): r7c9 = 2 in b9
+ (1.2) Hidden Single (In Block): r8c9 = 7 in b9
+ (5.5) Almost Locked Sets XZ Rule: 6 in 146/{ r1c4, r3c5 } in b2 and 12456789/{ r4c46, r5c46, r6c456 } in b5 => r4c5 <> 1
+ (5.5) Almost Locked Sets XZ Rule: 2 in 1246/{ r1c4, r2c5, r3c5 } in b2 and 1245/{ r8c5, r9c46 } in b8 => r7c5 <> 1
+ (5.5) Almost Locked Sets XZ Rule: 7 in 467/r4c25 in r4 and 147/{ r5c6, r9c6 } in c6 => r4c6 <> 4
+ (5.2) Alternating Inference Chain: !r3c7(4) -> r1c9(4) -> !r1c4(4) -> r1c4(6) -> !r1c9(6) -> r2c8(6) -> !r2c5(6) -> r4c5(6) -> !r4c2(6) -> r4c2(4) => r4c7 <> 4
+ (5.2) XY-X-Chain: !r4c2(4) -> r5c2(4) -> !r5c6(4) -> r9c6(4) -> !r9c9(4) -> r1c9(4) -> !r1c4(4) -> r1c4(6) -> !r2c5(6) -> r4c5(6) => r4c5 <> 4, r4c2 <> 6
+ (1.5) Hidden Single (In Row): r4c2 = 4 in r4
+ (2.8) Claiming: 6 in r4\b5 => r5c4 <> 6
+ (4.8) Hidden Rectangle: 5, 6 in cells { r5c23, r7c23 } with conjugate pairs: r5c3==r7c3(6) and r7c2==r7c3(6) => r7c3 <> 5
+ (5.2) Almost Locked Triple: 1, 4, 5 in r9c46 to { r3c5, r6c5 } => r6c5 <> 2
+ (3.4) Hidden Pair: 2, 9 in b5 => r6c4 <> 5, r6c4 <> 8
+ (3.5) Sashimi X-Wing: 5 in c24\r57 fr9c4 => r7c5 <> 5
 ......
 ----------
 Technique used:
  21 * Full House
   5 * Last Digit
- 19 * Hidden Single (In Block)
-  3 * Hidden Single (In Row)
+ 17 * Hidden Single (In Block)
+  5 * Hidden Single (In Row)
   4 * Hidden Single (In Column)
   4 * Naked single
   1 * Pointing
@@ -130,7 +129,6 @@ Technique used:
   1 * XY-Wing
   1 * XYZ-Wing
   1 * W-Wing
-  1 * Unique Rectangle (Type 4)
   1 * Unique Rectangle (Type 3)
   1 * Hidden Rectangle
   1 * Generalized TUVWXYZ-Wing
@@ -139,12 +137,12 @@ Technique used:
   1 * XY-X-Chain
   1 * Almost Locked Triple
   4 * Almost Locked Sets XZ Rule
- 87 steps in total
+ 86 steps in total
 ----------
 Puzzle rating: 5.5/1.2/1.2
 Puzzle solution: 519683274834729561627415938943861725268537419175942683456378192391256847782194356
 Puzzle has been solved.
-Time elapsed: 00:00.18.675
+Time elapsed: 00:00.16.001
 ----------
 ```
 
