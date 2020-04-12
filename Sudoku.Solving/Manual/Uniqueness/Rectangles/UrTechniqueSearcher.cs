@@ -90,8 +90,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 				}
 			}
 
+			static int getType(UrTechniqueInfo info) => info.DetailData.Type;
 			accumulator.Sort((a, b) =>
-				a is UrTechniqueInfo l && b is UrTechniqueInfo r ? l.DetailData.Type.CompareTo(r.DetailData.Type) : -1);
+				a is UrTechniqueInfo l && b is UrTechniqueInfo r ? getType(l).CompareTo(getType(r)) : -1);
 		}
 
 		/// <summary>
