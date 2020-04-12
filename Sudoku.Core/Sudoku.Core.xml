@@ -4296,6 +4296,41 @@
         <member name="M:System.Collections.Generic.Bag`1.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
+        <member name="T:System.Collections.Generic.BagEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.Bag`1"/> and <see cref="T:System.Collections.Generic.IBag`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.Bag`1"/>
+            <seealso cref="T:System.Collections.Generic.IBag`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.BagEx.Sort``1(System.Collections.Generic.IBag{``0})">
+            <summary>
+            Sort the collection.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The collection.</param>
+        </member>
+        <member name="M:System.Collections.Generic.BagEx.Sort``1(System.Collections.Generic.IBag{``0},System.Comparison{``0})">
+            <summary>
+            Sort the collection using the specified comparison.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The collection.</param>
+            <param name="comparison">The comparison.</param>
+        </member>
+        <member name="M:System.Collections.Generic.BagEx.Sort``1(System.Collections.Generic.IBag{``0},System.Collections.Generic.IComparer{``0})">
+            <summary>
+            Sort the collection using the specified comparison.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The collection.</param>
+            <param name="comparer">The comparer.</param>
+            <remarks>
+            If you want to make the <paramref name="comparer"/> keep <see langword="null"/> value,
+            please use <see cref="M:System.Collections.Generic.BagEx.Sort``1(System.Collections.Generic.IBag{``0})"/> instead.
+            </remarks>
+            <seealso cref="M:System.Collections.Generic.BagEx.Sort``1(System.Collections.Generic.IBag{``0})"/>
+        </member>
         <member name="T:System.Collections.Generic.IBag`1">
             <summary>
             Provides a basic only-in collection.
