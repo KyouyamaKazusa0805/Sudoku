@@ -12,10 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Drawing.Layers;
+using Sudoku.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Checking;
@@ -25,8 +27,6 @@ using static Sudoku.Windows.Constants.Processing;
 using AnonymousType = System.Object;
 using DColor = System.Drawing.Color;
 using SudokuGrid = Sudoku.Data.Grid;
-using Sudoku.Extensions;
-using Sudoku.Data.Extensions;
 #if SUDOKU_RECOGNIZING
 using System.Drawing;
 #endif
@@ -138,12 +138,10 @@ namespace Sudoku.Windows
 
 #if SUDOKU_RECOGNIZING
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+		private async void MenuItemFileLoadPicture_Click(object sender, RoutedEventArgs e)
+#else
+		private void MenuItemFileLoadPicture_Click(object sender, RoutedEventArgs e)
 #endif
-		private
-#if SUDOKU_RECOGNIZING
-			async
-#endif
-			void MenuItemFileLoadPicture_Click(object sender, RoutedEventArgs e)
 		{
 #if SUDOKU_RECOGNIZING
 			await internalOperation();
