@@ -5386,6 +5386,11 @@
             Encapsulates a <b>rectangle</b> technique searcher.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueSearcher.UrPosList">
+            <summary>
+            The table of all Unique rectangles lying on.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrDetailData">
             <summary>
             Provides all data for unique rectangles (basic and extended types).
@@ -5447,6 +5452,108 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrDetailData.ToString">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionDetailData">
+            <summary>
+            Indicates the detail data of UR+.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionDetailData.#ctor(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{Sudoku.Solving.ConjugatePair},System.String)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="cells">All cells.</param>
+            <param name="digits">All digits.</param>
+            <param name="conjugatePairs">All conjugate pairs used.</param>
+            <param name="name">The name of this instance.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionDetailData.ConjugatePairs">
+            <summary>
+            Indicates the conjugate pairs used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionDetailData.Name">
+            <summary>
+            Indicates the name of this instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionDetailData.Type">
+            <inheritdoc/>
+            <remarks>
+            This field will not be used in this instance.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionDetailData.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueInfo">
+            <summary>
+            Provides a usage of <b>unique rectangle extension</b> (UR+) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rectangles.IRectangleDetailData)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueInfo.Convert(Sudoku.Solving.Manual.Uniqueness.Rectangles.IRectangleDetailData)">
+            <summary>
+            Convert the specified detail data to UR+ data.
+            </summary>
+            <param name="rectangleDetailData">The data to convert.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueSearcher">
+            <summary>
+            Encapsulates an <b>unique rectangle extension</b> (UR+) technique searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueSearcher._checkIncompleted">
+            <summary>
+            Indicates whether the solver should check uncompleted URs.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueSearcher.#ctor(System.Boolean)">
+            <summary>
+            Initializes an instance with the checking option.
+            </summary>
+            <param name="checkIncompletedUniquenessPatterns">
+            Indicates whether the solver should check uncompleted URs.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueSearcher.Priority">
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueSearcher.IsExact(System.Int32[],System.Int32,System.Int32,Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            To check whether the specified region contains only two cells containing the specified
+            digit, and these two cells are same as the argument <paramref name="cells"/>.
+            </summary>
+            <param name="cells">The cells.</param>
+            <param name="digit">The digits.</param>
+            <param name="region">The regions.</param>
+            <param name="grid">The grid.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrTechniqueInfo">
             <summary>
@@ -5618,11 +5725,6 @@
             <param name="region">The region.</param>
             <param name="cells">All cells to check.</param>
             <returns>The result mask.</returns>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrTechniqueSearcher.TraversingTable">
-            <summary>
-            UR (or AR) traversing table.
-            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrType1DetailData">
             <summary>

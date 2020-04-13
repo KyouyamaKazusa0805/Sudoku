@@ -26,7 +26,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// <para>Indicates an empty instance (all bits are 0).</para>
 		/// <para>
-		/// I strongly recommend you should use this instance instead of default constructor
+		/// I strongly recommend you <b>should</b> use this instance instead of default constructor
 		/// <see cref="GridMap()"/>.
 		/// </para>
 		/// </summary>

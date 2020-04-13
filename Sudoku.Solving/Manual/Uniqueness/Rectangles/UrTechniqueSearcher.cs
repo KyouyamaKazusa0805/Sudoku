@@ -24,7 +24,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 	/// In fact, ARs can also be found.
 	/// </summary>
 	[TechniqueDisplay("Unique Rectangle")]
-	public sealed partial class UrTechniqueSearcher : UniquenessTechniqueSearcher
+	public sealed class UrTechniqueSearcher : RectangleTechniqueSearcher
 	{
 		/// <summary>
 		/// Indicates whether the solver should check uncompleted URs.
@@ -58,7 +58,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 		{
 			foreach (bool urMode in new[] { true, false })
 			{
-				foreach (int[] cells in TraversingTable)
+				foreach (int[] cells in UrPosList)
 				{
 					if (cells.All(cell => grid.GetCellStatus(cell) == Modifiable)
 						|| urMode && cells.Any(c => grid.GetCellStatus(c) != Empty)
