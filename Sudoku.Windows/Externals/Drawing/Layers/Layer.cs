@@ -34,8 +34,7 @@ namespace Sudoku.Drawing.Layers
 		protected Layer(PointConverter pointConverter)
 		{
 			_pointConverter = pointConverter;
-			var (width, height) = _pointConverter.PanelSize;
-			(Width, Height) = (width, height);
+			(Width, Height) = _pointConverter.PanelSize;
 		}
 
 

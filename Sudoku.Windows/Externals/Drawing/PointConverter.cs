@@ -20,7 +20,7 @@ namespace Sudoku.Drawing
 		/// Indicates the width of the gap between the picture box outline
 		/// and the sudoku grid outline.
 		/// </summary>
-		public const int Offset = 3;
+		public const int Offset = 10;
 
 
 		/// <summary>

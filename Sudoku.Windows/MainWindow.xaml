@@ -39,6 +39,8 @@
 						  Click="MenuItemBackupConfig_Click"/>
 				<MenuItem Header="Load picture..." Name="_menuItemFileLoadPicture"
 						  Click="MenuItemFileLoadPicture_Click"/>
+				<MenuItem Header="Save picture..." Name="_menuItemFileSavePicture"
+						  Click="MenuItemFileSavePicture_Click"/>
 				<Separator/>
 				<MenuItem Header="Get Snapshot" InputGestureText="Ctrl + P"
 						  Click="MenuItemFileGetSnapshot_Click"/>

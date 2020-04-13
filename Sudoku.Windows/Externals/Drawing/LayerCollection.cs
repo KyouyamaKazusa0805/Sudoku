@@ -123,6 +123,22 @@ namespace Sudoku.Drawing
 		}
 
 		/// <summary>
+		/// To integrate to the target bitmap.
+		/// </summary>
+		/// <param name="bitmap">The bitmap.</param>
+		/// <param name="graphicsUnit">The graphics unit.</param>
+		public void IntegrateTo(Bitmap bitmap, GraphicsUnit graphicsUnit)
+		{
+			using var g = Graphics.FromImage(bitmap);
+			g.PageUnit = graphicsUnit;
+			foreach (var layer in _internalList)
+			{
+				layer.Redraw();
+				g.DrawImage(layer.Target, 0, 0);
+			}
+		}
+
+		/// <summary>
 		/// Returns a <see cref="bool"/> value indicating whether the specified collection
 		/// contains the specified layer whose name is same as specified argument.
 		/// </summary>

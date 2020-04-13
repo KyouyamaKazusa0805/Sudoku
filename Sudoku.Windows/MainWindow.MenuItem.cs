@@ -150,6 +150,14 @@ namespace Sudoku.Windows
 
 			async Task internalOperation()
 			{
+				if (_recognition is null)
+				{
+					MessageBox.Show("Failed to initialize. Please restart the window and try again.", "Info");
+
+					e.Handled = true;
+					return;
+				}
+
 				var dialog = new OpenFileDialog
 				{
 					AddExtension = true,
@@ -206,6 +214,9 @@ namespace Sudoku.Windows
 			MessageBox.Show("Your machine cannot use image recognition.", "Info");
 #endif
 		}
+
+		private void MenuItemFileSavePicture_Click(object sender, RoutedEventArgs e) =>
+			new PictureSavingPreferencesWindow(_puzzle, Settings).ShowDialog();
 
 		private void MenuItemFileGetSnapshot_Click(object sender, RoutedEventArgs e)
 		{

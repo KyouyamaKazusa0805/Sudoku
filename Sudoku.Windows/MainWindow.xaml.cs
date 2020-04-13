@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,16 +16,15 @@ using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Drawing.Layers;
-using Sudoku.Windows.Drawing.Layers;
-using Sudoku.Windows.Extensions;
+using Sudoku.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
+using Sudoku.Windows.Drawing.Layers;
+using Sudoku.Windows.Extensions;
 using static Sudoku.Windows.Constants.Processing;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
 using WPoint = System.Windows.Point;
-using System.Runtime.InteropServices;
-using Sudoku.Extensions;
 #if SUDOKU_RECOGNIZING
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -78,7 +78,7 @@ namespace Sudoku.Windows
 		/// Indicates an recognition instance.
 		/// </summary>
 		[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
-		private RecognitionServiceProvider _recognition = null!;
+		private RecognitionServiceProvider? _recognition;
 #endif
 
 		/// <summary>
@@ -156,13 +156,9 @@ namespace Sudoku.Windows
 			{
 				MessageBox.Show(
 					$"Cannot to calculate{NewLine}" +
-					$"Source: {ex.Source}{NewLine}" +
-					$"Message: {ex.Message}",
-					"Fatal error",
-					MessageBoxButton.OK,
-					MessageBoxImage.Error);
-
-				throw;
+					$"  Source: {ex.Source}{NewLine}" +
+					$"  Message: {ex.Message}",
+					"Error", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 #endif
 
@@ -424,7 +420,7 @@ namespace Sudoku.Windows
 				}
 				catch
 				{
-					// Do nothing.
+					MessageBox.Show("Failed to load the settings.", "Info");
 				}
 				finally
 				{
