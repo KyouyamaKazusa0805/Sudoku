@@ -90,7 +90,7 @@ namespace Sudoku.Solving
 				sb.AppendLine("Solving steps:");
 				if (!(bottleneckData is null))
 				{
-					var (bIndex, bInfo) = (ValueTuple<int, TechniqueInfo>)bottleneckData;
+					var (bIndex, bInfo) = bottleneckData.Value;
 					for (int i = 0; i < steps.Count; i++)
 					{
 						if (i > bIndex && showStepsAfterBottleneck)

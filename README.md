@@ -46,13 +46,13 @@ You can write code in your computer like this:
 var solver = new ManualSolver();
 
 // Parse a string and convert it to a sudoku grid instance.
-var grid = Grid.Parse("009080270000700001020005008003000025000030000170000600400300090300006000082090300");
+var grid = Grid.Parse("006800009000020300700001080010900200000040008008750040030006001900080030002000500");
 
 // Solve it.
 var analysisResult = solver.Solve(grid);
 
 // Print the result onto the console screen.
-Console.WriteLine(analysisResult);
+Console.WriteLine($"{analysisResult:.-!}");
 ```
 
 And the puzzle solution and analysis result will be displayed on console screen, like this!
@@ -60,90 +60,35 @@ And the puzzle solution and analysis result will be displayed on console screen,
 然后答案和分析结果都会在你的控制台界面呈现出来，就像这样！
 
 ```
-Puzzle: ..9.8.27....7....1.2...5..8..3....25....3....17....6..4..3...9.3....6....82.9.3..
+Puzzle: ..68....9....2.3..7....1.8..1.9..2......4...8..875..4..3...6..19...8..3...2...5..
 Solving tool: Manual
-Solving steps:
- (1.2) Hidden Single (In Block): r5c1 = 2 in b4
- (1.5) Hidden Single (In Row): r3c8 = 3 in r3
- (1.2) Hidden Single (In Block): r6c9 = 3 in b6
- (1.2) Hidden Single (In Block): r8c2 = 9 in b7
- (1.2) Hidden Single (In Block): r4c1 = 9 in b4
- (1.5) Hidden Single (In Column): r2c1 = 8 in c1
- (1.5) Hidden Single (In Column): r5c9 = 9 in c9
- (2.8) Claiming: 5 in r1\b1 => r2c23 <> 5
- (2.6) Pointing: 7 in b6\c7 => r7c7 <> 7, r8c7 <> 7
- (3.5) Sashimi X-Wing: 6 in c18\r29 f{ r1c1, r3c1 } => r2c23 <> 6
- (2.3) Naked single: r2c3 = 4
- (2.3) Naked single: r2c2 = 3
- (1.1) Last Digit: r1c6 = 3
- (3.4) Finned X-Wing: 8 in r47\c67 fr4c4 => r5c6 <> 8, r6c6 <> 8
- (5.1) Generalized TUVWXYZ-Wing: 9 in 29/r2c6 in b2 and 1245689/{ r1c4, r3c4, r4c4, r5c4, r8c4, r9c4 } in c4 => r7c6 <> 2
- (3.4) Hidden Pair: 2, 9 in c6 => r6c6 <> 4
- (5.2) Discontinuous Nice Loop: !r1c9(6) -> r2c8(6) -> !r2c5(6) -> r2c5(2) -> !r2c6(2) -> r6c6(2) -> !r6c4(2) -> r8c4(2) -> !r7c5(2) -> r7c9(2) => r7c9 <> 6
- (2.8) Claiming: 6 in r7\b7 => r9c1 <> 6
- (2.8) Claiming: 6 in c1\b1 => r1c2 <> 6, r3c3 <> 6
- (4.4) XYZ-Wing: 1, 5, 7 in r8c3 with { r3c3, r9c1 } => r7c3 <> 7
- (5.5) Almost Locked Sets XZ Rule: 6 in 567/{ r1c1, r9c1 } in c1 and 2467/{ r1c9, r7c9, r8c9 } in c9 => r9c9 <> 7
-   (3) Naked Pair: 4, 6 in c9 => r8c9 <> 4
- (5.1) Discontinuous Nice Loop: !r1c4(4) -> r1c9(4) -> !r3c7(4) -> r3c7(9) -> !r2c7(9) -> r2c6(9) -> !r6c6(9) -> r6c4(9) => r6c4 <> 4
- (5.2) Discontinuous Nice Loop: !r1c4(4) -> r1c9(4) -> !r3c7(4) -> r3c7(9) -> !r2c7(9) -> r2c6(9) -> !r3c4(9) -> r6c4(9) -> !r6c4(2) -> r8c4(2) => r8c4 <> 4
- (3.4) Finned X-Wing: 4 in r68\c58 fr8c7 => r9c8 <> 4
- (5.2) Discontinuous Nice Loop: !r3c1(6) -> r3c1(7) -> !r3c3(7) -> r8c3(7) -> !r8c9(7) -> r8c9(2) -> !r8c4(2) -> r6c4(2) -> !r6c4(9) -> r3c4(9) => r3c4 <> 6
- (5.2) Alternating Inference Chain: !r3c3(7) -> r3c1(7) -> !r3c1(6) -> r3c5(6) -> !r2c5(6) -> r2c5(2) -> !r7c5(2) -> r7c9(2) -> !r8c9(2) -> r8c9(7) => r8c3 <> 7
- (1.2) Hidden Single (In Block): r9c1 = 7 in b7
- (1.5) Hidden Single (In Column): r1c1 = 5 in c1
-   (1) Full House: r3c1 = 6
- (1.2) Hidden Single (In Block): r3c3 = 7 in b1
-   (1) Full House: r1c2 = 1
- (4.4) W-Wing: r1c4 to r4c2 with conjugate pair r2c5==r4c5(6) => r4c4 <> 4
- (4.7) Unique Rectangle (Type 3): 2, 7 in cells { r7c59, r8c59 } with naked triple: digits 1, 4, 5 in cells r9c46 => r7c6 <> 1, r8c4 <> 1, r8c4 <> 5
- (4.2) XY-Wing: 2, 7, 8 in r7c6 with { r7c9, r8c4 } => r7c5 <> 2, r8c9 <> 2
- (1.2) Hidden Single (In Block): r7c9 = 2 in b9
- (1.2) Hidden Single (In Block): r8c9 = 7 in b9
- (5.5) Almost Locked Sets XZ Rule: 6 in 146/{ r1c4, r3c5 } in b2 and 12456789/{ r4c46, r5c46, r6c456 } in b5 => r4c5 <> 1
- (5.5) Almost Locked Sets XZ Rule: 2 in 1246/{ r1c4, r2c5, r3c5 } in b2 and 1245/{ r8c5, r9c46 } in b8 => r7c5 <> 1
- (5.5) Almost Locked Sets XZ Rule: 7 in 467/r4c25 in r4 and 147/{ r5c6, r9c6 } in c6 => r4c6 <> 4
- (5.2) Alternating Inference Chain: !r3c7(4) -> r1c9(4) -> !r1c4(4) -> r1c4(6) -> !r1c9(6) -> r2c8(6) -> !r2c5(6) -> r4c5(6) -> !r4c2(6) -> r4c2(4) => r4c7 <> 4
- (5.2) XY-X-Chain: !r4c2(4) -> r5c2(4) -> !r5c6(4) -> r9c6(4) -> !r9c9(4) -> r1c9(4) -> !r1c4(4) -> r1c4(6) -> !r2c5(6) -> r4c5(6) => r4c5 <> 4, r4c2 <> 6
- (1.5) Hidden Single (In Row): r4c2 = 4 in r4
- (2.8) Claiming: 6 in r4\b5 => r5c4 <> 6
- (4.8) Hidden Rectangle: 5, 6 in cells { r5c23, r7c23 } with conjugate pairs: r5c3==r7c3(6) and r7c2==r7c3(6) => r7c3 <> 5
- (5.2) Almost Locked Triple: 1, 4, 5 in r9c46 to { r3c5, r6c5 } => r6c5 <> 2
- (3.4) Hidden Pair: 2, 9 in b5 => r6c4 <> 5, r6c4 <> 8
- (3.5) Sashimi X-Wing: 5 in c24\r57 fr9c4 => r7c5 <> 5
-......
-----------
 Technique used:
- 21 * Full House
+ 20 * Full House
   5 * Last Digit
- 17 * Hidden Single (In Block)
-  5 * Hidden Single (In Row)
-  4 * Hidden Single (In Column)
-  4 * Naked single
-  1 * Pointing
-  4 * Claiming
+ 26 * Hidden Single (In Block)
+  2 * Hidden Single (In Row)
+  3 * Hidden Single (In Column)
+  2 * Pointing
+  6 * Claiming
   1 * Naked Pair
-  2 * Finned X-Wing
-  2 * Hidden Pair
+  4 * Hidden Pair
+  1 * Finned X-Wing
   2 * Sashimi X-Wing
-  1 * XY-Wing
-  1 * XYZ-Wing
-  1 * W-Wing
-  1 * Unique Rectangle (Type 3)
+  2 * Swordfish
+  1 * Two-string Kite
+  2 * XYZ-Wing
+  1 * Almost Locked Pair
+  1 * Unique Rectangle (Type 4)
   1 * Hidden Rectangle
-  1 * Generalized TUVWXYZ-Wing
-  4 * Discontinuous Nice Loop
-  2 * Alternating Inference Chain
-  1 * XY-X-Chain
-  1 * Almost Locked Triple
-  4 * Almost Locked Sets XZ Rule
- 86 steps in total
-----------
+  1 * Continuous Nice Loop
+  1 * Discontinuous Nice Loop
+  8 * Almost Locked Sets XZ Rule
+  1 * Extended Subset Principle
+ 91 steps in total
 Puzzle rating: 5.5/1.2/1.2
-Puzzle solution: 519683274834729561627415938943861725268537419175942683456378192391256847782194356
+Puzzle solution: 146835729589427316723691485314968257257143968698752143435276891971584632862319574
 Puzzle has been solved.
-Time elapsed: 00:00.16.001
-----------
+Time elapsed: 00:00.21.366
 ```
 
 > Format strings in the analysis result is shown in the description of file *How-to-use-analysis-result.md*.
@@ -167,7 +112,7 @@ The program supports technique below at present:
 * Wings: XY-Wing, XYZ-Wing, (Uncompleted) WXYZ-Wing, (Uncompleted) VWXYZ-Wing, W-Wing, M-Wing, Split-Wing, Local-Wing, Hybrid-Wing<br/>Wing 结构：XY-Wing、XYZ-Wing、（残缺）WXYZ-Wing、（残缺）VWXYZ-Wing、W-Wing、M-Wing、Split-Wing、Local-Wing、Hybrid-Wing
 * Uniqueness: Unique Rectangle (Type 1 to 6, Hidden), Avoidable Rectangle (Type 1 to 3, Hidden), Extended Rectangle (Type 1 to 2), Unique Loop (Type 1 to 4), Avoidable Rectangle, Bivalue Universal Grave (Type 1 to 4 and BUG + n), Borescoper's Deadly Pattern (Type 1 to 2)<br/>唯一性：唯一矩形（类型 1 到 6）、隐性唯一矩形、可规避矩形（类型 1 到 3）、隐性可规避矩形、拓展矩形（类型 1 到 3）、唯一环（类型 1 到 4）、全双值格致死解法（类型 1 到 4 和 BUG + n）、探长致命结构（类型 1 到 2）
 * Single Digit Patterns: Skyscraper, Two-string Kite, Turbot Fish, Empty Rectangle<br/>同数链式结构：摩天楼、双线风筝、多宝鱼、空矩形
-* Almost Subset Techniques: Sue de Coq, Generalized Wings (Extended Subset Principle), Almost Locked Sets XZ Rule, Almost Locked Sets XY-Wing, Almost Locked Sets W-Wing, Death Blossom<br/>待定数组：融合待定数组、广义 Wing 结构（伪数组）、ALS-双强链、ALS-XY-Wing、ALS-W-Wing、死亡绽放
+* Almost Subset Techniques: Sue de Coq, Extended Subset Principle, Almost Locked Sets XZ Rule, Almost Locked Sets XY-Wing, Almost Locked Sets W-Wing, Death Blossom<br/>待定数组：融合待定数组、伪数组、ALS-双强链、ALS-XY-Wing、ALS-W-Wing、死亡绽放
 * Chains: Alternating Inference Chain (+ Locked Candidates), Continuous Nice Loop (+ Locked Candidates)<br/>链：普通链（+区块）、普通环（+区块）
 * Last Resorts: Pattern Overlay Method, Template, Bowman's Bingo, Chute Clue Cover (Half implemented), Brute Force<br/>爆破技巧：图案叠加删减、模板、人工试数、大行列提示信息覆盖（实现了一半）、计算机试数
 * Other techniques: Gurth's Symmetrical Placement<br/>其它技巧：宇宙法
@@ -182,7 +127,7 @@ Here display all conditional compliation symbols in this solution.
 
 这里罗列本解决方案里用到的条件编译符号。
 
-* `TARGET_64BIT`: Indicates your computer is 32 bits or 64 bits. If 64, please add `TARGET_64BIT` into the solution; otherwise, do nothing. This conditional compliation symbol is used in calling C/C++ functions in dynamic link library (i.e. DLL).<br/>指示系统是多少位的。当你的电脑是 64 位的时候，请添加 `TARGET_64BIT` 条件编译符号；否则就不管。这个条件编译符号用于调用位于动态链接库里的 C/C++ 函数。
+* `TARGET_64BIT`: Indicates your computer is 32 bits or 64 bits. If 64, please add `TARGET_64BIT` into the solution; otherwise, do nothing. This conditional compliation symbol is used in calling C/C++ functions in dynamic link library (DLL).<br/>指示系统是多少位的。当你的电脑是 64 位的时候，请添加 `TARGET_64BIT` 条件编译符号；否则就不管。这个条件编译符号用于调用位于动态链接库里的 C/C++ 函数。
 * `SUDOKU_RECOGNIZING`: Indicates whether your machine can use OCR tools to recognize an image, and convert to a sudoku grid data structure instance. If you want to use this feature, please add this symbol to two projects `Sudoku.Core` and `Sudoku.Windows`.<br/>表示是否你的电脑上可以使用 OCR 识别工具来识别一个图片，并将其转换为一个数独盘面的实例对象。如果你希望启用这个功能的话，需要你为 `Sudoku.Core` 和 `Sudoku.Windows` 这两个项目添加这个编译符号。
 
 
