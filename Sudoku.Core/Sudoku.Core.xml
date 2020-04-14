@@ -747,7 +747,7 @@
         </member>
         <member name="T:Sudoku.Data.Grid">
             <summary>
-            Encapsulates a basic sudoku grid.
+            Encapsulates a basic sudoku grid, which uses mask table to store all information for 81 cells.
             </summary>
         </member>
         <member name="F:Sudoku.Data.Grid.EmptyString">

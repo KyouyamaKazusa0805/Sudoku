@@ -9,7 +9,7 @@ using Sudoku.Extensions;
 namespace Sudoku.Data
 {
 	/// <summary>
-	/// Encapsulates a basic sudoku grid.
+	/// Encapsulates a basic sudoku grid, which uses mask table to store all information for 81 cells.
 	/// </summary>
 	[DebuggerStepThrough]
 	public class Grid : ICloneable<Grid>, IEnumerable, IEnumerable<short>, IEquatable<Grid>, IReadOnlyGrid

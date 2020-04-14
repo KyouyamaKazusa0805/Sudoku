@@ -5,6 +5,7 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
 using static Sudoku.GridProcessings;
+using static Sudoku.Solving.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Singles
 {
@@ -90,11 +91,7 @@ namespace Sudoku.Solving.Manual.Singles
 						int digit = ((short)(511 & ~cands)).FindFirstSet();
 						accumulator.Add(
 							new FullHouseTechniqueInfo(
-								conclusions: new[]
-								{
-									new Conclusion(
-										ConclusionType.Assignment, fullHouseCellOffset, digit)
-								},
+								conclusions: new[] { new Conclusion(Assignment, fullHouseCellOffset, digit) },
 								views: new[]
 								{
 									new View(
@@ -157,10 +154,7 @@ namespace Sudoku.Solving.Manual.Singles
 
 						accumulator.Add(
 							new HiddenSingleTechniqueInfo(
-								conclusions: new[]
-								{
-									new Conclusion(ConclusionType.Assignment, hiddenSingleCellOffset, digit)
-								},
+								conclusions: new[] { new Conclusion(Assignment, hiddenSingleCellOffset, digit) },
 								views: new[]
 								{
 									new View(
@@ -199,14 +193,14 @@ namespace Sudoku.Solving.Manual.Singles
 				int digit = mask.FindFirstSet();
 				accumulator.Add(
 					new NakedSingleTechniqueInfo(
-						conclusions: new[] { new Conclusion(ConclusionType.Assignment, i, digit) },
+						conclusions: new[] { new Conclusion(Assignment, i, digit) },
 						views: new[]
 						{
-								new View(
-									cellOffsets: null,
-									candidateOffsets: new[] { (0, i * 9 + digit) },
-									regionOffsets: null,
-									links: null)
+							new View(
+								cellOffsets: null,
+								candidateOffsets: new[] { (0, i * 9 + digit) },
+								regionOffsets: null,
+								links: null)
 						},
 						cellOffset: i,
 						digit));
