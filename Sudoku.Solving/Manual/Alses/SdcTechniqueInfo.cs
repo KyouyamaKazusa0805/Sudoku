@@ -67,7 +67,7 @@ namespace Sudoku.Solving.Manual.Alses
 		public override decimal Difficulty => IntersectionCells.Count == 2 ? 5M : 5.1M;
 
 		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel => DifficultyLevel.VeryHard;
+		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 
 		/// <inheritdoc/>

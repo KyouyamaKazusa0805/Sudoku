@@ -4,6 +4,7 @@
 	<defaultConstructor>
 		<summary>Create an instance with default initialization.</summary>
 	</defaultConstructor>
+	
 	<!--methods-->
 	<method name="ToString" paramType="__noparam">
 		<summary>Returns a string that represents the current object.</summary>
@@ -36,6 +37,17 @@
 			current object; otherwise, <see langword="false"/>.
 		</returns>
 	</method>
+	<method name="Equals" paramType="__any">
+		<summary>
+			Determine whether the current instance contains the same information with
+			hat from the specified parameter.
+		</summary>
+		<param name="other">The other instance to determine.</param>
+		<returns>
+			A <see cref="bool"/> value indicating that.
+		</returns>
+	</method>
+	
 	<!--operators-->
 	<operator name="op_Equality">
 		<summary>Indicates whether two instances have a same value.</summary>

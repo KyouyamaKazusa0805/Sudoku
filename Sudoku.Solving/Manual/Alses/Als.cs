@@ -81,15 +81,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <summary>
 		/// Indicates the cells used in this ALS.
 		/// </summary>
-		public GridMap Map
-		{
-			get
-			{
-				var @this = this; // Query expression cannot capture 'this'.
-				return new GridMap(
-					from pos in RelativePos select RegionUtils.GetCellOffset(@this.Region, pos));
-			}
-		}
+		public GridMap Map => new GridMap(Cells);
 
 		/// <summary>
 		/// Indicates all digits used.
@@ -117,6 +109,18 @@ namespace Sudoku.Solving.Manual.Alses
 						yield return (short)(1 << digits[i] | 1 << digits[j]);
 					}
 				}
+			}
+		}
+
+		/// <summary>
+		/// Indicates all cells used.
+		/// </summary>
+		private IEnumerable<int> Cells
+		{
+			get
+			{
+				var @this = this; // 'this' cannot be captured in query expressions.
+				return from pos in RelativePos select RegionUtils.GetCellOffset(@this.Region, pos);
 			}
 		}
 
@@ -159,7 +163,12 @@ namespace Sudoku.Solving.Manual.Alses
 		public override bool Equals(object? obj) => obj is Als comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(Als other) => _mask == other._mask;
+		public bool Equals(Als other)
+		{
+			return Cells.HasOnlyOneElement() && other.Cells.HasOnlyOneElement()
+				? (_mask & 262143) == (other._mask & 262143)
+				: _mask == other._mask;
+		}
 
 		/// <summary>
 		/// Indicates whether the specified grid contains the digit.
@@ -170,11 +179,8 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <returns>A <see cref="bool"/> value.</returns>
 		public bool ContainsDigit(IReadOnlyGrid grid, int digit, out GridMap result)
 		{
-			var @this = this; // Query expression cannot capture 'this'.
 			result = GridMap.Empty;
-			foreach	(int cell in
-				from pos in RelativePos
-				select RegionUtils.GetCellOffset(@this.Region, pos))
+			foreach	(int cell in Cells)
 			{
 				if ((grid.GetCandidates(cell) >> digit & 1) == 0)
 				{
@@ -191,16 +197,18 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString()
 		{
-			var @this = this; // Query expression cannot capture 'this'.
-			return new StringBuilder()
-				.Append(DigitCollection.ToSimpleString(Digits))
-				.Append("/")
-				.Append(
-					CellCollection.ToString(
-						from pos in RelativePos
-						select RegionUtils.GetCellOffset(@this.Region, pos)))
-				.Append($" in {RegionUtils.ToString(Region)}")
-				.ToString();
+			return Cells.HasOnlyOneElement()
+				? new StringBuilder()
+					.Append(DigitCollection.ToSimpleString(Digits))
+					.Append("/")
+					.Append(CellCollection.ToString(Cells))
+					.ToString()
+				: new StringBuilder()
+					.Append(DigitCollection.ToSimpleString(Digits))
+					.Append("/")
+					.Append(CellCollection.ToString(Cells))
+					.Append($" in {RegionUtils.ToString(Region)}")
+					.ToString();
 		}
 
 

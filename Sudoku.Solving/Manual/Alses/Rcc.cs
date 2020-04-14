@@ -65,10 +65,9 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public bool Equals(Rcc other)
 		{
-			return Als1 == other.Als1
-				&& Als2 == other.Als2
-				&& CommonDigit == other.CommonDigit
-				&& CommonRegion == other.CommonRegion;
+			return CommonDigit == other.CommonDigit
+				&& CommonRegion == other.CommonRegion
+				&& (Als1 == other.Als1 && Als2 == other.Als2 || Als1 == other.Als2 && Als2 == other.Als1);
 		}
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>

@@ -365,6 +365,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			int pivot, int[] cells, short pivotMask,
 			short inter, IReadOnlyList<Conclusion> conclusions)
 		{
+			int elimDigit = conclusions[0].Digit;
 			result.Add(
 				new RegularWingTechniqueInfo(
 					conclusions,
@@ -377,13 +378,11 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 									select (0, cell)),
 							candidateOffsets:
 								new List<(int, int)>((
-									from digit in Enumerable.Range(0, 9)
 									from cell in cells
-									where !grid[cell, digit]
-									select (0, cell * 9 + digit)).Concat(
-									from digit in Enumerable.Range(0, 9)
-									where !grid[pivot, digit]
-									select (0, pivot * 9 + digit))),
+									from digit in grid.GetCandidatesReversal(cell).GetAllSets()
+									select (digit == elimDigit ? 1 : 0, cell * 9 + digit)).Concat(
+									from digit in grid.GetCandidatesReversal(pivot).GetAllSets()
+									select (digit == elimDigit ? 1 : 0, pivot * 9 + digit))),
 							regionOffsets: null,
 							links: null)
 					},

@@ -1074,6 +1074,11 @@
             as a <see cref="T:System.Int16"/> mask of 9 bits indicating which bits used.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Als.Cells">
+            <summary>
+            Indicates all cells used.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Int32@,System.Collections.Generic.IEnumerable{System.Int32}@,System.Collections.Generic.IEnumerable{System.Int32}@,Sudoku.Data.GridMap@)">
             <method name="Deconstruct">
 		<summary>Deconstruct this instance.</summary>
@@ -1342,12 +1347,8 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo">
             <summary>
-            Provides a usage of <b>almost locked sets XZ rule</b> technique.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.InternalNames">
-            <summary>
-            The internal names.
+            Provides a usage of <b>almost locked sets XZ rule</b>
+            or <b>extended subset principle</b> technique.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Rcc)">
@@ -1372,24 +1373,28 @@
         <member name="P:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.Equals(Sudoku.Solving.TechniqueInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.Equals(Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo)">
+            <method name="Equals" paramType="__any">
+		<summary>
+			Determine whether the current instance contains the same information with
+			hat from the specified parameter.
+		</summary>
+		<param name="other">The other instance to determine.</param>
+		<returns>
+			A <see cref="T:System.Boolean" /> value indicating that.
+		</returns>
+	</method>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.IsGeneralizedWing(System.Nullable{System.Boolean}@,System.Nullable{System.Int32}@)">
-            <summary>
-            Indicates whether this instance is a generalized regular wing.
-            </summary>
-            <param name="isAls1Bivalue">
-            (<see langword="out"/> parameter) Indicates whether the ALS1 is a bivalue cell.
-            </param>
-            <param name="value">
-            (<see langword="out"/> parameter) The candidate mask of another ALS
-            (non-bivalue cell ALS).
-            </param>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher">
             <summary>
-            Encapsulates an <b>almost locked sets XZ rule</b> technique.
+            Encapsulates an <b>almost locked sets XZ rule</b> or
+            <b>extended subset principle</b> technique.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher._allowOverlapping">
