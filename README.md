@@ -52,7 +52,7 @@ var grid = Grid.Parse("006800009000020300700001080010900200000040008008750040030
 var analysisResult = solver.Solve(grid);
 
 // Print the result onto the console screen.
-Console.WriteLine($"{analysisResult:.!}");
+Console.WriteLine(analysisResult.ToString(null));
 ```
 
 And the puzzle solution and analysis result will be displayed on console screen, like this!
