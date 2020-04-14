@@ -35,8 +35,7 @@ namespace Sudoku.Data
 			{
 				formatter.HodokuCompatible = true;
 			}
-			formatter.Placeholder =
-				gridOutputOption.HasFlag(GridOutputOptions.DotPlaceholder) ? '.' : '0';
+			formatter.Placeholder = gridOutputOption.HasFlag(GridOutputOptions.DotPlaceholder) ? '.' : '0';
 
 			return formatter;
 		}
