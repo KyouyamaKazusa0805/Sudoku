@@ -89,7 +89,7 @@ namespace Sudoku.Drawing.Layers
 
 			if (!(_view is null))
 			{
-				DrawCells(g, offset);
+				DrawCells(g, offset / 2);
 				DrawCandidates(g, offset);
 				DrawRegions(g, offset);
 				DrawLinks(g, offset);
@@ -168,8 +168,8 @@ namespace Sudoku.Drawing.Layers
 				pen.DashStyle = true switch
 				{
 					_ when inference.IsStrong => DashStyle.Solid,
-					_ when inference.IsWeak => DashStyle.Dash,
-					_ => DashStyle.Dot
+					_ when inference.IsWeak => DashStyle.Dot,
+					_ => DashStyle.Dash
 				};
 
 				var pt1 = _pointConverter.GetMouseCenterOfCandidates(startCandidates);

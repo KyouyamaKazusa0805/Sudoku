@@ -372,10 +372,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 					views: new[]
 					{
 						new View(
-							cellOffsets:
-								new List<(int, int)>(
-									from cell in cells
-									select (0, cell)),
+							cellOffsets: null,
 							candidateOffsets:
 								new List<(int, int)>((
 									from cell in cells
