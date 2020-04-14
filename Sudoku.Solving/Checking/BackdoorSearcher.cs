@@ -102,27 +102,44 @@ namespace Sudoku.Solving.Checking
 			if (depth == 0)
 			{
 				// Search backdoors (Assignments).
-				for (int cell = 0; cell < 81; cell++)
+				if (TestSolver.CanSolve(tempGrid))
 				{
-					if (tempGrid.GetCellStatus(cell) != Empty)
+					// All candidates will be marked.
+					for (int c = 0; c < 81; c++)
 					{
-						continue;
+						for (int d = 0, z = solution[c]; d < 9; d++)
+						{
+							result.Add(
+								d == z
+									? new[] { new Conclusion(Assignment, c, d) }
+									: new[] { new Conclusion(Elimination, c, d) });
+						}
 					}
-
-					int digit = solution[cell];
-					tempGrid[cell] = digit;
-
-					if (TestSolver.CanSolve(tempGrid))
-					{
-						// Solve successfully.
-						result.Add(new[] { new Conclusion(Assignment, cell, digit) });
-					}
-
-					// Restore data.
-					// Simply assigning to trigger the event to re-compute all candidates.
-					tempGrid[cell] = -1;
 				}
+				else
+				{
+					for (int cell = 0; cell < 81; cell++)
+					{
+						if (tempGrid.GetCellStatus(cell) != Empty)
+						{
+							continue;
+						}
 
+						int digit = solution[cell];
+						tempGrid[cell] = digit;
+
+						if (TestSolver.CanSolve(tempGrid))
+						{
+							// Solve successfully.
+							result.Add(new[] { new Conclusion(Assignment, cell, digit) });
+						}
+
+						// Restore data.
+						// Simply assigning to trigger the event to re-compute all candidates.
+						tempGrid[cell] = -1;
+					}
+				}
+				
 				return;
 			}
 
