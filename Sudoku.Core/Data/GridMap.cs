@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Extensions;
@@ -21,7 +22,7 @@ namespace Sudoku.Data
 	/// the digit. Sometimes this type will be used for other cases.
 	/// </remarks>
 	[DebuggerStepThrough]
-	public partial struct GridMap : IEnumerable<bool>, IEquatable<GridMap>
+	public partial struct GridMap : IComparable<GridMap>, IEnumerable<bool>, IEquatable<GridMap>
 	{
 		/// <summary>
 		/// <para>Indicates an empty instance (all bits are 0).</para>
@@ -129,6 +130,24 @@ namespace Sudoku.Data
 		/// Note that all offsets will be set <see langword="true"/>, but their own peers
 		/// will not be set <see langword="true"/>.
 		/// </remarks>
+		public GridMap(ReadOnlySpan<int> offsets)
+		{
+			(_low, _high, Count) = (0, 0, 0);
+			foreach (int offset in offsets)
+			{
+				(offset / Shifting == 0 ? ref _low : ref _high) |= 1L << offset % Shifting;
+				Count++;
+			}
+		}
+
+		/// <summary>
+		/// Initializes an instance with a series of cell offsets.
+		/// </summary>
+		/// <param name="offsets">cell offsets.</param>
+		/// <remarks>
+		/// Note that all offsets will be set <see langword="true"/>, but their own peers
+		/// will not be set <see langword="true"/>.
+		/// </remarks>
 		public GridMap(IEnumerable<int> offsets)
 		{
 			(_low, _high, Count) = (0, 0, 0);
@@ -197,6 +216,64 @@ namespace Sudoku.Data
 		public GridMap(int[] offsets, InitializeOption initializeOption)
 			: this((IEnumerable<int>)offsets, initializeOption)
 		{
+		}
+
+		/// <summary>
+		/// Initializes an instance with cell offsets with an initialize option.
+		/// </summary>
+		/// <param name="offsets">The offsets to be processed.</param>
+		/// <param name="initializeOption">
+		/// Indicates the behavior of the initialization.
+		/// </param>
+		/// <exception cref="ArgumentException">
+		/// Throws when the specified initialize option is invalid.
+		/// </exception>
+		public GridMap(ReadOnlySpan<int> offsets, InitializeOption initializeOption)
+		{
+			(_low, _high, Count) = (0, 0, 0);
+			switch (initializeOption)
+			{
+				case InitializeOption.Ordinary:
+				{
+					foreach (int offset in offsets)
+					{
+						this[offset] = true;
+					}
+
+					break;
+				}
+				case InitializeOption.ProcessPeersAlso:
+				case InitializeOption.ProcessPeersWithoutItself:
+				{
+					static void process(ref long low, ref long high, int peer) =>
+						(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
+
+					int i = 0;
+					foreach (int offset in offsets)
+					{
+						long low = 0, high = 0;
+						foreach (int peer in Peers[offset])
+						{
+							process(ref low, ref high, peer);
+						}
+
+						if (initializeOption == InitializeOption.ProcessPeersAlso)
+						{
+							process(ref low, ref high, offset);
+						}
+
+						(_low, _high) = i++ == 0 ? (low, high) : (_low & low, _high & high);
+					}
+
+					Count = _low.CountSet() + _high.CountSet();
+
+					break;
+				}
+				default:
+				{
+					throw new ArgumentException("The specified option does not exist.");
+				}
+			}
 		}
 
 		/// <summary>
@@ -545,6 +622,13 @@ namespace Sudoku.Data
 		/// <param name="index">The true bit index order.</param>
 		/// <returns>The real index.</returns>
 		public readonly int SetAt(int index) => Offsets.ElementAt(index);
+
+		/// <inheritdoc/>
+		public readonly int CompareTo(GridMap other)
+		{
+			return ((new BigInteger(_high) << Shifting) + new BigInteger(_low)).CompareTo(
+				(new BigInteger(other._high) << Shifting) + new BigInteger(other._low));
+		}
 
 		/// <summary>
 		/// Get all cell offsets whose bits are set <see langword="true"/>.

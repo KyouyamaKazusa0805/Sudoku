@@ -6055,13 +6055,19 @@
             <b>avoidable rectangle</b> (AR) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.String,System.Int32,System.Int32,System.Int32[],System.Boolean)">
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo._typeCode">
+            <summary>
+            The type code.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.String,System.Int32,System.Int32,System.Int32,System.Int32[],System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
             <param name="conclusions">All conclusions.</param>
             <param name="views">All views.</param>
             <param name="typeName">The type name.</param>
+            <param name="typeCode">The inner code.</param>
             <param name="digit1">The digit 1.</param>
             <param name="digit2">The digit 2.</param>
             <param name="cells">All cells.</param>
@@ -6069,7 +6075,7 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.TypeName">
             <summary>
-            Indicates the type name of this pattern.
+            Indicates the type name.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.Digit1">
@@ -6106,6 +6112,9 @@
             Get additional string.
             </summary>
             <returns>The additional string.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.System#IComparable{Sudoku#Solving#Manual#Uniqueness#Rects#UrTechniqueInfo}#CompareTo(Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher">
             <summary>
@@ -6147,6 +6156,13 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.CheckHighlightType(System.ValueTuple{System.Int32,System.Int32})">
+            <summary>
+            Check highlight type.
+            </summary>
+            <param name="pair">The pair.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.CheckPreconditions(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
             <summary>
             Check all preconditions.
@@ -6162,7 +6178,7 @@
             <b>avoidable rectangle</b> (AR) type 1 technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.String,System.Int32,System.Int32,System.Int32[],System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.String,System.Int32,System.Int32,System.Int32,System.Int32[],System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo.Difficulty">
@@ -6172,6 +6188,40 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo.GetAdditional">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2TechniqueInfo">
+            <summary>
+            Provides a usage of <b>unique rectangle</b> (UR) or
+            <b>avoidable rectangle</b> (AR) type 2 (or type 5) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.String,System.Int32,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="typeName">The type name.</param>
+            <param name="typeCode">The type code.</param>
+            <param name="digit1">The digit 1.</param>
+            <param name="digit2">The digit 2.</param>
+            <param name="cells">All cells.</param>
+            <param name="isAr">Indicates whether the instance is an AR.</param>
+            <param name="extraDigit">The extra digit.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2TechniqueInfo.ExtraDigit">
+            <summary>
+            Indicates the extra digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2TechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2TechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2TechniqueInfo.GetAdditional">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo">

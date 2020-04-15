@@ -1292,6 +1292,16 @@
             </remarks>
             <seealso cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>
         </member>
+        <member name="M:Sudoku.Data.GridMap.#ctor(System.ReadOnlySpan{System.Int32})">
+            <summary>
+            Initializes an instance with a series of cell offsets.
+            </summary>
+            <param name="offsets">cell offsets.</param>
+            <remarks>
+            Note that all offsets will be set <see langword="true"/>, but their own peers
+            will not be set <see langword="true"/>.
+            </remarks>
+        </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
             Initializes an instance with a series of cell offsets.
@@ -1327,6 +1337,18 @@
             This method is same behavior of <see cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap.InitializeOption)"/>
             </remarks>
             <seealso cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap.InitializeOption)"/>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.#ctor(System.ReadOnlySpan{System.Int32},Sudoku.Data.GridMap.InitializeOption)">
+            <summary>
+            Initializes an instance with cell offsets with an initialize option.
+            </summary>
+            <param name="offsets">The offsets to be processed.</param>
+            <param name="initializeOption">
+            Indicates the behavior of the initialization.
+            </param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the specified initialize option is invalid.
+            </exception>
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap.InitializeOption)">
             <summary>
@@ -1480,6 +1502,9 @@
             </summary>
             <param name="index">The true bit index order.</param>
             <returns>The real index.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.CompareTo(Sudoku.Data.GridMap)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.GridMap.ToArray">
             <summary>

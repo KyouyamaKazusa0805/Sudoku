@@ -20,6 +20,7 @@ using Sudoku.Solving.Manual.Uniqueness.Rectangles;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using Intersection = System.ValueTuple<int, int, Sudoku.Data.GridMap, Sudoku.Data.GridMap>;
+using UrTechniqueSearcher = Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher;
 
 namespace Sudoku.Solving.Manual
 {
@@ -83,7 +84,8 @@ namespace Sudoku.Solving.Manual
 				new RegularWingTechniqueSearcher(_settings.CheckRegularWingSize),
 				new IrregularWingTechniqueSearcher(),
 				new TwoStrongLinksTechniqueSearcher(),
-				new UrTechniqueSearcher(_settings.CheckIncompletedUniquenessPatterns),
+				//new UrTechniqueSearcher(_settings.CheckIncompletedUniquenessPatterns),
+				new UrTechniqueSearcher(_settings.CheckIncompletedUniquenessPatterns, _settings.SearchExtendedUniqueRectangles),
 				new XrTechniqueSearcher(),
 				new UlTechniqueSearcher(),
 				new EmptyRectangleTechniqueSearcher(regionMaps),

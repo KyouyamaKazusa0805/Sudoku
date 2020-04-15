@@ -55,6 +55,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			// Iterate on mode (whether use AR or UR mode to search).
+			var tempList = new List<UrTechniqueInfo>();
 			foreach (bool arMode in stackalloc[] { false, true })
 			{
 				// Iterate on each possible UR structure.
@@ -91,23 +92,43 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							}
 
 							// Iterate on each corner of four cells.
-							for (int corner = 0; corner < 4; corner++)
+							for (int c1 = 0; c1 < 4; c1++)
 							{
-								CheckType1(accumulator, grid, urCells, arMode, comparer, d1, d2, corner);
+								int corner1 = urCells[c1];
+								var otherCellsMap = new GridMap(urCells) { [corner1] = false };
+								CheckType1(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap);
+								CheckType5(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap);
+
+								if (c1 == 3)
+								{
+									break;
+								}
+
+								for (int c2 = c1 + 1; c2 < 4; c2++)
+								{
+									int corner2 = urCells[c2];
+									var tempOtherCellsMap = new GridMap(otherCellsMap) { [corner2] = false };
+									CheckType2(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
+								}
 							}
 						}
 					}
 				}
 			}
+
+			tempList.Sort();
+			accumulator.AddRange(tempList);
 		}
 
 		private void CheckType1(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner)
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
 		{
-			// Get all other cells in this pattern, and get the summary mask.
-			int cornerCell = urCells[corner];
-			var otherCellsMap = new GridMap(urCells) { [cornerCell] = false };
+			// ↓cornerCell
+			// abc ab
+			// ab  ab
+
+			// Get the summary mask.
 			short mask = 0;
 			foreach (int cell in otherCellsMap.Offsets)
 			{
@@ -115,11 +136,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			if (mask != comparer)
-			{
-				return;
-			}
-
-			if (!arMode && urCells.All(urCell => grid.GetCellStatus(urCell) == Modifiable))
 			{
 				return;
 			}
@@ -164,13 +180,185 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							regionOffsets: null,
 							links: null)
 					},
-					typeName: "1",
+					typeName: "Type 1",
+					typeCode: 1,
 					digit1: d1,
 					digit2: d2,
 					cells: urCells,
 					isAr: arMode));
 		}
 
+		private void CheckType2(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
+		{
+			// ↓corner1, corner2
+			// abc abc
+			// ab  ab
+
+			// Get the summary mask.
+			short mask = 0;
+			foreach (int cell in otherCellsMap.Offsets)
+			{
+				mask |= grid.GetCandidatesReversal(cell);
+			}
+
+			if (mask != comparer)
+			{
+				return;
+			}
+
+			int extraMask = (grid.GetCandidatesReversal(corner1) | grid.GetCandidatesReversal(corner2)) ^ comparer;
+			if (extraMask.CountSet() != 1)
+			{
+				return;
+			}
+
+			// Type 2 or 5 found. Now check elimination.
+			int extraDigit = extraMask.FindFirstSet();
+			var conclusions = new List<Conclusion>();
+			foreach (int cell in
+				new GridMap(
+					stackalloc[] { corner1, corner2 },
+					GridMap.InitializeOption.ProcessPeersWithoutItself).Offsets)
+			{
+				if (!(grid.Exists(cell, extraDigit) is true))
+				{
+					continue;
+				}
+
+				conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
+			}
+			if (conclusions.Count == 0)
+			{
+				return;
+			}
+
+			var cellOffsets = new List<(int, int)>(from cell in urCells select (0, cell));
+			var candidateOffsets = new List<(int, int)>();
+			foreach (int cell in urCells)
+			{
+				foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+				{
+					candidateOffsets.Add((digit == extraDigit ? 1 : 0, cell * 9 + digit));
+				}
+			}
+			if (!_allowUncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
+			{
+				return;
+			}
+
+			bool isType5 = !new GridMap(stackalloc[] { corner1, corner2 }).AllSetsAreInOneRegion(out _);
+			accumulator.Add(
+				new UrType2TechniqueInfo(
+					conclusions,
+					views: new[]
+					{
+						new View(
+							cellOffsets: arMode ? cellOffsets : null,
+							candidateOffsets: arMode ? null : candidateOffsets,
+							regionOffsets: null,
+							links: null)
+					},
+					typeName: $"Type {(isType5 ? "5" : "2")}",
+					typeCode: isType5 ? 5 : 2,
+					digit1: d1,
+					digit2: d2,
+					cells: urCells,
+					isAr: arMode,
+					extraDigit));
+		}
+
+		private void CheckType5(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
+		{
+			// ↓cornerCell
+			// ab  abc
+			// abc abc
+
+			if (grid.GetCandidatesReversal(cornerCell) != comparer)
+			{
+				return;
+			}
+
+			// Get the summary mask.
+			short mask = 0;
+			foreach (int cell in otherCellsMap.Offsets)
+			{
+				mask |= grid.GetCandidatesReversal(cell);
+			}
+
+			int extraMask = mask ^ comparer;
+			if (extraMask.CountSet() != 1)
+			{
+				return;
+			}
+
+			// Type 5 found. Now check elimination.
+			int extraDigit = extraMask.FindFirstSet();
+			var conclusions = new List<Conclusion>();
+			foreach (int cell in new GridMap(
+				otherCellsMap.Offsets,
+				GridMap.InitializeOption.ProcessPeersWithoutItself).Offsets)
+			{
+				if (!(grid.Exists(cell, extraDigit) is true))
+				{
+					continue;
+				}
+
+				conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
+			}
+			if (conclusions.Count == 0)
+			{
+				return;
+			}
+
+			var cellOffsets = new List<(int, int)>(from cell in urCells select (0, cell));
+			var candidateOffsets = new List<(int, int)>();
+			foreach (int cell in urCells)
+			{
+				foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+				{
+					candidateOffsets.Add((digit == extraDigit ? 1 : 0, cell * 9 + digit));
+				}
+			}
+			if (!_allowUncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
+			{
+				return;
+			}
+
+			accumulator.Add(
+				new UrType2TechniqueInfo(
+					conclusions,
+					views: new[]
+					{
+						new View(
+							cellOffsets: arMode ? cellOffsets : null,
+							candidateOffsets: arMode ? null : candidateOffsets,
+							regionOffsets: null,
+							links: null)
+					},
+					typeName: "Type 5",
+					typeCode: 5,
+					digit1: d1,
+					digit2: d2,
+					cells: urCells,
+					isAr: arMode,
+					extraDigit));
+		}
+
+
+		/// <summary>
+		/// Check highlight type.
+		/// </summary>
+		/// <param name="pair">The pair.</param>
+		/// <returns>The result.</returns>
+		private static bool CheckHighlightType((int, int) pair)
+		{
+			var (id, _) = pair;
+			return id == 0;
+		}
 
 		/// <summary>
 		/// Check all preconditions.
