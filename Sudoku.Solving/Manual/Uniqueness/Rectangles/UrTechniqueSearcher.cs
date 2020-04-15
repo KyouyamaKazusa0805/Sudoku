@@ -24,6 +24,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 	/// In fact, ARs can also be found.
 	/// </summary>
 	[TechniqueDisplay("Unique Rectangle")]
+	[Obsolete("Please use 'Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher instead.'")]
 	public sealed class UrTechniqueSearcher : RectangleTechniqueSearcher
 	{
 		/// <summary>

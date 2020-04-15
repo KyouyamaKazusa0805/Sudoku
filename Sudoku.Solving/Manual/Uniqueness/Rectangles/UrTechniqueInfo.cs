@@ -9,6 +9,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 	/// <summary>
 	/// Provides a usage of <b>unique rectangle</b> (UR) technique.
 	/// </summary>
+	[Obsolete]
 	public sealed class UrTechniqueInfo : RectangleTechniqueInfo
 	{
 		/// <summary>

@@ -12,7 +12,8 @@ using static Sudoku.Solving.ConclusionType;
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
 	/// <summary>
-	/// Encapsulates an <b>unique rectangle</b> (UR) technique searcher.
+	/// Encapsulates an <b>unique rectangle</b> (UR) or
+	/// <b>avoidable rectangle</b> (AR) technique searcher.
 	/// </summary>
 	[TechniqueDisplay("Unique Rectangle")]
 	public sealed class UrTechniqueSearcher : RectangleTechniqueSearcher
@@ -120,8 +121,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				}
 			}
 
-			tempList.Sort();
-			accumulator.AddRange(tempList);
+			// Sort if worth.
+			if (tempList.Count != 0)
+			{
+				tempList.Sort();
+				accumulator.AddRange(tempList);
+			}
 		}
 
 		private void CheckType1(

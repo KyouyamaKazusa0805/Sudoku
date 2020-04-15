@@ -1,8 +1,11 @@
-﻿namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
+﻿using System;
+
+namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 {
 	/// <summary>
 	/// Encapsulates a <b>rectangle</b> technique searcher.
 	/// </summary>
+	[Obsolete("Please use 'Sudoku.Solving.Manual.Uniqueness.Rects.RectangleTechniqueSearcher instead.'")]
 	public abstract class RectangleTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>

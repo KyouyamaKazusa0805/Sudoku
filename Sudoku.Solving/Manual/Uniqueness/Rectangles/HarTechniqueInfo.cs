@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -7,6 +8,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 	/// <summary>
 	/// Provides a usage of <b>hidden avoidable rectangle</b> (HAR) technique.
 	/// </summary>
+	[Obsolete]
 	public sealed class HarTechniqueInfo : RectangleTechniqueInfo
 	{
 		/// <summary>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 using ArType3 = Sudoku.Solving.Manual.Uniqueness.Rectangles.ArType3DetailData;
@@ -8,6 +9,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 	/// <summary>
 	/// Provides a usage of <b>avoidable rectangle</b> (AR) technique.
 	/// </summary>
+	[Obsolete]
 	public sealed class ArTechniqueInfo : RectangleTechniqueInfo
 	{
 		/// <summary>

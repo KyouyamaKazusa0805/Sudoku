@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 {
 	/// <summary>
 	/// Provides a rectangle detail data model.
 	/// </summary>
+	[Obsolete]
 	public interface IRectangleDetailData
 	{
 		/// <summary>

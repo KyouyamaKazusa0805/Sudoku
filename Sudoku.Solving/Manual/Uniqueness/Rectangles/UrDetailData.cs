@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 {
 	/// <summary>
 	/// Provides all data for unique rectangles (basic and extended types).
 	/// </summary>
+	[Obsolete]
 	public abstract class UrDetailData : IRectangleDetailData
 	{
 		/// <summary>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Drawing;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
@@ -6,6 +7,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 	/// <summary>
 	/// Provides a usage of <b>rectangle</b> technique.
 	/// </summary>
+	[Obsolete]
 	public abstract class RectangleTechniqueInfo : UniquenessTechniqueInfo
 	{
 		/// <summary>

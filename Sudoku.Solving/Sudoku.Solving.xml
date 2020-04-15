@@ -6132,7 +6132,8 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher">
             <summary>
-            Encapsulates an <b>unique rectangle</b> (UR) technique searcher.
+            Encapsulates an <b>unique rectangle</b> (UR) or
+            <b>avoidable rectangle</b> (AR) technique searcher.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher._allowUncompletedUr">

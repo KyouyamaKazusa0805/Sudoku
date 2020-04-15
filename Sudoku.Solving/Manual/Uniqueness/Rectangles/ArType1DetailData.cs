@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
@@ -6,6 +7,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 	/// <summary>
 	/// Indicates the detail data of AR type 1.
 	/// </summary>
+	[Obsolete]
 	public sealed class ArType1DetailData : ArDetailData
 	{
 		/// <summary>
