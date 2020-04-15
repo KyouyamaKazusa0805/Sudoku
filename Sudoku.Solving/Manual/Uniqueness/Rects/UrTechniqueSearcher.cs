@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -356,6 +357,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// </summary>
 		/// <param name="pair">The pair.</param>
 		/// <returns>The result.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static bool CheckHighlightType((int, int) pair)
 		{
 			var (id, _) = pair;
