@@ -294,6 +294,15 @@ namespace Sudoku.Windows
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether the solver should search for extended
+		/// unique rectangles.
+		/// </para>
+		/// <para>The value is <see langword="false"/> in default case.</para>
+		/// </summary>
+		public bool SearchExtendedUniqueRectangles { get; set; } = false;
+
+		/// <summary>
+		/// <para>
 		/// Indicates the grid line width of the sudoku grid to render.
 		/// </para>
 		/// <para>The value is <c>1.5F</c> in default case.</para>

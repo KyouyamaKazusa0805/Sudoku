@@ -4,14 +4,6 @@
 	{
 		/// <summary>
 		/// <para>
-		/// Indicates the maximum length of a chain to search.
-		/// </para>
-		/// <para>The value is <c>10</c> in default case.</para>
-		/// </summary>
-		public int AicMaximumLength { get; set; } = 10;
-
-		/// <summary>
-		/// <para>
 		/// Indicates whether two ALSes can be overlapped with each other.
 		/// </para>
 		/// <para>The value is <see langword="true"/> in default case.</para>
@@ -51,19 +43,6 @@
 		/// </summary>
 		/// <seealso cref="OptimizedApplyingOrder"/>
 		public bool AnalyzeDifficultyStrictly { get; set; } = false;
-
-		/// <summary>
-		/// <para>
-		/// Indicates the number of nodes to be searched for in bowman bingos.
-		/// </para>
-		/// <para>
-		/// The value is <c>32</c> in default case. You can let this value
-		/// be higher because this value take a little influence on the solver.
-		/// However, each unique solution has more than 17 hints (given digits),
-		/// which means you cannot set this value more than <c>64</c> (81 - 17 = 64).
-		/// </para>
-		/// </summary>
-		public int BowmanBingoMaximumLength { get; set; } = 32;
 
 		/// <summary>
 		/// <para>
@@ -154,18 +133,12 @@
 
 		/// <summary>
 		/// <para>
-		/// Indicates all regular wings with the size less than
-		/// or equals to this specified value. This value should
-		/// be between 3 and 5.
+		/// Indicates whether the solver should search for extended
+		/// unique rectangles.
 		/// </para>
-		/// <para>The value is <c>5</c> in default case.</para>
+		/// <para>The value is <see langword="false"/> in default case.</para>
 		/// </summary>
-		/// <remarks>
-		/// In fact this value can be 9 at most (i.e. <c>value &gt;&#61; 3
-		/// &amp;&amp; value &lt;&#61; 9</c>) theoretically, however the searching
-		/// is too low so I do not allow them.
-		/// </remarks>
-		public int CheckRegularWingSize { get; set; } = 5;
+		public bool SearchExtendedUniqueRectangles { get; set; } = false;
 
 		/// <summary>
 		/// <para>
@@ -225,33 +198,6 @@
 		/// </para>
 		/// </summary>
 		public bool FastSearch { get; set; } = false;
-
-		/// <summary>
-		/// <para>
-		/// Indicates what size of the Hobiwan's fish will be searched for.
-		/// </para>
-		/// <para>
-		/// The value is <c>3</c> in default case. The maximum value supporting
-		/// is <c>7</c>.
-		/// </para>
-		/// </summary>
-		public int HobiwanFishMaximumSize { get; set; } = 3;
-
-		/// <summary>
-		/// <para>
-		/// Indicates how many exo-fins in Hobiwan's fish will be searched for.
-		/// </para>
-		/// <para>The value is <c>3</c> in default case.</para>
-		/// </summary>
-		public int HobiwanFishMaximumExofinsCount { get; set; } = 3;
-
-		/// <summary>
-		/// <para>
-		/// Indicates how many endo-fins in Hobiwan's fish will be searched for.
-		/// </para>
-		/// <para>The value is <c>1</c> in default case.</para>
-		/// </summary>
-		public int HobiwanFishMaximumEndofinsCount { get; set; } = 1;
 
 		/// <summary>
 		/// <para>
@@ -350,5 +296,68 @@
 		/// <para>The value is <see langword="false"/> in default case.</para>
 		/// </summary>
 		public bool UseExtendedBugSearcher { get; set; } = false;
+
+		/// <summary>
+		/// <para>
+		/// Indicates what size of the Hobiwan's fish will be searched for.
+		/// </para>
+		/// <para>
+		/// The value is <c>3</c> in default case. The maximum value supporting
+		/// is <c>7</c>.
+		/// </para>
+		/// </summary>
+		public int HobiwanFishMaximumSize { get; set; } = 3;
+
+		/// <summary>
+		/// <para>
+		/// Indicates how many exo-fins in Hobiwan's fish will be searched for.
+		/// </para>
+		/// <para>The value is <c>3</c> in default case.</para>
+		/// </summary>
+		public int HobiwanFishMaximumExofinsCount { get; set; } = 3;
+
+		/// <summary>
+		/// <para>
+		/// Indicates how many endo-fins in Hobiwan's fish will be searched for.
+		/// </para>
+		/// <para>The value is <c>1</c> in default case.</para>
+		/// </summary>
+		public int HobiwanFishMaximumEndofinsCount { get; set; } = 1;
+
+		/// <summary>
+		/// <para>
+		/// Indicates the number of nodes to be searched for in bowman bingos.
+		/// </para>
+		/// <para>
+		/// The value is <c>32</c> in default case. You can let this value
+		/// be higher because this value take a little influence on the solver.
+		/// However, each unique solution has more than 17 hints (given digits),
+		/// which means you cannot set this value more than <c>64</c> (81 - 17 = 64).
+		/// </para>
+		/// </summary>
+		public int BowmanBingoMaximumLength { get; set; } = 32;
+
+		/// <summary>
+		/// <para>
+		/// Indicates the maximum length of a chain to search.
+		/// </para>
+		/// <para>The value is <c>10</c> in default case.</para>
+		/// </summary>
+		public int AicMaximumLength { get; set; } = 10;
+
+		/// <summary>
+		/// <para>
+		/// Indicates all regular wings with the size less than
+		/// or equals to this specified value. This value should
+		/// be between 3 and 5.
+		/// </para>
+		/// <para>The value is <c>5</c> in default case.</para>
+		/// </summary>
+		/// <remarks>
+		/// In fact this value can be 9 at most (i.e. <c>value &gt;&#61; 3
+		/// &amp;&amp; value &lt;&#61; 9</c>) theoretically, however the searching
+		/// is too low so I do not allow them.
+		/// </remarks>
+		public int CheckRegularWingSize { get; set; } = 5;
 	}
 }

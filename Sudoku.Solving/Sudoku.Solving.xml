@@ -3357,14 +3357,6 @@
             <param name="conclusions">The conclusions.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.AicMaximumLength">
-            <summary>
-            <para>
-            Indicates the maximum length of a chain to search.
-            </para>
-            <para>The value is <c>10</c> in default case.</para>
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.AllowOverlapAlses">
             <summary>
             <para>
@@ -3406,19 +3398,6 @@
             </para>
             </summary>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.BowmanBingoMaximumLength">
-            <summary>
-            <para>
-            Indicates the number of nodes to be searched for in bowman bingos.
-            </para>
-            <para>
-            The value is <c>32</c> in default case. You can let this value
-            be higher because this value take a little influence on the solver.
-            However, each unique solution has more than 17 hints (given digits),
-            which means you cannot set this value more than <c>64</c> (81 - 17 = 64).
-            </para>
-            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckAlmostLockedQuadruple">
             <summary>
@@ -3507,20 +3486,14 @@
             <para>The value is <see langword="false"/> in default case.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckRegularWingSize">
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.SearchExtendedUniqueRectangles">
             <summary>
             <para>
-            Indicates all regular wings with the size less than
-            or equals to this specified value. This value should
-            be between 3 and 5.
+            Indicates whether the solver should search for extended
+            unique rectangles.
             </para>
-            <para>The value is <c>5</c> in default case.</para>
+            <para>The value is <see langword="false"/> in default case.</para>
             </summary>
-            <remarks>
-            In fact this value can be 9 at most (i.e. <c>value &gt;&#61; 3
-            &amp;&amp; value &lt;&#61; 9</c>) theoretically, however the searching
-            is too low so I do not allow them.
-            </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.EnableFullHouse">
             <summary>
@@ -3579,33 +3552,6 @@
             accelerate the running, but the applied techniques will be added much
             more than when the value is <see langword="false"/>.
             </para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.HobiwanFishMaximumSize">
-            <summary>
-            <para>
-            Indicates what size of the Hobiwan's fish will be searched for.
-            </para>
-            <para>
-            The value is <c>3</c> in default case. The maximum value supporting
-            is <c>7</c>.
-            </para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.HobiwanFishMaximumExofinsCount">
-            <summary>
-            <para>
-            Indicates how many exo-fins in Hobiwan's fish will be searched for.
-            </para>
-            <para>The value is <c>3</c> in default case.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.HobiwanFishMaximumEndofinsCount">
-            <summary>
-            <para>
-            Indicates how many endo-fins in Hobiwan's fish will be searched for.
-            </para>
-            <para>The value is <c>1</c> in default case.</para>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.HobiwanFishCheckTemplates">
@@ -3705,6 +3651,69 @@
             </para>
             <para>The value is <see langword="false"/> in default case.</para>
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.HobiwanFishMaximumSize">
+            <summary>
+            <para>
+            Indicates what size of the Hobiwan's fish will be searched for.
+            </para>
+            <para>
+            The value is <c>3</c> in default case. The maximum value supporting
+            is <c>7</c>.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.HobiwanFishMaximumExofinsCount">
+            <summary>
+            <para>
+            Indicates how many exo-fins in Hobiwan's fish will be searched for.
+            </para>
+            <para>The value is <c>3</c> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.HobiwanFishMaximumEndofinsCount">
+            <summary>
+            <para>
+            Indicates how many endo-fins in Hobiwan's fish will be searched for.
+            </para>
+            <para>The value is <c>1</c> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.BowmanBingoMaximumLength">
+            <summary>
+            <para>
+            Indicates the number of nodes to be searched for in bowman bingos.
+            </para>
+            <para>
+            The value is <c>32</c> in default case. You can let this value
+            be higher because this value take a little influence on the solver.
+            However, each unique solution has more than 17 hints (given digits),
+            which means you cannot set this value more than <c>64</c> (81 - 17 = 64).
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.AicMaximumLength">
+            <summary>
+            <para>
+            Indicates the maximum length of a chain to search.
+            </para>
+            <para>The value is <c>10</c> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckRegularWingSize">
+            <summary>
+            <para>
+            Indicates all regular wings with the size less than
+            or equals to this specified value. This value should
+            be between 3 and 5.
+            </para>
+            <para>The value is <c>5</c> in default case.</para>
+            </summary>
+            <remarks>
+            In fact this value can be 9 at most (i.e. <c>value &gt;&#61; 3
+            &amp;&amp; value &lt;&#61; 9</c>) theoretically, however the searching
+            is too low so I do not allow them.
+            </remarks>
         </member>
         <member name="T:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo">
             <summary>
@@ -5458,108 +5467,6 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrDetailData.ToString">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionDetailData">
-            <summary>
-            Indicates the detail data of UR+.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionDetailData.#ctor(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{Sudoku.Solving.ConjugatePair},System.String)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="cells">All cells.</param>
-            <param name="digits">All digits.</param>
-            <param name="conjugatePairs">All conjugate pairs used.</param>
-            <param name="name">The name of this instance.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionDetailData.ConjugatePairs">
-            <summary>
-            Indicates the conjugate pairs used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionDetailData.Name">
-            <summary>
-            Indicates the name of this instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionDetailData.Type">
-            <inheritdoc/>
-            <remarks>
-            This field will not be used in this instance.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionDetailData.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueInfo">
-            <summary>
-            Provides a usage of <b>unique rectangle extension</b> (UR+) technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rectangles.IRectangleDetailData)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueInfo.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueInfo.Convert(Sudoku.Solving.Manual.Uniqueness.Rectangles.IRectangleDetailData)">
-            <summary>
-            Convert the specified detail data to UR+ data.
-            </summary>
-            <param name="rectangleDetailData">The data to convert.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueSearcher">
-            <summary>
-            Encapsulates an <b>unique rectangle extension</b> (UR+) technique searcher.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueSearcher._checkIncompleted">
-            <summary>
-            Indicates whether the solver should check uncompleted URs.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueSearcher.#ctor(System.Boolean)">
-            <summary>
-            Initializes an instance with the checking option.
-            </summary>
-            <param name="checkIncompletedUniquenessPatterns">
-            Indicates whether the solver should check uncompleted URs.
-            </param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueSearcher.Priority">
-            <summary>
-            Indicates the priority of this technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueSearcher.IsEnabled">
-            <summary>
-            Indicates whether the technique is enabled.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrExtensionTechniqueSearcher.IsExact(System.Int32[],System.Int32,System.Int32,Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            To check whether the specified region contains only two cells containing the specified
-            digit, and these two cells are same as the argument <paramref name="cells"/>.
-            </summary>
-            <param name="cells">The cells.</param>
-            <param name="digit">The digits.</param>
-            <param name="region">The regions.</param>
-            <param name="grid">The grid.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.UrTechniqueInfo">
             <summary>
             Provides a usage of <b>unique rectangle</b> (UR) technique.
@@ -6121,6 +6028,150 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.XrType4DetailData.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.RectangleTechniqueInfo">
+            <summary>
+            Provides a usage of <b>rectangle</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.RectangleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.RectangleTechniqueSearcher">
+            <summary>
+            Encapsulates a <b>rectangle</b> technique searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.RectangleTechniqueSearcher.UrCellsList">
+            <summary>
+            <para>The table of all UR cells.</para>
+            <para>I strongly recommend you <b>should not</b> modify any values in this table.</para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo">
+            <summary>
+            Provides a usage of <b>unique rectangle</b> (UR) or
+            <b>avoidable rectangle</b> (AR) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.String,System.Int32,System.Int32,System.Int32[],System.Boolean)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="typeName">The type name.</param>
+            <param name="digit1">The digit 1.</param>
+            <param name="digit2">The digit 2.</param>
+            <param name="cells">All cells.</param>
+            <param name="isAr">Indicates whether the structure is an AR.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.TypeName">
+            <summary>
+            Indicates the type name of this pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.Digit1">
+            <summary>
+            Indicates the digit 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.Digit2">
+            <summary>
+            Indicates the digit 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.Cells">
+            <summary>
+            Indicates the cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.IsAr">
+            <summary>
+            Indicates the current structure is UR or AR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.GetAdditional">
+            <summary>
+            Get additional string.
+            </summary>
+            <returns>The additional string.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher">
+            <summary>
+            Encapsulates an <b>unique rectangle</b> (UR) technique searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher._allowUncompletedUr">
+            <summary>
+            Indicates whether the UR can be uncompleted. In other words,
+            some of UR candidates can be removed before the pattern forms.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher._searchExtended">
+            <summary>
+            Indicates whether the searcher can search for extended URs.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            Initializes an instance with the specified value indicating
+            whether the structure can be uncompleted, and a value indicating
+            whether the searcher can search for extended URs.
+            </summary>
+            <param name="allowUncompletedUr">
+            A <see cref="T:System.Boolean"/> value indicating that.
+            </param>
+            <param name="searchExtended">A <see cref="T:System.Boolean"/> value indicating that.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.Priority">
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.CheckPreconditions(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
+            <summary>
+            Check all preconditions.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR searching mode.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo">
+            <summary>
+            Provides a usage of <b>unique rectangle</b> (UR) or
+            <b>avoidable rectangle</b> (AR) type 1 technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.String,System.Int32,System.Int32,System.Int32[],System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo.GetAdditional">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo">
