@@ -6,6 +6,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using static Sudoku.Data.CellStatus;
+using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Solving.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
@@ -221,9 +222,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			int extraDigit = extraMask.FindFirstSet();
 			var conclusions = new List<Conclusion>();
 			foreach (int cell in
-				new GridMap(
-					stackalloc[] { corner1, corner2 },
-					GridMap.InitializeOption.ProcessPeersWithoutItself).Offsets)
+				new GridMap(stackalloc[] { corner1, corner2 }, ProcessPeersWithoutItself).Offsets)
 			{
 				if (!(grid.Exists(cell, extraDigit) is true))
 				{
@@ -241,6 +240,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			var candidateOffsets = new List<(int, int)>();
 			foreach (int cell in urCells)
 			{
+				if (grid.GetCellStatus(cell) != Empty)
+				{
+					continue;
+				}
+
 				foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 				{
 					candidateOffsets.Add((digit == extraDigit ? 1 : 0, cell * 9 + digit));
@@ -259,7 +263,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					{
 						new View(
 							cellOffsets: arMode ? cellOffsets : null,
-							candidateOffsets: arMode ? null : candidateOffsets,
+							candidateOffsets,
 							regionOffsets: null,
 							links: null)
 					},
@@ -301,9 +305,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			// Type 5 found. Now check elimination.
 			int extraDigit = extraMask.FindFirstSet();
 			var conclusions = new List<Conclusion>();
-			foreach (int cell in new GridMap(
-				otherCellsMap.Offsets,
-				GridMap.InitializeOption.ProcessPeersWithoutItself).Offsets)
+			foreach (int cell in new GridMap(otherCellsMap.Offsets, ProcessPeersWithoutItself).Offsets)
 			{
 				if (!(grid.Exists(cell, extraDigit) is true))
 				{
@@ -321,6 +323,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			var candidateOffsets = new List<(int, int)>();
 			foreach (int cell in urCells)
 			{
+				if (grid.GetCellStatus(cell) != Empty)
+				{
+					continue;
+				}
+
 				foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 				{
 					candidateOffsets.Add((digit == extraDigit ? 1 : 0, cell * 9 + digit));
@@ -338,7 +345,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					{
 						new View(
 							cellOffsets: arMode ? cellOffsets : null,
-							candidateOffsets: arMode ? null : candidateOffsets,
+							candidateOffsets,
 							regionOffsets: null,
 							links: null)
 					},
