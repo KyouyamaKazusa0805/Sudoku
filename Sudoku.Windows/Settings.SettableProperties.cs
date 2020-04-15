@@ -318,6 +318,12 @@ namespace Sudoku.Windows
 		public float BlockLineWidth { get; set; } = 5F;
 
 		/// <summary>
+		/// <para>Indicates the size for picture to save as image files.</para>
+		/// <para>The default value is <c>800F</c>.</para>
+		/// </summary>
+		public float SavingPictureSize { get; set; } = 800F;
+
+		/// <summary>
 		/// <para>
 		/// Indicates the maximum length of a chain to search.
 		/// </para>

@@ -36,6 +36,7 @@ namespace Sudoku.Windows
 			InitializeComponent();
 
 			(_settings, _grid) = (settings, grid);
+			_textBoxSize.Text = _settings.SavingPictureSize.ToString();
 		}
 
 		private void ButtonSave_Click(object sender, RoutedEventArgs e)
@@ -114,6 +115,7 @@ namespace Sudoku.Windows
 					bitmap?.Dispose();
 				}
 
+				_settings.SavingPictureSize = size;
 				return true;
 			}
 		}
