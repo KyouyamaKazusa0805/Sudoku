@@ -11,7 +11,7 @@ namespace Sudoku.Solving.Manual.Alses
 	/// <summary>
 	/// Encapsulates a <b>death blossom</b> technique.
 	/// </summary>
-	[TechniqueDisplay("Death Blossom")]
+	[TechniqueDisplay("Death Blossom"), HighAllocation]
 	public sealed class DeathBlossomTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <summary>
@@ -23,6 +23,11 @@ namespace Sudoku.Solving.Manual.Alses
 		/// Indicates whether the ALSes shows their region rather than cells.
 		/// </summary>
 		private readonly bool _alsShowRegions;
+
+		/// <summary>
+		/// Indicates the max petals to search.
+		/// </summary>
+		private readonly int _maxPetals;
 
 		/// <summary>
 		/// The region maps.
@@ -40,8 +45,12 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <param name="alsShowRegions">
 		/// Indicates whether all ALSes shows their regions rather than cells.
 		/// </param>
-		public DeathBlossomTechniqueSearcher(GridMap[] regionMaps, bool allowOverlapping, bool alsShowRegions) =>
-			(_regionMaps, _allowOverlapping, _alsShowRegions) = (regionMaps, allowOverlapping, alsShowRegions);
+		/// <param name="maxPetals">
+		/// Indicates the max petals of instance to search.
+		/// </param>
+		public DeathBlossomTechniqueSearcher(
+			GridMap[] regionMaps, bool allowOverlapping, bool alsShowRegions, int maxPetals) =>
+			(_regionMaps, _allowOverlapping, _alsShowRegions, _maxPetals) = (regionMaps, allowOverlapping, alsShowRegions, maxPetals);
 
 
 		/// <summary>
@@ -69,7 +78,7 @@ namespace Sudoku.Solving.Manual.Alses
 			{
 				if (grid.GetCellStatus(pivot) != CellStatus.Empty
 					|| checkedCandidates[pivot] != grid.GetCandidatesReversal(pivot)
-					|| checkedCandidates[pivot].CountSet() > 5)
+					|| checkedCandidates[pivot].CountSet() > _maxPetals)
 				{
 					continue;
 				}

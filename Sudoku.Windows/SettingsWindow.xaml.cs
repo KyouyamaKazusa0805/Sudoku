@@ -4,13 +4,14 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 using Sudoku.Drawing.Extensions;
-using Sudoku.Windows.Extensions;
-using Sudoku.Windows.Tooling;
+using Sudoku.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
-using w = System.Windows;
-using Sudoku.Extensions;
+using Sudoku.Windows.Extensions;
+using Sudoku.Windows.Tooling;
 
 namespace Sudoku.Windows
 {
@@ -66,39 +67,41 @@ namespace Sudoku.Windows
 			_checkBoxCheckUncompletedUr.IsChecked = Settings.CheckIncompletedUniquenessPatterns;
 			_textBoxMaxRegularWingSize.Text = Settings.CheckRegularWingSize.ToString();
 			_checkBoxUseExtendedBugSearcher.IsChecked = Settings.UseExtendedBugSearcher;
+			_checkBoxSearchExtendedUniqueRectangle.IsChecked = Settings.SearchExtendedUniqueRectangles;
+			_textBoxMaxPetalsOfDeathBlossom.Text = Settings.MaxPetalsOfDeathBlossom.ToString();
 			_textBoxGridLineWidth.Text = Settings.GridLineWidth.ToString();
 			_textBoxBlockLineWidth.Text = Settings.BlockLineWidth.ToString();
 			_textBoxValueScale.Text = Settings.ValueScale.ToString();
 			_textBoxCandidateScale.Text = Settings.CandidateScale.ToString();
 			_labelGivenFontName.Content = Settings.GivenFontName;
-			_labelGivenFontName.FontFamily = new w::Media.FontFamily(Settings.GivenFontName);
+			_labelGivenFontName.FontFamily = new FontFamily(Settings.GivenFontName);
 			_labelModifiableFontName.Content = Settings.ModifiableFontName;
-			_labelModifiableFontName.FontFamily = new w::Media.FontFamily(Settings.ModifiableFontName);
+			_labelModifiableFontName.FontFamily = new FontFamily(Settings.ModifiableFontName);
 			_labelCandidateFontName.Content = Settings.CandidateFontName;
-			_labelCandidateFontName.FontFamily = new w::Media.FontFamily(Settings.CandidateFontName);
-			_buttonBackgroundColor.Background = new w::Media.SolidColorBrush(Settings.BackgroundColor.ToWColor());
-			_buttonGivenColor.Background = new w::Media.SolidColorBrush(Settings.GivenColor.ToWColor());
-			_buttonModifiableColor.Background = new w::Media.SolidColorBrush(Settings.ModifiableColor.ToWColor());
-			_buttonCandidateColor.Background = new w::Media.SolidColorBrush(Settings.CandidateColor.ToWColor());
-			_buttonFocusColor.Background = new w::Media.SolidColorBrush(Settings.FocusedCellColor.ToWColor());
-			_buttonGridLineColor.Background = new w::Media.SolidColorBrush(Settings.GridLineColor.ToWColor());
-			_buttonBlockLineColor.Background = new w::Media.SolidColorBrush(Settings.BlockLineColor.ToWColor());
-			_buttonChainColor.Background = new w::Media.SolidColorBrush(Settings.ChainColor.ToWColor());
-			_buttonColor1.Background = new w::Media.SolidColorBrush(Settings.Color1.ToWColor());
-			_buttonColor2.Background = new w::Media.SolidColorBrush(Settings.Color2.ToWColor());
-			_buttonColor3.Background = new w::Media.SolidColorBrush(Settings.Color3.ToWColor());
-			_buttonColor4.Background = new w::Media.SolidColorBrush(Settings.Color4.ToWColor());
-			_buttonColor5.Background = new w::Media.SolidColorBrush(Settings.Color5.ToWColor());
-			_buttonColor6.Background = new w::Media.SolidColorBrush(Settings.Color6.ToWColor());
-			_buttonColor7.Background = new w::Media.SolidColorBrush(Settings.Color7.ToWColor());
-			_buttonColor8.Background = new w::Media.SolidColorBrush(Settings.Color8.ToWColor());
-			_buttonColor9.Background = new w::Media.SolidColorBrush(Settings.Color9.ToWColor());
-			_buttonColor10.Background = new w::Media.SolidColorBrush(Settings.Color10.ToWColor());
-			_buttonColor11.Background = new w::Media.SolidColorBrush(Settings.Color11.ToWColor());
-			_buttonColor12.Background = new w::Media.SolidColorBrush(Settings.Color12.ToWColor());
-			_buttonColor13.Background = new w::Media.SolidColorBrush(Settings.Color13.ToWColor());
-			_buttonColor14.Background = new w::Media.SolidColorBrush(Settings.Color14.ToWColor());
-			_buttonColor15.Background = new w::Media.SolidColorBrush(Settings.Color15.ToWColor());
+			_labelCandidateFontName.FontFamily = new FontFamily(Settings.CandidateFontName);
+			_buttonBackgroundColor.Background = new SolidColorBrush(Settings.BackgroundColor.ToWColor());
+			_buttonGivenColor.Background = new SolidColorBrush(Settings.GivenColor.ToWColor());
+			_buttonModifiableColor.Background = new SolidColorBrush(Settings.ModifiableColor.ToWColor());
+			_buttonCandidateColor.Background = new SolidColorBrush(Settings.CandidateColor.ToWColor());
+			_buttonFocusColor.Background = new SolidColorBrush(Settings.FocusedCellColor.ToWColor());
+			_buttonGridLineColor.Background = new SolidColorBrush(Settings.GridLineColor.ToWColor());
+			_buttonBlockLineColor.Background = new SolidColorBrush(Settings.BlockLineColor.ToWColor());
+			_buttonChainColor.Background = new SolidColorBrush(Settings.ChainColor.ToWColor());
+			_buttonColor1.Background = new SolidColorBrush(Settings.Color1.ToWColor());
+			_buttonColor2.Background = new SolidColorBrush(Settings.Color2.ToWColor());
+			_buttonColor3.Background = new SolidColorBrush(Settings.Color3.ToWColor());
+			_buttonColor4.Background = new SolidColorBrush(Settings.Color4.ToWColor());
+			_buttonColor5.Background = new SolidColorBrush(Settings.Color5.ToWColor());
+			_buttonColor6.Background = new SolidColorBrush(Settings.Color6.ToWColor());
+			_buttonColor7.Background = new SolidColorBrush(Settings.Color7.ToWColor());
+			_buttonColor8.Background = new SolidColorBrush(Settings.Color8.ToWColor());
+			_buttonColor9.Background = new SolidColorBrush(Settings.Color9.ToWColor());
+			_buttonColor10.Background = new SolidColorBrush(Settings.Color10.ToWColor());
+			_buttonColor11.Background = new SolidColorBrush(Settings.Color11.ToWColor());
+			_buttonColor12.Background = new SolidColorBrush(Settings.Color12.ToWColor());
+			_buttonColor13.Background = new SolidColorBrush(Settings.Color13.ToWColor());
+			_buttonColor14.Background = new SolidColorBrush(Settings.Color14.ToWColor());
+			_buttonColor15.Background = new SolidColorBrush(Settings.Color15.ToWColor());
 		}
 
 		/// <summary>
@@ -164,7 +167,7 @@ namespace Sudoku.Windows
 			}
 
 			typeof(Settings).GetProperty($"Color{colorIndex}")!.SetValue(settings, dialog.SelectedColor);
-			button.Background = new w::Media.SolidColorBrush(dialog.SelectedColor.ToWColor());
+			button.Background = new SolidColorBrush(dialog.SelectedColor.ToWColor());
 		}
 
 
@@ -193,6 +196,27 @@ namespace Sudoku.Windows
 
 		private void CheckBoxPmGridCompatible_Click(object sender, RoutedEventArgs e) =>
 			_checkBoxPmGridCompatible.IsChecked = Settings.PmGridCompatible ^= true;
+
+		private void CheckBoxSearchExtendedUniqueRectangle_Click(object sender, RoutedEventArgs e) =>
+			_checkBoxSearchExtendedUniqueRectangle.IsChecked = Settings.SearchExtendedUniqueRectangles ^= true;
+
+		private void TextBoxMaxPetalsOfDeathBlossom_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			if (!(sender is TextBox textBox) || !int.TryParse(textBox.Text, out int value))
+			{
+				e.Handled = true;
+				return;
+			}
+
+			if (value >= 2 && value <= 9)
+			{
+				Settings.MaxPetalsOfDeathBlossom = value;
+			}
+			else
+			{
+				MessageBox.Show("The value is invalid.", "Info");
+			}
+		}
 
 		private void TextBoxGridLineWidth_TextChanged(object sender, TextChangedEventArgs e)
 		{
@@ -259,7 +283,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			_labelGivenFontName.FontFamily = new w::Media.FontFamily(
+			_labelGivenFontName.FontFamily = new FontFamily(
 				Settings.GivenFontName = dialog.SelectedFont.Name);
 			_labelGivenFontName.Content = dialog.SelectedFont.Name;
 		}
@@ -273,7 +297,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			_labelModifiableFontName.FontFamily = new w::Media.FontFamily(
+			_labelModifiableFontName.FontFamily = new FontFamily(
 				Settings.ModifiableFontName = dialog.SelectedFont.Name);
 			_labelModifiableFontName.Content = dialog.SelectedFont.Name;
 		}
@@ -287,7 +311,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			_labelCandidateFontName.FontFamily = new w::Media.FontFamily(
+			_labelCandidateFontName.FontFamily = new FontFamily(
 				Settings.CandidateFontName = dialog.SelectedFont.Name);
 			_labelCandidateFontName.Content = dialog.SelectedFont.Name;
 		}
@@ -301,7 +325,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			_buttonBackgroundColor.Background = new w::Media.SolidColorBrush(
+			_buttonBackgroundColor.Background = new SolidColorBrush(
 				(Settings.BackgroundColor = dialog.SelectedColor).ToWColor());
 		}
 
@@ -314,7 +338,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			_buttonGivenColor.Background = new w::Media.SolidColorBrush(
+			_buttonGivenColor.Background = new SolidColorBrush(
 				(Settings.GivenColor = dialog.SelectedColor).ToWColor());
 		}
 
@@ -327,7 +351,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			_buttonModifiableColor.Background = new w::Media.SolidColorBrush(
+			_buttonModifiableColor.Background = new SolidColorBrush(
 				(Settings.ModifiableColor = dialog.SelectedColor).ToWColor());
 		}
 
@@ -340,7 +364,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			_buttonCandidateColor.Background = new w::Media.SolidColorBrush(
+			_buttonCandidateColor.Background = new SolidColorBrush(
 				(Settings.CandidateColor = dialog.SelectedColor).ToWColor());
 		}
 
@@ -353,7 +377,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			_buttonFocusColor.Background = new w::Media.SolidColorBrush(
+			_buttonFocusColor.Background = new SolidColorBrush(
 				(Settings.FocusedCellColor = dialog.SelectedColor).ToWColor());
 		}
 
@@ -366,7 +390,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			_buttonGridLineColor.Background = new w::Media.SolidColorBrush(
+			_buttonGridLineColor.Background = new SolidColorBrush(
 				(Settings.GridLineColor = dialog.SelectedColor).ToWColor());
 		}
 
@@ -379,7 +403,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			_buttonBlockLineColor.Background = new w::Media.SolidColorBrush(
+			_buttonBlockLineColor.Background = new SolidColorBrush(
 				(Settings.BlockLineColor = dialog.SelectedColor).ToWColor());
 		}
 
@@ -392,7 +416,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			_buttonChainColor.Background = new w::Media.SolidColorBrush(
+			_buttonChainColor.Background = new SolidColorBrush(
 				(Settings.ChainColor = dialog.SelectedColor).ToWColor());
 		}
 
@@ -451,7 +475,7 @@ namespace Sudoku.Windows
 				}
 				else
 				{
-					textBox.Text = (value < 3 ? 3 : 20).ToString();
+					MessageBox.Show("The value is invalid.", "Info");
 				}
 			}
 		}
@@ -464,16 +488,19 @@ namespace Sudoku.Windows
 
 		private void TextBoxBowmanBingoMaxLength_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			if (sender is TextBox textBox && int.TryParse(textBox.Text, out int value))
+			if (!(sender is TextBox textBox) || !int.TryParse(textBox.Text, out int value))
 			{
-				if (value >= 1 && value <= 64)
-				{
-					_manualSolver.BowmanBingoMaximumLength = Settings.BowmanBingoMaximumLength = value;
-				}
-				else
-				{
-					textBox.Text = (value < 1 ? 1 : 64).ToString();
-				}
+				e.Handled = true;
+				return;
+			}
+
+			if (value >= 1 && value <= 64)
+			{
+				_manualSolver.BowmanBingoMaximumLength = Settings.BowmanBingoMaximumLength = value;
+			}
+			else
+			{
+				MessageBox.Show("The value is invalid.", "Info");
 			}
 		}
 
@@ -499,7 +526,7 @@ namespace Sudoku.Windows
 				}
 				else
 				{
-					textBox.Text = (value < 3 ? 3 : 5).ToString();
+					MessageBox.Show("The value is invalid.", "Info");
 				}
 			}
 		}
@@ -513,7 +540,7 @@ namespace Sudoku.Windows
 		private void CheckBoxUseExtendedBugSearcher_Click(object sender, RoutedEventArgs e) =>
 			_checkBoxUseExtendedBugSearcher.IsChecked = Settings.UseExtendedBugSearcher = _manualSolver.UseExtendedBugSearcher ^= true;
 
-		private void TextBoxBowmanBingoMaxLength_PreviewKeyDown(object sender, w::Input.KeyEventArgs e)
+		private void TextBoxBowmanBingoMaxLength_PreviewKeyDown(object sender, KeyEventArgs e)
 		{
 			if (!(sender is TextBox textBox && e.Key.IsDigit() && string.IsNullOrEmpty(textBox.Text)))
 			{
@@ -522,7 +549,7 @@ namespace Sudoku.Windows
 			}
 		}
 
-		private void TextBoxMaxRegularWingSize_PreviewKeyDown(object sender, w::Input.KeyEventArgs e)
+		private void TextBoxMaxRegularWingSize_PreviewKeyDown(object sender, KeyEventArgs e)
 		{
 			if (!(sender is TextBox textBox && e.Key.IsDigit() && string.IsNullOrEmpty(textBox.Text)))
 			{
@@ -531,7 +558,7 @@ namespace Sudoku.Windows
 			}
 		}
 
-		private void TextBoxMaxLength_PreviewKeyDown(object sender, w::Input.KeyEventArgs e)
+		private void TextBoxMaxLength_PreviewKeyDown(object sender, KeyEventArgs e)
 		{
 			if (!(sender is TextBox textBox && e.Key.IsDigit() && string.IsNullOrEmpty(textBox.Text)))
 			{

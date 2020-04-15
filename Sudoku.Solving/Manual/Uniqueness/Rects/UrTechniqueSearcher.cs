@@ -96,6 +96,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							{
 								int corner1 = urCells[c1];
 								var otherCellsMap = new GridMap(urCells) { [corner1] = false };
+
 								CheckType1(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap);
 								CheckType5(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap);
 
@@ -108,6 +109,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								{
 									int corner2 = urCells[c2];
 									var tempOtherCellsMap = new GridMap(otherCellsMap) { [corner2] = false };
+
 									CheckType2(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
 								}
 							}

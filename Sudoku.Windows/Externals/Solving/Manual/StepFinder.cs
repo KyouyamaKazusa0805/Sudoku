@@ -97,7 +97,8 @@ namespace Sudoku.Solving.Manual
 				new AlsXyWingTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
 				new AlsWWingTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
 				new DeathBlossomTechniqueSearcher(
-					regionMaps, _settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
+					regionMaps, _settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell,
+					_settings.MaxPetalsOfDeathBlossom),
 				new GroupedAicTechniqueSearcher(
 					true, false, false, _settings.AicMaximumLength, _settings.ReductDifferentPathAic,
 					_settings.OnlySaveShortestPathAic, _settings.CheckHeadCollision,

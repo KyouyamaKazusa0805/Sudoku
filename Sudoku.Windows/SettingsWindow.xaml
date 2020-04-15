@@ -4,7 +4,7 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		mc:Ignorable="d"
-		Title="Settings" Height="450" Width="800" ResizeMode="CanMinimize">
+		Title="Settings" Height="600" Width="800" ResizeMode="CanMinimize">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*"/>
@@ -15,6 +15,10 @@
 			<TabItem Header="Behavior">
 				<Grid Background="#FFE5E5E5">
 					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
 						<RowDefinition/>
 						<RowDefinition/>
 						<RowDefinition/>
@@ -62,6 +66,7 @@
 								<RowDefinition/>
 								<RowDefinition/>
 								<RowDefinition/>
+								<RowDefinition/>
 							</Grid.RowDefinitions>
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition/>
@@ -104,6 +109,7 @@
 								<RowDefinition/>
 								<RowDefinition/>
 								<RowDefinition/>
+								<RowDefinition/>
 							</Grid.RowDefinitions>
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition/>
@@ -126,6 +132,7 @@
 					<GroupBox Grid.Row="2" Grid.Column="0" Header="Miscellaneous">
 						<Grid>
 							<Grid.RowDefinitions>
+								<RowDefinition/>
 								<RowDefinition/>
 								<RowDefinition/>
 								<RowDefinition/>
@@ -167,6 +174,17 @@
 									  Name="_checkBoxUseExtendedBugSearcher"
 									  Content="Use extended BUG searcher"
 									  Click="CheckBoxUseExtendedBugSearcher_Click"/>
+							<CheckBox Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="3"
+									  HorizontalAlignment="Left" VerticalAlignment="Center"
+									  Name="_checkBoxSearchExtendedUniqueRectangle"
+									  Content="Search extended URs"
+									  Click="CheckBoxSearchExtendedUniqueRectangle_Click"/>
+							<Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+								   HorizontalAlignment="Left" VerticalAlignment="Center"
+								   Content="Max petals of death blossom:"/>
+							<TextBox Grid.Row="3" Grid.Column="2" Name="_textBoxMaxPetalsOfDeathBlossom"
+									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+									 TextChanged="TextBoxMaxPetalsOfDeathBlossom_TextChanged"/>
 						</Grid>
 					</GroupBox>
 				</Grid>
@@ -301,6 +319,7 @@
 						<RowDefinition/>
 						<RowDefinition/>
 						<RowDefinition/>
+						<RowDefinition Height="2*"/>
 						<RowDefinition Height="2*"/>
 						<RowDefinition Height="2*"/>
 						<RowDefinition Height="2*"/>

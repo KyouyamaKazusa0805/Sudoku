@@ -388,6 +388,12 @@ namespace Sudoku.Windows
 		public int CurrentPuzzleNumber { get; set; } = -1;
 
 		/// <summary>
+		/// <para>Indicates the max petals of death blossom.</para>
+		/// <para>The default is <c>5</c>.</para>
+		/// </summary>
+		public int MaxPetalsOfDeathBlossom { get; set; } = 5;
+
+		/// <summary>
 		/// <para>Indicates the scale of values.</para>
 		/// <para>The value is <c>0.8M</c> in default case.</para>
 		/// </summary>

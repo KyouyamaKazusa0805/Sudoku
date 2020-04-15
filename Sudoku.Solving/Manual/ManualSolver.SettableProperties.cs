@@ -359,5 +359,11 @@
 		/// is too low so I do not allow them.
 		/// </remarks>
 		public int CheckRegularWingSize { get; set; } = 5;
+
+		/// <summary>
+		/// <para>Indicates the max petals of death blossom to search.</para>
+		/// <para>The value is <c>5</c> in default case.</para>
+		/// </summary>
+		public int MaxPetalsOfDeathBlossom { get; set; } = 5;
 	}
 }

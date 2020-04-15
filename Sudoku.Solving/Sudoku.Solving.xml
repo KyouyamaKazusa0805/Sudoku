@@ -1493,12 +1493,17 @@
             Indicates whether the ALSes shows their region rather than cells.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher._maxPetals">
+            <summary>
+            Indicates the max petals to search.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher._regionMaps">
             <summary>
             The region maps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher.#ctor(Sudoku.Data.GridMap[],System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher.#ctor(Sudoku.Data.GridMap[],System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Initialize an instance with the specified information.
             </summary>
@@ -1508,6 +1513,9 @@
             </param>
             <param name="alsShowRegions">
             Indicates whether all ALSes shows their regions rather than cells.
+            </param>
+            <param name="maxPetals">
+            Indicates the max petals of instance to search.
             </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher.Priority">
@@ -3714,6 +3722,12 @@
             &amp;&amp; value &lt;&#61; 9</c>) theoretically, however the searching
             is too low so I do not allow them.
             </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.MaxPetalsOfDeathBlossom">
+            <summary>
+            <para>Indicates the max petals of death blossom to search.</para>
+            <para>The value is <c>5</c> in default case.</para>
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo">
             <summary>

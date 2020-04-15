@@ -90,7 +90,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			{
 				0 => new GridMap(Cells).CompareTo(new GridMap(other.Cells)) switch
 				{
-					0 => (Digit1 * 9 + Digit2).CompareTo(other.Digit1 * 9 + other.Digit2),
+					0 => Math.Sign((Digit1 * 9 + Digit2).CompareTo(other.Digit1 * 9 + other.Digit2)) switch
+					{
+						0 => _typeCode.CompareTo(other._typeCode),
+						1 => 1,
+						-1 => -1,
+						_ => throw Throwing.ImpossibleCase
+					},
 					1 => 1,
 					-1 => -1,
 					_ => throw Throwing.ImpossibleCase
