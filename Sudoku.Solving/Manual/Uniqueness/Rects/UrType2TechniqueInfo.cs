@@ -41,6 +41,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 
 		/// <inheritdoc/>
-		protected override string GetAdditional() => $"with extra digit {ExtraDigit + 1}";
+		protected override string GetAdditional() => $"extra digit {ExtraDigit + 1}";
 	}
 }

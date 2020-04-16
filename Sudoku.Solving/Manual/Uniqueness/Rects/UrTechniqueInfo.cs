@@ -61,7 +61,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public bool IsAr { get; }
 
 		/// <inheritdoc/>
-		public sealed override string Name => $"{(IsAr ? "Avoidable" : "Unique")} Rectangle {TypeName}";
+		public override string Name => $"{(IsAr ? "Avoidable" : "Unique")} Rectangle {TypeName}";
 
 		/// <inheritdoc/>
 		public sealed override bool ShowDifficulty => true;

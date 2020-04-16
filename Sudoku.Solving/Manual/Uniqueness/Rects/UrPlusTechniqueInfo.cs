@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public IReadOnlyList<ConjugatePair> ConjugatePairs { get; }
 
 		/// <inheritdoc/>
-		public sealed override decimal Difficulty => ConjugatePairs.Count * .1M + 4.5M;
+		public sealed override decimal Difficulty => ConjugatePairs.Count * .2M + 4.4M;
 
 		/// <inheritdoc/>
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

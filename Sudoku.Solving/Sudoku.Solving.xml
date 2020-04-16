@@ -6044,6 +6044,18 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rectangles.XrType4DetailData.ToString">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrTechniqueInfo">
+            <summary>
+            Provides a usage of <b>hidden unique rectangle</b> (HUR) or
+            <b>hidden avoidable rectangle</b> (HAR) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.String,System.Int32,System.Int32,System.Int32,System.Int32[],System.Collections.Generic.IReadOnlyList{Sudoku.Solving.ConjugatePair},System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.RectangleTechniqueInfo">
             <summary>
             Provides a usage of <b>rectangle</b> technique.
@@ -6224,14 +6236,16 @@
             <param name="pair">The pair.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.CheckPreconditions(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.GetDiagonalCell(System.Int32[],System.Int32)">
             <summary>
-            Check all preconditions.
+            Get a cell that cannot see each other.
             </summary>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR searching mode.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+            <param name="urCells">The UR cells.</param>
+            <param name="cell">The current cell.</param>
+            <returns>The diagonal cell.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the specified argument <paramref name="cell"/> is invalid.
+            </exception>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo">
             <summary>

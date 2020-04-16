@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
@@ -66,7 +67,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				foreach (int[] urCells in UrCellsList)
 				{
 					// Check preconditions.
-					if (!CheckPreconditions(grid, urCells, arMode))
+					if (!checkPreconditions(grid, urCells, arMode))
 					{
 						continue;
 					}
@@ -103,6 +104,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 								CheckType1(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap);
 								CheckType5(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap);
+								CheckHidden(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap);
 
 								if (c1 == 3)
 								{
@@ -139,6 +141,34 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			{
 				tempList.Sort();
 				accumulator.AddRange(tempList);
+			}
+
+			static bool checkPreconditions(IReadOnlyGrid grid, IEnumerable<int> urCells, bool arMode)
+			{
+				byte emptyCountWhenArMode = 0, modifiableCount = 0;
+				foreach (int urCell in urCells)
+				{
+					switch (grid.GetCellStatus(urCell))
+					{
+						case Given:
+						case Modifiable when !arMode:
+						{
+							return false;
+						}
+						case Empty when arMode:
+						{
+							emptyCountWhenArMode++;
+							break;
+						}
+						case Modifiable:
+						{
+							modifiableCount++;
+							break;
+						}
+					}
+				}
+
+				return modifiableCount != 4 && emptyCountWhenArMode != 4;
 			}
 		}
 
@@ -585,6 +615,108 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 		}
 
+		private void CheckHidden(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
+		{
+			//  ↓ cornerCell
+			// (ab ) abx
+			//  aby  abz
+			if (grid.GetCandidatesReversal(cornerCell) != comparer)
+			{
+				return;
+			}
+
+			int diagonalCell = GetDiagonalCell(urCells, cornerCell);
+			var adjacentCellsMap = new GridMap(otherCellsMap) { [diagonalCell] = false };
+			var (r, c, _) = CellUtils.GetRegion(diagonalCell);
+			r += 9; c += 18;
+
+			foreach (int digit in stackalloc[] { d1, d2 })
+			{
+				int abxCell = adjacentCellsMap.SetAt(0);
+				int abyCell = adjacentCellsMap.SetAt(1);
+				var map1 = new GridMap(stackalloc[] { diagonalCell, abxCell });
+				var map2 = new GridMap(stackalloc[] { diagonalCell, abyCell });
+				if (!IsConjugatePair(grid, digit, map1, map1.CoveredLine)
+					|| !IsConjugatePair(grid, digit, map2, map2.CoveredLine))
+				{
+					continue;
+				}
+
+				// Hidden UR found. Now check eliminations.
+				int elimDigit = (comparer ^ (1 << digit)).FindFirstSet();
+				if (!(grid.Exists(diagonalCell, elimDigit) is true))
+				{
+					continue;
+				}
+
+				var cellOffsets = new List<(int, int)>(from cell in urCells select (0, cell));
+				var candidateOffsets = new List<(int, int)>();
+				foreach (int cell in urCells)
+				{
+					if (grid.GetCellStatus(cell) != Empty)
+					{
+						continue;
+					}
+
+					if (otherCellsMap[cell])
+					{
+						void record(int d)
+						{
+							if (cell == diagonalCell && d == elimDigit)
+							{
+								return;
+							}
+
+							if (grid.Exists(cell, d) is true)
+							{
+								candidateOffsets.Add((d != elimDigit ? 1 : 0, cell * 9 + d));
+							}
+						}
+
+						record(d1);
+						record(d2);
+					}
+					else
+					{
+						foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
+						{
+							candidateOffsets.Add((0, cell * 9 + d));
+						}
+					}
+				}
+
+				if (!_allowUncompletedUr && candidateOffsets.Count != 7)
+				{
+					continue;
+				}
+
+				accumulator.Add(
+					new HiddenUrTechniqueInfo(
+						conclusions: new[] { new Conclusion(Elimination, diagonalCell, elimDigit) },
+						views: new[]
+						{
+							new View(
+								cellOffsets: arMode ? cellOffsets : null,
+								candidateOffsets,
+								regionOffsets: new[] { (0, r), (0, c) },
+								links: null)
+						},
+						typeName: string.Empty,
+						typeCode: 7,
+						digit1: d1,
+						digit2: d2,
+						cells: urCells,
+						conjugatePairs: new[]
+						{
+							new ConjugatePair(diagonalCell, abxCell, digit),
+							new ConjugatePair(diagonalCell, abyCell, digit),
+						},
+						isAr: arMode));
+			}
+		}
+
 
 		/// <summary>
 		/// To determine whether the specified region forms a conjugate pair
@@ -610,38 +742,25 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		private static bool CheckHighlightType((int _id, int) pair) => pair._id == 0;
 
 		/// <summary>
-		/// Check all preconditions.
+		/// Get a cell that cannot see each other.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <param name="urCells">All UR cells.</param>
-		/// <param name="arMode">Indicates whether the current mode is AR searching mode.</param>
-		/// <returns>A <see cref="bool"/> value.</returns>
-		private static bool CheckPreconditions(IReadOnlyGrid grid, IEnumerable<int> urCells, bool arMode)
+		/// <param name="urCells">The UR cells.</param>
+		/// <param name="cell">The current cell.</param>
+		/// <returns>The diagonal cell.</returns>
+		/// <exception cref="ArgumentException">
+		/// Throws when the specified argument <paramref name="cell"/> is invalid.
+		/// </exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private static int GetDiagonalCell(int[] urCells, int cell)
 		{
-			byte emptyCountWhenArMode = 0, modifiableCount = 0;
-			foreach (int urCell in urCells)
+			return true switch
 			{
-				switch (grid.GetCellStatus(urCell))
-				{
-					case Given:
-					case Modifiable when !arMode:
-					{
-						return false;
-					}
-					case Empty when arMode:
-					{
-						emptyCountWhenArMode++;
-						break;
-					}
-					case Modifiable:
-					{
-						modifiableCount++;
-						break;
-					}
-				}
-			}
-
-			return modifiableCount != 4 && emptyCountWhenArMode != 4;
+				_ when cell == urCells[0] => urCells[3],
+				_ when cell == urCells[1] => urCells[2],
+				_ when cell == urCells[2] => urCells[1],
+				_ when cell == urCells[3] => urCells[0],
+				_ => throw new ArgumentException("The cell is invalid.", nameof(cell))
+			};
 		}
 	}
 }
