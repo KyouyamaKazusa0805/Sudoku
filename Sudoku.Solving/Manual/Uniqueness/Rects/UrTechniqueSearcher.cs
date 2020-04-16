@@ -5,6 +5,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using Sudoku.Solving.Utils;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Solving.ConclusionType;
@@ -117,7 +118,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 									if (!arMode)
 									{
+										// Only UR mode searching.
 										CheckType4(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
+
+										if (c1 == 0 && c2 == 3 || c1 == 1 && c2 == 2)
+										{
+											// Diagonal type.
+											CheckType6(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
+										}
 									}
 								}
 							}
@@ -341,7 +349,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							{
 								if (d != elimDigit && grid.Exists(cell, d) is true)
 								{
-									candidateOffsets.Add((d == digit ? 1 : 0, cell * 9 + d));
+									candidateOffsets.Add((1, cell * 9 + d));
 								}
 							}
 
@@ -464,6 +472,124 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					cells: urCells,
 					isAr: arMode,
 					extraDigit));
+		}
+
+		private void CheckType6(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
+		{
+			//  ↓ corner1
+			// (ab )  aby
+			//  abx  (ab)
+			//        ↑corner2
+			if ((grid.GetCandidatesReversal(corner1) | grid.GetCandidatesReversal(corner2)) != comparer)
+			{
+				return;
+			}
+
+			int o1 = otherCellsMap.SetAt(0), o2 = otherCellsMap.SetAt(1);
+			var (r1, c1, _) = CellUtils.GetRegion(corner1);
+			var (r2, c2, _) = CellUtils.GetRegion(corner2);
+			r1 += 9; r2 += 9; c1 += 18; c2 += 18;
+			foreach (int digit in stackalloc[] { d1, d2 })
+			{
+				foreach (var (region1, region2) in stackalloc[] { (r1, r2), (c1, c2) })
+				{
+					gather(region1 >= 9 && region1 < 18, digit, region1, region2);
+				}
+			}
+
+			void gather(bool isRow, int digit, int region1, int region2)
+			{
+				if ((!isRow
+					|| !IsConjugatePair(grid, digit, new GridMap(stackalloc[] { corner1, o1 }), region1)
+					|| !IsConjugatePair(grid, digit, new GridMap(stackalloc[] { corner2, o2 }), region2))
+					&& (isRow
+					|| !IsConjugatePair(grid, digit, new GridMap(stackalloc[] { corner1, o2 }), region1)
+					|| !IsConjugatePair(grid, digit, new GridMap(stackalloc[] { corner2, o1 }), region2)))
+				{
+					return;
+				}
+
+				// Check eliminations.
+				var conclusions = new List<Conclusion>();
+				foreach (int cell in otherCellsMap.Offsets)
+				{
+					if (!(grid.Exists(cell, digit) is true))
+					{
+						continue;
+					}
+
+					conclusions.Add(new Conclusion(Elimination, cell, digit));
+				}
+				if (conclusions.Count == 0)
+				{
+					return;
+				}
+
+				var cellOffsets = new List<(int, int)>(from cell in urCells select (0, cell));
+				var candidateOffsets = new List<(int, int)>();
+				foreach (int cell in urCells)
+				{
+					if (otherCellsMap[cell])
+					{
+						void record(int d)
+						{
+							if (d == digit || !(grid.Exists(cell, d) is true))
+							{
+								return;
+							}
+
+							candidateOffsets.Add((0, cell * 9 + d));
+						}
+
+						record(d1);
+						record(d2);
+					}
+					else
+					{
+						foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
+						{
+							candidateOffsets.Add((d == digit ? 1 : 0, cell * 9 + d));
+						}
+					}
+				}
+
+				if (!_allowUncompletedUr && candidateOffsets.Count != 6)
+				{
+					return;
+				}
+
+				accumulator.Add(
+					new UrPlusTechniqueInfo(
+						conclusions,
+						views: new[]
+						{
+							new View(
+								cellOffsets: arMode ? cellOffsets : null,
+								candidateOffsets,
+								regionOffsets: new[] { (0, region1), (0, region2) },
+								links: null)
+						},
+						typeName: "Type 6",
+						typeCode: 6,
+						digit1: d1,
+						digit2: d2,
+						cells: urCells,
+						conjugatePairs:
+							isRow
+								? new[]
+								{
+									new ConjugatePair(corner1, o1, digit),
+									new ConjugatePair(corner2, o2, digit)
+								}
+								: new[]
+								{
+									new ConjugatePair(corner1, o2, digit),
+									new ConjugatePair(corner2, o1, digit)
+								},
+						isAr: false));
+			}
 		}
 
 
