@@ -576,18 +576,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						digit1: d1,
 						digit2: d2,
 						cells: urCells,
-						conjugatePairs:
-							isRow
-								? new[]
-								{
-									new ConjugatePair(corner1, o1, digit),
-									new ConjugatePair(corner2, o2, digit)
-								}
-								: new[]
-								{
-									new ConjugatePair(corner1, o2, digit),
-									new ConjugatePair(corner2, o1, digit)
-								},
+						conjugatePairs: new[]
+						{
+							new ConjugatePair(corner1, isRow ? o1 : o2, digit),
+							new ConjugatePair(corner2, isRow ? o2 : o1, digit)
+						},
 						isAr: false));
 			}
 		}
