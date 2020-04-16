@@ -6247,6 +6247,13 @@
             Throws when the specified argument <paramref name="cell"/> is invalid.
             </exception>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.GetHighlightCells(System.Int32[])">
+            <summary>
+            Get all highlight cells.
+            </summary>
+            <param name="urCells">The all UR cells used.</param>
+            <returns>The list of highlight cells.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo">
             <summary>
             Provides a usage of <b>unique rectangle</b> (UR) or
@@ -6297,6 +6304,58 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2TechniqueInfo.GetAdditional">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3TechniqueInfo">
+            <summary>
+            Provides a usage of <b>unique rectangle</b> (UR) or
+            <b>avoidable rectangle</b> (AR) type 3 technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.String,System.Int32,System.Int32,System.Int32,System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="typeName">The type name.</param>
+            <param name="typeCode">The type code.</param>
+            <param name="digit1">The digit 1.</param>
+            <param name="digit2">The digit 2.</param>
+            <param name="cells">All cells.</param>
+            <param name="extraDigits">All extra digits.</param>
+            <param name="extraCells">All extra cells.</param>
+            <param name="region">The region.</param>
+            <param name="isNaked">Indicates whether the subset is naked.</param>
+            <param name="isAr">Indicates whether the specified structure is an AR.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3TechniqueInfo.ExtraDigits">
+            <summary>
+            Indicates the extra digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3TechniqueInfo.ExtraCells">
+            <summary>
+            Indicates the extra cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3TechniqueInfo.IsNaked">
+            <summary>
+            Indicates whether the specified subset is naked.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3TechniqueInfo.Region">
+            <summary>
+            Indicates the current region.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3TechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3TechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3TechniqueInfo.GetAdditional">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo">

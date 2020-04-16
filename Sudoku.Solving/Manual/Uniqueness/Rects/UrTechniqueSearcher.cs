@@ -7,6 +7,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
+using static Sudoku.GridProcessings;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Solving.ConclusionType;
@@ -121,6 +122,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									if (!arMode)
 									{
 										// Only UR mode searching.
+										for (int size = 2; size <= 4; size++)
+										{
+											CheckType3Naked(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, size);
+											CheckType3Hidden(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, size);
+										}
+
 										CheckType4(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
 
 										if (c1 == 0 && c2 == 3 || c1 == 1 && c2 == 2)
@@ -207,7 +214,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				return;
 			}
 
-			var cellOffsets = new List<(int, int)>(from cell in urCells select (0, cell));
 			var candidateOffsets = new List<(int, int)>();
 			foreach (int cell in otherCellsMap.Offsets)
 			{
@@ -227,7 +233,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					views: new[]
 					{
 						new View(
-							cellOffsets: arMode ? cellOffsets : null,
+							cellOffsets: arMode ? GetHighlightCells(urCells) : null,
 							candidateOffsets: arMode ? null : candidateOffsets,
 							regionOffsets: null,
 							links: null)
@@ -284,7 +290,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				return;
 			}
 
-			var cellOffsets = new List<(int, int)>(from cell in urCells select (0, cell));
 			var candidateOffsets = new List<(int, int)>();
 			foreach (int cell in urCells)
 			{
@@ -310,7 +315,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					views: new[]
 					{
 						new View(
-							cellOffsets: arMode ? cellOffsets : null,
+							cellOffsets: arMode ? GetHighlightCells(urCells) : null,
 							candidateOffsets,
 							regionOffsets: null,
 							links: null)
@@ -322,6 +327,341 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					cells: urCells,
 					isAr: arMode,
 					extraDigit));
+		}
+
+		private void CheckType3Naked(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap, int size)
+		{
+			//  ↓ corner1, corner2
+			// (ab ) (ab )
+			//  abx   aby
+			if ((grid.GetCandidatesReversal(corner1) | grid.GetCandidatesReversal(corner2)) != comparer)
+			{
+				return;
+			}
+
+			short mask = 0;
+			foreach (int cell in otherCellsMap.Offsets)
+			{
+				mask |= grid.GetCandidatesReversal(cell);
+			}
+
+			bool determinator(int c) => grid.GetCellStatus(c) == Empty && !otherCellsMap[c];
+			foreach (int region in otherCellsMap.CoveredRegions)
+			{
+				if (region < 9)
+				{
+					// Process when the region is a line.
+					continue;
+				}
+
+				for (int i1 = 0; i1 < 10 - size; i1++)
+				{
+					int c1 = RegionUtils.GetCellOffset(region, i1);
+					if (!determinator(c1))
+					{
+						continue;
+					}
+
+					if (size == 2)
+					{
+						// Check light naked pair.
+						if (mask.CountSet() != 4)
+						{
+							continue;
+						}
+
+						short m1 = (short)((short)(mask | grid.GetCandidatesReversal(c1)) ^ comparer);
+						if (m1.CountSet() != 2)
+						{
+							continue;
+						}
+
+						// Type 3 found. Now check eliminations.
+						var extraDigits = m1.GetAllSets();
+						var conclusions = new List<Conclusion>();
+						var cells = new List<int>(otherCellsMap.Offsets) { c1 };
+						foreach (int digit in extraDigits)
+						{
+							foreach (int cell in new GridMap(
+								from cell in cells
+								where grid.Exists(cell, digit) is true
+								select cell, ProcessPeersWithoutItself).Offsets)
+							{
+								if (!(grid.Exists(cell, digit) is true))
+								{
+									continue;
+								}
+
+								conclusions.Add(new Conclusion(Elimination, cell, digit));
+							}
+						}
+						if (conclusions.Count == 0)
+						{
+							continue;
+						}
+
+						var candidateOffsets = new List<(int, int)>();
+						foreach (int cell in urCells)
+						{
+							if (grid.GetCellStatus(cell) != Empty)
+							{
+								continue;
+							}
+
+							foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
+							{
+								candidateOffsets.Add((d == d1 || d == d2 ? 0 : 1, cell * 9 + d));
+							}
+						}
+						foreach (int d in grid.GetCandidatesReversal(c1).GetAllSets())
+						{
+							candidateOffsets.Add((1, c1 * 9 + d));
+						}
+
+						if (!_allowUncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
+						{
+							continue;
+						}
+
+						accumulator.Add(
+							new UrType3TechniqueInfo(
+								conclusions,
+								views: new[]
+								{
+									new View(
+										cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+										candidateOffsets,
+										regionOffsets: null,
+										links: null)
+								},
+								typeName: "Type 3",
+								typeCode: 3,
+								digit1: d1,
+								digit2: d2,
+								cells: urCells,
+								extraDigits: extraDigits.ToArray(),
+								extraCells: new[] { c1 },
+								region,
+								isNaked: true,
+								isAr: arMode));
+					}
+					else
+					{
+						for (int i2 = i1 + 1; i2 < 11 - size; i2++)
+						{
+							int c2 = RegionUtils.GetCellOffset(region, i2);
+							if (!determinator(c2))
+							{
+								continue;
+							}
+
+							if (size == 3)
+							{
+								// Check light naked triple.
+								if (mask.CountSet() != 5)
+								{
+									continue;
+								}
+
+								short m2 = (short)((short)((short)(
+									mask | grid.GetCandidatesReversal(c1))
+									| grid.GetCandidatesReversal(c2))
+									^ comparer);
+								if (m2.CountSet() != 3)
+								{
+									continue;
+								}
+
+								// Type 3 found. Now check eliminations.
+								var extraDigits = m2.GetAllSets();
+								var conclusions = new List<Conclusion>();
+								var cells = new List<int>(otherCellsMap.Offsets) { c1, c2 };
+								foreach (int digit in extraDigits)
+								{
+									foreach (int cell in new GridMap(
+										from cell in cells
+										where grid.Exists(cell, digit) is true
+										select cell, ProcessPeersWithoutItself).Offsets)
+									{
+										if (!(grid.Exists(cell, digit) is true))
+										{
+											continue;
+										}
+
+										conclusions.Add(new Conclusion(Elimination, cell, digit));
+									}
+								}
+								if (conclusions.Count == 0)
+								{
+									continue;
+								}
+
+								var candidateOffsets = new List<(int, int)>();
+								foreach (int cell in urCells)
+								{
+									if (grid.GetCellStatus(cell) != Empty)
+									{
+										continue;
+									}
+
+									foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
+									{
+										candidateOffsets.Add((d == d1 || d == d2 ? 0 : 1, cell * 9 + d));
+									}
+								}
+								foreach (int d in grid.GetCandidatesReversal(c1).GetAllSets())
+								{
+									candidateOffsets.Add((1, c1 * 9 + d));
+								}
+								foreach (int d in grid.GetCandidatesReversal(c2).GetAllSets())
+								{
+									candidateOffsets.Add((1, c2 * 9 + d));
+								}
+
+								if (!_allowUncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
+								{
+									continue;
+								}
+
+								accumulator.Add(
+									new UrType3TechniqueInfo(
+										conclusions,
+										views: new[]
+										{
+											new View(
+												cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+												candidateOffsets,
+												regionOffsets: null,
+												links: null)
+										},
+										typeName: "Type 3",
+										typeCode: 3,
+										digit1: d1,
+										digit2: d2,
+										cells: urCells,
+										extraDigits: extraDigits.ToArray(),
+										extraCells: new[] { c1, c2 },
+										region,
+										isNaked: true,
+										isAr: arMode));
+							}
+							else // size == 4
+							{
+								for (int i3 = i2 + 1; i3 < 12 - size; i3++)
+								{
+									int c3 = RegionUtils.GetCellOffset(region, i3);
+									if (!determinator(c3))
+									{
+										continue;
+									}
+
+									// Check light naked quadruple.
+									if (mask.CountSet() != 6)
+									{
+										continue;
+									}
+
+									short m2 = (short)((short)((short)((short)(
+										mask | grid.GetCandidatesReversal(c1))
+										| grid.GetCandidatesReversal(c2))
+										| grid.GetCandidatesReversal(c3))
+										^ comparer);
+									if (m2.CountSet() != 4)
+									{
+										continue;
+									}
+
+									// Type 3 found. Now check eliminations.
+									var extraDigits = m2.GetAllSets();
+									var conclusions = new List<Conclusion>();
+									var cells = new List<int>(otherCellsMap.Offsets) { c1, c2, c3 };
+									foreach (int digit in extraDigits)
+									{
+										foreach (int cell in new GridMap(
+											from cell in cells
+											where grid.Exists(cell, digit) is true
+											select cell, ProcessPeersWithoutItself).Offsets)
+										{
+											if (!(grid.Exists(cell, digit) is true))
+											{
+												continue;
+											}
+
+											conclusions.Add(new Conclusion(Elimination, cell, digit));
+										}
+									}
+									if (conclusions.Count == 0)
+									{
+										continue;
+									}
+
+									var candidateOffsets = new List<(int, int)>();
+									foreach (int cell in urCells)
+									{
+										if (grid.GetCellStatus(cell) != Empty)
+										{
+											continue;
+										}
+
+										foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
+										{
+											candidateOffsets.Add((d == d1 || d == d2 ? 0 : 1, cell * 9 + d));
+										}
+									}
+									foreach (int d in grid.GetCandidatesReversal(c1).GetAllSets())
+									{
+										candidateOffsets.Add((1, c1 * 9 + d));
+									}
+									foreach (int d in grid.GetCandidatesReversal(c2).GetAllSets())
+									{
+										candidateOffsets.Add((1, c2 * 9 + d));
+									}
+									foreach (int d in grid.GetCandidatesReversal(c3).GetAllSets())
+									{
+										candidateOffsets.Add((1, c3 * 9 + d));
+									}
+
+									if (!_allowUncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
+									{
+										continue;
+									}
+
+									accumulator.Add(
+										new UrType3TechniqueInfo(
+											conclusions,
+											views: new[]
+											{
+												new View(
+													cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+													candidateOffsets,
+													regionOffsets: null,
+													links: null)
+											},
+											typeName: "Type 3",
+											typeCode: 3,
+											digit1: d1,
+											digit2: d2,
+											cells: urCells,
+											extraDigits: extraDigits.ToArray(),
+											extraCells: new[] { c1, c2, c3 },
+											region,
+											isNaked: true,
+											isAr: arMode));
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		private void CheckType3Hidden(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap, int size)
+		{
+
 		}
 
 		private void CheckType4(
@@ -369,7 +709,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						continue;
 					}
 
-					var cellOffsets = new List<(int, int)>(from cell in urCells select (0, cell));
 					var candidateOffsets = new List<(int, int)>();
 					foreach (int cell in urCells)
 					{
@@ -413,7 +752,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							views: new[]
 							{
 								new View(
-									cellOffsets: arMode ? cellOffsets : null,
+									cellOffsets: arMode ? GetHighlightCells(urCells) : null,
 									candidateOffsets,
 									regionOffsets: new[] { (0, region) },
 									links: null)
@@ -471,7 +810,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				return;
 			}
 
-			var cellOffsets = new List<(int, int)>(from cell in urCells select (0, cell));
 			var candidateOffsets = new List<(int, int)>();
 			foreach (int cell in urCells)
 			{
@@ -496,7 +834,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					views: new[]
 					{
 						new View(
-							cellOffsets: arMode ? cellOffsets : null,
+							cellOffsets: arMode ? GetHighlightCells(urCells) : null,
 							candidateOffsets,
 							regionOffsets: null,
 							links: null)
@@ -563,7 +901,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					return;
 				}
 
-				var cellOffsets = new List<(int, int)>(from cell in urCells select (0, cell));
 				var candidateOffsets = new List<(int, int)>();
 				foreach (int cell in urCells)
 				{
@@ -602,7 +939,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						views: new[]
 						{
 							new View(
-								cellOffsets: arMode ? cellOffsets : null,
+								cellOffsets: arMode ? GetHighlightCells(urCells) : null,
 								candidateOffsets,
 								regionOffsets: new[] { (0, region1), (0, region2) },
 								links: null)
@@ -657,7 +994,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					continue;
 				}
 
-				var cellOffsets = new List<(int, int)>(from cell in urCells select (0, cell));
 				var candidateOffsets = new List<(int, int)>();
 				foreach (int cell in urCells)
 				{
@@ -704,7 +1040,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						views: new[]
 						{
 							new View(
-								cellOffsets: arMode ? cellOffsets : null,
+								cellOffsets: arMode ? GetHighlightCells(urCells) : null,
 								candidateOffsets,
 								regionOffsets: new[] { (0, r), (0, c) },
 								links: null)
@@ -768,5 +1104,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				_ => throw new ArgumentException("The cell is invalid.", nameof(cell))
 			};
 		}
+
+		/// <summary>
+		/// Get all highlight cells.
+		/// </summary>
+		/// <param name="urCells">The all UR cells used.</param>
+		/// <returns>The list of highlight cells.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private static IReadOnlyList<(int, int)> GetHighlightCells(int[] urCells) =>
+			new List<(int, int)>(from cell in urCells select (0, cell));
 	}
 }
