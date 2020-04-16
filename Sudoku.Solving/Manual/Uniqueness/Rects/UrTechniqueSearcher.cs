@@ -338,6 +338,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			foreach (int region in otherCellsMap.CoveredRegions)
 			{
+				if (region < 9)
+				{
+					// Process the case in lines.
+					continue;
+				}
+
 				foreach (int digit in stackalloc[] { d1, d2 })
 				{
 					if (!IsConjugatePair(grid, digit, otherCellsMap, region))
@@ -627,17 +633,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				return;
 			}
 
-			int diagonalCell = GetDiagonalCell(urCells, cornerCell);
-			var adjacentCellsMap = new GridMap(otherCellsMap) { [diagonalCell] = false };
-			var (r, c, _) = CellUtils.GetRegion(diagonalCell);
+			int abzCell = GetDiagonalCell(urCells, cornerCell);
+			var adjacentCellsMap = new GridMap(otherCellsMap) { [abzCell] = false };
+			var (r, c, _) = CellUtils.GetRegion(abzCell);
 			r += 9; c += 18;
 
 			foreach (int digit in stackalloc[] { d1, d2 })
 			{
 				int abxCell = adjacentCellsMap.SetAt(0);
 				int abyCell = adjacentCellsMap.SetAt(1);
-				var map1 = new GridMap(stackalloc[] { diagonalCell, abxCell });
-				var map2 = new GridMap(stackalloc[] { diagonalCell, abyCell });
+				var map1 = new GridMap(stackalloc[] { abzCell, abxCell });
+				var map2 = new GridMap(stackalloc[] { abzCell, abyCell });
 				if (!IsConjugatePair(grid, digit, map1, map1.CoveredLine)
 					|| !IsConjugatePair(grid, digit, map2, map2.CoveredLine))
 				{
@@ -646,7 +652,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 				// Hidden UR found. Now check eliminations.
 				int elimDigit = (comparer ^ (1 << digit)).FindFirstSet();
-				if (!(grid.Exists(diagonalCell, elimDigit) is true))
+				if (!(grid.Exists(abzCell, elimDigit) is true))
 				{
 					continue;
 				}
@@ -664,7 +670,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					{
 						void record(int d)
 						{
-							if (cell == diagonalCell && d == elimDigit)
+							if (cell == abzCell && d == elimDigit)
 							{
 								return;
 							}
@@ -694,7 +700,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 				accumulator.Add(
 					new HiddenUrTechniqueInfo(
-						conclusions: new[] { new Conclusion(Elimination, diagonalCell, elimDigit) },
+						conclusions: new[] { new Conclusion(Elimination, abzCell, elimDigit) },
 						views: new[]
 						{
 							new View(
@@ -710,8 +716,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						cells: urCells,
 						conjugatePairs: new[]
 						{
-							new ConjugatePair(diagonalCell, abxCell, digit),
-							new ConjugatePair(diagonalCell, abyCell, digit),
+							new ConjugatePair(abzCell, abxCell, digit),
+							new ConjugatePair(abzCell, abyCell, digit),
 						},
 						isAr: arMode));
 			}
