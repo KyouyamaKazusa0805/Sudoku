@@ -337,14 +337,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						if (otherCellsMap[cell])
 						{
 							// Cells that contain the eliminations.
-							if (d1 != elimDigit && grid.Exists(cell, d1) is true)
+							void record(int d)
 							{
-								candidateOffsets.Add((d1 == digit ? 1 : 0, cell * 9 + d1));
+								if (d != elimDigit && grid.Exists(cell, d) is true)
+								{
+									candidateOffsets.Add((d == digit ? 1 : 0, cell * 9 + d));
+								}
 							}
-							if (d2 != elimDigit && grid.Exists(cell, d2) is true)
-							{
-								candidateOffsets.Add((d2 == digit ? 1 : 0, cell * 9 + d2));
-							}
+
+							record(d1);
+							record(d2);
 						}
 						else
 						{
