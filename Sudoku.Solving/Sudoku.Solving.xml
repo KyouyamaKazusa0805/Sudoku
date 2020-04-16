@@ -6063,6 +6063,40 @@
             <para>I strongly recommend you <b>should not</b> modify any values in this table.</para>
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusTechniqueInfo">
+            <summary>
+            Provides a usage of <b>unique rectangle plus</b> (UR+) or
+            <b>avoidable rectangle plus</b> (AR+) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.String,System.Int32,System.Int32,System.Int32,System.Int32[],System.Collections.Generic.IReadOnlyList{Sudoku.Solving.ConjugatePair},System.Boolean)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="typeName">The type name.</param>
+            <param name="typeCode">The type code.</param>
+            <param name="digit1">The digit 1.</param>
+            <param name="digit2">The digit 2.</param>
+            <param name="cells">All UR cells.</param>
+            <param name="conjugatePairs">All conjugate pairs.</param>
+            <param name="isAr">Indicates whether the specified structure is an AR.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusTechniqueInfo.ConjugatePairs">
+            <summary>
+            Indicates all conjugate pairs used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusTechniqueInfo.GetAdditional">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo">
             <summary>
             Provides a usage of <b>unique rectangle</b> (UR) or
@@ -6170,6 +6204,18 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.IsConjugatePair(Sudoku.Data.IReadOnlyGrid,System.Int32,Sudoku.Data.GridMap,System.Int32)">
+            <summary>
+            To determine whether the specified region forms a conjugate pair
+            of the specified digit, and the cells where they contain the digit
+            is same as the given map contains.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="map">The map.</param>
+            <param name="region">The region.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.CheckHighlightType(System.ValueTuple{System.Int32,System.Int32})">
             <summary>

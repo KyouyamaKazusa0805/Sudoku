@@ -48,7 +48,7 @@ namespace Sudoku.Extensions
 		public static int FindFirstSet(this int @this)
 		{
 			int x = @this & -@this;
-			int a = x <= 0xffff ? x <= 0xff ? 0 : 8 : x <= 0xffffff ? 16 : 24;
+			int a = x <= 0xFFFF ? x <= 0xFF ? 0 : 8 : x <= 0xFFFFFF ? 16 : 24;
 			return Table[x >> a] + a - 1;
 		}
 
@@ -133,8 +133,8 @@ namespace Sudoku.Extensions
 		{
 			@this = @this >> 1 & 0x55555555 | (@this & 0x55555555) << 1;
 			@this = @this >> 2 & 0x33333333 | (@this & 0x33333333) << 2;
-			@this = @this >> 4 & 0x0f0f0f0f | (@this & 0x0f0f0f0f) << 4;
-			@this = @this >> 8 & 0x00ff00ff | (@this & 0x00ff00ff) << 8;
+			@this = @this >> 4 & 0x0F0F0F0F | (@this & 0x0F0F0F0F) << 4;
+			@this = @this >> 8 & 0x00FF00FF | (@this & 0x00FF00FF) << 8;
 			@this = @this >> 16 | @this << 16;
 		}
 	}

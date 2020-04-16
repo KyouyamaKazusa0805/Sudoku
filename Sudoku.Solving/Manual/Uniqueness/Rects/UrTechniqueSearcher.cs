@@ -114,6 +114,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									var tempOtherCellsMap = new GridMap(otherCellsMap) { [corner2] = false };
 
 									CheckType2(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
+
+									if (!arMode)
+									{
+										CheckType4(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
+									}
 								}
 							}
 						}
@@ -133,9 +138,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
 		{
-			// ↓cornerCell
-			// abc ab
-			// ab  ab
+			//   ↓ cornerCell
+			// (abc) ab
+			//  ab   ab
 
 			// Get the summary mask.
 			short mask = 0;
@@ -201,9 +206,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
 		{
-			// ↓corner1, corner2
-			// abc abc
-			// ab  ab
+			//   ↓ corner1 and corner2
+			// (abc) (abc)
+			//  ab    ab
 
 			// Get the summary mask.
 			short mask = 0;
@@ -281,14 +286,110 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					extraDigit));
 		}
 
+		private void CheckType4(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
+		{
+			//  ↓ corner1, corner2
+			// (ab ) ab
+			//  abx  aby
+			if ((grid.GetCandidatesReversal(corner1) | grid.GetCandidatesReversal(corner2)) != comparer)
+			{
+				return;
+			}
+
+			foreach (int region in otherCellsMap.CoveredRegions)
+			{
+				foreach (int digit in stackalloc[] { d1, d2 })
+				{
+					if (!IsConjugatePair(grid, digit, otherCellsMap, region))
+					{
+						continue;
+					}
+
+					// Yes, Type 4 found.
+					// Now check elimination.
+					int elimDigit = (comparer ^ (1 << digit)).FindFirstSet();
+					var conclusions = new List<Conclusion>();
+					foreach (int cell in otherCellsMap.Offsets)
+					{
+						if (!(grid.Exists(cell, elimDigit) is true))
+						{
+							continue;
+						}
+
+						conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
+					}
+					if (conclusions.Count == 0)
+					{
+						continue;
+					}
+
+					var cellOffsets = new List<(int, int)>(from cell in urCells select (0, cell));
+					var candidateOffsets = new List<(int, int)>();
+					foreach (int cell in urCells)
+					{
+						if (grid.GetCellStatus(cell) != Empty)
+						{
+							continue;
+						}
+
+						if (otherCellsMap[cell])
+						{
+							// Cells that contain the eliminations.
+							if (d1 != elimDigit && grid.Exists(cell, d1) is true)
+							{
+								candidateOffsets.Add((d1 == digit ? 1 : 0, cell * 9 + d1));
+							}
+							if (d2 != elimDigit && grid.Exists(cell, d2) is true)
+							{
+								candidateOffsets.Add((d2 == digit ? 1 : 0, cell * 9 + d2));
+							}
+						}
+						else
+						{
+							// Corner1 and corner2.
+							foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
+							{
+								candidateOffsets.Add((0, cell * 9 + d));
+							}
+						}
+					}
+
+					if (!_allowUncompletedUr && candidateOffsets.Count != 6)
+					{
+						continue;
+					}
+
+					accumulator.Add(
+						new UrPlusTechniqueInfo(
+							conclusions,
+							views: new[]
+							{
+								new View(
+									cellOffsets: arMode ? cellOffsets : null,
+									candidateOffsets,
+									regionOffsets: new[] { (0, region) },
+									links: null)
+							},
+							typeName: "Type 4",
+							typeCode: 4,
+							digit1: d1,
+							digit2: d2,
+							cells: urCells,
+							conjugatePairs: new[] { new ConjugatePair(otherCellsMap.SetAt(0), otherCellsMap.SetAt(1), digit) },
+							isAr: arMode));
+				}
+			}
+		}
+
 		private void CheckType5(
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
 		{
-			// ↓cornerCell
-			// ab  abc
-			// abc abc
-
+			//  ↓ cornerCell
+			// (ab ) abc
+			//  abc  abc
 			if (grid.GetCandidatesReversal(cornerCell) != comparer)
 			{
 				return;
@@ -365,16 +466,27 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 
 		/// <summary>
+		/// To determine whether the specified region forms a conjugate pair
+		/// of the specified digit, and the cells where they contain the digit
+		/// is same as the given map contains.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="digit">The digit.</param>
+		/// <param name="map">The map.</param>
+		/// <param name="region">The region.</param>
+		/// <returns>A <see cref="bool"/> value.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private static bool IsConjugatePair(
+			IReadOnlyGrid grid, int digit, GridMap map, int region) =>
+			grid.GetDigitAppearingCells(digit, region) == map;
+
+		/// <summary>
 		/// Check highlight type.
 		/// </summary>
 		/// <param name="pair">The pair.</param>
 		/// <returns>The result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static bool CheckHighlightType((int, int) pair)
-		{
-			var (id, _) = pair;
-			return id == 0;
-		}
+		private static bool CheckHighlightType((int _id, int) pair) => pair._id == 0;
 
 		/// <summary>
 		/// Check all preconditions.
