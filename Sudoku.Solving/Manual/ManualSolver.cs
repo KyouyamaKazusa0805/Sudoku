@@ -21,11 +21,11 @@ using Sudoku.Solving.Manual.Uniqueness.Bugs;
 using Sudoku.Solving.Manual.Uniqueness.Extended;
 using Sudoku.Solving.Manual.Uniqueness.Loops;
 using Sudoku.Solving.Manual.Uniqueness.Polygons;
+using Sudoku.Solving.Manual.Uniqueness.Rects;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using static Sudoku.Solving.ConclusionType;
 using Intersection = System.ValueTuple<int, int, Sudoku.Data.GridMap, Sudoku.Data.GridMap>;
-using UrTechniqueSearcher = Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher;
 
 namespace Sudoku.Solving.Manual
 {
