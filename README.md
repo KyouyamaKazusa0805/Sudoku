@@ -2,18 +2,19 @@
 
 标题：**向向的数独解决方案（SSS）**
 
-A sudoku handling SDK using brute forces and logical techniques (Update files gradually). Now this solution supports generating puzzles, solving puzzles (with logical & illogical techniques) and some attribute checking.
+A sudoku handling SDK using brute forces and logical techniques (Update files gradually). Now this solution supports generating puzzles, solving puzzles (with logical & illogical techniques) and some attribute checking (for example, to determine whether the specified grid is a minimal puzzle, which will become multiple solutions when any a digit is missing).
 
-一个使用暴力破解和普通逻辑算法解题的数独分析解题 SDK（逐渐更新）。目前该解决方案支持对数独的题目生成、使用逻辑技巧或无逻辑技巧解题和一些常见数独特性的验证。
+一个使用暴力破解和普通逻辑算法解题的数独分析解题 SDK（逐渐更新）。目前该解决方案支持对数独的题目生成、使用逻辑技巧或无逻辑技巧解题和一些常见数独特性的验证（例如，验证是否一个指定的盘面是一个最小题目。所谓的最小题目指的是，盘面任意一个数字消失后，都会使得题目多解的题）。
 
 
 
-## C# Version and IDE
+## Programming language and IDE using
 
-标题：**C# 版本和 IDE 使用情况**
+标题：**编程语言和 IDE 使用情况**
 
-* C# version: 8.0<br/>C# 版本：8.0
-* Framework using: .NET Core 3.1<br/>框架使用：.NET Core 3.1
+* Programming language: C#<br/>编程语言：C#
+* Language version: 8.0<br/>语言版本：8.0
+* Framework: .NET Core 3.1<br/>框架：.NET Core 3.1
 * Integrated development environment: Visual Studio 2019 V16.5<br/>集成开发环境：Visual Studio 2019 V16.5
 
 
