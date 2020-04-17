@@ -10,7 +10,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// Provides a usage of <b>unique rectangle</b> (UR) or
 	/// <b>avoidable rectangle</b> (AR) technique.
 	/// </summary>
-	public abstract class UrTechniqueInfo : RectangleTechniqueInfo, IComparable<UrTechniqueInfo>
+	public abstract class UrTechniqueInfo : UniquenessTechniqueInfo, IComparable<UrTechniqueInfo>
 	{
 		/// <summary>
 		/// The type code.
@@ -74,14 +74,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			int d2 = Digit2 + 1;
 			string cellsStr = CellCollection.ToString(Cells);
 			string elimStr = ConclusionCollection.ToString(Conclusions);
-			return $"{Name}: {d1}, {d2} in {cellsStr} with {GetAdditional()} => {elimStr}";
+			string? additional = GetAdditional();
+			return $"{Name}: {d1}, {d2} in {cellsStr}{(additional is null ? string.Empty : $" with {additional}")} => {elimStr}";
 		}
 
 		/// <summary>
 		/// Get additional string.
 		/// </summary>
 		/// <returns>The additional string.</returns>
-		protected abstract string GetAdditional();
+		protected abstract string? GetAdditional();
 
 		/// <inheritdoc/>
 		int IComparable<UrTechniqueInfo>.CompareTo(UrTechniqueInfo other)

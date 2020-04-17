@@ -6,17 +6,16 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
 using static Sudoku.GridProcessings;
-using XrType1 = Sudoku.Solving.Manual.Uniqueness.Rectangles.XrType1DetailData;
-using XrType2 = Sudoku.Solving.Manual.Uniqueness.Rectangles.XrType2DetailData;
-using XrType3 = Sudoku.Solving.Manual.Uniqueness.Rectangles.XrType3DetailData;
+using static Sudoku.Data.GridMap.InitializeOption;
+using static Sudoku.Solving.ConclusionType;
 
-namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
+namespace Sudoku.Solving.Manual.Uniqueness.Extended
 {
 	/// <summary>
-	/// Encapsulates an <b>extended rectangle</b> (XR) technique searcher.
+	/// Encapsulates an <b>extended rectangle</b> technique searcher.
 	/// </summary>
 	[TechniqueDisplay("Extended Rectangle")]
-	public sealed class XrTechniqueSearcher : RectangleTechniqueSearcher
+	public sealed class XrTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>
 		/// The table of regions to traverse.
@@ -199,8 +198,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 												continue;
 											}
 
-											conclusions.Add(
-												new Conclusion(ConclusionType.Elimination, cell, digit));
+											conclusions.Add(new Conclusion(Elimination, cell, digit));
 										}
 									}
 									else
@@ -218,7 +216,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 								}
 
 								accumulator.Add(
-									new XrTechniqueInfo(
+									new XrType1TechniqueInfo(
 										conclusions,
 										views: new[]
 										{
@@ -228,15 +226,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 												regionOffsets: null,
 												links: null)
 										},
-										detailData: new XrType1(
-											cells: allCellsMap.ToArray(),
-											digits: normalDigits)));
+										typeCode: 1,
+										typeName: "Type 1",
+										cells: allCellsMap.ToArray(),
+										digits: normalDigits));
 							}
 							else
 							{
 								// Type 2.
 								// Check eliminations.
-								var elimMap = new GridMap(extraCells, GridMap.InitializeOption.ProcessPeersWithoutItself);
+								var elimMap = new GridMap(extraCells, ProcessPeersWithoutItself);
 								foreach (int cell in elimMap.Offsets)
 								{
 									if (!(grid.Exists(cell, extraDigit) is true))
@@ -244,9 +243,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 										continue;
 									}
 
-									conclusions.Add(
-										new Conclusion(
-											ConclusionType.Elimination, cell, extraDigit));
+									conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
 								}
 
 								if (conclusions.Count == 0)
@@ -265,7 +262,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 								}
 
 								accumulator.Add(
-									new XrTechniqueInfo(
+									new XrType2TechniqueInfo(
 										conclusions,
 										views: new[]
 										{
@@ -275,10 +272,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 												regionOffsets: null,
 												links: null)
 										},
-										detailData: new XrType2(
-											cells: allCellsMap.ToArray(),
-											digits: normalDigits,
-											extraDigit: extraDigit)));
+										typeCode: 2,
+										typeName: "Type 2",
+										cells: allCellsMap.ToArray(),
+										digits: normalDigits,
+										extraDigit));
 							}
 						}
 						else
@@ -337,8 +335,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 						continue;
 					}
 
-					conclusions.Add(
-						new Conclusion(ConclusionType.Elimination, extraCell, digit));
+					conclusions.Add(new Conclusion(Elimination, extraCell, digit));
 				}
 
 				if (conclusions.Count == 0)
@@ -362,7 +359,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 				}
 
 				accumulator.Add(
-					new XrTechniqueInfo(
+					new XrType1TechniqueInfo(
 						conclusions,
 						views: new[]
 						{
@@ -372,9 +369,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 								regionOffsets: null,
 								links: null)
 						},
-						detailData: new XrType1(
-							cells: allCellsMap.ToArray(),
-							digits: normalDigits)));
+						typeCode: 1,
+						typeName: "Type 1",
+						cells: allCellsMap.ToArray(),
+						digits: normalDigits));
 			}
 			else
 			{
@@ -471,8 +469,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 								continue;
 							}
 
-							conclusions.Add(
-								new Conclusion(ConclusionType.Elimination, cell, digit));
+							conclusions.Add(new Conclusion(Elimination, cell, digit));
 						}
 					}
 
@@ -492,7 +489,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 					}
 
 					accumulator.Add(
-						new XrTechniqueInfo(
+						new XrType3TechniqueInfo(
 							conclusions,
 							views: new[]
 							{
@@ -502,12 +499,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 									regionOffsets: new[] { (0, region) },
 									links: null)
 							},
-							detailData: new XrType3(
-								cells: allCellsMap.ToArray(),
-								digits: normalDigits,
-								subsetCells: usedCellsMap.ToArray(),
-								subsetDigits: extraDigits,
-								isNaked: true)));
+							typeCode: 3,
+							typeName: "Type 3",
+							cells: allCellsMap.ToArray(),
+							digits: normalDigits,
+							extraCells: usedCellsMap.ToArray(),
+							extraDigits,
+							region));
 				}
 			}
 		}

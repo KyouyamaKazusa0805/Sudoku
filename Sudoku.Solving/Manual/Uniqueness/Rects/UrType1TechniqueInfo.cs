@@ -26,6 +26,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 
 		/// <inheritdoc/>
-		protected override string GetAdditional() => string.Empty;
+		protected override string? GetAdditional() => null;
 	}
 }

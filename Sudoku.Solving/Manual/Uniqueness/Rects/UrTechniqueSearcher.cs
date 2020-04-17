@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <b>avoidable rectangle</b> (AR) technique searcher.
 	/// </summary>
 	[TechniqueDisplay("Unique Rectangle")]
-	public sealed partial class UrTechniqueSearcher : RectangleTechniqueSearcher
+	public sealed partial class UrTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>
 		/// Indicates whether the UR can be uncompleted. In other words,
