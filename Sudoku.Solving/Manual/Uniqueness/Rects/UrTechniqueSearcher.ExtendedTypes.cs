@@ -128,7 +128,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								regionOffsets: null,
 								links: null)
 						},
-						typeName: abxyCellCandidatesCount == 2 ? "+ 2D" : "+ 3X",
+						typeName: abxyCellCandidatesCount switch
+						{
+							2 => "+ 2D",
+							3 => "+ 3X",
+							_ => throw Throwing.ImpossibleCase
+						},
 						typeCode: 8,
 						digit1: d1,
 						digit2: d2,

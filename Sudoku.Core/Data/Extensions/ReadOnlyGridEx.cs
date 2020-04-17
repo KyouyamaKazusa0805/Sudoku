@@ -120,8 +120,10 @@ namespace Sudoku.Data.Extensions
 		/// </para>
 		/// <para>
 		/// Note that the method will return a <see cref="bool"/>?, so you should use the code
-		/// to decide whether a condition is true: '<c>grid.Exists(candidate) is true</c>'
-		/// or nullable-equal-style code '<c>grid.Exists(candidate) == true</c>'.
+		/// <code>grid.Exists(candidate) is true</code>
+		/// or
+		/// <code>grid.Exists(candidate) == true</code>
+		/// to decide whether a condition is true.
 		/// </para>
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
@@ -161,8 +163,10 @@ namespace Sudoku.Data.Extensions
 		/// </para>
 		/// <para>
 		/// Note that the method will return a <see cref="bool"/>?, so you should use the code
-		/// to decide whether a condition is true: '<c>grid.Exists(candidate) is true</c>'
-		/// or nullable-equal-style code '<c>grid.Exists(candidate) == true</c>'.
+		/// <code>grid.Exists(candidate) is true</code>
+		/// or
+		/// <code>grid.Exists(candidate) == true</code>
+		/// to decide whether a condition is true.
 		/// </para>
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
