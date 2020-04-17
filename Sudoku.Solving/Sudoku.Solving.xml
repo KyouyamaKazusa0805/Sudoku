@@ -5457,6 +5457,52 @@
             <para>I strongly recommend you <b>should not</b> modify any values in this table.</para>
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XTechniqueInfo">
+            <summary>
+            Provides a usage of <b>unique rectangle + 2D (or 3X)</b> or
+            <b>avoidable rectangle + 2D (or 3X)</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.String,System.Int32,System.Int32,System.Int32,System.Int32[],System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="typeName">The type name.</param>
+            <param name="typeCode">The type code.</param>
+            <param name="digit1">The digit 1.</param>
+            <param name="digit2">The digit 2.</param>
+            <param name="cells">All cells.</param>
+            <param name="x">The X digit.</param>
+            <param name="y">The Y digit.</param>
+            <param name="xyCell">The cell that only contains X and Y digit.</param>
+            <param name="isAr">Indicates whether the specified structure forms an AR.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XTechniqueInfo.X">
+            <summary>
+            Indicates the X digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XTechniqueInfo.Y">
+            <summary>
+            Indicates the Y digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XTechniqueInfo.XyCell">
+            <summary>
+            Indicates the cell that only contains X and Y digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XTechniqueInfo.GetAdditional">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusTechniqueInfo">
             <summary>
             Provides a usage of <b>unique rectangle plus</b> (UR+) or
