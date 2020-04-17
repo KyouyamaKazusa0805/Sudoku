@@ -7,7 +7,6 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
-using static Sudoku.GridProcessings;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Solving.ConclusionType;
@@ -346,6 +345,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			{
 				mask |= grid.GetCandidatesReversal(cell);
 			}
+			if ((mask & comparer) != comparer)
+			{
+				// To ensure 'abx' and 'aby' contains both number a and b.
+				return;
+			}
 
 			bool determinator(int c) => grid.GetCellStatus(c) == Empty && !otherCellsMap[c];
 			foreach (int region in otherCellsMap.CoveredRegions)
@@ -372,16 +376,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							continue;
 						}
 
-						short m1 = (short)((short)(mask | grid.GetCandidatesReversal(c1)) ^ comparer);
+						short cellMask = grid.GetCandidatesReversal(c1);
+						short m1 = (short)((short)(mask | cellMask) ^ comparer);
 						if (m1.CountSet() != 2)
 						{
 							continue;
 						}
 
-						// Type 3 found. Now check eliminations.
 						var extraDigits = m1.GetAllSets();
+						if (extraDigits.All(d => (cellMask >> d & 1) == 0))
+						{
+							// All extra cells should contain at least one extra digit.
+							continue;
+						}
+
+						// Type 3 found. Now check eliminations.
 						var conclusions = new List<Conclusion>();
-						var cells = new List<int>(otherCellsMap.Offsets) { c1 };
+						var cells = (otherCellsMap | new GridMap(stackalloc[] { c1 })).Offsets;
 						foreach (int digit in extraDigits)
 						{
 							foreach (int cell in new GridMap(
@@ -465,19 +476,24 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									continue;
 								}
 
-								short m2 = (short)((short)((short)(
-									mask | grid.GetCandidatesReversal(c1))
-									| grid.GetCandidatesReversal(c2))
-									^ comparer);
+								short cellMask = (short)(
+									grid.GetCandidatesReversal(c1) | grid.GetCandidatesReversal(c2));
+								short m2 = (short)((short)(mask | cellMask) ^ comparer);
 								if (m2.CountSet() != 3)
 								{
 									continue;
 								}
 
-								// Type 3 found. Now check eliminations.
 								var extraDigits = m2.GetAllSets();
+								if (extraDigits.All(d => (cellMask >> d & 1) == 0))
+								{
+									// All extra cells should contain at least one extra digit.
+									continue;
+								}
+
+								// Type 3 found. Now check eliminations.
 								var conclusions = new List<Conclusion>();
-								var cells = new List<int>(otherCellsMap.Offsets) { c1, c2 };
+								var cells = (otherCellsMap | new GridMap(stackalloc[] { c1 })).Offsets;
 								foreach (int digit in extraDigits)
 								{
 									foreach (int cell in new GridMap(
@@ -563,20 +579,26 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										continue;
 									}
 
-									short m2 = (short)((short)((short)((short)(
-										mask | grid.GetCandidatesReversal(c1))
+									short cellMask = (short)((short)(
+										grid.GetCandidatesReversal(c1)
 										| grid.GetCandidatesReversal(c2))
-										| grid.GetCandidatesReversal(c3))
-										^ comparer);
+										| grid.GetCandidatesReversal(c3));
+									short m2 = (short)((short)(mask | cellMask) ^ comparer);
 									if (m2.CountSet() != 4)
 									{
 										continue;
 									}
 
-									// Type 3 found. Now check eliminations.
 									var extraDigits = m2.GetAllSets();
+									if (extraDigits.All(d => (cellMask >> d & 1) == 0))
+									{
+										// All extra cells should contain at least one extra digit.
+										continue;
+									}
+
+									// Type 3 found. Now check eliminations.
 									var conclusions = new List<Conclusion>();
-									var cells = new List<int>(otherCellsMap.Offsets) { c1, c2, c3 };
+									var cells = (otherCellsMap | new GridMap(stackalloc[] { c1 })).Offsets;
 									foreach (int digit in extraDigits)
 									{
 										foreach (int cell in new GridMap(
@@ -661,7 +683,332 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap, int size)
 		{
+			//  ↓ corner1, corner2
+			// (ab ) (ab )
+			//  abx   aby
+			if ((grid.GetCandidatesReversal(corner1) | grid.GetCandidatesReversal(corner2)) != comparer)
+			{
+				return;
+			}
 
+			short tempMask = 0;
+			foreach (int cell in otherCellsMap.Offsets)
+			{
+				tempMask |= grid.GetCandidatesReversal(cell);
+			}
+			if ((tempMask & comparer) != comparer)
+			{
+				// To ensure 'abx' and 'aby' contains both number a and b.
+				return;
+			}
+
+			foreach (int region in otherCellsMap.CoveredRegions)
+			{
+				if (region < 9)
+				{
+					// Process when the region is a line.
+					continue;
+				}
+
+				if (size == 2)
+				{
+					// Check hidden pair.
+					var totalMap = grid.GetDigitAppearingCells(d1, region) | grid.GetDigitAppearingCells(d2, region);
+					if (totalMap.Count != 3)
+					{
+						continue;
+					}
+
+					// Now check eliminations.
+					var conclusions = new List<Conclusion>();
+					foreach (int cell in (totalMap - otherCellsMap).Offsets)
+					{
+						foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+						{
+							if (!(grid.Exists(cell, digit) is true) || digit == d1 || digit == d2)
+							{
+								continue;
+							}
+
+							conclusions.Add(new Conclusion(Elimination, cell, digit));
+						}
+					}
+					if (conclusions.Count == 0)
+					{
+						continue;
+					}
+
+					var candidateOffsets = new List<(int, int)>();
+					foreach (int cell in (new GridMap(urCells) | totalMap).Offsets)
+					{
+						if (grid.GetCellStatus(cell) != Empty)
+						{
+							continue;
+						}
+
+						if (totalMap[cell])
+						{
+							int id = otherCellsMap[cell] ? 0 : 1;
+							void record(int digit)
+							{
+								if (grid.Exists(cell, digit) is true)
+								{
+									candidateOffsets.Add((id, cell * 9 + digit));
+								}
+							}
+
+							record(d1);
+							record(d2);
+						}
+						else
+						{
+							foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+							{
+								candidateOffsets.Add((0, cell * 9 + digit));
+							}
+						}
+					}
+					if (!_allowUncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
+					{
+						continue;
+					}
+
+					accumulator.Add(
+						new UrType3TechniqueInfo(
+							conclusions,
+							views: new[]
+							{
+								new View(
+									cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+									candidateOffsets,
+									regionOffsets: new[] { (0, region) },
+									links: null)
+							},
+							typeName: "Type 3",
+							typeCode: 3,
+							digit1: d1,
+							digit2: d2,
+							cells: urCells,
+							extraDigits: new[] { d1, d2 },
+							extraCells: (totalMap - otherCellsMap).ToArray(),
+							region,
+							isNaked: false,
+							isAr: arMode));
+				}
+				else // size > 2
+				{
+					// Iterate on extra digits.
+					for (int ed1 = 0; ed1 < 10 - size; ed1++)
+					{
+						if (grid.HasDigitValue(ed1, region))
+						{
+							continue;
+						}
+
+						var map1 = grid.GetDigitAppearingCells(ed1, region);
+						if (map1.Overlaps(otherCellsMap))
+						{
+							// The extra digit cannot lie on the cell 'abx' or 'aby'.
+							continue;
+						}
+
+						if (size == 3)
+						{
+							// Check hidden triple.
+							var totalMap =
+								grid.GetDigitAppearingCells(d1, region)
+								| grid.GetDigitAppearingCells(d2, region)
+								| grid.GetDigitAppearingCells(ed1, region);
+							if (totalMap.Count != 4)
+							{
+								continue;
+							}
+
+							// Now check eliminations.
+							var conclusions = new List<Conclusion>();
+							foreach (int cell in (totalMap - otherCellsMap).Offsets)
+							{
+								foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+								{
+									if (!(grid.Exists(cell, digit) is true)
+										|| digit == d1 || digit == d2 || digit == ed1)
+									{
+										continue;
+									}
+
+									conclusions.Add(new Conclusion(Elimination, cell, digit));
+								}
+							}
+							if (conclusions.Count == 0)
+							{
+								continue;
+							}
+
+							var candidateOffsets = new List<(int, int)>();
+							foreach (int cell in (new GridMap(urCells) | totalMap).Offsets)
+							{
+								if (grid.GetCellStatus(cell) != Empty)
+								{
+									continue;
+								}
+
+								if (totalMap[cell])
+								{
+									int id = otherCellsMap[cell] ? 0 : 1;
+									void record(int digit)
+									{
+										if (grid.Exists(cell, digit) is true)
+										{
+											candidateOffsets.Add((id, cell * 9 + digit));
+										}
+									}
+
+									record(d1);
+									record(d2);
+								}
+								else
+								{
+									foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+									{
+										candidateOffsets.Add((0, cell * 9 + digit));
+									}
+								}
+							}
+							if (!_allowUncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
+							{
+								continue;
+							}
+
+							accumulator.Add(
+								new UrType3TechniqueInfo(
+									conclusions,
+									views: new[]
+									{
+										new View(
+											cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+											candidateOffsets,
+											regionOffsets: new[] { (0, region) },
+											links: null)
+									},
+									typeName: "Type 3",
+									typeCode: 3,
+									digit1: d1,
+									digit2: d2,
+									cells: urCells,
+									extraDigits: new[] { d1, d2, ed1 },
+									extraCells: (totalMap - otherCellsMap).ToArray(),
+									region,
+									isNaked: false,
+									isAr: arMode));
+						}
+						else // size == 4
+						{
+							for (int ed2 = ed1 + 1; ed2 < 11 - size; ed2++)
+							{
+								if (grid.HasDigitValue(ed2, region))
+								{
+									continue;
+								}
+
+								var map2 = grid.GetDigitAppearingCells(ed2, region);
+								if (map2.Overlaps(otherCellsMap))
+								{
+									// The extra digit cannot lie on the cell 'abx' or 'aby'.
+									continue;
+								}
+
+								// Check hidden quadruple.
+								var totalMap =
+									grid.GetDigitAppearingCells(d1, region)
+									| grid.GetDigitAppearingCells(d2, region)
+									| grid.GetDigitAppearingCells(ed1, region)
+									| grid.GetDigitAppearingCells(ed2, region);
+								if (totalMap.Count != 5)
+								{
+									continue;
+								}
+
+								// Now check eliminations.
+								var conclusions = new List<Conclusion>();
+								foreach (int cell in (totalMap - otherCellsMap).Offsets)
+								{
+									foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+									{
+										if (!(grid.Exists(cell, digit) is true)
+											|| digit == d1 || digit == d2 || digit == ed1 || digit == ed2)
+										{
+											continue;
+										}
+
+										conclusions.Add(new Conclusion(Elimination, cell, digit));
+									}
+								}
+								if (conclusions.Count == 0)
+								{
+									continue;
+								}
+
+								var candidateOffsets = new List<(int, int)>();
+								foreach (int cell in (new GridMap(urCells) | totalMap).Offsets)
+								{
+									if (grid.GetCellStatus(cell) != Empty)
+									{
+										continue;
+									}
+
+									if (totalMap[cell])
+									{
+										int id = otherCellsMap[cell] ? 0 : 1;
+										void record(int digit)
+										{
+											if (grid.Exists(cell, digit) is true)
+											{
+												candidateOffsets.Add((id, cell * 9 + digit));
+											}
+										}
+
+										record(d1);
+										record(d2);
+									}
+									else
+									{
+										foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+										{
+											candidateOffsets.Add((0, cell * 9 + digit));
+										}
+									}
+								}
+								if (!_allowUncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
+								{
+									continue;
+								}
+
+								accumulator.Add(
+									new UrType3TechniqueInfo(
+										conclusions,
+										views: new[]
+										{
+											new View(
+												cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+												candidateOffsets,
+												regionOffsets: new[] { (0, region) },
+												links: null)
+										},
+										typeName: "Type 3",
+										typeCode: 3,
+										digit1: d1,
+										digit2: d2,
+										cells: urCells,
+										extraDigits: new[] { d1, d2, ed1, ed2 },
+										extraCells: (totalMap - otherCellsMap).ToArray(),
+										region,
+										isNaked: false,
+										isAr: arMode));
+							}
+						}
+					}
+				}
+			}
 		}
 
 		private void CheckType4(
