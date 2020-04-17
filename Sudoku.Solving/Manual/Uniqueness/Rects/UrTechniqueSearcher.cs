@@ -798,7 +798,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				else // size > 2
 				{
 					// Iterate on extra digits.
-					for (int ed1 = 0; ed1 < 10 - size; ed1++)
+					for (int ed1 = 0; ed1 < 12 - size; ed1++)
 					{
 						if (grid.HasDigitValue(ed1, region))
 						{
@@ -903,7 +903,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						}
 						else // size == 4
 						{
-							for (int ed2 = ed1 + 1; ed2 < 11 - size; ed2++)
+							for (int ed2 = ed1 + 1; ed2 < 9; ed2++)
 							{
 								if (grid.HasDigitValue(ed2, region))
 								{
