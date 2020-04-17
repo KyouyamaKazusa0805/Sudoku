@@ -5169,11 +5169,6 @@
             Encapsulates a <b>rectangle</b> technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rectangles.RectangleTechniqueSearcher.UrPosList">
-            <summary>
-            The table of all Unique rectangles lying on.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rectangles.XrDetailData">
             <summary>
             Provides all data for extended rectangles (basic and extended types).

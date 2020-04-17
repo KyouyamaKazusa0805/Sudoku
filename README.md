@@ -65,30 +65,30 @@ Solving tool: Manual
 Technique used:
  20 * Full House
   5 * Last Digit
- 26 * Hidden Single (In Block)
+ 25 * Hidden Single (In Block)
   2 * Hidden Single (In Row)
   3 * Hidden Single (In Column)
+  1 * Naked single
   2 * Pointing
-  6 * Claiming
+  5 * Claiming
   1 * Naked Pair
   4 * Hidden Pair
   1 * Finned X-Wing
   2 * Sashimi X-Wing
   2 * Swordfish
   1 * Two-string Kite
-  2 * XYZ-Wing
+  1 * XY-Wing
+  1 * XYZ-Wing
   1 * Almost Locked Pair
-  1 * Unique Rectangle (Type 4)
-  1 * Hidden Rectangle
-  1 * Continuous Nice Loop
+  1 * Unique Rectangle Type 4
+  1 * Hidden Unique Rectangle 
   1 * Discontinuous Nice Loop
-  8 * Almost Locked Sets XZ Rule
-  1 * Extended Subset Principle
- 91 steps in total
+  7 * Almost Locked Sets XZ Rule
+ 87 steps in total
 Puzzle rating: 5.5/1.2/1.2
 Puzzle solution: 146835729589427316723691485314968257257143968698752143435276891971584632862319574
 Puzzle has been solved.
-Time elapsed: 00:00.21.366
+Time elapsed: 00:00.12.281
 ```
 
 > Format strings in the analysis result is shown in the description of file *How-to-use-analysis-result.md*.
