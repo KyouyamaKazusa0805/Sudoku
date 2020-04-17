@@ -171,7 +171,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			// (ab ) (ab )
 			//  abx   aby
 			if ((grid.GetCandidatesReversal(corner1) | grid.GetCandidatesReversal(corner2)) != comparer
-				|| otherCellsMap.Offsets.Any(c => grid.GetCandidatesReversal(c) == comparer || arMode && grid.GetCellStatus(c) != Empty))
+				|| otherCellsMap.Offsets.Any(c =>
+				{
+					short mask = grid.GetCandidatesReversal(c);
+					return (mask & comparer) == 0 || mask == comparer || arMode && grid.GetCellStatus(c) != Empty;
+				}))
 			{
 				return;
 			}
@@ -181,8 +185,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			{
 				mask |= grid.GetCandidatesReversal(cell);
 			}
-
-			// To ensure 'abx' and 'aby' contains both number a and b.
 			if ((mask & comparer) != comparer)
 			{
 				return;
@@ -196,6 +198,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				{
 					// Process when the region is a line.
 					continue;
+				}
+
+				if (grid.HasDigitValue(d1, region) || grid.HasDigitValue(d2, region))
+				{
+					return;
 				}
 
 				for (int i1 = 0; i1 < 10 - size; i1++)
@@ -525,19 +532,21 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			// (ab ) (ab )
 			//  abx   aby
 			if ((grid.GetCandidatesReversal(corner1) | grid.GetCandidatesReversal(corner2)) != comparer
-				|| otherCellsMap.Offsets.Any(c => grid.GetCandidatesReversal(c) == comparer || arMode && grid.GetCellStatus(c) != Empty))
+				|| otherCellsMap.Offsets.Any(c =>
+				{
+					short mask = grid.GetCandidatesReversal(c);
+					return (mask & comparer) == 0 || mask == comparer || arMode && grid.GetCellStatus(c) != Empty;
+				}))
 			{
 				return;
 			}
 
-			short tempMask = 0;
+			short mask = 0;
 			foreach (int cell in otherCellsMap.Offsets)
 			{
-				tempMask |= grid.GetCandidatesReversal(cell);
+				mask |= grid.GetCandidatesReversal(cell);
 			}
-
-			// To ensure 'abx' and 'aby' contains both number a and b.
-			if ((tempMask & comparer) != comparer)
+			if ((mask & comparer) != comparer)
 			{
 				return;
 			}
@@ -548,6 +557,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				{
 					// Process when the region is a line.
 					continue;
+				}
+
+				if (grid.HasDigitValue(d1, region) || grid.HasDigitValue(d2, region))
+				{
+					return;
 				}
 
 				if (size == 2)
