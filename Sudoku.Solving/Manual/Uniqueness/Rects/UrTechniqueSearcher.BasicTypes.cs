@@ -189,6 +189,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			bool determinator(int c) => grid.GetCellStatus(c) == Empty && !otherCellsMap[c];
+			short otherDigitsMask = (short)(mask ^ comparer);
 			foreach (int region in otherCellsMap.CoveredRegions)
 			{
 				if (region < 9)
@@ -215,7 +216,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 						short cellMask = grid.GetCandidatesReversal(c1);
 						short m1 = (short)((short)(mask | cellMask) ^ comparer);
-						if (m1.CountSet() != 2)
+						if (m1.CountSet() != 2 || cellMask != otherDigitsMask)
 						{
 							continue;
 						}
@@ -316,7 +317,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								short cellMask = (short)(
 									grid.GetCandidatesReversal(c1) | grid.GetCandidatesReversal(c2));
 								short m2 = (short)((short)(mask | cellMask) ^ comparer);
-								if (m2.CountSet() != 3)
+								if (m2.CountSet() != 3 || cellMask != otherDigitsMask)
 								{
 									continue;
 								}
@@ -420,13 +421,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										grid.GetCandidatesReversal(c1)
 										| grid.GetCandidatesReversal(c2))
 										| grid.GetCandidatesReversal(c3));
-									short m2 = (short)((short)(mask | cellMask) ^ comparer);
-									if (m2.CountSet() != 4)
+									short m3 = (short)((short)(mask | cellMask) ^ comparer);
+									if (m3.CountSet() != 4 || cellMask != otherDigitsMask)
 									{
 										continue;
 									}
 
-									var extraDigits = m2.GetAllSets();
+									var extraDigits = m3.GetAllSets();
 									if (extraDigits.All(d => (cellMask >> d & 1) == 0))
 									{
 										// All extra cells should contain at least one extra digit.
