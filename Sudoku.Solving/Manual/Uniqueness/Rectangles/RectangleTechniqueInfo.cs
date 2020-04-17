@@ -7,7 +7,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rectangles
 	/// <summary>
 	/// Provides a usage of <b>rectangle</b> technique.
 	/// </summary>
-	[Obsolete]
 	public abstract class RectangleTechniqueInfo : UniquenessTechniqueInfo
 	{
 		/// <summary>
