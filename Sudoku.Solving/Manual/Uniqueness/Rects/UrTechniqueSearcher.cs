@@ -112,17 +112,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									int corner2 = urCells[c2];
 									var tempOtherCellsMap = new GridMap(otherCellsMap) { [corner2] = false };
 
+									// Both diagonal and non-diagonal.
 									CheckType2(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
-									for (int size = 2; size <= 4; size++)
-									{
-										CheckType3Naked(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, size);
-										CheckType3Hidden(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, size);
-									}
-
-									if (!arMode)
-									{
-										CheckType4(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
-									}
 
 									if (c1 == 0 && c2 == 3 || c1 == 1 && c2 == 2)
 									{
@@ -135,6 +126,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										if (_searchExtended)
 										{
 											Check2DOr3X(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
+										}
+									}
+									else
+									{
+										// Non-diagonal type.
+										for (int size = 2; size <= 4; size++)
+										{
+											CheckType3Naked(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, size);
+											CheckType3Hidden(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, size);
+										}
+
+										if (!arMode)
+										{
+											CheckType4(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
 										}
 									}
 								}
