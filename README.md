@@ -32,6 +32,14 @@ Username@ComputerName MINGW64 ~/Desktop
 $ git clone https://github.com/Sunnie-Shine/Sudoku.git
 ```
 
+This whole solution consists of 4 projects:<br/>这个解决方案一共有 4 个项目构成：
+* Sudoku.Core: The main data structure implementation of the sudoku elementary.<br/>对数独基本元素的主要数据结构的实现。
+* Sudoku.Solving: The generating and solving project.<br/>解题和题目生成的项目。
+* Sudoku.Windows: The WPF project, containing UI forms and controls.<br/>WPF 项目，包含 UI 界面和控件。
+* Sudoku.Debugging: The project that can be used while debugging only.<br/>这个项目仅用于调试代码时。
+* old: The old projects that implemented by me or external codes.<br/>以前的由我自己实现的项目，或者是属于外部代码。
+* ref: The profiles for sudoku for references.<br/>数独相关参考资料。
+* pic: The pictures.<br/>图片。
 
 
 ## Demo
