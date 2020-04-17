@@ -609,8 +609,9 @@ namespace Sudoku.Windows
 					MessageBox.Show(
 						$"The puzzle cannot be solved because " +
 						$"the solver has found a wrong conclusion to apply " +
-						$"or else the puzzle has eliminated the correct value.{Environment.NewLine}" +
-						$"You should check the puzzle or notify the author.",
+						$"or else the puzzle has eliminated the correct value.{NewLine}" +
+						$"You should check the puzzle or notify the author.{NewLine}" +
+						$"Error technique step: {_analyisResult.Additional}",
 						"Warning");
 				}
 			}
