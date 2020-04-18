@@ -138,8 +138,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						digit1: d1,
 						digit2: d2,
 						cells: urCells,
-						x: x,
-						y: y,
+						x,
+						y,
 						xyCell: xyCell,
 						isAr: arMode));
 			}
@@ -170,6 +170,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 				foreach (int region in regions)
 				{
+					if (region < 9)
+					{
+						continue;
+					}
+
 					foreach (int digit in stackalloc[] { d1, d2 })
 					{
 						if (!IsConjugatePair(grid, digit, new GridMap(stackalloc[] { cell, sameRegionCell }), region))
@@ -183,14 +188,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							continue;
 						}
 
-						int elimDigit = comparer ^ (1 << digit);
+						int elimDigit = (comparer ^ (1 << digit)).FindFirstSet();
+						var conclusions = new List<Conclusion>();
+						if (grid.Exists(elimCell, elimDigit) is true)
+						{
+							conclusions.Add(new Conclusion(Elimination, elimCell, elimDigit));
+						}
+						if (conclusions.Count == 0)
+						{
+							continue;
+						}
+
 						var candidateOffsets = new List<(int, int)>();
 						foreach (int urCell in urCells)
 						{
 							if (urCell == corner1 || urCell == corner2)
 							{
-								if (new GridMap(stackalloc[] { urCell, sameRegionCell }).AllSetsAreInOneRegion(out int? r)
-									&& r == region)
+								if (new GridMap(stackalloc[] { urCell, sameRegionCell }).CoveredRegions.Any(r => r == region))
 								{
 									foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
 									{
@@ -205,24 +219,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									}
 								}
 							}
-							else if (urCell == sameRegionCell)
+							else if (urCell == sameRegionCell || urCell == elimCell)
 							{
-								foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
+								void record(int d)
 								{
-									candidateOffsets.Add((d == digit ? 1 : 0, urCell * 9 + d));
-								}
-							}
-							else // urCell == elimCell
-							{
-								foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
-								{
-									if (d == elimDigit)
+									if (grid.Exists(urCell, d) is true)
 									{
-										continue;
-									}
+										if (urCell == elimCell && d == elimDigit)
+										{
+											return;
+										}
 
-									candidateOffsets.Add((0, urCell * 9 + d));
+										candidateOffsets.Add((urCell == elimCell ? 0 : d == digit ? 1 : 0, urCell * 9 + d));
+									}
 								}
+
+								record(d1);
+								record(d2);
 							}
 						}
 
@@ -233,7 +246,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 						accumulator.Add(
 							new UrPlusTechniqueInfo(
-								conclusions: new[] { new Conclusion(Elimination, elimCell, digit) },
+								conclusions,
 								views: new[]
 								{
 									new View(
@@ -280,6 +293,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 				foreach (int region in regions)
 				{
+					if (region < 9)
+					{
+						continue;
+					}
+
 					foreach (int digit in stackalloc[] { d1, d2 })
 					{
 						if (!IsConjugatePair(grid, digit, new GridMap(stackalloc[] { cell, sameRegionCell }), region))
@@ -293,13 +311,22 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							continue;
 						}
 
+						var conclusions = new List<Conclusion>();
+						if (grid.Exists(elimCell, digit) is true)
+						{
+							conclusions.Add(new Conclusion(Elimination, elimCell, digit));
+						}
+						if (conclusions.Count == 0)
+						{
+							continue;
+						}
+
 						var candidateOffsets = new List<(int, int)>();
 						foreach (int urCell in urCells)
 						{
 							if (urCell == corner1 || urCell == corner2)
 							{
-								if (new GridMap(stackalloc[] { urCell, sameRegionCell }).AllSetsAreInOneRegion(out int? r)
-									&& r == region)
+								if (new GridMap(stackalloc[] { urCell, sameRegionCell }).CoveredRegions.Any(r => r == region))
 								{
 									foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
 									{
@@ -314,24 +341,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									}
 								}
 							}
-							else if (urCell == sameRegionCell)
+							else if (urCell == sameRegionCell || urCell == elimCell)
 							{
-								foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
+								void record(int d)
 								{
-									candidateOffsets.Add((d == digit ? 1 : 0, urCell * 9 + d));
-								}
-							}
-							else // urCell == elimCell
-							{
-								foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
-								{
-									if (d == digit)
+									if (grid.Exists(urCell, d) is true)
 									{
-										continue;
-									}
+										if (urCell == elimCell && d == digit)
+										{
+											return;
+										}
 
-									candidateOffsets.Add((0, urCell * 9 + d));
+										candidateOffsets.Add((urCell == elimCell ? 0 : d == digit ? 1 : 0, urCell * 9 + d));
+									}
 								}
+
+								record(d1);
+								record(d2);
 							}
 						}
 
@@ -342,7 +368,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 						accumulator.Add(
 							new UrPlusTechniqueInfo(
-								conclusions: new[] { new Conclusion(Elimination, elimCell, digit) },
+								conclusions,
 								views: new[]
 								{
 									new View(

@@ -167,8 +167,8 @@ namespace Sudoku.Solving.Manual.Alses
 		{
 			return Cells.HasOnlyOneElement() && other.Cells.HasOnlyOneElement()
 				? (_mask & 0x1FF) == (other._mask & 0x1FF)
-					&& RegionUtils.GetCellOffset(Region, Cells.First())
-					== RegionUtils.GetCellOffset(other.Region, other.Cells.First())
+					&& RegionUtils.GetCellOffset(Region, RelativePosMask.FindFirstSet())
+					== RegionUtils.GetCellOffset(other.Region, other.RelativePosMask.FindFirstSet())
 				: _mask == other._mask;
 		}
 
