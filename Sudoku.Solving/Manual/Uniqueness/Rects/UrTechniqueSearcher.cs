@@ -141,6 +141,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										{
 											CheckType4(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
 										}
+
+										if (_searchExtended)
+										{
+											Check2B1SL(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
+										}
 									}
 								}
 							}
@@ -232,6 +237,29 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		}
 
 		/// <summary>
+		/// Get a cell that is in the same region of the specified cell lies in.
+		/// </summary>
+		/// <param name="currentCell">The current cell.</param>
+		/// <param name="otherCellsMap">The map of other cells.</param>
+		/// <param name="region">
+		/// (<see langword="out"/> parameter) The result region that both cells lie in.
+		/// </param>
+		/// <returns>The cell.</returns>
+		private static int GetSameRegionCell(int currentCell, GridMap otherCellsMap, out int? region)
+		{
+			foreach (int c in otherCellsMap.Offsets)
+			{
+				if (new GridMap(stackalloc[] { c, currentCell }).AllSetsAreInOneRegion(out region))
+				{
+					return c;
+				}
+			}
+
+			region = null;
+			return -1;
+		}
+
+		/// <summary>
 		/// Get all highlight cells.
 		/// </summary>
 		/// <param name="urCells">The all UR cells used.</param>
@@ -275,6 +303,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap);
 
 		partial void Check2DOr3X(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
+
+		partial void Check2B1SL(
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
 		#endregion

@@ -144,5 +144,107 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						isAr: arMode));
 			}
 		}
+
+		partial void Check2B1SL(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
+		{
+			//  ↓ corner1, corner2
+			// (ab )  (ab )
+			//  |
+			//  | a
+			//  |
+			//  abx    aby
+			if ((grid.GetCandidatesReversal(corner1) | grid.GetCandidatesReversal(corner2)) != comparer)
+			{
+				return;
+			}
+
+			foreach (int cell in stackalloc[] { corner1, corner2 })
+			{
+				int sameRegionCell = GetSameRegionCell(cell, otherCellsMap, out int? region);
+				int actualRegion = region.GetValueOrDefault(-1);
+				foreach (int digit in stackalloc[] { d1, d2 })
+				{
+					if (!IsConjugatePair(grid, digit, new GridMap(stackalloc[] { cell, sameRegionCell }), actualRegion))
+					{
+						continue;
+					}
+
+					int elimCell = new GridMap(otherCellsMap) { [sameRegionCell] = false }.Offsets.First();
+					if (!(grid.Exists(sameRegionCell, digit) is true))
+					{
+						continue;
+					}
+
+					int elimDigit = comparer ^ (1 << digit);
+					var candidateOffsets = new List<(int, int)>();
+					foreach (int urCell in urCells)
+					{
+						if (urCell == corner1 || urCell == corner2)
+						{
+							if (new GridMap(stackalloc[] { urCell, sameRegionCell }).AllSetsAreInOneRegion(out int? r)
+								&& r == actualRegion)
+							{
+								foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
+								{
+									candidateOffsets.Add((d == digit ? 1 : 0, urCell * 9 + d));
+								}
+							}
+							else
+							{
+								foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
+								{
+									candidateOffsets.Add((0, urCell * 9 + d));
+								}
+							}
+						}
+						else if (urCell == sameRegionCell)
+						{
+							foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
+							{
+								candidateOffsets.Add((d == digit ? 1 : 0, urCell * 9 + d));
+							}
+						}
+						else // urCell == elimCell
+						{
+							foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
+							{
+								if (d == elimDigit)
+								{
+									continue;
+								}
+
+								candidateOffsets.Add((0, urCell * 9 + d));
+							}
+						}
+					}
+
+					if (!_allowUncompletedUr && candidateOffsets.Count != 7)
+					{
+						continue;
+					}
+
+					accumulator.Add(
+						new UrPlusTechniqueInfo(
+							conclusions: new[] { new Conclusion(Elimination, elimCell, digit) },
+							views: new[]
+							{
+								new View(
+									cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+									candidateOffsets,
+									regionOffsets: new[] { (0, actualRegion) },
+									links: null)
+							},
+							typeName: "UR + 2B / 1SL",
+							typeCode: 9,
+							digit1: d1,
+							digit2: d2,
+							cells: urCells,
+							conjugatePairs: new[] { new ConjugatePair(cell, sameRegionCell, digit) },
+							isAr: arMode));
+				}
+			}
+		}
 	}
 }

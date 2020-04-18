@@ -118,19 +118,19 @@ namespace Sudoku.Data.Extensions
 		/// </item>
 		/// </list>
 		/// </para>
-		/// <para>
-		/// Note that the method will return a <see cref="bool"/>?, so you should use the code
-		/// <code>grid.Exists(candidate) is true</code>
-		/// or
-		/// <code>grid.Exists(candidate) == true</code>
-		/// to decide whether a condition is true.
-		/// </para>
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <param name="candidateOffset">The candidate offset.</param>
 		/// <returns>
 		/// A <see cref="bool"/>? value indicating that.
 		/// </returns>
+		/// <example>
+		/// Note that the method will return a <see cref="bool"/>?, so you should use the code
+		/// <code>grid.Exists(candidate) is true</code>
+		/// or
+		/// <code>grid.Exists(candidate) == true</code>
+		/// to decide whether a condition is true.
+		/// </example>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool? Exists(this IReadOnlyGrid @this, int candidateOffset) =>
 			@this.Exists(candidateOffset / 9, candidateOffset % 9);
@@ -161,13 +161,6 @@ namespace Sudoku.Data.Extensions
 		/// </item>
 		/// </list>
 		/// </para>
-		/// <para>
-		/// Note that the method will return a <see cref="bool"/>?, so you should use the code
-		/// <code>grid.Exists(candidate) is true</code>
-		/// or
-		/// <code>grid.Exists(candidate) == true</code>
-		/// to decide whether a condition is true.
-		/// </para>
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <param name="cellOffset">The cell offset.</param>
@@ -175,6 +168,13 @@ namespace Sudoku.Data.Extensions
 		/// <returns>
 		/// A <see cref="bool"/>? value indicating that.
 		/// </returns>
+		/// <example>
+		/// Note that the method will return a <see cref="bool"/>?, so you should use the code
+		/// <code>grid.Exists(candidate) is true</code>
+		/// or
+		/// <code>grid.Exists(candidate) == true</code>
+		/// to decide whether a condition is true.
+		/// </example>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool? Exists(this IReadOnlyGrid @this, int cellOffset, int digit)
 		{
