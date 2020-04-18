@@ -149,7 +149,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
 		{
-			//  ↓ corner1, corner2
+			//   ↓ corner1, corner2
 			// (ab )  (ab )
 			//  |
 			//  | a
@@ -162,87 +162,203 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			foreach (int cell in stackalloc[] { corner1, corner2 })
 			{
-				int sameRegionCell = GetSameRegionCell(cell, otherCellsMap, out int? region);
-				int actualRegion = region.GetValueOrDefault(-1);
-				foreach (int digit in stackalloc[] { d1, d2 })
+				int sameRegionCell = GetSameRegionCell(cell, otherCellsMap, out var regions);
+				if (sameRegionCell == -1)
 				{
-					if (!IsConjugatePair(grid, digit, new GridMap(stackalloc[] { cell, sameRegionCell }), actualRegion))
-					{
-						continue;
-					}
+					continue;
+				}
 
-					int elimCell = new GridMap(otherCellsMap) { [sameRegionCell] = false }.Offsets.First();
-					if (!(grid.Exists(sameRegionCell, digit) is true))
+				foreach (int region in regions)
+				{
+					foreach (int digit in stackalloc[] { d1, d2 })
 					{
-						continue;
-					}
-
-					int elimDigit = comparer ^ (1 << digit);
-					var candidateOffsets = new List<(int, int)>();
-					foreach (int urCell in urCells)
-					{
-						if (urCell == corner1 || urCell == corner2)
+						if (!IsConjugatePair(grid, digit, new GridMap(stackalloc[] { cell, sameRegionCell }), region))
 						{
-							if (new GridMap(stackalloc[] { urCell, sameRegionCell }).AllSetsAreInOneRegion(out int? r)
-								&& r == actualRegion)
+							continue;
+						}
+
+						int elimCell = new GridMap(otherCellsMap) { [sameRegionCell] = false }.Offsets.First();
+						if (!(grid.Exists(sameRegionCell, digit) is true))
+						{
+							continue;
+						}
+
+						int elimDigit = comparer ^ (1 << digit);
+						var candidateOffsets = new List<(int, int)>();
+						foreach (int urCell in urCells)
+						{
+							if (urCell == corner1 || urCell == corner2)
+							{
+								if (new GridMap(stackalloc[] { urCell, sameRegionCell }).AllSetsAreInOneRegion(out int? r)
+									&& r == region)
+								{
+									foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
+									{
+										candidateOffsets.Add((d == digit ? 1 : 0, urCell * 9 + d));
+									}
+								}
+								else
+								{
+									foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
+									{
+										candidateOffsets.Add((0, urCell * 9 + d));
+									}
+								}
+							}
+							else if (urCell == sameRegionCell)
 							{
 								foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
 								{
 									candidateOffsets.Add((d == digit ? 1 : 0, urCell * 9 + d));
 								}
 							}
-							else
+							else // urCell == elimCell
 							{
 								foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
 								{
+									if (d == elimDigit)
+									{
+										continue;
+									}
+
 									candidateOffsets.Add((0, urCell * 9 + d));
 								}
 							}
 						}
-						else if (urCell == sameRegionCell)
+
+						if (!_allowUncompletedUr && candidateOffsets.Count != 7)
 						{
-							foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
-							{
-								candidateOffsets.Add((d == digit ? 1 : 0, urCell * 9 + d));
-							}
+							continue;
 						}
-						else // urCell == elimCell
-						{
-							foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
-							{
-								if (d == elimDigit)
+
+						accumulator.Add(
+							new UrPlusTechniqueInfo(
+								conclusions: new[] { new Conclusion(Elimination, elimCell, digit) },
+								views: new[]
 								{
-									continue;
-								}
+									new View(
+										cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+										candidateOffsets,
+										regionOffsets: new[] { (0, region) },
+										links: null)
+								},
+								typeName: "UR + 2B / 1SL",
+								typeCode: 9,
+								digit1: d1,
+								digit2: d2,
+								cells: urCells,
+								conjugatePairs: new[] { new ConjugatePair(cell, sameRegionCell, digit) },
+								isAr: arMode));
+					}
+				}
+			}
+		}
 
-								candidateOffsets.Add((0, urCell * 9 + d));
+		partial void Check2D1SL(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
+		{
+			//   ↓ corner1
+			// (ab )   aby
+			//  |
+			//  | a
+			//  |
+			//  abx   (ab )
+			//          ↑ corner2
+			if ((grid.GetCandidatesReversal(corner1) | grid.GetCandidatesReversal(corner2)) != comparer)
+			{
+				return;
+			}
+
+			foreach (int cell in stackalloc[] { corner1, corner2 })
+			{
+				int sameRegionCell = GetSameRegionCell(cell, otherCellsMap, out var regions);
+				if (sameRegionCell == -1)
+				{
+					continue;
+				}
+
+				foreach (int region in regions)
+				{
+					foreach (int digit in stackalloc[] { d1, d2 })
+					{
+						if (!IsConjugatePair(grid, digit, new GridMap(stackalloc[] { cell, sameRegionCell }), region))
+						{
+							continue;
+						}
+
+						int elimCell = new GridMap(otherCellsMap) { [sameRegionCell] = false }.Offsets.First();
+						if (!(grid.Exists(sameRegionCell, digit) is true))
+						{
+							continue;
+						}
+
+						var candidateOffsets = new List<(int, int)>();
+						foreach (int urCell in urCells)
+						{
+							if (urCell == corner1 || urCell == corner2)
+							{
+								if (new GridMap(stackalloc[] { urCell, sameRegionCell }).AllSetsAreInOneRegion(out int? r)
+									&& r == region)
+								{
+									foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
+									{
+										candidateOffsets.Add((d == digit ? 1 : 0, urCell * 9 + d));
+									}
+								}
+								else
+								{
+									foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
+									{
+										candidateOffsets.Add((0, urCell * 9 + d));
+									}
+								}
+							}
+							else if (urCell == sameRegionCell)
+							{
+								foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
+								{
+									candidateOffsets.Add((d == digit ? 1 : 0, urCell * 9 + d));
+								}
+							}
+							else // urCell == elimCell
+							{
+								foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
+								{
+									if (d == digit)
+									{
+										continue;
+									}
+
+									candidateOffsets.Add((0, urCell * 9 + d));
+								}
 							}
 						}
-					}
 
-					if (!_allowUncompletedUr && candidateOffsets.Count != 7)
-					{
-						continue;
-					}
+						if (!_allowUncompletedUr && candidateOffsets.Count != 7)
+						{
+							continue;
+						}
 
-					accumulator.Add(
-						new UrPlusTechniqueInfo(
-							conclusions: new[] { new Conclusion(Elimination, elimCell, digit) },
-							views: new[]
-							{
-								new View(
-									cellOffsets: arMode ? GetHighlightCells(urCells) : null,
-									candidateOffsets,
-									regionOffsets: new[] { (0, actualRegion) },
-									links: null)
-							},
-							typeName: "UR + 2B / 1SL",
-							typeCode: 9,
-							digit1: d1,
-							digit2: d2,
-							cells: urCells,
-							conjugatePairs: new[] { new ConjugatePair(cell, sameRegionCell, digit) },
-							isAr: arMode));
+						accumulator.Add(
+							new UrPlusTechniqueInfo(
+								conclusions: new[] { new Conclusion(Elimination, elimCell, digit) },
+								views: new[]
+								{
+									new View(
+										cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+										candidateOffsets,
+										regionOffsets: new[] { (0, region) },
+										links: null)
+								},
+								typeName: "UR + 2D / 1SL",
+								typeCode: 9,
+								digit1: d1,
+								digit2: d2,
+								cells: urCells,
+								conjugatePairs: new[] { new ConjugatePair(cell, sameRegionCell, digit) },
+								isAr: arMode));
+					}
 				}
 			}
 		}

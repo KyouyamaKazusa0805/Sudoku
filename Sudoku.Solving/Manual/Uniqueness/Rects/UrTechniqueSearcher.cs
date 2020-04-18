@@ -121,6 +121,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										if (!arMode)
 										{
 											CheckType6(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
+
+											if (_searchExtended)
+											{
+												Check2D1SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
+											}
 										}
 
 										if (_searchExtended)
@@ -140,11 +145,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										if (!arMode)
 										{
 											CheckType4(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
-										}
 
-										if (_searchExtended)
-										{
-											Check2B1SL(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
+											if (_searchExtended)
+											{
+												Check2B1SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
+											}
 										}
 									}
 								}
@@ -242,20 +247,25 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="currentCell">The current cell.</param>
 		/// <param name="otherCellsMap">The map of other cells.</param>
 		/// <param name="region">
-		/// (<see langword="out"/> parameter) The result region that both cells lie in.
+		/// (<see langword="out"/> parameter) The result regions that both cells lie in.
+		/// If the cell cannot be found, the parameter will be an empty array of type <see cref="int"/>.
 		/// </param>
 		/// <returns>The cell.</returns>
-		private static int GetSameRegionCell(int currentCell, GridMap otherCellsMap, out int? region)
+		private static int GetSameRegionCell(int currentCell, GridMap otherCellsMap, out IEnumerable<int> region)
 		{
 			foreach (int c in otherCellsMap.Offsets)
 			{
-				if (new GridMap(stackalloc[] { c, currentCell }).AllSetsAreInOneRegion(out region))
+				var coveredRegions = new GridMap(stackalloc[] { c, currentCell }).CoveredRegions;
+				if (!coveredRegions.Any())
 				{
-					return c;
+					continue;
 				}
+
+				region = coveredRegions;
+				return c;
 			}
 
-			region = null;
+			region = Array.Empty<int>();
 			return -1;
 		}
 
@@ -307,6 +317,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
 
 		partial void Check2B1SL(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
+
+		partial void Check2D1SL(
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
 		#endregion

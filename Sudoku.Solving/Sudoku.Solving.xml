@@ -5568,14 +5568,15 @@
             Throws when the specified argument <paramref name="cell"/> is invalid.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.GetSameRegionCell(System.Int32,Sudoku.Data.GridMap,System.Nullable{System.Int32}@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.GetSameRegionCell(System.Int32,Sudoku.Data.GridMap,System.Collections.Generic.IEnumerable{System.Int32}@)">
             <summary>
             Get a cell that is in the same region of the specified cell lies in.
             </summary>
             <param name="currentCell">The current cell.</param>
             <param name="otherCellsMap">The map of other cells.</param>
             <param name="region">
-            (<see langword="out"/> parameter) The result region that both cells lie in.
+            (<see langword="out"/> parameter) The result regions that both cells lie in.
+            If the cell cannot be found, the parameter will be an empty array of type <see cref="T:System.Int32"/>.
             </param>
             <returns>The cell.</returns>
         </member>

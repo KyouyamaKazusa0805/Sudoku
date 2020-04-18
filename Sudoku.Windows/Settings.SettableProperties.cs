@@ -148,7 +148,7 @@ namespace Sudoku.Windows
 		/// </para>
 		/// <para>The value is <see langword="false"/> in default case.</para>
 		/// </summary>
-		public bool CheckIncompletedUniquenessPatterns { get; set; } = false;
+		public bool CheckUncompletedUniquenessPatterns { get; set; } = false;
 
 		/// <summary>
 		/// <para>

@@ -64,7 +64,7 @@ namespace Sudoku.Windows
 			_checkBoxHighlightRegions.IsChecked = Settings.AlsHighlightRegionInsteadOfCell;
 			_textBoxBowmanBingoMaxLength.Text = Settings.BowmanBingoMaximumLength.ToString();
 			_checkBoxAllowAlq.IsChecked = Settings.CheckAlmostLockedQuadruple;
-			_checkBoxCheckUncompletedUr.IsChecked = Settings.CheckIncompletedUniquenessPatterns;
+			_checkBoxCheckUncompletedUr.IsChecked = Settings.CheckUncompletedUniquenessPatterns;
 			_textBoxMaxRegularWingSize.Text = Settings.CheckRegularWingSize.ToString();
 			_checkBoxUseExtendedBugSearcher.IsChecked = Settings.UseExtendedBugSearcher;
 			_checkBoxSearchExtendedUniqueRectangle.IsChecked = Settings.SearchExtendedUniqueRectangles;
@@ -198,7 +198,7 @@ namespace Sudoku.Windows
 			_checkBoxPmGridCompatible.IsChecked = Settings.PmGridCompatible ^= true;
 
 		private void CheckBoxSearchExtendedUniqueRectangle_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxSearchExtendedUniqueRectangle.IsChecked = Settings.SearchExtendedUniqueRectangles ^= true;
+			_checkBoxSearchExtendedUniqueRectangle.IsChecked = Settings.SearchExtendedUniqueRectangles = _manualSolver.SearchExtendedUniqueRectangles ^= true;
 
 		private void TextBoxMaxPetalsOfDeathBlossom_TextChanged(object sender, TextChangedEventArgs e)
 		{
@@ -210,7 +210,7 @@ namespace Sudoku.Windows
 
 			if (value >= 2 && value <= 9)
 			{
-				Settings.MaxPetalsOfDeathBlossom = value;
+				Settings.MaxPetalsOfDeathBlossom = _manualSolver.MaxPetalsOfDeathBlossom = value;
 			}
 			else
 			{
@@ -514,7 +514,7 @@ namespace Sudoku.Windows
 			_checkBoxCheckHeadCollision.IsChecked = Settings.CheckHeadCollision = _manualSolver.CheckHeadCollision ^= true;
 
 		private void CheckBoxCheckUncompletedUr_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxCheckUncompletedUr.IsChecked = Settings.CheckIncompletedUniquenessPatterns = _manualSolver.CheckIncompletedUniquenessPatterns ^= true;
+			_checkBoxCheckUncompletedUr.IsChecked = Settings.CheckUncompletedUniquenessPatterns = _manualSolver.CheckIncompletedUniquenessPatterns ^= true;
 
 		private void TextBoxMaxRegularWingSize_TextChanged(object sender, TextChangedEventArgs e)
 		{
