@@ -6,6 +6,8 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
+using static Sudoku.Data.GridMap.InitializeOption;
+using static Sudoku.Solving.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Alses
 {
@@ -138,7 +140,7 @@ namespace Sudoku.Solving.Manual.Alses
 							tempList.Add(cell);
 						}
 
-						var elimMap = new GridMap(tempList, GridMap.InitializeOption.ProcessPeersWithoutItself);
+						var elimMap = new GridMap(tempList, ProcessPeersWithoutItself);
 						if (elimMap.Count == 0)
 						{
 							continue;
@@ -149,7 +151,7 @@ namespace Sudoku.Solving.Manual.Alses
 						{
 							if (grid.Exists(cell, elimDigit) is true)
 							{
-								conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, elimDigit));
+								conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
 							}
 						}
 

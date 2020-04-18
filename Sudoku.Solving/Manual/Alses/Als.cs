@@ -165,9 +165,10 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public bool Equals(Als other)
 		{
-			// TODO: A bug to fix when two bi-value ALS to compare.
 			return Cells.HasOnlyOneElement() && other.Cells.HasOnlyOneElement()
-				? (_mask & 0x3FFFF) == (other._mask & 0x3FFFF)
+				? (_mask & 0x1FF) == (other._mask & 0x1FF)
+					&& RegionUtils.GetCellOffset(Region, Cells.First())
+					== RegionUtils.GetCellOffset(other.Region, other.Cells.First())
 				: _mask == other._mask;
 		}
 
