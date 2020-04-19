@@ -131,6 +131,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											if (_searchExtended)
 											{
 												Check2D(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
+												Check2D1SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
 											}
 										}
 									}

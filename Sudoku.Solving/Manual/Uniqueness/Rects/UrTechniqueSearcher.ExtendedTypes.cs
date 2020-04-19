@@ -574,5 +574,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						isAr: arMode));
 			}
 		}
+
+
 	}
 }
