@@ -4,7 +4,6 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Solving.ConclusionType;
 
@@ -12,73 +11,55 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
 	partial class UrTechniqueSearcher
 	{
-		partial void Check2DOr3X(
+		partial void Check2D(
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
 		{
 			//   ↓ corner1
-			// (ab )    abx
-			//  aby  (ab(x|y))  xy  *
-			//           ↑ corner2
-			short corner1Mask = grid.GetCandidatesReversal(corner1);
-			short corner2Mask = grid.GetCandidatesReversal(corner2);
-			short cornerMask = (short)(corner1Mask | corner2Mask);
-			int abxyCellCandidatesCount = cornerMask.CountSet();
-			if (abxyCellCandidatesCount != 2 && abxyCellCandidatesCount != 3
-				|| abxyCellCandidatesCount == 2 && cornerMask != comparer
-				|| abxyCellCandidatesCount == 3 && corner1Mask != comparer && corner2Mask != comparer)
+			// (ab )  abx
+			//  aby  (ab )  xy  *
+			//         ↑ corner2
+			if ((grid.GetCandidatesReversal(corner1) | grid.GetCandidatesReversal(corner2)) != comparer)
 			{
-				// The result mask be 'abx', 'aby' or 'ab',
-				// and one of two corner cells should contain only a and b.
 				return;
 			}
 
-			short mask = 0;
-			foreach (int cell in otherCellsMap.Offsets)
+			int[] otherCells = otherCellsMap.ToArray();
+			short o1 = grid.GetCandidatesReversal(otherCells[0]);
+			short o2 = grid.GetCandidatesReversal(otherCells[1]);
+			short o = (short)(o1 | o2);
+			if (o.CountSet() != 4 || o1.CountSet() > 3 || o2.CountSet() > 3
+				|| (o & comparer) != comparer || (o1 & comparer) == 0 || (o2 & comparer) == 0)
 			{
-				mask |= grid.GetCandidatesReversal(cell);
-			}
-			if (mask.CountSet() != 4 || (mask & comparer) != comparer)
-			{
-				// To ensure 'abx' and 'aby' contains both number a and b,
-				// and hold four digits a, b, x and y.
 				return;
 			}
 
-			short xyMask = (short)(mask ^ comparer);
-			int x = xyMask.FindFirstSet(), y = xyMask.GetNextSet(x);
-			var cellsThatBothCornerCanSeeMap =
-				new GridMap(stackalloc[] { corner1, corner2 }, ProcessPeersWithoutItself)
-				- new GridMap(urCells);
-			foreach (int xyCell in cellsThatBothCornerCanSeeMap.Offsets)
+			short xyMask = (short)(o ^ comparer);
+			int x = xyMask.FindFirstSet();
+			int y = xyMask.GetNextSet(x);
+			var inter = new GridMap(otherCells, ProcessPeersWithoutItself) - new GridMap(urCells);
+			foreach (int possibleXyCell in inter.Offsets)
 			{
-				if (grid.GetCandidatesReversal(xyCell) != xyMask)
+				if (grid.GetCandidatesReversal(possibleXyCell) != xyMask)
 				{
 					continue;
 				}
 
+				// 'xy' found.
 				// Now check eliminations.
+				var elimMap = inter & new GridMap(possibleXyCell, false);
 				var conclusions = new List<Conclusion>();
-				var elimMap = new GridMap(stackalloc[] { corner1, corner2, xyCell }, ProcessPeersWithoutItself);
-				if (elimMap.Count == 0)
-				{
-					continue;
-				}
-
 				foreach (int cell in elimMap.Offsets)
 				{
-					void record(int value)
+					if (grid.Exists(cell, x) is true)
 					{
-						if (grid.Exists(cell, value) is true)
-						{
-							conclusions.Add(new Conclusion(Elimination, cell, value));
-						}
+						conclusions.Add(new Conclusion(Elimination, cell, x));
 					}
-
-					record(x);
-					record(y);
+					if (grid.Exists(cell, y) is true)
+					{
+						conclusions.Add(new Conclusion(Elimination, cell, y));
+					}
 				}
-
 				if (conclusions.Count == 0)
 				{
 					continue;
@@ -87,16 +68,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				var candidateOffsets = new List<(int, int)>();
 				foreach (int cell in urCells)
 				{
-					if (grid.GetCellStatus(cell) != Empty)
-					{
-						continue;
-					}
-
 					if (otherCellsMap[cell])
 					{
 						foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 						{
-							candidateOffsets.Add((digit != d1 && digit != d2 ? 1 : 0, cell * 9 + digit));
+							candidateOffsets.Add(((comparer >> digit & 1) == 0 ? 1 : 0, cell * 9 + digit));
 						}
 					}
 					else
@@ -107,9 +83,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						}
 					}
 				}
-				foreach (int digit in grid.GetCandidatesReversal(xyCell).GetAllSets())
+				foreach (int digit in xyMask.GetAllSets())
 				{
-					candidateOffsets.Add((1, xyCell * 9 + digit));
+					candidateOffsets.Add((1, possibleXyCell * 9 + digit));
 				}
 
 				if (!_allowUncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
@@ -128,19 +104,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								regionOffsets: null,
 								links: null)
 						},
-						typeName: abxyCellCandidatesCount switch
-						{
-							2 => "+ 2D",
-							3 => "+ 3X",
-							_ => throw Throwing.ImpossibleCase
-						},
+						typeName: "+ 2D",
 						typeCode: 8,
 						digit1: d1,
 						digit2: d2,
 						cells: urCells,
 						x,
 						y,
-						xyCell: xyCell,
+						xyCell: possibleXyCell,
 						isAr: arMode));
 			}
 		}
@@ -386,6 +357,113 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								isAr: arMode));
 					}
 				}
+			}
+		}
+
+		partial void Check3X(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
+		{
+			//   ↓ cornerCell
+			// (ab )  abx
+			//  aby   abz   xy  *
+			// Note: 'z' is 'x' or 'y'.
+			if (grid.GetCandidatesReversal(cornerCell) != comparer)
+			{
+				return;
+			}
+
+			int c1 = otherCellsMap.SetAt(0);
+			int c2 = otherCellsMap.SetAt(1);
+			int c3 = otherCellsMap.SetAt(2);
+			short m1 = grid.GetCandidatesReversal(c1);
+			short m2 = grid.GetCandidatesReversal(c2);
+			short m3 = grid.GetCandidatesReversal(c3);
+			short mask = (short)((short)(m1 | m2) | m3);
+			if (mask.CountSet() != 4 || m1.CountSet() > 3 || m2.CountSet() > 3 || m3.CountSet() > 3
+				|| (mask & comparer) != comparer
+				|| (m1 & comparer) == 0 || (m2 & comparer) == 0 || (m3 & comparer) == 0)
+			{
+				return;
+			}
+
+			short xyMask = (short)(mask ^ comparer);
+			int x = xyMask.FindFirstSet();
+			int y = xyMask.GetNextSet(x);
+			var inter = new GridMap(otherCellsMap.Offsets, ProcessPeersWithoutItself) - new GridMap(urCells);
+			foreach (int possibleXyCell in inter.Offsets)
+			{
+				if (grid.GetCandidatesReversal(possibleXyCell) != xyMask)
+				{
+					continue;
+				}
+
+				// Possible XY cell found.
+				// Now check eliminations.
+				var conclusions = new List<Conclusion>();
+				foreach (int cell in (inter & new GridMap(possibleXyCell, false)).Offsets)
+				{
+					if (grid.Exists(cell, x) is true)
+					{
+						conclusions.Add(new Conclusion(Elimination, cell, x));
+					}
+					if (grid.Exists(cell, y) is true)
+					{
+						conclusions.Add(new Conclusion(Elimination, cell, y));
+					}
+				}
+				if (conclusions.Count == 0)
+				{
+					continue;
+				}
+
+				var candidateOffsets = new List<(int, int)>();
+				foreach (int cell in urCells)
+				{
+					if (otherCellsMap[cell])
+					{
+						foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+						{
+							candidateOffsets.Add(((comparer >> digit & 1) == 0 ? 1 : 0, cell * 9 + digit));
+						}
+					}
+					else
+					{
+						foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+						{
+							candidateOffsets.Add((0, cell * 9 + digit));
+						}
+					}
+				}
+				foreach (int digit in xyMask.GetAllSets())
+				{
+					candidateOffsets.Add((1, possibleXyCell * 9 + digit));
+				}
+				if (!_allowUncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
+				{
+					continue;
+				}
+
+				accumulator.Add(
+					new Ur2DOr3XTechniqueInfo(
+						conclusions,
+						views: new[]
+						{
+							new View(
+								cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+								candidateOffsets,
+								regionOffsets: null,
+								links: null)
+						},
+						typeName: "+ 3X",
+						typeCode: 9,
+						digit1: d1,
+						digit2: d2,
+						cells: urCells,
+						x,
+						y,
+						xyCell: possibleXyCell,
+						isAr: arMode));
 			}
 		}
 	}

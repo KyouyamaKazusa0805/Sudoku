@@ -102,6 +102,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								CheckType5(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap);
 								CheckHidden(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap);
 
+								if (_searchExtended)
+								{
+									Check3X(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap);
+								}
+
 								if (c1 == 3)
 								{
 									break;
@@ -124,8 +129,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 											if (_searchExtended)
 											{
-												//Check2DOr3X(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
-												Check2D1SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
+												Check2D(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
 											}
 										}
 									}
@@ -308,6 +312,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap);
 
+		partial void Check2D(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
+
 		partial void Check2DOr3X(
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
@@ -319,6 +327,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		partial void Check2D1SL(
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
+
+		partial void Check3X(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap);
 		#endregion
 	}
 }
