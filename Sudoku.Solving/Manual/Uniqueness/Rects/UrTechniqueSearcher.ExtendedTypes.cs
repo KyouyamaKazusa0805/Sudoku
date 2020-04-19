@@ -545,7 +545,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				{
 					candidateOffsets.Add((0, cornerCell * 9 + digit));
 				}
-				if (!_allowUncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
+				if (!_allowUncompletedUr && candidateOffsets.Count != 6)
 				{
 					continue;
 				}
