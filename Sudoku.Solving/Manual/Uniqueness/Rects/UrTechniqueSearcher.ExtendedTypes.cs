@@ -485,9 +485,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			int abzCell = GetDiagonalCell(urCells, cornerCell);
 			var adjacentCellsMap = new GridMap(otherCellsMap) { [abzCell] = false };
-			var (r, c, _) = CellUtils.GetRegion(abzCell);
-			r += 9; c += 18;
-
 			foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
 			{
 				int abxCell = adjacentCellsMap.SetAt(0);
@@ -575,6 +572,119 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 		}
 
+		partial void Check3N2SL(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
+		{
+			//   ↓ cornerCell
+			// (ab )-----abx
+			//        a   |
+			//            | b
+			//            |
+			//  aby      abz
+			if (grid.GetCandidatesReversal(cornerCell) != comparer)
+			{
+				return;
+			}
 
+			// Step 1: Get the diagonal cell of 'cornerCell' and determine
+			// the existence of strong link.
+			int abzCell = GetDiagonalCell(urCells, cornerCell);
+			var adjacentCellsMap = new GridMap(otherCellsMap) { [abzCell] = false };
+			int abxCell = adjacentCellsMap.SetAt(0);
+			int abyCell = adjacentCellsMap.SetAt(1);
+			foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
+			{
+				var linkMap = new GridMap(stackalloc[] { begin, abzCell });
+				foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
+				{
+					if (!IsConjugatePair(grid, b, linkMap, linkMap.CoveredLine))
+					{
+						continue;
+					}
+
+					// Step 2: Get the link cell that is adjacent to 'cornerCell'
+					// and check the strong link.
+					var secondLinkMap = new GridMap(stackalloc[] { cornerCell, begin });
+					if (!IsConjugatePair(grid, a, secondLinkMap, secondLinkMap.CoveredLine))
+					{
+						continue;
+					}
+
+					// Step 3: Check eliminations.
+					var conclusions = new List<Conclusion>();
+					if (grid.Exists(end, a) is true)
+					{
+						conclusions.Add(new Conclusion(Elimination, end, a));
+					}
+					if (conclusions.Count == 0)
+					{
+						continue;
+					}
+
+					// Step 4: Check highlight candidates.
+					var candidateOffsets = new List<(int, int)>();
+					foreach (int d in comparer.GetAllSets())
+					{
+						candidateOffsets.Add((d == a ? 1 : 0, cornerCell * 9 + d));
+					}
+					foreach (int d in stackalloc[] { d1, d2 })
+					{
+						if (!(grid.Exists(abzCell, d) is true))
+						{
+							continue;
+						}
+
+						candidateOffsets.Add((d == b ? 1 : 0, abzCell * 9 + d));
+					}
+					foreach (int d in grid.GetCandidatesReversal(begin).GetAllSets())
+					{
+						if (d != d1 && d != d2)
+						{
+							continue;
+						}
+
+						candidateOffsets.Add((1, begin * 9 + d));
+					}
+					foreach (int d in grid.GetCandidatesReversal(end).GetAllSets())
+					{
+						if (d != d1 && d != d2 || d == a)
+						{
+							continue;
+						}
+
+						candidateOffsets.Add((0, end * 9 + d));
+					}
+					if (!_allowUncompletedUr && candidateOffsets.Count != 7)
+					{
+						continue;
+					}
+
+					var conjugatePairs = new[]
+					{
+						new ConjugatePair(cornerCell, begin, a),
+						new ConjugatePair(begin, abzCell, b)
+					};
+					accumulator.Add(
+						new UrPlusTechniqueInfo(
+							conclusions,
+							views: new[]
+							{
+								new View(
+									cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+									candidateOffsets,
+									regionOffsets: new[] { (0, conjugatePairs[0].Line), (1, conjugatePairs[1].Line) },
+									links: null)
+							},
+							typeName: "+ 3N / 2SL",
+							typeCode: 11,
+							digit1: d1,
+							digit2: d2,
+							cells: urCells,
+							conjugatePairs,
+							isAr: arMode));
+				}
+			}
+		}
 	}
 }

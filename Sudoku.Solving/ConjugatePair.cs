@@ -50,6 +50,16 @@ namespace Sudoku.Solving
 		/// </summary>
 		public int Digit { get; }
 
+		/// <summary>
+		/// Indicates the line that two cells lie in.
+		/// </summary>
+		public int Line => _map.CoveredLine;
+
+		/// <summary>
+		/// Indicates the region that two cells lie in.
+		/// </summary>
+		public IEnumerable<int> Region => _map.CoveredRegions;
+
 
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) =>

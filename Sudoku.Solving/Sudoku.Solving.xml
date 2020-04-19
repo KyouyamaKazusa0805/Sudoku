@@ -784,6 +784,16 @@
             Indicates the digit.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.ConjugatePair.Line">
+            <summary>
+            Indicates the line that two cells lie in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.ConjugatePair.Region">
+            <summary>
+            Indicates the region that two cells lie in.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.ConjugatePair.Equals(System.Object)">
             <inheritdoc/>
         </member>

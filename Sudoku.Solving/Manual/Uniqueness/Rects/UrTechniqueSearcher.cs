@@ -106,6 +106,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								{
 									Check3X(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap);
 									Check3X2SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap);
+									Check3N2SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap);
+									Check3U2SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap);
+									Check3E2SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap);
 								}
 
 								if (c1 == 3)
@@ -151,6 +154,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											if (_searchExtended)
 											{
 												Check2B1SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
+												Check4X3SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
+												Check4C3SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
 											}
 										}
 									}
@@ -333,6 +338,26 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		partial void Check3X2SL(
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap);
+
+		partial void Check3N2SL(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap);
+
+		partial void Check3U2SL(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap);
+
+		partial void Check3E2SL(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap);
+
+		partial void Check4X3SL(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
+
+		partial void Check4C3SL(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
 		#endregion
 	}
 }
