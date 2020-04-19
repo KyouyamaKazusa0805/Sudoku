@@ -105,6 +105,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								if (_searchExtended)
 								{
 									Check3X(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap);
+									Check3X2SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap);
 								}
 
 								if (c1 == 3)
@@ -316,10 +317,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
 
-		partial void Check2DOr3X(
-			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
-
 		partial void Check2B1SL(
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
@@ -329,6 +326,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
 
 		partial void Check3X(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap);
+
+		partial void Check3X2SL(
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap);
 		#endregion
