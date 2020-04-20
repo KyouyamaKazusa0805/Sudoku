@@ -562,6 +562,14 @@
             Indicates all true candidates (non-BUG candidates).
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.Checking.BugChecker.GetAllTrueCandidates(System.Int32)">
+            <summary>
+            Get all true candidates when the number of empty cells
+            is below than the argument.
+            </summary>
+            <param name="maximumEmptyCells">The maximum number of the empty cells.</param>
+            <returns>All true candidates.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Checking.BugChecker.GetAllTrueCandidates">
             <summary>
             Get all true candidates.

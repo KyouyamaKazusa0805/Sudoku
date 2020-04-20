@@ -703,7 +703,7 @@ namespace Sudoku.Windows
 					"The program is running as quickly as possible to search " +
 					"all non-BUG candidates (true candidates). Please wait.";
 
-				var trueCandidates = await Task.Run(() => new BugChecker(_puzzle).TrueCandidates);
+				var trueCandidates = await Task.Run(() => new BugChecker(_puzzle).GetAllTrueCandidates(64));
 
 				_textBoxInfo.ClearValue(TextBox.TextProperty);
 				if (trueCandidates.Count == 0)

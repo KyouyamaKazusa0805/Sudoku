@@ -64,12 +64,13 @@ namespace Sudoku.Solving.Checking
 		/// </summary>
 		public IReadOnlyList<int> TrueCandidates => GetAllTrueCandidates();
 
-
 		/// <summary>
-		/// Get all true candidates.
+		/// Get all true candidates when the number of empty cells
+		/// is below than the argument.
 		/// </summary>
+		/// <param name="maximumEmptyCells">The maximum number of the empty cells.</param>
 		/// <returns>All true candidates.</returns>
-		private IReadOnlyList<int> GetAllTrueCandidates()
+		public IReadOnlyList<int> GetAllTrueCandidates(int maximumEmptyCells)
 		{
 			var allRegionsMap = GetAllRegionMaps();
 			int[] array = _emptyCellsDistribution.ToArray();
@@ -79,14 +80,10 @@ namespace Sudoku.Solving.Checking
 			foreach (int value in array)
 			{
 				int candidatesCount = Grid.GetCandidatesReversal(value).CountSet();
-				if (candidatesCount == 1)
+				if (candidatesCount == 1
+					|| candidatesCount > 2 && ++multivalueCellsCount > maximumEmptyCells)
 				{
 					return Array.Empty<int>();
-				}
-
-				if (candidatesCount > 2)
-				{
-					multivalueCellsCount++;
 				}
 			}
 
@@ -210,6 +207,12 @@ namespace Sudoku.Solving.Checking
 
 			return result;
 		}
+
+		/// <summary>
+		/// Get all true candidates.
+		/// </summary>
+		/// <returns>All true candidates.</returns>
+		public IReadOnlyList<int> GetAllTrueCandidates() => GetAllTrueCandidates(20);
 
 
 		/// <summary>
