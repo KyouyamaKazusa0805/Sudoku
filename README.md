@@ -100,9 +100,9 @@ Puzzle has been solved.
 Time elapsed: 00:00.12.281
 ```
 
-> Format strings in the analysis result is shown in the description of file *How-to-use-analysis-result.md*.
+> Format strings for analysis results are shown in wiki page *How to use analysis result*.
 >
-> 分析结果的格式化字符串可以参照“How-to-use-analysis-result.md”文件里呈现的描述。
+> 分析结果的格式化字符串可以参照 Wiki 页面“How to use analysis result”。
 
 
 
@@ -119,14 +119,16 @@ The program supports technique below at present:
 * Subset: Naked Subset (Locked Subset & Partial Locked Subset), Hidden Subset<br/>数组：显性数组（死锁数组和区块数组）、隐性数组
 * Fishes: (Finned, Sashimi) X-Wing, Swordfish, Jellyfish, (Finned, Sashimi) Franken X-Wing, Swordfish, Jellyfish, Starfish, Whale, Leviathan, (Finned, Sashimi) Mutant X-Wing, Swordfish, Jellyfish, Starfish, Whale, Leviathan<br/>鱼：（鳍、退化）二链列、三链列和四链列、（鳍、退化）宫内二链列、三链列、四链列、五链列、六链列和七链列、（鳍、退化）交叉二链列、三链列、四链列、五链列、六链列和七链列
 * Wings: XY-Wing, XYZ-Wing, (Uncompleted) WXYZ-Wing, (Uncompleted) VWXYZ-Wing, W-Wing, M-Wing, Split-Wing, Local-Wing, Hybrid-Wing<br/>Wing 结构：XY-Wing、XYZ-Wing、（残缺）WXYZ-Wing、（残缺）VWXYZ-Wing、W-Wing、M-Wing、Split-Wing、Local-Wing、Hybrid-Wing
-* Uniqueness: Unique Rectangle (Type 1 to 6, Hidden, All types with strong links), Avoidable Rectangle (Type 1 to 3, Hidden), Extended Rectangle (Type 1 to 2), Unique Loop (Type 1 to 4), Avoidable Rectangle, Bivalue Universal Grave (Type 1 to 4 and BUG + n), Borescoper's Deadly Pattern (Type 1 to 2)<br/>唯一性：唯一矩形（类型 1 到 6、隐性唯一矩形、所有带强链类型）、可规避矩形（类型 1 到 3、隐性可规避矩形）、拓展矩形（类型 1 到 3）、唯一环（类型 1 到 4）、全双值格致死解法（类型 1 到 4 和 BUG + n）、探长致命结构（类型 1 到 2）
+* Uniqueness: Unique Rectangle (Type 1 to 6, Hidden), UR + 2, UR + 2 / 1SL, UR + 3, UR + 3 / 2SL, UR + 4 / 3SL, Avoidable Rectangle (Type 1, 2, 3, 5, Hidden), Extended Rectangle (Type 1 to 3), Unique Loop (Type 1 to 4), Avoidable Rectangle, Bivalue Universal Grave (Type 1 to 4 and BUG + n), Borescoper's Deadly Pattern (Type 1 to 2)<br/>唯一性：唯一矩形（类型 1 到 6、隐性唯一矩形）、唯一矩形 + 2、唯一矩形 + 2（带 1 个共轭对）、唯一矩形 + 3、唯一矩形 + 3（带 2 个共轭对）、唯一矩形 + 4（带 3 个共轭对）、可规避矩形（类型 1、2、3、5、隐性可规避矩形）、拓展矩形（类型 1 到 3）、唯一环（类型 1 到 4）、全双值格致死解法（类型 1 到 4 和 BUG + n）、探长致命结构（类型 1 到 2）
 * Single Digit Patterns: Skyscraper, Two-string Kite, Turbot Fish, Empty Rectangle<br/>同数链式结构：摩天楼、双线风筝、多宝鱼、空矩形
 * Almost Subset Techniques: Sue de Coq, Empty Rectangle Intersection Pair, Extended Subset Principle, Almost Locked Sets XZ Rule, Almost Locked Sets XY-Wing, Almost Locked Sets W-Wing, Death Blossom<br/>待定数组：融合待定数组、对交空矩形、伪数组、ALS-双强链、ALS-XY-Wing、ALS-W-Wing、死亡绽放
 * Chains: Alternating Inference Chain (+ Locked Candidates), Continuous Nice Loop (+ Locked Candidates)<br/>链：普通链（+区块）、普通环（+区块）
 * Last Resorts: Pattern Overlay Method, Template, Bowman's Bingo, Chute Clue Cover (Half implemented), Brute Force<br/>爆破技巧：图案叠加删减、模板、人工试数、大行列提示信息覆盖（实现了一半）、计算机试数
 * Other techniques: Gurth's Symmetrical Placement<br/>其它技巧：宇宙法
 
-
+> AR does not contain type 4 or 6.
+>
+> 可规避矩形不含有类型 4 和 6。
 
 ## Conditional Compliation Symbol
 
