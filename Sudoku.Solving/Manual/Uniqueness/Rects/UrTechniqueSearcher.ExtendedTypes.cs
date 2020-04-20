@@ -4,7 +4,6 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Solving.ConclusionType;
 
@@ -227,7 +226,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										regionOffsets: new[] { (0, region) },
 										links: null)
 								},
-								typeName: "UR + 2B / 1SL",
+								typeName: "+ 2B / 1SL",
 								typeCode: 9,
 								digit1: d1,
 								digit2: d2,
@@ -349,7 +348,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										regionOffsets: new[] { (0, region) },
 										links: null)
 								},
-								typeName: "UR + 2D / 1SL",
+								typeName: "2D / 1SL",
 								typeCode: 9,
 								digit1: d1,
 								digit2: d2,
@@ -796,6 +795,113 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 		}
 
+		partial void Check3E2SL(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap)
+		{
+			//   ↓ cornerCell
+			// (ab )-----abx
+			//        a
+			//
+			//        a
+			//  aby -----abz
+			if (grid.GetCandidatesReversal(cornerCell) != comparer)
+			{
+				return;
+			}
 
+			int abzCell = GetDiagonalCell(urCells, cornerCell);
+			var adjacentCellsMap = new GridMap(otherCellsMap) { [abzCell] = false };
+			int abxCell = adjacentCellsMap.SetAt(0);
+			int abyCell = adjacentCellsMap.SetAt(1);
+			foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
+			{
+				var linkMap = new GridMap(stackalloc[] { begin, abzCell });
+				foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
+				{
+					if (!IsConjugatePair(grid, a, linkMap, linkMap.CoveredLine))
+					{
+						continue;
+					}
+
+					var secondLinkMap = new GridMap(stackalloc[] { cornerCell, end });
+					if (!IsConjugatePair(grid, a, secondLinkMap, secondLinkMap.CoveredLine))
+					{
+						continue;
+					}
+
+					var conclusions = new List<Conclusion>();
+					if (grid.Exists(abzCell, b) is true)
+					{
+						conclusions.Add(new Conclusion(Elimination, abzCell, b));
+					}
+					if (conclusions.Count == 0)
+					{
+						continue;
+					}
+
+					var candidateOffsets = new List<(int, int)>();
+					foreach (int d in comparer.GetAllSets())
+					{
+						candidateOffsets.Add((d == a ? 1 : 0, cornerCell * 9 + d));
+					}
+					foreach (int d in grid.GetCandidatesReversal(begin).GetAllSets())
+					{
+						if (d != d1 && d != d2)
+						{
+							continue;
+						}
+
+						candidateOffsets.Add((d == a ? 1 : 0, begin * 9 + d));
+					}
+					foreach (int d in grid.GetCandidatesReversal(end).GetAllSets())
+					{
+						if (d != d1 && d != d2)
+						{
+							continue;
+						}
+
+						candidateOffsets.Add((d == a ? 1 : 0, end * 9 + d));
+					}
+					foreach (int d in grid.GetCandidatesReversal(abzCell).GetAllSets())
+					{
+						if (d != d1 && d != d2 || d == b)
+						{
+							continue;
+						}
+
+						candidateOffsets.Add((d == a ? 1 : 0, abzCell * 9 + d));
+					}
+					if (!_allowUncompletedUr && candidateOffsets.Count != 7)
+					{
+						continue;
+					}
+
+					var conjugatePairs = new[]
+					{
+						new ConjugatePair(cornerCell, end, a),
+						new ConjugatePair(begin, abzCell, a)
+					};
+					accumulator.Add(
+						new UrPlusTechniqueInfo(
+							conclusions,
+							views: new[]
+							{
+								new View(
+									cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+									candidateOffsets,
+									regionOffsets: new[] { (0, conjugatePairs[0].Line), (1, conjugatePairs[1].Line) },
+									links: null)
+							},
+							typeName: "+ 3E / 2SL",
+							typeCode: 13,
+							digit1: d1,
+							digit2: d2,
+							cells: urCells,
+							conjugatePairs,
+							isAr: arMode));
+				}
+			}
+		}
 	}
 }
