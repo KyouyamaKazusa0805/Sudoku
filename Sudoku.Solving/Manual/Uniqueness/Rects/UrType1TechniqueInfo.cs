@@ -11,9 +11,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	{
 		/// <inheritdoc/>
 		public UrType1TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, string typeName,
-			int typeCode, int digit1, int digit2, int[] cells, bool isAr)
-			: base(conclusions, views, typeName, typeCode, digit1, digit2, cells, isAr)
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
+			UrTypeCode typeCode, int digit1, int digit2, int[] cells, bool isAr)
+			: base(conclusions, views, typeCode, digit1, digit2, cells, isAr)
 		{
 		}
 

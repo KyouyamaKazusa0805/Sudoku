@@ -8,6 +8,7 @@ using Sudoku.Solving.Utils;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Solving.ConclusionType;
+using static Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
@@ -72,8 +73,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							regionOffsets: null,
 							links: null)
 					},
-					typeName: "Type 1",
-					typeCode: 1,
+					typeCode: Type1,
 					digit1: d1,
 					digit2: d2,
 					cells: urCells,
@@ -154,8 +154,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							regionOffsets: null,
 							links: null)
 					},
-					typeName: $"Type {(isType5 ? "5" : "2")}",
-					typeCode: isType5 ? 5 : 2,
+					typeCode: isType5 ? Type5 : Type2,
 					digit1: d1,
 					digit2: d2,
 					cells: urCells,
@@ -292,8 +291,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										regionOffsets: null,
 										links: null)
 								},
-								typeName: "Type 3",
-								typeCode: 3,
+								typeCode: Type3,
 								digit1: d1,
 								digit2: d2,
 								cells: urCells,
@@ -397,8 +395,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 												regionOffsets: null,
 												links: null)
 										},
-										typeName: "Type 3",
-										typeCode: 3,
+										typeCode: Type3,
 										digit1: d1,
 										digit2: d2,
 										cells: urCells,
@@ -506,8 +503,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 													regionOffsets: null,
 													links: null)
 											},
-											typeName: "Type 3",
-											typeCode: 3,
+											typeCode: Type3,
 											digit1: d1,
 											digit2: d2,
 											cells: urCells,
@@ -638,8 +634,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									regionOffsets: new[] { (0, region) },
 									links: null)
 							},
-							typeName: "Type 3",
-							typeCode: 3,
+							typeCode: Type3,
 							digit1: d1,
 							digit2: d2,
 							cells: urCells,
@@ -744,8 +739,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											regionOffsets: new[] { (0, region) },
 											links: null)
 									},
-									typeName: "Type 3",
-									typeCode: 3,
+									typeCode: Type3,
 									digit1: d1,
 									digit2: d2,
 									cells: urCells,
@@ -848,8 +842,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 												regionOffsets: new[] { (0, region) },
 												links: null)
 										},
-										typeName: "Type 3",
-										typeCode: 3,
+										typeCode: Type3,
 										digit1: d1,
 										digit2: d2,
 										cells: urCells,
@@ -958,8 +951,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									regionOffsets: new[] { (0, region) },
 									links: null)
 							},
-							typeName: "Type 4",
-							typeCode: 4,
+							typeCode: Type4,
 							digit1: d1,
 							digit2: d2,
 							cells: urCells,
@@ -1040,8 +1032,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							regionOffsets: null,
 							links: null)
 					},
-					typeName: "Type 5",
-					typeCode: 5,
+					typeCode: Type5,
 					digit1: d1,
 					digit2: d2,
 					cells: urCells,
@@ -1145,8 +1136,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								regionOffsets: new[] { (0, region1), (0, region2) },
 								links: null)
 						},
-						typeName: "Type 6",
-						typeCode: 6,
+						typeCode: Type6,
 						digit1: d1,
 						digit2: d2,
 						cells: urCells,
@@ -1246,8 +1236,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								regionOffsets: new[] { (0, r), (0, c) },
 								links: null)
 						},
-						typeName: string.Empty,
-						typeCode: 7,
+						typeCode: Hidden,
 						digit1: d1,
 						digit2: d2,
 						cells: urCells,

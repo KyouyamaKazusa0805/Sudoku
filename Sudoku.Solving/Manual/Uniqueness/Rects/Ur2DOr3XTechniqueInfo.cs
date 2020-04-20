@@ -15,7 +15,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// </summary>
 		/// <param name="conclusions">All conclusions.</param>
 		/// <param name="views">All views.</param>
-		/// <param name="typeName">The type name.</param>
 		/// <param name="typeCode">The type code.</param>
 		/// <param name="digit1">The digit 1.</param>
 		/// <param name="digit2">The digit 2.</param>
@@ -25,10 +24,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="xyCell">The cell that only contains X and Y digit.</param>
 		/// <param name="isAr">Indicates whether the specified structure forms an AR.</param>
 		public Ur2DOr3XTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, string typeName,
-			int typeCode, int digit1, int digit2, int[] cells,
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
+			UrTypeCode typeCode, int digit1, int digit2, int[] cells,
 			int x, int y, int xyCell, bool isAr)
-			: base(conclusions, views, typeName, typeCode, digit1, digit2, cells, isAr) =>
+			: base(conclusions, views, typeCode, digit1, digit2, cells, isAr) =>
 			(X, Y, XyCell) = (x, y, xyCell);
 
 

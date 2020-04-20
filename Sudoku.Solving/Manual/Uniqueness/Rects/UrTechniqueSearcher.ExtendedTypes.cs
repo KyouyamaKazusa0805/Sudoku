@@ -6,6 +6,7 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Solving.ConclusionType;
+using static Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
@@ -104,8 +105,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								regionOffsets: null,
 								links: null)
 						},
-						typeName: "+ 2D",
-						typeCode: 8,
+						typeCode: Plus2D,
 						digit1: d1,
 						digit2: d2,
 						cells: urCells,
@@ -226,8 +226,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										regionOffsets: new[] { (0, region) },
 										links: null)
 								},
-								typeName: "+ 2B / 1SL",
-								typeCode: 9,
+								typeCode: Plus2B1SL,
 								digit1: d1,
 								digit2: d2,
 								cells: urCells,
@@ -348,8 +347,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										regionOffsets: new[] { (0, region) },
 										links: null)
 								},
-								typeName: "+ 2D / 1SL",
-								typeCode: 9,
+								typeCode: Plus2D1SL,
 								digit1: d1,
 								digit2: d2,
 								cells: urCells,
@@ -455,8 +453,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								regionOffsets: null,
 								links: null)
 						},
-						typeName: "+ 3X",
-						typeCode: 9,
+						typeCode: Plus3X,
 						digit1: d1,
 						digit2: d2,
 						cells: urCells,
@@ -557,8 +554,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								regionOffsets: new[] { (0, map1.CoveredLine), (1, map2.CoveredLine) },
 								links: null)
 						},
-						typeName: "+ 3X / 2SL",
-						typeCode: 10,
+						typeCode: Plus3X2SL,
 						digit1: d1,
 						digit2: d2,
 						cells: urCells,
@@ -675,8 +671,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									regionOffsets: new[] { (0, conjugatePairs[0].Line), (1, conjugatePairs[1].Line) },
 									links: null)
 							},
-							typeName: "+ 3N / 2SL",
-							typeCode: 11,
+							typeCode: Plus3N2SL,
 							digit1: d1,
 							digit2: d2,
 							cells: urCells,
@@ -784,8 +779,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									regionOffsets: new[] { (0, conjugatePairs[0].Line), (1, conjugatePairs[1].Line) },
 									links: null)
 							},
-							typeName: "+ 3U / 2SL",
-							typeCode: 12,
+							typeCode: Plus3U2SL,
 							digit1: d1,
 							digit2: d2,
 							cells: urCells,
@@ -893,8 +887,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									regionOffsets: new[] { (0, conjugatePairs[0].Line), (1, conjugatePairs[1].Line) },
 									links: null)
 							},
-							typeName: "+ 3E / 2SL",
-							typeCode: 13,
+							typeCode: Plus3E2SL,
 							digit1: d1,
 							digit2: d2,
 							cells: urCells,
@@ -1016,8 +1009,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									},
 									links: null)
 							},
-							typeName: "+ 4X / 3SL",
-							typeCode: 13,
+							typeCode: Plus4X3SL,
 							digit1: d1,
 							digit2: d2,
 							cells: urCells,
@@ -1135,8 +1127,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									},
 									links: null)
 							},
-							typeName: "+ 4C / 3SL",
-							typeCode: 14,
+							typeCode: Plus4C3SL,
 							digit1: d1,
 							digit2: d2,
 							cells: urCells,
