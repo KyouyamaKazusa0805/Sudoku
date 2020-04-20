@@ -348,7 +348,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										regionOffsets: new[] { (0, region) },
 										links: null)
 								},
-								typeName: "2D / 1SL",
+								typeName: "+ 2D / 1SL",
 								typeCode: 9,
 								digit1: d1,
 								digit2: d2,
@@ -903,5 +903,130 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				}
 			}
 		}
+
+		partial void Check4X3SL(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
+		{
+			//   ↓ corner1, corner2
+			// (abx)-----(aby)
+			//        a    |
+			//             | b
+			//        a    |
+			//  abz ----- abw
+			var link1Map = new GridMap(stackalloc[] { corner1, corner2 });
+			foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
+			{
+				if (!IsConjugatePair(grid, a, link1Map, link1Map.CoveredLine))
+				{
+					continue;
+				}
+
+				int abwCell = GetDiagonalCell(urCells, corner1);
+				int abzCell = new GridMap(otherCellsMap) { [abwCell] = false }.SetAt(0);
+				foreach (var (head, begin, end, extra) in stackalloc[] { (corner2, corner1, abzCell, abwCell), (corner1, corner2, abwCell, abzCell) })
+				{
+					var link2Map = new GridMap(stackalloc[] { begin, end });
+					if (!IsConjugatePair(grid, b, link2Map, link2Map.CoveredLine))
+					{
+						continue;
+					}
+
+					var link3Map = new GridMap(stackalloc[] { end, extra });
+					if (!IsConjugatePair(grid, a, link3Map, link3Map.CoveredLine))
+					{
+						continue;
+					}
+
+					var conclusions = new List<Conclusion>();
+					if (grid.Exists(head, b) is true)
+					{
+						conclusions.Add(new Conclusion(Elimination, head, b));
+					}
+					if (grid.Exists(extra, b) is true)
+					{
+						conclusions.Add(new Conclusion(Elimination, head, b));
+					}
+					if (conclusions.Count == 0)
+					{
+						continue;
+					}
+
+					var candidateOffsets = new List<(int, int)>();
+					foreach (int d in grid.GetCandidatesReversal(head).GetAllSets())
+					{
+						if (d != d1 && d != d2 || d == b)
+						{
+							continue;
+						}
+
+						candidateOffsets.Add((1, head * 9 + d));
+					}
+					foreach (int d in grid.GetCandidatesReversal(extra).GetAllSets())
+					{
+						if (d != d1 && d != d2 || d == b)
+						{
+							continue;
+						}
+
+						candidateOffsets.Add((1, extra * 9 + d));
+					}
+					foreach (int d in grid.GetCandidatesReversal(begin).GetAllSets())
+					{
+						if (d != d1 && d != d2)
+						{
+							continue;
+						}
+
+						candidateOffsets.Add((1, begin * 9 + d));
+					}
+					foreach (int d in grid.GetCandidatesReversal(end).GetAllSets())
+					{
+						if (d != d1 && d != d2)
+						{
+							continue;
+						}
+
+						candidateOffsets.Add((1, end * 9 + d));
+					}
+					if (!_allowUncompletedUr && (candidateOffsets.Count != 6 || conclusions.Count != 2))
+					{
+						continue;
+					}
+
+					var conjugatePairs = new[]
+					{
+						new ConjugatePair(head, begin, a),
+						new ConjugatePair(begin, end, b),
+						new ConjugatePair(end, extra, a)
+					};
+					accumulator.Add(
+						new UrPlusTechniqueInfo(
+							conclusions,
+							views: new[]
+							{
+								new View(
+									cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+									candidateOffsets,
+									regionOffsets: new[]
+									{
+										(0, conjugatePairs[0].Line),
+										(1, conjugatePairs[1].Line),
+										(0, conjugatePairs[0].Line)
+									},
+									links: null)
+							},
+							typeName: "+ 4X / 3SL",
+							typeCode: 13,
+							digit1: d1,
+							digit2: d2,
+							cells: urCells,
+							conjugatePairs,
+							isAr: arMode));
+				}
+			}
+		}
+
+
 	}
 }

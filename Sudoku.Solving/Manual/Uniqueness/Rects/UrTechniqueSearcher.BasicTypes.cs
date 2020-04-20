@@ -56,7 +56,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					candidateOffsets.Add((0, cell * 9 + digit));
 				}
 			}
-			if (!_allowUncompletedUr && candidateOffsets.Count != 6)
+			if (!_allowUncompletedUr && (candidateOffsets.Count != 6 || conclusions.Count != 2))
 			{
 				return;
 			}
@@ -942,7 +942,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						}
 					}
 
-					if (!_allowUncompletedUr && candidateOffsets.Count != 6)
+					if (!_allowUncompletedUr && (candidateOffsets.Count != 6 || conclusions.Count != 2))
 					{
 						continue;
 					}
@@ -1129,7 +1129,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					}
 				}
 
-				if (!_allowUncompletedUr && candidateOffsets.Count != 6)
+				if (!_allowUncompletedUr && (candidateOffsets.Count != 6 || conclusions.Count != 2))
 				{
 					return;
 				}
