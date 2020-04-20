@@ -1559,6 +1559,89 @@
             <param name="emptyCells">The empty cells.</param>
             <returns>All ALSes.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo">
+            <summary>
+            Provides a usage of <b>empty rectangle intersection pair</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="startCell">The start cell.</param>
+            <param name="endCell">The end cell.</param>
+            <param name="region">The region that empty rectangle forms.</param>
+            <param name="digit1">The digit 1.</param>
+            <param name="digit2">The digit 2.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.Region">
+            <summary>
+            Indicates the region that empty rectangle forms.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.StartCell">
+            <summary>
+            Indicates the start cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.EndCell">
+            <summary>
+            Indicates the end cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.Digit1">
+            <summary>
+            Indicates the digit 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.Digit2">
+            <summary>
+            Indicates the digit 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueSearcher">
+            <summary>
+            Encapsulates an <b>empty rectangle intersection pair</b> technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueSearcher._regionMaps">
+            <summary>
+            The region maps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueSearcher.#ctor(Sudoku.Data.GridMap[])">
+            <summary>
+            Initializes an instance with the specified region maps.
+            </summary>
+            <param name="regionMaps">The region maps.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueSearcher.Priority">
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Rcc">
             <summary>
             Encapsulates a data structure for restricted common candidates (RCC).

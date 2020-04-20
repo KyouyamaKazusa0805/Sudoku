@@ -92,6 +92,7 @@ namespace Sudoku.Solving.Manual
 				new SdcTechniqueSearcher(regionMaps),
 				new BdpTechniqueSearcher(),
 				new BugTechniqueSearcher(regionMaps, _settings.UseExtendedBugSearcher),
+				new ErIntersectionPairTechniqueSearcher(regionMaps),
 				new AlsXzTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
 				new AlsXyWingTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
 				new AlsWWingTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
