@@ -15,7 +15,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// </summary>
 		/// <param name="conclusions">All conclusions.</param>
 		/// <param name="views">All views.</param>
-		/// <param name="typeCode">The type code.</param>
 		/// <param name="digit1">The digit 1.</param>
 		/// <param name="digit2">The digit 2.</param>
 		/// <param name="cells">All cells.</param>
@@ -26,9 +25,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="isAr">Indicates whether the specified structure is an AR.</param>
 		public UrType3TechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			UrTypeCode typeCode, int digit1, int digit2, int[] cells, IReadOnlyList<int> extraDigits,
+			int digit1, int digit2, int[] cells, IReadOnlyList<int> extraDigits,
 			IReadOnlyList<int> extraCells, int region, bool isNaked, bool isAr)
-			: base(conclusions, views, typeCode, digit1, digit2, cells, isAr) =>
+			: base(conclusions, views, UrTypeCode.Type3, digit1, digit2, cells, isAr) =>
 			(ExtraDigits, ExtraCells, Region, IsNaked) = (extraDigits, extraCells, region, isNaked);
 
 

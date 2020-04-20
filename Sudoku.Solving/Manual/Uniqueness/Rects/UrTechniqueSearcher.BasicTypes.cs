@@ -73,7 +73,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							regionOffsets: null,
 							links: null)
 					},
-					typeCode: Type1,
 					digit1: d1,
 					digit2: d2,
 					cells: urCells,
@@ -154,12 +153,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							regionOffsets: null,
 							links: null)
 					},
-					typeCode: isType5 ? Type5 : Type2,
 					digit1: d1,
 					digit2: d2,
 					cells: urCells,
 					isAr: arMode,
-					extraDigit));
+					extraDigit: extraDigit));
 		}
 
 		partial void CheckType3Naked(
@@ -291,13 +289,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										regionOffsets: null,
 										links: null)
 								},
-								typeCode: Type3,
 								digit1: d1,
 								digit2: d2,
 								cells: urCells,
 								extraDigits: extraDigits.ToArray(),
 								extraCells: new[] { c1 },
-								region,
+								region: region,
 								isNaked: true,
 								isAr: arMode));
 					}
@@ -395,13 +392,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 												regionOffsets: null,
 												links: null)
 										},
-										typeCode: Type3,
 										digit1: d1,
 										digit2: d2,
 										cells: urCells,
 										extraDigits: extraDigits.ToArray(),
 										extraCells: new[] { c1, c2 },
-										region,
+										region: region,
 										isNaked: true,
 										isAr: arMode));
 							}
@@ -503,13 +499,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 													regionOffsets: null,
 													links: null)
 											},
-											typeCode: Type3,
 											digit1: d1,
 											digit2: d2,
 											cells: urCells,
 											extraDigits: extraDigits.ToArray(),
 											extraCells: new[] { c1, c2, c3 },
-											region,
+											region: region,
 											isNaked: true,
 											isAr: arMode));
 								}
@@ -634,13 +629,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									regionOffsets: new[] { (0, region) },
 									links: null)
 							},
-							typeCode: Type3,
 							digit1: d1,
 							digit2: d2,
 							cells: urCells,
 							extraDigits: new[] { d1, d2 },
 							extraCells: (totalMap - otherCellsMap).ToArray(),
-							region,
+							region: region,
 							isNaked: false,
 							isAr: arMode));
 				}
@@ -739,13 +733,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											regionOffsets: new[] { (0, region) },
 											links: null)
 									},
-									typeCode: Type3,
 									digit1: d1,
 									digit2: d2,
 									cells: urCells,
 									extraDigits: new[] { d1, d2, ed1 },
 									extraCells: (totalMap - otherCellsMap).ToArray(),
-									region,
+									region: region,
 									isNaked: false,
 									isAr: arMode));
 						}
@@ -842,13 +835,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 												regionOffsets: new[] { (0, region) },
 												links: null)
 										},
-										typeCode: Type3,
 										digit1: d1,
 										digit2: d2,
 										cells: urCells,
 										extraDigits: new[] { d1, d2, ed1, ed2 },
 										extraCells: (totalMap - otherCellsMap).ToArray(),
-										region,
+										region: region,
 										isNaked: false,
 										isAr: arMode));
 							}
@@ -1032,12 +1024,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							regionOffsets: null,
 							links: null)
 					},
-					typeCode: Type5,
 					digit1: d1,
 					digit2: d2,
 					cells: urCells,
 					isAr: arMode,
-					extraDigit));
+					extraDigit: extraDigit));
 		}
 
 		partial void CheckType6(
@@ -1236,7 +1227,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								regionOffsets: new[] { (0, r), (0, c) },
 								links: null)
 						},
-						typeCode: Hidden,
 						digit1: d1,
 						digit2: d2,
 						cells: urCells,

@@ -5437,8 +5437,17 @@
             <b>hidden avoidable rectangle</b> (HAR) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Collections.Generic.IReadOnlyList{Sudoku.Solving.ConjugatePair},System.Boolean)">
-            <inheritdoc/>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Collections.Generic.IReadOnlyList{Sudoku.Solving.ConjugatePair},System.Boolean)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="digit1">The digit 1.</param>
+            <param name="digit2">The digit 2.</param>
+            <param name="cells">All cells.</param>
+            <param name="conjugatePairs">The conjugate pairs.</param>
+            <param name="isAr">Indicates whether the specified structure is an AR.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrTechniqueInfo.Name">
             <inheritdoc/>
@@ -5678,8 +5687,16 @@
             <b>avoidable rectangle</b> (AR) type 1 technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Boolean)">
-            <inheritdoc/>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Boolean)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="digit1">The digit 1.</param>
+            <param name="digit2">The digit 2.</param>
+            <param name="cells">All cells.</param>
+            <param name="isAr">Indicates whether the instance is an AR.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo.Difficulty">
             <inheritdoc/>
@@ -5696,13 +5713,12 @@
             <b>avoidable rectangle</b> (AR) type 2 (or type 5) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
             <param name="conclusions">All conclusions.</param>
             <param name="views">All views.</param>
-            <param name="typeCode">The type code.</param>
             <param name="digit1">The digit 1.</param>
             <param name="digit2">The digit 2.</param>
             <param name="cells">All cells.</param>
@@ -5729,13 +5745,12 @@
             <b>avoidable rectangle</b> (AR) type 3 technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32,System.Boolean,System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
             <param name="conclusions">All conclusions.</param>
             <param name="views">All views.</param>
-            <param name="typeCode">The type code.</param>
             <param name="digit1">The digit 1.</param>
             <param name="digit2">The digit 2.</param>
             <param name="cells">All cells.</param>

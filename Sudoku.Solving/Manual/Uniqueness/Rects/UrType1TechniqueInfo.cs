@@ -9,11 +9,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// </summary>
 	public sealed class UrType1TechniqueInfo : UrTechniqueInfo
 	{
-		/// <inheritdoc/>
+		/// <summary>
+		/// Initializes an instance with the specified information.
+		/// </summary>
+		/// <param name="conclusions">All conclusions.</param>
+		/// <param name="views">All views.</param>
+		/// <param name="digit1">The digit 1.</param>
+		/// <param name="digit2">The digit 2.</param>
+		/// <param name="cells">All cells.</param>
+		/// <param name="isAr">Indicates whether the instance is an AR.</param>
 		public UrType1TechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			UrTypeCode typeCode, int digit1, int digit2, int[] cells, bool isAr)
-			: base(conclusions, views, typeCode, digit1, digit2, cells, isAr)
+			int digit1, int digit2, int[] cells, bool isAr)
+			: base(conclusions, views, UrTypeCode.Type1, digit1, digit2, cells, isAr)
 		{
 		}
 
