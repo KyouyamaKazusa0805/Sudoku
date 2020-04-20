@@ -659,6 +659,7 @@ namespace Sudoku.Windows
 			_textBoxInfo.Text = "Generating...";
 			_menuItemFileOpen.IsEnabled = false;
 			_menuItemFileOpenDatabase.IsEnabled = false;
+			_menuItemOptionsSettings.IsEnabled = false;
 			_menuItemGenerateHardPattern.IsEnabled = false;
 			_menuItemEditPaste.IsEnabled = false;
 			_menuItemEditFix.IsEnabled = false;
@@ -691,6 +692,7 @@ namespace Sudoku.Windows
 			_textBoxInfo.ClearValue(TextBox.TextProperty);
 			_menuItemFileOpen.IsEnabled = true;
 			_menuItemFileOpenDatabase.IsEnabled = true;
+			_menuItemOptionsSettings.IsEnabled = true;
 			_menuItemGenerateHardPattern.IsEnabled = true;
 			_menuItemEditPaste.IsEnabled = true;
 			_menuItemEditFix.IsEnabled = true;
@@ -718,6 +720,7 @@ namespace Sudoku.Windows
 		{
 			_menuItemFileOpen.IsEnabled = false;
 			_menuItemFileOpenDatabase.IsEnabled = false;
+			_menuItemOptionsSettings.IsEnabled = false;
 			_menuItemGenerateHardPattern.IsEnabled = false;
 			_menuItemEditPaste.IsEnabled = false;
 			_menuItemEditFix.IsEnabled = false;
@@ -754,6 +757,7 @@ namespace Sudoku.Windows
 			_textBoxInfo.ClearValue(TextBox.TextProperty);
 			_menuItemFileOpen.IsEnabled = true;
 			_menuItemFileOpenDatabase.IsEnabled = true;
+			_menuItemOptionsSettings.IsEnabled = true;
 			_menuItemGenerateHardPattern.IsEnabled = true;
 			_menuItemEditPaste.IsEnabled = true;
 			_menuItemEditFix.IsEnabled = true;

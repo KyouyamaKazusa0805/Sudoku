@@ -56,7 +56,7 @@
 						  IsChecked="True"
 						  Click="MenuItemOptionsShowCandidates_Click"/>
 				<Separator/>
-				<MenuItem Header="Settings..."
+				<MenuItem Header="Settings..." Name="_menuItemOptionsSettings"
 						  Click="MenuItemOptionsSettings_Click"/>
 			</MenuItem>
 

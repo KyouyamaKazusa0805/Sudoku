@@ -5721,12 +5721,13 @@
             <b>avoidable rectangle</b> (AR) type 2 (or type 5) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
             <param name="conclusions">All conclusions.</param>
             <param name="views">All views.</param>
+            <param name="typeCode">The type code.</param>
             <param name="digit1">The digit 1.</param>
             <param name="digit2">The digit 2.</param>
             <param name="cells">All cells.</param>

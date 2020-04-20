@@ -153,6 +153,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							regionOffsets: null,
 							links: null)
 					},
+					typeCode: isType5 ? Type5 : Type2,
 					digit1: d1,
 					digit2: d2,
 					cells: urCells,
@@ -981,7 +982,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			// Type 5 found. Now check elimination.
 			int extraDigit = extraMask.FindFirstSet();
 			var conclusions = new List<Conclusion>();
-			foreach (int cell in new GridMap(otherCellsMap.Offsets, ProcessPeersWithoutItself).Offsets)
+			var cellsThatContainsExtraDigit = from cell in otherCellsMap.Offsets
+											  where grid.Exists(cell, extraDigit) is true
+											  select cell;
+			if (cellsThatContainsExtraDigit.HasOnlyOneElement())
+			{
+				return;
+			}
+
+			foreach (int cell in new GridMap(cellsThatContainsExtraDigit, ProcessPeersWithoutItself).Offsets)
 			{
 				if (!(grid.Exists(cell, extraDigit) is true))
 				{
@@ -1024,6 +1033,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							regionOffsets: null,
 							links: null)
 					},
+					typeCode: Type5,
 					digit1: d1,
 					digit2: d2,
 					cells: urCells,

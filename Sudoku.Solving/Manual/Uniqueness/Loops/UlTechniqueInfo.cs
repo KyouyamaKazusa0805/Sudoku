@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 		/// <inheritdoc/>
 		public override string Name =>
-			$"Unique {(DetailData.Cells.Count == 4 ? "Rectangle" : "Loop")} (Type {DetailData.Type})";
+			$"Unique {(DetailData.Cells.Count == 4 ? "Rectangle" : "Loop")} Type {DetailData.Type}";
 
 		/// <inheritdoc/>
 		public override decimal Difficulty
