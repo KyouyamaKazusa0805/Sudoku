@@ -102,7 +102,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								CheckType5(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap);
 								CheckHidden(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap);
 
-								if (_searchExtended)
+								if (!arMode && _searchExtended)
 								{
 									Check3X(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap);
 									Check3X2SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap);
