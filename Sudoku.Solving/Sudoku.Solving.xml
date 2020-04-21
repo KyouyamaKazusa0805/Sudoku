@@ -2313,6 +2313,272 @@
             <param name="node">The node.</param>
             <param name="map">The map.</param>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.Exocet">
+            <summary>
+            Indicates an exocet pattern.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Exocet.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+            <summary>
+            Initializes an instance with the specified cells.
+            </summary>
+            <param name="base1">The base cell 1.</param>
+            <param name="base2">The base cell 2.</param>
+            <param name="tq1">The target Q1 cell.</param>
+            <param name="tq2">The target Q2 cell.</param>
+            <param name="tr1">The target R1 cell.</param>
+            <param name="tr2">The target R2 cell.</param>
+            <param name="crossline">The cross line cells.</param>
+            <param name="mq1">The mirror Q1 cell.</param>
+            <param name="mq2">The mirror Q2 cell.</param>
+            <param name="mr1">The mirror R1 cell.</param>
+            <param name="mr2">The mirror R2 cell.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Exocet.Base1">
+            <summary>
+            Indicates the base cell 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Exocet.Base2">
+            <summary>
+            Indicates the base cell 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Exocet.TargetQ1">
+            <summary>
+            Indicates the target Q1 cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Exocet.TargetQ2">
+            <summary>
+            Indicates the target Q2 cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Exocet.TargetR1">
+            <summary>
+            Indicates the target R1 cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Exocet.TargetR2">
+            <summary>
+            Indicates the target R2 cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Exocet.CrossLine">
+            <summary>
+            Indicates the cross line cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Exocet.MirrorQ1">
+            <summary>
+            Indicates the mirror Q1 cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Exocet.MirrorQ2">
+            <summary>
+            Indicates the mirror Q2 cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Exocet.MirrorR1">
+            <summary>
+            Indicates the mirror R1 cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Exocet.MirrorR2">
+            <summary>
+            Indicates the mirror R2 cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Exocet.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="base1">(<see langword="out" /> parameter) The base cell 1.</param>
+            <param name="base2">(<see langword="out" /> parameter) The base cell 2.</param>
+            <param name="tq1">(<see langword="out" /> parameter) The target Q1 cell.</param>
+            <param name="tq2">(<see langword="out" /> parameter) The target Q2 cell.</param>
+            <param name="tr1">(<see langword="out" /> parameter) The target R1 cell.</param>
+            <param name="tr2">(<see langword="out" /> parameter) The target R2 cell.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Exocet.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="base1">(<see langword="out" /> parameter) The base cell 1.</param>
+            <param name="base2">(<see langword="out" /> parameter) The base cell 2.</param>
+            <param name="tq1">(<see langword="out" /> parameter) The target Q1 cell.</param>
+            <param name="tq2">(<see langword="out" /> parameter) The target Q2 cell.</param>
+            <param name="tr1">(<see langword="out" /> parameter) The target R1 cell.</param>
+            <param name="tr2">(<see langword="out" /> parameter) The target R2 cell.</param>
+            <param name="crossline">(<see langword="out" /> parameter) The cross line cells.</param>
+            <param name="mq1">(<see langword="out" /> parameter) The mirror Q1 cell.</param>
+            <param name="mq2">(<see langword="out" /> parameter) The mirror Q2 cell.</param>
+            <param name="mr1">(<see langword="out" /> parameter) The mirror R1 cell.</param>
+            <param name="mr2">(<see langword="out" /> parameter) The mirror R2 cell.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Exocet.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Exocet.Equals(Sudoku.Solving.Manual.Exocets.Exocet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Exocet.GetHashCode">
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Exocet.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Exocet.op_Equality(Sudoku.Solving.Manual.Exocets.Exocet,Sudoku.Solving.Manual.Exocets.Exocet)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Exocet.op_Inequality(Sudoku.Solving.Manual.Exocets.Exocet,Sudoku.Solving.Manual.Exocets.Exocet)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo">
+            <summary>
+            Provides a usage of <b>exocet</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="exocet">The exocet.</param>
+            <param name="digits">All digits.</param>
+            <param name="isSenior">Indicates whether the structure is senior.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.Digits">
+            <summary>
+            Indicates all digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.IsSenior">
+            <summary>
+            Indicates the specified exocet is senior.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.Exocet">
+            <summary>
+            The exocet.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher">
+            <summary>
+            Encapsulates an <b>exocet</b> technique searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.SIterator">
+            <summary>
+            The cross line cells iterator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.BIterator">
+            <summary>
+            The base cells iterator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.RqIterator">
+            <summary>
+            The Q or R cells iterator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.Mirror">
+            <summary>
+            The mirror list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.Exocets">
+            <summary>
+            Indicates all exocet patterns to iterate on.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher._regionMaps">
+            <summary>
+            Indicates the region maps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.#ctor(Sudoku.Data.GridMap[])">
+            <summary>
+            Initializes an instance with the specified region maps.
+            </summary>
+            <param name="regionMaps">The region maps.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.#cctor">
+            <summary>
+            The static constructor of <see cref="T:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.Priority">
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckCrossLine(Sudoku.Data.GridMap,System.Boolean,System.Int16,Sudoku.Data.GridMap[])">
+            <summary>
+            Check the cross line cells.
+            </summary>
+            <param name="crossline">The cross line cells.</param>
+            <param name="isRow">Indicates whether the specified checking is for rows.</param>
+            <param name="digitsNeedChecking">The digits that need checking.</param>
+            <param name="digitDistributions">All digit distributions.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> value indicating whether the structure passed the validation.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetDigitDistributions(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Get all distributions for digits.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The digit distributions.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetCombinations(System.Int16)">
+            <summary>
+            Get all combinations that contains all set bits from the specified number.
+            </summary>
+            <param name="seed">The specified number.</param>
+            <returns>All combinations.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo">
             <summary>
             Provides a usage of <b>fish</b> technique.

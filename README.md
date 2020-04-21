@@ -2,7 +2,7 @@
 
 标题：**向向的数独解决方案（SSS）**
 
-A sudoku handling SDK using brute forces and logical techniques (Update files gradually). Now this solution supports generating puzzles, solving puzzles (with logical & illogical techniques) and some attribute checking (for example, to determine whether the specified grid is a minimal puzzle, which will become multiple solutions when any a digit is missing).
+A sudoku handling SDK using brute forces and logical techniques (update gradually). Now this solution supports generating puzzles, solving puzzles (with logical & illogical techniques) and some attribute checking (for example, to determine whether the specified grid is a minimal puzzle, which will become multiple solutions when any a digit is missing).
 
 一个使用暴力破解和普通逻辑算法解题的数独分析解题 SDK（逐渐更新）。目前该解决方案支持对数独的题目生成、使用逻辑技巧或无逻辑技巧解题和一些常见数独特性的验证（例如，验证是否一个指定的盘面是一个最小题目。所谓的最小题目指的是，盘面任意一个数字消失后，都会使得题目多解的题）。
 
@@ -40,69 +40,6 @@ This whole solution consists of several folders below:<br/>这个解决方案由
 * [`old`](https://github.com/Sunnie-Shine/Sudoku/tree/master/old): The old projects that implemented by me or external codes.<br/>以前的由我自己实现的项目，或者是属于外部代码。
 * [`ref`](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref): The profiles for sudoku for references.<br/>数独相关参考资料。
 * [`pic`](https://github.com/Sunnie-Shine/Sudoku/tree/master/pic): The pictures.<br/>图片。
-
-
-## Demo
-
-标题：**演示**
-
-You can write code in your computer like this:
-
-你可以在你的机器上使用这样的代码：
-
-```csharp
-// Create a solver.
-var solver = new ManualSolver();
-
-// Parse a string and convert it to a sudoku grid instance.
-var grid = Grid.Parse("006800009000020300700001080010900200000040008008750040030006001900080030002000500");
-
-// Solve it.
-var analysisResult = solver.Solve(grid);
-
-// Print the result onto the console screen.
-Console.WriteLine(analysisResult.ToString(null));
-```
-
-And the puzzle solution and analysis result will be displayed on console screen, like this!
-
-然后答案和分析结果都会在你的控制台界面呈现出来，就像这样！
-
-```
-Puzzle: ..68....9....2.3..7....1.8..1.9..2......4...8..875..4..3...6..19...8..3...2...5..
-Solving tool: Manual
-Technique used:
- 20 * Full House
-  5 * Last Digit
- 25 * Hidden Single (In Block)
-  2 * Hidden Single (In Row)
-  3 * Hidden Single (In Column)
-  1 * Naked single
-  2 * Pointing
-  5 * Claiming
-  1 * Naked Pair
-  4 * Hidden Pair
-  1 * Finned X-Wing
-  2 * Sashimi X-Wing
-  2 * Swordfish
-  1 * Two-string Kite
-  1 * XY-Wing
-  1 * XYZ-Wing
-  1 * Almost Locked Pair
-  1 * Unique Rectangle Type 4
-  1 * Hidden Unique Rectangle 
-  1 * Discontinuous Nice Loop
-  7 * Almost Locked Sets XZ Rule
- 87 steps in total
-Puzzle rating: 5.5/1.2/1.2
-Puzzle solution: 146835729589427316723691485314968257257143968698752143435276891971584632862319574
-Puzzle has been solved.
-Time elapsed: 00:00.12.281
-```
-
-> Format strings for analysis results are shown in wiki page *How to use analysis result*.
->
-> 分析结果的格式化字符串可以参照 Wiki 页面“How to use analysis result”。
 
 
 

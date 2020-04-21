@@ -70,7 +70,9 @@ namespace Sudoku.Data
 		short GetMask(int offset);
 
 		/// <summary>
-		/// Get the candidate mask part of the specified cell.
+		/// Get the candidate mask part of the specified cell, where the return
+		/// value is 0 if the candidate exists (or cell is filled this digit),
+		/// or value is 1 if the candidate does not exist.
 		/// </summary>
 		/// <param name="offset">The cell offset you want to get.</param>
 		/// <returns>The candidate mask.</returns>
@@ -78,7 +80,8 @@ namespace Sudoku.Data
 
 		/// <summary>
 		/// Get the candidate mask after reversed all bits mask part
-		/// of the specified cell.
+		/// of the specified cell, where the return value is 0 if the candidate
+		/// does not exist, or 1 if the candidate exists or cell is filled this digit.
 		/// </summary>
 		/// <param name="offset">The cell offset you want to get.</param>
 		/// <returns>The candidate mask.</returns>

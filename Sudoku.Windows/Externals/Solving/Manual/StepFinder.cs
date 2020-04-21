@@ -6,6 +6,7 @@ using Sudoku.Data;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Alses;
 using Sudoku.Solving.Manual.Chaining;
+using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Solving.Manual.Fishes;
 using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.LastResorts;
@@ -118,6 +119,7 @@ namespace Sudoku.Solving.Manual
 				new PomTechniqueSearcher(),
 				new TemplateTechniqueSearcher(false),
 				new CccTechniqueSearcher(),
+				new ExocetTechniqueSearcher(regionMaps),
 			};
 
 			var bag = new Bag<TechniqueInfo>();

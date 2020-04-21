@@ -10,6 +10,7 @@ using Sudoku.Extensions;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Alses;
 using Sudoku.Solving.Manual.Chaining;
+using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Solving.Manual.Fishes;
 using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.LastResorts;
@@ -170,6 +171,7 @@ namespace Sudoku.Solving.Manual
 				},
 				new TechniqueSearcher[]
 				{
+					new ExocetTechniqueSearcher(regionMaps),
 					new CccTechniqueSearcher(),
 				},
 				new[] { new BruteForceTechniqueSearcher(solution) }
@@ -384,6 +386,7 @@ namespace Sudoku.Solving.Manual
 				new PomTechniqueSearcher(),
 				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 				new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
+				new ExocetTechniqueSearcher(regionMaps),
 				new CccTechniqueSearcher(),
 				new BruteForceTechniqueSearcher(solution),
 			};
