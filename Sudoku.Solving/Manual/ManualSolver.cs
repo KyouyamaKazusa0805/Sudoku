@@ -171,8 +171,8 @@ namespace Sudoku.Solving.Manual
 				},
 				new TechniqueSearcher[]
 				{
-					new ExocetTechniqueSearcher(regionMaps),
 					new CccTechniqueSearcher(),
+					new ExocetTechniqueSearcher(regionMaps),
 				},
 				new[] { new BruteForceTechniqueSearcher(solution) }
 			};
@@ -383,10 +383,10 @@ namespace Sudoku.Solving.Manual
 				new HobiwanFishTechniqueSearcher(
 					HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
 					HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
+				new ExocetTechniqueSearcher(regionMaps),
 				new PomTechniqueSearcher(),
 				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 				new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
-				new ExocetTechniqueSearcher(regionMaps),
 				new CccTechniqueSearcher(),
 				new BruteForceTechniqueSearcher(solution),
 			};
