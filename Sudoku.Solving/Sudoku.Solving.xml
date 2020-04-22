@@ -2313,6 +2313,72 @@
             <param name="node">The node.</param>
             <param name="map">The map.</param>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.MirrorEliminations">
+            <summary>
+            Indicates the mirror cell eliminations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Solving.Conclusion})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Count">
+            <summary>
+            Indicates the number of all conclusions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Conclusions">
+            <summary>
+            Indicates the conclusions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Add(Sudoku.Solving.Conclusion)">
+            <summary>
+            Add the conclusion into the collection.
+            </summary>
+            <param name="conclusion">The conclusion.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
+            <summary>
+            Add a serial of conclusions into this collection.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.MirrorEliminations}[])">
+            <summary>
+            Merge all mirror eliminations.
+            </summary>
+            <param name="eliminations">All instances to merge.</param>
+            <returns>The merged result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.MirrorEliminations})">
+            <summary>
+            Merge all conclusions.
+            </summary>
+            <param name="list">The list.</param>
+            <returns>The merged result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.MirrorEliminations[])">
+            <summary>
+            Merge all conclusions.
+            </summary>
+            <param name="list">The list.</param>
+            <returns>The merged result.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.Exocet">
             <summary>
             Indicates an exocet pattern.
@@ -2457,7 +2523,7 @@
             Provides a usage of <b>exocet</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.ExocetTypeCode,System.Nullable{Sudoku.Solving.Manual.Exocets.MirrorEliminations})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -2465,16 +2531,17 @@
             <param name="views">All views.</param>
             <param name="exocet">The exocet.</param>
             <param name="digits">All digits.</param>
-            <param name="isSenior">Indicates whether the structure is senior.</param>
+            <param name="typeCode">The type code.</param>
+            <param name="mirrorEliminations">The mirror eliminations.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.Digits">
             <summary>
             Indicates all digits used.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.IsSenior">
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.TypeCode">
             <summary>
-            Indicates the specified exocet is senior.
+            Indicates the type code of this exocet.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.Exocet">
@@ -2482,10 +2549,12 @@
             The exocet.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.Name">
-            <inheritdoc/>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.MirrorEliminations">
+            <summary>
+            The mirror eliminations.
+            </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.Name">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.DifficultyLevel">
@@ -2493,6 +2562,12 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.ToString">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.GetAdditional">
+            <summary>
+            Get the additional message.
+            </summary>
+            <returns>The additional message.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher">
             <summary>
@@ -2517,26 +2592,6 @@
             </para>
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.SIterator">
-            <summary>
-            The cross line cells iterator.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.BIterator">
-            <summary>
-            The base cells iterator.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.RqIterator">
-            <summary>
-            The Q or R cells iterator.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.Mirror">
-            <summary>
-            The mirror list.
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.Exocets">
             <summary>
             Indicates all exocet patterns to iterate on.
@@ -2552,11 +2607,6 @@
             Initializes an instance with the specified region maps.
             </summary>
             <param name="regionMaps">The region maps.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.#cctor">
-            <summary>
-            The static constructor of <see cref="T:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher"/>.
-            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.Priority">
             <summary>
@@ -2583,6 +2633,15 @@
             A <see cref="T:System.Boolean"/> value indicating whether the structure passed the validation.
             </returns>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckMirror(Sudoku.Data.IReadOnlyGrid,System.Int16,Sudoku.Solving.Manual.Exocets.Exocet@,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
+            <summary>
+            Check mirror cells.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="baseCandidates">The base candidates mask.</param>
+            <param name="exocet">(<see langword="in"/> parameter) The exocet.</param>
+            <param name="cellOffsets">The cell offsets.</param>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetDigitDistributions(Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Get all distributions for digits.
@@ -2596,6 +2655,67 @@
             </summary>
             <param name="seed">The specified number.</param>
             <returns>All combinations.</returns>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.SIterator">
+            <summary>
+            The cross line cells iterator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.BIterator">
+            <summary>
+            The base cells iterator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.RqIterator">
+            <summary>
+            The Q or R cells iterator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.Mirror">
+            <summary>
+            The mirror list.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.#cctor">
+            <summary>
+            The static constructor of <see cref="T:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher"/>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.ExocetTypeCode">
+            <summary>
+            Indicates the type code of an exocet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTypeCode.Junior">
+            <summary>
+            Indicates the basic type (Junior Exocet).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTypeCode.Senior">
+            <summary>
+            Indicates the senior exocet.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo">
+            <summary>
+            Provides a usage of <b>junior exocet</b> (JE) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},System.Nullable{Sudoku.Solving.Manual.Exocets.MirrorEliminations})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="exocet">The exocet.</param>
+            <param name="digits">All digits.</param>
+            <param name="mirrorEliminations">The mirror eliminations.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.GetAdditional">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo">
             <summary>

@@ -1481,8 +1481,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 			else
 			{
-				// Subtype 2.
-
+				// TODO: Finish processing Subtype 2.
 			}
 		}
 	}

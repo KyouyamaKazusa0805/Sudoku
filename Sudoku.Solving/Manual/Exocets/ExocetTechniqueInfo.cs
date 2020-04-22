@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Exocets
@@ -7,7 +9,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// <summary>
 	/// Provides a usage of <b>exocet</b> technique.
 	/// </summary>
-	public sealed class ExocetTechniqueInfo : TechniqueInfo
+	public abstract class ExocetTechniqueInfo : TechniqueInfo
 	{
 		/// <summary>
 		/// Initializes an instance with the specified information.
@@ -16,12 +18,20 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="views">All views.</param>
 		/// <param name="exocet">The exocet.</param>
 		/// <param name="digits">All digits.</param>
-		/// <param name="isSenior">Indicates whether the structure is senior.</param>
+		/// <param name="typeCode">The type code.</param>
+		/// <param name="mirrorEliminations">The mirror eliminations.</param>
 		public ExocetTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			Exocet exocet, IEnumerable<int> digits, bool isSenior)
-			: base(conclusions, views) =>
-			(Exocet, IsSenior, Digits) = (exocet, isSenior, digits);
+			Exocet exocet, IEnumerable<int> digits, ExocetTypeCode typeCode,
+			MirrorEliminations? mirrorEliminations)
+			: base(conclusions, views)
+		{
+			(Exocet, Digits, TypeCode) = (exocet, digits, typeCode);
+			if (!((MirrorEliminations = mirrorEliminations) is null))
+			{
+				((List<Conclusion>)Conclusions).AddRange(MirrorEliminations);
+			}
+		}
 
 
 		/// <summary>
@@ -30,31 +40,58 @@ namespace Sudoku.Solving.Manual.Exocets
 		public IEnumerable<int> Digits { get; }
 
 		/// <summary>
-		/// Indicates the specified exocet is senior.
+		/// Indicates the type code of this exocet.
 		/// </summary>
-		public bool IsSenior { get; }
+		public ExocetTypeCode TypeCode { get; }
 
 		/// <summary>
 		/// The exocet.
 		/// </summary>
 		public Exocet Exocet { get; }
 
-		/// <inheritdoc/>
-		public override string Name => $"{(IsSenior ? "Senior" : "Junior")} Exocet";
+		/// <summary>
+		/// The mirror eliminations.
+		/// </summary>
+		public MirrorEliminations? MirrorEliminations { get; }
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 9.4M + (IsSenior ? .2M : 0);
+		public sealed override string Name => TypeCode.GetCustomName()!;
 
 		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
+		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
 
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string digitsStr = DigitCollection.ToString(Digits);
-			string elimStr = ConclusionCollection.ToString(Conclusions);
-			return $"{Name}: {Exocet} for digits {digitsStr} => {elimStr}";
+			var (b1, b2, tq1, tq2, tr1, tr2) = Exocet;
+			var sb = new StringBuilder(Name)
+				.Append(": Digits ")
+				.Append(DigitCollection.ToString(Digits))
+				.Append(" in base cells ")
+				.Append(CellCollection.ToString(new[] { b1, b2 }))
+				.Append(", target cells ")
+				.Append(CellCollection.ToString(new[] { tq1, tq2, tr1, tr2 }));
+
+			string? addtional = GetAdditional();
+			sb
+				.Append(addtional is null ? string.Empty : $" with {addtional}")
+				.Append(" => ")
+				.Append(ConclusionCollection.ToString(Conclusions));
+
+			string? mirrors = MirrorEliminations?.ToString();
+			if (!(mirrors is null))
+			{
+				sb.AppendLine().Append(mirrors);
+			}
+
+			return sb.ToString();
 		}
+
+		/// <summary>
+		/// Get the additional message.
+		/// </summary>
+		/// <returns>The additional message.</returns>
+		protected abstract string? GetAdditional();
 	}
 }
