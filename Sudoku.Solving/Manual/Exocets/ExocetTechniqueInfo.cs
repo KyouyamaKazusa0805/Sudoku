@@ -27,7 +27,8 @@ namespace Sudoku.Solving.Manual.Exocets
 			: base(conclusions, views)
 		{
 			(Exocet, Digits, TypeCode) = (exocet, digits, typeCode);
-			if (!((MirrorEliminations = mirrorEliminations) is null))
+			if (!((MirrorEliminations = mirrorEliminations) is null)
+				&& !(MirrorEliminations.Value.Conclusions is null))
 			{
 				((List<Conclusion>)Conclusions).AddRange(MirrorEliminations);
 			}

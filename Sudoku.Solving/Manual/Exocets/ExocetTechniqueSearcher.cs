@@ -272,15 +272,17 @@ namespace Sudoku.Solving.Manual.Exocets
 				short commonBase = targetMask;
 				short mirrorCandidates = 0;
 				int valueCount = 0;
+				int z = default;
 				foreach (int cell in m.Offsets)
 				{
 					mirrorCandidates |= grid.GetCandidatesReversal(cell);
 					if (grid.GetCellStatus(cell) != Empty)
 					{
+						z = cell;
 						valueCount++;
 					}
 				}
-				if (valueCount != 1)
+				if (valueCount != 1 || (baseCandidates >> grid[z] & 1) != 0)
 				{
 					return result;
 				}
