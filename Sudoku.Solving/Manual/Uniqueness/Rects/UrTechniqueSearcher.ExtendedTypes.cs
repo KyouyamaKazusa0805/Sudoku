@@ -4,6 +4,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Solving.ConclusionType;
 using static Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode;
@@ -1134,6 +1135,354 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							conjugatePairs,
 							isAr: arMode));
 				}
+			}
+		}
+
+		partial void CheckWing(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap,
+			GridMap bivalueCells, int size)
+		{
+			// Subtype 1:
+			//     ↓ corner1
+			//   (ab )  abxy  yz  xz
+			//   (ab )  abxy  *
+			//     ↑ corner2
+			// Note that 'abxy' cells should be in the same region.
+			// Subtype 2:
+			//     ↓ corner1
+			//   (ab )  abx   xz
+			//    aby  (ab )  *   yz
+			//           ↑ corner2
+			if ((grid.GetCandidatesReversal(corner1) | grid.GetCandidatesReversal(corner2)) != comparer)
+			{
+				return;
+			}
+
+			if (new GridMap(stackalloc[] { corner1, corner2 }).AllSetsAreInOneRegion(out int? region)
+				&& region < 9)
+			{
+				// Subtype 1.
+				short mask1 = grid.GetCandidatesReversal(otherCellsMap.SetAt(0));
+				short mask2 = grid.GetCandidatesReversal(otherCellsMap.SetAt(1));
+				short mask = (short)(mask1 | mask2);
+				if (mask.CountSet() != 2 + size || (mask & comparer) != comparer
+					|| mask1 == comparer || mask2 == comparer)
+				{
+					return;
+				}
+
+				var map = new GridMap(otherCellsMap.Offsets, ProcessPeersWithoutItself) & bivalueCells;
+				if (map.Count < size)
+				{
+					return;
+				}
+
+				short extraDigitsMask = (short)(mask ^ comparer);
+				int[] cells = map.ToArray();
+				for (int i1 = 0, length = cells.Length; i1 < length - size + 1; i1++)
+				{
+					int c1 = cells[i1];
+					short m1 = grid.GetCandidatesReversal(c1);
+					if ((m1 & extraDigitsMask) == 0)
+					{
+						continue;
+					}
+
+					for (int i2 = i1 + 1; i2 < length - size + 2; i2++)
+					{
+						int c2 = cells[i2];
+						short m2 = grid.GetCandidatesReversal(c2);
+						if ((m2 & extraDigitsMask) == 0)
+						{
+							continue;
+						}
+
+						if (size == 2)
+						{
+							// Check XY-Wing.
+							short m = (short)((short)(m1 | m2) ^ extraDigitsMask);
+							if (m.CountSet() != 1 || (m1 & m2).CountSet() != 1)
+							{
+								continue;
+							}
+
+							// Now check eliminations.
+							var conclusions = new List<Conclusion>();
+							int elimDigit = m.FindFirstSet();
+							var elimMap = new GridMap(stackalloc[] { c1, c2 }, ProcessPeersWithoutItself);
+							if (elimMap.IsEmpty)
+							{
+								continue;
+							}
+
+							foreach (int cell in elimMap.Offsets)
+							{
+								if (grid.Exists(cell, elimDigit) is true)
+								{
+									conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
+								}
+							}
+							if (conclusions.Count == 0)
+							{
+								continue;
+							}
+
+							var candidateOffsets = new List<(int, int)>();
+							foreach (int cell in urCells)
+							{
+								if (grid.GetCellStatus(cell) != Empty)
+								{
+									continue;
+								}
+
+								foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+								{
+									candidateOffsets.Add((true switch
+									{
+										_ when digit == elimDigit => otherCellsMap[cell] ? 2 : 0,
+										_ when (extraDigitsMask >> digit & 1) != 0 => 1,
+										_ => 0
+									}, cell * 9 + digit));
+								}
+							}
+							foreach (int digit in grid.GetCandidatesReversal(c1).GetAllSets())
+							{
+								candidateOffsets.Add((digit == elimDigit ? 2 : 1, c1 * 9 + digit));
+							}
+							foreach (int digit in grid.GetCandidatesReversal(c2).GetAllSets())
+							{
+								candidateOffsets.Add((digit == elimDigit ? 2 : 1, c2 * 9 + digit));
+							}
+							if (!_allowUncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
+							{
+								continue;
+							}
+
+							accumulator.Add(
+								new UrWithWingTechniqueInfo(
+									conclusions,
+									views: new[]
+									{
+										new View(
+											cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+											candidateOffsets,
+											regionOffsets: null,
+											links: null)
+									},
+									typeCode: XyWing,
+									digit1: d1,
+									digit2: d2,
+									cells: urCells,
+									extraCells: new[] { c1, c2 },
+									extraDigits: extraDigitsMask.GetAllSets(),
+									pivots: otherCellsMap.Offsets,
+									isAr: arMode));
+						}
+						else // size > 2
+						{
+							for (int i3 = i2 + 1; i3 < length - size + 3; i3++)
+							{
+								int c3 = cells[i3];
+								short m3 = grid.GetCandidatesReversal(c3);
+								if ((m3 & extraDigitsMask) == 0)
+								{
+									continue;
+								}
+
+								if (size == 3)
+								{
+									// Check XYZ-Wing.
+									short m = (short)(((short)(m1 | m2) | m3) ^ extraDigitsMask);
+									if (m.CountSet() != 1 || (m1 & m2 & m3).CountSet() != 1)
+									{
+										continue;
+									}
+
+									// Now check eliminations.
+									var conclusions = new List<Conclusion>();
+									int elimDigit = m.FindFirstSet();
+									var elimMap = new GridMap(stackalloc[] { c1, c2, c3 }, ProcessPeersWithoutItself);
+									if (elimMap.IsEmpty)
+									{
+										continue;
+									}
+
+									foreach (int cell in elimMap.Offsets)
+									{
+										if (grid.Exists(cell, elimDigit) is true)
+										{
+											conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
+										}
+									}
+									if (conclusions.Count == 0)
+									{
+										continue;
+									}
+
+									var candidateOffsets = new List<(int, int)>();
+									foreach (int cell in urCells)
+									{
+										if (grid.GetCellStatus(cell) != Empty)
+										{
+											continue;
+										}
+
+										foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+										{
+											candidateOffsets.Add((true switch
+											{
+												_ when digit == elimDigit => otherCellsMap[cell] ? 2 : 0,
+												_ when (extraDigitsMask >> digit & 1) != 0 => 1,
+												_ => 0
+											}, cell * 9 + digit));
+										}
+									}
+									foreach (int digit in grid.GetCandidatesReversal(c1).GetAllSets())
+									{
+										candidateOffsets.Add((digit == elimDigit ? 2 : 1, c1 * 9 + digit));
+									}
+									foreach (int digit in grid.GetCandidatesReversal(c2).GetAllSets())
+									{
+										candidateOffsets.Add((digit == elimDigit ? 2 : 1, c2 * 9 + digit));
+									}
+									foreach (int digit in grid.GetCandidatesReversal(c3).GetAllSets())
+									{
+										candidateOffsets.Add((digit == elimDigit ? 2 : 1, c3 * 9 + digit));
+									}
+									if (!_allowUncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
+									{
+										continue;
+									}
+
+									accumulator.Add(
+										new UrWithWingTechniqueInfo(
+											conclusions,
+											views: new[]
+											{
+												new View(
+													cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+													candidateOffsets,
+													regionOffsets: null,
+													links: null)
+											},
+											typeCode: XyzWing,
+											digit1: d1,
+											digit2: d2,
+											cells: urCells,
+											extraCells: new[] { c1, c2, c3 },
+											extraDigits: extraDigitsMask.GetAllSets(),
+											pivots: otherCellsMap.Offsets,
+											isAr: arMode));
+								}
+								else // size == 4
+								{
+									for (int i4 = i3 + 1; i4 < length; i4++)
+									{
+										int c4 = cells[i4];
+										short m4 = grid.GetCandidatesReversal(c4);
+										if ((m4 & extraDigitsMask) == 0)
+										{
+											continue;
+										}
+
+										// Check WXYZ-Wing.
+										short m = (short)((short)((short)((short)(m1 | m2) | m3) | m4) ^ extraDigitsMask);
+										if (m.CountSet() != 1 || (m1 & m2 & m3 & m4).CountSet() != 1)
+										{
+											continue;
+										}
+
+										// Now check eliminations.
+										var conclusions = new List<Conclusion>();
+										int elimDigit = m.FindFirstSet();
+										var elimMap = new GridMap(stackalloc[] { c1, c2, c3, c4 }, ProcessPeersWithoutItself);
+										if (elimMap.IsEmpty)
+										{
+											continue;
+										}
+
+										foreach (int cell in elimMap.Offsets)
+										{
+											if (grid.Exists(cell, elimDigit) is true)
+											{
+												conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
+											}
+										}
+										if (conclusions.Count == 0)
+										{
+											continue;
+										}
+
+										var candidateOffsets = new List<(int, int)>();
+										foreach (int cell in urCells)
+										{
+											if (grid.GetCellStatus(cell) != Empty)
+											{
+												continue;
+											}
+
+											foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+											{
+												candidateOffsets.Add((true switch
+												{
+													_ when digit == elimDigit => otherCellsMap[cell] ? 2 : 0,
+													_ when (extraDigitsMask >> digit & 1) != 0 => 1,
+													_ => 0
+												}, cell * 9 + digit));
+											}
+										}
+										foreach (int digit in grid.GetCandidatesReversal(c1).GetAllSets())
+										{
+											candidateOffsets.Add((digit == elimDigit ? 2 : 1, c1 * 9 + digit));
+										}
+										foreach (int digit in grid.GetCandidatesReversal(c2).GetAllSets())
+										{
+											candidateOffsets.Add((digit == elimDigit ? 2 : 1, c2 * 9 + digit));
+										}
+										foreach (int digit in grid.GetCandidatesReversal(c3).GetAllSets())
+										{
+											candidateOffsets.Add((digit == elimDigit ? 2 : 1, c3 * 9 + digit));
+										}
+										foreach (int digit in grid.GetCandidatesReversal(c4).GetAllSets())
+										{
+											candidateOffsets.Add((digit == elimDigit ? 2 : 1, c4 * 9 + digit));
+										}
+										if (!_allowUncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
+										{
+											continue;
+										}
+
+										accumulator.Add(
+											new UrWithWingTechniqueInfo(
+												conclusions,
+												views: new[]
+												{
+													new View(
+														cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+														candidateOffsets,
+														regionOffsets: null,
+														links: null)
+												},
+												typeCode: WxyzWing,
+												digit1: d1,
+												digit2: d2,
+												cells: urCells,
+												extraCells: new[] { c1, c2, c3, c4 },
+												extraDigits: extraDigitsMask.GetAllSets(),
+												pivots: otherCellsMap.Offsets,
+												isAr: arMode));
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			else
+			{
+				// Subtype 2.
+
 			}
 		}
 	}

@@ -55,6 +55,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
+			(_, var bivalueCells, _) = grid;
+
 			// Iterate on mode (whether use AR or UR mode to search).
 			var tempList = new List<UrTechniqueInfo>();
 			foreach (bool arMode in stackalloc[] { false, true })
@@ -123,6 +125,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 									// Both diagonal and non-diagonal.
 									CheckType2(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
+
+									if (_searchExtended)
+									{
+										for (int size = 2; size <= 4; size++)
+										{
+											CheckWing(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, bivalueCells, size);
+										}
+									}
 
 									if (c1 == 0 && c2 == 3 || c1 == 1 && c2 == 2)
 									{
@@ -358,6 +368,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		partial void Check4C3SL(
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
+
+		partial void CheckWing(
+			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
+			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap,
+			GridMap bivalueCells, int size);
 		#endregion
 	}
 }

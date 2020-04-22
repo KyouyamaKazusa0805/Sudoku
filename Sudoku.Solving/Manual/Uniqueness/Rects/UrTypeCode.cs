@@ -189,5 +189,23 @@
 		/// </summary>
 		[Name("+ 4C / 3SL")]
 		Plus4C3SL = 23,
+
+		/// <summary>
+		/// Indicates the UR-XY-Wing.
+		/// </summary>
+		[Name("XY-Wing")]
+		XyWing = 24,
+
+		/// <summary>
+		/// Indicates the UR-XYZ-Wing.
+		/// </summary>
+		[Name("XYZ-Wing")]
+		XyzWing = 25,
+
+		/// <summary>
+		/// Indicates the UR-WXYZ-Wing.
+		/// </summary>
+		[Name("WXYZ-Wing")]
+		WxyzWing = 26,
 	}
 }

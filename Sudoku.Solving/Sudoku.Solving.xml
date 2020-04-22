@@ -6242,6 +6242,74 @@
             Indicates the UR + 4C / 3SL.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.XyWing">
+            <summary>
+            Indicates the UR-XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.XyzWing">
+            <summary>
+            Indicates the UR-XYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.WxyzWing">
+            <summary>
+            Indicates the UR-WXYZ-Wing.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo">
+            <summary>
+            Provides a usage of <b>unique rectangle</b> (UR) or
+            <b>avoidable rectangle</b> (AR) with wings technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo.DifficultyExtra">
+            <summary>
+            Indicates the difficulty rating extra.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="typeCode">The type code.</param>
+            <param name="digit1">The digit 1.</param>
+            <param name="digit2">The digit 2.</param>
+            <param name="cells">All cells.</param>
+            <param name="extraCells">The extra cells.</param>
+            <param name="extraDigits">The extra digits.</param>
+            <param name="pivots">The pivot cells.</param>
+            <param name="isAr">Indicates whether the specified structure forms an AR.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo.ExtraCells">
+            <summary>
+            Indicates the extra cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo.ExtraDigits">
+            <summary>
+            Indicates the extra digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo.Pivots">
+            <summary>
+            Indicates the pivot cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo.GetAdditional">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo">
             <summary>
             Provides a usage of <b>uniqueness</b> technique.
