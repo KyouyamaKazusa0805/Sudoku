@@ -117,7 +117,6 @@ namespace Sudoku.Solving.Manual
 				//	HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
 				new BowmanBingoTechniqueSearcher(_settings.BowmanBingoMaximumLength),
 				new PomTechniqueSearcher(),
-				//new TemplateTechniqueSearcher(false),
 				new CccTechniqueSearcher(),
 				new ExocetTechniqueSearcher(regionMaps),
 			};

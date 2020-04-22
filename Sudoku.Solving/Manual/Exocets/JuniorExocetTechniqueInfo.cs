@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 9.4M;
+		public override decimal Difficulty => 9.4M + (MirrorEliminations is null ? 0 : .1M);
 
 
 		/// <inheritdoc/>

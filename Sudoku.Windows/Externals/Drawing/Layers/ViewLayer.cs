@@ -89,7 +89,7 @@ namespace Sudoku.Drawing.Layers
 
 			if (!(_view is null))
 			{
-				DrawCells(g, offset / 2);
+				DrawCells(g);
 				DrawCandidates(g, offset);
 				DrawRegions(g, offset);
 				DrawLinks(g, offset);
@@ -311,8 +311,7 @@ namespace Sudoku.Drawing.Layers
 		/// To draw cells.
 		/// </summary>
 		/// <param name="g">The graphics.</param>
-		/// <param name="offset">The offset.</param>
-		private void DrawCells(Graphics g, float offset)
+		private void DrawCells(Graphics g)
 		{
 			foreach (var (id, cell) in _view.CellOffsets ?? Array.Empty<(int, int)>())
 			{
@@ -320,8 +319,8 @@ namespace Sudoku.Drawing.Layers
 				{
 					var (cw, ch) = _pointConverter.CellSize;
 					var (x, y) = _pointConverter.GetMousePointInCenter(cell);
-					using var brush = new SolidBrush(Color.FromArgb(32, color));
-					g.FillRectangle(brush, _pointConverter.GetMousePointRectangle(cell).Zoom(-offset));
+					using var brush = new SolidBrush(Color.FromArgb(64, color));
+					g.FillRectangle(brush, _pointConverter.GetMousePointRectangle(cell)/*.Zoom(-offset)*/);
 				}
 			}
 		}

@@ -2313,72 +2313,6 @@
             <param name="node">The node.</param>
             <param name="map">The map.</param>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Exocets.MirrorEliminations">
-            <summary>
-            Indicates the mirror cell eliminations.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Solving.Conclusion})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Count">
-            <summary>
-            Indicates the number of all conclusions.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Conclusions">
-            <summary>
-            Indicates the conclusions.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Add(Sudoku.Solving.Conclusion)">
-            <summary>
-            Add the conclusion into the collection.
-            </summary>
-            <param name="conclusion">The conclusion.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
-            <summary>
-            Add a serial of conclusions into this collection.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.MirrorEliminations}[])">
-            <summary>
-            Merge all mirror eliminations.
-            </summary>
-            <param name="eliminations">All instances to merge.</param>
-            <returns>The merged result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.ToString">
-            <method name="ToString" paramType="__noparam">
-		<summary>Returns a string that represents the current object.</summary>
-		<returns>A string that represents the current object.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.MirrorEliminations})">
-            <summary>
-            Merge all conclusions.
-            </summary>
-            <param name="list">The list.</param>
-            <returns>The merged result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.MirrorEliminations[])">
-            <summary>
-            Merge all conclusions.
-            </summary>
-            <param name="list">The list.</param>
-            <returns>The merged result.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.Exocet">
             <summary>
             Indicates an exocet pattern.
@@ -2716,6 +2650,72 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.GetAdditional">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.MirrorEliminations">
+            <summary>
+            Indicates the mirror cell eliminations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Solving.Conclusion})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Count">
+            <summary>
+            Indicates the number of all conclusions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Conclusions">
+            <summary>
+            Indicates the conclusions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Add(Sudoku.Solving.Conclusion)">
+            <summary>
+            Add the conclusion into the collection.
+            </summary>
+            <param name="conclusion">The conclusion.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
+            <summary>
+            Add a serial of conclusions into this collection.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.MirrorEliminations}[])">
+            <summary>
+            Merge all mirror eliminations.
+            </summary>
+            <param name="eliminations">All instances to merge.</param>
+            <returns>The merged result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.MirrorEliminations})">
+            <summary>
+            Merge all conclusions.
+            </summary>
+            <param name="list">The list.</param>
+            <returns>The merged result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.MirrorEliminations[])">
+            <summary>
+            Merge all conclusions.
+            </summary>
+            <param name="list">The list.</param>
+            <returns>The merged result.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo">
             <summary>
