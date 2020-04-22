@@ -10,27 +10,28 @@ using static Sudoku.Solving.ConclusionType;
 namespace Sudoku.Solving.Manual.Exocets
 {
 	/// <summary>
-	/// Encapsulates an <b>exocet</b> technique searcher.
+	/// <para>Encapsulates an <b>exocet</b> technique searcher.</para>
+	/// <para>
+	/// The pattern will be like:
+	/// <code>
+	/// .-------.-------.-------.<br/>
+	/// | B B * | * . . | * . . | B = Base Cells<br/>
+	/// | . . * | Q . . | R . . | Q = 1st Object Pair<br/>
+	/// | . . * | Q . . | R . . | R = 2nd Object Pair<br/>
+	/// :-------+-------+-------: S = Cross-line Cells<br/>
+	/// | . . S | S . . | S . . | * = Escape Cells<br/>
+	/// | . . S | S . . | S . . |<br/>
+	/// | . . S | S . . | S . . |<br/>
+	/// :-------+-------+-------:<br/>
+	/// | . . S | S . . | S . . |<br/>
+	/// | . . S | S . . | S . . |<br/>
+	/// | . . S | S . . | S . . |<br/>
+	/// '-------'-------'-------'
+	/// </code>
+	/// </para>
 	/// </summary>
-	[HighAllocation]
 	public sealed class ExocetTechniqueSearcher : TechniqueSearcher
 	{
-		#region Patterns
-		// .-------.-------.-------.
-		// | B B * | * . . | * . . | B = Base Cells
-		// | . . * | Q . . | R . . | Q = 1st Object Pair
-		// | . . * | Q . . | R . . | R = 2nd Object Pair
-		// :-------+-------+-------: S = Cross-line Cells
-		// | . . S | S . . | S . . | * = Escape Cells
-		// | . . S | S . . | S . . |
-		// | . . S | S . . | S . . |
-		// :-------+-------+-------:
-		// | . . S | S . . | S . . |
-		// | . . S | S . . | S . . |
-		// | . . S | S . . | S . . |
-		// '-------'-------'-------'
-		#endregion
-
 		/// <summary>
 		/// The cross line cells iterator.
 		/// </summary>

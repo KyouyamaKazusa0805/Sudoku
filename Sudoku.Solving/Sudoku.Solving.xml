@@ -2496,7 +2496,25 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher">
             <summary>
-            Encapsulates an <b>exocet</b> technique searcher.
+            <para>Encapsulates an <b>exocet</b> technique searcher.</para>
+            <para>
+            The pattern will be like:
+            <code>
+            .-------.-------.-------.<br/>
+            | B B * | * . . | * . . | B = Base Cells<br/>
+            | . . * | Q . . | R . . | Q = 1st Object Pair<br/>
+            | . . * | Q . . | R . . | R = 2nd Object Pair<br/>
+            :-------+-------+-------: S = Cross-line Cells<br/>
+            | . . S | S . . | S . . | * = Escape Cells<br/>
+            | . . S | S . . | S . . |<br/>
+            | . . S | S . . | S . . |<br/>
+            :-------+-------+-------:<br/>
+            | . . S | S . . | S . . |<br/>
+            | . . S | S . . | S . . |<br/>
+            | . . S | S . . | S . . |<br/>
+            '-------'-------'-------'
+            </code>
+            </para>
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.SIterator">
