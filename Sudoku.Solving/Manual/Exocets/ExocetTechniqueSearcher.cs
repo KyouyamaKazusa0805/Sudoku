@@ -30,6 +30,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// | . . S | S . . | S . . |<br/>
 	/// '-------'-------'-------'
 	/// </code>
+	/// In the data structure, all letters will be used as the same one in this exemplar.
 	/// </para>
 	/// </summary>
 	[TechniqueDisplay("Exocet")]
