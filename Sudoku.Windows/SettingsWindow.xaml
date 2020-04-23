@@ -56,9 +56,9 @@
 			<TabItem Header="Solving">
 				<Grid Background="#FFE5E5E5">
 					<Grid.RowDefinitions>
-						<RowDefinition/>
-						<RowDefinition/>
-						<RowDefinition/>
+						<RowDefinition Height="4*"/>
+						<RowDefinition Height="2*"/>
+						<RowDefinition Height="6*"/>
 					</Grid.RowDefinitions>
 					<GroupBox Grid.Row="0" Grid.Column="0" Header="Chains">
 						<Grid>
@@ -108,8 +108,6 @@
 							<Grid.RowDefinitions>
 								<RowDefinition/>
 								<RowDefinition/>
-								<RowDefinition/>
-								<RowDefinition/>
 							</Grid.RowDefinitions>
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition/>
@@ -132,6 +130,8 @@
 					<GroupBox Grid.Row="2" Grid.Column="0" Header="Miscellaneous">
 						<Grid>
 							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
 								<RowDefinition/>
 								<RowDefinition/>
 								<RowDefinition/>
@@ -185,6 +185,11 @@
 							<TextBox Grid.Row="3" Grid.Column="2" Name="_textBoxMaxPetalsOfDeathBlossom"
 									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
 									 TextChanged="TextBoxMaxPetalsOfDeathBlossom_TextChanged"/>
+							<CheckBox Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="3"
+									  Name="_checkBoxCheckAdvancedInExocet"
+									  HorizontalAlignment="Left" VerticalAlignment="Center"
+									  Content="Check advanced eliminations in exocets"
+									  Click="CheckBoxCheckAdvancedInExocet_Click"/>
 						</Grid>
 					</GroupBox>
 				</Grid>
@@ -395,6 +400,8 @@
 				</Grid>
 			</TabItem>
 		</TabControl>
+		<Label Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"
+			   Content="Note: Some features should be come into effect after restart the program (i.e. Need restart)."/>
 		<Button Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom"
 				Name="_buttonApply" Content="Apply" Margin="0,0,70,10"
 				Click="ButtonApply_Click"/>

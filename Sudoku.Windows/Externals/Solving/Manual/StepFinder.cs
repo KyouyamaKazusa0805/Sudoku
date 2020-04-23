@@ -118,7 +118,7 @@ namespace Sudoku.Solving.Manual
 				new BowmanBingoTechniqueSearcher(_settings.BowmanBingoMaximumLength),
 				new PomTechniqueSearcher(),
 				new CccTechniqueSearcher(),
-				new ExocetTechniqueSearcher(regionMaps),
+				new ExocetTechniqueSearcher(regionMaps, _settings.CheckAdvancedInExocet),
 			};
 
 			var bag = new Bag<TechniqueInfo>();

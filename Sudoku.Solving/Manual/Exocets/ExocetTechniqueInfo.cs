@@ -76,8 +76,8 @@ namespace Sudoku.Solving.Manual.Exocets
 				.Append(CellCollection.ToString(new[] { tq1, tq2, tr1, tr2 }))
 				.Append(addtional is null ? string.Empty : $" with {addtional}")
 				.Append(" => ")
-				.Append(ConclusionCollection.ToString(Conclusions))
-				.NullableAppendLine(MirrorEliminations.ToString())
+				.AppendLine(ConclusionCollection.ToString(Conclusions))
+				.NullableAppend(MirrorEliminations.ToString())
 				.ToString();
 		}
 

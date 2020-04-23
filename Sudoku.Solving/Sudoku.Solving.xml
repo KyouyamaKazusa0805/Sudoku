@@ -2539,16 +2539,24 @@
             Indicates all exocet patterns to iterate on.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher._checkAdvanced">
+            <summary>
+            Indicates whether the searcher will find advanced eliminations.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher._regionMaps">
             <summary>
             Indicates the region maps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.#ctor(Sudoku.Data.GridMap[])">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.#ctor(Sudoku.Data.GridMap[],System.Boolean)">
             <summary>
             Initializes an instance with the specified region maps.
             </summary>
             <param name="regionMaps">The region maps.</param>
+            <param name="checkAdvanced">
+            Indicates whether the searcher will find advanced eliminations.
+            </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.Priority">
             <summary>
@@ -2585,6 +2593,7 @@
             <param name="conjugatePairDigit">The digit of conjugate pair is available.</param>
             <param name="cellOffsets">The cell offsets.</param>
             <param name="candidateOffsets">The candidate offsets.</param>
+            <returns>Returns the list that contains all possible mirror eliminations.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetDiagonalCell(System.ReadOnlySpan{System.Int32},System.Int32)">
             <summary>
@@ -4197,6 +4206,15 @@
             the true candidates looking for.
             </para>
             <para>The value is <see langword="false"/> in default case.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckAdvancedInExocet">
+            <summary>
+            <para>
+            Indicates whether the solver should check advanced eliminations
+            during finding exocets.
+            </para>
+            <para>The value is <see langword="true"/> in default case.</para>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.HobiwanFishMaximumSize">

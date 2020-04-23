@@ -303,6 +303,15 @@ namespace Sudoku.Windows
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether the solver should check advanced eliminations
+		/// during finding exocets.
+		/// </para>
+		/// <para>The value is <see langword="true"/> in default case.</para>
+		/// </summary>
+		public bool CheckAdvancedInExocet { get; set; } = true;
+
+		/// <summary>
+		/// <para>
 		/// Indicates the grid line width of the sudoku grid to render.
 		/// </para>
 		/// <para>The value is <c>1.5F</c> in default case.</para>
@@ -403,7 +412,7 @@ namespace Sudoku.Windows
 		/// <para>Indicates the scale of values.</para>
 		/// <para>The value is <c>0.8M</c> in default case.</para>
 		/// </summary>
-		public decimal ValueScale { get; set; } = .8M;
+		public decimal ValueScale { get; set; } = .9M;
 
 		/// <summary>
 		/// <para>Indicates the scale of candidates.</para>

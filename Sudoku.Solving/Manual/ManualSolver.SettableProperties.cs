@@ -299,6 +299,15 @@
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether the solver should check advanced eliminations
+		/// during finding exocets.
+		/// </para>
+		/// <para>The value is <see langword="true"/> in default case.</para>
+		/// </summary>
+		public bool CheckAdvancedInExocet { get; set; } = true;
+
+		/// <summary>
+		/// <para>
 		/// Indicates what size of the Hobiwan's fish will be searched for.
 		/// </para>
 		/// <para>

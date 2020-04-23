@@ -69,6 +69,7 @@ namespace Sudoku.Windows
 			_checkBoxUseExtendedBugSearcher.IsChecked = Settings.UseExtendedBugSearcher;
 			_checkBoxSearchExtendedUniqueRectangle.IsChecked = Settings.SearchExtendedUniqueRectangles;
 			_textBoxMaxPetalsOfDeathBlossom.Text = Settings.MaxPetalsOfDeathBlossom.ToString();
+			_checkBoxCheckAdvancedInExocet.IsChecked = Settings.CheckAdvancedInExocet;
 			_textBoxGridLineWidth.Text = Settings.GridLineWidth.ToString();
 			_textBoxBlockLineWidth.Text = Settings.BlockLineWidth.ToString();
 			_textBoxValueScale.Text = Settings.ValueScale.ToString();
@@ -217,6 +218,9 @@ namespace Sudoku.Windows
 				MessageBox.Show("The value is invalid.", "Info");
 			}
 		}
+
+		private void CheckBoxCheckAdvancedInExocet_Click(object sender, RoutedEventArgs e) =>
+			_checkBoxCheckAdvancedInExocet.IsChecked = Settings.CheckAdvancedInExocet = _manualSolver.CheckAdvancedInExocet ^= true;
 
 		private void TextBoxGridLineWidth_TextChanged(object sender, TextChangedEventArgs e)
 		{

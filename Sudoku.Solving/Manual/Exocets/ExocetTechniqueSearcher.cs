@@ -32,6 +32,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// </code>
 	/// </para>
 	/// </summary>
+	[TechniqueDisplay("Exocet")]
 	public sealed partial class ExocetTechniqueSearcher : TechniqueSearcher
 	{
 		/// <summary>
@@ -39,6 +40,11 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </summary>
 		private static readonly Exocet[] Exocets;
 
+
+		/// <summary>
+		/// Indicates whether the searcher will find advanced eliminations.
+		/// </summary>
+		private readonly bool _checkAdvanced;
 
 		/// <summary>
 		/// Indicates the region maps.
@@ -50,7 +56,11 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// Initializes an instance with the specified region maps.
 		/// </summary>
 		/// <param name="regionMaps">The region maps.</param>
-		public ExocetTechniqueSearcher(GridMap[] regionMaps) => _regionMaps = regionMaps;
+		/// <param name="checkAdvanced">
+		/// Indicates whether the searcher will find advanced eliminations.
+		/// </param>
+		public ExocetTechniqueSearcher(GridMap[] regionMaps, bool checkAdvanced) =>
+			(_regionMaps, _checkAdvanced) = (regionMaps, checkAdvanced);
 
 
 		/// <summary>
@@ -360,10 +370,16 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="conjugatePairDigit">The digit of conjugate pair is available.</param>
 		/// <param name="cellOffsets">The cell offsets.</param>
 		/// <param name="candidateOffsets">The candidate offsets.</param>
+		/// <returns>Returns the list that contains all possible mirror eliminations.</returns>
 		private MirrorEliminations CheckMirror(
 			IReadOnlyGrid grid, short baseCandidates, in Exocet exocet, int conjugatePairDigit,
 			IList<(int, int)> cellOffsets, IList<(int, int)> candidateOffsets)
 		{
+			if (!_checkAdvanced)
+			{
+				return new MirrorEliminations();
+			}
+
 			var (_, target, _) = exocet;
 			var (_, _, tq1, tq2, tr1, tr2, _, mq1, mq2, mr1, mr2) = exocet;
 			return MirrorEliminations.MergeAll(p(tq1, mq1), p(tq2, mq2), p(tr1, mr1), p(tr2, mr2));

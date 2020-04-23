@@ -71,7 +71,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override readonly string? ToString() =>
-			Conclusions is null ? null : $"Mirror eliminations: {ConclusionCollection.ToString(Conclusions)}";
+			Conclusions is null ? null : $"  * Mirror eliminations: {ConclusionCollection.ToString(Conclusions)}";
 
 		/// <inheritdoc/>
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
