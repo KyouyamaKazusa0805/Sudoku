@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
@@ -26,7 +27,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Indicates the conclusions.
 		/// </summary>
-		public IList<Conclusion> Conclusions { readonly get; private set; }
+		public IList<Conclusion>? Conclusions { readonly get; private set; }
 
 
 		/// <summary>
@@ -64,7 +65,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		}
 
 		/// <inheritdoc/>
-		public readonly IEnumerator<Conclusion> GetEnumerator() => Conclusions.GetEnumerator();
+		public readonly IEnumerator<Conclusion> GetEnumerator() =>
+			(Conclusions ?? Array.Empty<Conclusion>()).GetEnumerator();
 
 
 		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>

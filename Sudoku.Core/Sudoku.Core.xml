@@ -3610,6 +3610,25 @@
             </param>
             <returns>The reference of the current instance.</returns>
         </member>
+        <member name="M:Sudoku.Extensions.StringBuilderEx.NullableAppend(System.Text.StringBuilder,System.String)">
+            <summary>
+            Append the text into the tail of the <see cref="T:System.Text.StringBuilder"/> object if
+            the text is not <see langword="null"/>; otherwise, do nothing.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The string builder.</param>
+            <param name="text">The text to add.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.StringBuilderEx.NullableAppendLine(System.Text.StringBuilder,System.String)">
+            <summary>
+            Append the text into the tail of the <see cref="T:System.Text.StringBuilder"/> object if
+            the text is not <see langword="null"/>, and then add a terminator at the tail;
+            otherwise, do nothing.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The string builder.</param>
+            <param name="text">The text to add.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
         <member name="M:Sudoku.Extensions.StringBuilderEx.CopyTo(System.Text.StringBuilder,System.Text.StringBuilder)">
             <summary>
             Copy the specified string builder to the specified target.

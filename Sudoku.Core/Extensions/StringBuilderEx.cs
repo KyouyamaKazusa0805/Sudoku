@@ -76,6 +76,27 @@ namespace Sudoku.Extensions
 			@this.AppendLine(obj.NullableToString());
 
 		/// <summary>
+		/// Append the text into the tail of the <see cref="StringBuilder"/> object if
+		/// the text is not <see langword="null"/>; otherwise, do nothing.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The string builder.</param>
+		/// <param name="text">The text to add.</param>
+		/// <returns>The reference of the current instance.</returns>
+		public static StringBuilder NullableAppend(this StringBuilder @this, string? text) =>
+			text is null ? @this : @this.Append(text);
+
+		/// <summary>
+		/// Append the text into the tail of the <see cref="StringBuilder"/> object if
+		/// the text is not <see langword="null"/>, and then add a terminator at the tail;
+		/// otherwise, do nothing.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The string builder.</param>
+		/// <param name="text">The text to add.</param>
+		/// <returns>The reference of the current instance.</returns>
+		public static StringBuilder NullableAppendLine(this StringBuilder @this, string? text) =>
+			text is null ? @this : @this.AppendLine(text);
+
+		/// <summary>
 		/// Copy the specified string builder to the specified target.
 		/// </summary>
 		/// <param name="this">The base string builder.</param>
@@ -93,7 +114,9 @@ namespace Sudoku.Extensions
 			}
 
 			for (int i = 0; i < @this.Length; i++)
+			{
 				@to[i] = @this[i];
+			}
 		}
 	}
 }

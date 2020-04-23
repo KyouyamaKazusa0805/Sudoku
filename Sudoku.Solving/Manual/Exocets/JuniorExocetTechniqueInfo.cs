@@ -18,14 +18,14 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="mirrorEliminations">The mirror eliminations.</param>
 		public JuniorExocetTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, Exocet exocet,
-			IEnumerable<int> digits, MirrorEliminations? mirrorEliminations)
+			IEnumerable<int> digits, MirrorEliminations mirrorEliminations)
 			: base(conclusions, views, exocet, digits, ExocetTypeCode.Junior, mirrorEliminations)
 		{
 		}
 
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 9.4M + (MirrorEliminations is null ? 0 : .1M);
+		public override decimal Difficulty => 9.4M + (MirrorEliminations.Conclusions is null ? 0 : .1M);
 
 
 		/// <inheritdoc/>

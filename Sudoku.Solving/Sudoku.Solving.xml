@@ -2457,7 +2457,7 @@
             Provides a usage of <b>exocet</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.ExocetTypeCode,System.Nullable{Sudoku.Solving.Manual.Exocets.MirrorEliminations})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.ExocetTypeCode,Sudoku.Solving.Manual.Exocets.MirrorEliminations)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -2635,7 +2635,7 @@
             Provides a usage of <b>junior exocet</b> (JE) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},System.Nullable{Sudoku.Solving.Manual.Exocets.MirrorEliminations})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.MirrorEliminations)">
             <summary>
             Initializes an instance with the specified information.
             </summary>

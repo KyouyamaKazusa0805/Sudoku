@@ -23,12 +23,11 @@ namespace Sudoku.Solving.Manual.Exocets
 		public ExocetTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			Exocet exocet, IEnumerable<int> digits, ExocetTypeCode typeCode,
-			MirrorEliminations? mirrorEliminations)
+			MirrorEliminations mirrorEliminations)
 			: base(conclusions, views)
 		{
 			(Exocet, Digits, TypeCode) = (exocet, digits, typeCode);
-			if (!((MirrorEliminations = mirrorEliminations) is null)
-				&& !(MirrorEliminations.Value.Conclusions is null))
+			if (!((MirrorEliminations = mirrorEliminations).Conclusions is null))
 			{
 				((List<Conclusion>)Conclusions).AddRange(MirrorEliminations);
 			}
@@ -53,7 +52,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// The mirror eliminations.
 		/// </summary>
-		public MirrorEliminations? MirrorEliminations { get; }
+		public MirrorEliminations MirrorEliminations { get; }
 
 		/// <inheritdoc/>
 		public sealed override string Name => TypeCode.GetCustomName()!;
@@ -66,27 +65,20 @@ namespace Sudoku.Solving.Manual.Exocets
 		public override string ToString()
 		{
 			var (b1, b2, tq1, tq2, tr1, tr2) = Exocet;
-			var sb = new StringBuilder(Name)
+			string? addtional = GetAdditional();
+
+			return new StringBuilder(Name)
 				.Append(": Digits ")
 				.Append(DigitCollection.ToString(Digits))
 				.Append(" in base cells ")
 				.Append(CellCollection.ToString(new[] { b1, b2 }))
 				.Append(", target cells ")
-				.Append(CellCollection.ToString(new[] { tq1, tq2, tr1, tr2 }));
-
-			string? addtional = GetAdditional();
-			sb
+				.Append(CellCollection.ToString(new[] { tq1, tq2, tr1, tr2 }))
 				.Append(addtional is null ? string.Empty : $" with {addtional}")
 				.Append(" => ")
-				.Append(ConclusionCollection.ToString(Conclusions));
-
-			string? mirrors = MirrorEliminations?.ToString();
-			if (!(mirrors is null))
-			{
-				sb.AppendLine().Append(mirrors);
-			}
-
-			return sb.ToString();
+				.Append(ConclusionCollection.ToString(Conclusions))
+				.NullableAppendLine(MirrorEliminations.ToString())
+				.ToString();
 		}
 
 		/// <summary>
