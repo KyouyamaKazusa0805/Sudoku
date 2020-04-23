@@ -66,6 +66,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
+			var mapPlayground = (Span<GridMap>)stackalloc GridMap[2];
 			var targetCells = (Span<int>)stackalloc int[4];
 			var digitDistributions = GetDigitDistributions(grid);
 			foreach (var exocet in Exocets)
@@ -81,8 +82,8 @@ namespace Sudoku.Solving.Manual.Exocets
 				// The number of different candidates in base cells cannot be greater than 5.
 				short m1 = grid.GetCandidatesReversal(b1);
 				short m2 = grid.GetCandidatesReversal(b2);
-				short m = (short)(m1 | m2);
-				if (m.CountSet() > 5)
+				short baseCandidates = (short)(m1 | m2);
+				if (baseCandidates.CountSet() > 5)
 				{
 					continue;
 				}
@@ -97,19 +98,19 @@ namespace Sudoku.Solving.Manual.Exocets
 						crosslineMask |= (short)(1 << grid[cell]);
 					}
 				}
-				if ((m & crosslineMask) != 0)
+				if ((baseCandidates & crosslineMask) != 0)
 				{
 					continue;
 				}
 
 				short digitsNeedChecking = (short)((short)((short)((short)(
 					grid.GetCandidatesReversal(tq1) | grid.GetCandidatesReversal(tq2))
-					| grid.GetCandidatesReversal(tr1)) | grid.GetCandidatesReversal(tr2)) & m);
+					| grid.GetCandidatesReversal(tr1)) | grid.GetCandidatesReversal(tr2)) & baseCandidates);
 				int emptyCount = 0;
 				(targetCells[0], targetCells[1], targetCells[2], targetCells[3]) = (tq1, tq2, tr1, tr2);
 
 				// Target cells which is non-empty cannot hold any digits that base cell holds.
-				short targetMask = 0;
+				short targetValueMask = 0;
 				foreach (int cell in targetCells)
 				{
 					switch (grid.GetCellStatus(cell))
@@ -122,22 +123,18 @@ namespace Sudoku.Solving.Manual.Exocets
 						case Modifiable:
 						case Given:
 						{
-							targetMask |= (short)(1 << grid[cell]);
+							targetValueMask |= (short)(1 << grid[cell]);
 							break;
 						}
 					}
 				}
-				if ((m & targetMask) != 0)
+				if ((baseCandidates & targetValueMask) != 0)
 				{
 					continue;
 				}
 
 				switch (emptyCount)
 				{
-					case 0:
-					{
-						continue;
-					}
 					case 1:
 					{
 						// TODO: Process as a senior exocet.
@@ -163,7 +160,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 							foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 							{
-								if ((m >> digit & 1) == 0)
+								if ((baseCandidates >> digit & 1) == 0)
 								{
 									conclusions.Add(new Conclusion(Elimination, cell, digit));
 								}
@@ -189,7 +186,7 @@ namespace Sudoku.Solving.Manual.Exocets
 							candidateOffsets.Add((0, b2 * 9 + digit));
 						}
 
-						var mirrorEliminations = CheckMirror(grid, m, in exocet, cellOffsets, candidateOffsets);
+						var mirrorEliminations = CheckMirror(grid, baseCandidates, in exocet, -1, cellOffsets, candidateOffsets);
 						if (conclusions.Count == 0 && mirrorEliminations.Count == 0)
 						{
 							continue;
@@ -207,14 +204,122 @@ namespace Sudoku.Solving.Manual.Exocets
 										links: null)
 								},
 								exocet,
-								digits: m.GetAllSets(),
+								digits: baseCandidates.GetAllSets(),
 								mirrorEliminations));
 
 						break;
 					}
 					case 3:
 					{
-						// TODO: With a strong link.
+						// With a conjugate pair.
+						var map = new GridMap(targetCells);
+						int z = default;
+						foreach (int cell in targetCells)
+						{
+							if (grid.GetCellStatus(cell) != Empty)
+							{
+								z = cell;
+								break;
+							}
+						}
+						map.Remove(z);
+
+						// Record all digits whose cell lying on is empty.
+						short targetMask = 0;
+						foreach (int cell in map.Offsets)
+						{
+							targetMask |= grid.GetCandidatesReversal(cell);
+						}
+
+						int diagonalCell = GetDiagonalCell(targetCells, z);
+						map.Remove(diagonalCell);
+						mapPlayground[0] = new GridMap(stackalloc[] { diagonalCell, map.SetAt(0) });
+						mapPlayground[1] = new GridMap(stackalloc[] { diagonalCell, map.SetAt(1) });
+
+						// Get all digits to iterate.
+						short targetMaskWithoutValueCell = (short)(targetMask & ~(1 << grid[z]));
+						foreach (var tempMap in mapPlayground)
+						{
+							foreach (int digit in targetMaskWithoutValueCell.GetAllSets())
+							{
+								var comparer = grid.GetDigitAppearingCells(digit, tempMap.CoveredLine);
+								if (comparer != tempMap)
+								{
+									continue;
+								}
+
+								// Check eliminations.
+								var conclusions = new List<Conclusion>();
+								foreach (int cell in comparer.Offsets)
+								{
+									foreach (int d in (targetMaskWithoutValueCell & ~(1 << digit)).GetAllSets())
+									{
+										if ((baseCandidates >> d & 1) != 0 || !(grid.Exists(cell, d) is true))
+										{
+											continue;
+										}
+
+										conclusions.Add(new Conclusion(Elimination, cell, d));
+									}
+								}
+								int anotherTargetCell = (map - comparer).SetAt(0);
+								foreach (int d in grid.GetCandidatesReversal(anotherTargetCell).GetAllSets())
+								{
+									if ((baseCandidates >> d & 1) != 0)
+									{
+										continue;
+									}
+
+									conclusions.Add(new Conclusion(Elimination, anotherTargetCell, d));
+								}
+
+								var cellOffsets = new List<(int, int)>
+								{
+									(0, b1), (0, b2), (1, tq1), (1, tq2), (1, tr1), (1, tr2)
+								};
+								foreach (int cell in s.Offsets)
+								{
+									cellOffsets.Add((2, cell));
+								}
+
+								var candidateOffsets = new List<(int, int)>();
+								foreach (int d in grid.GetCandidatesReversal(b1).GetAllSets())
+								{
+									candidateOffsets.Add((0, b1 * 9 + d));
+								}
+								foreach (int d in grid.GetCandidatesReversal(b2).GetAllSets())
+								{
+									candidateOffsets.Add((0, b2 * 9 + d));
+								}
+								foreach (int cell in comparer.Offsets)
+								{
+									candidateOffsets.Add((1, cell * 9 + digit));
+								}
+
+								var mirrorEliminations =
+									CheckMirror(grid, baseCandidates, in exocet, digit, cellOffsets, candidateOffsets);
+								if (conclusions.Count == 0 && mirrorEliminations.Count == 0)
+								{
+									continue;
+								}
+
+								accumulator.Add(
+									new JuniorExocetTechniqueInfo(
+										conclusions,
+										views: new[]
+										{
+											new View(
+												cellOffsets,
+												candidateOffsets,
+												regionOffsets: null,
+												links: null)
+										},
+										exocet,
+										digits: baseCandidates.GetAllSets(),
+										mirrorEliminations));
+							}
+						}
+
 						break;
 					}
 					case 4:
@@ -257,10 +362,11 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="grid">The grid.</param>
 		/// <param name="baseCandidates">The base candidates mask.</param>
 		/// <param name="exocet">(<see langword="in"/> parameter) The exocet.</param>
+		/// <param name="conjugatePairDigit">The digit of conjugate pair is available.</param>
 		/// <param name="cellOffsets">The cell offsets.</param>
 		/// <param name="candidateOffsets">The candidate offsets.</param>
 		private MirrorEliminations CheckMirror(
-			IReadOnlyGrid grid, short baseCandidates, in Exocet exocet,
+			IReadOnlyGrid grid, short baseCandidates, in Exocet exocet, int conjugatePairDigit,
 			IList<(int, int)> cellOffsets, IList<(int, int)> candidateOffsets)
 		{
 			var (_, target, _) = exocet;
@@ -304,6 +410,11 @@ namespace Sudoku.Solving.Manual.Exocets
 						short otherCandidates = (short)(mirrorCandidates & ~baseCandidates);
 						foreach (int digit in otherCandidates.GetAllSets())
 						{
+							if (digit == conjugatePairDigit)
+							{
+								continue;
+							}
+
 							int region = m.CoveredLine;
 							var elimMap = grid.GetDigitAppearingCells(digit, region) - target;
 							if (elimMap != m)
@@ -313,6 +424,11 @@ namespace Sudoku.Solving.Manual.Exocets
 
 							foreach (int d in (otherCandidates & ~(1 << digit)).GetAllSets())
 							{
+								if (d == conjugatePairDigit)
+								{
+									continue;
+								}
+
 								foreach (int cell in elimMap.Offsets)
 								{
 									if (grid.Exists(cell, d) is true)
@@ -368,6 +484,23 @@ namespace Sudoku.Solving.Manual.Exocets
 			}
 		}
 
+
+		/// <summary>
+		/// Get the diagonal cell in target cells.
+		/// </summary>
+		/// <param name="cells">All target cells.</param>
+		/// <param name="cell">The cell.</param>
+		/// <returns>The diagonal cell.</returns>
+		private static int GetDiagonalCell(ReadOnlySpan<int> cells, int cell)
+		{
+			return true switch
+			{
+				_ when cells[0] == cell => cells[3],
+				_ when cells[1] == cell => cells[2],
+				_ when cells[2] == cell => cells[1],
+				_ => cells[0]
+			};
+		}
 
 		/// <summary>
 		/// Get all distributions for digits.

@@ -2575,15 +2575,24 @@
             A <see cref="T:System.Boolean"/> value indicating whether the structure passed the validation.
             </returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckMirror(Sudoku.Data.IReadOnlyGrid,System.Int16,Sudoku.Solving.Manual.Exocets.Exocet@,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckMirror(Sudoku.Data.IReadOnlyGrid,System.Int16,Sudoku.Solving.Manual.Exocets.Exocet@,System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
             <summary>
             Check mirror cells.
             </summary>
             <param name="grid">The grid.</param>
             <param name="baseCandidates">The base candidates mask.</param>
             <param name="exocet">(<see langword="in"/> parameter) The exocet.</param>
+            <param name="conjugatePairDigit">The digit of conjugate pair is available.</param>
             <param name="cellOffsets">The cell offsets.</param>
             <param name="candidateOffsets">The candidate offsets.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetDiagonalCell(System.ReadOnlySpan{System.Int32},System.Int32)">
+            <summary>
+            Get the diagonal cell in target cells.
+            </summary>
+            <param name="cells">All target cells.</param>
+            <param name="cell">The cell.</param>
+            <returns>The diagonal cell.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetDigitDistributions(Sudoku.Data.IReadOnlyGrid)">
             <summary>
