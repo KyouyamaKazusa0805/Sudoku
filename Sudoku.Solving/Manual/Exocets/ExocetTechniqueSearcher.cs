@@ -196,7 +196,8 @@ namespace Sudoku.Solving.Manual.Exocets
 							candidateOffsets.Add((0, b2 * 9 + digit));
 						}
 
-						var mirrorEliminations = CheckMirror(grid, baseCandidatesMask, in exocet, -1, cellOffsets, candidateOffsets);
+						var mirrorEliminations =
+							CheckMirror(grid, baseCandidatesMask, in exocet, 0, cellOffsets, candidateOffsets);
 						if (conclusions.Count == 0 && mirrorEliminations.Count == 0)
 						{
 							continue;
@@ -281,9 +282,9 @@ namespace Sudoku.Solving.Manual.Exocets
 							}
 
 							var cellOffsets = new List<(int, int)>
-								{
-									(0, b1), (0, b2), (1, tq1), (1, tq2), (1, tr1), (1, tr2)
-								};
+							{
+								(0, b1), (0, b2), (1, tq1), (1, tq2), (1, tr1), (1, tr2)
+							};
 							foreach (int cell in s.Offsets)
 							{
 								cellOffsets.Add((2, cell));
@@ -304,7 +305,9 @@ namespace Sudoku.Solving.Manual.Exocets
 							}
 
 							var mirrorEliminations =
-								CheckMirror(grid, baseCandidatesMask, in exocet, digit, cellOffsets, candidateOffsets);
+								CheckMirror(
+									grid, baseCandidatesMask, in exocet, (short)(1 << digit),
+									cellOffsets, candidateOffsets);
 							if (conclusions.Count == 0 && mirrorEliminations.Count == 0)
 							{
 								continue;
@@ -315,11 +318,11 @@ namespace Sudoku.Solving.Manual.Exocets
 									conclusions,
 									views: new[]
 									{
-											new View(
-												cellOffsets,
-												candidateOffsets,
-												regionOffsets: null,
-												links: null)
+										new View(
+											cellOffsets,
+											candidateOffsets,
+											regionOffsets: null,
+											links: null)
 									},
 									exocet,
 									digits: baseCandidatesMask.GetAllSets(),
@@ -330,7 +333,126 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 					case 4:
 					{
-						// TODO: With two strong links.
+						// With two strong links.
+						short targetMask = 0;
+						foreach (int cell in targetCells)
+						{
+							targetMask |= grid.GetCandidatesReversal(cell);
+						}
+
+						int[] digits = (targetMask & ~baseCandidatesMask).GetAllSets().ToArray();
+						var map1 = new GridMap(stackalloc[] { tq1, tq2 });
+						var map2 = new GridMap(stackalloc[] { tr1, tr2 });
+						for (int i1 = 0, length = digits.Length; i1 < length; i1++)
+						{
+							int d1 = digits[i1];
+							int region1 = map1.CoveredLine;
+							if (grid.HasDigitValue(d1, region1))
+							{
+								continue;
+							}
+
+							var appearingMap1 = grid.GetDigitAppearingCells(d1, region1);
+							if (appearingMap1 != map1)
+							{
+								continue;
+							}
+
+							for (int i2 = 0; i2 < length; i2++)
+							{
+								int d2 = digits[i2];
+								int region2 = map2.CoveredLine;
+								if (grid.HasDigitValue(d2, region2))
+								{
+									continue;
+								}
+
+								var appearingMap2 = grid.GetDigitAppearingCells(d2, region2);
+								if (appearingMap2 != map2)
+								{
+									continue;
+								}
+
+								// Now check eliminations.
+								var conclusions = new List<Conclusion>();
+								foreach (int cell in appearingMap1.Offsets)
+								{
+									foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
+									{
+										if (d == d1 || (baseCandidatesMask >> d & 1) != 0)
+										{
+											continue;
+										}
+
+										conclusions.Add(new Conclusion(Elimination, cell, d));
+									}
+								}
+								foreach (int cell in appearingMap2.Offsets)
+								{
+									foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
+									{
+										if (d == d2 || (baseCandidatesMask >> d & 1) != 0)
+										{
+											continue;
+										}
+
+										conclusions.Add(new Conclusion(Elimination, cell, d));
+									}
+								}
+
+								var cellOffsets = new List<(int, int)>
+								{
+									(0, b1), (0, b2), (1, tq1), (1, tq2), (1, tr1), (1, tr2)
+								};
+								foreach (int cell in s.Offsets)
+								{
+									cellOffsets.Add((2, cell));
+								}
+
+								var candidateOffsets = new List<(int, int)>();
+								foreach (int d in grid.GetCandidatesReversal(b1).GetAllSets())
+								{
+									candidateOffsets.Add((0, b1 * 9 + d));
+								}
+								foreach (int d in grid.GetCandidatesReversal(b2).GetAllSets())
+								{
+									candidateOffsets.Add((0, b2 * 9 + d));
+								}
+								foreach (int cell in appearingMap1.Offsets)
+								{
+									candidateOffsets.Add((1, cell * 9 + d1));
+								}
+								foreach (int cell in appearingMap2.Offsets)
+								{
+									candidateOffsets.Add((1, cell * 9 + d2));
+								}
+
+								var mirrorEliminations =
+									CheckMirror(
+										grid, baseCandidatesMask, in exocet, (short)(1 << d1 | 1 << d2),
+										cellOffsets, candidateOffsets);
+								if (conclusions.Count == 0 && mirrorEliminations.Count == 0)
+								{
+									continue;
+								}
+
+								accumulator.Add(
+									new JuniorExocetTechniqueInfo(
+										conclusions,
+										views: new[]
+										{
+											new View(
+												cellOffsets,
+												candidateOffsets,
+												regionOffsets: null,
+												links: null)
+										},
+										exocet,
+										digits: baseCandidatesMask.GetAllSets(),
+										mirrorEliminations));
+							}
+						}
+
 						break;
 					}
 				}
@@ -373,7 +495,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="candidateOffsets">The candidate offsets.</param>
 		/// <returns>Returns the list that contains all possible mirror eliminations.</returns>
 		private MirrorEliminations CheckMirror(
-			IReadOnlyGrid grid, short baseCandidates, in Exocet exocet, int conjugatePairDigit,
+			IReadOnlyGrid grid, short baseCandidates, in Exocet exocet, short conjugatePairDigit,
 			IList<(int, int)> cellOffsets, IList<(int, int)> candidateOffsets)
 		{
 			if (!_checkAdvanced)
@@ -422,7 +544,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					case 0:
 					{
 						// Search conjugate pair.
-						short otherCandidates = (short)(mirrorCandidates & ~baseCandidates & ~(1 << conjugatePairDigit));
+						short otherCandidates = (short)(mirrorCandidates & ~baseCandidates & ~conjugatePairDigit);
 						foreach (int digit in otherCandidates.GetAllSets())
 						{
 							int region = m.CoveredLine;
