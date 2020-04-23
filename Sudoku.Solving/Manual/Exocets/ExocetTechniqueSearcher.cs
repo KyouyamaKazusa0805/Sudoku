@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -66,7 +67,6 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var mapPlayground = (Span<GridMap>)stackalloc GridMap[2];
 			var targetCells = (Span<int>)stackalloc int[4];
 			var digitDistributions = GetDigitDistributions(grid);
 			foreach (var exocet in Exocets)
@@ -82,8 +82,8 @@ namespace Sudoku.Solving.Manual.Exocets
 				// The number of different candidates in base cells cannot be greater than 5.
 				short m1 = grid.GetCandidatesReversal(b1);
 				short m2 = grid.GetCandidatesReversal(b2);
-				short baseCandidates = (short)(m1 | m2);
-				if (baseCandidates.CountSet() > 5)
+				short baseCandidatesMask = (short)(m1 | m2);
+				if (baseCandidatesMask.CountSet() > 5)
 				{
 					continue;
 				}
@@ -98,14 +98,14 @@ namespace Sudoku.Solving.Manual.Exocets
 						crosslineMask |= (short)(1 << grid[cell]);
 					}
 				}
-				if ((baseCandidates & crosslineMask) != 0)
+				if ((baseCandidatesMask & crosslineMask) != 0)
 				{
 					continue;
 				}
 
 				short digitsNeedChecking = (short)((short)((short)((short)(
 					grid.GetCandidatesReversal(tq1) | grid.GetCandidatesReversal(tq2))
-					| grid.GetCandidatesReversal(tr1)) | grid.GetCandidatesReversal(tr2)) & baseCandidates);
+					| grid.GetCandidatesReversal(tr1)) | grid.GetCandidatesReversal(tr2)) & baseCandidatesMask);
 				int emptyCount = 0;
 				(targetCells[0], targetCells[1], targetCells[2], targetCells[3]) = (tq1, tq2, tr1, tr2);
 
@@ -128,7 +128,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						}
 					}
 				}
-				if ((baseCandidates & targetValueMask) != 0)
+				if ((baseCandidatesMask & targetValueMask) != 0)
 				{
 					continue;
 				}
@@ -143,8 +143,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					case 2:
 					{
 						int region = new GridMap(stackalloc[] { b1, b2 }).CoveredLine;
-						bool isRow = region >= 9 && region <= 18;
-						if (!CheckCrossLine(s, isRow, digitsNeedChecking, digitDistributions))
+						if (!CheckCrossLine(s, region >= 9 && region <= 18, digitsNeedChecking, digitDistributions))
 						{
 							continue;
 						}
@@ -160,7 +159,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 							foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 							{
-								if ((baseCandidates >> digit & 1) == 0)
+								if ((baseCandidatesMask >> digit & 1) == 0)
 								{
 									conclusions.Add(new Conclusion(Elimination, cell, digit));
 								}
@@ -186,7 +185,7 @@ namespace Sudoku.Solving.Manual.Exocets
 							candidateOffsets.Add((0, b2 * 9 + digit));
 						}
 
-						var mirrorEliminations = CheckMirror(grid, baseCandidates, in exocet, -1, cellOffsets, candidateOffsets);
+						var mirrorEliminations = CheckMirror(grid, baseCandidatesMask, in exocet, -1, cellOffsets, candidateOffsets);
 						if (conclusions.Count == 0 && mirrorEliminations.Count == 0)
 						{
 							continue;
@@ -204,7 +203,7 @@ namespace Sudoku.Solving.Manual.Exocets
 										links: null)
 								},
 								exocet,
-								digits: baseCandidates.GetAllSets(),
+								digits: baseCandidatesMask.GetAllSets(),
 								mirrorEliminations));
 
 						break;
@@ -233,91 +232,87 @@ namespace Sudoku.Solving.Manual.Exocets
 
 						int diagonalCell = GetDiagonalCell(targetCells, z);
 						map.Remove(diagonalCell);
-						mapPlayground[0] = new GridMap(stackalloc[] { diagonalCell, map.SetAt(0) });
-						mapPlayground[1] = new GridMap(stackalloc[] { diagonalCell, map.SetAt(1) });
+						var tempMap = new GridMap(GetCurrentPair(targetCells, diagonalCell));
 
 						// Get all digits to iterate.
 						short targetMaskWithoutValueCell = (short)(targetMask & ~(1 << grid[z]));
-						foreach (var tempMap in mapPlayground)
+						foreach (int digit in targetMaskWithoutValueCell.GetAllSets())
 						{
-							foreach (int digit in targetMaskWithoutValueCell.GetAllSets())
+							var comparer = grid.GetDigitAppearingCells(digit, tempMap.CoveredLine);
+							if (comparer != tempMap)
 							{
-								var comparer = grid.GetDigitAppearingCells(digit, tempMap.CoveredLine);
-								if (comparer != tempMap)
-								{
-									continue;
-								}
+								continue;
+							}
 
-								// Check eliminations.
-								var conclusions = new List<Conclusion>();
-								foreach (int cell in comparer.Offsets)
+							// Check eliminations.
+							var conclusions = new List<Conclusion>();
+							foreach (int cell in comparer.Offsets)
+							{
+								foreach (int d in (targetMaskWithoutValueCell & ~(1 << digit)).GetAllSets())
 								{
-									foreach (int d in (targetMaskWithoutValueCell & ~(1 << digit)).GetAllSets())
-									{
-										if ((baseCandidates >> d & 1) != 0 || !(grid.Exists(cell, d) is true))
-										{
-											continue;
-										}
-
-										conclusions.Add(new Conclusion(Elimination, cell, d));
-									}
-								}
-								int anotherTargetCell = (map - comparer).SetAt(0);
-								foreach (int d in grid.GetCandidatesReversal(anotherTargetCell).GetAllSets())
-								{
-									if ((baseCandidates >> d & 1) != 0)
+									if ((baseCandidatesMask >> d & 1) != 0 || !(grid.Exists(cell, d) is true))
 									{
 										continue;
 									}
 
-									conclusions.Add(new Conclusion(Elimination, anotherTargetCell, d));
+									conclusions.Add(new Conclusion(Elimination, cell, d));
 								}
-
-								var cellOffsets = new List<(int, int)>
-								{
-									(0, b1), (0, b2), (1, tq1), (1, tq2), (1, tr1), (1, tr2)
-								};
-								foreach (int cell in s.Offsets)
-								{
-									cellOffsets.Add((2, cell));
-								}
-
-								var candidateOffsets = new List<(int, int)>();
-								foreach (int d in grid.GetCandidatesReversal(b1).GetAllSets())
-								{
-									candidateOffsets.Add((0, b1 * 9 + d));
-								}
-								foreach (int d in grid.GetCandidatesReversal(b2).GetAllSets())
-								{
-									candidateOffsets.Add((0, b2 * 9 + d));
-								}
-								foreach (int cell in comparer.Offsets)
-								{
-									candidateOffsets.Add((1, cell * 9 + digit));
-								}
-
-								var mirrorEliminations =
-									CheckMirror(grid, baseCandidates, in exocet, digit, cellOffsets, candidateOffsets);
-								if (conclusions.Count == 0 && mirrorEliminations.Count == 0)
+							}
+							int anotherTargetCell = (map - comparer).SetAt(0);
+							foreach (int d in grid.GetCandidatesReversal(anotherTargetCell).GetAllSets())
+							{
+								if ((baseCandidatesMask >> d & 1) != 0)
 								{
 									continue;
 								}
 
-								accumulator.Add(
-									new JuniorExocetTechniqueInfo(
-										conclusions,
-										views: new[]
-										{
+								conclusions.Add(new Conclusion(Elimination, anotherTargetCell, d));
+							}
+
+							var cellOffsets = new List<(int, int)>
+								{
+									(0, b1), (0, b2), (1, tq1), (1, tq2), (1, tr1), (1, tr2)
+								};
+							foreach (int cell in s.Offsets)
+							{
+								cellOffsets.Add((2, cell));
+							}
+
+							var candidateOffsets = new List<(int, int)>();
+							foreach (int d in grid.GetCandidatesReversal(b1).GetAllSets())
+							{
+								candidateOffsets.Add((0, b1 * 9 + d));
+							}
+							foreach (int d in grid.GetCandidatesReversal(b2).GetAllSets())
+							{
+								candidateOffsets.Add((0, b2 * 9 + d));
+							}
+							foreach (int cell in comparer.Offsets)
+							{
+								candidateOffsets.Add((1, cell * 9 + digit));
+							}
+
+							var mirrorEliminations =
+								CheckMirror(grid, baseCandidatesMask, in exocet, digit, cellOffsets, candidateOffsets);
+							if (conclusions.Count == 0 && mirrorEliminations.Count == 0)
+							{
+								continue;
+							}
+
+							accumulator.Add(
+								new JuniorExocetTechniqueInfo(
+									conclusions,
+									views: new[]
+									{
 											new View(
 												cellOffsets,
 												candidateOffsets,
 												regionOffsets: null,
 												links: null)
-										},
-										exocet,
-										digits: baseCandidates.GetAllSets(),
-										mirrorEliminations));
-							}
+									},
+									exocet,
+									digits: baseCandidatesMask.GetAllSets(),
+									mirrorEliminations));
 						}
 
 						break;
@@ -376,7 +371,10 @@ namespace Sudoku.Solving.Manual.Exocets
 			MirrorEliminations p(int t, GridMap m)
 			{
 				var result = new MirrorEliminations();
-				if (grid.GetCellStatus(t) != Empty)
+				var span = (Span<int>)stackalloc[] { tq1, tq2, tr1, tr2 };
+				if (grid.GetCellStatus(t) != Empty
+					|| grid.GetCellStatus(GetDiagonalCell(span, t)) != Empty
+					|| GetCurrentPair(span, t).All(c => grid.GetCellStatus(c) == Empty))
 				{
 					return result;
 				}
@@ -407,14 +405,9 @@ namespace Sudoku.Solving.Manual.Exocets
 					case 0:
 					{
 						// Search conjugate pair.
-						short otherCandidates = (short)(mirrorCandidates & ~baseCandidates);
+						short otherCandidates = (short)(mirrorCandidates & ~baseCandidates & ~(1 << conjugatePairDigit));
 						foreach (int digit in otherCandidates.GetAllSets())
 						{
-							if (digit == conjugatePairDigit)
-							{
-								continue;
-							}
-
 							int region = m.CoveredLine;
 							var elimMap = grid.GetDigitAppearingCells(digit, region) - target;
 							if (elimMap != m)
@@ -424,17 +417,14 @@ namespace Sudoku.Solving.Manual.Exocets
 
 							foreach (int d in (otherCandidates & ~(1 << digit)).GetAllSets())
 							{
-								if (d == conjugatePairDigit)
-								{
-									continue;
-								}
-
 								foreach (int cell in elimMap.Offsets)
 								{
-									if (grid.Exists(cell, d) is true)
+									if (!(grid.Exists(cell, d) is true))
 									{
-										result.Add(new Conclusion(Elimination, cell, d));
+										continue;
 									}
+
+									result.Add(new Conclusion(Elimination, cell, d));
 								}
 							}
 							foreach (int cell in m.Offsets)
@@ -459,18 +449,22 @@ namespace Sudoku.Solving.Manual.Exocets
 						{
 							foreach (int cell in m.Offsets)
 							{
-								if (grid.Exists(cell, digit) is true)
+								if (!(grid.Exists(cell, digit) is true))
 								{
-									result.Add(new Conclusion(Elimination, cell, digit));
+									continue;
 								}
+
+								result.Add(new Conclusion(Elimination, cell, digit));
 							}
 						}
 						foreach (int digit in targetMask.GetAllSets())
 						{
-							if ((commonBase >> digit & 1) == 0)
+							if ((commonBase >> digit & 1) != 0)
 							{
-								result.Add(new Conclusion(Elimination, t, digit));
+								continue;
 							}
+
+							result.Add(new Conclusion(Elimination, t, digit));
 						}
 
 						foreach (int cell in m.Offsets)
@@ -500,6 +494,32 @@ namespace Sudoku.Solving.Manual.Exocets
 				_ when cells[2] == cell => cells[1],
 				_ => cells[0]
 			};
+		}
+
+		/// <summary>
+		/// Get the current pair cells with the target cells.
+		/// </summary>
+		/// <param name="cells">All target cells.</param>
+		/// <param name="cell">The cell.</param>
+		/// <returns>The current pair of cells.</returns>
+		private static int[] GetCurrentPair(ReadOnlySpan<int> cells, int cell)
+		{
+			return cells[0] == cell || cells[1] == cell
+				? new[] { cells[0], cells[1] }
+				: new[] { cells[2], cells[3] };
+		}
+
+		/// <summary>
+		/// Get the opposite pair cells with the target cells.
+		/// </summary>
+		/// <param name="cells">All target cells.</param>
+		/// <param name="cell">The cell.</param>
+		/// <returns>The opposite pair of cells.</returns>
+		private static int[] GetOppositePair(ReadOnlySpan<int> cells, int cell)
+		{
+			return cells[0] == cell || cells[1] == cell
+				? new[] { cells[2], cells[3] }
+				: new[] { cells[0], cells[1] };
 		}
 
 		/// <summary>

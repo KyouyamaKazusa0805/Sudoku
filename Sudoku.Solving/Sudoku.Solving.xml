@@ -2594,6 +2594,22 @@
             <param name="cell">The cell.</param>
             <returns>The diagonal cell.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetCurrentPair(System.ReadOnlySpan{System.Int32},System.Int32)">
+            <summary>
+            Get the current pair cells with the target cells.
+            </summary>
+            <param name="cells">All target cells.</param>
+            <param name="cell">The cell.</param>
+            <returns>The current pair of cells.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetOppositePair(System.ReadOnlySpan{System.Int32},System.Int32)">
+            <summary>
+            Get the opposite pair cells with the target cells.
+            </summary>
+            <param name="cells">All target cells.</param>
+            <param name="cell">The cell.</param>
+            <returns>The opposite pair of cells.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetDigitDistributions(Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Get all distributions for digits.
