@@ -91,6 +91,19 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <param name="baseCellsMap">(<see langword="out"/> parameter) The base cells.</param>
+		/// <param name="targetCellsMap">(<see langword="out"/> parameter) The target cells.</param>
+		/// <param name="crosslineMap">(<see langword="out"/> parameter) The cross-line cells.</param>
+		public void Deconstruct(
+			out GridMap baseCellsMap, out GridMap targetCellsMap, out GridMap crosslineMap)
+		{
+			(baseCellsMap, targetCellsMap, crosslineMap) = (
+				new GridMap(stackalloc[] { Base1, Base2 }),
+				new GridMap(stackalloc[] { TargetQ1, TargetQ2, TargetR1, TargetR2 }),
+				CrossLine);
+		}
+
+		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="base1">(<see langword="out"/> parameter) The base cell 1.</param>
 		/// <param name="base2">(<see langword="out"/> parameter) The base cell 2.</param>
 		/// <param name="tq1">(<see langword="out"/> parameter) The target Q1 cell.</param>

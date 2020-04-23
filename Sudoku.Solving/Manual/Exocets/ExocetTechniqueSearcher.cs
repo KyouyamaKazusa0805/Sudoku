@@ -140,7 +140,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 					case 1:
 					{
-						// May not consider now.
+						// TODO: Process as a senior exocet.
 						break;
 					}
 					case 2:
@@ -179,12 +179,6 @@ namespace Sudoku.Solving.Manual.Exocets
 							cellOffsets.Add((2, cell));
 						}
 
-						var mirrorEliminations = CheckMirror(grid, m, in exocet, cellOffsets);
-						if (conclusions.Count == 0 && mirrorEliminations.Count == 0)
-						{
-							continue;
-						}
-
 						var candidateOffsets = new List<(int, int)>();
 						foreach (int digit in grid.GetCandidatesReversal(b1).GetAllSets())
 						{
@@ -193,6 +187,12 @@ namespace Sudoku.Solving.Manual.Exocets
 						foreach (int digit in grid.GetCandidatesReversal(b2).GetAllSets())
 						{
 							candidateOffsets.Add((0, b2 * 9 + digit));
+						}
+
+						var mirrorEliminations = CheckMirror(grid, m, in exocet, cellOffsets, candidateOffsets);
+						if (conclusions.Count == 0 && mirrorEliminations.Count == 0)
+						{
+							continue;
 						}
 
 						accumulator.Add(
@@ -258,16 +258,23 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="baseCandidates">The base candidates mask.</param>
 		/// <param name="exocet">(<see langword="in"/> parameter) The exocet.</param>
 		/// <param name="cellOffsets">The cell offsets.</param>
+		/// <param name="candidateOffsets">The candidate offsets.</param>
 		private MirrorEliminations CheckMirror(
 			IReadOnlyGrid grid, short baseCandidates, in Exocet exocet,
-			IList<(int, int)> cellOffsets)
+			IList<(int, int)> cellOffsets, IList<(int, int)> candidateOffsets)
 		{
+			var (_, target, _) = exocet;
 			var (_, _, tq1, tq2, tr1, tr2, _, mq1, mq2, mr1, mr2) = exocet;
 			return MirrorEliminations.MergeAll(p(tq1, mq1), p(tq2, mq2), p(tr1, mr1), p(tr2, mr2));
 
 			MirrorEliminations p(int t, GridMap m)
 			{
 				var result = new MirrorEliminations();
+				if (grid.GetCellStatus(t) != Empty)
+				{
+					return result;
+				}
+
 				short targetMask = grid.GetCandidatesReversal(t);
 				short commonBase = targetMask;
 				short mirrorCandidates = 0;
@@ -282,42 +289,82 @@ namespace Sudoku.Solving.Manual.Exocets
 						valueCount++;
 					}
 				}
-				if (valueCount != 1 || (baseCandidates >> grid[z] & 1) != 0)
-				{
-					return result;
-				}
 
-				commonBase &= mirrorCandidates;
-				commonBase &= baseCandidates;
-				if (commonBase == 0)
+				switch (valueCount)
 				{
-					return result;
-				}
-
-				foreach (int digit in ((short)(511 & ~commonBase)).GetAllSets())
-				{
-					foreach (int cell in m.Offsets)
+					default:
+					case 1 when (baseCandidates >> grid[z] & 1) != 0:
+					case 2:
 					{
-						if (grid.Exists(cell, digit) is true)
+						return result;
+					}
+					case 0:
+					{
+						// Search conjugate pair.
+						short otherCandidates = (short)(mirrorCandidates & ~baseCandidates);
+						foreach (int digit in otherCandidates.GetAllSets())
 						{
-							result.Add(new Conclusion(Elimination, cell, digit));
+							int region = m.CoveredLine;
+							var elimMap = grid.GetDigitAppearingCells(digit, region) - target;
+							if (elimMap != m)
+							{
+								continue;
+							}
+
+							foreach (int d in (otherCandidates & ~(1 << digit)).GetAllSets())
+							{
+								foreach (int cell in elimMap.Offsets)
+								{
+									if (grid.Exists(cell, d) is true)
+									{
+										result.Add(new Conclusion(Elimination, cell, d));
+									}
+								}
+							}
+							foreach (int cell in m.Offsets)
+							{
+								candidateOffsets.Add((1, cell * 9 + digit));
+								cellOffsets.Add((3, cell));
+							}
 						}
+
+						return result;
 					}
-				}
-				foreach (int digit in targetMask.GetAllSets())
-				{
-					if ((commonBase >> digit & 1) == 0)
+					case 1:
 					{
-						result.Add(new Conclusion(Elimination, t, digit));
+						commonBase &= mirrorCandidates;
+						commonBase &= baseCandidates;
+						if (commonBase == 0)
+						{
+							return result;
+						}
+
+						foreach (int digit in ((short)(511 & ~commonBase)).GetAllSets())
+						{
+							foreach (int cell in m.Offsets)
+							{
+								if (grid.Exists(cell, digit) is true)
+								{
+									result.Add(new Conclusion(Elimination, cell, digit));
+								}
+							}
+						}
+						foreach (int digit in targetMask.GetAllSets())
+						{
+							if ((commonBase >> digit & 1) == 0)
+							{
+								result.Add(new Conclusion(Elimination, t, digit));
+							}
+						}
+
+						foreach (int cell in m.Offsets)
+						{
+							cellOffsets.Add((3, cell));
+						}
+
+						return result;
 					}
 				}
-
-				foreach (int cell in m.Offsets)
-				{
-					cellOffsets.Add((3, cell));
-				}
-
-				return result;
 			}
 		}
 

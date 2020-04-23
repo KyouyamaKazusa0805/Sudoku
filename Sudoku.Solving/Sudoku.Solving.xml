@@ -2389,6 +2389,14 @@
             Indicates the mirror R2 cell.
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Exocet.Deconstruct(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="baseCellsMap">(<see langword="out" /> parameter) The base cells.</param>
+            <param name="targetCellsMap">(<see langword="out" /> parameter) The target cells.</param>
+            <param name="crosslineMap">(<see langword="out" /> parameter) The cross-line cells.</param>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Exocet.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
             <method name="Deconstruct">
 		<summary>Deconstruct this instance.</summary>
@@ -2567,7 +2575,7 @@
             A <see cref="T:System.Boolean"/> value indicating whether the structure passed the validation.
             </returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckMirror(Sudoku.Data.IReadOnlyGrid,System.Int16,Sudoku.Solving.Manual.Exocets.Exocet@,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckMirror(Sudoku.Data.IReadOnlyGrid,System.Int16,Sudoku.Solving.Manual.Exocets.Exocet@,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
             <summary>
             Check mirror cells.
             </summary>
@@ -2575,6 +2583,7 @@
             <param name="baseCandidates">The base candidates mask.</param>
             <param name="exocet">(<see langword="in"/> parameter) The exocet.</param>
             <param name="cellOffsets">The cell offsets.</param>
+            <param name="candidateOffsets">The candidate offsets.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetDigitDistributions(Sudoku.Data.IReadOnlyGrid)">
             <summary>
