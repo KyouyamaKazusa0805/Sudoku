@@ -94,6 +94,7 @@ namespace Sudoku.Solving.Manual
 				new BdpTechniqueSearcher(),
 				new BugTechniqueSearcher(regionMaps, _settings.UseExtendedBugSearcher),
 				new ErIntersectionPairTechniqueSearcher(regionMaps),
+#if !DEBUG
 				new AlsXzTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
 				new AlsXyWingTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
 				new AlsWWingTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
@@ -115,6 +116,7 @@ namespace Sudoku.Solving.Manual
 				//new HobiwanFishTechniqueSearcher(
 				//	HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
 				//	HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
+#endif
 				new BowmanBingoTechniqueSearcher(_settings.BowmanBingoMaximumLength),
 				new PomTechniqueSearcher(),
 				new CccTechniqueSearcher(),

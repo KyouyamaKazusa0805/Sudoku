@@ -34,7 +34,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// Add the conclusion into the collection.
 		/// </summary>
 		/// <param name="conclusion">The conclusion.</param>
-		public void Add(Conclusion conclusion) => (Conclusions ??= new List<Conclusion>()).Add(conclusion);
+		public void Add(Conclusion conclusion) =>
+			(Conclusions ??= new List<Conclusion>()).AddIfDoesNotContain(conclusion);
 
 		/// <summary>
 		/// Add a serial of conclusions into this collection.

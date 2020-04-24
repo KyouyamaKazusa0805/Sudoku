@@ -2662,9 +2662,9 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckCrossLine(Sudoku.Data.GridMap,System.Int16,Sudoku.Data.GridMap[])">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckCrossline(Sudoku.Data.GridMap,System.Int16,Sudoku.Data.GridMap[])">
             <summary>
-            Check the cross line cells.
+            Check the cross-line cells.
             </summary>
             <param name="crossline">The cross line cells.</param>
             <param name="digitsNeedChecking">The digits that need checking.</param>
@@ -2699,12 +2699,15 @@
             <param name="b2">The base cell 2.</param>
             <returns>The eliminations.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.RecordMirrorEliminations(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap[],System.Int32,System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.RecordMirrorEliminations(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap[],System.Int32,System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
             <summary>
             Check mirror eliminations.
             </summary>
             <param name="grid">The grid.</param>
             <param name="target">The target cell.</param>
+            <param name="target2">
+            The another target cell that is adjacent with <paramref name="target"/>.
+            </param>
             <param name="lockedNonTarget">The locked member that is non-target digits.</param>
             <param name="baseCandidateMask">The base candidate mask.</param>
             <param name="mirror">The mirror map.</param>

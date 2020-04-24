@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
-using static Sudoku.GridProcessings;
 using static Sudoku.Data.CellStatus;
+using static Sudoku.GridProcessings;
 using static Sudoku.Solving.ConclusionType;
-using System.Diagnostics.CodeAnalysis;
-using Sudoku.Data.Extensions;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -132,7 +132,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					| (short)(grid.GetCandidatesReversal(mirror2[0]) | grid.GetCandidatesReversal(mirror2[1])));
 				needChecking &= temp;
 				short lockedMemberR = (short)(baseCandidatesMask & ~(baseCandidatesMask & temp));
-				if (!CheckCrossLine(s, needChecking, digitDistributions))
+				if (!CheckCrossline(s, needChecking, digitDistributions))
 				{
 					continue;
 				}
@@ -210,52 +210,52 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				(TargetEliminations, MirrorEliminations) recordMirrorEliminations(
-					int tq1, int tq2, int tr1, int tr2, GridMap m1, GridMap m2, int nonBaseQ,
-					int x)
+					int tq1, int tq2, int tr1, int tr2, GridMap m1, GridMap m2,
+					short lockedNonTarget, int x)
 				{
 					if ((grid.GetCandidatesReversal(tq1) & baseCandidatesMask) != 0)
 					{
-						var (target, mirror) = (tq1, m1);
+						short mask1 = grid.GetCandidatesReversal(tr1);
+						short mask2 = grid.GetCandidatesReversal(tr2);
+						var (target, target2, mirror) = (tq1, tq2, m1);
 						return RecordMirrorEliminations(
 							grid,
 							target,
-							lockedNonTarget: nonBaseQ > 0 ? nonBaseQ : 0,
+							target2,
+							lockedNonTarget: lockedNonTarget > 0 ? lockedNonTarget : (short)0,
 							baseCandidatesMask,
 							mirror,
 							digitDistributions,
 							x,
 							onlyOne:
-								(grid.GetCandidatesReversal(tr1) & baseCandidatesMask) != 0
-								&& (grid.GetCandidatesReversal(tr2) & baseCandidatesMask) == 0
+								(mask1 & baseCandidatesMask) != 0 && (mask2 & baseCandidatesMask) == 0
 									? tr1
-									:
-										(grid.GetCandidatesReversal(tr1) & baseCandidatesMask) == 0
-										&& (grid.GetCandidatesReversal(tr2) & baseCandidatesMask) != 0
-											? tr2
-											: -1,
+									: (mask1 & baseCandidatesMask) == 0 && (mask2 & baseCandidatesMask) != 0
+										? tr2
+										: -1,
 							cellOffsets,
 							candidateOffsets);
 					}
 					else if ((grid.GetCandidatesReversal(tq2) & baseCandidatesMask) != 0)
 					{
-						var (target, mirror) = (tq2, m2);
+						short mask1 = grid.GetCandidatesReversal(tq1);
+						short mask2 = grid.GetCandidatesReversal(tq2);
+						var (target, target2, mirror) = (tq2, tq1, m2);
 						return RecordMirrorEliminations(
 							grid,
 							target,
-							lockedNonTarget: nonBaseQ > 0 ? nonBaseQ : 0,
+							target2,
+							lockedNonTarget: lockedNonTarget > 0 ? lockedNonTarget : (short)0,
 							baseCandidatesMask,
 							mirror,
 							digitDistributions,
 							x,
 							onlyOne:
-								(grid.GetCandidatesReversal(tr1) & baseCandidatesMask) != 0
-								&& (grid.GetCandidatesReversal(tr2) & baseCandidatesMask) == 0
+								(mask1 & baseCandidatesMask) != 0 && (mask2 & baseCandidatesMask) == 0
 									? tr1
-									:
-										(grid.GetCandidatesReversal(tr1) & baseCandidatesMask) == 0
-										&& (grid.GetCandidatesReversal(tr2) & baseCandidatesMask) != 0
-											? tr2
-											: -1,
+									: (mask1 & baseCandidatesMask) == 0 && (mask2 & baseCandidatesMask) != 0
+										? tr2
+										: -1,
 							cellOffsets,
 							candidateOffsets);
 					}
@@ -268,7 +268,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		}
 
 		/// <summary>
-		/// Check the cross line cells.
+		/// Check the cross-line cells.
 		/// </summary>
 		/// <param name="crossline">The cross line cells.</param>
 		/// <param name="digitsNeedChecking">The digits that need checking.</param>
@@ -276,7 +276,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <returns>
 		/// A <see cref="bool"/> value indicating whether the structure passed the validation.
 		/// </returns>
-		private bool CheckCrossLine(GridMap crossline, short digitsNeedChecking, GridMap[] digitDistributions)
+		private bool CheckCrossline(GridMap crossline, short digitsNeedChecking, GridMap[] digitDistributions)
 		{
 			foreach (int digit in digitsNeedChecking.GetAllSets())
 			{
@@ -478,6 +478,9 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <param name="target">The target cell.</param>
+		/// <param name="target2">
+		/// The another target cell that is adjacent with <paramref name="target"/>.
+		/// </param>
 		/// <param name="lockedNonTarget">The locked member that is non-target digits.</param>
 		/// <param name="baseCandidateMask">The base candidate mask.</param>
 		/// <param name="mirror">The mirror map.</param>
@@ -487,9 +490,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="cellOffsets">The cell offsets.</param>
 		/// <param name="candidateOffsets">The candidate offsets.</param>
 		/// <returns>All mirror eliminations.</returns>
-		[SuppressMessage("", "IDE0004:Remove redundant cast")]
 		private (TargetEliminations, MirrorEliminations) RecordMirrorEliminations(
-			IReadOnlyGrid grid, int target, int lockedNonTarget, short baseCandidateMask,
+			IReadOnlyGrid grid, int target, int target2, short lockedNonTarget, short baseCandidateMask,
 			GridMap mirror, GridMap[] digitDistributions, int x, int onlyOne,
 			IList<(int, int)> cellOffsets, IList<(int, int)> candidateOffsets)
 		{
@@ -501,8 +503,9 @@ namespace Sudoku.Solving.Manual.Exocets
 				grid.GetCandidatesReversal(playground[0]) | grid.GetCandidatesReversal(playground[1]));
 			short commonBase = (short)(
 				mirrorCandidatesMask & baseCandidateMask & grid.GetCandidatesReversal(target));
-			short targetElimination = (short)(grid.GetCandidatesReversal(target) & ~((int)commonBase | lockedNonTarget));
-			if (targetElimination != 0)
+			short targetElimination = (short)(grid.GetCandidatesReversal(target) & ~(short)(commonBase | lockedNonTarget));
+			if (targetElimination != 0
+				&& grid.GetCellStatus(target) != Empty ^ grid.GetCellStatus(target2) != Empty)
 			{
 				foreach (int digit in targetElimination.GetAllSets())
 				{
@@ -516,7 +519,8 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				int p = playground[m1 != 0 ? 0 : 1];
 				short candidateMask = (short)(grid.GetCandidatesReversal(p) & ~commonBase);
-				if (candidateMask != 0)
+				if (candidateMask != 0
+					&& grid.GetCellStatus(target) != Empty ^ grid.GetCellStatus(target2) != Empty)
 				{
 					cellOffsets.Add((3, playground[0]));
 					cellOffsets.Add((3, playground[1]));
@@ -532,7 +536,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			short nonBase = (short)(mirrorCandidatesMask & ~baseCandidateMask);
 			var (r1, c1, b1) = CellUtils.GetRegion(playground[0]);
 			var (r2, c2, b2) = CellUtils.GetRegion(playground[1]);
-			(regions[0], regions[1]) = (b1, r1 == r2 ? r1 + 9 : r1 + 18);
+			(regions[0], regions[1]) = (b1, r1 == r2 ? r1 + 9 : c1 + 18);
 			short locked = default;
 			foreach (short mask in GetCombinations(nonBase))
 			{
@@ -574,25 +578,25 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				if (locked != 0)
 				{
+					cellOffsets.Add((3, playground[0]));
+					cellOffsets.Add((3, playground[1]));
+
 					record(playground, 0);
 					record(playground, 1);
 
+					short mask1 = grid.GetCandidatesReversal(playground[0]);
+					short mask2 = grid.GetCandidatesReversal(playground[1]);
 					if (locked.CountSet() == 1
-						&& (grid.GetCandidatesReversal(playground[0]) & locked) != 0
-						^ (grid.GetCandidatesReversal(playground[1]) & locked) != 0)
+						&& (mask1 & locked) != 0 ^ (mask2 & locked) != 0)
 					{
 						short candidateMask = (short)(
 							~(
 								grid.GetCandidatesReversal(
-									playground[
-										(grid.GetCandidatesReversal(playground[0]) & locked) != 0 ? 1 : 0
-									]
+									playground[(mask1 & locked) != 0 ? 1 : 0]
 								) & grid.GetCandidatesReversal(target) & baseCandidateMask
 							) & grid.GetCandidatesReversal(target) & baseCandidateMask);
 						if (candidateMask != 0)
 						{
-							cellOffsets.Add((3, playground[0]));
-							cellOffsets.Add((3, playground[1]));
 							foreach (int digit in candidateMask.GetAllSets())
 							{
 								mirrorElims.Add(new Conclusion(Elimination, target, digit));
@@ -608,17 +612,11 @@ namespace Sudoku.Solving.Manual.Exocets
 							grid.GetCandidatesReversal(playground[i]) & ~(baseCandidateMask | locked));
 						if (candidateMask != 0)
 						{
-							cellOffsets.Add((3, playground[0]));
-							cellOffsets.Add((3, playground[1]));
 							foreach (int digit in locked.GetAllSets())
 							{
-								if (grid.Exists(playground[0], digit) is true)
+								if (grid.Exists(playground[i], digit) is true)
 								{
-									candidateOffsets.Add((1, playground[0] * 9 + digit));
-								}
-								if (grid.Exists(playground[1], digit) is true)
-								{
-									candidateOffsets.Add((1, playground[1] * 9 + digit));
+									candidateOffsets.Add((1, playground[i] * 9 + digit));
 								}
 							}
 
