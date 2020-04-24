@@ -190,7 +190,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				var mirrorEliminations = MirrorEliminations.MergeAll(mir1, mir2);
 				var bibiEliminations =
 					_checkAdvanced && baseCandidatesMask.CountSet() > 2
-						? CheckBibiPattern(grid, baseCandidatesMask, b1, b2)
+						? CheckBibiPattern(grid, baseCandidatesMask, b1, b2, tq1, tq2, tr1, tr2)
 						: new BibiPatternEliminations();
 
 				if (_checkAdvanced && targetEliminations.Count == 0 && mirrorEliminations.Count == 0
@@ -440,9 +440,14 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="baseCandidatesMask">The base candidate mask.</param>
 		/// <param name="b1">The base cell 1.</param>
 		/// <param name="b2">The base cell 2.</param>
+		/// <param name="tq1">The target Q1 cell.</param>
+		/// <param name="tq2">The target Q2 cell.</param>
+		/// <param name="tr1">The target R1 cell.</param>
+		/// <param name="tr2">The target R2 cell.</param>
 		/// <returns>The eliminations.</returns>
 		private BibiPatternEliminations CheckBibiPattern(
-			IReadOnlyGrid grid, short baseCandidatesMask, int b1, int b2)
+			IReadOnlyGrid grid, short baseCandidatesMask, int b1, int b2,
+			int tq1, int tq2, int tr1, int tr2)
 		{
 			var result = new BibiPatternEliminations();
 			var playground = (Span<short>)stackalloc short[3];
@@ -471,6 +476,11 @@ namespace Sudoku.Solving.Manual.Exocets
 				return result;
 			}
 
+			var dic = new Dictionary<int, short>
+			{
+				[b1] = grid.GetCandidatesReversal(b1),
+				[b2] = grid.GetCandidatesReversal(b2)
+			};
 			for (int i = 1; i <= 2; i++)
 			{
 				for (int j = 1; j <= 2; j++)
@@ -493,7 +503,30 @@ namespace Sudoku.Solving.Manual.Exocets
 					foreach (int digit in candidateMask.GetAllSets())
 					{
 						result.Add(new Conclusion(Elimination, pos2, digit));
+						dic[pos2] &= (short)~(1 << digit);
 					}
+				}
+			}
+
+			// Now check all base digits last.
+			short last = (short)(dic[b1] | dic[b2]);
+			foreach (int digit in (511 & ~last).GetAllSets())
+			{
+				if (grid.Exists(tq1, digit) is true)
+				{
+					result.Add(new Conclusion(Elimination, tq1, digit));
+				}
+				if (grid.Exists(tq2, digit) is true)
+				{
+					result.Add(new Conclusion(Elimination, tq2, digit));
+				}
+				if (grid.Exists(tr1, digit) is true)
+				{
+					result.Add(new Conclusion(Elimination, tr1, digit));
+				}
+				if (grid.Exists(tr2, digit) is true)
+				{
+					result.Add(new Conclusion(Elimination, tr2, digit));
 				}
 			}
 

@@ -2689,7 +2689,7 @@
             </param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckBibiPattern(Sudoku.Data.IReadOnlyGrid,System.Int16,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckBibiPattern(Sudoku.Data.IReadOnlyGrid,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Check Bi-bi pattern eliminations.
             </summary>
@@ -2697,6 +2697,10 @@
             <param name="baseCandidatesMask">The base candidate mask.</param>
             <param name="b1">The base cell 1.</param>
             <param name="b2">The base cell 2.</param>
+            <param name="tq1">The target Q1 cell.</param>
+            <param name="tq2">The target Q2 cell.</param>
+            <param name="tr1">The target R1 cell.</param>
+            <param name="tr2">The target R2 cell.</param>
             <returns>The eliminations.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.RecordMirrorEliminations(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap[],System.Int32,System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
