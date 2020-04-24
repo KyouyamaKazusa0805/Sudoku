@@ -136,15 +136,6 @@ namespace Sudoku.Solving.Manual.Exocets
 					continue;
 				}
 
-				// Check target eliminations.
-				var targetElims = new TargetEliminations();
-				temp = (short)(nonBaseQ > 0 ? baseCandidatesMask | nonBaseQ : baseCandidatesMask);
-				recordTargetEliminations(tq1);
-				recordTargetEliminations(tq2);
-				temp = (short)(nonBaseR > 0 ? baseCandidatesMask | nonBaseR : baseCandidatesMask);
-				recordTargetEliminations(tr1);
-				recordTargetEliminations(tr2);
-
 				// Record highlight cells and candidates.
 				var cellOffsets = new List<(int, int)> { (0, b1), (0, b2), (1, tq1), (1, tq2), (1, tr1), (1, tr2) };
 				foreach (int cell in s.Offsets)
@@ -161,17 +152,50 @@ namespace Sudoku.Solving.Manual.Exocets
 					candidateOffsets.Add((0, b2 * 9 + digit));
 				}
 
+				// Check target eliminations.
+				// '|' first, '&&' second. (Do you know my mean?)
+				var targetElims = new TargetEliminations();
+				temp = (short)(nonBaseQ > 0 ? baseCandidatesMask | nonBaseQ : baseCandidatesMask);
+				if (recordTargetEliminations(tq1) | recordTargetEliminations(tq2)
+					&& nonBaseQ != 0 && grid.GetCellStatus(tq1) == Empty && grid.GetCellStatus(tq2) == Empty)
+				{
+					int conjugatPairDigit = nonBaseQ.FindFirstSet();
+					if (grid.Exists(tq1, conjugatPairDigit) is true)
+					{
+						candidateOffsets.Add((1, tq1 * 9 + conjugatPairDigit));
+					}
+					if (grid.Exists(tq2, conjugatPairDigit) is true)
+					{
+						candidateOffsets.Add((1, tq2 * 9 + conjugatPairDigit));
+					}
+				}
+				temp = (short)(nonBaseR > 0 ? baseCandidatesMask | nonBaseR : baseCandidatesMask);
+				if (recordTargetEliminations(tr1) | recordTargetEliminations(tr2)
+					&& nonBaseR != 0 && grid.GetCellStatus(tr1) == Empty && grid.GetCellStatus(tr2) == Empty)
+				{
+					int conjugatPairDigit = nonBaseR.FindFirstSet();
+					if (grid.Exists(tr1, conjugatPairDigit) is true)
+					{
+						candidateOffsets.Add((1, tr1 * 9 + conjugatPairDigit));
+					}
+					if (grid.Exists(tr2, conjugatPairDigit) is true)
+					{
+						candidateOffsets.Add((1, tr2 * 9 + conjugatPairDigit));
+					}
+				}
+
 				var (tar1, mir1) = recordMirrorEliminations(tq1, tq2, tr1, tr2, mq1, mq2, nonBaseQ, 0);
 				var (tar2, mir2) = recordMirrorEliminations(tr1, tr2, tq1, tq2, mr1, mr2, nonBaseR, 1);
 				var targetEliminations = TargetEliminations.MergeAll(targetElims, tar1, tar2);
 				var mirrorEliminations = MirrorEliminations.MergeAll(mir1, mir2);
 				var bibiEliminations =
-					baseCandidatesMask.CountSet() > 2
+					_checkAdvanced && baseCandidatesMask.CountSet() > 2
 						? CheckBibiPattern(grid, baseCandidatesMask, b1, b2)
 						: new BibiPatternEliminations();
 
-				if (targetEliminations.Count == 0 && mirrorEliminations.Count == 0
-					&& bibiEliminations.Count == 0)
+				if (_checkAdvanced && targetEliminations.Count == 0 && mirrorEliminations.Count == 0
+					&& bibiEliminations.Count == 0
+					|| !_checkAdvanced && targetEliminations.Count == 0)
 				{
 					continue;
 				}
@@ -192,10 +216,10 @@ namespace Sudoku.Solving.Manual.Exocets
 						lockedMemberQ: lockedMemberQ == 0 ? null : lockedMemberQ.GetAllSets(),
 						lockedMemberR: lockedMemberR == 0 ? null : lockedMemberR.GetAllSets(),
 						targetEliminations,
-						mirrorEliminations,
+						mirrorEliminations: _checkAdvanced ? mirrorEliminations : new MirrorEliminations(),
 						bibiEliminations));
 
-				void recordTargetEliminations(int cell)
+				bool recordTargetEliminations(int cell)
 				{
 					short candidateMask = (short)(grid.GetCandidatesReversal(cell) & ~temp);
 					if (grid.GetCellStatus(cell) == Empty && candidateMask != 0
@@ -205,7 +229,11 @@ namespace Sudoku.Solving.Manual.Exocets
 						{
 							targetElims.Add(new Conclusion(Elimination, cell, digit));
 						}
+
+						return true;
 					}
+
+					return false;
 				}
 
 				(TargetEliminations, MirrorEliminations) recordMirrorEliminations(
@@ -496,7 +524,6 @@ namespace Sudoku.Solving.Manual.Exocets
 		{
 			var targetElims = new TargetEliminations();
 			var mirrorElims = new MirrorEliminations();
-			var regions = (Span<int>)stackalloc int[2];
 			var playground = (Span<int>)stackalloc[] { mirror.SetAt(0), mirror.SetAt(1) };
 			short mirrorCandidatesMask = (short)(
 				grid.GetCandidatesReversal(playground[0]) | grid.GetCandidatesReversal(playground[1]));
@@ -512,124 +539,127 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 			}
 
-			short m1 = (short)(grid.GetCandidatesReversal(playground[0]) & baseCandidateMask);
-			short m2 = (short)(grid.GetCandidatesReversal(playground[1]) & baseCandidateMask);
-			if (m1 != 0 ^ m2 != 0)
+			if (_checkAdvanced)
 			{
-				int p = playground[m1 != 0 ? 0 : 1];
-				short candidateMask = (short)(grid.GetCandidatesReversal(p) & ~commonBase);
-				if (candidateMask != 0
-					&& grid.GetCellStatus(target) != Empty ^ grid.GetCellStatus(target2) != Empty)
+				var regions = (Span<int>)stackalloc int[2];
+				short m1 = (short)(grid.GetCandidatesReversal(playground[0]) & baseCandidateMask);
+				short m2 = (short)(grid.GetCandidatesReversal(playground[1]) & baseCandidateMask);
+				if (m1 != 0 ^ m2 != 0)
 				{
-					cellOffsets.Add((3, playground[0]));
-					cellOffsets.Add((3, playground[1]));
-					foreach (int digit in candidateMask.GetAllSets())
-					{
-						mirrorElims.Add(new Conclusion(Elimination, p, digit));
-					}
-				}
-
-				return (targetElims, mirrorElims);
-			}
-
-			short nonBase = (short)(mirrorCandidatesMask & ~baseCandidateMask);
-			var (r1, c1, b1) = CellUtils.GetRegion(playground[0]);
-			var (r2, c2, b2) = CellUtils.GetRegion(playground[1]);
-			(regions[0], regions[1]) = (b1, r1 == r2 ? r1 + 9 : c1 + 18);
-			short locked = default;
-			foreach (short mask in GetCombinations(nonBase))
-			{
-				for (int i = 0; i < 2; i++)
-				{
-					int count = 0;
-					for (int j = 0; j < 9; j++)
-					{
-						int p = RegionCells[regions[i]][j];
-						if (p == playground[0] || p == playground[1] || p == onlyOne)
-						{
-							continue;
-						}
-
-						if ((grid.GetCandidatesReversal(p) & mask) != 0)
-						{
-							count++;
-						}
-					}
-
-					if (count == mask.CountSet() - 1)
-					{
-						for (int j = 0; j < 9; j++)
-						{
-							int p = RegionCells[regions[i]][j];
-							if ((grid.GetCandidatesReversal(p) & mask) == 0
-								|| grid.GetCellStatus(p) != Empty || p == onlyOne
-								|| p == playground[0] || p == playground[1]
-								|| (grid.GetCandidatesReversal(p) & ~mask) == 0)
-							{
-								continue;
-							}
-						}
-
-						locked = mask;
-						break;
-					}
-				}
-
-				if (locked != 0)
-				{
-					// Here you should use '|' operator rather than '||'.
-					// operator '||' will not execute the second method if the first condition is true.
-					if (record(playground, 0) | record(playground, 1))
+					int p = playground[m1 != 0 ? 0 : 1];
+					short candidateMask = (short)(grid.GetCandidatesReversal(p) & ~commonBase);
+					if (candidateMask != 0
+						&& grid.GetCellStatus(target) != Empty ^ grid.GetCellStatus(target2) != Empty)
 					{
 						cellOffsets.Add((3, playground[0]));
 						cellOffsets.Add((3, playground[1]));
-					}
-
-					short mask1 = grid.GetCandidatesReversal(playground[0]);
-					short mask2 = grid.GetCandidatesReversal(playground[1]);
-					if (locked.CountSet() == 1
-						&& (mask1 & locked) != 0 ^ (mask2 & locked) != 0)
-					{
-						short candidateMask = (short)(
-							~(
-								grid.GetCandidatesReversal(
-									playground[(mask1 & locked) != 0 ? 1 : 0]
-								) & grid.GetCandidatesReversal(target) & baseCandidateMask
-							) & grid.GetCandidatesReversal(target) & baseCandidateMask);
-						if (candidateMask != 0)
+						foreach (int digit in candidateMask.GetAllSets())
 						{
-							foreach (int digit in candidateMask.GetAllSets())
-							{
-								mirrorElims.Add(new Conclusion(Elimination, target, digit));
-							}
+							mirrorElims.Add(new Conclusion(Elimination, p, digit));
 						}
 					}
 
-					break;
+					return (targetElims, mirrorElims);
+				}
 
-					bool record(Span<int> playground, int i)
+				short nonBase = (short)(mirrorCandidatesMask & ~baseCandidateMask);
+				var (r1, c1, b1) = CellUtils.GetRegion(playground[0]);
+				var (r2, c2, b2) = CellUtils.GetRegion(playground[1]);
+				(regions[0], regions[1]) = (b1, r1 == r2 ? r1 + 9 : c1 + 18);
+				short locked = default;
+				foreach (short mask in GetCombinations(nonBase))
+				{
+					for (int i = 0; i < 2; i++)
 					{
-						short candidateMask = (short)(
-							grid.GetCandidatesReversal(playground[i]) & ~(baseCandidateMask | locked));
-						if (candidateMask != 0)
+						int count = 0;
+						for (int j = 0; j < 9; j++)
 						{
-							foreach (int digit in locked.GetAllSets())
+							int p = RegionCells[regions[i]][j];
+							if (p == playground[0] || p == playground[1] || p == onlyOne)
 							{
-								if (grid.Exists(playground[i], digit) is true)
+								continue;
+							}
+
+							if ((grid.GetCandidatesReversal(p) & mask) != 0)
+							{
+								count++;
+							}
+						}
+
+						if (count == mask.CountSet() - 1)
+						{
+							for (int j = 0; j < 9; j++)
+							{
+								int p = RegionCells[regions[i]][j];
+								if ((grid.GetCandidatesReversal(p) & mask) == 0
+									|| grid.GetCellStatus(p) != Empty || p == onlyOne
+									|| p == playground[0] || p == playground[1]
+									|| (grid.GetCandidatesReversal(p) & ~mask) == 0)
 								{
-									candidateOffsets.Add((1, playground[i] * 9 + digit));
+									continue;
 								}
 							}
 
-							foreach (int digit in candidateMask.GetAllSets())
-							{
-								mirrorElims.Add(new Conclusion(Elimination, playground[i], digit));
-							}
+							locked = mask;
+							break;
+						}
+					}
 
-							return true;
+					if (locked != 0)
+					{
+						// Here you should use '|' operator rather than '||'.
+						// Operator '||' will not execute the second method if the first condition is true.
+						if (record(playground, 0) | record(playground, 1))
+						{
+							cellOffsets.Add((3, playground[0]));
+							cellOffsets.Add((3, playground[1]));
 						}
 
-						return false;
+						short mask1 = grid.GetCandidatesReversal(playground[0]);
+						short mask2 = grid.GetCandidatesReversal(playground[1]);
+						if (locked.CountSet() == 1 && (mask1 & locked) != 0 ^ (mask2 & locked) != 0)
+						{
+							short candidateMask = (short)(
+								~(
+									grid.GetCandidatesReversal(
+										playground[(mask1 & locked) != 0 ? 1 : 0]
+									) & grid.GetCandidatesReversal(target) & baseCandidateMask
+								) & grid.GetCandidatesReversal(target) & baseCandidateMask);
+							if (candidateMask != 0)
+							{
+								foreach (int digit in candidateMask.GetAllSets())
+								{
+									mirrorElims.Add(new Conclusion(Elimination, target, digit));
+								}
+							}
+						}
+
+						break;
+
+						bool record(Span<int> playground, int i)
+						{
+							short candidateMask = (short)(
+								grid.GetCandidatesReversal(playground[i]) & ~(baseCandidateMask | locked));
+							if (candidateMask != 0)
+							{
+								foreach (int digit in locked.GetAllSets())
+								{
+									if (grid.Exists(playground[i], digit) is true)
+									{
+										candidateOffsets.Add((1, playground[i] * 9 + digit));
+									}
+								}
+
+								foreach (int digit in candidateMask.GetAllSets())
+								{
+									mirrorElims.Add(new Conclusion(Elimination, playground[i], digit));
+								}
+
+								return true;
+							}
+
+							return false;
+						}
 					}
 				}
 			}
