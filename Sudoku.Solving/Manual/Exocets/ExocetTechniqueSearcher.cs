@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -578,11 +577,13 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				if (locked != 0)
 				{
-					cellOffsets.Add((3, playground[0]));
-					cellOffsets.Add((3, playground[1]));
-
-					record(playground, 0);
-					record(playground, 1);
+					// Here you should use '|' operator rather than '||'.
+					// operator '||' will not execute the second method if the first condition is true.
+					if (record(playground, 0) | record(playground, 1))
+					{
+						cellOffsets.Add((3, playground[0]));
+						cellOffsets.Add((3, playground[1]));
+					}
 
 					short mask1 = grid.GetCandidatesReversal(playground[0]);
 					short mask2 = grid.GetCandidatesReversal(playground[1]);
@@ -606,7 +607,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 					break;
 
-					void record(Span<int> playground, int i)
+					bool record(Span<int> playground, int i)
 					{
 						short candidateMask = (short)(
 							grid.GetCandidatesReversal(playground[i]) & ~(baseCandidateMask | locked));
@@ -624,7 +625,11 @@ namespace Sudoku.Solving.Manual.Exocets
 							{
 								mirrorElims.Add(new Conclusion(Elimination, playground[i], digit));
 							}
+
+							return true;
 						}
+
+						return false;
 					}
 				}
 			}

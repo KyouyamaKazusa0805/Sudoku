@@ -15,7 +15,7 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<Optimize>false</Optimize>
-		<DefineConstants>DEBUG;SUDOKU_RECOGNIZING</DefineConstants>
+		<DefineConstants>SUDOKU_RECOGNIZING</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

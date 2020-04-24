@@ -94,7 +94,10 @@ namespace Sudoku.Solving.Manual
 				new BdpTechniqueSearcher(),
 				new BugTechniqueSearcher(regionMaps, _settings.UseExtendedBugSearcher),
 				new ErIntersectionPairTechniqueSearcher(regionMaps),
-#if !DEBUG
+#if false
+				// To be honest, I am dissatisfied with my implementation,
+				// because of the low speed and high time complexity.
+				// These method will not used until I re-implement them.
 				new AlsXzTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
 				new AlsXyWingTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
 				new AlsWWingTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
