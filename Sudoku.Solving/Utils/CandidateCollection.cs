@@ -22,11 +22,15 @@ namespace Sudoku.Solving.Utils
 			const string separator = ", ";
 			var sb = new StringBuilder();
 			foreach (var candidateGroupByDigit in
-				from candidate in from cand in candidateOffsets orderby cand select cand
+				from candidate in
+					from cand in candidateOffsets
+					orderby cand
+					select cand
 				group candidate by candidate % 9)
 			{
 				int digit = candidateGroupByDigit.Key;
 				var group = from candidate in candidateGroupByDigit
+							orderby candidate
 							group candidate by candidate / 81;
 				int cellGroupCount = group.Count();
 				if (cellGroupCount >= 2)

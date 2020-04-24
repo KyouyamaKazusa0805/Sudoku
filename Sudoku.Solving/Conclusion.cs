@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Sudoku.Data;
 
 namespace Sudoku.Solving
@@ -6,6 +7,7 @@ namespace Sudoku.Solving
 	/// <summary>
 	/// Encapsulates a conclusion representation while solving in logic.
 	/// </summary>
+	[DebuggerStepThrough]
 	public readonly struct Conclusion : IEquatable<Conclusion>
 	{
 		/// <summary>

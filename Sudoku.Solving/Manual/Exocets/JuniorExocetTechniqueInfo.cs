@@ -15,17 +15,33 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="views">All views.</param>
 		/// <param name="exocet">The exocet.</param>
 		/// <param name="digits">All digits.</param>
+		/// <param name="lockedMemberQ">The locked member Q.</param>
+		/// <param name="lockedMemberR">The locked member R.</param>
+		/// <param name="targetEliminations">The target eliminations.</param>
 		/// <param name="mirrorEliminations">The mirror eliminations.</param>
+		/// <param name="bibiEliminations">The Bi-bi pattern eliminations.</param>
 		public JuniorExocetTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, Exocet exocet,
-			IEnumerable<int> digits, MirrorEliminations mirrorEliminations)
-			: base(conclusions, views, exocet, digits, ExocetTypeCode.Junior, mirrorEliminations)
+			IEnumerable<int> digits, IEnumerable<int>? lockedMemberQ, IEnumerable<int>? lockedMemberR,
+			TargetEliminations targetEliminations,
+			MirrorEliminations mirrorEliminations, BibiPatternEliminations bibiEliminations)
+			: base(
+				  conclusions, views, exocet, digits, ExocetTypeCode.Junior,
+				  lockedMemberQ, lockedMemberR, targetEliminations, mirrorEliminations, bibiEliminations)
 		{
 		}
 
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 9.4M + (MirrorEliminations.Conclusions is null ? 0 : .1M);
+		public override decimal Difficulty
+		{
+			get
+			{
+				return 9.4M
+					+ (MirrorEliminations.Conclusions is null ? 0 : .1M)
+					+ (BibiEliminations.Conclusions is null ? 0 : .3M);
+			}
+		}
 
 
 		/// <inheritdoc/>

@@ -53,6 +53,16 @@ namespace Sudoku.Solving.Manual.Exocets
 			{3, 6}, {0, 6}, {0, 3}, {4, 7}, {1, 7}, {1, 4}, {5, 8}, {2, 8}, {2, 5}
 		};
 
+		/// <summary>
+		/// The iterator for Bi-bi pattern.
+		/// </summary>
+		private static readonly int[,] BibiPatternIterator =
+		{
+			{4, 5, 7, 8}, {3, 5, 6, 8}, {3, 4, 6, 7},
+			{1, 2, 7, 8}, {0, 2, 6, 8}, {0, 1, 6, 7},
+			{1, 2, 4, 5}, {0, 2, 3, 5}, {0, 1, 3, 4}
+		};
+
 
 		/// <summary>
 		/// The static constructor of <see cref="ExocetTechniqueSearcher"/>.
@@ -60,7 +70,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		static ExocetTechniqueSearcher()
 		{
 			var t = (Span<int>)stackalloc int[3];
-			var tt = (Span<int>)stackalloc int[25]; // Only use [7]..[24].
+			var crossline = (Span<int>)stackalloc int[25]; // Only use [7]..[24].
 			int n = 0;
 			Exocets = new Exocet[1458];
 			for (int i = 0; i < 18; i++)
@@ -73,13 +83,10 @@ namespace Sudoku.Solving.Manual.Exocets
 						{
 							ref var exocet = ref Exocets[n];
 							var (b1, b2) = (B_s[i] + BIterator[j, 0], B_s[i] + BIterator[j, 1]);
-							var (tq1, tr1) = (
-								B_s[B_rq[i, 0]] + RqIterator[k, 0],
-								B_s[B_rq[i, 1]] + RqIterator[l, 0]);
+							var (tq1, tr1) = (B_s[B_rq[i, 0]] + RqIterator[k, 0], B_s[B_rq[i, 1]] + RqIterator[l, 0]);
 
-							int ll = 6, x = i / 3 % 3;
-							int m = i < 9 ? b1 % 9 + b2 % 9 : b1 / 9 + b2 / 9;
-							m = true switch
+							int index = 6, x = i / 3 % 3;
+							int m = (m = i < 9 ? b1 % 9 + b2 % 9 : b1 / 9 + b2 / 9) switch
 							{
 								_ when m < 4 => 3 - m,
 								_ when m < 13 => 12 - m,
@@ -94,7 +101,7 @@ namespace Sudoku.Solving.Manual.Exocets
 								{
 									(i < 9 ? ref r : ref c) = SIterator[x, b];
 
-									tt[++ll] = r * 9 + c;
+									crossline[++index] = r * 9 + c;
 								}
 							}
 
@@ -105,7 +112,7 @@ namespace Sudoku.Solving.Manual.Exocets
 								B_s[B_rq[i, 0]] + RqIterator[k, 1],
 								tr1,
 								B_s[B_rq[i, 1]] + RqIterator[l, 1],
-								new GridMap(tt[7..]),
+								new GridMap(crossline[7..]),
 								new GridMap(stackalloc[] { B_s[B_rq[i, 1]] + Mirror[l, 2], B_s[B_rq[i, 1]] + Mirror[l, 3] }),
 								new GridMap(stackalloc[] { B_s[B_rq[i, 1]] + Mirror[l, 0], B_s[B_rq[i, 1]] + Mirror[l, 1] }),
 								new GridMap(stackalloc[] { B_s[B_rq[i, 0]] + Mirror[k, 2], B_s[B_rq[i, 0]] + Mirror[k, 3] }),

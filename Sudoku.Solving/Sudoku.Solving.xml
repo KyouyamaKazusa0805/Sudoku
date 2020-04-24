@@ -2313,6 +2313,72 @@
             <param name="node">The node.</param>
             <param name="map">The map.</param>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations">
+            <summary>
+            Indicates the Bi-bi pattern eliminations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Solving.Conclusion})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.Count">
+            <summary>
+            Indicates the number of all conclusions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.Conclusions">
+            <summary>
+            Indicates the conclusions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.Add(Sudoku.Solving.Conclusion)">
+            <summary>
+            Add the conclusion into the collection.
+            </summary>
+            <param name="conclusion">The conclusion.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
+            <summary>
+            Add a serial of conclusions into this collection.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.BibiPatternEliminations}[])">
+            <summary>
+            Merge all eliminations.
+            </summary>
+            <param name="eliminations">All instances to merge.</param>
+            <returns>The merged result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.BibiPatternEliminations})">
+            <summary>
+            Merge all conclusions.
+            </summary>
+            <param name="list">The list.</param>
+            <returns>The merged result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.BibiPatternEliminations[])">
+            <summary>
+            Merge all conclusions.
+            </summary>
+            <param name="list">The list.</param>
+            <returns>The merged result.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.Exocet">
             <summary>
             Indicates an exocet pattern.
@@ -2465,7 +2531,7 @@
             Provides a usage of <b>exocet</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.ExocetTypeCode,Sudoku.Solving.Manual.Exocets.MirrorEliminations)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.ExocetTypeCode,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.TargetEliminations,Sudoku.Solving.Manual.Exocets.MirrorEliminations,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -2474,7 +2540,21 @@
             <param name="exocet">The exocet.</param>
             <param name="digits">All digits.</param>
             <param name="typeCode">The type code.</param>
+            <param name="lockedMemberQ">The locked member Q.</param>
+            <param name="lockedMemberR">The locked member R.</param>
+            <param name="targetEliminations">The target eliminations.</param>
             <param name="mirrorEliminations">The mirror eliminations.</param>
+            <param name="bibiEliminations">The Bi-bi pattern eliminations.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.LockedMemberQ">
+            <summary>
+            The locked member Q.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.LockedMemberR">
+            <summary>
+            The locked member R.
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.Digits">
             <summary>
@@ -2491,9 +2571,19 @@
             The exocet.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.TargetEliminations">
+            <summary>
+            The target eliminations.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.MirrorEliminations">
             <summary>
             The mirror eliminations.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.BibiEliminations">
+            <summary>
+            The Bi-bi pattern eliminations.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.Name">
@@ -2572,53 +2662,65 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckCrossLine(Sudoku.Data.GridMap,System.Boolean,System.Int16,Sudoku.Data.GridMap[])">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckCrossLine(Sudoku.Data.GridMap,System.Int16,Sudoku.Data.GridMap[])">
             <summary>
             Check the cross line cells.
             </summary>
             <param name="crossline">The cross line cells.</param>
-            <param name="isRow">Indicates whether the specified checking is for rows.</param>
             <param name="digitsNeedChecking">The digits that need checking.</param>
             <param name="digitDistributions">All digit distributions.</param>
             <returns>
             A <see cref="T:System.Boolean"/> value indicating whether the structure passed the validation.
             </returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckMirror(Sudoku.Data.IReadOnlyGrid,System.Int16,Sudoku.Solving.Manual.Exocets.Exocet@,System.Int16,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckTarget(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int32,System.Int16@,System.Int32@)">
             <summary>
-            Check mirror cells.
+            Check the target cells.
             </summary>
             <param name="grid">The grid.</param>
-            <param name="baseCandidates">The base candidates mask.</param>
-            <param name="exocet">(<see langword="in"/> parameter) The exocet.</param>
-            <param name="conjugatePairDigit">The digit of conjugate pair is available.</param>
+            <param name="pos1">The cell 1 to determine.</param>
+            <param name="pos2">The cell 2 to determine.</param>
+            <param name="baseCandidatesMask">The base candidate mask.</param>
+            <param name="otherCandidatesMask">
+            (<see langword="out"/> parameter) The other candidate mask.
+            </param>
+            <param name="otherRegion">
+            (<see langword="out"/> parameter) The other region.
+            </param>
+            <returns>The <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckBibiPattern(Sudoku.Data.IReadOnlyGrid,System.Int16,System.Int32,System.Int32)">
+            <summary>
+            Check Bi-bi pattern eliminations.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="baseCandidatesMask">The base candidate mask.</param>
+            <param name="b1">The base cell 1.</param>
+            <param name="b2">The base cell 2.</param>
+            <returns>The eliminations.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.RecordMirrorEliminations(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap[],System.Int32,System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
+            <summary>
+            Check mirror eliminations.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="target">The target cell.</param>
+            <param name="lockedNonTarget">The locked member that is non-target digits.</param>
+            <param name="baseCandidateMask">The base candidate mask.</param>
+            <param name="mirror">The mirror map.</param>
+            <param name="digitDistributions">The digit distributions.</param>
+            <param name="x">The x.</param>
+            <param name="onlyOne">The only one cell.</param>
             <param name="cellOffsets">The cell offsets.</param>
             <param name="candidateOffsets">The candidate offsets.</param>
-            <returns>Returns the list that contains all possible mirror eliminations.</returns>
+            <returns>All mirror eliminations.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetDiagonalCell(System.ReadOnlySpan{System.Int32},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetEmptyCellsMap(Sudoku.Data.IReadOnlyGrid)">
             <summary>
-            Get the diagonal cell in target cells.
+            Get the map of empty cells.
             </summary>
-            <param name="cells">All target cells.</param>
-            <param name="cell">The cell.</param>
-            <returns>The diagonal cell.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetCurrentPair(System.ReadOnlySpan{System.Int32},System.Int32)">
-            <summary>
-            Get the current pair cells with the target cells.
-            </summary>
-            <param name="cells">All target cells.</param>
-            <param name="cell">The cell.</param>
-            <returns>The current pair of cells.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetOppositePair(System.ReadOnlySpan{System.Int32},System.Int32)">
-            <summary>
-            Get the opposite pair cells with the target cells.
-            </summary>
-            <param name="cells">All target cells.</param>
-            <param name="cell">The cell.</param>
-            <returns>The opposite pair of cells.</returns>
+            <param name="grid">The grid.</param>
+            <returns>The map.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetDigitDistributions(Sudoku.Data.IReadOnlyGrid)">
             <summary>
@@ -2654,6 +2756,11 @@
             The mirror list.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.BibiPatternIterator">
+            <summary>
+            The iterator for Bi-bi pattern.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.#cctor">
             <summary>
             The static constructor of <see cref="T:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher"/>.
@@ -2679,7 +2786,7 @@
             Provides a usage of <b>junior exocet</b> (JE) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.MirrorEliminations)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.TargetEliminations,Sudoku.Solving.Manual.Exocets.MirrorEliminations,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -2687,7 +2794,11 @@
             <param name="views">All views.</param>
             <param name="exocet">The exocet.</param>
             <param name="digits">All digits.</param>
+            <param name="lockedMemberQ">The locked member Q.</param>
+            <param name="lockedMemberR">The locked member R.</param>
+            <param name="targetEliminations">The target eliminations.</param>
             <param name="mirrorEliminations">The mirror eliminations.</param>
+            <param name="bibiEliminations">The Bi-bi pattern eliminations.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.Difficulty">
             <inheritdoc/>
@@ -2755,6 +2866,72 @@
             <returns>The merged result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.MirrorEliminations[])">
+            <summary>
+            Merge all conclusions.
+            </summary>
+            <param name="list">The list.</param>
+            <returns>The merged result.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.TargetEliminations">
+            <summary>
+            Indicates the target eliminations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Solving.Conclusion})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.TargetEliminations.Count">
+            <summary>
+            Indicates the number of all conclusions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.TargetEliminations.Conclusions">
+            <summary>
+            Indicates the conclusions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.Add(Sudoku.Solving.Conclusion)">
+            <summary>
+            Add the conclusion into the collection.
+            </summary>
+            <param name="conclusion">The conclusion.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
+            <summary>
+            Add a serial of conclusions into this collection.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.TargetEliminations}[])">
+            <summary>
+            Merge all eliminations.
+            </summary>
+            <param name="eliminations">All instances to merge.</param>
+            <returns>The merged result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.TargetEliminations})">
+            <summary>
+            Merge all conclusions.
+            </summary>
+            <param name="list">The list.</param>
+            <returns>The merged result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.TargetEliminations[])">
             <summary>
             Merge all conclusions.
             </summary>

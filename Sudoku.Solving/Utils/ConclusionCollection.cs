@@ -35,6 +35,7 @@ namespace Sudoku.Solving.Utils
 					int digit = conclusionGroupByDigit.Key;
 					foreach (var conclusionGroupByCellRow in
 						from conclusion in conclusionGroupByDigit
+						orderby conclusion.CellOffset
 						group conclusion by conclusion.CellOffset / 9)
 					{
 						int row = conclusionGroupByCellRow.Key;
