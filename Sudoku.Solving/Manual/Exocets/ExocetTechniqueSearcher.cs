@@ -33,6 +33,8 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// '-------'-------'-------'
 	/// </code>
 	/// In the data structure, all letters will be used as the same one in this exemplar.
+	/// In addition, if as senior exocet, one of two target cells will lie on cross-line cells,
+	/// and the lines of two target cells lying on cannot contain any base digits.
 	/// </para>
 	/// </summary>
 	[TechniqueDisplay("Exocet")]
@@ -82,223 +84,236 @@ namespace Sudoku.Solving.Manual.Exocets
 		{
 			var mirror1 = (Span<int>)stackalloc int[2];
 			var mirror2 = (Span<int>)stackalloc int[2];
+			var modes = (Span<bool>)stackalloc[] { true, false };
 			var emptyCellsMap = GetEmptyCellsMap(grid);
 			var digitDistributions = GetDigitDistributions(grid);
 			foreach (var exocet in Exocets)
 			{
 				var (baseMap, targetMap, _) = exocet;
 				var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2) = exocet;
-
-				// The base cells cannot be given or modifiable.
-				if ((baseMap - emptyCellsMap).IsNotEmpty)
+				foreach (bool jeMode in modes)
 				{
-					continue;
-				}
-
-				// The number of different candidates in base cells cannot be greater than 5.
-				short m1 = grid.GetCandidatesReversal(b1);
-				short m2 = grid.GetCandidatesReversal(b2);
-				short baseCandidatesMask = (short)(m1 | m2);
-				if (baseCandidatesMask.CountSet() > 5)
-				{
-					continue;
-				}
-
-				// At least one cell should be empty.
-				if (grid.GetCellStatus(tq1) != Empty && grid.GetCellStatus(tq2) != Empty
-					&& grid.GetCellStatus(tr1) != Empty && grid.GetCellStatus(tr2) != Empty)
-				{
-					continue;
-				}
-
-				if (!CheckTarget(grid, tq1, tq2, baseCandidatesMask, out short nonBaseQ, out _)
-					|| !CheckTarget(grid, tr1, tr2, baseCandidatesMask, out short nonBaseR, out _))
-				{
-					continue;
-				}
-
-				// Get all locked members.
-				(mirror1[0], mirror1[1]) = (mq1.SetAt(0), mq1.SetAt(1));
-				(mirror2[0], mirror2[1]) = (mq2.SetAt(0), mq2.SetAt(1));
-				short temp = (short)(
-					(short)(grid.GetCandidatesReversal(mirror1[0]) | grid.GetCandidatesReversal(mirror1[1]))
-					| (short)(grid.GetCandidatesReversal(mirror2[0]) | grid.GetCandidatesReversal(mirror2[1])));
-				short needChecking = (short)(baseCandidatesMask & temp);
-				short lockedMemberQ = (short)(baseCandidatesMask & ~needChecking);
-
-				(mirror1[0], mirror1[1]) = (mr1.SetAt(0), mr1.SetAt(1));
-				(mirror2[0], mirror2[1]) = (mr2.SetAt(0), mr2.SetAt(1));
-				temp = (short)(
-					(short)(grid.GetCandidatesReversal(mirror1[0]) | grid.GetCandidatesReversal(mirror1[1]))
-					| (short)(grid.GetCandidatesReversal(mirror2[0]) | grid.GetCandidatesReversal(mirror2[1])));
-				needChecking &= temp;
-				short lockedMemberR = (short)(baseCandidatesMask & ~(baseCandidatesMask & temp));
-				if (!CheckCrossline(s, needChecking, digitDistributions))
-				{
-					continue;
-				}
-
-				// Record highlight cells and candidates.
-				var cellOffsets = new List<(int, int)> { (0, b1), (0, b2), (1, tq1), (1, tq2), (1, tr1), (1, tr2) };
-				foreach (int cell in s.Offsets)
-				{
-					cellOffsets.Add((2, cell));
-				}
-				var candidateOffsets = new List<(int, int)>();
-				foreach (int digit in grid.GetCandidatesReversal(b1).GetAllSets())
-				{
-					candidateOffsets.Add((0, b1 * 9 + digit));
-				}
-				foreach (int digit in grid.GetCandidatesReversal(b2).GetAllSets())
-				{
-					candidateOffsets.Add((0, b2 * 9 + digit));
-				}
-
-				// Check target eliminations.
-				// '|' first, '&&' second. (Do you know my mean?)
-				var targetElims = new TargetEliminations();
-				temp = (short)(nonBaseQ > 0 ? baseCandidatesMask | nonBaseQ : baseCandidatesMask);
-				if (recordTargetEliminations(tq1) | recordTargetEliminations(tq2)
-					&& nonBaseQ != 0 && grid.GetCellStatus(tq1) == Empty && grid.GetCellStatus(tq2) == Empty)
-				{
-					int conjugatPairDigit = nonBaseQ.FindFirstSet();
-					if (grid.Exists(tq1, conjugatPairDigit) is true)
+					// The base cells cannot be given or modifiable.
+					if ((baseMap - emptyCellsMap).IsNotEmpty)
 					{
-						candidateOffsets.Add((1, tq1 * 9 + conjugatPairDigit));
+						continue;
 					}
-					if (grid.Exists(tq2, conjugatPairDigit) is true)
-					{
-						candidateOffsets.Add((1, tq2 * 9 + conjugatPairDigit));
-					}
-				}
-				temp = (short)(nonBaseR > 0 ? baseCandidatesMask | nonBaseR : baseCandidatesMask);
-				if (recordTargetEliminations(tr1) | recordTargetEliminations(tr2)
-					&& nonBaseR != 0 && grid.GetCellStatus(tr1) == Empty && grid.GetCellStatus(tr2) == Empty)
-				{
-					int conjugatPairDigit = nonBaseR.FindFirstSet();
-					if (grid.Exists(tr1, conjugatPairDigit) is true)
-					{
-						candidateOffsets.Add((1, tr1 * 9 + conjugatPairDigit));
-					}
-					if (grid.Exists(tr2, conjugatPairDigit) is true)
-					{
-						candidateOffsets.Add((1, tr2 * 9 + conjugatPairDigit));
-					}
-				}
 
-				var (tar1, mir1) = recordMirrorEliminations(tq1, tq2, tr1, tr2, mq1, mq2, nonBaseQ, 0);
-				var (tar2, mir2) = recordMirrorEliminations(tr1, tr2, tq1, tq2, mr1, mr2, nonBaseR, 1);
-				var targetEliminations = TargetEliminations.MergeAll(targetElims, tar1, tar2);
-				var mirrorEliminations = MirrorEliminations.MergeAll(mir1, mir2);
-				var bibiEliminations = new BibiPatternEliminations();
-				var targetPairEliminations = new TargetPairEliminations();
-				var swordfishEliminations = new SwordfishEliminations();
-				if (_checkAdvanced && baseCandidatesMask.CountSet() > 2)
-				{
-					CheckBibiPattern(
-						grid, baseCandidatesMask, b1, b2, tq1, tq2, tr1, tr2, s,
-						out bibiEliminations, out targetPairEliminations,
-						out swordfishEliminations);
-				}
+					// The number of different candidates in base cells cannot be greater than 5.
+					short m1 = grid.GetCandidatesReversal(b1);
+					short m2 = grid.GetCandidatesReversal(b2);
+					short baseCandidatesMask = (short)(m1 | m2);
+					if (baseCandidatesMask.CountSet() > 5)
+					{
+						continue;
+					}
 
-				if (_checkAdvanced && targetEliminations.Count == 0 && mirrorEliminations.Count == 0
-					&& bibiEliminations.Count == 0
-					|| !_checkAdvanced && targetEliminations.Count == 0)
-				{
-					continue;
-				}
+					// At least one cell should be empty.
+					if (grid.GetCellStatus(tq1) != Empty && grid.GetCellStatus(tq2) != Empty
+						&& grid.GetCellStatus(tr1) != Empty && grid.GetCellStatus(tr2) != Empty)
+					{
+						continue;
+					}
 
-				accumulator.Add(
-					new JuniorExocetTechniqueInfo(
-						conclusions: new List<Conclusion>(),
-						views: new[]
+					if (!CheckTarget(grid, tq1, tq2, baseCandidatesMask, out short nonBaseQ, out _)
+						|| !CheckTarget(grid, tr1, tr2, baseCandidatesMask, out short nonBaseR, out _))
+					{
+						continue;
+					}
+
+					// Get all locked members.
+					(mirror1[0], mirror1[1]) = (mq1.SetAt(0), mq1.SetAt(1));
+					(mirror2[0], mirror2[1]) = (mq2.SetAt(0), mq2.SetAt(1));
+					short temp = (short)(
+						(short)(grid.GetCandidatesReversal(mirror1[0]) | grid.GetCandidatesReversal(mirror1[1]))
+						| (short)(grid.GetCandidatesReversal(mirror2[0]) | grid.GetCandidatesReversal(mirror2[1])));
+					short needChecking = (short)(baseCandidatesMask & temp);
+					short lockedMemberQ = (short)(baseCandidatesMask & ~needChecking);
+
+					(mirror1[0], mirror1[1]) = (mr1.SetAt(0), mr1.SetAt(1));
+					(mirror2[0], mirror2[1]) = (mr2.SetAt(0), mr2.SetAt(1));
+					temp = (short)(
+						(short)(grid.GetCandidatesReversal(mirror1[0]) | grid.GetCandidatesReversal(mirror1[1]))
+						| (short)(grid.GetCandidatesReversal(mirror2[0]) | grid.GetCandidatesReversal(mirror2[1])));
+					needChecking &= temp;
+					short lockedMemberR = (short)(baseCandidatesMask & ~(baseCandidatesMask & temp));
+					if (!CheckCrossline(s, needChecking, digitDistributions))
+					{
+						continue;
+					}
+
+					// Record highlight cells and candidates.
+					var cellOffsets = new List<(int, int)> { (0, b1), (0, b2) };
+					var candidateOffsets = new List<(int, int)>();
+					foreach (int digit in grid.GetCandidatesReversal(b1).GetAllSets())
+					{
+						candidateOffsets.Add((0, b1 * 9 + digit));
+					}
+					foreach (int digit in grid.GetCandidatesReversal(b2).GetAllSets())
+					{
+						candidateOffsets.Add((0, b2 * 9 + digit));
+					}
+
+					// Check target eliminations.
+					// '|' first, '&&' second. (Do you know my mean?)
+					var targetElims = new TargetEliminations();
+					temp = (short)(nonBaseQ > 0 ? baseCandidatesMask | nonBaseQ : baseCandidatesMask);
+					if (recordTargetEliminations(tq1) | recordTargetEliminations(tq2)
+						&& nonBaseQ != 0 && grid.GetCellStatus(tq1) == Empty && grid.GetCellStatus(tq2) == Empty)
+					{
+						int conjugatPairDigit = nonBaseQ.FindFirstSet();
+						if (grid.Exists(tq1, conjugatPairDigit) is true)
 						{
-							new View(
-								cellOffsets,
-								candidateOffsets,
-								regionOffsets: null,
-								links: null)
-						},
-						exocet,
-						digits: baseCandidatesMask.GetAllSets(),
-						lockedMemberQ: lockedMemberQ == 0 ? null : lockedMemberQ.GetAllSets(),
-						lockedMemberR: lockedMemberR == 0 ? null : lockedMemberR.GetAllSets(),
-						targetEliminations,
-						mirrorEliminations: _checkAdvanced ? mirrorEliminations : new MirrorEliminations(),
-						bibiEliminations,
-						targetPairEliminations,
-						swordfishEliminations));
-
-				bool recordTargetEliminations(int cell)
-				{
-					short candidateMask = (short)(grid.GetCandidatesReversal(cell) & ~temp);
-					if (grid.GetCellStatus(cell) == Empty && candidateMask != 0
-						&& (grid.GetCandidatesReversal(cell) & baseCandidatesMask) != 0)
-					{
-						foreach (int digit in candidateMask.GetAllSets())
+							candidateOffsets.Add((1, tq1 * 9 + conjugatPairDigit));
+						}
+						if (grid.Exists(tq2, conjugatPairDigit) is true)
 						{
-							targetElims.Add(new Conclusion(Elimination, cell, digit));
+							candidateOffsets.Add((1, tq2 * 9 + conjugatPairDigit));
+						}
+					}
+					temp = (short)(nonBaseR > 0 ? baseCandidatesMask | nonBaseR : baseCandidatesMask);
+					if (recordTargetEliminations(tr1) | recordTargetEliminations(tr2)
+						&& nonBaseR != 0 && grid.GetCellStatus(tr1) == Empty && grid.GetCellStatus(tr2) == Empty)
+					{
+						int conjugatPairDigit = nonBaseR.FindFirstSet();
+						if (grid.Exists(tr1, conjugatPairDigit) is true)
+						{
+							candidateOffsets.Add((1, tr1 * 9 + conjugatPairDigit));
+						}
+						if (grid.Exists(tr2, conjugatPairDigit) is true)
+						{
+							candidateOffsets.Add((1, tr2 * 9 + conjugatPairDigit));
+						}
+					}
+
+					bool isRow = new GridMap(stackalloc[] { b1, b2 }).CoveredLine < 18;
+					if (jeMode)
+					{
+						var (tar1, mir1) = recordMirrorEliminations(tq1, tq2, tr1, tr2, mq1, mq2, nonBaseQ, 0);
+						var (tar2, mir2) = recordMirrorEliminations(tr1, tr2, tq1, tq2, mr1, mr2, nonBaseR, 1);
+						var targetEliminations = TargetEliminations.MergeAll(targetElims, tar1, tar2);
+						var mirrorEliminations = MirrorEliminations.MergeAll(mir1, mir2);
+						var bibiEliminations = new BibiPatternEliminations();
+						var targetPairEliminations = new TargetPairEliminations();
+						var swordfishEliminations = new SwordfishEliminations();
+						if (_checkAdvanced && baseCandidatesMask.CountSet() > 2)
+						{
+							CheckBibiPattern(
+								grid, baseCandidatesMask, b1, b2, tq1, tq2, tr1, tr2, s,
+								isRow, out bibiEliminations, out targetPairEliminations,
+								out swordfishEliminations);
 						}
 
-						return true;
-					}
+						if (_checkAdvanced && targetEliminations.Count == 0 && mirrorEliminations.Count == 0
+							&& bibiEliminations.Count == 0
+							|| !_checkAdvanced && targetEliminations.Count == 0)
+						{
+							continue;
+						}
 
-					return false;
-				}
+						cellOffsets.AddRange(new[] { (1, tq1), (1, tq2), (1, tr1), (1, tr2) });
+						foreach (int cell in s.Offsets)
+						{
+							cellOffsets.Add((2, cell));
+						}
 
-				(TargetEliminations, MirrorEliminations) recordMirrorEliminations(
-					int tq1, int tq2, int tr1, int tr2, GridMap m1, GridMap m2,
-					short lockedNonTarget, int x)
-				{
-					if ((grid.GetCandidatesReversal(tq1) & baseCandidatesMask) != 0)
-					{
-						short mask1 = grid.GetCandidatesReversal(tr1);
-						short mask2 = grid.GetCandidatesReversal(tr2);
-						var (target, target2, mirror) = (tq1, tq2, m1);
-						return RecordMirrorEliminations(
-							grid,
-							target,
-							target2,
-							lockedNonTarget: lockedNonTarget > 0 ? lockedNonTarget : (short)0,
-							baseCandidatesMask,
-							mirror,
-							digitDistributions,
-							x,
-							onlyOne:
-								(mask1 & baseCandidatesMask) != 0 && (mask2 & baseCandidatesMask) == 0
-									? tr1
-									: (mask1 & baseCandidatesMask) == 0 && (mask2 & baseCandidatesMask) != 0
-										? tr2
-										: -1,
-							cellOffsets,
-							candidateOffsets);
-					}
-					else if ((grid.GetCandidatesReversal(tq2) & baseCandidatesMask) != 0)
-					{
-						short mask1 = grid.GetCandidatesReversal(tq1);
-						short mask2 = grid.GetCandidatesReversal(tq2);
-						var (target, target2, mirror) = (tq2, tq1, m2);
-						return RecordMirrorEliminations(
-							grid,
-							target,
-							target2,
-							lockedNonTarget: lockedNonTarget > 0 ? lockedNonTarget : (short)0,
-							baseCandidatesMask,
-							mirror,
-							digitDistributions,
-							x,
-							onlyOne:
-								(mask1 & baseCandidatesMask) != 0 && (mask2 & baseCandidatesMask) == 0
-									? tr1
-									: (mask1 & baseCandidatesMask) == 0 && (mask2 & baseCandidatesMask) != 0
-										? tr2
-										: -1,
-							cellOffsets,
-							candidateOffsets);
+						accumulator.Add(
+							new JuniorExocetTechniqueInfo(
+								conclusions: new List<Conclusion>(),
+								views: new[]
+								{
+									new View(
+										cellOffsets,
+										candidateOffsets,
+										regionOffsets: null,
+										links: null)
+								},
+								exocet,
+								digits: baseCandidatesMask.GetAllSets(),
+								lockedMemberQ: lockedMemberQ == 0 ? null : lockedMemberQ.GetAllSets(),
+								lockedMemberR: lockedMemberR == 0 ? null : lockedMemberR.GetAllSets(),
+								targetEliminations,
+								mirrorEliminations: _checkAdvanced ? mirrorEliminations : new MirrorEliminations(),
+								bibiEliminations,
+								targetPairEliminations,
+								swordfishEliminations));
 					}
 					else
 					{
-						return (new TargetEliminations(), new MirrorEliminations());
+						// TODO: Check senior exocet.
+					}
+
+					bool recordTargetEliminations(int cell)
+					{
+						short candidateMask = (short)(grid.GetCandidatesReversal(cell) & ~temp);
+						if (grid.GetCellStatus(cell) == Empty && candidateMask != 0
+							&& (grid.GetCandidatesReversal(cell) & baseCandidatesMask) != 0)
+						{
+							foreach (int digit in candidateMask.GetAllSets())
+							{
+								targetElims.Add(new Conclusion(Elimination, cell, digit));
+							}
+
+							return true;
+						}
+
+						return false;
+					}
+
+					(TargetEliminations, MirrorEliminations) recordMirrorEliminations(
+						int tq1, int tq2, int tr1, int tr2, GridMap m1, GridMap m2,
+						short lockedNonTarget, int x)
+					{
+						if ((grid.GetCandidatesReversal(tq1) & baseCandidatesMask) != 0)
+						{
+							short mask1 = grid.GetCandidatesReversal(tr1);
+							short mask2 = grid.GetCandidatesReversal(tr2);
+							var (target, target2, mirror) = (tq1, tq2, m1);
+							return CheckMirror(
+								grid,
+								target,
+								target2,
+								lockedNonTarget: lockedNonTarget > 0 ? lockedNonTarget : (short)0,
+								baseCandidatesMask,
+								mirror,
+								digitDistributions,
+								x,
+								onlyOne:
+									(mask1 & baseCandidatesMask) != 0 && (mask2 & baseCandidatesMask) == 0
+										? tr1
+										: (mask1 & baseCandidatesMask) == 0 && (mask2 & baseCandidatesMask) != 0
+											? tr2
+											: -1,
+								cellOffsets,
+								candidateOffsets);
+						}
+						else if ((grid.GetCandidatesReversal(tq2) & baseCandidatesMask) != 0)
+						{
+							short mask1 = grid.GetCandidatesReversal(tq1);
+							short mask2 = grid.GetCandidatesReversal(tq2);
+							var (target, target2, mirror) = (tq2, tq1, m2);
+							return CheckMirror(
+								grid,
+								target,
+								target2,
+								lockedNonTarget: lockedNonTarget > 0 ? lockedNonTarget : (short)0,
+								baseCandidatesMask,
+								mirror,
+								digitDistributions,
+								x,
+								onlyOne:
+									(mask1 & baseCandidatesMask) != 0 && (mask2 & baseCandidatesMask) == 0
+										? tr1
+										: (mask1 & baseCandidatesMask) == 0 && (mask2 & baseCandidatesMask) != 0
+											? tr2
+											: -1,
+								cellOffsets,
+								candidateOffsets);
+						}
+						else
+						{
+							return (new TargetEliminations(), new MirrorEliminations());
+						}
 					}
 				}
 			}
@@ -455,6 +470,9 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="tr1">The target R1 cell.</param>
 		/// <param name="tr2">The target R2 cell.</param>
 		/// <param name="crossline">The cross-line cells.</param>
+		/// <param name="isRow">
+		/// Indicates whether the specified exocet is in the horizontal direction.
+		/// </param>
 		/// <param name="bibiElims">
 		/// (<see langword="out"/> parameter) The Bi-bi pattern eliminations.
 		/// </param>
@@ -467,8 +485,9 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <returns>A <see cref="bool"/> value indicating whether the pattern exists.</returns>
 		private bool CheckBibiPattern(
 			IReadOnlyGrid grid, short baseCandidatesMask, int b1, int b2,
-			int tq1, int tq2, int tr1, int tr2, GridMap crossline, out BibiPatternEliminations bibiElims,
-			out TargetPairEliminations targetPairElims, out SwordfishEliminations swordfishElims)
+			int tq1, int tq2, int tr1, int tr2, GridMap crossline, bool isRow,
+			out BibiPatternEliminations bibiElims, out TargetPairEliminations targetPairElims,
+			out SwordfishEliminations swordfishElims)
 		{
 			bibiElims = new BibiPatternEliminations();
 			targetPairElims = new TargetPairEliminations();
@@ -597,7 +616,6 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				// Then check swordfish pattern.
-				bool isRow = new GridMap(stackalloc[] { b1, b2 }).CoveredLine < 18;
 				foreach (int digit in digits)
 				{
 					short mask = isRow ? crossline.RowMask : crossline.ColumnMask;
@@ -643,7 +661,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="cellOffsets">The cell offsets.</param>
 		/// <param name="candidateOffsets">The candidate offsets.</param>
 		/// <returns>All mirror eliminations.</returns>
-		private (TargetEliminations, MirrorEliminations) RecordMirrorEliminations(
+		private (TargetEliminations, MirrorEliminations) CheckMirror(
 			IReadOnlyGrid grid, int target, int target2, short lockedNonTarget, short baseCandidateMask,
 			GridMap mirror, GridMap[] digitDistributions, int x, int onlyOne,
 			IList<(int, int)> cellOffsets, IList<(int, int)> candidateOffsets)
@@ -793,12 +811,13 @@ namespace Sudoku.Solving.Manual.Exocets
 			return (targetElims, mirrorElims);
 		}
 
+
 		/// <summary>
 		/// Get the map of empty cells.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <returns>The map.</returns>
-		private GridMap GetEmptyCellsMap(IReadOnlyGrid grid)
+		private static GridMap GetEmptyCellsMap(IReadOnlyGrid grid)
 		{
 			var result = GridMap.Empty;
 			for (int cell = 0; cell < 81; cell++)

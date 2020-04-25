@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Alses;
+using Sudoku.Solving.Manual.Alses.Mslses;
 using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Solving.Manual.Fishes;
@@ -124,6 +125,7 @@ namespace Sudoku.Solving.Manual
 				new PomTechniqueSearcher(),
 				new CccTechniqueSearcher(),
 				new ExocetTechniqueSearcher(regionMaps, _settings.CheckAdvancedInExocet),
+				new SkLoopTechniqueSearcher(),
 			};
 
 			var bag = new Bag<TechniqueInfo>();

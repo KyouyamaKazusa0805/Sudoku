@@ -1650,6 +1650,89 @@
         <member name="M:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.Mslses.MslsTechniqueInfo">
+            <summary>
+            Provides a usage of <b>multi-sector locked set</b> (MSLS) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.MslsTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.Mslses.MslsTechniqueSearcher">
+            <summary>
+            Encapsulates a <b>multi-sector locked sets</b> (MSLS) technique.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueInfo">
+            <summary>
+            Provides a usage of <b>Sk-loop</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="cells">All cells.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueInfo.Cells">
+            <summary>
+            The cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueSearcher">
+            <summary>
+            Encapsulates a <b>domino loop</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueSearcher.Priority">
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueSearcher.GetCombinations(System.Int16)">
+            <summary>
+            Get all combinations that contains all set bits from the specified number.
+            </summary>
+            <param name="seed">The specified number.</param>
+            <returns>All combinations.</returns>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueSearcher.SkLoopTable">
+            <summary>
+            The position table of all SK-loops.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueSearcher.RegionMaps">
+            <summary>
+            The region maps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueSearcher.#cctor">
+            <summary>
+            The static constructor of <see cref="T:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueSearcher"/>
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Rcc">
             <summary>
             Encapsulates a data structure for restricted common candidates (RCC).
@@ -2634,6 +2717,8 @@
             '-------'-------'-------'
             </code>
             In the data structure, all letters will be used as the same one in this exemplar.
+            In addition, if as senior exocet, one of two target cells will lie on cross-line cells,
+            and the lines of two target cells lying on cannot contain any base digits.
             </para>
             </summary>
         </member>
@@ -2701,7 +2786,7 @@
             </param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckBibiPattern(Sudoku.Data.IReadOnlyGrid,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations@,Sudoku.Solving.Manual.Exocets.TargetPairEliminations@,Sudoku.Solving.Manual.Exocets.SwordfishEliminations@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckBibiPattern(Sudoku.Data.IReadOnlyGrid,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,System.Boolean,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations@,Sudoku.Solving.Manual.Exocets.TargetPairEliminations@,Sudoku.Solving.Manual.Exocets.SwordfishEliminations@)">
             <summary>
             Check Bi-bi pattern eliminations.
             </summary>
@@ -2714,6 +2799,9 @@
             <param name="tr1">The target R1 cell.</param>
             <param name="tr2">The target R2 cell.</param>
             <param name="crossline">The cross-line cells.</param>
+            <param name="isRow">
+            Indicates whether the specified exocet is in the horizontal direction.
+            </param>
             <param name="bibiElims">
             (<see langword="out"/> parameter) The Bi-bi pattern eliminations.
             </param>
@@ -2725,7 +2813,7 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating whether the pattern exists.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.RecordMirrorEliminations(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap[],System.Int32,System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckMirror(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap[],System.Int32,System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
             <summary>
             Check mirror eliminations.
             </summary>
@@ -2902,6 +2990,32 @@
             </summary>
             <param name="list">The list.</param>
             <returns>The merged result.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo">
+            <summary>
+            Provides a usage of <b>senior exocet</b> (SE) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="exocet">The exocet.</param>
+            <param name="digits">All digits.</param>
+            <param name="endoTargetCell">The endo target cell.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.EndoTargetCell">
+            <summary>
+            Indicates the target cell that lies on the cross-line.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.GetAdditional">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.SwordfishEliminations">
             <summary>

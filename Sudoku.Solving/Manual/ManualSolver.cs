@@ -9,6 +9,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Alses;
+using Sudoku.Solving.Manual.Alses.Mslses;
 using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Solving.Manual.Fishes;
@@ -173,6 +174,7 @@ namespace Sudoku.Solving.Manual
 				{
 					new CccTechniqueSearcher(),
 					new ExocetTechniqueSearcher(regionMaps, CheckAdvancedInExocet),
+					new SkLoopTechniqueSearcher(),
 				},
 				new[] { new BruteForceTechniqueSearcher(solution) }
 			};
@@ -384,6 +386,7 @@ namespace Sudoku.Solving.Manual
 					HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
 					HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
 				new ExocetTechniqueSearcher(regionMaps, CheckAdvancedInExocet),
+				new SkLoopTechniqueSearcher(),
 				new PomTechniqueSearcher(),
 				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 				new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
