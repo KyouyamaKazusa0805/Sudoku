@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
@@ -24,29 +25,44 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="targetEliminations">The target eliminations.</param>
 		/// <param name="mirrorEliminations">The mirror eliminations.</param>
 		/// <param name="bibiEliminations">The Bi-bi pattern eliminations.</param>
+		/// <param name="targetPairEliminations">The target pair eliminations.</param>
+		/// <param name="swordfishEliminations">The swordfish pattern eliminations.</param>
 		public ExocetTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			Exocet exocet, IEnumerable<int> digits, ExocetTypeCode typeCode,
 			IEnumerable<int>? lockedMemberQ, IEnumerable<int>? lockedMemberR,
-			TargetEliminations targetEliminations,
-			MirrorEliminations mirrorEliminations,
-			BibiPatternEliminations bibiEliminations)
+			TargetEliminations targetEliminations, MirrorEliminations mirrorEliminations,
+			BibiPatternEliminations bibiEliminations, TargetPairEliminations targetPairEliminations,
+			SwordfishEliminations swordfishEliminations)
 			: base(conclusions, views)
 		{
 			(Exocet, Digits, TypeCode, LockedMemberQ, LockedMemberR) = (exocet, digits, typeCode, lockedMemberQ, lockedMemberR);
 
+			var list = (List<Conclusion>)Conclusions;
 			if (!((TargetEliminations = targetEliminations).Conclusions is null))
 			{
-				((List<Conclusion>)Conclusions).AddRange(TargetEliminations);
+				list.AddRange(TargetEliminations);
 			}
 			if (!((MirrorEliminations = mirrorEliminations).Conclusions is null))
 			{
-				((List<Conclusion>)Conclusions).AddRange(MirrorEliminations);
+				list.AddRange(MirrorEliminations);
 			}
 			if (!((BibiEliminations = bibiEliminations).Conclusions is null))
 			{
-				((List<Conclusion>)Conclusions).AddRange(BibiEliminations);
+				list.AddRange(BibiEliminations);
 			}
+			if (!((TargetPairEliminations = targetPairEliminations).Conclusions is null))
+			{
+				list.AddRange(TargetPairEliminations);
+			}
+			if (!((SwordfishEliminations = swordfishEliminations).Conclusions is null))
+			{
+				list.AddRange(SwordfishEliminations);
+			}
+
+			var temp = Conclusions.Distinct().ToList(); // Call 'ToList' to execute the query forcedly.
+			list.Clear();
+			list.AddRange(temp);
 		}
 
 
@@ -89,6 +105,16 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// The Bi-bi pattern eliminations.
 		/// </summary>
 		public BibiPatternEliminations BibiEliminations { get; }
+
+		/// <summary>
+		/// The target pair eliminations.
+		/// </summary>
+		public TargetPairEliminations TargetPairEliminations { get; }
+
+		/// <summary>
+		/// The swordfish eliminations.
+		/// </summary>
+		public SwordfishEliminations SwordfishEliminations { get; }
 
 		/// <inheritdoc/>
 		public sealed override string Name => TypeCode.GetCustomName()!;

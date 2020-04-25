@@ -20,14 +20,18 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="targetEliminations">The target eliminations.</param>
 		/// <param name="mirrorEliminations">The mirror eliminations.</param>
 		/// <param name="bibiEliminations">The Bi-bi pattern eliminations.</param>
+		/// <param name="targetPairEliminations">The target pair eliminations.</param>
+		/// <param name="swordfishEliminations">The swordfish pattern eliminations.</param>
 		public JuniorExocetTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, Exocet exocet,
 			IEnumerable<int> digits, IEnumerable<int>? lockedMemberQ, IEnumerable<int>? lockedMemberR,
-			TargetEliminations targetEliminations,
-			MirrorEliminations mirrorEliminations, BibiPatternEliminations bibiEliminations)
+			TargetEliminations targetEliminations, MirrorEliminations mirrorEliminations,
+			BibiPatternEliminations bibiEliminations, TargetPairEliminations targetPairEliminations,
+			SwordfishEliminations swordfishEliminations)
 			: base(
 				  conclusions, views, exocet, digits, ExocetTypeCode.Junior,
-				  lockedMemberQ, lockedMemberR, targetEliminations, mirrorEliminations, bibiEliminations)
+				  lockedMemberQ, lockedMemberR, targetEliminations, mirrorEliminations,
+				  bibiEliminations, targetPairEliminations, swordfishEliminations)
 		{
 		}
 
@@ -39,7 +43,9 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				return 9.4M
 					+ (MirrorEliminations.Conclusions is null ? 0 : .1M)
-					+ (BibiEliminations.Conclusions is null ? 0 : .3M);
+					+ (BibiEliminations.Conclusions is null ? 0 : .3M)
+					+ (TargetPairEliminations.Conclusions is null ? 0 : .1M)
+					+ (SwordfishEliminations.Conclusions is null ? 0 : .2M);
 			}
 		}
 

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
 using static Sudoku.Data.CellStatus;
+using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.GridProcessings;
 using static Sudoku.Solving.ConclusionType;
 
@@ -188,10 +190,16 @@ namespace Sudoku.Solving.Manual.Exocets
 				var (tar2, mir2) = recordMirrorEliminations(tr1, tr2, tq1, tq2, mr1, mr2, nonBaseR, 1);
 				var targetEliminations = TargetEliminations.MergeAll(targetElims, tar1, tar2);
 				var mirrorEliminations = MirrorEliminations.MergeAll(mir1, mir2);
-				var bibiEliminations =
-					_checkAdvanced && baseCandidatesMask.CountSet() > 2
-						? CheckBibiPattern(grid, baseCandidatesMask, b1, b2, tq1, tq2, tr1, tr2)
-						: new BibiPatternEliminations();
+				var bibiEliminations = new BibiPatternEliminations();
+				var targetPairEliminations = new TargetPairEliminations();
+				var swordfishEliminations = new SwordfishEliminations();
+				if (_checkAdvanced && baseCandidatesMask.CountSet() > 2)
+				{
+					CheckBibiPattern(
+						grid, baseCandidatesMask, b1, b2, tq1, tq2, tr1, tr2, s,
+						out bibiEliminations, out targetPairEliminations,
+						out swordfishEliminations);
+				}
 
 				if (_checkAdvanced && targetEliminations.Count == 0 && mirrorEliminations.Count == 0
 					&& bibiEliminations.Count == 0
@@ -217,7 +225,9 @@ namespace Sudoku.Solving.Manual.Exocets
 						lockedMemberR: lockedMemberR == 0 ? null : lockedMemberR.GetAllSets(),
 						targetEliminations,
 						mirrorEliminations: _checkAdvanced ? mirrorEliminations : new MirrorEliminations(),
-						bibiEliminations));
+						bibiEliminations,
+						targetPairEliminations,
+						swordfishEliminations));
 
 				bool recordTargetEliminations(int cell)
 				{
@@ -444,12 +454,25 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="tq2">The target Q2 cell.</param>
 		/// <param name="tr1">The target R1 cell.</param>
 		/// <param name="tr2">The target R2 cell.</param>
-		/// <returns>The eliminations.</returns>
-		private BibiPatternEliminations CheckBibiPattern(
+		/// <param name="crossline">The cross-line cells.</param>
+		/// <param name="bibiElims">
+		/// (<see langword="out"/> parameter) The Bi-bi pattern eliminations.
+		/// </param>
+		/// <param name="targetPairElims">
+		/// (<see langword="out"/> parameter) The target pair eliminations.
+		/// </param>
+		/// <param name="swordfishElims">
+		/// (<see langword="out"/> parameter) The swordfish eliminations.
+		/// </param>
+		/// <returns>A <see cref="bool"/> value indicating whether the pattern exists.</returns>
+		private bool CheckBibiPattern(
 			IReadOnlyGrid grid, short baseCandidatesMask, int b1, int b2,
-			int tq1, int tq2, int tr1, int tr2)
+			int tq1, int tq2, int tr1, int tr2, GridMap crossline, out BibiPatternEliminations bibiElims,
+			out TargetPairEliminations targetPairElims, out SwordfishEliminations swordfishElims)
 		{
-			var result = new BibiPatternEliminations();
+			bibiElims = new BibiPatternEliminations();
+			targetPairElims = new TargetPairEliminations();
+			swordfishElims = new SwordfishEliminations();
 			var playground = (Span<short>)stackalloc short[3];
 			(_, _, int block) = CellUtils.GetRegion(b1);
 			short[] temp = new short[4];
@@ -473,7 +496,8 @@ namespace Sudoku.Solving.Manual.Exocets
 
 			if (playground[1] == 0 || playground[2] == 0)
 			{
-				return result;
+				// Contains no Bi-bi pattern.
+				return false;
 			}
 
 			var dic = new Dictionary<int, short>
@@ -502,7 +526,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 					foreach (int digit in candidateMask.GetAllSets())
 					{
-						result.Add(new Conclusion(Elimination, pos2, digit));
+						bibiElims.Add(new Conclusion(Elimination, pos2, digit));
 						dic[pos2] &= (short)~(1 << digit);
 					}
 				}
@@ -514,23 +538,92 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				if (grid.Exists(tq1, digit) is true)
 				{
-					result.Add(new Conclusion(Elimination, tq1, digit));
+					bibiElims.Add(new Conclusion(Elimination, tq1, digit));
 				}
 				if (grid.Exists(tq2, digit) is true)
 				{
-					result.Add(new Conclusion(Elimination, tq2, digit));
+					bibiElims.Add(new Conclusion(Elimination, tq2, digit));
 				}
 				if (grid.Exists(tr1, digit) is true)
 				{
-					result.Add(new Conclusion(Elimination, tr1, digit));
+					bibiElims.Add(new Conclusion(Elimination, tr1, digit));
 				}
 				if (grid.Exists(tr2, digit) is true)
 				{
-					result.Add(new Conclusion(Elimination, tr2, digit));
+					bibiElims.Add(new Conclusion(Elimination, tr2, digit));
 				}
 			}
 
-			return result;
+			// Then check target pairs if worth.
+			if (last.CountSet() == 2)
+			{
+				var elimMap = new GridMap(
+					from cell in new[] { tq1, tq2, tr1, tr2 }
+					where grid.GetCellStatus(cell) == Empty
+					select cell, ProcessPeersWithoutItself);
+
+				if (elimMap.Count == 0)
+				{
+					// Exit the method.
+					return true;
+				}
+
+				var digits = last.GetAllSets();
+				foreach (int cell in elimMap.Offsets)
+				{
+					foreach (int digit in digits)
+					{
+						if (grid.Exists(cell, digit) is true)
+						{
+							targetPairElims.Add(new Conclusion(Elimination, cell, digit));
+						}
+					}
+				}
+				elimMap = new GridMap(stackalloc[] { b1, b2 }, ProcessPeersWithoutItself);
+				if (elimMap.Count == 0)
+				{
+					return true;
+				}
+
+				foreach (int cell in elimMap.Offsets)
+				{
+					foreach (int digit in digits)
+					{
+						if (grid.Exists(cell, digit) is true)
+						{
+							targetPairElims.Add(new Conclusion(Elimination, cell, digit));
+						}
+					}
+				}
+
+				// Then check swordfish pattern.
+				bool isRow = new GridMap(stackalloc[] { b1, b2 }).CoveredLine < 18;
+				foreach (int digit in digits)
+				{
+					short mask = isRow ? crossline.RowMask : crossline.ColumnMask;
+					foreach (int offset in mask.GetAllSets())
+					{
+						int region = offset + (isRow ? 9 : 18);
+						var map = crossline & _regionMaps[region];
+						if (map.Offsets.All(c => !(grid.Exists(c, digit) is true)))
+						{
+							continue;
+						}
+
+						foreach (int cell in RegionCells[region])
+						{
+							if (crossline[cell] || !(grid.Exists(cell, digit) is true))
+							{
+								continue;
+							}
+
+							swordfishElims.Add(new Conclusion(Elimination, cell, digit));
+						}
+					}
+				}
+			}
+
+			return true;
 		}
 
 		/// <summary>

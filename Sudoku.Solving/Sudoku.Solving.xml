@@ -2531,7 +2531,7 @@
             Provides a usage of <b>exocet</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.ExocetTypeCode,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.TargetEliminations,Sudoku.Solving.Manual.Exocets.MirrorEliminations,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.ExocetTypeCode,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.TargetEliminations,Sudoku.Solving.Manual.Exocets.MirrorEliminations,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations,Sudoku.Solving.Manual.Exocets.TargetPairEliminations,Sudoku.Solving.Manual.Exocets.SwordfishEliminations)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -2545,6 +2545,8 @@
             <param name="targetEliminations">The target eliminations.</param>
             <param name="mirrorEliminations">The mirror eliminations.</param>
             <param name="bibiEliminations">The Bi-bi pattern eliminations.</param>
+            <param name="targetPairEliminations">The target pair eliminations.</param>
+            <param name="swordfishEliminations">The swordfish pattern eliminations.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.LockedMemberQ">
             <summary>
@@ -2584,6 +2586,16 @@
         <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.BibiEliminations">
             <summary>
             The Bi-bi pattern eliminations.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.TargetPairEliminations">
+            <summary>
+            The target pair eliminations.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.SwordfishEliminations">
+            <summary>
+            The swordfish eliminations.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.Name">
@@ -2689,7 +2701,7 @@
             </param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckBibiPattern(Sudoku.Data.IReadOnlyGrid,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckBibiPattern(Sudoku.Data.IReadOnlyGrid,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations@,Sudoku.Solving.Manual.Exocets.TargetPairEliminations@,Sudoku.Solving.Manual.Exocets.SwordfishEliminations@)">
             <summary>
             Check Bi-bi pattern eliminations.
             </summary>
@@ -2701,7 +2713,17 @@
             <param name="tq2">The target Q2 cell.</param>
             <param name="tr1">The target R1 cell.</param>
             <param name="tr2">The target R2 cell.</param>
-            <returns>The eliminations.</returns>
+            <param name="crossline">The cross-line cells.</param>
+            <param name="bibiElims">
+            (<see langword="out"/> parameter) The Bi-bi pattern eliminations.
+            </param>
+            <param name="targetPairElims">
+            (<see langword="out"/> parameter) The target pair eliminations.
+            </param>
+            <param name="swordfishElims">
+            (<see langword="out"/> parameter) The swordfish eliminations.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether the pattern exists.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.RecordMirrorEliminations(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap[],System.Int32,System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
             <summary>
@@ -2793,7 +2815,7 @@
             Provides a usage of <b>junior exocet</b> (JE) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.TargetEliminations,Sudoku.Solving.Manual.Exocets.MirrorEliminations,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.TargetEliminations,Sudoku.Solving.Manual.Exocets.MirrorEliminations,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations,Sudoku.Solving.Manual.Exocets.TargetPairEliminations,Sudoku.Solving.Manual.Exocets.SwordfishEliminations)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -2806,6 +2828,8 @@
             <param name="targetEliminations">The target eliminations.</param>
             <param name="mirrorEliminations">The mirror eliminations.</param>
             <param name="bibiEliminations">The Bi-bi pattern eliminations.</param>
+            <param name="targetPairEliminations">The target pair eliminations.</param>
+            <param name="swordfishEliminations">The swordfish pattern eliminations.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.Difficulty">
             <inheritdoc/>
@@ -2879,6 +2903,72 @@
             <param name="list">The list.</param>
             <returns>The merged result.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.SwordfishEliminations">
+            <summary>
+            Indicates the swordfish pattern eliminations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Solving.Conclusion})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.Count">
+            <summary>
+            Indicates the number of all conclusions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.Conclusions">
+            <summary>
+            Indicates the conclusions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.Add(Sudoku.Solving.Conclusion)">
+            <summary>
+            Add the conclusion into the collection.
+            </summary>
+            <param name="conclusion">The conclusion.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
+            <summary>
+            Add a serial of conclusions into this collection.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.SwordfishEliminations}[])">
+            <summary>
+            Merge all eliminations.
+            </summary>
+            <param name="eliminations">All instances to merge.</param>
+            <returns>The merged result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.BibiPatternEliminations})">
+            <summary>
+            Merge all conclusions.
+            </summary>
+            <param name="list">The list.</param>
+            <returns>The merged result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.BibiPatternEliminations[])">
+            <summary>
+            Merge all conclusions.
+            </summary>
+            <param name="list">The list.</param>
+            <returns>The merged result.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.TargetEliminations">
             <summary>
             Indicates the target eliminations.
@@ -2939,6 +3029,72 @@
             <returns>The merged result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.TargetEliminations[])">
+            <summary>
+            Merge all conclusions.
+            </summary>
+            <param name="list">The list.</param>
+            <returns>The merged result.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.TargetPairEliminations">
+            <summary>
+            Indicates the target pair eliminations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Solving.Conclusion})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.Count">
+            <summary>
+            Indicates the number of all conclusions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.Conclusions">
+            <summary>
+            Indicates the conclusions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.Add(Sudoku.Solving.Conclusion)">
+            <summary>
+            Add the conclusion into the collection.
+            </summary>
+            <param name="conclusion">The conclusion.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
+            <summary>
+            Add a serial of conclusions into this collection.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.TargetPairEliminations}[])">
+            <summary>
+            Merge all eliminations.
+            </summary>
+            <param name="eliminations">All instances to merge.</param>
+            <returns>The merged result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.TargetPairEliminations})">
+            <summary>
+            Merge all conclusions.
+            </summary>
+            <param name="list">The list.</param>
+            <returns>The merged result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.TargetPairEliminations[])">
             <summary>
             Merge all conclusions.
             </summary>
