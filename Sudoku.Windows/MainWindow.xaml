@@ -278,7 +278,15 @@
 						<RowDefinition/>
 					</Grid.RowDefinitions>
 					<ListBox Grid.Row="0" Grid.Column="0" Name="_listBoxTechniques"
-							 SelectionChanged="ListBoxTechniques_SelectionChanged"/>
+							 SelectionChanged="ListBoxTechniques_SelectionChanged">
+						<ListBox.ContextMenu>
+							<ContextMenu>
+								<MenuItem Header="Apply this step"
+										  Name="_contextMenuListBoxTechniquesApply"
+										  Click="ContextMenuListBoxTechniquesApply_Click"/>
+							</ContextMenu>
+						</ListBox.ContextMenu>
+					</ListBox>
 					<!--<TreeView Grid.Row="0" Grid.Column="0" Name="_treeView"/>-->
 					<Button Grid.Row="1" Grid.Column="0" Name="_buttonFindAllSteps"
 							Content="Find all steps"

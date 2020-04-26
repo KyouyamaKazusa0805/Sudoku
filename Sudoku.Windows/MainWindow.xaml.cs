@@ -21,10 +21,12 @@ using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Drawing.Layers;
 using Sudoku.Windows.Extensions;
+using static Sudoku.Solving.ConclusionType;
 using static Sudoku.Windows.Constants.Processing;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
 using WPoint = System.Windows.Point;
+using System.Collections.Generic;
 #if SUDOKU_RECOGNIZING
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -826,6 +828,32 @@ namespace Sudoku.Windows
 
 			UpdateUndoRedoControls();
 			UpdateImageGrid();
+		}
+
+
+		/// <summary>
+		/// To check the validity of all conclusions.
+		/// </summary>
+		/// <param name="solution">The solution.</param>
+		/// <param name="conclusions">The conclusions.</param>
+		/// <returns>A <see cref="bool"/> indicating that.</returns>
+		private static bool CheckConclusionsValidity(
+			IReadOnlyGrid solution, IEnumerable<Conclusion> conclusions)
+		{
+			foreach (var (t, c, d) in conclusions)
+			{
+				int digit = solution[c];
+				switch (t)
+				{
+					case Assignment when digit != d:
+					case Elimination when digit == d:
+					{
+						return false;
+					}
+				}
+			}
+
+			return true;
 		}
 	}
 }

@@ -95,7 +95,7 @@ namespace Sudoku.Solving.Manual
 				new BdpTechniqueSearcher(),
 				new BugTechniqueSearcher(regionMaps, _settings.UseExtendedBugSearcher),
 				new ErIntersectionPairTechniqueSearcher(regionMaps),
-#if false
+
 				// To be honest, I am dissatisfied with my implementation,
 				// because of the low speed and high time complexity.
 				// These method will not used until I re-implement them.
@@ -120,7 +120,7 @@ namespace Sudoku.Solving.Manual
 				//new HobiwanFishTechniqueSearcher(
 				//	HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
 				//	HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
-#endif
+
 				new BowmanBingoTechniqueSearcher(_settings.BowmanBingoMaximumLength),
 				new PomTechniqueSearcher(),
 				new CccTechniqueSearcher(),
