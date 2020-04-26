@@ -3184,6 +3184,23 @@
             The values you want to add to the end of the collection.
             </param>
         </member>
+        <member name="M:Sudoku.Extensions.CollectionEx.AddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0},System.Boolean)">
+            <summary>
+            Adds the elements of the specified collection to the end of the
+            <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <typeparam name="T">
+            The type of each element. Should be not <see langword="null"/>.
+            </typeparam>
+            <param name="this">(<see langword="this"/> parameter) The collection.</param>
+            <param name="values">
+            The values you want to add to the end of the collection.
+            </param>
+            <param name="verifyDuplicate">
+            Indicates whether the method should check duplicating values first.
+            If so, the value will not add (do nothing).
+            </param>
+        </member>
         <member name="M:Sudoku.Extensions.CollectionEx.AddIfDoesNotContain``1(System.Collections.Generic.ICollection{``0},``0)">
             <summary>
             Adds an object to the end of the <see cref="T:System.Collections.Generic.ICollection`1"/> when

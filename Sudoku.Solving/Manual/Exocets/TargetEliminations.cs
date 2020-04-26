@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </summary>
 		/// <param name="conclusions">All conclusions.</param>
 		public void AddRange(IEnumerable<Conclusion> conclusions) =>
-			(Conclusions ??= new List<Conclusion>()).AddRange(conclusions);
+			(Conclusions ??= new List<Conclusion>()).AddRange(conclusions, true);
 
 		/// <summary>
 		/// Merge all eliminations.
