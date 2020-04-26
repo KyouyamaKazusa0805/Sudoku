@@ -51,21 +51,14 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </summary>
 		private readonly bool _checkAdvanced;
 
-		/// <summary>
-		/// Indicates the region maps.
-		/// </summary>
-		private readonly GridMap[] _regionMaps;
-
 
 		/// <summary>
 		/// Initializes an instance with the specified region maps.
 		/// </summary>
-		/// <param name="regionMaps">The region maps.</param>
 		/// <param name="checkAdvanced">
 		/// Indicates whether the searcher will find advanced eliminations.
 		/// </param>
-		public ExocetTechniqueSearcher(GridMap[] regionMaps, bool checkAdvanced) =>
-			(_regionMaps, _checkAdvanced) = (regionMaps, checkAdvanced);
+		public ExocetTechniqueSearcher(bool checkAdvanced) => _checkAdvanced = checkAdvanced;
 
 
 		/// <summary>
@@ -344,7 +337,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				{
 					foreach (int d2 in c.GetAllSets())
 					{
-						if ((crosslinePerCandidate - (_regionMaps[d1 + 9] | _regionMaps[d2 + 18])).IsEmpty)
+						if ((crosslinePerCandidate - (RegionMaps[d1 + 9] | RegionMaps[d2 + 18])).IsEmpty)
 						{
 							flag = true;
 							break;
@@ -499,7 +492,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				for (int j = 0; j < 4; j++)
 				{
-					int p = RegionCells[BibiPatternIterator[block, j]][i];
+					int p = RegionCells[BibiIter[block, j]][i];
 					if (grid.GetCandidatesReversal(p).CountSet() != 1)
 					{
 						continue;
@@ -622,7 +615,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					foreach (int offset in mask.GetAllSets())
 					{
 						int region = offset + (isRow ? 9 : 18);
-						var map = crossline & _regionMaps[region];
+						var map = crossline & RegionMaps[region];
 						if (map.Offsets.All(c => !(grid.Exists(c, digit) is true)))
 						{
 							continue;

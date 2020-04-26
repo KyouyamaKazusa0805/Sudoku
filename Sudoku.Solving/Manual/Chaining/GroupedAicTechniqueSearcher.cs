@@ -119,11 +119,6 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		private readonly int _maxLength;
 
-		/// <summary>
-		/// Indicates all region maps.
-		/// </summary>
-		private readonly GridMap[] _regionMaps;
-
 
 		/// <summary>
 		/// Initializes an instance with the specified information.
@@ -152,12 +147,10 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Indicates whether the searcher will check the chain forms a continuous
 		/// nice loop.
 		/// </param>
-		/// <param name="regionMaps">All region maps.</param>
 		public GroupedAicTechniqueSearcher(
 			bool searchX, bool searchY, bool searchLockedCandidatesNodes,
 			int maxLength, bool reductDifferentPathAic, bool onlySaveShortestPathAic,
-			bool checkHeadCollision, bool checkContinuousNiceLoop,
-			GridMap[] regionMaps)
+			bool checkHeadCollision, bool checkContinuousNiceLoop)
 		{
 			_searchX = searchX;
 			_searchY = searchY;
@@ -167,7 +160,6 @@ namespace Sudoku.Solving.Manual.Chaining
 			_onlySaveShortestPathAic = onlySaveShortestPathAic;
 			_checkHeadCollision = checkHeadCollision;
 			_checkContinuousNiceLoop = checkContinuousNiceLoop;
-			_regionMaps = regionMaps;
 		}
 
 
@@ -500,7 +492,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 							var tempMap = (nextNode.CandidatesMap | currentNode.CandidatesMap)
 								.Reduct(currentDigit);
-							if (((digitDistributions[currentDigit] & _regionMaps[tempMap.CoveredRegions.First()]) - tempMap).IsNotEmpty
+							if (((digitDistributions[currentDigit] & RegionMaps[tempMap.CoveredRegions.First()]) - tempMap).IsNotEmpty
 								|| nextNode.FullCovered(currentNode))
 							{
 								continue;
@@ -589,7 +581,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 							var tempMap = (nextNode.CandidatesMap | currentNode.CandidatesMap)
 								.Reduct(currentDigit);
-							if (((digitDistributions[currentDigit] & _regionMaps[tempMap.CoveredRegions.First()]) - tempMap).IsNotEmpty
+							if (((digitDistributions[currentDigit] & RegionMaps[tempMap.CoveredRegions.First()]) - tempMap).IsNotEmpty
 								|| nextNode == currentNode)
 							{
 								continue;
@@ -634,7 +626,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			int b = CellUtils.GetRegion(currentCell)._block;
 			foreach (int region in IntersectionTable[b])
 			{
-				var map = _regionMaps[b] & _regionMaps[region] & digitDistributions[currentDigit];
+				var map = RegionMaps[b] & RegionMaps[region] & digitDistributions[currentDigit];
 				if (map.Count < 2)
 				{
 					continue;
@@ -670,7 +662,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					continue;
 				}
 
-				var map = _regionMaps[b] & _regionMaps[region] & digitDistributions[currentDigit];
+				var map = RegionMaps[b] & RegionMaps[region] & digitDistributions[currentDigit];
 				if (map.Count < 2)
 				{
 					continue;
@@ -1162,7 +1154,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			if (region < 9)
 			{
 				var tempMaps = (Span<GridMap>)stackalloc GridMap[6];
-				var map = digitDistributions[digit] & _regionMaps[region];
+				var map = digitDistributions[digit] & RegionMaps[region];
 				if (map.IsEmpty)
 				{
 					return null;
@@ -1230,7 +1222,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			else
 			{
 				var tempMaps = (Span<GridMap>)stackalloc GridMap[3];
-				var map = digitDistributions[digit] & _regionMaps[region];
+				var map = digitDistributions[digit] & RegionMaps[region];
 				if (map.IsEmpty)
 				{
 					return null;

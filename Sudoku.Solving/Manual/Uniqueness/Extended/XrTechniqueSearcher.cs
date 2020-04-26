@@ -36,9 +36,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		private static readonly IReadOnlyDictionary<int, IEnumerable<short>> Combinations;
 
 
-		/// <summary>
-		/// The static constructor of this class.
-		/// </summary>
+		/// <include file='../../../../GlobalDocComments.xml' path='comments/staticConstructor'/>
 		static XrTechniqueSearcher()
 		{
 			var list = new Dictionary<int, IEnumerable<short>>();

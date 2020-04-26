@@ -5,6 +5,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
+using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Manual.Alses
 {
@@ -29,16 +30,10 @@ namespace Sudoku.Solving.Manual.Alses
 		/// </summary>
 		private readonly int _maxPetals;
 
-		/// <summary>
-		/// The region maps.
-		/// </summary>
-		private readonly GridMap[] _regionMaps;
-
 
 		/// <summary>
 		/// Initialize an instance with the specified information.
 		/// </summary>
-		/// <param name="regionMaps">The region maps.</param>
 		/// <param name="allowOverlapping">
 		/// Indicates whether the ALSes can be overlapped with each other.
 		/// </param>
@@ -49,8 +44,8 @@ namespace Sudoku.Solving.Manual.Alses
 		/// Indicates the max petals of instance to search.
 		/// </param>
 		public DeathBlossomTechniqueSearcher(
-			GridMap[] regionMaps, bool allowOverlapping, bool alsShowRegions, int maxPetals) =>
-			(_regionMaps, _allowOverlapping, _alsShowRegions, _maxPetals) = (regionMaps, allowOverlapping, alsShowRegions, maxPetals);
+			bool allowOverlapping, bool alsShowRegions, int maxPetals) =>
+			(_allowOverlapping, _alsShowRegions, _maxPetals) = (allowOverlapping, alsShowRegions, maxPetals);
 
 
 		/// <summary>
@@ -331,7 +326,7 @@ namespace Sudoku.Solving.Manual.Alses
 			GridMap tempEmptyCells;
 			for (int region = 0; region < 27; region++)
 			{
-				tempEmptyCells = emptyCells & _regionMaps[region];
+				tempEmptyCells = emptyCells & RegionMaps[region];
 				if (tempEmptyCells.Count < 3)
 				{
 					// Every death blossom should lies on more than 2 cells.

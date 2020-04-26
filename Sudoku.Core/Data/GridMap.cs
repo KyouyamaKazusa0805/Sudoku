@@ -360,9 +360,7 @@ namespace Sudoku.Data
 		}
 
 
-		/// <summary>
-		/// The static constructor of struct <see cref="GridMap"/>.
-		/// </summary>
+		/// <include file='../../GlobalDocComments.xml' path='comments/staticConstructor[@aimTo="struct"]'/>
 		static GridMap() => (Full._high, Full._low, Full.Count) = (-1, -1, 81);
 
 

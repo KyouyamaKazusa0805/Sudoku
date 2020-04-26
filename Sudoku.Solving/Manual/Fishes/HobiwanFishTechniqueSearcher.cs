@@ -7,6 +7,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
+using static Sudoku.GridProcessings;
 using Pair = System.ValueTuple<int, int>;
 using Templates = Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher;
 
@@ -40,11 +41,6 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// </summary>
 		private readonly bool _checkTemplates;
 
-		/// <summary>
-		/// Indicates region maps.
-		/// </summary>
-		private readonly GridMap[] _regionMaps;
-
 
 		/// <summary>
 		/// Initializes an instance with the specified information.
@@ -55,11 +51,9 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="checkTemplates">
 		/// Indicates whether the puzzle will check templates first.
 		/// </param>
-		/// <param name="regionMaps">The region maps.</param>
 		public HobiwanFishTechniqueSearcher(
-			int size, int exofinCount, int endofinCount, bool checkTemplates,
-			GridMap[] regionMaps) =>
-			(_size, _exofinCount, _endofinCount, _checkTemplates, _regionMaps) = (size, exofinCount, endofinCount, checkTemplates, regionMaps);
+			int size, int exofinCount, int endofinCount, bool checkTemplates) =>
+			(_size, _exofinCount, _endofinCount, _checkTemplates) = (size, exofinCount, endofinCount, checkTemplates);
 
 
 		/// <summary>
@@ -447,7 +441,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		{
 			foreach (int baseSet in baseSets)
 			{
-				if ((bodyMap & _regionMaps[baseSet]).Count == 1)
+				if ((bodyMap & RegionMaps[baseSet]).Count == 1)
 				{
 					return true;
 				}
@@ -576,7 +570,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				return false;
 			}
 
-			if (regions.Any(region => (bodyMap & _regionMaps[region]).IsEmpty))
+			if (regions.Any(region => (bodyMap & RegionMaps[region]).IsEmpty))
 			{
 				return false;
 			}
@@ -599,7 +593,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				bool checker = false;
 				foreach (int region in regions)
 				{
-					if ((_regionMaps[region] & elimMap).IsEmpty)
+					if ((RegionMaps[region] & elimMap).IsEmpty)
 					{
 						checker = true;
 						break;
@@ -626,7 +620,7 @@ namespace Sudoku.Solving.Manual.Fishes
 			var result = GridMap.Empty;
 			foreach (int region in regions)
 			{
-				result |= _regionMaps[region];
+				result |= RegionMaps[region];
 			}
 
 			return result;
@@ -645,7 +639,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				int p1 = value.FindFirstSet();
 
 				// Endo-fins are cells that lie on two base sets at the same time.
-				result |= _regionMaps[baseSets[p1]] & _regionMaps[baseSets[value.GetNextSet(p1)]];
+				result |= RegionMaps[baseSets[p1]] & RegionMaps[baseSets[value.GetNextSet(p1)]];
 			}
 
 			return result;

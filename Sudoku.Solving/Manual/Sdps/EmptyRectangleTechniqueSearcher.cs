@@ -33,25 +33,6 @@ namespace Sudoku.Solving.Manual.Sdps
 
 
 		/// <summary>
-		/// All digit distributions.
-		/// </summary>
-		private GridMap[] _digitDistributions = null!;
-
-		/// <summary>
-		/// All region grid maps.
-		/// </summary>
-		private readonly GridMap[] _regionMaps;
-
-
-		/// <summary>
-		/// Initializes an instance with the specified grid.
-		/// </summary>
-		/// <param name="regionMaps">All region maps.</param>
-		public EmptyRectangleTechniqueSearcher(GridMap[] regionMaps) =>
-			_regionMaps = regionMaps;
-
-
-		/// <summary>
 		/// Indicates the priority of this technique.
 		/// </summary>
 		public static int Priority { get; set; } = 46;
@@ -65,14 +46,14 @@ namespace Sudoku.Solving.Manual.Sdps
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			(_, _, _digitDistributions) = grid;
+			(_, _, var digitDistributions) = grid;
 			for (int digit = 0; digit < 9; digit++)
 			{
 				for (int block = 0; block < 9; block++)
 				{
 					// Check the empty rectangle occupies more than 2 cells.
 					// and the structure forms an empty rectangle.
-					var erMap = _digitDistributions[digit] & _regionMaps[block];
+					var erMap = digitDistributions[digit] & RegionMaps[block];
 					if (erMap.Count < 2
 						|| !IsEmptyRectangle(erMap, block, out int row, out int column))
 					{
@@ -82,24 +63,24 @@ namespace Sudoku.Solving.Manual.Sdps
 					// Search for conjugate pair.
 					for (int i = 0; i < 12; i++)
 					{
-						var linkMap = _digitDistributions[digit] & _regionMaps[LinkIds[block, i]];
+						var linkMap = digitDistributions[digit] & RegionMaps[LinkIds[block, i]];
 						if (linkMap.Count != 2)
 						{
 							continue;
 						}
 
 						if (linkMap.BlockMask.CountSet() == 1
-							|| i < 6 && (linkMap & _regionMaps[column]).IsEmpty
-							|| i >= 6 && (linkMap & _regionMaps[row]).IsEmpty)
+							|| i < 6 && (linkMap & RegionMaps[column]).IsEmpty
+							|| i >= 6 && (linkMap & RegionMaps[row]).IsEmpty)
 						{
 							continue;
 						}
 
-						int[] t = (linkMap - (i < 6 ? _regionMaps[column] : _regionMaps[row])).ToArray();
+						int[] t = (linkMap - (i < 6 ? RegionMaps[column] : RegionMaps[row])).ToArray();
 						int elimRegion = i < 6 ? t[0] % 9 + 18 : t[0] / 9 + 9;
 						var elimCellMap = i < 6
-							? _digitDistributions[digit] & _regionMaps[elimRegion] & _regionMaps[row]
-							: _digitDistributions[digit] & _regionMaps[elimRegion] & _regionMaps[column];
+							? digitDistributions[digit] & RegionMaps[elimRegion] & RegionMaps[row]
+							: digitDistributions[digit] & RegionMaps[elimRegion] & RegionMaps[column];
 
 						if (elimCellMap.IsEmpty)
 						{
@@ -167,7 +148,7 @@ namespace Sudoku.Solving.Manual.Sdps
 			int c = block % 3 * 3 + 18;
 			for (int i = r, count = 0; i < r + 3; i++)
 			{
-				if ((blockMap & _regionMaps[i]).IsNotEmpty || ++count <= 1)
+				if ((blockMap & RegionMaps[i]).IsNotEmpty || ++count <= 1)
 				{
 					continue;
 				}
@@ -178,7 +159,7 @@ namespace Sudoku.Solving.Manual.Sdps
 
 			for (int i = c, count = 0; i < c + 3; i++)
 			{
-				if ((blockMap & _regionMaps[i]).IsNotEmpty || ++count <= 1)
+				if ((blockMap & RegionMaps[i]).IsNotEmpty || ++count <= 1)
 				{
 					continue;
 				}
@@ -191,7 +172,7 @@ namespace Sudoku.Solving.Manual.Sdps
 			{
 				for (int j = c; j < c + 3; j++)
 				{
-					if ((blockMap - (_regionMaps[i] | _regionMaps[j])).IsNotEmpty)
+					if ((blockMap - (RegionMaps[i] | RegionMaps[j])).IsNotEmpty)
 					{
 						continue;
 					}

@@ -6,6 +6,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
+using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Manual.Alses
 {
@@ -42,25 +43,12 @@ namespace Sudoku.Solving.Manual.Alses
 		private static readonly IReadOnlyList<long>[] TakingCombinations7;
 
 
-		/// <summary>
-		/// All region maps.
-		/// </summary>
-		private readonly GridMap[] _regionMaps;
-
-
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="regionMaps">All regions grid maps.</param>
-		public SdcTechniqueSearcher(GridMap[] regionMaps) =>
-			_regionMaps = regionMaps;
-
-
-		/// <summary>
-		/// The static constructor of this class.
-		/// </summary>
+		/// <include file='../../../GlobalDocComments.xml' path='comments/staticConstructor'/>
 		static SdcTechniqueSearcher()
 		{
+			TakingCombinations6 = z(6);
+			TakingCombinations7 = z(7);
+
 			static IReadOnlyList<long>[] z(int m)
 			{
 				var temp = new List<long>[m + 1];
@@ -72,9 +60,6 @@ namespace Sudoku.Solving.Manual.Alses
 
 				return temp;
 			}
-
-			TakingCombinations6 = z(6);
-			TakingCombinations7 = z(7);
 		}
 
 
@@ -103,8 +88,8 @@ namespace Sudoku.Solving.Manual.Alses
 				foreach (int nonblock in NonblockTable[block])
 				{
 					// Get all enumeration grid maps.
-					var nonblockMap = _regionMaps[nonblock] & emptyMap;
-					var blockMap = _regionMaps[block] & emptyMap;
+					var nonblockMap = RegionMaps[nonblock] & emptyMap;
+					var blockMap = RegionMaps[block] & emptyMap;
 					var interMap = nonblockMap & blockMap;
 
 					// Get the number of empty cells in the specified intersection cells
@@ -200,9 +185,9 @@ namespace Sudoku.Solving.Manual.Alses
 
 						var takenInterMap = new GridMap(interEmptyCells);
 						var blockTakingList = new List<int>(
-							(_regionMaps[block] - new GridMap(interEmptyCells)).Offsets);
+							(RegionMaps[block] - new GridMap(interEmptyCells)).Offsets);
 						var nonblockTakingList = new List<int>(
-							(_regionMaps[nonblock] - new GridMap(interEmptyCells)).Offsets);
+							(RegionMaps[nonblock] - new GridMap(interEmptyCells)).Offsets);
 						for (int blockTakenCellsCount = 1;
 							blockTakenCellsCount <= 8 - count;
 							blockTakenCellsCount++)
@@ -357,7 +342,7 @@ namespace Sudoku.Solving.Manual.Alses
 					{
 						foreach (int region in digitRegions[digit])
 						{
-							foreach (int cell in (elimUnion & _regionMaps[region]).Offsets)
+							foreach (int cell in (elimUnion & RegionMaps[region]).Offsets)
 							{
 								if (!(grid.Exists(cell, digit) is true))
 								{

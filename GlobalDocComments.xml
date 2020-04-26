@@ -4,6 +4,13 @@
 	<defaultConstructor>
 		<summary>Create an instance with default initialization.</summary>
 	</defaultConstructor>
+
+	<staticConstructor>
+		<summary>The static constructor of this class.</summary>
+	</staticConstructor>
+	<staticConstructor aimTo="struct">
+		<summary>The static constructor of this struct.</summary>
+	</staticConstructor>
 	
 	<!--methods-->
 	<method name="ToString" paramType="__noparam">

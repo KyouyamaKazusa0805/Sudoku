@@ -22,6 +22,7 @@ using Sudoku.Solving.Manual.Uniqueness.Rects;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using Sudoku.Windows;
+using static Sudoku.GridProcessings;
 using Intersection = System.ValueTuple<int, int, Sudoku.Data.GridMap, Sudoku.Data.GridMap>;
 
 namespace Sudoku.Solving.Manual
@@ -55,13 +56,6 @@ namespace Sudoku.Solving.Manual
 				return Array.Empty<IGrouping<string, TechniqueInfo>>();
 			}
 
-			// Get all region maps.
-			var regionMaps = new GridMap[27];
-			for (int i = 0; i < 27; i++)
-			{
-				regionMaps[i] = GridMap.CreateInstance(i);
-			}
-
 			// Get intersection table in order to run faster in intersection technique searchers.
 			var intersection = new Intersection[18, 3];
 			int[] key = { 0, 3, 6, 1, 4, 7, 2, 5, 8 };
@@ -72,8 +66,8 @@ namespace Sudoku.Solving.Manual
 					int baseSet = i + 9;
 					int coverSet = i < 9 ? i / 3 * 3 + j : key[(i - 9) / 3 * 3 + j];
 					intersection[i, j] = (
-						baseSet, coverSet, regionMaps[baseSet],
-						regionMaps[coverSet]);
+						baseSet, coverSet, RegionMaps[baseSet],
+						RegionMaps[coverSet]);
 				}
 			}
 
@@ -89,12 +83,12 @@ namespace Sudoku.Solving.Manual
 				new UrTechniqueSearcher(_settings.CheckUncompletedUniquenessPatterns, _settings.SearchExtendedUniqueRectangles),
 				new XrTechniqueSearcher(),
 				new UlTechniqueSearcher(),
-				new EmptyRectangleTechniqueSearcher(regionMaps),
+				new EmptyRectangleTechniqueSearcher(),
 				new AlcTechniqueSearcher(intersection, _settings.CheckAlmostLockedQuadruple),
-				new SdcTechniqueSearcher(regionMaps),
+				new SdcTechniqueSearcher(),
 				new BdpTechniqueSearcher(),
-				new BugTechniqueSearcher(regionMaps, _settings.UseExtendedBugSearcher),
-				new ErIntersectionPairTechniqueSearcher(regionMaps),
+				new BugTechniqueSearcher(_settings.UseExtendedBugSearcher),
+				new ErIntersectionPairTechniqueSearcher(),
 
 				// To be honest, I am dissatisfied with my implementation,
 				// because of the low speed and high time complexity.
@@ -103,28 +97,28 @@ namespace Sudoku.Solving.Manual
 				new AlsXyWingTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
 				new AlsWWingTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
 				new DeathBlossomTechniqueSearcher(
-					regionMaps, _settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell,
+					_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell,
 					_settings.MaxPetalsOfDeathBlossom),
 				new GroupedAicTechniqueSearcher(
 					true, false, false, _settings.AicMaximumLength, _settings.ReductDifferentPathAic,
 					_settings.OnlySaveShortestPathAic, _settings.CheckHeadCollision,
-					_settings.CheckContinuousNiceLoop, regionMaps),
+					_settings.CheckContinuousNiceLoop),
 				new GroupedAicTechniqueSearcher(
 					false, true, false, _settings.AicMaximumLength, _settings.ReductDifferentPathAic,
 					_settings.OnlySaveShortestPathAic, _settings.CheckHeadCollision,
-					_settings.CheckContinuousNiceLoop, regionMaps),
+					_settings.CheckContinuousNiceLoop),
 				new GroupedAicTechniqueSearcher(
 					false, false, true, _settings.AicMaximumLength, _settings.ReductDifferentPathAic,
 					_settings.OnlySaveShortestPathAic, _settings.CheckHeadCollision,
-					_settings.CheckContinuousNiceLoop, regionMaps),
+					_settings.CheckContinuousNiceLoop),
 				//new HobiwanFishTechniqueSearcher(
 				//	HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
-				//	HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
+				//	HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates),
 
 				new BowmanBingoTechniqueSearcher(_settings.BowmanBingoMaximumLength),
 				new PomTechniqueSearcher(),
 				new CccTechniqueSearcher(),
-				new ExocetTechniqueSearcher(regionMaps, _settings.CheckAdvancedInExocet),
+				new ExocetTechniqueSearcher(_settings.CheckAdvancedInExocet),
 				new SkLoopTechniqueSearcher(),
 			};
 

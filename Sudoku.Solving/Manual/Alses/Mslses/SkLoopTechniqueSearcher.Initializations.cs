@@ -18,9 +18,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		private static readonly GridMap[] RegionMaps;
 
 
-		/// <summary>
-		/// The static constructor of <see cref="SkLoopTechniqueSearcher"/>
-		/// </summary>
+		/// <include file='../../../../GlobalDocComments.xml' path='comments/staticConstructor'/>
 		static SkLoopTechniqueSearcher()
 		{
 			// Initialize for region maps.

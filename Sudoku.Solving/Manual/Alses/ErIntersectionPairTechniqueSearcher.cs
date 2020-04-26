@@ -6,6 +6,7 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
 using static Sudoku.Data.GridMap.InitializeOption;
+using static Sudoku.GridProcessings;
 using static Sudoku.Solving.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Alses
@@ -16,19 +17,6 @@ namespace Sudoku.Solving.Manual.Alses
 	[TechniqueDisplay("Empty Rectangle Intersection Pair")]
 	public sealed class ErIntersectionPairTechniqueSearcher : AlsTechniqueSearcher
 	{
-		/// <summary>
-		/// The region maps.
-		/// </summary>
-		private readonly GridMap[] _regionMaps;
-
-
-		/// <summary>
-		/// Initializes an instance with the specified region maps.
-		/// </summary>
-		/// <param name="regionMaps">The region maps.</param>
-		public ErIntersectionPairTechniqueSearcher(GridMap[] regionMaps) => _regionMaps = regionMaps;
-
-
 		/// <summary>
 		/// Indicates the priority of this technique.
 		/// </summary>
@@ -80,7 +68,7 @@ namespace Sudoku.Solving.Manual.Alses
 					foreach (int interCell in intersectionMap.Offsets)
 					{
 						(_, _, int block) = CellUtils.GetRegion(interCell);
-						var regionMap = _regionMaps[block];
+						var regionMap = RegionMaps[block];
 						var checkingMap = regionMap - unionMap & regionMap;
 						if (checkingMap.Offsets.Any(c => grid.Exists(c, d1) is true || grid.Exists(c, d2) is true))
 						{
@@ -93,8 +81,8 @@ namespace Sudoku.Solving.Manual.Alses
 						(_, _, int b1) = CellUtils.GetRegion(inter1);
 						(_, _, int b2) = CellUtils.GetRegion(inter2);
 						var erMap =
-							(unionMap & _regionMaps[b1] - intersectionMap)
-							| (unionMap & _regionMaps[b2] - intersectionMap);
+							(unionMap & RegionMaps[b1] - intersectionMap)
+							| (unionMap & RegionMaps[b2] - intersectionMap);
 						var erCellsMap = regionMap & erMap;
 						short m = 0;
 						foreach (int cell in erCellsMap.Offsets)
@@ -109,8 +97,8 @@ namespace Sudoku.Solving.Manual.Alses
 						// Check eliminations.
 						var conclusions = new List<Conclusion>();
 						int z = (intersectionMap & regionMap).SetAt(0);
-						var c1Map = _regionMaps[new GridMap(stackalloc[] { z, c1 }).CoveredLine];
-						var c2Map = _regionMaps[new GridMap(stackalloc[] { z, c2 }).CoveredLine];
+						var c1Map = RegionMaps[new GridMap(stackalloc[] { z, c1 }).CoveredLine];
+						var c2Map = RegionMaps[new GridMap(stackalloc[] { z, c2 }).CoveredLine];
 						foreach (int elimCell in (new GridMap(c1Map | c2Map) { [c1] = false, [c2] = false } - erMap).Offsets)
 						{
 							if (grid.Exists(elimCell, d1) is true)

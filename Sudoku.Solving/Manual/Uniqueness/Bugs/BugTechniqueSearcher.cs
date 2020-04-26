@@ -28,23 +28,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// </summary>
 		private readonly bool _extended;
 
-		/// <summary>
-		/// All region maps.
-		/// </summary>
-		private readonly GridMap[] _regionMaps;
-
 
 		/// <summary>
 		/// Initializes an instance with the region maps.
 		/// </summary>
-		/// <param name="regionMaps">The region map.</param>
 		/// <param name="extended">
 		/// A <see cref="bool"/> value indicating whether the searcher should call
 		/// the extended BUG checker to search for all true candidates no matter how
 		/// difficult searching.
 		/// </param>
-		public BugTechniqueSearcher(GridMap[] regionMaps, bool extended) =>
-			(_regionMaps, _extended) = (regionMaps, extended);
+		public BugTechniqueSearcher(bool extended) =>
+			_extended = extended;
 
 
 		/// <summary>
@@ -147,7 +141,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				int region = default;
 				for (int i = 0; i < 27; i++)
 				{
-					if (_regionMaps[i] == map)
+					if (RegionMaps[i] == map)
 					{
 						region = i;
 						break;
@@ -155,8 +149,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				}
 
 				int[] cells = RegionCells[region];
-				if (cells.Count(c => grid.GetCellStatus(c) == CellStatus.Empty)
-					- trueCandidateCellsCount <= size - 1)
+				if (cells.Count(c => grid.GetCellStatus(c) == CellStatus.Empty) - trueCandidateCellsCount <= size - 1)
 				{
 					continue;
 				}

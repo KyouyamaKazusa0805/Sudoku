@@ -26,6 +26,7 @@ using Sudoku.Solving.Manual.Uniqueness.Polygons;
 using Sudoku.Solving.Manual.Uniqueness.Rects;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
+using static Sudoku.GridProcessings;
 using static Sudoku.Solving.ConclusionType;
 using Intersection = System.ValueTuple<int, int, Sudoku.Data.GridMap, Sudoku.Data.GridMap>;
 
@@ -46,13 +47,6 @@ namespace Sudoku.Solving.Manual
 		{
 			if (grid.IsValid(out var solution))
 			{
-				// Get all region maps.
-				var regionMaps = new GridMap[27];
-				for (int i = 0; i < 27; i++)
-				{
-					regionMaps[i] = GridMap.CreateInstance(i);
-				}
-
 				// Get intersection table in order to run faster in intersection technique searchers.
 				var intersectionTable = new Intersection[18, 3];
 				int[] key = { 0, 3, 6, 1, 4, 7, 2, 5, 8 };
@@ -63,8 +57,8 @@ namespace Sudoku.Solving.Manual
 						int baseSet = i + 9;
 						int coverSet = i < 9 ? i / 3 * 3 + j : key[(i - 9) / 3 * 3 + j];
 						intersectionTable[i, j] = (
-							baseSet, coverSet, regionMaps[baseSet],
-							regionMaps[coverSet]);
+							baseSet, coverSet, RegionMaps[baseSet],
+							RegionMaps[coverSet]);
 					}
 				}
 
@@ -74,10 +68,10 @@ namespace Sudoku.Solving.Manual
 					return AnalyzeDifficultyStrictly
 						? SolveWithStrictDifficultyRating(
 							grid, grid.Clone(), new List<TechniqueInfo>(), solution,
-							intersectionTable, regionMaps)
+							intersectionTable)
 						: SolveNaively(
 							grid, grid.Clone(), new List<TechniqueInfo>(), solution,
-							intersectionTable, regionMaps);
+							intersectionTable);
 				}
 				catch (WrongHandlingException ex)
 				{
@@ -114,14 +108,13 @@ namespace Sudoku.Solving.Manual
 		/// <param name="steps">All steps found.</param>
 		/// <param name="solution">The solution.</param>
 		/// <param name="intersection">The intersection table.</param>
-		/// <param name="regionMaps">All region maps.</param>
 		/// <returns>The analysis result.</returns>
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the solver cannot solved due to wrong handling.
 		/// </exception>
 		private AnalysisResult SolveWithStrictDifficultyRating(
 			IReadOnlyGrid grid, Grid cloneation, List<TechniqueInfo> steps,
-			IReadOnlyGrid solution, Intersection[,] intersection, GridMap[] regionMaps)
+			IReadOnlyGrid solution, Intersection[,] intersection)
 		{
 			var searchers = new TechniqueSearcher[][]
 			{
@@ -137,43 +130,40 @@ namespace Sudoku.Solving.Manual
 					new UrTechniqueSearcher(CheckIncompletedUniquenessPatterns, SearchExtendedUniqueRectangles),
 					new XrTechniqueSearcher(),
 					new UlTechniqueSearcher(),
-					new EmptyRectangleTechniqueSearcher(regionMaps),
+					new EmptyRectangleTechniqueSearcher(),
 					new AlcTechniqueSearcher(intersection, CheckAlmostLockedQuadruple),
-					new SdcTechniqueSearcher(regionMaps),
+					new SdcTechniqueSearcher(),
 					new BdpTechniqueSearcher(),
-					new BugTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
-					new ErIntersectionPairTechniqueSearcher(regionMaps),
+					new BugTechniqueSearcher(UseExtendedBugSearcher),
+					new ErIntersectionPairTechniqueSearcher(),
 					new AlsXzTechniqueSearcher(AllowOverlapAlses, AlsHighlightRegionInsteadOfCell),
 					new AlsXyWingTechniqueSearcher(AllowOverlapAlses, AlsHighlightRegionInsteadOfCell),
 					new AlsWWingTechniqueSearcher(AllowOverlapAlses, AlsHighlightRegionInsteadOfCell),
 					new GroupedAicTechniqueSearcher(
 						true, false, false, AicMaximumLength, ReductDifferentPathAic,
-						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
-						regionMaps),
+						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
 					new GroupedAicTechniqueSearcher(
 						false, true, false, AicMaximumLength, ReductDifferentPathAic,
-						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
-						regionMaps),
+						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
 					new GroupedAicTechniqueSearcher(
 						false, false, true, AicMaximumLength, ReductDifferentPathAic,
-						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
-						regionMaps),
+						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
 				},
 				new TechniqueSearcher[]
 				{
 					new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 					new DeathBlossomTechniqueSearcher(
-						regionMaps, AllowOverlapAlses, AlsHighlightRegionInsteadOfCell, MaxPetalsOfDeathBlossom),
+						AllowOverlapAlses, AlsHighlightRegionInsteadOfCell, MaxPetalsOfDeathBlossom),
 					new HobiwanFishTechniqueSearcher(
 						HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
-						HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
+						HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates),
 					new PomTechniqueSearcher(),
 					new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
 				},
 				new TechniqueSearcher[]
 				{
 					new CccTechniqueSearcher(),
-					new ExocetTechniqueSearcher(regionMaps, CheckAdvancedInExocet),
+					new ExocetTechniqueSearcher(CheckAdvancedInExocet),
 					new SkLoopTechniqueSearcher(),
 				},
 				new[] { new BruteForceTechniqueSearcher(solution) }
@@ -316,14 +306,13 @@ namespace Sudoku.Solving.Manual
 		/// <param name="steps">All steps found.</param>
 		/// <param name="solution">The solution.</param>
 		/// <param name="intersection">Intersection table.</param>
-		/// <param name="regionMaps">All region maps.</param>
 		/// <returns>The analysis result.</returns>
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the solver cannot solved due to wrong handling.
 		/// </exception>
 		private AnalysisResult SolveNaively(
 			IReadOnlyGrid grid, Grid cloneation, List<TechniqueInfo> steps,
-			IReadOnlyGrid solution, Intersection[,] intersection, GridMap[] regionMaps)
+			IReadOnlyGrid solution, Intersection[,] intersection)
 		{
 			// Check symmetry first.
 			if (CheckGurthSymmetricalPlacement)
@@ -359,33 +348,30 @@ namespace Sudoku.Solving.Manual
 				new UrTechniqueSearcher(CheckIncompletedUniquenessPatterns, SearchExtendedUniqueRectangles),
 				new XrTechniqueSearcher(),
 				new UlTechniqueSearcher(),
-				new EmptyRectangleTechniqueSearcher(regionMaps),
+				new EmptyRectangleTechniqueSearcher(),
 				new AlcTechniqueSearcher(intersection, CheckAlmostLockedQuadruple),
-				new SdcTechniqueSearcher(regionMaps),
+				new SdcTechniqueSearcher(),
 				new BdpTechniqueSearcher(),
-				new BugTechniqueSearcher(regionMaps, UseExtendedBugSearcher),
-				new ErIntersectionPairTechniqueSearcher(regionMaps),
+				new BugTechniqueSearcher(UseExtendedBugSearcher),
+				new ErIntersectionPairTechniqueSearcher(),
 				new AlsXzTechniqueSearcher(AllowOverlapAlses, AlsHighlightRegionInsteadOfCell),
 				new AlsXyWingTechniqueSearcher(AllowOverlapAlses, AlsHighlightRegionInsteadOfCell),
 				new AlsWWingTechniqueSearcher(AllowOverlapAlses, AlsHighlightRegionInsteadOfCell),
 				new DeathBlossomTechniqueSearcher(
-					regionMaps, AllowOverlapAlses, AlsHighlightRegionInsteadOfCell, MaxPetalsOfDeathBlossom),
+					AllowOverlapAlses, AlsHighlightRegionInsteadOfCell, MaxPetalsOfDeathBlossom),
 				new GroupedAicTechniqueSearcher(
 					true, false, false, AicMaximumLength, ReductDifferentPathAic,
-					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
-					regionMaps),
+					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
 				new GroupedAicTechniqueSearcher(
 					false, true, false, AicMaximumLength, ReductDifferentPathAic,
-					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
-					regionMaps),
+					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
 				new GroupedAicTechniqueSearcher(
 					false, false, true, AicMaximumLength, ReductDifferentPathAic,
-					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop,
-					regionMaps),
+					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
 				new HobiwanFishTechniqueSearcher(
 					HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
-					HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates, regionMaps),
-				new ExocetTechniqueSearcher(regionMaps, CheckAdvancedInExocet),
+					HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates),
+				new ExocetTechniqueSearcher(CheckAdvancedInExocet),
 				new SkLoopTechniqueSearcher(),
 				new PomTechniqueSearcher(),
 				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
@@ -537,8 +523,8 @@ namespace Sudoku.Solving.Manual
 		/// <param name="stepGrids">The step grids.</param>
 		/// <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		/// <seealso cref="SolveNaively(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, Intersection[,], GridMap[])"/>
-		/// <seealso cref="SolveWithStrictDifficultyRating(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, Intersection[,], GridMap[])"/>
+		/// <seealso cref="SolveNaively(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, Intersection[,])"/>
+		/// <seealso cref="SolveWithStrictDifficultyRating(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, Intersection[,])"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool RecordTechnique(
 			List<TechniqueInfo> steps, TechniqueInfo step, IReadOnlyGrid grid,

@@ -1516,16 +1516,10 @@
             Indicates the max petals to search.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher._regionMaps">
-            <summary>
-            The region maps.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher.#ctor(Sudoku.Data.GridMap[],System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Initialize an instance with the specified information.
             </summary>
-            <param name="regionMaps">The region maps.</param>
             <param name="allowOverlapping">
             Indicates whether the ALSes can be overlapped with each other.
             </param>
@@ -1626,17 +1620,6 @@
             Encapsulates an <b>empty rectangle intersection pair</b> technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueSearcher._regionMaps">
-            <summary>
-            The region maps.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueSearcher.#ctor(Sudoku.Data.GridMap[])">
-            <summary>
-            Initializes an instance with the specified region maps.
-            </summary>
-            <param name="regionMaps">The region maps.</param>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueSearcher.Priority">
             <summary>
             Indicates the priority of this technique.
@@ -1729,9 +1712,11 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueSearcher.#cctor">
-            <summary>
-            The static constructor of <see cref="T:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueSearcher"/>
-            </summary>
+            <staticConstructor>
+		<summary>The static constructor of this class.</summary>
+	</staticConstructor><staticConstructor aimTo="struct">
+		<summary>The static constructor of this struct.</summary>
+	</staticConstructor>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Rcc">
             <summary>
@@ -1936,21 +1921,12 @@
             Indicates all combinations (7 cells) to take.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.SdcTechniqueSearcher._regionMaps">
-            <summary>
-            All region maps.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.SdcTechniqueSearcher.#ctor(Sudoku.Data.GridMap[])">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="regionMaps">All regions grid maps.</param>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.SdcTechniqueSearcher.#cctor">
-            <summary>
-            The static constructor of this class.
-            </summary>
+            <staticConstructor>
+		<summary>The static constructor of this class.</summary>
+	</staticConstructor><staticConstructor aimTo="struct">
+		<summary>The static constructor of this struct.</summary>
+	</staticConstructor>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.SdcTechniqueSearcher.Priority">
             <summary>
@@ -2229,12 +2205,7 @@
             Indicates the maximum length to search.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher._regionMaps">
-            <summary>
-            Indicates all region maps.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,Sudoku.Data.GridMap[])">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -2262,7 +2233,6 @@
             Indicates whether the searcher will check the chain forms a continuous
             nice loop.
             </param>
-            <param name="regionMaps">All region maps.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.Priority">
             <summary>
@@ -2732,16 +2702,10 @@
             Indicates whether the searcher will find advanced eliminations.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher._regionMaps">
-            <summary>
-            Indicates the region maps.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.#ctor(Sudoku.Data.GridMap[],System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.#ctor(System.Boolean)">
             <summary>
             Initializes an instance with the specified region maps.
             </summary>
-            <param name="regionMaps">The region maps.</param>
             <param name="checkAdvanced">
             Indicates whether the searcher will find advanced eliminations.
             </param>
@@ -2853,35 +2817,48 @@
             <param name="seed">The specified number.</param>
             <returns>All combinations.</returns>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.SIterator">
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.SIter">
             <summary>
             The cross line cells iterator.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.BIterator">
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.BIter">
             <summary>
             The base cells iterator.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.RqIterator">
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.RqIter">
             <summary>
             The Q or R cells iterator.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.Mirror">
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.M">
             <summary>
             The mirror list.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.BibiPatternIterator">
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.B">
+            <summary>
+            The base list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.BC">
+            <summary>
+            The combinations for base list <see cref="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.B"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.B"/>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.BibiIter">
             <summary>
             The iterator for Bi-bi pattern.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.#cctor">
-            <summary>
-            The static constructor of <see cref="T:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher"/>.
-            </summary>
+            <staticConstructor>
+		<summary>The static constructor of this class.</summary>
+	</staticConstructor><staticConstructor aimTo="struct">
+		<summary>The static constructor of this struct.</summary>
+	</staticConstructor>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.ExocetTypeCode">
             <summary>
@@ -3381,12 +3358,7 @@
             will be skipped rather than do empty and useless loops.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher._regionMaps">
-            <summary>
-            Indicates region maps.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.#ctor(System.Int32,System.Int32,System.Int32,System.Boolean,Sudoku.Data.GridMap[])">
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.#ctor(System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -3396,7 +3368,6 @@
             <param name="checkTemplates">
             Indicates whether the puzzle will check templates first.
             </param>
-            <param name="regionMaps">The region maps.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.Priority">
             <summary>
@@ -4315,7 +4286,7 @@
         <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:],Sudoku.Data.GridMap[])">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:])">
             <summary>
             Solve the puzzle with <see cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/> option.
             </summary>
@@ -4324,13 +4295,12 @@
             <param name="steps">All steps found.</param>
             <param name="solution">The solution.</param>
             <param name="intersection">The intersection table.</param>
-            <param name="regionMaps">All region maps.</param>
             <returns>The analysis result.</returns>
             <exception cref="T:Sudoku.WrongHandlingException">
             Throws when the solver cannot solved due to wrong handling.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:],Sudoku.Data.GridMap[])">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:])">
             <summary>
             Solve naively.
             </summary>
@@ -4339,7 +4309,6 @@
             <param name="steps">All steps found.</param>
             <param name="solution">The solution.</param>
             <param name="intersection">Intersection table.</param>
-            <param name="regionMaps">All region maps.</param>
             <returns>The analysis result.</returns>
             <exception cref="T:Sudoku.WrongHandlingException">
             Throws when the solver cannot solved due to wrong handling.
@@ -4357,8 +4326,8 @@
             <param name="stepGrids">The step grids.</param>
             <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:],Sudoku.Data.GridMap[])"/>
-            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:],Sudoku.Data.GridMap[])"/>
+            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:])"/>
+            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:])"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.CheckConclusionsValidity(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
             <summary>
@@ -4788,22 +4757,6 @@
             Indicates all regions iterating on the specified block
             forming an empty rectangle.
             </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher._digitDistributions">
-            <summary>
-            All digit distributions.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher._regionMaps">
-            <summary>
-            All region grid maps.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.#ctor(Sudoku.Data.GridMap[])">
-            <summary>
-            Initializes an instance with the specified grid.
-            </summary>
-            <param name="regionMaps">All region maps.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueSearcher.Priority">
             <summary>
@@ -5404,16 +5357,10 @@
             to find all true candidates.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher._regionMaps">
-            <summary>
-            All region maps.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.#ctor(Sudoku.Data.GridMap[],System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.#ctor(System.Boolean)">
             <summary>
             Initializes an instance with the region maps.
             </summary>
-            <param name="regionMaps">The region map.</param>
             <param name="extended">
             A <see cref="T:System.Boolean"/> value indicating whether the searcher should call
             the extended BUG checker to search for all true candidates no matter how
@@ -5691,9 +5638,11 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.#cctor">
-            <summary>
-            The static constructor of this class.
-            </summary>
+            <staticConstructor>
+		<summary>The static constructor of this class.</summary>
+	</staticConstructor><staticConstructor aimTo="struct">
+		<summary>The static constructor of this struct.</summary>
+	</staticConstructor>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.Priority">
             <summary>
