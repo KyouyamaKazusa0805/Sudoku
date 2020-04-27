@@ -85,7 +85,7 @@ namespace Sudoku.Data
 		/// If the value is <see langword="false"/>, it will be equivalent
 		/// to below:
 		/// <code>
-		/// var map = <see langword="new"/> GridMap(offset) { [offset] = false };
+		/// var map = new GridMap(offset) { [offset] = false };
 		/// </code>
 		/// </param>
 		public GridMap(int offset, bool setItself) : this((IEnumerable<int>)Peers[offset]) =>
@@ -172,14 +172,14 @@ namespace Sudoku.Data
 		/// <summary>
 		/// <para>Initializes an instance with a series of cell offsets.</para>
 		/// <para>
-		/// You can use object initializer instead if you want. In other words,
-		/// you can use the code
+		/// In some case, you can use object initializer instead.
+		/// You can use the code
 		/// <code>
-		/// <see langword="var"/> map = <see langword="new"/> GridMap { 0, 3, 5 };
+		/// var map = new GridMap { 0, 3, 5 };
 		/// </code>
 		/// instead of the code
 		/// <code>
-		/// <see langword="var"/> map = <see langword="new"/> GridMap(<see langword="stackalloc"/>[] { 0, 3, 5 });
+		/// var map = new GridMap(stackalloc[] { 0, 3, 5 });
 		/// </code>
 		/// </para>
 		/// </summary>

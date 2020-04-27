@@ -272,7 +272,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		{
 			foreach (int c in otherCellsMap.Offsets)
 			{
-				var coveredRegions = new GridMap(stackalloc[] { c, currentCell }).CoveredRegions;
+				var coveredRegions = new GridMap { c, currentCell }.CoveredRegions;
 				if (!coveredRegions.Any())
 				{
 					continue;

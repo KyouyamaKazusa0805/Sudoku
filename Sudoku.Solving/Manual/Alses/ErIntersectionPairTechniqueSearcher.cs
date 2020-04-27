@@ -50,7 +50,7 @@ namespace Sudoku.Solving.Manual.Alses
 					}
 
 					// Check the two cells are not in same region.
-					if (new GridMap(stackalloc[] { c1, c2 }).AllSetsAreInOneRegion(out _))
+					if (new GridMap { c1, c2 }.AllSetsAreInOneRegion(out _))
 					{
 						continue;
 					}
@@ -97,9 +97,10 @@ namespace Sudoku.Solving.Manual.Alses
 						// Check eliminations.
 						var conclusions = new List<Conclusion>();
 						int z = (intersectionMap & regionMap).SetAt(0);
-						var c1Map = RegionMaps[new GridMap(stackalloc[] { z, c1 }).CoveredLine];
-						var c2Map = RegionMaps[new GridMap(stackalloc[] { z, c2 }).CoveredLine];
-						foreach (int elimCell in (new GridMap(c1Map | c2Map) { [c1] = false, [c2] = false } - erMap).Offsets)
+						var c1Map = RegionMaps[new GridMap { z, c1 }.CoveredLine];
+						var c2Map = RegionMaps[new GridMap { z, c2 }.CoveredLine];
+						foreach (int elimCell in (
+							new GridMap(c1Map | c2Map) { [c1] = false, [c2] = false } - erMap).Offsets)
 						{
 							if (grid.Exists(elimCell, d1) is true)
 							{

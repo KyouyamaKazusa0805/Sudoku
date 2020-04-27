@@ -149,7 +149,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 					foreach (int digit in stackalloc[] { d1, d2 })
 					{
-						if (!IsConjugatePair(grid, digit, new GridMap(stackalloc[] { cell, sameRegionCell }), region))
+						if (!IsConjugatePair(grid, digit, new GridMap { cell, sameRegionCell }, region))
 						{
 							continue;
 						}
@@ -176,7 +176,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							if (urCell == corner1 || urCell == corner2)
 							{
-								if (new GridMap(stackalloc[] { urCell, sameRegionCell }).CoveredRegions.Any(r => r == region))
+								if (new GridMap { urCell, sameRegionCell }.CoveredRegions.Any(r => r == region))
 								{
 									foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
 									{
@@ -271,7 +271,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 					foreach (int digit in stackalloc[] { d1, d2 })
 					{
-						if (!IsConjugatePair(grid, digit, new GridMap(stackalloc[] { cell, sameRegionCell }), region))
+						if (!IsConjugatePair(grid, digit, new GridMap { cell, sameRegionCell }, region))
 						{
 							continue;
 						}
@@ -297,7 +297,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							if (urCell == corner1 || urCell == corner2)
 							{
-								if (new GridMap(stackalloc[] { urCell, sameRegionCell }).CoveredRegions.Any(r => r == region))
+								if (new GridMap { urCell, sameRegionCell }.CoveredRegions.Any(r => r == region))
 								{
 									foreach (int d in grid.GetCandidatesReversal(urCell).GetAllSets())
 									{
@@ -486,8 +486,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			{
 				int abxCell = adjacentCellsMap.SetAt(0);
 				int abyCell = adjacentCellsMap.SetAt(1);
-				var map1 = new GridMap(stackalloc[] { abzCell, abxCell });
-				var map2 = new GridMap(stackalloc[] { abzCell, abyCell });
+				var map1 = new GridMap { abzCell, abxCell };
+				var map2 = new GridMap { abzCell, abyCell };
 				if (!IsConjugatePair(grid, b, map1, map1.CoveredLine)
 					|| !IsConjugatePair(grid, a, map2, map2.CoveredLine))
 				{
@@ -591,7 +591,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			int abyCell = adjacentCellsMap.SetAt(1);
 			foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
 			{
-				var linkMap = new GridMap(stackalloc[] { begin, abzCell });
+				var linkMap = new GridMap { begin, abzCell };
 				foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
 				{
 					if (!IsConjugatePair(grid, b, linkMap, linkMap.CoveredLine))
@@ -601,7 +601,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 					// Step 2: Get the link cell that is adjacent to 'cornerCell'
 					// and check the strong link.
-					var secondLinkMap = new GridMap(stackalloc[] { cornerCell, begin });
+					var secondLinkMap = new GridMap { cornerCell, begin };
 					if (!IsConjugatePair(grid, a, secondLinkMap, secondLinkMap.CoveredLine))
 					{
 						continue;
@@ -703,7 +703,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			int abyCell = adjacentCellsMap.SetAt(1);
 			foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
 			{
-				var linkMap = new GridMap(stackalloc[] { begin, abzCell });
+				var linkMap = new GridMap { begin, abzCell };
 				foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
 				{
 					if (!IsConjugatePair(grid, b, linkMap, linkMap.CoveredLine))
@@ -711,7 +711,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						continue;
 					}
 
-					var secondLinkMap = new GridMap(stackalloc[] { cornerCell, end });
+					var secondLinkMap = new GridMap { cornerCell, end };
 					if (!IsConjugatePair(grid, a, secondLinkMap, secondLinkMap.CoveredLine))
 					{
 						continue;
@@ -811,7 +811,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			int abyCell = adjacentCellsMap.SetAt(1);
 			foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
 			{
-				var linkMap = new GridMap(stackalloc[] { begin, abzCell });
+				var linkMap = new GridMap { begin, abzCell };
 				foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
 				{
 					if (!IsConjugatePair(grid, a, linkMap, linkMap.CoveredLine))
@@ -819,7 +819,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						continue;
 					}
 
-					var secondLinkMap = new GridMap(stackalloc[] { cornerCell, end });
+					var secondLinkMap = new GridMap { cornerCell, end };
 					if (!IsConjugatePair(grid, a, secondLinkMap, secondLinkMap.CoveredLine))
 					{
 						continue;
@@ -908,7 +908,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//             | b
 			//        a    |
 			//  abz ----- abw
-			var link1Map = new GridMap(stackalloc[] { corner1, corner2 });
+			var link1Map = new GridMap { corner1, corner2 };
 			foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
 			{
 				if (!IsConjugatePair(grid, a, link1Map, link1Map.CoveredLine))
@@ -920,13 +920,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				int abzCell = new GridMap(otherCellsMap) { [abwCell] = false }.SetAt(0);
 				foreach (var (head, begin, end, extra) in stackalloc[] { (corner2, corner1, abzCell, abwCell), (corner1, corner2, abwCell, abzCell) })
 				{
-					var link2Map = new GridMap(stackalloc[] { begin, end });
+					var link2Map = new GridMap { begin, end };
 					if (!IsConjugatePair(grid, b, link2Map, link2Map.CoveredLine))
 					{
 						continue;
 					}
 
-					var link3Map = new GridMap(stackalloc[] { end, extra });
+					var link3Map = new GridMap { end, extra };
 					if (!IsConjugatePair(grid, a, link3Map, link3Map.CoveredLine))
 					{
 						continue;
@@ -1030,7 +1030,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//             | a
 			//        b    |
 			//  abz ----- abw
-			var link1Map = new GridMap(stackalloc[] { corner1, corner2 });
+			var link1Map = new GridMap { corner1, corner2 };
 			foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
 			{
 				if (!IsConjugatePair(grid, a, link1Map, link1Map.CoveredLine))
@@ -1042,13 +1042,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				int abzCell = new GridMap(otherCellsMap) { [abwCell] = false }.SetAt(0);
 				foreach (var (head, begin, end, extra) in stackalloc[] { (corner2, corner1, abzCell, abwCell), (corner1, corner2, abwCell, abzCell) })
 				{
-					var link2Map = new GridMap(stackalloc[] { begin, end });
+					var link2Map = new GridMap { begin, end };
 					if (!IsConjugatePair(grid, a, link2Map, link2Map.CoveredLine))
 					{
 						continue;
 					}
 
-					var link3Map = new GridMap(stackalloc[] { end, extra });
+					var link3Map = new GridMap { end, extra };
 					if (!IsConjugatePair(grid, b, link3Map, link3Map.CoveredLine))
 					{
 						continue;
@@ -1159,7 +1159,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				return;
 			}
 
-			if (new GridMap(stackalloc[] { corner1, corner2 }).AllSetsAreInOneRegion(out int? region)
+			if (new GridMap { corner1, corner2 }.AllSetsAreInOneRegion(out int? region)
 				&& region < 9)
 			{
 				// Subtype 1.

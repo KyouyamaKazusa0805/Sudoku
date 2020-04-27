@@ -161,7 +161,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 				}
 
-				bool isRow = new GridMap(stackalloc[] { b1, b2 }).CoveredLine < 18;
+				bool isRow = new GridMap { b1, b2 }.CoveredLine < 18;
 				var (tar1, mir1) = recordMirrorEliminations(tq1, tq2, tr1, tr2, mq1, mq2, nonBaseQ, 0);
 				var (tar2, mir2) = recordMirrorEliminations(tr1, tr2, tq1, tq2, mr1, mr2, nonBaseR, 1);
 				var targetEliminations = TargetEliminations.MergeAll(targetElims, tar1, tar2);

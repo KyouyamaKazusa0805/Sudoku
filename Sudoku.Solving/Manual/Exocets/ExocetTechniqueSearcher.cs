@@ -141,10 +141,10 @@ namespace Sudoku.Solving.Manual.Exocets
 								tr1,
 								B[BC[i, 1]] + RqIter[l, 1],
 								new GridMap(crossline[7..]),
-								new GridMap(stackalloc[] { B[BC[i, 1]] + M[l, 2], B[BC[i, 1]] + M[l, 3] }),
-								new GridMap(stackalloc[] { B[BC[i, 1]] + M[l, 0], B[BC[i, 1]] + M[l, 1] }),
-								new GridMap(stackalloc[] { B[BC[i, 0]] + M[k, 2], B[BC[i, 0]] + M[k, 3] }),
-								new GridMap(stackalloc[] { B[BC[i, 0]] + M[k, 0], B[BC[i, 0]] + M[k, 1] }));
+								new GridMap { B[BC[i, 1]] + M[l, 2], B[BC[i, 1]] + M[l, 3] },
+								new GridMap { B[BC[i, 1]] + M[l, 0], B[BC[i, 1]] + M[l, 1] },
+								new GridMap { B[BC[i, 0]] + M[k, 2], B[BC[i, 0]] + M[k, 3] },
+								new GridMap { B[BC[i, 0]] + M[k, 0], B[BC[i, 0]] + M[k, 1] });
 
 							n++;
 						}

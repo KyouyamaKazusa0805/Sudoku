@@ -382,12 +382,12 @@ namespace Sudoku.Solving.Manual
 				new BruteForceTechniqueSearcher(solution),
 			};
 
-			static T getValue<T>(TechniqueSearcher s, string p) => (T)s.GetType().GetProperty(p)!.GetValue(null)!;
+			static T g<T>(TechniqueSearcher s, string p) => (T)s.GetType().GetProperty(p)!.GetValue(null)!;
 			if (UseCalculationPriority)
 			{
 				Array.Sort(
 					searchers,
-					(a, b) => getValue<int>(a, "Priority").CompareTo(getValue<int>(b, "Priority")));
+					(a, b) => g<int>(a, "Priority").CompareTo(g<int>(b, "Priority")));
 			}
 
 			var stepGrids = new Bag<IReadOnlyGrid>();
@@ -399,7 +399,7 @@ namespace Sudoku.Solving.Manual
 			{
 				var searcher = searchers[i];
 
-				if (!getValue<bool>(searcher, "IsEnabled"))
+				if (!g<bool>(searcher, "IsEnabled"))
 				{
 					// Skip the technique when the static property 'IsEnabled' is set false.
 					continue;

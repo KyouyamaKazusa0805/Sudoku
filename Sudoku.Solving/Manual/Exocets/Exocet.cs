@@ -98,8 +98,8 @@ namespace Sudoku.Solving.Manual.Exocets
 			out GridMap baseCellsMap, out GridMap targetCellsMap, out GridMap crosslineMap)
 		{
 			(baseCellsMap, targetCellsMap, crosslineMap) = (
-				new GridMap(stackalloc[] { Base1, Base2 }),
-				new GridMap(stackalloc[] { TargetQ1, TargetQ2, TargetR1, TargetR2 }),
+				new GridMap { Base1, Base2 },
+				new GridMap { TargetQ1, TargetQ2, TargetR1, TargetR2 },
 				CrossLine);
 		}
 

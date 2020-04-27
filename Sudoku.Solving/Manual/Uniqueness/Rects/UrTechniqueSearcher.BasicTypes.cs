@@ -141,7 +141,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				return;
 			}
 
-			bool isType5 = !new GridMap(stackalloc[] { corner1, corner2 }).AllSetsAreInOneRegion(out _);
+			bool isType5 = !new GridMap { corner1, corner2 }.AllSetsAreInOneRegion(out _);
 			accumulator.Add(
 				new UrType2TechniqueInfo(
 					conclusions,
@@ -235,7 +235,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 						// Type 3 found. Now check eliminations.
 						var conclusions = new List<Conclusion>();
-						var cells = (otherCellsMap | new GridMap(stackalloc[] { c1 })).Offsets;
+						var cells = (otherCellsMap | new GridMap { c1 }).Offsets;
 						foreach (int digit in extraDigits)
 						{
 							foreach (int cell in new GridMap(
@@ -334,7 +334,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 								// Type 3 found. Now check eliminations.
 								var conclusions = new List<Conclusion>();
-								var cells = (otherCellsMap | new GridMap(stackalloc[] { c1 })).Offsets;
+								var cells = (otherCellsMap | new GridMap { c1 }).Offsets;
 								foreach (int digit in extraDigits)
 								{
 									foreach (int cell in new GridMap(
@@ -437,7 +437,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 									// Type 3 found. Now check eliminations.
 									var conclusions = new List<Conclusion>();
-									var cells = (otherCellsMap | new GridMap(stackalloc[] { c1 })).Offsets;
+									var cells = (otherCellsMap | new GridMap { c1 }).Offsets;
 									foreach (int digit in extraDigits)
 									{
 										foreach (int cell in new GridMap(
@@ -1069,11 +1069,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			void gather(bool isRow, int digit, int region1, int region2)
 			{
 				if ((!isRow
-					|| !IsConjugatePair(grid, digit, new GridMap(stackalloc[] { corner1, o1 }), region1)
-					|| !IsConjugatePair(grid, digit, new GridMap(stackalloc[] { corner2, o2 }), region2))
+					|| !IsConjugatePair(grid, digit, new GridMap { corner1, o1 }, region1)
+					|| !IsConjugatePair(grid, digit, new GridMap { corner2, o2 }, region2))
 					&& (isRow
-					|| !IsConjugatePair(grid, digit, new GridMap(stackalloc[] { corner1, o2 }), region1)
-					|| !IsConjugatePair(grid, digit, new GridMap(stackalloc[] { corner2, o1 }), region2)))
+					|| !IsConjugatePair(grid, digit, new GridMap { corner1, o2 }, region1)
+					|| !IsConjugatePair(grid, digit, new GridMap { corner2, o1 }, region2)))
 				{
 					return;
 				}
@@ -1171,8 +1171,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			{
 				int abxCell = adjacentCellsMap.SetAt(0);
 				int abyCell = adjacentCellsMap.SetAt(1);
-				var map1 = new GridMap(stackalloc[] { abzCell, abxCell });
-				var map2 = new GridMap(stackalloc[] { abzCell, abyCell });
+				var map1 = new GridMap { abzCell, abxCell };
+				var map2 = new GridMap { abzCell, abyCell };
 				if (!IsConjugatePair(grid, digit, map1, map1.CoveredLine)
 					|| !IsConjugatePair(grid, digit, map2, map2.CoveredLine))
 				{
