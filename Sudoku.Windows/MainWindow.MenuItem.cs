@@ -497,6 +497,26 @@ namespace Sudoku.Windows
 			}
 		}
 
+		private void MenuItemAnalyzeGetSolution_Click(object sender, RoutedEventArgs e)
+		{
+			var sb = new StringBuilder(SudokuGrid.EmptyString);
+			for (int cell = 0; cell < 81; cell++)
+			{
+				sb[cell] += (char)(_puzzle[cell] + 1);
+			}
+
+			if (new BitwiseSolver().Solve(sb.ToString(), sb, 2) != 1)
+			{
+				MessageBox.Show("The puzzle is invalid. Please check your input and retry.", "Info");
+				e.Handled = true;
+				return;
+			}
+
+			Puzzle = new UndoableGrid(SudokuGrid.Parse(sb.ToString()));
+
+			UpdateImageGrid();
+		}
+
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		[SuppressMessage("", "IDE0050")]
 		private async void MenuItemAnalyzeSolve_Click(object sender, RoutedEventArgs e)
@@ -505,6 +525,13 @@ namespace Sudoku.Windows
 
 			async Task internalOperation()
 			{
+				if (_puzzle.HasSolved)
+				{
+					MessageBox.Show("The puzzle has already solved.", "Info");
+					e.Handled = true;
+					return;
+				}
+
 				var sb = new StringBuilder(SudokuGrid.EmptyString);
 				for (int cell = 0; cell < 81; cell++)
 				{
