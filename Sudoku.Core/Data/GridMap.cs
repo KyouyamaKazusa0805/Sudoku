@@ -409,7 +409,7 @@ namespace Sudoku.Data
 				short result = 0;
 				for (int i = 0; i < 9; i++)
 				{
-					if ((this & CreateInstance(i)).IsNotEmpty)
+					if (Overlaps(CreateInstance(i)))
 					{
 						result |= (short)(1 << i);
 					}
@@ -429,7 +429,7 @@ namespace Sudoku.Data
 				short result = 0;
 				for (int i = 9; i < 18; i++)
 				{
-					if ((this & CreateInstance(i)).IsNotEmpty)
+					if (Overlaps(CreateInstance(i)))
 					{
 						result |= (short)(1 << i - 9);
 					}
@@ -449,7 +449,7 @@ namespace Sudoku.Data
 				short result = 0;
 				for (int i = 18; i < 27; i++)
 				{
-					if ((this & CreateInstance(i)).IsNotEmpty)
+					if (Overlaps(CreateInstance(i)))
 					{
 						result |= (short)(1 << i - 18);
 					}
@@ -618,9 +618,10 @@ namespace Sudoku.Data
 		/// Indicates whether all cells in this instance are in one region.
 		/// </summary>
 		/// <param name="region">
-		/// (<see langword="out"/> parameter) The region covered.
+		/// (<see langword="out"/> parameter) The region covered. If the return value
+		/// is false, this value will be the constant -1.
 		/// </param>
-		public readonly bool AllSetsAreInOneRegion([NotNullWhen(true)] out int? region)
+		public readonly bool AllSetsAreInOneRegion(out int region)
 		{
 			for (int i = 0; i < 27; i++)
 			{
@@ -631,7 +632,7 @@ namespace Sudoku.Data
 				}
 			}
 
-			region = null;
+			region = -1;
 			return false;
 		}
 

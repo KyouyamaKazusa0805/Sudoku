@@ -65,7 +65,7 @@ namespace Sudoku.Solving.Manual.Sdps
 						}
 
 						// Check two cells share a same region.
-						int? sameRegion;
+						int sameRegion;
 						int headIndex, tailIndex, c1Index, c2Index;
 						for (int i = 0; i < 2; i++)
 						{
@@ -130,7 +130,7 @@ namespace Sudoku.Solving.Manual.Sdps
 										{
 											(0, r1),
 											(0, r2),
-											(1, sameRegion.Value)
+											(1, sameRegion)
 										},
 										links: null)
 								},

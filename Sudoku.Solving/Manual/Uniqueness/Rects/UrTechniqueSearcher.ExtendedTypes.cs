@@ -1159,8 +1159,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				return;
 			}
 
-			if (new GridMap { corner1, corner2 }.AllSetsAreInOneRegion(out int? region)
-				&& region < 9)
+			if (new GridMap { corner1, corner2 }.AllSetsAreInOneRegion(out int region) && region < 9)
 			{
 				// Subtype 1.
 				short mask1 = grid.GetCandidatesReversal(otherCellsMap.SetAt(0));

@@ -171,12 +171,12 @@ namespace Sudoku.Solving.Manual.Alses
 			{
 				if (!DigitAppears(grid, als1, digit, out var map1)
 					|| !DigitAppears(grid, als2, digit, out var map2)
-					|| !((GridMap)(map1 | map2)).AllSetsAreInOneRegion(out int? region))
+					|| !((GridMap)(map1 | map2)).AllSetsAreInOneRegion(out int region))
 				{
 					continue;
 				}
 
-				result.Add((digit, (int)region));
+				result.Add((digit, region));
 			}
 
 			return result;

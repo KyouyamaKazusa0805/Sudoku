@@ -5,7 +5,9 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
+using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.GridProcessings;
+using static Sudoku.Solving.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Alses
 {
@@ -53,10 +55,10 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			(_, _, var digitDistributions) = grid;
+			var (emptyCellsMap, _, digitDistributions) = grid;
 			for (int r1 = 0; r1 < 26; r1++)
 			{
-				if (RegionCells[r1].All(c => grid.GetCellStatus(c) != CellStatus.Empty))
+				if (emptyCellsMap - RegionMaps[r1] == emptyCellsMap)
 				{
 					continue;
 				}
@@ -69,7 +71,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 				for (int r2 = r1 + 1; r2 < 27; r2++)
 				{
-					if (RegionCells[r2].All(c => grid.GetCellStatus(c) != CellStatus.Empty))
+					if (emptyCellsMap - RegionMaps[r2] == emptyCellsMap)
 					{
 						continue;
 					}
@@ -111,10 +113,10 @@ namespace Sudoku.Solving.Manual.Alses
 									for (int i = 0; i < 2; i++)
 									{
 										int w = cases[i, 0], x = cases[i, 1];
-										if ((digitDistributions[w] & als1.Map).IsEmpty
-											|| (digitDistributions[x] & als1.Map).IsEmpty
-											|| (digitDistributions[w] & als2.Map).IsEmpty
-											|| (digitDistributions[x] & als2.Map).IsEmpty)
+										if (!digitDistributions[w].Overlaps(als1.Map)
+											|| !digitDistributions[x].Overlaps(als1.Map)
+											|| !digitDistributions[w].Overlaps(als2.Map)
+											|| !digitDistributions[x].Overlaps(als2.Map))
 										{
 											// Condition #1.
 											continue;
@@ -135,13 +137,13 @@ namespace Sudoku.Solving.Manual.Alses
 												continue;
 											}
 
-											foreach (int xRegion1 in
+											foreach (int xr1 in
 												new GridMap(
 													from cell in als1Cells
 													where grid.Exists(cell, x) is true
 													select cell).CoveredRegions)
 											{
-												foreach (int xRegion2 in
+												foreach (int xr2 in
 													new GridMap(
 														from cell in als2Cells
 														where grid.Exists(cell, x) is true
@@ -153,10 +155,10 @@ namespace Sudoku.Solving.Manual.Alses
 													var (row1, column1, block1) = CellUtils.GetRegion(c1);
 													var (row2, column2, block2) = CellUtils.GetRegion(c2);
 													if (!(
-														(row1 + 9 == xRegion1 || column1 + 18 == xRegion1 || block1 == xRegion1)
-														&& (row2 + 9 == xRegion2 || column2 + 18 == xRegion2 || block2 == xRegion2)
-														|| (row1 + 9 == xRegion2 || column1 + 18 == xRegion2 || block1 == xRegion2)
-														&& (row2 + 9 == xRegion1 || column2 + 18 == xRegion1 || block2 == xRegion1))
+														(row1 + 9 == xr1 || column1 + 18 == xr1 || block1 == xr1)
+														&& (row2 + 9 == xr2 || column2 + 18 == xr2 || block2 == xr2)
+														|| (row1 + 9 == xr2 || column1 + 18 == xr2 || block1 == xr2)
+														&& (row2 + 9 == xr1 || column2 + 18 == xr1 || block2 == xr1))
 														|| als1.Map[c1] || als1.Map[c2] || als2.Map[c1] || als2.Map[c2])
 													{
 														// Condition #4.
@@ -169,8 +171,7 @@ namespace Sudoku.Solving.Manual.Alses
 														new GridMap(
 															from cell in (als1.Map | als2.Map).Offsets
 															where grid.Exists(cell, w) is true
-															select cell,
-															GridMap.InitializeOption.ProcessPeersWithoutItself);
+															select cell, ProcessPeersWithoutItself);
 													if (elimMap.IsEmpty)
 													{
 														continue;
@@ -183,14 +184,14 @@ namespace Sudoku.Solving.Manual.Alses
 															continue;
 														}
 
-														conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, w));
+														conclusions.Add(new Conclusion(Elimination, cell, w));
 													}
 													if (conclusions.Count == 0)
 													{
 														continue;
 													}
 
-													if (!_allowOverlapping && (als1.Map & als2.Map).IsNotEmpty)
+													if (!_allowOverlapping && als1.Map.Overlaps(als2.Map))
 													{
 														continue;
 													}
@@ -210,7 +211,8 @@ namespace Sudoku.Solving.Manual.Alses
 													};
 													foreach (int cell in als1Cells)
 													{
-														foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+														foreach (int digit in
+															grid.GetCandidatesReversal(cell).GetAllSets())
 														{
 															candidateOffsets.Add((
 																true switch
@@ -225,7 +227,8 @@ namespace Sudoku.Solving.Manual.Alses
 													}
 													foreach (int cell in als2Cells)
 													{
-														foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+														foreach (int digit in
+															grid.GetCandidatesReversal(cell).GetAllSets())
 														{
 															candidateOffsets.Add((
 																true switch
@@ -246,7 +249,8 @@ namespace Sudoku.Solving.Manual.Alses
 															{
 																new View(
 																	cellOffsets: _alsShowRegions ? null : cellOffsets,
-																	candidateOffsets: _alsShowRegions ? candidateOffsets : null,
+																	candidateOffsets:
+																		_alsShowRegions ? candidateOffsets : null,
 																	regionOffsets: _alsShowRegions ? regionOffsets: null,
 																	links: null)
 															},
