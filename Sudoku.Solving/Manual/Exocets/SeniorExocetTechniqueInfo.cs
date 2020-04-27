@@ -17,12 +17,19 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="exocet">The exocet.</param>
 		/// <param name="digits">All digits.</param>
 		/// <param name="endoTargetCell">The endo target cell.</param>
+		/// <param name="targetEliminations">The target eliminations.</param>
+		/// <param name="trueBaseEliminations">The true base eliminations.</param>
+		/// <param name="mirrorEliminations">The mirror eliminations.</param>
+		/// <param name="compatibilityEliminations">The compatibility eliminations.</param>
 		public SeniorExocetTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, Exocet exocet,
-			IEnumerable<int> digits, int endoTargetCell)
+			IEnumerable<int> digits, int endoTargetCell, TargetEliminations targetEliminations,
+			TrueBaseEliminations trueBaseEliminations, MirrorEliminations mirrorEliminations,
+			CompatibilityTestEliminations compatibilityEliminations)
 			: base(
 				  conclusions, views, exocet, digits, ExocetTypeCode.Senior, null, null,
-				  default, default, default, default, default) =>
+				  targetEliminations, mirrorEliminations, default, default, default,
+				  trueBaseEliminations, compatibilityEliminations) =>
 			EndoTargetCell = endoTargetCell;
 
 

@@ -139,7 +139,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 									pivotPeersMap, cells, pivot,
 									isIncompleted, out var map);
 
-								if (map.Count == 0)
+								if (map.IsEmpty)
 								{
 									// None of cells can be found and eliminated.
 									continue;
@@ -197,7 +197,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 											pivotPeersMap, cells, pivot,
 											isIncompleted, out var map);
 
-										if (map.Count == 0)
+										if (map.IsEmpty)
 										{
 											// None of cells can be found and eliminated.
 											continue;
@@ -255,7 +255,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 													pivotPeersMap, cells, pivot,
 													isIncompleted, out var map);
 
-												if (map.Count == 0)
+												if (map.IsEmpty)
 												{
 													// None of cells can be found and eliminated.
 													continue;

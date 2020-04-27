@@ -684,7 +684,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			var map = new GridMap(
 				from cand in trueCandidates select cand / 9,
 				GridMap.InitializeOption.ProcessPeersAlso);
-			if (map.Count == 0)
+			if (map.IsEmpty)
 			{
 				return;
 			}

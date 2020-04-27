@@ -89,7 +89,7 @@ namespace Sudoku.Solving.Checking
 
 			// Store all bivalue cells.
 			var stack = new GridMap[multivalueCellsCount + 1, 9];
-			if (_bivalueCellsDistribution.Count > 0)
+			if (_bivalueCellsDistribution.IsNotEmpty)
 			{
 				int[] bivalueCells = _bivalueCellsDistribution.ToArray();
 				foreach (int bivalueCell in bivalueCells)

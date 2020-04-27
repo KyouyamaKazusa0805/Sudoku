@@ -163,7 +163,8 @@ namespace Sudoku.Solving.Manual
 				new TechniqueSearcher[]
 				{
 					new CccTechniqueSearcher(),
-					new ExocetTechniqueSearcher(CheckAdvancedInExocet),
+					new JuniorExocetTechniqueSearcher(CheckAdvancedInExocet),
+					new SeniorExocetTechniqueSearcher(CheckAdvancedInExocet),
 					new SkLoopTechniqueSearcher(),
 				},
 				new[] { new BruteForceTechniqueSearcher(solution) }
@@ -371,7 +372,8 @@ namespace Sudoku.Solving.Manual
 				new HobiwanFishTechniqueSearcher(
 					HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
 					HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates),
-				new ExocetTechniqueSearcher(CheckAdvancedInExocet),
+				new JuniorExocetTechniqueSearcher(CheckAdvancedInExocet),
+				new SeniorExocetTechniqueSearcher(CheckAdvancedInExocet),
 				new SkLoopTechniqueSearcher(),
 				new PomTechniqueSearcher(),
 				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),

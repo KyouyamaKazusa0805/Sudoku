@@ -89,36 +89,32 @@ namespace Sudoku.Solving.Manual
 				new BdpTechniqueSearcher(),
 				new BugTechniqueSearcher(_settings.UseExtendedBugSearcher),
 				new ErIntersectionPairTechniqueSearcher(),
-
-				// To be honest, I am dissatisfied with my implementation,
-				// because of the low speed and high time complexity.
-				// These method will not used until I re-implement them.
-				new AlsXzTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
-				new AlsXyWingTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
-				new AlsWWingTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
-				new DeathBlossomTechniqueSearcher(
-					_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell,
-					_settings.MaxPetalsOfDeathBlossom),
-				new GroupedAicTechniqueSearcher(
-					true, false, false, _settings.AicMaximumLength, _settings.ReductDifferentPathAic,
-					_settings.OnlySaveShortestPathAic, _settings.CheckHeadCollision,
-					_settings.CheckContinuousNiceLoop),
-				new GroupedAicTechniqueSearcher(
-					false, true, false, _settings.AicMaximumLength, _settings.ReductDifferentPathAic,
-					_settings.OnlySaveShortestPathAic, _settings.CheckHeadCollision,
-					_settings.CheckContinuousNiceLoop),
-				new GroupedAicTechniqueSearcher(
-					false, false, true, _settings.AicMaximumLength, _settings.ReductDifferentPathAic,
-					_settings.OnlySaveShortestPathAic, _settings.CheckHeadCollision,
-					_settings.CheckContinuousNiceLoop),
+				//new AlsXzTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
+				//new AlsXyWingTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
+				//new AlsWWingTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
+				//new DeathBlossomTechniqueSearcher(
+				//	_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell,
+				//	_settings.MaxPetalsOfDeathBlossom),
+				//new GroupedAicTechniqueSearcher(
+				//	true, false, false, _settings.AicMaximumLength, _settings.ReductDifferentPathAic,
+				//	_settings.OnlySaveShortestPathAic, _settings.CheckHeadCollision,
+				//	_settings.CheckContinuousNiceLoop),
+				//new GroupedAicTechniqueSearcher(
+				//	false, true, false, _settings.AicMaximumLength, _settings.ReductDifferentPathAic,
+				//	_settings.OnlySaveShortestPathAic, _settings.CheckHeadCollision,
+				//	_settings.CheckContinuousNiceLoop),
+				//new GroupedAicTechniqueSearcher(
+				//	false, false, true, _settings.AicMaximumLength, _settings.ReductDifferentPathAic,
+				//	_settings.OnlySaveShortestPathAic, _settings.CheckHeadCollision,
+				//	_settings.CheckContinuousNiceLoop),
 				//new HobiwanFishTechniqueSearcher(
 				//	HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
 				//	HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates),
-
 				new BowmanBingoTechniqueSearcher(_settings.BowmanBingoMaximumLength),
 				new PomTechniqueSearcher(),
 				new CccTechniqueSearcher(),
-				new ExocetTechniqueSearcher(_settings.CheckAdvancedInExocet),
+				new JuniorExocetTechniqueSearcher(_settings.CheckAdvancedInExocet),
+				new SeniorExocetTechniqueSearcher(_settings.CheckAdvancedInExocet),
 				new SkLoopTechniqueSearcher(),
 			};
 

@@ -1227,6 +1227,8 @@
             two fields are not <see langword="readonly"/>, but Roslyn lies).
             </para>
             </summary>
+            <seealso cref="F:Sudoku.Data.GridMap._low"/>
+            <seealso cref="F:Sudoku.Data.GridMap._high"/>
         </member>
         <member name="F:Sudoku.Data.GridMap._low">
             <summary>
@@ -1240,6 +1242,8 @@
             two fields are not <see langword="readonly"/>, but Roslyn lies).
             </para>
             </summary>
+            <seealso cref="F:Sudoku.Data.GridMap._low"/>
+            <seealso cref="F:Sudoku.Data.GridMap._high"/>
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32)">
             <summary>
@@ -1262,23 +1266,22 @@
             If the value is <see langword="false"/>, it will be equivalent
             to below:
             <code>
-            var map = new GridMap(offset) { [offset] = false };
+            var map = <see langword="new"/> GridMap(offset) { [offset] = false };
             </code>
             </param>
         </member>
-        <member name="M:Sudoku.Data.GridMap.#ctor(Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32,Sudoku.Data.GridMap.InitializeOption)">
             <summary>
-            To copy an instance with the specified information.
-            This constructor is only used for adding or removing some extra cells like:
-            <code>
-            var y = new GridMap(x) { [i] = true };
-            </code>
-            or
-            <code>
-            var y = new GridMap(x) { i };
-            </code>
+            Initializes an instance with the specified cell offset
+            with an initialize option.
             </summary>
-            <param name="another">Another instance.</param>
+            <param name="offset">The cell offset.</param>
+            <param name="initializeOption">
+            Indicates the behavior of the initialization.
+            </param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the specified initialize option is invalid.
+            </exception>
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32[])">
             <summary>
@@ -1296,39 +1299,6 @@
             </remarks>
             <seealso cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>
         </member>
-        <member name="M:Sudoku.Data.GridMap.#ctor(System.ReadOnlySpan{System.Int32})">
-            <summary>
-            Initializes an instance with a series of cell offsets.
-            </summary>
-            <param name="offsets">cell offsets.</param>
-            <remarks>
-            Note that all offsets will be set <see langword="true"/>, but their own peers
-            will not be set <see langword="true"/>.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Initializes an instance with a series of cell offsets.
-            </summary>
-            <param name="offsets">cell offsets.</param>
-            <remarks>
-            Note that all offsets will be set <see langword="true"/>, but their own peers
-            will not be set <see langword="true"/>.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32,Sudoku.Data.GridMap.InitializeOption)">
-            <summary>
-            Initializes an instance with the specified cell offset
-            with an initialize option.
-            </summary>
-            <param name="offset">The cell offset.</param>
-            <param name="initializeOption">
-            Indicates the behavior of the initialization.
-            </param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the specified initialize option is invalid.
-            </exception>
-        </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32[],Sudoku.Data.GridMap.InitializeOption)">
             <summary>
             Initializes an instance with cell offsets with an initialize option.
@@ -1342,6 +1312,27 @@
             </remarks>
             <seealso cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap.InitializeOption)"/>
         </member>
+        <member name="M:Sudoku.Data.GridMap.#ctor(System.ReadOnlySpan{System.Int32})">
+            <summary>
+            <para>Initializes an instance with a series of cell offsets.</para>
+            <para>
+            You can use object initializer instead if you want. In other words,
+            you can use the code
+            <code>
+            <see langword="var"/> map = <see langword="new"/> GridMap { 0, 3, 5 };
+            </code>
+            instead of the code
+            <code>
+            <see langword="var"/> map = <see langword="new"/> GridMap(<see langword="stackalloc"/>[] { 0, 3, 5 });
+            </code>
+            </para>
+            </summary>
+            <param name="offsets">cell offsets.</param>
+            <remarks>
+            Note that all offsets will be set <see langword="true"/>, but their own peers
+            will not be set <see langword="true"/>.
+            </remarks>
+        </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.ReadOnlySpan{System.Int32},Sudoku.Data.GridMap.InitializeOption)">
             <summary>
             Initializes an instance with cell offsets with an initialize option.
@@ -1353,6 +1344,38 @@
             <exception cref="T:System.ArgumentException">
             Throws when the specified initialize option is invalid.
             </exception>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.#ctor(Sudoku.Data.GridMap)">
+            <summary>
+            To copy an instance with the specified information.
+            This constructor is only used for adding or removing some extra cells like:
+            <code>
+            <see langword="var"/> y = <see langword="new"/> GridMap(x) { [i] = true };
+            </code>
+            or
+            <code>
+            <see langword="var"/> y = <see langword="new"/> GridMap(x) { i };
+            </code>
+            </summary>
+            <param name="another">Another instance.</param>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.#ctor(Sudoku.Data.GridMap,Sudoku.Data.GridMap.InitializeOption)">
+            <summary>
+            To copy an instance with the specified information and specify the current initialization
+            mode.
+            </summary>
+            <param name="another">Another instance.</param>
+            <param name="initializeOption">The initialization option.</param>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Initializes an instance with a series of cell offsets.
+            </summary>
+            <param name="offsets">cell offsets.</param>
+            <remarks>
+            Note that all offsets will be set <see langword="true"/>, but their own peers
+            will not be set <see langword="true"/>.
+            </remarks>
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap.InitializeOption)">
             <summary>
@@ -1420,15 +1443,15 @@
             Indicates the covered line.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.GridMap.CoveredRegions">
-            <summary>
-            Indicates all regions covered.
-            </summary>
-        </member>
         <member name="P:Sudoku.Data.GridMap.Count">
             <summary>
             Indicates the total number of cells where the corresponding
             value are set <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.GridMap.CoveredRegions">
+            <summary>
+            Indicates all regions covered.
             </summary>
         </member>
         <member name="P:Sudoku.Data.GridMap.Offsets">
@@ -1624,14 +1647,15 @@
         </member>
         <member name="M:Sudoku.Data.GridMap.op_ExclusiveOr(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <summary>
-            Unions two sets of <paramref name="left"/> minus <paramref name="right"/>
-            and <paramref name="right"/> minus <paramref name="left"/>, where the minus
-            operator is <see cref="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap,Sudoku.Data.GridMap)"/>.
+            Equivalent to code <c>(a - b) | (b - a)</c>, where the operator '<c>-</c>'
+            is <see cref="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap,Sudoku.Data.GridMap)"/>, and '<c>|</c>'
+            is <see cref="M:Sudoku.Data.GridMap.op_BitwiseOr(Sudoku.Data.GridMap,Sudoku.Data.GridMap)"/>.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
             <returns>The result.</returns>
             <seealso cref="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap,Sudoku.Data.GridMap)"/>
+            <seealso cref="M:Sudoku.Data.GridMap.op_BitwiseOr(Sudoku.Data.GridMap,Sudoku.Data.GridMap)"/>
         </member>
         <member name="T:Sudoku.Data.GridMap.InitializeOption">
             <summary>

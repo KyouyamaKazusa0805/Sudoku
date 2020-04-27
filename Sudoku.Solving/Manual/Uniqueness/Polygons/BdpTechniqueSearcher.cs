@@ -242,7 +242,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 								int extraDigit = otherDigits.First();
 								var conclusions = new List<Conclusion>();
 								var elimMap = new GridMap(extraCells, GridMap.InitializeOption.ProcessPeersWithoutItself);
-								if (elimMap.Count == 0)
+								if (elimMap.IsEmpty)
 								{
 									continue;
 								}
@@ -1010,7 +1010,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 								int extraDigit = otherDigits.First();
 								var conclusions = new List<Conclusion>();
 								var elimMap = new GridMap(extraCells, GridMap.InitializeOption.ProcessPeersWithoutItself);
-								if (elimMap.Count == 0)
+								if (elimMap.IsEmpty)
 								{
 									continue;
 								}

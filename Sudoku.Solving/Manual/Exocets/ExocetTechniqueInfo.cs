@@ -24,16 +24,29 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="lockedMemberR">The locked member R.</param>
 		/// <param name="targetEliminations">The target eliminations.</param>
 		/// <param name="mirrorEliminations">The mirror eliminations.</param>
-		/// <param name="bibiEliminations">The Bi-bi pattern eliminations.</param>
-		/// <param name="targetPairEliminations">The target pair eliminations.</param>
-		/// <param name="swordfishEliminations">The swordfish pattern eliminations.</param>
+		/// <param name="bibiEliminations">
+		/// The Bi-bi pattern eliminations (only used for junior exocets).
+		/// </param>
+		/// <param name="targetPairEliminations">
+		/// The target pair eliminations (only used for junior exocets).
+		/// </param>
+		/// <param name="swordfishEliminations">
+		/// The swordfish pattern eliminations (only used for junior exocets).
+		/// </param>
+		/// <param name="trueBaseEliminations">
+		/// The true base eliminations (only used for senior exocets).
+		/// </param>
+		/// <param name="compatibilityEliminations">
+		/// The compatibility test eliminations (only used for senior exocets).
+		/// </param>
 		public ExocetTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			Exocet exocet, IEnumerable<int> digits, ExocetTypeCode typeCode,
 			IEnumerable<int>? lockedMemberQ, IEnumerable<int>? lockedMemberR,
 			TargetEliminations targetEliminations, MirrorEliminations mirrorEliminations,
 			BibiPatternEliminations bibiEliminations, TargetPairEliminations targetPairEliminations,
-			SwordfishEliminations swordfishEliminations)
+			SwordfishEliminations swordfishEliminations, TrueBaseEliminations trueBaseEliminations,
+			CompatibilityTestEliminations compatibilityEliminations)
 			: base(conclusions, views)
 		{
 			(Exocet, Digits, TypeCode, LockedMemberQ, LockedMemberR) = (exocet, digits, typeCode, lockedMemberQ, lockedMemberR);
@@ -58,6 +71,14 @@ namespace Sudoku.Solving.Manual.Exocets
 			if (!((SwordfishEliminations = swordfishEliminations).Conclusions is null))
 			{
 				list.AddRange(SwordfishEliminations);
+			}
+			if (!((TrueBaseEliminations = trueBaseEliminations).Conclusions is null))
+			{
+				list.AddRange(TrueBaseEliminations);
+			}
+			if (!((CompatibilityTestEliminations = compatibilityEliminations).Conclusions is null))
+			{
+				list.AddRange(CompatibilityTestEliminations);
 			}
 
 			var temp = Conclusions.Distinct().ToList(); // Call 'ToList' to execute the query forcedly.
@@ -116,6 +137,16 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </summary>
 		public SwordfishEliminations SwordfishEliminations { get; }
 
+		/// <summary>
+		/// The true base eliminations.
+		/// </summary>
+		public TrueBaseEliminations TrueBaseEliminations { get; }
+
+		/// <summary>
+		/// The compatibility test eliminations.
+		/// </summary>
+		public CompatibilityTestEliminations CompatibilityTestEliminations { get; }
+
 		/// <inheritdoc/>
 		public sealed override string Name => TypeCode.GetCustomName()!;
 
@@ -144,6 +175,10 @@ namespace Sudoku.Solving.Manual.Exocets
 				.NullableAppendLine(TargetEliminations.ToString())
 				.NullableAppendLine(MirrorEliminations.ToString())
 				.NullableAppendLine(BibiEliminations.ToString())
+				.NullableAppendLine(TargetPairEliminations.ToString())
+				.NullableAppendLine(SwordfishEliminations.ToString())
+				.NullableAppendLine(TrueBaseEliminations.ToString())
+				.NullableAppendLine(CompatibilityTestEliminations.ToString())
 				.ToString();
 		}
 

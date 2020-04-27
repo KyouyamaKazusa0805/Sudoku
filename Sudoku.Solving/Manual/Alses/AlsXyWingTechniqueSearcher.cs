@@ -141,7 +141,7 @@ namespace Sudoku.Solving.Manual.Alses
 						}
 
 						var elimMap = new GridMap(tempList, ProcessPeersWithoutItself);
-						if (elimMap.Count == 0)
+						if (elimMap.IsEmpty)
 						{
 							continue;
 						}

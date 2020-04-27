@@ -92,7 +92,7 @@ namespace Sudoku.Solving.Manual.Sdps
 						tail = cells2[tailIndex];
 						var conclusions = new List<Conclusion>();
 						var gridMap = new GridMap(head, false) & new GridMap(tail, false);
-						if (gridMap.Count == 0)
+						if (gridMap.IsEmpty)
 						{
 							continue;
 						}

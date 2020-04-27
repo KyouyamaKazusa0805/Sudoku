@@ -57,6 +57,8 @@ namespace Sudoku.Data
 		/// two fields are not <see langword="readonly"/>, but Roslyn lies).
 		/// </para>
 		/// </summary>
+		/// <seealso cref="_low"/>
+		/// <seealso cref="_high"/>
 		[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
 		private long _high, _low;
 
@@ -83,80 +85,11 @@ namespace Sudoku.Data
 		/// If the value is <see langword="false"/>, it will be equivalent
 		/// to below:
 		/// <code>
-		/// var map = new GridMap(offset) { [offset] = false };
+		/// var map = <see langword="new"/> GridMap(offset) { [offset] = false };
 		/// </code>
 		/// </param>
 		public GridMap(int offset, bool setItself) : this((IEnumerable<int>)Peers[offset]) =>
 			this[offset] = setItself;
-
-		/// <summary>
-		/// To copy an instance with the specified information.
-		/// This constructor is only used for adding or removing some extra cells like:
-		/// <code>
-		/// var y = new GridMap(x) { [i] = true };
-		/// </code>
-		/// or
-		/// <code>
-		/// var y = new GridMap(x) { i };
-		/// </code>
-		/// </summary>
-		/// <param name="another">Another instance.</param>
-		public GridMap(GridMap another) =>
-			(_high, _low, Count) = (another._high, another._low, another.Count);
-
-		/// <summary>
-		/// Same behavior of the constructor as <see cref="GridMap(IEnumerable{int})"/>.
-		/// </summary>
-		/// <param name="offsets">All offsets.</param>
-		/// <remarks>
-		/// This constructor is defined after another constructor with
-		/// <see cref="ReadOnlySpan{T}"/> had defined. Although this constructor
-		/// does not initialize something (use the other one instead),
-		/// while initializing with the type <see cref="int"/>[], the complier
-		/// gives me an error without this constructor (ambiguity of two
-		/// constructors). However, unfortunately, <see cref="ReadOnlySpan{T}"/>
-		/// does not implemented the interface <see cref="IEnumerable{T}"/>...
-		/// </remarks>
-		/// <seealso cref="GridMap(IEnumerable{int})"/>
-		public GridMap(int[] offsets) : this((IEnumerable<int>)offsets)
-		{
-		}
-
-		/// <summary>
-		/// Initializes an instance with a series of cell offsets.
-		/// </summary>
-		/// <param name="offsets">cell offsets.</param>
-		/// <remarks>
-		/// Note that all offsets will be set <see langword="true"/>, but their own peers
-		/// will not be set <see langword="true"/>.
-		/// </remarks>
-		public GridMap(ReadOnlySpan<int> offsets)
-		{
-			(_low, _high, Count) = (0, 0, 0);
-			foreach (int offset in offsets)
-			{
-				(offset / Shifting == 0 ? ref _low : ref _high) |= 1L << offset % Shifting;
-				Count++;
-			}
-		}
-
-		/// <summary>
-		/// Initializes an instance with a series of cell offsets.
-		/// </summary>
-		/// <param name="offsets">cell offsets.</param>
-		/// <remarks>
-		/// Note that all offsets will be set <see langword="true"/>, but their own peers
-		/// will not be set <see langword="true"/>.
-		/// </remarks>
-		public GridMap(IEnumerable<int> offsets)
-		{
-			(_low, _high, Count) = (0, 0, 0);
-			foreach (int offset in offsets)
-			{
-				(offset / Shifting == 0 ? ref _low : ref _high) |= 1L << offset % Shifting;
-				Count++;
-			}
-		}
 
 		/// <summary>
 		/// Initializes an instance with the specified cell offset
@@ -203,6 +136,24 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
+		/// Same behavior of the constructor as <see cref="GridMap(IEnumerable{int})"/>.
+		/// </summary>
+		/// <param name="offsets">All offsets.</param>
+		/// <remarks>
+		/// This constructor is defined after another constructor with
+		/// <see cref="ReadOnlySpan{T}"/> had defined. Although this constructor
+		/// does not initialize something (use the other one instead),
+		/// while initializing with the type <see cref="int"/>[], the complier
+		/// gives me an error without this constructor (ambiguity of two
+		/// constructors). However, unfortunately, <see cref="ReadOnlySpan{T}"/>
+		/// does not implemented the interface <see cref="IEnumerable{T}"/>...
+		/// </remarks>
+		/// <seealso cref="GridMap(IEnumerable{int})"/>
+		public GridMap(int[] offsets) : this((IEnumerable<int>)offsets)
+		{
+		}
+
+		/// <summary>
 		/// Initializes an instance with cell offsets with an initialize option.
 		/// </summary>
 		/// <param name="offsets">The offsets to be processed.</param>
@@ -216,6 +167,35 @@ namespace Sudoku.Data
 		public GridMap(int[] offsets, InitializeOption initializeOption)
 			: this((IEnumerable<int>)offsets, initializeOption)
 		{
+		}
+
+		/// <summary>
+		/// <para>Initializes an instance with a series of cell offsets.</para>
+		/// <para>
+		/// You can use object initializer instead if you want. In other words,
+		/// you can use the code
+		/// <code>
+		/// <see langword="var"/> map = <see langword="new"/> GridMap { 0, 3, 5 };
+		/// </code>
+		/// instead of the code
+		/// <code>
+		/// <see langword="var"/> map = <see langword="new"/> GridMap(<see langword="stackalloc"/>[] { 0, 3, 5 });
+		/// </code>
+		/// </para>
+		/// </summary>
+		/// <param name="offsets">cell offsets.</param>
+		/// <remarks>
+		/// Note that all offsets will be set <see langword="true"/>, but their own peers
+		/// will not be set <see langword="true"/>.
+		/// </remarks>
+		public GridMap(ReadOnlySpan<int> offsets)
+		{
+			(_low, _high, Count) = (0, 0, 0);
+			foreach (int offset in offsets)
+			{
+				(offset / Shifting == 0 ? ref _low : ref _high) |= 1L << offset % Shifting;
+				Count++;
+			}
 		}
 
 		/// <summary>
@@ -273,6 +253,50 @@ namespace Sudoku.Data
 				{
 					throw new ArgumentException("The specified option does not exist.");
 				}
+			}
+		}
+
+		/// <summary>
+		/// To copy an instance with the specified information.
+		/// This constructor is only used for adding or removing some extra cells like:
+		/// <code>
+		/// <see langword="var"/> y = <see langword="new"/> GridMap(x) { [i] = true };
+		/// </code>
+		/// or
+		/// <code>
+		/// <see langword="var"/> y = <see langword="new"/> GridMap(x) { i };
+		/// </code>
+		/// </summary>
+		/// <param name="another">Another instance.</param>
+		public GridMap(GridMap another) =>
+			(_high, _low, Count) = (another._high, another._low, another.Count);
+
+		/// <summary>
+		/// To copy an instance with the specified information and specify the current initialization
+		/// mode.
+		/// </summary>
+		/// <param name="another">Another instance.</param>
+		/// <param name="initializeOption">The initialization option.</param>
+		public GridMap(GridMap another, InitializeOption initializeOption)
+			: this(another.Offsets, initializeOption)
+		{
+		}
+
+		/// <summary>
+		/// Initializes an instance with a series of cell offsets.
+		/// </summary>
+		/// <param name="offsets">cell offsets.</param>
+		/// <remarks>
+		/// Note that all offsets will be set <see langword="true"/>, but their own peers
+		/// will not be set <see langword="true"/>.
+		/// </remarks>
+		public GridMap(IEnumerable<int> offsets)
+		{
+			(_low, _high, Count) = (0, 0, 0);
+			foreach (int offset in offsets)
+			{
+				(offset / Shifting == 0 ? ref _low : ref _high) |= 1L << offset % Shifting;
+				Count++;
 			}
 		}
 
@@ -458,6 +482,12 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
+		/// Indicates the total number of cells where the corresponding
+		/// value are set <see langword="true"/>.
+		/// </summary>
+		public int Count { readonly get; private set; }
+
+		/// <summary>
 		/// Indicates all regions covered.
 		/// </summary>
 		public readonly IEnumerable<int> CoveredRegions
@@ -473,12 +503,6 @@ namespace Sudoku.Data
 				}
 			}
 		}
-
-		/// <summary>
-		/// Indicates the total number of cells where the corresponding
-		/// value are set <see langword="true"/>.
-		/// </summary>
-		public int Count { readonly get; private set; }
 
 		/// <summary>
 		/// <para>
@@ -797,14 +821,15 @@ namespace Sudoku.Data
 			new GridMap(left._high | right._high, left._low | right._low);
 
 		/// <summary>
-		/// Unions two sets of <paramref name="left"/> minus <paramref name="right"/>
-		/// and <paramref name="right"/> minus <paramref name="left"/>, where the minus
-		/// operator is <see cref="operator -(GridMap, GridMap)"/>.
+		/// Equivalent to code <c>(a - b) | (b - a)</c>, where the operator '<c>-</c>'
+		/// is <see cref="operator -(GridMap, GridMap)"/>, and '<c>|</c>'
+		/// is <see cref="operator |(GridMap, GridMap)"/>.
 		/// </summary>
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
 		/// <returns>The result.</returns>
 		/// <seealso cref="operator -(GridMap, GridMap)"/>
+		/// <seealso cref="operator |(GridMap, GridMap)"/>
 		public static GridMap operator ^(GridMap left, GridMap right) =>
 			new GridMap(left._high ^ right._high, left._low ^ right._low);
 	}

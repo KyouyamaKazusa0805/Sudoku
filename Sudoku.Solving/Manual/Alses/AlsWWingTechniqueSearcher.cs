@@ -171,7 +171,7 @@ namespace Sudoku.Solving.Manual.Alses
 															where grid.Exists(cell, w) is true
 															select cell,
 															GridMap.InitializeOption.ProcessPeersWithoutItself);
-													if (elimMap.Count == 0)
+													if (elimMap.IsEmpty)
 													{
 														continue;
 													}

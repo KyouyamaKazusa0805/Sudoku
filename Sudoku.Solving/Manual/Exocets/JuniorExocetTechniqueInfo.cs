@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			: base(
 				  conclusions, views, exocet, digits, ExocetTypeCode.Junior,
 				  lockedMemberQ, lockedMemberR, targetEliminations, mirrorEliminations,
-				  bibiEliminations, targetPairEliminations, swordfishEliminations)
+				  bibiEliminations, targetPairEliminations, swordfishEliminations, default, default)
 		{
 		}
 

@@ -154,7 +154,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 								Label_CheckWhetherTheNumberOfIntersectionCellsIsNotZero:
 									// Check whether the number of intersection cells is not 0.
-									if (elimMap.Count != 0)
+									if (elimMap.IsNotEmpty)
 									{
 										// Finned/Sashimi X-Wing found.
 										// Check eliminations.
@@ -332,7 +332,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 											Label_CheckWhetherTheNumberOfIntersectionCellsIsNotZero:
 												// Check whether the number of intersection cells is not 0.
-												if (elimMap.Count != 0)
+												if (elimMap.IsNotEmpty)
 												{
 													// Finned/Sashimi X-Wing found.
 													// Check eliminations.
@@ -517,7 +517,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 													Label_CheckWhetherTheNumberOfIntersectionCellsIsNotZero:
 														// Check whether the number of intersection cells is not 0.
-														if (elimMap.Count != 0)
+														if (elimMap.IsNotEmpty)
 														{
 															// Finned/Sashimi X-Wing found.
 															// Check eliminations.
