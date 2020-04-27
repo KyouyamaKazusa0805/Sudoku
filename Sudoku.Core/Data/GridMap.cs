@@ -225,21 +225,18 @@ namespace Sudoku.Data
 				case InitializeOption.ProcessPeersAlso:
 				case InitializeOption.ProcessPeersWithoutItself:
 				{
-					static void process(ref long low, ref long high, int peer) =>
-						(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
-
 					int i = 0;
 					foreach (int offset in offsets)
 					{
 						long low = 0, high = 0;
 						foreach (int peer in Peers[offset])
 						{
-							process(ref low, ref high, peer);
+							(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
 						}
 
 						if (initializeOption == InitializeOption.ProcessPeersAlso)
 						{
-							process(ref low, ref high, offset);
+							(offset / Shifting == 0 ? ref low : ref high) |= 1L << offset % Shifting;
 						}
 
 						(_low, _high) = i++ == 0 ? (low, high) : (_low & low, _high & high);
@@ -260,11 +257,11 @@ namespace Sudoku.Data
 		/// To copy an instance with the specified information.
 		/// This constructor is only used for adding or removing some extra cells like:
 		/// <code>
-		/// <see langword="var"/> y = <see langword="new"/> GridMap(x) { [i] = true };
+		/// var y = new GridMap(x) { [i] = true };
 		/// </code>
 		/// or
 		/// <code>
-		/// <see langword="var"/> y = <see langword="new"/> GridMap(x) { i };
+		/// var y = new GridMap(x) { i };
 		/// </code>
 		/// </summary>
 		/// <param name="another">Another instance.</param>
@@ -783,6 +780,18 @@ namespace Sudoku.Data
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(GridMap left, GridMap right) => !(left == right);
 
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThan"]'/>
+		public static bool operator >(GridMap left, GridMap right) => left.CompareTo(right) > 0;
+
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThanOrEqual"]'/>
+		public static bool operator >=(GridMap left, GridMap right) => left.CompareTo(right) >= 0;
+
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_LessThan"]'/>
+		public static bool operator <(GridMap left, GridMap right) => left.CompareTo(right) < 0;
+
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_LessThanOrEqual"]'/>
+		public static bool operator <=(GridMap left, GridMap right) => left.CompareTo(right) <= 0;
+
 		/// <summary>
 		/// Reverse all cells' statuses, which means all <see langword="true"/> bits
 		/// will be set <see langword="false"/>, and all <see langword="false"/> bits
@@ -792,6 +801,22 @@ namespace Sudoku.Data
 		/// <returns>The negative result.</returns>
 		public static GridMap operator ~(GridMap gridMap) =>
 			new GridMap(~gridMap._high, ~gridMap._low);
+
+		/// <summary>
+		/// Add a cell into the specified map.
+		/// </summary>
+		/// <param name="map">The map.</param>
+		/// <param name="cell">The cell to remove.</param>
+		/// <returns>The map after adding.</returns>
+		public static GridMap operator +(GridMap map, int cell) => map | new GridMap { cell };
+
+		/// <summary>
+		/// Remove a cell from the specified map.
+		/// </summary>
+		/// <param name="map">The map.</param>
+		/// <param name="cell">The cell to remove.</param>
+		/// <returns>The map after removing.</returns>
+		public static GridMap operator -(GridMap map, int cell) => map - new GridMap { cell };
 
 		/// <summary>
 		/// Get a <see cref="GridMap"/> that contains all <paramref name="left"/> cells

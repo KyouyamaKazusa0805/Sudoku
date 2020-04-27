@@ -1316,8 +1316,8 @@
             <summary>
             <para>Initializes an instance with a series of cell offsets.</para>
             <para>
-            You can use object initializer instead if you want. In other words,
-            you can use the code
+            In some case, you can use object initializer instead.
+            You can use the code
             <code>
             var map = new GridMap { 0, 3, 5 };
             </code>
@@ -1350,11 +1350,11 @@
             To copy an instance with the specified information.
             This constructor is only used for adding or removing some extra cells like:
             <code>
-            <see langword="var"/> y = <see langword="new"/> GridMap(x) { [i] = true };
+            var y = new GridMap(x) { [i] = true };
             </code>
             or
             <code>
-            <see langword="var"/> y = <see langword="new"/> GridMap(x) { i };
+            var y = new GridMap(x) { i };
             </code>
             </summary>
             <param name="another">Another instance.</param>
@@ -1611,6 +1611,42 @@
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
         </member>
+        <member name="M:Sudoku.Data.GridMap.op_GreaterThan(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+            <operator name="op_GreaterThan">
+		<summary>Indicates whether the left value is greater than the right value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.op_GreaterThanOrEqual(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+            <operator name="op_GreaterThanOrEqual">
+		<summary>
+			Indicates whether the left value is greater than or equals to the right value.
+		</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.op_LessThan(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+            <operator name="op_LessThan">
+		<summary>Indicates whether the left value is less than the right value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.op_LessThanOrEqual(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+            <operator name="op_LessThanOrEqual">
+		<summary>
+			Indicates whether the left value is less than or equals to the right value.
+		</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
         <member name="M:Sudoku.Data.GridMap.op_OnesComplement(Sudoku.Data.GridMap)">
             <summary>
             Reverse all cells' statuses, which means all <see langword="true"/> bits
@@ -1619,6 +1655,22 @@
             </summary>
             <param name="gridMap">The instance to negate.</param>
             <returns>The negative result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.op_Addition(Sudoku.Data.GridMap,System.Int32)">
+            <summary>
+            Add a cell into the specified map.
+            </summary>
+            <param name="map">The map.</param>
+            <param name="cell">The cell to remove.</param>
+            <returns>The map after adding.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap,System.Int32)">
+            <summary>
+            Remove a cell from the specified map.
+            </summary>
+            <param name="map">The map.</param>
+            <param name="cell">The cell to remove.</param>
+            <returns>The map after removing.</returns>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <summary>

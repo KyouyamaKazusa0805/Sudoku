@@ -1401,9 +1401,7 @@
 			hat from the specified parameter.
 		</summary>
 		<param name="other">The other instance to determine.</param>
-		<returns>
-			A <see cref="T:System.Boolean" /> value indicating that.
-		</returns>
+		<returns>A <see cref="T:System.Boolean" /> value indicating that.</returns>
 	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.ToString">

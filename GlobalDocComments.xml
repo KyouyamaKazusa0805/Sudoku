@@ -50,9 +50,7 @@
 			hat from the specified parameter.
 		</summary>
 		<param name="other">The other instance to determine.</param>
-		<returns>
-			A <see cref="bool"/> value indicating that.
-		</returns>
+		<returns>A <see cref="bool"/> value indicating that.</returns>
 	</method>
 	
 	<!--operators-->
@@ -64,6 +62,34 @@
 	</operator>
 	<operator name="op_Inequality">
 		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="bool"/> result indicating that.</returns>
+	</operator>
+	<operator name="op_GreaterThan">
+		<summary>Indicates whether the left value is greater than the right value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="bool"/> result indicating that.</returns>
+	</operator>
+	<operator name="op_LessThan">
+		<summary>Indicates whether the left value is less than the right value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="bool"/> result indicating that.</returns>
+	</operator>
+	<operator name="op_GreaterThanOrEqual">
+		<summary>
+			Indicates whether the left value is greater than or equals to the right value.
+		</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="bool"/> result indicating that.</returns>
+	</operator>
+	<operator name="op_LessThanOrEqual">
+		<summary>
+			Indicates whether the left value is less than or equals to the right value.
+		</summary>
 		<param name="left">The left instance.</param>
 		<param name="right">The right instance.</param>
 		<returns>A <see cref="bool"/> result indicating that.</returns>
