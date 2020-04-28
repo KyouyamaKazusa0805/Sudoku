@@ -1,4 +1,6 @@
-﻿using Sudoku.Data;
+﻿using System;
+using System.Collections.Generic;
+using Sudoku.Data;
 
 namespace Sudoku
 {
@@ -35,6 +37,30 @@ namespace Sudoku
 		/// '<c>RegionMaps[0]</c>': The map containing all cells in the block 1.
 		/// </example>
 		public static readonly GridMap[] RegionMaps;
+
+		/// <summary>
+		/// <para>
+		/// Indicates all maps that forms the each intersection, where the first dimension
+		/// stands for the base set, and the second dimension stands for the cover set.
+		/// The pattern will be like:
+		/// <code>
+		/// .-------.-------.-------.<br/>
+		/// | C C C | A A A | A A A |<br/>
+		/// | B B B | . . . | . . . |<br/>
+		/// | B B B | . . . | . . . |<br/>
+		/// :-------+-------+-------:<br/>
+		/// | . . . | . . . | . . . |<br/>
+		/// | . . . | . . . | . . . |<br/>
+		/// | . . . | . . . | . . . |<br/>
+		/// :-------+-------+-------:<br/>
+		/// | . . . | . . . | . . . |<br/>
+		/// | . . . | . . . | . . . |<br/>
+		/// | . . . | . . . | . . . |<br/>
+		/// '-------'-------'-------'
+		/// </code>
+		/// </para>
+		/// </summary>
+		public static readonly IReadOnlyDictionary<(int _baseSet, int _coverSet), (GridMap _a, GridMap _b, GridMap _c)> IntersectionMaps;
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/staticConstructor'/>
@@ -174,6 +200,28 @@ namespace Sudoku
 					map.Add(cell);
 				}
 			}
+			#endregion
+
+			#region IntersectionMaps
+			var r = (ReadOnlySpan<byte>)stackalloc byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
+			var c = (ReadOnlySpan<byte>)stackalloc byte[] { 0, 3, 6, 1, 4, 7, 2, 5, 8 };
+			var dic = new Dictionary<(int _baseSet, int _coverSet), (GridMap _a, GridMap _b, GridMap _c)>();
+			for (int i = 9; i < 27; i++)
+			{
+				for (int j = 0; j < 3; j++)
+				{
+					int baseSet = i;
+					int coverSet = i < 18 ? r[(i - 9) / 3 * 3 + j] : c[(i - 18) / 3 * 3 + j];
+					var baseMap = RegionMaps[baseSet];
+					var coverMap = RegionMaps[coverSet];
+					var intersection = baseMap & coverMap;
+					dic.Add(
+						(baseSet, coverSet),
+						(baseMap - intersection, coverMap - intersection, intersection));
+				}
+			}
+
+			IntersectionMaps = dic;
 			#endregion
 		}
 	}

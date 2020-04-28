@@ -58,7 +58,7 @@ namespace Sudoku.Solving.Manual.Alses
 			var (emptyCellsMap, _, digitDistributions) = grid;
 			for (int r1 = 0; r1 < 26; r1++)
 			{
-				if (emptyCellsMap - RegionMaps[r1] == emptyCellsMap)
+				if (!emptyCellsMap.Overlaps(RegionMaps[r1]))
 				{
 					continue;
 				}
@@ -71,7 +71,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 				for (int r2 = r1 + 1; r2 < 27; r2++)
 				{
-					if (emptyCellsMap - RegionMaps[r2] == emptyCellsMap)
+					if (!emptyCellsMap.Overlaps(RegionMaps[r2]))
 					{
 						continue;
 					}

@@ -56,35 +56,21 @@ namespace Sudoku.Solving.Manual
 				return Array.Empty<IGrouping<string, TechniqueInfo>>();
 			}
 
-			// Get intersection table in order to run faster in intersection technique searchers.
-			var intersection = new Intersection[18, 3];
-			int[] key = { 0, 3, 6, 1, 4, 7, 2, 5, 8 };
-			for (int i = 0; i < 18; i++)
-			{
-				for (int j = 0; j < 3; j++)
-				{
-					int baseSet = i + 9;
-					int coverSet = i < 9 ? i / 3 * 3 + j : key[(i - 9) / 3 * 3 + j];
-					intersection[i, j] = (
-						baseSet, coverSet, RegionMaps[baseSet],
-						RegionMaps[coverSet]);
-				}
-			}
-
 			var searchers = new TechniqueSearcher[]
 			{
 				new SingleTechniqueSearcher(_settings.EnableFullHouse, _settings.EnableLastDigit),
-				new LcTechniqueSearcher(intersection),
+				new LcTechniqueSearcher(),
 				new SubsetTechniqueSearcher(),
 				new NormalFishTechniqueSearcher(),
 				new RegularWingTechniqueSearcher(_settings.CheckRegularWingSize),
 				new IrregularWingTechniqueSearcher(),
 				new TwoStrongLinksTechniqueSearcher(),
-				new UrTechniqueSearcher(_settings.CheckUncompletedUniquenessPatterns, _settings.SearchExtendedUniqueRectangles),
+				new UrTechniqueSearcher(
+					_settings.CheckUncompletedUniquenessPatterns, _settings.SearchExtendedUniqueRectangles),
 				new XrTechniqueSearcher(),
 				new UlTechniqueSearcher(),
 				new EmptyRectangleTechniqueSearcher(),
-				new AlcTechniqueSearcher(intersection, _settings.CheckAlmostLockedQuadruple),
+				new AlcTechniqueSearcher(_settings.CheckAlmostLockedQuadruple),
 				new SdcTechniqueSearcher(),
 				new BdpTechniqueSearcher(),
 				new BugTechniqueSearcher(_settings.UseExtendedBugSearcher),

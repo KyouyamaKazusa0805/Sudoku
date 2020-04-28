@@ -3930,6 +3930,30 @@
             '<c>RegionMaps[0]</c>': The map containing all cells in the block 1.
             </example>
         </member>
+        <member name="F:Sudoku.GridProcessings.IntersectionMaps">
+            <summary>
+            <para>
+            Indicates all maps that forms the each intersection, where the first dimension
+            stands for the base set, and the second dimension stands for the cover set.
+            The pattern will be like:
+            <code>
+            .-------.-------.-------.<br/>
+            | C C C | A A A | A A A |<br/>
+            | B B B | . . . | . . . |<br/>
+            | B B B | . . . | . . . |<br/>
+            :-------+-------+-------:<br/>
+            | . . . | . . . | . . . |<br/>
+            | . . . | . . . | . . . |<br/>
+            | . . . | . . . | . . . |<br/>
+            :-------+-------+-------:<br/>
+            | . . . | . . . | . . . |<br/>
+            | . . . | . . . | . . . |<br/>
+            | . . . | . . . | . . . |<br/>
+            '-------'-------'-------'
+            </code>
+            </para>
+            </summary>
+        </member>
         <member name="M:Sudoku.GridProcessings.#cctor">
             <staticConstructor>
 		<summary>The static constructor of this class.</summary>

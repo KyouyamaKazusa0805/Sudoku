@@ -28,7 +28,6 @@ using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using static Sudoku.GridProcessings;
 using static Sudoku.Solving.ConclusionType;
-using Intersection = System.ValueTuple<int, int, Sudoku.Data.GridMap, Sudoku.Data.GridMap>;
 
 namespace Sudoku.Solving.Manual
 {
@@ -47,31 +46,14 @@ namespace Sudoku.Solving.Manual
 		{
 			if (grid.IsValid(out var solution))
 			{
-				// Get intersection table in order to run faster in intersection technique searchers.
-				var intersectionTable = new Intersection[18, 3];
-				int[] key = { 0, 3, 6, 1, 4, 7, 2, 5, 8 };
-				for (int i = 0; i < 18; i++)
-				{
-					for (int j = 0; j < 3; j++)
-					{
-						int baseSet = i + 9;
-						int coverSet = i < 9 ? i / 3 * 3 + j : key[(i - 9) / 3 * 3 + j];
-						intersectionTable[i, j] = (
-							baseSet, coverSet, RegionMaps[baseSet],
-							RegionMaps[coverSet]);
-					}
-				}
-
 				// Solve the puzzle.
 				try
 				{
 					return AnalyzeDifficultyStrictly
 						? SolveWithStrictDifficultyRating(
-							grid, grid.Clone(), new List<TechniqueInfo>(), solution,
-							intersectionTable)
+							grid, grid.Clone(), new List<TechniqueInfo>(), solution)
 						: SolveNaively(
-							grid, grid.Clone(), new List<TechniqueInfo>(), solution,
-							intersectionTable);
+							grid, grid.Clone(), new List<TechniqueInfo>(), solution);
 				}
 				catch (WrongHandlingException ex)
 				{
@@ -107,19 +89,18 @@ namespace Sudoku.Solving.Manual
 		/// <param name="cloneation">The cloneation grid to calculate.</param>
 		/// <param name="steps">All steps found.</param>
 		/// <param name="solution">The solution.</param>
-		/// <param name="intersection">The intersection table.</param>
 		/// <returns>The analysis result.</returns>
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the solver cannot solved due to wrong handling.
 		/// </exception>
 		private AnalysisResult SolveWithStrictDifficultyRating(
 			IReadOnlyGrid grid, Grid cloneation, List<TechniqueInfo> steps,
-			IReadOnlyGrid solution, Intersection[,] intersection)
+			IReadOnlyGrid solution)
 		{
 			var searchers = new TechniqueSearcher[][]
 			{
 				new[] { new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit) },
-				new[] { new LcTechniqueSearcher(intersection) },
+				new[] { new LcTechniqueSearcher() },
 				new TechniqueSearcher[]
 				{
 					new SubsetTechniqueSearcher(),
@@ -131,7 +112,7 @@ namespace Sudoku.Solving.Manual
 					new XrTechniqueSearcher(),
 					new UlTechniqueSearcher(),
 					new EmptyRectangleTechniqueSearcher(),
-					new AlcTechniqueSearcher(intersection, CheckAlmostLockedQuadruple),
+					new AlcTechniqueSearcher(CheckAlmostLockedQuadruple),
 					new SdcTechniqueSearcher(),
 					new BdpTechniqueSearcher(),
 					new BugTechniqueSearcher(UseExtendedBugSearcher),
@@ -306,14 +287,13 @@ namespace Sudoku.Solving.Manual
 		/// <param name="cloneation">The cloneation grid to calculate.</param>
 		/// <param name="steps">All steps found.</param>
 		/// <param name="solution">The solution.</param>
-		/// <param name="intersection">Intersection table.</param>
 		/// <returns>The analysis result.</returns>
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the solver cannot solved due to wrong handling.
 		/// </exception>
 		private AnalysisResult SolveNaively(
 			IReadOnlyGrid grid, Grid cloneation, List<TechniqueInfo> steps,
-			IReadOnlyGrid solution, Intersection[,] intersection)
+			IReadOnlyGrid solution)
 		{
 			// Check symmetry first.
 			if (CheckGurthSymmetricalPlacement)
@@ -340,7 +320,7 @@ namespace Sudoku.Solving.Manual
 			var searchers = new TechniqueSearcher[]
 			{
 				new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit),
-				new LcTechniqueSearcher(intersection),
+				new LcTechniqueSearcher(),
 				new SubsetTechniqueSearcher(),
 				new NormalFishTechniqueSearcher(),
 				new RegularWingTechniqueSearcher(CheckRegularWingSize),
@@ -350,7 +330,7 @@ namespace Sudoku.Solving.Manual
 				new XrTechniqueSearcher(),
 				new UlTechniqueSearcher(),
 				new EmptyRectangleTechniqueSearcher(),
-				new AlcTechniqueSearcher(intersection, CheckAlmostLockedQuadruple),
+				new AlcTechniqueSearcher(CheckAlmostLockedQuadruple),
 				new SdcTechniqueSearcher(),
 				new BdpTechniqueSearcher(),
 				new BugTechniqueSearcher(UseExtendedBugSearcher),
@@ -525,8 +505,8 @@ namespace Sudoku.Solving.Manual
 		/// <param name="stepGrids">The step grids.</param>
 		/// <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		/// <seealso cref="SolveNaively(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, Intersection[,])"/>
-		/// <seealso cref="SolveWithStrictDifficultyRating(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, Intersection[,])"/>
+		/// <seealso cref="SolveNaively(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid)"/>
+		/// <seealso cref="SolveWithStrictDifficultyRating(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool RecordTechnique(
 			List<TechniqueInfo> steps, TechniqueInfo step, IReadOnlyGrid grid,

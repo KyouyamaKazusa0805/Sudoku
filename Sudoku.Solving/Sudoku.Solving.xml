@@ -3932,16 +3932,10 @@
             Indicates the searcher will check almost locked quadruple (ALQ).
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher._intersection">
-            <summary>
-            All intersection series.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher.#ctor(System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:],System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher.#ctor(System.Boolean)">
             <summary>
             Initializes an instance with the intersection table.
             </summary>
-            <param name="intersection">The intersection table.</param>
             <param name="checkAlq">
             Indicates whether the searcher should check almost locked quadruple.
             </param>
@@ -4041,17 +4035,6 @@
             Encapsulates a <b>locked candidates</b> (LC) technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Intersections.LcTechniqueSearcher._intersection">
-            <summary>
-            All intersection series.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.LcTechniqueSearcher.#ctor(System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:])">
-            <summary>
-            Initializes an instance with the specified intersection table.
-            </summary>
-            <param name="intersection">The intersection table.</param>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Intersections.LcTechniqueSearcher.Priority">
             <summary>
             Indicates the priority of this technique.
@@ -4065,9 +4048,9 @@
         <member name="M:Sudoku.Solving.Manual.Intersections.LcTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.LcTechniqueSearcher.BitwiseAndMasks(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.LcTechniqueSearcher.BitwiseOrMasks(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap)">
             <summary>
-            Bitwise and all masks.
+            Bitwise or all masks.
             </summary>
             <param name="grid">The grid.</param>
             <param name="map">The grid map.</param>
@@ -4547,7 +4530,7 @@
         <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:])">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Solve the puzzle with <see cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/> option.
             </summary>
@@ -4555,13 +4538,12 @@
             <param name="cloneation">The cloneation grid to calculate.</param>
             <param name="steps">All steps found.</param>
             <param name="solution">The solution.</param>
-            <param name="intersection">The intersection table.</param>
             <returns>The analysis result.</returns>
             <exception cref="T:Sudoku.WrongHandlingException">
             Throws when the solver cannot solved due to wrong handling.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:])">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Solve naively.
             </summary>
@@ -4569,7 +4551,6 @@
             <param name="cloneation">The cloneation grid to calculate.</param>
             <param name="steps">All steps found.</param>
             <param name="solution">The solution.</param>
-            <param name="intersection">Intersection table.</param>
             <returns>The analysis result.</returns>
             <exception cref="T:Sudoku.WrongHandlingException">
             Throws when the solver cannot solved due to wrong handling.
@@ -4587,8 +4568,8 @@
             <param name="stepGrids">The step grids.</param>
             <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:])"/>
-            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap}[0:,0:])"/>
+            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)"/>
+            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.CheckConclusionsValidity(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
             <summary>

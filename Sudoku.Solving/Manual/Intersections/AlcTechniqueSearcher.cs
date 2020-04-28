@@ -5,7 +5,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
-using Intersection = System.ValueTuple<int, int, Sudoku.Data.GridMap, Sudoku.Data.GridMap>;
+using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
@@ -20,22 +20,14 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// </summary>
 		private readonly bool _checkAlq;
 
-		/// <summary>
-		/// All intersection series.
-		/// </summary>
-		private readonly Intersection[,] _intersection;
-
 
 		/// <summary>
 		/// Initializes an instance with the intersection table.
 		/// </summary>
-		/// <param name="intersection">The intersection table.</param>
 		/// <param name="checkAlq">
 		/// Indicates whether the searcher should check almost locked quadruple.
 		/// </param>
-		public AlcTechniqueSearcher(
-			Intersection[,] intersection, bool checkAlq) =>
-			(_intersection, _checkAlq) = (intersection, checkAlq);
+		public AlcTechniqueSearcher(bool checkAlq) => _checkAlq = checkAlq;
 
 
 		/// <summary>
@@ -67,21 +59,18 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <returns>The result.</returns>
 		private void AccumulateAllBySize(IBag<TechniqueInfo> result, IReadOnlyGrid grid, int size)
 		{
-			for (int i = 0; i < 18; i++)
-			{
-				for (int j = 0; j < 3; j++)
-				{
-					var (baseSet, coverSet, left, right) = _intersection[i, j];
-					var intersection = left & right;
-					if (intersection.Offsets.All(o => grid.GetCellStatus(o) != CellStatus.Empty))
-					{
-						continue;
-					}
+			(var emptyCellsMap, _, _) = grid;
 
-					// Process for 2 cases.
-					Process(grid, result, size, baseSet, coverSet, left, right, intersection);
-					Process(grid, result, size, coverSet, baseSet, right, left, intersection);
+			foreach (var ((baseSet, coverSet), (a, b, c)) in IntersectionMaps)
+			{
+				if (!c.Overlaps(emptyCellsMap))
+				{
+					continue;
 				}
+
+				// Process for 2 cases.
+				Process(grid, result, size, baseSet, coverSet, a, b, c);
+				Process(grid, result, size, coverSet, baseSet, b, a, c);
 			}
 		}
 

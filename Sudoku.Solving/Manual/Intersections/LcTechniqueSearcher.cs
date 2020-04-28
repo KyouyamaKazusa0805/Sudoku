@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
-using Intersection = System.ValueTuple<int, int, Sudoku.Data.GridMap, Sudoku.Data.GridMap>;
+using Sudoku.Extensions;
+using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
@@ -13,20 +15,6 @@ namespace Sudoku.Solving.Manual.Intersections
 	[TechniqueDisplay("Locked Candidates")]
 	public sealed class LcTechniqueSearcher : IntersectionTechniqueSearcher
 	{
-		/// <summary>
-		/// All intersection series.
-		/// </summary>
-		private readonly Intersection[,] _intersection;
-
-
-		/// <summary>
-		/// Initializes an instance with the specified intersection table.
-		/// </summary>
-		/// <param name="intersection">The intersection table.</param>
-		public LcTechniqueSearcher(Intersection[,] intersection) =>
-			_intersection = intersection;
-
-
 		/// <summary>
 		/// Indicates the priority of this technique.
 		/// </summary>
@@ -41,130 +29,81 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			for (int i = 0; i < 18; i++)
+			var (emptyCellsMap, _, digitDistributions) = grid;
+
+			var r = (Span<int>)stackalloc int[2];
+			foreach (var ((baseSet, coverSet), (a, b, c)) in IntersectionMaps)
 			{
-				for (int j = 0; j < 3; j++)
+				if (!emptyCellsMap.Overlaps(c))
 				{
-					var (baseSet, coverSet, left, right) = _intersection[i, j];
-					var intersection = left & right;
-					if (intersection.Offsets.All(o => grid.GetCellStatus(o) != CellStatus.Empty))
-					{
-						continue;
-					}
+					continue;
+				}
 
-					var a = left ^ intersection;
-					var b = right ^ intersection;
-					short mask1 = BitwiseAndMasks(grid, a);
-					short mask2 = BitwiseAndMasks(grid, b);
-					short mask3 = BitwiseAndMasks(grid, intersection);
-					short mask = (short)((short)(mask3 | (short)~(mask1 ^ mask2)) & 511);
-					if (mask == 511)
-					{
-						continue;
-					}
+				short m1 = BitwiseOrMasks(grid, a);
+				short m2 = BitwiseOrMasks(grid, b);
+				short m3 = BitwiseOrMasks(grid, c);
+				short m = (short)(m3 & (m1 ^ m2));
+				if (m == 0)
+				{
+					continue;
+				}
 
-					short temp = mask;
-					for (int digit = 0; digit < 9; digit++, temp >>= 1)
+				foreach (int digit in m.GetAllSets())
+				{
+					GridMap elimMap;
+					var conclusions = new List<Conclusion>();
+					(r[0], r[1], elimMap) =
+						a.Overlaps(digitDistributions[digit]) ? (coverSet, baseSet, a) : (baseSet, coverSet, b);
+
+					foreach (int cell in elimMap.Offsets)
 					{
-						// Locked candidates found.
-						var candidatesList = new List<(int, int)>();
-						if ((temp & 1) != 0)
+						if (!(grid.Exists(cell, digit) is true))
 						{
 							continue;
 						}
 
-						// 'digit' is locked number.
-						foreach (int offset in intersection.Offsets)
-						{
-							if (!(grid.Exists(offset, digit) is true))
-							{
-								continue;
-							}
-
-							candidatesList.Add((0, offset * 9 + digit));
-						}
-
-						var conclusions = new List<Conclusion>();
-						int[] lockedRegions = new int[2];
-						bool isClaiming = true;
-						foreach (int offset in a.Offsets)
-						{
-							if (grid.GetCellStatus(offset) != CellStatus.Empty
-								|| grid[offset, digit])
-							{
-								continue;
-							}
-
-							// Pointing.
-							if (isClaiming)
-							{
-								lockedRegions[0] = coverSet;
-								lockedRegions[1] = baseSet;
-								isClaiming = !isClaiming;
-							}
-							conclusions.Add(
-								new Conclusion(
-									conclusionType: ConclusionType.Elimination,
-									cellOffset: offset,
-									digit));
-						}
-						if (isClaiming)
-						{
-							// Claiming.
-							lockedRegions[0] = baseSet;
-							lockedRegions[1] = coverSet;
-							foreach (int offset in b.Offsets)
-							{
-								if (grid.GetCellStatus(offset) != CellStatus.Empty
-									|| grid[offset, digit])
-								{
-									continue;
-								}
-
-								conclusions.Add(
-									new Conclusion(
-										conclusionType: ConclusionType.Elimination,
-										cellOffset: offset,
-										digit));
-							}
-						}
-
-						if (conclusions.Count == 0)
-						{
-							continue;
-						}
-
-						accumulator.Add(
-							new LcTechniqueInfo(
-								conclusions,
-								views: new[]
-								{
-									new View(
-										cellOffsets: null,
-										candidateOffsets: candidatesList,
-										regionOffsets: new[] { (0, lockedRegions[0]), (1, lockedRegions[1]) },
-										links: null)
-								},
-								digit,
-								baseSet: lockedRegions[0],
-								coverSet: lockedRegions[1]));
+						conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, digit));
 					}
+					if (conclusions.Count == 0)
+					{
+						continue;
+					}
+
+					accumulator.Add(
+						new LcTechniqueInfo(
+							conclusions,
+							views: new[]
+							{
+								new View(
+									cellOffsets: null,
+									candidateOffsets:
+										new List<(int, int)>(
+											from cell in c.Offsets
+											where grid.Exists(cell, digit) is true
+											select (0, cell * 9 + digit)),
+									regionOffsets: new[] { (0, r[0]), (1, r[1]) },
+									links: null)
+							},
+							digit,
+							baseSet: r[0],
+							coverSet: r[1]));
 				}
 			}
 		}
 
+
 		/// <summary>
-		/// Bitwise and all masks.
+		/// Bitwise or all masks.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <param name="map">The grid map.</param>
 		/// <returns>The result.</returns>
-		private static short BitwiseAndMasks(IReadOnlyGrid grid, GridMap map)
+		private static short BitwiseOrMasks(IReadOnlyGrid grid, GridMap map)
 		{
-			short mask = 511;
+			short mask = 0;
 			foreach (int offset in map.Offsets)
 			{
-				mask &= grid.GetMask(offset);
+				mask |= grid.GetCandidatesReversal(offset);
 			}
 
 			return mask;
