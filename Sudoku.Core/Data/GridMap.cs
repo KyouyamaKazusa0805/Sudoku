@@ -580,10 +580,12 @@ namespace Sudoku.Data
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="high">(<see langword="out"/> parameter) Higher 40 bits.</param>
 		/// <param name="low">(<see langword="out"/> parameter) Lower 41 bits.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly void Deconstruct(out long high, out long low) =>
 			(high, low) = (_high, _low);
 
 		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly bool Equals(object? obj) =>
 			obj is GridMap comparer && Equals(comparer);
 
@@ -595,6 +597,7 @@ namespace Sudoku.Data
 		/// The result of this comparison. <see langword="true"/> if two instances hold a same
 		/// value; otherwise, <see langword="false"/>.
 		/// </returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly bool Equals(GridMap other) =>
 			_high == other._high && _low == other._low;
 
@@ -611,6 +614,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="regionOffset">The region offset.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly bool AllCellCovers(int regionOffset) =>
 			Count - (this - CreateInstance(regionOffset)).Count == 9;
 
@@ -641,9 +645,11 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="index">The true bit index order.</param>
 		/// <returns>The real index.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly int SetAt(int index) => Offsets.ElementAt(index);
 
 		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly int CompareTo(GridMap other)
 		{
 			return ((new BigInteger(_high) << Shifting) + new BigInteger(_low)).CompareTo(
@@ -654,6 +660,7 @@ namespace Sudoku.Data
 		/// Get all cell offsets whose bits are set <see langword="true"/>.
 		/// </summary>
 		/// <returns>An array of cell offsets.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly int[] ToArray() => Offsets.ToArray();
 
 		/// <inheritdoc/>
@@ -670,6 +677,7 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly int GetHashCode() =>
 			GetType().GetHashCode() ^ (int)((_low ^ _high) & int.MaxValue);
 
@@ -702,6 +710,7 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 		/// <summary>

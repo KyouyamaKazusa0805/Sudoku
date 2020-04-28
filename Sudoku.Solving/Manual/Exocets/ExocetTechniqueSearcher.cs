@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
+using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
 using static Sudoku.Data.CellStatus;
+using static Sudoku.GridProcessings;
+using static Sudoku.Solving.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -94,6 +98,21 @@ namespace Sudoku.Solving.Manual.Exocets
 		};
 
 
+		/// <summary>
+		/// Indicates whether the searcher will find advanced eliminations.
+		/// </summary>
+		protected readonly bool _checkAdvanced;
+
+
+		/// <summary>
+		/// Initializes an instance with the specified region maps.
+		/// </summary>
+		/// <param name="checkAdvanced">
+		/// Indicates whether the searcher will find advanced eliminations.
+		/// </param>
+		protected ExocetTechniqueSearcher(bool checkAdvanced) => _checkAdvanced = checkAdvanced;
+
+
 		/// <include file='../../../GlobalDocComments.xml' path='comments/staticConstructor'/>
 		static ExocetTechniqueSearcher()
 		{
@@ -151,6 +170,174 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 				}
 			}
+		}
+
+		/// <summary>
+		/// Check mirror eliminations.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="target">The target cell.</param>
+		/// <param name="target2">
+		/// The another target cell that is adjacent with <paramref name="target"/>.
+		/// </param>
+		/// <param name="lockedNonTarget">The locked member that is non-target digits.</param>
+		/// <param name="baseCandidateMask">The base candidate mask.</param>
+		/// <param name="mirror">The mirror map.</param>
+		/// <param name="digitDistributions">The digit distributions.</param>
+		/// <param name="x">The x.</param>
+		/// <param name="onlyOne">The only one cell.</param>
+		/// <param name="cellOffsets">The cell offsets.</param>
+		/// <param name="candidateOffsets">The candidate offsets.</param>
+		/// <returns>All mirror eliminations.</returns>
+		protected (TargetEliminations, MirrorEliminations) CheckMirror(
+			IReadOnlyGrid grid, int target, int target2, short lockedNonTarget, short baseCandidateMask,
+			GridMap mirror, GridMap[] digitDistributions, int x, int onlyOne,
+			IList<(int, int)> cellOffsets, IList<(int, int)> candidateOffsets)
+		{
+			var targetElims = new TargetEliminations();
+			var mirrorElims = new MirrorEliminations();
+			var playground = (Span<int>)stackalloc[] { mirror.SetAt(0), mirror.SetAt(1) };
+			short mirrorCandidatesMask = (short)(
+				grid.GetCandidatesReversal(playground[0]) | grid.GetCandidatesReversal(playground[1]));
+			short commonBase = (short)(
+				mirrorCandidatesMask & baseCandidateMask & grid.GetCandidatesReversal(target));
+			short targetElimination = (short)(
+				grid.GetCandidatesReversal(target) & ~(short)(commonBase | lockedNonTarget));
+			if (targetElimination != 0
+				&& grid.GetCellStatus(target) != Empty ^ grid.GetCellStatus(target2) != Empty)
+			{
+				foreach (int digit in targetElimination.GetAllSets())
+				{
+					targetElims.Add(new Conclusion(Elimination, target, digit));
+				}
+			}
+
+			if (_checkAdvanced)
+			{
+				var regions = (Span<int>)stackalloc int[2];
+				short m1 = (short)(grid.GetCandidatesReversal(playground[0]) & baseCandidateMask);
+				short m2 = (short)(grid.GetCandidatesReversal(playground[1]) & baseCandidateMask);
+				if (m1 != 0 ^ m2 != 0)
+				{
+					int p = playground[m1 != 0 ? 0 : 1];
+					short candidateMask = (short)(grid.GetCandidatesReversal(p) & ~commonBase);
+					if (candidateMask != 0
+						&& grid.GetCellStatus(target) != Empty ^ grid.GetCellStatus(target2) != Empty)
+					{
+						cellOffsets.Add((3, playground[0]));
+						cellOffsets.Add((3, playground[1]));
+						foreach (int digit in candidateMask.GetAllSets())
+						{
+							mirrorElims.Add(new Conclusion(Elimination, p, digit));
+						}
+					}
+
+					return (targetElims, mirrorElims);
+				}
+
+				short nonBase = (short)(mirrorCandidatesMask & ~baseCandidateMask);
+				var (r1, c1, b1) = CellUtils.GetRegion(playground[0]);
+				var (r2, c2, b2) = CellUtils.GetRegion(playground[1]);
+				(regions[0], regions[1]) = (b1, r1 == r2 ? r1 + 9 : c1 + 18);
+				short locked = default;
+				foreach (short mask in GetCombinations(nonBase))
+				{
+					for (int i = 0; i < 2; i++)
+					{
+						int count = 0;
+						for (int j = 0; j < 9; j++)
+						{
+							int p = RegionCells[regions[i]][j];
+							if (p == playground[0] || p == playground[1] || p == onlyOne)
+							{
+								continue;
+							}
+
+							if ((grid.GetCandidatesReversal(p) & mask) != 0)
+							{
+								count++;
+							}
+						}
+
+						if (count == mask.CountSet() - 1)
+						{
+							for (int j = 0; j < 9; j++)
+							{
+								int p = RegionCells[regions[i]][j];
+								if ((grid.GetCandidatesReversal(p) & mask) == 0
+									|| grid.GetCellStatus(p) != Empty || p == onlyOne
+									|| p == playground[0] || p == playground[1]
+									|| (grid.GetCandidatesReversal(p) & ~mask) == 0)
+								{
+									continue;
+								}
+							}
+
+							locked = mask;
+							break;
+						}
+					}
+
+					if (locked != 0)
+					{
+						// Here you should use '|' operator rather than '||'.
+						// Operator '||' will not execute the second method if the first condition is true.
+						if (record(playground, 0) | record(playground, 1))
+						{
+							cellOffsets.Add((3, playground[0]));
+							cellOffsets.Add((3, playground[1]));
+						}
+
+						short mask1 = grid.GetCandidatesReversal(playground[0]);
+						short mask2 = grid.GetCandidatesReversal(playground[1]);
+						if (locked.CountSet() == 1 && (mask1 & locked) != 0 ^ (mask2 & locked) != 0)
+						{
+							short candidateMask = (short)(
+								~(
+									grid.GetCandidatesReversal(
+										playground[(mask1 & locked) != 0 ? 1 : 0]
+									) & grid.GetCandidatesReversal(target) & baseCandidateMask
+								) & grid.GetCandidatesReversal(target) & baseCandidateMask);
+							if (candidateMask != 0)
+							{
+								foreach (int digit in candidateMask.GetAllSets())
+								{
+									mirrorElims.Add(new Conclusion(Elimination, target, digit));
+								}
+							}
+						}
+
+						break;
+
+						bool record(Span<int> playground, int i)
+						{
+							short candidateMask = (short)(
+								grid.GetCandidatesReversal(playground[i]) & ~(baseCandidateMask | locked));
+							if (candidateMask != 0)
+							{
+								foreach (int digit in locked.GetAllSets())
+								{
+									if (grid.Exists(playground[i], digit) is true)
+									{
+										candidateOffsets.Add((1, playground[i] * 9 + digit));
+									}
+								}
+
+								foreach (int digit in candidateMask.GetAllSets())
+								{
+									mirrorElims.Add(new Conclusion(Elimination, playground[i], digit));
+								}
+
+								return true;
+							}
+
+							return false;
+						}
+					}
+				}
+			}
+
+			return (targetElims, mirrorElims);
 		}
 
 

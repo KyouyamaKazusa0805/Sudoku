@@ -2814,12 +2814,44 @@
             </summary>
             <seealso cref="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.B"/>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher._checkAdvanced">
+            <summary>
+            Indicates whether the searcher will find advanced eliminations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.#ctor(System.Boolean)">
+            <summary>
+            Initializes an instance with the specified region maps.
+            </summary>
+            <param name="checkAdvanced">
+            Indicates whether the searcher will find advanced eliminations.
+            </param>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.#cctor">
             <staticConstructor>
 		<summary>The static constructor of this class.</summary>
 	</staticConstructor><staticConstructor aimTo="struct">
 		<summary>The static constructor of this struct.</summary>
 	</staticConstructor>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckMirror(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap[],System.Int32,System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
+            <summary>
+            Check mirror eliminations.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="target">The target cell.</param>
+            <param name="target2">
+            The another target cell that is adjacent with <paramref name="target"/>.
+            </param>
+            <param name="lockedNonTarget">The locked member that is non-target digits.</param>
+            <param name="baseCandidateMask">The base candidate mask.</param>
+            <param name="mirror">The mirror map.</param>
+            <param name="digitDistributions">The digit distributions.</param>
+            <param name="x">The x.</param>
+            <param name="onlyOne">The only one cell.</param>
+            <param name="cellOffsets">The cell offsets.</param>
+            <param name="candidateOffsets">The candidate offsets.</param>
+            <returns>All mirror eliminations.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetEmptyCellsMap(Sudoku.Data.IReadOnlyGrid)">
             <summary>
@@ -2894,18 +2926,8 @@
             The iterator for Bi-bi pattern.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher._checkAdvanced">
-            <summary>
-            Indicates whether the searcher will find advanced eliminations.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.#ctor(System.Boolean)">
-            <summary>
-            Initializes an instance with the specified region maps.
-            </summary>
-            <param name="checkAdvanced">
-            Indicates whether the searcher will find advanced eliminations.
-            </param>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.Priority">
             <summary>
@@ -2973,25 +2995,6 @@
             (<see langword="out"/> parameter) The swordfish eliminations.
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating whether the pattern exists.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.CheckMirror(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap[],System.Int32,System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
-            <summary>
-            Check mirror eliminations.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="target">The target cell.</param>
-            <param name="target2">
-            The another target cell that is adjacent with <paramref name="target"/>.
-            </param>
-            <param name="lockedNonTarget">The locked member that is non-target digits.</param>
-            <param name="baseCandidateMask">The base candidate mask.</param>
-            <param name="mirror">The mirror map.</param>
-            <param name="digitDistributions">The digit distributions.</param>
-            <param name="x">The x.</param>
-            <param name="onlyOne">The only one cell.</param>
-            <param name="cellOffsets">The cell offsets.</param>
-            <param name="candidateOffsets">The candidate offsets.</param>
-            <returns>All mirror eliminations.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.MirrorEliminations">
             <summary>
@@ -3094,18 +3097,8 @@
             Encapsulates a <b>senior exocet</b> (SE) technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher._checkAdvanced">
-            <summary>
-            Indicates whether the searcher will find advanced eliminations.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.#ctor(System.Boolean)">
-            <summary>
-            Initializes an instance with the specified region maps.
-            </summary>
-            <param name="checkAdvanced">
-            Indicates whether the searcher will find advanced eliminations.
-            </param>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.Priority">
             <summary>
@@ -3120,11 +3113,10 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CheckCrossline(Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap[],System.Int16,System.Int32,System.Int32,System.Boolean,System.Int32@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CheckCrossline(Sudoku.Data.GridMap,Sudoku.Data.GridMap[],System.Int16,System.Int32,System.Int32,System.Boolean,System.Int32@)">
             <summary>
             Check the cross-line cells.
             </summary>
-            <param name="baseCellsMap">The base cells map.</param>
             <param name="tempCrossline">The cross-line map.</param>
             <param name="digitDistributions">The digit distributions.</param>
             <param name="baseCandidatesMask">The base candidate mask.</param>
@@ -3150,6 +3142,33 @@
             (<see langword="ref"/> parameter) The extra regions.
             </param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest(System.Int16,Sudoku.Data.GridMap[],Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int32,System.Int32)">
+            <summary>
+            Compatibility test.
+            </summary>
+            <param name="baseCandidatesMask">The base candidates mask.</param>
+            <param name="digitDistributions">The digit distributions.</param>
+            <param name="tempCrossline">The cross-line map.</param>
+            <param name="baseCellsMap">The base cells map.</param>
+            <param name="t1">The target cell 1.</param>
+            <param name="t2">The target cell 2.</param>
+            <returns>The mask of all incompatible values.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest2(Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations@,Sudoku.Data.GridMap,Sudoku.Data.GridMap[],Sudoku.Data.GridMap[],System.Int16,System.Int32,System.Int32)">
+            <summary>
+            The compatibility testing after the method
+            <see cref="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest(System.Int16,Sudoku.Data.GridMap[],Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int32,System.Int32)"/>.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="compatibilityElims">The compatibility eliminations.</param>
+            <param name="baseCellsMap">The base cells map.</param>
+            <param name="digitDistributions">The digit distributions.</param>
+            <param name="candMaps">Candidate maps for each digit.</param>
+            <param name="baseCandidatesMask">The base candidates mask.</param>
+            <param name="t1">The target cell 1.</param>
+            <param name="t2">The target cell 2.</param>
+            <seealso cref="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest(System.Int16,Sudoku.Data.GridMap[],Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int32,System.Int32)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.GetCombinationsOfArray(System.Int32[],System.Int32)">
             <summary>

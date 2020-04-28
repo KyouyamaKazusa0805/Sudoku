@@ -18,19 +18,10 @@ namespace Sudoku.Solving.Manual.Exocets
 	[TechniqueDisplay("Senior Exocet")]
 	public sealed class SeniorExocetTechniqueSearcher : ExocetTechniqueSearcher
 	{
-		/// <summary>
-		/// Indicates whether the searcher will find advanced eliminations.
-		/// </summary>
-		private readonly bool _checkAdvanced;
-
-
-		/// <summary>
-		/// Initializes an instance with the specified region maps.
-		/// </summary>
-		/// <param name="checkAdvanced">
-		/// Indicates whether the searcher will find advanced eliminations.
-		/// </param>
-		public SeniorExocetTechniqueSearcher(bool checkAdvanced) => _checkAdvanced = checkAdvanced;
+		/// <inheritdoc/>
+		public SeniorExocetTechniqueSearcher(bool checkAdvanced) : base(checkAdvanced)
+		{
+		}
 
 
 		/// <summary>
@@ -47,6 +38,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
+			var compatibleCellsPlayground = (Span<int>)stackalloc int[4];
 			var cover = (Span<int>)stackalloc int[8];
 			var digitDistributions = GetDigitDistributions(grid);
 			var (emptyCellsMap, _, candMap) = grid;
@@ -124,7 +116,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						grid.GetCandidatesReversal(combination[0])
 						| grid.GetCandidatesReversal(combination[1])) & ~baseCandidatesMask);
 					if (!CheckCrossline(
-						baseCellsMap, tempCrosslineMap, digitDistributions, baseCandidatesMask,
+						/*baseCellsMap, */tempCrosslineMap, digitDistributions, baseCandidatesMask,
 						combination[0], combination[1], isRow, out int extraRegionsMask))
 					{
 						continue;
@@ -201,9 +193,79 @@ namespace Sudoku.Solving.Manual.Exocets
 
 					var mirrorElims = new MirrorEliminations();
 					var compatibilityElims = new CompatibilityTestEliminations();
+					int target = -1;
+					var mir = default(GridMap);
+
+					var cellOffsets = new List<(int, int)> { (0, b1), (0, b2) };
+					foreach (int cell in tempCrosslineMap.Offsets)
+					{
+						cellOffsets.Add((cell == combination[0] || cell == combination[1] ? 1 : 2, cell));
+					}
+					var candidateOffsets = new List<(int, int)>();
 					if (_checkAdvanced)
 					{
-						// TODO: Check advanced eliminations (mirror, compatibility test).
+						for (int k = 0; k < 2; k++)
+						{
+							if (combination[k] == tq1 && (baseCandidatesMask & grid.GetCandidatesReversal(tr2)) == 0)
+							{
+								target = combination[k];
+								mir = mq1;
+							}
+							if (combination[k] == tq2 && (baseCandidatesMask & grid.GetCandidatesReversal(tr1)) == 0)
+							{
+								target = combination[k];
+								mir = mq2;
+							}
+							if (combination[k] == tr1 && (baseCandidatesMask & grid.GetCandidatesReversal(tq2)) == 0)
+							{
+								target = combination[k];
+								mir = mr1;
+							}
+							if (combination[k] == tr2 && (baseCandidatesMask & grid.GetCandidatesReversal(tq1)) == 0)
+							{
+								target = combination[k];
+								mir = mr2;
+							}
+						}
+
+						if (target != -1)
+						{
+							var (tempTargetElims, tempMirrorElims) = CheckMirror(
+								grid, target, combination[target == combination[0] ? 1 : 0], 0,
+								baseCandidatesMask, mir, digitDistributions, 0, -1, cellOffsets, candidateOffsets);
+							targetElims = TargetEliminations.MergeAll(targetElims, tempTargetElims);
+							mirrorElims = MirrorEliminations.MergeAll(mirrorElims, tempMirrorElims);
+						}
+
+						short incompatible = CompatibilityTest(
+							baseCandidatesMask, digitDistributions, tempCrosslineMap, baseCellsMap,
+							combination[0], combination[1]);
+						if (incompatible != 0)
+						{
+							compatibleCellsPlayground[0] = b1;
+							compatibleCellsPlayground[1] = b2;
+							compatibleCellsPlayground[2] = combination[0];
+							compatibleCellsPlayground[3] = combination[1];
+
+							for (int k = 0; k < 4; k++)
+							{
+								cands = (short)(incompatible & grid.GetCandidatesReversal(compatibleCellsPlayground[k]));
+								if (cands == 0)
+								{
+									continue;
+								}
+
+								foreach (int digit in cands.GetAllSets())
+								{
+									compatibilityElims.Add(
+										new Conclusion(Elimination, compatibleCellsPlayground[k], digit));
+								}
+							}
+						}
+
+						CompatibilityTest2(
+							grid, ref compatibilityElims, baseCellsMap, digitDistributions,
+							candMap, baseCandidatesMask, combination[0], combination[1]);
 					}
 
 					if (_checkAdvanced
@@ -215,12 +277,6 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 
 					int endoTargetCell = combination[s[combination[0]] ? 0 : 1];
-					var cellOffsets = new List<(int, int)> { (0, b1), (0, b2) };
-					foreach (int cell in tempCrosslineMap.Offsets)
-					{
-						cellOffsets.Add((cell == combination[0] || cell == combination[1] ? 1 : 2, cell));
-					}
-					var candidateOffsets = new List<(int, int)>();
 					short m1 = grid.GetCandidatesReversal(b1);
 					short m2 = grid.GetCandidatesReversal(b2);
 					short m = (short)(m1 | m2);
@@ -269,10 +325,13 @@ namespace Sudoku.Solving.Manual.Exocets
 			}
 		}
 
+		///// <summary>
+		///// Check the cross-line cells.
+		///// </summary>
+		///// <param name="baseCellsMap">The base cells map.</param>
 		/// <summary>
 		/// Check the cross-line cells.
 		/// </summary>
-		/// <param name="baseCellsMap">The base cells map.</param>
 		/// <param name="tempCrossline">The cross-line map.</param>
 		/// <param name="digitDistributions">The digit distributions.</param>
 		/// <param name="baseCandidatesMask">The base candidate mask.</param>
@@ -286,7 +345,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </param>
 		/// <returns>The <see cref="bool"/> result.</returns>
 		private bool CheckCrossline(
-			GridMap baseCellsMap, GridMap tempCrossline, GridMap[] digitDistributions,
+			/*GridMap baseCellsMap, */GridMap tempCrossline, GridMap[] digitDistributions,
 			short baseCandidatesMask, int t1, int t2, bool isRow, out int extraRegionsMask)
 		{
 			var xx = new GridMap { t1, t2 };
@@ -356,10 +415,10 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				bool flag = false;
 				var check = digitDistributions[digit] - (
-					new GridMap(a) | new GridMap(b) | new GridMap(c) | baseElimMap);
+					new GridMap(a, false) | new GridMap(b, false) | new GridMap(c, false) | baseElimMap);
 				for (i = 9, p = 0; p < 27; i = (i + 1) % 27)
 				{
-					if ((RegionMaps[i] & check).IsEmpty)
+					if (!RegionMaps[i].Overlaps(check))
 					{
 						flag = true;
 						break;
@@ -374,6 +433,165 @@ namespace Sudoku.Solving.Manual.Exocets
 
 			extraRegionsMask |= 1 << i;
 			return true;
+		}
+
+		/// <summary>
+		/// Compatibility test.
+		/// </summary>
+		/// <param name="baseCandidatesMask">The base candidates mask.</param>
+		/// <param name="digitDistributions">The digit distributions.</param>
+		/// <param name="tempCrossline">The cross-line map.</param>
+		/// <param name="baseCellsMap">The base cells map.</param>
+		/// <param name="t1">The target cell 1.</param>
+		/// <param name="t2">The target cell 2.</param>
+		/// <returns>The mask of all incompatible values.</returns>
+		private short CompatibilityTest(
+			short baseCandidatesMask, GridMap[] digitDistributions, GridMap tempCrossline,
+			GridMap baseCellsMap, int t1, int t2)
+		{
+			short result = 0;
+			foreach (int digit in baseCandidatesMask.GetAllSets())
+			{
+				bool flag = false;
+				var baseElimsMap = new GridMap(baseCellsMap & digitDistributions[digit], ProcessPeersWithoutItself);
+				foreach (int[] combination in
+					GetCombinationsOfArray((tempCrossline & digitDistributions[digit]).ToArray(), 3))
+				{
+					var (a, b, c) = (combination[0], combination[1], combination[2]);
+					var (r1, c1, _) = CellUtils.GetRegion(a);
+					var (r2, c2, _) = CellUtils.GetRegion(b);
+					var (r3, c3, _) = CellUtils.GetRegion(c);
+					if (r1 == r2 || r1 == r3 || r2 == r3 || c1 == c2 || c1 == c3 || c2 == c3)
+					{
+						continue;
+					}
+
+					//bool flag2 = false;
+					//var check = digitDistributions[digit] - (
+					//	new GridMap(a, false) | new GridMap(b, false) | new GridMap(c, false) | baseElimsMap);
+					//for (int i = 0; i < 27; i++)
+					//{
+					//	if (!RegionMaps[i].Overlaps(check))
+					//	{
+					//		flag2 = true;
+					//		break;
+					//	}
+					//}
+					//if (flag2)
+					//{
+					//	continue;
+					//}
+
+					int n = 0;
+					for (int i = 0; i < 3; i++)
+					{
+						if (combination[i] == t1) n |= 1;
+						if (combination[i] == t2) n |= 2;
+					}
+
+					if (n.CountSet() == 2)
+					{
+						continue;
+					}
+					else
+					{
+						flag = true;
+						break;
+					}
+				}
+
+				if (!flag)
+				{
+					result |= (short)(1 << digit);
+				}
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// The compatibility testing after the method
+		/// <see cref="CompatibilityTest(short, GridMap[], GridMap, GridMap, int, int)"/>.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="compatibilityElims">The compatibility eliminations.</param>
+		/// <param name="baseCellsMap">The base cells map.</param>
+		/// <param name="digitDistributions">The digit distributions.</param>
+		/// <param name="candMaps">Candidate maps for each digit.</param>
+		/// <param name="baseCandidatesMask">The base candidates mask.</param>
+		/// <param name="t1">The target cell 1.</param>
+		/// <param name="t2">The target cell 2.</param>
+		/// <seealso cref="CompatibilityTest(short, GridMap[], GridMap, GridMap, int, int)"/>
+		private void CompatibilityTest2(
+			IReadOnlyGrid grid, ref CompatibilityTestEliminations compatibilityElims,
+			GridMap baseCellsMap, GridMap[] digitDistributions,
+			GridMap[] candMaps, short baseCandidatesMask, int t1, int t2)
+		{
+			if (grid.GetCellStatus(t1) != Empty && grid.GetCellStatus(t2) != Empty)
+			{
+				return;
+			}
+
+			foreach (var (currentTarget, elimTarget) in stackalloc[] { (t1, t2), (t2, t1) })
+			{
+				var (r, c, b) = CellUtils.GetRegion(currentTarget);
+				r += 9;
+				c += 18;
+				foreach (int digit in baseCandidatesMask.GetAllSets())
+				{
+					if ((grid.GetCandidatesReversal(currentTarget) >> digit & 1) == 0)
+					{
+						continue;
+					}
+
+					var temp = (new GridMap(currentTarget, false) & digitDistributions[digit])
+						- new GridMap(baseCellsMap, ProcessPeersWithoutItself);
+
+					bool flag = false;
+					var elimMap = GridMap.Empty;
+					if (!temp.Overlaps(RegionMaps[r]))
+					{
+						flag = true;
+						elimMap = new GridMap(
+							new GridMap(currentTarget, false) & candMaps[digit] & RegionMaps[r] | baseCellsMap,
+							ProcessPeersWithoutItself)
+							& candMaps[digit];
+					}
+					else if (!temp.Overlaps(RegionMaps[c]))
+					{
+						flag = true;
+						elimMap = new GridMap(
+							new GridMap(currentTarget, false) & candMaps[digit] & RegionMaps[c] | baseCellsMap,
+							ProcessPeersWithoutItself)
+							& candMaps[digit];
+					}
+					else if (!temp.Overlaps(RegionMaps[b]))
+					{
+						flag = true;
+						elimMap = new GridMap(
+							new GridMap(currentTarget, false) & candMaps[digit] & RegionMaps[b] | baseCellsMap,
+							ProcessPeersWithoutItself)
+							& candMaps[digit];
+					}
+					if (!flag)
+					{
+						continue;
+					}
+
+					if (grid.Exists(elimTarget, digit) is true)
+					{
+						compatibilityElims.Add(new Conclusion(Elimination, elimTarget, digit));
+					}
+
+					if (elimMap.IsNotEmpty)
+					{
+						foreach (int cell in elimMap.Offsets)
+						{
+							compatibilityElims.Add(new Conclusion(Elimination, cell, digit));
+						}
+					}
+				}
+			}
 		}
 
 
