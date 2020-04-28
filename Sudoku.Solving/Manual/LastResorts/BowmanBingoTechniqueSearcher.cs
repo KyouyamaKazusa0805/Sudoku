@@ -219,7 +219,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				return (
 					status != CellStatus.Empty && grid[c] != grid[cell]
 					|| status == CellStatus.Empty
-				) && grid.GetCandidates(c) != 511;
+				) && grid.GetCandidatesReversal(c) != 0;
 			});
 		}
 	}

@@ -182,9 +182,9 @@ namespace Sudoku.Solving.Manual.Alses
 		public bool ContainsDigit(IReadOnlyGrid grid, int digit, out GridMap result)
 		{
 			result = GridMap.Empty;
-			foreach	(int cell in Cells)
+			foreach (int cell in Cells)
 			{
-				if ((grid.GetCandidates(cell) >> digit & 1) == 0)
+				if ((grid.GetCandidatesReversal(cell) >> digit & 1) != 0)
 				{
 					result.Add(cell);
 				}

@@ -373,7 +373,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				ref var map = ref digitDistributions[digit];
 				for (int cell = 0; cell < 81; cell++)
 				{
-					if ((grid.GetCandidates(cell) >> digit & 1) == 0)
+					if ((grid.GetCandidatesReversal(cell) >> digit & 1) != 0)
 					{
 						map.Add(cell);
 					}

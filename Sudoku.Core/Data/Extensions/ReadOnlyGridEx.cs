@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Extensions;
+using static Sudoku.Data.CellStatus;
 using static Sudoku.GridProcessings;
 
 namespace Sudoku.Data.Extensions
@@ -31,7 +32,7 @@ namespace Sudoku.Data.Extensions
 		{
 			return @this is Grid result
 				? result
-				: throw new InvalidCastException("The specified read-only grid cannot converted to a normal sudoku grid.");
+				: throw new InvalidCastException("The specified read-only grid cannot converted to a normal one.");
 		}
 
 		/// <summary>
@@ -53,7 +54,7 @@ namespace Sudoku.Data.Extensions
 		public static bool IsBivalueCell(
 			this IReadOnlyGrid @this, int cellOffset, out short mask)
 		{
-			if (@this.GetCellStatus(cellOffset) != CellStatus.Empty)
+			if (@this.GetCellStatus(cellOffset) != Empty)
 			{
 				mask = 0;
 				return false;
@@ -98,6 +99,14 @@ namespace Sudoku.Data.Extensions
 		/// <para>
 		/// The return value will be <see langword="true"/> if and only if
 		/// the cell that the candidate lies on is empty and the cell contains that digit.
+		/// </para>
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="candidateOffset">The candidate offset.</param>
+		/// <returns>
+		/// A <see cref="bool"/>? value indicating that.
+		/// </returns>
+		/// <remarks>
 		/// The cases of the return value are below:
 		/// <list type="table">
 		/// <item>
@@ -117,13 +126,7 @@ namespace Sudoku.Data.Extensions
 		/// <description>The cell is <b>not</b> an empty cell.</description>
 		/// </item>
 		/// </list>
-		/// </para>
-		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
-		/// <param name="candidateOffset">The candidate offset.</param>
-		/// <returns>
-		/// A <see cref="bool"/>? value indicating that.
-		/// </returns>
+		/// </remarks>
 		/// <example>
 		/// Note that the method will return a <see cref="bool"/>?, so you should use the code
 		/// <code>grid.Exists(candidate) is true</code>
@@ -141,7 +144,17 @@ namespace Sudoku.Data.Extensions
 		/// </para>
 		/// <para>
 		/// The return value will be <see langword="true"/> if and only if
-		/// the cell is empty and contains that digit. The cases of the return value are below:
+		/// the cell is empty and contains that digit.
+		/// </para>
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="cellOffset">The cell offset.</param>
+		/// <param name="digit">The digit.</param>
+		/// <returns>
+		/// A <see cref="bool"/>? value indicating that.
+		/// </returns>
+		/// <remarks>
+		/// The cases of the return value are below:
 		/// <list type="table">
 		/// <item>
 		/// <term><c><see langword="true"/></c></term>
@@ -160,14 +173,7 @@ namespace Sudoku.Data.Extensions
 		/// <description>The cell is <b>not</b> an empty cell.</description>
 		/// </item>
 		/// </list>
-		/// </para>
-		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
-		/// <param name="cellOffset">The cell offset.</param>
-		/// <param name="digit">The digit.</param>
-		/// <returns>
-		/// A <see cref="bool"/>? value indicating that.
-		/// </returns>
+		/// </remarks>
 		/// <example>
 		/// Note that the method will return a <see cref="bool"/>?, so you should use the code
 		/// <code>grid.Exists(candidate) is true</code>
@@ -180,7 +186,7 @@ namespace Sudoku.Data.Extensions
 		{
 			return @this.GetCellStatus(cellOffset) switch
 			{
-				CellStatus.Empty => !@this[cellOffset, digit],
+				Empty => !@this[cellOffset, digit],
 				_ => null
 			};
 		}
@@ -196,7 +202,7 @@ namespace Sudoku.Data.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasDigitValue(
 			this IReadOnlyGrid @this, int digit, int regionOffset) =>
-			RegionCells[regionOffset].Any(o => @this.GetCellStatus(o) != CellStatus.Empty && @this[o] == digit);
+			RegionCells[regionOffset].Any(o => @this.GetCellStatus(o) != Empty && @this[o] == digit);
 
 		/// <summary>
 		/// <para>
@@ -215,8 +221,7 @@ namespace Sudoku.Data.Extensions
 		/// in a specified region. The mask uses 1 to make the cell 'have this digit',
 		/// and 0 to make the cell 'does not have this digit'.
 		/// </returns>
-		public static short GetDigitAppearingMask(
-			this IReadOnlyGrid @this, int digit, int regionOffset)
+		public static short GetDigitAppearingMask(this IReadOnlyGrid @this, int digit, int regionOffset)
 		{
 			int result = 0;
 			int[] cells = RegionCells[regionOffset];
@@ -289,12 +294,10 @@ namespace Sudoku.Data.Extensions
 			var result = GridMap.Empty;
 			foreach (int cell in RegionCells[regionOffset])
 			{
-				if (!(@this.Exists(cell, digit) is true))
+				if (@this.Exists(cell, digit) is true)
 				{
-					continue;
+					result.Add(cell);
 				}
-
-				result.Add(cell);
 			}
 
 			return result;
@@ -316,7 +319,7 @@ namespace Sudoku.Data.Extensions
 			int i = 0;
 			foreach (var (status, mask) in @this)
 			{
-				if (status == CellStatus.Empty && (~mask & 511).CountSet() == 2)
+				if (status == Empty && (~mask & 511).CountSet() == 2)
 				{
 					bivalueCellsMap.Add(i);
 					count++;

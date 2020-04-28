@@ -61,7 +61,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			{
 				for (int cell = 0; cell < 81; cell++)
 				{
-					if ((grid.GetCandidates(cell) >> digit & 1) != 0)
+					if ((grid.GetCandidatesReversal(cell) >> digit & 1) == 0)
 					{
 						invalidPos[digit].Add(cell);
 					}
@@ -76,7 +76,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			{
 				foreach (var map in GetTemplates())
 				{
-					if ((mustPos[digit] - map).IsNotEmpty || (invalidPos[digit] & map).IsNotEmpty)
+					if ((mustPos[digit] - map).IsNotEmpty || invalidPos[digit].Overlaps(map))
 					{
 						continue;
 					}

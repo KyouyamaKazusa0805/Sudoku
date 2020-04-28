@@ -6,6 +6,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using static Sudoku.GridProcessings;
+using static Sudoku.Solving.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
@@ -62,7 +63,7 @@ namespace Sudoku.Solving.Manual.Intersections
 							continue;
 						}
 
-						conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, digit));
+						conclusions.Add(new Conclusion(Elimination, cell, digit));
 					}
 					if (conclusions.Count == 0)
 					{

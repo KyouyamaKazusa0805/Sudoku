@@ -275,6 +275,14 @@
             <para>
             The return value will be <see langword="true"/> if and only if
             the cell that the candidate lies on is empty and the cell contains that digit.
+            </para>
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="candidateOffset">The candidate offset.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/>? value indicating that.
+            </returns>
+            <remarks>
             The cases of the return value are below:
             <list type="table">
             <item>
@@ -294,13 +302,7 @@
             <description>The cell is <b>not</b> an empty cell.</description>
             </item>
             </list>
-            </para>
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <param name="candidateOffset">The candidate offset.</param>
-            <returns>
-            A <see cref="T:System.Boolean"/>? value indicating that.
-            </returns>
+            </remarks>
             <example>
             Note that the method will return a <see cref="T:System.Boolean"/>?, so you should use the code
             <code>grid.Exists(candidate) is true</code>
@@ -316,7 +318,17 @@
             </para>
             <para>
             The return value will be <see langword="true"/> if and only if
-            the cell is empty and contains that digit. The cases of the return value are below:
+            the cell is empty and contains that digit.
+            </para>
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="cellOffset">The cell offset.</param>
+            <param name="digit">The digit.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/>? value indicating that.
+            </returns>
+            <remarks>
+            The cases of the return value are below:
             <list type="table">
             <item>
             <term><c><see langword="true"/></c></term>
@@ -335,14 +347,7 @@
             <description>The cell is <b>not</b> an empty cell.</description>
             </item>
             </list>
-            </para>
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <param name="cellOffset">The cell offset.</param>
-            <param name="digit">The digit.</param>
-            <returns>
-            A <see cref="T:System.Boolean"/>? value indicating that.
-            </returns>
+            </remarks>
             <example>
             Note that the method will return a <see cref="T:System.Boolean"/>?, so you should use the code
             <code>grid.Exists(candidate) is true</code>
@@ -3914,8 +3919,8 @@
             <summary>
             <para>
             The map of all cell offsets in its specified region.
-            The indices is between 0 and 26, where 0..9 is for block 1 to 9,
-            9..18 is for row 1 to 9 and 18..27 is for column 1 to 9.
+            The indices is between 0 and 26, where <c>0..9</c> is for block 1 to 9,
+            <c>9..18</c> is for row 1 to 9 and <c>18..27</c> is for column 1 to 9.
             </para>
             </summary>
             <example>
@@ -3933,26 +3938,37 @@
         <member name="F:Sudoku.GridProcessings.IntersectionMaps">
             <summary>
             <para>
-            Indicates all maps that forms the each intersection, where the first dimension
-            stands for the base set, and the second dimension stands for the cover set.
-            The pattern will be like:
+            Indicates all maps that forms the each intersection. The pattern will be like:
             <code>
             .-------.-------.-------.<br/>
             | C C C | A A A | A A A |<br/>
             | B B B | . . . | . . . |<br/>
             | B B B | . . . | . . . |<br/>
-            :-------+-------+-------:<br/>
-            | . . . | . . . | . . . |<br/>
-            | . . . | . . . | . . . |<br/>
-            | . . . | . . . | . . . |<br/>
-            :-------+-------+-------:<br/>
-            | . . . | . . . | . . . |<br/>
-            | . . . | . . . | . . . |<br/>
-            | . . . | . . . | . . . |<br/>
             '-------'-------'-------'
             </code>
             </para>
             </summary>
+        </member>
+        <member name="M:Sudoku.GridProcessings.GetEmptyCellsMap(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Get the map of all empty cells in this grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The map.</returns>
+        </member>
+        <member name="M:Sudoku.GridProcessings.GetBivalueCellsMap(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Get the map of all bi-value cells in this grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The map.</returns>
+        </member>
+        <member name="M:Sudoku.GridProcessings.GetCandidatesMap(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Get the map of all distributions for digits.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The map.</returns>
         </member>
         <member name="M:Sudoku.GridProcessings.#cctor">
             <staticConstructor>
@@ -3964,6 +3980,19 @@
             The initialization order between static constructor and static fields
             may be annoying, so I use static constructor both.
             </remarks>
+        </member>
+        <member name="T:Sudoku.GridProcessings.ValueTupleComparer">
+            <summary>
+            The inner comparer of <see cref="T:System.ValueTuple`2"/> used in
+            the field <see cref="F:Sudoku.GridProcessings.IntersectionMaps"/>.
+            </summary>
+            <seealso cref="F:Sudoku.GridProcessings.IntersectionMaps"/>
+        </member>
+        <member name="M:Sudoku.GridProcessings.ValueTupleComparer.Equals(System.ValueTuple{System.Byte,System.Byte},System.ValueTuple{System.Byte,System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.GridProcessings.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.InternalSettings">
             <summary>

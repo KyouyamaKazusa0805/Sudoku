@@ -105,7 +105,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 						bool checkKindsFlag = true;
 						foreach (var (l, r) in pairs)
 						{
-							if ((grid.GetCandidates(l) | grid.GetCandidates(r)).CountSet() > 7)
+							if ((grid.GetCandidatesReversal(l) & grid.GetCandidatesReversal(r)).CountSet() < 2)
 							{
 								checkKindsFlag = false;
 								break;
@@ -134,7 +134,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							int count = 0;
 							foreach (var (l, r) in pairs)
 							{
-								if (((grid.GetCandidates(l) | grid.GetCandidates(r)) >> digit & 1) == 0)
+								if (((grid.GetCandidatesReversal(l) & grid.GetCandidatesReversal(r)) >> digit & 1) != 0)
 								{
 									// Both two cells contain same digit.
 									count++;
@@ -166,7 +166,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							var extraCells = new List<int>();
 							foreach (int cell in allCellsMap.Offsets)
 							{
-								if ((grid.GetCandidates(cell) >> extraDigits[0] & 1) == 0)
+								if ((grid.GetCandidatesReversal(cell) >> extraDigits[0] & 1) != 0)
 								{
 									extraCells.Add(cell);
 								}
@@ -312,7 +312,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			{
 				foreach (int digit in extraDigits)
 				{
-					if ((grid.GetCandidates(cell) >> digit & 1) == 0)
+					if ((grid.GetCandidatesReversal(cell) >> digit & 1) != 0)
 					{
 						extraCells.Add(cell);
 					}

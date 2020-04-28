@@ -72,7 +72,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 				int[] digits = grid.GetCandidatesReversal(c1).GetAllSets().ToArray();
 				foreach (int c2 in (~new GridMap(c1)).Offsets)
 				{
-					if (c2 < c1 || grid.GetCandidates(c1) != grid.GetCandidates(c2))
+					if (c2 < c1 || grid.GetCandidatesReversal(c1) != grid.GetCandidatesReversal(c2))
 					{
 						continue;
 					}
