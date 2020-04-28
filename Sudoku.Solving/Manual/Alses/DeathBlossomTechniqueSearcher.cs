@@ -5,6 +5,8 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
+using static Sudoku.Data.CellStatus;
+using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Manual.Alses
@@ -71,7 +73,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 			for (int pivot = 0; pivot < 81; pivot++)
 			{
-				if (grid.GetCellStatus(pivot) != CellStatus.Empty
+				if (grid.GetCellStatus(pivot) != Empty
 					|| checkedCandidates[pivot] != grid.GetCandidatesReversal(pivot)
 					|| checkedCandidates[pivot].CountSet() > _maxPetals)
 				{
@@ -136,7 +138,7 @@ namespace Sudoku.Solving.Manual.Alses
 							var elimMap =
 								new GridMap(
 									(temp & digitDistributions[d]).Offsets,
-									GridMap.InitializeOption.ProcessPeersWithoutItself)
+									ProcessPeersWithoutItself)
 								& digitDistributions[d];
 							if (elimMap.IsEmpty)
 							{
@@ -194,9 +196,7 @@ namespace Sudoku.Solving.Manual.Alses
 						int z = 0;
 						foreach (var (d, a) in dic)
 						{
-							foreach (int c in
-								from pos in a.RelativePos
-								select RegionUtils.GetCellOffset(a.Region, pos))
+							foreach (int c in from pos in a.RelativePos select RegionCells[a.Region][pos])
 							{
 								cellOffsets.Add((-z - 1, c));
 							}
@@ -209,9 +209,7 @@ namespace Sudoku.Solving.Manual.Alses
 						z = 0;
 						foreach (var (d, a) in dic)
 						{
-							foreach (int c in
-								from pos in a.RelativePos
-								select RegionUtils.GetCellOffset(a.Region, pos))
+							foreach (int c in from pos in a.RelativePos select RegionCells[a.Region][pos])
 							{
 								foreach (int dd in grid.GetCandidatesReversal(c).GetAllSets())
 								{
@@ -279,17 +277,14 @@ namespace Sudoku.Solving.Manual.Alses
 				foreach (int digit in digits)
 				{
 					var temp =
-						new GridMap(
-							(digitDistributions[digit] & map).Offsets,
-							GridMap.InitializeOption.ProcessPeersWithoutItself)
+						new GridMap((digitDistributions[digit] & map).Offsets, ProcessPeersWithoutItself)
 						& digitDistributions[digit];
 					if (temp.IsEmpty)
 					{
 						continue;
 					}
 
-					int[] array = temp.ToArray();
-					foreach (int cell in array)
+					foreach (int cell in temp.Offsets)
 					{
 						if ((digitsMask & ~grid.GetCandidatesReversal(cell)) == 0)
 						{
@@ -339,7 +334,7 @@ namespace Sudoku.Solving.Manual.Alses
 					foreach (short mask in new BitCombinationGenerator(9, i))
 					{
 						if (mask.GetAllSets().Any(
-							pos => grid.GetCellStatus(RegionUtils.GetCellOffset(region, pos)) != CellStatus.Empty))
+							pos => grid.GetCellStatus(RegionCells[region][pos]) != Empty))
 						{
 							continue;
 						}
@@ -352,7 +347,7 @@ namespace Sudoku.Solving.Manual.Alses
 								continue;
 							}
 
-							cands |= grid.GetCandidatesReversal(RegionUtils.GetCellOffset(region, pos));
+							cands |= grid.GetCandidatesReversal(RegionCells[region][pos]);
 						}
 
 						if (cands.CountSet() != i + 1)
@@ -363,7 +358,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 						if (new GridMap(
 							from pos in mask.GetAllSets()
-							select RegionUtils.GetCellOffset(region, pos)).BlockMask.CountSet() == 1 && region >= 9)
+							select RegionCells[region][pos]).BlockMask.CountSet() == 1 && region >= 9)
 						{
 							// If the current cells are in the same block and same line (i.e. in mini-line),
 							// we will process them in blocks.

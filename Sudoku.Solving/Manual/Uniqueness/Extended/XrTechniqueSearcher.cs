@@ -5,8 +5,9 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
-using static Sudoku.GridProcessings;
+using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridMap.InitializeOption;
+using static Sudoku.GridProcessings;
 using static Sudoku.Solving.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Extended
@@ -92,8 +93,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 						var pairs = new List<(int, int)>();
 						foreach (int pos in positions)
 						{
-							int c1 = RegionUtils.GetCellOffset(r1, pos);
-							int c2 = RegionUtils.GetCellOffset(r2, pos);
+							int c1 = RegionCells[r1][pos];
+							int c2 = RegionCells[r2][pos];
 							allCellsMap.Add(c1);
 							allCellsMap.Add(c2);
 							pairs.Add((c1, c2));
@@ -173,7 +174,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							}
 
 							var extraCellsMap = new GridMap(extraCells);
-							if (extraCellsMap.Offsets.All(c => grid.GetCellStatus(c) != CellStatus.Empty))
+							if (extraCellsMap.Offsets.All(c => grid.GetCellStatus(c) != Empty))
 							{
 								continue;
 							}
@@ -399,10 +400,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			{
 				// Firstly, we should check all cells to iterate,
 				// which are empty cells and not in the structure.
-				var unavailableCellsMap = GridMap.CreateInstance(region);
+				var unavailableCellsMap = RegionMaps[region];
 				foreach (int cell in RegionCells[region])
 				{
-					if (grid.GetCellStatus(cell) == CellStatus.Empty && !allCellsMap[cell])
+					if (grid.GetCellStatus(cell) == Empty && !allCellsMap[cell])
 					{
 						unavailableCellsMap.Remove(cell);
 					}
@@ -436,7 +437,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					}
 
 					short subsetMask = 0;
-					var usedCellsMap = GridMap.CreateInstance(region) - unavailableCellsMap;
+					var usedCellsMap = RegionMaps[region] - unavailableCellsMap;
 					foreach (int cell in usedCellsMap.Offsets)
 					{
 						subsetMask |= grid.GetCandidatesReversal(cell);
@@ -457,7 +458,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					// XR type 3 found.
 					// Record all eliminations.
 					var conclusions = new List<Conclusion>();
-					var elimMap = GridMap.CreateInstance(region) - unavailableCellsMap - usedCellsMap;
+					var elimMap = RegionMaps[region] - unavailableCellsMap - usedCellsMap;
 					foreach (int cell in elimMap.Offsets)
 					{
 						foreach (int digit in extraDigits)

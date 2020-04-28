@@ -7,6 +7,7 @@ using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridMap.InitializeOption;
+using static Sudoku.GridProcessings;
 using static Sudoku.Solving.ConclusionType;
 using static Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode;
 
@@ -205,7 +206,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 				for (int i1 = 0; i1 < 10 - size; i1++)
 				{
-					int c1 = RegionUtils.GetCellOffset(region, i1);
+					int c1 = RegionCells[region][i1];
 					if (!determinator(c1))
 					{
 						continue;
@@ -303,7 +304,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					{
 						for (int i2 = i1 + 1; i2 < 11 - size; i2++)
 						{
-							int c2 = RegionUtils.GetCellOffset(region, i2);
+							int c2 = RegionCells[region][i2];
 							if (!determinator(c2))
 							{
 								continue;
@@ -406,7 +407,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							{
 								for (int i3 = i2 + 1; i3 < 12 - size; i3++)
 								{
-									int c3 = RegionUtils.GetCellOffset(region, i3);
+									int c3 = RegionCells[region][i3];
 									if (!determinator(c3))
 									{
 										continue;

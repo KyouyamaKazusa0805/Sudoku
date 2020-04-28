@@ -3,7 +3,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
+using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Manual.Sdps
 {
@@ -48,13 +48,13 @@ namespace Sudoku.Solving.Manual.Sdps
 						var cells2 = new List<int>();
 						foreach (int pos1 in mask1.GetAllSets())
 						{
-							int cell1 = RegionUtils.GetCellOffset(r1, pos1);
+							int cell1 = RegionCells[r1][pos1];
 							cells1.Add(cell1);
 							map1.Add(cell1);
 						}
 						foreach (int pos2 in mask2.GetAllSets())
 						{
-							int cell2 = RegionUtils.GetCellOffset(r2, pos2);
+							int cell2 = RegionCells[r2][pos2];
 							cells2.Add(cell2);
 							map2.Add(cell2);
 						}

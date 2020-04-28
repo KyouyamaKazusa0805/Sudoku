@@ -150,8 +150,8 @@ namespace Sudoku.Solving.Manual.Alses
 														select cell).CoveredRegions)
 												{
 													int pos = mask.FindFirstSet();
-													int c1 = RegionUtils.GetCellOffset(region, pos);
-													int c2 = RegionUtils.GetCellOffset(region, mask.GetNextSet(pos));
+													int c1 = RegionCells[region][pos];
+													int c2 = RegionCells[region][mask.GetNextSet(pos)];
 													var (row1, column1, block1) = CellUtils.GetRegion(c1);
 													var (row2, column2, block2) = CellUtils.GetRegion(c2);
 													if (!(

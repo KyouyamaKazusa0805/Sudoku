@@ -1053,12 +1053,11 @@ namespace Sudoku.Solving.Manual.Chaining
 					result.Add(
 						new Inference(
 							new Node(
-								GetCellOffset(region, pos1) * 9 + digit,
+								RegionCells[region][pos1] * 9 + digit,
 								NodeType.Candidate),
 							false,
 							new Node(
-								GetCellOffset(
-									region, mask.GetNextSet(pos1)) * 9 + digit,
+								RegionCells[region][mask.GetNextSet(pos1)] * 9 + digit,
 								NodeType.Candidate),
 							true));
 				}

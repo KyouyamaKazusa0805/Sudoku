@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using Sudoku.Data;
@@ -120,7 +121,7 @@ namespace Sudoku.Solving.Manual.Alses
 			get
 			{
 				var @this = this; // 'this' cannot be captured in query expressions.
-				return from pos in RelativePos select RegionUtils.GetCellOffset(@this.Region, pos);
+				return from pos in RelativePos select RegionCells[@this.Region][pos];
 			}
 		}
 
@@ -167,8 +168,8 @@ namespace Sudoku.Solving.Manual.Alses
 		{
 			return Cells.HasOnlyOneElement() && other.Cells.HasOnlyOneElement()
 				? (_mask & 0x1FF) == (other._mask & 0x1FF)
-					&& RegionUtils.GetCellOffset(Region, RelativePosMask.FindFirstSet())
-					== RegionUtils.GetCellOffset(other.Region, other.RelativePosMask.FindFirstSet())
+					&& RegionCells[Region][RelativePosMask.FindFirstSet()]
+					== RegionCells[other.Region][other.RelativePosMask.FindFirstSet()]
 				: _mask == other._mask;
 		}
 
@@ -220,6 +221,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <param name="grid">The grid.</param>
 		/// <param name="region">The region.</param>
 		/// <returns>All ALSes searched.</returns>
+		[SuppressMessage("", "IDE0004")]
 		public static IEnumerable<Als> GetAllAlses(IReadOnlyGrid grid, int region)
 		{
 			short posMask = 0;

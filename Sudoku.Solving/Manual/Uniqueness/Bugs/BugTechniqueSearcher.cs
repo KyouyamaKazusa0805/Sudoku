@@ -7,7 +7,10 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Utils;
+using static Sudoku.Data.CellStatus;
+using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.GridProcessings;
+using static Sudoku.Solving.ConclusionType;
 using BugMultiple = Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleTechniqueInfo;
 using BugType1 = Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueInfo;
 using BugType2 = Sudoku.Solving.Manual.Uniqueness.Bugs.BugType2TechniqueInfo;
@@ -77,7 +80,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					// BUG + 1 found.
 					accumulator.Add(
 						new BugType1(
-							conclusions: new[] { new Conclusion(ConclusionType.Assignment, trueCandidates[0]) },
+							conclusions: new[] { new Conclusion(Assignment, trueCandidates[0]) },
 							views: new[]
 							{
 								new View(
@@ -129,7 +132,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			var trueCandidateCells = from candGroupByCell in candsGroupByCell
 									 select candGroupByCell.Key;
 			int trueCandidateCellsCount = 0;
-			var map = new GridMap(trueCandidateCells, GridMap.InitializeOption.ProcessPeersAlso);
+			var map = new GridMap(trueCandidateCells, ProcessPeersAlso);
 			if (map.Count != 9)
 			{
 				return;
@@ -149,7 +152,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				}
 
 				int[] cells = RegionCells[region];
-				if (cells.Count(c => grid.GetCellStatus(c) == CellStatus.Empty) - trueCandidateCellsCount <= size - 1)
+				if (cells.Count(c => grid.GetCellStatus(c) == Empty) - trueCandidateCellsCount <= size - 1)
 				{
 					continue;
 				}
@@ -162,7 +165,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 				for (int i1 = 0; i1 < 11 - size; i1++)
 				{
-					int c1 = RegionUtils.GetCellOffset(region, i1);
+					int c1 = RegionCells[region][i1];
 					short mask1 = grid.GetCandidatesReversal(c1);
 					if (size == 2)
 					{
@@ -192,8 +195,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 									continue;
 								}
 
-								conclusions.Add(
-									new Conclusion(ConclusionType.Elimination, cell, digit));
+								conclusions.Add(new Conclusion(Elimination, cell, digit));
 							}
 						}
 
@@ -235,7 +237,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					{
 						for (int i2 = i1 + 1; i2 < 12 - size; i2++)
 						{
-							int c2 = RegionUtils.GetCellOffset(region, i2);
+							int c2 = RegionCells[region][i2];
 							short mask2 = grid.GetCandidatesReversal(c2);
 							if (size == 3)
 							{
@@ -265,8 +267,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 											continue;
 										}
 
-										conclusions.Add(
-											new Conclusion(ConclusionType.Elimination, cell, digit));
+										conclusions.Add(new Conclusion(Elimination, cell, digit));
 									}
 								}
 
@@ -311,7 +312,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 							{
 								for (int i3 = i2 + 1; i3 < 13 - size; i3++)
 								{
-									int c3 = RegionUtils.GetCellOffset(region, i3);
+									int c3 = RegionCells[region][i3];
 									short mask3 = grid.GetCandidatesReversal(c3);
 									if (size == 4)
 									{
@@ -342,9 +343,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 													continue;
 												}
 
-												conclusions.Add(
-													new Conclusion(
-														ConclusionType.Elimination, cell, digit));
+												conclusions.Add(new Conclusion(Elimination, cell, digit));
 											}
 										}
 
@@ -393,7 +392,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 									{
 										for (int i4 = i3 + 1; i4 < 9; i4++)
 										{
-											int c4 = RegionUtils.GetCellOffset(region, i4);
+											int c4 = RegionCells[region][i4];
 											short mask4 = grid.GetCandidatesReversal(c4);
 
 											// Check naked quintuple.
@@ -424,9 +423,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 														continue;
 													}
 
-													conclusions.Add(
-														new Conclusion(
-															ConclusionType.Elimination, cell, digit));
+													conclusions.Add(new Conclusion(Elimination, cell, digit));
 												}
 											}
 
@@ -537,8 +534,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					}
 
 					// Check whether the conjugate pair lies on current two cells.
-					int c1 = RegionUtils.GetCellOffset(region, mask.GetSetIndex(1));
-					int c2 = RegionUtils.GetCellOffset(region, mask.GetSetIndex(2));
+					int c1 = RegionCells[region][mask.GetSetIndex(1)];
+					int c2 = RegionCells[region][mask.GetSetIndex(2)];
 					if (c1 != cells[0] || c2 != cells[1])
 					{
 						continue;
@@ -571,8 +568,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 								continue;
 							}
 
-							conclusions.Add(
-								new Conclusion(ConclusionType.Elimination, cell, d));
+							conclusions.Add(new Conclusion(Elimination, cell, d));
 						}
 					}
 
@@ -647,7 +643,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					continue;
 				}
 
-				conclusions.Add(new Conclusion(ConclusionType.Elimination, candidate));
+				conclusions.Add(new Conclusion(Elimination, candidate));
 			}
 
 			if (conclusions.Count == 0)
@@ -683,7 +679,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		{
 			var map = new GridMap(
 				from cand in trueCandidates select cand / 9,
-				GridMap.InitializeOption.ProcessPeersAlso);
+				ProcessPeersAlso);
 			if (map.IsEmpty)
 			{
 				return;
@@ -700,7 +696,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					continue;
 				}
 
-				conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, digit));
+				conclusions.Add(new Conclusion(Elimination, cell, digit));
 			}
 
 			if (conclusions.Count == 0)
@@ -754,7 +750,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						var newBugCells = new List<int>();
 						foreach (int i in positions.GetAllSets())
 						{
-							int cell = RegionUtils.GetCellOffset(region, i);
+							int cell = RegionCells[region][i];
 							int cellCardinality = tempGrid.GetCandidatesReversal(cell).CountSet();
 							if (cellCardinality >= 3)
 							{
@@ -813,7 +809,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			// have exactly two potential values. Now check it.
 			for (int cell = 0; cell < 81; cell++)
 			{
-				if (tempGrid.GetCellStatus(cell) == CellStatus.Empty
+				if (tempGrid.GetCellStatus(cell) == Empty
 					&& tempGrid.GetCandidatesReversal(cell).CountSet() != 2)
 				{
 					// Not a BUG.

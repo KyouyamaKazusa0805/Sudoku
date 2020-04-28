@@ -14,12 +14,6 @@ namespace Sudoku.Debugging
 		/// </summary>
 		private static void Main()
 		{
-			var als1 = new Sudoku.Solving.Manual.Alses.Als(1, new[] { 3 }, new[] { 2, 4 });
-			var als2 = new Sudoku.Solving.Manual.Alses.Als(1, new[] { 5 }, new[] { 2, 4 });
-
-			System.Console.WriteLine(als1);
-			System.Console.WriteLine(als2);
-			System.Console.WriteLine(als1 == als2);
 		}
 	}
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
+using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Manual.Alses
 {
@@ -198,8 +198,7 @@ namespace Sudoku.Solving.Manual.Alses
 			var (region, relativePos, _, _) = als;
 
 			var map = GridMap.Empty;
-			foreach (int cell in from pos in relativePos
-								 select RegionUtils.GetCellOffset(region, pos))
+			foreach (int cell in from pos in relativePos select RegionCells[region][pos])
 			{
 				if (!(grid.Exists(cell, digit) is true))
 				{

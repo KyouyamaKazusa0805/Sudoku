@@ -6,7 +6,9 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
+using static Sudoku.Data.CellStatus;
 using static Sudoku.GridProcessings;
+using static Sudoku.Solving.ConclusionType;
 using UlType1 = Sudoku.Solving.Manual.Uniqueness.Loops.UlType1DetailData;
 using UlType2 = Sudoku.Solving.Manual.Uniqueness.Loops.UlType2DetailData;
 using UlType3 = Sudoku.Solving.Manual.Uniqueness.Loops.UlType3DetailData;
@@ -74,15 +76,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								var conclusions = new List<Conclusion>();
 								if (!grid[extraCell, d1])
 								{
-									conclusions.Add(
-										new Conclusion(
-											ConclusionType.Elimination, extraCell, d1));
+									conclusions.Add(new Conclusion(Elimination, extraCell, d1));
 								}
 								if (!grid[extraCell, d2])
 								{
-									conclusions.Add(
-										new Conclusion(
-											ConclusionType.Elimination, extraCell, d2));
+									conclusions.Add(new Conclusion(Elimination, extraCell, d2));
 								}
 
 								if (conclusions.Count == 0)
@@ -141,9 +139,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 										continue;
 									}
 
-									conclusions.Add(
-										new Conclusion(
-											ConclusionType.Elimination, elimCell, extraDigit));
+									conclusions.Add(new Conclusion(Elimination, elimCell, extraDigit));
 								}
 
 								if (conclusions.Count == 0)
@@ -260,7 +256,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					continue;
 				}
 
-				conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, extraDigit));
+				conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
 			}
 
 			if (conclusions.Count == 0)
@@ -315,7 +311,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				for (int i1 = 0; i1 < 11 - size; i1++)
 				{
 					int c1 = cells[i1];
-					if (grid.GetCellStatus(c1) != CellStatus.Empty || loop.Contains(c1))
+					if (grid.GetCellStatus(c1) != Empty || loop.Contains(c1))
 					{
 						continue;
 					}
@@ -347,9 +343,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 									continue;
 								}
 
-								conclusions.Add(
-									new Conclusion(
-										ConclusionType.Elimination, cell, digit));
+								conclusions.Add(new Conclusion(Elimination, cell, digit));
 							}
 						}
 
@@ -397,7 +391,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						for (int i2 = i1 + 1; i2 < 12 - size; i2++)
 						{
 							int c2 = cells[i2];
-							if (grid.GetCellStatus(c2) != CellStatus.Empty || loop.Contains(c2))
+							if (grid.GetCellStatus(c2) != Empty || loop.Contains(c2))
 							{
 								continue;
 							}
@@ -429,9 +423,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 											continue;
 										}
 
-										conclusions.Add(
-											new Conclusion(
-												ConclusionType.Elimination, cell, digit));
+										conclusions.Add(new Conclusion(Elimination, cell, digit));
 									}
 								}
 
@@ -483,7 +475,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								for (int i3 = i2 + 1; i3 < 9; i3++)
 								{
 									int c3 = cells[i3];
-									if (grid.GetCellStatus(c3) != CellStatus.Empty || loop.Contains(c3))
+									if (grid.GetCellStatus(c3) != Empty || loop.Contains(c3))
 									{
 										continue;
 									}
@@ -514,9 +506,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 												continue;
 											}
 
-											conclusions.Add(
-												new Conclusion(
-													ConclusionType.Elimination, cell, digit));
+											conclusions.Add(new Conclusion(Elimination, cell, digit));
 										}
 									}
 
@@ -627,7 +617,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								var elimCells = new List<int>();
 								foreach (int pos in mask.GetAllSets())
 								{
-									int cell = RegionUtils.GetCellOffset(region, pos);
+									int cell = RegionCells[region][pos];
 									if (loop.Contains(cell))
 									{
 										continue;
@@ -652,9 +642,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 											&& !digits.Contains(digit)
 											&& grid.Exists(cell, digit) is true)
 										{
-											conclusions.Add(
-												new Conclusion(
-													ConclusionType.Elimination, cell, digit));
+											conclusions.Add(new Conclusion(Elimination, cell, digit));
 										}
 									}
 								}
@@ -726,7 +714,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 									continue;
 								}
 
-								bool condition(int p) => loop.Contains(RegionUtils.GetCellOffset(region, p));
+								bool condition(int p) => loop.Contains(RegionCells[region][p]);
 								if (size == 3)
 								{
 									// Check hidden triple.
@@ -739,7 +727,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 										var elimCells = new List<int>();
 										foreach (int pos in mask.GetAllSets())
 										{
-											int cell = RegionUtils.GetCellOffset(region, pos);
+											int cell = RegionCells[region][pos];
 											if (loop.Contains(cell))
 											{
 												continue;
@@ -764,9 +752,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 													&& !digits.Contains(digit)
 													&& grid.Exists(cell, digit) is true)
 												{
-													conclusions.Add(
-														new Conclusion(
-															ConclusionType.Elimination, cell, digit));
+													conclusions.Add(new Conclusion(Elimination, cell, digit));
 												}
 											}
 										}
@@ -853,7 +839,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 											var elimCells = new List<int>();
 											foreach (int pos in mask.GetAllSets())
 											{
-												int cell = RegionUtils.GetCellOffset(region, pos);
+												int cell = RegionCells[region][pos];
 												if (loop.Contains(cell))
 												{
 													continue;
@@ -878,9 +864,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 														&& !digits.Contains(digit)
 														&& grid.Exists(cell, digit) is true)
 													{
-														conclusions.Add(
-															new Conclusion(
-																ConclusionType.Elimination, cell, digit));
+														conclusions.Add(new Conclusion(Elimination, cell, digit));
 													}
 												}
 											}
@@ -977,8 +961,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				{
 					int digit = digits[i];
 					short mask = grid.GetDigitAppearingMask(digit, region);
-					if (mask.CountSet() == 2 && mask.GetAllSets().All(
-						i => loop.Contains(RegionUtils.GetCellOffset(region, i))))
+					if (mask.CountSet() == 2 && mask.GetAllSets().All(i => loop.Contains(RegionCells[region][i])))
 					{
 						// Type 4 found.
 						int elimDigit = i == 0 ? digits[1] : digits[0];
@@ -993,7 +976,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							}
 
 							conclusions.Add(
-								new Conclusion(ConclusionType.Elimination, cell, elimDigit));
+								new Conclusion(Elimination, cell, elimDigit));
 						}
 
 						if (conclusions.Count == 0)
@@ -1117,8 +1100,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				int region = stackalloc[] { b, r + 9, c + 18 }[regionType];
 				for (int pos = 0; pos < 9; pos++)
 				{
-					int nextCell = RegionUtils.GetCellOffset(region, pos);
-					if (grid.GetCellStatus(nextCell) != CellStatus.Empty)
+					int nextCell = RegionCells[region][pos];
+					if (grid.GetCellStatus(nextCell) != Empty)
 					{
 						continue;
 					}

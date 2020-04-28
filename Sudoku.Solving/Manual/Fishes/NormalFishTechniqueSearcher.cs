@@ -5,7 +5,8 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
+using static Sudoku.GridProcessings;
+using static Sudoku.Solving.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -128,7 +129,7 @@ namespace Sudoku.Solving.Manual.Fishes
 										{
 											if ((temp & 1) != 0)
 											{
-												int possibleFinCellOffset = RegionUtils.GetCellOffset(baseSet, x);
+												int possibleFinCellOffset = RegionCells[baseSet][x];
 												if (!(grid.Exists(possibleFinCellOffset, digit) is true))
 												{
 													continue;
@@ -210,7 +211,7 @@ namespace Sudoku.Solving.Manual.Fishes
 											new NormalFishTechniqueInfo(
 												conclusions: new List<Conclusion>(
 													from cand in elimList
-													select new Conclusion(ConclusionType.Elimination, cand)),
+													select new Conclusion(Elimination, cand)),
 												views: new[]
 												{
 													new View(
@@ -306,7 +307,7 @@ namespace Sudoku.Solving.Manual.Fishes
 													{
 														if ((temp & 1) != 0)
 														{
-															int possibleFinCellOffset = RegionUtils.GetCellOffset(baseSet, x);
+															int possibleFinCellOffset = RegionCells[baseSet][x];
 															if (!(grid.Exists(possibleFinCellOffset, digit) is true))
 															{
 																continue;
@@ -319,7 +320,8 @@ namespace Sudoku.Solving.Manual.Fishes
 
 												// Check the number of fins is less than 4.
 												// and all fins do not lie on any cover sets.
-												if (finCells.Count > 5 || finCells.Any(c => coverSets.Contains(searchRow ? c % 9 + 18 : c / 9 + 9)))
+												if (finCells.Count > 5 || finCells.Any(
+													c => coverSets.Contains(searchRow ? c % 9 + 18 : c / 9 + 9)))
 												{
 													continue;
 												}
@@ -388,7 +390,7 @@ namespace Sudoku.Solving.Manual.Fishes
 														new NormalFishTechniqueInfo(
 															conclusions: new List<Conclusion>(
 																from cand in elimList
-																select new Conclusion(ConclusionType.Elimination, cand)),
+																select new Conclusion(Elimination, cand)),
 															views: new[]
 															{
 																new View(
@@ -491,7 +493,7 @@ namespace Sudoku.Solving.Manual.Fishes
 															{
 																if ((temp & 1) != 0)
 																{
-																	int possibleFinCellOffset = RegionUtils.GetCellOffset(baseSet, x);
+																	int possibleFinCellOffset = RegionCells[baseSet][x];
 																	if (!(grid.Exists(possibleFinCellOffset, digit) is true))
 																	{
 																		continue;
@@ -573,7 +575,7 @@ namespace Sudoku.Solving.Manual.Fishes
 																new NormalFishTechniqueInfo(
 																	conclusions: new List<Conclusion>(
 																		from cand in elimList
-																		select new Conclusion(ConclusionType.Elimination, cand)),
+																		select new Conclusion(Elimination, cand)),
 																	views: new[]
 																	{
 																		new View(

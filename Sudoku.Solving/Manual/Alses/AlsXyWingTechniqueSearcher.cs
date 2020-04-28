@@ -5,8 +5,8 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
 using static Sudoku.Data.GridMap.InitializeOption;
+using static Sudoku.GridProcessings;
 using static Sudoku.Solving.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Alses
@@ -116,11 +116,9 @@ namespace Sudoku.Solving.Manual.Alses
 						// Now check elimination set.
 						var tempList = new HashSet<int>();
 						var als1RegionCells =
-							from pos in relativePos1
-							select RegionUtils.GetCellOffset(region1, pos);
+							from pos in relativePos1 select RegionCells[region1][pos];
 						var als2RegionCells =
-							from pos in relativePos2
-							select RegionUtils.GetCellOffset(region2, pos);
+							from pos in relativePos2 select RegionCells[region2][pos];
 						foreach (int cell in als1RegionCells)
 						{
 							if (!(grid.Exists(cell, elimDigit) is true))

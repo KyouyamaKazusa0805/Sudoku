@@ -123,7 +123,7 @@ namespace Sudoku.Solving.Manual.Intersections
 					}
 
 					// Almost locked pair found.
-					int ahsCell = RegionUtils.GetCellOffset(coverSet, ahsMask.FindFirstSet());
+					int ahsCell = RegionCells[coverSet][ahsMask.FindFirstSet()];
 
 					// Record all highlight candidates.
 					var candidateOffsets = new List<(int, int)>();
@@ -249,8 +249,8 @@ namespace Sudoku.Solving.Manual.Intersections
 
 							// Almost locked pair found.
 							int[] ahsCellPositions = ahsMask.GetAllSets().ToArray();
-							int ahsCell1 = RegionUtils.GetCellOffset(coverSet, ahsCellPositions[0]);
-							int ahsCell2 = RegionUtils.GetCellOffset(coverSet, ahsCellPositions[1]);
+							int ahsCell1 = RegionCells[coverSet][ahsCellPositions[0]];
+							int ahsCell2 = RegionCells[coverSet][ahsCellPositions[1]];
 
 							// Record all highlight candidates.
 							var candidateOffsets = new List<(int, int)>();
@@ -390,9 +390,9 @@ namespace Sudoku.Solving.Manual.Intersections
 
 								// Almost locked pair found.
 								int[] ahsCellPositions = ahsMask.GetAllSets().ToArray();
-								int ahsCell1 = RegionUtils.GetCellOffset(coverSet, ahsCellPositions[0]);
-								int ahsCell2 = RegionUtils.GetCellOffset(coverSet, ahsCellPositions[1]);
-								int ahsCell3 = RegionUtils.GetCellOffset(coverSet, ahsCellPositions[2]);
+								int ahsCell1 = RegionCells[coverSet][ahsCellPositions[0]];
+								int ahsCell2 = RegionCells[coverSet][ahsCellPositions[1]];
+								int ahsCell3 = RegionCells[coverSet][ahsCellPositions[2]];
 
 								// Record all highlight candidates.
 								var candidateOffsets = new List<(int, int)>();

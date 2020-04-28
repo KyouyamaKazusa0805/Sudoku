@@ -3,7 +3,6 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
 using static Sudoku.GridProcessings;
 using static Sudoku.Solving.ConclusionType;
 
@@ -56,7 +55,7 @@ namespace Sudoku.Solving.Manual.Singles
 					int cands = 0, emptyCellCount = 0, fullHouseCellOffset = 0;
 					for (int pos = 0; pos < 9; pos++)
 					{
-						int cellOffset = RegionUtils.GetCellOffset(region, pos);
+						int cellOffset = RegionCells[region][pos];
 						int digit = grid[cellOffset];
 						if (digit == -1)
 						{

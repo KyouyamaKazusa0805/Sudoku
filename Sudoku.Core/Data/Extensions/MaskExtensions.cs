@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using static Sudoku.GridProcessings;
 
 namespace Sudoku.Data.Extensions
 {
@@ -44,15 +45,7 @@ namespace Sudoku.Data.Extensions
 		/// <param name="relativePos">The relative position.</param>
 		/// <returns>The cell offset.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static int GetCellOffset(int regionOffset, int relativePos)
-		{
-			return regionOffset switch
-			{
-				_ when regionOffset < 9 =>
-					(regionOffset / 3 * 3 + relativePos / 3) * 9 + regionOffset % 3 * 3 + relativePos % 3,
-				_ when regionOffset < 18 => (regionOffset - 9) * 9 + relativePos,
-				_ => relativePos * 9 + (regionOffset - 18)
-			};
-		}
+		private static int GetCellOffset(int regionOffset, int relativePos) =>
+			RegionCells[regionOffset][relativePos];
 	}
 }

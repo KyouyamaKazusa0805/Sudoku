@@ -7901,13 +7901,6 @@
             Provides extension method used for region offsets.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Utils.RegionUtils.GetRegionLabel(System.Int32)">
-            <summary>
-            Gets the label ('r', 'c' or 'b') of the specified region.
-            </summary>
-            <param name="regionOffset">The region offset.</param>
-            <returns>The label.</returns>
-        </member>
         <member name="M:Sudoku.Solving.Utils.RegionUtils.ToString(System.Int32)">
             <summary>
             Gets a string of a region.
@@ -7922,22 +7915,6 @@
             </summary>
             <param name="regionOffset">The region offset.</param>
             <returns>The string.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.RegionUtils.GetCellOffset(System.Int32,System.Int32)">
-            <summary>
-            Get the cell offset of the relative position in the specified
-            region.
-            </summary>
-            <param name="regionOffset">The region offset.</param>
-            <param name="relativePos">The relative position.</param>
-            <returns>The cell offset.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.RegionUtils.GetRegionOffset(System.String)">
-            <summary>
-            Get the region offset from a string text.
-            </summary>
-            <param name="regionString">The text of region.</param>
-            <returns>The region offset.</returns>
         </member>
         <member name="T:Sudoku.Solving.Utils.SubsetUtils">
             <summary>

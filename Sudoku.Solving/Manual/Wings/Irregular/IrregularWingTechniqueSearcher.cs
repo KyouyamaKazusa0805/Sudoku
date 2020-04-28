@@ -6,6 +6,9 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
+using static Sudoku.Data.CellStatus;
+using static Sudoku.GridProcessings;
+using static Sudoku.Solving.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Wings.Irregular
 {
@@ -63,7 +66,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 			// Iterate on each cells.
 			for (int c1 = 0; c1 < 72; c1++)
 			{
-				if (!bivalueMap[c1] || grid.GetCellStatus(c1) != CellStatus.Empty)
+				if (!bivalueMap[c1] || grid.GetCellStatus(c1) != Empty)
 				{
 					continue;
 				}
@@ -78,7 +81,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 					}
 
 					var intersection = new GridMap(c1, false) & new GridMap(c2, false);
-					if (intersection.Offsets.All(o => grid.GetCellStatus(o) != CellStatus.Empty))
+					if (intersection.Offsets.All(o => grid.GetCellStatus(o) != Empty))
 					{
 						continue;
 					}
@@ -137,8 +140,8 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 				}
 
 				int[] pos = mask.GetAllSets().ToArray();
-				int bridgeStart = RegionUtils.GetCellOffset(region, pos[0]);
-				int bridgeEnd = RegionUtils.GetCellOffset(region, pos[1]);
+				int bridgeStart = RegionCells[region][pos[0]];
+				int bridgeEnd = RegionCells[region][pos[1]];
 				if (c1 == bridgeStart || c2 == bridgeStart || c1 == bridgeEnd || c2 == bridgeEnd)
 				{
 					continue;
@@ -162,9 +165,8 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 						continue;
 					}
 
-					conclusions.Add(new Conclusion(ConclusionType.Elimination, offset, elimDigit));
+					conclusions.Add(new Conclusion(Elimination, offset, elimDigit));
 				}
-
 				if (conclusions.Count == 0)
 				{
 					continue;

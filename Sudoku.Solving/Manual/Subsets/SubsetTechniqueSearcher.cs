@@ -6,7 +6,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
+using static Sudoku.Data.CellStatus;
 using static Sudoku.GridProcessings;
 using Action = System.Action<System.Collections.Generic.IBag<Sudoku.Solving.TechniqueInfo>, Sudoku.Data.IReadOnlyGrid, int>;
 
@@ -57,8 +57,8 @@ namespace Sudoku.Solving.Manual.Subsets
 				// Level 1 (Get first cell mask).
 				for (int i1 = 0; i1 < 10 - size; i1++)
 				{
-					int pos1 = RegionUtils.GetCellOffset(region, i1);
-					if (grid.GetCellStatus(pos1) != CellStatus.Empty)
+					int pos1 = RegionCells[region][i1];
+					if (grid.GetCellStatus(pos1) != Empty)
 					{
 						continue;
 					}
@@ -67,8 +67,8 @@ namespace Sudoku.Solving.Manual.Subsets
 					short mask1 = grid.GetMask(pos1);
 					for (int i2 = i1 + 1; i2 < 11 - size; i2++)
 					{
-						int pos2 = RegionUtils.GetCellOffset(region, i2);
-						if (grid.GetCellStatus(pos2) != CellStatus.Empty)
+						int pos2 = RegionCells[region][i2];
+						if (grid.GetCellStatus(pos2) != Empty)
 						{
 							continue;
 						}
@@ -105,8 +105,8 @@ namespace Sudoku.Solving.Manual.Subsets
 							// Level 3.
 							for (int i3 = i2 + 1; i3 < 12 - size; i3++)
 							{
-								int pos3 = RegionUtils.GetCellOffset(region, i3);
-								if (grid.GetCellStatus(pos3) != CellStatus.Empty)
+								int pos3 = RegionCells[region][i3];
+								if (grid.GetCellStatus(pos3) != Empty)
 								{
 									continue;
 								}
@@ -142,8 +142,8 @@ namespace Sudoku.Solving.Manual.Subsets
 									// Level 4. Final level.
 									for (int i4 = i3 + 1; i4 < 9; i4++)
 									{
-										int pos4 = RegionUtils.GetCellOffset(region, i4);
-										if (grid.GetCellStatus(pos4) != CellStatus.Empty)
+										int pos4 = RegionCells[region][i4];
+										if (grid.GetCellStatus(pos4) != Empty)
 										{
 											continue;
 										}

@@ -7,7 +7,10 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
+using static Sudoku.Data.CellStatus;
+using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.GridProcessings;
+using static Sudoku.Solving.ConclusionType;
 using BdpType1 = Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1DetailData;
 using BdpType2 = Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2DetailData;
 using BdpType3 = Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3DetailData;
@@ -73,7 +76,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			for (int j = 0; j < 4; j++)
 			{
 				int[] triplet = triplets[j];
-				if (triplet.Any(c => grid.GetCellStatus(c) != CellStatus.Empty))
+				if (triplet.Any(c => grid.GetCellStatus(c) != Empty))
 				{
 					continue;
 				}
@@ -109,16 +112,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 				for (int i1 = 0; i1 < 6; i1++)
 				{
-					if (grid.GetCellStatus(pair1[i1, 0]) != CellStatus.Empty
-						|| grid.GetCellStatus(pair1[i1, 1]) != CellStatus.Empty)
+					if (grid.GetCellStatus(pair1[i1, 0]) != Empty
+						|| grid.GetCellStatus(pair1[i1, 1]) != Empty)
 					{
 						continue;
 					}
 
 					for (int i2 = 0; i2 < 6; i2++)
 					{
-						if (grid.GetCellStatus(pair2[i2, 0]) != CellStatus.Empty
-							|| grid.GetCellStatus(pair2[i2, 1]) != CellStatus.Empty)
+						if (grid.GetCellStatus(pair2[i2, 0]) != Empty
+							|| grid.GetCellStatus(pair2[i2, 1]) != Empty)
 						{
 							continue;
 						}
@@ -194,9 +197,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 								{
 									if ((digitsMask >> digit & 1) != 0)
 									{
-										conclusions.Add(
-											new Conclusion(
-												ConclusionType.Elimination, extraCell, digit));
+										conclusions.Add(new Conclusion(Elimination, extraCell, digit));
 									}
 								}
 
@@ -241,7 +242,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 								// Check eliminations.
 								int extraDigit = otherDigits.First();
 								var conclusions = new List<Conclusion>();
-								var elimMap = new GridMap(extraCells, GridMap.InitializeOption.ProcessPeersWithoutItself);
+								var elimMap = new GridMap(extraCells, ProcessPeersWithoutItself);
 								if (elimMap.IsEmpty)
 								{
 									continue;
@@ -254,9 +255,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 										continue;
 									}
 
-									conclusions.Add(
-										new Conclusion(
-											ConclusionType.Elimination, cell, extraDigit));
+									conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
 								}
 
 								if (conclusions.Count == 0)
@@ -328,7 +327,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				{
 					for (int i1 = 0; i1 < 10 - size; i1++)
 					{
-						int c1 = RegionUtils.GetCellOffset(region, i1);
+						int c1 = RegionCells[region][i1];
 						if (extraCells.Contains(c1))
 						{
 							continue;
@@ -357,9 +356,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 								foreach (int digit in
 									((short)(grid.GetCandidatesReversal(cell) & mask)).GetAllSets())
 								{
-									conclusions.Add(
-										new Conclusion(
-											ConclusionType.Elimination, cell, digit));
+									conclusions.Add(new Conclusion(Elimination, cell, digit));
 								}
 							}
 
@@ -421,7 +418,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						{
 							for (int i2 = i1 + 1; i2 < 11 - size; i2++)
 							{
-								int c2 = RegionUtils.GetCellOffset(region, i2);
+								int c2 = RegionCells[region][i2];
 								if (extraCells.Contains(c2))
 								{
 									continue;
@@ -450,9 +447,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 										foreach (int digit in
 											((short)(grid.GetCandidatesReversal(cell) & mask)).GetAllSets())
 										{
-											conclusions.Add(
-												new Conclusion(
-													ConclusionType.Elimination, cell, digit));
+											conclusions.Add(new Conclusion(Elimination, cell, digit));
 										}
 									}
 
@@ -518,7 +513,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 								{
 									for (int i3 = i2 + 1; i3 < 12 - size; i3++)
 									{
-										int c3 = RegionUtils.GetCellOffset(region, i3);
+										int c3 = RegionCells[region][i3];
 										if (extraCells.Contains(c3))
 										{
 											continue;
@@ -549,9 +544,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 												foreach (int digit in
 													((short)(grid.GetCandidatesReversal(cell) & mask)).GetAllSets())
 												{
-													conclusions.Add(
-														new Conclusion(
-															ConclusionType.Elimination, cell, digit));
+													conclusions.Add(new Conclusion(Elimination, cell, digit));
 												}
 											}
 
@@ -621,7 +614,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 										{
 											for (int i4 = 0; i4 < 9; i4++)
 											{
-												int c4 = RegionUtils.GetCellOffset(region, i4);
+												int c4 = RegionCells[region][i4];
 												if (extraCells.Contains(c4))
 												{
 													continue;
@@ -651,9 +644,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 													foreach (int digit in
 														((short)(grid.GetCandidatesReversal(cell) & mask)).GetAllSets())
 													{
-														conclusions.Add(
-															new Conclusion(
-																ConclusionType.Elimination, cell, digit));
+														conclusions.Add(new Conclusion(Elimination, cell, digit));
 													}
 												}
 
@@ -668,7 +659,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 												{
 													if (extraCells.Contains(cell))
 													{
-														foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+														foreach (int digit in
+															grid.GetCandidatesReversal(cell).GetAllSets())
 														{
 															if ((mask >> digit & 1) != 0)
 															{
@@ -682,7 +674,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 													}
 													else
 													{
-														foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+														foreach (int digit in
+															grid.GetCandidatesReversal(cell).GetAllSets())
 														{
 															candidateOffsets.Add((0, cell * 9 + digit));
 														}
@@ -775,8 +768,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					continue;
 				}
 
-				conclusions.Add(
-					new Conclusion(ConclusionType.Elimination, cell, elimDigit));
+				conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
 			}
 
 			if (conclusions.Count == 0)
@@ -835,7 +827,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			IBag<TechniqueInfo> result, IReadOnlyGrid grid,
 			int block, int[] quad, int i)
 		{
-			if (quad.Any(c => grid.GetCellStatus(c) != CellStatus.Empty))
+			if (quad.Any(c => grid.GetCellStatus(c) != Empty))
 			{
 				return;
 			}
@@ -879,16 +871,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 			for (int i1 = 0; i1 < 6; i1++)
 			{
-				if (grid.GetCellStatus(pair1[i1, 0]) != CellStatus.Empty
-					|| grid.GetCellStatus(pair1[i1, 1]) != CellStatus.Empty)
+				if (grid.GetCellStatus(pair1[i1, 0]) != Empty
+					|| grid.GetCellStatus(pair1[i1, 1]) != Empty)
 				{
 					continue;
 				}
 
 				for (int i2 = 0; i2 < 6; i2++)
 				{
-					if (grid.GetCellStatus(pair2[i2, 0]) != CellStatus.Empty
-						|| grid.GetCellStatus(pair2[i2, 1]) != CellStatus.Empty)
+					if (grid.GetCellStatus(pair2[i2, 0]) != Empty
+						|| grid.GetCellStatus(pair2[i2, 1]) != Empty)
 					{
 						continue;
 					}
@@ -962,9 +954,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 								{
 									if ((digitsMask >> digit & 1) != 0)
 									{
-										conclusions.Add(
-											new Conclusion(
-												ConclusionType.Elimination, extraCell, digit));
+										conclusions.Add(new Conclusion(Elimination, extraCell, digit));
 									}
 								}
 
@@ -1009,7 +999,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 								// Check eliminations.
 								int extraDigit = otherDigits.First();
 								var conclusions = new List<Conclusion>();
-								var elimMap = new GridMap(extraCells, GridMap.InitializeOption.ProcessPeersWithoutItself);
+								var elimMap = new GridMap(extraCells, ProcessPeersWithoutItself);
 								if (elimMap.IsEmpty)
 								{
 									continue;
@@ -1022,9 +1012,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 										continue;
 									}
 
-									conclusions.Add(
-										new Conclusion(
-											ConclusionType.Elimination, cell, extraDigit));
+									conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
 								}
 
 								if (conclusions.Count == 0)
@@ -1098,7 +1086,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		{
 			for (int z = 0, cur = 0; z < 9; z++)
 			{
-				int cell = RegionUtils.GetCellOffset(region, z);
+				int cell = RegionCells[region][z];
 				(_, _, int b) = CellUtils.GetRegion(cell);
 				if (block == b)
 				{
