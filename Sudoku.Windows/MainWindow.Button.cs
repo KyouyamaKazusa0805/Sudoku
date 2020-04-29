@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Checking;
@@ -151,6 +152,101 @@ namespace Sudoku.Windows
 			UpdateDatabaseControls(true, true, false, false);
 
 			_labelPuzzleNumber.Content = $"{current + 1}/{max}";
+		}
+
+		private void ButtonCellReset_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = int.MinValue;
+			_customDrawingMode = -1;
+
+			_view.Clear();
+			_layerCollection.Remove(typeof(CustomViewLayer).Name);
+
+			UpdateImageGrid();
+		}
+
+		private void ButtonCellColor1_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 0;
+			_customDrawingMode = 0;
+		}
+
+		private void ButtonCellColor2_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 1;
+			_customDrawingMode = 0;
+		}
+
+		private void ButtonCellColor3_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 2;
+			_customDrawingMode = 0;
+		}
+
+		private void ButtonCellColor4_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 3;
+			_customDrawingMode = 0;
+		}
+
+		private void ButtonCellColor5_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = -1;
+			_customDrawingMode = 0;
+		}
+
+		private void ButtonCellColor6_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = -2;
+			_customDrawingMode = 0;
+		}
+
+		private void ButtonCellColor7_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = -3;
+			_customDrawingMode = 0;
+		}
+
+		private void ButtonCellColor8_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = -4;
+			_customDrawingMode = 0;
+		}
+
+		private void ButtonCellColor9_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 4;
+			_customDrawingMode = 0;
+		}
+
+		private void ButtonCellColor10_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 5;
+			_customDrawingMode = 0;
+		}
+
+		private void ButtonCellColor11_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 6;
+			_customDrawingMode = 0;
+		}
+
+		private void ButtonCellColor12_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 7;
+			_customDrawingMode = 0;
+		}
+
+		private void ButtonCellColor13_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 8;
+			_customDrawingMode = 0;
+		}
+
+		private void ButtonCellColor14_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 9;
+			_customDrawingMode = 0;
 		}
 	}
 }

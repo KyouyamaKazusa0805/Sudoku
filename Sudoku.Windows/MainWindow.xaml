@@ -243,9 +243,9 @@
 				</ContextMenu>
 			</Image.ContextMenu>
 		</Image>
-		<TabControl Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch"
-					Name="_tabControlInfo"
-					VerticalAlignment="Stretch" IsTabStop="False">
+		<TabControl Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Name="_tabControlInfo"
+					HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsTabStop="False"
+					SelectionChanged="TabControlInfo_SelectionChanged">
 			<!-- Summary -->
 			<TabItem Header="Summary">
 				<Grid Background="#FFE5E5E5">
@@ -297,8 +297,76 @@
 			</TabItem>
 
 			<!-- Drawing -->
-			<TabItem Header="Drawing">
-				<Grid Background="#FFE5E5E5"/>
+			<TabItem Header="Drawing" Name="_tabItemDrawing">
+				<Grid Background="#FFE5E5E5">
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition Height="2*"/>
+						<RowDefinition Height="2*"/>
+					</Grid.RowDefinitions>
+					<Grid Grid.Row="0">
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition/>
+							<ColumnDefinition/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<Label Grid.Row="0" Grid.ColumnSpan="3" Content="Choose color for cell:"
+							   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						<Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
+							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+							</Grid.ColumnDefinitions>
+							<Button Name="_buttonCellColor1" Grid.Row="0" Grid.Column="0"
+									Click="ButtonCellColor1_Click"/>
+							<Button Name="_buttonCellColor2" Grid.Row="0" Grid.Column="1"
+									Click="ButtonCellColor2_Click"/>
+							<Button Name="_buttonCellColor3" Grid.Row="0" Grid.Column="2"
+									Click="ButtonCellColor3_Click"/>
+							<Button Name="_buttonCellColor4" Grid.Row="0" Grid.Column="3"
+									Click="ButtonCellColor4_Click"/>
+							<Button Name="_buttonCellColor5" Grid.Row="0" Grid.Column="4"
+									Click="ButtonCellColor5_Click"/>
+							<Button Name="_buttonCellColor6" Grid.Row="0" Grid.Column="5"
+									Click="ButtonCellColor6_Click"/>
+							<Button Name="_buttonCellColor7" Grid.Row="0" Grid.Column="6"
+									Click="ButtonCellColor7_Click"/>
+							<Button Name="_buttonCellColor8" Grid.Row="1" Grid.Column="0"
+									Click="ButtonCellColor8_Click"/>
+							<Button Name="_buttonCellColor9" Grid.Row="1" Grid.Column="1"
+									Click="ButtonCellColor9_Click"/>
+							<Button Name="_buttonCellColor10" Grid.Row="1" Grid.Column="2"
+									Click="ButtonCellColor10_Click"/>
+							<Button Name="_buttonCellColor11" Grid.Row="1" Grid.Column="3"
+									Click="ButtonCellColor11_Click"/>
+							<Button Name="_buttonCellColor12" Grid.Row="1" Grid.Column="4"
+									Click="ButtonCellColor12_Click"/>
+							<Button Name="_buttonCellColor13" Grid.Row="1" Grid.Column="5"
+									Click="ButtonCellColor13_Click"/>
+							<Button Name="_buttonCellColor14" Grid.Row="1" Grid.Column="6"
+									Click="ButtonCellColor14_Click"/>
+						</Grid>
+						<Button Name="_buttonCellReset" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
+								HorizontalAlignment="Left" Width="50" Height="30" Margin="20,0,0,0"
+								Content="Reset!" Background="White"
+								Click="ButtonCellReset_Click"/>
+					</Grid>
+				</Grid>
 			</TabItem>
 		</TabControl>
 

@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Sudoku.Data.Extensions;
+using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
 using Sudoku.Windows.Drawing.Layers;
@@ -21,32 +21,80 @@ namespace Sudoku.Windows
 			}
 
 			int getCell() => _pointConverter.GetCellOffset(e.GetPosition(image).ToDPointF());
-			if (Keyboard.Modifiers == ModifierKeys.Shift)
+			switch (Keyboard.Modifiers)
 			{
-				// Select a region of cells.
-				int cell = _focusedCells.IsEmpty ? 0 : _focusedCells.SetAt(0);
-				int currentClickedCell = getCell();
-				int r1 = cell / 9, c1 = cell % 9;
-				int r2 = currentClickedCell / 9, c2 = currentClickedCell % 9;
-				int minRow = Math.Min(r1, r2), minColumn = Math.Min(c1, c2);
-				int maxRow = Math.Max(r1, r2), maxColumn = Math.Max(c1, c2);
-				for (int r = minRow; r <= maxRow; r++)
+				case ModifierKeys.None:
 				{
-					for (int c = minColumn; c <= maxColumn; c++)
+					if (_currentColor == int.MinValue)
 					{
-						_focusedCells.Add(r * 9 + c);
+						_focusedCells.Clear();
+						_focusedCells.Add(getCell());
 					}
+					else
+					{
+						switch (_customDrawingMode)
+						{
+							case 0: // Cell.
+							{
+								int cell = getCell();
+								if (_view.ContainsCell(cell))
+								{
+									_view.RemoveCell(cell);
+								}
+								else
+								{
+									_view.AddCell(_currentColor, cell);
+								}
+
+								break;
+							}
+						}
+
+						_layerCollection.Remove(typeof(FocusLayer).Name);
+						_layerCollection.Add(
+							new CustomViewLayer(
+								_pointConverter, _view, null, Settings.PaletteColors,
+								Settings.EliminationColor, Settings.CannibalismColor, Settings.ChainColor));
+
+						UpdateImageGrid();
+					}
+
+					break;
 				}
-			}
-			else if (Keyboard.Modifiers == ModifierKeys.Control)
-			{
-				// Multi-select.
-				_focusedCells.Add(getCell());
-			}
-			else
-			{
-				_focusedCells.Clear();
-				_focusedCells.Add(getCell());
+				//case ModifierKeys.Alt:
+				//{
+				//	break;
+				//}
+				case ModifierKeys.Control:
+				{
+					// Multi-select.
+					_focusedCells.Add(getCell());
+
+					break;
+				}
+				case ModifierKeys.Shift:
+				{
+					// Select a region of cells.
+					int cell = _focusedCells.IsEmpty ? 0 : _focusedCells.SetAt(0);
+					int currentClickedCell = getCell();
+					int r1 = cell / 9, c1 = cell % 9;
+					int r2 = currentClickedCell / 9, c2 = currentClickedCell % 9;
+					int minRow = Math.Min(r1, r2), minColumn = Math.Min(c1, c2);
+					int maxRow = Math.Max(r1, r2), maxColumn = Math.Max(c1, c2);
+					for (int r = minRow; r <= maxRow; r++)
+					{
+						for (int c = minColumn; c <= maxColumn; c++)
+						{
+							_focusedCells.Add(r * 9 + c);
+						}
+					}
+
+					break;
+				}
+				//case ModifierKeys.Windows:
+				//{
+				//	break;
+				//}
 			}
 
 			_layerCollection.Add(new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
@@ -93,9 +141,7 @@ namespace Sudoku.Windows
 			// Then enable some of them.
 			foreach (int i in
 				_puzzle.GetCandidatesReversal(
-					_pointConverter.GetCellOffset(
-						_currentRightClickPos.ToDPointF())
-					).GetAllSets())
+					_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF())).GetAllSets())
 			{
 				((MenuItem)GetType()
 					.GetField($"_menuItemImageGridSet{i + 1}", BindingFlags.NonPublic | BindingFlags.Instance)!

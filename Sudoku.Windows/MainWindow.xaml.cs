@@ -22,11 +22,13 @@ using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Drawing.Layers;
 using Sudoku.Windows.Extensions;
+using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Solving.ConclusionType;
 using static Sudoku.Windows.Constants.Processing;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
 using WPoint = System.Windows.Point;
+using System.Windows.Media;
 #if SUDOKU_RECOGNIZING
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -45,6 +47,45 @@ namespace Sudoku.Windows
 		/// </summary>
 		private readonly LayerCollection _layerCollection = new LayerCollection();
 
+		/// <summary>
+		/// The custom view.
+		/// </summary>
+		private readonly MutableView _view = new MutableView();
+
+
+		/// <summary>
+		/// The current custom drawing mode. The values are:
+		/// <list type="table">
+		/// <item>
+		/// <term>-1</term>
+		/// <description>None selected.</description>
+		/// </item>
+		/// <item>
+		/// <term>0</term>
+		/// <description>Drawing cells.</description>
+		/// </item>
+		/// <item>
+		/// <term>1</term>
+		/// <description>Drawing candidates.</description>
+		/// </item>
+		/// <item>
+		/// <term>2</term>
+		/// <description>Drawing regions.</description>
+		/// </item>
+		/// <item>
+		/// <term>3</term>
+		/// <description>Drawing links.</description>
+		/// </item>
+		/// </list>
+		/// </summary>
+		private int _customDrawingMode = -1;
+
+		/// <summary>
+		/// Indicates the current color chosen (used in coloring mode).
+		/// See <see cref="Settings.PaletteColors"/> for more.
+		/// </summary>
+		/// <seealso cref="Settings.PaletteColors"/>
+		private int _currentColor = -1;
 
 		/// <summary>
 		/// Indicates the database of puzzles used current.
@@ -283,8 +324,7 @@ namespace Sudoku.Windows
 			{
 				// View the intersection.
 				_previewMap = _focusedCells;
-				_focusedCells = new GridMap(
-					_focusedCells.Offsets, GridMap.InitializeOption.ProcessPeersWithoutItself);
+				_focusedCells = new GridMap(_focusedCells, ProcessPeersWithoutItself);
 
 				_layerCollection.Add(
 					new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
@@ -539,6 +579,21 @@ namespace Sudoku.Windows
 			_menuItemAnalyzeOptimizeApplyingOrder.IsChecked = Settings.OptimizedApplyingOrder;
 			_menuItemAnalyzeUseCalculationPriority.IsChecked = Settings.UseCalculationPriority;
 			_menuItemAnalyzeCheckConclusionValidityAfterSearched.IsChecked = Settings.CheckConclusionValidityAfterSearched;
+
+			_buttonCellColor1.Background = new SolidColorBrush(Settings.Color1.ToWColor());
+			_buttonCellColor2.Background = new SolidColorBrush(Settings.Color2.ToWColor());
+			_buttonCellColor3.Background = new SolidColorBrush(Settings.Color3.ToWColor());
+			_buttonCellColor4.Background = new SolidColorBrush(Settings.Color4.ToWColor());
+			_buttonCellColor5.Background = new SolidColorBrush(Settings.Color5.ToWColor());
+			_buttonCellColor6.Background = new SolidColorBrush(Settings.Color6.ToWColor());
+			_buttonCellColor7.Background = new SolidColorBrush(Settings.Color7.ToWColor());
+			_buttonCellColor8.Background = new SolidColorBrush(Settings.Color8.ToWColor());
+			_buttonCellColor9.Background = new SolidColorBrush(Settings.Color9.ToWColor());
+			_buttonCellColor10.Background = new SolidColorBrush(Settings.Color10.ToWColor());
+			_buttonCellColor11.Background = new SolidColorBrush(Settings.Color11.ToWColor());
+			_buttonCellColor12.Background = new SolidColorBrush(Settings.Color12.ToWColor());
+			_buttonCellColor13.Background = new SolidColorBrush(Settings.Color13.ToWColor());
+			_buttonCellColor14.Background = new SolidColorBrush(Settings.Color14.ToWColor());
 
 			_manualSolver = Settings.MainManualSolver;
 

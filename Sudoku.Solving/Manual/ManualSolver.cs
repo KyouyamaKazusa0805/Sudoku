@@ -49,10 +49,8 @@ namespace Sudoku.Solving.Manual
 				try
 				{
 					return AnalyzeDifficultyStrictly
-						? SolveWithStrictDifficultyRating(
-							grid, grid.Clone(), new List<TechniqueInfo>(), solution)
-						: SolveNaively(
-							grid, grid.Clone(), new List<TechniqueInfo>(), solution);
+						? SolveWithStrictDifficultyRating(grid, grid.Clone(), new List<TechniqueInfo>(), solution)
+						: SolveNaively(grid, grid.Clone(), new List<TechniqueInfo>(), solution);
 				}
 				catch (WrongHandlingException ex)
 				{

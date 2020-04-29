@@ -12,7 +12,7 @@ namespace Sudoku.Drawing
 	{
 		/// <include file='../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		/// <remarks>
-		/// The constructor is equivalent to <c>new View(null, null, null, null)</c>
+		/// The constructor is equivalent to code '<c>new View(null, null, null, null)</c>'.
 		/// </remarks>
 		public View() { }
 
