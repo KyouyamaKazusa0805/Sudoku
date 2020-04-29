@@ -297,7 +297,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				}
 				else
 				{
-					if (grid.GetCellStatus(currentCell) == CellStatus.Empty)
+					if (grid.GetStatus(currentCell) == CellStatus.Empty)
 					{
 						continue;
 					}
@@ -340,7 +340,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				}
 				else
 				{
-					if (grid.GetCellStatus(currentCell) == CellStatus.Empty)
+					if (grid.GetStatus(currentCell) == CellStatus.Empty)
 					{
 						continue;
 					}
@@ -398,7 +398,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				}
 				else
 				{
-					if (grid.GetCellStatus(currentCell) == CellStatus.Empty)
+					if (grid.GetStatus(currentCell) == CellStatus.Empty)
 					{
 						continue;
 					}
@@ -427,7 +427,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				}
 				else
 				{
-					if (grid.GetCellStatus(currentCell) == CellStatus.Empty)
+					if (grid.GetStatus(currentCell) == CellStatus.Empty)
 					{
 						continue;
 					}

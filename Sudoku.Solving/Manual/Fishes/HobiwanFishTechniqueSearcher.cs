@@ -70,7 +70,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			(_, _, var digitDistributions) = grid;
+			(_, _, var candMaps, _) = grid;
 
 			// Now search fishes.
 			if (_size <= 4)
@@ -79,7 +79,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				{
 					for (int digit = 0; digit < 9; digit++)
 					{
-						AccumulateAllBySize(accumulator, grid, digit, size, new GridMap[9], digitDistributions);
+						AccumulateAllBySize(accumulator, grid, digit, size, new GridMap[9], candMaps);
 					}
 				}
 			}
@@ -89,7 +89,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				{
 					for (int digit = 0; digit < 9; digit++)
 					{
-						AccumulateAllBySize(accumulator, grid, digit, size, new GridMap[9], digitDistributions);
+						AccumulateAllBySize(accumulator, grid, digit, size, new GridMap[9], candMaps);
 					}
 				}
 
@@ -126,7 +126,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				{
 					for (int digit = 0; digit < 9; digit++)
 					{
-						AccumulateAllBySize(accumulator, grid, digit, size, elimMaps, digitDistributions);
+						AccumulateAllBySize(accumulator, grid, digit, size, elimMaps, candMaps);
 					}
 				}
 			}

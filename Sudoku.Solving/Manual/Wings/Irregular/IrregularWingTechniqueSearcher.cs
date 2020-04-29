@@ -66,7 +66,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 			// Iterate on each cells.
 			for (int c1 = 0; c1 < 72; c1++)
 			{
-				if (!bivalueMap[c1] || grid.GetCellStatus(c1) != Empty)
+				if (!bivalueMap[c1] || grid.GetStatus(c1) != Empty)
 				{
 					continue;
 				}
@@ -81,7 +81,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 					}
 
 					var intersection = new GridMap(c1, false) & new GridMap(c2, false);
-					if (intersection.Offsets.All(o => grid.GetCellStatus(o) != Empty))
+					if (intersection.Offsets.All(o => grid.GetStatus(o) != Empty))
 					{
 						continue;
 					}

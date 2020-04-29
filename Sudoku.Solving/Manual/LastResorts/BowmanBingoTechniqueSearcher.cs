@@ -215,7 +215,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		{
 			return new GridMap(cell, false).Offsets.All(c =>
 			{
-				var status = grid.GetCellStatus(c);
+				var status = grid.GetStatus(c);
 				return (
 					status != CellStatus.Empty && grid[c] != grid[cell]
 					|| status == CellStatus.Empty

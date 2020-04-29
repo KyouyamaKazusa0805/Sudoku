@@ -17,8 +17,7 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <param name="conclusions">The conclusions.</param>
 		/// <param name="views">The views of this solving step.</param>
-		protected TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views) =>
+		protected TechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views) =>
 			(Conclusions, Views) = (conclusions, views);
 
 
@@ -124,11 +123,9 @@ namespace Sudoku.Solving
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
-		public static bool operator ==(TechniqueInfo left, TechniqueInfo right) =>
-			left.Equals(right);
+		public static bool operator ==(TechniqueInfo left, TechniqueInfo right) => left.Equals(right);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
-		public static bool operator !=(TechniqueInfo left, TechniqueInfo right) =>
-			!(left == right);
+		public static bool operator !=(TechniqueInfo left, TechniqueInfo right) => !(left == right);
 	}
 }

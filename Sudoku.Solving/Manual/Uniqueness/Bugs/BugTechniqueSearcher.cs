@@ -152,7 +152,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				}
 
 				int[] cells = RegionCells[region];
-				if (cells.Count(c => grid.GetCellStatus(c) == Empty) - trueCandidateCellsCount <= size - 1)
+				if (cells.Count(c => grid.GetStatus(c) == Empty) - trueCandidateCellsCount <= size - 1)
 				{
 					continue;
 				}
@@ -809,7 +809,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			// have exactly two potential values. Now check it.
 			for (int cell = 0; cell < 81; cell++)
 			{
-				if (tempGrid.GetCellStatus(cell) == Empty
+				if (tempGrid.GetStatus(cell) == Empty
 					&& tempGrid.GetCandidatesReversal(cell).CountSet() != 2)
 				{
 					// Not a BUG.

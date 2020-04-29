@@ -34,7 +34,7 @@ namespace Sudoku.Data
 		/// the bitwise operations in a sudoku <see cref="Grid"/>.
 		/// This field should not be used to process cell status comparison.
 		/// </remarks>
-		/// <seealso cref="Grid.GetCellStatus(int)"/>
+		/// <seealso cref="Grid.GetStatus(int)"/>
 		All = Empty | Modifiable | Given
 	}
 }

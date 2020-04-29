@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Sudoku
 {
-	public static partial class GridProcessings
+	partial class GridProcessings
 	{
 		/// <summary>
 		/// The inner comparer of <see cref="ValueTuple{T1, T2}"/> used in

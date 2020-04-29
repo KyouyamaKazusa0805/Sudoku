@@ -55,7 +55,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			(_, var bivalueCells, _) = grid;
+			(_, var bivalueMap, _, _) = grid;
 
 			// Iterate on mode (whether use AR or UR mode to search).
 			var tempList = new List<UrTechniqueInfo>();
@@ -130,7 +130,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									{
 										for (int size = 2; size <= 4; size++)
 										{
-											CheckWing(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, bivalueCells, size);
+											CheckWing(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, bivalueMap, size);
 										}
 									}
 
@@ -188,7 +188,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				byte emptyCountWhenArMode = 0, modifiableCount = 0;
 				foreach (int urCell in urCells)
 				{
-					switch (grid.GetCellStatus(urCell))
+					switch (grid.GetStatus(urCell))
 					{
 						case Given:
 						case Modifiable when !arMode:

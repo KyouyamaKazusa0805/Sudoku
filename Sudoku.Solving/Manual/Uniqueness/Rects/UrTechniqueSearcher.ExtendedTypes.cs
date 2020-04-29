@@ -1230,7 +1230,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							var candidateOffsets = new List<(int, int)>();
 							foreach (int cell in urCells)
 							{
-								if (grid.GetCellStatus(cell) != Empty)
+								if (grid.GetStatus(cell) != Empty)
 								{
 									continue;
 								}
@@ -1322,7 +1322,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									var candidateOffsets = new List<(int, int)>();
 									foreach (int cell in urCells)
 									{
-										if (grid.GetCellStatus(cell) != Empty)
+										if (grid.GetStatus(cell) != Empty)
 										{
 											continue;
 										}
@@ -1416,7 +1416,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										var candidateOffsets = new List<(int, int)>();
 										foreach (int cell in urCells)
 										{
-											if (grid.GetCellStatus(cell) != Empty)
+											if (grid.GetStatus(cell) != Empty)
 											{
 												continue;
 											}

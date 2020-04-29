@@ -23,7 +23,6 @@ using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using Sudoku.Windows;
 using static Sudoku.GridProcessings;
-using Intersection = System.ValueTuple<int, int, Sudoku.Data.GridMap, Sudoku.Data.GridMap>;
 
 namespace Sudoku.Solving.Manual
 {

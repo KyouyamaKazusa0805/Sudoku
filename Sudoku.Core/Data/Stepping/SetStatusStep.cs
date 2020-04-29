@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Encapsulates a step for setting a cell status.
 	/// </summary>
-	public sealed class SetCellStatusStep : Step
+	public sealed class SetStatusStep : Step
 	{
 		/// <summary>
 		/// Initializes an instance with the specified information.
@@ -11,7 +11,7 @@
 		/// <param name="cell">The cell.</param>
 		/// <param name="oldStatus">The old status.</param>
 		/// <param name="newStatus">The new status.</param>
-		public SetCellStatusStep(int cell, CellStatus oldStatus, CellStatus newStatus) =>
+		public SetStatusStep(int cell, CellStatus oldStatus, CellStatus newStatus) =>
 			(Cell, OldStatus, NewStatus) = (cell, oldStatus, newStatus);
 
 

@@ -19,7 +19,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Gets or sets a digit into a cell.
 		/// </summary>
-		/// <param name="offset">The cell offset you want to get or set.</param>
+		/// <param name="cell">The cell offset you want to get or set.</param>
 		/// <value>
 		/// The digit you want to set. This value should be between 0 and 8.
 		/// In addition, if your input is -1, the candidate mask in this cell
@@ -32,19 +32,19 @@ namespace Sudoku.Data
 		/// (i.e. The cell is <see cref="CellStatus.Empty"/>),
 		/// The value will be -1.
 		/// </returns>
-		int this[int offset] { get; }
+		int this[int cell] { get; }
 
 		/// <summary>
 		/// Gets or sets a candidate existence case with a <see cref="bool"/> value.
 		/// </summary>
-		/// <param name="offset">The cell offset between 0 and 80.</param>
+		/// <param name="cell">The cell offset between 0 and 80.</param>
 		/// <param name="digit">The digit between 0 and 8.</param>
 		/// <value>
 		/// The case you want to set. <see langword="true"/> means that this candidate
 		/// does not exist in this current sudoku grid; otherwise, <see langword="false"/>.
 		/// </value>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		bool this[int offset, int digit] { get; }
+		bool this[int cell, int digit] { get; }
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
@@ -83,19 +83,19 @@ namespace Sudoku.Data
 		/// of the specified cell, where the return value is 0 if the candidate
 		/// does not exist, or 1 if the candidate exists or cell is filled this digit.
 		/// </summary>
-		/// <param name="offset">The cell offset you want to get.</param>
+		/// <param name="cell">The cell offset you want to get.</param>
 		/// <returns>The candidate mask.</returns>
-		short GetCandidatesReversal(int offset);
+		short GetCandidatesReversal(int cell);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
 		string ToString(string format);
 
 		/// <summary>
-		/// Get a cell status of the specified cell.
+		/// Get the current status for the specified cell.
 		/// </summary>
-		/// <param name="offset">The cell offset you want to get.</param>
+		/// <param name="cell">The cell offset you want to get.</param>
 		/// <returns>The cell status.</returns>
-		CellStatus GetCellStatus(int offset);
+		CellStatus GetStatus(int cell);
 
 		/// <summary>
 		/// Formats the value of the current instance using the specified format.

@@ -77,7 +77,7 @@ namespace Sudoku.Data.Stepping
 				var map = GridMap.Empty;
 				foreach (int cell in GridProcessings.Peers[offset])
 				{
-					if (cell == offset || GetCellStatus(cell) != CellStatus.Empty)
+					if (cell == offset || GetStatus(cell) != CellStatus.Empty)
 					{
 						continue;
 					}
@@ -116,7 +116,7 @@ namespace Sudoku.Data.Stepping
 			var map = GridMap.Empty;
 			for (int i = 0; i < 81; i++)
 			{
-				if (GetCellStatus(i) == CellStatus.Modifiable)
+				if (GetStatus(i) == CellStatus.Modifiable)
 				{
 					map.Add(i);
 				}
@@ -138,7 +138,7 @@ namespace Sudoku.Data.Stepping
 			var map = GridMap.Empty;
 			for (int i = 0; i < 81; i++)
 			{
-				if (GetCellStatus(i) == CellStatus.Given)
+				if (GetStatus(i) == CellStatus.Given)
 				{
 					map.Add(i);
 				}
@@ -162,10 +162,10 @@ namespace Sudoku.Data.Stepping
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override void SetCellStatus(int offset, CellStatus cellStatus)
+		public override void SetStatus(int offset, CellStatus cellStatus)
 		{
-			_undoStack.Push(new SetCellStatusStep(offset, GetCellStatus(offset), cellStatus));
-			base.SetCellStatus(offset, cellStatus);
+			_undoStack.Push(new SetStatusStep(offset, GetStatus(offset), cellStatus));
+			base.SetStatus(offset, cellStatus);
 		}
 
 		/// <inheritdoc/>

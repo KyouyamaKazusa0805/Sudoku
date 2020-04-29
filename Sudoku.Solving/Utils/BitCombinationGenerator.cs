@@ -9,6 +9,15 @@ namespace Sudoku.Solving.Utils
 	/// <summary>
 	/// Encapsulates a bit combination generator.
 	/// </summary>
+	/// <example>
+	/// You can use this struct like this:
+	/// <code>
+	/// foreach (short mask in new BitCombinationGenerator(9, 3))<br/>
+	/// {<br/>
+	///     // Do something to use the mask.<br/>
+	/// }
+	/// </code>
+	/// </example>
 	[SuppressMessage("Usage", "CA2231:Overload operator equals on overriding value type Equals", Justification = "<Pending>")]
 	[SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types", Justification = "<Pending>")]
 	public struct BitCombinationGenerator : IEnumerable<long>
@@ -71,7 +80,7 @@ namespace Sudoku.Solving.Utils
 		public override readonly bool Equals(object? obj) =>
 			throw new NotSupportedException("The instance does not support this method.");
 
-		/// <inheritdoc/>
+		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public override readonly int GetHashCode() =>

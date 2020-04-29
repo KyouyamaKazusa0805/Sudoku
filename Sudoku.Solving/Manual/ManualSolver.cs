@@ -26,7 +26,6 @@ using Sudoku.Solving.Manual.Uniqueness.Polygons;
 using Sudoku.Solving.Manual.Uniqueness.Rects;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
-using static Sudoku.GridProcessings;
 using static Sudoku.Solving.ConclusionType;
 
 namespace Sudoku.Solving.Manual
@@ -518,7 +517,7 @@ namespace Sudoku.Solving.Manual
 			{
 				switch (t)
 				{
-					case Assignment when cloneation.GetCellStatus(c) == CellStatus.Empty:
+					case Assignment when cloneation.GetStatus(c) == CellStatus.Empty:
 					case Elimination when cloneation.Exists(c, d) is true:
 					{
 						needAdd = true;

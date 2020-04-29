@@ -75,8 +75,8 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				// At least one cell should be empty.
-				if (grid.GetCellStatus(tq1) != Empty && grid.GetCellStatus(tq2) != Empty
-					&& grid.GetCellStatus(tr1) != Empty && grid.GetCellStatus(tr2) != Empty)
+				if (grid.GetStatus(tq1) != Empty && grid.GetStatus(tq2) != Empty
+					&& grid.GetStatus(tr1) != Empty && grid.GetStatus(tr2) != Empty)
 				{
 					continue;
 				}
@@ -125,7 +125,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				var targetElims = new TargetEliminations();
 				temp = (short)(nonBaseQ > 0 ? baseCandidatesMask | nonBaseQ : baseCandidatesMask);
 				if (recordTargetEliminations(tq1) | recordTargetEliminations(tq2)
-					&& nonBaseQ != 0 && grid.GetCellStatus(tq1) == Empty && grid.GetCellStatus(tq2) == Empty)
+					&& nonBaseQ != 0 && grid.GetStatus(tq1) == Empty && grid.GetStatus(tq2) == Empty)
 				{
 					int conjugatPairDigit = nonBaseQ.FindFirstSet();
 					if (grid.Exists(tq1, conjugatPairDigit) is true)
@@ -139,7 +139,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 				temp = (short)(nonBaseR > 0 ? baseCandidatesMask | nonBaseR : baseCandidatesMask);
 				if (recordTargetEliminations(tr1) | recordTargetEliminations(tr2)
-					&& nonBaseR != 0 && grid.GetCellStatus(tr1) == Empty && grid.GetCellStatus(tr2) == Empty)
+					&& nonBaseR != 0 && grid.GetStatus(tr1) == Empty && grid.GetStatus(tr2) == Empty)
 				{
 					int conjugatPairDigit = nonBaseR.FindFirstSet();
 					if (grid.Exists(tr1, conjugatPairDigit) is true)
@@ -205,7 +205,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				bool recordTargetEliminations(int cell)
 				{
 					short candidateMask = (short)(grid.GetCandidatesReversal(cell) & ~temp);
-					if (grid.GetCellStatus(cell) == Empty && candidateMask != 0
+					if (grid.GetStatus(cell) == Empty && candidateMask != 0
 						&& (grid.GetCandidatesReversal(cell) & baseCandidatesMask) != 0)
 					{
 						foreach (int digit in candidateMask.GetAllSets())
@@ -380,7 +380,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					for (int j = 0; j < 9; j++)
 					{
 						int p = RegionCells[span[i]][j];
-						if (p == pos1 || p == pos2 || grid.GetCellStatus(p) != Empty
+						if (p == pos1 || p == pos2 || grid.GetStatus(p) != Empty
 							|| (grid.GetCandidatesReversal(p) & mask) == 0)
 						{
 							continue;
@@ -394,7 +394,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						for (int j = 0; j < 9; j++)
 						{
 							int p = RegionCells[span[i]][j];
-							if (grid.GetCellStatus(p) != Empty || (grid.GetCandidatesReversal(p) & mask) == 0)
+							if (grid.GetStatus(p) != Empty || (grid.GetCandidatesReversal(p) & mask) == 0)
 							{
 								continue;
 							}
@@ -536,7 +536,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				var elimMap = new GridMap(
 					from cell in new[] { tq1, tq2, tr1, tr2 }
-					where grid.GetCellStatus(cell) == Empty
+					where grid.GetStatus(cell) == Empty
 					select cell, ProcessPeersWithoutItself);
 
 				if (elimMap.IsEmpty)

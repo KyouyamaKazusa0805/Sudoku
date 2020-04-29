@@ -38,8 +38,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			(var emptyCells, _, _) = grid;
-			if (emptyCells.Count < 7)
+			(var emptyMap, _, _, _) = grid;
+			if (emptyMap.Count < 7)
 			{
 				return;
 			}
@@ -76,7 +76,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			for (int j = 0; j < 4; j++)
 			{
 				int[] triplet = triplets[j];
-				if (triplet.Any(c => grid.GetCellStatus(c) != Empty))
+				if (triplet.Any(c => grid.GetStatus(c) != Empty))
 				{
 					continue;
 				}
@@ -112,16 +112,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 				for (int i1 = 0; i1 < 6; i1++)
 				{
-					if (grid.GetCellStatus(pair1[i1, 0]) != Empty
-						|| grid.GetCellStatus(pair1[i1, 1]) != Empty)
+					if (grid.GetStatus(pair1[i1, 0]) != Empty
+						|| grid.GetStatus(pair1[i1, 1]) != Empty)
 					{
 						continue;
 					}
 
 					for (int i2 = 0; i2 < 6; i2++)
 					{
-						if (grid.GetCellStatus(pair2[i2, 0]) != Empty
-							|| grid.GetCellStatus(pair2[i2, 1]) != Empty)
+						if (grid.GetStatus(pair2[i2, 0]) != Empty
+							|| grid.GetStatus(pair2[i2, 1]) != Empty)
 						{
 							continue;
 						}
@@ -827,7 +827,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			IBag<TechniqueInfo> result, IReadOnlyGrid grid,
 			int block, int[] quad, int i)
 		{
-			if (quad.Any(c => grid.GetCellStatus(c) != Empty))
+			if (quad.Any(c => grid.GetStatus(c) != Empty))
 			{
 				return;
 			}
@@ -871,16 +871,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 			for (int i1 = 0; i1 < 6; i1++)
 			{
-				if (grid.GetCellStatus(pair1[i1, 0]) != Empty
-					|| grid.GetCellStatus(pair1[i1, 1]) != Empty)
+				if (grid.GetStatus(pair1[i1, 0]) != Empty
+					|| grid.GetStatus(pair1[i1, 1]) != Empty)
 				{
 					continue;
 				}
 
 				for (int i2 = 0; i2 < 6; i2++)
 				{
-					if (grid.GetCellStatus(pair2[i2, 0]) != Empty
-						|| grid.GetCellStatus(pair2[i2, 1]) != Empty)
+					if (grid.GetStatus(pair2[i2, 0]) != Empty
+						|| grid.GetStatus(pair2[i2, 1]) != Empty)
 					{
 						continue;
 					}

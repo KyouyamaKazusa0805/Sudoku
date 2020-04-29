@@ -31,8 +31,8 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			(_, var bivalueCellsMap, _) = grid;
-			int[] bivalueCells = bivalueCellsMap.ToArray();
+			(_, var bivalueMap, _, _) = grid;
+			int[] bivalueCells = bivalueMap.ToArray();
 			for (int i = 0, length = bivalueCells.Length; i < length - 1; i++)
 			{
 				int c1 = bivalueCells[i];

@@ -36,52 +36,7 @@
             the bitwise operations in a sudoku <see cref="T:Sudoku.Data.Grid"/>.
             This field should not be used to process cell status comparison.
             </remarks>
-            <seealso cref="M:Sudoku.Data.Grid.GetCellStatus(System.Int32)"/>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.GridSolvingExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Data.Grid"/> and <see cref="T:Sudoku.Data.IReadOnlyGrid"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.Grid"/>
-            <seealso cref="T:Sudoku.Data.IReadOnlyGrid"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridSolvingExtensions.Deconstruct(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap[]@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
-            <param name="this">(<see langword="this" /> parameter) The grid.</param>
-            <param name="emptyCells">
-            (<see langword="out" /> parameter) The distribution of all empty cells.
-            </param>
-            <param name="bivalueCells">
-            (<see langword="out" /> parameter) The distributions of all bivalue cells.
-            </param>
-            <param name="digitsDistributions">
-            (<see langword="out" /> parameter) The distributions of all digits.
-            </param>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridSolvingExtensions.GetBivalueCellsMap(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Get the grid map instance with all bivalue cells
-            set <see langword="true"/>.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridSolvingExtensions.GetEmptyCellsGridMap(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Get the grid map instance with all empty cells set
-            <see langword="true"/>.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridSolvingExtensions.GetAllDigitDistributionMaps(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Get 9 grid maps representing all digits' distributions.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>All grid maps.</returns>
+            <seealso cref="M:Sudoku.Data.Grid.GetStatus(System.Int32)"/>
         </member>
         <member name="T:Sudoku.Data.Extensions.GridTransformationExtensions">
             <summary>
@@ -856,7 +811,7 @@
             To reset the grid.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Grid.SetCellStatus(System.Int32,Sudoku.Data.CellStatus)">
+        <member name="M:Sudoku.Data.Grid.SetStatus(System.Int32,Sudoku.Data.CellStatus)">
             <summary>
             Set the status in a cell.
             </summary>
@@ -914,7 +869,7 @@
         <member name="M:Sudoku.Data.Grid.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Grid.GetCellStatus(System.Int32)">
+        <member name="M:Sudoku.Data.Grid.GetStatus(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.Clone">
@@ -1577,30 +1532,6 @@
             Clear all bits.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.GridMap.CreateInstance(System.Int32)">
-            <summary>
-            Create a <see cref="T:Sudoku.Data.GridMap"/> instance with the specified region offset.
-            This will set all bits <see langword="true"/> in this region.
-            </summary>
-            <param name="regionOffset">The region offset.</param>
-            <returns>The grid map.</returns>
-        </member>
-        <member name="M:Sudoku.Data.GridMap.CreateInstance(Sudoku.Data.IReadOnlyGrid,System.Int32)">
-            <summary>
-            Create a <see cref="T:Sudoku.Data.GridMap"/> instance with the specified solution.
-            If the puzzle has been solved, this method will create a grid map of
-            distribution of a single digit in this solution.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit to search.</param>
-            <returns>
-            The grid map that contains all cells of a digit appearing
-            in the solution.
-            </returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when the puzzle has not been solved.
-            </exception>
-        </member>
         <member name="M:Sudoku.Data.GridMap.op_Equality(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <operator name="op_Equality">
 		<summary>Indicates whether two instances have a same value.</summary>
@@ -1669,6 +1600,13 @@
             <param name="map">The map.</param>
             <param name="cell">The cell to remove.</param>
             <returns>The map after adding.</returns>
+            <example>
+            You can write code like this:
+            <code>
+            var map = new GridMap { 1 };
+            var map2 = map + 3; // Is equivalent to 'map2 = map | new GridMap { 3 }'.
+            </code>
+            </example>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap,System.Int32)">
             <summary>
@@ -1677,6 +1615,13 @@
             <param name="map">The map.</param>
             <param name="cell">The cell to remove.</param>
             <returns>The map after removing.</returns>
+            <example>
+            You can write code like this:
+            <code>
+            var map = new GridMap { 1, 4 };
+            var map2 = map - 4; // Is equivalent to 'map2 = map - new GridMap { 4 }'.
+            </code>
+            </example>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <summary>
@@ -2151,7 +2096,7 @@
             <summary>
             Gets or sets a digit into a cell.
             </summary>
-            <param name="offset">The cell offset you want to get or set.</param>
+            <param name="cell">The cell offset you want to get or set.</param>
             <value>
             The digit you want to set. This value should be between 0 and 8.
             In addition, if your input is -1, the candidate mask in this cell
@@ -2169,7 +2114,7 @@
             <summary>
             Gets or sets a candidate existence case with a <see cref="T:System.Boolean"/> value.
             </summary>
-            <param name="offset">The cell offset between 0 and 80.</param>
+            <param name="cell">The cell offset between 0 and 80.</param>
             <param name="digit">The digit between 0 and 8.</param>
             <value>
             The case you want to set. <see langword="true"/> means that this candidate
@@ -2228,7 +2173,7 @@
             of the specified cell, where the return value is 0 if the candidate
             does not exist, or 1 if the candidate exists or cell is filled this digit.
             </summary>
-            <param name="offset">The cell offset you want to get.</param>
+            <param name="cell">The cell offset you want to get.</param>
             <returns>The candidate mask.</returns>
         </member>
         <member name="M:Sudoku.Data.IReadOnlyGrid.ToString(System.String)">
@@ -2241,11 +2186,11 @@
 		<returns>The string result.</returns>
 	</method>
         </member>
-        <member name="M:Sudoku.Data.IReadOnlyGrid.GetCellStatus(System.Int32)">
+        <member name="M:Sudoku.Data.IReadOnlyGrid.GetStatus(System.Int32)">
             <summary>
-            Get a cell status of the specified cell.
+            Get the current status for the specified cell.
             </summary>
-            <param name="offset">The cell offset you want to get.</param>
+            <param name="cell">The cell offset you want to get.</param>
             <returns>The cell status.</returns>
         </member>
         <member name="M:Sudoku.Data.IReadOnlyGrid.ToString">
@@ -2639,40 +2584,6 @@
         <member name="M:Sudoku.Data.Stepping.ResetStep.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Data.Stepping.SetCellStatusStep">
-            <summary>
-            Encapsulates a step for setting a cell status.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Stepping.SetCellStatusStep.#ctor(System.Int32,Sudoku.Data.CellStatus,Sudoku.Data.CellStatus)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="oldStatus">The old status.</param>
-            <param name="newStatus">The new status.</param>
-        </member>
-        <member name="P:Sudoku.Data.Stepping.SetCellStatusStep.Cell">
-            <summary>
-            Indicates the cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Stepping.SetCellStatusStep.OldStatus">
-            <summary>
-            Indicates the old status.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Stepping.SetCellStatusStep.NewStatus">
-            <summary>
-            Indicates the new status.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Stepping.SetCellStatusStep.DoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Stepping.SetCellStatusStep.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Data.Stepping.SetMaskStep">
             <summary>
             Encapsulates a step of setting mask.
@@ -2705,6 +2616,40 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Stepping.SetMaskStep.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Data.Stepping.SetStatusStep">
+            <summary>
+            Encapsulates a step for setting a cell status.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.SetStatusStep.#ctor(System.Int32,Sudoku.Data.CellStatus,Sudoku.Data.CellStatus)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="oldStatus">The old status.</param>
+            <param name="newStatus">The new status.</param>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.SetStatusStep.Cell">
+            <summary>
+            Indicates the cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.SetStatusStep.OldStatus">
+            <summary>
+            Indicates the old status.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Stepping.SetStatusStep.NewStatus">
+            <summary>
+            Indicates the new status.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.SetStatusStep.DoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.SetStatusStep.UndoStepTo(Sudoku.Data.Stepping.UndoableGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.Stepping.Step">
@@ -2788,7 +2733,7 @@
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.Reset">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Stepping.UndoableGrid.SetCellStatus(System.Int32,Sudoku.Data.CellStatus)">
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.SetStatus(System.Int32,Sudoku.Data.CellStatus)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.SetMask(System.Int32,System.Int16)">
@@ -2988,7 +2933,7 @@
         </member>
         <member name="T:Sudoku.Data.ValueChangedEventHandler">
             <summary>
-            The event handler of value changed.
+            The event handler used when the value changed.
             </summary>
             <param name="sender">The object triggering the event.</param>
             <param name="e">The data while triggering.</param>
@@ -3949,6 +3894,21 @@
             </para>
             </summary>
         </member>
+        <member name="M:Sudoku.GridProcessings.Deconstruct(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap[]@,Sudoku.Data.GridMap[]@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="this">(<see langword="this" /> parameter) The grid.</param>
+            <param name="empty">(<see langword="out" /> parameter) The map of all empty cells.</param>
+            <param name="bivalue">(<see langword="out" /> parameter) The map of all bi-value cells.</param>
+            <param name="candidates">
+            (<see langword="out" /> parameter) The map of all cells that contain the candidate of that digit.
+            </param>
+            <param name="digits">
+            (<see langword="out" /> parameter) The map of all cells that contain the candidate of that digit
+            or that value in given or modifiable.
+            </param>
+        </member>
         <member name="M:Sudoku.GridProcessings.GetEmptyCellsMap(Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Get the map of all empty cells in this grid.
@@ -3969,6 +3929,19 @@
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The map.</returns>
+        </member>
+        <member name="M:Sudoku.GridProcessings.GetDigitsMap(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            <para>Get the map of all distributions for digits.</para>
+            <para>
+            Different with <see cref="M:Sudoku.GridProcessings.GetCandidatesMap(Sudoku.Data.IReadOnlyGrid)"/>,
+            this method will get all cells that contain the digit or fill this digit
+            (given or modifiable).
+            </para>
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The map.</returns>
+            <seealso cref="M:Sudoku.GridProcessings.GetCandidatesMap(Sudoku.Data.IReadOnlyGrid)"/>
         </member>
         <member name="M:Sudoku.GridProcessings.#cctor">
             <staticConstructor>
@@ -4446,6 +4419,30 @@
         </member>
         <member name="P:Sudoku.WrongHandlingException.Message">
             <inheritdoc/>
+        </member>
+        <member name="T:System.Algorithms">
+            <summary>
+            Provides all algorithm processing methods.
+            </summary>
+        </member>
+        <member name="M:System.Algorithms.GetCombinationsOfArray(System.Int32[],System.Int32)">
+            <summary>
+            Get all combinations with the specified number of the values to take.
+            </summary>
+            <param name="array">The array.</param>
+            <param name="count">The number you want to take.</param>
+            <returns>All combinations.</returns>
+        </member>
+        <member name="M:System.Algorithms.GetCombinationRecursively``1(System.Collections.Generic.List{``0[]}@,``0[],System.Int32,System.Int32,System.Int32[],System.Int32)">
+            <summary>
+            Get all combinations for an array recursively.
+            </summary>
+            <param name="list">The result list.</param>
+            <param name="t">The base array.</param>
+            <param name="n">Auxiliary variable.</param>
+            <param name="m">Auxiliary variable.</param>
+            <param name="b">Auxiliary variable.</param>
+            <param name="c">Auxiliary variable.</param>
         </member>
         <member name="T:System.Collections.Generic.Bag`1">
             <summary>

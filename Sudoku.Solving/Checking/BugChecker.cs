@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
 using static Sudoku.GridProcessings;
@@ -17,17 +16,17 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// The distribution of all empty cells.
 		/// </summary>
-		private readonly GridMap _emptyCellsDistribution;
+		private readonly GridMap _emptyMap;
 
 		/// <summary>
 		/// The distribution of all bivalue cells.
 		/// </summary>
-		private readonly GridMap _bivalueCellsDistribution;
+		private readonly GridMap _bivalueMap;
 
 		/// <summary>
 		/// The distribution of all digits.
 		/// </summary>
-		private readonly GridMap[] _digitsDistributions;
+		private readonly GridMap[] _candMaps;
 
 
 		/// <summary>
@@ -39,7 +38,7 @@ namespace Sudoku.Solving.Checking
 			if (grid.IsValid(out _))
 			{
 				Grid = grid;
-				(_emptyCellsDistribution, _bivalueCellsDistribution, _digitsDistributions) = grid;
+				(_emptyMap, _bivalueMap, _candMaps, _) = grid;
 			}
 			else
 			{
@@ -73,7 +72,7 @@ namespace Sudoku.Solving.Checking
 		public IReadOnlyList<int> GetAllTrueCandidates(int maximumEmptyCells)
 		{
 			var allRegionsMap = GetAllRegionMaps();
-			int[] array = _emptyCellsDistribution.ToArray();
+			int[] array = _emptyMap.ToArray();
 
 			// Get the number of multivalue cells.
 			int multivalueCellsCount = 0;
@@ -89,9 +88,9 @@ namespace Sudoku.Solving.Checking
 
 			// Store all bivalue cells.
 			var stack = new GridMap[multivalueCellsCount + 1, 9];
-			if (_bivalueCellsDistribution.IsNotEmpty)
+			if (_bivalueMap.IsNotEmpty)
 			{
-				int[] bivalueCells = _bivalueCellsDistribution.ToArray();
+				int[] bivalueCells = _bivalueMap.ToArray();
 				foreach (int bivalueCell in bivalueCells)
 				{
 					int[] digits = Grid.GetCandidatesReversal(bivalueCell).GetAllSets().ToArray();
@@ -117,7 +116,7 @@ namespace Sudoku.Solving.Checking
 			// Store all multivalue cells.
 			short mask = default;
 			short[,] pairs = new short[multivalueCellsCount, 37];
-			int[] multivalueCellsMap = (_emptyCellsDistribution - _bivalueCellsDistribution).ToArray();
+			int[] multivalueCellsMap = (_emptyMap - _bivalueMap).ToArray();
 			for (int i = 0; i < multivalueCellsMap.Length; i++)
 			{
 				mask = Grid.GetCandidatesReversal(multivalueCellsMap[i]);
@@ -186,7 +185,7 @@ namespace Sudoku.Solving.Checking
 						for (int k = 0; k < 9; k++)
 						{
 							ref var map = ref resultMap[k];
-							map = _digitsDistributions[k] - stack[pt, k];
+							map = _candMaps[k] - stack[pt, k];
 							foreach (int cell in map.Offsets)
 							{
 								result.Add(cell * 9 + k);

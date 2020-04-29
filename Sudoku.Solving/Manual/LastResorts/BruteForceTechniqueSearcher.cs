@@ -65,7 +65,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		{
 			foreach (int offset in TryAndErrorOrder)
 			{
-				if (grid.GetCellStatus(offset) != CellStatus.Empty)
+				if (grid.GetStatus(offset) != CellStatus.Empty)
 				{
 					continue;
 				}

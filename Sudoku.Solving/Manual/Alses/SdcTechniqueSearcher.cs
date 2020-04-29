@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -77,7 +76,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			(var emptyMap, _, _) = grid;
+			(var emptyMap, _, _, _) = grid;
 			if (emptyMap.Count < 4)
 			{
 				return;
@@ -216,7 +215,7 @@ namespace Sudoku.Solving.Manual.Alses
 				foreach (int i in blockCombination.GetAllSets())
 				{
 					int cell = blockTakingList[i];
-					if (grid.GetCellStatus(cell) != CellStatus.Empty)
+					if (grid.GetStatus(cell) != CellStatus.Empty)
 					{
 						goto Label_NextBlock;
 					}
@@ -239,7 +238,7 @@ namespace Sudoku.Solving.Manual.Alses
 					foreach (int i in nonblockCombination.GetAllSets())
 					{
 						int cell = nonblockTakingList[i];
-						if (grid.GetCellStatus(cell) != CellStatus.Empty || interMap[cell])
+						if (grid.GetStatus(cell) != CellStatus.Empty || interMap[cell])
 						{
 							goto Label_NextNonblock;
 						}

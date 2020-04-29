@@ -142,7 +142,8 @@ namespace Sudoku.Solving.Manual.Fishes
 
 									// Check the number of fins is less than 3.
 									// and all fins do not lie on any cover sets.
-									if (finCells.Count > 2 || finCells.Any(c => coverSets.Contains(searchRow ? c % 9 + 18 : c / 9 + 9)))
+									if (finCells.Count > 2 || finCells.Any(
+										c => coverSets.Contains(searchRow ? c % 9 + 18 : c / 9 + 9)))
 									{
 										continue;
 									}
@@ -184,8 +185,7 @@ namespace Sudoku.Solving.Manual.Fishes
 										if (!(finCells is null))
 										{
 											highlightCandidates.AddRange(
-												from cell in finCells
-												select (1, cell * 9 + digit));
+												from cell in finCells select (1, cell * 9 + digit));
 										}
 
 										// Check the fish is sashimi, normal finned or normal.
@@ -279,8 +279,8 @@ namespace Sudoku.Solving.Manual.Fishes
 												}
 
 												// Confirm all elimination cells.
-												var baseSets = new[] { bs1, bs2, bs3 };
-												var coverSets = new[] { cs1, cs2, cs3 };
+												int[] baseSets = new[] { bs1, bs2, bs3 };
+												int[] coverSets = new[] { cs1, cs2, cs3 };
 												var bodyMap = GridMap.Empty;
 												var elimMap = GridMap.Empty;
 												GetGridMap(ref bodyMap, baseSets);
@@ -457,7 +457,9 @@ namespace Sudoku.Solving.Manual.Fishes
 														continue;
 													}
 
-													for (int cs4 = cs3 + 1, l = k + 1; cs4 < coverSetStart + 9; cs4++, l++)
+													for (int cs4 = cs3 + 1, l = k + 1;
+														cs4 < coverSetStart + 9;
+														cs4++, l++)
 													{
 														// Check whether this cover set has 'digit'.
 														if ((baseMask >> l & 1) == 0)
@@ -466,8 +468,8 @@ namespace Sudoku.Solving.Manual.Fishes
 														}
 
 														// Confirm all elimination cells.
-														var baseSets = new[] { bs1, bs2, bs3, bs4 };
-														var coverSets = new[] { cs1, cs2, cs3, cs4 };
+														int[] baseSets = new[] { bs1, bs2, bs3, bs4 };
+														int[] coverSets = new[] { cs1, cs2, cs3, cs4 };
 														var bodyMap = GridMap.Empty;
 														var elimMap = GridMap.Empty;
 														GetGridMap(ref bodyMap, baseSets);
@@ -483,7 +485,8 @@ namespace Sudoku.Solving.Manual.Fishes
 														}
 
 														// Get the fin mask.
-														short finMask = (short)(baseMask & ~(1 << i | 1 << j | 1 << k | 1 << l) & 511);
+														short finMask = (short)(
+															baseMask & ~(1 << i | 1 << j | 1 << k | 1 << l) & 511);
 
 														// Confirm all fin cells.
 														finCells = new List<int>();
@@ -494,7 +497,8 @@ namespace Sudoku.Solving.Manual.Fishes
 																if ((temp & 1) != 0)
 																{
 																	int possibleFinCellOffset = RegionCells[baseSet][x];
-																	if (!(grid.Exists(possibleFinCellOffset, digit) is true))
+																	if (!(grid.Exists(
+																		possibleFinCellOffset, digit) is true))
 																	{
 																		continue;
 																	}
@@ -506,7 +510,8 @@ namespace Sudoku.Solving.Manual.Fishes
 
 														// Check the number of fins is less than 4.
 														// and all fins do not lie on any cover sets.
-														if (finCells.Count > 5 || finCells.Any(c => coverSets.Contains(searchRow ? c % 9 + 18 : c / 9 + 9)))
+														if (finCells.Count > 5 || finCells.Any(
+															c => coverSets.Contains(searchRow ? c % 9 + 18 : c / 9 + 9)))
 														{
 															continue;
 														}
@@ -618,7 +623,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		{
 			foreach (int regionOffset in regionOffsets)
 			{
-				map |= GridMap.CreateInstance(regionOffset);
+				map |= RegionMaps[regionOffset];
 			}
 		}
 	}

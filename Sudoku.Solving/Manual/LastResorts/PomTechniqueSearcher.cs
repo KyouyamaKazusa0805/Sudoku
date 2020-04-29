@@ -26,8 +26,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			(_, _, var digitDistributions) = grid;
-			var templates = GetInvalidPos(grid, digitDistributions);
+			(_, _, var candMaps, _) = grid;
+			var templates = GetInvalidPos(grid, candMaps);
 			for (int digit = 0; digit < 9; digit++)
 			{
 				var template = templates[digit];

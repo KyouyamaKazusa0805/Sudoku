@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
@@ -6,9 +7,13 @@ using static Sudoku.Data.CellStatus;
 
 namespace Sudoku
 {
-	partial class GridProcessings
+	/// <summary>
+	/// The tables for grid processing. All fields will be initialized in
+	/// the static constructor.
+	/// </summary>
+	[SuppressMessage("", "CS8618")]
+	public static partial class GridProcessings
 	{
-#pragma warning disable 8618
 		/// <summary>
 		/// <para>Indicates a table for each cell's peers.</para>
 		/// </summary>
@@ -50,8 +55,27 @@ namespace Sudoku
 		/// </para>
 		/// </summary>
 		public static readonly IReadOnlyDictionary<(byte _baseSet, byte _coverSet), (GridMap _a, GridMap _b, GridMap _c)> IntersectionMaps;
-#pragma warning restore 8618
 
+
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="empty">(<see langword="out"/> parameter) The map of all empty cells.</param>
+		/// <param name="bivalue">(<see langword="out"/> parameter) The map of all bi-value cells.</param>
+		/// <param name="candidates">
+		/// (<see langword="out"/> parameter) The map of all cells that contain the candidate of that digit.
+		/// </param>
+		/// <param name="digits">
+		/// (<see langword="out"/> parameter) The map of all cells that contain the candidate of that digit
+		/// or that value in given or modifiable.
+		/// </param>
+		public static void Deconstruct(
+			this IReadOnlyGrid @this, out GridMap empty, out GridMap bivalue,
+			out GridMap[] candidates, out GridMap[] digits)
+		{
+			(empty, bivalue, candidates, digits) = (
+				@this.GetEmptyCellsMap(), @this.GetBivalueCellsMap(),
+				@this.GetCandidatesMap(), @this.GetDigitsMap());
+		}
 
 		/// <summary>
 		/// Get the map of all empty cells in this grid.
@@ -63,7 +87,7 @@ namespace Sudoku
 			var result = GridMap.Empty;
 			for (int cell = 0; cell < 81; cell++)
 			{
-				if (@this.GetCellStatus(cell) == Empty)
+				if (@this.GetStatus(cell) == Empty)
 				{
 					result.Add(cell);
 				}
@@ -112,6 +136,35 @@ namespace Sudoku
 			}
 
 			return result;
+		}
+
+		/// <summary>
+		/// <para>Get the map of all distributions for digits.</para>
+		/// <para>
+		/// Different with <see cref="GetCandidatesMap(IReadOnlyGrid)"/>,
+		/// this method will get all cells that contain the digit or fill this digit
+		/// (given or modifiable).
+		/// </para>
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <returns>The map.</returns>
+		/// <seealso cref="GetCandidatesMap(IReadOnlyGrid)"/>
+		public static GridMap[] GetDigitsMap(this IReadOnlyGrid @this)
+		{
+			var digitDistributions = new GridMap[9];
+			for (int digit = 0; digit < 9; digit++)
+			{
+				ref var map = ref digitDistributions[digit];
+				for (int cell = 0; cell < 81; cell++)
+				{
+					if ((@this.GetCandidatesReversal(cell) >> digit & 1) != 0)
+					{
+						map.Add(cell);
+					}
+				}
+			}
+
+			return digitDistributions;
 		}
 	}
 }

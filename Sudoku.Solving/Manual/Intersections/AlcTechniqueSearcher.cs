@@ -4,8 +4,9 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
+using static Sudoku.Data.CellStatus;
 using static Sudoku.GridProcessings;
+using static Sudoku.Solving.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
@@ -59,18 +60,16 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <returns>The result.</returns>
 		private void AccumulateAllBySize(IBag<TechniqueInfo> result, IReadOnlyGrid grid, int size)
 		{
-			(var emptyCellsMap, _, _) = grid;
+			(var emptyMap, _, _, _) = grid;
 
 			foreach (var ((baseSet, coverSet), (a, b, c)) in IntersectionMaps)
 			{
-				if (!c.Overlaps(emptyCellsMap))
+				if (c.Overlaps(emptyMap))
 				{
-					continue;
+					// Process for 2 cases.
+					Process(grid, result, size, baseSet, coverSet, a, b, c);
+					Process(grid, result, size, coverSet, baseSet, b, a, c);
 				}
-
-				// Process for 2 cases.
-				Process(grid, result, size, baseSet, coverSet, a, b, c);
-				Process(grid, result, size, coverSet, baseSet, b, a, c);
 			}
 		}
 
@@ -83,15 +82,13 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <param name="size">The size.</param>
 		/// <param name="baseSet">The base set.</param>
 		/// <param name="coverSet">The cover set.</param>
-		/// <param name="left">The left grid map.</param>
-		/// <param name="right">The right grid map.</param>
-		/// <param name="intersection">The intersection.</param>
+		/// <param name="a">The left grid map.</param>
+		/// <param name="b">The right grid map.</param>
+		/// <param name="c">The intersection.</param>
 		private static void Process(
 			IReadOnlyGrid grid, IBag<TechniqueInfo> result, int size,
-			int baseSet, int coverSet, GridMap left, GridMap right, GridMap intersection)
+			int baseSet, int coverSet, GridMap a, GridMap b, GridMap c)
 		{
-			var a = left ^ intersection;
-			var b = right ^ intersection;
 			int[] aCells = a.ToArray();
 			for (int i1 = 0; i1 < 8 - size; i1++)
 			{
@@ -136,7 +133,7 @@ namespace Sudoku.Solving.Manual.Intersections
 
 						candidateOffsets.Add((0, c1 * 9 + digit));
 					}
-					foreach (int cell in intersection.Offsets)
+					foreach (int cell in c.Offsets)
 					{
 						foreach (int digit in digits)
 						{
@@ -174,8 +171,7 @@ namespace Sudoku.Solving.Manual.Intersections
 								continue;
 							}
 
-							conclusions.Add(
-								new Conclusion(ConclusionType.Elimination, aCell, digit));
+							conclusions.Add(new Conclusion(Elimination, aCell, digit));
 						}
 					}
 
@@ -186,8 +182,7 @@ namespace Sudoku.Solving.Manual.Intersections
 							continue;
 						}
 
-						conclusions.Add(
-							new Conclusion(ConclusionType.Elimination, ahsCell, digit));
+						conclusions.Add(new Conclusion(Elimination, ahsCell, digit));
 					}
 
 					if (conclusions.Count == 0)
@@ -197,7 +192,7 @@ namespace Sudoku.Solving.Manual.Intersections
 
 					int[] cells = new[] { c1, ahsCell };
 					var valueCells = from cell in cells
-									 where grid.GetCellStatus(cell) != CellStatus.Empty
+									 where grid.GetStatus(cell) != Empty
 									 select (0, cell);
 					result.Add(
 						new AlcTechniqueInfo(
@@ -265,7 +260,7 @@ namespace Sudoku.Solving.Manual.Intersections
 									candidateOffsets.Add((0, c2 * 9 + digit));
 								}
 							}
-							foreach (int cell in intersection.Offsets)
+							foreach (int cell in c.Offsets)
 							{
 								foreach (int digit in digits)
 								{
@@ -305,8 +300,7 @@ namespace Sudoku.Solving.Manual.Intersections
 										continue;
 									}
 
-									conclusions.Add(
-										new Conclusion(ConclusionType.Elimination, aCell, digit));
+									conclusions.Add(new Conclusion(Elimination, aCell, digit));
 								}
 							}
 
@@ -319,15 +313,11 @@ namespace Sudoku.Solving.Manual.Intersections
 
 								if (grid.Exists(ahsCell1, digit) is true)
 								{
-									conclusions.Add(
-										new Conclusion(
-											ConclusionType.Elimination, ahsCell1, digit));
+									conclusions.Add(new Conclusion(Elimination, ahsCell1, digit));
 								}
 								if (grid.Exists(ahsCell2, digit) is true)
 								{
-									conclusions.Add(
-										new Conclusion(
-											ConclusionType.Elimination, ahsCell2, digit));
+									conclusions.Add(new Conclusion(Elimination, ahsCell2, digit));
 								}
 							}
 
@@ -338,7 +328,7 @@ namespace Sudoku.Solving.Manual.Intersections
 
 							int[] cells = new[] { c1, c2, ahsCell1, ahsCell2 };
 							var valueCells = from cell in cells
-											 where grid.GetCellStatus(cell) != CellStatus.Empty
+											 where grid.GetStatus(cell) != Empty
 											 select (0, cell);
 							result.Add(
 								new AlcTechniqueInfo(
@@ -411,7 +401,7 @@ namespace Sudoku.Solving.Manual.Intersections
 										candidateOffsets.Add((0, c3 * 9 + digit));
 									}
 								}
-								foreach (int cell in intersection.Offsets)
+								foreach (int cell in c.Offsets)
 								{
 									foreach (int digit in digits)
 									{
@@ -455,8 +445,7 @@ namespace Sudoku.Solving.Manual.Intersections
 											continue;
 										}
 
-										conclusions.Add(
-											new Conclusion(ConclusionType.Elimination, aCell, digit));
+										conclusions.Add(new Conclusion(Elimination, aCell, digit));
 									}
 								}
 
@@ -469,21 +458,15 @@ namespace Sudoku.Solving.Manual.Intersections
 
 									if (grid.Exists(ahsCell1, digit) is true)
 									{
-										conclusions.Add(
-											new Conclusion(
-												ConclusionType.Elimination, ahsCell1, digit));
+										conclusions.Add(new Conclusion(Elimination, ahsCell1, digit));
 									}
 									if (grid.Exists(ahsCell2, digit) is true)
 									{
-										conclusions.Add(
-											new Conclusion(
-												ConclusionType.Elimination, ahsCell2, digit));
+										conclusions.Add(new Conclusion(Elimination, ahsCell2, digit));
 									}
 									if (grid.Exists(ahsCell3, digit) is true)
 									{
-										conclusions.Add(
-											new Conclusion(
-												ConclusionType.Elimination, ahsCell3, digit));
+										conclusions.Add(new Conclusion(Elimination, ahsCell3, digit));
 									}
 								}
 
@@ -494,7 +477,7 @@ namespace Sudoku.Solving.Manual.Intersections
 
 								int[] cells = new[] { c1, c2, c3, ahsCell1, ahsCell2, ahsCell3 };
 								var valueCells = from cell in cells
-												 where grid.GetCellStatus(cell) != CellStatus.Empty
+												 where grid.GetStatus(cell) != Empty
 												 select (0, cell);
 								result.Add(
 									new AlcTechniqueInfo(

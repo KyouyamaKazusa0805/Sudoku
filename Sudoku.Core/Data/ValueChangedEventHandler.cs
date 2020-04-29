@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Data
 {
 	/// <summary>
-	/// The event handler of value changed.
+	/// The event handler used when the value changed.
 	/// </summary>
 	/// <param name="sender">The object triggering the event.</param>
 	/// <param name="e">The data while triggering.</param>

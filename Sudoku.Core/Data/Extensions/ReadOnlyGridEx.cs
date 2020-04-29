@@ -54,7 +54,7 @@ namespace Sudoku.Data.Extensions
 		public static bool IsBivalueCell(
 			this IReadOnlyGrid @this, int cellOffset, out short mask)
 		{
-			if (@this.GetCellStatus(cellOffset) != Empty)
+			if (@this.GetStatus(cellOffset) != Empty)
 			{
 				mask = 0;
 				return false;
@@ -184,7 +184,7 @@ namespace Sudoku.Data.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool? Exists(this IReadOnlyGrid @this, int cellOffset, int digit)
 		{
-			return @this.GetCellStatus(cellOffset) switch
+			return @this.GetStatus(cellOffset) switch
 			{
 				Empty => !@this[cellOffset, digit],
 				_ => null
@@ -202,7 +202,7 @@ namespace Sudoku.Data.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasDigitValue(
 			this IReadOnlyGrid @this, int digit, int regionOffset) =>
-			RegionCells[regionOffset].Any(o => @this.GetCellStatus(o) != Empty && @this[o] == digit);
+			RegionCells[regionOffset].Any(o => @this.GetStatus(o) != Empty && @this[o] == digit);
 
 		/// <summary>
 		/// <para>

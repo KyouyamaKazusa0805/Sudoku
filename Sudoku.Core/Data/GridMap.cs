@@ -324,21 +324,18 @@ namespace Sudoku.Data
 				case InitializeOption.ProcessPeersAlso:
 				case InitializeOption.ProcessPeersWithoutItself:
 				{
-					static void process(ref long low, ref long high, int peer) =>
-						(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
-
 					int i = 0;
 					foreach (int offset in offsets)
 					{
 						long low = 0, high = 0;
 						foreach (int peer in Peers[offset])
 						{
-							process(ref low, ref high, peer);
+							(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
 						}
 
 						if (initializeOption == InitializeOption.ProcessPeersAlso)
 						{
-							process(ref low, ref high, offset);
+							(offset / Shifting == 0 ? ref low : ref high) |= 1L << offset % Shifting;
 						}
 
 						(_low, _high) = i++ == 0 ? (low, high) : (_low & low, _high & high);
@@ -382,7 +379,7 @@ namespace Sudoku.Data
 
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/staticConstructor[@aimTo="struct"]'/>
-		static GridMap() => (Full._high, Full._low, Full.Count) = (-1, -1, 81);
+		static GridMap() => (Full._high, Full._low, Full.Count) = (-1L, -1L, 81);
 
 
 		/// <summary>
@@ -409,7 +406,7 @@ namespace Sudoku.Data
 				short result = 0;
 				for (int i = 0; i < 9; i++)
 				{
-					if (Overlaps(CreateInstance(i)))
+					if (Overlaps(RegionMaps[i]))
 					{
 						result |= (short)(1 << i);
 					}
@@ -429,7 +426,7 @@ namespace Sudoku.Data
 				short result = 0;
 				for (int i = 9; i < 18; i++)
 				{
-					if (Overlaps(CreateInstance(i)))
+					if (Overlaps(RegionMaps[i]))
 					{
 						result |= (short)(1 << i - 9);
 					}
@@ -449,7 +446,7 @@ namespace Sudoku.Data
 				short result = 0;
 				for (int i = 18; i < 27; i++)
 				{
-					if (Overlaps(CreateInstance(i)))
+					if (Overlaps(RegionMaps[i]))
 					{
 						result |= (short)(1 << i - 18);
 					}
@@ -555,11 +552,11 @@ namespace Sudoku.Data
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
-				ref long d = ref offset / Shifting == 0 ? ref _low : ref _high;
+				ref long v = ref offset / Shifting == 0 ? ref _low : ref _high;
 				bool older = this[offset];
 				if (value)
 				{
-					d |= 1L << offset % Shifting;
+					v |= 1L << offset % Shifting;
 					if (!older)
 					{
 						Count++;
@@ -567,7 +564,7 @@ namespace Sudoku.Data
 				}
 				else
 				{
-					d &= ~(1L << offset % Shifting);
+					v &= ~(1L << offset % Shifting);
 					if (older)
 					{
 						Count--;
@@ -616,7 +613,7 @@ namespace Sudoku.Data
 		/// <returns>A <see cref="bool"/> result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly bool AllCellCovers(int regionOffset) =>
-			Count - (this - CreateInstance(regionOffset)).Count == 9;
+			Count - (this - RegionMaps[regionOffset]).Count == 9;
 
 		/// <summary>
 		/// Indicates whether all cells in this instance are in one region.
@@ -734,56 +731,6 @@ namespace Sudoku.Data
 		public void Clear() => _low = _high = Count = 0;
 
 
-		/// <summary>
-		/// Create a <see cref="GridMap"/> instance with the specified region offset.
-		/// This will set all bits <see langword="true"/> in this region.
-		/// </summary>
-		/// <param name="regionOffset">The region offset.</param>
-		/// <returns>The grid map.</returns>
-		public static GridMap CreateInstance(int regionOffset)
-		{
-			var result = Empty;
-			foreach (int cell in RegionCells[regionOffset])
-			{
-				result.Add(cell);
-			}
-
-			return result;
-		}
-
-		/// <summary>
-		/// Create a <see cref="GridMap"/> instance with the specified solution.
-		/// If the puzzle has been solved, this method will create a grid map of
-		/// distribution of a single digit in this solution.
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <param name="digit">The digit to search.</param>
-		/// <returns>
-		/// The grid map that contains all cells of a digit appearing
-		/// in the solution.
-		/// </returns>
-		/// <exception cref="ArgumentException">
-		/// Throws when the puzzle has not been solved.
-		/// </exception>
-		public static GridMap CreateInstance(IReadOnlyGrid grid, int digit)
-		{
-			if (!grid.HasSolved)
-			{
-				throw new ArgumentException($"The specified sudoku grid has not been solved.");
-			}
-
-			var result = Empty;
-			for (int cell = 0; cell < 81; cell++)
-			{
-				if (grid[cell] == digit)
-				{
-					result.Add(cell);
-				}
-			}
-			return result;
-		}
-
-
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(GridMap left, GridMap right) => left.Equals(right);
 
@@ -809,8 +756,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="gridMap">The instance to negate.</param>
 		/// <returns>The negative result.</returns>
-		public static GridMap operator ~(GridMap gridMap) =>
-			new GridMap(~gridMap._high, ~gridMap._low);
+		public static GridMap operator ~(GridMap gridMap) => new GridMap(~gridMap._high, ~gridMap._low);
 
 		/// <summary>
 		/// Add a cell into the specified map.
@@ -818,6 +764,13 @@ namespace Sudoku.Data
 		/// <param name="map">The map.</param>
 		/// <param name="cell">The cell to remove.</param>
 		/// <returns>The map after adding.</returns>
+		/// <example>
+		/// You can write code like this:
+		/// <code>
+		/// var map = new GridMap { 1 };
+		/// var map2 = map + 3; // Is equivalent to 'map2 = map | new GridMap { 3 }'.
+		/// </code>
+		/// </example>
 		public static GridMap operator +(GridMap map, int cell) => map | new GridMap { cell };
 
 		/// <summary>
@@ -826,6 +779,13 @@ namespace Sudoku.Data
 		/// <param name="map">The map.</param>
 		/// <param name="cell">The cell to remove.</param>
 		/// <returns>The map after removing.</returns>
+		/// <example>
+		/// You can write code like this:
+		/// <code>
+		/// var map = new GridMap { 1, 4 };
+		/// var map2 = map - 4; // Is equivalent to 'map2 = map - new GridMap { 4 }'.
+		/// </code>
+		/// </example>
 		public static GridMap operator -(GridMap map, int cell) => map - new GridMap { cell };
 
 		/// <summary>

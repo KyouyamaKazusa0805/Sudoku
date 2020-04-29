@@ -55,10 +55,10 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var (emptyCellsMap, _, digitDistributions) = grid;
+			var (emptyMap, _, candMaps, _) = grid;
 			for (int r1 = 0; r1 < 26; r1++)
 			{
-				if (!emptyCellsMap.Overlaps(RegionMaps[r1]))
+				if (!emptyMap.Overlaps(RegionMaps[r1]))
 				{
 					continue;
 				}
@@ -71,7 +71,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 				for (int r2 = r1 + 1; r2 < 27; r2++)
 				{
-					if (!emptyCellsMap.Overlaps(RegionMaps[r2]))
+					if (!emptyMap.Overlaps(RegionMaps[r2]))
 					{
 						continue;
 					}
@@ -113,10 +113,10 @@ namespace Sudoku.Solving.Manual.Alses
 									for (int i = 0; i < 2; i++)
 									{
 										int w = cases[i, 0], x = cases[i, 1];
-										if (!digitDistributions[w].Overlaps(als1.Map)
-											|| !digitDistributions[x].Overlaps(als1.Map)
-											|| !digitDistributions[w].Overlaps(als2.Map)
-											|| !digitDistributions[x].Overlaps(als2.Map))
+										if (!candMaps[w].Overlaps(als1.Map)
+											|| !candMaps[x].Overlaps(als1.Map)
+											|| !candMaps[w].Overlaps(als2.Map)
+											|| !candMaps[x].Overlaps(als2.Map))
 										{
 											// Condition #1.
 											continue;

@@ -118,7 +118,7 @@ namespace Sudoku.Data
 			{
 				for (int i = 0; i < 81; i++)
 				{
-					if (GetCellStatus(i) == CellStatus.Empty)
+					if (GetStatus(i) == CellStatus.Empty)
 					{
 						return false;
 					}
@@ -134,7 +134,7 @@ namespace Sudoku.Data
 		{
 			get
 			{
-				if (GetCellStatus(offset) == CellStatus.Empty)
+				if (GetStatus(offset) == CellStatus.Empty)
 				{
 					// Empty cells does not have a fixed value.
 					return -1;
@@ -173,7 +173,7 @@ namespace Sudoku.Data
 				{
 					// If 'value' is -1, we should reset the grid.
 					// Note that reset candidates may not trigger the event.
-					if (GetCellStatus(offset) == CellStatus.Modifiable)
+					if (GetStatus(offset) == CellStatus.Modifiable)
 					{
 						Reset();
 					}
@@ -220,9 +220,9 @@ namespace Sudoku.Data
 		{
 			for (int i = 0; i < 81; i++)
 			{
-				if (GetCellStatus(i) == CellStatus.Modifiable)
+				if (GetStatus(i) == CellStatus.Modifiable)
 				{
-					SetCellStatus(i, CellStatus.Given);
+					SetStatus(i, CellStatus.Given);
 				}
 			}
 
@@ -237,9 +237,9 @@ namespace Sudoku.Data
 		{
 			for (int i = 0; i < 81; i++)
 			{
-				if (GetCellStatus(i) == CellStatus.Given)
+				if (GetStatus(i) == CellStatus.Given)
 				{
-					SetCellStatus(i, CellStatus.Modifiable);
+					SetStatus(i, CellStatus.Modifiable);
 				}
 			}
 		}
@@ -256,7 +256,7 @@ namespace Sudoku.Data
 		/// <param name="offset">The cell offset you want to change.</param>
 		/// <param name="cellStatus">The cell status you want to set.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public virtual void SetCellStatus(int offset, CellStatus cellStatus)
+		public virtual void SetStatus(int offset, CellStatus cellStatus)
 		{
 			ref short mask = ref _masks[offset];
 			short copy = mask;
@@ -281,8 +281,7 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc/>
-		public override bool Equals(object? obj) =>
-			obj is Grid comparer && Equals(comparer);
+		public override bool Equals(object? obj) => obj is Grid comparer && Equals(comparer);
 
 		/// <inheritdoc/>
 		public bool Equals(Grid other)
@@ -385,15 +384,13 @@ namespace Sudoku.Data
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public CellStatus GetCellStatus(int offset) =>
-			(CellStatus)(_masks[offset] >> 9 & (int)CellStatus.All);
+		public CellStatus GetStatus(int offset) => (CellStatus)(_masks[offset] >> 9 & (int)CellStatus.All);
 
 		/// <inheritdoc/>
 		public Grid Clone() => new Grid((short[])_masks.Clone());
 
 		/// <inheritdoc/>
-		public IEnumerator<short> GetEnumerator() =>
-			((IEnumerable<short>)_masks).GetEnumerator();
+		public IEnumerator<short> GetEnumerator() => ((IEnumerable<short>)_masks).GetEnumerator();
 
 		/// <inheritdoc/>
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -413,15 +410,14 @@ namespace Sudoku.Data
 
 			foreach (int peerOffset in new GridMap(offset).Offsets)
 			{
-				if (peerOffset == offset || GetCellStatus(peerOffset) != CellStatus.Empty)
+				if (peerOffset == offset || GetStatus(peerOffset) != CellStatus.Empty)
 				{
 					// Same cell,
 					// or else the peer cell is empty or not.
 					continue;
 				}
 
-				ref short peerValue = ref _masks[peerOffset];
-				peerValue |= (short)(1 << setValue);
+				_masks[peerOffset] |= (short)(1 << setValue);
 			}
 		}
 
@@ -434,13 +430,13 @@ namespace Sudoku.Data
 			int count = 0;
 			for (int i = 0; i < 81; i++)
 			{
-				if (GetCellStatus(i) == CellStatus.Given)
+				if (GetStatus(i) == CellStatus.Given)
 				{
 					count++;
 				}
 
 				int curDigit, peerDigit;
-				if (GetCellStatus(i) != CellStatus.Empty)
+				if (GetStatus(i) != CellStatus.Empty)
 				{
 					curDigit = this[i];
 					foreach (int peerOffset in new GridMap(i).Offsets)
@@ -641,7 +637,7 @@ namespace Sudoku.Data
 					result[i] = value - 1;
 
 					// Set the status to 'CellStatus.Given'.
-					result.SetCellStatus(i, CellStatus.Given);
+					result.SetStatus(i, CellStatus.Given);
 				}
 			}
 
@@ -665,7 +661,7 @@ namespace Sudoku.Data
 					{
 						int pos = i * 9 + j;
 						result[pos] = value - 1;
-						result.SetCellStatus(pos, CellStatus.Given);
+						result.SetStatus(pos, CellStatus.Given);
 					}
 				}
 			}

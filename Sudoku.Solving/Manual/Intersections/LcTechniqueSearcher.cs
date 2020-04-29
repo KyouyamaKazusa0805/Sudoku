@@ -30,12 +30,12 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var (emptyCellsMap, _, digitDistributions) = grid;
+			var (emptyMap, _, candMaps, _) = grid;
 
 			var r = (Span<int>)stackalloc int[2];
 			foreach (var ((baseSet, coverSet), (a, b, c)) in IntersectionMaps)
 			{
-				if (!emptyCellsMap.Overlaps(c))
+				if (!emptyMap.Overlaps(c))
 				{
 					continue;
 				}
@@ -54,7 +54,7 @@ namespace Sudoku.Solving.Manual.Intersections
 					GridMap elimMap;
 					var conclusions = new List<Conclusion>();
 					(r[0], r[1], elimMap) =
-						a.Overlaps(digitDistributions[digit]) ? (coverSet, baseSet, a) : (baseSet, coverSet, b);
+						a.Overlaps(candMaps[digit]) ? (coverSet, baseSet, a) : (baseSet, coverSet, b);
 
 					foreach (int cell in elimMap.Offsets)
 					{

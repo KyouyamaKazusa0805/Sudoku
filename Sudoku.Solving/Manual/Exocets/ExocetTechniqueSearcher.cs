@@ -204,7 +204,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			short targetElimination = (short)(
 				grid.GetCandidatesReversal(target) & ~(short)(commonBase | lockedNonTarget));
 			if (targetElimination != 0
-				&& grid.GetCellStatus(target) != Empty ^ grid.GetCellStatus(target2) != Empty)
+				&& grid.GetStatus(target) != Empty ^ grid.GetStatus(target2) != Empty)
 			{
 				foreach (int digit in targetElimination.GetAllSets())
 				{
@@ -222,7 +222,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					int p = playground[m1 != 0 ? 0 : 1];
 					short candidateMask = (short)(grid.GetCandidatesReversal(p) & ~commonBase);
 					if (candidateMask != 0
-						&& grid.GetCellStatus(target) != Empty ^ grid.GetCellStatus(target2) != Empty)
+						&& grid.GetStatus(target) != Empty ^ grid.GetStatus(target2) != Empty)
 					{
 						cellOffsets.Add((3, playground[0]));
 						cellOffsets.Add((3, playground[1]));
@@ -265,7 +265,7 @@ namespace Sudoku.Solving.Manual.Exocets
 							{
 								int p = RegionCells[regions[i]][j];
 								if ((grid.GetCandidatesReversal(p) & mask) == 0
-									|| grid.GetCellStatus(p) != Empty || p == onlyOne
+									|| grid.GetStatus(p) != Empty || p == onlyOne
 									|| p == playground[0] || p == playground[1]
 									|| (grid.GetCandidatesReversal(p) & ~mask) == 0)
 								{
@@ -351,7 +351,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			var result = GridMap.Empty;
 			for (int cell = 0; cell < 81; cell++)
 			{
-				if (grid.GetCellStatus(cell) == Empty)
+				if (grid.GetStatus(cell) == Empty)
 				{
 					result.Add(cell);
 				}

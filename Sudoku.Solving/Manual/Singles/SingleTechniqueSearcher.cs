@@ -176,7 +176,7 @@ namespace Sudoku.Solving.Manual.Singles
 			for (int i = 0; i < 81; i++)
 			{
 				short mask = grid.GetCandidatesReversal(i);
-				if (grid.GetCellStatus(i) != CellStatus.Empty || (mask & (mask - 1)) != 0)
+				if (grid.GetStatus(i) != CellStatus.Empty || (mask & (mask - 1)) != 0)
 				{
 					// 'a & (a - 1) == 0' means the number 'a' has only one
 					// bit is set.

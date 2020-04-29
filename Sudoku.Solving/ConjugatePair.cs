@@ -62,12 +62,10 @@ namespace Sudoku.Solving
 
 
 		/// <inheritdoc/>
-		public override bool Equals(object? obj) =>
-			obj is ConjugatePair comparer && Equals(comparer);
+		public override bool Equals(object? obj) => obj is ConjugatePair comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(ConjugatePair other) =>
-			_map == other._map && Digit == other.Digit;
+		public bool Equals(ConjugatePair other) => _map == other._map && Digit == other.Digit;
 
 		/// <inheritdoc/>
 		public override int GetHashCode() => _map.GetHashCode() ^ Digit;
@@ -83,11 +81,9 @@ namespace Sudoku.Solving
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
-		public static bool operator ==(ConjugatePair left, ConjugatePair right) =>
-			left.Equals(right);
+		public static bool operator ==(ConjugatePair left, ConjugatePair right) => left.Equals(right);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
-		public static bool operator !=(ConjugatePair left, ConjugatePair right) =>
-			!(left == right);
+		public static bool operator !=(ConjugatePair left, ConjugatePair right) => !(left == right);
 	}
 }

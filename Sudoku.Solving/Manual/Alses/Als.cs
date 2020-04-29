@@ -228,7 +228,7 @@ namespace Sudoku.Solving.Manual.Alses
 			int i = 0;
 			foreach (int cell in RegionCells[region])
 			{
-				if (grid.GetCellStatus(cell) == CellStatus.Empty)
+				if (grid.GetStatus(cell) == CellStatus.Empty)
 				{
 					posMask |= (short)(1 << i);
 				}
@@ -244,7 +244,7 @@ namespace Sudoku.Solving.Manual.Alses
 					short digitsMask = 0;
 					foreach (int cell in MaskExtensions.GetCells(region, relativePosMask))
 					{
-						if (grid.GetCellStatus(cell) != CellStatus.Empty)
+						if (grid.GetStatus(cell) != CellStatus.Empty)
 						{
 							goto Label_Continue;
 						}

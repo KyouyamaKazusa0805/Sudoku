@@ -64,16 +64,16 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var (emptyCells, _, digitDistributions) = grid;
+			var (emptyCells, _, candMaps, _) = grid;
 
 			short[] checkedCandidates = new short[81];
 			int[,] death = new int[729, 1000];
 			var alsList = PreprocessAndRecordAlses(grid, emptyCells);
-			ProcessDeathAlsInfo(grid, digitDistributions, checkedCandidates, death, alsList);
+			ProcessDeathAlsInfo(grid, candMaps, checkedCandidates, death, alsList);
 
 			for (int pivot = 0; pivot < 81; pivot++)
 			{
-				if (grid.GetCellStatus(pivot) != Empty
+				if (grid.GetStatus(pivot) != Empty
 					|| checkedCandidates[pivot] != grid.GetCandidatesReversal(pivot)
 					|| checkedCandidates[pivot].CountSet() > _maxPetals)
 				{
@@ -137,9 +137,9 @@ namespace Sudoku.Solving.Manual.Alses
 						{
 							var elimMap =
 								new GridMap(
-									(temp & digitDistributions[d]).Offsets,
+									(temp & candMaps[d]).Offsets,
 									ProcessPeersWithoutItself)
-								& digitDistributions[d];
+								& candMaps[d];
 							if (elimMap.IsEmpty)
 							{
 								continue;
@@ -260,13 +260,13 @@ namespace Sudoku.Solving.Manual.Alses
 		/// Process death ALSes information.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
-		/// <param name="digitDistributions">The digit distributions.</param>
+		/// <param name="candMaps">The digit distributions.</param>
 		/// <param name="checkedCandidates">All checked candidates.</param>
 		/// <param name="death">The death table.</param>
 		/// <param name="alses">The ALS list.</param>
 		private static void ProcessDeathAlsInfo(
-			IReadOnlyGrid grid, GridMap[] digitDistributions,
-			short[] checkedCandidates, int[,] death, IReadOnlyList<Als> alses)
+			IReadOnlyGrid grid, GridMap[] candMaps, short[] checkedCandidates,
+			int[,] death, IReadOnlyList<Als> alses)
 		{
 			int max = 0;
 			int i = 0;
@@ -277,8 +277,8 @@ namespace Sudoku.Solving.Manual.Alses
 				foreach (int digit in digits)
 				{
 					var temp =
-						new GridMap((digitDistributions[digit] & map).Offsets, ProcessPeersWithoutItself)
-						& digitDistributions[digit];
+						new GridMap((candMaps[digit] & map).Offsets, ProcessPeersWithoutItself)
+						& candMaps[digit];
 					if (temp.IsEmpty)
 					{
 						continue;
@@ -334,7 +334,7 @@ namespace Sudoku.Solving.Manual.Alses
 					foreach (short mask in new BitCombinationGenerator(9, i))
 					{
 						if (mask.GetAllSets().Any(
-							pos => grid.GetCellStatus(RegionCells[region][pos]) != Empty))
+							pos => grid.GetStatus(RegionCells[region][pos]) != Empty))
 						{
 							continue;
 						}
@@ -357,8 +357,8 @@ namespace Sudoku.Solving.Manual.Alses
 						}
 
 						if (new GridMap(
-							from pos in mask.GetAllSets()
-							select RegionCells[region][pos]).BlockMask.CountSet() == 1 && region >= 9)
+							from pos in mask.GetAllSets() select RegionCells[region][pos]).BlockMask.CountSet() == 1
+							&& region >= 9)
 						{
 							// If the current cells are in the same block and same line (i.e. in mini-line),
 							// we will process them in blocks.

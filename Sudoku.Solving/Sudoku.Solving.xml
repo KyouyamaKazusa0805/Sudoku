@@ -526,17 +526,17 @@
             Encapsulates a BUG technique checker.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Checking.BugChecker._emptyCellsDistribution">
+        <member name="F:Sudoku.Solving.Checking.BugChecker._emptyMap">
             <summary>
             The distribution of all empty cells.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Checking.BugChecker._bivalueCellsDistribution">
+        <member name="F:Sudoku.Solving.Checking.BugChecker._bivalueMap">
             <summary>
             The distribution of all bivalue cells.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Checking.BugChecker._digitsDistributions">
+        <member name="F:Sudoku.Solving.Checking.BugChecker._candMaps">
             <summary>
             The distribution of all digits.
             </summary>
@@ -1546,7 +1546,7 @@
             Process death ALSes information.
             </summary>
             <param name="grid">The grid.</param>
-            <param name="digitDistributions">The digit distributions.</param>
+            <param name="candMaps">The digit distributions.</param>
             <param name="checkedCandidates">All checked candidates.</param>
             <param name="death">The death table.</param>
             <param name="alses">The ALS list.</param>
@@ -3118,7 +3118,7 @@
             Check the cross-line cells.
             </summary>
             <param name="tempCrossline">The cross-line map.</param>
-            <param name="digitDistributions">The digit distributions.</param>
+            <param name="digitMaps">The digit distributions.</param>
             <param name="baseCandidatesMask">The base candidate mask.</param>
             <param name="t1">The target cell 1.</param>
             <param name="t2">The target cell 2.</param>
@@ -3136,7 +3136,7 @@
             </summary>
             <param name="digit">The digit.</param>
             <param name="baseElimMap">The base elimination map.</param>
-            <param name="digitDistributions">The digit distributions.</param>
+            <param name="digitMaps">The digit distributions.</param>
             <param name="tempCrossline">The cross-line map.</param>
             <param name="extraRegionsMask">
             (<see langword="ref"/> parameter) The extra regions.
@@ -3148,7 +3148,7 @@
             Compatibility test.
             </summary>
             <param name="baseCandidatesMask">The base candidates mask.</param>
-            <param name="digitDistributions">The digit distributions.</param>
+            <param name="digitMaps">The digit distributions.</param>
             <param name="tempCrossline">The cross-line map.</param>
             <param name="baseCellsMap">The base cells map.</param>
             <param name="t1">The target cell 1.</param>
@@ -3163,31 +3163,12 @@
             <param name="grid">The grid.</param>
             <param name="compatibilityElims">The compatibility eliminations.</param>
             <param name="baseCellsMap">The base cells map.</param>
-            <param name="digitDistributions">The digit distributions.</param>
+            <param name="digitMaps">The digit distributions.</param>
             <param name="candMaps">Candidate maps for each digit.</param>
             <param name="baseCandidatesMask">The base candidates mask.</param>
             <param name="t1">The target cell 1.</param>
             <param name="t2">The target cell 2.</param>
             <seealso cref="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest(System.Int16,Sudoku.Data.GridMap[],Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int32,System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.GetCombinationsOfArray(System.Int32[],System.Int32)">
-            <summary>
-            Get all combinations for an array.
-            </summary>
-            <param name="array">The array.</param>
-            <param name="count">The number of elements you want to combine.</param>
-            <returns>All combinations.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.GetCombination``1(System.Collections.Generic.List{``0[]}@,``0[],System.Int32,System.Int32,System.Int32[],System.Int32)">
-            <summary>
-            Get all combinations for an array.
-            </summary>
-            <param name="list">The result list.</param>
-            <param name="t">The base array.</param>
-            <param name="n">Auxiliary variable.</param>
-            <param name="m">Auxiliary variable.</param>
-            <param name="b">Auxiliary variable.</param>
-            <param name="c">Auxiliary variable.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.SwordfishEliminations">
             <summary>
@@ -3971,8 +3952,8 @@
             <param name="size">The size.</param>
             <param name="baseSet">The base set.</param>
             <param name="coverSet">The cover set.</param>
-            <param name="left">The left grid map.</param>
-            <param name="right">The right grid map.</param>
+            <param name="a">The left grid map.</param>
+            <param name="b">The right grid map.</param>
             <param name="intersection">The intersection.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo">
@@ -4481,6 +4462,22 @@
             <param name="solution">The solution.</param>
             <param name="digitDistributions">All digit distributions.</param>
             <returns>All template deletes.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.CreateInstance(Sudoku.Data.IReadOnlyGrid,System.Int32)">
+            <summary>
+            Create a <see cref="T:Sudoku.Data.GridMap"/> instance with the specified solution.
+            If the puzzle has been solved, this method will create a grid map of
+            distribution of a single digit in this solution.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit to search.</param>
+            <returns>
+            The grid map that contains all cells of a digit appearing
+            in the solution.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the puzzle has not been solved.
+            </exception>
         </member>
         <member name="T:Sudoku.Solving.Manual.LightManualSolver">
             <summary>
@@ -5370,7 +5367,7 @@
         <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.TakeAllNakedSubsetsBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetNakedSubsetsBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32)">
             <summary>
             Get all naked subsets technique information, for searching the specified size.
             </summary>
@@ -5412,7 +5409,7 @@
             <param name="digits">All digits.</param>
             <returns>All candidate offsets and its ID.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.TakeAllHiddenSubsetsBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetHiddenSubsetsBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32)">
             <summary>
             Get all hidden subsets technique information, for searching the specified size.
             </summary>
@@ -5429,7 +5426,7 @@
             <param name="region">The region offset.</param>
             <param name="mask">
             The mask that calculated in
-            <see cref="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.TakeAllHiddenSubsetsBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32)"/>.
+            <see cref="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetHiddenSubsetsBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32)"/>.
             </param>
             <param name="digits">All digits.</param>
             <param name="cellOffsetList">(<see langword="out"/> parameter) All cell offsets.</param>

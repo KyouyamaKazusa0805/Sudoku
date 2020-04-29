@@ -120,7 +120,7 @@ namespace Sudoku.Solving.Checking
 				{
 					for (int cell = 0; cell < 81; cell++)
 					{
-						if (tempGrid.GetCellStatus(cell) != Empty)
+						if (tempGrid.GetStatus(cell) != Empty)
 						{
 							continue;
 						}
@@ -146,7 +146,7 @@ namespace Sudoku.Solving.Checking
 			// Store all incorrect candidates to prepare for search elimination backdoors.
 			var incorrectCandidates = new List<int>(
 				from cell in Enumerable.Range(0, 81)
-				where grid.GetCellStatus(cell) == Empty
+				where grid.GetStatus(cell) == Empty
 				let Value = solution[cell]
 				from digit in Enumerable.Range(0, 9)
 				where !grid[cell, digit] && Value != digit

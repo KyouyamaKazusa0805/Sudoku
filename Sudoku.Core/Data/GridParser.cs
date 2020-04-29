@@ -153,7 +153,7 @@ namespace Sudoku.Data
 							// To assign the value, and to trigger the event
 							// to modify all information of peers.
 							result[offset] = s[0] - '1';
-							result.SetCellStatus(offset, Given);
+							result.SetStatus(offset, Given);
 						}
 						else if (length > 9)
 						{
@@ -186,7 +186,7 @@ namespace Sudoku.Data
 						if (c >= '1' && c <= '9')
 						{
 							result[offset] = c - '1';
-							result.SetCellStatus(offset, Given);
+							result.SetStatus(offset, Given);
 						}
 						else
 						{
@@ -209,7 +209,7 @@ namespace Sudoku.Data
 						if (c >= '1' && c <= '9')
 						{
 							result[offset] = c - '1';
-							result.SetCellStatus(offset, Modifiable);
+							result.SetStatus(offset, Modifiable);
 						}
 						else
 						{
@@ -341,7 +341,7 @@ namespace Sudoku.Data
 					// If the code below does not make sense to you,
 					// you can see the comments in method 'OnParsingSusser(string)'
 					// to know the meaning also.
-					result.SetCellStatus(realPos, Given);
+					result.SetStatus(realPos, Given);
 
 					// Finally moves 1 step forward.
 					i++;

@@ -8,7 +8,6 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
 using static Sudoku.GridProcessings;
-using static Sudoku.Solving.Utils.RegionUtils;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -177,11 +176,11 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			(_, _, var digitDistributions) = grid;
+			(_, _, var candMaps, _) = grid;
 
 			var candidatesUsed = FullGridMap.Empty;
 			var stack = new List<Node>();
-			var strongInferences = GetAllStrongInferences(grid, digitDistributions);
+			var strongInferences = GetAllStrongInferences(grid, candMaps);
 
 			// Iterate on each strong relation, and search for weak relations.
 			foreach (var (start, end) in strongInferences)
@@ -198,7 +197,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					// Get 'on' to 'off' nodes and 'off' to 'on' nodes recursively.
 					GetOnToOffRecursively(
 						accumulator, grid, candidatesUsed, endNode, strongInferences,
-						digitDistributions, stack, _maxLength - 2);
+						candMaps, stack, _maxLength - 2);
 
 					// Undo the step to recover the candidate status.
 					RemoveNode(start, ref candidatesUsed);

@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		{
 			for (int size = 2; size <= 4; size++)
 			{
-				foreach (var act in new Action[] { TakeAllNakedSubsetsBySize, TakeAllHiddenSubsetsBySize })
+				foreach (var act in new Action[] { GetNakedSubsetsBySize, GetHiddenSubsetsBySize })
 				{
 					act(accumulator, grid, size);
 				}
@@ -48,8 +48,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// <param name="grid">The grid.</param>
 		/// <param name="size">The size.</param>
 		/// <returns>All technique information searched.</returns>
-		private static void TakeAllNakedSubsetsBySize(
-			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int size)
+		private static void GetNakedSubsetsBySize(IBag<TechniqueInfo> result, IReadOnlyGrid grid, int size)
 		{
 			// Iterates on each region.
 			for (int region = 0; region < 27; region++)
@@ -58,7 +57,7 @@ namespace Sudoku.Solving.Manual.Subsets
 				for (int i1 = 0; i1 < 10 - size; i1++)
 				{
 					int pos1 = RegionCells[region][i1];
-					if (grid.GetCellStatus(pos1) != Empty)
+					if (grid.GetStatus(pos1) != Empty)
 					{
 						continue;
 					}
@@ -68,7 +67,7 @@ namespace Sudoku.Solving.Manual.Subsets
 					for (int i2 = i1 + 1; i2 < 11 - size; i2++)
 					{
 						int pos2 = RegionCells[region][i2];
-						if (grid.GetCellStatus(pos2) != Empty)
+						if (grid.GetStatus(pos2) != Empty)
 						{
 							continue;
 						}
@@ -86,9 +85,7 @@ namespace Sudoku.Solving.Manual.Subsets
 							// Naked pair found.
 							var digits = new List<int>((511 & ~mask2).GetAllSets());
 							var offsets = new[] { pos1, pos2 };
-							var conclusions =
-								GetNakedSubsetConclusions(
-									grid, offsets, digits, out bool? isLocked);
+							var conclusions = GetNakedSubsetConclusions(grid, offsets, digits, out bool? isLocked);
 
 							if (conclusions.Count == 0)
 							{
@@ -96,9 +93,7 @@ namespace Sudoku.Solving.Manual.Subsets
 							}
 
 							// Gather this conclusion.
-							GatherConclusion(
-								grid, result, region, digits,
-								offsets, conclusions, isLocked);
+							GatherConclusion(grid, result, region, digits, offsets, conclusions, isLocked);
 						}
 						else // size > 2
 						{
@@ -106,7 +101,7 @@ namespace Sudoku.Solving.Manual.Subsets
 							for (int i3 = i2 + 1; i3 < 12 - size; i3++)
 							{
 								int pos3 = RegionCells[region][i3];
-								if (grid.GetCellStatus(pos3) != Empty)
+								if (grid.GetStatus(pos3) != Empty)
 								{
 									continue;
 								}
@@ -125,17 +120,14 @@ namespace Sudoku.Solving.Manual.Subsets
 									var digits = new List<int>((511 & ~mask3).GetAllSets());
 									var offsets = new[] { pos1, pos2, pos3 };
 									var conclusions =
-										GetNakedSubsetConclusions(
-											grid, offsets, digits, out bool? isLocked);
+										GetNakedSubsetConclusions(grid, offsets, digits, out bool? isLocked);
 
 									if (conclusions.Count == 0)
 									{
 										continue;
 									}
 
-									GatherConclusion(
-										grid, result, region, digits,
-										offsets, conclusions, isLocked);
+									GatherConclusion(grid, result, region, digits, offsets, conclusions, isLocked);
 								}
 								else // size == 4
 								{
@@ -143,7 +135,7 @@ namespace Sudoku.Solving.Manual.Subsets
 									for (int i4 = i3 + 1; i4 < 9; i4++)
 									{
 										int pos4 = RegionCells[region][i4];
-										if (grid.GetCellStatus(pos4) != Empty)
+										if (grid.GetStatus(pos4) != Empty)
 										{
 											continue;
 										}
@@ -161,17 +153,14 @@ namespace Sudoku.Solving.Manual.Subsets
 										var digits = new List<int>((511 & ~mask4).GetAllSets());
 										var offsets = new[] { pos1, pos2, pos3, pos4 };
 										var conclusions =
-											GetNakedSubsetConclusions(
-												grid, offsets, digits, out bool? isLocked);
+											GetNakedSubsetConclusions(grid, offsets, digits, out bool? isLocked);
 
 										if (conclusions.Count == 0)
 										{
 											continue;
 										}
 
-										GatherConclusion(
-											grid, result, region, digits,
-											offsets, conclusions, isLocked);
+										GatherConclusion(grid, result, region, digits, offsets, conclusions, isLocked);
 									}
 								}
 							}
@@ -225,8 +214,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// </param>
 		/// <returns>All conclusions.</returns>
 		private static IReadOnlyList<Conclusion> GetNakedSubsetConclusions(
-			IReadOnlyGrid grid, IReadOnlyList<int> offsets,
-			IReadOnlyList<int> digits, out bool? isLocked)
+			IReadOnlyGrid grid, IReadOnlyList<int> offsets, IReadOnlyList<int> digits, out bool? isLocked)
 		{
 			var result = new List<Conclusion>();
 			int count = digits.Count;
@@ -315,8 +303,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// <param name="grid">The grid.</param>
 		/// <param name="size">The size.</param>
 		/// <returns>All technique information searched.</returns>
-		private static void TakeAllHiddenSubsetsBySize(
-			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int size)
+		private static void GetHiddenSubsetsBySize(IBag<TechniqueInfo> result, IReadOnlyGrid grid, int size)
 		{
 			for (int region = 0; region < 27; region++)
 			{
@@ -482,7 +469,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// <param name="region">The region offset.</param>
 		/// <param name="mask">
 		/// The mask that calculated in
-		/// <see cref="TakeAllHiddenSubsetsBySize(IBag{TechniqueInfo}, IReadOnlyGrid, int)"/>.
+		/// <see cref="GetHiddenSubsetsBySize(IBag{TechniqueInfo}, IReadOnlyGrid, int)"/>.
 		/// </param>
 		/// <param name="digits">All digits.</param>
 		/// <param name="cellOffsetList">(<see langword="out"/> parameter) All cell offsets.</param>

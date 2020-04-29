@@ -60,7 +60,7 @@ namespace Sudoku.Data.Stepping
 				grid._masks[Cell] = (short)((short)CellStatus.Modifiable << 9 | 511 & ~(1 << Digit));
 				foreach (int cell in GridProcessings.Peers[Cell])
 				{
-					if (grid.GetCellStatus(cell) != CellStatus.Empty)
+					if (grid.GetStatus(cell) != CellStatus.Empty)
 					{
 						continue;
 					}
@@ -70,7 +70,7 @@ namespace Sudoku.Data.Stepping
 			}
 			else if (Digit == -1)
 			{
-				if (grid.GetCellStatus(Cell) == CellStatus.Modifiable)
+				if (grid.GetStatus(Cell) == CellStatus.Modifiable)
 				{
 					Array.Copy(grid._initialMasks, grid._masks, 81);
 				}

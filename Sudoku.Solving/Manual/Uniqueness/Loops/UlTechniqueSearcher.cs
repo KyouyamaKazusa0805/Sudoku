@@ -311,7 +311,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				for (int i1 = 0; i1 < 11 - size; i1++)
 				{
 					int c1 = cells[i1];
-					if (grid.GetCellStatus(c1) != Empty || loop.Contains(c1))
+					if (grid.GetStatus(c1) != Empty || loop.Contains(c1))
 					{
 						continue;
 					}
@@ -391,7 +391,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						for (int i2 = i1 + 1; i2 < 12 - size; i2++)
 						{
 							int c2 = cells[i2];
-							if (grid.GetCellStatus(c2) != Empty || loop.Contains(c2))
+							if (grid.GetStatus(c2) != Empty || loop.Contains(c2))
 							{
 								continue;
 							}
@@ -475,7 +475,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								for (int i3 = i2 + 1; i3 < 9; i3++)
 								{
 									int c3 = cells[i3];
-									if (grid.GetCellStatus(c3) != Empty || loop.Contains(c3))
+									if (grid.GetStatus(c3) != Empty || loop.Contains(c3))
 									{
 										continue;
 									}
@@ -1101,7 +1101,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				for (int pos = 0; pos < 9; pos++)
 				{
 					int nextCell = RegionCells[region][pos];
-					if (grid.GetCellStatus(nextCell) != Empty)
+					if (grid.GetStatus(nextCell) != Empty)
 					{
 						continue;
 					}

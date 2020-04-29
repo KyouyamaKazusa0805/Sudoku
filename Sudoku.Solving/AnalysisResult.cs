@@ -74,8 +74,7 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
 		/// <seealso cref="SolvingSteps"/>
-		public decimal TotalDifficulty =>
-			SolvingSteps?.Sum(info => info.ShowDifficulty ? info.Difficulty : 0) ?? 0;
+		public decimal TotalDifficulty => SolvingSteps?.Sum(info => info.ShowDifficulty ? info.Difficulty : 0) ?? 0;
 
 		/// <summary>
 		/// <para>
@@ -89,8 +88,7 @@ namespace Sudoku.Solving
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
-		public decimal PearlDifficulty =>
-			SolvingSteps?.FirstOrDefault(info => info.ShowDifficulty)?.Difficulty ?? 0;
+		public decimal PearlDifficulty => SolvingSteps?.FirstOrDefault(info => info.ShowDifficulty)?.Difficulty ?? 0;
 
 		/// <summary>
 		/// <para>
@@ -110,21 +108,19 @@ namespace Sudoku.Solving
 		{
 			get
 			{
+				if (SolvingSteps is null)
+				{
+					return 20M;
+				}
+
 				if (HasSolved)
 				{
-					if (SolvingSteps is null)
+					for (int i = 1, count = SolvingSteps.Count; i < count; i++)
 					{
-						return 20M;
-					}
-					else
-					{
-						for (int i = 1, count = SolvingSteps.Count; i < count; i++)
+						var info = SolvingSteps[i - 1];
+						if (info.ShowDifficulty && SolvingSteps[i] is SingleTechniqueInfo)
 						{
-							var info = SolvingSteps[i - 1];
-							if (info.ShowDifficulty && SolvingSteps[i] is SingleTechniqueInfo)
-							{
-								return info.Difficulty;
-							}
+							return info.Difficulty;
 						}
 					}
 				}

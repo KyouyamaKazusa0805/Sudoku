@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
@@ -31,7 +30,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			(var emptyMap, _, _) = grid;
+			(var emptyMap, _, _, _) = grid;
 
 			var pairs = (Span<short>)stackalloc short[8];
 			var tempLink = (Span<short>)stackalloc short[8];
@@ -46,7 +45,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 				}
 				for (i = 0; i < 8; i++)
 				{
-					if (grid.GetCellStatus(cells[i << 1]) != Empty)
+					if (grid.GetStatus(cells[i << 1]) != Empty)
 					{
 						n++;
 					}
@@ -55,7 +54,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						pairs[i] |= grid.GetCandidatesReversal(cells[i << 1]);
 					}
 
-					if (grid.GetCellStatus(cells[(i << 1) + 1]) != Empty)
+					if (grid.GetStatus(cells[(i << 1) + 1]) != Empty)
 					{
 						n++;
 					}

@@ -174,7 +174,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							}
 
 							var extraCellsMap = new GridMap(extraCells);
-							if (extraCellsMap.Offsets.All(c => grid.GetCellStatus(c) != Empty))
+							if (extraCellsMap.Offsets.All(c => grid.GetStatus(c) != Empty))
 							{
 								continue;
 							}
@@ -403,7 +403,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 				var unavailableCellsMap = RegionMaps[region];
 				foreach (int cell in RegionCells[region])
 				{
-					if (grid.GetCellStatus(cell) == Empty && !allCellsMap[cell])
+					if (grid.GetStatus(cell) == Empty && !allCellsMap[cell])
 					{
 						unavailableCellsMap.Remove(cell);
 					}

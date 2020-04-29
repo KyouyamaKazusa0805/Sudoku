@@ -127,7 +127,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			var candidateOffsets = new List<(int, int)>();
 			foreach (int cell in urCells)
 			{
-				if (grid.GetCellStatus(cell) != Empty)
+				if (grid.GetStatus(cell) != Empty)
 				{
 					continue;
 				}
@@ -173,7 +173,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				|| otherCellsMap.Offsets.Any(c =>
 				{
 					short mask = grid.GetCandidatesReversal(c);
-					return (mask & comparer) == 0 || mask == comparer || arMode && grid.GetCellStatus(c) != Empty;
+					return (mask & comparer) == 0 || mask == comparer || arMode && grid.GetStatus(c) != Empty;
 				}))
 			{
 				return;
@@ -189,7 +189,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				return;
 			}
 
-			bool determinator(int c) => grid.GetCellStatus(c) == Empty && !otherCellsMap[c];
+			bool determinator(int c) => grid.GetStatus(c) == Empty && !otherCellsMap[c];
 			short otherDigitsMask = (short)(mask ^ comparer);
 			foreach (int region in otherCellsMap.CoveredRegions)
 			{
@@ -260,7 +260,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						var candidateOffsets = new List<(int, int)>();
 						foreach (int cell in urCells)
 						{
-							if (grid.GetCellStatus(cell) != Empty)
+							if (grid.GetStatus(cell) != Empty)
 							{
 								continue;
 							}
@@ -359,7 +359,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								var candidateOffsets = new List<(int, int)>();
 								foreach (int cell in urCells)
 								{
-									if (grid.GetCellStatus(cell) != Empty)
+									if (grid.GetStatus(cell) != Empty)
 									{
 										continue;
 									}
@@ -462,7 +462,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									var candidateOffsets = new List<(int, int)>();
 									foreach (int cell in urCells)
 									{
-										if (grid.GetCellStatus(cell) != Empty)
+										if (grid.GetStatus(cell) != Empty)
 										{
 											continue;
 										}
@@ -528,7 +528,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				|| otherCellsMap.Offsets.Any(c =>
 				{
 					short mask = grid.GetCandidatesReversal(c);
-					return (mask & comparer) == 0 || mask == comparer || arMode && grid.GetCellStatus(c) != Empty;
+					return (mask & comparer) == 0 || mask == comparer || arMode && grid.GetStatus(c) != Empty;
 				}))
 			{
 				return;
@@ -588,7 +588,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					var candidateOffsets = new List<(int, int)>();
 					foreach (int cell in (new GridMap(urCells) | totalMap).Offsets)
 					{
-						if (grid.GetCellStatus(cell) != Empty)
+						if (grid.GetStatus(cell) != Empty)
 						{
 							continue;
 						}
@@ -692,7 +692,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							var candidateOffsets = new List<(int, int)>();
 							foreach (int cell in (new GridMap(urCells) | totalMap).Offsets)
 							{
-								if (grid.GetCellStatus(cell) != Empty)
+								if (grid.GetStatus(cell) != Empty)
 								{
 									continue;
 								}
@@ -794,7 +794,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								var candidateOffsets = new List<(int, int)>();
 								foreach (int cell in (new GridMap(urCells) | totalMap).Offsets)
 								{
-									if (grid.GetCellStatus(cell) != Empty)
+									if (grid.GetStatus(cell) != Empty)
 									{
 										continue;
 									}
@@ -900,7 +900,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					var candidateOffsets = new List<(int, int)>();
 					foreach (int cell in urCells)
 					{
-						if (grid.GetCellStatus(cell) != Empty)
+						if (grid.GetStatus(cell) != Empty)
 						{
 							continue;
 						}
@@ -1008,7 +1008,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			var candidateOffsets = new List<(int, int)>();
 			foreach (int cell in urCells)
 			{
-				if (grid.GetCellStatus(cell) != Empty)
+				if (grid.GetStatus(cell) != Empty)
 				{
 					continue;
 				}
@@ -1190,7 +1190,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				var candidateOffsets = new List<(int, int)>();
 				foreach (int cell in urCells)
 				{
-					if (grid.GetCellStatus(cell) != Empty)
+					if (grid.GetStatus(cell) != Empty)
 					{
 						continue;
 					}

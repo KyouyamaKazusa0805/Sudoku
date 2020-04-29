@@ -4,11 +4,7 @@ using Sudoku.Data;
 
 namespace Sudoku
 {
-	/// <summary>
-	/// The tables for grid processing. All fields will be initialized in
-	/// the static constructor.
-	/// </summary>
-	public static partial class GridProcessings
+	partial class GridProcessings
 	{
 		/// <include file='../GlobalDocComments.xml' path='comments/staticConstructor'/>
 		/// <remarks>
