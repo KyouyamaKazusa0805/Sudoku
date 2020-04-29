@@ -3954,7 +3954,7 @@
             <param name="coverSet">The cover set.</param>
             <param name="a">The left grid map.</param>
             <param name="b">The right grid map.</param>
-            <param name="intersection">The intersection.</param>
+            <param name="c">The intersection.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo">
             <summary>
@@ -7671,6 +7671,15 @@
             <summary>
             Encapsulates a bit combination generator.
             </summary>
+            <example>
+            You can use this struct like this:
+            <code>
+            foreach (short mask in new BitCombinationGenerator(9, 3))<br/>
+            {<br/>
+                // Do something to use the mask.<br/>
+            }
+            </code>
+            </example>
         </member>
         <member name="F:Sudoku.Solving.Utils.BitCombinationGenerator._mask">
             <summary>
@@ -7717,7 +7726,12 @@
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Solving.Utils.BitCombinationGenerator.GetHashCode">
-            <inheritdoc/>
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Solving.Utils.BitCombinationGenerator.ToString">
