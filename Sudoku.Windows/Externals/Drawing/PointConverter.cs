@@ -95,7 +95,7 @@ namespace Sudoku.Drawing
 		{
 			var (x, y) = point;
 			var (cw, ch) = CellSize;
-			return (int)(y / ch) * 9 + (int)(x / cw);
+			return (int)((y - Offset) / ch) * 9 + (int)((x - Offset) / cw);
 		}
 
 		/// <summary>
@@ -108,7 +108,7 @@ namespace Sudoku.Drawing
 		{
 			var (x, y) = point;
 			var (cw, ch) = CandidateSize;
-			return GetCellOffset(point) * 9 + (int)(y / ch) % 3 * 3 + (int)(x / cw) % 3;
+			return GetCellOffset(point) * 9 + (int)((y - Offset) / ch) % 3 * 3 + (int)((x - Offset) / cw) % 3;
 		}
 
 		/// <summary>

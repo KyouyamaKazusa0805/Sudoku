@@ -366,6 +366,67 @@
 								Content="Reset!" Background="White"
 								Click="ButtonCellReset_Click"/>
 					</Grid>
+					<Grid Grid.Row="1">
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition/>
+							<ColumnDefinition/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<Label Grid.Row="0" Grid.ColumnSpan="3" Content="Choose color for candidate:"
+							   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						<Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
+							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+							</Grid.ColumnDefinitions>
+							<Button Name="_buttonCandidateColor1" Grid.Row="0" Grid.Column="0"
+									Click="ButtonCandidateColor1_Click"/>
+							<Button Name="_buttonCandidateColor2" Grid.Row="0" Grid.Column="1"
+									Click="ButtonCandidateColor2_Click"/>
+							<Button Name="_buttonCandidateColor3" Grid.Row="0" Grid.Column="2"
+									Click="ButtonCandidateColor3_Click"/>
+							<Button Name="_buttonCandidateColor4" Grid.Row="0" Grid.Column="3"
+									Click="ButtonCandidateColor4_Click"/>
+							<Button Name="_buttonCandidateColor5" Grid.Row="0" Grid.Column="4"
+									Click="ButtonCandidateColor5_Click"/>
+							<Button Name="_buttonCandidateColor6" Grid.Row="0" Grid.Column="5"
+									Click="ButtonCandidateColor6_Click"/>
+							<Button Name="_buttonCandidateColor7" Grid.Row="0" Grid.Column="6"
+									Click="ButtonCandidateColor7_Click"/>
+							<Button Name="_buttonCandidateColor8" Grid.Row="1" Grid.Column="0"
+									Click="ButtonCandidateColor8_Click"/>
+							<Button Name="_buttonCandidateColor9" Grid.Row="1" Grid.Column="1"
+									Click="ButtonCandidateColor9_Click"/>
+							<Button Name="_buttonCandidateColor10" Grid.Row="1" Grid.Column="2"
+									Click="ButtonCandidateColor10_Click"/>
+							<Button Name="_buttonCandidateColor11" Grid.Row="1" Grid.Column="3"
+									Click="ButtonCandidateColor11_Click"/>
+							<Button Name="_buttonCandidateColor12" Grid.Row="1" Grid.Column="4"
+									Click="ButtonCandidateColor12_Click"/>
+							<Button Name="_buttonCandidateColor13" Grid.Row="1" Grid.Column="5"
+									Click="ButtonCandidateColor13_Click"/>
+							<Button Name="_buttonCandidateColor14" Grid.Row="1" Grid.Column="6"
+									Click="ButtonCandidateColor14_Click"/>
+						</Grid>
+						<Button Name="_buttonCandidateReset" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
+								HorizontalAlignment="Left" Width="50" Height="30" Margin="20,0,0,0"
+								Content="Reset!" Background="White"
+								Click="ButtonCellReset_Click"/>
+					</Grid>
 				</Grid>
 			</TabItem>
 		</TabControl>

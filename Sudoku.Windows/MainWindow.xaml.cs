@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+#if SUDOKU_RECOGNIZING
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+#endif
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -11,6 +15,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Sudoku.Data;
 using Sudoku.Data.Stepping;
@@ -18,6 +23,9 @@ using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Drawing.Layers;
 using Sudoku.Extensions;
+#if SUDOKU_RECOGNIZING
+using Sudoku.Recognitions;
+#endif
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Drawing.Layers;
@@ -28,12 +36,6 @@ using static Sudoku.Windows.Constants.Processing;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
 using WPoint = System.Windows.Point;
-using System.Windows.Media;
-#if SUDOKU_RECOGNIZING
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using Sudoku.Recognitions;
-#endif
 
 namespace Sudoku.Windows
 {
@@ -594,6 +596,20 @@ namespace Sudoku.Windows
 			_buttonCellColor12.Background = new SolidColorBrush(Settings.Color12.ToWColor());
 			_buttonCellColor13.Background = new SolidColorBrush(Settings.Color13.ToWColor());
 			_buttonCellColor14.Background = new SolidColorBrush(Settings.Color14.ToWColor());
+			_buttonCandidateColor1.Background = new SolidColorBrush(Settings.Color1.ToWColor());
+			_buttonCandidateColor2.Background = new SolidColorBrush(Settings.Color2.ToWColor());
+			_buttonCandidateColor3.Background = new SolidColorBrush(Settings.Color3.ToWColor());
+			_buttonCandidateColor4.Background = new SolidColorBrush(Settings.Color4.ToWColor());
+			_buttonCandidateColor5.Background = new SolidColorBrush(Settings.Color5.ToWColor());
+			_buttonCandidateColor6.Background = new SolidColorBrush(Settings.Color6.ToWColor());
+			_buttonCandidateColor7.Background = new SolidColorBrush(Settings.Color7.ToWColor());
+			_buttonCandidateColor8.Background = new SolidColorBrush(Settings.Color8.ToWColor());
+			_buttonCandidateColor9.Background = new SolidColorBrush(Settings.Color9.ToWColor());
+			_buttonCandidateColor10.Background = new SolidColorBrush(Settings.Color10.ToWColor());
+			_buttonCandidateColor11.Background = new SolidColorBrush(Settings.Color11.ToWColor());
+			_buttonCandidateColor12.Background = new SolidColorBrush(Settings.Color12.ToWColor());
+			_buttonCandidateColor13.Background = new SolidColorBrush(Settings.Color13.ToWColor());
+			_buttonCandidateColor14.Background = new SolidColorBrush(Settings.Color14.ToWColor());
 
 			_manualSolver = Settings.MainManualSolver;
 

@@ -248,5 +248,89 @@ namespace Sudoku.Windows
 			_currentColor = 9;
 			_customDrawingMode = 0;
 		}
+
+		private void ButtonCandidateColor1_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 0;
+			_customDrawingMode = 1;
+		}
+
+		private void ButtonCandidateColor2_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 1;
+			_customDrawingMode = 1;
+		}
+
+		private void ButtonCandidateColor3_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 2;
+			_customDrawingMode = 1;
+		}
+
+		private void ButtonCandidateColor4_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 3;
+			_customDrawingMode = 1;
+		}
+
+		private void ButtonCandidateColor5_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = -1;
+			_customDrawingMode = 1;
+		}
+
+		private void ButtonCandidateColor6_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = -2;
+			_customDrawingMode = 1;
+		}
+
+		private void ButtonCandidateColor7_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = -3;
+			_customDrawingMode = 1;
+		}
+
+		private void ButtonCandidateColor8_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = -4;
+			_customDrawingMode = 1;
+		}
+
+		private void ButtonCandidateColor9_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 4;
+			_customDrawingMode = 1;
+		}
+
+		private void ButtonCandidateColor10_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 5;
+			_customDrawingMode = 1;
+		}
+
+		private void ButtonCandidateColor11_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 6;
+			_customDrawingMode = 1;
+		}
+
+		private void ButtonCandidateColor12_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 7;
+			_customDrawingMode = 1;
+		}
+
+		private void ButtonCandidateColor13_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 8;
+			_customDrawingMode = 1;
+		}
+
+		private void ButtonCandidateColor14_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 9;
+			_customDrawingMode = 1;
+		}
 	}
 }

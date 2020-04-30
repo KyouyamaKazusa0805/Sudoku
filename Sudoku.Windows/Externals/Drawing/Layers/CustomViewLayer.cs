@@ -9,6 +9,7 @@ using Sudoku.Drawing.Layers;
 using Sudoku.Extensions;
 using Sudoku.Solving;
 using static System.Math;
+using static Sudoku.Solving.ConclusionType;
 
 namespace Sudoku.Drawing
 {
@@ -113,11 +114,11 @@ namespace Sudoku.Drawing
 				{
 					// Every assignment conclusion will be painted
 					// in its technique information view.
-					//case ConclusionType.Assignment:
+					//case Assignment:
 					//{
 					//	break;
 					//}
-					case ConclusionType.Elimination:
+					case Elimination:
 					{
 						g.FillEllipse(
 							_view?.CandidateOffsets?.Any(pair => pair._candidate == c * 9 + d) ?? false
@@ -273,8 +274,7 @@ namespace Sudoku.Drawing
 				if (_colorDic.TryGetValue(id, out var color))
 				{
 					using var brush = new SolidBrush(Color.FromArgb(32, color));
-					g.FillRectangle(
-						brush, _pointConverter.GetMousePointRectangleForRegion(region).Zoom(-offset / 3));
+					g.FillRectangle(brush, _pointConverter.GetMousePointRectangleForRegion(region).Zoom(-offset / 3));
 				}
 			}
 		}
@@ -291,19 +291,13 @@ namespace Sudoku.Drawing
 				int cell = candidate / 9, digit = candidate % 9;
 				if (!(
 					_conclusions?.Any(
-						c =>
-						{
-							return c.CellOffset == cell
-								&& c.Digit == digit
-								&& c.ConclusionType == ConclusionType.Elimination;
-						}) ?? false)
+						c => c.CellOffset == cell && c.Digit == digit && c.ConclusionType == Elimination) ?? false)
 					&& _colorDic.TryGetValue(id, out var color))
 				{
 					var (cw, ch) = _pointConverter.CandidateSize;
 					var (x, y) = _pointConverter.GetMousePointInCenter(cell, digit);
 					using var brush = new SolidBrush(color);
-					g.FillEllipse(
-						brush, _pointConverter.GetMousePointRectangle(cell, digit).Zoom(-offset / 3));
+					g.FillEllipse(brush, _pointConverter.GetMousePointRectangle(cell, digit).Zoom(-offset / 3));
 				}
 			}
 		}

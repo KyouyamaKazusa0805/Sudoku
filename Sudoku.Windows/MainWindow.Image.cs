@@ -21,6 +21,7 @@ namespace Sudoku.Windows
 			}
 
 			int getCell() => _pointConverter.GetCellOffset(e.GetPosition(image).ToDPointF());
+			int getCandidate() => _pointConverter.GetCandidateOffset(e.GetPosition(image).ToDPointF());
 			switch (Keyboard.Modifiers)
 			{
 				case ModifierKeys.None:
@@ -44,6 +45,20 @@ namespace Sudoku.Windows
 								else
 								{
 									_view.AddCell(_currentColor, cell);
+								}
+
+								break;
+							}
+							case 1: // Candidate.
+							{
+								int candidate = getCandidate();
+								if (_view.ContainsCandidate(candidate))
+								{
+									_view.RemoveCandidate(candidate);
+								}
+								else
+								{
+									_view.AddCandidate(_currentColor, candidate);
 								}
 
 								break;
