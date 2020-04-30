@@ -319,8 +319,7 @@ namespace Sudoku.Windows
 					_ => throw Throwing.ImpossibleCase
 				});
 
-				_layerCollection.Add(
-					new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
+				_layerCollection.Add(new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
 
 				UpdateImageGrid();
 			}
@@ -330,8 +329,7 @@ namespace Sudoku.Windows
 				_previewMap = _focusedCells;
 				_focusedCells = new GridMap(_focusedCells, ProcessPeersWithoutItself);
 
-				_layerCollection.Add(
-					new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
+				_layerCollection.Add(new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
 
 				UpdateImageGrid();
 			}
@@ -342,8 +340,7 @@ namespace Sudoku.Windows
 				_focusedCells.Clear();
 				_focusedCells.Add((cell + 3) % 81);
 
-				_layerCollection.Add(
-					new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
+				_layerCollection.Add(new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
 
 				UpdateImageGrid();
 			}
@@ -368,8 +365,7 @@ namespace Sudoku.Windows
 			{
 				_focusedCells = _previewMap.Value;
 
-				_layerCollection.Add(
-					new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
+				_layerCollection.Add(new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
 
 				UpdateImageGrid();
 			}
@@ -662,11 +658,9 @@ namespace Sudoku.Windows
 			_pointConverter = new PointConverter((float)_imageGrid.Width, (float)_imageGrid.Height);
 			_layerCollection.Add(new BackLayer(_pointConverter, Settings.BackgroundColor));
 			_layerCollection.Add(
-				new GridLineLayer(
-					_pointConverter, Settings.GridLineWidth, Settings.GridLineColor));
+				new GridLineLayer(_pointConverter, Settings.GridLineWidth, Settings.GridLineColor));
 			_layerCollection.Add(
-				new BlockLineLayer(
-					_pointConverter, Settings.BlockLineWidth, Settings.BlockLineColor));
+				new BlockLineLayer(_pointConverter, Settings.BlockLineWidth, Settings.BlockLineColor));
 			_layerCollection.Add(
 				new ValueLayer(
 					_pointConverter, Settings.ValueScale, Settings.CandidateScale,
@@ -911,8 +905,7 @@ namespace Sudoku.Windows
 		/// <param name="solution">The solution.</param>
 		/// <param name="conclusions">The conclusions.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
-		private static bool CheckConclusionsValidity(
-			IReadOnlyGrid solution, IEnumerable<Conclusion> conclusions)
+		private static bool CheckConclusionsValidity(IReadOnlyGrid solution, IEnumerable<Conclusion> conclusions)
 		{
 			foreach (var (t, c, d) in conclusions)
 			{

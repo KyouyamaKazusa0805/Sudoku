@@ -28,8 +28,7 @@ Clone this repo, and you can take all codes!
 只需要你克隆这个仓库就可以带走所有的代码了！
 
 ```bash
-Username@ComputerName MINGW64 ~/Desktop
-$ git clone https://github.com/Sunnie-Shine/Sudoku.git
+git clone https://github.com/Sunnie-Shine/Sudoku.git
 ```
 
 This whole solution consists of several folders below:<br/>这个解决方案由如下文件夹构成：
