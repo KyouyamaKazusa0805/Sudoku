@@ -84,7 +84,7 @@ namespace Sudoku.Windows
 
 		/// <summary>
 		/// Indicates the current color chosen (used in coloring mode).
-		/// See <see cref="Settings.PaletteColors"/> for more. When the value is
+		/// See <see cref="Settings.PaletteColors"/> for more. If the value is
 		/// <see cref="int.MinValue"/>, the current color is unavailable.
 		/// </summary>
 		/// <seealso cref="Settings.PaletteColors"/>

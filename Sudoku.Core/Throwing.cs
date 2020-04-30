@@ -27,6 +27,13 @@ namespace Sudoku
 		public static FormatException FormatError =>
 			new FormatException("The specified format is invalid.");
 
+		/// <summary>
+		/// Indicates all <see langword="ref"/> <see langword="struct"/>s cannot
+		/// use any boxing operations.
+		/// </summary>
+		public static NotSupportedException RefStructNotSupported =>
+			new NotSupportedException("Ref structs cannot use any boxing operations.");
+
 
 		/// <summary>
 		/// Indicates an exception throwing when the case is impossible

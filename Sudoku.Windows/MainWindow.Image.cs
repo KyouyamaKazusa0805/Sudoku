@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -7,6 +6,7 @@ using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
 using Sudoku.Windows.Drawing.Layers;
+using static System.Reflection.BindingFlags;
 
 namespace Sudoku.Windows
 {
@@ -144,12 +144,9 @@ namespace Sudoku.Windows
 			for (int i = 0; i < 9; i++)
 			{
 				((MenuItem)GetType()
-					.GetField($"_menuItemImageGridSet{i + 1}", BindingFlags.NonPublic | BindingFlags.Instance)!
-					.GetValue(this)!
-				).IsEnabled = false;
+					.GetField($"_menuItemImageGridSet{i + 1}", NonPublic | Instance)!.GetValue(this)!).IsEnabled = false;
 				((MenuItem)GetType()
-					.GetField($"_menuItemImageGridDelete{i + 1}", BindingFlags.NonPublic | BindingFlags.Instance)!
-					.GetValue(this)!
+					.GetField($"_menuItemImageGridDelete{i + 1}", NonPublic | Instance)!.GetValue(this)!
 				).IsEnabled = false;
 			}
 
@@ -159,12 +156,9 @@ namespace Sudoku.Windows
 					_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF())).GetAllSets())
 			{
 				((MenuItem)GetType()
-					.GetField($"_menuItemImageGridSet{i + 1}", BindingFlags.NonPublic | BindingFlags.Instance)!
-					.GetValue(this)!
-				).IsEnabled = true;
+					.GetField($"_menuItemImageGridSet{i + 1}", NonPublic | Instance)!.GetValue(this)!).IsEnabled = true;
 				((MenuItem)GetType()
-					.GetField($"_menuItemImageGridDelete{i + 1}", BindingFlags.NonPublic | BindingFlags.Instance)!
-					.GetValue(this)!
+					.GetField($"_menuItemImageGridDelete{i + 1}", NonPublic | Instance)!.GetValue(this)!
 				).IsEnabled = true;
 			}
 		}
