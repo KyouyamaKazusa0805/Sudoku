@@ -84,10 +84,12 @@ namespace Sudoku.Windows
 
 		/// <summary>
 		/// Indicates the current color chosen (used in coloring mode).
-		/// See <see cref="Settings.PaletteColors"/> for more.
+		/// See <see cref="Settings.PaletteColors"/> for more. When the value is
+		/// <see cref="int.MinValue"/>, the current color is unavailable.
 		/// </summary>
 		/// <seealso cref="Settings.PaletteColors"/>
-		private int _currentColor = -1;
+		/// <seealso cref="int.MinValue"/>
+		private int _currentColor = int.MinValue;
 
 		/// <summary>
 		/// Indicates the database of puzzles used current.
