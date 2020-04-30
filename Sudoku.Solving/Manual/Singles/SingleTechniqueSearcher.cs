@@ -137,6 +137,7 @@ namespace Sudoku.Solving.Manual.Singles
 					if (count == 1)
 					{
 						bool enableAndIsLastDigit = false;
+						var cellOffsets = new List<(int, int)>();
 						if (_enableLastDigit)
 						{
 							// Sum up the number of appearing in the grid of 'digit'.
@@ -146,8 +147,10 @@ namespace Sudoku.Solving.Manual.Singles
 								if (grid[i] == digit)
 								{
 									digitCount++;
+									cellOffsets.Add((0, i));
 								}
 							}
+
 							enableAndIsLastDigit = digitCount == 8;
 						}
 
@@ -157,9 +160,9 @@ namespace Sudoku.Solving.Manual.Singles
 								views: new[]
 								{
 									new View(
-										cellOffsets: null,
+										cellOffsets: enableAndIsLastDigit ? cellOffsets : null,
 										candidateOffsets: new[] { (0, hiddenSingleCellOffset * 9 + digit) },
-										regionOffsets: new[] { (0, region) },
+										regionOffsets: enableAndIsLastDigit ? null : new[] { (0, region) },
 										links: null)
 								},
 								regionOffset: region,
