@@ -3259,6 +3259,31 @@
             <param name="key">The key.</param>
             <param name="value">The value.</param>
         </member>
+        <member name="T:Sudoku.Extensions.DoubleEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Double"/>.
+            </summary>
+            <seealso cref="T:System.Double"/>
+        </member>
+        <member name="M:Sudoku.Extensions.DoubleEx.NearlyEquals(System.Double,System.Double)">
+            <summary>
+            Indicates whether the specified value is nearly equals to the current value.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="other">The other value.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.DoubleEx.NearlyEquals(System.Double,System.Double,System.Double)">
+            <summary>
+            Indicates whether the specified value is nearly equals to the current value.
+            If the differ of two values to compare is lower than the specified epsilon value,
+            the method will return <see langword="true"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="other">The other value to compare.</param>
+            <param name="epsilon">The epsilon value (the minimal differ).</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Extensions.EnumEx">
             <summary>
             Provides extension methods on <see cref="T:System.Enum"/>.
@@ -3566,6 +3591,31 @@
             but the type of the specified object is used only.
             </remarks>
             <seealso cref="M:Sudoku.Extensions.ObjectEx.HasMarkedAttribute``1(System.Object,System.Boolean,System.Collections.Generic.IEnumerable{``0}@)"/>
+        </member>
+        <member name="T:Sudoku.Extensions.SingleEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Single"/>.
+            </summary>
+            <seealso cref="T:System.Single"/>
+        </member>
+        <member name="M:Sudoku.Extensions.SingleEx.NearlyEquals(System.Single,System.Single)">
+            <summary>
+            Indicates whether the specified value is nearly equals to the current value.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="other">The other value.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.SingleEx.NearlyEquals(System.Single,System.Single,System.Single)">
+            <summary>
+            Indicates whether the specified value is nearly equals to the current value.
+            If the differ of two values to compare is lower than the specified epsilon value,
+            the method will return <see langword="true"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="other">The other value to compare.</param>
+            <param name="epsilon">The epsilon value (the minimal differ).</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Extensions.SpanEx">
             <summary>

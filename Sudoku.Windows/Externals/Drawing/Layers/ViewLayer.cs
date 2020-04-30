@@ -8,6 +8,7 @@ using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
 using Sudoku.Solving;
 using static System.Math;
+using static Sudoku.Solving.ConclusionType;
 
 namespace Sudoku.Drawing.Layers
 {
@@ -115,11 +116,11 @@ namespace Sudoku.Drawing.Layers
 				{
 					// Every assignment conclusion will be painted
 					// in its technique information view.
-					//case ConclusionType.Assignment:
+					//case Assignment:
 					//{
 					//	break;
 					//}
-					case ConclusionType.Elimination:
+					case Elimination:
 					{
 						g.FillEllipse(
 							_view?.CandidateOffsets?.Any(pair => pair._candidateOffset == c * 9 + d) ?? false
@@ -151,8 +152,9 @@ namespace Sudoku.Drawing.Layers
 				points.Add(_pointConverter.GetMouseCenterOfCandidates(inference.Start.CandidatesMap));
 				points.Add(_pointConverter.GetMouseCenterOfCandidates(inference.End.CandidatesMap));
 			}
+
 			points.AddRange(
-				from conclusion in _conclusions
+				from conclusion in _conclusions ?? Array.Empty<Conclusion>()
 				select _pointConverter.GetMousePointInCenter(conclusion.CellOffset, conclusion.Digit));
 
 			// Iterate on each inference to draw the links and grouped nodes (if so).
@@ -205,7 +207,6 @@ namespace Sudoku.Drawing.Layers
 				double deltaX = pt2x - pt1x;
 				double deltaY = pt2y - pt1y;
 				double alpha = Atan2(deltaY, deltaX);
-				double epsilon = 1e-1;
 				double dx1 = deltaX;
 				double dy1 = deltaY;
 				bool through = false;
@@ -222,7 +223,7 @@ namespace Sudoku.Drawing.Layers
 					double dy2 = point.Y - p1.Y;
 					if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
 						&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
-						&& (dx1 == 0 || dy1 == 0 || Abs(dx1 / dy1 - dx2 / dy2) < epsilon))
+						&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, 1e-1)))
 					{
 						through = true;
 						break;
@@ -290,19 +291,13 @@ namespace Sudoku.Drawing.Layers
 				int cell = candidate / 9, digit = candidate % 9;
 				if (!(
 					_conclusions?.Any(
-						c =>
-						{
-							return c.CellOffset == cell
-								&& c.Digit == digit
-								&& c.ConclusionType == ConclusionType.Elimination;
-						}) ?? false)
+						c => c.CellOffset == cell && c.Digit == digit && c.ConclusionType == Elimination) ?? false)
 					&& _colorDic.TryGetValue(id, out var color))
 				{
 					var (cw, ch) = _pointConverter.CandidateSize;
 					var (x, y) = _pointConverter.GetMousePointInCenter(cell, digit);
 					using var brush = new SolidBrush(color);
-					g.FillEllipse(
-						brush, _pointConverter.GetMousePointRectangle(cell, digit).Zoom(-offset / 3));
+					g.FillEllipse(brush, _pointConverter.GetMousePointRectangle(cell, digit).Zoom(-offset / 3));
 				}
 			}
 		}
