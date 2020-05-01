@@ -122,6 +122,14 @@
             <summary>
             Indicates the cell collection.
             </summary>
+            <remarks>
+            Different with <see cref="T:Sudoku.Data.GridMap"/>, the collection is immutable, which means you cannot
+            modify any values in this collection after initialized. In addition, the output text will
+            be different with <see cref="T:Sudoku.Data.GridMap"/> (<see cref="T:Sudoku.Data.GridMap"/>s use digit characters
+            <c>0</c> or <c>1</c> to represent a bit is set or not set; however, this collection will
+            output all cells using RCB-notation, for example, <c>r2c4</c>).
+            </remarks>
+            <seealso cref="T:Sudoku.Data.GridMap"/>
         </member>
         <member name="F:Sudoku.Data.Collections.CellCollection._map">
             <summary>
@@ -166,7 +174,12 @@
 	</method>
         </member>
         <member name="M:Sudoku.Data.Collections.CellCollection.GetHashCode">
-            <inheritdoc/>
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Data.Collections.CellCollection.ToString">
@@ -258,7 +271,12 @@
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.GetHashCode">
-            <inheritdoc/>
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.ToString">
@@ -322,12 +340,6 @@
             The inner mask.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Collections.RegionCollection.#ctor(System.Int32)">
-            <summary>
-            Initializes an instance with the specified mask.
-            </summary>
-            <param name="mask">The mask.</param>
-        </member>
         <member name="M:Sudoku.Data.Collections.RegionCollection.#ctor(System.ReadOnlySpan{System.Int32})">
             <summary>
             Initializes an instance with the specified regions.
@@ -360,7 +372,12 @@
 	</method>
         </member>
         <member name="M:Sudoku.Data.Collections.RegionCollection.GetHashCode">
-            <inheritdoc/>
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Data.Collections.RegionCollection.ToString">
@@ -588,50 +605,6 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Data.Extensions.ReadOnlyGridEx.Exists(Sudoku.Data.IReadOnlyGrid,System.Int32)">
-            <summary>
-            <para>
-            Indicates whether the specified grid contains the specified candidate.
-            </para>
-            <para>
-            The return value will be <see langword="true"/> if and only if
-            the cell that the candidate lies on is empty and the cell contains that digit.
-            </para>
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <param name="candidateOffset">The candidate offset.</param>
-            <returns>
-            A <see cref="T:System.Boolean"/>? value indicating that.
-            </returns>
-            <remarks>
-            The cases of the return value are below:
-            <list type="table">
-            <item>
-            <term><c><see langword="true"/></c></term>
-            <description>
-            The cell is an empty cell <b>and</b> contains the specified digit.
-            </description>
-            </item>
-            <item>
-            <term><c><see langword="false"/></c></term>
-            <description>
-            The cell is an empty cell <b>but doesn't</b> contain the specified digit.
-            </description>
-            </item>
-            <item>
-            <term><c><see langword="null"/></c></term>
-            <description>The cell is <b>not</b> an empty cell.</description>
-            </item>
-            </list>
-            </remarks>
-            <example>
-            Note that the method will return a <see cref="T:System.Boolean"/>?, so you should use the code
-            <code>grid.Exists(candidate) is true</code>
-            or
-            <code>grid.Exists(candidate) == true</code>
-            to decide whether a condition is true.
-            </example>
-        </member>
         <member name="M:Sudoku.Data.Extensions.ReadOnlyGridEx.Exists(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32)">
             <summary>
             <para>
@@ -743,17 +716,6 @@
             <param name="digit">The digit.</param>
             <param name="regionOffset">The region.</param>
             <returns>The cells' map.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.ReadOnlyGridEx.GetBivalueCellsMap(Sudoku.Data.IReadOnlyGrid,System.Int32@)">
-            <summary>
-            Find all bivalue cells displaying with a <see cref="T:Sudoku.Data.GridMap"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <param name="count">
-            (<see langword="out"/> parameter) The number of bivalue cells.
-            This parameter is only used for quickening the code running.
-            </param>
-            <returns>The grid map.</returns>
         </member>
         <member name="T:Sudoku.Data.FullGridMap">
             <summary>

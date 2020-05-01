@@ -10,6 +10,14 @@ namespace Sudoku.Data.Collections
 	/// <summary>
 	/// Indicates the cell collection.
 	/// </summary>
+	/// <remarks>
+	/// Different with <see cref="GridMap"/>, the collection is immutable, which means you cannot
+	/// modify any values in this collection after initialized. In addition, the output text will
+	/// be different with <see cref="GridMap"/> (<see cref="GridMap"/>s use digit characters
+	/// <c>0</c> or <c>1</c> to represent a bit is set or not set; however, this collection will
+	/// output all cells using RCB-notation, for example, <c>r2c4</c>).
+	/// </remarks>
+	/// <seealso cref="GridMap"/>
 	public readonly ref struct CellCollection
 	{
 		/// <summary>
@@ -60,7 +68,7 @@ namespace Sudoku.Data.Collections
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
 		public bool Equals(CellCollection other) => _map == other._map;
 
-		/// <inheritdoc/>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[DoesNotReturn]

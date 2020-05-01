@@ -7170,13 +7170,13 @@
         <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.TakeAllWWings(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{Sudoku.Data.GridMap,System.Int32}@)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.TakeAllWWings(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap)">
             <summary>
             Search for all W-Wings.
             </summary>
             <param name="result">The result accumulator.</param>
             <param name="grid">The grid.</param>
-            <param name="pair">(<see langword="in"/> parameter) bivalue cell information pair.</param>
+            <param name="bivalueCellsMap">(<see langword="in"/> parameter) bivalue cell information pair.</param>
             <returns>All technique information instances.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.SearchWWingByRegions(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32[],System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
@@ -7317,7 +7317,7 @@
         <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.TakeAllBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.ValueTuple{Sudoku.Data.GridMap,System.Int32}@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.TakeAllBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap,System.Int32)">
             <summary>
             Take all technique steps by the specified size.
             </summary>
@@ -7333,7 +7333,7 @@
             reference can make the value passing more simple.
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.CheckWhetherBivalueCellsAreSame(Sudoku.Data.IReadOnlyGrid,System.Int32[])">
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.CheckWhetherBivalueCellsAreSame(Sudoku.Data.IReadOnlyGrid,System.ReadOnlySpan{System.Int32})">
             <summary>
             Check whether the two of all bivalue cells has whole same candidates.
             </summary>
@@ -7341,7 +7341,7 @@
             <param name="cells">The cells to check.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.CheckAndSearchEliminations(Sudoku.Data.GridMap,System.Int32[],System.Int32,System.Boolean,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.CheckAndSearchEliminations(Sudoku.Data.GridMap,System.ReadOnlySpan{System.Int32},System.Int32,System.Boolean,Sudoku.Data.GridMap@)">
             <summary>
             Check and search eliminations.
             </summary>
@@ -7350,14 +7350,12 @@
             </param>
             <param name="cells">All body cells.</param>
             <param name="pivot">The pivot cell.</param>
-            <param name="isIncompleted">
-            (<see langword="out"/> parameter) Indicates whether the technique is uncompleted.
-            </param>
+            <param name="isIncompleted">Indicates whether the technique is uncompleted.</param>
             <param name="map">
             (<see langword="out"/> parameter) The result grid intersection map.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.GatherConclusion(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},System.Int32,System.Int32[],System.Int16,System.Int16,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.GatherConclusion(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},System.Int32,System.ReadOnlySpan{System.Int32},System.Int16,System.Int16,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion})">
             <summary>
             Gather the conclusion.
             </summary>
@@ -7382,7 +7380,7 @@
             <param name="map">The intersection grid map.</param>
             <returns>The conclusions.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.RecordValues(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32[],System.Int16@,System.Int16@,System.Int16@,System.Int16@,System.Int16@)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.RecordValues(Sudoku.Data.IReadOnlyGrid,System.Int32,System.ReadOnlySpan{System.Int32},System.Int16@,System.Int16@,System.Int16@,System.Int16@,System.Int16@)">
             <summary>
             Record all values.
             </summary>

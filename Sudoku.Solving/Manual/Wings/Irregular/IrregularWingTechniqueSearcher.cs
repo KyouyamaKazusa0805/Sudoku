@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -32,19 +31,14 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			// Search for all conjugate pairs.
-			//var conjugatePairs = grid.GetAllConjugatePairs();
-
-			// Then search for all bivalue cells.
-			var bivalueCellsMap = grid.GetBivalueCellsMap(out int bivalueCellsCount);
-			var pair = (bivalueCellsMap, bivalueCellsCount);
+			(_, var bivalueCellsMap, _, _) = grid;
 
 			// Finally search all irregular wings.
 			// Hybrid-Wings, Local-Wings, Split-Wings and M-Wings can
 			// be found in another searcher.
 			// These wings are not elementary and necessary techniques
 			// so we does not need to list them.
-			TakeAllWWings(accumulator, grid, in pair);
+			TakeAllWWings(accumulator, grid, bivalueCellsMap);
 		}
 
 		/// <summary>
@@ -52,13 +46,11 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
-		/// <param name="pair">(<see langword="in"/> parameter) bivalue cell information pair.</param>
+		/// <param name="bivalueCellsMap">(<see langword="in"/> parameter) bivalue cell information pair.</param>
 		/// <returns>All technique information instances.</returns>
-		public static void TakeAllWWings(
-			IBag<TechniqueInfo> result, IReadOnlyGrid grid, in (GridMap _map, int _count) pair)
+		public static void TakeAllWWings(IBag<TechniqueInfo> result, IReadOnlyGrid grid, GridMap bivalueCellsMap)
 		{
-			var (bivalueMap, count) = pair;
-			if (count < 2)
+			if (bivalueCellsMap.Count < 2)
 			{
 				return;
 			}
@@ -66,7 +58,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 			// Iterate on each cells.
 			for (int c1 = 0; c1 < 72; c1++)
 			{
-				if (!bivalueMap[c1] || grid.GetStatus(c1) != Empty)
+				if (!bivalueCellsMap[c1] || grid.GetStatus(c1) != Empty)
 				{
 					continue;
 				}
@@ -86,9 +78,8 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 						continue;
 					}
 
-					ValueTuple<int, int, int> triplet1, triplet2;
-					var (row1, column1, block1) = triplet1 = CellUtils.GetRegion(c1);
-					var (row2, column2, block2) = triplet2 = CellUtils.GetRegion(c2);
+					var (row1, column1, block1) = CellUtils.GetRegion(c1);
+					var (row2, column2, block2) = CellUtils.GetRegion(c2);
 
 					// Each rows.
 					int region;
@@ -147,10 +138,8 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 					continue;
 				}
 
-				static bool condition(int c1, int c2) =>
-					(new GridMap(c1, false) & new GridMap(c2, false)).CoveredRegions.Any();
-				if (!(condition(bridgeStart, c1) && condition(bridgeEnd, c2))
-					&& !(condition(bridgeStart, c2) && condition(bridgeEnd, c1)))
+				static bool c(int c1, int c2) => (new GridMap(c1, false) & new GridMap(c2, false)).CoveredRegions.Any();
+				if (!(c(bridgeStart, c1) && c(bridgeEnd, c2)) && !(c(bridgeStart, c2) && c(bridgeEnd, c1)))
 				{
 					continue;
 				}

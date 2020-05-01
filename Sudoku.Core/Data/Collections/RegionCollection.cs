@@ -19,12 +19,6 @@ namespace Sudoku.Data.Collections
 
 
 		/// <summary>
-		/// Initializes an instance with the specified mask.
-		/// </summary>
-		/// <param name="mask">The mask.</param>
-		public RegionCollection(int mask) => _mask = mask;
-
-		/// <summary>
 		/// Initializes an instance with the specified regions.
 		/// </summary>
 		/// <param name="regions">The regions.</param>
@@ -66,7 +60,7 @@ namespace Sudoku.Data.Collections
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
 		public bool Equals(RegionCollection other) => _mask == other._mask;
 
-		/// <inheritdoc/>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[DoesNotReturn]

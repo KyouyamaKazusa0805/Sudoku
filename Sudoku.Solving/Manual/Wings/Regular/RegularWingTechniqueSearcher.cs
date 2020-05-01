@@ -5,6 +5,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using static Sudoku.Solving.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Wings.Regular
 {
@@ -41,14 +42,12 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			// Search for all bivalue cells.
-			var map = grid.GetBivalueCellsMap(out int count);
-			var pair = (map, count);
+			(_, var bivalueCellsMap, _, _) = grid;
 
 			// Iterates on size.
 			for (int size = 3; size <= _size; size++)
 			{
-				TakeAllBySize(accumulator, grid, in pair, size);
+				TakeAllBySize(accumulator, grid, bivalueCellsMap, size);
 			}
 		}
 
@@ -68,19 +67,21 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// reference can make the value passing more simple.
 		/// </remarks>
 		private static void TakeAllBySize(
-			IBag<TechniqueInfo> result, IReadOnlyGrid grid,
-			in (GridMap _map, int _count) bivalueCellsMap, int size)
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, GridMap bivalueCellsMap, int size)
 		{
 			// Check bivalue cells.
 			// If the number of bivalue cells is less than the specified size,
 			// which means that the bivalue cells is not enough for construct
 			// this technique structure, so we should return the empty list.
-			if (bivalueCellsMap._count < size)
+			if (bivalueCellsMap.Count < size)
 			{
 				return;
 			}
 
 			// Start searching.
+			var span2 = (Span<int>)stackalloc int[2];
+			var span3 = (Span<int>)stackalloc int[3];
+			var span4 = (Span<int>)stackalloc int[4];
 			int pivot = 0;
 			foreach (var (status, mask) in grid)
 			{
@@ -91,7 +92,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 				}
 
 				var pivotPeersMap = new GridMap(pivot, false);
-				var intersection = bivalueCellsMap._map & pivotPeersMap;
+				var intersection = bivalueCellsMap & pivotPeersMap;
 				if (intersection.Count < size - 1)
 				{
 					goto Label_ContinueLoop;
@@ -108,14 +109,14 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 						if (size == 3)
 						{
 							// Record all values.
-							int[] cells = new[] { c1, c2 };
-							if (CheckWhetherBivalueCellsAreSame(grid, cells))
+							(span2[0], span2[1]) = (c1, c2);
+							if (CheckWhetherBivalueCellsAreSame(grid, span2))
 							{
 								continue;
 							}
 
 							RecordValues(
-								grid, pivot, cells, out short pivotMask,
+								grid, pivot, span2, out short pivotMask,
 								out short inter, out short union,
 								out short interWithoutPivot, out short unionWithoutPivot);
 
@@ -130,14 +131,11 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 								}
 
 								bool isIncompleted =
-									(~unionWithoutPivot & 511).CountSet() == 1
-									&& (~union & 511).CountSet() == 0;
+									(~unionWithoutPivot & 511).CountSet() == 1 && (~union & 511).CountSet() == 0;
 
 								// Regular wings found.
 								// Check and find all eliminations.
-								CheckAndSearchEliminations(
-									pivotPeersMap, cells, pivot,
-									isIncompleted, out var map);
+								CheckAndSearchEliminations(pivotPeersMap, span2, pivot, isIncompleted, out var map);
 
 								if (map.IsEmpty)
 								{
@@ -146,15 +144,12 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 								}
 
 								// Check eliminations.
-								var conclusions = GetConclusions(
-									grid, union, unionWithoutPivot, isIncompleted, map);
+								var conclusions = GetConclusions(grid, union, unionWithoutPivot, isIncompleted, map);
 
 								if (conclusions.Count != 0)
 								{
 									// Add to 'result'.
-									GatherConclusion(
-										grid, result, pivot, cells,
-										pivotMask, inter, conclusions);
+									GatherConclusion(grid, result, pivot, span2, pivotMask, inter, conclusions);
 								}
 							}
 						}
@@ -166,14 +161,14 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 								if (size == 4)
 								{
 									// Record all values.
-									int[] cells = new[] { c1, c2, c3 };
-									if (CheckWhetherBivalueCellsAreSame(grid, cells))
+									(span3[0], span3[1], span3[2]) = (c1, c2, c3);
+									if (CheckWhetherBivalueCellsAreSame(grid, span3))
 									{
 										continue;
 									}
 
 									RecordValues(
-										grid, pivot, cells, out short pivotMask,
+										grid, pivot, span3, out short pivotMask,
 										out short inter, out short union,
 										out short interWithoutPivot, out short unionWithoutPivot);
 
@@ -194,8 +189,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 										// Regular wings found.
 										// Check and find all eliminations.
 										CheckAndSearchEliminations(
-											pivotPeersMap, cells, pivot,
-											isIncompleted, out var map);
+											pivotPeersMap, span3, pivot,isIncompleted, out var map);
 
 										if (map.IsEmpty)
 										{
@@ -210,9 +204,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 										if (conclusions.Count != 0)
 										{
 											// Add to 'result'.
-											GatherConclusion(
-												grid, result, pivot, cells,
-												pivotMask, inter, conclusions);
+											GatherConclusion(grid, result, pivot, span3,pivotMask, inter, conclusions);
 										}
 									}
 								}
@@ -224,14 +216,14 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 										if (size == 5)
 										{
 											// Record all values.
-											int[] cells = new[] { c1, c2, c3, c4 };
-											if (CheckWhetherBivalueCellsAreSame(grid, cells))
+											(span4[0], span4[1], span4[2], span4[3]) = (c1, c2, c3, c4);
+											if (CheckWhetherBivalueCellsAreSame(grid, span4))
 											{
 												continue;
 											}
 
 											RecordValues(
-												grid, pivot, cells, out short pivotMask,
+												grid, pivot, span4, out short pivotMask,
 												out short inter, out short union,
 												out short interWithoutPivot, out short unionWithoutPivot);
 
@@ -252,8 +244,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 												// Regular wings found.
 												// Check and find all eliminations.
 												CheckAndSearchEliminations(
-													pivotPeersMap, cells, pivot,
-													isIncompleted, out var map);
+													pivotPeersMap, span4, pivot, isIncompleted, out var map);
 
 												if (map.IsEmpty)
 												{
@@ -263,15 +254,13 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 
 												// Check eliminations.
 												var conclusions = GetConclusions(
-													grid, union, unionWithoutPivot,
-													isIncompleted, map);
+													grid, union, unionWithoutPivot, isIncompleted, map);
 
 												if (conclusions.Count != 0)
 												{
 													// Add to 'result'.
 													GatherConclusion(
-														grid, result, pivot, cells,
-														pivotMask, inter, conclusions);
+														grid, result, pivot, span4, pivotMask, inter, conclusions);
 												}
 											}
 										}
@@ -300,7 +289,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <param name="grid">The grid.</param>
 		/// <param name="cells">The cells to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		private static bool CheckWhetherBivalueCellsAreSame(IReadOnlyGrid grid, int[] cells)
+		private static bool CheckWhetherBivalueCellsAreSame(IReadOnlyGrid grid, ReadOnlySpan<int> cells)
 		{
 			for (int i = 0, length = cells.Length; i < length - 1; i++)
 			{
@@ -324,15 +313,12 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// </param>
 		/// <param name="cells">All body cells.</param>
 		/// <param name="pivot">The pivot cell.</param>
-		/// <param name="isIncompleted">
-		/// (<see langword="out"/> parameter) Indicates whether the technique is uncompleted.
-		/// </param>
+		/// <param name="isIncompleted">Indicates whether the technique is uncompleted.</param>
 		/// <param name="map">
 		/// (<see langword="out"/> parameter) The result grid intersection map.
 		/// </param>
 		private static void CheckAndSearchEliminations(
-			GridMap pivotPeersMap, int[] cells,
-			int pivot, bool isIncompleted, out GridMap map)
+			GridMap pivotPeersMap, ReadOnlySpan<int> cells, int pivot, bool isIncompleted, out GridMap map)
 		{
 			int firstCell = cells[0];
 			map = new GridMap(firstCell, false);
@@ -361,10 +347,10 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <param name="inter">The intersection mask.</param>
 		/// <param name="conclusions">The conclusions.</param>
 		private static void GatherConclusion(
-			IReadOnlyGrid grid, IBag<TechniqueInfo> result,
-			int pivot, int[] cells, short pivotMask,
-			short inter, IReadOnlyList<Conclusion> conclusions)
+			IReadOnlyGrid grid, IBag<TechniqueInfo> result, int pivot, ReadOnlySpan<int> cells,
+			short pivotMask, short inter, IReadOnlyList<Conclusion> conclusions)
 		{
+			int[] cellsArray = cells.ToArray();
 			int elimDigit = conclusions[0].Digit;
 			result.Add(
 				new RegularWingTechniqueInfo(
@@ -375,7 +361,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 							cellOffsets: null,
 							candidateOffsets:
 								new List<(int, int)>((
-									from cell in cells
+									from cell in cellsArray
 									from digit in grid.GetCandidatesReversal(cell).GetAllSets()
 									select (digit == elimDigit ? 1 : 0, cell * 9 + digit)).Concat(
 									from digit in grid.GetCandidatesReversal(pivot).GetAllSets()
@@ -386,7 +372,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 					pivot,
 					pivotCandidatesCount: (~pivotMask & 511).CountSet(),
 					digits: (~inter & 511).GetAllSets().ToArray(),
-					cellOffsets: cells));
+					cellOffsets: cellsArray));
 		}
 
 		/// <summary>
@@ -401,8 +387,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <param name="map">The intersection grid map.</param>
 		/// <returns>The conclusions.</returns>
 		private static IReadOnlyList<Conclusion> GetConclusions(
-			IReadOnlyGrid grid, short union, short unionWithoutPivot,
-			bool isIncompleted, GridMap map)
+			IReadOnlyGrid grid, short union, short unionWithoutPivot, bool isIncompleted, GridMap map)
 		{
 			var conclusions = new List<Conclusion>();
 			int valueToCheck = isIncompleted ? unionWithoutPivot : union;
@@ -419,7 +404,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 					continue;
 				}
 
-				conclusions.Add(new Conclusion(ConclusionType.Elimination, offset, zDigit));
+				conclusions.Add(new Conclusion(Elimination, offset, zDigit));
 			}
 
 			return conclusions;
@@ -443,9 +428,8 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// (<see langword="out"/> parameter) The union mask without pivot mask.
 		/// </param>
 		private static void RecordValues(
-			IReadOnlyGrid grid, int pivot, int[] cells, out short pivotMask,
-			out short inter, out short union,
-			out short interWithoutPivot, out short unionWithoutPivot)
+			IReadOnlyGrid grid, int pivot, ReadOnlySpan<int> cells, out short pivotMask,
+			out short inter, out short union, out short interWithoutPivot, out short unionWithoutPivot)
 		{
 			(pivotMask, inter, union) = (grid.GetCandidates(pivot), 511, 0);
 			for (int i = 0, length = cells.Length; i < length; i++)

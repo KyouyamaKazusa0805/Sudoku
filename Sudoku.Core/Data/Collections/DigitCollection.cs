@@ -79,7 +79,7 @@ namespace Sudoku.Data.Collections
 		/// <returns>A <see cref="bool"/> value.</returns>
 		public bool Contains(int digit) => (_mask >> digit & 1) != 0;
 
-		/// <inheritdoc/>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[DoesNotReturn]

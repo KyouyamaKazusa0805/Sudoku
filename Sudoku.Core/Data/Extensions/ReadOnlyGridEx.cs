@@ -51,8 +51,7 @@ namespace Sudoku.Data.Extensions
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsBivalueCell(
-			this IReadOnlyGrid @this, int cellOffset, out short mask)
+		public static bool IsBivalueCell(this IReadOnlyGrid @this, int cellOffset, out short mask)
 		{
 			if (@this.GetStatus(cellOffset) != Empty)
 			{
@@ -79,8 +78,7 @@ namespace Sudoku.Data.Extensions
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsBilocationRegion(
-			this IReadOnlyGrid @this, int digit, int region, out short mask)
+		public static bool IsBilocationRegion(this IReadOnlyGrid @this, int digit, int region, out short mask)
 		{
 			if (@this.HasDigitValue(digit, region))
 			{
@@ -91,52 +89,6 @@ namespace Sudoku.Data.Extensions
 			mask = @this.GetDigitAppearingMask(digit, region);
 			return mask.CountSet() == 2;
 		}
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether the specified grid contains the specified candidate.
-		/// </para>
-		/// <para>
-		/// The return value will be <see langword="true"/> if and only if
-		/// the cell that the candidate lies on is empty and the cell contains that digit.
-		/// </para>
-		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
-		/// <param name="candidateOffset">The candidate offset.</param>
-		/// <returns>
-		/// A <see cref="bool"/>? value indicating that.
-		/// </returns>
-		/// <remarks>
-		/// The cases of the return value are below:
-		/// <list type="table">
-		/// <item>
-		/// <term><c><see langword="true"/></c></term>
-		/// <description>
-		/// The cell is an empty cell <b>and</b> contains the specified digit.
-		/// </description>
-		/// </item>
-		/// <item>
-		/// <term><c><see langword="false"/></c></term>
-		/// <description>
-		/// The cell is an empty cell <b>but doesn't</b> contain the specified digit.
-		/// </description>
-		/// </item>
-		/// <item>
-		/// <term><c><see langword="null"/></c></term>
-		/// <description>The cell is <b>not</b> an empty cell.</description>
-		/// </item>
-		/// </list>
-		/// </remarks>
-		/// <example>
-		/// Note that the method will return a <see cref="bool"/>?, so you should use the code
-		/// <code>grid.Exists(candidate) is true</code>
-		/// or
-		/// <code>grid.Exists(candidate) == true</code>
-		/// to decide whether a condition is true.
-		/// </example>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool? Exists(this IReadOnlyGrid @this, int candidateOffset) =>
-			@this.Exists(candidateOffset / 9, candidateOffset % 9);
 
 		/// <summary>
 		/// <para>
@@ -200,8 +152,7 @@ namespace Sudoku.Data.Extensions
 		/// <param name="regionOffset">The region.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasDigitValue(
-			this IReadOnlyGrid @this, int digit, int regionOffset) =>
+		public static bool HasDigitValue(this IReadOnlyGrid @this, int digit, int regionOffset) =>
 			RegionCells[regionOffset].Any(o => @this.GetStatus(o) != Empty && @this[o] == digit);
 
 		/// <summary>
@@ -256,8 +207,7 @@ namespace Sudoku.Data.Extensions
 		/// in a specified region. The mask uses 1 to make the cell 'have this digit',
 		/// and 0 to make the cell 'does not have this digit'.
 		/// </returns>
-		public static short GetDigitAppearingMask(
-			this IReadOnlyGrid @this, int digit, int regionOffset, GridMap map)
+		public static short GetDigitAppearingMask(this IReadOnlyGrid @this, int digit, int regionOffset, GridMap map)
 		{
 			int result = 0, i = 0;
 			foreach (int cell in RegionCells[regionOffset])
@@ -288,8 +238,7 @@ namespace Sudoku.Data.Extensions
 		/// <param name="digit">The digit.</param>
 		/// <param name="regionOffset">The region.</param>
 		/// <returns>The cells' map.</returns>
-		public static GridMap GetDigitAppearingCells(
-			this IReadOnlyGrid @this, int digit, int regionOffset)
+		public static GridMap GetDigitAppearingCells(this IReadOnlyGrid @this, int digit, int regionOffset)
 		{
 			var result = GridMap.Empty;
 			foreach (int cell in RegionCells[regionOffset])
@@ -301,34 +250,6 @@ namespace Sudoku.Data.Extensions
 			}
 
 			return result;
-		}
-
-		/// <summary>
-		/// Find all bivalue cells displaying with a <see cref="GridMap"/>.
-		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
-		/// <param name="count">
-		/// (<see langword="out"/> parameter) The number of bivalue cells.
-		/// This parameter is only used for quickening the code running.
-		/// </param>
-		/// <returns>The grid map.</returns>
-		public static GridMap GetBivalueCellsMap(this IReadOnlyGrid @this, out int count)
-		{
-			var bivalueCellsMap = new GridMap();
-			count = 0;
-			int i = 0;
-			foreach (var (status, mask) in @this)
-			{
-				if (status == Empty && (~mask & 511).CountSet() == 2)
-				{
-					bivalueCellsMap.Add(i);
-					count++;
-				}
-
-				i++;
-			}
-
-			return bivalueCellsMap;
 		}
 	}
 }
