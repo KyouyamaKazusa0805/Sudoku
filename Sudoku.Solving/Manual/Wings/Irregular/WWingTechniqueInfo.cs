@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -21,18 +22,18 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			int startCellOffset, int endCellOffset, ConjugatePair conjugatePair)
 			: base(conclusions, views) =>
-			(StartCellOffset, EndCellOffset, ConjugatePair) = (startCellOffset, endCellOffset, conjugatePair);
+			(StartCell, EndCell, ConjugatePair) = (startCellOffset, endCellOffset, conjugatePair);
 
 
 		/// <summary>
 		/// Indicates the start cell offset.
 		/// </summary>
-		public int StartCellOffset { get; }
+		public int StartCell { get; }
 
 		/// <summary>
 		/// Indicates the end cell offset.
 		/// </summary>
-		public int EndCellOffset { get; }
+		public int EndCell { get; }
 
 		/// <summary>
 		/// Indicates the conjugate pair.
@@ -52,8 +53,8 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string startCellStr = CellUtils.ToString(StartCellOffset);
-			string endCellStr = CellUtils.ToString(EndCellOffset);
+			string startCellStr = new CellCollection(stackalloc[] { StartCell }).ToString();
+			string endCellStr = new CellCollection(stackalloc[] { EndCell }).ToString();
 			string elimStr = ConclusionCollection.ToString(Conclusions);
 			return $"{Name}: {startCellStr} to {endCellStr} with conjugate pair {ConjugatePair} => {elimStr}";
 		}

@@ -95,10 +95,9 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 			}
 
 			int r = finishedCellsCount / 9, c = finishedCellsCount % 9;
-			if (gridValues[GetOffset(r, c)] != 0)
+			if (gridValues[r * 9 + c] != 0)
 			{
-				BacktrackinglySolve(
-					ref solutionsCount, ref result, gridValues, finishedCellsCount + 1);
+				BacktrackinglySolve(ref solutionsCount, ref result, gridValues, finishedCellsCount + 1);
 			}
 			else
 			{
@@ -107,18 +106,17 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 				// all candidates to let the algorithm run faster.
 				for (int i = 0; i < 9; i++)
 				{
-					gridValues[GetOffset(r, c)]++; // Only use value increment operator.
+					gridValues[r * 9 + c]++; // Only use value increment operator.
 					if (IsValid(gridValues, r, c))
 					{
-						BacktrackinglySolve(
-							ref solutionsCount, ref result, gridValues, finishedCellsCount + 1);
+						BacktrackinglySolve(ref solutionsCount, ref result, gridValues, finishedCellsCount + 1);
 					}
 				}
 
 				// All values are wrong, which means the value before
 				// we calculate is already wrong.
 				// Backtracking the cell...
-				gridValues[GetOffset(r, c)] = 0;
+				gridValues[r * 9 + c] = 0;
 			}
 		}
 
@@ -132,13 +130,12 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 		/// <returns>The <see cref="bool"/> result.</returns>
 		private static bool IsValid(int[] gridValues, int r, int c)
 		{
-			int number = gridValues[GetOffset(r, c)];
+			int number = gridValues[r * 9 + c];
 
 			// Check lines.
 			for (int i = 0; i < 9; i++)
 			{
-				if (i != r && gridValues[GetOffset(i, c)] == number
-					|| i != c && gridValues[GetOffset(r, i)] == number)
+				if (i != r && gridValues[i * 9 + c] == number || i != c && gridValues[r * 9 + i] == number)
 				{
 					return false;
 				}
@@ -149,7 +146,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 			{
 				for (int jj = c / 3 * 3, j = jj; j < jj + 3; j++)
 				{
-					if ((i != r || j != c) && gridValues[GetOffset(i, j)] == number)
+					if ((i != r || j != c) && gridValues[i * 9 + j] == number)
 					{
 						return false;
 					}

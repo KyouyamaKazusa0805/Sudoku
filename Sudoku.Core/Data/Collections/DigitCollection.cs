@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Sudoku.Extensions;
 
@@ -61,22 +62,14 @@ namespace Sudoku.Data.Collections
 		/// </summary>
 		public int Count => _mask.CountSet();
 
-		/// <summary>
-		/// Get all digits that contains in this collection.
-		/// </summary>
-		public IEnumerable<int> Digits => _mask.GetAllSets();
-
 
 		/// <inheritdoc/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
+		[DoesNotReturn]
 		public override bool Equals(object? obj) => throw Throwing.RefStructNotSupported;
 
-		/// <summary>
-		/// Indicates whether two specified collection are same.
-		/// </summary>
-		/// <param name="other">The other collection.</param>
-		/// <returns>A <see cref="bool"/> value.</returns>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
 		public bool Equals(DigitCollection other) => _mask == other._mask;
 
 		/// <summary>
@@ -89,6 +82,7 @@ namespace Sudoku.Data.Collections
 		/// <inheritdoc/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
+		[DoesNotReturn]
 		public override int GetHashCode() => throw Throwing.RefStructNotSupported;
 
 		/// <inheritdoc/>
@@ -99,7 +93,7 @@ namespace Sudoku.Data.Collections
 		{
 			string separator = format ?? string.Empty;
 			var sb = new StringBuilder();
-			foreach (int digit in Digits)
+			foreach (int digit in this)
 			{
 				sb.Append($"{digit + 1}{separator}");
 			}
@@ -111,7 +105,7 @@ namespace Sudoku.Data.Collections
 		/// Get the enumerator.
 		/// </summary>
 		/// <returns>The enumerator.</returns>
-		public IEnumerator<int> GetEnumerator() => Digits.GetEnumerator();
+		public IEnumerator<int> GetEnumerator() => _mask.GetAllSets().GetEnumerator();
 
 
 		/// <summary>

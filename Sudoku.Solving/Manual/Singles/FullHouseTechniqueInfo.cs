@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Singles
 {
@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string cellStr = CellUtils.ToString(CellOffset);
+			string cellStr = new CellCollection(stackalloc[] { Cell }).ToString();
 			int value = Digit + 1;
 			return $"{Name}: {cellStr} = {value}";
 		}

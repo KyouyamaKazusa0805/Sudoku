@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -65,10 +66,10 @@ namespace Sudoku.Solving.Manual.Alses
 		{
 			int d1 = Digit1 + 1;
 			int d2 = Digit2 + 1;
-			string sCellStr = CellUtils.ToString(StartCell);
-			string eCellStr = CellUtils.ToString(EndCell);
+			string sCellStr = new CellCollection(stackalloc[] { StartCell }).ToString();
+			string eCellStr = new CellCollection(stackalloc[] { EndCell }).ToString();
 			string elimStr = ConclusionCollection.ToString(Conclusions);
-			string regionStr = RegionUtils.ToString(Region);
+			string regionStr = new RegionCollection(stackalloc[] { Region }).ToString();
 			return
 				$"{Name}: Digits {d1}, {d2} in bivalue cells {sCellStr} and {eCellStr} " +
 				$"with empty rectangle in {regionStr} => {elimStr}";

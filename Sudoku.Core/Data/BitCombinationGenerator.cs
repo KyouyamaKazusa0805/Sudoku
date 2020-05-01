@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Sudoku.Solving.Utils
+namespace Sudoku.Data
 {
 	/// <summary>
 	/// Encapsulates a bit combination generator.
@@ -18,9 +17,7 @@ namespace Sudoku.Solving.Utils
 	/// }
 	/// </code>
 	/// </example>
-	[SuppressMessage("Usage", "CA2231:Overload operator equals on overriding value type Equals", Justification = "<Pending>")]
-	[SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types", Justification = "<Pending>")]
-	public struct BitCombinationGenerator : IEnumerable<long>
+	public ref struct BitCombinationGenerator
 	{
 		/// <summary>
 		/// The mask.
@@ -47,7 +44,7 @@ namespace Sudoku.Solving.Utils
 		public BitCombinationGenerator(int bitCount, int oneCount)
 		{
 			(BitCount, OneCount) = (bitCount, oneCount);
-			(_value, _mask, _isLast) = ((1 << oneCount) - 1, (1 << (bitCount - oneCount)) - 1, bitCount == 0);
+			(_value, _mask, _isLast) = ((1 << oneCount) - 1, (1 << bitCount - oneCount) - 1, bitCount == 0);
 		}
 
 
@@ -63,6 +60,24 @@ namespace Sudoku.Solving.Utils
 		public readonly int OneCount { get; }
 
 
+		/// <inheritdoc/>
+		/// <exception cref="NotSupportedException">Always throws.</exception>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		[DoesNotReturn]
+		public override readonly bool Equals(object? obj) => throw Throwing.RefStructNotSupported;
+
+		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <exception cref="NotSupportedException">Always throws.</exception>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		[DoesNotReturn]
+		public override readonly int GetHashCode() => throw Throwing.RefStructNotSupported;
+
+		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <exception cref="NotSupportedException">Always throws.</exception>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		[DoesNotReturn]
+		public override readonly string ToString() => throw Throwing.RefStructNotSupported;
+
 		/// <summary>
 		/// Indicates whether the generator has the next combination number to iterate.
 		/// </summary>
@@ -74,27 +89,13 @@ namespace Sudoku.Solving.Utils
 			return result;
 		}
 
-		/// <inheritdoc/>
-		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public override readonly bool Equals(object? obj) =>
-			throw new NotSupportedException("The instance does not support this method.");
-
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
-		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public override readonly int GetHashCode() =>
-			throw new NotSupportedException("The instance does not support this method.");
-
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
-		/// <exception cref="NotSupportedException">Always throws.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public override readonly string ToString() =>
-			throw new NotSupportedException("The instance does not support this method.");
-
-		/// <inheritdoc/>
+		/// <summary>
+		/// Get the enumerator.
+		/// </summary>
+		/// <returns>The enumerator.</returns>
 		public IEnumerator<long> GetEnumerator()
 		{
+			var list = new List<long>();
 			while (HasNext())
 			{
 				long result = _value;
@@ -107,11 +108,10 @@ namespace Sudoku.Solving.Utils
 					_value = ripple | ones;
 				}
 
-				yield return result;
+				list.Add(result);
 			}
-		}
 
-		/// <inheritdoc/>
-		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+			return list.GetEnumerator();
+		}
 	}
 }

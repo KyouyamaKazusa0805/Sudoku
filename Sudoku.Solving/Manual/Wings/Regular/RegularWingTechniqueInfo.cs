@@ -26,7 +26,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			int pivot, int pivotCandidatesCount, IReadOnlyList<int> digits,
 			IReadOnlyList<int> cellOffsets) : base(conclusions, views) =>
-			(PivotCellOffset, PivotCellCandidatesCount, Digits, CellOffsets) = (pivot, pivotCandidatesCount, digits, cellOffsets);
+			(Pivot, PivotCellCandidatesCount, Digits, CellOffsets) = (pivot, pivotCandidatesCount, digits, cellOffsets);
 
 
 		/// <summary>
@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <summary>
 		/// Indicates the pivot cell.
 		/// </summary>
-		public int PivotCellOffset { get; }
+		public int Pivot { get; }
 
 		/// <summary>
 		/// Indicates the number of candidates in the pivot cell.
@@ -114,7 +114,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		public override string ToString()
 		{
 			string digitsStr = new DigitCollection(Digits).ToString();
-			string pivotCellStr = CellUtils.ToString(PivotCellOffset);
+			string pivotCellStr = new CellCollection(stackalloc[] { Pivot }).ToString();
 			string cellOffsetsStr = new CellCollection(CellOffsets).ToString();
 			string elimStr = ConclusionCollection.ToString(Conclusions);
 			return $"{Name}: {digitsStr} in {pivotCellStr} with {cellOffsetsStr} => {elimStr}";

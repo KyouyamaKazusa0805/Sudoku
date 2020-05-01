@@ -54,7 +54,7 @@ namespace Sudoku.Solving.Checking
 			{
 				for (int j = 0; j < 9; j++)
 				{
-					if (array[CellUtils.GetOffset(i, j)] != 0)
+					if (array[i * 9 + j] != 0)
 					{
 						hintCount++;
 						valueList.Enqueue((i, j));
@@ -67,7 +67,7 @@ namespace Sudoku.Solving.Checking
 			{
 				var (r, c) = valueList.Dequeue();
 				tempArrays[i] = (int[])array.Clone();
-				tempArrays[i][CellUtils.GetOffset(r, c)] = 0;
+				tempArrays[i][r * 9 + c] = 0;
 			}
 
 			var solver = new BitwiseSolver();

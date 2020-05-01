@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving
@@ -74,8 +75,8 @@ namespace Sudoku.Solving
 		public override string ToString()
 		{
 			int v = Digit + 1;
-			string fromCell = CellUtils.ToString(From);
-			string toCell = CellUtils.ToString(To);
+			string fromCell = new CellCollection(stackalloc[] { From }).ToString();
+			string toCell = new CellCollection(stackalloc[] { To }).ToString();
 			return $"{fromCell}=={toCell}({v})";
 		}
 

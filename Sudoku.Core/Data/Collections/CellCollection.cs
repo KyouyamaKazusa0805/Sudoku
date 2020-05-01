@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Sudoku.Extensions;
 
@@ -49,27 +50,20 @@ namespace Sudoku.Data.Collections
 		/// </summary>
 		public int Count => _map.Count;
 
-		/// <summary>
-		/// Indicates all the cells in this collection.
-		/// </summary>
-		public IEnumerable<int> Cells => _map.Offsets;
-
 
 		/// <inheritdoc/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
+		[DoesNotReturn]
 		public override bool Equals(object? obj) => throw Throwing.RefStructNotSupported;
 
-		/// <summary>
-		/// Indicates whether two specified collection are same.
-		/// </summary>
-		/// <param name="other">The other collection.</param>
-		/// <returns>A <see cref="bool"/> value.</returns>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
 		public bool Equals(CellCollection other) => _map == other._map;
 
 		/// <inheritdoc/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
+		[DoesNotReturn]
 		public override int GetHashCode() => throw Throwing.RefStructNotSupported;
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
@@ -89,7 +83,7 @@ namespace Sudoku.Data.Collections
 			const string separator = ", ";
 			var sbRow = new StringBuilder();
 			var dic = new Dictionary<int, ICollection<int>>();
-			foreach (int cell in Cells)
+			foreach (int cell in this)
 			{
 				if (!dic.ContainsKey(cell / 9))
 				{
@@ -120,7 +114,7 @@ namespace Sudoku.Data.Collections
 
 			dic.Clear();
 			var sbColumn = new StringBuilder();
-			foreach (int cell in Cells)
+			foreach (int cell in this)
 			{
 				if (!dic.ContainsKey(cell % 9))
 				{
@@ -156,7 +150,7 @@ namespace Sudoku.Data.Collections
 		/// Get the enumerator.
 		/// </summary>
 		/// <returns>The enumerator.</returns>
-		public IEnumerator<int> GetEnumerator() => Cells.GetEnumerator();
+		public IEnumerator<int> GetEnumerator() => _map.Offsets.GetEnumerator();
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>

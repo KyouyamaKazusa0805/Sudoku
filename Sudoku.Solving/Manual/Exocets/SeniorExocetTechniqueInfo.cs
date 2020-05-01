@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -43,6 +43,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc/>
-		protected override string? GetAdditional() => $"Endo-target: {CellUtils.ToString(EndoTargetCell)}";
+		protected override string? GetAdditional() =>
+			$"Endo-target: {new CellCollection(stackalloc[] { EndoTargetCell }).ToString()}";
 	}
 }

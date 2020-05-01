@@ -18,13 +18,13 @@ namespace Sudoku.Solving.Manual.Singles
 		protected SingleTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			int cellOffset, int digit)
-			: base(conclusions, views) => (CellOffset, Digit) = (cellOffset, digit);
+			: base(conclusions, views) => (Cell, Digit) = (cellOffset, digit);
 
 
 		/// <summary>
 		/// Indicates the cell offset.
 		/// </summary>
-		public int CellOffset { get; }
+		public int Cell { get; }
 
 		/// <summary>
 		/// Indicates the digit.

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
-using R = Sudoku.Solving.Utils.RegionCollection;
 using Conc = Sudoku.Solving.Utils.ConclusionCollection;
 using System.Linq;
 using Sudoku.Data.Collections;
@@ -149,8 +148,8 @@ namespace Sudoku.Solving.Manual.Fishes
 		public override string ToString()
 		{
 			string elimStr = Conc.ToString(Conclusions);
-			string baseSets = R.ToString(BaseSets);
-			string coverSets = R.ToString(CoverSets);
+			string baseSets = new RegionCollection(BaseSets).ToString();
+			string coverSets = new RegionCollection(CoverSets).ToString();
 			string exo = ExofinCells is null ? string.Empty : $"f{new CellCollection(ExofinCells).ToString()} ";
 			string endo = EndofinCells is null ? string.Empty : $"ef{new CellCollection(EndofinCells).ToString()} ";
 			return $@"{Name}: {Digit + 1} in {baseSets}\{coverSets} {exo}{endo}=> {elimStr}";

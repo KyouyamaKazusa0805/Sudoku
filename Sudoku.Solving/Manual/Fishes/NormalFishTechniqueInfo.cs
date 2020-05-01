@@ -111,8 +111,8 @@ namespace Sudoku.Solving.Manual.Fishes
 		public override string ToString()
 		{
 			int value = Digit + 1;
-			string baseSetStr = RegionCollection.ToString(BaseSets);
-			string coverSetStr = RegionCollection.ToString(CoverSets);
+			string baseSetStr = new RegionCollection(BaseSets).ToString();
+			string coverSetStr = new RegionCollection(CoverSets).ToString();
 			string? finStr = !(FinCellOffsets is null) && FinCellOffsets.Count != 0
 				? $" f{new CellCollection(FinCellOffsets).ToString()}"
 				: string.Empty;

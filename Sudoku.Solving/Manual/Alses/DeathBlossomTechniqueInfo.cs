@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
@@ -52,8 +53,9 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override string ToString()
 		{
+			string pivotStr = new CellCollection(stackalloc[] { Pivot }).ToString();
 			string elimStr = ConclusionCollection.ToString(Conclusions);
-			return $"{Name}: Cell {CellUtils.ToString(Pivot)} - {GetAlsesStr()} => {elimStr}";
+			return $"{Name}: Cell {pivotStr} - {GetAlsesStr()} => {elimStr}";
 		}
 
 		/// <summary>

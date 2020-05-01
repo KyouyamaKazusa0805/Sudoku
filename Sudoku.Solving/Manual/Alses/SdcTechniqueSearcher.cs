@@ -54,7 +54,11 @@ namespace Sudoku.Solving.Manual.Alses
 				temp[0] = null!; // Only be a placeholder.
 				for (int i = 1; i <= m; i++)
 				{
-					temp[i] = new List<long>(new BitCombinationGenerator(m, i));
+					temp[i] = new List<long>();
+					foreach (long v in new BitCombinationGenerator(m, i))
+					{
+						temp[i].Add(v);
+					}
 				}
 
 				return temp;
