@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Sudoku.Solving.Utils;
+using Sudoku.Data.Collections;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
@@ -26,8 +26,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string cellsStr = CellCollection.ToString(Cells);
-			string digitsStr = DigitCollection.ToString(Digits);
+			string cellsStr = new CellCollection(Cells).ToString();
+			string digitsStr = new DigitCollection(Digits).ToString();
 			return $"{digitsStr} in cells {cellsStr}";
 		}
 	}

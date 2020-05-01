@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
@@ -154,6 +155,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
 
+
 		/// <inheritdoc/>
 		public override string ToString()
 		{
@@ -162,13 +164,15 @@ namespace Sudoku.Solving.Manual.Exocets
 
 			return new StringBuilder(Name)
 				.Append(": Digits ")
-				.Append(DigitCollection.ToString(Digits))
+				.Append(new DigitCollection(Digits).ToString())
 				.Append(" in base cells ")
-				.Append(CellCollection.ToString(new[] { b1, b2 }))
+				.Append(new CellCollection(stackalloc[] { b1, b2 }).ToString())
 				.Append(", target cells ")
-				.Append(CellCollection.ToString(new[] { tq1, tq2, tr1, tr2 }))
-				.NullableAppend(LockedMemberQ is null ? null : $", locked member 1: {DigitCollection.ToString(LockedMemberQ)}")
-				.NullableAppend(LockedMemberR is null ? null : $", locked member 2: {DigitCollection.ToString(LockedMemberR)}")
+				.Append(new CellCollection(stackalloc[] { tq1, tq2, tr1, tr2 }).ToString())
+				.NullableAppend(
+					LockedMemberQ is null ? null : $", locked member 1: {new DigitCollection(LockedMemberQ).ToString()}")
+				.NullableAppend(
+					LockedMemberR is null ? null : $", locked member 2: {new DigitCollection(LockedMemberR).ToString()}")
 				.Append(addtional is null ? string.Empty : $" with {addtional}")
 				.Append(" => ")
 				.AppendLine(ConclusionCollection.ToString(Conclusions))

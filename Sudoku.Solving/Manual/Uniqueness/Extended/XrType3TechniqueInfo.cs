@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -54,8 +55,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <inheritdoc/>
 		protected override string GetAdditional()
 		{
-			string digitsStr = DigitCollection.ToString(ExtraDigits);
-			string cellsStr = CellCollection.ToString(ExtraCells);
+			string digitsStr = new DigitCollection(ExtraDigits).ToString();
+			string cellsStr = new CellCollection(ExtraCells).ToString();
 			string regionStr = RegionUtils.ToString(Region);
 			return $"{digitsStr} in cells {cellsStr} in {regionStr}";
 		}

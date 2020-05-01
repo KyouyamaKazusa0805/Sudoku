@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data.Collections;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops
@@ -30,17 +31,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 
 		/// <inheritdoc/>
-		public override bool Equals(UlDetailData other)
-		{
-			return other is UlType4DetailData comparer
-				&& ConjugatePair == comparer.ConjugatePair;
-		}
+		public override bool Equals(UlDetailData other) =>
+			other is UlType4DetailData comparer && ConjugatePair == comparer.ConjugatePair;
 
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string digitsStr = DigitCollection.ToString(Digits);
-			string cellsStr = CellCollection.ToString(Cells);
+			string digitsStr = new DigitCollection(Digits).ToString();
+			string cellsStr = new CellCollection(Cells).ToString();
 			return $"{digitsStr} in cells {cellsStr} with conjugate pair {ConjugatePair}";
 		}
 	}

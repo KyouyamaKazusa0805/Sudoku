@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -70,11 +71,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string digitsStr = DigitCollection.ToString(Digits);
-			string cellsStr = CellCollection.ToString(Cells);
+			string digitsStr = new DigitCollection(Digits).ToString();
+			string cellsStr = new CellCollection(Cells).ToString();
 			string elimStr = ConclusionCollection.ToString(Conclusions);
 			string? additional = GetAdditional();
-			return $"{Name}: {digitsStr} in {cellsStr}{(additional is null ? string.Empty : $" with {additional}")} => {elimStr}";
+			return
+				$"{Name}: {digitsStr} in {cellsStr}{(additional is null ? string.Empty : $" with {additional}")} => " +
+				$"{elimStr}";
 		}
 
 		/// <summary>

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
@@ -68,9 +68,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		protected override string? GetAdditional()
 		{
-			string pivotsStr = CellCollection.ToString(Pivots);
-			string digitsStr = DigitCollection.ToString(ExtraDigits);
-			string cellsStr = CellCollection.ToString(ExtraCells);
+			string pivotsStr = new CellCollection(Pivots).ToString();
+			string digitsStr = new DigitCollection(ExtraDigits).ToString();
+			string cellsStr = new CellCollection(ExtraCells).ToString();
 			return $"pivots: {pivotsStr}, with digits: {digitsStr} in cells {cellsStr}";
 		}
 	}

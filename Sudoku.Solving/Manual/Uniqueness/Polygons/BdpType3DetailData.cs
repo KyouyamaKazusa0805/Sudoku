@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data.Collections;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
@@ -45,13 +46,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string cellsStr = CellCollection.ToString(Cells);
-			string digitsStr = DigitCollection.ToString(Digits);
-			string subsetDigitsStr = DigitCollection.ToString(SubsetDigits);
-			string subsetCellsStr = CellCollection.ToString(SubsetCells);
+			string cellsStr = new CellCollection(Cells).ToString();
+			string digitsStr = new DigitCollection(Digits).ToString();
+			string subsetDigitsStr = new DigitCollection(SubsetDigits).ToString();
+			string subsetCellsStr = new CellCollection(SubsetCells).ToString();
 			string subsetType = IsNaked ? "naked" : "hidden";
 			string subsetName = SubsetUtils.GetNameBy(SubsetCells.Count + 1).ToLower();
-			return $"{digitsStr} in cells {cellsStr} with {subsetType} {subsetName}: digits {subsetDigitsStr} in cells {subsetCellsStr}";
+			return
+				$"{digitsStr} in cells {cellsStr} with {subsetType} {subsetName}: " +
+				$"digits {subsetDigitsStr} in cells {subsetCellsStr}";
 		}
 	}
 }

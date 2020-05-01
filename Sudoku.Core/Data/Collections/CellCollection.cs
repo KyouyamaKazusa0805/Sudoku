@@ -30,10 +30,7 @@ namespace Sudoku.Data.Collections
 		public CellCollection(ReadOnlySpan<int> cells)
 		{
 			_map = GridMap.Empty;
-			foreach (int cell in cells)
-			{
-				_map.Add(cell);
-			}
+			_map.AddRange(cells);
 		}
 
 		/// <summary>
@@ -43,10 +40,7 @@ namespace Sudoku.Data.Collections
 		public CellCollection(IEnumerable<int> cells)
 		{
 			_map = GridMap.Empty;
-			foreach (int cell in cells)
-			{
-				_map.Add(cell);
-			}
+			_map.AddRange(cells);
 		}
 
 
@@ -67,10 +61,10 @@ namespace Sudoku.Data.Collections
 		public override bool Equals(object? obj) => throw Throwing.RefStructNotSupported;
 
 		/// <summary>
-		/// 
+		/// Indicates whether two specified collection are same.
 		/// </summary>
-		/// <param name="other"></param>
-		/// <returns></returns>
+		/// <param name="other">The other collection.</param>
+		/// <returns>A <see cref="bool"/> value.</returns>
 		public bool Equals(CellCollection other) => _map == other._map;
 
 		/// <inheritdoc/>
@@ -78,17 +72,84 @@ namespace Sudoku.Data.Collections
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public override int GetHashCode() => throw Throwing.RefStructNotSupported;
 
-		/// <inheritdoc/>
+		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString()
 		{
-			string separator = ", ";
-			var sb = new StringBuilder();
-			foreach (int cell in Cells)
+			if (Count == 0)
 			{
-				sb.Append($"{cell}{separator}");
+				return string.Empty;
 			}
 
-			return sb.RemoveFromEnd(separator.Length).ToString();
+			if (Count == 1)
+			{
+				int cell = _map.SetAt(0);
+				return $"r{cell / 9 + 1}c{cell % 9 + 1}";
+			}
+
+			const string separator = ", ";
+			var sbRow = new StringBuilder();
+			var dic = new Dictionary<int, ICollection<int>>();
+			foreach (int cell in Cells)
+			{
+				if (!dic.ContainsKey(cell / 9))
+				{
+					dic.Add(cell / 9, new List<int>());
+				}
+
+				dic[cell / 9].Add(cell % 9);
+			}
+			bool addCurlyBraces = dic.Count > 1;
+			if (addCurlyBraces)
+			{
+				sbRow.Append("{ ");
+			}
+			foreach (int row in dic.Keys)
+			{
+				sbRow.Append($"r{row + 1}c");
+				foreach (int z in dic[row])
+				{
+					sbRow.Append(z + 1);
+				}
+				sbRow.Append(separator);
+			}
+			sbRow.RemoveFromEnd(separator.Length);
+			if (addCurlyBraces)
+			{
+				sbRow.Append(" }");
+			}
+
+			dic.Clear();
+			var sbColumn = new StringBuilder();
+			foreach (int cell in Cells)
+			{
+				if (!dic.ContainsKey(cell % 9))
+				{
+					dic.Add(cell % 9, new List<int>());
+				}
+
+				dic[cell % 9].Add(cell / 9);
+			}
+			addCurlyBraces = dic.Count > 1;
+			if (addCurlyBraces)
+			{
+				sbColumn.Append("{ ");
+			}
+			foreach (int column in dic.Keys)
+			{
+				sbColumn.Append("r");
+				foreach (int z in dic[column])
+				{
+					sbColumn.Append(z + 1);
+				}
+				sbColumn.Append($"c{column + 1}{separator}");
+			}
+			sbColumn.RemoveFromEnd(separator.Length);
+			if (addCurlyBraces)
+			{
+				sbColumn.Append(" }");
+			}
+
+			return (sbRow.Length > sbColumn.Length ? sbColumn : sbRow).ToString();
 		}
 
 		/// <summary>

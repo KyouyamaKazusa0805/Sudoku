@@ -101,7 +101,7 @@ namespace Sudoku.Data.Collections
 			var sb = new StringBuilder();
 			foreach (int digit in Digits)
 			{
-				sb.Append($"{digit}{separator}");
+				sb.Append($"{digit + 1}{separator}");
 			}
 
 			return sb.RemoveFromEnd(separator.Length).ToString();

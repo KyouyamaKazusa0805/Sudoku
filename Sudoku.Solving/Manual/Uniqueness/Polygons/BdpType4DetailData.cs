@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data.Collections;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
@@ -31,8 +32,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string digitsStr = DigitCollection.ToString(Digits);
-			string cellsStr = CellCollection.ToString(Cells);
+			string digitsStr = new DigitCollection(Digits).ToString();
+			string cellsStr = new CellCollection(Cells).ToString();
 			string regionStr = RegionUtils.ToString(Region);
 			return $"{digitsStr} in cells {cellsStr} with a region {regionStr}";
 		}

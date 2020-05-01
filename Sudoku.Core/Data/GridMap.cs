@@ -8,6 +8,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Extensions;
+using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.GridProcessings;
 
 namespace Sudoku.Data
@@ -59,7 +60,6 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <seealso cref="_low"/>
 		/// <seealso cref="_high"/>
-		[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
 		private long _high, _low;
 
 
@@ -107,21 +107,21 @@ namespace Sudoku.Data
 			(_low, _high, Count) = (0, 0, 0);
 			switch (initializeOption)
 			{
-				case InitializeOption.Ordinary:
+				case Ordinary:
 				{
 					Add(offset);
 
 					break;
 				}
-				case InitializeOption.ProcessPeersAlso:
-				case InitializeOption.ProcessPeersWithoutItself:
+				case ProcessPeersAlso:
+				case ProcessPeersWithoutItself:
 				{
 					foreach (int peer in Peers[offset])
 					{
 						Add(peer);
 					}
 
-					if (initializeOption == InitializeOption.ProcessPeersAlso)
+					if (initializeOption == ProcessPeersAlso)
 					{
 						Add(offset);
 					}
@@ -213,7 +213,7 @@ namespace Sudoku.Data
 			(_low, _high, Count) = (0, 0, 0);
 			switch (initializeOption)
 			{
-				case InitializeOption.Ordinary:
+				case Ordinary:
 				{
 					foreach (int offset in offsets)
 					{
@@ -222,8 +222,8 @@ namespace Sudoku.Data
 
 					break;
 				}
-				case InitializeOption.ProcessPeersAlso:
-				case InitializeOption.ProcessPeersWithoutItself:
+				case ProcessPeersAlso:
+				case ProcessPeersWithoutItself:
 				{
 					int i = 0;
 					foreach (int offset in offsets)
@@ -234,7 +234,7 @@ namespace Sudoku.Data
 							(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
 						}
 
-						if (initializeOption == InitializeOption.ProcessPeersAlso)
+						if (initializeOption == ProcessPeersAlso)
 						{
 							(offset / Shifting == 0 ? ref low : ref high) |= 1L << offset % Shifting;
 						}
@@ -312,7 +312,7 @@ namespace Sudoku.Data
 			(_low, _high, Count) = (0, 0, 0);
 			switch (initializeOption)
 			{
-				case InitializeOption.Ordinary:
+				case Ordinary:
 				{
 					foreach (int offset in offsets)
 					{
@@ -321,8 +321,8 @@ namespace Sudoku.Data
 
 					break;
 				}
-				case InitializeOption.ProcessPeersAlso:
-				case InitializeOption.ProcessPeersWithoutItself:
+				case ProcessPeersAlso:
+				case ProcessPeersWithoutItself:
 				{
 					int i = 0;
 					foreach (int offset in offsets)
@@ -333,7 +333,7 @@ namespace Sudoku.Data
 							(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
 						}
 
-						if (initializeOption == InitializeOption.ProcessPeersAlso)
+						if (initializeOption == ProcessPeersAlso)
 						{
 							(offset / Shifting == 0 ? ref low : ref high) |= 1L << offset % Shifting;
 						}
@@ -371,11 +371,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="high">Higher 40 bits.</param>
 		/// <param name="low">Lower 41 bits.</param>
-		private GridMap(long high, long low)
-		{
-			(_high, _low) = (high, low);
-			Count = _high.CountSet() + _low.CountSet();
-		}
+		private GridMap(long high, long low) => Count = (_high = high).CountSet() + (_low = low).CountSet();
 
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/staticConstructor[@aimTo="struct"]'/>
@@ -547,9 +543,7 @@ namespace Sudoku.Data
 		/// </returns>
 		public bool this[int offset]
 		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			readonly get => ((stackalloc[] { _low, _high }[offset / Shifting] >> offset % Shifting) & 1) != 0;
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
 				ref long v = ref offset / Shifting == 0 ? ref _low : ref _high;
@@ -578,13 +572,11 @@ namespace Sudoku.Data
 		/// <param name="high">(<see langword="out"/> parameter) Higher 40 bits.</param>
 		/// <param name="low">(<see langword="out"/> parameter) Lower 41 bits.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly void Deconstruct(out long high, out long low) =>
-			(high, low) = (_high, _low);
+		public readonly void Deconstruct(out long high, out long low) => (high, low) = (_high, _low);
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override readonly bool Equals(object? obj) =>
-			obj is GridMap comparer && Equals(comparer);
+		public override readonly bool Equals(object? obj) => obj is GridMap comparer && Equals(comparer);
 
 		/// <summary>
 		/// Indicates whether the current object has the same value with the other one.
@@ -595,8 +587,7 @@ namespace Sudoku.Data
 		/// value; otherwise, <see langword="false"/>.
 		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly bool Equals(GridMap other) =>
-			_high == other._high && _low == other._low;
+		public readonly bool Equals(GridMap other) => _high == other._high && _low == other._low;
 
 		/// <summary>
 		/// Indicates whether this map overlaps another one.
@@ -612,8 +603,7 @@ namespace Sudoku.Data
 		/// <param name="regionOffset">The region offset.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly bool AllCellCovers(int regionOffset) =>
-			Count - (this - RegionMaps[regionOffset]).Count == 9;
+		public readonly bool AllCellCovers(int regionOffset) => Count - (this - RegionMaps[regionOffset]).Count == 9;
 
 		/// <summary>
 		/// Indicates whether all cells in this instance are in one region.
@@ -716,6 +706,30 @@ namespace Sudoku.Data
 		/// <param name="offset">The cell offset.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Add(int offset) => this[offset] = true;
+
+		/// <summary>
+		/// Set the specified cells as <see langword="true"/> value.
+		/// </summary>
+		/// <param name="offsets">The cells to add.</param>
+		public void AddRange(ReadOnlySpan<int> offsets)
+		{
+			foreach (int cell in offsets)
+			{
+				Add(cell);
+			}
+		}
+
+		/// <summary>
+		/// Set the specified cells as <see langword="true"/> value.
+		/// </summary>
+		/// <param name="offsets">The cells to add.</param>
+		public void AddRange(IEnumerable<int> offsets)
+		{
+			foreach (int cell in offsets)
+			{
+				Add(cell);
+			}
+		}
 
 		/// <summary>
 		/// Set the specified cell as <see langword="false"/> value.

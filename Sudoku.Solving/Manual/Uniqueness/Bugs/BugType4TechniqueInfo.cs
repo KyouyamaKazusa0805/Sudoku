@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -52,8 +53,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string digitsStr = DigitCollection.ToString(Digits);
-			string cellsStr = CellCollection.ToString(Cells);
+			string digitsStr = new DigitCollection(Digits).ToString();
+			string cellsStr = new CellCollection(Cells).ToString();
 			string elimStr = ConclusionCollection.ToString(Conclusions);
 			return $"{Name}: {digitsStr} in cells {cellsStr} with conjugate pair {ConjugatePair} => {elimStr}";
 		}

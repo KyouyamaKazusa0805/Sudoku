@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data.Collections;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops
@@ -32,9 +33,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string digitsStr = DigitCollection.ToString(Digits);
+			string digitsStr = new DigitCollection(Digits).ToString();
 			int extraDigit = ExtraDigit + 1;
-			string cellsStr = CellCollection.ToString(Cells);
+			string cellsStr = new CellCollection(Cells).ToString();
 			return $"{digitsStr} in cells {cellsStr} with extra digit {extraDigit}";
 		}
 	}

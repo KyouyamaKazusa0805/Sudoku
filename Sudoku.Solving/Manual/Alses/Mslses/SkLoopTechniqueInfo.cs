@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Alses.Mslses
 {
 	/// <summary>
-	/// Provides a usage of <b>Sk-loop</b> technique.
+	/// Provides a usage of <b>domino loop</b> technique.
 	/// </summary>
 	public sealed class SkLoopTechniqueInfo : MslsTechniqueInfo
 	{
@@ -38,7 +39,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string cellsStr = CellCollection.ToString(Cells);
+			string cellsStr = new CellCollection(Cells).ToString();
 			string elimStr = ConclusionCollection.ToString(Conclusions);
 			return $"{Name}: {Cells.Count} Cells {cellsStr} => {elimStr}";
 		}

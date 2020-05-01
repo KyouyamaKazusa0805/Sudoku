@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -87,7 +88,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string digitsStr = DigitCollection.ToString(Digits);
+			string digitsStr = new DigitCollection(Digits).ToString();
 			string regionStr = RegionUtils.ToString(RegionOffset);
 			string elimStr = ConclusionCollection.ToString(Conclusions);
 			return $"{Name}: {digitsStr} in {regionStr} => {elimStr}";

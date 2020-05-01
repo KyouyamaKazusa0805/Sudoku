@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -56,7 +57,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		public override string ToString()
 		{
 			int digit = Digit + 1;
-			string cellsStr = CellCollection.ToString(Cells);
+			string cellsStr = new CellCollection(Cells).ToString();
 			string elimStr = ConclusionCollection.ToString(Conclusions);
 			return $"{Name}: {digit} with cells {cellsStr} => {elimStr}";
 		}

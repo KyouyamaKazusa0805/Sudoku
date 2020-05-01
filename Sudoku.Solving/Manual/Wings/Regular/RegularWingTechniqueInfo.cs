@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -24,8 +25,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		public RegularWingTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			int pivot, int pivotCandidatesCount, IReadOnlyList<int> digits,
-			IReadOnlyList<int> cellOffsets)
-			: base(conclusions, views) =>
+			IReadOnlyList<int> cellOffsets) : base(conclusions, views) =>
 			(PivotCellOffset, PivotCellCandidatesCount, Digits, CellOffsets) = (pivot, pivotCandidatesCount, digits, cellOffsets);
 
 
@@ -113,9 +113,9 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string digitsStr = DigitCollection.ToString(Digits);
+			string digitsStr = new DigitCollection(Digits).ToString();
 			string pivotCellStr = CellUtils.ToString(PivotCellOffset);
-			string cellOffsetsStr = CellCollection.ToString(CellOffsets);
+			string cellOffsetsStr = new CellCollection(CellOffsets).ToString();
 			string elimStr = ConclusionCollection.ToString(Conclusions);
 			return $"{Name}: {digitsStr} in {pivotCellStr} with {cellOffsetsStr} => {elimStr}";
 		}

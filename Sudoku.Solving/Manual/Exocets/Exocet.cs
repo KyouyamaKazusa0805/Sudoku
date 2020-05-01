@@ -1,5 +1,6 @@
 ﻿using System;
 using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Exocets
@@ -169,8 +170,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString()
 		{
-			string baseCells = CellCollection.ToString(new[] { Base1, Base2 });
-			string targetCells = CellCollection.ToString(new[] { TargetQ1, TargetQ2, TargetR1, TargetR2 });
+			string baseCells = new CellCollection(stackalloc[] { Base1, Base2 }).ToString();
+			string targetCells = new CellCollection(stackalloc[] { TargetQ1, TargetQ2, TargetR1, TargetR2 }).ToString();
 			return $"Exocet: base {baseCells}, target {targetCells}";
 		}
 

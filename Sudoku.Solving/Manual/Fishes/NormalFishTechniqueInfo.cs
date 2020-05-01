@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -112,10 +113,10 @@ namespace Sudoku.Solving.Manual.Fishes
 			int value = Digit + 1;
 			string baseSetStr = RegionCollection.ToString(BaseSets);
 			string coverSetStr = RegionCollection.ToString(CoverSets);
+			string? finStr = !(FinCellOffsets is null) && FinCellOffsets.Count != 0
+				? $" f{new CellCollection(FinCellOffsets).ToString()}"
+				: string.Empty;
 			string elimStr = ConclusionCollection.ToString(Conclusions);
-			string? finCellStr = FinCellOffsets is null ? null : CellCollection.ToString(FinCellOffsets);
-			bool condition = !(FinCellOffsets is null) && FinCellOffsets.Count != 0;
-			string finStr = condition ? $" f{finCellStr}" : string.Empty;
 			return $@"{Name}: {value} in {baseSetStr}\{coverSetStr}{finStr} => {elimStr}";
 		}
 	}

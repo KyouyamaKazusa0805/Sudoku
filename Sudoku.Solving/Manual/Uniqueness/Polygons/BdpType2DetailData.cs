@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Sudoku.Solving.Utils;
+using Sudoku.Data.Collections;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
@@ -32,9 +32,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string digitsStr = DigitCollection.ToString(Digits);
+			string digitsStr = new DigitCollection(Digits).ToString();
 			int extraDigit = ExtraDigit + 1;
-			string cellsStr = CellCollection.ToString(Cells);
+			string cellsStr = new CellCollection(Cells).ToString();
 			return $"{digitsStr} in cells {cellsStr} with extra digit {extraDigit}";
 		}
 	}

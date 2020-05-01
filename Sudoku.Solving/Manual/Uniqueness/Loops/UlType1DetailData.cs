@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data.Collections;
 using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops
@@ -22,8 +23,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string cellsStr = CellCollection.ToString(Cells);
-			string digitsStr = DigitCollection.ToString(Digits);
+			string cellsStr = new CellCollection(Cells).ToString();
+			string digitsStr = new DigitCollection(Digits).ToString();
 			return $"{digitsStr} in cells {cellsStr}";
 		}
 	}

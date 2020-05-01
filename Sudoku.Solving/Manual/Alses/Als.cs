@@ -5,6 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
@@ -202,14 +203,14 @@ namespace Sudoku.Solving.Manual.Alses
 		{
 			return Cells.HasOnlyOneElement()
 				? new StringBuilder()
-					.Append(DigitCollection.ToSimpleString(Digits))
+					.Append(new DigitCollection(Digits).ToString(null))
 					.Append("/")
-					.Append(CellCollection.ToString(Cells))
+					.Append(new CellCollection(Cells).ToString())
 					.ToString()
 				: new StringBuilder()
-					.Append(DigitCollection.ToSimpleString(Digits))
+					.Append(new DigitCollection(Digits).ToString(null))
 					.Append("/")
-					.Append(CellCollection.ToString(Cells))
+					.Append(new CellCollection(Cells).ToString())
 					.Append($" in {RegionUtils.ToString(Region)}")
 					.ToString();
 		}

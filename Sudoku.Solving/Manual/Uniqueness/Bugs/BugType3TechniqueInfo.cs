@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -59,13 +60,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string digitsStr = DigitCollection.ToString(Digits);
-			string cellsStr = CellCollection.ToString(Cells);
+			string digitsStr = new DigitCollection(Digits).ToString();
+			string cellsStr = new CellCollection(Cells).ToString();
 			string elimStr = ConclusionCollection.ToString(Conclusions);
 			string sizeStr = SubsetUtils.GetNameBy(Digits.Count).ToLower();
 			string trueCandidatesStr = CandidateCollection.ToString(TrueCandidates);
-			string subsetTypeStr = (IsNaked ? "naked" : "hidden");
-			return $"{Name}: True candidates {trueCandidatesStr} with {subsetTypeStr} {sizeStr} {digitsStr} in cells {cellsStr} => {elimStr}";
+			string subsetTypeStr = IsNaked ? "naked" : "hidden";
+			return
+				$"{Name}: True candidates {trueCandidatesStr} with {subsetTypeStr} {sizeStr} {digitsStr} " +
+				$"in cells {cellsStr} => {elimStr}";
 		}
 	}
 }

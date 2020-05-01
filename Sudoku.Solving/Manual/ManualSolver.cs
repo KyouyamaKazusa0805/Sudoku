@@ -219,8 +219,7 @@ namespace Sudoku.Solving.Manual
 								break;
 							}
 						}
-						throw new WrongHandlingException(
-							grid, $"The specified step is wrong: {wrongStep}.");
+						throw new WrongHandlingException(grid, $"The specified step is wrong: {wrongStep}.");
 					}
 				}
 				else
@@ -257,8 +256,7 @@ namespace Sudoku.Solving.Manual
 					}
 					else
 					{
-						throw new WrongHandlingException(
-							grid, $"The specified step is wrong: {step}.");
+						throw new WrongHandlingException(grid, $"The specified step is wrong: {step}.");
 					}
 				}
 			}
@@ -396,8 +394,7 @@ namespace Sudoku.Solving.Manual
 					{
 						foreach (var step in bag)
 						{
-							if (RecordTechnique(
-								steps, step, grid, cloneation, stopwatch, stepGrids, out var result))
+							if (RecordTechnique(steps, step, grid, cloneation, stopwatch, stepGrids, out var result))
 							{
 								stopwatch.Stop();
 								return result;
@@ -427,8 +424,7 @@ namespace Sudoku.Solving.Manual
 								break;
 							}
 						}
-						throw new WrongHandlingException(
-							grid, $"The specified step is wrong: {wrongStep}.");
+						throw new WrongHandlingException(grid, $"The specified step is wrong: {wrongStep}.");
 					}
 				}
 				else
@@ -448,8 +444,7 @@ namespace Sudoku.Solving.Manual
 						? CheckConclusionsValidity(solution, step.Conclusions)
 						: true)
 					{
-						if (RecordTechnique(
-							steps, step, grid, cloneation, stopwatch, stepGrids, out var result))
+						if (RecordTechnique(steps, step, grid, cloneation, stopwatch, stepGrids, out var result))
 						{
 							stopwatch.Stop();
 							return result;
@@ -471,8 +466,7 @@ namespace Sudoku.Solving.Manual
 					}
 					else
 					{
-						throw new WrongHandlingException(
-							grid, $"The specified step is wrong: {step}.");
+						throw new WrongHandlingException(grid, $"The specified step is wrong: {step}.");
 					}
 				}
 			}

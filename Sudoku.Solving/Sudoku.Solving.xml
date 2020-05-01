@@ -1646,7 +1646,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueInfo">
             <summary>
-            Provides a usage of <b>Sk-loop</b> technique.
+            Provides a usage of <b>domino loop</b> technique.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32})">
@@ -7771,18 +7771,6 @@
             <param name="candidateOffset">The candidate offset.</param>
             <returns>A string text.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Utils.CellCollection">
-            <summary>
-            Provides extension methods of cell collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.CellCollection.ToString(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Get a string consists of all cell text.
-            </summary>
-            <param name="cellOffsets">The cell offsets.</param>
-            <returns>The string.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Utils.CellUtils">
             <summary>
             Provides extension method used for cell offsets.
@@ -7845,25 +7833,6 @@
             </summary>
             <param name="conclusions">The conclusions.</param>
             <param name="separator">The string separator.</param>
-            <returns>The string.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Utils.DigitCollection">
-            <summary>
-            Provides extension methods of digit collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.DigitCollection.ToString(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Get a string consists of digits' text.
-            </summary>
-            <param name="digits">The digits.</param>
-            <returns>The string.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.DigitCollection.ToSimpleString(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Get a simple string consists of digits' text.
-            </summary>
-            <param name="digits">The digits.</param>
             <returns>The string.</returns>
         </member>
         <member name="T:Sudoku.Solving.Utils.FishUtils">

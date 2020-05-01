@@ -2,9 +2,9 @@
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 using R = Sudoku.Solving.Utils.RegionCollection;
-using C = Sudoku.Solving.Utils.CellCollection;
 using Conc = Sudoku.Solving.Utils.ConclusionCollection;
 using System.Linq;
+using Sudoku.Data.Collections;
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -151,8 +151,8 @@ namespace Sudoku.Solving.Manual.Fishes
 			string elimStr = Conc.ToString(Conclusions);
 			string baseSets = R.ToString(BaseSets);
 			string coverSets = R.ToString(CoverSets);
-			string exo = ExofinCells is null ? string.Empty : $"f{C.ToString(ExofinCells)} ";
-			string endo = EndofinCells is null ? string.Empty : $"ef{C.ToString(EndofinCells)} ";
+			string exo = ExofinCells is null ? string.Empty : $"f{new CellCollection(ExofinCells).ToString()} ";
+			string endo = EndofinCells is null ? string.Empty : $"ef{new CellCollection(EndofinCells).ToString()} ";
 			return $@"{Name}: {Digit + 1} in {baseSets}\{coverSets} {exo}{endo}=> {elimStr}";
 		}
 

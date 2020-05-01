@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -73,35 +74,25 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override bool Equals(TechniqueInfo other)
 		{
-			if (!(other is SdcTechniqueInfo comparer))
-			{
-				return false;
-			}
-
-			var thisMap = GridMap.Empty;
-			foreach (int cell in Als1Cells) thisMap.Add(cell);
-			foreach (int cell in Als2Cells) thisMap.Add(cell);
-			foreach (int cell in IntersectionCells) thisMap.Add(cell);
-
-			var comparerMap = GridMap.Empty;
-			foreach (int cell in comparer.Als1Cells) comparerMap.Add(cell);
-			foreach (int cell in comparer.Als2Cells) comparerMap.Add(cell);
-			foreach (int cell in comparer.IntersectionCells) comparerMap.Add(cell);
-
-			return thisMap == comparerMap;
+			return other is SdcTechniqueInfo comparer
+				&& (new GridMap(Als1Cells) | new GridMap(Als2Cells) | new GridMap(IntersectionCells))
+				== (new GridMap(comparer.Als1Cells) | new GridMap(comparer.Als2Cells)
+				| new GridMap(comparer.IntersectionCells));
 		}
 
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string interCells = CellCollection.ToString(IntersectionCells);
-			string digits = DigitCollection.ToSimpleString(IntersectionDigits);
+			string interCells = new CellCollection(IntersectionCells).ToString();
+			string digits = new DigitCollection(IntersectionDigits).ToString(null);
+			string als1Cells = new CellCollection(Als1Cells).ToString();
+			string als1Digits = new DigitCollection(Als1Digits).ToString(null);
+			string als2Cells = new CellCollection(Als2Cells).ToString();
+			string als2Digits = new DigitCollection(Als2Digits).ToString(null);
 			string elimStr = ConclusionCollection.ToString(Conclusions);
-			string als1Cells = CellCollection.ToString(Als1Cells);
-			string als1Digits = DigitCollection.ToSimpleString(Als1Digits);
-			string als2Cells = CellCollection.ToString(Als2Cells);
-			string als2Digits = DigitCollection.ToSimpleString(Als2Digits);
-			return $"{Name}: {interCells}({digits}) - ({als1Cells}({als1Digits}) & {als2Cells}({als2Digits})) => {elimStr}";
+			return
+				$"{Name}: {interCells}({digits}) - ({als1Cells}({als1Digits}) & {als2Cells}({als2Digits})) => " +
+				$"{elimStr}";
 		}
 	}
 }
