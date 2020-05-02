@@ -66,6 +66,11 @@ namespace Sudoku.Solving.Manual.Alses
 
 
 		/// <summary>
+		/// Indicates whether the current ALS is a bi-value cell ALS.
+		/// </summary>
+		public bool IsBivalueCellAls => (RelativePosMask & (RelativePosMask - 1)) == 0;
+
+		/// <summary>
 		/// Indicates the region .
 		/// </summary>
 		public int Region => _mask >> 18 & 31;
@@ -117,12 +122,14 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <summary>
 		/// Indicates all cells used.
 		/// </summary>
-		private IEnumerable<int> Cells
+		public IEnumerable<int> Cells
 		{
 			get
 			{
-				var @this = this; // 'this' cannot be captured in query expressions.
-				return from pos in RelativePos select RegionCells[@this.Region][pos];
+				foreach (int pos in RelativePos)
+				{
+					yield return RegionCells[Region][pos];
+				}
 			}
 		}
 
@@ -137,8 +144,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// (<see langword="out"/> parameter) The map of all cells used.
 		/// </param>
 		public void Deconstruct(
-			out int region, out IEnumerable<int> relativePos, out IEnumerable<int> digits,
-			out GridMap map) =>
+			out int region, out IEnumerable<int> relativePos, out IEnumerable<int> digits, out GridMap map) =>
 			(region, relativePos, digits, map) = (Region, RelativePos, Digits, Map);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
@@ -167,8 +173,8 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public bool Equals(Als other)
 		{
-			return Cells.HasOnlyOneElement() && other.Cells.HasOnlyOneElement()
-				? (_mask & 0x1FF) == (other._mask & 0x1FF)
+			return IsBivalueCellAls && other.IsBivalueCellAls
+				? (_mask & 511) == (other._mask & 511)
 					&& RegionCells[Region][RelativePosMask.FindFirstSet()]
 					== RegionCells[other.Region][other.RelativePosMask.FindFirstSet()]
 				: _mask == other._mask;
@@ -201,7 +207,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString()
 		{
-			return Cells.HasOnlyOneElement()
+			return IsBivalueCellAls
 				? new StringBuilder()
 					.Append(new DigitCollection(Digits).ToString(null))
 					.Append("/")

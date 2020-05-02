@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -104,18 +103,22 @@ namespace Sudoku.Solving.Manual.Alses
 					}
 
 					// Record highlight cells.
-					var cellOffsets = new List<(int, int)>(
-						(from cell in map1.Offsets select (0, cell)).Concat(
-							from cell in map2.Offsets select (1, cell)
-						)
-					);
+					var cellOffsets = new List<(int, int)>();
+					foreach (int cell in map1.Offsets)
+					{
+						cellOffsets.Add((0, cell));
+					}
+					foreach (int cell in map2.Offsets)
+					{
+						cellOffsets.Add((1, cell));
+					}
 
 					// Record highlight candidates.
 					var candidateOffsets = new List<(int, int)>();
-					bool isEsp = map1.Count == 1 || map2.Count == 1;
+					bool isEsp = rcc.Als1.IsBivalueCellAls || rcc.Als2.IsBivalueCellAls;
 					if (isEsp)
 					{
-						// Extended Subset principle.
+						// Extended Subset Principle.
 						foreach (int cell in (map1 | map2).Offsets)
 						{
 							foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
@@ -160,7 +163,7 @@ namespace Sudoku.Solving.Manual.Alses
 									cellOffsets: _alsShowRegions ? null : cellOffsets,
 									candidateOffsets: _alsShowRegions ? candidateOffsets : null,
 									regionOffsets:
-										_alsShowRegions 
+										_alsShowRegions
 											? isEsp ? null : new[] { (0, region1), (1, region2) }
 											: null,
 									links: null)

@@ -1056,6 +1056,11 @@
             <param name="relativePos">All relative positions.</param>
             <param name="digits">All digits.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Als.IsBivalueCellAls">
+            <summary>
+            Indicates whether the current ALS is a bi-value cell ALS.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Als.Region">
             <summary>
             Indicates the region .

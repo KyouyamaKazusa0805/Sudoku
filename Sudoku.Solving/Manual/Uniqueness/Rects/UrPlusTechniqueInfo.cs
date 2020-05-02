@@ -46,7 +46,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		protected sealed override string GetAdditional()
 		{
 			bool singular = ConjugatePairs.Count == 1;
-			return $"{(singular ? "a" : string.Empty)} conjugate pair{(singular ? string.Empty : "s")} {getStr()}";
+			return $"{(singular ? "a " : string.Empty)}conjugate pair{(singular ? string.Empty : "s")} {getStr()}";
 
 			string getStr()
 			{
