@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace Sudoku.Data
 {
@@ -35,6 +36,7 @@ namespace Sudoku.Data
 		/// This field should not be used to process cell status comparison.
 		/// </remarks>
 		/// <seealso cref="Grid.GetStatus(int)"/>
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		All = Empty | Modifiable | Given
 	}
 }

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+#if SUDOKU_RECOGNIZING
+using System.Drawing;
+#endif
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,7 +15,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
@@ -27,9 +29,6 @@ using static Sudoku.Windows.Constants.Processing;
 using AnonymousType = System.Object;
 using DColor = System.Drawing.Color;
 using SudokuGrid = Sudoku.Data.Grid;
-#if SUDOKU_RECOGNIZING
-using System.Drawing;
-#endif
 
 namespace Sudoku.Windows
 {

@@ -154,7 +154,6 @@ namespace Sudoku.Data
 					return -1;
 				}
 			}
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
 				if (value >= 0 && value < 9)
@@ -184,9 +183,7 @@ namespace Sudoku.Data
 		/// <inheritdoc/>
 		public virtual bool this[int offset, int digit]
 		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (_masks[offset] >> digit & 1) != 0;
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
 				ref short result = ref _masks[offset];

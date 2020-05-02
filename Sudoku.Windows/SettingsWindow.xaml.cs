@@ -12,6 +12,8 @@ using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Extensions;
 using Sudoku.Windows.Tooling;
+using Xceed.Wpf.Toolkit;
+using MessageBox = System.Windows.MessageBox;
 
 namespace Sudoku.Windows
 {
