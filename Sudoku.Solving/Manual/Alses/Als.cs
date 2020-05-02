@@ -221,12 +221,12 @@ namespace Sudoku.Solving.Manual.Alses
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <returns>All ALSes searched.</returns>
-		public static IReadOnlyDictionary<int, IEnumerable<Als>> GetAllAlses(IReadOnlyGrid grid)
+		public static IEnumerable<Als>[] GetAllAlses(IReadOnlyGrid grid)
 		{
-			var dic = new Dictionary<int, IEnumerable<Als>>();
+			var dic = new IEnumerable<Als>[27];
 			for (int region = 0; region < 27; region++)
 			{
-				dic.Add(region, GetAllAlses(grid, region));
+				dic[region] = GetAllAlses(grid, region);
 			}
 
 			return dic;
@@ -252,37 +252,49 @@ namespace Sudoku.Solving.Manual.Alses
 
 				i++;
 			}
+			if (posMask == 0)
+			{
+				yield break;
+			}
 
 			int count = posMask.CountSet();
 			for (int size = 1; size <= count; size++)
 			{
-				foreach (short relativePosMask in new BitCombinationGenerator(9, size))
+				foreach (short mask in GetCombinations(count, size))
 				{
-					bool flag = false;
-					short digitsMask = 0;
-					foreach (int cell in MaskExtensions.GetCells(region, relativePosMask))
+					short realMask = 0;
+					foreach (int index in mask.GetAllSets())
 					{
-						if (grid.GetStatus(cell) != Empty)
-						{
-							flag = true;
-							break;
-						}
+						realMask |= (short)(1 << posMask.SetAt(index));
+					}
 
+					short digitsMask = 0;
+					foreach (int cell in MaskExtensions.GetCells(region, realMask))
+					{
 						digitsMask |= grid.GetCandidatesReversal(cell);
 					}
-					if (flag)
-					{
-						continue;
-					}
-
 					if (digitsMask.CountSet() - 1 != size)
 					{
 						// Not an ALS.
 						continue;
 					}
 
-					yield return new Als((int)digitsMask | relativePosMask << 9 | region << 18);
+					yield return new Als((int)digitsMask | realMask << 9 | region << 18);
 				}
+			}
+		}
+
+		/// <summary>
+		/// Get combinations.
+		/// </summary>
+		/// <param name="count">The number of cells in total.</param>
+		/// <param name="size">The number of cells you want to take.</param>
+		/// <returns>All masks.</returns>
+		private static IEnumerable<short> GetCombinations(int count, int size)
+		{
+			foreach (short mask in new BitCombinationGenerator(count, size))
+			{
+				yield return mask;
 			}
 		}
 

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using static Sudoku.GridProcessings;
 
 namespace Sudoku.Data.Extensions
@@ -20,12 +19,10 @@ namespace Sudoku.Data.Extensions
 		{
 			for (int i = 0, t = mask; i < 9; i++, t >>= 1)
 			{
-				if ((t & 1) == 0)
+				if ((t & 1) != 0)
 				{
-					continue;
+					yield return RegionCells[region][i];
 				}
-
-				yield return GetCellOffset(region, i);
 			}
 		}
 
@@ -36,16 +33,5 @@ namespace Sudoku.Data.Extensions
 		public static void Deconstruct(
 			this short @this, out CellStatus cellStatus, out short candidatesMask) =>
 			(cellStatus, candidatesMask) = ((CellStatus)(@this >> 9 & (int)CellStatus.All), (short)(@this & 511));
-
-		/// <summary>
-		/// Get the cell offset of the relative position in the specified
-		/// region.
-		/// </summary>
-		/// <param name="regionOffset">The region offset.</param>
-		/// <param name="relativePos">The relative position.</param>
-		/// <returns>The cell offset.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static int GetCellOffset(int regionOffset, int relativePos) =>
-			RegionCells[regionOffset][relativePos];
 	}
 }

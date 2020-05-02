@@ -66,9 +66,9 @@ namespace Sudoku.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
 		/// <param name="order">The number of the order of set bits.</param>
 		/// <returns>The position.</returns>
-		public static int GetSetIndex(this long @this, int order)
+		public static int SetAt(this long @this, int order)
 		{
-			for (int i = 0, count = 0; i < 64; i++, @this >>= 1)
+			for (int i = 0, count = -1; i < 64; i++, @this >>= 1)
 			{
 				if ((@this & 1) != 0 && ++count == order)
 				{

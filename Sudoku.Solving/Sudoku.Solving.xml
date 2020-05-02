@@ -1173,6 +1173,14 @@
             <param name="region">The region.</param>
             <returns>All ALSes searched.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.GetCombinations(System.Int32,System.Int32)">
+            <summary>
+            Get combinations.
+            </summary>
+            <param name="count">The number of cells in total.</param>
+            <param name="size">The number of cells you want to take.</param>
+            <returns>All masks.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.op_Equality(Sudoku.Solving.Manual.Alses.Als,Sudoku.Solving.Manual.Alses.Als)">
             <operator name="op_Equality">
 		<summary>Indicates whether two instances have a same value.</summary>

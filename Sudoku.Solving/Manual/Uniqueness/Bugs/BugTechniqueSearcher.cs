@@ -534,8 +534,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					}
 
 					// Check whether the conjugate pair lies on current two cells.
-					int c1 = RegionCells[region][mask.GetSetIndex(1)];
-					int c2 = RegionCells[region][mask.GetSetIndex(2)];
+					int c1 = RegionCells[region][mask.SetAt(0)];
+					int c2 = RegionCells[region][mask.SetAt(1)];
 					if (c1 != cells[0] || c2 != cells[1])
 					{
 						continue;

@@ -143,9 +143,9 @@ namespace Sudoku.Solving.Checking
 				{
 					@continue = true;
 					mask = pairs[pt - 1, i];
-					for (int j = 1; j <= 2; j++)
+					for (int j = 0; j < 2; j++)
 					{
-						var temp = stack[pt - 1, mask.GetSetIndex(j)];
+						var temp = stack[pt - 1, mask.SetAt(j)];
 						temp.Add(ps);
 						var (r, c, b) = CellUtils.GetRegion(ps);
 

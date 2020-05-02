@@ -543,15 +543,6 @@
             <param name="cellStatus">(<see langword="out" /> parameter) The cell status.</param>
             <param name="candidatesMask">(<see langword="out" /> parameter) The candidate mask.</param>
         </member>
-        <member name="M:Sudoku.Data.Extensions.MaskExtensions.GetCellOffset(System.Int32,System.Int32)">
-            <summary>
-            Get the cell offset of the relative position in the specified
-            region.
-            </summary>
-            <param name="regionOffset">The region offset.</param>
-            <param name="relativePos">The relative position.</param>
-            <returns>The cell offset.</returns>
-        </member>
         <member name="T:Sudoku.Data.Extensions.ReadOnlyGridEx">
             <summary>
             Provides extension methods on <see cref="T:Sudoku.Data.IReadOnlyGrid"/>.
@@ -3506,7 +3497,7 @@
             <param name="index">The index.</param>
             <returns>The index.</returns>
         </member>
-        <member name="M:Sudoku.Extensions.ByteEx.GetSetIndex(System.Byte,System.Int32)">
+        <member name="M:Sudoku.Extensions.ByteEx.SetAt(System.Byte,System.Int32)">
             <summary>
             Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
             all set bits with the specified set bit order.
@@ -3700,7 +3691,7 @@
             <param name="index">The index.</param>
             <returns>The index.</returns>
         </member>
-        <member name="M:Sudoku.Extensions.Int16Ex.GetSetIndex(System.Int16,System.Int32)">
+        <member name="M:Sudoku.Extensions.Int16Ex.SetAt(System.Int16,System.Int32)">
             <summary>
             Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
             all set bits with the specified set bit order.
@@ -3764,7 +3755,7 @@
             <param name="index">The index.</param>
             <returns>The index.</returns>
         </member>
-        <member name="M:Sudoku.Extensions.Int32Ex.GetSetIndex(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Extensions.Int32Ex.SetAt(System.Int32,System.Int32)">
             <summary>
             Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
             all set bits with the specified set bit order.
@@ -3820,7 +3811,7 @@
             <param name="index">The index.</param>
             <returns>The index.</returns>
         </member>
-        <member name="M:Sudoku.Extensions.Int64Ex.GetSetIndex(System.Int64,System.Int32)">
+        <member name="M:Sudoku.Extensions.Int64Ex.SetAt(System.Int64,System.Int32)">
             <summary>
             Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
             all set bits with the specified set bit order.
