@@ -94,8 +94,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 				}
 			}
 
-			int r = finishedCellsCount / 9, c = finishedCellsCount % 9;
-			if (gridValues[r * 9 + c] != 0)
+			if (gridValues[finishedCellsCount] != 0)
 			{
 				BacktrackinglySolve(ref solutionsCount, ref result, gridValues, finishedCellsCount + 1);
 			}
@@ -104,9 +103,10 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 				// Here may try 9 times.
 				// Of course, you can add a new variable to save
 				// all candidates to let the algorithm run faster.
+				int r = finishedCellsCount / 9, c = finishedCellsCount % 9;
 				for (int i = 0; i < 9; i++)
 				{
-					gridValues[r * 9 + c]++; // Only use value increment operator.
+					gridValues[finishedCellsCount]++; // Only use value increment operator.
 					if (IsValid(gridValues, r, c))
 					{
 						BacktrackinglySolve(ref solutionsCount, ref result, gridValues, finishedCellsCount + 1);
@@ -116,7 +116,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 				// All values are wrong, which means the value before
 				// we calculate is already wrong.
 				// Backtracking the cell...
-				gridValues[r * 9 + c] = 0;
+				gridValues[finishedCellsCount] = 0;
 			}
 		}
 
