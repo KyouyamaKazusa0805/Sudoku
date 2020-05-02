@@ -55,6 +55,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
+			var dic = Als.GetAllAlses(grid);
 			var (emptyMap, _, candMaps, _) = grid;
 			for (int r1 = 0; r1 < 26; r1++)
 			{
@@ -63,7 +64,7 @@ namespace Sudoku.Solving.Manual.Alses
 					continue;
 				}
 
-				var alses1 = Als.GetAllAlses(grid, r1);
+				var alses1 = dic[r1];
 				if (!alses1.Any())
 				{
 					continue;
@@ -76,7 +77,7 @@ namespace Sudoku.Solving.Manual.Alses
 						continue;
 					}
 
-					var alses2 = Als.GetAllAlses(grid, r2);
+					var alses2 = dic[r2];
 					if (!alses2.Any())
 					{
 						continue;

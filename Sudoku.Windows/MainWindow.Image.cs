@@ -134,7 +134,7 @@ namespace Sudoku.Windows
 		}
 
 		private void ImageSolve_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
-			MenuItemAnalyzeSolve_Click(sender, e);
+			MenuItemAnalyzeAnalyze_Click(sender, e);
 
 		private void ImageGrid_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
 		{

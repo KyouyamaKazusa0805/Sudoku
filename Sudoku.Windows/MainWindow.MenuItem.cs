@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
@@ -496,7 +497,7 @@ namespace Sudoku.Windows
 			}
 		}
 
-		private void MenuItemAnalyzeGetSolution_Click(object sender, RoutedEventArgs e)
+		private void MenuItemAnalyzeSolve_Click(object sender, RoutedEventArgs e)
 		{
 			var sb = new StringBuilder(SudokuGrid.EmptyString);
 			for (int cell = 0; cell < 81; cell++)
@@ -518,7 +519,7 @@ namespace Sudoku.Windows
 
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		[SuppressMessage("", "IDE0050")]
-		private async void MenuItemAnalyzeSolve_Click(object sender, RoutedEventArgs e)
+		private async void MenuItemAnalyzeAnalyze_Click(object sender, RoutedEventArgs e)
 		{
 			await internalOperation();
 

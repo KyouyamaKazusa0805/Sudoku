@@ -8,7 +8,7 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
+using static Sudoku.Data.CellStatus;
 using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Manual.Alses
@@ -211,10 +211,26 @@ namespace Sudoku.Solving.Manual.Alses
 					.Append(new DigitCollection(Digits).ToString(null))
 					.Append("/")
 					.Append(new CellCollection(Cells).ToString())
-					.Append($" in {RegionUtils.ToString(Region)}")
+					.Append($" in {new RegionCollection(stackalloc[] { Region }).ToString()}")
 					.ToString();
 		}
 
+
+		/// <summary>
+		/// To search for all ALSes in the specified grid.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <returns>All ALSes searched.</returns>
+		public static IReadOnlyDictionary<int, IEnumerable<Als>> GetAllAlses(IReadOnlyGrid grid)
+		{
+			var dic = new Dictionary<int, IEnumerable<Als>>();
+			for (int region = 0; region < 27; region++)
+			{
+				dic.Add(region, GetAllAlses(grid, region));
+			}
+
+			return dic;
+		}
 
 		/// <summary>
 		/// To search for all ALSes in the specified grid and the region to iterate on.
@@ -223,34 +239,40 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <param name="region">The region.</param>
 		/// <returns>All ALSes searched.</returns>
 		[SuppressMessage("", "IDE0004")]
-		public static IEnumerable<Als> GetAllAlses(IReadOnlyGrid grid, int region)
+		private static IEnumerable<Als> GetAllAlses(IReadOnlyGrid grid, int region)
 		{
 			short posMask = 0;
 			int i = 0;
 			foreach (int cell in RegionCells[region])
 			{
-				if (grid.GetStatus(cell) == CellStatus.Empty)
+				if (grid.GetStatus(cell) == Empty)
 				{
 					posMask |= (short)(1 << i);
 				}
 
 				i++;
 			}
-			int count = posMask.CountSet();
 
+			int count = posMask.CountSet();
 			for (int size = 1; size <= count; size++)
 			{
 				foreach (short relativePosMask in new BitCombinationGenerator(9, size))
 				{
+					bool flag = false;
 					short digitsMask = 0;
 					foreach (int cell in MaskExtensions.GetCells(region, relativePosMask))
 					{
-						if (grid.GetStatus(cell) != CellStatus.Empty)
+						if (grid.GetStatus(cell) != Empty)
 						{
-							goto Label_Continue;
+							flag = true;
+							break;
 						}
 
 						digitsMask |= grid.GetCandidatesReversal(cell);
+					}
+					if (flag)
+					{
+						continue;
 					}
 
 					if (digitsMask.CountSet() - 1 != size)
@@ -260,7 +282,6 @@ namespace Sudoku.Solving.Manual.Alses
 					}
 
 					yield return new Als((int)digitsMask | relativePosMask << 9 | region << 18);
-				Label_Continue:;
 				}
 			}
 		}

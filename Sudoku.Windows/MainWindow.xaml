@@ -107,10 +107,10 @@
 
 			<!-- Analyze... -->
 			<MenuItem Header="Analyze">
-				<MenuItem Header="Solve" Name="_menuItemAnalyzeGetSolution" InputGestureText="F10"
-						  Click="MenuItemAnalyzeGetSolution_Click"/>
-				<MenuItem Header="Analyze" Name="_menuItemAnalyzeSolve" InputGestureText="F9"
+				<MenuItem Header="Solve" Name="_menuItemAnalyzeSolve" InputGestureText="F10"
 						  Click="MenuItemAnalyzeSolve_Click"/>
+				<MenuItem Header="Analyze" Name="_menuItemAnalyzeAnalyze" InputGestureText="F9"
+						  Click="MenuItemAnalyzeAnalyze_Click"/>
 				<Separator/>
 				<MenuItem Header="Show Full Houses" Name="_menuItemAnalyzeShowFullHouses"
 						  Click="MenuItemShowFullHouses_Click"/>

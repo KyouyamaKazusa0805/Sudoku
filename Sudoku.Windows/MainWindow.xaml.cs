@@ -220,8 +220,8 @@ namespace Sudoku.Windows
 			AddShortCut(Key.Z, ModifierKeys.Control, _menuItemEditUndo, MenuItemEditUndo_Click);
 			AddShortCut(Key.F5, ModifierKeys.Control, _menuItemEditRecomputeCandidates, MenuItemEditRecomputeCandidates_Click);
 			AddShortCut(Key.OemTilde, ModifierKeys.Control, _menuItemEditFix, MenuItemEditFix_Click);
-			AddShortCut(Key.F9, ModifierKeys.None, _menuItemAnalyzeSolve, MenuItemAnalyzeSolve_Click);
-			AddShortCut(Key.F10, ModifierKeys.None, _menuItemAnalyzeGetSolution, MenuItemAnalyzeGetSolution_Click);
+			AddShortCut(Key.F9, ModifierKeys.None, _menuItemAnalyzeAnalyze, MenuItemAnalyzeAnalyze_Click);
+			AddShortCut(Key.F10, ModifierKeys.None, _menuItemAnalyzeSolve, MenuItemAnalyzeSolve_Click);
 			AddShortCut(Key.F4, ModifierKeys.Alt, null, MenuItemFileQuit_Click);
 			AddShortCut(Key.N, ModifierKeys.Control | ModifierKeys.Shift, _menuItemEditClear, MenuItemEditClear_Click);
 			AddShortCut(Key.C, ModifierKeys.Control | ModifierKeys.Shift, null, MenuItemEditCopyCurrentGrid_Click);
@@ -737,6 +737,7 @@ namespace Sudoku.Windows
 			_menuItemEditReset.IsEnabled = false;
 			_menuItemEditClear.IsEnabled = false;
 			_menuItemGenerateWithSymmetry.IsEnabled = false;
+			_menuItemAnalyzeAnalyze.IsEnabled = false;
 			_menuItemAnalyzeSolve.IsEnabled = false;
 			_menuItemAnalyzeExport.IsEnabled = false;
 			_buttonFindAllSteps.IsEnabled = false;
@@ -771,6 +772,7 @@ namespace Sudoku.Windows
 			_menuItemEditClear.IsEnabled = true;
 			_menuItemGenerateWithSymmetry.IsEnabled = true;
 			_menuItemAnalyzeSolve.IsEnabled = true;
+			_menuItemAnalyzeAnalyze.IsEnabled = true;
 			_menuItemAnalyzeExport.IsEnabled = true;
 			_buttonFindAllSteps.IsEnabled = true;
 			_imageGeneratingIcon.IsEnabled = true;
@@ -799,6 +801,7 @@ namespace Sudoku.Windows
 			_menuItemEditClear.IsEnabled = false;
 			_menuItemGenerateWithSymmetry.IsEnabled = false;
 			_menuItemAnalyzeSolve.IsEnabled = false;
+			_menuItemAnalyzeAnalyze.IsEnabled = false;
 			_menuItemAnalyzeShowFullHouses.IsEnabled = false;
 			_menuItemAnalyzeShowLastDigits.IsEnabled = false;
 			_menuItemAnalyzeSeMode.IsEnabled = false;
@@ -836,6 +839,7 @@ namespace Sudoku.Windows
 			_menuItemEditClear.IsEnabled = true;
 			_menuItemGenerateWithSymmetry.IsEnabled = true;
 			_menuItemAnalyzeSolve.IsEnabled = true;
+			_menuItemAnalyzeAnalyze.IsEnabled = true;
 			_menuItemAnalyzeShowFullHouses.IsEnabled = true;
 			_menuItemAnalyzeShowLastDigits.IsEnabled = true;
 			_menuItemAnalyzeSeMode.IsEnabled = true;

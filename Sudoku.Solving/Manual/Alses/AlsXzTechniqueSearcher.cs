@@ -4,6 +4,8 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using static Sudoku.Data.GridMap.InitializeOption;
+using static Sudoku.Solving.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Alses
 {
@@ -55,54 +57,35 @@ namespace Sudoku.Solving.Manual.Alses
 			foreach (var rcc in Rcc.GetAllRccs(grid, _allowOverlapping))
 			{
 				var (
-					(region1, _, digitMask1, _, _, map1),
-					(region2, _, digitMask2, _, _, map2),
+					(region1, _, digitMask1, _, _, map1), (region2, _, digitMask2, _, _, map2),
 					commonDigit, commonRegion) = rcc;
 
 				// ALS-XZ found.
 				// Now we should check elimination.
 				// But firstly, we should check all digits appearing
 				// in two ALSes.
-				foreach (int elimDigit in (digitMask1 | digitMask2).GetAllSets())
+				foreach (int elimDigit in (digitMask1 & digitMask2 & ~(1 << commonDigit)).GetAllSets())
 				{
-					// Check the current digit to iterate ('elimDigit') is same as
-					// common digit. If so, the digit is always not the elimination.
-					if (elimDigit == commonDigit)
-					{
-						continue;
-					}
-
-					// To check whether both ALSes contain this digit.
-					// If not (either containing), continue to next iteration.
-					if (((digitMask1 ^ digitMask2) >> elimDigit & 1) != 0)
-					{
-						continue;
-					}
-
 					// Both ALSes contain the digit.
 					// Now check elimination set.
-					var tempList = new HashSet<int>();
+					var tempMap = GridMap.Empty;
 					foreach (int cell in map1.Offsets)
 					{
-						if (!(grid.Exists(cell, elimDigit) is true))
+						if (grid.Exists(cell, elimDigit) is true)
 						{
-							continue;
+							tempMap.Add(cell);
 						}
-
-						tempList.Add(cell);
 					}
 					foreach (int cell in map2.Offsets)
 					{
-						if (!(grid.Exists(cell, elimDigit) is true))
+						if (grid.Exists(cell, elimDigit) is true)
 						{
-							continue;
+							tempMap.Add(cell);
 						}
-
-						tempList.Add(cell);
 					}
 
-					var elimMap = new GridMap(tempList, GridMap.InitializeOption.ProcessPeersWithoutItself);
-					if (elimMap.Count == 0)
+					var elimMap = new GridMap(tempMap, ProcessPeersWithoutItself);
+					if (elimMap.IsEmpty)
 					{
 						continue;
 					}
@@ -110,23 +93,22 @@ namespace Sudoku.Solving.Manual.Alses
 					var conclusions = new List<Conclusion>();
 					foreach (int cell in elimMap.Offsets)
 					{
-						if (!(grid.Exists(cell, elimDigit) is true))
+						if (grid.Exists(cell, elimDigit) is true)
 						{
-							continue;
+							conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
 						}
-
-						conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, elimDigit));
 					}
-
 					if (conclusions.Count == 0)
 					{
 						continue;
 					}
 
 					// Record highlight cells.
-					var cellOffsets = new List<(int, int)>();
-					cellOffsets.AddRange(from cell in map1.Offsets select (0, cell));
-					cellOffsets.AddRange(from cell in map2.Offsets select (1, cell));
+					var cellOffsets = new List<(int, int)>(
+						(from cell in map1.Offsets select (0, cell)).Concat(
+							from cell in map2.Offsets select (1, cell)
+						)
+					);
 
 					// Record highlight candidates.
 					var candidateOffsets = new List<(int, int)>();

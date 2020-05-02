@@ -1158,6 +1158,13 @@
 		<returns>A string that represents the current object.</returns>
 	</method>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.GetAllAlses(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            To search for all ALSes in the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>All ALSes searched.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.GetAllAlses(Sudoku.Data.IReadOnlyGrid,System.Int32)">
             <summary>
             To search for all ALSes in the specified grid and the region to iterate on.
@@ -1808,15 +1815,15 @@
             it will return <see langword="null"/>.
             </returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.DigitAppears(Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Alses.Als,System.Int32,System.Nullable{Sudoku.Data.GridMap}@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Rcc.DigitAppears(Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Alses.Als,System.Int32,Sudoku.Data.GridMap@)">
             <summary>
             Check whether the digit appears at least once in the specified ALS.
             </summary>
             <param name="grid">The grid.</param>
             <param name="als">The ALS.</param>
             <param name="digit">The digit.</param>
-            <param name="cellsIfUnique">
-            (<see langword="out"/> parameter) The cells if not empty.
+            <param name="map">
+            (<see langword="out"/> parameter) The map of cells.
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
@@ -7170,13 +7177,14 @@
         <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.TakeAllWWings(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.TakeAllWWings(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <summary>
             Search for all W-Wings.
             </summary>
             <param name="result">The result accumulator.</param>
             <param name="grid">The grid.</param>
-            <param name="bivalueCellsMap">(<see langword="in"/> parameter) bivalue cell information pair.</param>
+            <param name="emptyMap">The empty cells map.</param>
+            <param name="bivalueMap">The bi-value cells map.</param>
             <returns>All technique information instances.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.SearchWWingByRegions(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32[],System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
