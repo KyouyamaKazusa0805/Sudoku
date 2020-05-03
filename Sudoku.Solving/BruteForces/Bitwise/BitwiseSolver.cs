@@ -3,11 +3,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using Sudoku.Data;
-using CStyleString = System.Text.StringBuilder;
-using ImmutableString = System.String;
 using static System.Runtime.InteropServices.CharSet;
 using static System.Runtime.InteropServices.CallingConvention;
 using static System.Runtime.InteropServices.UnmanagedType;
+using ImmutableString = System.String;
+using CStyleString = System.Text.StringBuilder;
 #if TARGET_64BIT
 using native_int = System.Int32;
 #else
@@ -99,8 +99,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// (<see langword="out"/> parameter) The solution.
 		/// </param>
 		/// <returns>The <see cref="bool"/> result.</returns>
-		public bool CheckValidity(
-			IReadOnlyGrid grid, [NotNullWhen(true)] out IReadOnlyGrid? solutionIfUnique)
+		public bool CheckValidity(IReadOnlyGrid grid, [NotNullWhen(true)] out IReadOnlyGrid? solutionIfUnique)
 		{
 			var sb = new CStyleString(82);
 			if (Solve(grid.ToString("0"), sb, 2) == 1)

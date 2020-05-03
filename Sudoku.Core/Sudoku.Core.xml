@@ -4820,6 +4820,14 @@
             <param name="count">The number you want to take.</param>
             <returns>All combinations.</returns>
         </member>
+        <member name="M:System.Algorithms.Swap``1(``0@,``0@)">
+            <summary>
+            To swap the two variables.
+            </summary>
+            <typeparam name="T">The type of the variable.</typeparam>
+            <param name="left">The left variable.</param>
+            <param name="right">The right variable.</param>
+        </member>
         <member name="M:System.Algorithms.GetCombinationRecursively``1(System.Collections.Generic.List{``0[]}@,``0[],System.Int32,System.Int32,System.Int32[],System.Int32)">
             <summary>
             Get all combinations for an array recursively.

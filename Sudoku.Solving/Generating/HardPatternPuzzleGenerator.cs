@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Extensions;
 using Sudoku.Solving.Checking;
+using static System.Algorithms;
 
 namespace Sudoku.Solving.Generating
 {
@@ -24,8 +26,6 @@ namespace Sudoku.Solving.Generating
 		protected override void CreatePattern(int[] pattern)
 		{
 			//[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static void swap<T>(ref T left, ref T right) { var temp = left; left = right; right = temp; }
-			//[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			static double rnd() => Rng.NextDouble();
 			int[] box = { 0, 6, 54, 60, 3, 27, 33, 57, 30 };
 			int[,] t = { { 0, 1, 2 }, { 0, 2, 1 }, { 1, 0, 2 }, { 1, 2, 0 }, { 2, 0, 1 }, { 2, 1, 0 } };
@@ -45,19 +45,19 @@ namespace Sudoku.Solving.Generating
 
 			for (int i = 23; i >= 0; i--)
 			{
-				swap(ref pattern[i], ref pattern[(int)((i + 1) * rnd())]);
+				Swap(ref pattern[i], ref pattern[(int)((i + 1) * rnd())]);
 			}
 			for (int i = 47; i >= 24; i--)
 			{
-				swap(ref pattern[i], ref pattern[24 + (int)((i - 23) * rnd())]);
+				Swap(ref pattern[i], ref pattern[24 + (int)((i - 23) * rnd())]);
 			}
 			for (int i = 53; i >= 48; i--)
 			{
-				swap(ref pattern[i], ref pattern[48 + (int)((i - 47) * rnd())]);
+				Swap(ref pattern[i], ref pattern[48 + (int)((i - 47) * rnd())]);
 			}
 			for (int i = 80; i >= 54; i--)
 			{
-				swap(ref pattern[i], ref pattern[54 + (int)(27 * rnd())]);
+				Swap(ref pattern[i], ref pattern[54 + (int)(27 * rnd())]);
 			}
 		}
 
@@ -123,25 +123,23 @@ namespace Sudoku.Solving.Generating
 		private static void RecreatePattern(int[] pattern)
 		{
 			//[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static void swap<T>(ref T left, ref T right) { var temp = left; left = right; right = temp; }
-			//[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			static double rnd() => Rng.NextDouble();
 
 			for (int i = 23; i >= 0; i--)
 			{
-				swap(ref pattern[i], ref pattern[(int)((i + 1) * rnd())]);
+				Swap(ref pattern[i], ref pattern[(int)((i + 1) * rnd())]);
 			}
 			for (int i = 47; i >= 24; i--)
 			{
-				swap(ref pattern[i], ref pattern[24 + (int)((i - 23) * rnd())]);
+				Swap(ref pattern[i], ref pattern[24 + (int)((i - 23) * rnd())]);
 			}
 			for (int i = 53; i >= 48; i--)
 			{
-				swap(ref pattern[i], ref pattern[48 + (int)((i - 47) * rnd())]);
+				Swap(ref pattern[i], ref pattern[48 + (int)((i - 47) * rnd())]);
 			}
 			for (int i = 80; i >= 54; i--)
 			{
-				swap(ref pattern[i], ref pattern[54 + (int)(27 * rnd())]);
+				Swap(ref pattern[i], ref pattern[54 + (int)(27 * rnd())]);
 			}
 		}
 	}

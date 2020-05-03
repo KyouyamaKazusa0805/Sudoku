@@ -37,8 +37,7 @@ namespace Sudoku.Solving.Checking
 		{
 			if (grid.IsValid(out _))
 			{
-				Grid = grid;
-				(_emptyMap, _bivalueMap, _candMaps, _) = grid;
+				(_emptyMap, _bivalueMap, _candMaps, _) = Grid = grid;
 			}
 			else
 			{
@@ -79,8 +78,7 @@ namespace Sudoku.Solving.Checking
 			foreach (int value in array)
 			{
 				int candidatesCount = Grid.GetCandidatesReversal(value).CountSet();
-				if (candidatesCount == 1
-					|| candidatesCount > 2 && ++multivalueCellsCount > maximumEmptyCells)
+				if (candidatesCount == 1 || candidatesCount > 2 && ++multivalueCellsCount > maximumEmptyCells)
 				{
 					return Array.Empty<int>();
 				}

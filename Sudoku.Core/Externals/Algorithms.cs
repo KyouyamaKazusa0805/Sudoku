@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace System
 {
@@ -20,6 +21,20 @@ namespace System
 			GetCombinationRecursively(ref result, array, array.Length, count, temp, count);
 
 			return result;
+		}
+
+		/// <summary>
+		/// To swap the two variables.
+		/// </summary>
+		/// <typeparam name="T">The type of the variable.</typeparam>
+		/// <param name="left">The left variable.</param>
+		/// <param name="right">The right variable.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void Swap<T>(ref T left, ref T right)
+		{
+			var temp = left;
+			left = right;
+			right = temp;
 		}
 
 		/// <summary>

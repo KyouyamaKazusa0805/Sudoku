@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using static System.Windows.Input.Key;
 
 namespace Sudoku.Windows.Extensions
 {
@@ -18,7 +19,7 @@ namespace Sudoku.Windows.Extensions
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsDigit(this Key @this) =>
-			@this >= Key.D0 && @this <= Key.D9 || @this >= Key.NumPad0 && @this <= Key.NumPad9;
+			@this >= D0 && @this <= D9 || @this >= NumPad0 && @this <= NumPad9;
 
 		/// <summary>
 		/// Check whether the specified key is a digit key in number pad.
@@ -26,8 +27,7 @@ namespace Sudoku.Windows.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The key.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsNumPadDigit(this Key @this) =>
-			@this >= Key.NumPad0 && @this <= Key.NumPad9;
+		public static bool IsNumPadDigit(this Key @this) => @this >= NumPad0 && @this <= NumPad9;
 
 		/// <summary>
 		/// Check whether the specified key is a digit key above those alphabets
@@ -36,8 +36,7 @@ namespace Sudoku.Windows.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The key.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsDigitUpsideAlphabets(this Key @this) =>
-			@this >= Key.D0 && @this <= Key.D9;
+		public static bool IsDigitUpsideAlphabets(this Key @this) => @this >= D0 && @this <= D9;
 
 		/// <summary>
 		/// Check whether the specified key is a letter.
@@ -45,8 +44,7 @@ namespace Sudoku.Windows.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The key.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsAlphabet(this Key @this) =>
-			@this >= Key.A && @this <= Key.Z;
+		public static bool IsAlphabet(this Key @this) => @this >= A && @this <= Z;
 
 		/// <summary>
 		/// Check whether the specified key is a arrow key (up, down, left or right).
@@ -55,6 +53,6 @@ namespace Sudoku.Windows.Extensions
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsArrow(this Key @this) =>
-			@this == Key.Up || @this == Key.Down || @this == Key.Left || @this == Key.Right;
+			@this == Up || @this == Down || @this == Left || @this == Right;
 	}
 }
