@@ -7570,18 +7570,6 @@
             <param name="right">The right comparer.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Utils.CandidateCollection">
-            <summary>
-            Provides extension methods of candidate collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.CandidateCollection.ToString(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Get a string consists of all candidate text.
-            </summary>
-            <param name="candidateOffsets">The candidate offsets.</param>
-            <returns>A string.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Utils.CandidateUtils">
             <summary>
             Provides extension methods for candidates.

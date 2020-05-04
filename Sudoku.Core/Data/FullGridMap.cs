@@ -390,6 +390,30 @@ namespace Sudoku.Data
 		/// Add a series of candidates into the list.
 		/// </summary>
 		/// <param name="candidates">All candidates.</param>
+		public void AddRange(int[] candidates)
+		{
+			foreach (int candidate in candidates)
+			{
+				Add(candidate);
+			}
+		}
+
+		/// <summary>
+		/// Add a series of candidates into the list.
+		/// </summary>
+		/// <param name="candidates">All candidates.</param>
+		public void AddRange(ReadOnlySpan<int> candidates)
+		{
+			foreach (int candidate in candidates)
+			{
+				Add(candidate);
+			}
+		}
+
+		/// <summary>
+		/// Add a series of candidates into the list.
+		/// </summary>
+		/// <param name="candidates">All candidates.</param>
 		public void AddRange(IEnumerable<int> candidates)
 		{
 			foreach (int candidate in candidates)

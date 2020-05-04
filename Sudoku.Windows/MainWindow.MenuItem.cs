@@ -26,7 +26,6 @@ using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Generating;
-using Sudoku.Solving.Utils;
 using static Sudoku.Windows.Constants.Processing;
 using AnonymousType = System.Object;
 using DColor = System.Drawing.Color;
@@ -750,7 +749,7 @@ namespace Sudoku.Windows
 
 				UpdateImageGrid();
 
-				_textBoxInfo.Text = $"All true candidate(s): {CandidateCollection.ToString(trueCandidates)}";
+				_textBoxInfo.Text = $"All true candidate(s): {new CandidateCollection(trueCandidates).ToString()}";
 			}
 		}
 
