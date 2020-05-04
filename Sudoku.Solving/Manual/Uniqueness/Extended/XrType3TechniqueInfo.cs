@@ -58,7 +58,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		{
 			string digitsStr = new DigitCollection(ExtraDigits).ToString();
 			string cellsStr = new CellCollection(ExtraCells).ToString();
-			string regionStr = RegionUtils.ToString(Region);
+			string regionStr = new RegionCollection(Region).ToString();
 			return $"{digitsStr} in cells {cellsStr} in {regionStr}";
 		}
 	}

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
 using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Checking
@@ -98,7 +98,7 @@ namespace Sudoku.Solving.Checking
 						ref var map = ref stack[0, digit];
 						map.Add(bivalueCell);
 
-						var (r, c, b) = CellUtils.GetRegion(bivalueCell);
+						var (r, c, b) = Cell.GetRegion(bivalueCell);
 						var span = (Span<int>)stackalloc[] { r + 9, c + 18, b };
 						for (int k = 0; k < 3; k++)
 						{
@@ -145,7 +145,7 @@ namespace Sudoku.Solving.Checking
 					{
 						var temp = stack[pt - 1, mask.SetAt(j)];
 						temp.Add(ps);
-						var (r, c, b) = CellUtils.GetRegion(ps);
+						var (r, c, b) = Cell.GetRegion(ps);
 
 						// Use 'stackalloc' frequently may destroy the call stack.
 						// So we should use a playground is OK.

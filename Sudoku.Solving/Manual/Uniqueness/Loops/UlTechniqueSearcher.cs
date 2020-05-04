@@ -5,7 +5,6 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.GridProcessings;
 using static Sudoku.Data.ConclusionType;
@@ -13,6 +12,7 @@ using UlType1 = Sudoku.Solving.Manual.Uniqueness.Loops.UlType1DetailData;
 using UlType2 = Sudoku.Solving.Manual.Uniqueness.Loops.UlType2DetailData;
 using UlType3 = Sudoku.Solving.Manual.Uniqueness.Loops.UlType3DetailData;
 using UlType4 = Sudoku.Solving.Manual.Uniqueness.Loops.UlType4DetailData;
+using Sudoku.Data.Collections;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops
 {
@@ -1037,7 +1037,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			{
 				for (int regionType = 0; regionType < 3; regionType++)
 				{
-					var (r, c, b) = CellUtils.GetRegion(cell);
+					var (r, c, b) = Cell.GetRegion(cell);
 					int region = stackalloc[] { b, r + 9, c + 18 }[regionType];
 					if (isOdd)
 					{
@@ -1096,7 +1096,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					continue;
 				}
 
-				var (r, c, b) = CellUtils.GetRegion(cell);
+				var (r, c, b) = Cell.GetRegion(cell);
 				int region = stackalloc[] { b, r + 9, c + 18 }[regionType];
 				for (int pos = 0; pos < 9; pos++)
 				{

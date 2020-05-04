@@ -5,11 +5,11 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.GridProcessings;
 using static Sudoku.Data.ConclusionType;
+using Sudoku.Data.Collections;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -369,8 +369,8 @@ namespace Sudoku.Solving.Manual.Exocets
 			// Therefore, we should check on non-base digits, whether the non-base digits
 			// covers only one of two last cells; otherwise, false.
 			short candidatesMask = (short)((m1 | m2) & ~baseCandidatesMask);
-			var (r1, c1, b1) = CellUtils.GetRegion(pos1);
-			var (r2, c2, b2) = CellUtils.GetRegion(pos2);
+			var (r1, c1, b1) = Cell.GetRegion(pos1);
+			var (r2, c2, b2) = Cell.GetRegion(pos2);
 			var span = (Span<int>)stackalloc[] { b1, r1 == r2 ? r1 + 9 : c1 + 18 };
 			foreach (short mask in GetCombinations(candidatesMask))
 			{
@@ -451,7 +451,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			targetPairElims = new TargetPairEliminations();
 			swordfishElims = new SwordfishEliminations();
 			var playground = (Span<short>)stackalloc short[3];
-			(_, _, int block) = CellUtils.GetRegion(b1);
+			(_, _, int block) = Cell.GetRegion(b1);
 			short[] temp = new short[4];
 			for (int i = 0; i < 9; i++)
 			{

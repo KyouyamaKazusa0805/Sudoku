@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		{
 			string digitsStr = new DigitCollection(Digits).ToString();
 			string cellsStr = new CellCollection(Cells).ToString();
-			string regionStr = RegionUtils.ToString(Region);
+			string regionStr = new RegionCollection(Region).ToString();
 			return $"{digitsStr} in cells {cellsStr} with a region {regionStr}";
 		}
 	}

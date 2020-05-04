@@ -19,12 +19,17 @@ namespace Sudoku.Data.Collections
 
 
 		/// <summary>
+		/// Initializes an empty collection and add one region into the list.
+		/// </summary>
+		/// <param name="region">The region.</param>
+		public RegionCollection(int region) : this() => _mask |= 1 << region;
+
+		/// <summary>
 		/// Initializes an instance with the specified regions.
 		/// </summary>
 		/// <param name="regions">The regions.</param>
-		public RegionCollection(ReadOnlySpan<int> regions)
+		public RegionCollection(ReadOnlySpan<int> regions) : this()
 		{
-			_mask = 0;
 			foreach (int region in regions)
 			{
 				_mask |= 1 << region;
@@ -35,9 +40,8 @@ namespace Sudoku.Data.Collections
 		/// Initializes an instance with the specified regions.
 		/// </summary>
 		/// <param name="regions">The regions.</param>
-		public RegionCollection(IEnumerable<int> regions)
+		public RegionCollection(IEnumerable<int> regions) : this()
 		{
-			_mask = 0;
 			foreach (int region in regions)
 			{
 				_mask |= 1 << region;

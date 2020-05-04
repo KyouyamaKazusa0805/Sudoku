@@ -48,7 +48,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		public override string ToString()
 		{
 			string digitsStr = new DigitCollection(Digits).ToString();
-			string regionStr = RegionUtils.ToString(RegionOffset);
+			string regionStr = new RegionCollection(RegionOffset).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {digitsStr} in {regionStr} => {elimStr}";
 		}

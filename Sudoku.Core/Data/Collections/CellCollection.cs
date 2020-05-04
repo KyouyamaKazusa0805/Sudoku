@@ -27,30 +27,28 @@ namespace Sudoku.Data.Collections
 
 
 		/// <summary>
-		/// Initializes an instance with the specified cells.
+		/// Initializes an instance with the specified cell.
 		/// </summary>
-		/// <param name="cells">The cells.</param>
-		public CellCollection(params int[] cells) : this((IEnumerable<int>)cells) { }
+		/// <param name="cell">The cell.</param>
+		public CellCollection(int cell) : this() => _map.Add(cell);
 
 		/// <summary>
 		/// Initializes an instance with the specified cells.
 		/// </summary>
 		/// <param name="cells">The cells.</param>
-		public CellCollection(ReadOnlySpan<int> cells)
-		{
-			_map = GridMap.Empty;
-			_map.AddRange(cells);
-		}
+		public CellCollection(int[] cells) : this((IEnumerable<int>)cells) { }
 
 		/// <summary>
 		/// Initializes an instance with the specified cells.
 		/// </summary>
 		/// <param name="cells">The cells.</param>
-		public CellCollection(IEnumerable<int> cells)
-		{
-			_map = GridMap.Empty;
-			_map.AddRange(cells);
-		}
+		public CellCollection(ReadOnlySpan<int> cells) : this() => _map.AddRange(cells);
+
+		/// <summary>
+		/// Initializes an instance with the specified cells.
+		/// </summary>
+		/// <param name="cells">The cells.</param>
+		public CellCollection(IEnumerable<int> cells) : this() => _map.AddRange(cells);
 
 
 		/// <summary>

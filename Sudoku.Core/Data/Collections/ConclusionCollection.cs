@@ -22,12 +22,6 @@ namespace Sudoku.Data.Collections
 		/// <summary>
 		/// Initializes an instance with the specified collection.
 		/// </summary>
-		/// <param name="collection">(<see langword="params"/> parameter) The collection.</param>
-		public ConclusionCollection(params Conclusion[] collection) => _collection = collection.AsSpan();
-
-		/// <summary>
-		/// Initializes an instance with the specified collection.
-		/// </summary>
 		/// <param name="collection">The collection.</param>
 		public ConclusionCollection(Span<Conclusion> collection) => _collection = collection;
 

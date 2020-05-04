@@ -78,8 +78,8 @@ namespace Sudoku.Solving.Manual.Sdps
 		public override string ToString()
 		{
 			int digit = Digit + 1;
-			string baseRegionStr = RegionUtils.ToString(BaseRegion);
-			string targetRegionStr = RegionUtils.ToString(TargetRegion);
+			string baseRegionStr = new RegionCollection(BaseRegion).ToString();
+			string targetRegionStr = new RegionCollection(TargetRegion).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $@"{Name}: {digit} in {baseRegionStr}\{targetRegionStr} => {elimStr}";
 		}

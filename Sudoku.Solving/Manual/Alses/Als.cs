@@ -217,7 +217,7 @@ namespace Sudoku.Solving.Manual.Alses
 					.Append(new DigitCollection(Digits).ToString(null))
 					.Append("/")
 					.Append(new CellCollection(Cells).ToString())
-					.Append($" in {new RegionCollection(stackalloc[] { Region }).ToString()}")
+					.Append($" in {new RegionCollection(Region).ToString()}")
 					.ToString();
 		}
 

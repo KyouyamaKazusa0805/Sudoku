@@ -1,13 +1,13 @@
 ﻿using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
-namespace Sudoku.Solving.Utils
+namespace Sudoku.Data.Collections
 {
 	/// <summary>
-	/// Provides extension method used for cell offsets.
+	/// Provides methods for cell offsets.
 	/// </summary>
 	[DebuggerStepThrough]
-	public static class CellUtils
+	public readonly struct Cell
 	{
 		/// <summary>
 		/// <para>Get the row, column and block index of the specified cell.</para>

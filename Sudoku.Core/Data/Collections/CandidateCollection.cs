@@ -22,32 +22,20 @@ namespace Sudoku.Data.Collections
 		/// <summary>
 		/// Initializes an instance with the specified candidates.
 		/// </summary>
-		/// <param name="candidates">The candidates.</param>
-		public CandidateCollection(params int[] candidates)
-		{
-			_map = FullGridMap.Empty;
-			_map.AddRange(candidates);
-		}
+		/// <param name="candidate">The candidates.</param>
+		public CandidateCollection(int candidate) : this() => _map.Add(candidate);
 
 		/// <summary>
 		/// Initializes an instance with the specified candidates.
 		/// </summary>
 		/// <param name="candidates">The candidates.</param>
-		public CandidateCollection(ReadOnlySpan<int> candidates)
-		{
-			_map = FullGridMap.Empty;
-			_map.AddRange(candidates);
-		}
+		public CandidateCollection(ReadOnlySpan<int> candidates) : this() => _map.AddRange(candidates);
 
 		/// <summary>
 		/// Initializes an instance with the specified candidates.
 		/// </summary>
 		/// <param name="candidates">The candidates.</param>
-		public CandidateCollection(IEnumerable<int> candidates)
-		{
-			_map = FullGridMap.Empty;
-			_map.AddRange(candidates);
-		}
+		public CandidateCollection(IEnumerable<int> candidates) : this() => _map.AddRange(candidates);
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>

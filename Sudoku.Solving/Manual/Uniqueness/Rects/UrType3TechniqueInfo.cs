@@ -65,7 +65,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		{
 			string digitsStr = new DigitCollection(ExtraDigits).ToString();
 			string cellsStr = new CellCollection(ExtraCells).ToString();
-			string regionStr = RegionUtils.ToString(Region);
+			string regionStr = new RegionCollection(Region).ToString();
 			return $"{digitsStr} in {(IsNaked ? string.Empty : "only ")}cells {cellsStr} in {regionStr}";
 		}
 	}

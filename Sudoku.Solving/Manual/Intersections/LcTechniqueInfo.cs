@@ -2,7 +2,6 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
@@ -54,8 +53,8 @@ namespace Sudoku.Solving.Manual.Intersections
 		public override string ToString()
 		{
 			int value = Digit + 1;
-			string baseSetStr = RegionUtils.ToString(BaseSet);
-			string coverSetStr = RegionUtils.ToString(CoverSet);
+			string baseSetStr = new RegionCollection(BaseSet).ToString();
+			string coverSetStr = new RegionCollection(CoverSet).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $@"{Name}: {value} in {baseSetStr}\{coverSetStr} => {elimStr}";
 		}

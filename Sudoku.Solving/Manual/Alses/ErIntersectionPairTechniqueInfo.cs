@@ -66,10 +66,10 @@ namespace Sudoku.Solving.Manual.Alses
 		{
 			int d1 = Digit1 + 1;
 			int d2 = Digit2 + 1;
-			string sCellStr = new CellCollection(stackalloc[] { StartCell }).ToString();
-			string eCellStr = new CellCollection(stackalloc[] { EndCell }).ToString();
+			string sCellStr = new CellCollection(StartCell).ToString();
+			string eCellStr = new CellCollection(EndCell).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			string regionStr = new RegionCollection(stackalloc[] { Region }).ToString();
+			string regionStr = new RegionCollection(Region).ToString();
 			return
 				$"{Name}: Digits {d1}, {d2} in bivalue cells {sCellStr} and {eCellStr} " +
 				$"with empty rectangle in {regionStr} => {elimStr}";

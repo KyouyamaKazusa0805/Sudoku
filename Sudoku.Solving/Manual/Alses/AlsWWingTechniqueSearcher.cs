@@ -4,10 +4,10 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.GridProcessings;
 using static Sudoku.Data.ConclusionType;
+using Sudoku.Data.Collections;
 
 namespace Sudoku.Solving.Manual.Alses
 {
@@ -153,8 +153,8 @@ namespace Sudoku.Solving.Manual.Alses
 													int pos = mask.FindFirstSet();
 													int c1 = RegionCells[region][pos];
 													int c2 = RegionCells[region][mask.GetNextSet(pos)];
-													var (row1, column1, block1) = CellUtils.GetRegion(c1);
-													var (row2, column2, block2) = CellUtils.GetRegion(c2);
+													var (row1, column1, block1) = Cell.GetRegion(c1);
+													var (row2, column2, block2) = Cell.GetRegion(c2);
 													if (!(
 														(row1 + 9 == xr1 || column1 + 18 == xr1 || block1 == xr1)
 														&& (row2 + 9 == xr2 || column2 + 18 == xr2 || block2 == xr2)

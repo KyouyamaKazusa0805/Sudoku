@@ -19,18 +19,17 @@ namespace Sudoku.Data.Collections
 
 
 		/// <summary>
-		/// Initializes an instance with the specified digits.
+		/// Initializes an instance with the specified digit.
 		/// </summary>
-		/// <param name="digits">The digits.</param>
-		public DigitCollection(params int[] digits) : this((IEnumerable<int>)digits) { }
+		/// <param name="digit">The digit.</param>
+		public DigitCollection(int digit) : this() => _mask |= (short)(1 << digit);
 
 		/// <summary>
 		/// Initializes an instance with the specified digits.
 		/// </summary>
 		/// <param name="digits">The digits.</param>
-		public DigitCollection(ReadOnlySpan<int> digits)
+		public DigitCollection(ReadOnlySpan<int> digits) : this()
 		{
-			_mask = 0;
 			foreach (int digit in digits)
 			{
 				_mask |= (short)(1 << digit);
@@ -41,9 +40,8 @@ namespace Sudoku.Data.Collections
 		/// Initializes an instance with the specified digits.
 		/// </summary>
 		/// <param name="digits">The digits.</param>
-		public DigitCollection(IEnumerable<int> digits)
+		public DigitCollection(IEnumerable<int> digits) : this()
 		{
-			_mask = 0;
 			foreach (int digit in digits)
 			{
 				_mask |= (short)(1 << digit);
@@ -123,12 +121,5 @@ namespace Sudoku.Data.Collections
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(DigitCollection left, DigitCollection right) => !(left == right);
-
-		/// <summary>
-		/// Converts the <see cref="ReadOnlySpan{T}"/> to the <see cref="DigitCollection"/>
-		/// instance.
-		/// </summary>
-		/// <param name="digits">The digits.</param>
-		public static implicit operator DigitCollection(ReadOnlySpan<int> digits) => new DigitCollection(digits);
 	}
 }

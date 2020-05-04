@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Solving.Checking;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Windows
 {
@@ -51,7 +51,7 @@ namespace Sudoku.Windows
 					from candidate in await Task.Run(() => new BugChecker(_puzzle).GetAllTrueCandidates(64))
 					orderby candidate
 					select new PrimaryElementTuple<int, string>(
-						candidate, CandidateUtils.ToString(candidate), 2));
+						candidate, new CandidateCollection(stackalloc[] { candidate }).ToString(), 2));
 
 				_labelStatus.ClearValue(ContentProperty);
 				int count = list.Count;

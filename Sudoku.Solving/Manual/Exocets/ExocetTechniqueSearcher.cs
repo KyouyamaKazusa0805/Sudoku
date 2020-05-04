@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.GridProcessings;
 using static Sudoku.Data.ConclusionType;
+using Sudoku.Data.Collections;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -236,8 +236,8 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				short nonBase = (short)(mirrorCandidatesMask & ~baseCandidateMask);
-				var (r1, c1, b1) = CellUtils.GetRegion(playground[0]);
-				var (r2, c2, b2) = CellUtils.GetRegion(playground[1]);
+				var (r1, c1, b1) = Cell.GetRegion(playground[0]);
+				var (r2, c2, b2) = Cell.GetRegion(playground[1]);
 				(regions[0], regions[1]) = (b1, r1 == r2 ? r1 + 9 : c1 + 18);
 				short locked = default;
 				foreach (short mask in GetCombinations(nonBase))

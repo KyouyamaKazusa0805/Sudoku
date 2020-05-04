@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
 using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Manual.Alses
@@ -303,7 +303,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 						if (tempMap.Count == 1)
 						{
-							var (r, c, b) = CellUtils.GetRegion(tempMap.SetAt(0));
+							var (r, c, b) = Cell.GetRegion(tempMap.SetAt(0));
 							if (b == block)
 							{
 								digitRegions.Add(digit, new[] { block });

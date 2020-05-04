@@ -4,9 +4,9 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
 using static Sudoku.GridProcessings;
 using static Sudoku.Data.ConclusionType;
+using Sudoku.Data.Collections;
 
 namespace Sudoku.Solving.Manual.Wings.Irregular
 {
@@ -79,8 +79,8 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 						continue;
 					}
 
-					var (row1, column1, block1) = CellUtils.GetRegion(c1);
-					var (row2, column2, block2) = CellUtils.GetRegion(c2);
+					var (row1, column1, block1) = Cell.GetRegion(c1);
+					var (row2, column2, block2) = Cell.GetRegion(c2);
 
 					for (int region = 9; region < 27; region++)
 					{

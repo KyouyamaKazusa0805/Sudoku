@@ -2,7 +2,6 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Singles
 {
@@ -26,7 +25,7 @@ namespace Sudoku.Solving.Manual.Singles
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			int regionOffset, int cellOffset, int digit, bool enableAndIsLastDigit)
 			: base(conclusions, views, cellOffset, digit) =>
-			(Region, EnableAndIsLastDigit) = (regionOffset, enableAndIsLastDigit);
+			(RegionOffset, EnableAndIsLastDigit) = (regionOffset, enableAndIsLastDigit);
 
 
 		/// <inheritdoc/>
@@ -34,19 +33,18 @@ namespace Sudoku.Solving.Manual.Singles
 		{
 			get
 			{
-				string region = RegionUtils.GetRegionName(Region);
+				string region = Region.GetName(RegionOffset);
 				return EnableAndIsLastDigit ? "Last Digit" : $"Hidden Single (In {region})";
 			}
 		}
 
 		/// <inheritdoc/>
-		public override decimal Difficulty =>
-			EnableAndIsLastDigit ? 1.1M : Region < 9 ? 1.2M : 1.5M;
+		public override decimal Difficulty => EnableAndIsLastDigit ? 1.1M : RegionOffset < 9 ? 1.2M : 1.5M;
 
 		/// <summary>
 		/// Indicates the region offset.
 		/// </summary>
-		public int Region { get; }
+		public int RegionOffset { get; }
 
 		/// <summary>
 		/// Indicates whether the solver enables last digit technique.
@@ -57,8 +55,8 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string cellStr = new CellCollection(stackalloc[] { Cell }).ToString();
-			string regionStr = new RegionCollection(stackalloc[] { Region }).ToString();
+			string cellStr = new CellCollection(Cell).ToString();
+			string regionStr = new RegionCollection(RegionOffset).ToString();
 			int value = Digit + 1;
 			return EnableAndIsLastDigit
 				? $"{Name}: {cellStr} = {value}"

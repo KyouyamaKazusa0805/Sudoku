@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
 
@@ -114,14 +114,14 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						continue;
 					}
 
-					var (r1, _, _) = CellUtils.GetRegion(cells[0]);
-					var (_, _, b2) = CellUtils.GetRegion(cells[2]);
-					var (_, c3, _) = CellUtils.GetRegion(cells[4]);
-					var (_, _, b4) = CellUtils.GetRegion(cells[6]);
-					var (r5, _, _) = CellUtils.GetRegion(cells[8]);
-					var (_, _, b6) = CellUtils.GetRegion(cells[10]);
-					var (_, c7, _) = CellUtils.GetRegion(cells[12]);
-					var (_, _, b8) = CellUtils.GetRegion(cells[14]);
+					var (r1, _, _) = Cell.GetRegion(cells[0]);
+					var (_, _, b2) = Cell.GetRegion(cells[2]);
+					var (_, c3, _) = Cell.GetRegion(cells[4]);
+					var (_, _, b4) = Cell.GetRegion(cells[6]);
+					var (r5, _, _) = Cell.GetRegion(cells[8]);
+					var (_, _, b6) = Cell.GetRegion(cells[10]);
+					var (_, c7, _) = Cell.GetRegion(cells[12]);
+					var (_, _, b8) = Cell.GetRegion(cells[14]);
 					linkRegion[0] = r1 + 9;
 					linkRegion[1] = b2;
 					linkRegion[2] = c3 + 18;

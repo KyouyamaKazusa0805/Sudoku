@@ -4,12 +4,12 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.GridProcessings;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode;
+using Sudoku.Data.Collections;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
@@ -1056,8 +1056,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			int o1 = otherCellsMap.SetAt(0), o2 = otherCellsMap.SetAt(1);
-			var (r1, c1, _) = CellUtils.GetRegion(corner1);
-			var (r2, c2, _) = CellUtils.GetRegion(corner2);
+			var (r1, c1, _) = Cell.GetRegion(corner1);
+			var (r2, c2, _) = Cell.GetRegion(corner2);
 			r1 += 9; r2 += 9; c1 += 18; c2 += 18;
 			foreach (int digit in stackalloc[] { d1, d2 })
 			{
@@ -1165,7 +1165,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			int abzCell = GetDiagonalCell(urCells, cornerCell);
 			var adjacentCellsMap = new GridMap(otherCellsMap) { [abzCell] = false };
-			var (r, c, _) = CellUtils.GetRegion(abzCell);
+			var (r, c, _) = Cell.GetRegion(abzCell);
 			r += 9; c += 18;
 
 			foreach (int digit in stackalloc[] { d1, d2 })

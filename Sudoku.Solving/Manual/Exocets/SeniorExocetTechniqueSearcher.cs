@@ -4,12 +4,12 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
 using static System.Algorithms;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.GridProcessings;
 using static Sudoku.Data.ConclusionType;
+using Sudoku.Data.Collections;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -58,7 +58,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				short baseCandidatesMask = (short)(grid.GetCandidatesReversal(b1) | grid.GetCandidatesReversal(b2));
 
 				int i = 0;
-				var (r, c, _) = CellUtils.GetRegion(b1);
+				var (r, c, _) = Cell.GetRegion(b1);
 				foreach (int pos in ((short)(511 & ~(1 << (isRow ? r : c)))).GetAllSets())
 				{
 					cover[i++] = isRow ? pos : pos + 9;
@@ -105,8 +105,8 @@ namespace Sudoku.Solving.Manual.Exocets
 						continue;
 					}
 
-					var (row1, column1, _) = CellUtils.GetRegion(combination[0]);
-					var (row2, column2, _) = CellUtils.GetRegion(combination[1]);
+					var (row1, column1, _) = Cell.GetRegion(combination[0]);
+					var (row2, column2, _) = Cell.GetRegion(combination[1]);
 					if (isRow ? column1 == column2 : row1 == row2)
 					{
 						continue;
@@ -405,9 +405,9 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				var (a, b, c) = (combination[0], combination[1], combination[2]);
 
-				var (r1, c1, _) = CellUtils.GetRegion(a);
-				var (r2, c2, _) = CellUtils.GetRegion(b);
-				var (r3, c3, _) = CellUtils.GetRegion(c);
+				var (r1, c1, _) = Cell.GetRegion(a);
+				var (r2, c2, _) = Cell.GetRegion(b);
+				var (r3, c3, _) = Cell.GetRegion(c);
 				if (r1 == r2 || r1 == r3 || r2 == r3 || c1 == c2 || c1 == c3 || c2 == c3)
 				{
 					continue;
@@ -458,9 +458,9 @@ namespace Sudoku.Solving.Manual.Exocets
 					GetCombinationsOfArray((tempCrossline & digitMaps[digit]).ToArray(), 3))
 				{
 					var (a, b, c) = (combination[0], combination[1], combination[2]);
-					var (r1, c1, _) = CellUtils.GetRegion(a);
-					var (r2, c2, _) = CellUtils.GetRegion(b);
-					var (r3, c3, _) = CellUtils.GetRegion(c);
+					var (r1, c1, _) = Cell.GetRegion(a);
+					var (r2, c2, _) = Cell.GetRegion(b);
+					var (r3, c3, _) = Cell.GetRegion(c);
 					if (r1 == r2 || r1 == r3 || r2 == r3 || c1 == c2 || c1 == c3 || c2 == c3)
 					{
 						continue;
@@ -534,7 +534,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 			foreach (var (currentTarget, elimTarget) in stackalloc[] { (t1, t2), (t2, t1) })
 			{
-				var (r, c, b) = CellUtils.GetRegion(currentTarget);
+				var (r, c, b) = Cell.GetRegion(currentTarget);
 				r += 9;
 				c += 18;
 				foreach (int digit in baseCandidatesMask.GetAllSets())

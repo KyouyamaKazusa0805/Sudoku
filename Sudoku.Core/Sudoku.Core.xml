@@ -128,11 +128,11 @@
             The inner map.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Collections.CandidateCollection.#ctor(System.Int32[])">
+        <member name="M:Sudoku.Data.Collections.CandidateCollection.#ctor(System.Int32)">
             <summary>
             Initializes an instance with the specified candidates.
             </summary>
-            <param name="candidates">The candidates.</param>
+            <param name="candidate">The candidates.</param>
         </member>
         <member name="M:Sudoku.Data.Collections.CandidateCollection.#ctor(System.ReadOnlySpan{System.Int32})">
             <summary>
@@ -200,6 +200,23 @@
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
         </member>
+        <member name="T:Sudoku.Data.Collections.Cell">
+            <summary>
+            Provides methods for cell offsets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Collections.Cell.GetRegion(System.Int32)">
+            <summary>
+            <para>Get the row, column and block index of the specified cell.</para>
+            <para>
+            Note that all row, column and block indices are always between 0 and 8.
+            </para>
+            </summary>
+            <param name="cell">The cell offset.</param>
+            <returns>
+            The row, column and block index triplet.
+            </returns>
+        </member>
         <member name="T:Sudoku.Data.Collections.CellCollection">
             <summary>
             Indicates the cell collection.
@@ -217,6 +234,12 @@
             <summary>
             The inner map.
             </summary>
+        </member>
+        <member name="M:Sudoku.Data.Collections.CellCollection.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance with the specified cell.
+            </summary>
+            <param name="cell">The cell.</param>
         </member>
         <member name="M:Sudoku.Data.Collections.CellCollection.#ctor(System.Int32[])">
             <summary>
@@ -302,12 +325,6 @@
             The internal collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(Sudoku.Data.Conclusion[])">
-            <summary>
-            Initializes an instance with the specified collection.
-            </summary>
-            <param name="collection">(<see langword="params"/> parameter) The collection.</param>
-        </member>
         <member name="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(System.Span{Sudoku.Data.Conclusion})">
             <summary>
             Initializes an instance with the specified collection.
@@ -392,11 +409,11 @@
             Indicates the inner mask.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.#ctor(System.Int32[])">
+        <member name="M:Sudoku.Data.Collections.DigitCollection.#ctor(System.Int32)">
             <summary>
-            Initializes an instance with the specified digits.
+            Initializes an instance with the specified digit.
             </summary>
-            <param name="digits">The digits.</param>
+            <param name="digit">The digit.</param>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.#ctor(System.ReadOnlySpan{System.Int32})">
             <summary>
@@ -495,12 +512,17 @@
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
         </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.op_Implicit(System.ReadOnlySpan{System.Int32})~Sudoku.Data.Collections.DigitCollection">
+        <member name="T:Sudoku.Data.Collections.Region">
             <summary>
-            Converts the <see cref="T:System.ReadOnlySpan`1"/> to the <see cref="T:Sudoku.Data.Collections.DigitCollection"/>
-            instance.
+            Provides methods for region offsets.
             </summary>
-            <param name="digits">The digits.</param>
+        </member>
+        <member name="M:Sudoku.Data.Collections.Region.GetName(System.Int32)">
+            <summary>
+            Get the name of the region.
+            </summary>
+            <param name="region">The region.</param>
+            <returns>The name.</returns>
         </member>
         <member name="T:Sudoku.Data.Collections.RegionCollection">
             <summary>
@@ -511,6 +533,12 @@
             <summary>
             The inner mask.
             </summary>
+        </member>
+        <member name="M:Sudoku.Data.Collections.RegionCollection.#ctor(System.Int32)">
+            <summary>
+            Initializes an empty collection and add one region into the list.
+            </summary>
+            <param name="region">The region.</param>
         </member>
         <member name="M:Sudoku.Data.Collections.RegionCollection.#ctor(System.ReadOnlySpan{System.Int32})">
             <summary>

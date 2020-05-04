@@ -5049,7 +5049,7 @@
         <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.Region">
+        <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.RegionOffset">
             <summary>
             Indicates the region offset.
             </summary>
@@ -7570,35 +7570,6 @@
             <param name="right">The right comparer.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Utils.CandidateUtils">
-            <summary>
-            Provides extension methods for candidates.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.CandidateUtils.ToString(System.Int32)">
-            <summary>
-            Get a candidate text representation.
-            </summary>
-            <param name="candidateOffset">The candidate offset.</param>
-            <returns>A string text.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Utils.CellUtils">
-            <summary>
-            Provides extension method used for cell offsets.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.CellUtils.GetRegion(System.Int32)">
-            <summary>
-            <para>Get the row, column and block index of the specified cell.</para>
-            <para>
-            Note that all row, column and block indices are always between 0 and 8.
-            </para>
-            </summary>
-            <param name="cell">The cell offset.</param>
-            <returns>
-            The row, column and block index triplet.
-            </returns>
-        </member>
         <member name="T:Sudoku.Solving.Utils.ChainingDifficultyRatingUtils">
             <summary>
             Provides extension methods of rating a chain.
@@ -7638,26 +7609,6 @@
             Get a string consists of nodes' text.
             </summary>
             <param name="nodes">The nodes.</param>
-            <returns>The string.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Utils.RegionUtils">
-            <summary>
-            Provides extension method used for region offsets.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.RegionUtils.ToString(System.Int32)">
-            <summary>
-            Gets a string of a region.
-            </summary>
-            <param name="regionOffset">The region offset.</param>
-            <returns>The string.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.RegionUtils.GetRegionName(System.Int32)">
-            <summary>
-            Get the region name ('row', 'column' or 'block') of the specified
-            region.
-            </summary>
-            <param name="regionOffset">The region offset.</param>
             <returns>The string.</returns>
         </member>
         <member name="T:Sudoku.Solving.Utils.SubsetUtils">

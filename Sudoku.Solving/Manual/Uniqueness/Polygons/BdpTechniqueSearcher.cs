@@ -6,7 +6,6 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.GridProcessings;
@@ -15,6 +14,7 @@ using BdpType1 = Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1DetailData;
 using BdpType2 = Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2DetailData;
 using BdpType3 = Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3DetailData;
 using BdpType4 = Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4DetailData;
+using Sudoku.Data.Collections;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
@@ -1087,7 +1087,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			for (int z = 0, cur = 0; z < 9; z++)
 			{
 				int cell = RegionCells[region][z];
-				(_, _, int b) = CellUtils.GetRegion(cell);
+				(_, _, int b) = Cell.GetRegion(cell);
 				if (block == b)
 				{
 					continue;

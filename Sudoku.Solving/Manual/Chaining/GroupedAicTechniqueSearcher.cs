@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
 using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Manual.Chaining
@@ -417,7 +417,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					int currentCell = currentCandidate / 9, currentDigit = currentCandidate % 9;
 
 					// Search for same regions.
-					var (r, c, b) = CellUtils.GetRegion(currentCell);
+					var (r, c, b) = Cell.GetRegion(currentCell);
 					foreach (int region in stackalloc[] { r + 9, c + 18, b })
 					{
 						var map = grid.GetDigitAppearingCells(currentDigit, region);
@@ -622,7 +622,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			GridMap[] digitDistributions, int currentCell, int currentDigit)
 		{
 			var result = new List<Node>();
-			int b = CellUtils.GetRegion(currentCell)._block;
+			int b = Cell.GetRegion(currentCell)._block;
 			foreach (int region in IntersectionTable[b])
 			{
 				var map = RegionMaps[b] & RegionMaps[region] & digitDistributions[currentDigit];
