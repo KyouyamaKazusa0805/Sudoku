@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -15,8 +16,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// Initializes an instance with the specified information.
 		/// </summary>
 		/// <param name="conclusions">All conclusions.</param>
-		public SwordfishEliminations(IList<Conclusion> conclusions) =>
-			Conclusions = conclusions;
+		public SwordfishEliminations(IList<Conclusion> conclusions) => Conclusions = conclusions;
 
 
 		/// <summary>
@@ -72,7 +72,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override readonly string? ToString() =>
-			Conclusions is null ? null : $"  * Bi-bi pattern eliminations: {ConclusionCollection.ToString(Conclusions)}";
+			Conclusions is null ? null : $"  * Bi-bi pattern eliminations: {new ConclusionCollection(Conclusions).ToString()}";
 
 		/// <inheritdoc/>
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

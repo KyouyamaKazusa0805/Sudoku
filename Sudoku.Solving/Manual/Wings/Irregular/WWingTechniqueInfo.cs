@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Wings.Irregular
 {
@@ -55,7 +55,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		{
 			string startCellStr = new CellCollection(stackalloc[] { StartCell }).ToString();
 			string endCellStr = new CellCollection(stackalloc[] { EndCell }).ToString();
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {startCellStr} to {endCellStr} with conjugate pair {ConjugatePair} => {elimStr}";
 		}
 	}

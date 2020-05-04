@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Wings.Regular
 {
@@ -116,7 +116,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			string digitsStr = new DigitCollection(Digits).ToString();
 			string pivotCellStr = new CellCollection(stackalloc[] { Pivot }).ToString();
 			string cellOffsetsStr = new CellCollection(CellOffsets).ToString();
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {digitsStr} in {pivotCellStr} with {cellOffsetsStr} => {elimStr}";
 		}
 	}

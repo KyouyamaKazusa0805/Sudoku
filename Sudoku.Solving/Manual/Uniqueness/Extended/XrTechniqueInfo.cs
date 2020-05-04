@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Extended
 {
@@ -73,7 +73,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		{
 			string digitsStr = new DigitCollection(Digits).ToString();
 			string cellsStr = new CellCollection(Cells).ToString();
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string? additional = GetAdditional();
 			return
 				$"{Name}: {digitsStr} in {cellsStr}{(additional is null ? string.Empty : $" with {additional}")} => " +

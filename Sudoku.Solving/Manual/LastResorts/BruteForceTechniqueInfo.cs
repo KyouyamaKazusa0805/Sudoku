@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -33,6 +35,6 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 		/// <inheritdoc/>
 		public override string ToString() =>
-			$"{Name}: {ConclusionCollection.ToString(Conclusions)}";
+			$"{Name}: {new ConclusionCollection(Conclusions).ToString()}";
 	}
 }

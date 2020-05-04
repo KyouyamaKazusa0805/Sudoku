@@ -26,7 +26,7 @@ using Sudoku.Solving.Manual.Uniqueness.Polygons;
 using Sudoku.Solving.Manual.Uniqueness.Rects;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
-using static Sudoku.Solving.ConclusionType;
+using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual
 {
@@ -552,8 +552,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="solution">The solution.</param>
 		/// <param name="conclusions">The conclusions.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
-		private static bool CheckConclusionsValidity(
-			IReadOnlyGrid solution, IEnumerable<Conclusion> conclusions)
+		private static bool CheckConclusionsValidity(IReadOnlyGrid solution, IEnumerable<Conclusion> conclusions)
 		{
 			foreach (var (t, c, d) in conclusions)
 			{

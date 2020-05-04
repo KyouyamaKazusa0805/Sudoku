@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {
@@ -18,8 +19,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// Indicates whether this technique is template deletion.
 		/// </param>
 		public TemplateTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			bool isTemplateDeletion)
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, bool isTemplateDeletion)
 			: base(conclusions, views) => IsTemplateDeletion = isTemplateDeletion;
 
 
@@ -46,7 +46,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string conclusionsStr = ConclusionCollection.ToString(Conclusions);
+			string conclusionsStr = new ConclusionCollection(Conclusions).ToString();
 			int digit = Digit + 1;
 			return $"{Name}: Digit {digit} => {conclusionsStr}";
 		}

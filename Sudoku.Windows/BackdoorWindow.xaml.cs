@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Solving.Checking;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Windows
 {
@@ -74,7 +73,7 @@ namespace Sudoku.Windows
 
 				_listBoxBackdoors.ItemsSource =
 					from collection in collections
-					select ConclusionCollection.ToString(collection);
+					select new ConclusionCollection(collection).ToString();
 			}
 		}
 

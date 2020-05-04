@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Alses
 {
@@ -44,7 +45,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {Rcc1} + {Rcc2} => {elimStr}";
 		}
 	}

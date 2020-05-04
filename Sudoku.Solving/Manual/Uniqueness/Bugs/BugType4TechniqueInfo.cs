@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {
@@ -55,7 +55,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		{
 			string digitsStr = new DigitCollection(Digits).ToString();
 			string cellsStr = new CellCollection(Cells).ToString();
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {digitsStr} in cells {cellsStr} with conjugate pair {ConjugatePair} => {elimStr}";
 		}
 	}

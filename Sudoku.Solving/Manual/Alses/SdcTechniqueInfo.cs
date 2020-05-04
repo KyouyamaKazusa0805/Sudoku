@@ -2,7 +2,6 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Alses
 {
@@ -89,7 +88,7 @@ namespace Sudoku.Solving.Manual.Alses
 			string als1Digits = new DigitCollection(Als1Digits).ToString(null);
 			string als2Cells = new CellCollection(Als2Cells).ToString();
 			string als2Digits = new DigitCollection(Als2Digits).ToString(null);
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
 				$"{Name}: {interCells}({digits}) - ({als1Cells}({als1Digits}) & {als2Cells}({als2Digits})) => " +
 				$"{elimStr}";

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
@@ -116,7 +117,7 @@ namespace Sudoku.Solving.Manual.Fishes
 			string? finStr = !(FinCellOffsets is null) && FinCellOffsets.Count != 0
 				? $" f{new CellCollection(FinCellOffsets).ToString()}"
 				: string.Empty;
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $@"{Name}: {value} in {baseSetStr}\{coverSetStr}{finStr} => {elimStr}";
 		}
 	}

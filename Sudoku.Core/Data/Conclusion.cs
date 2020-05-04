@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
-using Sudoku.Data;
 
-namespace Sudoku.Solving
+namespace Sudoku.Data
 {
 	/// <summary>
 	/// Encapsulates a conclusion representation while solving in logic.
@@ -92,8 +91,7 @@ namespace Sudoku.Solving
 			(conclusionType, cell, digit) = (ConclusionType, CellOffset, Digit);
 
 		/// <inheritdoc/>
-		public override bool Equals(object? obj) =>
-			obj is Conclusion comparer && Equals(comparer);
+		public override bool Equals(object? obj) => obj is Conclusion comparer && Equals(comparer);
 
 		/// <summary>
 		/// Indicates whether the current object has the same value with the other one.
@@ -109,6 +107,11 @@ namespace Sudoku.Solving
 		public override int GetHashCode() => ((int)ConclusionType + 1) * (CellOffset * 9 + Digit);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <exception cref="InvalidOperationException">
+		/// Throws when the current conclusion type is invalid (neither <see cref="ConclusionType.Assignment"/>
+		/// nor <see cref="ConclusionType.Elimination"/>.
+		/// </exception>
+		/// <seealso cref="ConclusionType"/>
 		public override string ToString()
 		{
 			return $@"r{CellOffset / 9 + 1}c{CellOffset % 9 + 1} {ConclusionType switch
@@ -121,11 +124,9 @@ namespace Sudoku.Solving
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
-		public static bool operator ==(Conclusion left, Conclusion right) =>
-			left.Equals(right);
+		public static bool operator ==(Conclusion left, Conclusion right) => left.Equals(right);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
-		public static bool operator !=(Conclusion left, Conclusion right) =>
-			!(left == right);
+		public static bool operator !=(Conclusion left, Conclusion right) => !(left == right);
 	}
 }

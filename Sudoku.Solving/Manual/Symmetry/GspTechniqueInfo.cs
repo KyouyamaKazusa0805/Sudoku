@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Symmetry
 {
@@ -21,8 +21,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// <param name="mappingTable">The mapping table.</param>
 		public GspTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			SymmetryType symmetryType, int?[] mappingTable)
-			: base(conclusions, views) =>
+			SymmetryType symmetryType, int?[] mappingTable) : base(conclusions, views) =>
 			(SymmetryType, MappingTable) = (symmetryType, mappingTable);
 
 
@@ -54,7 +53,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		{
 			const string separator = ", ";
 
-			string conclusions = ConclusionCollection.ToString(Conclusions);
+			string conclusions = new ConclusionCollection(Conclusions).ToString();
 			var sb = new StringBuilder();
 			for (int i = 0; i < 9; i++)
 			{

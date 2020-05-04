@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 using UlType3 = Sudoku.Solving.Manual.Uniqueness.Loops.UlType3DetailData;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops
@@ -64,7 +65,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {DetailData} => {elimStr}";
 		}
 	}

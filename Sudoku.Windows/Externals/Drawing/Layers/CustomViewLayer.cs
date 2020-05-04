@@ -7,9 +7,8 @@ using Sudoku.Data;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Drawing.Layers;
 using Sudoku.Extensions;
-using Sudoku.Solving;
 using static System.Math;
-using static Sudoku.Solving.ConclusionType;
+using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Drawing
 {

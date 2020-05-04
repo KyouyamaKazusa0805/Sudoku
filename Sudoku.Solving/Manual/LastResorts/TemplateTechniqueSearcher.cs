@@ -4,7 +4,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Solving.Checking;
-using static Sudoku.Solving.ConclusionType;
+using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {

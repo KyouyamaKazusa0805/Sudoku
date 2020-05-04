@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 using static Sudoku.Solving.Utils.ChainingDifficultyRatingUtils;
 
 namespace Sudoku.Solving.Manual.LastResorts
@@ -31,8 +32,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public override string Name => "Bowman's Bingo";
 
 		/// <inheritdoc/>
-		public override decimal Difficulty =>
-			8M + GetExtraDifficultyByLength(ContradictionSeries.Count);
+		public override decimal Difficulty => 8M + GetExtraDifficultyByLength(ContradictionSeries.Count);
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
@@ -41,8 +41,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string contradictionSeriesStr = ConclusionCollection.ToSimpleString(ContradictionSeries, " -> ");
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string contradictionSeriesStr = new ConclusionCollection(ContradictionSeries).ToString(false, " -> ");
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: Try {contradictionSeriesStr} => {elimStr}";
 		}
 	}

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Alses
 {
@@ -64,7 +65,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string elimStr = ConclusionCollection.ToSimpleString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
 				$"{Name}: Two ALSes {Als1}, {Als2} " +
 				$"with conjugate pair {ConjugatePair} (W = {WDigit + 1}, X = {XDigit + 1}) => {elimStr}";

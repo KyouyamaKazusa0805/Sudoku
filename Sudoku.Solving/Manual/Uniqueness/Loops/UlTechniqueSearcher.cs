@@ -8,7 +8,7 @@ using Sudoku.Extensions;
 using Sudoku.Solving.Utils;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.GridProcessings;
-using static Sudoku.Solving.ConclusionType;
+using static Sudoku.Data.ConclusionType;
 using UlType1 = Sudoku.Solving.Manual.Uniqueness.Loops.UlType1DetailData;
 using UlType2 = Sudoku.Solving.Manual.Uniqueness.Loops.UlType2DetailData;
 using UlType3 = Sudoku.Solving.Manual.Uniqueness.Loops.UlType3DetailData;

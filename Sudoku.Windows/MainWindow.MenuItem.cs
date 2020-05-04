@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
@@ -224,14 +225,11 @@ namespace Sudoku.Windows
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(
-					$"Save failed due to:{Environment.NewLine}{ex.Message}.",
-					"Warning");
+				MessageBox.Show($"Save failed due to:{Environment.NewLine}{ex.Message}.", "Warning");
 			}
 		}
 
-		private void MenuItemFileQuit_Click(object sender, RoutedEventArgs e) =>
-			Close();
+		private void MenuItemFileQuit_Click(object sender, RoutedEventArgs e) => Close();
 
 		private void MenuItemOptionsShowCandidates_Click(object sender, RoutedEventArgs e)
 		{
@@ -450,8 +448,7 @@ namespace Sudoku.Windows
 				// inlining in the asynchronized environment.
 				var symmetry = ((PrimaryElementTuple<string, SymmetryType>)_comboBoxSymmetry.SelectedItem).Value2;
 				//var diff = (DifficultyLevel)_comboBoxDifficulty.SelectedItem;
-				Puzzle = new UndoableGrid(
-					await Task.Run(() => new BasicPuzzleGenerator().Generate(33, symmetry)));
+				Puzzle = new UndoableGrid(await Task.Run(() => new BasicPuzzleGenerator().Generate(33, symmetry)));
 
 				EnableGeneratingControls();
 				SwitchOnGeneratingComboBoxesDisplaying();
@@ -820,12 +817,11 @@ namespace Sudoku.Windows
 
 				UpdateImageGrid();
 
-				_textBoxInfo.Text = $"All backdoor(s) at level 0 or 1: {ConclusionCollection.ToString(backdoors)}";
+				_textBoxInfo.Text = $"All backdoor(s) at level 0 or 1: {new ConclusionCollection(backdoors).ToString()}";
 			}
 		}
 
-		private void MenuItemAboutMe_Click(object sender, RoutedEventArgs e) =>
-			new AboutMeWindow().Show();
+		private void MenuItemAboutMe_Click(object sender, RoutedEventArgs e) => new AboutMeWindow().Show();
 
 		private void MenuItemAboutSpecialThanks_Click(object sender, RoutedEventArgs e) =>
 			new SpecialThanksWindow().Show();
@@ -850,7 +846,7 @@ namespace Sudoku.Windows
 			if (sender is MenuItem)
 			{
 				var sb = new StringBuilder();
-				foreach (var step in from object item in _listBoxPaths.Items select item.ToString())
+				foreach (string step in from object item in _listBoxPaths.Items select item.ToString())
 				{
 					sb.AppendLine(step);
 				}

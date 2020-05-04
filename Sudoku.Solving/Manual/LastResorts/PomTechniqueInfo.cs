@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {
@@ -14,8 +15,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// </summary>
 		/// <param name="conclusions">All conclusions.</param>
 		/// <param name="views">All views.</param>
-		public PomTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
+		public PomTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
 			: base(conclusions, views)
 		{
 		}
@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public override string ToString()
 		{
 			int digit = Digit + 1;
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: Digit {digit} => {elimStr}";
 		}
 	}

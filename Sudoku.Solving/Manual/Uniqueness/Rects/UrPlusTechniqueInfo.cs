@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 

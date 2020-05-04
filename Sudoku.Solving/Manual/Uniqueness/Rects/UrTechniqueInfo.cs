@@ -4,7 +4,6 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
@@ -68,7 +67,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			int d1 = Digit1 + 1;
 			int d2 = Digit2 + 1;
 			string cellsStr = new CellCollection(Cells).ToString();
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string? additional = GetAdditional();
 			return
 				$"{Name}: {d1}, {d2} in {cellsStr}{(additional is null ? string.Empty : $" with {additional}")} => " +

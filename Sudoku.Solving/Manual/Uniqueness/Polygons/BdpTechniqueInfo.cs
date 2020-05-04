@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 using BdpType3 = Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3DetailData;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
@@ -60,7 +61,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {DetailData} => {elimStr}";
 		}
 	}

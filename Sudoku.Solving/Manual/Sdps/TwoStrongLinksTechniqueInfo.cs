@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -78,7 +80,7 @@ namespace Sudoku.Solving.Manual.Sdps
 			int digit = Digit + 1;
 			string baseRegionStr = RegionUtils.ToString(BaseRegion);
 			string targetRegionStr = RegionUtils.ToString(TargetRegion);
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $@"{Name}: {digit} in {baseRegionStr}\{targetRegionStr} => {elimStr}";
 		}
 	}

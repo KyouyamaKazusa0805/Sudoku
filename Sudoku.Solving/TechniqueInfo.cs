@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving
 {
@@ -119,7 +119,7 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <returns>The string instance.</returns>
 		public string ToSimpleString() =>
-			$"{Name} => {ConclusionCollection.ToString(Conclusions)}";
+			$"{Name} => {new ConclusionCollection(Conclusions).ToString()}";
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>

@@ -6,7 +6,7 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.GridProcessings;
-using static Sudoku.Solving.ConclusionType;
+using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Intersections
 {

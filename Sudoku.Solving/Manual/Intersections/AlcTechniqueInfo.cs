@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
@@ -81,7 +82,7 @@ namespace Sudoku.Solving.Manual.Intersections
 			string digitsStr = new DigitCollection(Digits).ToString();
 			string baseCellsStr = new CellCollection(BaseCells).ToString();
 			string targetCellsStr = new CellCollection(TargetCells).ToString();
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {digitsStr} in {baseCellsStr} to {targetCellsStr} => {elimStr}";
 		}
 	}

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
@@ -48,7 +49,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		{
 			string digitsStr = new DigitCollection(Digits).ToString();
 			string regionStr = RegionUtils.ToString(RegionOffset);
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {digitsStr} in {regionStr} => {elimStr}";
 		}
 	}

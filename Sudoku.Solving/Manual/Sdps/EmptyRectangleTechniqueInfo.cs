@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Sdps
 {
@@ -48,8 +49,8 @@ namespace Sudoku.Solving.Manual.Sdps
 		public override string ToString()
 		{
 			int digit = Digit + 1;
-			string regionStr = RegionUtils.ToString(Block);
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string regionStr = new RegionCollection(stackalloc[] { Block }).ToString();
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {digit} in {regionStr} with conjugate pair {ConjugatePair} => {elimStr}";
 		}
 	}

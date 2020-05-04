@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
@@ -175,7 +176,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					LockedMemberR is null ? null : $", locked member 2: {new DigitCollection(LockedMemberR).ToString()}")
 				.Append(addtional is null ? string.Empty : $" with {addtional}")
 				.Append(" => ")
-				.AppendLine(ConclusionCollection.ToString(Conclusions))
+				.AppendLine(new ConclusionCollection(Conclusions).ToString())
 				.NullableAppendLine(TargetEliminations.ToString())
 				.NullableAppendLine(MirrorEliminations.ToString())
 				.NullableAppendLine(BibiEliminations.ToString())

@@ -8,7 +8,7 @@ using Sudoku.Solving.Utils;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.GridProcessings;
-using static Sudoku.Solving.ConclusionType;
+using static Sudoku.Data.ConclusionType;
 using static Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects

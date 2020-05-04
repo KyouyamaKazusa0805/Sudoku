@@ -10,7 +10,7 @@ using Sudoku.Solving.Utils;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.GridProcessings;
-using static Sudoku.Solving.ConclusionType;
+using static Sudoku.Data.ConclusionType;
 using BugMultiple = Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleTechniqueInfo;
 using BugType1 = Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueInfo;
 using BugType2 = Sudoku.Solving.Manual.Uniqueness.Bugs.BugType2TechniqueInfo;

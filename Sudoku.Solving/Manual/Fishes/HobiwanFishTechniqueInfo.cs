@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
-using Conc = Sudoku.Solving.Utils.ConclusionCollection;
-using System.Linq;
-using Sudoku.Data.Collections;
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -147,7 +147,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string elimStr = Conc.ToString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string baseSets = new RegionCollection(BaseSets).ToString();
 			string coverSets = new RegionCollection(CoverSets).ToString();
 			string exo = ExofinCells is null ? string.Empty : $"f{new CellCollection(ExofinCells).ToString()} ";

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -147,7 +148,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string nodesStr = NodeCollection.ToString(Nodes);
 			return $"{Name}: {nodesStr} => {elimStr}";
 		}

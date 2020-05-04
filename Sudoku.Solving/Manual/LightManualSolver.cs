@@ -5,7 +5,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Solving.Manual.Singles;
 using static Sudoku.Data.CellStatus;
-using static Sudoku.Solving.ConclusionType;
+using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual
 {

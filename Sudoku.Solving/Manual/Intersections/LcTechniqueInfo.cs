@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
 
@@ -19,8 +21,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <param name="coverSet">The cover set.</param>
 		public LcTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int digit, int baseSet, int coverSet)
-			: base(conclusions, views) =>
+			int digit, int baseSet, int coverSet) : base(conclusions, views) =>
 			(Digit, BaseSet, CoverSet) = (digit, baseSet, coverSet);
 
 
@@ -55,7 +56,7 @@ namespace Sudoku.Solving.Manual.Intersections
 			int value = Digit + 1;
 			string baseSetStr = RegionUtils.ToString(BaseSet);
 			string coverSetStr = RegionUtils.ToString(CoverSet);
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $@"{Name}: {value} in {baseSetStr}\{coverSetStr} => {elimStr}";
 		}
 	}

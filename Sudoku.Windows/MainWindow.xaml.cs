@@ -31,7 +31,7 @@ using Sudoku.Solving.Manual;
 using Sudoku.Windows.Drawing.Layers;
 using Sudoku.Windows.Extensions;
 using static Sudoku.Data.GridMap.InitializeOption;
-using static Sudoku.Solving.ConclusionType;
+using static Sudoku.Data.ConclusionType;
 using static Sudoku.Windows.Constants.Processing;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;

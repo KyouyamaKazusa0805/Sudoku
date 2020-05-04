@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Alses.Mslses
 {
@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		public override string ToString()
 		{
 			string cellsStr = new CellCollection(Cells).ToString();
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {Cells.Count} Cells {cellsStr} => {elimStr}";
 		}
 	}

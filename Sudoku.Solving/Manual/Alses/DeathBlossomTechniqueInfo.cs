@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Alses
 {
@@ -21,8 +21,8 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <param name="alses">All ALSes used.</param>
 		public DeathBlossomTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int pivot, IReadOnlyDictionary<int, Als> alses)
-			: base(conclusions, views) => (Pivot, Alses) = (pivot, alses);
+			int pivot, IReadOnlyDictionary<int, Als> alses) : base(conclusions, views) =>
+			(Pivot, Alses) = (pivot, alses);
 
 
 		/// <summary>
@@ -54,7 +54,7 @@ namespace Sudoku.Solving.Manual.Alses
 		public override string ToString()
 		{
 			string pivotStr = new CellCollection(stackalloc[] { Pivot }).ToString();
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: Cell {pivotStr} - {GetAlsesStr()} => {elimStr}";
 		}
 

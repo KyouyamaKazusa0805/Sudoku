@@ -10,7 +10,7 @@ using Sudoku.Solving.Utils;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.GridProcessings;
-using static Sudoku.Solving.ConclusionType;
+using static Sudoku.Data.ConclusionType;
 using BdpType1 = Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1DetailData;
 using BdpType2 = Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2DetailData;
 using BdpType3 = Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3DetailData;

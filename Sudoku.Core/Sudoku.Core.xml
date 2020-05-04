@@ -210,6 +210,96 @@
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
         </member>
+        <member name="T:Sudoku.Data.Collections.ConclusionCollection">
+            <summary>
+            Provides a collection that contains the conclusions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Collections.ConclusionCollection._collection">
+            <summary>
+            The internal collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(Sudoku.Data.Conclusion[])">
+            <summary>
+            Initializes an instance with the specified collection.
+            </summary>
+            <param name="collection">(<see langword="params"/> parameter) The collection.</param>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(System.Span{Sudoku.Data.Conclusion})">
+            <summary>
+            Initializes an instance with the specified collection.
+            </summary>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
+            <summary>
+            Initializes an instance with the specified collection.
+            </summary>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.Equals(System.Object)">
+            <method name="Equals" paramType="object">
+		<summary>
+			Determines whether the specified object is equal to the current object.
+		</summary>
+		<param name="obj">The object to compare with the current object.</param>
+		<returns>
+			<see langword="true" /> if the specified object is equal to the
+			current object; otherwise, <see langword="false" />.
+		</returns>
+	</method>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.Equals(Sudoku.Data.Collections.ConclusionCollection)">
+            <method name="Equals" paramType="__any">
+		<summary>
+			Determine whether the current instance contains the same information with
+			hat from the specified parameter.
+		</summary>
+		<param name="other">The other instance to determine.</param>
+		<returns>A <see cref="T:System.Boolean" /> value indicating that.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.GetHashCode">
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.ToString(System.Boolean,System.String)">
+            <summary>
+            Converts the current instance to <see cref="T:System.String"/> with the specified separator.
+            </summary>
+            <param name="shouldSort">Indicates whether the specified collection should be sorted first.</param>
+            <param name="separator">The separator.</param>
+            <returns>The string result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.op_Equality(Sudoku.Data.Collections.ConclusionCollection,Sudoku.Data.Collections.ConclusionCollection)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.op_Inequality(Sudoku.Data.Collections.ConclusionCollection,Sudoku.Data.Collections.ConclusionCollection)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
         <member name="T:Sudoku.Data.Collections.DigitCollection">
             <summary>
             Indicates a collection that contains the several digits.
@@ -420,6 +510,127 @@
 		<param name="right">The right instance.</param>
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
+        </member>
+        <member name="T:Sudoku.Data.Conclusion">
+            <summary>
+            Encapsulates a conclusion representation while solving in logic.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.#ctor(Sudoku.Data.ConclusionType,System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance with a conclusion type, a cell offset and a digit.
+            </summary>
+            <param name="conclusionType">The conclusion type.</param>
+            <param name="cellOffset">The cell offset.</param>
+            <param name="digit">The digit.</param>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.#ctor(Sudoku.Data.ConclusionType,System.Int32)">
+            <summary>
+            Initializes an instance with a conclusion type and a candidate offset.
+            </summary>
+            <param name="conclusionType">The conclusion type.</param>
+            <param name="candidateOffset">The candidate offset.</param>
+        </member>
+        <member name="P:Sudoku.Data.Conclusion.CellOffset">
+            <summary>
+            The cell offset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Conclusion.Digit">
+            <summary>
+            The digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Conclusion.ConclusionType">
+            <summary>
+            The conclusion type to control the action of applying.
+            If the type is <see cref="F:Sudoku.Data.ConclusionType.Assignment"/>,
+            this conclusion will be set value (Set a digit into a cell);
+            otherwise, a candidate will be removed.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.ApplyTo(Sudoku.Data.Grid)">
+            <summary>
+            Put this instance into the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified conclusion type is neither <see cref="F:Sudoku.Data.ConclusionType.Assignment"/>
+            nor <see cref="F:Sudoku.Data.ConclusionType.Elimination"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.Deconstruct(Sudoku.Data.ConclusionType@,System.Int32@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="conclusionType">(<see langword="out" /> parameter) The type of this conclusion.</param>
+            <param name="candidate">(<see langword="out" /> parameter) The candidate.</param>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.Deconstruct(Sudoku.Data.ConclusionType@,System.Int32@,System.Int32@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="conclusionType">(<see langword="out" /> parameter) The type of this conclusion.</param>
+            <param name="cell">(<see langword="out" /> parameter) The cell.</param>
+            <param name="digit">(<see langword="out" /> parameter) The digit.</param>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.Equals(Sudoku.Data.Conclusion)">
+            <summary>
+            Indicates whether the current object has the same value with the other one.
+            </summary>
+            <param name="other">The other value to compare.</param>
+            <returns>
+            The result of this comparison. <see langword="true"/> if two instances hold a same
+            value; otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the current conclusion type is invalid (neither <see cref="F:Sudoku.Data.ConclusionType.Assignment" />
+            nor <see cref="F:Sudoku.Data.ConclusionType.Elimination" />.
+            </exception>
+            <seealso cref="P:Sudoku.Data.Conclusion.ConclusionType" />
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.op_Equality(Sudoku.Data.Conclusion,Sudoku.Data.Conclusion)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.op_Inequality(Sudoku.Data.Conclusion,Sudoku.Data.Conclusion)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="T:Sudoku.Data.ConclusionType">
+            <summary>
+            Provides a conclusion type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.ConclusionType.Assignment">
+            <summary>
+            Indicates the conclusion is a value filling into a cell.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.ConclusionType.Elimination">
+            <summary>
+            Indicates the conclusion is a candidate being remove from a cell.
+            </summary>
         </member>
         <member name="T:Sudoku.Data.Extensions.GridTransformationExtensions">
             <summary>

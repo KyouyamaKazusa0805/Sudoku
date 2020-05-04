@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
@@ -23,8 +23,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		public NakedSubsetTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			int regionOffset, IReadOnlyList<int> cellOffsets, IReadOnlyList<int> digits,
-			bool? isLocked)
-			: base(conclusions, views, regionOffset, cellOffsets, digits) =>
+			bool? isLocked) : base(conclusions, views, regionOffset, cellOffsets, digits) =>
 			IsLocked = isLocked;
 
 
@@ -90,7 +89,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		{
 			string digitsStr = new DigitCollection(Digits).ToString();
 			string regionStr = RegionUtils.ToString(RegionOffset);
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {digitsStr} in {regionStr} => {elimStr}";
 		}
 	}

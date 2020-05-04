@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving
+﻿namespace Sudoku.Data
 {
 	/// <summary>
 	/// Provides a conclusion type.

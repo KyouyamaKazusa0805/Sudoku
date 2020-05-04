@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Alses
 {
@@ -68,7 +68,7 @@ namespace Sudoku.Solving.Manual.Alses
 			int d2 = Digit2 + 1;
 			string sCellStr = new CellCollection(stackalloc[] { StartCell }).ToString();
 			string eCellStr = new CellCollection(stackalloc[] { EndCell }).ToString();
-			string elimStr = ConclusionCollection.ToString(Conclusions);
+			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string regionStr = new RegionCollection(stackalloc[] { Region }).ToString();
 			return
 				$"{Name}: Digits {d1}, {d2} in bivalue cells {sCellStr} and {eCellStr} " +

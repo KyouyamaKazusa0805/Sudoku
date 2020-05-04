@@ -4,7 +4,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Solving.Manual;
 using static Sudoku.Data.CellStatus;
-using static Sudoku.Solving.ConclusionType;
+using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Checking
 {

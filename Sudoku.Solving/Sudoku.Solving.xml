@@ -82,12 +82,12 @@
             <para>
             When the puzzle is solved, the value will be the difficulty rating
             of the first step before the first one whose conclusion is
-            <see cref="F:Sudoku.Solving.ConclusionType.Assignment"/>. If the puzzle has not solved
+            <see cref="F:Sudoku.Data.ConclusionType.Assignment"/>. If the puzzle has not solved
             or solved by other solvers, this value will be <c>20.0M</c>.
             </para>
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
-            <seealso cref="T:Sudoku.Solving.ConclusionType"/>
+            <seealso cref="T:Sudoku.Data.ConclusionType"/>
         </member>
         <member name="P:Sudoku.Solving.AnalysisResult.SolvingStepsCount">
             <summary>
@@ -474,10 +474,10 @@
             Provides a backdoor searcher.
             </summary>
             <remarks>
-            <b>Backdoor</b>s are <see cref="T:Sudoku.Solving.Conclusion"/>s making the difficulty of
+            <b>Backdoor</b>s are <see cref="T:Sudoku.Data.Conclusion"/>s making the difficulty of
             a puzzle decrease sharply after they are applied to a grid.
             </remarks>
-            <seealso cref="T:Sudoku.Solving.Conclusion"/>
+            <seealso cref="T:Sudoku.Data.Conclusion"/>
         </member>
         <member name="F:Sudoku.Solving.Checking.BackdoorSearcher.TestSolver">
             <summary>
@@ -510,7 +510,7 @@
             </param>
             <returns>All backdoors.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchForBackdoors(System.Collections.Generic.IList{System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion}},Sudoku.Data.IReadOnlyGrid,System.Int32)">
+        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchForBackdoors(System.Collections.Generic.IList{System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion}},Sudoku.Data.IReadOnlyGrid,System.Int32)">
             <summary>
             To find all backdoors in a sudoku grid.
             </summary>
@@ -636,122 +636,6 @@
             </summary>
             <param name="this">(<see langword="this"/> parameter) The puzzle.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Conclusion">
-            <summary>
-            Encapsulates a conclusion representation while solving in logic.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.#ctor(Sudoku.Solving.ConclusionType,System.Int32,System.Int32)">
-            <summary>
-            Initializes an instance with a conclusion type, a cell offset and a digit.
-            </summary>
-            <param name="conclusionType">The conclusion type.</param>
-            <param name="cellOffset">The cell offset.</param>
-            <param name="digit">The digit.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.#ctor(Sudoku.Solving.ConclusionType,System.Int32)">
-            <summary>
-            Initializes an instance with a conclusion type and a candidate offset.
-            </summary>
-            <param name="conclusionType">The conclusion type.</param>
-            <param name="candidateOffset">The candidate offset.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Conclusion.CellOffset">
-            <summary>
-            The cell offset.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Conclusion.Digit">
-            <summary>
-            The digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Conclusion.ConclusionType">
-            <summary>
-            The conclusion type to control the action of applying.
-            If the type is <see cref="F:Sudoku.Solving.ConclusionType.Assignment"/>,
-            this conclusion will be set value (Set a digit into a cell);
-            otherwise, a candidate will be removed.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.ApplyTo(Sudoku.Data.Grid)">
-            <summary>
-            Put this instance into the specified grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the specified conclusion type is neither <see cref="F:Sudoku.Solving.ConclusionType.Assignment"/>
-            nor <see cref="F:Sudoku.Solving.ConclusionType.Elimination"/>.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.Deconstruct(Sudoku.Solving.ConclusionType@,System.Int32@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
-            <param name="conclusionType">(<see langword="out" /> parameter) The type of this conclusion.</param>
-            <param name="candidate">(<see langword="out" /> parameter) The candidate.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.Deconstruct(Sudoku.Solving.ConclusionType@,System.Int32@,System.Int32@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
-            <param name="conclusionType">(<see langword="out" /> parameter) The type of this conclusion.</param>
-            <param name="cell">(<see langword="out" /> parameter) The cell.</param>
-            <param name="digit">(<see langword="out" /> parameter) The digit.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.Equals(Sudoku.Solving.Conclusion)">
-            <summary>
-            Indicates whether the current object has the same value with the other one.
-            </summary>
-            <param name="other">The other value to compare.</param>
-            <returns>
-            The result of this comparison. <see langword="true"/> if two instances hold a same
-            value; otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.ToString">
-            <method name="ToString" paramType="__noparam">
-		<summary>Returns a string that represents the current object.</summary>
-		<returns>A string that represents the current object.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.op_Equality(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
-            <operator name="op_Equality">
-		<summary>Indicates whether two instances have a same value.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
-	</operator>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.op_Inequality(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
-            <operator name="op_Inequality">
-		<summary>Indicates whether two instances have two different values.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
-	</operator>
-        </member>
-        <member name="T:Sudoku.Solving.ConclusionType">
-            <summary>
-            Provides a conclusion type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.ConclusionType.Assignment">
-            <summary>
-            Indicates the conclusion is a value filling into a cell.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.ConclusionType.Elimination">
-            <summary>
-            Indicates the conclusion is a candidate being remove from a cell.
-            </summary>
         </member>
         <member name="T:Sudoku.Solving.ConjugatePair">
             <summary>
@@ -1207,7 +1091,7 @@
             Provides a usage of <b>almost locked set</b> (ALS) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher">
@@ -1220,7 +1104,7 @@
             Provides a usage of <b>almost locked sets W-Wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Als,Sudoku.Solving.Manual.Alses.Als,System.Int32,System.Int32,Sudoku.Solving.ConjugatePair)">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Als,Sudoku.Solving.Manual.Alses.Als,System.Int32,System.Int32,Sudoku.Solving.ConjugatePair)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -1313,7 +1197,7 @@
             Provides a usage of <b>ALS-XY-Wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Rcc,Sudoku.Solving.Manual.Alses.Rcc)">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Rcc,Sudoku.Solving.Manual.Alses.Rcc)">
             <summary>
             Initializes an instance with specified information.
             </summary>
@@ -1389,7 +1273,7 @@
             or <b>extended subset principle</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Rcc)">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Rcc)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -1472,7 +1356,7 @@
             Provides a usage of <b>death blossom</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Solving.Manual.Alses.Als})">
+        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Solving.Manual.Alses.Als})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -1584,7 +1468,7 @@
             Provides a usage of <b>empty rectangle intersection pair</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -1656,7 +1540,7 @@
             Provides a usage of <b>multi-sector locked set</b> (MSLS) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.MslsTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.MslsTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Mslses.MslsTechniqueSearcher">
@@ -1669,7 +1553,7 @@
             Provides a usage of <b>domino loop</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -1861,7 +1745,7 @@
             Provides a usage of <b>sue de coq</b> (SdC) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.SdcTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Alses.SdcTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -1964,7 +1848,7 @@
             Provides a usage of <b>chain</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.ChainTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.ChainTechniqueSearcher">
@@ -1983,7 +1867,7 @@
             Indicates the last index of a collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Node},System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Node},System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -2389,7 +2273,7 @@
             Indicates the Bi-bi pattern eliminations.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -2405,13 +2289,13 @@
             Indicates the conclusions.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.Add(Sudoku.Solving.Conclusion)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.Add(Sudoku.Data.Conclusion)">
             <summary>
             Add the conclusion into the collection.
             </summary>
             <param name="conclusion">The conclusion.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <summary>
             Add a serial of conclusions into this collection.
             </summary>
@@ -2455,7 +2339,7 @@
             Indicates the compatibility test eliminations.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -2471,13 +2355,13 @@
             Indicates the conclusions.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.Add(Sudoku.Solving.Conclusion)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.Add(Sudoku.Data.Conclusion)">
             <summary>
             Add the conclusion into the collection.
             </summary>
             <param name="conclusion">The conclusion.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <summary>
             Add a serial of conclusions into this collection.
             </summary>
@@ -2668,7 +2552,7 @@
             Provides a usage of <b>exocet</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.ExocetTypeCode,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.TargetEliminations,Sudoku.Solving.Manual.Exocets.MirrorEliminations,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations,Sudoku.Solving.Manual.Exocets.TargetPairEliminations,Sudoku.Solving.Manual.Exocets.SwordfishEliminations,Sudoku.Solving.Manual.Exocets.TrueBaseEliminations,Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.ExocetTypeCode,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.TargetEliminations,Sudoku.Solving.Manual.Exocets.MirrorEliminations,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations,Sudoku.Solving.Manual.Exocets.TargetPairEliminations,Sudoku.Solving.Manual.Exocets.SwordfishEliminations,Sudoku.Solving.Manual.Exocets.TrueBaseEliminations,Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -2914,7 +2798,7 @@
             Provides a usage of <b>junior exocet</b> (JE) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.TargetEliminations,Sudoku.Solving.Manual.Exocets.MirrorEliminations,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations,Sudoku.Solving.Manual.Exocets.TargetPairEliminations,Sudoku.Solving.Manual.Exocets.SwordfishEliminations)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.TargetEliminations,Sudoku.Solving.Manual.Exocets.MirrorEliminations,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations,Sudoku.Solving.Manual.Exocets.TargetPairEliminations,Sudoku.Solving.Manual.Exocets.SwordfishEliminations)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -3021,7 +2905,7 @@
             Indicates the mirror cell eliminations.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -3037,13 +2921,13 @@
             Indicates the conclusions.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Add(Sudoku.Solving.Conclusion)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Add(Sudoku.Data.Conclusion)">
             <summary>
             Add the conclusion into the collection.
             </summary>
             <param name="conclusion">The conclusion.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <summary>
             Add a serial of conclusions into this collection.
             </summary>
@@ -3087,7 +2971,7 @@
             Provides a usage of <b>senior exocet</b> (SE) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},System.Int32,Sudoku.Solving.Manual.Exocets.TargetEliminations,Sudoku.Solving.Manual.Exocets.TrueBaseEliminations,Sudoku.Solving.Manual.Exocets.MirrorEliminations,Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},System.Int32,Sudoku.Solving.Manual.Exocets.TargetEliminations,Sudoku.Solving.Manual.Exocets.TrueBaseEliminations,Sudoku.Solving.Manual.Exocets.MirrorEliminations,Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -3195,7 +3079,7 @@
             Indicates the swordfish pattern eliminations.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -3211,13 +3095,13 @@
             Indicates the conclusions.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.Add(Sudoku.Solving.Conclusion)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.Add(Sudoku.Data.Conclusion)">
             <summary>
             Add the conclusion into the collection.
             </summary>
             <param name="conclusion">The conclusion.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <summary>
             Add a serial of conclusions into this collection.
             </summary>
@@ -3261,7 +3145,7 @@
             Indicates the target eliminations.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -3277,13 +3161,13 @@
             Indicates the conclusions.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.Add(Sudoku.Solving.Conclusion)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.Add(Sudoku.Data.Conclusion)">
             <summary>
             Add the conclusion into the collection.
             </summary>
             <param name="conclusion">The conclusion.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <summary>
             Add a serial of conclusions into this collection.
             </summary>
@@ -3327,7 +3211,7 @@
             Indicates the target pair eliminations.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -3343,13 +3227,13 @@
             Indicates the conclusions.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.Add(Sudoku.Solving.Conclusion)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.Add(Sudoku.Data.Conclusion)">
             <summary>
             Add the conclusion into the collection.
             </summary>
             <param name="conclusion">The conclusion.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <summary>
             Add a serial of conclusions into this collection.
             </summary>
@@ -3393,7 +3277,7 @@
             Indicates the true base eliminations.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -3409,13 +3293,13 @@
             Indicates the conclusions.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.Add(Sudoku.Solving.Conclusion)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.Add(Sudoku.Data.Conclusion)">
             <summary>
             Add the conclusion into the collection.
             </summary>
             <param name="conclusion">The conclusion.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <summary>
             Add a serial of conclusions into this collection.
             </summary>
@@ -3459,7 +3343,7 @@
             Provides a usage of <b>fish</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides passing data when initializing an instance of derived types.
             </summary>
@@ -3529,7 +3413,7 @@
             The mutant shape extra difficulty rating table.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -3678,7 +3562,7 @@
             <param name="baseSets">The base sets.</param>
             <param name="bodyMap">The body map.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.AddTechnique(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.GridMap,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.AddTechnique(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.GridMap,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}})">
             <summary>
             Add the technique to bag.
             </summary>
@@ -3788,7 +3672,7 @@
             Provides a usage of <b>normal fish</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean})">
             <summary>
             Initializes an instance with information.
             </summary>
@@ -3878,7 +3762,7 @@
             Provides a usage of <b>almost locked candidates</b> (ALC) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -3981,7 +3865,7 @@
             Provides a usage of <b>intersection</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Intersections.IntersectionTechniqueSearcher">
@@ -3994,7 +3878,7 @@
             Provides a usage of <b>locked candidates</b> (LC) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.LcTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.LcTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32)">
             <summary>
             Initializes an instance with information.
             </summary>
@@ -4062,7 +3946,7 @@
             Provides a usage of <b>Bowman's bingo</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -4158,7 +4042,7 @@
             Provides a usage of <b>brute force</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -4224,7 +4108,7 @@
             Provides a usage of <b>chute clue cover</b> (CCC) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.CccTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.CccTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -4325,7 +4209,7 @@
             Provides a usage of <b>last resort</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.LastResortTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.LastResortTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.LastResorts.LastResortTechniqueSearcher">
@@ -4338,7 +4222,7 @@
             Provides a usage of <b>pattern overlay method</b> (POM) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.PomTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.PomTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -4399,7 +4283,7 @@
             Provides a usage of <b>template</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -4588,7 +4472,7 @@
             <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)"/>
             <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.CheckConclusionsValidity(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.CheckConclusionsValidity(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <summary>
             To check the validity of all conclusions.
             </summary>
@@ -4974,7 +4858,7 @@
             Provides a usage of empty rectangle technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Solving.ConjugatePair)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Solving.ConjugatePair)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -5045,7 +4929,7 @@
             Provides a usage of <b>single-digit pattern</b> (SDP) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Sdps.SdpTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.SdpTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -5068,7 +4952,7 @@
             Provides a usage of two strong links technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -5123,7 +5007,7 @@
             Indicates a usage of <b>full house</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32)">
             <summary>
             Initializes an instance with information.
             </summary>
@@ -5146,7 +5030,7 @@
             Indicates a using of <b>hidden single</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Initializes an instance with information.
             </summary>
@@ -5183,7 +5067,7 @@
             Indicates a usage of <b>naked single</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32)">
             <summary>
             Initializes an instance with information.
             </summary>
@@ -5206,7 +5090,7 @@
             Provides a usage of <b>single</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32)">
             <summary>
             Provides passing data when initializing an instance of derived types.
             </summary>
@@ -5274,7 +5158,7 @@
             Provides a usage of <b>hidden subset</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo.Difficulty">
@@ -5296,7 +5180,7 @@
             Provides a usage of <b>naked subset</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean})">
             <summary>
             Provides passing data when initializing an instance of derived types.
             </summary>
@@ -5338,7 +5222,7 @@
             Provides a usage of <b>subset</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides passing data when initializing an instance of derived types.
             </summary>
@@ -5396,7 +5280,7 @@
             <param name="size">The size.</param>
             <returns>All technique information searched.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GatherConclusion(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GatherConclusion(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Nullable{System.Boolean})">
             <summary>
             To gather a conclusion with essential information.
             </summary>
@@ -5460,7 +5344,7 @@
             Provides a usage of <b>Gurth's symmetrical placement</b> (GSP) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.GspTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.SymmetryType,System.Nullable{System.Int32}[])">
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GspTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.SymmetryType,System.Nullable{System.Int32}[])">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -5538,7 +5422,7 @@
             Provides a usage of <b>symmetry</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.SymmetryTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.Symmetry.SymmetryTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Symmetry.SymmetryTechniqueSearcher">
@@ -5556,7 +5440,7 @@
             The table of extra difficulty values.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -5586,7 +5470,7 @@
             Provides a usage of <b>bivalue universal grave</b> (BUG) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -5696,7 +5580,7 @@
             The table of extra difficulty values.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -5732,7 +5616,7 @@
             Provides a usage of <b>bivalue universal grave</b> (BUG) type 3 technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType3TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType3TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -5780,7 +5664,7 @@
             Provides a usage of <b>bivalue universal grave</b> (BUG) type 4 technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType4TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Solving.ConjugatePair)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType4TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Solving.ConjugatePair)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -5832,7 +5716,7 @@
             The type code.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.String,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.String,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -5954,7 +5838,7 @@
             Provides a usage of <b>extended rectangle</b> (XR) type 1 technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.String,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.String,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1TechniqueInfo.Difficulty">
@@ -5971,7 +5855,7 @@
             Provides a usage of <b>extended rectangle</b> (XR) type 2 technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.String,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.String,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -6002,7 +5886,7 @@
             Provides a usage of <b>extended rectangle</b> (XR) type 3 technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType3TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.String,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType3TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.String,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -6130,7 +6014,7 @@
             The difficulty extra.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Loops.UlDetailData)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Loops.UlDetailData)">
             <summary>
             Initializes an instance with the information.
             </summary>
@@ -6403,7 +6287,7 @@
             Provides a usage of <b>Borescoper's deadly pattern</b> (BDP) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Polygons.BdpDetailData)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Polygons.BdpDetailData)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -6564,7 +6448,7 @@
             <b>hidden avoidable rectangle</b> (HAR) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Collections.Generic.IReadOnlyList{Sudoku.Solving.ConjugatePair},System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Collections.Generic.IReadOnlyList{Sudoku.Solving.ConjugatePair},System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -6585,7 +6469,7 @@
             <b>avoidable rectangle + 2D (or 3X)</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Int32,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -6630,7 +6514,7 @@
             <b>avoidable rectangle plus</b> (AR+) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Collections.Generic.IReadOnlyList{Sudoku.Solving.ConjugatePair},System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Collections.Generic.IReadOnlyList{Sudoku.Solving.ConjugatePair},System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -6663,7 +6547,7 @@
             <b>avoidable rectangle</b> (AR) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -6814,7 +6698,7 @@
             <b>avoidable rectangle</b> (AR) type 1 technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -6840,7 +6724,7 @@
             <b>avoidable rectangle</b> (AR) type 2 (or type 5) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -6873,7 +6757,7 @@
             <b>avoidable rectangle</b> (AR) type 3 technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32,System.Boolean,System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -7103,7 +6987,7 @@
             Indicates the difficulty rating extra.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -7150,7 +7034,7 @@
             Provides a usage of <b>uniqueness</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueSearcher">
@@ -7169,7 +7053,7 @@
             Encapsulates a usage of <b>irregular wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher">
@@ -7217,7 +7101,7 @@
             Provides a usage of <b>W-Wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.WWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Solving.ConjugatePair)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.WWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Solving.ConjugatePair)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -7259,7 +7143,7 @@
             Provides a usage of <b>regular wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Initializes an instance with the information.
             </summary>
@@ -7376,7 +7260,7 @@
             (<see langword="out"/> parameter) The result grid intersection map.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.GatherConclusion(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},System.Int32,System.ReadOnlySpan{System.Int32},System.Int16,System.Int16,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.GatherConclusion(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},System.Int32,System.ReadOnlySpan{System.Int32},System.Int16,System.Int16,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion})">
             <summary>
             Gather the conclusion.
             </summary>
@@ -7425,7 +7309,7 @@
             Provides a usage of <b>wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.WingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.Wings.WingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Wings.WingTechniqueSearcher">
@@ -7476,7 +7360,7 @@
             which include the conclusion, the difficulty and so on.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
             <summary>
             Provides passing data when initializing an instance of derived types.
             </summary>
@@ -7529,7 +7413,7 @@
             <param name="difficulty">(<see langword="out" /> parameter) The difficulty.</param>
             <param name="difficultyLevel">(<see langword="out" /> parameter) The difficulty level.</param>
         </member>
-        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevel@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion}@)">
+        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevel@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion}@)">
             <method name="Deconstruct">
 		<summary>Deconstruct this instance.</summary>
 	</method>
@@ -7538,7 +7422,7 @@
             <param name="difficultyLevel">(<see langword="out" /> parameter) The difficulty level.</param>
             <param name="conclusions">(<see langword="out" /> parameter) All conclusions.</param>
         </member>
-        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevel@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Conclusion}@,System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View}@)">
+        <member name="M:Sudoku.Solving.TechniqueInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.DifficultyLevel@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion}@,System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View}@)">
             <method name="Deconstruct">
 		<summary>Deconstruct this instance.</summary>
 	</method>
@@ -7738,26 +7622,6 @@
             </summary>
             <param name="length">The length.</param>
             <returns>The difficulty.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Utils.ConclusionCollection">
-            <summary>
-            Provides extension methods of conclusion collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.ConclusionCollection.ToString(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion})">
-            <summary>
-            Get a string consists of all conclusion text.
-            </summary>
-            <param name="conclusions">The conclusions.</param>
-            <returns>The string.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.ConclusionCollection.ToSimpleString(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion},System.String)">
-            <summary>
-            Get a simple string consists of all conclusion text.
-            </summary>
-            <param name="conclusions">The conclusions.</param>
-            <param name="separator">The string separator.</param>
-            <returns>The string.</returns>
         </member>
         <member name="T:Sudoku.Solving.Utils.FishUtils">
             <summary>
