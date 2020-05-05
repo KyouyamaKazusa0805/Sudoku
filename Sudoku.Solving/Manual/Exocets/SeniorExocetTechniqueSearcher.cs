@@ -231,7 +231,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						if (target != -1)
 						{
 							var (tempTargetElims, tempMirrorElims) = CheckMirror(
-								grid, target, combination[target == combination[0] ? 1 : 0], 0,
+								grid, target, combination[(target == combination[0]).ToInt32()], 0,
 								baseCandidatesMask, mir, digitMaps, 0, -1, cellOffsets, candidateOffsets);
 							targetElims = TargetEliminations.MergeAll(targetElims, tempTargetElims);
 							mirrorElims = MirrorEliminations.MergeAll(mirrorElims, tempMirrorElims);

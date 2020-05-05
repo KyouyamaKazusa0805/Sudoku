@@ -720,6 +720,8 @@
         <member name="T:Sudoku.Solving.Constants.Processings">
             <summary>
             Provides the constants and read-only values in the current project.
+            Of course, the class will also provides you with some method to get the results
+            such as the chain length rating calculation.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Constants.Processings.SubsetNames">
@@ -731,6 +733,13 @@
             <summary>
             The names of all fishes by their size.
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Constants.Processings.GetExtraDifficultyByLength(System.Int32)">
+            <summary>
+            Get extra difficulty rating for a chain node sequence.
+            </summary>
+            <param name="length">The length.</param>
+            <returns>The difficulty.</returns>
         </member>
         <member name="T:Sudoku.Solving.DifficultyLevel">
             <summary>
@@ -7584,18 +7593,6 @@
             <param name="left">The left comparer.</param>
             <param name="right">The right comparer.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Utils.ChainingDifficultyRatingUtils">
-            <summary>
-            Provides extension methods of rating a chain.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.ChainingDifficultyRatingUtils.GetExtraDifficultyByLength(System.Int32)">
-            <summary>
-            Get extra difficulty rating.
-            </summary>
-            <param name="length">The length.</param>
-            <returns>The difficulty.</returns>
         </member>
         <member name="T:Sudoku.Solving.Utils.NodeCollection">
             <summary>

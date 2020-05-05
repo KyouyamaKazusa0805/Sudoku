@@ -3809,6 +3809,13 @@
             </summary>
             <param name="this">(<see langword="this ref"/> parameter) The value.</param>
         </member>
+        <member name="M:Sudoku.Extensions.BooleanEx.ToInt32(System.Boolean)">
+            <summary>
+            Get the equivalent <see cref="T:System.Int32"/> value of the current <see cref="T:System.Boolean"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The current value.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="T:Sudoku.Extensions.ByteEx">
             <summary>
             Provides extension methods on <see cref="T:System.Byte"/>.

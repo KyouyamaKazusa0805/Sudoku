@@ -6,6 +6,7 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Utils;
+using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -137,7 +138,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					"Grouped XY-Chain" => 5M,
 					"Grouped XY-Cycle" => 4.9M,
 					_ => 4.9M
-				} + ChainingDifficultyRatingUtils.GetExtraDifficultyByLength(Length);
+				} + GetExtraDifficultyByLength(Length);
 			}
 		}
 

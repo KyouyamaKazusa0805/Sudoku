@@ -178,7 +178,7 @@ namespace Sudoku.Data.Extensions
 			int[] cells = RegionCells[regionOffset];
 			for (int i = 0, length = cells.Length; i < length; result = i != 8 ? result << 1 : result, i++)
 			{
-				result += @this.Exists(cells[i], digit) is true ? 1 : 0;
+				result += (@this.Exists(cells[i], digit) is true).ToInt32();
 			}
 
 			// Now should reverse all bits. Note that this extension method
@@ -212,7 +212,7 @@ namespace Sudoku.Data.Extensions
 			int result = 0, i = 0;
 			foreach (int cell in RegionCells[regionOffset])
 			{
-				result += @this.Exists(cell, digit) is true && map[cell] ? 1 : 0;
+				result += (@this.Exists(cell, digit) is true && map[cell]).ToInt32();
 
 				if (i++ != 8)
 				{

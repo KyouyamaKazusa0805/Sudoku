@@ -845,7 +845,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					{
 						case NodeType.Candidate:
 						{
-							candidateOffsets.Add((@switch ? 1 : 0, node[0]));
+							candidateOffsets.Add((@switch.ToInt32(), node[0]));
 
 							break;
 						}
@@ -853,7 +853,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						{
 							candidateOffsets.AddRange(
 								from candidate in node.Candidates
-								select (@switch ? 1 : 0, candidate));
+								select (@switch.ToInt32(), candidate));
 
 							break;
 						}
@@ -866,7 +866,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					}
 
 					lastCand = node;
-					@switch = !@switch;
+					@switch.Flip();
 				}
 
 				// Step 3: Keep head minimum.
@@ -876,7 +876,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					// Reverse all links.
 					resultLinks = new List<Inference>();
 					@switch = false;
-					for (int i = links.Count - 1; i >= 0; i--, @switch = !@switch)
+					for (int i = links.Count - 1; i >= 0; i--, @switch.Flip())
 					{
 						var (l, r) = links[i];
 						resultLinks.Add(new Inference(r, @switch, l, !@switch));

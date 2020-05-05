@@ -18,5 +18,13 @@ namespace Sudoku.Extensions
 		/// <param name="this">(<see langword="this ref"/> parameter) The value.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Flip(this ref bool @this) => @this = !@this;
+
+		/// <summary>
+		/// Get the equivalent <see cref="int"/> value of the current <see cref="bool"/>.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The current value.</param>
+		/// <returns>The result.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static int ToInt32(this bool @this) => @this.GetHashCode();
 	}
 }

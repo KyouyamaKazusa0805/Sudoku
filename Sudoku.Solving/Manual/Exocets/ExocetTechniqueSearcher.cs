@@ -295,7 +295,7 @@ namespace Sudoku.Solving.Manual.Exocets
 							short candidateMask = (short)(
 								~(
 									grid.GetCandidatesReversal(
-										playground[(mask1 & locked) != 0 ? 1 : 0]
+										playground[((mask1 & locked) != 0).ToInt32()]
 									) & grid.GetCandidatesReversal(target) & baseCandidateMask
 								) & grid.GetCandidatesReversal(target) & baseCandidateMask);
 							if (candidateMask != 0)

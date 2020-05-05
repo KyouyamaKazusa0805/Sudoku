@@ -123,7 +123,7 @@ namespace Sudoku.Solving.Manual.Alses
 						{
 							foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 							{
-								candidateOffsets.Add((digit == elimDigit ? 1 : 0, cell * 9 + digit));
+								candidateOffsets.Add(((digit == elimDigit).ToInt32(), cell * 9 + digit));
 							}
 						}
 					}

@@ -75,7 +75,8 @@ namespace Sudoku.Solving.Manual.Sdps
 								int cell2 = cells2[j];
 								if (new GridMap { cell1, cell2 }.AllSetsAreInOneRegion(out sameRegion))
 								{
-									(c1Index, c2Index, headIndex, tailIndex) = (i, j, i == 0 ? 1 : 0, j == 0 ? 1 : 0);
+									(c1Index, c2Index, headIndex, tailIndex) = (
+										i, j, (i == 0).ToInt32(), (j == 0).ToInt32());
 									goto Label_Checking;
 								}
 							}
