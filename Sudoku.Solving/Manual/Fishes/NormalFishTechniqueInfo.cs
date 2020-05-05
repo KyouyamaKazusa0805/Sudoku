@@ -2,7 +2,7 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
+using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -63,7 +63,7 @@ namespace Sudoku.Solving.Manual.Fishes
 					null => "",
 					true => "Sashimi ",
 					false => "Finned "
-				}}{FishUtils.GetNameBy(Size)}";
+				}}{FishNames[Size]}";
 			}
 		}
 

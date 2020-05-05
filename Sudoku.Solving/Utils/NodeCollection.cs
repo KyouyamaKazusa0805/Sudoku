@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using Sudoku.Data;
@@ -27,7 +26,7 @@ namespace Sudoku.Solving.Utils
 			foreach (var node in nodes)
 			{
 				sb.Append($"{(@switch ? string.Empty : "!")}{node}{separator}");
-				@switch = !@switch;
+				@switch.Flip();
 			}
 
 			return sb.RemoveFromEnd(separator.Length).ToString();

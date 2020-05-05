@@ -2,7 +2,7 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
+using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {
@@ -64,7 +64,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			string digitsStr = new DigitCollection(Digits).ToString();
 			string cellsStr = new CellCollection(Cells).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			string sizeStr = SubsetUtils.GetNameBy(Digits.Count).ToLower();
+			string sizeStr = SubsetNames[Digits.Count].ToLower();
 			string trueCandidatesStr = new CandidateCollection(TrueCandidates).ToString();
 			string subsetTypeStr = IsNaked ? "naked" : "hidden";
 			return

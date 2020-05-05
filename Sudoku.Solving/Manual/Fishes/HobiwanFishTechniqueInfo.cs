@@ -3,7 +3,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
+using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -89,7 +89,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		{
 			get
 			{
-				string name = FishUtils.GetNameBy(Size);
+				string name = FishNames[Size];
 				string finModifier = IsSashimi switch
 				{
 					null => string.Empty,

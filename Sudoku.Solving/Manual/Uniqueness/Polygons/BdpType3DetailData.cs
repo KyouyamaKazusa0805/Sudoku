@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data.Collections;
-using Sudoku.Solving.Utils;
+using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
@@ -51,7 +51,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			string subsetDigitsStr = new DigitCollection(SubsetDigits).ToString();
 			string subsetCellsStr = new CellCollection(SubsetCells).ToString();
 			string subsetType = IsNaked ? "naked" : "hidden";
-			string subsetName = SubsetUtils.GetNameBy(SubsetCells.Count + 1).ToLower();
+			string subsetName = SubsetNames[SubsetCells.Count + 1].ToLower();
 			return
 				$"{digitsStr} in cells {cellsStr} with {subsetType} {subsetName}: " +
 				$"digits {subsetDigitsStr} in cells {subsetCellsStr}";

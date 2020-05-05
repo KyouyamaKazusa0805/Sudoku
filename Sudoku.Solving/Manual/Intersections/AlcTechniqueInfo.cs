@@ -2,7 +2,7 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
+using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
@@ -25,8 +25,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		public AlcTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			IReadOnlyList<int> digits, IReadOnlyList<int> baseCells, IReadOnlyList<int> targetCells,
-			bool hasValueCell)
-			: base(conclusions, views) =>
+			bool hasValueCell) : base(conclusions, views) =>
 			(Digits, BaseCells, TargetCells, HasValueCell) = (digits, baseCells, targetCells, hasValueCell);
 
 
@@ -51,7 +50,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		public bool HasValueCell { get; }
 
 		/// <inheritdoc/>
-		public override string Name => $"Almost Locked {SubsetUtils.GetNameBy(Digits.Count)}";
+		public override string Name => $"Almost Locked {SubsetNames[Digits.Count]}";
 
 		/// <inheritdoc/>
 		public override decimal Difficulty

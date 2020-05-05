@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Utils
+﻿using Sudoku.Extensions;
+
+namespace Sudoku.Solving.Utils
 {
 	/// <summary>
 	/// Provides extension methods of rating a chain.
@@ -14,7 +16,7 @@
 		{
 			decimal added = 0;
 			int ceil = 4;
-			for (bool isOdd = false; length > ceil; isOdd = !isOdd)
+			for (bool isOdd = false; length > ceil; isOdd.Flip())
 			{
 				added += .1M;
 				ceil = isOdd ? (ceil << 2) / 3 : ceil * 3 >> 1;

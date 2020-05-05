@@ -3795,6 +3795,20 @@
             All link masks.
             </summary>
         </member>
+        <member name="T:Sudoku.Extensions.BooleanEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Boolean"/>.
+            </summary>
+            <seealso cref="T:System.Boolean"/>
+        </member>
+        <member name="M:Sudoku.Extensions.BooleanEx.Flip(System.Boolean@)">
+            <summary>
+            Flip the current <see cref="T:System.Boolean"/> value (i.e. <see langword="true"/>
+            -&gt; <see langword="false"/>, <see langword="false"/> -&gt; <see langword="true"/>),
+            which is equivalent to code '<c>b = !b</c>' or '<c>b ^= true</c>'.
+            </summary>
+            <param name="this">(<see langword="this ref"/> parameter) The value.</param>
+        </member>
         <member name="T:Sudoku.Extensions.ByteEx">
             <summary>
             Provides extension methods on <see cref="T:System.Byte"/>.

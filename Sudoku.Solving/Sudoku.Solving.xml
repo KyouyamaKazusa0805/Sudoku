@@ -717,6 +717,21 @@
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
         </member>
+        <member name="T:Sudoku.Solving.Constants.Processings">
+            <summary>
+            Provides the constants and read-only values in the current project.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Constants.Processings.SubsetNames">
+            <summary>
+            The names of all subsets by their size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Constants.Processings.FishNames">
+            <summary>
+            The names of all fishes by their size.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.DifficultyLevel">
             <summary>
             Provides a difficulty kind for a puzzle.
@@ -7582,23 +7597,6 @@
             <param name="length">The length.</param>
             <returns>The difficulty.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Utils.FishUtils">
-            <summary>
-            Provides extension method used for fish technique.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Utils.FishUtils.FishNames">
-            <summary>
-            All fish names.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.FishUtils.GetNameBy(System.Int32)">
-            <summary>
-            Get the fish by its size.
-            </summary>
-            <param name="size">The size.</param>
-            <returns>The name.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Utils.NodeCollection">
             <summary>
             Provides extension methods of node collection.
@@ -7610,23 +7608,6 @@
             </summary>
             <param name="nodes">The nodes.</param>
             <returns>The string.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Utils.SubsetUtils">
-            <summary>
-            Provides extension method used for subset (hidden or naked) technique.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Utils.SubsetUtils.SubsetNames">
-            <summary>
-            All subset names.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.SubsetUtils.GetNameBy(System.Int32)">
-            <summary>
-            Gets the name by its size.
-            </summary>
-            <param name="size">The size.</param>
-            <returns>The name.</returns>
         </member>
     </members>
 </doc>

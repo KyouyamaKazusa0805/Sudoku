@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
+using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Subsets
 {
@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		public IReadOnlyList<int> CellOffsets { get; }
 
 		/// <inheritdoc/>
-		public override string Name => SubsetUtils.GetNameBy(Digits.Count);
+		public override string Name => SubsetNames[Digits.Count];
 
 		/// <inheritdoc/>
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Moderate;
