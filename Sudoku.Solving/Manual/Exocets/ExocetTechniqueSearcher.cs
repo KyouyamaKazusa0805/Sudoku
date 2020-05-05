@@ -219,7 +219,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				short m2 = (short)(grid.GetCandidatesReversal(playground[1]) & baseCandidateMask);
 				if (m1 != 0 ^ m2 != 0)
 				{
-					int p = playground[m1 != 0 ? 0 : 1];
+					int p = playground[(m1 == 0).ToInt32()];
 					short candidateMask = (short)(grid.GetCandidatesReversal(p) & ~commonBase);
 					if (candidateMask != 0
 						&& grid.GetStatus(target) != Empty ^ grid.GetStatus(target2) != Empty)

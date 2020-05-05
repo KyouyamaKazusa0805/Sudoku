@@ -267,7 +267,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 							foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
 							{
-								candidateOffsets.Add((d == d1 || d == d2 ? 0 : 1, cell * 9 + d));
+								candidateOffsets.Add(((d != d1 && d != d2).ToInt32(), cell * 9 + d));
 							}
 						}
 						foreach (int d in grid.GetCandidatesReversal(c1).GetAllSets())
@@ -366,7 +366,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 									foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
 									{
-										candidateOffsets.Add((d == d1 || d == d2 ? 0 : 1, cell * 9 + d));
+										candidateOffsets.Add(((d != d1 && d != d2).ToInt32(), cell * 9 + d));
 									}
 								}
 								foreach (int d in grid.GetCandidatesReversal(c1).GetAllSets())
@@ -469,7 +469,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 										foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
 										{
-											candidateOffsets.Add((d == d1 || d == d2 ? 0 : 1, cell * 9 + d));
+											candidateOffsets.Add(((d != d1 && d != d2).ToInt32(), cell * 9 + d));
 										}
 									}
 									foreach (int d in grid.GetCandidatesReversal(c1).GetAllSets())
@@ -595,7 +595,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 						if (totalMap[cell])
 						{
-							int id = otherCellsMap[cell] ? 0 : 1;
+							int id = (!otherCellsMap[cell]).ToInt32();
 							void record(int digit)
 							{
 								if (grid.Exists(cell, digit) is true)
@@ -699,7 +699,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 								if (totalMap[cell])
 								{
-									int id = otherCellsMap[cell] ? 0 : 1;
+									int id = (!otherCellsMap[cell]).ToInt32();
 									void record(int digit)
 									{
 										if (grid.Exists(cell, digit) is true)
@@ -801,7 +801,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 									if (totalMap[cell])
 									{
-										int id = otherCellsMap[cell] ? 0 : 1;
+										int id = (!otherCellsMap[cell]).ToInt32();
 										void record(int digit)
 										{
 											if (grid.Exists(cell, digit) is true)

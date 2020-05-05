@@ -276,7 +276,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						continue;
 					}
 
-					int endoTargetCell = combination[s[combination[0]] ? 0 : 1];
+					int endoTargetCell = combination[(!s[combination[0]]).ToInt32()];
 					short m1 = grid.GetCandidatesReversal(b1);
 					short m2 = grid.GetCandidatesReversal(b2);
 					short m = (short)(m1 | m2);

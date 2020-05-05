@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.Util;
+using Sudoku.Extensions;
 using static Sudoku.Extensions.TypeEx;
 
 namespace Sudoku.Drawing.Extensions
@@ -216,7 +217,7 @@ namespace Sudoku.Drawing.Extensions
 						long srcAddress = data.Scan0.ToInt64();
 						byte[,,] imagedata = (image.Data as byte[,,])!;
 
-						byte[] row = new byte[fullByteCount + (partialBitCount == 0 ? 0 : 1)];
+						byte[] row = new byte[fullByteCount + (partialBitCount != 0).ToInt32()];
 
 						int v = 0;
 						for (int i = 0; i < rows; i++, srcAddress += data.Stride)
