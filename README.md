@@ -6,6 +6,10 @@ A sudoku handling SDK using brute forces and logical techniques (update graduall
 
 一个使用暴力破解和普通逻辑算法解题的数独分析解题 SDK（逐渐更新）。目前该解决方案支持对数独的题目生成、使用逻辑技巧或无逻辑技巧解题和一些常见数独特性的验证（例如，验证是否一个指定的盘面是一个最小题目。所谓的最小题目指的是，盘面任意一个数字消失后，都会使得题目多解的题）。
 
+> The form may be like the program Hodoku, however, using the program Hodoku is for reference only.
+>
+> 这个窗体可能看起来跟 Hodoku 差不多，因为我并不知道什么样子是一个漂亮的界面。使用 Hodoku 仅仅是为了参考。
+
 
 
 ## Programming language and IDE using
@@ -23,6 +27,12 @@ A sudoku handling SDK using brute forces and logical techniques (update graduall
 
 标题：**如何使用**
 
+
+
+### Codes
+
+标题：**代码**
+
 Clone this repo, and you can take all codes!
 
 只需要你克隆这个仓库就可以带走所有的代码了！
@@ -31,7 +41,24 @@ Clone this repo, and you can take all codes!
 git clone https://github.com/Sunnie-Shine/Sudoku.git
 ```
 
+
+
+### Compiling & Running
+
+标题：**编译和运行**
+
+Please check this [file](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref/ReadMe.txt).
+
+请参看[这个文件](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref/ReadMe.txt)。
+
+
+
+### Folders
+
+标题：**文件夹**
+
 This whole solution consists of several folders below:<br/>这个解决方案由如下文件夹构成：
+
 * [`Sudoku.Core`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Core): The main data structure implementation of the sudoku elementary.<br/>对数独基本元素的主要数据结构的实现。
 * [`Sudoku.Solving`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Solving): The generating and solving project.<br/>解题和题目生成的项目。
 * [`Sudoku.Windows`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Windows): The WPF project, containing UI forms and controls.<br/>WPF 项目，包含 UI 界面和控件。
