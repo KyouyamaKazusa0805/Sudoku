@@ -47,9 +47,9 @@ git clone https://github.com/Sunnie-Shine/Sudoku.git
 
 标题：**编译和运行**
 
-Please check this [file](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref/ReadMe.txt).
+Please check this [file](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/require/ReadMe.txt).
 
-请参看[这个文件](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref/ReadMe.txt)。
+请参看[这个文件](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/require/ReadMe.txt)。
 
 
 
