@@ -133,24 +133,21 @@ namespace Sudoku.Recognitions
 		/// <param name="dir">The directory.</param>
 		/// <param name="lang">The language. The default value is <c>"eng"</c>.</param>
 		/// <returns>The task.</returns>
-		/// <exception cref="InvalidOperationException">
-		/// Throws when the specified trained data cannot be found and cannot be downloaded.
-		/// </exception>
-		public async Task InitTesseractAsync(string dir, string lang = "eng")
+		public async Task<bool> InitTesseractAsync(string dir, string lang = "eng")
 		{
 			try
 			{
 				if (!File.Exists($@"{dir}\{lang}.traineddata"))
 				{
-					await TesseractDownloadLangFileAsync(dir, lang);
+					return await TesseractDownloadLangFileAsync(dir, lang);
 				}
 
 				_ocr = new Tesseract(dir, lang, OcrEngineMode.TesseractOnly, "123456789");
+				return true;
 			}
-			catch (Exception)
+			catch
 			{
-				throw new InvalidOperationException(
-					"Tessaract Error. Do not have a file and cannot to download it.");
+				return false;
 			}
 		}
 
@@ -161,18 +158,32 @@ namespace Sudoku.Recognitions
 		/// <param name="dir">The directory to find.</param>
 		/// <param name="lang">The language.</param>
 		/// <returns>The result.</returns>
-		private async Task TesseractDownloadLangFileAsync(string dir, string lang)
+		private async Task<bool> TesseractDownloadLangFileAsync(string dir, string lang)
 		{
 			if (!Directory.Exists(dir))
 			{
 				Directory.CreateDirectory(dir);
 			}
 
-			using var client = new HttpClient();
-			File.WriteAllText(
-				$@"{dir}\{lang}.traineddata",
-				await client.GetStringAsync(
-					new Uri($"https://github.com/tesseract-ocr/tessdata/raw/master/{lang}.traineddata")));
+			HttpClient? client = null;
+			try
+			{
+				client = new HttpClient();
+				File.WriteAllText(
+					$@"{dir}\{lang}.traineddata",
+					await client.GetStringAsync(
+						new Uri($"https://github.com/tesseract-ocr/tessdata/raw/master/{lang}.traineddata")));
+
+				return true;
+			}
+			catch
+			{
+				return false;
+			}
+			finally
+			{
+				client?.Dispose();
+			}
 		}
 	}
 }

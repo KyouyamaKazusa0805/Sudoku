@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Sudoku.Extensions
@@ -170,8 +171,7 @@ namespace Sudoku.Extensions
 		/// expression pattern.
 		/// </exception>
 		/// <seealso cref="Regex.Matches(string, string, RegexOptions)"/>
-		public static string[] MatchAll(
-			this string @this, string pattern, RegexOptions regexOption)
+		public static string[] MatchAll(this string @this, string pattern, RegexOptions regexOption)
 		{
 			if (!pattern.IsRegexPattern())
 			{
@@ -189,6 +189,29 @@ namespace Sudoku.Extensions
 			}
 
 			return result.ToArray();
+		}
+
+		/// <summary>
+		/// Reserve all characters that satisfy the specified pattern.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The string.</param>
+		/// <param name="reservePattern">The pattern that reserved characters satisfied.</param>
+		/// <returns>The result string.</returns>
+		public static string Reserve(this string @this, string reservePattern)
+		{
+			var span = (Span<char>)stackalloc char[1];
+
+			var sb = new StringBuilder();
+			foreach (char c in @this)
+			{
+				span[0] = c;
+				if (span.ToString().SatisfyPattern(reservePattern))
+				{
+					sb.Append(c);
+				}
+			}
+
+			return sb.ToString();
 		}
 
 		/// <summary>

@@ -120,7 +120,7 @@ namespace Sudoku.Data
 		/// <returns>The result.</returns>
 		private Grid? OnParsingPencilMarked(bool treatSingleValueAsGiven)
 		{
-			string[] matches = ParsingValue.MatchAll(@"(\<\d\>|\*\d\*|\d{1,9})");
+			string[] matches = ParsingValue.MatchAll(@"(\<\d\>|\*\d\*|\d*\-?\d+)");
 			if (matches.Length != 81)
 			{
 				return null;
@@ -129,7 +129,13 @@ namespace Sudoku.Data
 			var result = Grid.Empty.Clone();
 			for (int offset = 0; offset < 81; offset++)
 			{
-				string s = matches[offset];
+				string s = matches[offset].Reserve(@"\d");
+				if (s.Length >= 9)
+				{
+					// More than 9 characters.
+					return null;
+				}
+
 				if (treatSingleValueAsGiven)
 				{
 					// This options means that all characters matched will

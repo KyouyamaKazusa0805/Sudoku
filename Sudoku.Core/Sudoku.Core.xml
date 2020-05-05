@@ -4664,6 +4664,14 @@
             </exception>
             <seealso cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
         </member>
+        <member name="M:Sudoku.Extensions.StringEx.Reserve(System.String,System.String)">
+            <summary>
+            Reserve all characters that satisfy the specified pattern.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The string.</param>
+            <param name="reservePattern">The pattern that reserved characters satisfied.</param>
+            <returns>The result string.</returns>
+        </member>
         <member name="M:Sudoku.Extensions.StringEx.IsRegexPattern(System.String)">
             <summary>
             To check if the current string value is a valid regular
@@ -4985,9 +4993,6 @@
             <param name="dir">The directory.</param>
             <param name="lang">The language. The default value is <c>"eng"</c>.</param>
             <returns>The task.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the specified trained data cannot be found and cannot be downloaded.
-            </exception>
         </member>
         <member name="M:Sudoku.Recognitions.InternalServiceProvider.TesseractDownloadLangFileAsync(System.String,System.String)">
             <summary>

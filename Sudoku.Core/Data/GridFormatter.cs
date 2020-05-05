@@ -161,20 +161,20 @@ namespace Sudoku.Data
 		/// <returns>The result.</returns>
 		private string ToMultiLineSimpleGridCore(Grid grid)
 		{
-			string temp = grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : $"{Placeholder}");
+			string t = grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : $"{Placeholder}");
 			return new StringBuilder()
 				.AppendLine(SubtleGridLines ? ".-------+-------+-------." : "+-------+-------+-------+")
-				.AppendLine($"| {temp[0]} {temp[1]} {temp[2]} | {temp[3]} {temp[4]} {temp[5]} | {temp[6]} {temp[7]} {temp[8]} |")
-				.AppendLine($"| {temp[9]} {temp[10]} {temp[11]} | {temp[12]} {temp[13]} {temp[14]} | {temp[15]} {temp[16]} {temp[17]} |")
-				.AppendLine($"| {temp[18]} {temp[19]} {temp[20]} | {temp[21]} {temp[22]} {temp[23]} | {temp[24]} {temp[25]} {temp[26]} |")
+				.AppendLine($"| {t[0]} {t[1]} {t[2]} | {t[3]} {t[4]} {t[5]} | {t[6]} {t[7]} {t[8]} |")
+				.AppendLine($"| {t[9]} {t[10]} {t[11]} | {t[12]} {t[13]} {t[14]} | {t[15]} {t[16]} {t[17]} |")
+				.AppendLine($"| {t[18]} {t[19]} {t[20]} | {t[21]} {t[22]} {t[23]} | {t[24]} {t[25]} {t[26]} |")
 				.AppendLine(SubtleGridLines ? ":-------+-------+-------:" : "+-------+-------+-------+")
-				.AppendLine($"| {temp[27]} {temp[28]} {temp[29]} | {temp[30]} {temp[31]} {temp[32]} | {temp[33]} {temp[34]} {temp[35]} |")
-				.AppendLine($"| {temp[36]} {temp[37]} {temp[38]} | {temp[39]} {temp[40]} {temp[41]} | {temp[42]} {temp[43]} {temp[44]} |")
-				.AppendLine($"| {temp[45]} {temp[46]} {temp[47]} | {temp[48]} {temp[49]} {temp[50]} | {temp[51]} {temp[52]} {temp[53]} |")
+				.AppendLine($"| {t[27]} {t[28]} {t[29]} | {t[30]} {t[31]} {t[32]} | {t[33]} {t[34]} {t[35]} |")
+				.AppendLine($"| {t[36]} {t[37]} {t[38]} | {t[39]} {t[40]} {t[41]} | {t[42]} {t[43]} {t[44]} |")
+				.AppendLine($"| {t[45]} {t[46]} {t[47]} | {t[48]} {t[49]} {t[50]} | {t[51]} {t[52]} {t[53]} |")
 				.AppendLine(SubtleGridLines ? ":-------+-------+-------:" : "+-------+-------+-------+")
-				.AppendLine($"| {temp[54]} {temp[55]} {temp[56]} | {temp[57]} {temp[58]} {temp[59]} | {temp[60]} {temp[61]} {temp[62]} |")
-				.AppendLine($"| {temp[63]} {temp[64]} {temp[65]} | {temp[66]} {temp[67]} {temp[68]} | {temp[69]} {temp[70]} {temp[71]} |")
-				.AppendLine($"| {temp[72]} {temp[73]} {temp[74]} | {temp[75]} {temp[76]} {temp[77]} | {temp[78]} {temp[79]} {temp[80]} |")
+				.AppendLine($"| {t[54]} {t[55]} {t[56]} | {t[57]} {t[58]} {t[59]} | {t[60]} {t[61]} {t[62]} |")
+				.AppendLine($"| {t[63]} {t[64]} {t[65]} | {t[66]} {t[67]} {t[68]} | {t[69]} {t[70]} {t[71]} |")
+				.AppendLine($"| {t[72]} {t[73]} {t[74]} | {t[75]} {t[76]} {t[77]} | {t[78]} {t[79]} {t[80]} |")
 				.AppendLine(SubtleGridLines ? "'-------+-------+-------'" : "+-------+-------+-------+")
 				.ToString();
 		}
@@ -280,8 +280,7 @@ namespace Sudoku.Data
 			return sb.ToString();
 		}
 
-		private void PrintValueLines(
-			IList<short> valuesByRow, char c1, char c2, int[] maxLengths, StringBuilder sb)
+		private void PrintValueLines(IList<short> valuesByRow, char c1, char c2, int[] maxLengths, StringBuilder sb)
 		{
 			sb.Append(c1);
 			PrintValues(valuesByRow, 0, 2, maxLengths, sb);
@@ -292,8 +291,7 @@ namespace Sudoku.Data
 			sb.AppendLine(c1);
 		}
 
-		private void PrintValues(
-			IList<short> valuesByRow, int start, int end, int[] maxLengths, StringBuilder sb)
+		private void PrintValues(IList<short> valuesByRow, int start, int end, int[] maxLengths, StringBuilder sb)
 		{
 			sb.Append(" ");
 			for (int i = start; i <= end; i++)
@@ -327,8 +325,7 @@ namespace Sudoku.Data
 			return sb.ToString();
 		}
 
-		private static void PrintTabLines(
-			char c1, char c2, char fillingChar, int[] maxLengths, StringBuilder sb)
+		private static void PrintTabLines(char c1, char c2, char fillingChar, int[] maxLengths, StringBuilder sb)
 		{
 			sb.Append(c1);
 			sb.Append(string.Empty.PadRight(maxLengths[0] + maxLengths[1] + maxLengths[2] + 6, fillingChar));
@@ -345,8 +342,7 @@ namespace Sudoku.Data
 		/// <param name="value">The value.</param>
 		/// <returns>The cell status.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static CellStatus GetCellStatus(short value) =>
-			(CellStatus)(value >> 9 & (int)CellStatus.All);
+		private static CellStatus GetCellStatus(short value) => (CellStatus)(value >> 9 & (int)CellStatus.All);
 
 		/// <summary>
 		/// Get the default list.
