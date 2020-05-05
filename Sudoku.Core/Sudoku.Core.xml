@@ -4,6 +4,127 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Constants.Processings">
+            <summary>
+            The tables for grid processing. All fields will be initialized in
+            the static constructor.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.Processings.Peers">
+            <summary>
+            <para>Indicates a table for each cell's peers.</para>
+            </summary>
+            <example>
+            '<c>Peers[0]</c>': the array of peers for the cell 0 (row 1 column 1).
+            </example>
+        </member>
+        <member name="F:Sudoku.Constants.Processings.RegionCells">
+            <summary>
+            <para>
+            The map of all cell offsets in its specified region.
+            The indices is between 0 and 26, where <c>0..9</c> is for block 1 to 9,
+            <c>9..18</c> is for row 1 to 9 and <c>18..27</c> is for column 1 to 9.
+            </para>
+            </summary>
+            <example>
+            '<c>RegionTable[0]</c>': all cell offsets in the region 0 (block 1).
+            </example>
+        </member>
+        <member name="F:Sudoku.Constants.Processings.RegionMaps">
+            <summary>
+            Indicates all grid maps that a grid contains.
+            </summary>
+            <example>
+            '<c>RegionMaps[0]</c>': The map containing all cells in the block 1.
+            </example>
+        </member>
+        <member name="F:Sudoku.Constants.Processings.IntersectionMaps">
+            <summary>
+            <para>
+            Indicates all maps that forms the each intersection. The pattern will be like:
+            <code>
+            .-------.-------.-------.<br/>
+            | C C C | A A A | A A A |<br/>
+            | B B B | . . . | . . . |<br/>
+            | B B B | . . . | . . . |<br/>
+            '-------'-------'-------'
+            </code>
+            </para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Constants.Processings.Deconstruct(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap[]@,Sudoku.Data.GridMap[]@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="this">(<see langword="this" /> parameter) The grid.</param>
+            <param name="empty">(<see langword="out" /> parameter) The map of all empty cells.</param>
+            <param name="bivalue">(<see langword="out" /> parameter) The map of all bi-value cells.</param>
+            <param name="candidates">
+            (<see langword="out" /> parameter) The map of all cells that contain the candidate of that digit.
+            </param>
+            <param name="digits">
+            (<see langword="out" /> parameter) The map of all cells that contain the candidate of that digit
+            or that value in given or modifiable.
+            </param>
+        </member>
+        <member name="M:Sudoku.Constants.Processings.GetEmptyCellsMap(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Get the map of all empty cells in this grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The map.</returns>
+        </member>
+        <member name="M:Sudoku.Constants.Processings.GetBivalueCellsMap(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Get the map of all bi-value cells in this grid.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The map.</returns>
+        </member>
+        <member name="M:Sudoku.Constants.Processings.GetCandidatesMap(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Get the map of all distributions for digits.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The map.</returns>
+        </member>
+        <member name="M:Sudoku.Constants.Processings.GetDigitsMap(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            <para>Get the map of all distributions for digits.</para>
+            <para>
+            Different with <see cref="M:Sudoku.Constants.Processings.GetCandidatesMap(Sudoku.Data.IReadOnlyGrid)"/>,
+            this method will get all cells that contain the digit or fill this digit
+            (given or modifiable).
+            </para>
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <returns>The map.</returns>
+            <seealso cref="M:Sudoku.Constants.Processings.GetCandidatesMap(Sudoku.Data.IReadOnlyGrid)"/>
+        </member>
+        <member name="M:Sudoku.Constants.Processings.#cctor">
+            <staticConstructor>
+		<summary>The static constructor of this class.</summary>
+	</staticConstructor><staticConstructor aimTo="struct">
+		<summary>The static constructor of this struct.</summary>
+	</staticConstructor>
+            <remarks>
+            The initialization order between static constructor and static fields
+            may be annoying, so I use static constructor both.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Constants.Processings.ValueTupleComparer">
+            <summary>
+            The inner comparer of <see cref="T:System.ValueTuple`2"/> used in
+            the field <see cref="F:Sudoku.Constants.Processings.IntersectionMaps"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Constants.Processings.IntersectionMaps"/>
+        </member>
+        <member name="M:Sudoku.Constants.Processings.ValueTupleComparer.Equals(System.ValueTuple{System.Byte,System.Byte},System.ValueTuple{System.Byte,System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Constants.Processings.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Data.BitCombinationGenerator">
             <summary>
             Encapsulates a bit combination generator.
@@ -4580,127 +4701,6 @@
             <typeparam name="T1">The type 1.</typeparam>
             <typeparam name="T2">The type 2.</typeparam>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="T:Sudoku.GridProcessings">
-            <summary>
-            The tables for grid processing. All fields will be initialized in
-            the static constructor.
-            </summary>
-        </member>
-        <member name="F:Sudoku.GridProcessings.Peers">
-            <summary>
-            <para>Indicates a table for each cell's peers.</para>
-            </summary>
-            <example>
-            '<c>Peers[0]</c>': the array of peers for the cell 0 (row 1 column 1).
-            </example>
-        </member>
-        <member name="F:Sudoku.GridProcessings.RegionCells">
-            <summary>
-            <para>
-            The map of all cell offsets in its specified region.
-            The indices is between 0 and 26, where <c>0..9</c> is for block 1 to 9,
-            <c>9..18</c> is for row 1 to 9 and <c>18..27</c> is for column 1 to 9.
-            </para>
-            </summary>
-            <example>
-            '<c>RegionTable[0]</c>': all cell offsets in the region 0 (block 1).
-            </example>
-        </member>
-        <member name="F:Sudoku.GridProcessings.RegionMaps">
-            <summary>
-            Indicates all grid maps that a grid contains.
-            </summary>
-            <example>
-            '<c>RegionMaps[0]</c>': The map containing all cells in the block 1.
-            </example>
-        </member>
-        <member name="F:Sudoku.GridProcessings.IntersectionMaps">
-            <summary>
-            <para>
-            Indicates all maps that forms the each intersection. The pattern will be like:
-            <code>
-            .-------.-------.-------.<br/>
-            | C C C | A A A | A A A |<br/>
-            | B B B | . . . | . . . |<br/>
-            | B B B | . . . | . . . |<br/>
-            '-------'-------'-------'
-            </code>
-            </para>
-            </summary>
-        </member>
-        <member name="M:Sudoku.GridProcessings.Deconstruct(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap[]@,Sudoku.Data.GridMap[]@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
-            <param name="this">(<see langword="this" /> parameter) The grid.</param>
-            <param name="empty">(<see langword="out" /> parameter) The map of all empty cells.</param>
-            <param name="bivalue">(<see langword="out" /> parameter) The map of all bi-value cells.</param>
-            <param name="candidates">
-            (<see langword="out" /> parameter) The map of all cells that contain the candidate of that digit.
-            </param>
-            <param name="digits">
-            (<see langword="out" /> parameter) The map of all cells that contain the candidate of that digit
-            or that value in given or modifiable.
-            </param>
-        </member>
-        <member name="M:Sudoku.GridProcessings.GetEmptyCellsMap(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Get the map of all empty cells in this grid.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The map.</returns>
-        </member>
-        <member name="M:Sudoku.GridProcessings.GetBivalueCellsMap(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Get the map of all bi-value cells in this grid.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The map.</returns>
-        </member>
-        <member name="M:Sudoku.GridProcessings.GetCandidatesMap(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Get the map of all distributions for digits.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The map.</returns>
-        </member>
-        <member name="M:Sudoku.GridProcessings.GetDigitsMap(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            <para>Get the map of all distributions for digits.</para>
-            <para>
-            Different with <see cref="M:Sudoku.GridProcessings.GetCandidatesMap(Sudoku.Data.IReadOnlyGrid)"/>,
-            this method will get all cells that contain the digit or fill this digit
-            (given or modifiable).
-            </para>
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
-            <returns>The map.</returns>
-            <seealso cref="M:Sudoku.GridProcessings.GetCandidatesMap(Sudoku.Data.IReadOnlyGrid)"/>
-        </member>
-        <member name="M:Sudoku.GridProcessings.#cctor">
-            <staticConstructor>
-		<summary>The static constructor of this class.</summary>
-	</staticConstructor><staticConstructor aimTo="struct">
-		<summary>The static constructor of this struct.</summary>
-	</staticConstructor>
-            <remarks>
-            The initialization order between static constructor and static fields
-            may be annoying, so I use static constructor both.
-            </remarks>
-        </member>
-        <member name="T:Sudoku.GridProcessings.ValueTupleComparer">
-            <summary>
-            The inner comparer of <see cref="T:System.ValueTuple`2"/> used in
-            the field <see cref="F:Sudoku.GridProcessings.IntersectionMaps"/>.
-            </summary>
-            <seealso cref="F:Sudoku.GridProcessings.IntersectionMaps"/>
-        </member>
-        <member name="M:Sudoku.GridProcessings.ValueTupleComparer.Equals(System.ValueTuple{System.Byte,System.Byte},System.ValueTuple{System.Byte,System.Byte})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.GridProcessings.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.InternalSettings">
             <summary>

@@ -5,14 +5,14 @@ using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
 using static Sudoku.Data.CellStatus;
 
-namespace Sudoku
+namespace Sudoku.Constants
 {
 	/// <summary>
 	/// The tables for grid processing. All fields will be initialized in
 	/// the static constructor.
 	/// </summary>
 	[SuppressMessage("", "CS8618")]
-	public static partial class GridProcessings
+	public static partial class Processings
 	{
 		/// <summary>
 		/// <para>Indicates a table for each cell's peers.</para>

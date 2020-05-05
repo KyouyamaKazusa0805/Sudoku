@@ -6,7 +6,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using static Sudoku.GridProcessings;
+using static Sudoku.Constants.Processings;
 using Pair = System.ValueTuple<int, int>;
 using Templates = Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher;
 

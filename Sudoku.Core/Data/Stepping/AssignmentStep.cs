@@ -1,4 +1,5 @@
 ﻿using System;
+using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Data.Stepping
 {
@@ -58,7 +59,7 @@ namespace Sudoku.Data.Stepping
 			if (Digit >= 0 && Digit < 9)
 			{
 				grid._masks[Cell] = (short)((short)CellStatus.Modifiable << 9 | 511 & ~(1 << Digit));
-				foreach (int cell in GridProcessings.Peers[Cell])
+				foreach (int cell in Peers[Cell])
 				{
 					if (grid.GetStatus(cell) != CellStatus.Empty)
 					{

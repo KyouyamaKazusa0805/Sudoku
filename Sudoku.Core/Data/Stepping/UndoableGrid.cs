@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Sudoku.Data.Extensions;
+using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Data.Stepping
 {
@@ -75,7 +76,7 @@ namespace Sudoku.Data.Stepping
 			set
 			{
 				var map = GridMap.Empty;
-				foreach (int cell in GridProcessings.Peers[offset])
+				foreach (int cell in Peers[offset])
 				{
 					if (cell == offset || GetStatus(cell) != CellStatus.Empty)
 					{

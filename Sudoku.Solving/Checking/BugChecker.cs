@@ -4,7 +4,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Extensions;
-using static Sudoku.GridProcessings;
+using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Checking
 {

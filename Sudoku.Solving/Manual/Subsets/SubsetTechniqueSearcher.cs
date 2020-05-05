@@ -6,8 +6,8 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
-using static Sudoku.GridProcessings;
 using Action = System.Action<System.Collections.Generic.IBag<Sudoku.Solving.TechniqueInfo>, Sudoku.Data.IReadOnlyGrid, int>;
 
 namespace Sudoku.Solving.Manual.Subsets

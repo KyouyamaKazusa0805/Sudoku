@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using static Sudoku.GridProcessings;
+using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
-using Sudoku.Data.Collections;
 
 namespace Sudoku.Solving.Manual.Wings.Irregular
 {

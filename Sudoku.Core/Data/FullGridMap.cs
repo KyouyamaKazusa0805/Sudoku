@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Data
 {
@@ -72,7 +73,7 @@ namespace Sudoku.Data
 					g = &_line7, h = &_line8, i = &_line9)
 				{
 					var series = stackalloc[] { a, b, c, d, e, f, g, h, i };
-					foreach (int z in GridProcessings.Peers[cell])
+					foreach (int z in Peers[cell])
 					{
 						(*series[z / 9]).Add(z % 9 * 9 + digit);
 					}

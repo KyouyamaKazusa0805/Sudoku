@@ -4,9 +4,9 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridMap.InitializeOption;
-using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Manual.Alses
 {

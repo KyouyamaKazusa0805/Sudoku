@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using Sudoku.Data;
 
-namespace Sudoku
+namespace Sudoku.Constants
 {
-	partial class GridProcessings
+	partial class Processings
 	{
 		/// <include file='../GlobalDocComments.xml' path='comments/staticConstructor'/>
 		/// <remarks>
 		/// The initialization order between static constructor and static fields
 		/// may be annoying, so I use static constructor both.
 		/// </remarks>
-		static GridProcessings()
+		static Processings()
 		{
 			#region Peers
 			{

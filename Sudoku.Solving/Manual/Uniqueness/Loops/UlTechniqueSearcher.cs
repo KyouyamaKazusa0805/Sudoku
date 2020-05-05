@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
-using static Sudoku.GridProcessings;
 using static Sudoku.Data.ConclusionType;
 using UlType1 = Sudoku.Solving.Manual.Uniqueness.Loops.UlType1DetailData;
 using UlType2 = Sudoku.Solving.Manual.Uniqueness.Loops.UlType2DetailData;
 using UlType3 = Sudoku.Solving.Manual.Uniqueness.Loops.UlType3DetailData;
 using UlType4 = Sudoku.Solving.Manual.Uniqueness.Loops.UlType4DetailData;
-using Sudoku.Data.Collections;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops
 {

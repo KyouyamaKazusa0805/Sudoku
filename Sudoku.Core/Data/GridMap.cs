@@ -8,8 +8,8 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Extensions;
+using static Sudoku.Constants.Processings;
 using static Sudoku.Data.GridMap.InitializeOption;
-using static Sudoku.GridProcessings;
 
 namespace Sudoku.Data
 {

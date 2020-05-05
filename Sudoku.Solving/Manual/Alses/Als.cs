@@ -8,8 +8,8 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
+using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
-using static Sudoku.GridProcessings;
 
 namespace Sudoku.Solving.Manual.Alses
 {

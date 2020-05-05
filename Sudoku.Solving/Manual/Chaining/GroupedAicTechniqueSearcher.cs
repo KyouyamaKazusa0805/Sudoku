@@ -7,7 +7,7 @@ using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using static Sudoku.GridProcessings;
+using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Chaining
 {

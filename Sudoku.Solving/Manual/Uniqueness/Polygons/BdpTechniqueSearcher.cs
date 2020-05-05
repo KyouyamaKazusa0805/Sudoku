@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
-using static Sudoku.Data.GridMap.InitializeOption;
-using static Sudoku.GridProcessings;
 using static Sudoku.Data.ConclusionType;
+using static Sudoku.Data.GridMap.InitializeOption;
 using BdpType1 = Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1DetailData;
 using BdpType2 = Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2DetailData;
 using BdpType3 = Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3DetailData;
 using BdpType4 = Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4DetailData;
-using Sudoku.Data.Collections;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {

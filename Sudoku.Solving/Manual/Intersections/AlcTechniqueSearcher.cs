@@ -4,8 +4,8 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
-using static Sudoku.GridProcessings;
 using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Intersections

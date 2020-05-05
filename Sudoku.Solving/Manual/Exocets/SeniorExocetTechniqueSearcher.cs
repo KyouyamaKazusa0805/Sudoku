@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using static System.Algorithms;
+using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridMap.InitializeOption;
-using static Sudoku.GridProcessings;
 using static Sudoku.Data.ConclusionType;
-using Sudoku.Data.Collections;
 
 namespace Sudoku.Solving.Manual.Exocets
 {

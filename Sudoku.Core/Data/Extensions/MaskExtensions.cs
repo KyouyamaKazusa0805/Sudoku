@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using static Sudoku.GridProcessings;
+using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Data.Extensions
 {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Sudoku
+namespace Sudoku.Constants
 {
-	partial class GridProcessings
+	partial class Processings
 	{
 		/// <summary>
 		/// The inner comparer of <see cref="ValueTuple{T1, T2}"/> used in

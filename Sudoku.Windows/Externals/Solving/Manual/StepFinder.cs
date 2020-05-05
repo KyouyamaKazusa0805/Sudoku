@@ -22,7 +22,7 @@ using Sudoku.Solving.Manual.Uniqueness.Rects;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using Sudoku.Windows;
-using static Sudoku.GridProcessings;
+using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Manual
 {
