@@ -18,17 +18,6 @@ namespace Sudoku.Solving.Manual.Alses
 	public sealed class AlsWWingTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <summary>
-		/// Indicates whether the ALSes can be overlapped with each other.
-		/// </summary>
-		private readonly bool _allowOverlapping;
-
-		/// <summary>
-		/// Indicates whether the ALSes shows their region rather than cells.
-		/// </summary>
-		private readonly bool _alsShowRegions;
-
-
-		/// <summary>
 		/// Initialize an instance with the specified information.
 		/// </summary>
 		/// <param name="allowOverlapping">
@@ -37,8 +26,10 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <param name="alsShowRegions">
 		/// Indicates whether all ALSes shows their regions rather than cells.
 		/// </param>
-		public AlsWWingTechniqueSearcher(bool allowOverlapping, bool alsShowRegions) =>
-			(_allowOverlapping, _alsShowRegions) = (allowOverlapping, alsShowRegions);
+		public AlsWWingTechniqueSearcher(bool allowOverlapping, bool alsShowRegions)
+			: base(allowOverlapping, alsShowRegions, false)
+		{
+		}
 
 
 		/// <summary>

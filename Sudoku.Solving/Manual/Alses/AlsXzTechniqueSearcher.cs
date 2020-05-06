@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Data.ConclusionType;
+using static Sudoku.Data.GridMap.InitializeOption;
 
 namespace Sudoku.Solving.Manual.Alses
 {
@@ -12,20 +13,10 @@ namespace Sudoku.Solving.Manual.Alses
 	/// Encapsulates an <b>almost locked sets XZ rule</b> or
 	/// <b>extended subset principle</b> technique.
 	/// </summary>
+	[Obsolete]
 	[TechniqueDisplay("Almost Locked Sets XZ Rule")]
 	public sealed class AlsXzTechniqueSearcher : AlsTechniqueSearcher
 	{
-		/// <summary>
-		/// Indicates whether the ALSes can be overlapped with each other.
-		/// </summary>
-		private readonly bool _allowOverlapping;
-
-		/// <summary>
-		/// Indicates whether the ALSes shows their region rather than cells.
-		/// </summary>
-		private readonly bool _alsShowRegions;
-
-
 		/// <summary>
 		/// Initialize an instance with the specified information.
 		/// </summary>
@@ -35,8 +26,10 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <param name="alsShowRegions">
 		/// Indicates whether all ALSes shows their regions rather than cells.
 		/// </param>
-		public AlsXzTechniqueSearcher(bool allowOverlapping, bool alsShowRegions) =>
-			(_allowOverlapping, _alsShowRegions) = (allowOverlapping, alsShowRegions);
+		public AlsXzTechniqueSearcher(bool allowOverlapping, bool alsShowRegions)
+			: base(allowOverlapping, alsShowRegions, false)
+		{
+		}
 
 
 		/// <summary>

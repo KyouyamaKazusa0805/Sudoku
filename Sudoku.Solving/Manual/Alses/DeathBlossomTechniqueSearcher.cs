@@ -17,16 +17,6 @@ namespace Sudoku.Solving.Manual.Alses
 	public sealed class DeathBlossomTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <summary>
-		/// Indicates whether the ALSes can be overlapped with each other.
-		/// </summary>
-		private readonly bool _allowOverlapping;
-
-		/// <summary>
-		/// Indicates whether the ALSes shows their region rather than cells.
-		/// </summary>
-		private readonly bool _alsShowRegions;
-
-		/// <summary>
 		/// Indicates the max petals to search.
 		/// </summary>
 		private readonly int _maxPetals;
@@ -44,9 +34,8 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <param name="maxPetals">
 		/// Indicates the max petals of instance to search.
 		/// </param>
-		public DeathBlossomTechniqueSearcher(
-			bool allowOverlapping, bool alsShowRegions, int maxPetals) =>
-			(_allowOverlapping, _alsShowRegions, _maxPetals) = (allowOverlapping, alsShowRegions, maxPetals);
+		public DeathBlossomTechniqueSearcher(bool allowOverlapping, bool alsShowRegions, int maxPetals)
+			: base(allowOverlapping, alsShowRegions, true) => _maxPetals = maxPetals;
 
 
 		/// <summary>

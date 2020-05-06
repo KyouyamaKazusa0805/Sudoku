@@ -23,6 +23,7 @@ using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using Sudoku.Windows;
 using static Sudoku.Constants.Processings;
+using AlsXzTechniqueSearcher = Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueSearcher;
 
 namespace Sudoku.Solving.Manual
 {
@@ -74,7 +75,7 @@ namespace Sudoku.Solving.Manual
 				new BdpTechniqueSearcher(),
 				new BugTechniqueSearcher(_settings.UseExtendedBugSearcher),
 				new ErIntersectionPairTechniqueSearcher(),
-				//new AlsXzTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
+				new AlsXzTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell, true),
 				//new AlsXyWingTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
 				//new AlsWWingTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
 				//new DeathBlossomTechniqueSearcher(

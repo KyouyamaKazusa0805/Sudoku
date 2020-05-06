@@ -3,6 +3,12 @@
 	partial class ManualSolver
 	{
 		/// <summary>
+		/// <para>Indicates whether the solver should check ALS cycles.</para>
+		/// <para>The value is <see langword="true"/> in default case.</para>
+		/// </summary>
+		public bool AllowAlsCycles { get; set; } = true;
+
+		/// <summary>
 		/// <para>
 		/// Indicates whether two ALSes can be overlapped with each other.
 		/// </para>

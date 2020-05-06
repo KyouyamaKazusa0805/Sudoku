@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -9,6 +10,7 @@ namespace Sudoku.Solving.Manual.Alses
 	/// Provides a usage of <b>almost locked sets XZ rule</b>
 	/// or <b>extended subset principle</b> technique.
 	/// </summary>
+	[Obsolete]
 	public sealed class AlsXzTechniqueInfo : AlsTechniqueInfo
 	{
 		/// <summary>

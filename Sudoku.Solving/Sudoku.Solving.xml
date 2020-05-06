@@ -1116,6 +1116,34 @@
             Encapsulates an <b>almost locked set</b> (ALS) technique searcher.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowOverlapping">
+            <summary>
+            Indicates whether the ALSes can be overlapped with each other.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._alsShowRegions">
+            <summary>
+            Indicates whether the ALSes shows their regions rather than cells.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowAlsCycles">
+            <summary>
+            Indicates whether the solver will check ALS cycles.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher.#ctor">
+            <defaultConstructor>
+		<summary>Create an instance with default initialization.</summary>
+	</defaultConstructor>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="allowOverlapping">Indicates whether the ALSes can be overlapped with each other.</param>
+            <param name="alsShowRegions">Indicates whether the ALSes shows their regions rather than cells.</param>
+            <param name="allowAlsCycles">Indicates whether the solver will check ALS cycles.</param>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueInfo">
             <summary>
             Provides a usage of <b>almost locked sets W-Wing</b> technique.
@@ -1173,16 +1201,6 @@
         <member name="T:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueSearcher">
             <summary>
             Encapsulates an <b>almost locked sets W-Wing</b> technique.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueSearcher._allowOverlapping">
-            <summary>
-            Indicates whether the ALSes can be overlapped with each other.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueSearcher._alsShowRegions">
-            <summary>
-            Indicates whether the ALSes shows their region rather than cells.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.AlsWWingTechniqueSearcher.#ctor(System.Boolean,System.Boolean)">
@@ -1248,16 +1266,6 @@
         <member name="T:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueSearcher">
             <summary>
             Encapsulates an <b>almost locked sets XY-Wing</b> technique.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueSearcher._allowOverlapping">
-            <summary>
-            Indicates whether the ALSes can be overlapped with each other.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueSearcher._alsShowRegions">
-            <summary>
-            Indicates whether the ALSes shows their region rather than cells.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueSearcher.#ctor(System.Boolean,System.Boolean)">
@@ -1334,16 +1342,6 @@
             <b>extended subset principle</b> technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher._allowOverlapping">
-            <summary>
-            Indicates whether the ALSes can be overlapped with each other.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher._alsShowRegions">
-            <summary>
-            Indicates whether the ALSes shows their region rather than cells.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.#ctor(System.Boolean,System.Boolean)">
             <summary>
             Initialize an instance with the specified information.
@@ -1366,6 +1364,197 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.Basic.Als">
+            <summary>
+            Encapsulates a normal ALS.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.#ctor(System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+            <summary>
+            Initializes an instance with the specified digit mask and the map of cells.
+            </summary>
+            <param name="digitMask">The digit mask.</param>
+            <param name="map">The map.</param>
+            <param name="possibleEliminationSet">The possible elimination set.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.Als.IsBivalueCell">
+            <summary>
+            Indicates whether this instance is a bi-value-cell ALS.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.Als.Region">
+            <summary>
+            Indicates the region that the instance lies on.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.Als.DigitsMask">
+            <summary>
+            Indicates the mask of each digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.Als.Map">
+            <summary>
+            Indicates the map that ALS lying on.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.Als.PossibleEliminationSet">
+            <summary>
+            Indicates the possible elimination set.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.Als.StrongLinksMask">
+            <summary>
+            Indicates all strong links in this ALS. The result will be represented
+            as a <see cref="T:System.Int16"/> mask of 9 bits indicating which bits used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.Deconstruct(System.Int32@,System.Int16@,Sudoku.Data.GridMap@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="region">(<see langword="out" /> parameter) The region.</param>
+            <param name="digitsMask">(<see langword="out" /> parameter) The digits mask.</param>
+            <param name="map">(<see langword="out" /> parameter) The map.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.Deconstruct(System.Boolean@,System.Int32@,System.Int16@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,System.Collections.Generic.IEnumerable{System.Int16}@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="isBivalueCell">
+            (<see langword="out" /> parameter) Indicates whether the specified ALS is bi-value.
+            </param>
+            <param name="region">(<see langword="out" /> parameter) The region.</param>
+            <param name="digitsMask">(<see langword="out" /> parameter) The digits mask.</param>
+            <param name="map">(<see langword="out" /> parameter) The map.</param>
+            <param name="possibleEliminations">(<see langword="out" /> parameter) The possible eliminations.</param>
+            <param name="strongLinksMask">(<see langword="out" /> parameter) The strong links mask.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.ContainsDigit(Sudoku.Data.IReadOnlyGrid,System.Int32,Sudoku.Data.GridMap@)">
+            <summary>
+            Indicates whether the specified grid contains the digit.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="result">(<see langword="out"/> parameter) The result.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.Equals(Sudoku.Solving.Manual.Alses.Basic.Als)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.GetHashCode">
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
+            <remarks>
+            If you want to determine the equality of two instance, I recommend you
+            <b>should</b> use method <see cref="M:Sudoku.Solving.Manual.Alses.Basic.Als.Equals(Sudoku.Solving.Manual.Alses.Basic.Als)" /> instead of this method.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.GetAllAlses(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            To search for all ALSes in the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>All ALSes searched.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.op_Equality(Sudoku.Solving.Manual.Alses.Basic.Als,Sudoku.Solving.Manual.Alses.Basic.Als)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.op_Inequality(Sudoku.Solving.Manual.Alses.Basic.Als,Sudoku.Solving.Manual.Alses.Basic.Als)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo">
+            <summary>
+            Provides a usage of <b>almost locked sets XZ rule</b>
+            or <b>extended subset principle</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Basic.Als,Sudoku.Solving.Manual.Alses.Basic.Als,System.Int16)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="als1">The ALS 1 used.</param>
+            <param name="als2">The ALS 2 used.</param>
+            <param name="commonDigitMask">The common digit mask.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.Als1">
+            <summary>
+            The ALS 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.Als2">
+            <summary>
+            The ALS 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.CommonDigitMask">
+            <summary>
+            The common digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueSearcher">
+            <summary>
+            Encapsulates an <b>almost locked set XZ rule</b> (ALS-XZ) technique searcher.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Initialize an instance with the specified information.
+            </summary>
+            <param name="allowOverlapping">
+            Indicates whether the ALSes can be overlapped with each other.
+            </param>
+            <param name="alsShowRegions">
+            Indicates whether all ALSes shows their regions rather than cells.
+            </param>
+            <param name="allowAlsCycles">Indicates whether the solver will check ALS cycles.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueSearcher.Priority">
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo">
@@ -1418,16 +1607,6 @@
         <member name="T:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher">
             <summary>
             Encapsulates a <b>death blossom</b> technique.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher._allowOverlapping">
-            <summary>
-            Indicates whether the ALSes can be overlapped with each other.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher._alsShowRegions">
-            <summary>
-            Indicates whether the ALSes shows their region rather than cells.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher._maxPetals">
@@ -4502,6 +4681,12 @@
             <param name="solution">The solution.</param>
             <param name="conclusions">The conclusions.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.AllowAlsCycles">
+            <summary>
+            <para>Indicates whether the solver should check ALS cycles.</para>
+            <para>The value is <see langword="true"/> in default case.</para>
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.AllowOverlapAlses">
             <summary>

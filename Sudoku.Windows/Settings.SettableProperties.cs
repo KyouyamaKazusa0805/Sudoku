@@ -311,6 +311,12 @@ namespace Sudoku.Windows
 		public bool CheckAdvancedInExocet { get; set; } = true;
 
 		/// <summary>
+		/// <para>Indicates whether the solver should check ALS cycles.</para>
+		/// <para>The value is <see langword="true"/> in default case.</para>
+		/// </summary>
+		public bool AllowAlsCycles { get; set; } = true;
+
+		/// <summary>
 		/// <para>
 		/// Indicates the grid line width of the sudoku grid to render.
 		/// </para>
