@@ -159,13 +159,15 @@ namespace Sudoku.Solving.Manual.Alses
 		/// (<see langword="out"/> parameter) The relative positions.
 		/// </param>
 		/// <param name="digits">(<see langword="out"/> parameter) The digits.</param>
+		/// <param name="cells">(<see langword="out"/> parameter) The cells.</param>
 		/// <param name="map">
 		/// (<see langword="out"/> parameter) The map of all cells used.
 		/// </param>
 		public void Deconstruct(
 			out int region, out short relativePosMask, out short digitsMask,
-			out IEnumerable<int> relativePos, out IEnumerable<int> digits, out GridMap map) =>
-			(region, relativePos, digits, relativePosMask, digitsMask, map) = (Region, RelativePos, Digits, RelativePosMask, DigitsMask, Map);
+			out IEnumerable<int> relativePos, out IEnumerable<int> digits,
+			out IEnumerable<int> cells, out GridMap map) =>
+			(region, relativePos, digits, relativePosMask, digitsMask, cells, map) = (Region, RelativePos, Digits, RelativePosMask, DigitsMask, Cells, Map);
 
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is Als comparer && Equals(comparer);
@@ -227,65 +229,71 @@ namespace Sudoku.Solving.Manual.Alses
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <returns>All ALSes searched.</returns>
-		public static IEnumerable<Als>[] GetAllAlses(IReadOnlyGrid grid)
+		[SuppressMessage("", "IDE0004")]
+		public static IEnumerable<Als> GetAllAlses(IReadOnlyGrid grid)
 		{
-			var dic = new IEnumerable<Als>[27];
+			// Search for bi-value cells first.
+			for (int cell = 0; cell < 81; cell++)
+			{
+				if (grid.IsBivalueCell(cell, out short mask))
+				{
+					var (_, _, b) = Cell.GetRegion(cell);
+					int i = 0;
+					for (int length = RegionCells[b].Length; i < length; i++)
+					{
+						int c = RegionCells[b][i];
+						if (cell == c)
+						{
+							break;
+						}
+					}
+					yield return new Als((int)mask | 1 << i << 9 | b << 18);
+				}
+			}
+
+			// Search for non-bi-value-cell ALSes by each region.
 			for (int region = 0; region < 27; region++)
 			{
-				dic[region] = GetAllAlses(grid, region);
-			}
-
-			return dic;
-		}
-
-		/// <summary>
-		/// To search for all ALSes in the specified grid and the region to iterate on.
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <param name="region">The region.</param>
-		/// <returns>All ALSes searched.</returns>
-		[SuppressMessage("", "IDE0004")]
-		private static IEnumerable<Als> GetAllAlses(IReadOnlyGrid grid, int region)
-		{
-			short posMask = 0;
-			int i = 0;
-			foreach (int cell in RegionCells[region])
-			{
-				if (grid.GetStatus(cell) == Empty)
+				short posMask = 0;
+				int i = 0;
+				foreach (int cell in RegionCells[region])
 				{
-					posMask |= (short)(1 << i);
+					if (grid.GetStatus(cell) == Empty)
+					{
+						posMask |= (short)(1 << i);
+					}
+
+					i++;
+				}
+				if (posMask == 0)
+				{
+					continue;
 				}
 
-				i++;
-			}
-			if (posMask == 0)
-			{
-				yield break;
-			}
-
-			int count = posMask.CountSet();
-			for (int size = 1; size <= count; size++)
-			{
-				foreach (short mask in GetCombinations(count, size))
+				int count = posMask.CountSet();
+				for (int size = 2; size < count; size++)
 				{
-					short realMask = 0;
-					foreach (int index in mask.GetAllSets())
+					foreach (short mask in GetCombinations(count, size))
 					{
-						realMask |= (short)(1 << posMask.SetAt(index));
-					}
+						short realMask = 0;
+						foreach (int index in mask.GetAllSets())
+						{
+							realMask |= (short)(1 << posMask.SetAt(index));
+						}
 
-					short digitsMask = 0;
-					foreach (int cell in MaskExtensions.GetCells(region, realMask))
-					{
-						digitsMask |= grid.GetCandidatesReversal(cell);
-					}
-					if (digitsMask.CountSet() - 1 != size)
-					{
-						// Not an ALS.
-						continue;
-					}
+						short digitsMask = 0;
+						foreach (int cell in GetCells(region, realMask))
+						{
+							digitsMask |= grid.GetCandidatesReversal(cell);
+						}
+						if (digitsMask.CountSet() - 1 != size)
+						{
+							// Not an ALS.
+							continue;
+						}
 
-					yield return new Als((int)digitsMask | realMask << 9 | region << 18);
+						yield return new Als((int)digitsMask | realMask << 9 | region << 18);
+					}
 				}
 			}
 		}

@@ -87,53 +87,36 @@ namespace Sudoku.Solving.Manual.Alses
 		public static IEnumerable<Rcc> GetAllRccs(IReadOnlyGrid grid, bool allowOverlap)
 		{
 			(_, _, var candMaps, _) = grid;
-			var dic = Als.GetAllAlses(grid);
-			for (int r1 = 0; r1 < 26; r1++)
+			var alses = Als.GetAllAlses(grid).ToArray();
+			for (int i = 0, length = alses.Length; i < length - 1; i++)
 			{
-				for (int r2 = r1 + 1; r2 < 27; r2++)
+				var als1 = alses[i];
+				for (int j = i + 1; j < length; j++)
 				{
-					var alses1 = dic[r1];
-					if (!alses1.Any())
+					var als2 = alses[j];
+					if ((als1.Map | als2.Map).AllSetsAreInOneRegion(out _))
 					{
+						// Disallow two ALSes in the same region.
+						// Here will filter the cases, where the ALS is in the mini-row
+						// or mini-column.
 						continue;
 					}
 
-					foreach (var als1 in alses1)
+					// Check whether two ALSes hold same cells.
+					foreach (var (commonDigit, region) in GetCommonDigits(grid, als1, als2, out short digitsMask))
 					{
-						var alses2 = dic[r2];
-						if (!alses2.Any())
+						var overlapMap = als1.Map & als2.Map;
+						if (allowOverlap && overlapMap.IsNotEmpty && overlapMap.Overlaps(candMaps[commonDigit]))
 						{
 							continue;
 						}
 
-						foreach (var als2 in alses2)
+						// Now we should check elimination.
+						// But firstly, we should check all digits appearing
+						// in two ALSes.
+						foreach (int elimDigit in (digitsMask & ~(1 << commonDigit)).GetAllSets())
 						{
-							if ((als1.Map | als2.Map).AllSetsAreInOneRegion(out _))
-							{
-								// Disallow two ALSes in the same region.
-								// Here will filter the cases, where the ALS is in the mini-row
-								// or mini-column.
-								continue;
-							}
-
-							// Check whether two ALSes hold same cells.
-							foreach (var (commonDigit, region) in GetCommonDigits(grid, als1, als2, out short digitsMask))
-							{
-								var overlapMap = als1.Map & als2.Map;
-								if (allowOverlap && overlapMap.IsNotEmpty
-									&& overlapMap.Overlaps(candMaps[commonDigit]))
-								{
-									continue;
-								}
-
-								// Now we should check elimination.
-								// But firstly, we should check all digits appearing
-								// in two ALSes.
-								foreach (int elimDigit in (digitsMask & ~(1 << commonDigit)).GetAllSets())
-								{
-									yield return new Rcc(als1, als2, commonDigit, region);
-								}
-							}
+							yield return new Rcc(als1, als2, commonDigit, region);
 						}
 					}
 				}
@@ -183,7 +166,7 @@ namespace Sudoku.Solving.Manual.Alses
 		private static bool DigitAppears(IReadOnlyGrid grid, Als als, int digit, out GridMap map)
 		{
 			map = GridMap.Empty;
-			foreach (int cell in als.Map.Offsets)
+			foreach (int cell in als.Cells)
 			{
 				if (grid.Exists(cell, digit) is true)
 				{

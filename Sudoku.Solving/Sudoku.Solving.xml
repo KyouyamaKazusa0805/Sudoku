@@ -1023,7 +1023,7 @@
             (<see langword="out" /> parameter) The map of all cells used.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Int32@,System.Int16@,System.Int16@,System.Collections.Generic.IEnumerable{System.Int32}@,System.Collections.Generic.IEnumerable{System.Int32}@,Sudoku.Data.GridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Int32@,System.Int16@,System.Int16@,System.Collections.Generic.IEnumerable{System.Int32}@,System.Collections.Generic.IEnumerable{System.Int32}@,System.Collections.Generic.IEnumerable{System.Int32}@,Sudoku.Data.GridMap@)">
             <method name="Deconstruct">
 		<summary>Deconstruct this instance.</summary>
 	</method>
@@ -1038,6 +1038,7 @@
             (<see langword="out" /> parameter) The relative positions.
             </param>
             <param name="digits">(<see langword="out" /> parameter) The digits.</param>
+            <param name="cells">(<see langword="out" /> parameter) The cells.</param>
             <param name="map">
             (<see langword="out" /> parameter) The map of all cells used.
             </param>
@@ -1076,14 +1077,6 @@
             To search for all ALSes in the specified grid.
             </summary>
             <param name="grid">The grid.</param>
-            <returns>All ALSes searched.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Als.GetAllAlses(Sudoku.Data.IReadOnlyGrid,System.Int32)">
-            <summary>
-            To search for all ALSes in the specified grid and the region to iterate on.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="region">The region.</param>
             <returns>All ALSes searched.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.GetCombinations(System.Int32,System.Int32)">

@@ -1,7 +1,6 @@
 ﻿using System;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Exocets
 {

@@ -52,6 +52,15 @@
             </para>
             </summary>
         </member>
+        <member name="M:Sudoku.Constants.Processings.GetCells(System.Int32,System.Int16)">
+            <summary>
+            Get cells with the specified mask, which consist of 9 bits and 1 is
+            for yielding.
+            </summary>
+            <param name="region">The region.</param>
+            <param name="mask">The mask.</param>
+            <returns>The cells.</returns>
+        </member>
         <member name="M:Sudoku.Constants.Processings.Deconstruct(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap[]@,Sudoku.Data.GridMap[]@)">
             <method name="Deconstruct">
 		<summary>Deconstruct this instance.</summary>

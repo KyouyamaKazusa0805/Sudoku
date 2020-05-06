@@ -56,7 +56,7 @@ namespace Sudoku.Solving.Manual.Alses
 			foreach (var rcc in Rcc.GetAllRccs(grid, _allowOverlapping))
 			{
 				var (
-					(region1, _, digitMask1, _, _, map1), (region2, _, digitMask2, _, _, map2),
+					(region1, _, digitMask1, _, _, cells1, map1), (region2, _, digitMask2, _, _, cells2, map2),
 					commonDigit, commonRegion) = rcc;
 
 				// ALS-XZ found.

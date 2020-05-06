@@ -5,7 +5,6 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using static Sudoku.Constants.Processings;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Data.ConclusionType;
 
@@ -96,8 +95,8 @@ namespace Sudoku.Solving.Manual.Alses
 					// Now we should check elimination.
 					// But firstly, we should check all digits appearing
 					// in two ALSes.
-					var (region1, _, digitMask1, relativePos1, digits1, map1) = l;
-					var (region2, _, digitMask2, relativePos2, digits2, map2) = r;
+					var (region1, _, digitMask1, relativePos1, digits1, cells1, map1) = l;
+					var (region2, _, digitMask2, relativePos2, digits2, cells2, map2) = r;
 					foreach (int elimDigit in (digitMask1 | digitMask2).GetAllSets())
 					{
 						if (elimDigit == commonDigit1 || elimDigit == commonDigit2)
@@ -115,11 +114,7 @@ namespace Sudoku.Solving.Manual.Alses
 						// Both ALSes contain the digit.
 						// Now check elimination set.
 						var tempList = new HashSet<int>();
-						var als1RegionCells =
-							from pos in relativePos1 select RegionCells[region1][pos];
-						var als2RegionCells =
-							from pos in relativePos2 select RegionCells[region2][pos];
-						foreach (int cell in als1RegionCells)
+						foreach (int cell in cells1)
 						{
 							if (!(grid.Exists(cell, elimDigit) is true))
 							{
@@ -128,7 +123,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 							tempList.Add(cell);
 						}
-						foreach (int cell in als2RegionCells)
+						foreach (int cell in cells2)
 						{
 							if (!(grid.Exists(cell, elimDigit) is true))
 							{
@@ -166,7 +161,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 						// Record highlight candidates.
 						var candidateOffsets = new List<(int, int)>();
-						foreach (int cell in als1RegionCells)
+						foreach (int cell in cells1)
 						{
 							foreach (int als1Digit in grid.GetCandidatesReversal(cell).GetAllSets())
 							{
@@ -177,7 +172,7 @@ namespace Sudoku.Solving.Manual.Alses
 								candidateOffsets.Add((z, cell * 9 + als1Digit));
 							}
 						}
-						foreach (int cell in als2RegionCells)
+						foreach (int cell in cells2)
 						{
 							foreach (int als2Digit in grid.GetCandidatesReversal(cell).GetAllSets())
 							{
