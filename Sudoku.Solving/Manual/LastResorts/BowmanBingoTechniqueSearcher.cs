@@ -5,6 +5,8 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Manual.Singles;
+using static Sudoku.Data.ConclusionType;
+using static Sudoku.Data.NodeType;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {
@@ -67,7 +69,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 						continue;
 					}
 
-					_tempConclusions.Add(new Conclusion(ConclusionType.Assignment, cell, digit));
+					_tempConclusions.Add(new Conclusion(Assignment, cell, digit));
 					var (candList, mask) = RecordUndoInfo(tempGrid, cell, digit);
 
 					// Try to fill this cell.
@@ -82,10 +84,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 					{
 						accumulator.Add(
 							new BowmanBingoTechniqueInfo(
-								conclusions: new[]
-								{
-									new Conclusion(ConclusionType.Elimination, startCandidate)
-								},
+								conclusions: new[] { new Conclusion(Elimination, startCandidate) },
 								views: new[]
 								{
 									new View(
@@ -95,7 +94,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 												from conclusion in _tempConclusions
 												select (0, conclusion.CellOffset * 9 + conclusion.Digit)),
 										regionOffsets: null,
-										links: null)
+										links: GetLinks())
 								},
 								contradictionSeries: new List<Conclusion>(_tempConclusions)));
 					}
@@ -140,10 +139,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			{
 				result.Add(
 					new BowmanBingoTechniqueInfo(
-						conclusions: new[]
-						{
-							new Conclusion(ConclusionType.Elimination, startCandidate)
-						},
+						conclusions: new[] { new Conclusion(Elimination, startCandidate) },
 						views: new[]
 						{
 							new View(
@@ -153,7 +149,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 										from tempConclusion in _tempConclusions
 										select (0, tempConclusion.CellOffset * 9 + tempConclusion.Digit)),
 								regionOffsets: null,
-								links: null)
+								links: GetLinks())
 						},
 						contradictionSeries: new List<Conclusion>(_tempConclusions)));
 			}
@@ -164,14 +160,30 @@ namespace Sudoku.Solving.Manual.LastResorts
 		}
 
 		/// <summary>
+		/// Get links.
+		/// </summary>
+		/// <returns>The links.</returns>
+		private IReadOnlyList<Inference> GetLinks()
+		{
+			var result = new List<Inference>();
+			for (int i = 0, count = _tempConclusions.Count; i < count - 1; i++)
+			{
+				var (_, c1) = _tempConclusions[i];
+				var (_, c2) = _tempConclusions[i + 1];
+				result.Add(new Inference(new Node(c1, Candidate), true, new Node(c2, Candidate), true));
+			}
+
+			return result;
+		}
+
+		/// <summary>
 		/// Record all information to be used in undo grid.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <param name="cell">The cell.</param>
 		/// <param name="digit">The digit.</param>
 		/// <returns>The result.</returns>
-		private static (IReadOnlyList<int> _candList, short _mask) RecordUndoInfo(
-			Grid grid, int cell, int digit)
+		private static (IReadOnlyList<int> _candList, short _mask) RecordUndoInfo(Grid grid, int cell, int digit)
 		{
 			var list = new List<int>();
 			foreach (int c in new GridMap(cell, false).Offsets)
@@ -216,10 +228,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 			return new GridMap(cell, false).Offsets.All(c =>
 			{
 				var status = grid.GetStatus(c);
-				return (
-					status != CellStatus.Empty && grid[c] != grid[cell]
-					|| status == CellStatus.Empty
-				) && grid.GetCandidatesReversal(c) != 0;
+				return (status != CellStatus.Empty && grid[c] != grid[cell] || status == CellStatus.Empty)
+					&& grid.GetCandidatesReversal(c) != 0;
 			});
 		}
 	}

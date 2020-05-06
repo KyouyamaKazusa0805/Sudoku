@@ -4376,28 +4376,6 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Extensions.ObjectEx.HasMarkedAttribute``2(System.Boolean,System.Collections.Generic.IEnumerable{``1}@)">
-            <summary>
-            To check whether the specified type has marked the specified attribute.
-            </summary>
-            <typeparam name="T">The type of the instance.</typeparam>
-            <typeparam name="TAttribute">The type of the attribute.</typeparam>
-            <param name="inherit">
-            <see langword="true"/> to search this member's inheritance chain
-            to find the attributes; otherwise, <see langword="false"/>.
-            This parameter is ignored for properties and events.
-            </param>
-            <param name="attributes">
-            (<see langword="out"/> parameter) All attributes found.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
-            <remarks>
-            This method is same as
-            <see cref="M:Sudoku.Extensions.ObjectEx.HasMarkedAttribute``1(System.Object,System.Boolean,System.Collections.Generic.IEnumerable{``0}@)"/>,
-            but the type of the specified object is used only.
-            </remarks>
-            <seealso cref="M:Sudoku.Extensions.ObjectEx.HasMarkedAttribute``1(System.Object,System.Boolean,System.Collections.Generic.IEnumerable{``0}@)"/>
-        </member>
         <member name="T:Sudoku.Extensions.SingleEx">
             <summary>
             Provides extension methods on <see cref="T:System.Single"/>.

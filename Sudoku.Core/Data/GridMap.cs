@@ -102,9 +102,8 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentException">
 		/// Throws when the specified initialize option is invalid.
 		/// </exception>
-		public GridMap(int offset, InitializeOption initializeOption)
+		public GridMap(int offset, InitializeOption initializeOption) : this()
 		{
-			(_low, _high, Count) = (0, 0, 0);
 			switch (initializeOption)
 			{
 				case Ordinary:
@@ -188,9 +187,8 @@ namespace Sudoku.Data
 		/// Note that all offsets will be set <see langword="true"/>, but their own peers
 		/// will not be set <see langword="true"/>.
 		/// </remarks>
-		public GridMap(ReadOnlySpan<int> offsets)
+		public GridMap(ReadOnlySpan<int> offsets) : this()
 		{
-			(_low, _high, Count) = (0, 0, 0);
 			foreach (int offset in offsets)
 			{
 				(offset / Shifting == 0 ? ref _low : ref _high) |= 1L << offset % Shifting;
@@ -208,9 +206,8 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentException">
 		/// Throws when the specified initialize option is invalid.
 		/// </exception>
-		public GridMap(ReadOnlySpan<int> offsets, InitializeOption initializeOption)
+		public GridMap(ReadOnlySpan<int> offsets, InitializeOption initializeOption) : this()
 		{
-			(_low, _high, Count) = (0, 0, 0);
 			switch (initializeOption)
 			{
 				case Ordinary:
@@ -265,8 +262,7 @@ namespace Sudoku.Data
 		/// </code>
 		/// </summary>
 		/// <param name="another">Another instance.</param>
-		public GridMap(GridMap another) =>
-			(_high, _low, Count) = (another._high, another._low, another.Count);
+		public GridMap(GridMap another) => (_high, _low, Count) = (another._high, another._low, another.Count);
 
 		/// <summary>
 		/// To copy an instance with the specified information and specify the current initialization
@@ -287,9 +283,8 @@ namespace Sudoku.Data
 		/// Note that all offsets will be set <see langword="true"/>, but their own peers
 		/// will not be set <see langword="true"/>.
 		/// </remarks>
-		public GridMap(IEnumerable<int> offsets)
+		public GridMap(IEnumerable<int> offsets) : this()
 		{
-			(_low, _high, Count) = (0, 0, 0);
 			foreach (int offset in offsets)
 			{
 				(offset / Shifting == 0 ? ref _low : ref _high) |= 1L << offset % Shifting;
@@ -307,9 +302,8 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentException">
 		/// Throws when the specified initialize option is invalid.
 		/// </exception>
-		public GridMap(IEnumerable<int> offsets, InitializeOption initializeOption)
+		public GridMap(IEnumerable<int> offsets, InitializeOption initializeOption) : this()
 		{
-			(_low, _high, Count) = (0, 0, 0);
 			switch (initializeOption)
 			{
 				case Ordinary:

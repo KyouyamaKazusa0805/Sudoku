@@ -27,8 +27,7 @@ namespace Sudoku.Extensions
 		/// <returns>The <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasFormatted(
-			this IFormatProvider? @this, object obj, string? format,
-			[NotNullWhen(true)] out string? result)
+			this IFormatProvider? @this, object obj, string? format, [NotNullWhen(true)] out string? result)
 		{
 			if (@this?.GetFormat(obj.GetType()) is ICustomFormatter customFormatter)
 			{

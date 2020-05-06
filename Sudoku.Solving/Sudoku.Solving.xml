@@ -4034,6 +4034,12 @@
         <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.GetLinks">
+            <summary>
+            Get links.
+            </summary>
+            <returns>The links.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.RecordUndoInfo(Sudoku.Data.Grid,System.Int32,System.Int32)">
             <summary>
             Record all information to be used in undo grid.

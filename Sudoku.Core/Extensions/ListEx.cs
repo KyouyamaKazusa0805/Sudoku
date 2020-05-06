@@ -26,8 +26,7 @@ namespace Sudoku.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		/// <seealso cref="RemoveAt{T}(IList{T}, Index)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void RemoveLastElement<T>(this IList<T> @this) =>
-			@this.RemoveAt(@this.Count - 1);
+		public static void RemoveLastElement<T>(this IList<T> @this) => @this.RemoveAt(@this.Count - 1);
 
 		/// <summary>
 		/// Remove at the element in the specified index.
