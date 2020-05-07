@@ -12,6 +12,13 @@ namespace Sudoku.Extensions
 	public static class Int16Ex
 	{
 		/// <summary>
+		/// Indicates whether the specified value is the power of two.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		public static bool IsPowerOfTwo(this short @this) => (@this & (@this - 1)) == 0;
+
+		/// <summary>
 		/// Find the first offset of set bit of the binary representation of the specified value.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The value.</param>

@@ -74,8 +74,10 @@ namespace Sudoku.Solving.Manual
 				new BdpTechniqueSearcher(),
 				new BugTechniqueSearcher(_settings.UseExtendedBugSearcher),
 				new ErIntersectionPairTechniqueSearcher(),
-				new AlsXzTechniqueSearcher(_settings.AllowOverlappingAlses, _settings.AlsHighlightRegionInsteadOfCell, _settings.AllowAlsCycles),
-				//new AlsXyWingTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
+				new AlsXzTechniqueSearcher(
+					_settings.AllowOverlappingAlses, _settings.AlsHighlightRegionInsteadOfCell, _settings.AllowAlsCycles),
+				new AlsXyWingTechniqueSearcher(
+					_settings.AllowOverlappingAlses, _settings.AlsHighlightRegionInsteadOfCell, _settings.AllowAlsCycles),
 				//new AlsWWingTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
 				//new DeathBlossomTechniqueSearcher(
 				//	_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell,

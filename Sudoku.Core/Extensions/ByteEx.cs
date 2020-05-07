@@ -12,6 +12,13 @@ namespace Sudoku.Extensions
 	public static class ByteEx
 	{
 		/// <summary>
+		/// Indicates whether the specified value is the power of two.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		public static bool IsPowerOfTwo(this byte @this) => (@this & (@this - 1)) == 0;
+
+		/// <summary>
 		/// Find the first offset of set bit of the binary representation
 		/// of the specified value. If the value is 0, this method
 		/// will always return -1.

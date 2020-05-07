@@ -89,6 +89,16 @@ namespace Sudoku.Data.Collections
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
 		public string ToString(string? format)
 		{
+			if (_mask == 0)
+			{
+				return "{ }";
+			}
+
+			if (_mask.IsPowerOfTwo())
+			{
+				return (_mask.FindFirstSet() + 1).ToString();
+			}
+
 			string separator = format ?? string.Empty;
 			var sb = new StringBuilder();
 			foreach (int digit in this)

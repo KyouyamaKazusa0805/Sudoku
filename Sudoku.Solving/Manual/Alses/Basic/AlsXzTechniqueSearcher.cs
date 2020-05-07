@@ -18,16 +18,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	[TechniqueDisplay("Almost Locked Sets XZ Rule")]
 	public sealed class AlsXzTechniqueSearcher : AlsTechniqueSearcher
 	{
-		/// <summary>
-		/// Initialize an instance with the specified information.
-		/// </summary>
-		/// <param name="allowOverlapping">
-		/// Indicates whether the ALSes can be overlapped with each other.
-		/// </param>
-		/// <param name="alsShowRegions">
-		/// Indicates whether all ALSes shows their regions rather than cells.
-		/// </param>
-		/// <param name="allowAlsCycles">Indicates whether the solver will check ALS cycles.</param>
+		/// <inheritdoc/>
 		public AlsXzTechniqueSearcher(bool allowOverlapping, bool alsShowRegions, bool allowAlsCycles)
 			: base(allowOverlapping, alsShowRegions, allowAlsCycles)
 		{
@@ -102,7 +93,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						}
 					}
 
-					if (rccMask == 0 || (rccMask & (rccMask - 1)) == 0 && z == 0)
+					if (rccMask == 0 || rccMask.IsPowerOfTwo() && z == 0)
 					{
 						continue;
 					}

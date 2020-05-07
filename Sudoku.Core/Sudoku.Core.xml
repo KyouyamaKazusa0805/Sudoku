@@ -3952,6 +3952,13 @@
             </summary>
             <seealso cref="T:System.Byte"/>
         </member>
+        <member name="M:Sudoku.Extensions.ByteEx.IsPowerOfTwo(System.Byte)">
+            <summary>
+            Indicates whether the specified value is the power of two.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Extensions.ByteEx.FindFirstSet(System.Byte)">
             <summary>
             Find the first offset of set bit of the binary representation
@@ -4147,6 +4154,13 @@
             </summary>
             <seealso cref="T:System.Int16"/>
         </member>
+        <member name="M:Sudoku.Extensions.Int16Ex.IsPowerOfTwo(System.Int16)">
+            <summary>
+            Indicates whether the specified value is the power of two.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Extensions.Int16Ex.FindFirstSet(System.Int16)">
             <summary>
             Find the first offset of set bit of the binary representation of the specified value.
@@ -4213,6 +4227,13 @@
             </summary>
             <seealso cref="M:Sudoku.Extensions.Int32Ex.FindFirstSet(System.Int32)"/>
         </member>
+        <member name="M:Sudoku.Extensions.Int32Ex.IsPowerOfTwo(System.Int32)">
+            <summary>
+            Indicates whether the specified value is the power of two.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Extensions.Int32Ex.FindFirstSet(System.Int32)">
             <summary>
             Find the first offset of set bit of the binary representation of the specified value.
@@ -4270,6 +4291,13 @@
             Provides extension methods on <see cref="T:System.Int64"/>.
             </summary>
             <seealso cref="T:System.Int64"/>
+        </member>
+        <member name="M:Sudoku.Extensions.Int64Ex.IsPowerOfTwo(System.Int64)">
+            <summary>
+            Indicates whether the specified value is the power of two.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Extensions.Int64Ex.CountSet(System.Int64)">
             <summary>

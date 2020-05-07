@@ -11,6 +11,13 @@ namespace Sudoku.Extensions
 	public static class Int64Ex
 	{
 		/// <summary>
+		/// Indicates whether the specified value is the power of two.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		public static bool IsPowerOfTwo(this long @this) => (@this & (@this - 1)) == 0;
+
+		/// <summary>
 		/// Get the total number of set bits of the binary representation
 		/// of the specified value.
 		/// </summary>
