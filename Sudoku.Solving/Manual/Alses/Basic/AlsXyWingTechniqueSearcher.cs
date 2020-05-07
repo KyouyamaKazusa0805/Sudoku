@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using static Sudoku.Data.ConclusionType;
@@ -95,7 +93,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						continue;
 					}
 
-					if (als11 == als21 ^ als12 == als22 || als11 == als22 ^ als12 == als21)
+					if (!(als11 == als21 ^ als12 == als22 || als11 == als22 ^ als12 == als21))
 					{
 						continue;
 					}
@@ -179,11 +177,11 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								}
 								foreach (int digit in xDigitsMask.GetAllSets())
 								{
-									candidateOffsets.Add((2, cell * 9 + digit));
+									candidateOffsets.Add((1, cell * 9 + digit));
 								}
 								foreach (int digit in zDigitsMask.GetAllSets())
 								{
-									candidateOffsets.Add((1, cell * 9 + digit));
+									candidateOffsets.Add((2, cell * 9 + digit));
 								}
 							}
 							foreach (int cell in bMap.Offsets)
@@ -198,11 +196,11 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								}
 								foreach (int digit in yDigitsMask.GetAllSets())
 								{
-									candidateOffsets.Add((2, cell * 9 + digit));
+									candidateOffsets.Add((1, cell * 9 + digit));
 								}
 								foreach (int digit in zDigitsMask.GetAllSets())
 								{
-									candidateOffsets.Add((1, cell * 9 + digit));
+									candidateOffsets.Add((2, cell * 9 + digit));
 								}
 							}
 							foreach (int cell in cMap.Offsets)
