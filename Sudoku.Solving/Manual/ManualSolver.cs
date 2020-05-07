@@ -114,7 +114,7 @@ namespace Sudoku.Solving.Manual
 					new BdpTechniqueSearcher(),
 					new BugTechniqueSearcher(UseExtendedBugSearcher),
 					new ErIntersectionPairTechniqueSearcher(),
-					new AlsXzTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, true),
+					new AlsXzTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
 					new AlsXyWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell),
 					new AlsWWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell),
 					new GroupedAicTechniqueSearcher(
@@ -330,7 +330,7 @@ namespace Sudoku.Solving.Manual
 				new BdpTechniqueSearcher(),
 				new BugTechniqueSearcher(UseExtendedBugSearcher),
 				new ErIntersectionPairTechniqueSearcher(),
-				new AlsXzTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, true),
+				new AlsXzTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
 				new AlsXyWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell),
 				new AlsWWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell),
 				new DeathBlossomTechniqueSearcher(
