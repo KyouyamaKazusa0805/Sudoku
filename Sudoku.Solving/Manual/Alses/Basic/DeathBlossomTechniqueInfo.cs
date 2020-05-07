@@ -5,7 +5,7 @@ using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 
-namespace Sudoku.Solving.Manual.Alses
+namespace Sudoku.Solving.Manual.Alses.Basic
 {
 	/// <summary>
 	/// Provides a usage of <b>death blossom</b> technique.

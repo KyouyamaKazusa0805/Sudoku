@@ -1232,6 +1232,13 @@
             Encapsulates a normal ALS.
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.#ctor(System.Int16,Sudoku.Data.GridMap)">
+            <summary>
+            Initializes an instance with the specified digit mask and the map of cells.
+            </summary>
+            <param name="digitMask">The digit mask.</param>
+            <param name="map">The map.</param>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.Als.#ctor(System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <summary>
             Initializes an instance with the specified digit mask and the map of cells.
@@ -1519,12 +1526,12 @@
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo">
+        <member name="T:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueInfo">
             <summary>
             Provides a usage of <b>death blossom</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Solving.Manual.Alses.Als})">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Solving.Manual.Alses.Basic.Als})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -1533,50 +1540,50 @@
             <param name="pivot">The pivot cell.</param>
             <param name="alses">All ALSes used.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo.PetalsCount">
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueInfo.PetalsCount">
             <summary>
             Indicates how many petals used.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo.Pivot">
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueInfo.Pivot">
             <summary>
             Indicates the pivot cell.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo.Alses">
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueInfo.Alses">
             <summary>
             Indicates all ALSes used sorted by digit.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo.Name">
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueInfo.Name">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo.DifficultyLevel">
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo.ToString">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueInfo.GetAlsesStr">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueInfo.GetAlsesStr">
             <summary>
             Get ALSes string.
             </summary>
             <returns>The string.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher">
+        <member name="T:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueSearcher">
             <summary>
             Encapsulates a <b>death blossom</b> technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher._maxPetals">
+        <member name="F:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueSearcher._maxPetals">
             <summary>
             Indicates the max petals to search.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Initialize an instance with the specified information.
             </summary>
@@ -1590,20 +1597,20 @@
             Indicates the max petals of instance to search.
             </param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher.Priority">
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueSearcher.Priority">
             <summary>
             Indicates the priority of this technique.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher.IsEnabled">
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueSearcher.IsEnabled">
             <summary>
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher.ProcessDeathAlsInfo(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap[],System.Int16[],System.Int32[0:,0:],System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Alses.Als})">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueSearcher.ProcessDeathAlsInfo(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap[],System.Int16[],System.Int32[0:,0:],System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Alses.Basic.Als})">
             <summary>
             Process death ALSes information.
             </summary>
@@ -1613,7 +1620,7 @@
             <param name="death">The death table.</param>
             <param name="alses">The ALS list.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.DeathBlossomTechniqueSearcher.PreprocessAndRecordAlses(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueSearcher.PreprocessAndRecordAlses(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap)">
             <summary>
             To preprocess and record all ALSes.
             </summary>

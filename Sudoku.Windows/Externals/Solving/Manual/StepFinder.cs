@@ -78,10 +78,11 @@ namespace Sudoku.Solving.Manual
 					_settings.AllowOverlappingAlses, _settings.AlsHighlightRegionInsteadOfCell, _settings.AllowAlsCycles),
 				new AlsXyWingTechniqueSearcher(
 					_settings.AllowOverlappingAlses, _settings.AlsHighlightRegionInsteadOfCell, _settings.AllowAlsCycles),
-				//new AlsWWingTechniqueSearcher(_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell),
-				//new DeathBlossomTechniqueSearcher(
-				//	_settings.AllowOverlapAlses, _settings.AlsHighlightRegionInsteadOfCell,
-				//	_settings.MaxPetalsOfDeathBlossom),
+				//new AlsWWingTechniqueSearcher(
+				//	_settings.AllowOverlappingAlses, _settings.AlsHighlightRegionInsteadOfCell, _settings.AllowAlsCycles),
+				new DeathBlossomTechniqueSearcher(
+					_settings.AllowOverlappingAlses, _settings.AlsHighlightRegionInsteadOfCell,
+					_settings.MaxPetalsOfDeathBlossom),
 				//new GroupedAicTechniqueSearcher(
 				//	true, false, false, _settings.AicMaximumLength, _settings.ReductDifferentPathAic,
 				//	_settings.OnlySaveShortestPathAic, _settings.CheckHeadCollision,

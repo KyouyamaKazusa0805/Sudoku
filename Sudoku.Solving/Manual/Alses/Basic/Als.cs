@@ -20,6 +20,15 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// </summary>
 		/// <param name="digitMask">The digit mask.</param>
 		/// <param name="map">The map.</param>
+		public Als(short digitMask, GridMap map) : this(digitMask, map, default)
+		{
+		}
+
+		/// <summary>
+		/// Initializes an instance with the specified digit mask and the map of cells.
+		/// </summary>
+		/// <param name="digitMask">The digit mask.</param>
+		/// <param name="map">The map.</param>
 		/// <param name="possibleEliminationSet">The possible elimination set.</param>
 		public Als(short digitMask, GridMap map, GridMap possibleEliminationSet)
 		{

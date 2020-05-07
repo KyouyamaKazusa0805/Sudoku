@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -8,7 +9,7 @@ using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridMap.InitializeOption;
 
-namespace Sudoku.Solving.Manual.Alses
+namespace Sudoku.Solving.Manual.Alses.Basic
 {
 	/// <summary>
 	/// Encapsulates a <b>death blossom</b> technique.
@@ -124,10 +125,7 @@ namespace Sudoku.Solving.Manual.Alses
 						foreach (int d in allZ[n].GetAllSets())
 						{
 							var elimMap =
-								new GridMap(
-									(temp & candMaps[d]).Offsets,
-									ProcessPeersWithoutItself)
-								& candMaps[d];
+								new GridMap((temp & candMaps[d]).Offsets, ProcessPeersWithoutItself) & candMaps[d];
 							if (elimMap.IsEmpty)
 							{
 								continue;
@@ -135,12 +133,10 @@ namespace Sudoku.Solving.Manual.Alses
 
 							foreach (int cell in elimMap.Offsets)
 							{
-								if (!(grid.Exists(cell, d) is true))
+								if (grid.Exists(cell, d) is true)
 								{
-									continue;
+									conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, d));
 								}
-
-								conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, d));
 							}
 						}
 
@@ -169,10 +165,12 @@ namespace Sudoku.Solving.Manual.Alses
 									if ((alsesUsed[i].Map & alsesUsed[j].Map).IsNotEmpty)
 									{
 										overlap = true;
+										goto Label_Determine;
 									}
 								}
 							}
 
+						Label_Determine:
 							if (overlap)
 							{
 								continue;
@@ -184,7 +182,7 @@ namespace Sudoku.Solving.Manual.Alses
 						int z = 0;
 						foreach (var (d, a) in dic)
 						{
-							foreach (int c in from pos in a.RelativePos select RegionCells[a.Region][pos])
+							foreach (int c in a.Map.Offsets)
 							{
 								cellOffsets.Add((-z - 1, c));
 							}
@@ -197,7 +195,7 @@ namespace Sudoku.Solving.Manual.Alses
 						z = 0;
 						foreach (var (d, a) in dic)
 						{
-							foreach (int c in from pos in a.RelativePos select RegionCells[a.Region][pos])
+							foreach (int c in a.Map.Offsets)
 							{
 								foreach (int dd in grid.GetCandidatesReversal(c).GetAllSets())
 								{
@@ -260,9 +258,8 @@ namespace Sudoku.Solving.Manual.Alses
 			int i = 0;
 			foreach (var als in alses)
 			{
-				var (region, relativePos, digits, map) = als;
-				short digitsMask = als.DigitsMask;
-				foreach (int digit in digits)
+				var (_, region, digitsMask, map, _, _) = als;
+				foreach (int digit in digitsMask.GetAllSets())
 				{
 					var temp =
 						new GridMap((candMaps[digit] & map).Offsets, ProcessPeersWithoutItself)
@@ -319,41 +316,33 @@ namespace Sudoku.Solving.Manual.Alses
 				int[] emptyCellsArray = tempEmptyCells.ToArray();
 				for (int i = 1; i < emptyCellsArray.Length; i++)
 				{
-					foreach (short mask in new BitCombinationGenerator(9, i))
+					foreach (int[] cells in Algorithms.GetCombinationsOfArray(emptyCellsArray, i))
 					{
-						if (mask.GetAllSets().Any(
-							pos => grid.GetStatus(RegionCells[region][pos]) != Empty))
+						if (cells.Any(cell => grid.GetStatus(cell) != Empty))
 						{
 							continue;
 						}
 
 						short cands = 0;
-						for (int pos = 0; pos < 9; pos++)
+						foreach (int cell in cells)
 						{
-							if ((mask >> pos & 1) == 0)
-							{
-								continue;
-							}
-
-							cands |= grid.GetCandidatesReversal(RegionCells[region][pos]);
+							cands |= grid.GetCandidatesReversal(cell);
 						}
-
 						if (cands.CountSet() != i + 1)
 						{
 							// Not an ALS.
 							continue;
 						}
 
-						if (new GridMap(
-							from pos in mask.GetAllSets() select RegionCells[region][pos]).BlockMask.CountSet() == 1
-							&& region >= 9)
+						var map = new GridMap(cells);
+						if (map.BlockMask.CountSet() == 1 && region >= 9)
 						{
 							// If the current cells are in the same block and same line (i.e. in mini-line),
 							// we will process them in blocks.
 							continue;
 						}
 
-						list.Add(new Als(region << 18 | mask << 9 | (int)cands));
+						list.Add(new Als(cands, map));
 					}
 				}
 			}
