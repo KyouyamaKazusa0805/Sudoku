@@ -14,7 +14,7 @@
 		/// </para>
 		/// <para>The value is <see langword="true"/> in default case.</para>
 		/// </summary>
-		public bool AllowOverlapAlses { get; set; } = true;
+		public bool AllowOverlappingAlses { get; set; } = true;
 
 		/// <summary>
 		/// <para>
@@ -56,10 +56,15 @@
 		/// Locked Quadruple (ALQ).
 		/// </para>
 		/// <para>
-		/// The value is <see langword="false"/> in default case.
+		/// The value is <see langword="true"/> in debug environment,
+		/// and <see langword="false"/> in release environment.
 		/// </para>
 		/// </summary>
+#if DEBUG
+		public bool CheckAlmostLockedQuadruple { get; set; } = true;
+#else
 		public bool CheckAlmostLockedQuadruple { get; set; } = false;
+#endif
 
 		/// <summary>
 		/// <para>
@@ -133,18 +138,32 @@
 		/// Indicates whether the solver should check
 		/// uncompleted uniqueness patterns.
 		/// </para>
-		/// <para>The value is <see langword="false"/> in default case.</para>
+		/// <para>
+		/// The value is <see langword="true"/> in debug environment,
+		/// and <see langword="false"/> in release environment.
+		/// </para>
 		/// </summary>
-		public bool CheckIncompletedUniquenessPatterns { get; set; } = false;
+#if DEBUG
+		public bool CheckUncompletedUniquenessPatterns { get; set; } = true;
+#else
+		public bool CheckUncompletedUniquenessPatterns { get; set; } = false;
+#endif
 
 		/// <summary>
 		/// <para>
 		/// Indicates whether the solver should search for extended
 		/// unique rectangles.
 		/// </para>
-		/// <para>The value is <see langword="false"/> in default case.</para>
+		/// <para>
+		/// The value is <see langword="true"/> in debug environment,
+		/// and <see langword="false"/> in release environment.
+		/// </para>
 		/// </summary>
+#if DEBUG
+		public bool SearchExtendedUniqueRectangles { get; set; } = true;
+#else
 		public bool SearchExtendedUniqueRectangles { get; set; } = false;
+#endif
 
 		/// <summary>
 		/// <para>
@@ -283,7 +302,7 @@
 		/// by its priority.
 		/// </para>
 		/// <para>
-		/// The value is <see langword="true"/> in default case. In addition,
+		/// The value is <see langword="false"/> in default case. In addition,
 		/// if you enable the option <see cref="AnalyzeDifficultyStrictly"/>,
 		/// this option will be disabled because the solver will enable the
 		/// function of count on all steps and get one with the <b>minimum</b>
@@ -291,7 +310,7 @@
 		/// </para>
 		/// </summary>
 		/// <seealso cref="AnalyzeDifficultyStrictly"/>
-		public bool UseCalculationPriority { get; set; } = true;
+		public bool UseCalculationPriority { get; set; } = false;
 
 		/// <summary>
 		/// <para>
@@ -299,9 +318,16 @@
 		/// to searcher for all true candidates no matter how difficult
 		/// the true candidates looking for.
 		/// </para>
-		/// <para>The value is <see langword="false"/> in default case.</para>
+		/// <para>
+		/// The value is <see langword="true"/> in debug environment,
+		/// and <see langword="false"/> in release environment.
+		/// </para>
 		/// </summary>
+#if DEBUG
+		public bool UseExtendedBugSearcher { get; set; } = true;
+#else
 		public bool UseExtendedBugSearcher { get; set; } = false;
+#endif
 
 		/// <summary>
 		/// <para>

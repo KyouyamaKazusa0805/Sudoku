@@ -18,9 +18,16 @@ namespace Sudoku.Windows
 		/// Indicates whether the program ask you "Do you want to quit?" while
 		/// you clicked the close button.
 		/// </para>
-		/// <para>The value is <see langword="true"/> in default case.</para>
+		/// <para>
+		/// The value is <see langword="false"/> in debug environment,
+		/// and <see langword="true"/> in release environment.
+		/// </para>
 		/// </summary>
+#if DEBUG
+		public bool AskWhileQuitting { get; set; } = false;
+#else
 		public bool AskWhileQuitting { get; set; } = true;
+#endif
 
 		/// <summary>
 		/// <para>
@@ -95,7 +102,7 @@ namespace Sudoku.Windows
 		/// </para>
 		/// <para>The value is <see langword="true"/> in default case.</para>
 		/// </summary>
-		public bool AllowOverlapAlses { get; set; } = true;
+		public bool AllowOverlappingAlses { get; set; } = true;
 
 		/// <summary>
 		/// <para>
@@ -112,10 +119,15 @@ namespace Sudoku.Windows
 		/// Locked Quadruple (ALQ).
 		/// </para>
 		/// <para>
-		/// The value is <see langword="false"/> in default case.
+		/// The value is <see langword="true"/> in debug environment,
+		/// and <see langword="false"/> in release environment.
 		/// </para>
 		/// </summary>
+#if DEBUG
+		public bool CheckAlmostLockedQuadruple { get; set; } = true;
+#else
 		public bool CheckAlmostLockedQuadruple { get; set; } = false;
+#endif
 
 		/// <summary>
 		/// <para>
@@ -146,9 +158,16 @@ namespace Sudoku.Windows
 		/// Indicates whether the solver should check
 		/// uncompleted uniqueness patterns.
 		/// </para>
-		/// <para>The value is <see langword="false"/> in default case.</para>
+		/// <para>
+		/// The value is <see langword="true"/> in debug environment,
+		/// and <see langword="false"/> in release environment.
+		/// </para>
 		/// </summary>
+#if DEBUG
+		public bool CheckUncompletedUniquenessPatterns { get; set; } = true;
+#else
 		public bool CheckUncompletedUniquenessPatterns { get; set; } = false;
+#endif
 
 		/// <summary>
 		/// <para>
@@ -240,7 +259,7 @@ namespace Sudoku.Windows
 		/// by its priority.
 		/// </para>
 		/// <para>
-		/// The value is <see langword="true"/> in default case. In addition,
+		/// The value is <see langword="false"/> in default case. In addition,
 		/// if you enable the option <see cref="AnalyzeDifficultyStrictly"/>,
 		/// this option will be disabled because the solver will enable the
 		/// function of count on all steps and get one with the <b>minimum</b>
@@ -248,7 +267,7 @@ namespace Sudoku.Windows
 		/// </para>
 		/// </summary>
 		/// <seealso cref="AnalyzeDifficultyStrictly"/>
-		public bool UseCalculationPriority { get; set; } = true;
+		public bool UseCalculationPriority { get; set; } = false;
 
 		/// <summary>
 		/// <para>
@@ -256,9 +275,16 @@ namespace Sudoku.Windows
 		/// to searcher for all true candidates no matter how difficult
 		/// the true candidates looking for.
 		/// </para>
-		/// <para>The value is <see langword="false"/> in default case.</para>
+		/// <para>
+		/// The value is <see langword="true"/> in debug environment,
+		/// and <see langword="false"/> in release environment.
+		/// </para>
 		/// </summary>
+#if DEBUG
+		public bool UseExtendedBugSearcher { get; set; } = true;
+#else
 		public bool UseExtendedBugSearcher { get; set; } = false;
+#endif
 
 		/// <summary>
 		/// <para>
@@ -288,18 +314,32 @@ namespace Sudoku.Windows
 		/// compatible mode to output (without given and modifiable values
 		/// notations).
 		/// </para>
-		/// <para>The value is <see langword="false"/> in default case.</para>
+		/// <para>
+		/// The value is <see langword="true"/> in debug environment, and
+		/// <see langword="false"/> in release environment.
+		/// </para>
 		/// </summary>
+#if DEBUG
+		public bool PmGridCompatible { get; set; } = true;
+#else
 		public bool PmGridCompatible { get; set; } = false;
+#endif
 
 		/// <summary>
 		/// <para>
 		/// Indicates whether the solver should search for extended
 		/// unique rectangles.
 		/// </para>
-		/// <para>The value is <see langword="false"/> in default case.</para>
+		/// <para>
+		/// The value is <see langword="true"/> in debug environment,
+		/// and <see langword="false"/> in release environment.
+		/// </para>
 		/// </summary>
+#if DEBUG
+		public bool SearchExtendedUniqueRectangles { get; set; } = true;
+#else
 		public bool SearchExtendedUniqueRectangles { get; set; } = false;
+#endif
 
 		/// <summary>
 		/// <para>
@@ -328,9 +368,9 @@ namespace Sudoku.Windows
 		/// <para>
 		/// Indicates the block line width of the sudoku grid to render.
 		/// </para>
-		/// <para>The value is <c>5F</c> in default case.</para>
+		/// <para>The value is <c>3F</c> in default case.</para>
 		/// </summary>
-		public float BlockLineWidth { get; set; } = 5F;
+		public float BlockLineWidth { get; set; } = 3F;
 
 		/// <summary>
 		/// <para>Indicates the size for picture to save as image files.</para>
@@ -430,25 +470,46 @@ namespace Sudoku.Windows
 		/// <para>
 		/// Indicates the font of given digits to render.
 		/// </para>
-		/// <para>The value is <c>"Arial"</c> in default case.</para>
+		/// <para>
+		/// The value is <c>"Fira Code"</c> in debug environment,
+		/// <c>"Arial"</c> in release environment.
+		/// </para>
 		/// </summary>
+#if DEBUG
+		public string GivenFontName { get; set; } = "Fira Code";
+#else
 		public string GivenFontName { get; set; } = "Arial";
+#endif
 
 		/// <summary>
 		/// <para>
 		/// Indicates the font of modifiable digits to render.
 		/// </para>
-		/// <para>The value is <c>"Arial"</c> in default case.</para>
+		/// <para>
+		/// The value is <c>"Fira Code"</c> in debug environment,
+		/// <c>"Arial"</c> in release environment.
+		/// </para>
 		/// </summary>
+#if DEBUG
+		public string ModifiableFontName { get; set; } = "Fira Code";
+#else
 		public string ModifiableFontName { get; set; } = "Arial";
+#endif
 
 		/// <summary>
 		/// <para>
 		/// Indicates the font of candidate digits to render.
 		/// </para>
-		/// <para>The value is <c>"Arial"</c> in default case.</para>
+		/// <para>
+		/// The value is <c>"Fira Code"</c> in debug environment,
+		/// <c>"Arial"</c> in release environment.
+		/// </para>
 		/// </summary>
+#if DEBUG
+		public string CandidateFontName { get; set; } = "Fira Code";
+#else
 		public string CandidateFontName { get; set; } = "Arial";
+#endif
 
 		/// <summary>
 		/// <para>

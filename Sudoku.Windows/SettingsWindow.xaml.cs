@@ -12,7 +12,6 @@ using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Extensions;
 using Sudoku.Windows.Tooling;
-using Xceed.Wpf.Toolkit;
 using MessageBox = System.Windows.MessageBox;
 
 namespace Sudoku.Windows
@@ -62,8 +61,9 @@ namespace Sudoku.Windows
 			_checkBoxCheckHeadCollision.IsChecked = Settings.CheckHeadCollision;
 			_checkBoxOnlyRecordShortestPathAic.IsChecked = Settings.OnlySaveShortestPathAic;
 			_checkBoxReductDifferentPathAic.IsChecked = Settings.ReductDifferentPathAic;
-			_checkBoxAllowOverlappingAlses.IsChecked = Settings.AllowOverlapAlses;
+			_checkBoxAllowOverlappingAlses.IsChecked = Settings.AllowOverlappingAlses;
 			_checkBoxHighlightRegions.IsChecked = Settings.AlsHighlightRegionInsteadOfCell;
+			_checkBoxAllowAlsCycles.IsChecked = Settings.AllowAlsCycles;
 			_textBoxBowmanBingoMaxLength.Text = Settings.BowmanBingoMaximumLength.ToString();
 			_checkBoxAllowAlq.IsChecked = Settings.CheckAlmostLockedQuadruple;
 			_checkBoxCheckUncompletedUr.IsChecked = Settings.CheckUncompletedUniquenessPatterns;
@@ -487,10 +487,13 @@ namespace Sudoku.Windows
 		}
 
 		private void CheckBoxAllowOverlappingAlses_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxAllowOverlappingAlses.IsChecked = _manualSolver.AllowOverlapAlses = Settings.AllowOverlapAlses ^= true;
+			_checkBoxAllowOverlappingAlses.IsChecked = _manualSolver.AllowOverlappingAlses = Settings.AllowOverlappingAlses ^= true;
 
 		private void CheckBoxHighlightRegions_Click(object sender, RoutedEventArgs e) =>
 			_checkBoxHighlightRegions.IsChecked = Settings.AlsHighlightRegionInsteadOfCell = _manualSolver.AlsHighlightRegionInsteadOfCell ^= true;
+
+		private void CheckBoxAllowAlsCycles_Click(object sender, RoutedEventArgs e) =>
+			_checkBoxAllowAlsCycles.IsChecked = _manualSolver.AllowAlsCycles = Settings.AllowAlsCycles ^= true;
 
 		private void TextBoxBowmanBingoMaxLength_TextChanged(object sender, TextChangedEventArgs e)
 		{
@@ -520,7 +523,7 @@ namespace Sudoku.Windows
 			_checkBoxCheckHeadCollision.IsChecked = Settings.CheckHeadCollision = _manualSolver.CheckHeadCollision ^= true;
 
 		private void CheckBoxCheckUncompletedUr_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxCheckUncompletedUr.IsChecked = Settings.CheckUncompletedUniquenessPatterns = _manualSolver.CheckIncompletedUniquenessPatterns ^= true;
+			_checkBoxCheckUncompletedUr.IsChecked = Settings.CheckUncompletedUniquenessPatterns = _manualSolver.CheckUncompletedUniquenessPatterns ^= true;
 
 		private void TextBoxMaxRegularWingSize_TextChanged(object sender, TextChangedEventArgs e)
 		{

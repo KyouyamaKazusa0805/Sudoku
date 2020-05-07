@@ -125,6 +125,10 @@
 									  Grid.Row="1" Grid.Column="0" Name="_checkBoxHighlightRegions"
 									  HorizontalAlignment="Left" VerticalAlignment="Center"
 									  Click="CheckBoxHighlightRegions_Click"/>
+							<CheckBox Content="Allow ALS techniques loop eliminations" Grid.ColumnSpan="3"
+									  Grid.Row="0" Grid.Column="3" Name="_checkBoxAllowAlsCycles"
+									  HorizontalAlignment="Left" VerticalAlignment="Center"
+									  Click="CheckBoxAllowAlsCycles_Click"/>
 						</Grid>
 					</GroupBox>
 					<GroupBox Grid.Row="2" Grid.Column="0" Header="Miscellaneous">

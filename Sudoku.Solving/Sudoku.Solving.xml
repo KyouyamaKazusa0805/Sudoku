@@ -1292,80 +1292,6 @@
         <member name="M:Sudoku.Solving.Manual.Alses.AlsXyWingTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo">
-            <summary>
-            Provides a usage of <b>almost locked sets XZ rule</b>
-            or <b>extended subset principle</b> technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Rcc)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
-            <param name="rcc">The RCC used.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.Rcc">
-            <summary>
-            Indicates the RCC used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.Equals(Sudoku.Solving.TechniqueInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.Equals(Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo)">
-            <method name="Equals" paramType="__any">
-		<summary>
-			Determine whether the current instance contains the same information with
-			hat from the specified parameter.
-		</summary>
-		<param name="other">The other instance to determine.</param>
-		<returns>A <see cref="T:System.Boolean" /> value indicating that.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueInfo.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher">
-            <summary>
-            Encapsulates an <b>almost locked sets XZ rule</b> or
-            <b>extended subset principle</b> technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.#ctor(System.Boolean,System.Boolean)">
-            <summary>
-            Initialize an instance with the specified information.
-            </summary>
-            <param name="allowOverlapping">
-            Indicates whether the ALSes can be overlapped with each other.
-            </param>
-            <param name="alsShowRegions">
-            Indicates whether all ALSes shows their regions rather than cells.
-            </param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.Priority">
-            <summary>
-            Indicates the priority of this technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.IsEnabled">
-            <summary>
-            Indicates whether the technique is enabled.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Basic.Als">
             <summary>
             Encapsulates a normal ALS.
@@ -4717,7 +4643,7 @@
             <para>The value is <see langword="true"/> in default case.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.AllowOverlapAlses">
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.AllowOverlappingAlses">
             <summary>
             <para>
             Indicates whether two ALSes can be overlapped with each other.
@@ -4766,7 +4692,8 @@
             Locked Quadruple (ALQ).
             </para>
             <para>
-            The value is <see langword="false"/> in default case.
+            The value is <see langword="true"/> in debug environment,
+            and <see langword="false"/> in release environment.
             </para>
             </summary>
         </member>
@@ -4837,13 +4764,16 @@
             <para>The value is <see langword="true"/> in default case.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckIncompletedUniquenessPatterns">
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckUncompletedUniquenessPatterns">
             <summary>
             <para>
             Indicates whether the solver should check
             uncompleted uniqueness patterns.
             </para>
-            <para>The value is <see langword="false"/> in default case.</para>
+            <para>
+            The value is <see langword="true"/> in debug environment,
+            and <see langword="false"/> in release environment.
+            </para>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.SearchExtendedUniqueRectangles">
@@ -4852,7 +4782,10 @@
             Indicates whether the solver should search for extended
             unique rectangles.
             </para>
-            <para>The value is <see langword="false"/> in default case.</para>
+            <para>
+            The value is <see langword="true"/> in debug environment,
+            and <see langword="false"/> in release environment.
+            </para>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.EnableFullHouse">
@@ -4993,7 +4926,7 @@
             by its priority.
             </para>
             <para>
-            The value is <see langword="true"/> in default case. In addition,
+            The value is <see langword="false"/> in default case. In addition,
             if you enable the option <see cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/>,
             this option will be disabled because the solver will enable the
             function of count on all steps and get one with the <b>minimum</b>
@@ -5009,7 +4942,10 @@
             to searcher for all true candidates no matter how difficult
             the true candidates looking for.
             </para>
-            <para>The value is <see langword="false"/> in default case.</para>
+            <para>
+            The value is <see langword="true"/> in debug environment,
+            and <see langword="false"/> in release environment.
+            </para>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckAdvancedInExocet">

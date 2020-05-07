@@ -9,6 +9,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Alses;
+using Sudoku.Solving.Manual.Alses.Basic;
 using Sudoku.Solving.Manual.Alses.Mslses;
 using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.Exocets;
@@ -27,7 +28,6 @@ using Sudoku.Solving.Manual.Uniqueness.Rects;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using static Sudoku.Data.ConclusionType;
-using AlsXzTechniqueSearcher = Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueSearcher;
 
 namespace Sudoku.Solving.Manual
 {
@@ -105,7 +105,7 @@ namespace Sudoku.Solving.Manual
 					new RegularWingTechniqueSearcher(CheckRegularWingSize),
 					new IrregularWingTechniqueSearcher(),
 					new TwoStrongLinksTechniqueSearcher(),
-					new UrTechniqueSearcher(CheckIncompletedUniquenessPatterns, SearchExtendedUniqueRectangles),
+					new UrTechniqueSearcher(CheckUncompletedUniquenessPatterns, SearchExtendedUniqueRectangles),
 					new XrTechniqueSearcher(),
 					new UlTechniqueSearcher(),
 					new EmptyRectangleTechniqueSearcher(),
@@ -114,9 +114,9 @@ namespace Sudoku.Solving.Manual
 					new BdpTechniqueSearcher(),
 					new BugTechniqueSearcher(UseExtendedBugSearcher),
 					new ErIntersectionPairTechniqueSearcher(),
-					new AlsXzTechniqueSearcher(AllowOverlapAlses, AlsHighlightRegionInsteadOfCell, true),
-					new AlsXyWingTechniqueSearcher(AllowOverlapAlses, AlsHighlightRegionInsteadOfCell),
-					new AlsWWingTechniqueSearcher(AllowOverlapAlses, AlsHighlightRegionInsteadOfCell),
+					new AlsXzTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, true),
+					new AlsXyWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell),
+					new AlsWWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell),
 					new GroupedAicTechniqueSearcher(
 						true, false, false, AicMaximumLength, ReductDifferentPathAic,
 						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
@@ -131,7 +131,7 @@ namespace Sudoku.Solving.Manual
 				{
 					new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 					new DeathBlossomTechniqueSearcher(
-						AllowOverlapAlses, AlsHighlightRegionInsteadOfCell, MaxPetalsOfDeathBlossom),
+						AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, MaxPetalsOfDeathBlossom),
 					new HobiwanFishTechniqueSearcher(
 						HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
 						HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates),
@@ -321,7 +321,7 @@ namespace Sudoku.Solving.Manual
 				new RegularWingTechniqueSearcher(CheckRegularWingSize),
 				new IrregularWingTechniqueSearcher(),
 				new TwoStrongLinksTechniqueSearcher(),
-				new UrTechniqueSearcher(CheckIncompletedUniquenessPatterns, SearchExtendedUniqueRectangles),
+				new UrTechniqueSearcher(CheckUncompletedUniquenessPatterns, SearchExtendedUniqueRectangles),
 				new XrTechniqueSearcher(),
 				new UlTechniqueSearcher(),
 				new EmptyRectangleTechniqueSearcher(),
@@ -330,11 +330,11 @@ namespace Sudoku.Solving.Manual
 				new BdpTechniqueSearcher(),
 				new BugTechniqueSearcher(UseExtendedBugSearcher),
 				new ErIntersectionPairTechniqueSearcher(),
-				new AlsXzTechniqueSearcher(AllowOverlapAlses, AlsHighlightRegionInsteadOfCell, true),
-				new AlsXyWingTechniqueSearcher(AllowOverlapAlses, AlsHighlightRegionInsteadOfCell),
-				new AlsWWingTechniqueSearcher(AllowOverlapAlses, AlsHighlightRegionInsteadOfCell),
+				new AlsXzTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, true),
+				new AlsXyWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell),
+				new AlsWWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell),
 				new DeathBlossomTechniqueSearcher(
-					AllowOverlapAlses, AlsHighlightRegionInsteadOfCell, MaxPetalsOfDeathBlossom),
+					AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, MaxPetalsOfDeathBlossom),
 				new GroupedAicTechniqueSearcher(
 					true, false, false, AicMaximumLength, ReductDifferentPathAic,
 					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
