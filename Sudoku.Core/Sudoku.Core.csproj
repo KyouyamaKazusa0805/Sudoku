@@ -12,7 +12,7 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DefineConstants>SUDOKU_RECOGNIZING</DefineConstants>
-		<DocumentationFile>P:\Projects\Common\Sudoku\Sudoku.Core\Sudoku.Core.xml</DocumentationFile>
+		<DocumentationFile>.\Sudoku\Sudoku.Core\Sudoku.Core.xml</DocumentationFile>
 		<Optimize>false</Optimize>
 	</PropertyGroup>
 
