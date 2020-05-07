@@ -1490,7 +1490,7 @@
             or <b>extended subset principle</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Basic.Als,Sudoku.Solving.Manual.Alses.Basic.Als,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Basic.Als,Sudoku.Solving.Manual.Alses.Basic.Als,System.Int16,System.Int16,System.Nullable{System.Boolean})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -1498,7 +1498,9 @@
             <param name="views">All views.</param>
             <param name="als1">The ALS 1 used.</param>
             <param name="als2">The ALS 2 used.</param>
-            <param name="commonDigitMask">The common digit mask.</param>
+            <param name="xDigitsMask">The X digits mask.</param>
+            <param name="zDigitsMask">The Z digits mask.</param>
+            <param name="isDoublyLinked">Indicates whether the instance is a doubly linked ALS-XZ.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.Als1">
             <summary>
@@ -1510,9 +1512,36 @@
             The ALS 2.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.CommonDigitMask">
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.XDigitsMask">
             <summary>
-            The common digit.
+            The X digits mask (RCC digits).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.ZDigitsMask">
+            <summary>
+            The Z digits mask (target digits).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.IsDoublyLinked">
+            <summary>
+            <para>Indicates whether the instance is a doubly linked ALS-XZ.</para>
+            <para>
+            The property contains three different values:
+            <list type="table">
+            <item>
+            <term><c><see langword="true"/></c></term>
+            <description>The current instance is a Doubly Linked ALS-XZ.</description>
+            </item>
+            <item>
+            <term><c><see langword="false"/></c></term>
+            <description>The current instance is a Singly Linked ALS-XZ.</description>
+            </item>
+            <item>
+            <term><c><see langword="null"/></c></term>
+            <description>The current instance is a Extended Subset Principle.</description>
+            </item>
+            </list>
+            </para>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.Name">

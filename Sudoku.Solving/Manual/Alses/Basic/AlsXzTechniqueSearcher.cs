@@ -108,6 +108,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					}
 
 					// Check basic eliminations.
+					bool? isDoublyLinked = false;
 					short finalZ = 0;
 					var conclusions = new List<Conclusion>();
 					foreach (int elimDigit in z.GetAllSets())
@@ -130,6 +131,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					if (_allowAlsCycles && rccMask.CountSet() == 2)
 					{
 						// Doubly linked ALS-XZ.
+						isDoublyLinked = true;
 						foreach (int elimDigit in (z & ~rccMask).GetAllSets())
 						{
 							var zMap = candsMap[elimDigit] & map1;
@@ -167,15 +169,16 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						}
 
 						// Possible eliminations.
-						map = candsMap[mask1.FindFirstSet()];
+						var tempMap = map;
+						tempMap = candsMap[mask1.FindFirstSet()];
 						for (k = 1; k < mask1.CountSet(); k++)
 						{
-							map |= candsMap[mask1.SetAt(k)];
+							tempMap |= candsMap[mask1.SetAt(k)];
 						}
-						map &= possibleElimMap1;
-						if (map.IsNotEmpty)
+						tempMap &= possibleElimMap1;
+						if (tempMap.IsNotEmpty)
 						{
-							foreach (int cell in map.Offsets)
+							foreach (int cell in tempMap.Offsets)
 							{
 								foreach (int digit in
 									(grid.GetCandidatesReversal(cell) & (mask1 & ~rccMask)).GetAllSets())
@@ -184,15 +187,15 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								}
 							}
 						}
-						map = candsMap[mask2.FindFirstSet()];
+						tempMap = candsMap[mask2.FindFirstSet()];
 						for (k = 1; k < mask2.CountSet(); k++)
 						{
-							map |= candsMap[mask2.SetAt(k)];
+							tempMap |= candsMap[mask2.SetAt(k)];
 						}
-						map &= possibleElimMap2;
-						if (map.IsNotEmpty)
+						tempMap &= possibleElimMap2;
+						if (tempMap.IsNotEmpty)
 						{
-							foreach (int cell in map.Offsets)
+							foreach (int cell in tempMap.Offsets)
 							{
 								foreach (int digit in
 									(grid.GetCandidatesReversal(cell) & (mask2 & ~rccMask)).GetAllSets())
@@ -209,44 +212,58 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					}
 
 					// Now record highlight elements.
+					bool isEsp = als1.IsBivalueCell || als2.IsBivalueCell;
 					var candidateOffsets = new List<(int, int)>();
 					var cellOffsets = new List<(int, int)>();
-					foreach (int cell in map1.Offsets)
+					if (isEsp)
 					{
-						short mask = grid.GetCandidatesReversal(cell);
-						short alsDigitsMask = (short)(mask & ~(finalZ | rccMask));
-						short targetDigitsMask = (short)(mask & finalZ);
-						short rccDigitsMask = (short)(mask & rccMask);
-						foreach (int digit in alsDigitsMask.GetAllSets())
+						foreach (int cell in map.Offsets)
 						{
-							candidateOffsets.Add((-1, cell * 9 + digit));
-						}
-						foreach (int digit in targetDigitsMask.GetAllSets())
-						{
-							candidateOffsets.Add((2, cell * 9 + digit));
-						}
-						foreach (int digit in rccDigitsMask.GetAllSets())
-						{
-							candidateOffsets.Add((1, cell * 9 + digit));
+							foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+							{
+								candidateOffsets.Add((finalZ >> digit & 1, cell * 9 + digit));
+							}
 						}
 					}
-					foreach (int cell in map2.Offsets)
+					else
 					{
-						short mask = grid.GetCandidatesReversal(cell);
-						short alsDigitsMask = (short)(mask & ~(finalZ | rccMask));
-						short targetDigitsMask = (short)(mask & finalZ);
-						short rccDigitsMask = (short)(mask & rccMask);
-						foreach (int digit in alsDigitsMask.GetAllSets())
+						foreach (int cell in map1.Offsets)
 						{
-							candidateOffsets.Add((-2, cell * 9 + digit));
+							short mask = grid.GetCandidatesReversal(cell);
+							short alsDigitsMask = (short)(mask & ~(finalZ | rccMask));
+							short targetDigitsMask = (short)(mask & finalZ);
+							short rccDigitsMask = (short)(mask & rccMask);
+							foreach (int digit in alsDigitsMask.GetAllSets())
+							{
+								candidateOffsets.Add((-1, cell * 9 + digit));
+							}
+							foreach (int digit in targetDigitsMask.GetAllSets())
+							{
+								candidateOffsets.Add((2, cell * 9 + digit));
+							}
+							foreach (int digit in rccDigitsMask.GetAllSets())
+							{
+								candidateOffsets.Add((1, cell * 9 + digit));
+							}
 						}
-						foreach (int digit in targetDigitsMask.GetAllSets())
+						foreach (int cell in map2.Offsets)
 						{
-							candidateOffsets.Add((2, cell * 9 + digit));
-						}
-						foreach (int digit in rccDigitsMask.GetAllSets())
-						{
-							candidateOffsets.Add((1, cell * 9 + digit));
+							short mask = grid.GetCandidatesReversal(cell);
+							short alsDigitsMask = (short)(mask & ~(finalZ | rccMask));
+							short targetDigitsMask = (short)(mask & finalZ);
+							short rccDigitsMask = (short)(mask & rccMask);
+							foreach (int digit in alsDigitsMask.GetAllSets())
+							{
+								candidateOffsets.Add((-2, cell * 9 + digit));
+							}
+							foreach (int digit in targetDigitsMask.GetAllSets())
+							{
+								candidateOffsets.Add((2, cell * 9 + digit));
+							}
+							foreach (int digit in rccDigitsMask.GetAllSets())
+							{
+								candidateOffsets.Add((1, cell * 9 + digit));
+							}
 						}
 					}
 
@@ -256,14 +273,19 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							views: new[]
 							{
 								new View(
-									cellOffsets,
-									candidateOffsets,
-									regionOffsets: new[] { (-1, region1), (-2, region2) },
+									cellOffsets: _alsShowRegions ? null : cellOffsets,
+									candidateOffsets: _alsShowRegions ? candidateOffsets : null,
+									regionOffsets:
+										_alsShowRegions
+											? isEsp ? null : new[] { (0, region1), (1, region2) }
+											: null,
 									links: null)
 							},
 							als1,
 							als2,
-							commonDigitMask: rccMask));
+							xDigitsMask: rccMask,
+							zDigitsMask: finalZ,
+							isDoublyLinked: isEsp ? null : isDoublyLinked));
 				}
 			}
 		}

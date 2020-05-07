@@ -19,11 +19,13 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <param name="views">All views.</param>
 		/// <param name="als1">The ALS 1 used.</param>
 		/// <param name="als2">The ALS 2 used.</param>
-		/// <param name="commonDigitMask">The common digit mask.</param>
+		/// <param name="xDigitsMask">The X digits mask.</param>
+		/// <param name="zDigitsMask">The Z digits mask.</param>
+		/// <param name="isDoublyLinked">Indicates whether the instance is a doubly linked ALS-XZ.</param>
 		public AlsXzTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, Als als1,
-			Als als2, short commonDigitMask) : base(conclusions, views) =>
-			(Als1, Als2, CommonDigitMask) = (als1, als2, commonDigitMask);
+			Als als2, short xDigitsMask, short zDigitsMask, bool? isDoublyLinked) : base(conclusions, views) =>
+			(Als1, Als2, XDigitsMask, ZDigitsMask, IsDoublyLinked) = (als1, als2, xDigitsMask, zDigitsMask, isDoublyLinked);
 
 
 		/// <summary>
@@ -37,23 +39,53 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public Als Als2 { get; }
 
 		/// <summary>
-		/// The common digit.
+		/// The X digits mask (RCC digits).
 		/// </summary>
-		public short CommonDigitMask { get; }
+		public short XDigitsMask { get; }
+
+		/// <summary>
+		/// The Z digits mask (target digits).
+		/// </summary>
+		public short ZDigitsMask { get; }
+
+		/// <summary>
+		/// <para>Indicates whether the instance is a doubly linked ALS-XZ.</para>
+		/// <para>
+		/// The property contains three different values:
+		/// <list type="table">
+		/// <item>
+		/// <term><c><see langword="true"/></c></term>
+		/// <description>The current instance is a Doubly Linked ALS-XZ.</description>
+		/// </item>
+		/// <item>
+		/// <term><c><see langword="false"/></c></term>
+		/// <description>The current instance is a Singly Linked ALS-XZ.</description>
+		/// </item>
+		/// <item>
+		/// <term><c><see langword="null"/></c></term>
+		/// <description>The current instance is a Extended Subset Principle.</description>
+		/// </item>
+		/// </list>
+		/// </para>
+		/// </summary>
+		public bool? IsDoublyLinked { get; }
 
 		/// <inheritdoc/>
 		public override string Name
 		{
 			get
 			{
-				return Als1.IsBivalueCell || Als2.IsBivalueCell
-					? "Extended Subset Principle"
-					: "Almost Locked Sets XZ rule";
+				return IsDoublyLinked switch
+				{
+					true => "Doubly Linked Almost Locked Sets XZ Rule",
+					false => "Singly Linked Almost Locked Sets XZ Rule",
+					null => "Extended Subset Principle"
+				};
 			}
 		}
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 5.5M;
+		public override decimal Difficulty => IsDoublyLinked is true ? 5.7M : 5.5M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
@@ -63,8 +95,20 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public override string ToString()
 		{
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			string xStr = new DigitCollection(CommonDigitMask.GetAllSets()).ToString();
-			return $"{Name}: ALS 1: {Als1}, ALS 2: {Als2}, x = {xStr} => {elimStr}";
+			if (IsDoublyLinked is null)
+			{
+				// Extended subset principle.
+				string digitStr = (ZDigitsMask.FindFirstSet() + 1).ToString();
+				string cellsStr = new CellCollection((Als1.Map | Als2.Map).Offsets).ToString();
+				return $"{Name}: Only the digit {digitStr} can be duplicate in cells {cellsStr} => {elimStr}";
+			}
+			else
+			{
+				// ALS-XZ.
+				string xStr = new DigitCollection(XDigitsMask.GetAllSets()).ToString();
+				string zStr = new DigitCollection(ZDigitsMask.GetAllSets()).ToString();
+				return $"{Name}: ALS 1: {Als1}, ALS 2: {Als2}, x = {xStr}, z = {zStr} => {elimStr}";
+			}
 		}
 	}
 }
