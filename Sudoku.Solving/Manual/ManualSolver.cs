@@ -28,6 +28,7 @@ using Sudoku.Solving.Manual.Uniqueness.Rects;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using static Sudoku.Data.ConclusionType;
+using AlsWWingTechniqueSearcher = Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueSearcher;
 
 namespace Sudoku.Solving.Manual
 {
@@ -117,7 +118,7 @@ namespace Sudoku.Solving.Manual
 					new AlsXzTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
 					new AlsXyWingTechniqueSearcher(
 						AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-					new AlsWWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell),
+					new AlsWWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
 					new GroupedAicTechniqueSearcher(
 						true, false, false, AicMaximumLength, ReductDifferentPathAic,
 						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
@@ -333,7 +334,7 @@ namespace Sudoku.Solving.Manual
 				new ErIntersectionPairTechniqueSearcher(),
 				new AlsXzTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
 				new AlsXyWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-				new AlsWWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell),
+				new AlsWWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
 				new DeathBlossomTechniqueSearcher(
 					AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, MaxPetalsOfDeathBlossom),
 				new GroupedAicTechniqueSearcher(

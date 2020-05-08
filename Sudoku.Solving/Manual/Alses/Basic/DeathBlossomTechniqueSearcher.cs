@@ -7,6 +7,7 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
+using static Sudoku.Data.ConclusionType;
 using static Sudoku.Data.GridMap.InitializeOption;
 
 namespace Sudoku.Solving.Manual.Alses.Basic
@@ -124,8 +125,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						var conclusions = new List<Conclusion>();
 						foreach (int d in allZ[n].GetAllSets())
 						{
-							var elimMap =
-								new GridMap((temp & candMaps[d]).Offsets, ProcessPeersWithoutItself) & candMaps[d];
+							var elimMap = new GridMap(temp & candMaps[d], ProcessPeersWithoutItself) & candMaps[d];
 							if (elimMap.IsEmpty)
 							{
 								continue;
@@ -135,7 +135,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							{
 								if (grid.Exists(cell, d) is true)
 								{
-									conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, d));
+									conclusions.Add(new Conclusion(Elimination, cell, d));
 								}
 							}
 						}

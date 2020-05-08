@@ -647,11 +647,6 @@
             two position can fill this candidate.
             </remarks>
         </member>
-        <member name="F:Sudoku.Solving.ConjugatePair._map">
-            <summary>
-            The inner data structure.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.ConjugatePair.#ctor(System.Int32,System.Int32,System.Int32)">
             <summary>
             Initializes an instance with from and to cell offset
@@ -659,6 +654,13 @@
             </summary>
             <param name="from">The from cell.</param>
             <param name="to">The to cell.</param>
+            <param name="digit">The digit.</param>
+        </member>
+        <member name="M:Sudoku.Solving.ConjugatePair.#ctor(Sudoku.Data.GridMap,System.Int32)">
+            <summary>
+            Initializes an instance with the map and the digit.
+            </summary>
+            <param name="map">The map.</param>
             <param name="digit">The digit.</param>
         </member>
         <member name="P:Sudoku.Solving.ConjugatePair.From">
@@ -684,6 +686,11 @@
         <member name="P:Sudoku.Solving.ConjugatePair.Region">
             <summary>
             Indicates the region that two cells lie in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.ConjugatePair.Map">
+            <summary>
+            Indicates the inner map.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.ConjugatePair.Equals(System.Object)">
@@ -1352,9 +1359,84 @@
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo">
+            <summary>
+            Provides a usage of <b>almost locked sets W-Wing</b> (ALS-W-Wing) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Basic.Als,Sudoku.Solving.Manual.Alses.Basic.Als,Sudoku.Solving.ConjugatePair,System.Int16,System.Int32)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="als1">The ALS 1.</param>
+            <param name="als2">The ALS 2.</param>
+            <param name="conjugatePair">The conjugate pair.</param>
+            <param name="wDigitsMask">The W digits mask.</param>
+            <param name="x">The X digit.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo.Als1">
+            <summary>
+            Indicates the ALS 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo.Als2">
+            <summary>
+            Indicates the ALS 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo.ConjugatePair">
+            <summary>
+            Indicates the conjugate pair.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo.WDigitsMask">
+            <summary>
+            Indicates the W digits mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo.XDigit">
+            <summary>
+            Indicates the X digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueSearcher">
+            <summary>
+            Encapsulates an <b>almost locked sets W-Wing</b> (ALS-W-Wing) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueSearcher.Priority">
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingTechniqueInfo">
             <summary>
-            Provides a usage of <b>almost locked sets XY-Wing</b> technique.
+            Provides a usage of <b>almost locked sets XY-Wing</b> (ALS-XY-Wing) technique.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Basic.Als,Sudoku.Solving.Manual.Alses.Basic.Als,Sudoku.Solving.Manual.Alses.Basic.Als,System.Int16,System.Int16,System.Int16)">
@@ -1414,7 +1496,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingTechniqueSearcher">
             <summary>
-            Encapsulates an <b>almost locked sets XY-Wing</b> technique.
+            Encapsulates an <b>almost locked sets XY-Wing</b> (ALS-XY-Wing) technique.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
@@ -1435,7 +1517,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo">
             <summary>
-            Provides a usage of <b>almost locked sets XZ rule</b>
+            Provides a usage of <b>almost locked sets XZ rule</b> (ALS-XZ)
             or <b>extended subset principle</b> technique.
             </summary>
         </member>

@@ -11,7 +11,7 @@ using static Sudoku.Data.GridMap.InitializeOption;
 namespace Sudoku.Solving.Manual.Alses.Basic
 {
 	/// <summary>
-	/// Encapsulates an <b>almost locked sets XY-Wing</b> technique.
+	/// Encapsulates an <b>almost locked sets XY-Wing</b> (ALS-XY-Wing) technique.
 	/// </summary>
 	[TechniqueDisplay("Almost Locked Sets XY-Wing")]
 	public sealed class AlsXyWingTechniqueSearcher : AlsTechniqueSearcher

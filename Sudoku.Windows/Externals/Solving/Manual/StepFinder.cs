@@ -23,6 +23,7 @@ using Sudoku.Solving.Manual.Uniqueness.Rects;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using Sudoku.Windows;
+using AlsWWingTechniqueSearcher = Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueSearcher;
 
 namespace Sudoku.Solving.Manual
 {
@@ -78,8 +79,8 @@ namespace Sudoku.Solving.Manual
 					_settings.AllowOverlappingAlses, _settings.AlsHighlightRegionInsteadOfCell, _settings.AllowAlsCycles),
 				new AlsXyWingTechniqueSearcher(
 					_settings.AllowOverlappingAlses, _settings.AlsHighlightRegionInsteadOfCell, _settings.AllowAlsCycles),
-				//new AlsWWingTechniqueSearcher(
-				//	_settings.AllowOverlappingAlses, _settings.AlsHighlightRegionInsteadOfCell, _settings.AllowAlsCycles),
+				new AlsWWingTechniqueSearcher(
+					_settings.AllowOverlappingAlses, _settings.AlsHighlightRegionInsteadOfCell, _settings.AllowAlsCycles),
 				new DeathBlossomTechniqueSearcher(
 					_settings.AllowOverlappingAlses, _settings.AlsHighlightRegionInsteadOfCell,
 					_settings.MaxPetalsOfDeathBlossom),

@@ -20,6 +20,7 @@
 		/// </summary>
 		protected readonly bool _allowAlsCycles;
 
+
 		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		protected AlsTechniqueSearcher() { }
 

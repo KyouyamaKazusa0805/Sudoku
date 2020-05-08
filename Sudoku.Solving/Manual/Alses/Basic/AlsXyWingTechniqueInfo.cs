@@ -7,7 +7,7 @@ using Sudoku.Extensions;
 namespace Sudoku.Solving.Manual.Alses.Basic
 {
 	/// <summary>
-	/// Provides a usage of <b>almost locked sets XY-Wing</b> technique.
+	/// Provides a usage of <b>almost locked sets XY-Wing</b> (ALS-XY-Wing) technique.
 	/// </summary>
 	public sealed class AlsXyWingTechniqueInfo : AlsTechniqueInfo
 	{

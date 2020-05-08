@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving
 {
@@ -17,12 +16,6 @@ namespace Sudoku.Solving
 	public readonly struct ConjugatePair : IEquatable<ConjugatePair>
 	{
 		/// <summary>
-		/// The inner data structure.
-		/// </summary>
-		private readonly GridMap _map;
-
-
-		/// <summary>
 		/// Initializes an instance with from and to cell offset
 		/// and a digit.
 		/// </summary>
@@ -32,7 +25,18 @@ namespace Sudoku.Solving
 		public ConjugatePair(int from, int to, int digit)
 		{
 			(Digit, From, To) = (digit, from, to);
-			_map = new GridMap { from, to };
+			Map = new GridMap { from, to };
+		}
+
+		/// <summary>
+		/// Initializes an instance with the map and the digit.
+		/// </summary>
+		/// <param name="map">The map.</param>
+		/// <param name="digit">The digit.</param>
+		public ConjugatePair(GridMap map, int digit)
+		{
+			(Digit, From, To) = (digit, map.SetAt(0), map.SetAt(1));
+			Map = map;
 		}
 
 
@@ -54,29 +58,34 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Indicates the line that two cells lie in.
 		/// </summary>
-		public int Line => _map.CoveredLine;
+		public int Line => Map.CoveredLine;
 
 		/// <summary>
 		/// Indicates the region that two cells lie in.
 		/// </summary>
-		public IEnumerable<int> Region => _map.CoveredRegions;
+		public IEnumerable<int> Region => Map.CoveredRegions;
+
+		/// <summary>
+		/// Indicates the inner map.
+		/// </summary>
+		public GridMap Map { get; }
 
 
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is ConjugatePair comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(ConjugatePair other) => _map == other._map && Digit == other.Digit;
+		public bool Equals(ConjugatePair other) => Map == other.Map && Digit == other.Digit;
 
 		/// <inheritdoc/>
-		public override int GetHashCode() => _map.GetHashCode() ^ Digit;
+		public override int GetHashCode() => Map.GetHashCode() ^ Digit;
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString()
 		{
 			int v = Digit + 1;
-			string fromCell = new CellCollection(stackalloc[] { From }).ToString();
-			string toCell = new CellCollection(stackalloc[] { To }).ToString();
+			string fromCell = new CellCollection(From).ToString();
+			string toCell = new CellCollection(To).ToString();
 			return $"{fromCell}=={toCell}({v})";
 		}
 

@@ -7,7 +7,7 @@ using Sudoku.Extensions;
 namespace Sudoku.Solving.Manual.Alses.Basic
 {
 	/// <summary>
-	/// Provides a usage of <b>almost locked sets XZ rule</b>
+	/// Provides a usage of <b>almost locked sets XZ rule</b> (ALS-XZ)
 	/// or <b>extended subset principle</b> technique.
 	/// </summary>
 	public sealed class AlsXzTechniqueInfo : AlsTechniqueInfo

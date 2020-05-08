@@ -2,11 +2,12 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
 
-namespace Sudoku.Solving.Manual.Alses
+namespace Sudoku.Solving.Manual.Alses.Basic
 {
 	/// <summary>
-	/// Provides a usage of <b>almost locked sets W-Wing</b> technique.
+	/// Provides a usage of <b>almost locked sets W-Wing</b> (ALS-W-Wing) technique.
 	/// </summary>
 	public sealed class AlsWWingTechniqueInfo : AlsTechniqueInfo
 	{
@@ -17,14 +18,13 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <param name="views">All views.</param>
 		/// <param name="als1">The ALS 1.</param>
 		/// <param name="als2">The ALS 2.</param>
-		/// <param name="w">The W digit.</param>
-		/// <param name="x">The X digit.</param>
 		/// <param name="conjugatePair">The conjugate pair.</param>
+		/// <param name="wDigitsMask">The W digits mask.</param>
+		/// <param name="x">The X digit.</param>
 		public AlsWWingTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			Als als1, Als als2, int w, int x, ConjugatePair conjugatePair)
-			: base(conclusions, views) =>
-			(Als1, Als2, WDigit, XDigit, ConjugatePair) = (als1, als2, w, x, conjugatePair);
+			Als als1, Als als2, ConjugatePair conjugatePair, short wDigitsMask, int x) : base(conclusions, views) =>
+			(Als1, Als2, ConjugatePair, WDigitsMask, XDigit) = (als1, als2, conjugatePair, wDigitsMask, x);
 
 
 		/// <summary>
@@ -38,19 +38,19 @@ namespace Sudoku.Solving.Manual.Alses
 		public Als Als2 { get; }
 
 		/// <summary>
-		/// Indicates the W digit.
+		/// Indicates the conjugate pair.
 		/// </summary>
-		public int WDigit { get; }
+		public ConjugatePair ConjugatePair { get; }
+
+		/// <summary>
+		/// Indicates the W digits mask.
+		/// </summary>
+		public short WDigitsMask { get; }
 
 		/// <summary>
 		/// Indicates the X digit.
 		/// </summary>
 		public int XDigit { get; }
-
-		/// <summary>
-		/// Indicates the conjugate pair in the structure.
-		/// </summary>
-		public ConjugatePair ConjugatePair { get; }
 
 		/// <inheritdoc/>
 		public override string Name => "Almost Locked Sets W-Wing";
@@ -66,9 +66,10 @@ namespace Sudoku.Solving.Manual.Alses
 		public override string ToString()
 		{
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
+			string wStr = new DigitCollection(WDigitsMask.GetAllSets()).ToString();
 			return
-				$"{Name}: Two ALSes {Als1}, {Als2} " +
-				$"with conjugate pair {ConjugatePair} (W = {WDigit + 1}, X = {XDigit + 1}) => {elimStr}";
+				$"{Name}: Two ALSes {Als1}, {Als2} connected by " +
+				$"{ConjugatePair}, W = {wStr}, X = {XDigit + 1} => {elimStr}";
 		}
 	}
 }
