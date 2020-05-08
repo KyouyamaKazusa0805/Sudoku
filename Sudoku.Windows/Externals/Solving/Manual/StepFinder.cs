@@ -23,7 +23,6 @@ using Sudoku.Solving.Manual.Uniqueness.Rects;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using Sudoku.Windows;
-using AlsWWingTechniqueSearcher = Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueSearcher;
 
 namespace Sudoku.Solving.Manual
 {
