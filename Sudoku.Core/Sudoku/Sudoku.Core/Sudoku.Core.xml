@@ -1839,6 +1839,16 @@
             <param name="grid">The grid.</param>
             <returns>The string.</returns>
         </member>
+        <member name="M:Sudoku.Data.GridFormatter.ToSukakuString(Sudoku.Data.Grid)">
+            <summary>
+            To string with the sukaku format.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The string.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the puzzle is an invalid sukaku puzzle (at least one cell is given or modifiable).
+            </exception>
+        </member>
         <member name="M:Sudoku.Data.GridFormatter.ToSingleLineStringCore(Sudoku.Data.Grid)">
             <summary>
             To single line string.
@@ -1924,6 +1934,12 @@
         <member name="P:Sudoku.Data.GridFormatter.HodokuCompatible">
             <summary>
             Indicates whether the output will be compatible with Hodoku library format.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.GridFormatter.Sukaku">
+            <summary>
+            Indicates the output will be sukaku format (all single-valued digit will
+            be all treated as candidates).
             </summary>
         </member>
         <member name="T:Sudoku.Data.GridMap">
@@ -2626,6 +2642,12 @@
             </summary>
             <returns>The result.</returns>
         </member>
+        <member name="M:Sudoku.Data.GridParser.OnParsingSukaku">
+            <summary>
+            Parse the sukaku format string.
+            </summary>
+            <returns>The result.</returns>
+        </member>
         <member name="P:Sudoku.Data.GridParser.DefaultCheckingArray">
             <summary>
             Get an array of default values in checking.
@@ -2761,7 +2783,31 @@
             400850007<br/>
             010094050
             </code>
-            </para>	
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridParsingOption.Sukaku">
+            <summary>
+            <para>
+            Sukaku sudoku format (only contains the digits and the whitespace).
+            </para>
+            <para>
+            For example:
+            <code>
+             23456789  23456789  23456789 123456789 123456789  23456789 123456789  23456789  23456789<br/>
+             23456789 123456789 123456789  23456789  23456789  23456789  23456789  23456789  23456789<br/>
+             23456789  23456789  23456789  23456789 123456789  23456789 123456789  23456789 123456789<br/>
+            123456789  23456789  23456789 123456789 123456789  23456789  23456789  23456789 123456789<br/>
+             23456789  23456789  23456789  23456789 123456789  23456789 123456789  23456789  23456789<br/>
+            123456789  23456789  23456789 123456789 123456789  23456789 123456789  23456789 123456789<br/>
+             23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789<br/>
+             23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789<br/>
+             23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
+            </code>
+            (Due to the rendering engine of IDE, all spaces will be displayed only once
+            in this table. In addition, this puzzle does not have a unique solution, here it is a
+            model for references only.)
+            </para>
             </summary>
         </member>
         <member name="T:Sudoku.Data.Inference">

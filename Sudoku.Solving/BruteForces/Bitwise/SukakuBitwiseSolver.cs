@@ -3,11 +3,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using Sudoku.Data;
-using static System.Runtime.InteropServices.CharSet;
 using static System.Runtime.InteropServices.CallingConvention;
+using static System.Runtime.InteropServices.CharSet;
 using static System.Runtime.InteropServices.UnmanagedType;
-using ImmutableString = System.String;
 using CStyleString = System.Text.StringBuilder;
+using ImmutableString = System.String;
 #if TARGET_64BIT
 using native_int = System.Int32;
 #else
@@ -17,19 +17,19 @@ using native_int = System.Int16;
 namespace Sudoku.Solving.BruteForces.Bitwise
 {
 	/// <summary>
-	/// Provides a solver using bitwise method.
+	/// Provides a sukaku solver using bitwise method.
 	/// </summary>
-	public sealed class BitwiseSolver : Solver
+	public sealed class SukakuBitwiseSolver : Solver
 	{
 		/// <inheritdoc/>
-		public override string SolverName => "Bitwise";
+		public override string SolverName => "Bitwise Sukaku";
 
 
 		/// <inheritdoc/>
 		public override AnalysisResult Solve(IReadOnlyGrid grid)
 		{
-			string str = grid.ToString(".");
-			var sb = new CStyleString(82);
+			string str = ToBasicFormat(grid.ToString("~"));
+			var sb = new CStyleString(730);
 			var stopwatch = new Stopwatch();
 
 			try
@@ -99,20 +99,8 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// (<see langword="out"/> parameter) The solution.
 		/// </param>
 		/// <returns>The <see cref="bool"/> result.</returns>
-		public bool CheckValidity(IReadOnlyGrid grid, [NotNullWhen(true)] out IReadOnlyGrid? solutionIfUnique)
-		{
-			var sb = new CStyleString(82);
-			if (Solve(grid.ToString("0"), sb, 2) == 1)
-			{
-				solutionIfUnique = Grid.Parse(sb.ToString());
-				return true;
-			}
-			else
-			{
-				solutionIfUnique = null;
-				return false;
-			}
-		}
+		public bool CheckValidity(IReadOnlyGrid grid, [NotNullWhen(true)] out string? solutionIfUnique) =>
+			CheckValidity(ToBasicFormat(grid.ToString("~")), out solutionIfUnique);
 
 		/// <summary>
 		/// Check the validity of the puzzle.
@@ -150,13 +138,13 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		{
 			try
 			{
-				return Solve32(puzzle, solution, limit);
+				return Solve32(ToBasicFormat(puzzle), solution, limit);
 			}
 			catch
 			{
 				try
 				{
-					return Solve64(puzzle, solution, limit);
+					return Solve64(ToBasicFormat(puzzle), solution, limit);
 				}
 				catch
 				{
@@ -165,6 +153,41 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 			}
 		}
 
+
+		/// <summary>
+		/// To basic format.
+		/// </summary>
+		/// <param name="str">The grid string.</param>
+		/// <returns>The result string.</returns>
+		private static string ToBasicFormat(string str)
+		{
+			var puzzleSb = new CStyleString();
+			string[] v = str.Split(new char[] { '\r', '\n', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+			foreach (string s in v)
+			{
+				int last = -1;
+				foreach (char c in s)
+				{
+					int current = c - '1';
+					for (int i = last + 1; i < current; i++)
+					{
+						puzzleSb.Append('0');
+					}
+					puzzleSb.Append(current + 1);
+					last = current;
+				}
+
+				if (last != 8)
+				{
+					for (int i = last + 1; i < 9; i++)
+					{
+						puzzleSb.Append('0');
+					}
+				}
+			}
+
+			return puzzleSb.ToString();
+		}
 
 		/// <summary>
 		/// The core function of solving the puzzle based on x86 platform.

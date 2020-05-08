@@ -24,18 +24,55 @@ namespace Sudoku.Solving.Checking
 		/// otherwise, <see langword="null"/>.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public static bool IsValid(
-			this IReadOnlyGrid @this, [NotNullWhen(true)] out IReadOnlyGrid? solutionIfValid)
+		public static bool IsValid(this IReadOnlyGrid @this, [NotNullWhen(true)] out IReadOnlyGrid? solutionIfValid)
 		{
 			solutionIfValid = null;
 
-			if (new BitwiseSolver().CheckValidity(@this.ToString(), out var solution))
+			if (new BitwiseSolver().CheckValidity(@this.ToString(), out string? solution)
+				|| new SukakuBitwiseSolver().CheckValidity(@this.ToString("~"), out solution))
 			{
 				solutionIfValid = Grid.Parse(solution);
 				return true;
 			}
 			else
 			{
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// To check if a puzzle has only one solution or not.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
+		/// <param name="solutionIfValid">
+		/// (<see langword="out"/> parameter) The solution if the puzzle is valid;
+		/// otherwise, <see langword="null"/>.
+		/// </param>
+		/// <param name="sukaku">
+		/// (<see langword="out"/> parameter) Indicates whether the current mode is sukaku mode.
+		/// </param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		public static bool IsValid(
+			this IReadOnlyGrid @this, [NotNullWhen(true)] out IReadOnlyGrid? solutionIfValid,
+			[NotNullWhen(true)] out bool? sukaku)
+		{
+			solutionIfValid = null;
+
+			if (new BitwiseSolver().CheckValidity(@this.ToString(), out string? solution))
+			{
+				solutionIfValid = Grid.Parse(solution);
+				sukaku = false;
+				return true;
+			}
+			else if (new SukakuBitwiseSolver().CheckValidity(@this.ToString("~"), out solution))
+			{
+				solutionIfValid = Grid.Parse(solution);
+				sukaku = true;
+				return true;
+			}
+			else
+			{
+				sukaku = null;
 				return false;
 			}
 		}

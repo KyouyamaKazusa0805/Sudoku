@@ -240,6 +240,10 @@ namespace Sudoku.Data
 						TreatValueAsGiven = true
 					};
 				}
+				case "~":
+				{
+					return new GridFormatter(true) { Sukaku = true };
+				}
 				default:
 				{
 					throw Throwing.FormatError;

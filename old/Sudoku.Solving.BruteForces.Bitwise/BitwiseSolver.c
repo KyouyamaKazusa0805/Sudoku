@@ -520,6 +520,17 @@ static int SetSolvedDigit(int cell, int digit)
 	return 1;
 }
 
+// Eliminate a digit - used in InitSudoku
+static int EliminateDigit(int cell, int digit)
+{
+	int subBand = cellToSubBand[cell];
+	int band = digitToBaseBand[digit] + subBand;
+	unsigned mask = cellToMask[cell];
+	if (!(g->bands[band] & mask)) return 1;
+	g->bands[band] &= ~mask;
+	return 1;
+}
+
 // Set a cell as solved - used in various guess routines
 static int SetSolvedMask(int band, unsigned int mask)
 {
@@ -553,16 +564,47 @@ static int InitSudoku(const char* board)
 	g->unsolvedCells[0] = g->unsolvedCells[1] = g->unsolvedCells[2] = BIT_SET_27;
 	g->unsolvedRows[0] = g->unsolvedRows[1] = g->unsolvedRows[2] = BIT_SET_27;
 	g->pairs[0] = g->pairs[1] = g->pairs[2] = 0;
-	for (int cell = 0; cell < 81; ++cell, ++board)
+
+	switch (strlen(board))
 	{
-		if (isdigit(*board) && *board != '0')
+	case 81:
+	{
+		for (int cell = 0; cell < 81; ++cell, ++board)
 		{
-			int digit = *board - '1';
-			if (!SetSolvedDigit(cell, digit)) return 0;
+			if (isdigit(*board) && *board != '0')
+			{
+				int digit = *board - '1';
+				if (!SetSolvedDigit(cell, digit)) return 0;
+			}
+			else if (!*board) return 0; // End of string before end of puzzle!
 		}
-		else if (!*board) return 0; // End of string before end of puzzle!
+		return 1;
 	}
-	return 1;
+	case 729:
+	{
+		for (int cell = 0; cell < 81; ++cell)
+		{
+			short mask = 0;
+			for (int digit = 0; digit < 9; ++digit, ++board)
+			{
+				if (*board == '0')
+				{
+					mask |= 1 << digit;
+				}
+			}
+
+			for (int digit = 0, temp = mask; digit < 9; digit++, temp >>= 1)
+			{
+				if ((temp & 1) && !EliminateDigit(cell, digit))
+				{
+					return 0;
+				}
+			}
+		}
+		return 1;
+	}
+	default: return 0;
+	}
 }
 
 //

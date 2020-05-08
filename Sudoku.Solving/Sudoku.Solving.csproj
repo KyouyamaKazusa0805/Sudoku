@@ -13,6 +13,7 @@
 		<DocumentationFile>.\Sudoku\Sudoku.Solving\Sudoku.Solving.xml</DocumentationFile>
 		<DefineConstants>DEBUG;TARGET_64BIT</DefineConstants>
 		<Optimize>false</Optimize>
+		<PlatformTarget>AnyCPU</PlatformTarget>
 	</PropertyGroup>
 
 	<ItemGroup>

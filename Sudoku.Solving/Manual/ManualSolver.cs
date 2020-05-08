@@ -44,14 +44,15 @@ namespace Sudoku.Solving.Manual
 		/// <inheritdoc/>
 		public override AnalysisResult Solve(IReadOnlyGrid grid)
 		{
-			if (grid.IsValid(out var solution))
+			if (grid.IsValid(out var solution, out bool? sukaku))
 			{
 				// Solve the puzzle.
 				try
 				{
 					return AnalyzeDifficultyStrictly
-						? SolveWithStrictDifficultyRating(grid, grid.Clone(), new List<TechniqueInfo>(), solution)
-						: SolveNaively(grid, grid.Clone(), new List<TechniqueInfo>(), solution);
+						? SolveWithStrictDifficultyRating(
+							grid, grid.Clone(), new List<TechniqueInfo>(), solution, sukaku.Value)
+						: SolveNaively(grid, grid.Clone(), new List<TechniqueInfo>(), solution, sukaku.Value);
 				}
 				catch (WrongHandlingException ex)
 				{
@@ -87,12 +88,13 @@ namespace Sudoku.Solving.Manual
 		/// <param name="cloneation">The cloneation grid to calculate.</param>
 		/// <param name="steps">All steps found.</param>
 		/// <param name="solution">The solution.</param>
+		/// <param name="sukaku">Indicates whether the current mode is sukaku mode.</param>
 		/// <returns>The analysis result.</returns>
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the solver cannot solved due to wrong handling.
 		/// </exception>
 		private AnalysisResult SolveWithStrictDifficultyRating(
-			IReadOnlyGrid grid, Grid cloneation, List<TechniqueInfo> steps, IReadOnlyGrid solution)
+			IReadOnlyGrid grid, Grid cloneation, List<TechniqueInfo> steps, IReadOnlyGrid solution, bool sukaku)
 		{
 			var searchers = new TechniqueSearcher[][]
 			{
@@ -159,6 +161,19 @@ namespace Sudoku.Solving.Manual
 				var searcherListGroup = searchers[i];
 				foreach (var searcher in searcherListGroup)
 				{
+					if (sukaku && (
+						searcher is UrTechniqueSearcher
+						|| searcher is XrTechniqueSearcher
+						|| searcher is UlTechniqueSearcher
+						|| searcher is BdpTechniqueSearcher
+						|| searcher is BugTechniqueSearcher))
+					{
+						// Sukaku mode cannot use them.
+						// In fact, sukaku can use uniqueness tests, however the program should
+						// produce a large modification.
+						continue;
+					}
+
 					if (!(bool)searcher.GetType().GetProperty("IsEnabled")!.GetValue(null)!)
 					{
 						// Skip the technique when the static property 'IsEnabled' is set false.
@@ -283,16 +298,17 @@ namespace Sudoku.Solving.Manual
 		/// <param name="cloneation">The cloneation grid to calculate.</param>
 		/// <param name="steps">All steps found.</param>
 		/// <param name="solution">The solution.</param>
+		/// <param name="sukaku">Indicates whether the current mode is sukaku.</param>
 		/// <returns>The analysis result.</returns>
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the solver cannot solved due to wrong handling.
 		/// </exception>
 		private AnalysisResult SolveNaively(
 			IReadOnlyGrid grid, Grid cloneation, List<TechniqueInfo> steps,
-			IReadOnlyGrid solution)
+			IReadOnlyGrid solution, bool sukaku)
 		{
 			// Check symmetry first.
-			if (CheckGurthSymmetricalPlacement)
+			if (!sukaku && CheckGurthSymmetricalPlacement)
 			{
 				var symmetrySearcher = new GspTechniqueSearcher();
 				var tempStep = symmetrySearcher.TakeOne(cloneation);
@@ -374,6 +390,19 @@ namespace Sudoku.Solving.Manual
 			for (int i = 0, length = searchers.Length; i < length; i++)
 			{
 				var searcher = searchers[i];
+
+				if (sukaku && (
+					searcher is UrTechniqueSearcher
+					|| searcher is XrTechniqueSearcher
+					|| searcher is UlTechniqueSearcher
+					|| searcher is BdpTechniqueSearcher
+					|| searcher is BugTechniqueSearcher))
+				{
+					// Sukaku mode cannot use them.
+					// In fact, sukaku can use uniqueness tests, however the program should
+					// produce a large modification.
+					continue;
+				}
 
 				if (!g<bool>(searcher, "IsEnabled"))
 				{
@@ -497,8 +526,8 @@ namespace Sudoku.Solving.Manual
 		/// <param name="stepGrids">The step grids.</param>
 		/// <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		/// <seealso cref="SolveNaively(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid)"/>
-		/// <seealso cref="SolveWithStrictDifficultyRating(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid)"/>
+		/// <seealso cref="SolveNaively(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, bool)"/>
+		/// <seealso cref="SolveWithStrictDifficultyRating(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, bool)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool RecordTechnique(
 			List<TechniqueInfo> steps, TechniqueInfo step, IReadOnlyGrid grid,

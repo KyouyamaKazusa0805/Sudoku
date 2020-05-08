@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Extensions;
+using static System.Math;
 
 namespace Sudoku.Data
 {
@@ -38,7 +40,9 @@ namespace Sudoku.Data
 		public string ToString(Grid grid)
 		{
 			return Multiline
-				? WithCandidates ? ToMultiLineStringCore(grid) : ToMultiLineSimpleGridCore(grid)
+				? WithCandidates
+					? ToMultiLineStringCore(grid)
+					: Sukaku ? ToSukakuString(grid) : ToMultiLineSimpleGridCore(grid)
 				: HodokuCompatible ? ToHodokuLibraryFormatString(grid) : ToSingleLineStringCore(grid);
 		}
 
@@ -51,6 +55,72 @@ namespace Sudoku.Data
 		{
 			string result = ToSingleLineStringCore(grid);
 			return $":0000:x:{result}:::";
+		}
+
+
+		/// <summary>
+		/// To string with the sukaku format.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <returns>The string.</returns>
+		/// <exception cref="ArgumentException">
+		/// Throws when the puzzle is an invalid sukaku puzzle (at least one cell is given or modifiable).
+		/// </exception>
+		[SuppressMessage("Style", "IDE0071:Simplify interpolation", Justification = "<Pending>")]
+		[SuppressMessage("Style", "IDE0071WithoutSuggestion:Simplify interpolation", Justification = "<Pending>")]
+		private string ToSukakuString(Grid grid)
+		{
+			bool flag = true;
+			for (int i = 0; i < 81; i++)
+			{
+				if (grid.GetStatus(i) != CellStatus.Empty)
+				{
+					flag = false;
+					break;
+				}
+			}
+			if (!flag)
+			{
+				throw new ArgumentException(
+					"The specified puzzle contains the given or modifiable values, which is an invalid sukaku grid.",
+					nameof(grid));
+			}
+
+			// Append all digits.
+			var builders = new StringBuilder[81];
+			for (int i = 0; i < 81; i++)
+			{
+				builders[i] = new StringBuilder();
+				foreach (int digit in grid.GetCandidatesReversal(i).GetAllSets())
+				{
+					builders[i].Append(digit + 1);
+				}
+			}
+
+			// Now consider the alignment for each column of output text.
+			var sb = new StringBuilder();
+			var span = (Span<int>)stackalloc int[9];
+			for (int column = 0; column < 9; column++)
+			{
+				int maxLength = 0;
+				for (int p = 0; p < 9; p++)
+				{
+					maxLength = Max(maxLength, builders[p * 9 + column].Length);
+				}
+
+				span[column] = maxLength;
+			}
+			for (int row = 0; row < 9; row++)
+			{
+				for (int column = 0; column < 9; column++)
+				{
+					int cell = row * 9 + column;
+					sb.Append($"{builders[cell].ToString().PadLeft(span[column])} ");
+				}
+				sb.RemoveFromEnd(1).AppendLine(); // Remove last whitespace.
+			}
+
+			return sb.ToString();
 		}
 
 		/// <summary>
@@ -221,12 +291,12 @@ namespace Sudoku.Data
 					}
 
 					// Compares the values.
-					int comparer = Math.Max(candidatesCount, GetCellStatus(value) switch
+					int comparer = Max(candidatesCount, GetCellStatus(value) switch
 					{
 						// The output will be '<digit>' and consist of 3 characters.
-						CellStatus.Given => Math.Max(candidatesCount, 3),
+						CellStatus.Given => Max(candidatesCount, 3),
 						// The output will be '*digit*' and consist of 3 characters.
-						CellStatus.Modifiable => Math.Max(candidatesCount, 3),
+						CellStatus.Modifiable => Max(candidatesCount, 3),
 						// Normal output: 'series' (at least 1 character).
 						_ => candidatesCount,
 					});

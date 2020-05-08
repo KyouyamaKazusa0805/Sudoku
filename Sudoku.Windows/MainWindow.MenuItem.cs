@@ -327,6 +327,8 @@ namespace Sudoku.Windows
 			}
 		}
 
+		private void MenuItemEditCopyAsSukaku_Click(object sender, RoutedEventArgs e) => InternalCopy("~");
+
 		private void MenuItemEditPaste_Click(object sender, RoutedEventArgs e)
 		{
 			string puzzleStr = Clipboard.GetText();
@@ -338,6 +340,32 @@ namespace Sudoku.Windows
 			}
 
 			LoadPuzzle(puzzleStr);
+
+			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
+			_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
+			_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+		}
+
+		private void MenuItemEditPasteAsSukaku_Click(object sender, RoutedEventArgs e)
+		{
+			string puzzleStr = Clipboard.GetText();
+			if (puzzleStr is null)
+			{
+				e.Handled = true;
+				return;
+			}
+
+			try
+			{
+				Puzzle = new UndoableGrid(SudokuGrid.Parse(puzzleStr, GridParsingOption.Sukaku));
+
+				_menuItemEditUndo.IsEnabled = _menuItemEditRedo.IsEnabled = false;
+				UpdateImageGrid();
+			}
+			catch (ArgumentException)
+			{
+				MessageBox.Show("The specified puzzle is invalid.", "Warning");
+			}
 
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
 			_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
@@ -495,50 +523,85 @@ namespace Sudoku.Windows
 
 		private void MenuItemAnalyzeSolve_Click(object sender, RoutedEventArgs e)
 		{
-			var sb = new StringBuilder(SudokuGrid.EmptyString);
-			for (int cell = 0; cell < 81; cell++)
-			{
-				sb[cell] += (char)(_puzzle[cell] + 1);
-			}
-
-			if (new BitwiseSolver().Solve(sb.ToString(), sb, 2) != 1)
+			if (!applyNormal() && !applySukaku())
 			{
 				MessageBox.Show("The puzzle is invalid. Please check your input and retry.", "Info");
-				e.Handled = true;
 				return;
 			}
 
-			Puzzle = new UndoableGrid(SudokuGrid.Parse(sb.ToString()));
-
-			UpdateImageGrid();
-		}
-
-		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-		[SuppressMessage("", "IDE0050")]
-		private async void MenuItemAnalyzeAnalyze_Click(object sender, RoutedEventArgs e)
-		{
-			await internalOperation();
-
-			async Task internalOperation()
+			bool applySukaku()
 			{
-				if (_puzzle.HasSolved)
+				var sb = new StringBuilder(SudokuGrid.EmptyString);
+				string puzzleString = _puzzle.ToString("~");
+				if (new SukakuBitwiseSolver().Solve(puzzleString, sb, 2) != 1)
 				{
-					MessageBox.Show("The puzzle has already solved.", "Info");
-					e.Handled = true;
-					return;
+					return !(e.Handled = true);
 				}
 
+				Puzzle = new UndoableGrid(SudokuGrid.Parse(sb.ToString()));
+				UpdateImageGrid();
+				return true;
+			}
+
+			bool applyNormal()
+			{
 				var sb = new StringBuilder(SudokuGrid.EmptyString);
 				for (int cell = 0; cell < 81; cell++)
 				{
 					sb[cell] += (char)(_puzzle[cell] + 1);
 				}
 
-				if (new BitwiseSolver().Solve(sb.ToString(), null, 2) != 1)
+				if (new BitwiseSolver().Solve(sb.ToString(), sb, 2) != 1)
 				{
-					MessageBox.Show("The puzzle is invalid. Please check your input and retry.", "Info");
-					e.Handled = true;
-					return;
+					return !(e.Handled = true);
+				}
+
+				Puzzle = new UndoableGrid(SudokuGrid.Parse(sb.ToString()));
+				UpdateImageGrid();
+				return true;
+			}
+		}
+
+		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+		[SuppressMessage("", "IDE0050")]
+		private async void MenuItemAnalyzeAnalyze_Click(object sender, RoutedEventArgs e)
+		{
+			if (!await internalOperation(false) && !await internalOperation(true))
+			{
+				MessageBox.Show("The puzzle is invalid. Please check your input and retry.", "Info");
+				e.Handled = true;
+				return;
+			}
+
+			async Task<bool> internalOperation(bool sukakuMode)
+			{
+				if (_puzzle.HasSolved)
+				{
+					MessageBox.Show("The puzzle has already solved.", "Info");
+					return !(e.Handled = true);
+				}
+
+				var sb = new StringBuilder(SudokuGrid.EmptyString);
+				if (sukakuMode)
+				{
+					string puzzleString = _puzzle.ToString("~");
+					if (new SukakuBitwiseSolver().Solve(puzzleString, sb, 2) != 1)
+					{
+						return !(e.Handled = true);
+					}
+				}
+				else
+				{
+					for (int cell = 0; cell < 81; cell++)
+					{
+						sb[cell] += (char)(_puzzle[cell] + 1);
+					}
+
+					if (new BitwiseSolver().Solve(sb.ToString(), null, 2) != 1)
+					{
+						
+						return !(e.Handled = true);
+					}
 				}
 
 				// Update status.
@@ -637,6 +700,8 @@ namespace Sudoku.Windows
 						$"Error technique step: {_analyisResult.Additional}",
 						"Warning");
 				}
+
+				return true;
 			}
 
 			IEnumerable<IGrouping<string, TechniqueInfo>> getGroupedSteps()

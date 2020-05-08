@@ -60,6 +60,7 @@ namespace Sudoku.Data
 				?? OnParsingSimpleMultilineGrid()
 				?? (CompatibleFirst ? OnParsingPencilMarked(true) : OnParsingPencilMarked(false))
 				?? (CompatibleFirst ? OnParsingPencilMarked(false) : OnParsingPencilMarked(true))
+				?? OnParsingSukaku()
 				?? throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
 		}
 
@@ -79,7 +80,8 @@ namespace Sudoku.Data
 				[Table] = OnParsingSimpleMultilineGrid,
 				[PencilMarked] = () => OnParsingPencilMarked(false),
 				[PencilMarkedTreatSingleAsGiven] = () => OnParsingPencilMarked(true),
-				[SimpleTable] = OnParsingSimpleTable
+				[SimpleTable] = OnParsingSimpleTable,
+				[Sukaku] = OnParsingSukaku
 			}[gridParsingOption]() ?? throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
 		}
 
@@ -132,7 +134,8 @@ namespace Sudoku.Data
 			for (int offset = 0; offset < 81; offset++)
 			{
 				string s = matches[offset].Reserve(@"\d");
-				if (s.Length > 9)
+				int length = s.Length;
+				if (length > 9)
 				{
 					// More than 9 characters.
 					return null;
@@ -142,43 +145,26 @@ namespace Sudoku.Data
 				{
 					// This options means that all characters matched will
 					// contain only digit characters.
-					// If the match has only one digit character, this character
-					// will be treated as given at once.
-					if (s.IsMatch(@"[^1-9]"))
+					// Check the length is 1 or not.
+					// The string has only one character, which means that
+					// the digit character is the given of the cell.
+					if (length == 1)
 					{
-						// Matches some invalid characters,
-						// which means that the parsing failed.
-						return null;
+						// To assign the value, and to trigger the event
+						// to modify all information of peers.
+						result[offset] = s[0] - '1';
+						result.SetStatus(offset, Given);
 					}
 					else
 					{
-						// Check the length is 1 or not.
-						// The string has only one character, which means that
-						// the digit character is the given of the cell.
-						int length = s.Length;
-						if (length == 1)
+						bool[] series = DefaultCheckingArray;
+						foreach (char c in s)
 						{
-							// To assign the value, and to trigger the event
-							// to modify all information of peers.
-							result[offset] = s[0] - '1';
-							result.SetStatus(offset, Given);
+							series[c - '1'] = false;
 						}
-						else if (length > 9)
+						for (int digit = 0; digit < 9; digit++)
 						{
-							// Greater than 9 characters is also invalid.
-							return null;
-						}
-						else
-						{
-							bool[] series = DefaultCheckingArray;
-							foreach (char c in s)
-							{
-								series[c - '1'] = false;
-							}
-							for (int digit = 0; digit < 9; digit++)
-							{
-								result[offset, digit] = series[digit];
-							}
+							result[offset, digit] = series[digit];
 						}
 					}
 				}
@@ -188,7 +174,7 @@ namespace Sudoku.Data
 					// '<digit>', '*digit*' and 'candidates'.
 
 					// Givens.
-					if (s.Length == 3)
+					if (length == 3)
 					{
 						char c = s[1];
 						if (c >= '1' && c <= '9')
@@ -211,7 +197,7 @@ namespace Sudoku.Data
 				else if (s.Contains('*'))
 				{
 					// Modifiables.
-					if (s.Length == 3)
+					if (length == 3)
 					{
 						char c = s[1];
 						if (c >= '1' && c <= '9')
@@ -374,6 +360,42 @@ namespace Sudoku.Data
 					result[
 						offset: (eliminationBlock[1] - '1') * 9 + eliminationBlock[2] - '1',
 						digit: eliminationBlock[0] - '1'] = true;
+				}
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// Parse the sukaku format string.
+		/// </summary>
+		/// <returns>The result.</returns>
+		public Grid? OnParsingSukaku()
+		{
+			string[] matches = ParsingValue.MatchAll(@"\d*\-?\d+");
+			if (matches.Length != 81)
+			{
+				return null;
+			}
+
+			var result = Grid.Empty.Clone();
+			for (int offset = 0; offset < 81; offset++)
+			{
+				string s = matches[offset].Reserve(@"\d");
+				if (s.Length > 9)
+				{
+					// More than 9 characters.
+					return null;
+				}
+
+				bool[] series = DefaultCheckingArray;
+				foreach (char c in s)
+				{
+					series[c - '1'] = false;
+				}
+				for (int digit = 0; digit < 9; digit++)
+				{
+					result[offset, digit] = series[digit];
 				}
 			}
 

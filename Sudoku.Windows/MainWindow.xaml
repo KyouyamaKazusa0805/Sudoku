@@ -74,14 +74,24 @@
 				<Separator/>
 				<MenuItem Header="Copy normal grid" InputGestureText="Ctrl + C"
 						  Click="MenuItemEditCopy_Click"/>
-				<MenuItem Header="Copy current grid" InputGestureText="Ctrl + Shift + C"
+				<MenuItem Header="Copy as...">
+					<MenuItem Header="Copy as current grid" InputGestureText="Ctrl + Shift + C"
 						  Click="MenuItemEditCopyCurrentGrid_Click"/>
-				<MenuItem Header="Copy hodoku library format"
+					<MenuItem Header="Copy as hodoku library format"
 						  Click="MenuItemEditCopyHodokuLibrary_Click"/>
-				<MenuItem Header="Copy PM grid"
+					<MenuItem Header="Copy as PM grid"
 						  Click="MenuItemEditCopyPmGrid_Click"/>
+					<MenuItem Header="Copy as sukaku" Name="_menuItemEditCopyAsSukaku"
+						  Click="MenuItemEditCopyAsSukaku_Click"/>
+				</MenuItem>
 				<MenuItem Header="Paste" InputGestureText="Ctrl + V" Name="_menuItemEditPaste"
 						  Click="MenuItemEditPaste_Click"/>
+				<!--
+				<MenuItem Header="Paste as...">
+					<MenuItem Header="Paste as sukaku" Name="_menuItemEditPasteAsSukaku"
+						  Click="MenuItemEditPasteAsSukaku_Click"/>
+				</MenuItem>
+				-->
 				<Separator/>
 				<MenuItem Header="Fix grid" InputGestureText="Ctrl + `" Name="_menuItemEditFix"
 						  Click="MenuItemEditFix_Click"/>

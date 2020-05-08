@@ -451,8 +451,7 @@ namespace Sudoku.Data
 				}
 			}
 
-			// Each unique puzzle has at least 17 hints.
-			return count >= 17;
+			return true;
 		}
 
 
