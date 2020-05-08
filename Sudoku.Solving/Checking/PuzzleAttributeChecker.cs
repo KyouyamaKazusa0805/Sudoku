@@ -5,7 +5,6 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Manual;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Checking
 {
