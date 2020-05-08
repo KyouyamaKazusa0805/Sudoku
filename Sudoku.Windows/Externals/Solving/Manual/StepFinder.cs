@@ -50,7 +50,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="grid">The grid.</param>
 		public async Task<IEnumerable<IGrouping<string, TechniqueInfo>>> SearchAsync(IReadOnlyGrid grid)
 		{
-			if (grid.HasSolved || !grid.IsValid(out _))
+			if (grid.HasSolved || !grid.IsValid(out _, out bool? sukaku))
 			{
 				return Array.Empty<IGrouping<string, TechniqueInfo>>();
 			}
@@ -109,6 +109,19 @@ namespace Sudoku.Solving.Manual
 			var bag = new Bag<TechniqueInfo>();
 			foreach (var searcher in searchers)
 			{
+				if (sukaku is true && (
+					searcher is UrTechniqueSearcher
+					|| searcher is XrTechniqueSearcher
+					|| searcher is UlTechniqueSearcher
+					|| searcher is BdpTechniqueSearcher
+					|| searcher is BugTechniqueSearcher))
+				{
+					// Sukaku mode cannot use them.
+					// In fact, sukaku can use uniqueness tests, however the program should
+					// produce a large modification.
+					continue;
+				}
+
 				await Task.Run(() => searcher.GetAll(bag, grid));
 			}
 

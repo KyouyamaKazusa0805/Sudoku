@@ -70,21 +70,21 @@ namespace Sudoku.Data
 		[SuppressMessage("Style", "IDE0071WithoutSuggestion:Simplify interpolation", Justification = "<Pending>")]
 		private string ToSukakuString(Grid grid)
 		{
-			bool flag = true;
-			for (int i = 0; i < 81; i++)
-			{
-				if (grid.GetStatus(i) != CellStatus.Empty)
-				{
-					flag = false;
-					break;
-				}
-			}
-			if (!flag)
-			{
-				throw new ArgumentException(
-					"The specified puzzle contains the given or modifiable values, which is an invalid sukaku grid.",
-					nameof(grid));
-			}
+			//bool flag = true;
+			//for (int i = 0; i < 81; i++)
+			//{
+			//	if (grid.GetStatus(i) != CellStatus.Empty)
+			//	{
+			//		flag = false;
+			//		break;
+			//	}
+			//}
+			//if (!flag)
+			//{
+			//	throw new ArgumentException(
+			//		"The specified puzzle contains the given or modifiable values, which is an invalid sukaku grid.",
+			//		nameof(grid));
+			//}
 
 			// Append all digits.
 			var builders = new StringBuilder[81];
