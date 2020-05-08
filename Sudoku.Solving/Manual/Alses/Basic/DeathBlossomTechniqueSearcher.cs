@@ -54,11 +54,11 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var (emptyCells, _, candMaps, _) = grid;
+			var (emptyMap, _, candMaps, _) = grid;
 
 			short[] checkedCandidates = new short[81];
 			int[,] death = new int[729, 1000];
-			var alsList = PreprocessAndRecordAlses(grid, emptyCells);
+			var alsList = PreprocessAndRecordAlses(grid, emptyMap);
 			ProcessDeathAlsInfo(grid, candMaps, checkedCandidates, death, alsList);
 
 			for (int pivot = 0; pivot < 81; pivot++)
@@ -298,15 +298,15 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// To preprocess and record all ALSes.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
-		/// <param name="emptyCells">The empty cells.</param>
+		/// <param name="emptyMap">The map of all empty cells.</param>
 		/// <returns>All ALSes.</returns>
-		private IReadOnlyList<Als> PreprocessAndRecordAlses(IReadOnlyGrid grid, GridMap emptyCells)
+		private IReadOnlyList<Als> PreprocessAndRecordAlses(IReadOnlyGrid grid, GridMap emptyMap)
 		{
 			var list = new List<Als>();
 			GridMap tempEmptyCells;
 			for (int region = 0; region < 27; region++)
 			{
-				tempEmptyCells = emptyCells & RegionMaps[region];
+				tempEmptyCells = emptyMap & RegionMaps[region];
 				if (tempEmptyCells.Count < 3)
 				{
 					// Every death blossom should lies on more than 2 cells.
@@ -318,7 +318,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				{
 					foreach (int[] cells in Algorithms.GetCombinationsOfArray(emptyCellsArray, i))
 					{
-						if (cells.Any(cell => grid.GetStatus(cell) != Empty))
+						if ((new GridMap(cells) | emptyMap) != emptyMap)
 						{
 							continue;
 						}
