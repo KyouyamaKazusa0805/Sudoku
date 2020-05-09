@@ -76,20 +76,22 @@
 						  Click="MenuItemEditCopy_Click"/>
 				<MenuItem Header="Copy as...">
 					<MenuItem Header="Copy as current grid" InputGestureText="Ctrl + Shift + C"
-						  Click="MenuItemEditCopyCurrentGrid_Click"/>
+							  Click="MenuItemEditCopyCurrentGrid_Click"/>
 					<MenuItem Header="Copy as hodoku library format"
-						  Click="MenuItemEditCopyHodokuLibrary_Click"/>
+							  Click="MenuItemEditCopyHodokuLibrary_Click"/>
 					<MenuItem Header="Copy as PM grid"
-						  Click="MenuItemEditCopyPmGrid_Click"/>
+							  Click="MenuItemEditCopyPmGrid_Click"/>
 					<MenuItem Header="Copy as sukaku" Name="_menuItemEditCopyAsSukaku"
-						  Click="MenuItemEditCopyAsSukaku_Click"/>
+							  Click="MenuItemEditCopyAsSukaku_Click"/>
+					<MenuItem Header="Copy as Excel" Name="_menuItemEditCopyAsExcel"
+							  Click="MenuItemEditCopyAsExcel_Click"/>
 				</MenuItem>
 				<MenuItem Header="Paste" InputGestureText="Ctrl + V" Name="_menuItemEditPaste"
 						  Click="MenuItemEditPaste_Click"/>
 				<!--
 				<MenuItem Header="Paste as...">
 					<MenuItem Header="Paste as sukaku" Name="_menuItemEditPasteAsSukaku"
-						  Click="MenuItemEditPasteAsSukaku_Click"/>
+							  Click="MenuItemEditPasteAsSukaku_Click"/>
 				</MenuItem>
 				-->
 				<Separator/>

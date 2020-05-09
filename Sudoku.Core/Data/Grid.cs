@@ -587,6 +587,24 @@ namespace Sudoku.Data
 						nameof(format));
 				}
 			}
+			else if (format.Contains('~'))
+			{
+				if (format.Length > 1)
+				{
+					throw Throwing.FormatErrorWithMessage(
+						"Sukaku option character '~' cannot be used with other characters together.",
+						nameof(format));
+				}
+			}
+			else if (format.Contains('%'))
+			{
+				if (format.Length > 1)
+				{
+					throw Throwing.FormatErrorWithMessage(
+						"Excel option character '%' cannot be used with other characters together.",
+						nameof(format));
+				}
+			}
 		}
 
 		/// <summary>

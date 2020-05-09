@@ -151,5 +151,28 @@
 		/// </para>
 		/// </summary>
 		Sukaku,
+
+		/// <summary>
+		/// <para>
+		/// Excel sudoku format (only contains the digits and the tab character).
+		/// </para>
+		/// <para>
+		/// For example:
+		/// <code>
+		/// 1			7	8	9	4	5	6<br/>
+		/// 4	5	6	1	2	3	7	8	9<br/>
+		/// 7	8	9	4	5	6	1	2	<br/>
+		/// 9	1	2	6		8	3	4	<br/>
+		/// 3	4	5				6	7	8<br/>
+		/// 	7	8	3		5	9	1	2<br/>
+		/// 	9	1	5	6	7	2	3	4<br/>
+		/// 2	3	4	8	9	1	5	6	7<br/>
+		/// 5	6	7	2	3	4			1
+		/// </code>
+		/// (Due to the rendering engine of IDE, all spaces will be displayed only once
+		/// in this table.)
+		/// </para>
+		/// </summary>
+		Excel,
 	}
 }

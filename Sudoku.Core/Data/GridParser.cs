@@ -57,6 +57,7 @@ namespace Sudoku.Data
 		{
 			return OnParsingSimpleTable()
 				?? OnParsingSusser()
+				?? OnParsingExcel()
 				?? OnParsingSimpleMultilineGrid()
 				?? (CompatibleFirst ? OnParsingPencilMarked(true) : OnParsingPencilMarked(false))
 				?? (CompatibleFirst ? OnParsingPencilMarked(false) : OnParsingPencilMarked(true))
@@ -81,7 +82,8 @@ namespace Sudoku.Data
 				[PencilMarked] = () => OnParsingPencilMarked(false),
 				[PencilMarkedTreatSingleAsGiven] = () => OnParsingPencilMarked(true),
 				[SimpleTable] = OnParsingSimpleTable,
-				[Sukaku] = OnParsingSukaku
+				[Sukaku] = OnParsingSukaku,
+				[Excel] = OnParsingExcel
 			}[gridParsingOption]() ?? throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
 		}
 
@@ -110,6 +112,36 @@ namespace Sudoku.Data
 			}
 
 			return result;
+		}
+
+		/// <summary>
+		/// Parse the Excel format.
+		/// </summary>
+		/// <returns>The result.</returns>
+		private Grid? OnParsingExcel()
+		{
+			if (!ParsingValue.Contains('\t'))
+			{
+				return null;
+			}
+
+			string[] values = ParsingValue.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+			if (values.Length != 9)
+			{
+				return null;
+			}
+
+			var sb = new StringBuilder();
+			foreach (string value in values)
+			{
+				string[] digitStrings = value.Split(new[] { '\t' });
+				foreach (string digitString in digitStrings)
+				{
+					sb.Append(string.IsNullOrEmpty(digitString) ? '.' : digitString[0]);
+				}
+			}
+
+			return Grid.Parse(sb.ToString());
 		}
 
 		/// <summary>

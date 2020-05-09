@@ -48,11 +48,15 @@
 		/// </summary>
 		public bool HodokuCompatible { get; set; }
 
-
 		/// <summary>
 		/// Indicates the output will be sukaku format (all single-valued digit will
 		/// be all treated as candidates).
 		/// </summary>
 		public bool Sukaku { get; set; }
+
+		/// <summary>
+		/// Indicates the output will be Excel format.
+		/// </summary>
+		public bool Excel { get; set; }
 	}
 }

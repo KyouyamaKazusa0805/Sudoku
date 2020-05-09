@@ -1832,6 +1832,13 @@
             <param name="grid">The grid.</param>
             <returns>The string.</returns>
         </member>
+        <member name="M:Sudoku.Data.GridFormatter.ToExcelString(Sudoku.Data.Grid)">
+            <summary>
+            To Excel format string.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The string.</returns>
+        </member>
         <member name="M:Sudoku.Data.GridFormatter.ToHodokuLibraryFormatString(Sudoku.Data.Grid)">
             <summary>
             To string with Hodoku library format compatible string.
@@ -1940,6 +1947,11 @@
             <summary>
             Indicates the output will be sukaku format (all single-valued digit will
             be all treated as candidates).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.GridFormatter.Excel">
+            <summary>
+            Indicates the output will be Excel format.
             </summary>
         </member>
         <member name="T:Sudoku.Data.GridMap">
@@ -2559,7 +2571,17 @@
         </member>
         <member name="F:Sudoku.Data.GridOutputOptions.Multiline">
             <summary>
-            Indicates whether the output should be multi-line.
+            Indicates the output should be multi-line.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridOutputOptions.Sukaku">
+            <summary>
+            Indicates the output will be sukaku format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridOutputOptions.Excel">
+            <summary>
+            Indicates the output will be Excel format.
             </summary>
         </member>
         <member name="T:Sudoku.Data.GridParser">
@@ -2617,6 +2639,12 @@
         <member name="M:Sudoku.Data.GridParser.OnParsingSimpleMultilineGrid">
             <summary>
             Parse the value using multi-line simple grid (without any candidates).
+            </summary>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridParser.OnParsingExcel">
+            <summary>
+            Parse the Excel format.
             </summary>
             <returns>The result.</returns>
         </member>
@@ -2807,6 +2835,29 @@
             (Due to the rendering engine of IDE, all spaces will be displayed only once
             in this table. In addition, this puzzle does not have a unique solution, here it is a
             model for references only.)
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridParsingOption.Excel">
+            <summary>
+            <para>
+            Excel sudoku format (only contains the digits and the tab character).
+            </para>
+            <para>
+            For example:
+            <code>
+            1			7	8	9	4	5	6<br/>
+            4	5	6	1	2	3	7	8	9<br/>
+            7	8	9	4	5	6	1	2	<br/>
+            9	1	2	6		8	3	4	<br/>
+            3	4	5				6	7	8<br/>
+            	7	8	3		5	9	1	2<br/>
+            	9	1	5	6	7	2	3	4<br/>
+            2	3	4	8	9	1	5	6	7<br/>
+            5	6	7	2	3	4			1
+            </code>
+            (Due to the rendering engine of IDE, all spaces will be displayed only once
+            in this table.)
             </para>
             </summary>
         </member>

@@ -14,6 +14,16 @@ namespace Sudoku.Data
 		/// <returns>The grid formatter.</returns>
 		public static GridFormatter Create(GridOutputOptions gridOutputOption)
 		{
+			// Special cases.
+			if (gridOutputOption == GridOutputOptions.Sukaku)
+			{
+				return new GridFormatter(true) { Sukaku = true };
+			}
+			else if (gridOutputOption == GridOutputOptions.Excel)
+			{
+				return new GridFormatter(true) { Excel = true };
+			}
+
 			var formatter = new GridFormatter(gridOutputOption.HasFlag(GridOutputOptions.Multiline));
 			if (gridOutputOption.HasFlag(GridOutputOptions.WithModifiers))
 			{
@@ -35,6 +45,7 @@ namespace Sudoku.Data
 			{
 				formatter.HodokuCompatible = true;
 			}
+			
 			formatter.Placeholder = gridOutputOption.HasFlag(GridOutputOptions.DotPlaceholder) ? '.' : '0';
 
 			return formatter;
@@ -243,6 +254,10 @@ namespace Sudoku.Data
 				case "~":
 				{
 					return new GridFormatter(true) { Sukaku = true };
+				}
+				case "%":
+				{
+					return new GridFormatter(true) { Excel = true };
 				}
 				default:
 				{

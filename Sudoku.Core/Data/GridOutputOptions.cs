@@ -6,7 +6,7 @@ namespace Sudoku.Data
 	/// Provides a grid output option.
 	/// </summary>
 	[Flags]
-	public enum GridOutputOptions : byte
+	public enum GridOutputOptions : short
 	{
 		/// <summary>
 		/// Indicates the default settings (a single-line string text).
@@ -62,8 +62,18 @@ namespace Sudoku.Data
 		DotPlaceholder = 32,
 
 		/// <summary>
-		/// Indicates whether the output should be multi-line.
+		/// Indicates the output should be multi-line.
 		/// </summary>
 		Multiline = 64,
+
+		/// <summary>
+		/// Indicates the output will be sukaku format.
+		/// </summary>
+		Sukaku = 128,
+
+		/// <summary>
+		/// Indicates the output will be Excel format.
+		/// </summary>
+		Excel = 256,
 	}
 }

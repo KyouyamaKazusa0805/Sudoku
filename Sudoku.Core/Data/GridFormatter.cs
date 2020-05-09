@@ -42,8 +42,38 @@ namespace Sudoku.Data
 			return Multiline
 				? WithCandidates
 					? ToMultiLineStringCore(grid)
-					: Sukaku ? ToSukakuString(grid) : ToMultiLineSimpleGridCore(grid)
+					: Sukaku
+						? ToSukakuString(grid)
+						: Excel ? ToExcelString(grid) : ToMultiLineSimpleGridCore(grid)
 				: HodokuCompatible ? ToHodokuLibraryFormatString(grid) : ToSingleLineStringCore(grid);
+		}
+
+		/// <summary>
+		/// To Excel format string.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <returns>The string.</returns>
+		private string ToExcelString(Grid grid)
+		{
+			var span = grid.ToString("0").AsSpan();
+			var sb = new StringBuilder();
+			for (int i = 0; i < 9; i++)
+			{
+				for (int j = 0; j < 9; j++)
+				{
+					int digit = span[i * 9 + j] - '0';
+					if (digit != 0)
+					{
+						sb.Append(digit);
+					}
+
+					sb.Append('\t');
+				}
+
+				sb.RemoveFromEnd(1).AppendLine();
+			}
+
+			return sb.ToString();
 		}
 
 		/// <summary>

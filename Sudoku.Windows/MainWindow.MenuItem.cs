@@ -333,6 +333,8 @@ namespace Sudoku.Windows
 
 		private void MenuItemEditCopyAsSukaku_Click(object sender, RoutedEventArgs e) => InternalCopy("~");
 
+		private void MenuItemEditCopyAsExcel_Click(object sender, RoutedEventArgs e) => InternalCopy("%");
+
 		private void MenuItemEditPaste_Click(object sender, RoutedEventArgs e)
 		{
 			string puzzleStr = Clipboard.GetText();
