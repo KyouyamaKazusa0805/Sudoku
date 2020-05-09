@@ -156,40 +156,16 @@ namespace Sudoku.Windows
 		/// To handle the color settings.
 		/// </summary>
 		/// <param name="sender">The object to trigger the event.</param>
-		/// <param name="e">The event.</param>
 		/// <param name="settings">The setting target instance.</param>
 		/// <param name="colorIndex">The index.</param>
-		private void HandleColor(object sender, RoutedEventArgs e, Settings settings, int colorIndex)
+		private void HandleColor(object sender, Settings settings, int colorIndex)
 		{
-			if (!(sender is Button button))
+			if (sender is Button button && ColorPicker.ShowDialog(out var color) && !(color is null))
 			{
-				e.Handled = true;
-				return;
+				var target = color.Value.ToDColor();
+				typeof(Settings).GetProperty($"Color{colorIndex}")!.SetValue(settings, target);
+				button.Background = new SolidColorBrush(target.ToWColor());
 			}
-
-			ColorPicker.ShowDialog(out var color);
-			if (color is null)
-			{
-				e.Handled = true;
-				return;
-			}
-
-			var target = color.Value.ToDColor();
-			typeof(Settings).GetProperty($"Color{colorIndex}")!.SetValue(settings, target);
-			button.Background = new SolidColorBrush(target.ToWColor());
-
-			#region Obsolete code
-			//var dialog = new ColorDialog();
-			//
-			//if (!(sender is Button button) || !(dialog.ShowDialog() is true))
-			//{
-			//	e.Handled = true;
-			//	return;
-			//}
-			//
-			//typeof(Settings).GetProperty($"Color{colorIndex}")!.SetValue(settings, dialog.SelectedColor);
-			//button.Background = new SolidColorBrush(dialog.SelectedColor.ToWColor());
-			#endregion
 		}
 
 
@@ -224,19 +200,16 @@ namespace Sudoku.Windows
 
 		private void TextBoxMaxPetalsOfDeathBlossom_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			if (!(sender is TextBox textBox) || !int.TryParse(textBox.Text, out int value))
+			if (sender is TextBox textBox && int.TryParse(textBox.Text, out int value))
 			{
-				e.Handled = true;
-				return;
-			}
-
-			if (value >= 2 && value <= 9)
-			{
-				Settings.MaxPetalsOfDeathBlossom = _manualSolver.MaxPetalsOfDeathBlossom = value;
-			}
-			else
-			{
-				MessageBox.Show("The value is invalid.", "Info");
+				if (value >= 2 && value <= 9)
+				{
+					Settings.MaxPetalsOfDeathBlossom = _manualSolver.MaxPetalsOfDeathBlossom = value;
+				}
+				else
+				{
+					MessageBox.Show("The value is invalid.", "Info");
+				}
 			}
 		}
 
@@ -245,56 +218,32 @@ namespace Sudoku.Windows
 
 		private void TextBoxGridLineWidth_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			if (sender is TextBox textBox)
+			if (sender is TextBox textBox && float.TryParse(textBox.Text, out float value))
 			{
-				if (!float.TryParse(textBox.Text, out float value))
-				{
-					e.Handled = true;
-					return;
-				}
-
 				Settings.GridLineWidth = value;
 			}
 		}
 
 		private void TextBoxBlockLineWidth_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			if (sender is TextBox textBox)
+			if (sender is TextBox textBox && float.TryParse(textBox.Text, out float value))
 			{
-				if (!float.TryParse(textBox.Text, out float value))
-				{
-					e.Handled = true;
-					return;
-				}
-
 				Settings.BlockLineWidth = value;
 			}
 		}
 
 		private void TextBoxValueScale_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			if (sender is TextBox textBox)
+			if (sender is TextBox textBox && decimal.TryParse(textBox.Text, out decimal value))
 			{
-				if (!decimal.TryParse(textBox.Text, out decimal value))
-				{
-					e.Handled = true;
-					return;
-				}
-
 				Settings.ValueScale = value;
 			}
 		}
 
 		private void TextBoxCandidateScale_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			if (sender is TextBox textBox)
+			if (sender is TextBox textBox && decimal.TryParse(textBox.Text, out decimal value))
 			{
-				if (!decimal.TryParse(textBox.Text, out decimal value))
-				{
-					e.Handled = true;
-					return;
-				}
-
 				Settings.CandidateScale = value;
 			}
 		}
@@ -302,297 +251,160 @@ namespace Sudoku.Windows
 		private void ButtonGivenFontName_Click(object sender, RoutedEventArgs e)
 		{
 			var dialog = new FontDialog();
-			if (!(dialog.ShowDialog() is true))
+			if (dialog.ShowDialog() is true)
 			{
-				e.Handled = true;
-				return;
+				_labelGivenFontName.FontFamily = new FontFamily(
+					Settings.GivenFontName = dialog.SelectedFont.Name);
+				_labelGivenFontName.Content = dialog.SelectedFont.Name;
 			}
-
-			_labelGivenFontName.FontFamily = new FontFamily(
-				Settings.GivenFontName = dialog.SelectedFont.Name);
-			_labelGivenFontName.Content = dialog.SelectedFont.Name;
 		}
 
 		private void ButtonModifiableFontName_Click(object sender, RoutedEventArgs e)
 		{
 			var dialog = new FontDialog();
-			if (!(dialog.ShowDialog() is true))
+			if (dialog.ShowDialog() is true)
 			{
-				e.Handled = true;
-				return;
+				_labelModifiableFontName.FontFamily = new FontFamily(
+					Settings.ModifiableFontName = dialog.SelectedFont.Name);
+				_labelModifiableFontName.Content = dialog.SelectedFont.Name;
 			}
-
-			_labelModifiableFontName.FontFamily = new FontFamily(
-				Settings.ModifiableFontName = dialog.SelectedFont.Name);
-			_labelModifiableFontName.Content = dialog.SelectedFont.Name;
 		}
 
 		private void ButtonCandidateFontName_Click(object sender, RoutedEventArgs e)
 		{
 			var dialog = new FontDialog();
-			if (!(dialog.ShowDialog() is true))
+			if (dialog.ShowDialog() is true)
 			{
-				e.Handled = true;
-				return;
+				_labelCandidateFontName.FontFamily = new FontFamily(
+					Settings.CandidateFontName = dialog.SelectedFont.Name);
+				_labelCandidateFontName.Content = dialog.SelectedFont.Name;
 			}
-
-			_labelCandidateFontName.FontFamily = new FontFamily(
-				Settings.CandidateFontName = dialog.SelectedFont.Name);
-			_labelCandidateFontName.Content = dialog.SelectedFont.Name;
 		}
 
 		private void ButtonBackgroundColor_Click(object sender, RoutedEventArgs e)
 		{
-			ColorPicker.ShowDialog(out var color);
-			if (color is null)
+			if (ColorPicker.ShowDialog(out var color) && !(color is null))
 			{
-				e.Handled = true;
-				return;
+				var z = color.Value;
+				Settings.BackgroundColor = z.ToDColor();
+				_buttonBackgroundColor.Background = new SolidColorBrush(z);
 			}
-
-			var z = color.Value;
-			Settings.BackgroundColor = z.ToDColor();
-			_buttonBackgroundColor.Background = new SolidColorBrush(z);
-
-			#region Obsolete code
-			//var dialog = new ColorDialog();
-			//if (!(dialog.ShowDialog() is true))
-			//{
-			//	e.Handled = true;
-			//	return;
-			//}
-			//
-			//_buttonBackgroundColor.Background = new SolidColorBrush(
-			//	(Settings.BackgroundColor = dialog.SelectedColor).ToWColor());
-			#endregion
 		}
 
 		private void ButtonGivenColor_Click(object sender, RoutedEventArgs e)
 		{
-			ColorPicker.ShowDialog(out var color);
-			if (color is null)
+			if (ColorPicker.ShowDialog(out var color) && !(color is null))
 			{
-				e.Handled = true;
-				return;
+				var z = color.Value;
+				Settings.GivenColor = z.ToDColor();
+				_buttonGivenColor.Background = new SolidColorBrush(z);
 			}
-
-			var z = color.Value;
-			Settings.GivenColor = z.ToDColor();
-			_buttonGivenColor.Background = new SolidColorBrush(z);
-
-			#region Obsolete code
-			//var dialog = new ColorDialog();
-			//if (!(dialog.ShowDialog() is true))
-			//{
-			//	e.Handled = true;
-			//	return;
-			//}
-			//
-			//_buttonGivenColor.Background = new SolidColorBrush(
-			//	(Settings.GivenColor = dialog.SelectedColor).ToWColor());
-			#endregion
 		}
 
 		private void ButtonModifiableColor_Click(object sender, RoutedEventArgs e)
 		{
-			ColorPicker.ShowDialog(out var color);
-			if (color is null)
+			if (ColorPicker.ShowDialog(out var color) && !(color is null))
 			{
-				e.Handled = true;
-				return;
+				var z = color.Value;
+				Settings.ModifiableColor = z.ToDColor();
+				_buttonModifiableColor.Background = new SolidColorBrush(z);
 			}
-
-			var z = color.Value;
-			Settings.ModifiableColor = z.ToDColor();
-			_buttonModifiableColor.Background = new SolidColorBrush(z);
-
-			#region Obsolete code
-			//var dialog = new ColorDialog();
-			//if (!(dialog.ShowDialog() is true))
-			//{
-			//	e.Handled = true;
-			//	return;
-			//}
-			//
-			//_buttonModifiableColor.Background = new SolidColorBrush(
-			//	(Settings.ModifiableColor = dialog.SelectedColor).ToWColor());
-			#endregion
 		}
 
 		private void ButtonCandidateColor_Click(object sender, RoutedEventArgs e)
 		{
-			ColorPicker.ShowDialog(out var color);
-			if (color is null)
+			if (ColorPicker.ShowDialog(out var color) && !(color is null))
 			{
-				e.Handled = true;
-				return;
+				var z = color.Value;
+				Settings.CandidateColor = z.ToDColor();
+				_buttonCandidateColor.Background = new SolidColorBrush(z);
 			}
-
-			var z = color.Value;
-			Settings.CandidateColor = z.ToDColor();
-			_buttonCandidateColor.Background = new SolidColorBrush(z);
-
-			#region Obsolete code
-			//var dialog = new ColorDialog();
-			//if (!(dialog.ShowDialog() is true))
-			//{
-			//	e.Handled = true;
-			//	return;
-			//}
-			//
-			//_buttonCandidateColor.Background = new SolidColorBrush(
-			//	(Settings.CandidateColor = dialog.SelectedColor).ToWColor());
-			#endregion
 		}
 
 		private void ButtonFocusColor_Click(object sender, RoutedEventArgs e)
 		{
-			ColorPicker.ShowDialog(out var color);
-			if (color is null)
+			if (ColorPicker.ShowDialog(out var color) && !(color is null))
 			{
-				e.Handled = true;
-				return;
+				var z = color.Value;
+				Settings.FocusedCellColor = z.ToDColor();
+				_buttonFocusColor.Background = new SolidColorBrush(z);
 			}
-
-			var z = color.Value;
-			Settings.FocusedCellColor = z.ToDColor();
-			_buttonFocusColor.Background = new SolidColorBrush(z);
-
-			#region Obsolete code
-			//var dialog = new ColorDialog();
-			//if (!(dialog.ShowDialog() is true))
-			//{
-			//	e.Handled = true;
-			//	return;
-			//}
-			//
-			//_buttonFocusColor.Background = new SolidColorBrush(
-			//	(Settings.FocusedCellColor = dialog.SelectedColor).ToWColor());
-			#endregion
 		}
 
 		private void ButtonGridLineColor_Click(object sender, RoutedEventArgs e)
 		{
-			ColorPicker.ShowDialog(out var color);
-			if (color is null)
+			if (ColorPicker.ShowDialog(out var color) && !(color is null))
 			{
-				e.Handled = true;
-				return;
+				var z = color.Value;
+				Settings.GridLineColor = z.ToDColor();
+				_buttonGridLineColor.Background = new SolidColorBrush(z);
 			}
-
-			var z = color.Value;
-			Settings.GridLineColor = z.ToDColor();
-			_buttonGridLineColor.Background = new SolidColorBrush(z);
-
-			#region Obsolete code
-			//var dialog = new ColorDialog();
-			//if (!(dialog.ShowDialog() is true))
-			//{
-			//	e.Handled = true;
-			//	return;
-			//}
-			//
-			//_buttonGridLineColor.Background = new SolidColorBrush(
-			//	(Settings.GridLineColor = dialog.SelectedColor).ToWColor());
-			#endregion
 		}
 
 		private void ButtonBlockLineColor_Click(object sender, RoutedEventArgs e)
 		{
-			ColorPicker.ShowDialog(out var color);
-			if (color is null)
+			if (ColorPicker.ShowDialog(out var color) && !(color is null))
 			{
-				e.Handled = true;
-				return;
+				var z = color.Value;
+				Settings.BlockLineColor = z.ToDColor();
+				_buttonBlockLineColor.Background = new SolidColorBrush(z);
 			}
-
-			var z = color.Value;
-			Settings.BlockLineColor = z.ToDColor();
-			_buttonBlockLineColor.Background = new SolidColorBrush(z);
-
-			#region Obsolete code
-			//var dialog = new ColorDialog();
-			//if (!(dialog.ShowDialog() is true))
-			//{
-			//	e.Handled = true;
-			//	return;
-			//}
-			//
-			//_buttonBlockLineColor.Background = new SolidColorBrush(
-			//	(Settings.BlockLineColor = dialog.SelectedColor).ToWColor());
-			#endregion
 		}
 
 		private void ButtonChainColor_Click(object sender, RoutedEventArgs e)
 		{
-			ColorPicker.ShowDialog(out var color);
-			if (color is null)
+			if (ColorPicker.ShowDialog(out var color) && !(color is null))
 			{
-				e.Handled = true;
-				return;
+				var z = color.Value;
+				Settings.ChainColor = z.ToDColor();
+				_buttonChainColor.Background = new SolidColorBrush(z);
 			}
-
-			var z = color.Value;
-			Settings.ChainColor = z.ToDColor();
-			_buttonChainColor.Background = new SolidColorBrush(z);
-
-			#region Obsolete code
-			//var dialog = new ColorDialog();
-			//if (!(dialog.ShowDialog() is true))
-			//{
-			//	e.Handled = true;
-			//	return;
-			//}
-			//
-			//_buttonChainColor.Background = new SolidColorBrush(
-			//	(Settings.ChainColor = dialog.SelectedColor).ToWColor());
-			#endregion
 		}
 
 		private void ButtonColor1_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, e, Settings, 1);
+			HandleColor(sender, Settings, 1);
 
 		private void ButtonColor2_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, e, Settings, 2);
+			HandleColor(sender, Settings, 2);
 
 		private void ButtonColor3_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, e, Settings, 3);
+			HandleColor(sender, Settings, 3);
 
 		private void ButtonColor4_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, e, Settings, 4);
+			HandleColor(sender, Settings, 4);
 
 		private void ButtonColor5_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, e, Settings, 5);
+			HandleColor(sender, Settings, 5);
 
 		private void ButtonColor6_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, e, Settings, 6);
+			HandleColor(sender, Settings, 6);
 
 		private void ButtonColor7_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, e, Settings, 7);
+			HandleColor(sender, Settings, 7);
 
 		private void ButtonColor8_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, e, Settings, 8);
+			HandleColor(sender, Settings, 8);
 
 		private void ButtonColor9_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, e, Settings, 9);
+			HandleColor(sender, Settings, 9);
 
 		private void ButtonColor10_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, e, Settings, 10);
+			HandleColor(sender, Settings, 10);
 
 		private void ButtonColor11_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, e, Settings, 11);
+			HandleColor(sender, Settings, 11);
 
 		private void ButtonColor12_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, e, Settings, 12);
+			HandleColor(sender, Settings, 12);
 
 		private void ButtonColor13_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, e, Settings, 13);
+			HandleColor(sender, Settings, 13);
 
 		private void ButtonColor14_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, e, Settings, 14);
+			HandleColor(sender, Settings, 14);
 
 		private void ButtonColor15_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, e, Settings, 15);
+			HandleColor(sender, Settings, 15);
 
 		private void TextBoxMaxLength_TextChanged(object sender, TextChangedEventArgs e)
 		{

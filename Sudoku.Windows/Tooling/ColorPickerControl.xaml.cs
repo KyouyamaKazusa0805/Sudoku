@@ -9,39 +9,127 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Sudoku.Drawing.Extensions;
+using Sudoku.Extensions;
 using WColor = System.Windows.Media.Color;
 using WPoint = System.Windows.Point;
 
 namespace Sudoku.Windows.Tooling
 {
-	public delegate void ColorPickerChangedEventHandler(WColor color);
+	public delegate void PickingColorEventHandler(WColor color);
 
 	/// <summary>
 	/// Interaction logic for <c>ColorPickerControl.xaml</c>.
 	/// </summary>
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-	public partial class ColorPickerControl : UserControl
+	public sealed partial class ColorPickerControl : UserControl
 	{
-		protected const int NumColorsFirstSwatch = 39;
+		/// <summary>
+		/// The number of first-line swatches.
+		/// </summary>
+		private const int NumColorsFirstSwatch = 39;
 
-		protected const int NumColorsSecondSwatch = 112;
+		/// <summary>
+		/// The number of second-line swatches.
+		/// </summary>
+		private const int NumColorsSecondSwatch = 112;
 
+
+		/// <summary>
+		/// The color palette.
+		/// </summary>
+		private static ColorPalette? _colorPalette;
 
 		/// <summary>
 		/// The color swatch 1.
 		/// </summary>
-		internal List<ColorSwatchItem> _colorSwatch1 = new List<ColorSwatchItem>();
+		private readonly ICollection<ColorSwatchItem> _colorSwatch1 = new List<ColorSwatchItem>();
 
 		/// <summary>
 		/// The color swatch 2.
 		/// </summary>
-		internal List<ColorSwatchItem> _colorSwatch2 = new List<ColorSwatchItem>();
+		private readonly ICollection<ColorSwatchItem> _colorSwatch2 = new List<ColorSwatchItem>();
+
+		/// <summary>
+		/// Indicates whether the program is modifying the value now.
+		/// </summary>
+		private bool _isSettingValues = false;
 
 
 		/// <include file='../../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
-		public ColorPickerControl()
+		public ColorPickerControl() => InitializeComponent();
+
+
+		/// <summary>
+		/// Indicates the selected color.
+		/// </summary>
+		public WColor? Color { get; set; }
+
+
+		/// <summary>
+		/// The event triggering while picking colors.
+		/// </summary>
+		public event PickingColorEventHandler? PickingColor;
+
+
+		public void SaveCustomPalette(string filename)
 		{
-			InitializeComponent();
+			if (_colorPalette is null)
+			{
+				throw new Exception("Color palette is current null.");
+			}
+
+			_colorPalette.CustomColors = _customColorSwatch.GetColors();
+			try
+			{
+				_colorPalette.SaveToXml(filename);
+			}
+			catch { }
+		}
+
+		public void LoadDefaultCustomPalette()
+		{
+			LoadCustomPalette(
+				Path.Combine(ColorPickerSettings.CustomColorsDirectory, ColorPickerSettings.CustomColorsFilename));
+		}
+
+		public void LoadCustomPalette(string filename)
+		{
+			if (_colorPalette is null)
+			{
+				throw new Exception("Color palette is current null.");
+			}
+
+			if (File.Exists(filename))
+			{
+				try
+				{
+					_colorPalette = _colorPalette.LoadFromXml(filename);
+
+					_customColorSwatch.SwatchListBox.ItemsSource = _colorPalette!.CustomColors;
+
+					_colorSwatch1.Clear();
+					_colorSwatch2.Clear();
+					_colorSwatch1.AddRange(_colorPalette.BuiltInColors.Take(NumColorsFirstSwatch));
+					_colorSwatch2.AddRange(
+						_colorPalette.BuiltInColors.Skip(NumColorsFirstSwatch).Take(NumColorsSecondSwatch));
+					_swatch1.SwatchListBox.ItemsSource = _colorSwatch1;
+					_swatch2.SwatchListBox.ItemsSource = _colorSwatch2;
+				}
+				catch { }
+			}
+		}
+
+		internal void CustomColorsChanged()
+		{
+			if (ColorPickerSettings.UsingCustomPalette)
+			{
+				SaveCustomPalette(ColorPickerSettings.CustomPaletteFilename);
+			}
+		}
+
+		protected override void OnInitialized(EventArgs e)
+		{
+			base.OnInitialized(e);
 
 			Swatch.ColorPickerControl = this;
 
@@ -50,28 +138,26 @@ namespace Sudoku.Windows.Tooling
 			{
 				try
 				{
-					ColorPalette = ColorPalette.LoadFromXml(ColorPickerSettings.CustomPaletteFilename);
+					_colorPalette = _colorPalette.LoadFromXml(ColorPickerSettings.CustomPaletteFilename);
 				}
-				catch
-				{
-				}
+				catch { }
 			}
 
-			if (ColorPalette is null)
+			if (_colorPalette is null)
 			{
-				ColorPalette = new ColorPalette();
-				ColorPalette.InitializeDefaults();
+				_colorPalette = new ColorPalette();
+				_colorPalette.InitializeDefaults();
 			}
 
-			_colorSwatch1.AddRange(ColorPalette.BuiltInColors.Take(NumColorsFirstSwatch));
-			_colorSwatch2.AddRange(ColorPalette.BuiltInColors.Skip(NumColorsFirstSwatch).Take(NumColorsSecondSwatch));
+			_colorSwatch1.AddRange(_colorPalette.BuiltInColors.Take(NumColorsFirstSwatch));
+			_colorSwatch2.AddRange(_colorPalette.BuiltInColors.Skip(NumColorsFirstSwatch).Take(NumColorsSecondSwatch));
 
 			_swatch1.SwatchListBox.ItemsSource = _colorSwatch1;
 			_swatch2.SwatchListBox.ItemsSource = _colorSwatch2;
 
 			if (ColorPickerSettings.UsingCustomPalette)
 			{
-				_customColorSwatch.SwatchListBox.ItemsSource = ColorPalette.CustomColors;
+				_customColorSwatch.SwatchListBox.ItemsSource = _colorPalette.CustomColors;
 			}
 			else
 			{
@@ -110,22 +196,11 @@ namespace Sudoku.Windows.Tooling
 			SetColor(Color);
 		}
 
-		public bool IsSettingValues { get; set; } = false;
-
 		/// <summary>
-		/// Indicates the selected color.
+		/// Set the current color.
 		/// </summary>
-		public WColor? Color { get; set; }
-
-
-		public event ColorPickerChangedEventHandler? PickingColor;
-
-
-
-		internal static ColorPalette? ColorPalette;
-
-
-		public void SetColor(WColor? color)
+		/// <param name="color">The color.</param>
+		private void SetColor(WColor? color)
 		{
 			color ??= default;
 
@@ -134,32 +209,23 @@ namespace Sudoku.Windows.Tooling
 
 			_customColorSwatch.CurrentColor = z;
 
-			IsSettingValues = true;
+			_isSettingValues = true;
 
 			_rSlider._slider.Value = z.R;
 			_gSlider._slider.Value = z.G;
 			_bSlider._slider.Value = z.B;
 			_aSlider._slider.Value = z.A;
-
 			_sSlider._slider.Value = z.GetSaturation();
 			_lSlider._slider.Value = z.GetBrightness();
 			_hSlider._slider.Value = z.GetHue();
 
 			_colorDisplayBorder.Background = new SolidColorBrush(z);
 
-			IsSettingValues = false;
+			_isSettingValues = false;
 			PickingColor?.Invoke(z);
 		}
 
-		internal void CustomColorsChanged()
-		{
-			if (ColorPickerSettings.UsingCustomPalette)
-			{
-				SaveCustomPalette(ColorPickerSettings.CustomPaletteFilename);
-			}
-		}
-
-		protected void SampleImageClick(BitmapSource img, WPoint pos)
+		private void SampleImageClick(BitmapSource img, WPoint pos)
 		{
 			int stride = (int)img.Width * 4;
 			byte[] pixels = new byte[((int)img.Height * stride)];
@@ -183,7 +249,8 @@ namespace Sudoku.Windows.Tooling
 			var pos = e.GetPosition(_sampleImage);
 			var img = (BitmapSource)_sampleImage.Source;
 
-			if (pos.X > 0 && pos.Y > 0 && pos.X < img.PixelWidth && pos.Y < img.PixelHeight)
+			var (x, y) = pos;
+			if (x > 0 && y > 0 && x < img.PixelWidth && y < img.PixelHeight)
 			{
 				SampleImageClick(img, pos);
 			}
@@ -197,18 +264,14 @@ namespace Sudoku.Windows.Tooling
 			MouseUp -= ColorPickerControl_MouseUp;
 		}
 
-		private void SampleImage2_MouseDown(object sender, MouseButtonEventArgs e)
-		{
-			var pos = e.GetPosition(_sampleImage2);
-			var img = (BitmapSource)_sampleImage2.Source;
-			SampleImageClick(img, pos);
-		}
+		private void SampleImage2_MouseDown(object sender, MouseButtonEventArgs e) =>
+			SampleImageClick((BitmapSource)_sampleImage2.Source, e.GetPosition(_sampleImage2));
 
 		private void Swatch_PickColor(WColor color) => SetColor(color);
 
 		private void RSlider_ValueChanged(double value)
 		{
-			if (!IsSettingValues)
+			if (!_isSettingValues)
 			{
 				var (a, _, g, b) = Color.GetValueOrDefault(); 
 				SetColor(WColor.FromArgb(a, (byte)value, g, b));
@@ -217,7 +280,7 @@ namespace Sudoku.Windows.Tooling
 
 		private void GSlider_ValueChanged(double value)
 		{
-			if (!IsSettingValues)
+			if (!_isSettingValues)
 			{
 				var (a, r, _, b) = Color.GetValueOrDefault();
 				SetColor(WColor.FromArgb(a, r, (byte)value, b));
@@ -226,7 +289,7 @@ namespace Sudoku.Windows.Tooling
 
 		private void BSlider_ValueChanged(double value)
 		{
-			if (!IsSettingValues)
+			if (!_isSettingValues)
 			{
 				var (a, r, g, _) = Color.GetValueOrDefault();
 				SetColor(WColor.FromArgb(a, r, g, (byte)value));
@@ -235,7 +298,7 @@ namespace Sudoku.Windows.Tooling
 
 		private void ASlider_ValueChanged(double value)
 		{
-			if (!IsSettingValues)
+			if (!_isSettingValues)
 			{
 				var (_, r, g, b) = Color.GetValueOrDefault();
 				SetColor(WColor.FromArgb((byte)value, r, g, b));
@@ -244,14 +307,9 @@ namespace Sudoku.Windows.Tooling
 
 		private void HSlider_ValueChanged(double value)
 		{
-			if (Color is null)
+			if (!_isSettingValues)
 			{
-				return;
-			}
-
-			if (!IsSettingValues)
-			{
-				var z = Color.Value;
+				var z = Color.GetValueOrDefault();
 				SetColor(
 					Util.FromAhsb((int)_aSlider._slider.Value, (float)value, z.GetSaturation(), z.GetBrightness()));
 			}
@@ -259,28 +317,18 @@ namespace Sudoku.Windows.Tooling
 
 		private void SSlider_ValueChanged(double value)
 		{
-			if (Color is null)
+			if (!_isSettingValues)
 			{
-				return;
-			}
-
-			if (!IsSettingValues)
-			{
-				var z = Color.Value;
+				var z = Color.GetValueOrDefault();
 				SetColor(Color = Util.FromAhsb((int)_aSlider._slider.Value, z.GetHue(), (float)value, z.GetBrightness()));
 			}
 		}
 
 		private void LSlider_ValueChanged(double value)
 		{
-			if (Color is null)
+			if (!_isSettingValues)
 			{
-				return;
-			}
-
-			if (!IsSettingValues)
-			{
-				var z = Color.Value;
+				var z = Color.GetValueOrDefault();
 				SetColor(
 					Color = Util.FromAhsb((int)_aSlider._slider.Value, z.GetHue(), z.GetSaturation(), (float)value));
 			}
@@ -292,101 +340,34 @@ namespace Sudoku.Windows.Tooling
 
 		private void UpdateImageForHSV()
 		{
-			//var hueChange = (int)((PickerHueSlider.Value / 360D) * 240);
-			float sliderHue = (float)_pickerHueSlider.Value;
-
-			//var colorPickerImage = Path.Combine(Environment.CurrentDirectory, @"/Resources/ColorPalette.png");
 			var img =
 				new BitmapImage(
 					new Uri(
 						"pack://application:,,,/Sudoku.Windows;component/Resources/ColorSample.png",
 						UriKind.RelativeOrAbsolute));
+			float sliderHue = (float)_pickerHueSlider.Value;
 			if (sliderHue <= 0 || sliderHue >= 360F)
 			{
-				// No hue change just return
+				// No hue change just return.
 				_sampleImage2.Source = img;
 				return;
 			}
 
 			var writableImage = BitmapFactory.ConvertToPbgra32Format(img);
-			using (var context = writableImage.GetBitmapContext())
+			using var context = writableImage.GetBitmapContext();
+			for (int x = 0; x < img.PixelWidth; x++)
 			{
-				long numPixels = img.PixelWidth * img.PixelHeight;
-
-				for (int x = 0; x < img.PixelWidth; x++)
+				for (int y = 0; y < img.PixelHeight; y++)
 				{
-					for (int y = 0; y < img.PixelHeight; y++)
-					{
-						var pixel = writableImage.GetPixel(x, y);
-
-						float newHue = sliderHue + pixel.GetHue();
-						if (newHue >= 360)
-						{
-							newHue -= 360;
-						}
-
-						var color = Util.FromAhsb(255, newHue, pixel.GetSaturation(), pixel.GetBrightness());
-
-						writableImage.SetPixel(x, y, color);
-					}
+					var pixel = writableImage.GetPixel(x, y);
+					float newHue = sliderHue + pixel.GetHue();
+					newHue = newHue >= 360 ? newHue - 360 : newHue;
+					writableImage.SetPixel(
+						x, y, Util.FromAhsb(255, newHue, pixel.GetSaturation(), pixel.GetBrightness()));
 				}
 			}
 
 			_sampleImage2.Source = writableImage;
-		}
-
-		public void SaveCustomPalette(string filename)
-		{
-			if (ColorPalette is null)
-			{
-				throw new Exception("Color palette is current null.");
-			}
-
-			var colors = _customColorSwatch.GetColors();
-			ColorPalette.CustomColors = colors;
-
-			try
-			{
-				ColorPalette.SaveToXml(filename);
-			}
-			catch
-			{
-			}
-		}
-
-		public void LoadCustomPalette(string filename)
-		{
-			if (ColorPalette is null)
-			{
-				throw new Exception("Color palette is current null.");
-			}
-
-			if (File.Exists(filename))
-			{
-				try
-				{
-					ColorPalette = ColorPalette.LoadFromXml(filename);
-
-					_customColorSwatch.SwatchListBox.ItemsSource = ColorPalette!.CustomColors;
-
-					_colorSwatch1.Clear();
-					_colorSwatch2.Clear();
-					_colorSwatch1.AddRange(ColorPalette.BuiltInColors.Take(NumColorsFirstSwatch));
-					_colorSwatch2.AddRange(
-						ColorPalette.BuiltInColors.Skip(NumColorsFirstSwatch).Take(NumColorsSecondSwatch));
-					_swatch1.SwatchListBox.ItemsSource = _colorSwatch1;
-					_swatch2.SwatchListBox.ItemsSource = _colorSwatch2;
-				}
-				catch
-				{
-				}
-			}
-		}
-
-		public void LoadDefaultCustomPalette()
-		{
-			LoadCustomPalette(
-				Path.Combine(ColorPickerSettings.CustomColorsDirectory, ColorPickerSettings.CustomColorsFilename));
 		}
 	}
 }

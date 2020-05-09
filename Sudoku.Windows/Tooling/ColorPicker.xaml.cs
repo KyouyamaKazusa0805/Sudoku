@@ -90,7 +90,7 @@ namespace Sudoku.Windows.Tooling
 		/// </returns>
 		public static bool ShowDialog(
 			[NotNullWhen(true)] out Color? color, ColorPickerOptions flags = None,
-			ColorPickerChangedEventHandler? customPreviewEventHandler = null)
+			PickingColorEventHandler? customPreviewEventHandler = null)
 		{
 			if ((flags & LoadCustomPalette) == LoadCustomPalette)
 			{
