@@ -62,5 +62,11 @@
 				Extended WPF controls (Xceed)
 			</Hyperlink>
 		</TextBlock>
+		<Label Grid.Row="6" Grid.Column="0" Content="6."/>
+		<TextBlock Grid.Row="6" Grid.Column="1">
+			<Hyperlink NavigateUri="https://github.com/drogoganor/ColorPickerWPF" Click="Hyperlink_Click">
+				Color Picker WPF
+			</Hyperlink>
+		</TextBlock>
 	</Grid>
 </Window>
