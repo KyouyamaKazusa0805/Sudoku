@@ -15,12 +15,8 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<Optimize>false</Optimize>
-		<DefineConstants>DEBUG;SUDOKU_RECOGNIZING</DefineConstants>
+		<DefineConstants>DEBUG;SUDOKU_RECOGNIZING; TARGET_64BIT</DefineConstants>
 	</PropertyGroup>
-
-	<ItemGroup>
-	  <PackageReference Include="Extended.Wpf.Toolkit" Version="3.8.1" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
