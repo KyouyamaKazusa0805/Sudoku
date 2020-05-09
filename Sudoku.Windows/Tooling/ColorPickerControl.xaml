@@ -16,7 +16,7 @@
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<Grid>
-			<TabControl Name="TabControl" Margin="0,0,0,0" HorizontalAlignment="Stretch"
+			<TabControl Name="_tabControl" Margin="0,0,0,0" HorizontalAlignment="Stretch"
 						VerticalAlignment="Stretch">
 				<TabItem Header="Picker 1">
 					<Grid>
@@ -33,8 +33,8 @@
 							   Source="pack://application:,,,/Sudoku.Windows;component/Resources/ColorSample.png"
 							   HorizontalAlignment="Left" Margin="2" VerticalAlignment="Top"
 							   Width="254" Height="254"
-							   MouseDown="SampleImage2_OnMouseDown"/>
-						<Label Name="label" Content="Hue" HorizontalAlignment="Left" Margin="261,2,0,0"
+							   MouseDown="SampleImage2_MouseDown"/>
+						<Label Name="_label" Content="Hue" HorizontalAlignment="Left" Margin="261,2,0,0"
 							   VerticalAlignment="Top"/>
 						<Slider Name="_pickerHueSlider" HorizontalAlignment="Left" Margin="268,33,0,0"
 								VerticalAlignment="Top" Orientation="Vertical" Height="199" Maximum="360"
@@ -46,7 +46,7 @@
 		</Grid>
 
 		<Grid Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-			<Label Name="rgbLabel" Content="Red, Green, Blue, Alpha" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+			<Label Name="_rgbLabel" Content="Red, Green, Blue, Alpha" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 			<c:ColorComponentSlider x:Name="_rSlider" HorizontalAlignment="Stretch" Margin="0,26,0,0"
 									VerticalAlignment="Top" FormatString="F0"
 									ValueChanged="RSlider_ValueChanged"/>
@@ -60,7 +60,7 @@
 									VerticalAlignment="Top" FormatString="F0"
 									ValueChanged="ASlider_ValueChanged"/>
 
-			<Label Name="hsvLabel" Content="Hue, Saturation, Value" HorizontalAlignment="Left" Margin="0,143,0,0" VerticalAlignment="Top"/>
+			<Label Name="_hsvLabel" Content="Hue, Saturation, Value" HorizontalAlignment="Left" Margin="0,143,0,0" VerticalAlignment="Top"/>
 			<c:ColorComponentSlider x:Name="_hSlider" HorizontalAlignment="Stretch" Margin="0,169,0,0"
 									VerticalAlignment="Top" FormatString="F0"
 									ValueChanged="HSlider_ValueChanged"/>
@@ -83,14 +83,14 @@
 				<RowDefinition Height="Auto"/>
 			</Grid.RowDefinitions>
 			<Grid Grid.Row="0">
-				<Border Name="ColorDisplayBorder" HorizontalAlignment="Left" VerticalAlignment="Top"
+				<Border Name="_colorDisplayBorder" HorizontalAlignment="Left" VerticalAlignment="Top"
 						BorderBrush="Black" Background="White" BorderThickness="2"
 						Width="58" Height="58"/>
-				<c:Swatch x:Name="Swatch1" HorizontalAlignment="Left" Height="60" Margin="60,0,0,0"
+				<c:Swatch x:Name="_swatch1" HorizontalAlignment="Left" Height="60" Margin="60,0,0,0"
 						  VerticalAlignment="Top" Width="260"
 						  PickingColor="Swatch_PickColor"/>
 			</Grid>
-			<c:Swatch x:Name="Swatch2" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="1"
+			<c:Swatch x:Name="_swatch2" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="1"
 					  VerticalAlignment="Stretch"
 					  PickingColor="Swatch_PickColor"/>
 		</Grid>
