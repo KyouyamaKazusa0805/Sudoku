@@ -451,6 +451,79 @@
             </param>
             <returns>The solution count of the puzzle.</returns>
         </member>
+        <member name="T:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver">
+            <summary>
+            Provides a sukaku solver using bitwise method.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.SolverName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.CheckValidity(Sudoku.Data.IReadOnlyGrid,System.String@)">
+            <summary>
+            Check the validity of the puzzle.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="solutionIfUnique">
+            (<see langword="out"/> parameter) The solution.
+            </param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.CheckValidity(System.String,System.String@)">
+            <summary>
+            Check the validity of the puzzle.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="solutionIfUnique">
+            (<see langword="out"/> parameter) The solution.
+            </param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.Solve(System.String,System.Text.StringBuilder,System.Int32)">
+            <summary>
+            The inner solver.
+            </summary>
+            <param name="puzzle">The puzzle.</param>
+            <param name="solution">
+            The solution. <see langword="null"/> if you does not want to use this result.
+            </param>
+            <param name="limit">The limit.</param>
+            <returns>The number of all solutions.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.ToBasicFormat(System.String)">
+            <summary>
+            To basic format.
+            </summary>
+            <param name="str">The grid string.</param>
+            <returns>The result string.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.Solve32(System.String,System.Text.StringBuilder,System.Int32)">
+            <summary>
+            The core function of solving the puzzle based on x86 platform.
+            </summary>
+            <param name="puzzle">The puzzle Susser format string.</param>
+            <param name="solution">The solution.</param>
+            <param name="limit">
+            The limit count in solving the puzzle.
+            You should pass the value by a positive integer at least 1.
+            </param>
+            <returns>The solution count of the puzzle.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.Solve64(System.String,System.Text.StringBuilder,System.Int32)">
+            <summary>
+            The core function of solving the puzzle based on x64 platform.
+            </summary>
+            <param name="puzzle">The puzzle Susser format string.</param>
+            <param name="solution">The solution.</param>
+            <param name="limit">
+            The limit count in solving the puzzle.
+            You should pass the value by a positive integer at least 1.
+            </param>
+            <returns>The solution count of the puzzle.</returns>
+        </member>
         <member name="T:Sudoku.Solving.BruteForces.Linqing.OneLineLinqSolver">
             <summary>
             Provides a solver using LINQ method.
@@ -606,6 +679,20 @@
             <param name="solutionIfValid">
             (<see langword="out"/> parameter) The solution if the puzzle is valid;
             otherwise, <see langword="null"/>.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.IReadOnlyGrid@,System.Nullable{System.Boolean}@)">
+            <summary>
+            To check if a puzzle has only one solution or not.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
+            <param name="solutionIfValid">
+            (<see langword="out"/> parameter) The solution if the puzzle is valid;
+            otherwise, <see langword="null"/>.
+            </param>
+            <param name="sukaku">
+            (<see langword="out"/> parameter) Indicates whether the current mode is sukaku mode.
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
@@ -1624,7 +1711,7 @@
             To preprocess and record all ALSes.
             </summary>
             <param name="grid">The grid.</param>
-            <param name="emptyCells">The empty cells.</param>
+            <param name="emptyMap">The map of all empty cells.</param>
             <returns>All ALSes.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo">
@@ -4601,7 +4688,7 @@
         <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean)">
             <summary>
             Solve the puzzle with <see cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/> option.
             </summary>
@@ -4609,12 +4696,13 @@
             <param name="cloneation">The cloneation grid to calculate.</param>
             <param name="steps">All steps found.</param>
             <param name="solution">The solution.</param>
+            <param name="sukaku">Indicates whether the current mode is sukaku mode.</param>
             <returns>The analysis result.</returns>
             <exception cref="T:Sudoku.WrongHandlingException">
             Throws when the solver cannot solved due to wrong handling.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean)">
             <summary>
             Solve naively.
             </summary>
@@ -4622,6 +4710,7 @@
             <param name="cloneation">The cloneation grid to calculate.</param>
             <param name="steps">All steps found.</param>
             <param name="solution">The solution.</param>
+            <param name="sukaku">Indicates whether the current mode is sukaku.</param>
             <returns>The analysis result.</returns>
             <exception cref="T:Sudoku.WrongHandlingException">
             Throws when the solver cannot solved due to wrong handling.
@@ -4639,8 +4728,8 @@
             <param name="stepGrids">The step grids.</param>
             <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)"/>
-            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)"/>
+            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean)"/>
+            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.CheckConclusionsValidity(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <summary>

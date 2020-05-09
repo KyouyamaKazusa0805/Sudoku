@@ -10,7 +10,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DocumentationFile>.\Sudoku\Sudoku.Solving\Sudoku.Solving.xml</DocumentationFile>
+		<DocumentationFile>.\Sudoku.Solving.xml</DocumentationFile>
 		<DefineConstants>DEBUG;TARGET_64BIT</DefineConstants>
 		<Optimize>false</Optimize>
 		<PlatformTarget>AnyCPU</PlatformTarget>
