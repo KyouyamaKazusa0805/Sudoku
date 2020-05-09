@@ -161,16 +161,35 @@ namespace Sudoku.Windows
 		/// <param name="colorIndex">The index.</param>
 		private void HandleColor(object sender, RoutedEventArgs e, Settings settings, int colorIndex)
 		{
-			var dialog = new ColorDialog();
-
-			if (!(sender is Button button) || !(dialog.ShowDialog() is true))
+			if (!(sender is Button button))
 			{
 				e.Handled = true;
 				return;
 			}
 
-			typeof(Settings).GetProperty($"Color{colorIndex}")!.SetValue(settings, dialog.SelectedColor);
-			button.Background = new SolidColorBrush(dialog.SelectedColor.ToWColor());
+			ColorPicker.ShowDialog(out var color);
+			if (color is null)
+			{
+				e.Handled = true;
+				return;
+			}
+
+			var target = color.Value.ToDColor();
+			typeof(Settings).GetProperty($"Color{colorIndex}")!.SetValue(settings, target);
+			button.Background = new SolidColorBrush(target.ToWColor());
+
+			#region Obsolete code
+			//var dialog = new ColorDialog();
+			//
+			//if (!(sender is Button button) || !(dialog.ShowDialog() is true))
+			//{
+			//	e.Handled = true;
+			//	return;
+			//}
+			//
+			//typeof(Settings).GetProperty($"Color{colorIndex}")!.SetValue(settings, dialog.SelectedColor);
+			//button.Background = new SolidColorBrush(dialog.SelectedColor.ToWColor());
+			#endregion
 		}
 
 
@@ -324,106 +343,210 @@ namespace Sudoku.Windows
 
 		private void ButtonBackgroundColor_Click(object sender, RoutedEventArgs e)
 		{
-			var dialog = new ColorDialog();
-			if (!(dialog.ShowDialog() is true))
+			ColorPicker.ShowDialog(out var color);
+			if (color is null)
 			{
 				e.Handled = true;
 				return;
 			}
 
-			_buttonBackgroundColor.Background = new SolidColorBrush(
-				(Settings.BackgroundColor = dialog.SelectedColor).ToWColor());
+			var z = color.Value;
+			Settings.BackgroundColor = z.ToDColor();
+			_buttonBackgroundColor.Background = new SolidColorBrush(z);
+
+			#region Obsolete code
+			//var dialog = new ColorDialog();
+			//if (!(dialog.ShowDialog() is true))
+			//{
+			//	e.Handled = true;
+			//	return;
+			//}
+			//
+			//_buttonBackgroundColor.Background = new SolidColorBrush(
+			//	(Settings.BackgroundColor = dialog.SelectedColor).ToWColor());
+			#endregion
 		}
 
 		private void ButtonGivenColor_Click(object sender, RoutedEventArgs e)
 		{
-			var dialog = new ColorDialog();
-			if (!(dialog.ShowDialog() is true))
+			ColorPicker.ShowDialog(out var color);
+			if (color is null)
 			{
 				e.Handled = true;
 				return;
 			}
 
-			_buttonGivenColor.Background = new SolidColorBrush(
-				(Settings.GivenColor = dialog.SelectedColor).ToWColor());
+			var z = color.Value;
+			Settings.GivenColor = z.ToDColor();
+			_buttonGivenColor.Background = new SolidColorBrush(z);
+
+			#region Obsolete code
+			//var dialog = new ColorDialog();
+			//if (!(dialog.ShowDialog() is true))
+			//{
+			//	e.Handled = true;
+			//	return;
+			//}
+			//
+			//_buttonGivenColor.Background = new SolidColorBrush(
+			//	(Settings.GivenColor = dialog.SelectedColor).ToWColor());
+			#endregion
 		}
 
 		private void ButtonModifiableColor_Click(object sender, RoutedEventArgs e)
 		{
-			var dialog = new ColorDialog();
-			if (!(dialog.ShowDialog() is true))
+			ColorPicker.ShowDialog(out var color);
+			if (color is null)
 			{
 				e.Handled = true;
 				return;
 			}
 
-			_buttonModifiableColor.Background = new SolidColorBrush(
-				(Settings.ModifiableColor = dialog.SelectedColor).ToWColor());
+			var z = color.Value;
+			Settings.ModifiableColor = z.ToDColor();
+			_buttonModifiableColor.Background = new SolidColorBrush(z);
+
+			#region Obsolete code
+			//var dialog = new ColorDialog();
+			//if (!(dialog.ShowDialog() is true))
+			//{
+			//	e.Handled = true;
+			//	return;
+			//}
+			//
+			//_buttonModifiableColor.Background = new SolidColorBrush(
+			//	(Settings.ModifiableColor = dialog.SelectedColor).ToWColor());
+			#endregion
 		}
 
 		private void ButtonCandidateColor_Click(object sender, RoutedEventArgs e)
 		{
-			var dialog = new ColorDialog();
-			if (!(dialog.ShowDialog() is true))
+			ColorPicker.ShowDialog(out var color);
+			if (color is null)
 			{
 				e.Handled = true;
 				return;
 			}
 
-			_buttonCandidateColor.Background = new SolidColorBrush(
-				(Settings.CandidateColor = dialog.SelectedColor).ToWColor());
+			var z = color.Value;
+			Settings.CandidateColor = z.ToDColor();
+			_buttonCandidateColor.Background = new SolidColorBrush(z);
+
+			#region Obsolete code
+			//var dialog = new ColorDialog();
+			//if (!(dialog.ShowDialog() is true))
+			//{
+			//	e.Handled = true;
+			//	return;
+			//}
+			//
+			//_buttonCandidateColor.Background = new SolidColorBrush(
+			//	(Settings.CandidateColor = dialog.SelectedColor).ToWColor());
+			#endregion
 		}
 
 		private void ButtonFocusColor_Click(object sender, RoutedEventArgs e)
 		{
-			var dialog = new ColorDialog();
-			if (!(dialog.ShowDialog() is true))
+			ColorPicker.ShowDialog(out var color);
+			if (color is null)
 			{
 				e.Handled = true;
 				return;
 			}
 
-			_buttonFocusColor.Background = new SolidColorBrush(
-				(Settings.FocusedCellColor = dialog.SelectedColor).ToWColor());
+			var z = color.Value;
+			Settings.FocusedCellColor = z.ToDColor();
+			_buttonFocusColor.Background = new SolidColorBrush(z);
+
+			#region Obsolete code
+			//var dialog = new ColorDialog();
+			//if (!(dialog.ShowDialog() is true))
+			//{
+			//	e.Handled = true;
+			//	return;
+			//}
+			//
+			//_buttonFocusColor.Background = new SolidColorBrush(
+			//	(Settings.FocusedCellColor = dialog.SelectedColor).ToWColor());
+			#endregion
 		}
 
 		private void ButtonGridLineColor_Click(object sender, RoutedEventArgs e)
 		{
-			var dialog = new ColorDialog();
-			if (!(dialog.ShowDialog() is true))
+			ColorPicker.ShowDialog(out var color);
+			if (color is null)
 			{
 				e.Handled = true;
 				return;
 			}
 
-			_buttonGridLineColor.Background = new SolidColorBrush(
-				(Settings.GridLineColor = dialog.SelectedColor).ToWColor());
+			var z = color.Value;
+			Settings.GridLineColor = z.ToDColor();
+			_buttonGridLineColor.Background = new SolidColorBrush(z);
+
+			#region Obsolete code
+			//var dialog = new ColorDialog();
+			//if (!(dialog.ShowDialog() is true))
+			//{
+			//	e.Handled = true;
+			//	return;
+			//}
+			//
+			//_buttonGridLineColor.Background = new SolidColorBrush(
+			//	(Settings.GridLineColor = dialog.SelectedColor).ToWColor());
+			#endregion
 		}
 
 		private void ButtonBlockLineColor_Click(object sender, RoutedEventArgs e)
 		{
-			var dialog = new ColorDialog();
-			if (!(dialog.ShowDialog() is true))
+			ColorPicker.ShowDialog(out var color);
+			if (color is null)
 			{
 				e.Handled = true;
 				return;
 			}
 
-			_buttonBlockLineColor.Background = new SolidColorBrush(
-				(Settings.BlockLineColor = dialog.SelectedColor).ToWColor());
+			var z = color.Value;
+			Settings.BlockLineColor = z.ToDColor();
+			_buttonBlockLineColor.Background = new SolidColorBrush(z);
+
+			#region Obsolete code
+			//var dialog = new ColorDialog();
+			//if (!(dialog.ShowDialog() is true))
+			//{
+			//	e.Handled = true;
+			//	return;
+			//}
+			//
+			//_buttonBlockLineColor.Background = new SolidColorBrush(
+			//	(Settings.BlockLineColor = dialog.SelectedColor).ToWColor());
+			#endregion
 		}
 
 		private void ButtonChainColor_Click(object sender, RoutedEventArgs e)
 		{
-			var dialog = new ColorDialog();
-			if (!(dialog.ShowDialog() is true))
+			ColorPicker.ShowDialog(out var color);
+			if (color is null)
 			{
 				e.Handled = true;
 				return;
 			}
 
-			_buttonChainColor.Background = new SolidColorBrush(
-				(Settings.ChainColor = dialog.SelectedColor).ToWColor());
+			var z = color.Value;
+			Settings.ChainColor = z.ToDColor();
+			_buttonChainColor.Background = new SolidColorBrush(z);
+
+			#region Obsolete code
+			//var dialog = new ColorDialog();
+			//if (!(dialog.ShowDialog() is true))
+			//{
+			//	e.Handled = true;
+			//	return;
+			//}
+			//
+			//_buttonChainColor.Background = new SolidColorBrush(
+			//	(Settings.ChainColor = dialog.SelectedColor).ToWColor());
+			#endregion
 		}
 
 		private void ButtonColor1_Click(object sender, RoutedEventArgs e) =>

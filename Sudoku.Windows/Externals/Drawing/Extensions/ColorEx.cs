@@ -12,6 +12,24 @@ namespace Sudoku.Drawing.Extensions
 	[DebuggerStepThrough]
 	public static class ColorEx
 	{
+		/// <include file='../../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <param name="this">(<see langword="this"/> parameter) The color.</param>
+		/// <param name="a">(<see langword="out"/> parameter) The alpha value.</param>
+		/// <param name="r">(<see langword="out"/> parameter) The red value.</param>
+		/// <param name="g">(<see langword="out"/> parameter) The green value.</param>
+		/// <param name="b">(<see langword="out"/> parameter) The blue value.</param>
+		public static void Deconstruct(this DColor @this, out int a, out int r, out int g, out int b) =>
+			(a, r, g, b) = (@this.A, @this.R, @this.G, @this.B);
+
+		/// <include file='../../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <param name="this">(<see langword="this"/> parameter) The color.</param>
+		/// <param name="a">(<see langword="out"/> parameter) The alpha value.</param>
+		/// <param name="r">(<see langword="out"/> parameter) The red value.</param>
+		/// <param name="g">(<see langword="out"/> parameter) The green value.</param>
+		/// <param name="b">(<see langword="out"/> parameter) The blue value.</param>
+		public static void Deconstruct(this WColor @this, out byte a, out byte r, out byte g, out byte b) =>
+			(a, r, g, b) = (@this.A, @this.R, @this.G, @this.B);
+
 		/// <summary>
 		/// Convert <see cref="WColor"/> to <see cref="DColor"/>.
 		/// </summary>

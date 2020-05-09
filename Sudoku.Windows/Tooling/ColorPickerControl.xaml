@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="Sudoku.Windows.Tooling.ColorPickerControl"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:c="clr-namespace:Sudoku.Windows.Tooling"
+			 mc:Ignorable="d"
+			 d:DesignWidth="560" d:DesignHeight="380" MinHeight="380">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="326"/>
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="286"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<Grid>
+			<TabControl Name="TabControl" Margin="0,0,0,0" HorizontalAlignment="Stretch"
+						VerticalAlignment="Stretch">
+				<TabItem Header="Picker 1">
+					<Grid>
+						<Image Name="_sampleImage"
+							   Source="pack://application:,,,/Sudoku.Windows;component/Resources/ColorPalette.png"
+							   HorizontalAlignment="Center" VerticalAlignment="Bottom"
+							   Width="320" Height="240"
+							   MouseDown="SampleImage_MouseDown"/>
+					</Grid>
+				</TabItem>
+				<TabItem Header="Picker 2">
+					<Grid>
+						<Image Name="_sampleImage2"
+							   Source="pack://application:,,,/Sudoku.Windows;component/Resources/ColorSample.png"
+							   HorizontalAlignment="Left" Margin="2" VerticalAlignment="Top"
+							   Width="254" Height="254"
+							   MouseDown="SampleImage2_OnMouseDown"/>
+						<Label Name="label" Content="Hue" HorizontalAlignment="Left" Margin="261,2,0,0"
+							   VerticalAlignment="Top"/>
+						<Slider Name="_pickerHueSlider" HorizontalAlignment="Left" Margin="268,33,0,0"
+								VerticalAlignment="Top" Orientation="Vertical" Height="199" Maximum="360"
+								SmallChange="1" Minimum="1" LargeChange="30"
+								ValueChanged="PickerHueSlider_OnValueChanged"/>
+					</Grid>
+				</TabItem>
+			</TabControl>
+		</Grid>
+
+		<Grid Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+			<Label Name="rgbLabel" Content="Red, Green, Blue, Alpha" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+			<c:ColorComponentSlider x:Name="_rSlider" HorizontalAlignment="Stretch" Margin="0,26,0,0"
+									VerticalAlignment="Top" FormatString="F0"
+									ValueChanged="RSlider_ValueChanged"/>
+			<c:ColorComponentSlider x:Name="_gSlider" HorizontalAlignment="Stretch" Margin="0,54,0,0"
+									VerticalAlignment="Top" FormatString="F0"
+									ValueChanged="GSlider_ValueChanged"/>
+			<c:ColorComponentSlider x:Name="_bSlider" HorizontalAlignment="Stretch" Margin="0,82,0,0"
+									VerticalAlignment="Top" FormatString="F0"
+									ValueChanged="BSlider_ValueChanged"/>
+			<c:ColorComponentSlider x:Name="_aSlider" HorizontalAlignment="Stretch" Margin="0,110,0,0"
+									VerticalAlignment="Top" FormatString="F0"
+									ValueChanged="ASlider_ValueChanged"/>
+
+			<Label Name="hsvLabel" Content="Hue, Saturation, Value" HorizontalAlignment="Left" Margin="0,143,0,0" VerticalAlignment="Top"/>
+			<c:ColorComponentSlider x:Name="_hSlider" HorizontalAlignment="Stretch" Margin="0,169,0,0"
+									VerticalAlignment="Top" FormatString="F0"
+									ValueChanged="HSlider_ValueChanged"/>
+			<c:ColorComponentSlider x:Name="_sSlider" HorizontalAlignment="Stretch" Margin="0,197,0,0"
+									VerticalAlignment="Top"
+									ValueChanged="SSlider_ValueChanged"/>
+			<c:ColorComponentSlider x:Name="_lSlider" HorizontalAlignment="Stretch" Margin="0,225,0,0"
+									VerticalAlignment="Top"
+									ValueChanged="LSlider_ValueChanged"/>
+			<c:Swatch x:Name="_customColorSwatch" HorizontalAlignment="Left" Margin="4,289,0,0"
+					  VerticalAlignment="Stretch" Width="230" Editable="true"
+					  PickingColor="Swatch_PickColor"/>
+			<Label Name="_customColorsLabel" Content="Custom Colors (Ctrl+Click to set)"
+				   HorizontalAlignment="Left" Margin="0,258,0,0" VerticalAlignment="Top"/>
+		</Grid>
+
+		<Grid Grid.Row="1" Grid.Column="0" Margin="3">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="60" />
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			<Grid Grid.Row="0">
+				<Border Name="ColorDisplayBorder" HorizontalAlignment="Left" VerticalAlignment="Top"
+						BorderBrush="Black" Background="White" BorderThickness="2"
+						Width="58" Height="58"/>
+				<c:Swatch x:Name="Swatch1" HorizontalAlignment="Left" Height="60" Margin="60,0,0,0"
+						  VerticalAlignment="Top" Width="260"
+						  PickingColor="Swatch_PickColor"/>
+			</Grid>
+			<c:Swatch x:Name="Swatch2" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="1"
+					  VerticalAlignment="Stretch"
+					  PickingColor="Swatch_PickColor"/>
+		</Grid>
+	</Grid>
+</UserControl>

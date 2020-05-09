@@ -2,6 +2,7 @@
 using System.Drawing;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
+using static Sudoku.Solving.DifficultyLevel;
 
 namespace Sudoku.Windows
 {
@@ -674,19 +675,19 @@ namespace Sudoku.Windows
 			{
 				return new Dictionary<DifficultyLevel, (Color, Color)>
 				{
-					[DifficultyLevel.Unknown] = (Color.Black, Color.Gray),
-					[DifficultyLevel.VeryEasy] = (Color.Black, Color.FromArgb(204, 204, 255)),
-					[DifficultyLevel.Easy] = (Color.Black, Color.FromArgb(204, 204, 255)),
-					[DifficultyLevel.Moderate] = (Color.Black, Color.FromArgb(100, 255, 100)),
-					[DifficultyLevel.Advanced] = (Color.Black, Color.FromArgb(100, 255, 100)),
-					[DifficultyLevel.Hard] = (Color.Black, Color.FromArgb(255, 255, 100)),
-					[DifficultyLevel.VeryHard] = (Color.Black, Color.FromArgb(255, 255, 100)),
-					[DifficultyLevel.Fiendish] = (Color.Black, Color.FromArgb(255, 150, 80)),
-					[DifficultyLevel.Diabolical] = (Color.Black, Color.FromArgb(255, 150, 80)),
-					[DifficultyLevel.Crazy] = (Color.Black, Color.FromArgb(255, 100, 100)),
-					[DifficultyLevel.Nightmare] = (Color.Black, Color.FromArgb(255, 100, 100)),
-					[DifficultyLevel.BeyondNightmare] = (Color.Black, Color.FromArgb(255, 100, 100)),
-					[DifficultyLevel.LastResort] = (Color.Black, Color.FromArgb(255, 100, 100))
+					[Unknown] = (Color.Black, Color.Gray),
+					[VeryEasy] = (Color.Black, Color.FromArgb(204, 204, 255)),
+					[Easy] = (Color.Black, Color.FromArgb(204, 204, 255)),
+					[Moderate] = (Color.Black, Color.FromArgb(100, 255, 100)),
+					[Advanced] = (Color.Black, Color.FromArgb(100, 255, 100)),
+					[Hard] = (Color.Black, Color.FromArgb(255, 255, 100)),
+					[VeryHard] = (Color.Black, Color.FromArgb(255, 255, 100)),
+					[Fiendish] = (Color.Black, Color.FromArgb(255, 150, 80)),
+					[Diabolical] = (Color.Black, Color.FromArgb(255, 150, 80)),
+					[Crazy] = (Color.Black, Color.FromArgb(255, 100, 100)),
+					[Nightmare] = (Color.Black, Color.FromArgb(255, 100, 100)),
+					[BeyondNightmare] = (Color.Black, Color.FromArgb(255, 100, 100)),
+					[LastResort] = (Color.Black, Color.FromArgb(255, 100, 100))
 				};
 			}
 		}

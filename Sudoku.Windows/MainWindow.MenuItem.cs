@@ -224,7 +224,7 @@ namespace Sudoku.Windows
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show($"Save failed due to:{Environment.NewLine}{ex.Message}.", "Warning");
+				MessageBox.Show($"Save failed due to:{NewLine}{ex.Message}.", "Warning");
 			}
 		}
 
@@ -290,7 +290,11 @@ namespace Sudoku.Windows
 			var grid = SudokuGrid.CreateInstance(z);
 			if (new BitwiseSolver().Solve(grid.ToString(), null, 2) == 0)
 			{
-				MessageBox.Show("The puzzle is invalid. Please check your input and retry.", "Info");
+				MessageBox.Show(
+					"The puzzle is invalid or may be a sukaku. " +
+					"If invalid, Please check your input and retry; " +
+					"however if sukaku, this function cannot use because the specified puzzle" +
+					"has no given or modifiable values.", "Info");
 				e.Handled = true;
 				return;
 			}

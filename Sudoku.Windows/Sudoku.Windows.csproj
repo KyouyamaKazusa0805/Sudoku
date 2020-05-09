@@ -19,11 +19,22 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\ColorPalette.png" />
+	  <None Remove="Resources\ColorSample.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="WriteableBitmapEx" Version="1.6.5" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
 		<ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<Resource Include="Resources\ColorPalette.png" />
+		<Resource Include="Resources\ColorSample.png" />
 		<Resource Include="Resources\icon-128.ico" />
 		<Resource Include="Resources\icon-256.ico" />
 		<Resource Include="Resources\icon-32.ico" />

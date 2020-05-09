@@ -1,0 +1,24 @@
+﻿<Window x:Class="Sudoku.Windows.Tooling.ColorPicker"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:c="clr-namespace:Sudoku.Windows.Tooling"
+        mc:Ignorable="d"
+        Title="Choose a color!" Height="450" Width="800">
+	<DockPanel LastChildFill="False">
+		<c:ColorPickerControl x:Name="_colorPicker"  DockPanel.Dock="Top" HorizontalAlignment="Stretch"
+							  Margin="0,0,0,0" VerticalAlignment="Stretch" MinHeight="372"/>
+		<Grid DockPanel.Dock="Bottom" MinHeight="47">
+			<Button x:Name="CloseButton" Content="Close" HorizontalAlignment="Left" VerticalAlignment="Top"
+					Width="75" Margin="90,10,0,0" Height="27" IsCancel="True"
+					Click="CloseButton_Click"/>
+			<Button x:Name="_okButton" Content="OK" HorizontalAlignment="Left" VerticalAlignment="Top"
+					Width="75" Margin="10,10,0,10" Height="27" IsDefault="True"
+					Click="OkButton_Click"/>
+			<Button x:Name="_minMaxViewButton" Content="&lt;&lt; Simple" HorizontalAlignment="Left"
+					VerticalAlignment="Top" Width="75" Margin="243,10,0,0" Height="27"
+					Click="MinMaxViewButton_OnClick"/>
+		</Grid>
+	</DockPanel>
+</Window>

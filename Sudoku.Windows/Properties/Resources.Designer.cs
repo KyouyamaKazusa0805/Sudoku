@@ -63,6 +63,26 @@ namespace Sudoku.Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ColorPalette {
+            get {
+                object obj = ResourceManager.GetObject("ColorPalette", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ColorSample {
+            get {
+                object obj = ResourceManager.GetObject("ColorSample", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ImageIcon_Generate {
             get {
                 object obj = ResourceManager.GetObject("ImageIcon_Generate", resourceCulture);

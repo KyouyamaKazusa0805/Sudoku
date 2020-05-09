@@ -736,6 +736,7 @@ namespace Sudoku.Windows
 			_menuItemEditUnfix.IsEnabled = false;
 			_menuItemEditReset.IsEnabled = false;
 			_menuItemEditClear.IsEnabled = false;
+			_menuItemClearStack.IsEnabled = false;
 			_menuItemGenerateWithSymmetry.IsEnabled = false;
 			_menuItemAnalyzeAnalyze.IsEnabled = false;
 			_menuItemAnalyzeSolve.IsEnabled = false;
@@ -770,6 +771,7 @@ namespace Sudoku.Windows
 			_menuItemEditUnfix.IsEnabled = true;
 			_menuItemEditReset.IsEnabled = true;
 			_menuItemEditClear.IsEnabled = true;
+			_menuItemClearStack.IsEnabled = true;
 			_menuItemGenerateWithSymmetry.IsEnabled = true;
 			_menuItemAnalyzeSolve.IsEnabled = true;
 			_menuItemAnalyzeAnalyze.IsEnabled = true;
@@ -799,6 +801,7 @@ namespace Sudoku.Windows
 			_menuItemEditUnfix.IsEnabled = false;
 			_menuItemEditReset.IsEnabled = false;
 			_menuItemEditClear.IsEnabled = false;
+			_menuItemClearStack.IsEnabled = false;
 			_menuItemGenerateWithSymmetry.IsEnabled = false;
 			_menuItemAnalyzeSolve.IsEnabled = false;
 			_menuItemAnalyzeAnalyze.IsEnabled = false;
@@ -837,6 +840,7 @@ namespace Sudoku.Windows
 			_menuItemEditUnfix.IsEnabled = true;
 			_menuItemEditReset.IsEnabled = true;
 			_menuItemEditClear.IsEnabled = true;
+			_menuItemClearStack.IsEnabled = true;
 			_menuItemGenerateWithSymmetry.IsEnabled = true;
 			_menuItemAnalyzeSolve.IsEnabled = true;
 			_menuItemAnalyzeAnalyze.IsEnabled = true;
