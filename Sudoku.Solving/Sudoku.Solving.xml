@@ -1799,6 +1799,116 @@
             Encapsulates a <b>multi-sector locked sets</b> (MSLS) technique.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo">
+            <summary>
+            Provides a usage of <b>sue de coq</b> (SdC) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="block">The block.</param>
+            <param name="line">The line.</param>
+            <param name="blockMask">The block mask.</param>
+            <param name="lineMask">The line mask.</param>
+            <param name="intersectionMask">The intersection mask.</param>
+            <param name="isCannibalistic">Indicates whether the SdC is cannibalistic.</param>
+            <param name="isolatedDigitsMask">The isolated digits mask.</param>
+            <param name="blockCells">The map of block cells.</param>
+            <param name="lineCells">The map of line cells.</param>
+            <param name="intersectionCells">The map of intersection cells.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.Block">
+            <summary>
+            Indicates the block.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.Line">
+            <summary>
+            Indicates the line.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.BlockMask">
+            <summary>
+            Indicates the block mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.LineMask">
+            <summary>
+            Indicates the line mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.IntersectionMask">
+            <summary>
+            Indicates the intersection mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.IsCannibalistic">
+            <summary>
+            Indicates whether the specified SdC is cannibalistic.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.IsolatedDigitsMask">
+            <summary>
+            Indicates the isolated digit mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.BlockCells">
+            <summary>
+            Indicates the block cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.LineCells">
+            <summary>
+            Indicates the line cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.IntersectionCells">
+            <summary>
+            Indicates the intersection cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueSearcher">
+            <summary>
+            Encapsulates a <b>sue de coq</b> (SdC) technique searcher.
+            Cannibalistic SdCs can be found also.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+            <inheritdoc/>
+            <remarks>
+            The fields <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowAlsCycles"/> and
+            <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowOverlapping"/> will not be used here.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueSearcher.Priority">
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueInfo">
             <summary>
             Provides a usage of <b>domino loop</b> technique.

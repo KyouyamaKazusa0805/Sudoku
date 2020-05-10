@@ -58,12 +58,10 @@ namespace Sudoku.Solving.Manual.Intersections
 
 					foreach (int cell in elimMap.Offsets)
 					{
-						if (!(grid.Exists(cell, digit) is true))
+						if (grid.Exists(cell, digit) is true)
 						{
-							continue;
+							conclusions.Add(new Conclusion(Elimination, cell, digit));
 						}
-
-						conclusions.Add(new Conclusion(Elimination, cell, digit));
 					}
 					if (conclusions.Count == 0)
 					{

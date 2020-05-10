@@ -28,6 +28,7 @@ using Sudoku.Solving.Manual.Uniqueness.Rects;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using static Sudoku.Data.ConclusionType;
+using SdcTechniqueSearcher = Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueSearcher;
 
 namespace Sudoku.Solving.Manual
 {
@@ -112,7 +113,7 @@ namespace Sudoku.Solving.Manual
 					new UlTechniqueSearcher(),
 					new EmptyRectangleTechniqueSearcher(),
 					new AlcTechniqueSearcher(CheckAlmostLockedQuadruple),
-					new SdcTechniqueSearcher(),
+					new SdcTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
 					new BdpTechniqueSearcher(),
 					new BugTechniqueSearcher(UseExtendedBugSearcher),
 					new ErIntersectionPairTechniqueSearcher(),
@@ -343,7 +344,7 @@ namespace Sudoku.Solving.Manual
 				new UlTechniqueSearcher(),
 				new EmptyRectangleTechniqueSearcher(),
 				new AlcTechniqueSearcher(CheckAlmostLockedQuadruple),
-				new SdcTechniqueSearcher(),
+				new SdcTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
 				new BdpTechniqueSearcher(),
 				new BugTechniqueSearcher(UseExtendedBugSearcher),
 				new ErIntersectionPairTechniqueSearcher(),
