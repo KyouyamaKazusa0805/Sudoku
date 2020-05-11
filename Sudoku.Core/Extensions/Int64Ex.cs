@@ -15,7 +15,7 @@ namespace Sudoku.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public static bool IsPowerOfTwo(this long @this) => (@this & (@this - 1)) == 0;
+		public static bool IsPowerOfTwo(this long @this) => @this != 0 && (@this & (@this - 1)) == 0;
 
 		/// <summary>
 		/// Get the total number of set bits of the binary representation

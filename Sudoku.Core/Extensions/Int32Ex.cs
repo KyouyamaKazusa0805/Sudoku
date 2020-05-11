@@ -41,7 +41,7 @@ namespace Sudoku.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public static bool IsPowerOfTwo(this int @this) => (@this & (@this - 1)) == 0;
+		public static bool IsPowerOfTwo(this int @this) => @this != 0 && (@this & (@this - 1)) == 0;
 
 		/// <summary>
 		/// Find the first offset of set bit of the binary representation of the specified value.
@@ -66,6 +66,11 @@ namespace Sudoku.Extensions
 		/// <returns>An <see cref="int"/> value indicating that.</returns>
 		public static int CountSet(this int @this)
 		{
+			if (@this == 0)
+			{
+				return 0;
+			}
+
 			int count = 0;
 			for (; @this != 0; @this &= @this - 1, count++) ;
 			return count;

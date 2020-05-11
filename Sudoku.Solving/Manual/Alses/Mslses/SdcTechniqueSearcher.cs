@@ -58,7 +58,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 			{
 				foreach (var ((baseSet, coverSet), (a, b, c)) in IntersectionMaps)
 				{
-					var emptyCellsInInterMap = c - emptyMap;
+					var emptyCellsInInterMap = c & emptyMap;
 					if (emptyCellsInInterMap.Count < 2)
 					{
 						// The intersection needs at least two cells.
@@ -97,15 +97,15 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						{
 							selectedInterMask |= grid.GetCandidatesReversal(cell);
 						}
-						if (selectedInterMask.CountSet() < 4)
+						if (selectedInterMask.CountSet() <= currentInterMap.Count + 1)
 						{
 							// The intersection combination is an ALS or a normal subset,
 							// which is invalid in SdCs.
 							continue;
 						}
 
-						var blockMap = b | (c - currentInterMap);
-						var lineMap = a;
+						var blockMap = (b | (c - currentInterMap)) & emptyMap;
+						var lineMap = a & emptyMap;
 
 						// Iterate on the number of the cells that should be selected in block.
 						for (int i = 1; i < blockMap.Count; i++)
@@ -131,7 +131,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 								elimMapBlock &= blockMap - currentBlockMap;
 
 								// Iterate on the number of the cells that should be selected in line.
-								for (int j = 1; j < 9 - i - currentInterMap.Count - lineMap.Count; j++)
+								for (int j = 1; j <= 9 - i - currentInterMap.Count && j <= lineMap.Count; j++)
 								{
 									// Iterate on each combination in line.
 									foreach (int[] selectedCellsInLine in GetCombinationsOfArray(lineMap.ToArray(), j))
@@ -153,19 +153,37 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 										}
 										elimMapLine &= lineMap - currentLineMap;
 
-										// Here we may use rank theory to determine 
-										// whether the current combination is a valid SdC.
-										// The rank theory: The loop-like structure should be satisfied the formula below:
-										// rank == 0 == (cells.Count - digitsAppearInTheseCells.Count)
-										// or
-										// cells.Count == digitsAppearInTheseCells.Count.
-										short isolatedCandsMask =
+										short maskIsolated =
 											cannibalMode
 												? (short)(lineMask & blockMask & selectedInterMask)
 												: (short)(selectedInterMask & ~(blockMask | lineMask));
+										short maskOnlyInInter = (short)(selectedInterMask & ~(blockMask | lineMask));
+										if (!cannibalMode && (
+											(blockMask & lineMask) != 0
+											|| maskIsolated != 0 && !maskIsolated.IsPowerOfTwo())
+											|| cannibalMode && !maskIsolated.IsPowerOfTwo())
+										{
+											continue;
+										}
+
+										var elimMapIsolated = GridMap.Empty;
+										int digitIsolated = maskIsolated.FindFirstSet();
+										if (digitIsolated != -1)
+										{
+											elimMapIsolated =
+												new GridMap(
+													cannibalMode
+														? (currentBlockMap | currentLineMap) & candMaps[digitIsolated]
+														: currentInterMap & candMaps[digitIsolated],
+													ProcessPeersWithoutItself)
+												& candMaps[digitIsolated] & emptyMap;
+										}
+
 										if (currentInterMap.Count + i + j ==
-											blockMask.CountSet() + lineMask.CountSet() + isolatedCandsMask.CountSet()
-											&& (elimMapBlock.IsNotEmpty || elimMapLine.IsNotEmpty))
+											blockMask.CountSet() + lineMask.CountSet() + maskOnlyInInter.CountSet()
+											&& (
+												elimMapBlock.IsNotEmpty || elimMapLine.IsNotEmpty
+												|| elimMapIsolated.IsNotEmpty))
 										{
 											// Check eliminations.
 											var conclusions = new List<Conclusion>();
@@ -189,44 +207,9 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 													}
 												}
 											}
-
-											// Check isolated candidates.
-											var isolatedElimMap = GridMap.Empty;
-											if (isolatedCandsMask != 0)
+											foreach (int cell in elimMapIsolated.Offsets)
 											{
-												foreach (int digit in isolatedCandsMask.GetAllSets())
-												{
-													var tempMap = GridMap.Empty;
-													foreach (int cell in
-														cannibalMode
-															? (currentBlockMap | currentLineMap).Offsets
-															: currentInterMap.Offsets)
-													{
-														if (grid.Exists(cell, digit) is true)
-														{
-															tempMap.Add(cell);
-														}
-													}
-
-													foreach (int cell in
-														new GridMap(tempMap, ProcessPeersWithoutItself).Offsets)
-													{
-														if (grid.Exists(cell, digit) is true)
-														{
-															isolatedElimMap.Add(cell);
-														}
-													}
-												}
-											}
-											foreach (int cell in isolatedElimMap.Offsets)
-											{
-												foreach (int digit in isolatedCandsMask.GetAllSets())
-												{
-													if (grid.Exists(cell, digit) is true)
-													{
-														conclusions.Add(new Conclusion(Elimination, cell, digit));
-													}
-												}
+												conclusions.Add(new Conclusion(Elimination, cell, digitIsolated));
 											}
 											if (conclusions.Count == 0)
 											{
@@ -244,14 +227,18 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 											{
 												foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 												{
-													candidateOffsets.Add((0, cell * 9 + digit));
+													candidateOffsets.Add((
+														!cannibalMode && digit == digitIsolated ? 2 : 0,
+														cell * 9 + digit));
 												}
 											}
 											foreach (int cell in currentLineMap.Offsets)
 											{
 												foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 												{
-													candidateOffsets.Add((1, cell * 9 + digit));
+													candidateOffsets.Add((
+														!cannibalMode && digit == digitIsolated ? 2 : 1,
+														cell * 9 + digit));
 												}
 											}
 											foreach (int cell in currentInterMap.Offsets)
@@ -260,7 +247,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 												{
 													candidateOffsets.Add((true switch
 													{
-														_ when (isolatedCandsMask >> digit & 1) != 0 => 2,
+														_ when digitIsolated == digit => 2,
 														_ when (blockMask >> digit & 1) != 0 => 0,
 														_ => 1
 													}, cell * 9 + digit));
@@ -287,7 +274,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 													lineMask,
 													intersectionMask: selectedInterMask,
 													isCannibalistic: cannibalMode,
-													isolatedDigitsMask: isolatedCandsMask,
+													isolatedDigitsMask: maskIsolated,
 													blockCells: currentBlockMap,
 													lineCells: currentLineMap,
 													intersectionCells: currentInterMap));
