@@ -28,7 +28,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <inheritdoc/>
 		public override AnalysisResult Solve(IReadOnlyGrid grid)
 		{
-			string str = ToBasicFormat(grid.ToString("~"));
+			string str = grid.ToString("~");
 			var sb = new CStyleString(730);
 			var stopwatch = new Stopwatch();
 
@@ -100,7 +100,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// </param>
 		/// <returns>The <see cref="bool"/> result.</returns>
 		public bool CheckValidity(IReadOnlyGrid grid, [NotNullWhen(true)] out string? solutionIfUnique) =>
-			CheckValidity(ToBasicFormat(grid.ToString("~")), out solutionIfUnique);
+			CheckValidity(grid.ToString("~"), out solutionIfUnique);
 
 		/// <summary>
 		/// Check the validity of the puzzle.
@@ -138,55 +138,19 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		{
 			try
 			{
-				return Solve32(ToBasicFormat(puzzle), solution, limit);
+				return Solve32(puzzle, solution, limit);
 			}
 			catch
 			{
 				try
 				{
-					return Solve64(ToBasicFormat(puzzle), solution, limit);
+					return Solve64(puzzle, solution, limit);
 				}
 				catch
 				{
 					return 0;
 				}
 			}
-		}
-
-
-		/// <summary>
-		/// To basic format.
-		/// </summary>
-		/// <param name="str">The grid string.</param>
-		/// <returns>The result string.</returns>
-		private static string ToBasicFormat(string str)
-		{
-			var puzzleSb = new CStyleString();
-			string[] v = str.Split(new char[] { '\r', '\n', ' ' }, StringSplitOptions.RemoveEmptyEntries);
-			foreach (string s in v)
-			{
-				int last = -1;
-				foreach (char c in s)
-				{
-					int current = c - '1';
-					for (int i = last + 1; i < current; i++)
-					{
-						puzzleSb.Append('0');
-					}
-					puzzleSb.Append(current + 1);
-					last = current;
-				}
-
-				if (last != 8)
-				{
-					for (int i = last + 1; i < 9; i++)
-					{
-						puzzleSb.Append('0');
-					}
-				}
-			}
-
-			return puzzleSb.ToString();
 		}
 
 		/// <summary>

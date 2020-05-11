@@ -56,12 +56,13 @@ namespace Sudoku.Data
 		public Grid Parse()
 		{
 			return OnParsingSimpleTable()
+				?? (CompatibleFirst ? OnParsingSukaku(true) : OnParsingSukaku(false))
+				?? (CompatibleFirst ? OnParsingSukaku(false) : OnParsingSukaku(true))
 				?? OnParsingSusser()
 				?? OnParsingExcel()
 				?? OnParsingSimpleMultilineGrid()
 				?? (CompatibleFirst ? OnParsingPencilMarked(true) : OnParsingPencilMarked(false))
 				?? (CompatibleFirst ? OnParsingPencilMarked(false) : OnParsingPencilMarked(true))
-				?? OnParsingSukaku()
 				?? throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
 		}
 
@@ -82,7 +83,8 @@ namespace Sudoku.Data
 				[PencilMarked] = () => OnParsingPencilMarked(false),
 				[PencilMarkedTreatSingleAsGiven] = () => OnParsingPencilMarked(true),
 				[SimpleTable] = OnParsingSimpleTable,
-				[Sukaku] = OnParsingSukaku,
+				[Sukaku] = () => OnParsingSukaku(false),
+				[SukakuSingleLine] = () => OnParsingSukaku(true),
 				[Excel] = OnParsingExcel
 			}[gridParsingOption]() ?? throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
 		}
@@ -402,36 +404,63 @@ namespace Sudoku.Data
 		/// Parse the sukaku format string.
 		/// </summary>
 		/// <returns>The result.</returns>
-		public Grid? OnParsingSukaku()
+		public Grid? OnParsingSukaku(bool compatibleFirst)
 		{
-			string[] matches = ParsingValue.MatchAll(@"\d*\-?\d+");
-			if (matches.Length != 81)
+			if (compatibleFirst)
 			{
-				return null;
-			}
-
-			var result = Grid.Empty.Clone();
-			for (int offset = 0; offset < 81; offset++)
-			{
-				string s = matches[offset].Reserve(@"\d");
-				if (s.Length > 9)
+				if (ParsingValue.Length < 729)
 				{
-					// More than 9 characters.
 					return null;
 				}
 
-				bool[] series = DefaultCheckingArray;
-				foreach (char c in s)
+				var result = Grid.Empty.Clone();
+				for (int i = 0; i < 729; i++)
 				{
-					series[c - '1'] = false;
-				}
-				for (int digit = 0; digit < 9; digit++)
-				{
-					result[offset, digit] = series[digit];
-				}
-			}
+					char c = ParsingValue[i];
+					if (!c.IsDigit())
+					{
+						return null;
+					}
 
-			return result;
+					if (c == '0')
+					{
+						result[i / 9, i % 9] = true;
+					}
+				}
+
+				return result;
+			}
+			else
+			{
+				string[] matches = ParsingValue.MatchAll(@"\d*\-?\d+");
+				if (matches.Length != 81)
+				{
+					return null;
+				}
+
+				var result = Grid.Empty.Clone();
+				for (int offset = 0; offset < 81; offset++)
+				{
+					string s = matches[offset].Reserve(@"\d");
+					if (s.Length > 9)
+					{
+						// More than 9 characters.
+						return null;
+					}
+
+					bool[] series = DefaultCheckingArray;
+					foreach (char c in s)
+					{
+						series[c - '1'] = false;
+					}
+					for (int digit = 0; digit < 9; digit++)
+					{
+						result[offset, digit] = series[digit];
+					}
+				}
+
+				return result;
+			}
 		}
 
 		/// <summary>

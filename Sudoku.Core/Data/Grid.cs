@@ -547,7 +547,7 @@ namespace Sudoku.Data
 						"In multi-line environment, '0' and '.' cannot appear with ':' together.",
 						nameof(format));
 				}
-				else if (format.IsMatch(@"\@[^0\!\*\.\:]+"))
+				else if (format.IsMatch(@"\@[^0\!\~\*\.\:]+"))
 				{
 					throw Throwing.FormatErrorWithMessage(
 						"Multi-line identifier '@' must follow only character '!', '*', '0', '.' or ':'.",
@@ -589,10 +589,10 @@ namespace Sudoku.Data
 			}
 			else if (format.Contains('~'))
 			{
-				if (format.Length > 1)
+				if (format.IsMatch(@"(\~[^\@]|[^\@]\~)"))
 				{
 					throw Throwing.FormatErrorWithMessage(
-						"Sukaku option character '~' cannot be used with other characters together.",
+						"Sukaku character '~' cannot be together with not the multi-line identifier '@'.",
 						nameof(format));
 				}
 			}

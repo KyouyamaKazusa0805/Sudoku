@@ -493,13 +493,6 @@
             <param name="limit">The limit.</param>
             <returns>The number of all solutions.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.ToBasicFormat(System.String)">
-            <summary>
-            To basic format.
-            </summary>
-            <param name="str">The grid string.</param>
-            <returns>The result string.</returns>
-        </member>
         <member name="M:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.Solve32(System.String,System.Text.StringBuilder,System.Int32)">
             <summary>
             The core function of solving the puzzle based on x86 platform.

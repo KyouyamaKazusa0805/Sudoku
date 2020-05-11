@@ -331,7 +331,8 @@ namespace Sudoku.Windows
 			}
 		}
 
-		private void MenuItemEditCopyAsSukaku_Click(object sender, RoutedEventArgs e) => InternalCopy("~");
+		private void MenuItemEditCopyAsSukaku_Click(object sender, RoutedEventArgs e) =>
+			InternalCopy(Settings.PmGridCompatible ? "~" : "~@");
 
 		private void MenuItemEditCopyAsExcel_Click(object sender, RoutedEventArgs e) => InternalCopy("%");
 

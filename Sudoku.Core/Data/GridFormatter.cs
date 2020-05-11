@@ -39,13 +39,13 @@ namespace Sudoku.Data
 		/// <returns>The string.</returns>
 		public string ToString(Grid grid)
 		{
-			return Multiline
-				? WithCandidates
-					? ToMultiLineStringCore(grid)
-					: Sukaku
-						? ToSukakuString(grid)
+			return Sukaku
+				? ToSukakuString(grid)
+				: Multiline
+					? WithCandidates
+						? ToMultiLineStringCore(grid)
 						: Excel ? ToExcelString(grid) : ToMultiLineSimpleGridCore(grid)
-				: HodokuCompatible ? ToHodokuLibraryFormatString(grid) : ToSingleLineStringCore(grid);
+					: HodokuCompatible ? ToHodokuLibraryFormatString(grid) : ToSingleLineStringCore(grid);
 		}
 
 		/// <summary>
@@ -100,6 +100,7 @@ namespace Sudoku.Data
 		[SuppressMessage("Style", "IDE0071WithoutSuggestion:Simplify interpolation", Justification = "<Pending>")]
 		private string ToSukakuString(Grid grid)
 		{
+			#region Obsolete code
 			//bool flag = true;
 			//for (int i = 0; i < 81; i++)
 			//{
@@ -115,42 +116,64 @@ namespace Sudoku.Data
 			//		"The specified puzzle contains the given or modifiable values, which is an invalid sukaku grid.",
 			//		nameof(grid));
 			//}
+			#endregion
 
-			// Append all digits.
-			var builders = new StringBuilder[81];
-			for (int i = 0; i < 81; i++)
+			if (Multiline)
 			{
-				builders[i] = new StringBuilder();
-				foreach (int digit in grid.GetCandidatesReversal(i).GetAllSets())
+				// Append all digits.
+				var builders = new StringBuilder[81];
+				for (int i = 0; i < 81; i++)
 				{
-					builders[i].Append(digit + 1);
-				}
-			}
-
-			// Now consider the alignment for each column of output text.
-			var sb = new StringBuilder();
-			var span = (Span<int>)stackalloc int[9];
-			for (int column = 0; column < 9; column++)
-			{
-				int maxLength = 0;
-				for (int p = 0; p < 9; p++)
-				{
-					maxLength = Max(maxLength, builders[p * 9 + column].Length);
+					builders[i] = new StringBuilder();
+					foreach (int digit in grid.GetCandidatesReversal(i).GetAllSets())
+					{
+						builders[i].Append(digit + 1);
+					}
 				}
 
-				span[column] = maxLength;
-			}
-			for (int row = 0; row < 9; row++)
-			{
+				// Now consider the alignment for each column of output text.
+				var sb = new StringBuilder();
+				var span = (Span<int>)stackalloc int[9];
 				for (int column = 0; column < 9; column++)
 				{
-					int cell = row * 9 + column;
-					sb.Append($"{builders[cell].ToString().PadLeft(span[column])} ");
-				}
-				sb.RemoveFromEnd(1).AppendLine(); // Remove last whitespace.
-			}
+					int maxLength = 0;
+					for (int p = 0; p < 9; p++)
+					{
+						maxLength = Max(maxLength, builders[p * 9 + column].Length);
+					}
 
-			return sb.ToString();
+					span[column] = maxLength;
+				}
+				for (int row = 0; row < 9; row++)
+				{
+					for (int column = 0; column < 9; column++)
+					{
+						int cell = row * 9 + column;
+						sb.Append($"{builders[cell].ToString().PadLeft(span[column])} ");
+					}
+					sb.RemoveFromEnd(1).AppendLine(); // Remove last whitespace.
+				}
+
+				return sb.ToString();
+			}
+			else
+			{
+				var sb = new StringBuilder();
+				for (int i = 0; i < 81; i++)
+				{
+					sb.Append("123456789");
+				}
+
+				for (int i = 0; i < 729; i++)
+				{
+					if (grid[i / 9, i % 9])
+					{
+						sb[i] = '0';
+					}
+				}
+
+				return sb.ToString();
+			}
 		}
 
 		/// <summary>
