@@ -98,9 +98,17 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			if (IsDoublyLinked is null)
 			{
 				// Extended subset principle.
-				string digitStr = (ZDigitsMask.FindFirstSet() + 1).ToString();
-				string cellsStr = new CellCollection((Als1.Map | Als2.Map).Offsets).ToString();
-				return $"{Name}: Only the digit {digitStr} can be duplicate in cells {cellsStr} => {elimStr}";
+				if (ZDigitsMask == 0)
+				{
+					string cellsStr = new CellCollection((Als1.Map | Als2.Map).Offsets).ToString();
+					return $"{Name}: All digits cannot be duplicate in cells {cellsStr} => {elimStr}";
+				}
+				else
+				{
+					string digitStr = (ZDigitsMask.FindFirstSet() + 1).ToString();
+					string cellsStr = new CellCollection((Als1.Map | Als2.Map).Offsets).ToString();
+					return $"{Name}: Only the digit {digitStr} can be duplicate in cells {cellsStr} => {elimStr}";
+				}
 			}
 			else
 			{

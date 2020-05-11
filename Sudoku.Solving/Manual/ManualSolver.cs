@@ -28,7 +28,6 @@ using Sudoku.Solving.Manual.Uniqueness.Rects;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using static Sudoku.Data.ConclusionType;
-using SdcTechniqueSearcher = Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueSearcher;
 
 namespace Sudoku.Solving.Manual
 {
