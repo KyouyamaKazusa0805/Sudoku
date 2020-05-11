@@ -417,12 +417,12 @@ namespace Sudoku.Data
 				for (int i = 0; i < 729; i++)
 				{
 					char c = ParsingValue[i];
-					if (!c.IsDigit())
+					if (!c.IsDigit() && c != '.')
 					{
 						return null;
 					}
 
-					if (c == '0')
+					if (c == '0' || c == '.')
 					{
 						result[i / 9, i % 9] = true;
 					}

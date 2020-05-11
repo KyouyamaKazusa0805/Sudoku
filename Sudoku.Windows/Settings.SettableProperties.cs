@@ -304,7 +304,7 @@ namespace Sudoku.Windows
 		/// </para>
 		/// <para>
 		/// The value is <see langword="true"/> in default case. If the value is
-		/// <see langword="true"/>, the placeholders will be '<c>.</c>'.
+		/// <see langword="false"/>, the placeholders will be '<c>.</c>'.
 		/// </para>
 		/// </summary>
 		public bool TextFormatPlaceholdersAreZero { get; set; } = true;

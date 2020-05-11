@@ -251,14 +251,49 @@ namespace Sudoku.Data
 						TreatValueAsGiven = true
 					};
 				}
+				case "~":
+				case "~0":
+				{
+					return new GridFormatter(false)
+					{
+						Sukaku = true,
+						Placeholder = '0'
+					};
+				}
+				case "~.":
+				{
+					return new GridFormatter(false)
+					{
+						Sukaku = true,
+						Placeholder = '.'
+					};
+				}
 				case "@~":
 				case "~@":
 				{
 					return new GridFormatter(true) { Sukaku = true };
 				}
-				case "~":
+				case "@~0":
+				case "@0~":
+				case "~@0":
+				case "~0@":
 				{
-					return new GridFormatter(false) { Sukaku = true };
+					return new GridFormatter(true)
+					{
+						Sukaku = true,
+						Placeholder = '0'
+					};
+				}
+				case "@~.":
+				case "@.~":
+				case "~@.":
+				case "~.@":
+				{
+					return new GridFormatter(true)
+					{
+						Sukaku = true,
+						Placeholder = '.'
+					};
 				}
 				case "%":
 				{

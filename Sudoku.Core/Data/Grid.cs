@@ -589,10 +589,10 @@ namespace Sudoku.Data
 			}
 			else if (format.Contains('~'))
 			{
-				if (format.IsMatch(@"(\~[^\@]|[^\@]\~)"))
+				if (format.IsMatch(@"(\~[^\@\.0]|[^\@0\.]\~)"))
 				{
 					throw Throwing.FormatErrorWithMessage(
-						"Sukaku character '~' cannot be together with not the multi-line identifier '@'.",
+						"Sukaku character '~' can only be together with the characters '0', '.' or '@'.",
 						nameof(format));
 				}
 			}

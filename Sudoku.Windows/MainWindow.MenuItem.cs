@@ -331,8 +331,13 @@ namespace Sudoku.Windows
 			}
 		}
 
-		private void MenuItemEditCopyAsSukaku_Click(object sender, RoutedEventArgs e) =>
-			InternalCopy(Settings.PmGridCompatible ? "~" : "~@");
+		private void MenuItemEditCopyAsSukaku_Click(object sender, RoutedEventArgs e)
+		{
+			InternalCopy(
+				Settings.PmGridCompatible
+					? $"~{(Settings.TextFormatPlaceholdersAreZero ? "0" : ".")}"
+					: $"~@{(Settings.TextFormatPlaceholdersAreZero ? "0" : ".")}");
+		}
 
 		private void MenuItemEditCopyAsExcel_Click(object sender, RoutedEventArgs e) => InternalCopy("%");
 
@@ -539,8 +544,8 @@ namespace Sudoku.Windows
 			bool applySukaku()
 			{
 				var sb = new StringBuilder(SudokuGrid.EmptyString);
-				string puzzleString = _puzzle.ToString("~");
-				if (new SukakuBitwiseSolver().Solve(puzzleString, sb, 2) != 1)
+				if (new SukakuBitwiseSolver().Solve(
+					_puzzle.ToString($"~{(Settings.TextFormatPlaceholdersAreZero ? "0" : ".")}"), sb, 2) != 1)
 				{
 					return !(e.Handled = true);
 				}

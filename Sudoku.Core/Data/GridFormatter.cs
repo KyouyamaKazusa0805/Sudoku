@@ -168,7 +168,7 @@ namespace Sudoku.Data
 				{
 					if (grid[i / 9, i % 9])
 					{
-						sb[i] = '0';
+						sb[i] = Placeholder;
 					}
 				}
 
