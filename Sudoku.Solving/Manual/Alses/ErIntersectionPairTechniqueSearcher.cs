@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Data.ConclusionType;
+using static Sudoku.Data.GridMap.InitializeOption;
 
 namespace Sudoku.Solving.Manual.Alses
 {
@@ -31,8 +31,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			(_, var bivalueMap, _, _) = grid;
-			int[] bivalueCells = bivalueMap.ToArray();
+			int[] bivalueCells = grid.GetBivalueCellsMap().ToArray();
 			for (int i = 0, length = bivalueCells.Length; i < length - 1; i++)
 			{
 				int c1 = bivalueCells[i];
@@ -55,8 +54,7 @@ namespace Sudoku.Solving.Manual.Alses
 						continue;
 					}
 
-					var (_, _, block1) = Cell.GetRegion(c1);
-					var (_, _, block2) = Cell.GetRegion(c2);
+					int block1 = GetRegion(c1, RegionLabel.Block), block2 = GetRegion(c2, RegionLabel.Block);
 					if (block1 % 3 == block2 % 3 || block1 / 3 == block2 / 3)
 					{
 						continue;
@@ -67,7 +65,7 @@ namespace Sudoku.Solving.Manual.Alses
 					var unionMap = new GridMap(c1) | new GridMap(c2);
 					foreach (int interCell in intersectionMap.Offsets)
 					{
-						(_, _, int block) = Cell.GetRegion(interCell);
+						int block = GetRegion(interCell, RegionLabel.Block);
 						var regionMap = RegionMaps[block];
 						var checkingMap = regionMap - unionMap & regionMap;
 						if (checkingMap.Offsets.Any(c => grid.Exists(c, d1) is true || grid.Exists(c, d2) is true))
@@ -78,8 +76,8 @@ namespace Sudoku.Solving.Manual.Alses
 						// Check whether two digits are both in the same empty rectangle.
 						int inter1 = intersectionMap.SetAt(0);
 						int inter2 = intersectionMap.SetAt(1);
-						(_, _, int b1) = Cell.GetRegion(inter1);
-						(_, _, int b2) = Cell.GetRegion(inter2);
+						int b1 = GetRegion(inter1, RegionLabel.Block);
+						int b2 = GetRegion(inter2, RegionLabel.Block);
 						var erMap =
 							(unionMap & RegionMaps[b1] - intersectionMap)
 							| (unionMap & RegionMaps[b2] - intersectionMap);

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
+using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
@@ -237,7 +238,7 @@ namespace Sudoku.Solving.Manual.Alses
 			{
 				if (grid.IsBivalueCell(cell, out short mask))
 				{
-					var (_, _, b) = Cell.GetRegion(cell);
+					int b = GetRegion(cell, RegionLabel.Block);
 					int i = 0;
 					for (int length = RegionCells[b].Length; i < length; i++)
 					{

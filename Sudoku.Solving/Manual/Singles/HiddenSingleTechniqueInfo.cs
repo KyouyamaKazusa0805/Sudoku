@@ -2,6 +2,7 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Singles
 {
@@ -29,14 +30,8 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		/// <inheritdoc/>
-		public override string Name
-		{
-			get
-			{
-				string region = Region.GetName(RegionOffset);
-				return EnableAndIsLastDigit ? "Last Digit" : $"Hidden Single (In {region})";
-			}
-		}
+		public override string Name =>
+			EnableAndIsLastDigit ? "Last Digit" : $"Hidden Single (In {GetLabel(RegionOffset)})";
 
 		/// <inheritdoc/>
 		public override decimal Difficulty => EnableAndIsLastDigit ? 1.1M : RegionOffset < 9 ? 1.2M : 1.5M;

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			(var emptyMap, var bivalueMap, _, _) = grid;
+			var (emptyMap, bivalueMap, _, _) = grid;
 
 			// Finally search all irregular wings.
 			// Hybrid-Wings, Local-Wings, Split-Wings and M-Wings can
@@ -79,13 +79,12 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 						continue;
 					}
 
-					var (row1, column1, block1) = Cell.GetRegion(c1);
-					var (row2, column2, block2) = Cell.GetRegion(c2);
-
 					for (int region = 9; region < 27; region++)
 					{
-						if (region >= 9 && region < 18 && (row1 == region || row2 == region)
-							|| region >= 18 && (column1 == region || column2 == region))
+						if (region < 18 && (
+							GetRegion(c1, RegionLabel.Row) == region || GetRegion(c2, RegionLabel.Row) == region)
+							|| region >= 18 && (
+							GetRegion(c1, RegionLabel.Column) == region || GetRegion(c2, RegionLabel.Column) == region))
 						{
 							continue;
 						}

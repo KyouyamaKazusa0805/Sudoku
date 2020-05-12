@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
@@ -236,9 +236,12 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				short nonBase = (short)(mirrorCandidatesMask & ~baseCandidateMask);
-				var (r1, c1, b1) = Cell.GetRegion(playground[0]);
-				var (r2, c2, b2) = Cell.GetRegion(playground[1]);
-				(regions[0], regions[1]) = (b1, r1 == r2 ? r1 + 9 : c1 + 18);
+				int r1 = GetRegion(playground[0], RegionLabel.Row);
+				(regions[0], regions[1]) = (
+					GetRegion(playground[0], RegionLabel.Block),
+					r1 == GetRegion(playground[1], RegionLabel.Row)
+						? r1
+						: GetRegion(playground[0], RegionLabel.Column));
 				short locked = default;
 				foreach (short mask in GetCombinations(nonBase))
 				{

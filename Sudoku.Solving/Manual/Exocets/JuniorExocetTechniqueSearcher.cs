@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
-using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Data.ConclusionType;
+using static Sudoku.Data.GridMap.InitializeOption;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -369,9 +369,12 @@ namespace Sudoku.Solving.Manual.Exocets
 			// Therefore, we should check on non-base digits, whether the non-base digits
 			// covers only one of two last cells; otherwise, false.
 			short candidatesMask = (short)((m1 | m2) & ~baseCandidatesMask);
-			var (r1, c1, b1) = Cell.GetRegion(pos1);
-			var (r2, c2, b2) = Cell.GetRegion(pos2);
-			var span = (Span<int>)stackalloc[] { b1, r1 == r2 ? r1 + 9 : c1 + 18 };
+			int r1 = GetRegion(pos1, RegionLabel.Row);
+			var span = (Span<int>)stackalloc[]
+			{
+				GetRegion(pos1, RegionLabel.Block),
+				r1 == GetRegion(pos2, RegionLabel.Row) ? r1 : GetRegion(pos1, RegionLabel.Column)
+			};
 			foreach (short mask in GetCombinations(candidatesMask))
 			{
 				for (int i = 0; i < 2; i++)
@@ -451,7 +454,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			targetPairElims = new TargetPairEliminations();
 			swordfishElims = new SwordfishEliminations();
 			var playground = (Span<short>)stackalloc short[3];
-			(_, _, int block) = Cell.GetRegion(b1);
+			int block = GetRegion(b1, RegionLabel.Block);
 			short[] temp = new short[4];
 			for (int i = 0; i < 9; i++)
 			{

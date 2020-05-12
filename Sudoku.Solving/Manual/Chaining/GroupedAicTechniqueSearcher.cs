@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
@@ -417,8 +417,12 @@ namespace Sudoku.Solving.Manual.Chaining
 					int currentCell = currentCandidate / 9, currentDigit = currentCandidate % 9;
 
 					// Search for same regions.
-					var (r, c, b) = Cell.GetRegion(currentCell);
-					foreach (int region in stackalloc[] { r + 9, c + 18, b })
+					foreach (int region in stackalloc[]
+					{
+						GetRegion(currentCell, RegionLabel.Row),
+						GetRegion(currentCell, RegionLabel.Column),
+						GetRegion(currentCell, RegionLabel.Block)
+					})
 					{
 						var map = grid.GetDigitAppearingCells(currentDigit, region);
 						if (map.Count != 2)
@@ -622,7 +626,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			GridMap[] digitDistributions, int currentCell, int currentDigit)
 		{
 			var result = new List<Node>();
-			int b = Cell.GetRegion(currentCell)._block;
+			int b = GetRegion(currentCell, RegionLabel.Block);
 			foreach (int region in IntersectionTable[b])
 			{
 				var map = RegionMaps[b] & RegionMaps[region] & digitDistributions[currentDigit];

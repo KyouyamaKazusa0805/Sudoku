@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
@@ -1087,8 +1088,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			for (int z = 0, cur = 0; z < 9; z++)
 			{
 				int cell = RegionCells[region][z];
-				(_, _, int b) = Cell.GetRegion(cell);
-				if (block == b)
+				if (block == GetRegion(cell, RegionLabel.Block))
 				{
 					continue;
 				}

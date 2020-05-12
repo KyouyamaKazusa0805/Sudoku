@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
+using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.CellStatus;
 
 namespace Sudoku.Constants
@@ -14,6 +16,21 @@ namespace Sudoku.Constants
 	[SuppressMessage("", "CS8618")]
 	public static partial class Processings
 	{
+		/// <summary>
+		/// The block table.
+		/// </summary>
+		public static readonly int[] BlockTable;
+
+		/// <summary>
+		/// The row table.
+		/// </summary>
+		public static readonly int[] RowTable;
+
+		/// <summary>
+		/// The column table.
+		/// </summary>
+		public static readonly int[] ColumnTable;
+
 		/// <summary>
 		/// <para>Indicates a table for each cell's peers.</para>
 		/// </summary>
@@ -55,6 +72,34 @@ namespace Sudoku.Constants
 		/// </para>
 		/// </summary>
 		public static readonly IReadOnlyDictionary<(byte _baseSet, byte _coverSet), (GridMap _a, GridMap _b, GridMap _c)> IntersectionMaps;
+
+
+		/// <summary>
+		/// Get the region index for the specified cell and the region type.
+		/// </summary>
+		/// <param name="cell">The cell.</param>
+		/// <param name="label">The label.</param>
+		/// <returns>The label.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static int GetRegion(int cell, RegionLabel label)
+		{
+			return (
+				label switch
+				{
+					Row => RowTable,
+					Column => ColumnTable,
+					Block => BlockTable,
+					_ => throw Throwing.ImpossibleCase
+				})[cell];
+		}
+
+		/// <summary>
+		/// Get the name in the specified region.
+		/// </summary>
+		/// <param name="region">The region.</param>
+		/// <returns>The name.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static string GetLabel(int region) => ((RegionLabel)(region / 9)).ToString();
 
 		/// <summary>
 		/// Get cells with the specified mask, which consist of 9 bits and 1 is

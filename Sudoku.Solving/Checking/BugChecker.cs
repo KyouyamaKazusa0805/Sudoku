@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 
@@ -85,6 +85,7 @@ namespace Sudoku.Solving.Checking
 			}
 
 			// Store all bivalue cells.
+			var span = (Span<int>)stackalloc int[3];
 			var stack = new GridMap[multivalueCellsCount + 1, 9];
 			if (_bivalueMap.IsNotEmpty)
 			{
@@ -98,8 +99,9 @@ namespace Sudoku.Solving.Checking
 						ref var map = ref stack[0, digit];
 						map.Add(bivalueCell);
 
-						var (r, c, b) = Cell.GetRegion(bivalueCell);
-						var span = (Span<int>)stackalloc[] { r + 9, c + 18, b };
+						span[0] = GetRegion(bivalueCell, RegionLabel.Row);
+						span[1] = GetRegion(bivalueCell, RegionLabel.Column);
+						span[2] = GetRegion(bivalueCell, RegionLabel.Block);
 						for (int k = 0; k < 3; k++)
 						{
 							if ((map & allRegionsMap[span[k]]).Count > 2)
@@ -127,7 +129,7 @@ namespace Sudoku.Solving.Checking
 				}
 			}
 
-			var playground = (Span<int>)stackalloc[] { 0, 0, 0 };
+			var playground = (Span<int>)stackalloc int[3];
 			int pt = 1;
 			int[] chosen = new int[multivalueCellsCount + 1];
 			var resultMap = new GridMap[9];
@@ -145,13 +147,10 @@ namespace Sudoku.Solving.Checking
 					{
 						var temp = stack[pt - 1, mask.SetAt(j)];
 						temp.Add(ps);
-						var (r, c, b) = Cell.GetRegion(ps);
 
-						// Use 'stackalloc' frequently may destroy the call stack.
-						// So we should use a playground is OK.
-						playground[0] = b;
-						playground[1] = r + 9;
-						playground[2] = c + 18;
+						playground[0] = GetRegion(ps, RegionLabel.Block);
+						playground[1] = GetRegion(ps, RegionLabel.Row);
+						playground[2] = GetRegion(ps, RegionLabel.Column);
 						for (int k = 0; k < 3; k++)
 						{
 							if ((temp & allRegionsMap[playground[k]]).Count > 2)

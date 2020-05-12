@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
@@ -1037,8 +1037,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			{
 				for (int regionType = 0; regionType < 3; regionType++)
 				{
-					var (r, c, b) = Cell.GetRegion(cell);
-					int region = stackalloc[] { b, r + 9, c + 18 }[regionType];
+					int region = stackalloc[]
+					{
+						GetRegion(cell, RegionLabel.Block),
+						GetRegion(cell, RegionLabel.Row),
+						GetRegion(cell, RegionLabel.Column)
+					}[regionType];
 					if (isOdd)
 					{
 						if (visitedOdd.Contains(region))
@@ -1096,8 +1100,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					continue;
 				}
 
-				var (r, c, b) = Cell.GetRegion(cell);
-				int region = stackalloc[] { b, r + 9, c + 18 }[regionType];
+				int region = stackalloc[]
+				{
+					GetRegion(cell, RegionLabel.Block),
+					GetRegion(cell, RegionLabel.Row),
+					GetRegion(cell, RegionLabel.Column)
+				}[regionType];
 				for (int pos = 0; pos < 9; pos++)
 				{
 					int nextCell = RegionCells[region][pos];

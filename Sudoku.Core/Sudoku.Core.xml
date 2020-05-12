@@ -10,6 +10,21 @@
             the static constructor.
             </summary>
         </member>
+        <member name="F:Sudoku.Constants.Processings.BlockTable">
+            <summary>
+            The block table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.Processings.RowTable">
+            <summary>
+            The row table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.Processings.ColumnTable">
+            <summary>
+            The column table.
+            </summary>
+        </member>
         <member name="F:Sudoku.Constants.Processings.Peers">
             <summary>
             <para>Indicates a table for each cell's peers.</para>
@@ -51,6 +66,21 @@
             </code>
             </para>
             </summary>
+        </member>
+        <member name="M:Sudoku.Constants.Processings.GetRegion(System.Int32,Sudoku.Constants.RegionLabel)">
+            <summary>
+            Get the region index for the specified cell and the region type.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="label">The label.</param>
+            <returns>The label.</returns>
+        </member>
+        <member name="M:Sudoku.Constants.Processings.GetLabel(System.Int32)">
+            <summary>
+            Get the name in the specified region.
+            </summary>
+            <param name="region">The region.</param>
+            <returns>The name.</returns>
         </member>
         <member name="M:Sudoku.Constants.Processings.GetCells(System.Int32,System.Int16)">
             <summary>
@@ -133,6 +163,26 @@
         </member>
         <member name="M:Sudoku.Constants.Processings.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Constants.RegionLabel">
+            <summary>
+            Indicates the region label.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.RegionLabel.Block">
+            <summary>
+            Indicates the block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.RegionLabel.Row">
+            <summary>
+            Indicates the row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.RegionLabel.Column">
+            <summary>
+            Indicates the column.
+            </summary>
         </member>
         <member name="T:Sudoku.Data.BitCombinationGenerator">
             <summary>
@@ -329,23 +379,6 @@
 		<param name="right">The right instance.</param>
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
-        </member>
-        <member name="T:Sudoku.Data.Collections.Cell">
-            <summary>
-            Provides methods for cell offsets.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Collections.Cell.GetRegion(System.Int32)">
-            <summary>
-            <para>Get the row, column and block index of the specified cell.</para>
-            <para>
-            Note that all row, column and block indices are always between 0 and 8.
-            </para>
-            </summary>
-            <param name="cell">The cell offset.</param>
-            <returns>
-            The row, column and block index triplet.
-            </returns>
         </member>
         <member name="T:Sudoku.Data.Collections.CellCollection">
             <summary>
@@ -641,18 +674,6 @@
 		<param name="right">The right instance.</param>
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
-        </member>
-        <member name="T:Sudoku.Data.Collections.Region">
-            <summary>
-            Provides methods for region offsets.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Collections.Region.GetName(System.Int32)">
-            <summary>
-            Get the name of the region.
-            </summary>
-            <param name="region">The region.</param>
-            <returns>The name.</returns>
         </member>
         <member name="T:Sudoku.Data.Collections.RegionCollection">
             <summary>

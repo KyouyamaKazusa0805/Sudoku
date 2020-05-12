@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
 
@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			(var emptyMap, _, _, _) = grid;
+			var emptyMap = grid.GetEmptyCellsMap();
 
 			var pairs = (Span<short>)stackalloc short[8];
 			var tempLink = (Span<short>)stackalloc short[8];
@@ -115,22 +115,14 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						continue;
 					}
 
-					var (r1, _, _) = Cell.GetRegion(cells[0]);
-					var (_, _, b2) = Cell.GetRegion(cells[2]);
-					var (_, c3, _) = Cell.GetRegion(cells[4]);
-					var (_, _, b4) = Cell.GetRegion(cells[6]);
-					var (r5, _, _) = Cell.GetRegion(cells[8]);
-					var (_, _, b6) = Cell.GetRegion(cells[10]);
-					var (_, c7, _) = Cell.GetRegion(cells[12]);
-					var (_, _, b8) = Cell.GetRegion(cells[14]);
-					linkRegion[0] = r1 + 9;
-					linkRegion[1] = b2;
-					linkRegion[2] = c3 + 18;
-					linkRegion[3] = b4;
-					linkRegion[4] = r5 + 9;
-					linkRegion[5] = b6;
-					linkRegion[6] = c7 + 18;
-					linkRegion[7] = b8;
+					linkRegion[0] = GetRegion(cells[0], RegionLabel.Row);
+					linkRegion[1] = GetRegion(cells[2], RegionLabel.Block);
+					linkRegion[2] = GetRegion(cells[4], RegionLabel.Column);
+					linkRegion[3] = GetRegion(cells[6], RegionLabel.Block);
+					linkRegion[4] = GetRegion(cells[8], RegionLabel.Row);
+					linkRegion[5] = GetRegion(cells[10], RegionLabel.Block);
+					linkRegion[6] = GetRegion(cells[12], RegionLabel.Column);
+					linkRegion[7] = GetRegion(cells[14], RegionLabel.Block);
 
 					var conclusions = new List<Conclusion>();
 					var map = new GridMap(cells) & emptyMap;

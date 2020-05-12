@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using static System.Algorithms;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
-using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Data.ConclusionType;
+using static Sudoku.Data.GridMap.InitializeOption;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -58,7 +58,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				short baseCandidatesMask = (short)(grid.GetCandidatesReversal(b1) | grid.GetCandidatesReversal(b2));
 
 				int i = 0;
-				var (r, c, _) = Cell.GetRegion(b1);
+				int r = GetRegion(b1, RegionLabel.Row) - 9, c = GetRegion(b1, RegionLabel.Column) - 18;
 				foreach (int pos in ((short)(511 & ~(1 << (isRow ? r : c)))).GetAllSets())
 				{
 					cover[i++] = isRow ? pos : pos + 9;
@@ -105,8 +105,10 @@ namespace Sudoku.Solving.Manual.Exocets
 						continue;
 					}
 
-					var (row1, column1, _) = Cell.GetRegion(combination[0]);
-					var (row2, column2, _) = Cell.GetRegion(combination[1]);
+					int row1 = GetRegion(combination[0], RegionLabel.Row);
+					int column1 = GetRegion(combination[0], RegionLabel.Column);
+					int row2 = GetRegion(combination[1], RegionLabel.Row);
+					int column2 = GetRegion(combination[1], RegionLabel.Column);
 					if (isRow ? column1 == column2 : row1 == row2)
 					{
 						continue;
@@ -364,6 +366,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					continue;
 				}
 
+				#region Obsolete code
 				//if (DeepCrosslineCheck(
 				//	digit,
 				//	new GridMap(baseCellsMap & digitDistributions[digit], ProcessPeersWithoutItself),
@@ -373,6 +376,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				//{
 				//	continue;
 				//}
+				#endregion
 
 				if (!flag)
 				{
@@ -404,10 +408,12 @@ namespace Sudoku.Solving.Manual.Exocets
 			foreach (int[] combination in GetCombinationsOfArray(tempCrossline.ToArray(), 3))
 			{
 				var (a, b, c) = (combination[0], combination[1], combination[2]);
-
-				var (r1, c1, _) = Cell.GetRegion(a);
-				var (r2, c2, _) = Cell.GetRegion(b);
-				var (r3, c3, _) = Cell.GetRegion(c);
+				int r1 = GetRegion(a, RegionLabel.Row);
+				int c1 = GetRegion(a, RegionLabel.Column);
+				int r2 = GetRegion(b, RegionLabel.Row);
+				int c2 = GetRegion(b, RegionLabel.Column);
+				int r3 = GetRegion(c, RegionLabel.Row);
+				int c3 = GetRegion(c, RegionLabel.Column);
 				if (r1 == r2 || r1 == r3 || r2 == r3 || c1 == c2 || c1 == c3 || c2 == c3)
 				{
 					continue;
@@ -458,14 +464,18 @@ namespace Sudoku.Solving.Manual.Exocets
 					GetCombinationsOfArray((tempCrossline & digitMaps[digit]).ToArray(), 3))
 				{
 					var (a, b, c) = (combination[0], combination[1], combination[2]);
-					var (r1, c1, _) = Cell.GetRegion(a);
-					var (r2, c2, _) = Cell.GetRegion(b);
-					var (r3, c3, _) = Cell.GetRegion(c);
+					int r1 = GetRegion(a, RegionLabel.Row);
+					int c1 = GetRegion(a, RegionLabel.Column);
+					int r2 = GetRegion(b, RegionLabel.Row);
+					int c2 = GetRegion(b, RegionLabel.Column);
+					int r3 = GetRegion(c, RegionLabel.Row);
+					int c3 = GetRegion(c, RegionLabel.Column);
 					if (r1 == r2 || r1 == r3 || r2 == r3 || c1 == c2 || c1 == c3 || c2 == c3)
 					{
 						continue;
 					}
 
+					#region Obsolete code
 					//bool flag2 = false;
 					//var check = digitDistributions[digit] - (
 					//	new GridMap(a, false) | new GridMap(b, false) | new GridMap(c, false) | baseElimsMap);
@@ -481,6 +491,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					//{
 					//	continue;
 					//}
+					#endregion
 
 					int n = 0;
 					for (int i = 0; i < 3; i++)
@@ -534,9 +545,9 @@ namespace Sudoku.Solving.Manual.Exocets
 
 			foreach (var (currentTarget, elimTarget) in stackalloc[] { (t1, t2), (t2, t1) })
 			{
-				var (r, c, b) = Cell.GetRegion(currentTarget);
-				r += 9;
-				c += 18;
+				int r = GetRegion(currentTarget, RegionLabel.Row);
+				int c = GetRegion(currentTarget, RegionLabel.Column);
+				int b = GetRegion(currentTarget, RegionLabel.Block);
 				foreach (int digit in baseCandidatesMask.GetAllSets())
 				{
 					if ((grid.GetCandidatesReversal(currentTarget) >> digit & 1) == 0)

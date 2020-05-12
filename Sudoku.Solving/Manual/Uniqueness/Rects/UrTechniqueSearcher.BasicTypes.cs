@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
@@ -1056,9 +1056,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			int o1 = otherCellsMap.SetAt(0), o2 = otherCellsMap.SetAt(1);
-			var (r1, c1, _) = Cell.GetRegion(corner1);
-			var (r2, c2, _) = Cell.GetRegion(corner2);
-			r1 += 9; r2 += 9; c1 += 18; c2 += 18;
+			int r1 = GetRegion(corner1, RegionLabel.Row), c1 = GetRegion(corner1, RegionLabel.Column);
+			int r2 = GetRegion(corner2, RegionLabel.Row), c2 = GetRegion(corner2, RegionLabel.Column);
 			foreach (int digit in stackalloc[] { d1, d2 })
 			{
 				foreach (var (region1, region2) in stackalloc[] { (r1, r2), (c1, c2) })
@@ -1083,12 +1082,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				var conclusions = new List<Conclusion>();
 				foreach (int cell in otherCellsMap.Offsets)
 				{
-					if (!(grid.Exists(cell, digit) is true))
+					if (grid.Exists(cell, digit) is true)
 					{
-						continue;
+						conclusions.Add(new Conclusion(Elimination, cell, digit));
 					}
-
-					conclusions.Add(new Conclusion(Elimination, cell, digit));
 				}
 				if (conclusions.Count == 0)
 				{
@@ -1102,12 +1099,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					{
 						void record(int d)
 						{
-							if (d == digit || !(grid.Exists(cell, d) is true))
+							if (d != digit && grid.Exists(cell, d) is true)
 							{
-								return;
+								candidateOffsets.Add((0, cell * 9 + d));
 							}
-
-							candidateOffsets.Add((0, cell * 9 + d));
 						}
 
 						record(d1);
@@ -1165,8 +1160,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			int abzCell = GetDiagonalCell(urCells, cornerCell);
 			var adjacentCellsMap = new GridMap(otherCellsMap) { [abzCell] = false };
-			var (r, c, _) = Cell.GetRegion(abzCell);
-			r += 9; c += 18;
+			int r = GetRegion(abzCell, RegionLabel.Row), c = GetRegion(abzCell, RegionLabel.Column);
 
 			foreach (int digit in stackalloc[] { d1, d2 })
 			{
