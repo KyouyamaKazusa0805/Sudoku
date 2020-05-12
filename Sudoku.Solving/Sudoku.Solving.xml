@@ -5551,49 +5551,16 @@
             <summary>
             Get all naked subsets technique information, for searching the specified size.
             </summary>
-            <param name="result">The result accumulator.</param>
+            <param name="accumulator">The result accumulator.</param>
             <param name="grid">The grid.</param>
             <param name="size">The size.</param>
             <returns>All technique information searched.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GatherConclusion(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Nullable{System.Boolean})">
-            <summary>
-            To gather a conclusion with essential information.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="result">The information instances searched.</param>
-            <param name="region">The region offset.</param>
-            <param name="digits">All digits.</param>
-            <param name="offsets">The cell offsets.</param>
-            <param name="conclusions">All conclusions.</param>
-            <param name="isLocked">Indicates whether the subset is locked.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetNakedSubsetConclusions(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean}@)">
-            <summary>
-            Get conclusions after searched a subset technique.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="offsets">All cell offsets.</param>
-            <param name="digits">All digits.</param>
-            <param name="isLocked">
-            (<see langword="out"/> parameter) Indicates whether the subset is locked.
-            </param>
-            <returns>All conclusions.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetNakedSubsetsHighlightedCandidateOffsets(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
-            <summary>
-            Get all candidate offsets highlight in a specified naked subset technique.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="offsets">All cell offsets.</param>
-            <param name="digits">All digits.</param>
-            <returns>All candidate offsets and its ID.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetHiddenSubsetsBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32)">
             <summary>
             Get all hidden subsets technique information, for searching the specified size.
             </summary>
-            <param name="result">The result accumulator.</param>
+            <param name="accumulator">The result accumulator.</param>
             <param name="grid">The grid.</param>
             <param name="size">The size.</param>
             <returns>All technique information searched.</returns>
