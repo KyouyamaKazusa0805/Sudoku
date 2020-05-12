@@ -445,6 +445,7 @@ namespace Sudoku.Windows
 
 			async Task internalOperation()
 			{
+				#region Obsolete code
 				//if (_comboBoxDifficulty.SelectedIndex == 0)
 				//{
 				//	MessageBox.Show(
@@ -464,6 +465,7 @@ namespace Sudoku.Windows
 				//	e.Handled = true;
 				//	return;
 				//}
+				#endregion
 
 				if (!(_database is null)
 					&& MessageBox.Show(
@@ -639,7 +641,10 @@ namespace Sudoku.Windows
 
 				if (_analyisResult.HasSolved)
 				{
-					_textBoxInfo.Text = _analyisResult.ToString(string.Empty);
+					_textBoxInfo.Text =
+						$"{_analyisResult.SolvingStepsCount} " +
+						$"{(_analyisResult.SolvingStepsCount == 1 ? "step" : "steps")}, " +
+						$"time elapsed: {_analyisResult.ElapsedTime:hh':'mm'.'ss'.'fff}.";
 
 					int i = 0;
 					var pathList = new List<ListBoxItem>();
