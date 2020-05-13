@@ -90,6 +90,20 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode
+		{
+			get
+			{
+				return IsDoublyLinked switch
+				{
+					true => TechniqueCode.DoublyLinkedAlsXz,
+					false => TechniqueCode.SinglyLinkedAlsXz,
+					null => TechniqueCode.Esp
+				};
+			}
+		}
+
 
 		/// <inheritdoc/>
 		public override string ToString()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Solving.Manual;
 
 namespace Sudoku.Solving
 {
@@ -22,8 +23,16 @@ namespace Sudoku.Solving
 
 
 		/// <summary>
+		/// <para>
 		/// Indicates whether the difficulty rating of this technique should be
-		/// shown in the output screen.
+		/// shown in the output screen. Some techniques such as <b>Gurth's symmetrical placement</b>
+		/// does not need to show the difficulty (because the difficulty of this technique
+		/// is unstable).
+		/// </para>
+		/// <para>
+		/// If the value is <see langword="true"/>, the analysis result will not show the difficulty
+		/// of this instance.
+		/// </para>
 		/// </summary>
 		public virtual bool ShowDifficulty => true;
 
@@ -41,6 +50,12 @@ namespace Sudoku.Solving
 		/// The difficulty level of this step.
 		/// </summary>
 		public abstract DifficultyLevel DifficultyLevel { get; }
+
+		/// <summary>
+		/// The technique code of this instance used for comparison
+		/// (e.g. search for specified puzzle that contains this technique).
+		/// </summary>
+		public abstract TechniqueCode TechniqueCode { get; }
 
 		/// <summary>
 		/// All conclusions found in this technique step.

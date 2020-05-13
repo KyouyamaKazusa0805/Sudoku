@@ -13,221 +13,271 @@
 		/// <summary>
 		/// Indicates the hidden single.
 		/// </summary>
+		[TechniqueDisplay("Hidden Single", Category = "Singles")]
 		HiddenSingle,
 
 		/// <summary>
 		/// Indicates the naked single.
 		/// </summary>
+		[TechniqueDisplay("Naked Single", Category = "Singles")]
 		NakedSingle,
 
 		/// <summary>
 		/// Indicates the pointing.
 		/// </summary>
+		[TechniqueDisplay("Pointing", Category = "Locked Candidates")]
 		Pointing,
 
 		/// <summary>
 		/// Indicates the claiming.
 		/// </summary>
+		[TechniqueDisplay("Claiming", Category = "Locked Candidates")]
 		Claiming,
 
 		/// <summary>
 		/// Indicates the naked pair.
 		/// </summary>
+		[TechniqueDisplay("Naked Pair", Category = "Subsets")]
 		NakedPair,
 
 		/// <summary>
 		/// Indicates the naked pair plus (naked pair (+)).
 		/// </summary>
+		[TechniqueDisplay("Naked Pair (+)", Category = "Subsets")]
 		NakedPairPlus,
 
 		/// <summary>
 		/// Indicates the locked pair.
 		/// </summary>
+		[TechniqueDisplay("Locked Pair", Category = "Subsets")]
 		LockedPair,
 
 		/// <summary>
 		/// Indicates the hidden pair.
 		/// </summary>
+		[TechniqueDisplay("Hidden Pair", Category = "Subsets")]
 		HiddenPair,
 
 		/// <summary>
 		/// Indicates the naked triple.
 		/// </summary>
+		[TechniqueDisplay("Naked Triple", Category = "Subsets")]
 		NakedTriple,
 
 		/// <summary>
 		/// Indicates the naked triple plus (naked triple (+)).
 		/// </summary>
+		[TechniqueDisplay("Naked Triple (+)", Category = "Subsets")]
 		NakedTriplePlus,
 
 		/// <summary>
 		/// Indicates the locked triple.
 		/// </summary>
+		[TechniqueDisplay("Locked Triple", Category = "Subsets")]
 		LockedTriple,
+
+		/// <summary>
+		/// Indicates the hidden triple.
+		/// </summary>
+		[TechniqueDisplay("Hidden Triple", Category = "Subsets")]
+		HiddenTriple,
 
 		/// <summary>
 		/// Indicates the naked quadruple.
 		/// </summary>
+		[TechniqueDisplay("Naked Quadruple", Category = "Subsets")]
 		NakedQuadruple,
 
 		/// <summary>
 		/// Indicates the naked quadruple plus (naked quadruple (+)).
 		/// </summary>
+		[TechniqueDisplay("Naked Quadruple (+)", Category = "Subsets")]
 		NakedQuadruplePlus,
 
 		/// <summary>
 		/// Indicates the hidden quadruple.
 		/// </summary>
+		[TechniqueDisplay("Hidden Quadruple", Category = "Subsets")]
 		HiddenQuadruple,
 
 		/// <summary>
 		/// Indicates the X-Wing.
 		/// </summary>
+		[TechniqueDisplay("X-Wing", Category = "Fishes>Normal Fishes")]
 		XWing,
 
 		/// <summary>
 		/// Indicates the finned X-Wing.
 		/// </summary>
+		[TechniqueDisplay("Finned X-Wing", Category = "Fishes>Normal Fishes")]
 		FinnedXWing,
 
 		/// <summary>
 		/// Indicates the sashimi X-Wing.
 		/// </summary>
+		[TechniqueDisplay("Sashimi X-Wing", Category = "Fishes>Normal Fishes")]
 		SashimiXWing,
 
 		/// <summary>
 		/// Indicates the siamese finned X-Wing.
 		/// </summary>
+		[TechniqueDisplay("Siamese Finned X-Wing", Category = "Fishes>Normal Fishes")]
 		SiameseFinnedXWing,
 
 		/// <summary>
 		/// Indicates the siamese sashimi X-Wing.
 		/// </summary>
+		[TechniqueDisplay("Siamese Sashimi X-Wing", Category = "Fishes>Normal Fishes")]
 		SiameseSashimiXWing,
 
 		/// <summary>
 		/// Indicates the franken X-Wing.
 		/// </summary>
+		[TechniqueDisplay("Franken X-Wing", Category = "Fishes>Franken Fishes")]
 		FrankenXWing,
 
 		/// <summary>
 		/// Indicates the finned franken X-Wing.
 		/// </summary>
+		[TechniqueDisplay("Finned Franken X-Wing", Category = "Fishes>Franken Fishes")]
 		FinnedFrankenXWing,
 
 		/// <summary>
 		/// Indicates the sashimi franken X-Wing.
 		/// </summary>
+		[TechniqueDisplay("Sashimi Franken X-Wing", Category = "Fishes>Franken Fishes")]
 		SashimiFrankenXWing,
 
 		/// <summary>
 		/// Indicates the siamese finned franken X-Wing.
 		/// </summary>
+		[TechniqueDisplay("Siamese Finned Franken X-Wing", Category = "Fishes>Franken Fishes")]
 		SiameseFinnedFrankenXWing,
 
 		/// <summary>
 		/// Indicates the siamese sashimi franken X-Wing.
 		/// </summary>
+		[TechniqueDisplay("Siamese Sashimi Franken X-Wing", Category = "Fishes>Franken Fishes")]
 		SiameseSashimiFrankenXWing,
 
 		/// <summary>
 		/// Indicates the mutant X-Wing.
 		/// </summary>
+		[TechniqueDisplay("Mutant X-Wing", Category = "Fishes>Mutant Fishes")]
 		MutantXWing,
 
 		/// <summary>
 		/// Indicates the finned mutant X-Wing.
 		/// </summary>
+		[TechniqueDisplay("Finned Mutant X-Wing", Category = "Fishes>Mutant Fishes")]
 		FinnedMutantXWing,
 
 		/// <summary>
 		/// Indicates the sashimi mutant X-Wing.
 		/// </summary>
+		[TechniqueDisplay("Sashimi Mutant X-Wing", Category = "Fishes>Mutant Fishes")]
 		SashimiMutantXWing,
 
 		/// <summary>
 		/// Indicates the siamese finned mutant X-Wing.
 		/// </summary>
+		[TechniqueDisplay("Siamese Finned Mutant X-Wing", Category = "Fishes>Mutant Fishes")]
 		SiameseFinnedMutantXWing,
 
 		/// <summary>
 		/// Indicates the siamese sashimi mutant X-Wing.
 		/// </summary>
+		[TechniqueDisplay("Siamese Sashimi Mutant X-Wing", Category = "Fishes>Mutant Fishes")]
 		SiameseSashimiMutantXWing,
 
 		/// <summary>
 		/// Indicates the swordfish.
 		/// </summary>
+		[TechniqueDisplay("Swordfish", Category = "Fishes>Normal Fishes")]
 		Swordfish,
 
 		/// <summary>
 		/// Indicates the finned swordfish.
 		/// </summary>
+		[TechniqueDisplay("Finned Swordfish", Category = "Fishes>Normal Fishes")]
 		FinnedSwordfish,
 
 		/// <summary>
 		/// Indicates the sashimi swordfish.
 		/// </summary>
+		[TechniqueDisplay("Sashimi Swordfish", Category = "Fishes>Normal Fishes")]
 		SashimiSwordfish,
 
 		/// <summary>
 		/// Indicates the siamese finned swordfish.
 		/// </summary>
+		[TechniqueDisplay("Siamese Finned Swordfish", Category = "Fishes>Normal Fishes")]
 		SiameseFinnedSwordfish,
 
 		/// <summary>
 		/// Indicates the siamese sashimi swordfish.
 		/// </summary>
+		[TechniqueDisplay("Siamese Sashimi Swordfish", Category = "Fishes>Normal Fishes")]
 		SiameseSashimiSwordfish,
 
 		/// <summary>
 		/// Indicates the swordfish.
 		/// </summary>
+		[TechniqueDisplay("Franken Swordfish", Category = "Fishes>Franken Fishes")]
 		FrankenSwordfish,
 
 		/// <summary>
 		/// Indicates the finned franken swordfish.
 		/// </summary>
+		[TechniqueDisplay("Finned Franken Swordfish", Category = "Fishes>Franken Fishes")]
 		FinnedFrankenSwordfish,
 
 		/// <summary>
 		/// Indicates the sashimi franken swordfish.
 		/// </summary>
+		[TechniqueDisplay("Sashimi Franken Swordfish", Category = "Fishes>Franken Fishes")]
 		SashimiFrankenSwordfish,
 
 		/// <summary>
 		/// Indicates the siamese finned franken swordfish.
 		/// </summary>
+		[TechniqueDisplay("Siamese Finned Franken Swordfish", Category = "Fishes>Franken Fishes")]
 		SiameseFinnedFrankenSwordfish,
 
 		/// <summary>
 		/// Indicates the siamese sashimi franken swordfish.
 		/// </summary>
+		[TechniqueDisplay("Siamese Sashimi Franken Swordfish", Category = "Fishes>Franken Fishes")]
 		SiameseSashimiFrankenSwordfish,
 
 		/// <summary>
 		/// Indicates the mutant swordfish.
 		/// </summary>
+		[TechniqueDisplay("Mutant Swordfish", Category = "Fishes>Mutant Fishes")]
 		MutantSwordfish,
 
 		/// <summary>
 		/// Indicates the finned mutant swordfish.
 		/// </summary>
+		[TechniqueDisplay("Finned Mutant Swordfish", Category = "Fishes>Mutant Fishes")]
 		FinnedMutantSwordfish,
 
 		/// <summary>
 		/// Indicates the sashimi mutant swordfish.
 		/// </summary>
+		[TechniqueDisplay("Sashimi Mutant Swordfish", Category = "Fishes>Mutant Fishes")]
 		SashimiMutantSwordfish,
 
 		/// <summary>
 		/// Indicates the siamese finned mutant swordfish.
 		/// </summary>
+		[TechniqueDisplay("Siamese Finned Mutant Swordfish", Category = "Fishes>Mutant Fishes")]
 		SiameseFinnedMutantSwordfish,
 
 		/// <summary>
 		/// Indicates the siamese sashimi mutant swordfish.
 		/// </summary>
+		[TechniqueDisplay("Siamese Sashimi Mutant Swordfish", Category = "Fishes>Mutant Fishes")]
 		SiameseSashimiMutantSwordfish,
 
 		/// <summary>
@@ -906,9 +956,19 @@
 		Gsp,
 
 		/// <summary>
-		/// Indicates ALs-XZ.
+		/// Indicates the ESP.
 		/// </summary>
-		AlsXz,
+		Esp,
+
+		/// <summary>
+		/// Indicates the singly linked ALS-XZ.
+		/// </summary>
+		SinglyLinkedAlsXz,
+
+		/// <summary>
+		/// Indicates the doubly linked ALS-XZ.
+		/// </summary>
+		DoublyLinkedAlsXz,
 
 		/// <summary>
 		/// Indicates the ALS-XY-Wing.
