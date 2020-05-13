@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Represents a technique instance, which is used for comparison.
 	/// </summary>
-	public enum Technique : short
+	public enum TechniqueCode : short
 	{
 		/// <summary>
 		/// The placeholder of this enumeration type.
@@ -305,7 +305,230 @@
 		/// </summary>
 		SiameseSashimiMutantJellyfish,
 
-		// TODO: Miss all high-ordered fishes.
+		/// <summary>
+		/// Indicates the squirmbag.
+		/// </summary>
+		Squirmbag,
+
+		/// <summary>
+		/// Indicates the finned squirmbag.
+		/// </summary>
+		FinnedSquirmbag,
+
+		/// <summary>
+		/// Indicates the sashimi squirmbag.
+		/// </summary>
+		SashimiSquirmbag,
+
+		/// <summary>
+		/// Indicates the siamese finned squirmbag.
+		/// </summary>
+		SiameseFinnedSquirmbag,
+
+		/// <summary>
+		/// Indicates the siamese sashimi squirmbag.
+		/// </summary>
+		SiameseSashimiSquirmbag,
+
+		/// <summary>
+		/// Indicates the franken squirmbag.
+		/// </summary>
+		FrankenSquirmbag,
+		
+		/// <summary>
+		/// Indicates the finned franken squirmbag.
+		/// </summary>
+		FinnedFrankenSquirmbag,
+
+		/// <summary>
+		/// Indicates the sashimi franken squirmbag.
+		/// </summary>
+		SashimiFrankenSquirmbag,
+
+		/// <summary>
+		/// Indicates the siamese finned franken squirmbag.
+		/// </summary>
+		SiameseFinnedFrankenSquirmbag,
+
+		/// <summary>
+		/// Indicates the siamese sashimi franken squirmbag.
+		/// </summary>
+		SiameseSashimiFrankenSquirmbag,
+
+		/// <summary>
+		/// Indicates the mutant squirmbag.
+		/// </summary>
+		MutantSquirmbag,
+
+		/// <summary>
+		/// Indicates the finned mutant squirmbag.
+		/// </summary>
+		FinnedMutantSquirmbag,
+
+		/// <summary>
+		/// Indicates the sashimi mutant squirmbag.
+		/// </summary>
+		SashimiMutantSquirmbag,
+		
+		/// <summary>
+		/// Indicates the siamese finned mutant squirmbag.
+		/// </summary>
+		SiameseFinnedMutantSquirmbag,
+
+		/// <summary>
+		/// Indicates the siamese sashimi mutant squirmbag.
+		/// </summary>
+		SiameseSashimiMutantSquirmbag,
+
+		/// <summary>
+		/// Indicates the whale.
+		/// </summary>
+		Whale,
+
+		/// <summary>
+		/// Indicates the finned whale.
+		/// </summary>
+		FinnedWhale,
+
+		/// <summary>
+		/// Indicates the sashimi whale.
+		/// </summary>
+		SashimiWhale,
+
+		/// <summary>
+		/// Indicates the siamese finned whale.
+		/// </summary>
+		SiameseFinnedWhale,
+
+		/// <summary>
+		/// Indicates the siamese sashimi whale.
+		/// </summary>
+		SiameseSashimiWhale,
+
+		/// <summary>
+		/// Indicates the franken whale.
+		/// </summary>
+		FrankenWhale,
+
+		/// <summary>
+		/// Indicates the finned franken whale.
+		/// </summary>
+		FinnedFrankenWhale,
+
+		/// <summary>
+		/// Indicates the sashimi franken whale.
+		/// </summary>
+		SashimiFrankenWhale,
+
+		/// <summary>
+		/// Indicates the siamese finned franken whale.
+		/// </summary>
+		SiameseFinnedFrankenWhale,
+
+		/// <summary>
+		/// Indicates the siamese sashimi franken whale.
+		/// </summary>
+		SiameseSashimiFrankenWhale,
+
+		/// <summary>
+		/// Indicates the mutant whale.
+		/// </summary>
+		MutantWhale,
+
+		/// <summary>
+		/// Indicates the finned mutant whale.
+		/// </summary>
+		FinnedMutantWhale,
+
+		/// <summary>
+		/// Indicates the sashimi mutant whale.
+		/// </summary>
+		SashimiMutantWhale,
+		
+		/// <summary>
+		/// Indicates the siamese finned mutant whale.
+		/// </summary>
+		SiameseFinnedMutantWhale,
+
+		/// <summary>
+		/// Indicates the siamese sashimi mutant whale.
+		/// </summary>
+		SiameseSashimiMutantWhale,
+
+		/// <summary>
+		/// Indicates the leviathan.
+		/// </summary>
+		Leviathan,
+
+		/// <summary>
+		/// Indicates the finned leviathan.
+		/// </summary>
+		FinnedLeviathan,
+
+		/// <summary>
+		/// Indicates the sashimi leviathan.
+		/// </summary>
+		SashimiLeviathan,
+
+		/// <summary>
+		/// Indicates the siamese finned leviathan.
+		/// </summary>
+		SiameseFinnedLeviathan,
+
+		/// <summary>
+		/// Indicates the siamese sashimi leviathan.
+		/// </summary>
+		SiameseSashimiLeviathan,
+
+		/// <summary>
+		/// Indicates the franken leviathan.
+		/// </summary>
+		FrankenLeviathan,
+
+		/// <summary>
+		/// Indicates the finned franken leviathan.
+		/// </summary>
+		FinnedFrankenLeviathan,
+
+		/// <summary>
+		/// Indicates the sashimi franken leviathan.
+		/// </summary>
+		SashimiFrankenLeviathan,
+
+		/// <summary>
+		/// Indicates the siamese finned franken leviathan.
+		/// </summary>
+		SiameseFinnedFrankenLeviathan,
+
+		/// <summary>
+		/// Indicates the siamese sashimi franken leviathan.
+		/// </summary>
+		SiameseSashimiFrankenLeviathan,
+
+		/// <summary>
+		/// Indicates the mutant leviathan.
+		/// </summary>
+		MutantLeviathan,
+
+		/// <summary>
+		/// Indicates the finned mutant leviathan.
+		/// </summary>
+		FinnedMutantLeviathan,
+		
+		/// <summary>
+		/// Indicates the sashimi mutant leviathan.
+		/// </summary>
+		SashimiMutantLeviathan,
+
+		/// <summary>
+		/// Indicates the siamese finned mutant leviathan.
+		/// </summary>
+		SiameseFinnedMutantLeviathan,
+
+		/// <summary>
+		/// Indicates the siamese sashimi mutant leviathan.
+		/// </summary>
+		SiameseSashimiMutantLeviathan,
 
 		/// <summary>
 		/// Indicates the W-Wing.
