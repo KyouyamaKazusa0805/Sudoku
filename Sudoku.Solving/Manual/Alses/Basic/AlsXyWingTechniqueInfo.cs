@@ -60,9 +60,6 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public short ZDigitsMask { get; }
 
 		/// <inheritdoc/>
-		public override string Name => "Almost Locked Sets XY-Wing";
-
-		/// <inheritdoc/>
 		public override decimal Difficulty => 6.0M;
 
 		/// <inheritdoc/>

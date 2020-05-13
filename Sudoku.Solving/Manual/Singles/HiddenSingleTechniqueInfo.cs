@@ -29,13 +29,6 @@ namespace Sudoku.Solving.Manual.Singles
 			(RegionOffset, EnableAndIsLastDigit) = (regionOffset, enableAndIsLastDigit);
 
 
-		/// <inheritdoc/>
-		public override string Name =>
-			EnableAndIsLastDigit ? "Last Digit" : $"Hidden Single (In {GetLabel(RegionOffset)})";
-
-		/// <inheritdoc/>
-		public override decimal Difficulty => EnableAndIsLastDigit ? 1.1M : RegionOffset < 9 ? 1.2M : 1.5M;
-
 		/// <summary>
 		/// Indicates the region offset.
 		/// </summary>
@@ -45,6 +38,17 @@ namespace Sudoku.Solving.Manual.Singles
 		/// Indicates whether the solver enables last digit technique.
 		/// </summary>
 		public bool EnableAndIsLastDigit { get; }
+
+		/// <inheritdoc/>
+		public override string Name =>
+			EnableAndIsLastDigit ? "Last Digit" : $"Hidden Single (In {GetLabel(RegionOffset)})";
+
+		/// <inheritdoc/>
+		public override decimal Difficulty => EnableAndIsLastDigit ? 1.1M : RegionOffset < 9 ? 1.2M : 1.5M;
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode =>
+			EnableAndIsLastDigit ? TechniqueCode.LastDigit : TechniqueCode.HiddenSingle;
 
 
 		/// <inheritdoc/>

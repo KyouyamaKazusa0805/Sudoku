@@ -1398,13 +1398,13 @@
             Indicates the X digit.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo.ToString">
@@ -1479,13 +1479,13 @@
             The Z digits mask.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingTechniqueInfo.ToString">
@@ -1572,13 +1572,13 @@
             </para>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.ToString">
@@ -1643,14 +1643,11 @@
         <member name="P:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueInfo.ToString">
+        <member name="P:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueInfo.GetAlsesStr">
-            <summary>
-            Get ALSes string.
-            </summary>
-            <returns>The string.</returns>
+        <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueInfo.ToString">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueSearcher">
             <summary>
@@ -1749,13 +1746,13 @@
             Indicates the digit 2.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.ToString">
@@ -1864,13 +1861,13 @@
             Indicates the intersection cells.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.ToString">
@@ -1920,13 +1917,13 @@
             The cells.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueInfo.ToString">
@@ -2151,6 +2148,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.ToString">
@@ -2803,7 +2803,7 @@
             Provides a usage of <b>exocet</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.ExocetTypeCode,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.TargetEliminations,Sudoku.Solving.Manual.Exocets.MirrorEliminations,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations,Sudoku.Solving.Manual.Exocets.TargetPairEliminations,Sudoku.Solving.Manual.Exocets.SwordfishEliminations,Sudoku.Solving.Manual.Exocets.TrueBaseEliminations,Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.TechniqueCode,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.TargetEliminations,Sudoku.Solving.Manual.Exocets.MirrorEliminations,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations,Sudoku.Solving.Manual.Exocets.TargetPairEliminations,Sudoku.Solving.Manual.Exocets.SwordfishEliminations,Sudoku.Solving.Manual.Exocets.TrueBaseEliminations,Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -2811,7 +2811,7 @@
             <param name="views">All views.</param>
             <param name="exocet">The exocet.</param>
             <param name="digits">All digits.</param>
-            <param name="typeCode">The type code.</param>
+            <param name="techniqueCode">The technique code.</param>
             <param name="lockedMemberQ">The locked member Q.</param>
             <param name="lockedMemberR">The locked member R.</param>
             <param name="targetEliminations">The target eliminations.</param>
@@ -2845,11 +2845,6 @@
         <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.Digits">
             <summary>
             Indicates all digits used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.TypeCode">
-            <summary>
-            Indicates the type code of this exocet.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.Exocet">
@@ -2892,10 +2887,10 @@
             The compatibility test eliminations.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.Name">
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.DifficultyLevel">
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.ToString">
@@ -3028,21 +3023,6 @@
             </summary>
             <param name="seed">The specified number.</param>
             <returns>All combinations.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Exocets.ExocetTypeCode">
-            <summary>
-            Indicates the type code of an exocet.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTypeCode.Junior">
-            <summary>
-            Indicates the basic type (Junior Exocet).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTypeCode.Senior">
-            <summary>
-            Indicates the senior exocet.
-            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo">
             <summary>
@@ -3713,6 +3693,9 @@
         <member name="P:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
@@ -3968,6 +3951,9 @@
         <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
@@ -4047,13 +4033,13 @@
             Indicates whether the structure has a value cell.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Intersections.AlcTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Intersections.AlcTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Intersections.AlcTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.AlcTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueInfo.ToString">
@@ -4140,15 +4126,6 @@
             <param name="baseSet">The base set.</param>
             <param name="coverSet">The cover set.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Intersections.LcTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Intersections.LcTechniqueInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Intersections.LcTechniqueInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Intersections.LcTechniqueInfo.Digit">
             <summary>
             Indicates the digit.
@@ -4163,6 +4140,15 @@
             <summary>
             Indicates the cover set.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.LcTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.LcTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.LcTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.LcTechniqueInfo.ToString">
             <inheritdoc/>
@@ -4211,13 +4197,13 @@
             Indicates all conclusions that occurs a contradict.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueInfo.ToString">
@@ -4307,13 +4293,13 @@
             <param name="conclusions">All conclusions.</param>
             <param name="views">All views.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueInfo.ToString">
@@ -4379,13 +4365,13 @@
             Indicates the total number of combinations traversed.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.LastResorts.CccTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.CccTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.CccTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.CccTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.CccTechniqueInfo.ToString">
@@ -4492,13 +4478,13 @@
             Indicates the digit.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.LastResorts.PomTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.PomTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.PomTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.PomTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.PomTechniqueInfo.ToString">
@@ -4561,13 +4547,13 @@
             Indicates the digit.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo.ToString">
@@ -5154,13 +5140,13 @@
             Indicates the conjugate pair.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo.ToString">
@@ -5248,13 +5234,13 @@
             Indicates the target region.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueInfo.ToString">
@@ -5292,10 +5278,10 @@
             <param name="cellOffset">The cell offset.</param>
             <param name="digit">The digit.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.Name">
+        <member name="P:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.ToString">
@@ -5319,12 +5305,6 @@
             Indicates whether the solver enables last digit.
             </param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.Difficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.RegionOffset">
             <summary>
             Indicates the region offset.
@@ -5334,6 +5314,15 @@
             <summary>
             Indicates whether the solver enables last digit technique.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.ToString">
             <inheritdoc/>
@@ -5352,10 +5341,10 @@
             <param name="cellOffset">The cell offset.</param>
             <param name="digit">The digit.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.Name">
+        <member name="P:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.ToString">
@@ -5445,7 +5434,7 @@
             Indicates the size of this instance.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo.Name">
+        <member name="P:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo.ToString">
@@ -5479,15 +5468,10 @@
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.Size">
-            <summary>
-            Indicates the size of this instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.Name">
+        <member name="P:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.ToString">
@@ -5522,9 +5506,6 @@
             <summary>
             All cell offsets.
             </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Subsets.SubsetTechniqueInfo.Name">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Subsets.SubsetTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
@@ -5609,13 +5590,13 @@
         <member name="P:Sudoku.Solving.Manual.Symmetry.GspTechniqueInfo.ShowDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Symmetry.GspTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Symmetry.GspTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Symmetry.GspTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Symmetry.GspTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Symmetry.GspTechniqueInfo.ToString">
@@ -5683,6 +5664,16 @@
             The placeholder of this enumeration type.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FullHouse">
+            <summary>
+            Indicates the full house.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.LastDigit">
+            <summary>
+            Indicates the last digit.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.HiddenSingle">
             <summary>
             Indicates the hidden single.
@@ -5736,6 +5727,11 @@
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.LockedTriple">
             <summary>
             Indicates the locked triple.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.HiddenTriple">
+            <summary>
+            Indicates the hidden triple.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.NakedQuadruple">
@@ -5958,7 +5954,7 @@
             Indicates the mutant jellyfish.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.MutantFinnedJellyfish">
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FinnedMutantJellyfish">
             <summary>
             Indicates the finned mutant jellyfish.
             </summary>
@@ -6208,9 +6204,19 @@
             Indicates the W-Wing.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedWWing">
+            <summary>
+            Indicates the grouped W-Wing.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.MWing">
             <summary>
             Indicates the M-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedMWing">
+            <summary>
+            Indicates the grouped M-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.LocalWing">
@@ -6218,9 +6224,19 @@
             Indicates the local wing.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedLocalWing">
+            <summary>
+            Indicates the grouped local wing.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.SplitWing">
             <summary>
             Indicates the split wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedSplitWing">
+            <summary>
+            Indicates the grouped split wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.HybridWing">
@@ -6228,14 +6244,29 @@
             Indicates the hybrid wing.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedHybridWing">
+            <summary>
+            Indicates the grouped hybrid wing.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.PurpleCow">
             <summary>
             Indicates the purple cow.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedPurpleCow">
+            <summary>
+            Indicates the grouped purple cow.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.XyWing">
             <summary>
             Indicates the XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedXyWing">
+            <summary>
+            Indicates the grouped XY-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.XyzWing">
@@ -6251,6 +6282,26 @@
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.VwxyzWing">
             <summary>
             Indicates the VWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UvwxyzWing">
+            <summary>
+            Indicates the UVWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.TuvwxyzWing">
+            <summary>
+            Indicates the TUVWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.StuvwxyzWing">
+            <summary>
+            Indicates the STUVWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.RstuvwxyzWing">
+            <summary>
+            Indicates the RSTUVWXYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrType1">
@@ -6448,6 +6499,11 @@
             Indicates the BUG type 4.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.BugMultiple">
+            <summary>
+            Indicates the BUG + n.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.BdpType1">
             <summary>
             Indicates the BDP type 1.
@@ -6485,7 +6541,12 @@
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.Sdc">
             <summary>
-            Indicates the SDC.
+            Indicates the SdC.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.CannibalizedSdc">
+            <summary>
+            Indicates the cannibalized SdC.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.Skyscraper">
@@ -6573,14 +6634,24 @@
             Indicates the ERIP.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Esp">
+            <summary>
+            Indicates the ESP.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.Gsp">
             <summary>
             Indicates the GSP.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.AlsXz">
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SinglyLinkedAlsXz">
             <summary>
-            Indicates ALs-XZ.
+            Indicates the singly linked ALS-XZ.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.DoublyLinkedAlsXz">
+            <summary>
+            Indicates the doubly linked ALS-XZ.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.AlsXyWing">
@@ -6685,31 +6756,10 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleTechniqueInfo.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueInfo">
-            <summary>
-            Provides a usage of <b>bivalue universal grave</b> (BUG) technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher">
@@ -6793,6 +6843,30 @@
             <param name="list">The list of all true candidates.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType1TechniqueInfo">
+            <summary>
+            Provides a usage of <b>bivalue universal grave</b> (BUG) type 1 technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType1TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType1TechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType1TechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType1TechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType1TechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType2TechniqueInfo">
             <summary>
             Provides a usage of <b>bivalue universal grave</b> (BUG) type 2 technique.
@@ -6822,13 +6896,13 @@
             Indicates the cell offsets.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType2TechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType2TechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType2TechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType2TechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType2TechniqueInfo.ToString">
@@ -6870,13 +6944,13 @@
             Indicates whether the technique is with naked subsets.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType3TechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType3TechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType3TechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType3TechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType3TechniqueInfo.ToString">
@@ -6912,13 +6986,13 @@
             Indicates the conjugate pair.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType4TechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType4TechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType4TechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType4TechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType4TechniqueInfo.ToString">
@@ -6969,9 +7043,6 @@
             <summary>
             Indicates the size of the instance.
             </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueInfo.Name">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueInfo.ShowDifficulty">
             <inheritdoc/>
@@ -7070,6 +7141,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1TechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1TechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1TechniqueInfo.GetAdditional">
             <inheritdoc/>
         </member>
@@ -7099,6 +7173,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrType2TechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrType2TechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType2TechniqueInfo.GetAdditional">
@@ -7142,6 +7219,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrType3TechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrType3TechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType3TechniqueInfo.GetAdditional">
@@ -7252,6 +7332,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueInfo.DetailData">
@@ -7537,6 +7620,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
@@ -7811,6 +7897,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.ToString">
@@ -8199,6 +8288,11 @@
             Indicates the UR-WXYZ-Wing.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.Sdc">
+            <summary>
+            Indicates the UR-SdC.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo">
             <summary>
             Provides a usage of <b>unique rectangle</b> (UR) or
@@ -8349,13 +8443,13 @@
             Indicates the conjugate pair.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Wings.Irregular.WWingTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Wings.Irregular.WWingTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Wings.Irregular.WWingTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Wings.Irregular.WWingTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Irregular.WWingTechniqueInfo.ToString">
@@ -8411,6 +8505,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.ToString">
@@ -8561,10 +8658,18 @@
         </member>
         <member name="T:Sudoku.Solving.TechniqueDisplayAttribute">
             <summary>
+            <para>
             To mark on a technique searcher class (i.e. <see cref="T:Sudoku.Solving.TechniqueSearcher"/>),
             to provide additional displaying messages which are used in UI forms, such as
             technique priority settings form.
+            </para>
+            <para>
+            You can use this instance to mark on a enumeration field such as <see cref="T:Sudoku.Solving.Manual.TechniqueCode"/>
+            to show the name on the screen also.
+            </para>
             </summary>
+            <seealso cref="T:Sudoku.Solving.TechniqueSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.TechniqueCode"/>
         </member>
         <member name="M:Sudoku.Solving.TechniqueDisplayAttribute.#ctor(System.String)">
             <summary>
@@ -8575,6 +8680,19 @@
         <member name="P:Sudoku.Solving.TechniqueDisplayAttribute.DisplayName">
             <summary>
             Indicates the display name of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.TechniqueDisplayAttribute.Category">
+            <summary>
+            <para>
+            Indicates the category of this instance to display.
+            This property is used for displaying when need grouping. The value is
+            <see langword="null"/> in default case.
+            </para>
+            <para>
+            The category will be displayed like <c>"Fishes&gt;Normal Fishes&gt;Finned"</c>,
+            which used '<c>&gt;</c>' character to make a new group or a new sub-group.
+            </para>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.TechniqueInfo">
@@ -8592,13 +8710,27 @@
         </member>
         <member name="P:Sudoku.Solving.TechniqueInfo.ShowDifficulty">
             <summary>
+            <para>
             Indicates whether the difficulty rating of this technique should be
-            shown in the output screen.
+            shown in the output screen. Some techniques such as <b>Gurth's symmetrical placement</b>
+            does not need to show the difficulty (because the difficulty of this technique
+            is unstable).
+            </para>
+            <para>
+            If the value is <see langword="true"/>, the analysis result will not show the difficulty
+            of this instance.
+            </para>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.TechniqueInfo.Name">
             <summary>
             Indicates the technique name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.TechniqueInfo.TechniqueCode">
+            <summary>
+            The technique code of this instance used for comparison
+            (e.g. search for specified puzzle that contains this technique).
             </summary>
         </member>
         <member name="P:Sudoku.Solving.TechniqueInfo.Difficulty">

@@ -36,13 +36,13 @@ namespace Sudoku.Solving.Manual.Sdps
 		public ConjugatePair ConjugatePair { get; }
 
 		/// <inheritdoc/>
-		public override string Name => "Empty Rectangle";
-
-		/// <inheritdoc/>
 		public override decimal Difficulty => 4.6M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode => TechniqueCode.EmptyRectangle;
 
 
 		/// <inheritdoc/>

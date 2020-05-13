@@ -49,29 +49,28 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode => TechniqueCode.DeathBlossom;
+
 
 		/// <inheritdoc/>
 		public override string ToString()
 		{
 			string pivotStr = new CellCollection(stackalloc[] { Pivot }).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: Cell {pivotStr} - {GetAlsesStr()} => {elimStr}";
-		}
+			return $"{Name}: Cell {pivotStr} - {g()} => {elimStr}";
 
-		/// <summary>
-		/// Get ALSes string.
-		/// </summary>
-		/// <returns>The string.</returns>
-		private string GetAlsesStr()
-		{
-			const string separator = ", ";
-			var sb = new StringBuilder();
-			foreach (var (digit, als) in Alses)
+			string g()
 			{
-				sb.Append($"{digit + 1} - {als}{separator}");
-			}
+				const string separator = ", ";
+				var sb = new StringBuilder();
+				foreach (var (digit, als) in Alses)
+				{
+					sb.Append($"{digit + 1} - {als}{separator}");
+				}
 
-			return sb.RemoveFromEnd(separator.Length).ToString();
+				return sb.RemoveFromEnd(separator.Length).ToString();
+			}
 		}
 	}
 }

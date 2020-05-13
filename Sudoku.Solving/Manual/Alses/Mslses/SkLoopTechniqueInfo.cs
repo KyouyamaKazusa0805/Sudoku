@@ -27,13 +27,13 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		public IReadOnlyList<int> Cells { get; }
 
 		/// <inheritdoc/>
-		public override string Name => "Stephen Kurzhal's Loop";
-
-		/// <inheritdoc/>
 		public override decimal Difficulty => 9.6M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode => TechniqueCode.SkLoop;
 
 
 		/// <inheritdoc/>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
@@ -96,9 +97,6 @@ namespace Sudoku.Solving.Manual.Fishes
 					true => "Sashimi ",
 					false => "Finned "
 				};
-				// Note that 'true switch' is a normal judger for each condition.
-				// If the first condition is false, it will check the second one,
-				// until the result is matched (default case, or i.e. discard).
 				string shapeModifier = true switch
 				{
 					_ when IsBasic() => string.Empty,
@@ -139,6 +137,72 @@ namespace Sudoku.Solving.Manual.Fishes
 					3 => DifficultyLevel.VeryHard,
 					4 => DifficultyLevel.VeryHard,
 					_ => DifficultyLevel.Fiendish,
+				};
+			}
+		}
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode
+		{
+			get
+			{
+				return Name switch
+				{
+					"X-Wing" => TechniqueCode.XWing,
+					"Finned X-Wing" => TechniqueCode.FinnedXWing,
+					"Sashimi X-Wing" => TechniqueCode.SashimiXWing,
+					"Franken X-Wing" => TechniqueCode.FrankenXWing,
+					"Finned Franken X-Wing" => TechniqueCode.FinnedFrankenXWing,
+					"Sashimi Franken X-Wing" => TechniqueCode.SashimiFrankenXWing,
+					"Mutant X-Wing" => TechniqueCode.MutantXWing,
+					"Finned Mutant X-Wing" => TechniqueCode.FinnedMutantXWing,
+					"Sashimi Mutant X-Wing" => TechniqueCode.SashimiMutantXWing,
+					"Swordfish" => TechniqueCode.Swordfish,
+					"Finned Swordfish" => TechniqueCode.FinnedSwordfish,
+					"Sashimi Swordfish" => TechniqueCode.SashimiSwordfish,
+					"Franken Swordfish" => TechniqueCode.FrankenSwordfish,
+					"Finned Franken Swordfish" => TechniqueCode.FinnedFrankenSwordfish,
+					"Sashimi Franken Swordfish" => TechniqueCode.SashimiFrankenSwordfish,
+					"Mutant Swordfish" => TechniqueCode.MutantSwordfish,
+					"Finned Mutant Swordfish" => TechniqueCode.FinnedMutantSwordfish,
+					"Sashimi Mutant Swordfish" => TechniqueCode.SashimiMutantSwordfish,
+					"Jellyfish" => TechniqueCode.Jellyfish,
+					"Finned Jellyfish" => TechniqueCode.FinnedJellyfish,
+					"Sashimi Jellyfish" => TechniqueCode.SashimiJellyfish,
+					"Franken Jellyfish" => TechniqueCode.FrankenJellyfish,
+					"Finned Franken Jellyfish" => TechniqueCode.FinnedFrankenJellyfish,
+					"Sashimi Franken Jellyfish" => TechniqueCode.SashimiFrankenJellyfish,
+					"Mutant Jellyfish" => TechniqueCode.MutantJellyfish,
+					"Finned Mutant Jellyfish" => TechniqueCode.FinnedMutantJellyfish,
+					"Sashimi Mutant Jellyfish" => TechniqueCode.SashimiMutantJellyfish,
+					"Squirmbag" => TechniqueCode.Squirmbag,
+					"Finned Squirmbag" => TechniqueCode.FinnedSquirmbag,
+					"Sashimi Squirmbag" => TechniqueCode.SashimiSquirmbag,
+					"Franken Squirmbag" => TechniqueCode.FrankenSquirmbag,
+					"Finned Franken Squirmbag" => TechniqueCode.FinnedFrankenSquirmbag,
+					"Sashimi Franken Squirmbag" => TechniqueCode.SashimiFrankenSquirmbag,
+					"Mutant Squirmbag" => TechniqueCode.MutantSquirmbag,
+					"Finned Mutant Squirmbag" => TechniqueCode.FinnedMutantSquirmbag,
+					"Sashimi Mutant Squirmbag" => TechniqueCode.SashimiMutantSquirmbag,
+					"Whale" => TechniqueCode.Whale,
+					"Finned Whale" => TechniqueCode.FinnedWhale,
+					"Sashimi Whale" => TechniqueCode.SashimiWhale,
+					"Franken Whale" => TechniqueCode.FrankenWhale,
+					"Finned Franken Whale" => TechniqueCode.FinnedFrankenWhale,
+					"Sashimi Franken Whale" => TechniqueCode.SashimiFrankenWhale,
+					"Mutant Whale" => TechniqueCode.MutantWhale,
+					"Finned Mutant Whale" => TechniqueCode.FinnedMutantWhale,
+					"Sashimi Mutant Whale" => TechniqueCode.SashimiMutantWhale,
+					"Leviathan" => TechniqueCode.Leviathan,
+					"Finned Leviathan" => TechniqueCode.FinnedLeviathan,
+					"Sashimi Leviathan" => TechniqueCode.SashimiLeviathan,
+					"Franken Leviathan" => TechniqueCode.FrankenLeviathan,
+					"Finned Franken Leviathan" => TechniqueCode.FinnedFrankenLeviathan,
+					"Sashimi Franken Leviathan" => TechniqueCode.SashimiFrankenLeviathan,
+					"Mutant Leviathan" => TechniqueCode.MutantLeviathan,
+					"Finned Mutant Leviathan" => TechniqueCode.FinnedMutantLeviathan,
+					"Sashimi Mutant Leviathan" => TechniqueCode.SashimiMutantLeviathan,
+					_ => throw new NotSupportedException("The current instance does not support this kind of fish.")
 				};
 			}
 		}

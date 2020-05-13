@@ -97,13 +97,14 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		public GridMap IntersectionCells { get; }
 
 		/// <inheritdoc/>
-		public override string Name => $"{(IsCannibalistic ? "Cannibalized " : string.Empty)}Sue de Coq";
-
-		/// <inheritdoc/>
 		public override decimal Difficulty => 5M + (IsolatedDigitsMask != 0 ? .1M : 0) + (IsCannibalistic ? .2M : 0);
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode =>
+			IsCannibalistic ? TechniqueCode.Sdc : TechniqueCode.CannibalizedSdc;
 
 
 		/// <inheritdoc/>

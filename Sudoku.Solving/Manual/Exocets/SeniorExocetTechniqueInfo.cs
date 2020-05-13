@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			TrueBaseEliminations trueBaseEliminations, MirrorEliminations mirrorEliminations,
 			CompatibilityTestEliminations compatibilityEliminations)
 			: base(
-				  conclusions, views, exocet, digits, ExocetTypeCode.Senior, null, null,
+				  conclusions, views, exocet, digits, TechniqueCode.Se, null, null,
 				  targetEliminations, mirrorEliminations, default, default, default,
 				  trueBaseEliminations, compatibilityEliminations) =>
 			EndoTargetCell = endoTargetCell;

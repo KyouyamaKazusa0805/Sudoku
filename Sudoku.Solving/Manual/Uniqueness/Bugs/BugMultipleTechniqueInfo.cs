@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <summary>
 		/// The table of extra difficulty values.
 		/// </summary>
-		private static readonly decimal[] DifficultyExtra = new[]
+		private static readonly decimal[] DifficultyExtra =
 		{
 			.1M, .2M, .2M, .3M, .3M, .3M, .4M, .4M, .4M, .4M,
 			.5M, .5M, .5M, .5M, .5M, .6M, .6M, .6M
@@ -45,6 +45,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.VeryHard;
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode => TechniqueCode.BugMultiple;
 
 
 		/// <inheritdoc/>

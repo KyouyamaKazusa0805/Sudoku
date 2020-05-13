@@ -2,7 +2,6 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Extended
 {
@@ -51,6 +50,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode => TechniqueCode.XrType3;
 
 
 		/// <inheritdoc/>

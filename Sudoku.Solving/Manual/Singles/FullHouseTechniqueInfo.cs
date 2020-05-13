@@ -25,16 +25,16 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		/// <inheritdoc/>
-		public override string Name => "Full House";
+		public override decimal Difficulty => 1M;
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 1M;
+		public override TechniqueCode TechniqueCode => TechniqueCode.FullHouse;
 
 
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string cellStr = new CellCollection(stackalloc[] { Cell }).ToString();
+			string cellStr = new CellCollection(Cell).ToString();
 			int value = Digit + 1;
 			return $"{Name}: {cellStr} = {value}";
 		}

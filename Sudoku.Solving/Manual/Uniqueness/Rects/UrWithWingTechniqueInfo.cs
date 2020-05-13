@@ -63,7 +63,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 		/// <inheritdoc/>
 		public override string Name =>
-			$"{(IsAr ? "Avoidable" : "Unique")} Rectangle {TypeCode.GetCustomName()!}";
+			$"{(IsAr ? "Avoidable" : "Unique")} Rectangle {TypeCode.GetCustomName()}";
 
 
 		/// <inheritdoc/>

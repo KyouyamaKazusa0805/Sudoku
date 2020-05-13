@@ -27,13 +27,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public int Count { get; }
 
 		/// <inheritdoc/>
-		public override string Name => "Chute Clue Cover";
-
-		/// <inheritdoc/>
 		public override decimal Difficulty => 9M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode => TechniqueCode.Ccc;
 
 
 		/// <inheritdoc/>

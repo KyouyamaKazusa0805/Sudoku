@@ -145,6 +145,48 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode
+		{
+			get
+			{
+				return Name switch
+				{
+					"XY-Wing" => TechniqueCode.XyWing,
+					"W-Wing" => TechniqueCode.WWing,
+					"M-Wing" => TechniqueCode.MWing,
+					"Local-Wing" => TechniqueCode.LocalWing,
+					"Split-Wing" => TechniqueCode.SplitWing,
+					"Hybrid-Wing" => TechniqueCode.HybridWing,
+					"Purple Cow" => TechniqueCode.PurpleCow,
+					"X-Chain" => TechniqueCode.XChain,
+					"Fishy Cycle" => TechniqueCode.XChain,
+					"XY-Chain" => TechniqueCode.XyChain,
+					"XY-Cycle" => TechniqueCode.XyChain,
+					"Continuous Nice Loop" => TechniqueCode.ContinuousNiceLoop,
+					"XY-X-Chain" => TechniqueCode.XyXChain,
+					"Discontinuous Nice Loop" => TechniqueCode.DiscontinuousNiceLoop,
+					"Alternating Inference Chain" => TechniqueCode.Aic,
+					"Grouped W-Wing" => TechniqueCode.GroupedWWing,
+					"Grouped M-Wing" => TechniqueCode.GroupedMWing,
+					"Grouped Local-Wing" => TechniqueCode.GroupedLocalWing,
+					"Grouped Split-Wing" => TechniqueCode.GroupedSplitWing,
+					"Grouped Hybrid-Wing" => TechniqueCode.GroupedHybridWing,
+					"Grouped Purple Cow" => TechniqueCode.GroupedPurpleCow,
+					"Grouped X-Chain" => TechniqueCode.GroupedXChain,
+					"Grouped Fishy Cycle" => TechniqueCode.GroupedXChain,
+					"Grouped XY-X-Chain" => TechniqueCode.GroupedXyXChain,
+					"Grouped Discontinuous Nice Loop" => TechniqueCode.GroupedDiscontinuousNiceLoop,
+					"Grouped Alternating Inference Chain" => TechniqueCode.GroupedAic,
+					"Grouped Continuous Nice Loop" => TechniqueCode.GroupedContinuousNiceLoop,
+					"Grouped XY-Wing" => TechniqueCode.GroupedXyWing,
+					"Grouped XY-Chain" => TechniqueCode.GroupedXyChain,
+					"Grouped XY-Cycle" => TechniqueCode.GroupedXyChain,
+					_ => throw Throwing.ImpossibleCase
+				};
+			}
+		}
+
 
 		/// <inheritdoc/>
 		public override string ToString()

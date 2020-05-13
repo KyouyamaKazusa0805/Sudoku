@@ -53,6 +53,22 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode
+		{
+			get
+			{
+				return DetailData.Type switch
+				{
+					1 => TechniqueCode.UlType1,
+					2 => TechniqueCode.UlType2,
+					3 => TechniqueCode.UlType3,
+					4 => TechniqueCode.UlType4,
+					_ => throw Throwing.ImpossibleCase
+				};
+			}
+		}
+
 		/// <summary>
 		/// The data of the specified unique rectangle type.
 		/// </summary>

@@ -17,11 +17,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		{
 		}
 
+
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.5M + DifficultyExtra[Cells.Count];
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode => TechniqueCode.XrType1;
 
 
 		/// <inheritdoc/>

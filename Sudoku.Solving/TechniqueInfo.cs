@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
 using Sudoku.Solving.Manual;
 
 namespace Sudoku.Solving
@@ -39,7 +40,14 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Indicates the technique name.
 		/// </summary>
-		public abstract string Name { get; }
+		public virtual string Name =>
+			TechniqueCode.GetCustomName<TechniqueCode, TechniqueDisplayAttribute>("DisplayName") ?? string.Empty;
+
+		/// <summary>
+		/// The technique code of this instance used for comparison
+		/// (e.g. search for specified puzzle that contains this technique).
+		/// </summary>
+		public virtual TechniqueCode TechniqueCode { get; }
 
 		/// <summary>
 		/// The difficulty or this step.
@@ -50,12 +58,6 @@ namespace Sudoku.Solving
 		/// The difficulty level of this step.
 		/// </summary>
 		public abstract DifficultyLevel DifficultyLevel { get; }
-
-		/// <summary>
-		/// The technique code of this instance used for comparison
-		/// (e.g. search for specified puzzle that contains this technique).
-		/// </summary>
-		public abstract TechniqueCode TechniqueCode { get; }
 
 		/// <summary>
 		/// All conclusions found in this technique step.

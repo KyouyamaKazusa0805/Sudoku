@@ -53,9 +53,6 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public int XDigit { get; }
 
 		/// <inheritdoc/>
-		public override string Name => "Almost Locked Sets W-Wing";
-
-		/// <inheritdoc/>
 		public override decimal Difficulty => 6.2M;
 
 		/// <inheritdoc/>

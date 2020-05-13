@@ -11,7 +11,7 @@ using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Data.ConclusionType;
 using BugMultiple = Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleTechniqueInfo;
-using BugType1 = Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueInfo;
+using BugType1 = Sudoku.Solving.Manual.Uniqueness.Bugs.BugType1TechniqueInfo;
 using BugType2 = Sudoku.Solving.Manual.Uniqueness.Bugs.BugType2TechniqueInfo;
 using BugType3 = Sudoku.Solving.Manual.Uniqueness.Bugs.BugType3TechniqueInfo;
 using BugType4 = Sudoku.Solving.Manual.Uniqueness.Bugs.BugType4TechniqueInfo;

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Sdps
 {
@@ -38,33 +37,15 @@ namespace Sudoku.Solving.Manual.Sdps
 		public int TargetRegion { get; }
 
 		/// <inheritdoc/>
-		public override string Name
-		{
-			get
-			{
-				return (BaseRegion / 9, TargetRegion / 9) switch
-				{
-					(0, _) => "Turbot Fish",
-					(_, 0) => "Turbot Fish",
-					(1, 1) => "Skyscraper",
-					(2, 2) => "Skyscraper",
-					(1, 2) => "Two-string Kite",
-					(2, 1) => "Two-string Kite",
-					_ => throw new NotSupportedException("The specified value is invalid.")
-				};
-			}
-		}
-
-		/// <inheritdoc/>
 		public override decimal Difficulty
 		{
 			get
 			{
-				return Name switch
+				return TechniqueCode switch
 				{
-					"Turbot Fish" => 4.2M,
-					"Skyscraper" => 4M,
-					"Two-string Kite" => 4.1M,
+					TechniqueCode.TurbotFish => 4.2M,
+					TechniqueCode.Skyscraper => 4M,
+					TechniqueCode.TwoStringKite => 4.1M,
 					_ => throw new NotSupportedException("The specified value is invalid.")
 				};
 			}
@@ -72,6 +53,24 @@ namespace Sudoku.Solving.Manual.Sdps
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.VeryHard;
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode
+		{
+			get
+			{
+				return (BaseRegion / 9, TargetRegion / 9) switch
+				{
+					(0, _) => TechniqueCode.TurbotFish,
+					(_, 0) => TechniqueCode.TurbotFish,
+					(1, 1) => TechniqueCode.Skyscraper,
+					(2, 2) => TechniqueCode.Skyscraper,
+					(1, 2) => TechniqueCode.TwoStringKite,
+					(2, 1) => TechniqueCode.TwoStringKite,
+					_ => throw new NotSupportedException("The specified value is invalid.")
+				};
+			}
+		}
 
 
 		/// <inheritdoc/>

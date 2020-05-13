@@ -52,13 +52,13 @@ namespace Sudoku.Solving.Manual.Alses
 		public int Digit2 { get; }
 
 		/// <inheritdoc/>
-		public override string Name => "Empty Rectangle Intersection Pair";
-
-		/// <inheritdoc/>
 		public override decimal Difficulty => 6M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode => TechniqueCode.Erip;
 
 
 		/// <inheritdoc/>

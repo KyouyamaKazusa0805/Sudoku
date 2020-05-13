@@ -2,7 +2,6 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Subsets
 {
@@ -41,7 +40,19 @@ namespace Sudoku.Solving.Manual.Subsets
 		public int Size => Digits.Count;
 
 		/// <inheritdoc/>
-		public override string Name => $"Hidden {base.Name}";
+		public override TechniqueCode TechniqueCode
+		{
+			get
+			{
+				return Size switch
+				{
+					2 => TechniqueCode.HiddenPair,
+					3 => TechniqueCode.HiddenTriple,
+					4 => TechniqueCode.HiddenQuadruple,
+					_ => throw Throwing.ImpossibleCase
+				};
+			}
+		}
 
 
 		/// <inheritdoc/>

@@ -71,20 +71,6 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public bool? IsDoublyLinked { get; }
 
 		/// <inheritdoc/>
-		public override string Name
-		{
-			get
-			{
-				return IsDoublyLinked switch
-				{
-					true => "Doubly Linked Almost Locked Sets XZ Rule",
-					false => "Singly Linked Almost Locked Sets XZ Rule",
-					null => "Extended Subset Principle"
-				};
-			}
-		}
-
-		/// <inheritdoc/>
 		public override decimal Difficulty => IsDoublyLinked is true ? 5.7M : 5.5M;
 
 		/// <inheritdoc/>

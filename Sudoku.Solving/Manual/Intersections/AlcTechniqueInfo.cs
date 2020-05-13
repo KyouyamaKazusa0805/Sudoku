@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
@@ -50,9 +50,6 @@ namespace Sudoku.Solving.Manual.Intersections
 		public bool HasValueCell { get; }
 
 		/// <inheritdoc/>
-		public override string Name => $"Almost Locked {SubsetNames[Digits.Count]}";
-
-		/// <inheritdoc/>
 		public override decimal Difficulty
 		{
 			get
@@ -73,6 +70,21 @@ namespace Sudoku.Solving.Manual.Intersections
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode
+		{
+			get
+			{
+				return Digits.Count switch
+				{
+					2 => TechniqueCode.AlmostLockedPair,
+					3 => TechniqueCode.AlmostLockedTriple,
+					4 => TechniqueCode.AlmostLockedQuadruple,
+					_ => throw new NotSupportedException("The current instance does not support.")
+				};
+			}
+		}
 
 
 		/// <inheritdoc/>

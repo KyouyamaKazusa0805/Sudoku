@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			BibiPatternEliminations bibiEliminations, TargetPairEliminations targetPairEliminations,
 			SwordfishEliminations swordfishEliminations)
 			: base(
-				  conclusions, views, exocet, digits, ExocetTypeCode.Junior,
+				  conclusions, views, exocet, digits, TechniqueCode.Je,
 				  lockedMemberQ, lockedMemberR, targetEliminations, mirrorEliminations,
 				  bibiEliminations, targetPairEliminations, swordfishEliminations, default, default)
 		{

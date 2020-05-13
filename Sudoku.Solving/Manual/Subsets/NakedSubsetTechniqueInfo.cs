@@ -2,6 +2,7 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Solving.Constants;
 
 namespace Sudoku.Solving.Manual.Subsets
 {
@@ -38,31 +39,13 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// </summary>
 		public bool? IsLocked { get; }
 
-		/// <summary>
-		/// Indicates the size of this instance.
-		/// </summary>
-		public int Size => Digits.Count;
-
-		/// <inheritdoc/>
-		public override string Name
-		{
-			get
-			{
-				return IsLocked switch
-				{
-					null => $"Naked {base.Name}",
-					true => $"Locked {base.Name}",
-					false => $"Naked {base.Name} (+)"
-				};
-			}
-		}
-
 		/// <inheritdoc/>
 		public override decimal Difficulty
 		{
 			get
 			{
-				return Size switch
+				int size = Digits.Count;
+				return size switch
 				{
 					2 => 3M,
 					3 => 3.6M,
@@ -71,13 +54,33 @@ namespace Sudoku.Solving.Manual.Subsets
 				} + IsLocked switch
 				{
 					null => 0,
-					true => Size switch
+					true => size switch
 					{
 						2 => -1M,
 						3 => -1.1M,
 						_ => throw Throwing.ImpossibleCase
 					},
 					false => .1M
+				};
+			}
+		}
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode
+		{
+			get
+			{
+				return (IsLocked, Digits.Count) switch
+				{
+					(true, 2) => TechniqueCode.LockedPair,
+					(false, 2) => TechniqueCode.NakedPairPlus,
+					(null, 2) => TechniqueCode.NakedPair,
+					(true, 3) => TechniqueCode.LockedTriple,
+					(false, 3) => TechniqueCode.NakedTriplePlus,
+					(null, 3) => TechniqueCode.NakedTriple,
+					(false, 4) => TechniqueCode.NakedQuadruplePlus,
+					(null, 4) =>  TechniqueCode.NakedQuadruple,
+					_ => throw Throwing.ImpossibleCase
 				};
 			}
 		}

@@ -49,13 +49,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		public bool IsNaked { get; }
 
 		/// <inheritdoc/>
-		public override string Name => "Bivalue Universal Grave (Type 3)";
-
-		/// <inheritdoc/>
 		public override decimal Difficulty => 5.6M + Digits.Count * .1M + (IsNaked ? 0 : .1M);
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.VeryHard;
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode => TechniqueCode.BugType3;
 
 
 		/// <inheritdoc/>

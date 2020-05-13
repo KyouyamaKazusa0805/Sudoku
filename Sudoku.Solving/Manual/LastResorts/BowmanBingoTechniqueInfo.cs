@@ -29,13 +29,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public IReadOnlyList<Conclusion> ContradictionSeries { get; }
 
 		/// <inheritdoc/>
-		public override string Name => "Bowman's Bingo";
-
-		/// <inheritdoc/>
 		public override decimal Difficulty => 8M + GetExtraDifficultyByLength(ContradictionSeries.Count);
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode => TechniqueCode.BowmanBingo;
 
 
 		/// <inheritdoc/>

@@ -2,7 +2,6 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {
@@ -24,13 +23,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
-		public override string Name => "Brute Force";
-
-		/// <inheritdoc/>
 		public override decimal Difficulty => 20M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode => TechniqueCode.BruteForce;
 
 
 		/// <inheritdoc/>

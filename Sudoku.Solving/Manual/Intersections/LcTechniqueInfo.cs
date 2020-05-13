@@ -24,15 +24,6 @@ namespace Sudoku.Solving.Manual.Intersections
 			(Digit, BaseSet, CoverSet) = (digit, baseSet, coverSet);
 
 
-		/// <inheritdoc/>
-		public override string Name => BaseSet < 9 ? "Pointing" : "Claiming";
-
-		/// <inheritdoc/>
-		public override decimal Difficulty => BaseSet < 9 ? 2.6M : 2.8M;
-
-		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Moderate;
-
 		/// <summary>
 		/// Indicates the digit.
 		/// </summary>
@@ -47,6 +38,15 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// Indicates the cover set.
 		/// </summary>
 		public int CoverSet { get; }
+
+		/// <inheritdoc/>
+		public override decimal Difficulty => BaseSet < 9 ? 2.6M : 2.8M;
+
+		/// <inheritdoc/>
+		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Moderate;
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode => BaseSet < 9 ? TechniqueCode.Pointing : TechniqueCode.Claiming;
 
 
 		/// <inheritdoc/>

@@ -2,7 +2,6 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Singles
 {
@@ -27,16 +26,16 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		/// <inheritdoc/>
-		public override string Name => "Naked single";
+		public override decimal Difficulty => 2.3M;
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 2.3M;
+		public override TechniqueCode TechniqueCode => TechniqueCode.NakedSingle;
 
 
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string cellStr = new CellCollection(stackalloc[] { Cell }).ToString();
+			string cellStr = new CellCollection(Cell).ToString();
 			int value = Digit + 1;
 			return $"{Name}: {cellStr} = {value}";
 		}

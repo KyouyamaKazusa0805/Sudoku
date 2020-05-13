@@ -59,7 +59,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		{
 			get
 			{
-				string[] names = new[]
+				string[] names =
 				{
 					"", "", "", "", "WXYZ-Wing", "VWXYZ-Wing",
 					"UVWXYZ-Wing", "TUVWXYZ-Wing", "STUVWXYZ-Wing",
@@ -69,8 +69,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 				return Size switch
 				{
 					3 => isImcompleted ? "XY-Wing" : "XYZ-Wing",
-					_ when Size >= 4 && Size <= 9 =>
-						isImcompleted ? $"Uncompleted {names[Size]}" : names[Size],
+					_ when Size >= 4 && Size < 9 => isImcompleted ? $"Uncompleted {names[Size]}" : names[Size],
 					_ => throw new NotSupportedException($"The specified {nameof(Size)} is out of range.")
 				};
 			}
@@ -81,7 +80,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		{
 			get
 			{
-				var values = (Span<decimal>)stackalloc[]
+				var values = (ReadOnlySpan<decimal>)stackalloc[]
 				{
 					0, 0, 0, 0, 4.6M, 4.8M, 5.1M, 5.4M, 5.7M, 6M
 				};
@@ -89,8 +88,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 				return Size switch
 				{
 					3 => isImcompleted ? 4.2M : 4.4M,
-					_ when Size >= 4 && Size <= 9 =>
-						isImcompleted ? values[Size] + .1M : values[Size],
+					_ when Size >= 4 && Size < 9 => isImcompleted ? values[Size] + .1M : values[Size],
 					_ => throw new NotSupportedException($"The specified {nameof(Size)} is out of range.")
 				};
 			}
@@ -104,11 +102,31 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 				return Size switch
 				{
 					_ when Size >= 3 && Size < 4 => DifficultyLevel.Hard,
-					_ when Size >= 4 && Size <= 9 => DifficultyLevel.VeryHard,
+					_ when Size >= 4 && Size < 9 => DifficultyLevel.VeryHard,
 					_ => throw new NotSupportedException($"{nameof(Size)} isn't in a valid range.")
 				};
 			}
 		}
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode
+		{
+			get
+			{
+				return Size switch
+				{
+					2 => TechniqueCode.XyWing,
+					3 => TechniqueCode.XyzWing,
+					4 => TechniqueCode.WxyzWing,
+					5 => TechniqueCode.VwxyzWing,
+					6 => TechniqueCode.UvwxyzWing,
+					7 => TechniqueCode.TuvwxyzWing,
+					8 => TechniqueCode.RstuvwxyzWing,
+					_ => throw Throwing.ImpossibleCase
+				};
+			}
+		}
+
 
 		/// <inheritdoc/>
 		public override string ToString()

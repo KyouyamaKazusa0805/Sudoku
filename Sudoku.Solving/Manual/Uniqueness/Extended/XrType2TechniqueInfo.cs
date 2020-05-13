@@ -37,6 +37,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode => TechniqueCode.XrType2;
+
 
 		/// <inheritdoc/>
 		protected override string GetAdditional() => $"extra digit {ExtraDigit + 1}";

@@ -39,13 +39,13 @@ namespace Sudoku.Solving.Manual.Symmetry
 		public override bool ShowDifficulty => false;
 
 		/// <inheritdoc/>
-		public override string Name => "Gurth's Symmetrical Placement";
-
-		/// <inheritdoc/>
 		public override decimal Difficulty => 7M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.VeryHard;
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode => TechniqueCode.Gsp;
 
 
 		/// <inheritdoc/>

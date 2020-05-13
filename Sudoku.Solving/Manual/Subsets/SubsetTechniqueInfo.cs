@@ -41,9 +41,6 @@ namespace Sudoku.Solving.Manual.Subsets
 		public IReadOnlyList<int> CellOffsets { get; }
 
 		/// <inheritdoc/>
-		public override string Name => SubsetNames[Digits.Count];
-
-		/// <inheritdoc/>
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Moderate;
 	}
 }

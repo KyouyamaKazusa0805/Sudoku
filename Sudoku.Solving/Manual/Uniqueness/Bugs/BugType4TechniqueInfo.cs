@@ -41,13 +41,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		public ConjugatePair ConjugatePair { get; }
 
 		/// <inheritdoc/>
-		public override string Name => "Bivalue Universal Grave (Type 4)";
-
-		/// <inheritdoc/>
 		public override decimal Difficulty => 5.7M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.VeryHard;
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode => TechniqueCode.BugType4;
 
 
 		/// <inheritdoc/>

@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <summary>
 		/// The difficulty extra.
 		/// </summary>
-		protected static readonly decimal[] DifficultyExtra = new[]
+		protected static readonly decimal[] DifficultyExtra =
 		{
 			0, 0, 0, 0, .1M, 0, .2M, 0, .3M, 0, .4M, 0, .5M, 0, .6M
 		};
@@ -60,9 +60,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// Indicates the size of the instance.
 		/// </summary>
 		public int Size => Cells.Count >> 1;
-
-		/// <inheritdoc/>
-		public override string Name => $"Extended Rectangle {TypeName}";
 
 		/// <inheritdoc/>
 		public sealed override bool ShowDifficulty => true;

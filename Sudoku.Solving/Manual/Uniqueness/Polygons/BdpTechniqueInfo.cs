@@ -43,11 +43,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		{
 			get
 			{
+				BdpType3 d() => (BdpType3)DetailData;
+
 				return DetailData.Type switch
 				{
 					1 => 5.3M,
 					2 => 5.4M,
-					3 => (((BdpType3)DetailData).IsNaked ? 5.3M : 5.4M) + ((BdpType3)DetailData).Digits.Count * .1M,
+					3 => (d().IsNaked ? 5.3M : 5.4M) + d().Digits.Count * .1M,
 					4 => 5.4M,
 					_ => throw new NotSupportedException("Out of range.")
 				} + (Size != 3 ? .1M : 0);
@@ -56,6 +58,22 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.VeryHard;
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode
+		{
+			get
+			{
+				return DetailData.Type switch
+				{
+					1 => TechniqueCode.BdpType1,
+					2 => TechniqueCode.BdpType2,
+					3 => TechniqueCode.BdpType3,
+					4 => TechniqueCode.BdpType4,
+					_ => throw Throwing.ImpossibleCase
+				};
+			}
+		}
 
 
 		/// <inheritdoc/>

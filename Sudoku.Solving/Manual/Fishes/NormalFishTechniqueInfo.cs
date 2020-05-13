@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -103,6 +104,27 @@ namespace Sudoku.Solving.Manual.Fishes
 					null => DifficultyLevel.Hard,
 					true => DifficultyLevel.VeryHard,
 					false => Size < 3 ? DifficultyLevel.Hard : DifficultyLevel.VeryHard
+				};
+			}
+		}
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode
+		{
+			get
+			{
+				return Name switch
+				{
+					"X-Wing" => TechniqueCode.XWing,
+					"Finned X-Wing" => TechniqueCode.FinnedXWing,
+					"Sashimi X-Wing" => TechniqueCode.SashimiXWing,
+					"Swordfish" => TechniqueCode.Swordfish,
+					"Finned Swordfish" => TechniqueCode.FinnedSwordfish,
+					"Sashimi Swordfish" => TechniqueCode.SashimiSwordfish,
+					"Jellyfish" => TechniqueCode.Jellyfish,
+					"Finned Jellyfish" => TechniqueCode.FinnedJellyfish,
+					"Sashimi Jellyfish" => TechniqueCode.SashimiJellyfish,
+					_ => throw new NotSupportedException("The current instance does not support this kind of fish.")
 				};
 			}
 		}

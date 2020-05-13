@@ -34,13 +34,14 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public int Digit => Conclusions[0].Digit;
 
 		/// <inheritdoc/>
-		public override string Name => $"Template {(IsTemplateDeletion ? "Delete" : "Set")}";
-
-		/// <inheritdoc/>
 		public override decimal Difficulty => 9M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode =>
+			IsTemplateDeletion ? TechniqueCode.TemplateDelete : TechniqueCode.TemplateSet;
 
 
 		/// <inheritdoc/>

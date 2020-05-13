@@ -41,13 +41,13 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		public ConjugatePair ConjugatePair { get; }
 
 		/// <inheritdoc/>
-		public override string Name => "W-Wing";
-
-		/// <inheritdoc/>
 		public override decimal Difficulty => 4.4M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode => TechniqueCode.WWing;
 
 
 		/// <inheritdoc/>

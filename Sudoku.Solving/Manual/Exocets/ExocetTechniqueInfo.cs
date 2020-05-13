@@ -5,7 +5,6 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -21,7 +20,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="views">All views.</param>
 		/// <param name="exocet">The exocet.</param>
 		/// <param name="digits">All digits.</param>
-		/// <param name="typeCode">The type code.</param>
+		/// <param name="techniqueCode">The technique code.</param>
 		/// <param name="lockedMemberQ">The locked member Q.</param>
 		/// <param name="lockedMemberR">The locked member R.</param>
 		/// <param name="targetEliminations">The target eliminations.</param>
@@ -43,7 +42,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </param>
 		public ExocetTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			Exocet exocet, IEnumerable<int> digits, ExocetTypeCode typeCode,
+			Exocet exocet, IEnumerable<int> digits, TechniqueCode techniqueCode,
 			IEnumerable<int>? lockedMemberQ, IEnumerable<int>? lockedMemberR,
 			TargetEliminations targetEliminations, MirrorEliminations mirrorEliminations,
 			BibiPatternEliminations bibiEliminations, TargetPairEliminations targetPairEliminations,
@@ -51,7 +50,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			CompatibilityTestEliminations compatibilityEliminations)
 			: base(conclusions, views)
 		{
-			(Exocet, Digits, TypeCode, LockedMemberQ, LockedMemberR) = (exocet, digits, typeCode, lockedMemberQ, lockedMemberR);
+			(Exocet, Digits, TechniqueCode, LockedMemberQ, LockedMemberR) = (exocet, digits, techniqueCode, lockedMemberQ, lockedMemberR);
 
 			var list = (List<Conclusion>)Conclusions;
 			if (!((TargetEliminations = targetEliminations).Conclusions is null))
@@ -105,11 +104,6 @@ namespace Sudoku.Solving.Manual.Exocets
 		public IEnumerable<int> Digits { get; }
 
 		/// <summary>
-		/// Indicates the type code of this exocet.
-		/// </summary>
-		public ExocetTypeCode TypeCode { get; }
-
-		/// <summary>
 		/// The exocet.
 		/// </summary>
 		public Exocet Exocet { get; }
@@ -150,10 +144,10 @@ namespace Sudoku.Solving.Manual.Exocets
 		public CompatibilityTestEliminations CompatibilityTestEliminations { get; }
 
 		/// <inheritdoc/>
-		public sealed override string Name => TypeCode.GetCustomName()!;
+		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
 		/// <inheritdoc/>
-		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
+		public sealed override TechniqueCode TechniqueCode { get; }
 
 
 

@@ -27,13 +27,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public int Digit => Conclusions[0].Digit;
 
 		/// <inheritdoc/>
-		public override string Name => "Pattern Overlay";
-
-		/// <inheritdoc/>
 		public override decimal Difficulty => 8.5M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode => TechniqueCode.Pom;
 
 
 		/// <inheritdoc/>

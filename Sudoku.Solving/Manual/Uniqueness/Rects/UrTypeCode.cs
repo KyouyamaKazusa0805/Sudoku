@@ -207,5 +207,11 @@
 		/// </summary>
 		[Name("WXYZ-Wing")]
 		WxyzWing = 26,
+
+		/// <summary>
+		/// Indicates the UR-SdC.
+		/// </summary>
+		[Name("Sue de Coq")]
+		Sdc = 27,
 	}
 }
