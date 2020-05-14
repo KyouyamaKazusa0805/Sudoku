@@ -438,6 +438,9 @@ namespace Sudoku.Windows
 			UpdateImageGrid();
 		}
 
+		private void MenuItemGenerateTechniques_Click(object sender, RoutedEventArgs e) =>
+			new TechniqueDisplayWindow().ShowDialog();
+
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemGenerateWithSymmetry_Click(object sender, RoutedEventArgs e)
 		{

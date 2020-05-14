@@ -110,6 +110,8 @@
 
 			<!-- Generate... -->
 			<MenuItem Header="Generate">
+				<MenuItem Header="Techniques..." Name="_menuItemGenerateTechniques"
+						  Click="MenuItemGenerateTechniques_Click"/>
 				<MenuItem Header="Symmetry pattern" Name="_menuItemGenerateWithSymmetry"
 						  Click="MenuItemGenerateWithSymmetry_Click"/>
 				<MenuItem Header="Hard pattern" Name="_menuItemGenerateHardPattern"

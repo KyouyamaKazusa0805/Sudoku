@@ -5506,6 +5506,69 @@
             </summary>
             <param name="items">The elements to add.</param>
         </member>
+        <member name="T:System.Collections.Generic.TreeNode`1">
+            <summary>
+            Encapsulates a tree node.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+        </member>
+        <member name="P:System.Collections.Generic.TreeNode`1.Id">
+            <summary>
+            Indicates the current ID.
+            </summary>
+        </member>
+        <member name="P:System.Collections.Generic.TreeNode`1.ParentId">
+            <summary>
+            Indicates the parent ID of this instance.
+            </summary>
+        </member>
+        <member name="P:System.Collections.Generic.TreeNode`1.Content">
+            <summary>
+            Indicates the content.
+            </summary>
+        </member>
+        <member name="P:System.Collections.Generic.TreeNode`1.Children">
+            <summary>
+            Indicates its children nodes.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.TreeNode`1.CompareTo(System.Collections.Generic.TreeNode{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.TreeNode`1.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.Collections.TreeNode">
+            <summary>
+            Encapsulates a tree node.
+            </summary>
+        </member>
+        <member name="P:System.Collections.TreeNode.Id">
+            <summary>
+            Indicates the current ID.
+            </summary>
+        </member>
+        <member name="P:System.Collections.TreeNode.ParentId">
+            <summary>
+            Indicates the parent ID of this instance.
+            </summary>
+        </member>
+        <member name="P:System.Collections.TreeNode.Content">
+            <summary>
+            Indicates the content.
+            </summary>
+        </member>
+        <member name="P:System.Collections.TreeNode.Children">
+            <summary>
+            Indicates its children nodes.
+            </summary>
+        </member>
+        <member name="M:System.Collections.TreeNode.CompareTo(System.Collections.TreeNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.TreeNode.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:System.ICloneable`1">
             <summary>
             Supports cloning, which creates a new instance of a class with the same value

@@ -47,6 +47,24 @@
 		Claiming,
 
 		/// <summary>
+		/// Indicates the ALP.
+		/// </summary>
+		[TechniqueDisplay("Almost Locked Pair", Category = "Intersections>Almost Locked Candidates")]
+		AlmostLockedPair,
+
+		/// <summary>
+		/// Indicates the ALT.
+		/// </summary>
+		[TechniqueDisplay("Almost Locked Triple", Category = "Intersections>Almost Locked Candidates")]
+		AlmostLockedTriple,
+
+		/// <summary>
+		/// Indicates the ALQ.
+		/// </summary>
+		[TechniqueDisplay("Almost Locked Quadruple", Category = "Intersections>Almost Locked Candidates")]
+		AlmostLockedQuadruple,
+
+		/// <summary>
 		/// Indicates the naked pair.
 		/// </summary>
 		[TechniqueDisplay("Naked Pair", Category = "Subsets")]
@@ -133,73 +151,73 @@
 		/// <summary>
 		/// Indicates the siamese finned X-Wing.
 		/// </summary>
-		[TechniqueDisplay("Siamese Finned X-Wing", Category = "Fishes>Normal Fishes")]
+		//[TechniqueDisplay("Siamese Finned X-Wing", Category = "Fishes>Normal Fishes")]
 		SiameseFinnedXWing,
 
 		/// <summary>
 		/// Indicates the siamese sashimi X-Wing.
 		/// </summary>
-		[TechniqueDisplay("Siamese Sashimi X-Wing", Category = "Fishes>Normal Fishes")]
+		//[TechniqueDisplay("Siamese Sashimi X-Wing", Category = "Fishes>Normal Fishes")]
 		SiameseSashimiXWing,
 
 		/// <summary>
 		/// Indicates the franken X-Wing.
 		/// </summary>
-		[TechniqueDisplay("Franken X-Wing", Category = "Fishes>Franken Fishes")]
+		//[TechniqueDisplay("Franken X-Wing", Category = "Fishes>Franken Fishes")]
 		FrankenXWing,
 
 		/// <summary>
 		/// Indicates the finned franken X-Wing.
 		/// </summary>
-		[TechniqueDisplay("Finned Franken X-Wing", Category = "Fishes>Franken Fishes")]
+		//[TechniqueDisplay("Finned Franken X-Wing", Category = "Fishes>Franken Fishes")]
 		FinnedFrankenXWing,
 
 		/// <summary>
 		/// Indicates the sashimi franken X-Wing.
 		/// </summary>
-		[TechniqueDisplay("Sashimi Franken X-Wing", Category = "Fishes>Franken Fishes")]
+		//[TechniqueDisplay("Sashimi Franken X-Wing", Category = "Fishes>Franken Fishes")]
 		SashimiFrankenXWing,
 
 		/// <summary>
 		/// Indicates the siamese finned franken X-Wing.
 		/// </summary>
-		[TechniqueDisplay("Siamese Finned Franken X-Wing", Category = "Fishes>Franken Fishes")]
+		//[TechniqueDisplay("Siamese Finned Franken X-Wing", Category = "Fishes>Franken Fishes")]
 		SiameseFinnedFrankenXWing,
 
 		/// <summary>
 		/// Indicates the siamese sashimi franken X-Wing.
 		/// </summary>
-		[TechniqueDisplay("Siamese Sashimi Franken X-Wing", Category = "Fishes>Franken Fishes")]
+		//[TechniqueDisplay("Siamese Sashimi Franken X-Wing", Category = "Fishes>Franken Fishes")]
 		SiameseSashimiFrankenXWing,
 
 		/// <summary>
 		/// Indicates the mutant X-Wing.
 		/// </summary>
-		[TechniqueDisplay("Mutant X-Wing", Category = "Fishes>Mutant Fishes")]
+		//[TechniqueDisplay("Mutant X-Wing", Category = "Fishes>Mutant Fishes")]
 		MutantXWing,
 
 		/// <summary>
 		/// Indicates the finned mutant X-Wing.
 		/// </summary>
-		[TechniqueDisplay("Finned Mutant X-Wing", Category = "Fishes>Mutant Fishes")]
+		//[TechniqueDisplay("Finned Mutant X-Wing", Category = "Fishes>Mutant Fishes")]
 		FinnedMutantXWing,
 
 		/// <summary>
 		/// Indicates the sashimi mutant X-Wing.
 		/// </summary>
-		[TechniqueDisplay("Sashimi Mutant X-Wing", Category = "Fishes>Mutant Fishes")]
+		//[TechniqueDisplay("Sashimi Mutant X-Wing", Category = "Fishes>Mutant Fishes")]
 		SashimiMutantXWing,
 
 		/// <summary>
 		/// Indicates the siamese finned mutant X-Wing.
 		/// </summary>
-		[TechniqueDisplay("Siamese Finned Mutant X-Wing", Category = "Fishes>Mutant Fishes")]
+		//[TechniqueDisplay("Siamese Finned Mutant X-Wing", Category = "Fishes>Mutant Fishes")]
 		SiameseFinnedMutantXWing,
 
 		/// <summary>
 		/// Indicates the siamese sashimi mutant X-Wing.
 		/// </summary>
-		[TechniqueDisplay("Siamese Sashimi Mutant X-Wing", Category = "Fishes>Mutant Fishes")]
+		//[TechniqueDisplay("Siamese Sashimi Mutant X-Wing", Category = "Fishes>Mutant Fishes")]
 		SiameseSashimiMutantXWing,
 
 		/// <summary>
@@ -223,73 +241,73 @@
 		/// <summary>
 		/// Indicates the siamese finned swordfish.
 		/// </summary>
-		[TechniqueDisplay("Siamese Finned Swordfish", Category = "Fishes>Normal Fishes")]
+		//[TechniqueDisplay("Siamese Finned Swordfish", Category = "Fishes>Normal Fishes")]
 		SiameseFinnedSwordfish,
 
 		/// <summary>
 		/// Indicates the siamese sashimi swordfish.
 		/// </summary>
-		[TechniqueDisplay("Siamese Sashimi Swordfish", Category = "Fishes>Normal Fishes")]
+		//[TechniqueDisplay("Siamese Sashimi Swordfish", Category = "Fishes>Normal Fishes")]
 		SiameseSashimiSwordfish,
 
 		/// <summary>
 		/// Indicates the swordfish.
 		/// </summary>
-		[TechniqueDisplay("Franken Swordfish", Category = "Fishes>Franken Fishes")]
+		//[TechniqueDisplay("Franken Swordfish", Category = "Fishes>Franken Fishes")]
 		FrankenSwordfish,
 
 		/// <summary>
 		/// Indicates the finned franken swordfish.
 		/// </summary>
-		[TechniqueDisplay("Finned Franken Swordfish", Category = "Fishes>Franken Fishes")]
+		//[TechniqueDisplay("Finned Franken Swordfish", Category = "Fishes>Franken Fishes")]
 		FinnedFrankenSwordfish,
 
 		/// <summary>
 		/// Indicates the sashimi franken swordfish.
 		/// </summary>
-		[TechniqueDisplay("Sashimi Franken Swordfish", Category = "Fishes>Franken Fishes")]
+		//[TechniqueDisplay("Sashimi Franken Swordfish", Category = "Fishes>Franken Fishes")]
 		SashimiFrankenSwordfish,
 
 		/// <summary>
 		/// Indicates the siamese finned franken swordfish.
 		/// </summary>
-		[TechniqueDisplay("Siamese Finned Franken Swordfish", Category = "Fishes>Franken Fishes")]
+		//[TechniqueDisplay("Siamese Finned Franken Swordfish", Category = "Fishes>Franken Fishes")]
 		SiameseFinnedFrankenSwordfish,
 
 		/// <summary>
 		/// Indicates the siamese sashimi franken swordfish.
 		/// </summary>
-		[TechniqueDisplay("Siamese Sashimi Franken Swordfish", Category = "Fishes>Franken Fishes")]
+		//[TechniqueDisplay("Siamese Sashimi Franken Swordfish", Category = "Fishes>Franken Fishes")]
 		SiameseSashimiFrankenSwordfish,
 
 		/// <summary>
 		/// Indicates the mutant swordfish.
 		/// </summary>
-		[TechniqueDisplay("Mutant Swordfish", Category = "Fishes>Mutant Fishes")]
+		//[TechniqueDisplay("Mutant Swordfish", Category = "Fishes>Mutant Fishes")]
 		MutantSwordfish,
 
 		/// <summary>
 		/// Indicates the finned mutant swordfish.
 		/// </summary>
-		[TechniqueDisplay("Finned Mutant Swordfish", Category = "Fishes>Mutant Fishes")]
+		//[TechniqueDisplay("Finned Mutant Swordfish", Category = "Fishes>Mutant Fishes")]
 		FinnedMutantSwordfish,
 
 		/// <summary>
 		/// Indicates the sashimi mutant swordfish.
 		/// </summary>
-		[TechniqueDisplay("Sashimi Mutant Swordfish", Category = "Fishes>Mutant Fishes")]
+		//[TechniqueDisplay("Sashimi Mutant Swordfish", Category = "Fishes>Mutant Fishes")]
 		SashimiMutantSwordfish,
 
 		/// <summary>
 		/// Indicates the siamese finned mutant swordfish.
 		/// </summary>
-		[TechniqueDisplay("Siamese Finned Mutant Swordfish", Category = "Fishes>Mutant Fishes")]
+		//[TechniqueDisplay("Siamese Finned Mutant Swordfish", Category = "Fishes>Mutant Fishes")]
 		SiameseFinnedMutantSwordfish,
 
 		/// <summary>
 		/// Indicates the siamese sashimi mutant swordfish.
 		/// </summary>
-		[TechniqueDisplay("Siamese Sashimi Mutant Swordfish", Category = "Fishes>Mutant Fishes")]
+		//[TechniqueDisplay("Siamese Sashimi Mutant Swordfish", Category = "Fishes>Mutant Fishes")]
 		SiameseSashimiMutantSwordfish,
 
 		/// <summary>
@@ -596,87 +614,10 @@
 		SiameseSashimiMutantLeviathan,
 
 		/// <summary>
-		/// Indicates the W-Wing.
-		/// </summary>
-		[TechniqueDisplay("W-Wing", Category = "Wings>Irregular Wings")]
-		WWing,
-
-		/// <summary>
-		/// Indicates the grouped W-Wing.
-		/// </summary>
-		[TechniqueDisplay("Grouped W-Wing", Category = "Wings>Irregular Wings")]
-		GroupedWWing,
-
-		/// <summary>
-		/// Indicates the M-Wing.
-		/// </summary>
-		[TechniqueDisplay("M-Wing", Category = "Wings>Irregular Wings")]
-		MWing,
-
-		/// <summary>
-		/// Indicates the grouped M-Wing.
-		/// </summary>
-		[TechniqueDisplay("Grouped M-Wing", Category = "Wings>Irregular Wings")]
-		GroupedMWing,
-
-		/// <summary>
-		/// Indicates the local wing.
-		/// </summary>
-		[TechniqueDisplay("Local Wing", Category = "Wings>Irregular Wings")]
-		LocalWing,
-
-		/// <summary>
-		/// Indicates the grouped local wing.
-		/// </summary>
-		[TechniqueDisplay("Grouped Local Wing", Category = "Wings>Irregular Wings")]
-		GroupedLocalWing,
-
-		/// <summary>
-		/// Indicates the split wing.
-		/// </summary>
-		[TechniqueDisplay("Split Wing", Category = "Wings>Irregular Wings")]
-		SplitWing,
-
-		/// <summary>
-		/// Indicates the grouped split wing.
-		/// </summary>
-		[TechniqueDisplay("Grouped Split Wing", Category = "Wings>Irregular Wings")]
-		GroupedSplitWing,
-
-		/// <summary>
-		/// Indicates the hybrid wing.
-		/// </summary>
-		[TechniqueDisplay("Hybrid Wing", Category = "Wings>Irregular Wings")]
-		HybridWing,
-
-		/// <summary>
-		/// Indicates the grouped hybrid wing.
-		/// </summary>
-		[TechniqueDisplay("Grouped Hybrid Wing", Category = "Wings>Irregular Wings")]
-		GroupedHybridWing,
-
-		/// <summary>
-		/// Indicates the purple cow.
-		/// </summary>
-		[TechniqueDisplay("Purple Cow", Category = "Chains>Alternating Inference Chains")]
-		PurpleCow,
-
-		/// <summary>
-		/// Indicates the grouped purple cow.
-		/// </summary>
-		[TechniqueDisplay("Grouped Purple Cow", Category = "Chains>Grouped Alternating Inference Chains")]
-		GroupedPurpleCow,
-
-		/// <summary>
 		/// Indicates the XY-Wing.
 		/// </summary>
 		[TechniqueDisplay("XY-Wing", Category = "Wings>Regular Wings")]
 		XyWing,
-
-		/// <summary>
-		/// Indicates the grouped XY-Wing.
-		/// </summary>
-		GroupedXyWing,
 
 		/// <summary>
 		/// Indicates the XYZ-Wing.
@@ -719,6 +660,71 @@
 		/// </summary>
 		//[TechniqueDisplay("RSTUVWXYZ-Wing", Category = "Wings>Regular Wings")]
 		RstuvwxyzWing,
+
+		/// <summary>
+		/// Indicates the W-Wing.
+		/// </summary>
+		[TechniqueDisplay("W-Wing", Category = "Wings>Irregular Wings")]
+		WWing,
+
+		/// <summary>
+		/// Indicates the M-Wing.
+		/// </summary>
+		[TechniqueDisplay("M-Wing", Category = "Wings>Irregular Wings")]
+		MWing,
+
+		/// <summary>
+		/// Indicates the local wing.
+		/// </summary>
+		[TechniqueDisplay("Local Wing", Category = "Wings>Irregular Wings")]
+		LocalWing,
+
+		/// <summary>
+		/// Indicates the split wing.
+		/// </summary>
+		[TechniqueDisplay("Split Wing", Category = "Wings>Irregular Wings")]
+		SplitWing,
+
+		/// <summary>
+		/// Indicates the hybrid wing.
+		/// </summary>
+		[TechniqueDisplay("Hybrid Wing", Category = "Wings>Irregular Wings")]
+		HybridWing,
+
+		/// <summary>
+		/// Indicates the grouped XY-Wing.
+		/// </summary>
+		GroupedXyWing,
+
+		/// <summary>
+		/// Indicates the grouped W-Wing.
+		/// </summary>
+		[TechniqueDisplay("Grouped W-Wing", Category = "Wings>Irregular Wings")]
+		GroupedWWing,
+
+		/// <summary>
+		/// Indicates the grouped M-Wing.
+		/// </summary>
+		[TechniqueDisplay("Grouped M-Wing", Category = "Wings>Irregular Wings")]
+		GroupedMWing,
+
+		/// <summary>
+		/// Indicates the grouped local wing.
+		/// </summary>
+		[TechniqueDisplay("Grouped Local Wing", Category = "Wings>Irregular Wings")]
+		GroupedLocalWing,
+
+		/// <summary>
+		/// Indicates the grouped split wing.
+		/// </summary>
+		[TechniqueDisplay("Grouped Split Wing", Category = "Wings>Irregular Wings")]
+		GroupedSplitWing,
+
+		/// <summary>
+		/// Indicates the grouped hybrid wing.
+		/// </summary>
+		[TechniqueDisplay("Grouped Hybrid Wing", Category = "Wings>Irregular Wings")]
+		GroupedHybridWing,
 
 		/// <summary>
 		/// Indicates the UR type 1.
@@ -985,24 +991,6 @@
 		BdpType4,
 
 		/// <summary>
-		/// Indicates the ALP.
-		/// </summary>
-		[TechniqueDisplay("Almost Locked Pair", Category = "Intersections>Almost Locked Candidates")]
-		AlmostLockedPair,
-
-		/// <summary>
-		/// Indicates the ALT.
-		/// </summary>
-		[TechniqueDisplay("Almost Locked Triple", Category = "Intersections>Almost Locked Candidates")]
-		AlmostLockedTriple,
-
-		/// <summary>
-		/// Indicates the ALQ.
-		/// </summary>
-		[TechniqueDisplay("Almost Locked Quadruple", Category = "Intersections>Almost Locked Candidates")]
-		AlmostLockedQuadruple,
-
-		/// <summary>
 		/// Indicates the SdC.
 		/// </summary>
 		[TechniqueDisplay("Sue de Coq", Category = "Almost Locked Sets")]
@@ -1057,6 +1045,12 @@
 		XyXChain,
 
 		/// <summary>
+		/// Indicates the purple cow.
+		/// </summary>
+		[TechniqueDisplay("Purple Cow", Category = "Chains>Alternating Inference Chains")]
+		PurpleCow,
+
+		/// <summary>
 		/// Indicates the discontinuous nice loop.
 		/// </summary>
 		[TechniqueDisplay("Discontinuous Nice Loop", Category = "Chains>Alternating Inference Chains")]
@@ -1093,6 +1087,12 @@
 		GroupedXyXChain,
 
 		/// <summary>
+		/// Indicates the grouped purple cow.
+		/// </summary>
+		[TechniqueDisplay("Grouped Purple Cow", Category = "Chains>Grouped Alternating Inference Chains")]
+		GroupedPurpleCow,
+
+		/// <summary>
 		/// Indicates the grouped discontinuous nice loop.
 		/// </summary>
 		[TechniqueDisplay("Grouped Discontinuous Nice Loop", Category = "Chains>Grouped Alternating Inference Chains")]
@@ -1121,12 +1121,6 @@
 		/// </summary>
 		[TechniqueDisplay("Extended Subset Principle", Category = "Almost Locked Sets")]
 		Esp,
-
-		/// <summary>
-		/// Indicates the GSP.
-		/// </summary>
-		[TechniqueDisplay("Gurth's Symmetrical Placement", Category = "Symmetry")]
-		Gsp,
 
 		/// <summary>
 		/// Indicates the singly linked ALS-XZ.
@@ -1159,6 +1153,12 @@
 		DeathBlossom,
 
 		/// <summary>
+		/// Indicates the GSP.
+		/// </summary>
+		[TechniqueDisplay("Gurth's Symmetrical Placement", Category = "Symmetry")]
+		Gsp,
+
+		/// <summary>
 		/// Indicates the JE.
 		/// </summary>
 		[TechniqueDisplay("Junior Exocet", Category = "Exocets")]
@@ -1173,13 +1173,13 @@
 		/// <summary>
 		/// Indicates the siamese JE. 
 		/// </summary>
-		[TechniqueDisplay("Siamese Junior Exocet", Category = "Exocets")]
+		//[TechniqueDisplay("Siamese Junior Exocet", Category = "Exocets")]
 		SiameseJe,
 
 		/// <summary>
 		/// Indicates the siamese SE.
 		/// </summary>
-		[TechniqueDisplay("Siamese Senior Exocet", Category = "Exocets")]
+		//[TechniqueDisplay("Siamese Senior Exocet", Category = "Exocets")]
 		SiameseSe,
 
 		/// <summary>

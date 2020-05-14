@@ -5694,6 +5694,21 @@
             Indicates the claiming.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.AlmostLockedPair">
+            <summary>
+            Indicates the ALP.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.AlmostLockedTriple">
+            <summary>
+            Indicates the ALT.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.AlmostLockedQuadruple">
+            <summary>
+            Indicates the ALQ.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.NakedPair">
             <summary>
             Indicates the naked pair.
@@ -6199,74 +6214,9 @@
             Indicates the siamese sashimi mutant leviathan.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.WWing">
-            <summary>
-            Indicates the W-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedWWing">
-            <summary>
-            Indicates the grouped W-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.MWing">
-            <summary>
-            Indicates the M-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedMWing">
-            <summary>
-            Indicates the grouped M-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.LocalWing">
-            <summary>
-            Indicates the local wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedLocalWing">
-            <summary>
-            Indicates the grouped local wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SplitWing">
-            <summary>
-            Indicates the split wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedSplitWing">
-            <summary>
-            Indicates the grouped split wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.HybridWing">
-            <summary>
-            Indicates the hybrid wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedHybridWing">
-            <summary>
-            Indicates the grouped hybrid wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.PurpleCow">
-            <summary>
-            Indicates the purple cow.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedPurpleCow">
-            <summary>
-            Indicates the grouped purple cow.
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.XyWing">
             <summary>
             Indicates the XY-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedXyWing">
-            <summary>
-            Indicates the grouped XY-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.XyzWing">
@@ -6302,6 +6252,61 @@
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.RstuvwxyzWing">
             <summary>
             Indicates the RSTUVWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.WWing">
+            <summary>
+            Indicates the W-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.MWing">
+            <summary>
+            Indicates the M-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.LocalWing">
+            <summary>
+            Indicates the local wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SplitWing">
+            <summary>
+            Indicates the split wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.HybridWing">
+            <summary>
+            Indicates the hybrid wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedXyWing">
+            <summary>
+            Indicates the grouped XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedWWing">
+            <summary>
+            Indicates the grouped W-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedMWing">
+            <summary>
+            Indicates the grouped M-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedLocalWing">
+            <summary>
+            Indicates the grouped local wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedSplitWing">
+            <summary>
+            Indicates the grouped split wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedHybridWing">
+            <summary>
+            Indicates the grouped hybrid wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrType1">
@@ -6524,21 +6529,6 @@
             Indicates the BDP type 4.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.AlmostLockedPair">
-            <summary>
-            Indicates the ALP.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.AlmostLockedTriple">
-            <summary>
-            Indicates the ALT.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.AlmostLockedQuadruple">
-            <summary>
-            Indicates the ALQ.
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.Sdc">
             <summary>
             Indicates the SdC.
@@ -6584,6 +6574,11 @@
             Indicates the XY-X-Chain.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.PurpleCow">
+            <summary>
+            Indicates the purple cow.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.DiscontinuousNiceLoop">
             <summary>
             Indicates the discontinuous nice loop.
@@ -6614,6 +6609,11 @@
             Indicates the grouped XY-X-Chain.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedPurpleCow">
+            <summary>
+            Indicates the grouped purple cow.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedDiscontinuousNiceLoop">
             <summary>
             Indicates the grouped discontinuous nice loop.
@@ -6639,11 +6639,6 @@
             Indicates the ESP.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Gsp">
-            <summary>
-            Indicates the GSP.
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.SinglyLinkedAlsXz">
             <summary>
             Indicates the singly linked ALS-XZ.
@@ -6667,6 +6662,11 @@
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.DeathBlossom">
             <summary>
             Indicates the death blossom.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Gsp">
+            <summary>
+            Indicates the GSP.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.Je">
