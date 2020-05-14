@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
+using System.Windows.Controls;
 using Sudoku.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 
-namespace Sudoku.Windows
+namespace Sudoku.Windows.Tooling
 {
 	/// <summary>
-	/// Interaction logic for <c>TechniqueDisplayWindow.xaml</c>.
+	/// Interaction logic for <c>TechniqueTreeView.xaml</c>.
 	/// </summary>
-	public partial class TechniqueDisplayWindow : Window
+	public partial class TechniqueTreeView : UserControl
 	{
-		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
-		public TechniqueDisplayWindow() => InitializeComponent();
+		/// <include file='../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		public TechniqueTreeView() => InitializeComponent();
 
 
 		/// <inheritdoc/>
