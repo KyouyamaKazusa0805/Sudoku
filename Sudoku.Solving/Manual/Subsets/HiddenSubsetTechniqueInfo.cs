@@ -20,19 +20,14 @@ namespace Sudoku.Solving.Manual.Subsets
 
 
 		/// <inheritdoc/>
-		public override decimal Difficulty
-		{
-			get
+		public override decimal Difficulty =>
+			Size switch
 			{
-				return Size switch
-				{
-					2 => 3.4M,
-					3 => 4M,
-					4 => 5.4M,
-					_ => throw Throwing.ImpossibleCase
-				};
-			}
-		}
+				2 => 3.4M,
+				3 => 4M,
+				4 => 5.4M,
+				_ => throw Throwing.ImpossibleCase
+			};
 
 		/// <summary>
 		/// Indicates the size of this instance.
@@ -40,19 +35,14 @@ namespace Sudoku.Solving.Manual.Subsets
 		public int Size => Digits.Count;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode
-		{
-			get
+		public override TechniqueCode TechniqueCode =>
+			Size switch
 			{
-				return Size switch
-				{
-					2 => TechniqueCode.HiddenPair,
-					3 => TechniqueCode.HiddenTriple,
-					4 => TechniqueCode.HiddenQuadruple,
-					_ => throw Throwing.ImpossibleCase
-				};
-			}
-		}
+				2 => TechniqueCode.HiddenPair,
+				3 => TechniqueCode.HiddenTriple,
+				4 => TechniqueCode.HiddenQuadruple,
+				_ => throw Throwing.ImpossibleCase
+			};
 
 
 		/// <inheritdoc/>

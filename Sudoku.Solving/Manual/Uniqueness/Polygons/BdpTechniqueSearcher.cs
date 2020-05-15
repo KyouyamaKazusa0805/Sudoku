@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
@@ -39,7 +38,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			(var emptyMap, _, _, _) = grid;
+			var emptyMap = grid.GetEmptyCellsMap();
 			if (emptyMap.Count < 7)
 			{
 				return;

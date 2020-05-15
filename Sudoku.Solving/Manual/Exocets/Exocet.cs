@@ -94,14 +94,11 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="baseCellsMap">(<see langword="out"/> parameter) The base cells.</param>
 		/// <param name="targetCellsMap">(<see langword="out"/> parameter) The target cells.</param>
 		/// <param name="crosslineMap">(<see langword="out"/> parameter) The cross-line cells.</param>
-		public void Deconstruct(
-			out GridMap baseCellsMap, out GridMap targetCellsMap, out GridMap crosslineMap)
-		{
+		public void Deconstruct(out GridMap baseCellsMap, out GridMap targetCellsMap, out GridMap crosslineMap) =>
 			(baseCellsMap, targetCellsMap, crosslineMap) = (
 				new GridMap { Base1, Base2 },
 				new GridMap { TargetQ1, TargetQ2, TargetR1, TargetR2 },
 				CrossLine);
-		}
 
 		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="base1">(<see langword="out"/> parameter) The base cell 1.</param>
@@ -138,15 +135,13 @@ namespace Sudoku.Solving.Manual.Exocets
 		public override bool Equals(object? obj) => obj is Exocet comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(Exocet other)
-		{
-			return Base1 == other.Base1 && Base2 == other.Base2
-				&& TargetQ1 == other.TargetQ1 && TargetQ2 == other.TargetQ2
-				&& TargetR1 == other.TargetR1 && TargetR2 == other.TargetR2
-				&& MirrorQ1 == other.MirrorQ1 && MirrorQ2 == other.MirrorQ2
-				&& MirrorR1 == other.MirrorR1 && MirrorR2 == other.MirrorR2
-				&& CrossLine == other.CrossLine;
-		}
+		public bool Equals(Exocet other) =>
+			Base1 == other.Base1 && Base2 == other.Base2
+			&& TargetQ1 == other.TargetQ1 && TargetQ2 == other.TargetQ2
+			&& TargetR1 == other.TargetR1 && TargetR2 == other.TargetR2
+			&& MirrorQ1 == other.MirrorQ1 && MirrorQ2 == other.MirrorQ2
+			&& MirrorR1 == other.MirrorR1 && MirrorR2 == other.MirrorR2
+			&& CrossLine == other.CrossLine;
 
 		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		public override int GetHashCode()

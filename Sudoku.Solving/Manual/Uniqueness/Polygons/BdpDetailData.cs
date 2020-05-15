@@ -13,8 +13,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// </summary>
 		/// <param name="cells">All cells.</param>
 		/// <param name="digits">All digits.</param>
-		protected BdpDetailData(
-			IReadOnlyList<int> cells, IReadOnlyList<int> digits) =>
+		protected BdpDetailData(IReadOnlyList<int> cells, IReadOnlyList<int> digits) =>
 			(Cells, Digits) = (cells, digits);
 
 

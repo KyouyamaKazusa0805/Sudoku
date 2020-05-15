@@ -17,8 +17,7 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <param name="cellOffset">The cell offset.</param>
 		/// <param name="digit">The digit.</param>
 		protected SingleTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int cellOffset, int digit)
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int cellOffset, int digit)
 			: base(conclusions, views) => (Cell, Digit) = (cellOffset, digit);
 
 

@@ -10,8 +10,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 	public abstract class IrregularWingTechniqueInfo : TechniqueInfo
 	{
 		/// <inheritdoc/>
-		protected IrregularWingTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
+		protected IrregularWingTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
 			: base(conclusions, views)
 		{
 		}

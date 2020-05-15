@@ -10,8 +10,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 	public abstract class SymmetryTechniqueInfo : TechniqueInfo
 	{
 		/// <inheritdoc/>
-		protected SymmetryTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
+		protected SymmetryTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
 			: base(conclusions, views)
 		{
 		}

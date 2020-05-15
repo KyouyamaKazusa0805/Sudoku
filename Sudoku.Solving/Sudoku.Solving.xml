@@ -2221,6 +2221,12 @@
             </summary>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.GroupedPrefix">
+            <summary>
+            Get the grouped prefix.
+            </summary>
+            <returns>The prefix.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.IsHeadCollisionChain">
             <summary>
             Indicates whether the chain is discontinuous nice loop whose head and tail
@@ -4033,6 +4039,11 @@
             Indicates whether the structure has a value cell.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.AlcTechniqueInfo.Size">
+            <summary>
+            Indicates the size.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Intersections.AlcTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
@@ -4247,6 +4258,15 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.TakeAllRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.Grid,System.Int32,System.Int32)">
+            <summary>
+            Take all information recursively.
+            </summary>
+            <param name="result">The result.</param>
+            <param name="grid">The grid.</param>
+            <param name="startCandidate">The start candidate.</param>
+            <param name="length">The length.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.GetLinks">
             <summary>
@@ -5466,6 +5486,11 @@
             <item><term><see langword="false"/></term><description>Partial locked subset,</description></item>
             <item><term><see langword="null"/></term><description>Normal subset.</description></item>
             </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.Size">
+            <summary>
+            Indicates the size.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.Difficulty">
@@ -8890,40 +8915,40 @@
 	</operator>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.op_GreaterThan(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
-            <summary>
-            Indicates whether the priority value of the <paramref name="left"/>
-            technique searcher is greater than the <paramref name="right"/> one.
-            </summary>
-            <param name="left">The left comparer.</param>
-            <param name="right">The right comparer.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <operator name="op_GreaterThan">
+		<summary>Indicates whether the left value is greater than the right value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.op_GreaterThanOrEqual(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
-            <summary>
-            Indicates whether the priority value of <paramref name="left"/>
-            technique searcher is greater than or equals to the <paramref name="right"/> one.
-            </summary>
-            <param name="left">The left comparer.</param>
-            <param name="right">The right comparer.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <operator name="op_GreaterThanOrEqual">
+		<summary>
+			Indicates whether the left value is greater than or equals to the right value.
+		</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.op_LessThan(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
-            <summary>
-            Indicates whether the priority value of <paramref name="left"/>
-            technique searcher is less than the <paramref name="right"/> one.
-            </summary>
-            <param name="left">The left comparer.</param>
-            <param name="right">The right comparer.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <operator name="op_LessThan">
+		<summary>Indicates whether the left value is less than the right value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.op_LessThanOrEqual(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
-            <summary>
-            Indicates whether the priority value of <paramref name="left"/>
-            technique searcher is less than or equals to the <paramref name="right"/> one.
-            </summary>
-            <param name="left">The left comparer.</param>
-            <param name="right">The right comparer.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <operator name="op_LessThanOrEqual">
+		<summary>
+			Indicates whether the left value is less than or equals to the right value.
+		</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="T:Sudoku.Solving.Utils.NodeCollection">
             <summary>

@@ -38,17 +38,12 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc/>
-		public override decimal Difficulty
-		{
-			get
-			{
-				return 9.4M
-					+ (MirrorEliminations.Conclusions is null ? 0 : .1M)
-					+ (BibiEliminations.Conclusions is null ? 0 : .3M)
-					+ (TargetPairEliminations.Conclusions is null ? 0 : .1M)
-					+ (SwordfishEliminations.Conclusions is null ? 0 : .2M);
-			}
-		}
+		public override decimal Difficulty =>
+			9.4M
+			+ (MirrorEliminations.Conclusions is null ? 0 : .1M)
+			+ (BibiEliminations.Conclusions is null ? 0 : .3M)
+			+ (TargetPairEliminations.Conclusions is null ? 0 : .1M)
+			+ (SwordfishEliminations.Conclusions is null ? 0 : .2M);
 
 
 		/// <inheritdoc/>

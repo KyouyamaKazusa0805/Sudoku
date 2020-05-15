@@ -56,7 +56,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			(_, var bivalueMap, _, _) = grid;
+			var bivalueMap = grid.GetBivalueCellsMap();
 
 			// Iterate on mode (whether use AR or UR mode to search).
 			var tempList = new List<UrTechniqueInfo>();
@@ -225,8 +225,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="region">The region.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static bool IsConjugatePair(
-			IReadOnlyGrid grid, int digit, GridMap map, int region) =>
+		private static bool IsConjugatePair(IReadOnlyGrid grid, int digit, GridMap map, int region) =>
 			grid.GetDigitAppearingCells(digit, region) == map;
 
 		/// <summary>
@@ -247,9 +246,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Throws when the specified argument <paramref name="cell"/> is invalid.
 		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static int GetDiagonalCell(int[] urCells, int cell)
-		{
-			return true switch
+		private static int GetDiagonalCell(int[] urCells, int cell) =>
+			true switch
 			{
 				_ when cell == urCells[0] => urCells[3],
 				_ when cell == urCells[1] => urCells[2],
@@ -257,7 +255,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				_ when cell == urCells[3] => urCells[0],
 				_ => throw new ArgumentException("The cell is invalid.", nameof(cell))
 			};
-		}
 
 		/// <summary>
 		/// Get a cell that is in the same region of the specified cell lies in.
@@ -297,7 +294,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			new List<(int, int)>(from cell in urCells select (0, cell));
 
 
-		#region Method statements
+		#region Partial method statements
 		partial void CheckType1(
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int cornerCell, GridMap otherCellsMap);

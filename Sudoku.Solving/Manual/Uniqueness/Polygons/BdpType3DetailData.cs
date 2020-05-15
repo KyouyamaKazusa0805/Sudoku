@@ -20,8 +20,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		public BdpType3DetailData(
 			IReadOnlyList<int> cells, IReadOnlyList<int> digits,
 			IReadOnlyList<int> subsetDigits, IReadOnlyList<int> subsetCells, bool isNaked)
-			: base(cells, digits) =>
-			(SubsetDigits, SubsetCells, IsNaked) = (subsetDigits, subsetCells, isNaked);
+			: base(cells, digits) => (SubsetDigits, SubsetCells, IsNaked) = (subsetDigits, subsetCells, isNaked);
 
 
 		/// <inheritdoc/>

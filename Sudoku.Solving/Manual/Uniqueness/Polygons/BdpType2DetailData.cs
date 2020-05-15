@@ -14,10 +14,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <param name="cells">All cells.</param>
 		/// <param name="digits">All digits.</param>
 		/// <param name="extraDigit">The extra digit.</param>
-		public BdpType2DetailData(
-			IReadOnlyList<int> cells, IReadOnlyList<int> digits, int extraDigit)
-			: base(cells, digits) =>
-			ExtraDigit = extraDigit;
+		public BdpType2DetailData(IReadOnlyList<int> cells, IReadOnlyList<int> digits, int extraDigit)
+			: base(cells, digits) => ExtraDigit = extraDigit;
 
 
 		/// <summary>

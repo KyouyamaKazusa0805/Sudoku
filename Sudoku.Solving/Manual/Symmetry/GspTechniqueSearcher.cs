@@ -3,6 +3,7 @@ using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using static Sudoku.Data.CellStatus;
+using static Sudoku.Data.ConclusionType;
 using Action = System.Action<System.Collections.Generic.IBag<Sudoku.Solving.TechniqueInfo>, Sudoku.Data.IReadOnlyGrid>;
 
 namespace Sudoku.Solving.Manual.Symmetry
@@ -143,8 +144,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 						continue;
 					}
 
-					conclusions.Add(
-						new Conclusion(ConclusionType.Elimination, cell, digit));
+					conclusions.Add(new Conclusion(Elimination, cell, digit));
 				}
 			}
 
@@ -276,8 +276,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 						continue;
 					}
 
-					conclusions.Add(
-						new Conclusion(ConclusionType.Elimination, cell, digit));
+					conclusions.Add(new Conclusion(Elimination, cell, digit));
 				}
 			}
 
@@ -374,10 +373,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 				{
 					result.Add(
 						new GspTechniqueInfo(
-							conclusions: new[]
-							{
-								new Conclusion(ConclusionType.Assignment, 40, digit)
-							},
+							conclusions: new[] { new Conclusion(Assignment, 40, digit) },
 							views: new[]
 							{
 								new View(

@@ -60,7 +60,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <returns>The result.</returns>
 		private void AccumulateAllBySize(IBag<TechniqueInfo> result, IReadOnlyGrid grid, int size)
 		{
-			(var emptyMap, _, _, _) = grid;
+			var emptyMap = grid.GetEmptyCellsMap();
 
 			foreach (var ((baseSet, coverSet), (a, b, c)) in IntersectionMaps)
 			{

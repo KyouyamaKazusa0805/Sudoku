@@ -2,8 +2,8 @@
 using System.Linq;
 using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {
@@ -27,7 +27,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			(_, _, var candMaps, _) = grid;
+			var candMaps = grid.GetCandidatesMap();
 			var templates = GetInvalidPos(grid, candMaps);
 			for (int digit = 0; digit < 9; digit++)
 			{
@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 						conclusions:
 							new List<Conclusion>(
 								from cell in template.Offsets
-								select new Conclusion(ConclusionType.Elimination, cell, digit)),
+								select new Conclusion(Elimination, cell, digit)),
 						views: new[] { new View() }));
 			}
 		}

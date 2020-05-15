@@ -115,21 +115,19 @@ namespace Sudoku.Solving.Manual.Singles
 					int hiddenSingleCellOffset = 0, count = 0;
 					foreach (int cellOffset in RegionCells[region])
 					{
-						if (!(grid.Exists(cellOffset, digit) is true))
+						if (grid.Exists(cellOffset, digit) is true)
 						{
-							continue;
-						}
-
-						switch (++count)
-						{
-							case 1:
+							switch (++count)
 							{
-								hiddenSingleCellOffset = cellOffset;
-								break;
-							}
-							case 2:
-							{
-								goto Label_ToNextRegion;
+								case 1:
+								{
+									hiddenSingleCellOffset = cellOffset;
+									break;
+								}
+								case 2:
+								{
+									goto Label_ToNextRegion;
+								}
 							}
 						}
 					}
@@ -179,11 +177,11 @@ namespace Sudoku.Solving.Manual.Singles
 			for (int i = 0; i < 81; i++)
 			{
 				short mask = grid.GetCandidatesReversal(i);
-				if (grid.GetStatus(i) != CellStatus.Empty || (mask & (mask - 1)) != 0)
+				if (grid.GetStatus(i) != CellStatus.Empty || !mask.IsPowerOfTwo())
 				{
-					// 'a & (a - 1) == 0' means the number 'a' has only one
-					// bit is set.
-					// For example, 0b001_000_000:
+					// 'a.IsPowerOfTwo()' is equivalent to the formula: a & (a - 1) == 0,
+					// which means the number 'a' has only one bit is set.
+					// For example, a value is 0b001_000_000 in binary, then:
 					//     a: 0b001_000_000
 					// a - 1: 0b000_111_111
 					//     &: 0b000_000_000

@@ -20,8 +20,7 @@ namespace Sudoku.Solving.Manual.Sdps
 		/// <param name="conjugatePair">The conjugate pair.</param>
 		public EmptyRectangleTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int digit,
-			int block, ConjugatePair conjugatePair)
-			: base(conclusions, views, digit) =>
+			int block, ConjugatePair conjugatePair) : base(conclusions, views, digit) =>
 			(Block, ConjugatePair) = (block, conjugatePair);
 
 

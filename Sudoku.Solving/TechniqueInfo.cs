@@ -118,12 +118,10 @@ namespace Sudoku.Solving
 		}
 
 		/// <inheritdoc/>
-		public override bool Equals(object? obj) =>
-			obj is TechniqueInfo comparer && Equals(comparer);
+		public override bool Equals(object? obj) => obj is TechniqueInfo comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public virtual bool Equals(TechniqueInfo other) =>
-			ToString() == other.ToString();
+		public virtual bool Equals(TechniqueInfo other) => ToString() == other.ToString();
 
 		/// <inheritdoc/>
 		public override int GetHashCode() => ToString().GetHashCode();
@@ -135,8 +133,7 @@ namespace Sudoku.Solving
 		/// Returns a string that only contains the name and the conclusions.
 		/// </summary>
 		/// <returns>The string instance.</returns>
-		public string ToSimpleString() =>
-			$"{Name} => {new ConclusionCollection(Conclusions).ToString()}";
+		public string ToSimpleString() => $"{Name} => {new ConclusionCollection(Conclusions).ToString()}";
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>

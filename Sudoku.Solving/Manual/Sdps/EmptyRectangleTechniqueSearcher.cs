@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Sdps
 		/// Indicates all regions iterating on the specified block
 		/// forming an empty rectangle.
 		/// </summary>
-		private static readonly int[,] LinkIds = new int[,]
+		private static readonly int[,] LinkIds =
 		{
 			{ 12, 13, 14, 15, 16, 17, 21, 22, 23, 24, 25, 26 },
 			{ 12, 13, 14, 15, 16, 17, 18, 19, 20, 24, 25, 26 },
@@ -46,7 +46,7 @@ namespace Sudoku.Solving.Manual.Sdps
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			(_, _, var candMaps, _) = grid;
+			var candMaps = grid.GetCandidatesMap();
 			for (int digit = 0; digit < 9; digit++)
 			{
 				for (int block = 0; block < 9; block++)
@@ -54,8 +54,7 @@ namespace Sudoku.Solving.Manual.Sdps
 					// Check the empty rectangle occupies more than 2 cells.
 					// and the structure forms an empty rectangle.
 					var erMap = candMaps[digit] & RegionMaps[block];
-					if (erMap.Count < 2
-						|| !IsEmptyRectangle(erMap, block, out int row, out int column))
+					if (erMap.Count < 2 || !IsEmptyRectangle(erMap, block, out int row, out int column))
 					{
 						continue;
 					}
@@ -114,10 +113,7 @@ namespace Sudoku.Solving.Manual.Sdps
 						// Empty rectangle.
 						accumulator.Add(
 							new EmptyRectangleTechniqueInfo(
-								conclusions: new[]
-								{
-									new Conclusion(ConclusionType.Elimination, elimCell, digit)
-								},
+								conclusions: new[] { new Conclusion(ConclusionType.Elimination, elimCell, digit) },
 								views: new[]
 								{
 									new View(

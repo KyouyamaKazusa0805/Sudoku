@@ -2,9 +2,9 @@
 using System.Diagnostics;
 using System.Linq;
 using Sudoku.Data;
+using static System.Linq.Enumerable;
 using static System.Math;
 using static System.StringComparison;
-using static System.Linq.Enumerable;
 
 namespace Sudoku.Solving.BruteForces.Linqing
 {
@@ -29,15 +29,16 @@ namespace Sudoku.Solving.BruteForces.Linqing
 			return results.Count switch
 			{
 				0 => throw new NoSolutionException(grid),
-				1 => new AnalysisResult(
-					puzzle: grid,
-					solverName: SolverName,
-					hasSolved: true,
-					solution: Grid.Parse(results[0]),
-					elapsedTime: stopwatch.Elapsed,
-					solvingList: null,
-					additional: null,
-					stepGrids: null),
+				1 =>
+					new AnalysisResult(
+						puzzle: grid,
+						solverName: SolverName,
+						hasSolved: true,
+						solution: Grid.Parse(results[0]),
+						elapsedTime: stopwatch.Elapsed,
+						solvingList: null,
+						additional: null,
+						stepGrids: null),
 				_ => throw new MultipleSolutionsException(grid)
 			};
 		}

@@ -16,9 +16,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <param name="conclusions">All conclusions.</param>
 		/// <param name="views">All views.</param>
 		/// <param name="count">The total number of combinations traversed.</param>
-		public CccTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int count) : base(conclusions, views) => Count = count;
+		public CccTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int count)
+			: base(conclusions, views) => Count = count;
 
 
 		/// <summary>

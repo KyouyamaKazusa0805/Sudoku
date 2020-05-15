@@ -43,7 +43,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			(_, var bivalueCellsMap, _, _) = grid;
+			var bivalueCellsMap = grid.GetBivalueCellsMap();
 
 			// Iterates on size.
 			for (int size = 3; size <= _size; size++)

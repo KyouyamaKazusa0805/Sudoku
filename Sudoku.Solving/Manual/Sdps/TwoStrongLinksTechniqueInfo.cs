@@ -21,8 +21,7 @@ namespace Sudoku.Solving.Manual.Sdps
 		/// <param name="targetRegion">The target region.</param>
 		public TwoStrongLinksTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int digit, int baseRegion, int targetRegion)
-			: base(conclusions, views, digit) =>
+			int digit, int baseRegion, int targetRegion) : base(conclusions, views, digit) =>
 			(Digit, BaseRegion, TargetRegion) = (digit, baseRegion, targetRegion);
 
 
@@ -37,40 +36,30 @@ namespace Sudoku.Solving.Manual.Sdps
 		public int TargetRegion { get; }
 
 		/// <inheritdoc/>
-		public override decimal Difficulty
-		{
-			get
+		public override decimal Difficulty =>
+			TechniqueCode switch
 			{
-				return TechniqueCode switch
-				{
-					TechniqueCode.TurbotFish => 4.2M,
-					TechniqueCode.Skyscraper => 4M,
-					TechniqueCode.TwoStringKite => 4.1M,
-					_ => throw new NotSupportedException("The specified value is invalid.")
-				};
-			}
-		}
+				TechniqueCode.TurbotFish => 4.2M,
+				TechniqueCode.Skyscraper => 4M,
+				TechniqueCode.TwoStringKite => 4.1M,
+				_ => throw new NotSupportedException("The specified value is invalid.")
+			};
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.VeryHard;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode
-		{
-			get
+		public override TechniqueCode TechniqueCode =>
+			(BaseRegion / 9, TargetRegion / 9) switch
 			{
-				return (BaseRegion / 9, TargetRegion / 9) switch
-				{
-					(0, _) => TechniqueCode.TurbotFish,
-					(_, 0) => TechniqueCode.TurbotFish,
-					(1, 1) => TechniqueCode.Skyscraper,
-					(2, 2) => TechniqueCode.Skyscraper,
-					(1, 2) => TechniqueCode.TwoStringKite,
-					(2, 1) => TechniqueCode.TwoStringKite,
-					_ => throw new NotSupportedException("The specified value is invalid.")
-				};
-			}
-		}
+				(0, _) => TechniqueCode.TurbotFish,
+				(_, 0) => TechniqueCode.TurbotFish,
+				(1, 1) => TechniqueCode.Skyscraper,
+				(2, 2) => TechniqueCode.Skyscraper,
+				(1, 2) => TechniqueCode.TwoStringKite,
+				(2, 1) => TechniqueCode.TwoStringKite,
+				_ => throw new NotSupportedException("The specified value is invalid.")
+			};
 
 
 		/// <inheritdoc/>

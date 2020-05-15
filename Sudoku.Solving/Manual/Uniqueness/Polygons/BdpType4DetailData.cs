@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data.Collections;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
@@ -15,8 +14,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <param name="cells">All cells.</param>
 		/// <param name="digits">All digits.</param>
 		/// <param name="region">The so-called "conjugate region".</param>
-		public BdpType4DetailData(
-			IReadOnlyList<int> cells, IReadOnlyList<int> digits, int region)
+		public BdpType4DetailData(IReadOnlyList<int> cells, IReadOnlyList<int> digits, int region)
 			: base(cells, digits) => Region = region;
 
 

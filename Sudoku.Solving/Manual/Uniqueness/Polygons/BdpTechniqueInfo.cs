@@ -19,8 +19,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <param name="views">All views.</param>
 		/// <param name="detailData">The detail data.</param>
 		public BdpTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			BdpDetailData detailData)
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, BdpDetailData detailData)
 			: base(conclusions, views) => DetailData = detailData;
 
 
@@ -35,8 +34,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		public int Size => DetailData.Digits.Count;
 
 		/// <inheritdoc/>
-		public override string Name =>
-			$"Borescoper's Deadly Pattern {Size} Digits (Type {DetailData.Type})";
+		public override string Name => $"Borescoper's Deadly Pattern {Size} Digits (Type {DetailData.Type})";
 
 		/// <inheritdoc/>
 		public override decimal Difficulty
@@ -60,20 +58,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.VeryHard;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode
-		{
-			get
+		public override TechniqueCode TechniqueCode =>
+			DetailData.Type switch
 			{
-				return DetailData.Type switch
-				{
-					1 => TechniqueCode.BdpType1,
-					2 => TechniqueCode.BdpType2,
-					3 => TechniqueCode.BdpType3,
-					4 => TechniqueCode.BdpType4,
-					_ => throw Throwing.ImpossibleCase
-				};
-			}
-		}
+				1 => TechniqueCode.BdpType1,
+				2 => TechniqueCode.BdpType2,
+				3 => TechniqueCode.BdpType3,
+				4 => TechniqueCode.BdpType4,
+				_ => throw Throwing.ImpossibleCase
+			};
 
 
 		/// <inheritdoc/>

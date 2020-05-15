@@ -10,8 +10,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	public abstract class LastResortTechniqueInfo : TechniqueInfo
 	{
 		/// <inheritdoc/>
-		protected LastResortTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
+		protected LastResortTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
 			: base(conclusions, views)
 		{
 		}

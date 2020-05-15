@@ -34,8 +34,7 @@ namespace Sudoku.Solving
 		public abstract void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid);
 
 		/// <inheritdoc/>
-		public virtual int CompareTo(TechniqueSearcher other) =>
-			GetPriority(this).CompareTo(GetPriority(other));
+		public virtual int CompareTo(TechniqueSearcher other) => GetPriority(this).CompareTo(GetPriority(other));
 
 		/// <inheritdoc/>
 		public sealed override int GetHashCode() => GetPriority(this) * 17 + 0xDEAD & 0xC0DE;
@@ -44,8 +43,7 @@ namespace Sudoku.Solving
 		public virtual bool Equals(TechniqueSearcher other) => GetPriority(this) == GetPriority(other);
 
 		/// <inheritdoc/>
-		public sealed override bool Equals(object? obj) =>
-			obj is TechniqueSearcher comparer && Equals(comparer);
+		public sealed override bool Equals(object? obj) => obj is TechniqueSearcher comparer && Equals(comparer);
 
 		/// <inheritdoc/>
 		public override string ToString() => GetType().Name;
@@ -64,51 +62,21 @@ namespace Sudoku.Solving
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
-		public static bool operator ==(TechniqueSearcher left, TechniqueSearcher right) =>
-			left.Equals(right);
+		public static bool operator ==(TechniqueSearcher left, TechniqueSearcher right) => left.Equals(right);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
-		public static bool operator !=(TechniqueSearcher left, TechniqueSearcher right) =>
-			!(left == right);
+		public static bool operator !=(TechniqueSearcher left, TechniqueSearcher right) => !(left == right);
 
-		/// <summary>
-		/// Indicates whether the priority value of the <paramref name="left"/>
-		/// technique searcher is greater than the <paramref name="right"/> one.
-		/// </summary>
-		/// <param name="left">The left comparer.</param>
-		/// <param name="right">The right comparer.</param>
-		/// <returns>A <see cref="bool"/> result indicating that.</returns>
-		public static bool operator >(TechniqueSearcher left, TechniqueSearcher right) =>
-			left.CompareTo(right) > 0;
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThan"]'/>
+		public static bool operator >(TechniqueSearcher left, TechniqueSearcher right) => left.CompareTo(right) > 0;
 
-		/// <summary>
-		/// Indicates whether the priority value of <paramref name="left"/>
-		/// technique searcher is greater than or equals to the <paramref name="right"/> one.
-		/// </summary>
-		/// <param name="left">The left comparer.</param>
-		/// <param name="right">The right comparer.</param>
-		/// <returns>A <see cref="bool"/> result indicating that.</returns>
-		public static bool operator >=(TechniqueSearcher left, TechniqueSearcher right) =>
-			left.CompareTo(right) >= 0;
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThanOrEqual"]'/>
+		public static bool operator >=(TechniqueSearcher left, TechniqueSearcher right) => left.CompareTo(right) >= 0;
 
-		/// <summary>
-		/// Indicates whether the priority value of <paramref name="left"/>
-		/// technique searcher is less than the <paramref name="right"/> one.
-		/// </summary>
-		/// <param name="left">The left comparer.</param>
-		/// <param name="right">The right comparer.</param>
-		/// <returns>A <see cref="bool"/> result indicating that.</returns>
-		public static bool operator <(TechniqueSearcher left, TechniqueSearcher right) =>
-			left.CompareTo(right) < 0;
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_LessThan"]'/>
+		public static bool operator <(TechniqueSearcher left, TechniqueSearcher right) => left.CompareTo(right) < 0;
 
-		/// <summary>
-		/// Indicates whether the priority value of <paramref name="left"/>
-		/// technique searcher is less than or equals to the <paramref name="right"/> one.
-		/// </summary>
-		/// <param name="left">The left comparer.</param>
-		/// <param name="right">The right comparer.</param>
-		/// <returns>A <see cref="bool"/> result indicating that.</returns>
-		public static bool operator <=(TechniqueSearcher left, TechniqueSearcher right) =>
-			left.CompareTo(right) <= 0;
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_LessThanOrEqual"]'/>
+		public static bool operator <=(TechniqueSearcher left, TechniqueSearcher right) => left.CompareTo(right) <= 0;
 	}
 }

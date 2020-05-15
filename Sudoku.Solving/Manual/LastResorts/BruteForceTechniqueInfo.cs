@@ -15,8 +15,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// </summary>
 		/// <param name="conclusions">All conclusions.</param>
 		/// <param name="views">All views.</param>
-		public BruteForceTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
+		public BruteForceTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
 			: base(conclusions, views)
 		{
 		}
@@ -33,7 +32,6 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: {new ConclusionCollection(Conclusions).ToString()}";
+		public override string ToString() => $"{Name}: {new ConclusionCollection(Conclusions).ToString()}";
 	}
 }

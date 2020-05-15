@@ -169,12 +169,13 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 							foreach (int digit in cands.GetAllSets())
 							{
-								candidateOffsets.Add((true switch
-								{
-									_ when (k & 3) == 0 => 1,
-									_ when (k & 1) == 1 => 2,
-									_ => 0
-								}, cell * 9 + digit));
+								candidateOffsets.Add((
+									true switch
+									{
+										_ when (k & 3) == 0 => 1,
+										_ when (k & 1) == 1 => 2,
+										_ => 0
+									}, cell * 9 + digit));
 							}
 						}
 					}

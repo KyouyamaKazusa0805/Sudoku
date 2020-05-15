@@ -10,8 +10,7 @@ namespace Sudoku.Solving.Manual.Uniqueness
 	public abstract class UniquenessTechniqueInfo : TechniqueInfo
 	{
 		/// <inheritdoc/>
-		protected UniquenessTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
+		protected UniquenessTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
 			: base(conclusions, views)
 		{
 		}

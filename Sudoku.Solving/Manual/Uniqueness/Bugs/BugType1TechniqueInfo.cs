@@ -15,8 +15,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// </summary>
 		/// <param name="conclusions">All conclusions.</param>
 		/// <param name="views">All views.</param>
-		public BugType1TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
+		public BugType1TechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
 			: base(conclusions, views)
 		{
 		}

@@ -65,11 +65,11 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 					"UVWXYZ-Wing", "TUVWXYZ-Wing", "STUVWXYZ-Wing",
 					"RSTUVWXYZ-Wing"
 				};
-				bool isImcompleted = Size == PivotCellCandidatesCount + 1;
+				bool isIncompleted = Size == PivotCellCandidatesCount + 1;
 				return Size switch
 				{
-					3 => isImcompleted ? "XY-Wing" : "XYZ-Wing",
-					_ when Size >= 4 && Size < 9 => isImcompleted ? $"Uncompleted {names[Size]}" : names[Size],
+					3 => isIncompleted ? "XY-Wing" : "XYZ-Wing",
+					_ when Size >= 4 && Size < 9 => isIncompleted ? $"Uncompleted {names[Size]}" : names[Size],
 					_ => throw new NotSupportedException($"The specified {nameof(Size)} is out of range.")
 				};
 			}
@@ -80,52 +80,39 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		{
 			get
 			{
-				var values = (ReadOnlySpan<decimal>)stackalloc[]
-				{
-					0, 0, 0, 0, 4.6M, 4.8M, 5.1M, 5.4M, 5.7M, 6M
-				};
-				bool isImcompleted = Size == PivotCellCandidatesCount + 1;
+				var values = (ReadOnlySpan<decimal>)stackalloc[] { 0, 0, 0, 0, 4.6M, 4.8M, 5.1M, 5.4M, 5.7M, 6M };
+				bool isIncompleted = Size == PivotCellCandidatesCount + 1;
 				return Size switch
 				{
-					3 => isImcompleted ? 4.2M : 4.4M,
-					_ when Size >= 4 && Size < 9 => isImcompleted ? values[Size] + .1M : values[Size],
+					3 => isIncompleted ? 4.2M : 4.4M,
+					_ when Size >= 4 && Size < 9 => isIncompleted ? values[Size] + .1M : values[Size],
 					_ => throw new NotSupportedException($"The specified {nameof(Size)} is out of range.")
 				};
 			}
 		}
 
 		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel
-		{
-			get
+		public override DifficultyLevel DifficultyLevel =>
+			Size switch
 			{
-				return Size switch
-				{
-					_ when Size >= 3 && Size < 4 => DifficultyLevel.Hard,
-					_ when Size >= 4 && Size < 9 => DifficultyLevel.VeryHard,
-					_ => throw new NotSupportedException($"{nameof(Size)} isn't in a valid range.")
-				};
-			}
-		}
+				_ when Size >= 3 && Size < 4 => DifficultyLevel.Hard,
+				_ when Size >= 4 && Size < 9 => DifficultyLevel.VeryHard,
+				_ => throw new NotSupportedException($"{nameof(Size)} isn't in a valid range.")
+			};
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode
-		{
-			get
+		public override TechniqueCode TechniqueCode =>
+			Size switch
 			{
-				return Size switch
-				{
-					2 => TechniqueCode.XyWing,
-					3 => TechniqueCode.XyzWing,
-					4 => TechniqueCode.WxyzWing,
-					5 => TechniqueCode.VwxyzWing,
-					6 => TechniqueCode.UvwxyzWing,
-					7 => TechniqueCode.TuvwxyzWing,
-					8 => TechniqueCode.RstuvwxyzWing,
-					_ => throw Throwing.ImpossibleCase
-				};
-			}
-		}
+				2 => TechniqueCode.XyWing,
+				3 => TechniqueCode.XyzWing,
+				4 => TechniqueCode.WxyzWing,
+				5 => TechniqueCode.VwxyzWing,
+				6 => TechniqueCode.UvwxyzWing,
+				7 => TechniqueCode.TuvwxyzWing,
+				8 => TechniqueCode.RstuvwxyzWing,
+				_ => throw Throwing.ImpossibleCase
+			};
 
 
 		/// <inheritdoc/>

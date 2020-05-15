@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data.Collections;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops
 {
@@ -15,10 +14,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="cells">All cells.</param>
 		/// <param name="digits">All digits.</param>
 		/// <param name="extraDigit">The extra digit.</param>
-		public UlType2DetailData(
-			IReadOnlyList<int> cells, IReadOnlyList<int> digits, int extraDigit)
-			: base(cells, digits) =>
-			ExtraDigit = extraDigit;
+		public UlType2DetailData(IReadOnlyList<int> cells, IReadOnlyList<int> digits, int extraDigit)
+			: base(cells, digits) => ExtraDigit = extraDigit;
 
 
 		/// <summary>

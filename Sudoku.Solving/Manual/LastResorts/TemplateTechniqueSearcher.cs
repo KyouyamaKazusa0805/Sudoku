@@ -27,8 +27,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <param name="templateDeleteOnly">
 		/// Indicates whether the technique searcher checks template deletes only.
 		/// </param>
-		public TemplateTechniqueSearcher(bool templateDeleteOnly) =>
-			_templateDeleteOnly = templateDeleteOnly;
+		public TemplateTechniqueSearcher(bool templateDeleteOnly) => _templateDeleteOnly = templateDeleteOnly;
 
 
 		/// <summary>
@@ -50,7 +49,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		{
 			if (grid.IsValid(out var solution))
 			{
-				(_, _, var candMaps, _) = grid;
+				var candMaps = grid.GetCandidatesMap();
 				if (!_templateDeleteOnly)
 				{
 					GetAllTemplateSet(accumulator, solution, candMaps);

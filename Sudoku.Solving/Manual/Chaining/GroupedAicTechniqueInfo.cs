@@ -33,12 +33,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </param>
 		public GroupedAicTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			IReadOnlyList<Node> nodes, bool isContinuousNiceLoop)
-			: base(conclusions, views)
-		{
-			Nodes = KeepNodeMinimum(nodes);
-			IsContinuousNiceLoop = isContinuousNiceLoop;
-		}
+			IReadOnlyList<Node> nodes, bool isContinuousNiceLoop) : base(conclusions, views) =>
+			(Nodes, IsContinuousNiceLoop) = (KeepNodeMinimum(nodes), isContinuousNiceLoop);
 
 
 		/// <summary>
@@ -57,135 +53,119 @@ namespace Sudoku.Solving.Manual.Chaining
 		public int Length => IsContinuousNiceLoop ? Nodes.Count : Nodes.Count - 1;
 
 		/// <inheritdoc/>
-		public override string Name
-		{
-			get
+		public override string Name =>
+			IsContinuousNiceLoop switch
 			{
-				string groupedSuffix() => IsGroupedChain() ? "Grouped " : string.Empty;
-				return IsContinuousNiceLoop switch
+				true => true switch
 				{
-					true => true switch
+					_ when IsXChain() => $"{GroupedPrefix()}Fishy Cycle",
+					_ when IsXyChain() => $"{GroupedPrefix()}XY-Cycle",
+					_ => $"{GroupedPrefix()}Continuous Nice Loop"
+				},
+				false => Length switch
+				{
+					5 => true switch
 					{
-						_ when IsXChain() => $"{groupedSuffix()}Fishy Cycle",
-						_ when IsXyChain() => $"{groupedSuffix()}XY-Cycle",
-						_ => $"{groupedSuffix()}Continuous Nice Loop"
+						_ when IsXChain() => $"{GroupedPrefix()}X-Chain",
+						_ when IsXyChain() => $"{GroupedPrefix()}XY-Wing",
+						_ when IsWWing() => $"{GroupedPrefix()}W-Wing",
+						_ when IsMWing() => $"{GroupedPrefix()}M-Wing",
+						_ when IsHybridWing() => $"{GroupedPrefix()}Hybrid-Wing",
+						_ when IsLocalWing() => $"{GroupedPrefix()}Local-Wing",
+						_ when IsSplitWing() => $"{GroupedPrefix()}Split-Wing",
+						_ => $"{GroupedPrefix()}Purple Cow",
 					},
-					false => Length switch
+					_ => true switch
 					{
-						5 => true switch
+						_ when IsXChain() => $"{GroupedPrefix()}X-Chain",
+						_ when IsXyChain() => $"{GroupedPrefix()}XY-Chain",
+						_ when IsHeadTailSame() => $"{GroupedPrefix()}Discontinuous Nice Loop",
+						_ when !IsHeadTailSameDigit() => Conclusions.Count switch
 						{
-							_ when IsXChain() => $"{groupedSuffix()}X-Chain",
-							_ when IsXyChain() => $"{groupedSuffix()}XY-Wing",
-							_ when IsWWing() => $"{groupedSuffix()}W-Wing",
-							_ when IsMWing() => $"{groupedSuffix()}M-Wing",
-							_ when IsHybridWing() => $"{groupedSuffix()}Hybrid-Wing",
-							_ when IsLocalWing() => $"{groupedSuffix()}Local-Wing",
-							_ when IsSplitWing() => $"{groupedSuffix()}Split-Wing",
-							_ => $"{groupedSuffix()}Purple Cow",
+							1 => $"{GroupedPrefix()}Discontinuous Nice Loop",
+							2 => $"{GroupedPrefix()}XY-X-Chain",
+							_ => $"{GroupedPrefix()}Alternating Inference Chain"
 						},
-						_ => true switch
-						{
-							_ when IsXChain() => $"{groupedSuffix()}X-Chain",
-							_ when IsXyChain() => $"{groupedSuffix()}XY-Chain",
-							_ when IsHeadTailSame() => $"{groupedSuffix()}Discontinuous Nice Loop",
-							_ when !IsHeadTailSameDigit() => Conclusions.Count switch
-							{
-								1 => $"{groupedSuffix()}Discontinuous Nice Loop",
-								2 => $"{groupedSuffix()}XY-X-Chain",
-								_ => $"{groupedSuffix()}Alternating Inference Chain"
-							},
-							_ when IsHeadCollisionChain() => $"{groupedSuffix()}Discontinuous Nice Loop",
-							_ => $"{groupedSuffix()}Alternating Inference Chain"
-						}
+						_ when IsHeadCollisionChain() => $"{GroupedPrefix()}Discontinuous Nice Loop",
+						_ => $"{GroupedPrefix()}Alternating Inference Chain"
 					}
-				};
-			}
-		}
+				}
+			};
 
 		/// <inheritdoc/>
-		public override decimal Difficulty
-		{
-			get
+		public override decimal Difficulty =>
+			Name switch
 			{
-				return Name switch
-				{
-					"XY-Wing" => 4.2M,
-					"W-Wing" => 4.4M,
-					"M-Wing" => 4.5M,
-					"Local-Wing" => 4.7M,
-					"Split-Wing" => 4.7M,
-					"Hybrid-Wing" => 4.7M,
-					"X-Chain" => 4.5M,
-					"Fishy Cycle" => 4.5M,
-					"XY-Chain" => 4.8M,
-					"XY-Cycle" => 4.7M,
-					"Continuous Nice Loop" => 4.8M,
-					"XY-X-Chain" => 4.9M,
-					"Discontinuous Nice Loop" => 4.9M,
-					"Alternating Inference Chain" => 4.9M,
-					"Grouped W-Wing" => 4.6M,
-					"Grouped M-Wing" => 4.7M,
-					"Grouped Local-Wing" => 4.9M,
-					"Grouped Split-Wing" => 4.9M,
-					"Grouped Hybrid-Wing" => 4.9M,
-					"Grouped X-Chain" => 4.7M,
-					"Grouped Fishy Cycle" => 4.7M,
-					"Grouped XY-X-Chain" => 5.1M,
-					"Grouped Discontinuous Nice Loop" => 5.1M,
-					"Grouped Alternating Inference Chain" => 5M,
-					"Grouped Continuous Nice Loop" => 5M,
-					"Grouped XY-Wing" => 4.4M,
-					"Grouped XY-Chain" => 5M,
-					"Grouped XY-Cycle" => 4.9M,
-					_ => 4.9M
-				} + GetExtraDifficultyByLength(Length);
-			}
-		}
+				"XY-Wing" => 4.2M,
+				"W-Wing" => 4.4M,
+				"M-Wing" => 4.5M,
+				"Local-Wing" => 4.7M,
+				"Split-Wing" => 4.7M,
+				"Hybrid-Wing" => 4.7M,
+				"X-Chain" => 4.5M,
+				"Fishy Cycle" => 4.5M,
+				"XY-Chain" => 4.8M,
+				"XY-Cycle" => 4.7M,
+				"Continuous Nice Loop" => 4.8M,
+				"XY-X-Chain" => 4.9M,
+				"Discontinuous Nice Loop" => 4.9M,
+				"Alternating Inference Chain" => 4.9M,
+				"Grouped W-Wing" => 4.6M,
+				"Grouped M-Wing" => 4.7M,
+				"Grouped Local-Wing" => 4.9M,
+				"Grouped Split-Wing" => 4.9M,
+				"Grouped Hybrid-Wing" => 4.9M,
+				"Grouped X-Chain" => 4.7M,
+				"Grouped Fishy Cycle" => 4.7M,
+				"Grouped XY-X-Chain" => 5.1M,
+				"Grouped Discontinuous Nice Loop" => 5.1M,
+				"Grouped Alternating Inference Chain" => 5M,
+				"Grouped Continuous Nice Loop" => 5M,
+				"Grouped XY-Wing" => 4.4M,
+				"Grouped XY-Chain" => 5M,
+				"Grouped XY-Cycle" => 4.9M,
+				_ => 4.9M
+			} + GetExtraDifficultyByLength(Length);
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode
-		{
-			get
+		public override TechniqueCode TechniqueCode =>
+			Name switch
 			{
-				return Name switch
-				{
-					"XY-Wing" => TechniqueCode.XyWing,
-					"W-Wing" => TechniqueCode.WWing,
-					"M-Wing" => TechniqueCode.MWing,
-					"Local-Wing" => TechniqueCode.LocalWing,
-					"Split-Wing" => TechniqueCode.SplitWing,
-					"Hybrid-Wing" => TechniqueCode.HybridWing,
-					"Purple Cow" => TechniqueCode.PurpleCow,
-					"X-Chain" => TechniqueCode.XChain,
-					"Fishy Cycle" => TechniqueCode.XChain,
-					"XY-Chain" => TechniqueCode.XyChain,
-					"XY-Cycle" => TechniqueCode.XyChain,
-					"Continuous Nice Loop" => TechniqueCode.ContinuousNiceLoop,
-					"XY-X-Chain" => TechniqueCode.XyXChain,
-					"Discontinuous Nice Loop" => TechniqueCode.DiscontinuousNiceLoop,
-					"Alternating Inference Chain" => TechniqueCode.Aic,
-					"Grouped W-Wing" => TechniqueCode.GroupedWWing,
-					"Grouped M-Wing" => TechniqueCode.GroupedMWing,
-					"Grouped Local-Wing" => TechniqueCode.GroupedLocalWing,
-					"Grouped Split-Wing" => TechniqueCode.GroupedSplitWing,
-					"Grouped Hybrid-Wing" => TechniqueCode.GroupedHybridWing,
-					"Grouped Purple Cow" => TechniqueCode.GroupedPurpleCow,
-					"Grouped X-Chain" => TechniqueCode.GroupedXChain,
-					"Grouped Fishy Cycle" => TechniqueCode.GroupedXChain,
-					"Grouped XY-X-Chain" => TechniqueCode.GroupedXyXChain,
-					"Grouped Discontinuous Nice Loop" => TechniqueCode.GroupedDiscontinuousNiceLoop,
-					"Grouped Alternating Inference Chain" => TechniqueCode.GroupedAic,
-					"Grouped Continuous Nice Loop" => TechniqueCode.GroupedContinuousNiceLoop,
-					"Grouped XY-Wing" => TechniqueCode.GroupedXyWing,
-					"Grouped XY-Chain" => TechniqueCode.GroupedXyChain,
-					"Grouped XY-Cycle" => TechniqueCode.GroupedXyChain,
-					_ => throw Throwing.ImpossibleCase
-				};
-			}
-		}
+				"XY-Wing" => TechniqueCode.XyWing,
+				"W-Wing" => TechniqueCode.WWing,
+				"M-Wing" => TechniqueCode.MWing,
+				"Local-Wing" => TechniqueCode.LocalWing,
+				"Split-Wing" => TechniqueCode.SplitWing,
+				"Hybrid-Wing" => TechniqueCode.HybridWing,
+				"Purple Cow" => TechniqueCode.PurpleCow,
+				"X-Chain" => TechniqueCode.XChain,
+				"Fishy Cycle" => TechniqueCode.XChain,
+				"XY-Chain" => TechniqueCode.XyChain,
+				"XY-Cycle" => TechniqueCode.XyChain,
+				"Continuous Nice Loop" => TechniqueCode.ContinuousNiceLoop,
+				"XY-X-Chain" => TechniqueCode.XyXChain,
+				"Discontinuous Nice Loop" => TechniqueCode.DiscontinuousNiceLoop,
+				"Alternating Inference Chain" => TechniqueCode.Aic,
+				"Grouped W-Wing" => TechniqueCode.GroupedWWing,
+				"Grouped M-Wing" => TechniqueCode.GroupedMWing,
+				"Grouped Local-Wing" => TechniqueCode.GroupedLocalWing,
+				"Grouped Split-Wing" => TechniqueCode.GroupedSplitWing,
+				"Grouped Hybrid-Wing" => TechniqueCode.GroupedHybridWing,
+				"Grouped Purple Cow" => TechniqueCode.GroupedPurpleCow,
+				"Grouped X-Chain" => TechniqueCode.GroupedXChain,
+				"Grouped Fishy Cycle" => TechniqueCode.GroupedXChain,
+				"Grouped XY-X-Chain" => TechniqueCode.GroupedXyXChain,
+				"Grouped Discontinuous Nice Loop" => TechniqueCode.GroupedDiscontinuousNiceLoop,
+				"Grouped Alternating Inference Chain" => TechniqueCode.GroupedAic,
+				"Grouped Continuous Nice Loop" => TechniqueCode.GroupedContinuousNiceLoop,
+				"Grouped XY-Wing" => TechniqueCode.GroupedXyWing,
+				"Grouped XY-Chain" => TechniqueCode.GroupedXyChain,
+				"Grouped XY-Cycle" => TechniqueCode.GroupedXyChain,
+				_ => throw Throwing.ImpossibleCase
+			};
 
 
 		/// <inheritdoc/>
@@ -197,12 +177,10 @@ namespace Sudoku.Solving.Manual.Chaining
 		}
 
 		/// <inheritdoc/>
-		public override bool Equals(object? obj) =>
-			obj is GroupedAicTechniqueInfo comparer && Equals(comparer);
+		public override bool Equals(object? obj) => obj is GroupedAicTechniqueInfo comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public override bool Equals(TechniqueInfo obj) =>
-			obj is GroupedAicTechniqueInfo comparer && Equals(comparer);
+		public override bool Equals(TechniqueInfo obj) => obj is GroupedAicTechniqueInfo comparer && Equals(comparer);
 
 		/// <inheritdoc/>
 		public bool Equals(GroupedAicTechniqueInfo other)
@@ -407,6 +385,12 @@ namespace Sudoku.Solving.Manual.Chaining
 		}
 
 		/// <summary>
+		/// Get the grouped prefix.
+		/// </summary>
+		/// <returns>The prefix.</returns>
+		private string GroupedPrefix() => IsGroupedChain() ? "Grouped " : string.Empty;
+
+		/// <summary>
 		/// Indicates whether the chain is discontinuous nice loop whose head and tail
 		/// is a same node.
 		/// </summary>
@@ -467,11 +451,9 @@ namespace Sudoku.Solving.Manual.Chaining
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
-		public static bool operator ==(GroupedAicTechniqueInfo left, GroupedAicTechniqueInfo right) =>
-			left.Equals(right);
+		public static bool operator ==(GroupedAicTechniqueInfo left, GroupedAicTechniqueInfo right) => left.Equals(right);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
-		public static bool operator !=(GroupedAicTechniqueInfo left, GroupedAicTechniqueInfo right) =>
-			!(left == right);
+		public static bool operator !=(GroupedAicTechniqueInfo left, GroupedAicTechniqueInfo right) => !(left == right);
 	}
 }

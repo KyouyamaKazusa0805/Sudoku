@@ -176,11 +176,12 @@ namespace Sudoku.Solving.Checking
 						{
 							if (TestSolver.CanSolve(tempGrid))
 							{
-								result.Add(new[]
-								{
-									new Conclusion(Elimination, c1),
-									new Conclusion(Elimination, c2)
-								});
+								result.Add(
+									new[]
+									{
+										new Conclusion(Elimination, c1),
+										new Conclusion(Elimination, c2)
+									});
 							}
 						}
 						else // depth == 3
@@ -192,12 +193,13 @@ namespace Sudoku.Solving.Checking
 
 								if (TestSolver.CanSolve(tempGrid))
 								{
-									result.Add(new[]
-									{
-										new Conclusion(Elimination, c1),
-										new Conclusion(Elimination, c2),
-										new Conclusion(Elimination, c3)
-									});
+									result.Add(
+										new[]
+										{
+											new Conclusion(Elimination, c1),
+											new Conclusion(Elimination, c2),
+											new Conclusion(Elimination, c3)
+										});
 								}
 
 								tempGrid[c3 / 9, c3 % 9] = false;

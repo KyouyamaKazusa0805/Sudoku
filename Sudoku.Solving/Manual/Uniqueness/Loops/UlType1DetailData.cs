@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data.Collections;
-using Sudoku.Solving.Utils;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops
 {
@@ -10,8 +9,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	public sealed class UlType1DetailData : UlDetailData
 	{
 		/// <inheritdoc/>
-		public UlType1DetailData(
-			IReadOnlyList<int> cells, IReadOnlyList<int> digits) : base(cells, digits)
+		public UlType1DetailData(IReadOnlyList<int> cells, IReadOnlyList<int> digits) : base(cells, digits)
 		{
 		}
 

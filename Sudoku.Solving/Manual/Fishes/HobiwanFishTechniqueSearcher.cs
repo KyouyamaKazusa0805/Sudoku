@@ -50,8 +50,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="checkTemplates">
 		/// Indicates whether the puzzle will check templates first.
 		/// </param>
-		public HobiwanFishTechniqueSearcher(
-			int size, int exofinCount, int endofinCount, bool checkTemplates) =>
+		public HobiwanFishTechniqueSearcher(int size, int exofinCount, int endofinCount, bool checkTemplates) =>
 			(_size, _exofinCount, _endofinCount, _checkTemplates) = (size, exofinCount, endofinCount, checkTemplates);
 
 
@@ -69,7 +68,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			(_, _, var candMaps, _) = grid;
+			var candMaps = grid.GetCandidatesMap();
 
 			// Now search fishes.
 			if (_size <= 4)

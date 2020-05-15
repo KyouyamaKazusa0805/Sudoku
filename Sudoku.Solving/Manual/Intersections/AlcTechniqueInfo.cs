@@ -49,42 +49,28 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// </summary>
 		public bool HasValueCell { get; }
 
+		/// <summary>
+		/// Indicates the size.
+		/// </summary>
+		public int Size => Digits.Count;
+
 		/// <inheritdoc/>
-		public override decimal Difficulty
-		{
-			get
-			{
-				int size = Digits.Count;
-				return size switch
-				{
-					2 => 4.5M,
-					3 => 5.2M,
-					4 => 5.7M,
-					_ => throw Throwing.ImpossibleCase
-				} + (
-					HasValueCell
-						? size switch { 2 => .1M, 3 => .1M, 4 => .2M, _ => throw Throwing.ImpossibleCase }
-						: 0);
-			}
-		}
+		public override decimal Difficulty =>
+			Size switch { 2 => 4.5M, 3 => 5.2M, 4 => 5.7M, _ => throw Throwing.ImpossibleCase }
+			+ (HasValueCell ? Size switch { 2 => .1M, 3 => .1M, 4 => .2M, _ => throw Throwing.ImpossibleCase } : 0);
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode
-		{
-			get
+		public override TechniqueCode TechniqueCode =>
+			Size switch
 			{
-				return Digits.Count switch
-				{
-					2 => TechniqueCode.AlmostLockedPair,
-					3 => TechniqueCode.AlmostLockedTriple,
-					4 => TechniqueCode.AlmostLockedQuadruple,
-					_ => throw new NotSupportedException("The current instance does not support.")
-				};
-			}
-		}
+				2 => TechniqueCode.AlmostLockedPair,
+				3 => TechniqueCode.AlmostLockedTriple,
+				4 => TechniqueCode.AlmostLockedQuadruple,
+				_ => throw new NotSupportedException("The current instance does not support.")
+			};
 
 
 		/// <inheritdoc/>

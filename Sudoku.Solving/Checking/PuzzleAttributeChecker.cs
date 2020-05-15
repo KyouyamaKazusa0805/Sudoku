@@ -107,11 +107,7 @@ namespace Sudoku.Solving.Checking
 			}
 
 			var solver = new BitwiseSolver();
-			return tempArrays.All(gridValues =>
-			{
-				var (_, hasSolved, _, _, _) = solver.Solve(Grid.CreateInstance(gridValues));
-				return !hasSolved;
-			});
+			return tempArrays.All(gridValues => !solver.Solve(Grid.CreateInstance(gridValues)).HasSolved);
 		}
 
 		/// <summary>
@@ -161,16 +157,7 @@ namespace Sudoku.Solving.Checking
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The puzzle.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public static bool CanBeSolvedUsingOnlySsts(this IReadOnlyGrid @this)
-		{
-			if (!@this.IsValid(out _))
-			{
-				return false;
-			}
-
-			var solver = new ManualSolver();
-			var (_, _, _, _, level) = solver.Solve(@this);
-			return level <= DifficultyLevel.Advanced;
-		}
+		public static bool CanBeSolvedUsingOnlySsts(this IReadOnlyGrid @this) =>
+			@this.IsValid(out _) ? new ManualSolver().Solve(@this).DifficultyLevel <= DifficultyLevel.Advanced : false;
 	}
 }

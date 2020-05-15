@@ -39,8 +39,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// the extended BUG checker to search for all true candidates no matter how
 		/// difficult searching.
 		/// </param>
-		public BugTechniqueSearcher(bool extended) =>
-			_extended = extended;
+		public BugTechniqueSearcher(bool extended) => _extended = extended;
 
 
 		/// <summary>

@@ -18,8 +18,7 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <param name="cellOffset">The cell offset.</param>
 		/// <param name="digit">The digit.</param>
 		public NakedSingleTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int cellOffset, int digit)
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int cellOffset, int digit)
 			: base(conclusions, views, cellOffset, digit)
 		{ 
 		}

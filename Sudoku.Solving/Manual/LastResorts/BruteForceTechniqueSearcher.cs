@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <summary>
 		/// The order of cell offsets to get values.
 		/// </summary>
-		private static readonly int[] TryAndErrorOrder = new[]
+		private static readonly int[] TryAndErrorOrder =
 		{
 			40, 41, 50, 49, 48, 39, 30, 31, 32,
 			33, 42, 51, 60, 59, 58, 57, 56, 47,
@@ -45,8 +45,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// solution.
 		/// </summary>
 		/// <param name="solution">The solution.</param>
-		public BruteForceTechniqueSearcher(IReadOnlyGrid solution) =>
-			_solution = solution;
+		public BruteForceTechniqueSearcher(IReadOnlyGrid solution) => _solution = solution;
 
 
 		/// <summary>

@@ -27,8 +27,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="views">All views.</param>
 		/// <param name="candidates">All candidates.</param>
 		public BugMultipleTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			IReadOnlyList<int> candidates)
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, IReadOnlyList<int> candidates)
 			: base(conclusions, views) => Candidates = candidates;
 
 

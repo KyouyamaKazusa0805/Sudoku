@@ -77,14 +77,12 @@ namespace Sudoku.Solving
 			var (puzzle, _, elapsed, solution, _, stepsCount, steps, additional) = Result;
 
 			// Print header.
-			var sb = new StringBuilder();
-			sb.AppendLine($"Puzzle: {puzzle:#}");
-			sb.AppendLine($"Solving tool: {solverName}");
+			var sb = new StringBuilder().AppendLine($"Puzzle: {puzzle:#}").AppendLine($"Solving tool: {solverName}");
 
 			// Print solving steps (if worth).
 			var bottleneckData = GetBottleneckData();
 			string separator = $"{new string('-', 10)}{Environment.NewLine}";
-			void appendSeparator() => sb.Append(showSeparator ? separator : string.Empty);
+			void a() => sb.Append(showSeparator ? separator : string.Empty);
 			if (!(steps is null) && steps.Count != 0 && showTechniqueSteps)
 			{
 				sb.AppendLine("Solving steps:");
@@ -114,13 +112,13 @@ namespace Sudoku.Solving
 
 					if (showBottleneck)
 					{
-						appendSeparator();
+						a();
 
 						string bottleLabelInfo = showStepNum ? $" In step {bIndex + 1}:" : string.Empty;
 						sb.AppendLine($"Bottleneck step:{bottleLabelInfo} {bInfo}");
 					}
 
-					appendSeparator();
+					a();
 				}
 			}
 
@@ -158,7 +156,7 @@ namespace Sudoku.Solving
 
 				sb.AppendLine($"{stepsCount,3} {(stepsCount == 1 ? "step" : "steps")} in total");
 
-				appendSeparator();
+				a();
 			}
 
 			// Print detail data.
@@ -173,9 +171,10 @@ namespace Sudoku.Solving
 			}
 
 			// Print the elapsed time.
-			sb.AppendLine($"Puzzle has {(hasSolved ? "" : "not ")}been solved.");
-			sb.AppendLine($"Time elapsed: {elapsed:hh':'mm'.'ss'.'fff}");
-			appendSeparator();
+			sb
+				.AppendLine($"Puzzle has {(hasSolved ? "" : "not ")}been solved.")
+				.AppendLine($"Time elapsed: {elapsed:hh':'mm'.'ss'.'fff}");
+			a();
 
 			// Print attributes (if worth).
 			// Here use dynamic call (reflection) to get all methods which contains
@@ -184,20 +183,20 @@ namespace Sudoku.Solving
 			{
 				sb.AppendLine("Attributes:");
 
-				static bool isSpecifiedMethod(ParameterInfo[] parameters, MethodInfo methodInfo) =>
-					parameters.Length == 1
-					&& parameters[0].ParameterType == typeof(IReadOnlyGrid)
-					&& methodInfo.ReturnType == typeof(bool);
+				static bool m(ParameterInfo[] p, MethodInfo m) =>
+					p.Length == 1
+					&& p[0].ParameterType == typeof(IReadOnlyGrid)
+					&& m.ReturnType == typeof(bool);
 				foreach (var methodInfo in
 					from methodInfo in typeof(PuzzleAttributeChecker).GetMethods()
-					let parameters = methodInfo.GetParameters()
-					where isSpecifiedMethod(parameters, methodInfo)
+					let Params = methodInfo.GetParameters()
+					where m(Params, methodInfo)
 					select methodInfo)
 				{
 					bool attributeResult = (bool)methodInfo.Invoke(null, new object[] { puzzle })!;
 					sb.AppendLine($"    {methodInfo.Name}: {attributeResult}");
 				}
-				appendSeparator();
+				a();
 			}
 
 			// Print backdoors (if worth).
@@ -209,7 +208,7 @@ namespace Sudoku.Solving
 				{
 					sb.AppendLine($"    {assignment[0]}");
 				}
-				appendSeparator();
+				a();
 			}
 
 			// Print the additional information (if worth).

@@ -113,12 +113,13 @@ namespace Sudoku.Solving.Manual.Subsets
 							regionOffset: region,
 							cellOffsets: cells,
 							digits: mask.GetAllSets().ToArray(),
-							isLocked: true switch
-							{
-								_ when flagMask == mask => true,
-								_ when flagMask != 0 => false,
-								_ => null
-							}));
+							isLocked:
+								true switch
+								{
+									_ when flagMask == mask => true,
+									_ when flagMask != 0 => false,
+									_ => null
+								}));
 				}
 			}
 		}

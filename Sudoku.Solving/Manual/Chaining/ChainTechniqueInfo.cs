@@ -10,8 +10,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	public abstract class ChainTechniqueInfo : TechniqueInfo
 	{
 		/// <inheritdoc/>
-		protected ChainTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
+		protected ChainTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
 			: base(conclusions, views)
 		{
 		}

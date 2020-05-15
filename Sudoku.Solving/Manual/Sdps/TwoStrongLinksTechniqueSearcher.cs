@@ -100,12 +100,10 @@ namespace Sudoku.Solving.Manual.Sdps
 
 						foreach (int cell in gridMap.Offsets)
 						{
-							if (!(grid.Exists(cell, digit) is true))
+							if (grid.Exists(cell, digit) is true)
 							{
-								continue;
+								conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, digit));
 							}
-
-							conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, digit));
 						}
 
 						if (conclusions.Count == 0)

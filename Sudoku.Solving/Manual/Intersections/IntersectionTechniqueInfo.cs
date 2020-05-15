@@ -10,8 +10,7 @@ namespace Sudoku.Solving.Manual.Intersections
 	public abstract class IntersectionTechniqueInfo : TechniqueInfo
 	{
 		/// <inheritdoc/>
-		protected IntersectionTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
+		protected IntersectionTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
 			: base(conclusions, views)
 		{
 		}

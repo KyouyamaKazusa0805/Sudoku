@@ -55,79 +55,59 @@ namespace Sudoku.Solving.Manual.Fishes
 		public IReadOnlyList<int>? FinCellOffsets { get; }
 
 		/// <inheritdoc/>
-		public override string Name
-		{
-			get
+		public override string Name =>
+			$@"{IsSashimi switch
 			{
-				return $@"{IsSashimi switch
-				{
-					null => "",
-					true => "Sashimi ",
-					false => "Finned "
-				}}{FishNames[Size]}";
-			}
-		}
+				null => "",
+				true => "Sashimi ",
+				false => "Finned "
+			}}{FishNames[Size]}";
 
 		/// <inheritdoc/>
-		public override decimal Difficulty
-		{
-			get
+		public override decimal Difficulty =>
+			Size switch
 			{
-				return Size switch
+				2 => 3.2M,
+				3 => 3.8M,
+				4 => 5.2M,
+				_ => throw Throwing.ImpossibleCase
+			} + IsSashimi switch
+			{
+				null => 0,
+				true => Size switch
 				{
-					2 => 3.2M,
-					3 => 3.8M,
-					4 => 5.2M,
+					2 => .3M,
+					3 => .3M,
+					4 => .4M,
 					_ => throw Throwing.ImpossibleCase
-				} + IsSashimi switch
-				{
-					null => 0,
-					true => Size switch
-					{
-						2 => .3M,
-						3 => .3M,
-						4 => .4M,
-						_ => throw Throwing.ImpossibleCase
-					},
-					false => .2M
-				};
-			}
-		}
+				},
+				false => .2M
+			};
 
 		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel
-		{
-			get
+		public override DifficultyLevel DifficultyLevel =>
+			IsSashimi switch
 			{
-				return IsSashimi switch
-				{
-					null => DifficultyLevel.Hard,
-					true => DifficultyLevel.VeryHard,
-					false => Size < 3 ? DifficultyLevel.Hard : DifficultyLevel.VeryHard
-				};
-			}
-		}
+				null => DifficultyLevel.Hard,
+				true => DifficultyLevel.VeryHard,
+				false => Size < 3 ? DifficultyLevel.Hard : DifficultyLevel.VeryHard
+			};
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode
-		{
-			get
+		public override TechniqueCode TechniqueCode =>
+			Name switch
 			{
-				return Name switch
-				{
-					"X-Wing" => TechniqueCode.XWing,
-					"Finned X-Wing" => TechniqueCode.FinnedXWing,
-					"Sashimi X-Wing" => TechniqueCode.SashimiXWing,
-					"Swordfish" => TechniqueCode.Swordfish,
-					"Finned Swordfish" => TechniqueCode.FinnedSwordfish,
-					"Sashimi Swordfish" => TechniqueCode.SashimiSwordfish,
-					"Jellyfish" => TechniqueCode.Jellyfish,
-					"Finned Jellyfish" => TechniqueCode.FinnedJellyfish,
-					"Sashimi Jellyfish" => TechniqueCode.SashimiJellyfish,
-					_ => throw new NotSupportedException("The current instance does not support this kind of fish.")
-				};
-			}
-		}
+				"X-Wing" => TechniqueCode.XWing,
+				"Finned X-Wing" => TechniqueCode.FinnedXWing,
+				"Sashimi X-Wing" => TechniqueCode.SashimiXWing,
+				"Swordfish" => TechniqueCode.Swordfish,
+				"Finned Swordfish" => TechniqueCode.FinnedSwordfish,
+				"Sashimi Swordfish" => TechniqueCode.SashimiSwordfish,
+				"Jellyfish" => TechniqueCode.Jellyfish,
+				"Finned Jellyfish" => TechniqueCode.FinnedJellyfish,
+				"Sashimi Jellyfish" => TechniqueCode.SashimiJellyfish,
+				_ => throw new NotSupportedException("The current instance does not support this kind of fish.")
+			};
 
 
 		/// <inheritdoc/>

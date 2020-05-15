@@ -28,8 +28,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="digit">The digit.</param>
 		/// <param name="cells">All cell offsets.</param>
 		public BugType2TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int digit, IReadOnlyList<int> cells)
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int digit, IReadOnlyList<int> cells)
 			: base(conclusions, views) => (Digit, Cells) = (digit, cells);
 
 

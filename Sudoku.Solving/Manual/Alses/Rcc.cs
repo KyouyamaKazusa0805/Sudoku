@@ -61,12 +61,10 @@ namespace Sudoku.Solving.Manual.Alses
 		public override bool Equals(object? obj) => obj is Rcc comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(Rcc other)
-		{
-			return CommonDigit == other.CommonDigit
-				&& CommonRegion == other.CommonRegion
-				&& (Als1 == other.Als1 && Als2 == other.Als2 || Als1 == other.Als2 && Als2 == other.Als1);
-		}
+		public bool Equals(Rcc other) =>
+			CommonDigit == other.CommonDigit
+			&& CommonRegion == other.CommonRegion
+			&& (Als1 == other.Als1 && Als2 == other.Als2 || Als1 == other.Als2 && Als2 == other.Als1);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		public override int GetHashCode() =>
@@ -86,7 +84,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <returns>All RCCs searched.</returns>
 		public static IEnumerable<Rcc> GetAllRccs(IReadOnlyGrid grid, bool allowOverlap)
 		{
-			(_, _, var candMaps, _) = grid;
+			var candMaps = grid.GetCandidatesMap();
 			var alses = Als.GetAllAlses(grid).ToArray();
 			for (int i = 0, length = alses.Length; i < length - 1; i++)
 			{

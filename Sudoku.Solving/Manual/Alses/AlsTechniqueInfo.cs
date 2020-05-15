@@ -10,8 +10,7 @@ namespace Sudoku.Solving.Manual.Alses
 	public abstract class AlsTechniqueInfo : TechniqueInfo
 	{
 		/// <inheritdoc/>
-		protected AlsTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
+		protected AlsTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
 			: base(conclusions, views)
 		{
 		}

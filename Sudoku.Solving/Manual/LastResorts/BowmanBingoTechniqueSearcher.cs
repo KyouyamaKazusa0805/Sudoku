@@ -56,12 +56,6 @@ namespace Sudoku.Solving.Manual.LastResorts
 			var tempGrid = grid.Clone();
 			for (int cell = 0; cell < 81; cell++)
 			{
-				// Redundant.
-				//if (tempGrid.GetCellStatus(cell) != CellStatus.Empty)
-				//{
-				//	continue;
-				//}
-
 				for (int digit = 0; digit < 9; digit++)
 				{
 					if (!(tempGrid.Exists(cell, digit) is true))
@@ -106,16 +100,21 @@ namespace Sudoku.Solving.Manual.LastResorts
 			}
 		}
 
-		private void TakeAllRecursively(
-			IBag<TechniqueInfo> result, Grid grid, int startCandidate, int length)
+		/// <summary>
+		/// Take all information recursively.
+		/// </summary>
+		/// <param name="result">The result.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="startCandidate">The start candidate.</param>
+		/// <param name="length">The length.</param>
+		private void TakeAllRecursively(IBag<TechniqueInfo> result, Grid grid, int startCandidate, int length)
 		{
 			if (length == 0)
 			{
 				return;
 			}
 
-			var info = _searcher.TakeOne(grid);
-			if (!(info is SingleTechniqueInfo singleInfo))
+			if (!(_searcher.TakeOne(grid) is SingleTechniqueInfo singleInfo))
 			{
 				// The searcher cannot find any steps next.
 				// which means that this case (grid[cell] = digit)
@@ -223,14 +222,12 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <param name="grid">The grid.</param>
 		/// <param name="cell">The cell.</param>
 		/// <returns>The result.</returns>
-		private static bool IsValidGrid(IReadOnlyGrid grid, int cell)
-		{
-			return new GridMap(cell, false).Offsets.All(c =>
+		private static bool IsValidGrid(IReadOnlyGrid grid, int cell) =>
+			new GridMap(cell, false).Offsets.All(c =>
 			{
 				var status = grid.GetStatus(c);
 				return (status != CellStatus.Empty && grid[c] != grid[cell] || status == CellStatus.Empty)
 					&& grid.GetCandidatesReversal(c) != 0;
 			});
-		}
 	}
 }

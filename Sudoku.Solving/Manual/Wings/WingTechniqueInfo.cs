@@ -10,8 +10,7 @@ namespace Sudoku.Solving.Manual.Wings
 	public abstract class WingTechniqueInfo : TechniqueInfo
 	{
 		/// <inheritdoc/>
-		protected WingTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
+		protected WingTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views)
 			: base(conclusions, views)
 		{
 		}

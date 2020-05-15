@@ -39,51 +39,45 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// </summary>
 		public bool? IsLocked { get; }
 
-		/// <inheritdoc/>
-		public override decimal Difficulty
-		{
-			get
-			{
-				int size = Digits.Count;
-				return size switch
-				{
-					2 => 3M,
-					3 => 3.6M,
-					4 => 5M,
-					_ => throw Throwing.ImpossibleCase
-				} + IsLocked switch
-				{
-					null => 0,
-					true => size switch
-					{
-						2 => -1M,
-						3 => -1.1M,
-						_ => throw Throwing.ImpossibleCase
-					},
-					false => .1M
-				};
-			}
-		}
+		/// <summary>
+		/// Indicates the size.
+		/// </summary>
+		public int Size => Digits.Count;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode
-		{
-			get
+		public override decimal Difficulty =>
+			Size switch
 			{
-				return (IsLocked, Digits.Count) switch
+				2 => 3M,
+				3 => 3.6M,
+				4 => 5M,
+				_ => throw Throwing.ImpossibleCase
+			} + IsLocked switch
+			{
+				null => 0,
+				true => Size switch
 				{
-					(true, 2) => TechniqueCode.LockedPair,
-					(false, 2) => TechniqueCode.NakedPairPlus,
-					(null, 2) => TechniqueCode.NakedPair,
-					(true, 3) => TechniqueCode.LockedTriple,
-					(false, 3) => TechniqueCode.NakedTriplePlus,
-					(null, 3) => TechniqueCode.NakedTriple,
-					(false, 4) => TechniqueCode.NakedQuadruplePlus,
-					(null, 4) =>  TechniqueCode.NakedQuadruple,
+					2 => -1M,
+					3 => -1.1M,
 					_ => throw Throwing.ImpossibleCase
-				};
-			}
-		}
+				},
+				false => .1M
+			};
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode =>
+			(IsLocked, Digits.Count) switch
+			{
+				(true, 2) => TechniqueCode.LockedPair,
+				(false, 2) => TechniqueCode.NakedPairPlus,
+				(null, 2) => TechniqueCode.NakedPair,
+				(true, 3) => TechniqueCode.LockedTriple,
+				(false, 3) => TechniqueCode.NakedTriplePlus,
+				(null, 3) => TechniqueCode.NakedTriple,
+				(false, 4) => TechniqueCode.NakedQuadruplePlus,
+				(null, 4) => TechniqueCode.NakedQuadruple,
+				_ => throw Throwing.ImpossibleCase
+			};
 
 
 		/// <inheritdoc/>

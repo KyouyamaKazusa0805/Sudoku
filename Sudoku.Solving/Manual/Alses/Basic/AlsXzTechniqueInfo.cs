@@ -77,18 +77,13 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode
-		{
-			get
+		public override TechniqueCode TechniqueCode =>
+			IsDoublyLinked switch
 			{
-				return IsDoublyLinked switch
-				{
-					true => TechniqueCode.DoublyLinkedAlsXz,
-					false => TechniqueCode.SinglyLinkedAlsXz,
-					null => TechniqueCode.Esp
-				};
-			}
-		}
+				true => TechniqueCode.DoublyLinkedAlsXz,
+				false => TechniqueCode.SinglyLinkedAlsXz,
+				null => TechniqueCode.Esp
+			};
 
 
 		/// <inheritdoc/>

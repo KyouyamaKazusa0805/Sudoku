@@ -13,8 +13,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// </summary>
 		/// <param name="cells">All cells.</param>
 		/// <param name="digits">All digits.</param>
-		protected UlDetailData(IReadOnlyList<int> cells, IReadOnlyList<int> digits) =>
-			(Cells, Digits) = (cells, digits);
+		protected UlDetailData(IReadOnlyList<int> cells, IReadOnlyList<int> digits) => (Cells, Digits) = (cells, digits);
 
 
 		/// <summary>
@@ -58,12 +57,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		public IReadOnlyList<int> Digits { get; }
 
 		/// <inheritdoc/>
-		public sealed override bool Equals(object? obj) =>
-			obj is UlDetailData comparer && Equals(comparer);
+		public sealed override bool Equals(object? obj) => obj is UlDetailData comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public virtual bool Equals(UlDetailData other) =>
-			ToString() == other.ToString();
+		public virtual bool Equals(UlDetailData other) => ToString() == other.ToString();
 
 		/// <inheritdoc/>
 		public override int GetHashCode() => ToString().GetHashCode();
@@ -73,11 +70,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 
 		/// <include file='../../../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
-		public static bool operator ==(UlDetailData left, UlDetailData right) =>
-			left.Equals(right);
+		public static bool operator ==(UlDetailData left, UlDetailData right) => left.Equals(right);
 
 		/// <include file='../../../../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
-		public static bool operator !=(UlDetailData left, UlDetailData right) =>
-			!(left == right);
+		public static bool operator !=(UlDetailData left, UlDetailData right) => !(left == right);
 	}
 }

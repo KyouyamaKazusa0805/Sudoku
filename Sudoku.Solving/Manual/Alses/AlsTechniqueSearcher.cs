@@ -22,7 +22,9 @@
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
-		protected AlsTechniqueSearcher() { }
+		protected AlsTechniqueSearcher()
+		{
+		}
 
 		/// <summary>
 		/// Initializes an instance with the specified information.

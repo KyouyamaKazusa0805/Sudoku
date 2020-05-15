@@ -51,15 +51,10 @@ namespace Sudoku.Solving
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
-		public decimal MaxDifficulty
-		{
-			get
-			{
-				return SolvingSteps is null || !SolvingSteps.Any()
-					? 20M
-					: SolvingSteps.Max(info => info.ShowDifficulty ? info.Difficulty : 0);
-			}
-		}
+		public decimal MaxDifficulty =>
+			SolvingSteps is null || !SolvingSteps.Any()
+				? 20M
+				: SolvingSteps.Max(info => info.ShowDifficulty ? info.Difficulty : 0);
 
 		/// <summary>
 		/// <para>Indicates the total difficulty rating of the puzzle.</para>

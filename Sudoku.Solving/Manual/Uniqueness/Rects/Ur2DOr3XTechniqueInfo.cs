@@ -27,8 +27,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public Ur2DOr3XTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			UrTypeCode typeCode, int digit1, int digit2, int[] cells,
-			int x, int y, int xyCell, bool isAr)
-			: base(conclusions, views, typeCode, digit1, digit2, cells, isAr) =>
+			int x, int y, int xyCell, bool isAr) : base(conclusions, views, typeCode, digit1, digit2, cells, isAr) =>
 			(X, Y, XyCell) = (x, y, xyCell);
 
 

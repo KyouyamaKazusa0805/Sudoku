@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <summary>
 		/// The table of regions to traverse.
 		/// </summary>
-		private static readonly int[,] Regions = new int[18, 2]
+		private static readonly int[,] Regions =
 		{
 			{ 9, 10 }, { 9, 11 }, { 10, 11 },
 			{ 12, 13 }, { 12, 14 }, { 13, 14 },

@@ -15,9 +15,7 @@ namespace Sudoku.Solving.Manual.Sdps
 		/// <param name="conclusions">All conclusions.</param>
 		/// <param name="views">All views.</param>
 		/// <param name="digit">The digit.</param>
-		protected SdpTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int digit)
+		protected SdpTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int digit)
 			: base(conclusions, views) => Digit = digit;
 
 
