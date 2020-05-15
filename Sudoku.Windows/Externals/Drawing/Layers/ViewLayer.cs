@@ -59,6 +59,16 @@ namespace Sudoku.Drawing.Layers
 
 
 		/// <summary>
+		/// Initializes an instance with the specified point converter and the older view layer instance.
+		/// </summary>
+		/// <param name="pointConverter">The point converter.</param>
+		/// <param name="oldLayer">The older layer.</param>
+		public ViewLayer(PointConverter pointConverter, ViewLayer oldLayer) : base(pointConverter) =>
+			(_view, _conclusions, _colorDic, _eliminationColor, _cannibalismColor, _chainColor) = (
+				oldLayer._view, oldLayer._conclusions, oldLayer._colorDic, oldLayer._eliminationColor,
+				oldLayer._cannibalismColor, oldLayer._chainColor);
+
+		/// <summary>
 		/// Initializes an instance with the specified view and the color dictionary.
 		/// </summary>
 		/// <param name="pointConverter">The point converter.</param>

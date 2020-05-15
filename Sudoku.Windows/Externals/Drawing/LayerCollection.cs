@@ -35,6 +35,28 @@ namespace Sudoku.Drawing
 		}
 
 
+		/// <summary>
+		/// Get the specified layer.
+		/// </summary>
+		/// <param name="layerName">The layer name.</param>
+		/// <returns>The layer.</returns>
+		public Layer? this[string layerName]
+		{
+			get
+			{
+				foreach (var layer in this)
+				{
+					if (layer.Name == layerName)
+					{
+						return layer;
+					}
+				}
+
+				return null;
+			}
+		}
+
+
 		/// <inheritdoc/>
 		public void Dispose()
 		{

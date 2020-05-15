@@ -21,6 +21,11 @@ namespace Sudoku.Windows
 		private readonly Settings _settings;
 
 		/// <summary>
+		/// The old collection.
+		/// </summary>
+		private readonly LayerCollection _oldCollection;
+
+		/// <summary>
 		/// Indicates the grid.
 		/// </summary>
 		private readonly Grid _grid;
@@ -31,11 +36,12 @@ namespace Sudoku.Windows
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <param name="settings">The settings.</param>
-		public PictureSavingPreferencesWindow(Grid grid, Settings settings)
+		/// <param name="layerCollection">The older layer collection.</param>
+		public PictureSavingPreferencesWindow(Grid grid, Settings settings, LayerCollection layerCollection)
 		{
 			InitializeComponent();
 
-			(_settings, _grid) = (settings, grid);
+			(_settings, _grid, _oldCollection) = (settings, grid, layerCollection);
 			_textBoxSize.Text = _settings.SavingPictureSize.ToString();
 		}
 
@@ -88,6 +94,18 @@ namespace Sudoku.Windows
 						_settings.GivenFontName, _settings.ModifiableFontName,
 						_settings.CandidateFontName, _grid, _settings.ShowCandidates),
 				};
+
+				var cvl = _oldCollection[typeof(CustomViewLayer).Name];
+				if (cvl is CustomViewLayer customViewLayer)
+				{
+					layerCollection.Add(new CustomViewLayer(pc, customViewLayer));
+				}
+
+				var vl = _oldCollection[typeof(ViewLayer).Name];
+				if (vl is ViewLayer viewLayer)
+				{
+					layerCollection.Add(new ViewLayer(pc, viewLayer));
+				}
 
 				Bitmap? bitmap = null;
 				try

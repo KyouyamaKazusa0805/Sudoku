@@ -214,7 +214,7 @@ namespace Sudoku.Windows
 		}
 
 		private void MenuItemFileSavePicture_Click(object sender, RoutedEventArgs e) =>
-			new PictureSavingPreferencesWindow(_puzzle, Settings).ShowDialog();
+			new PictureSavingPreferencesWindow(_puzzle, Settings, _layerCollection).ShowDialog();
 
 		private void MenuItemFileGetSnapshot_Click(object sender, RoutedEventArgs e)
 		{
@@ -721,22 +721,18 @@ namespace Sudoku.Windows
 				return true;
 			}
 
-			IEnumerable<IGrouping<string, TechniqueInfo>> getGroupedSteps()
-			{
-				return from solvingStep in _analyisResult.SolvingSteps!
-					   orderby solvingStep.Difficulty
-					   group solvingStep by solvingStep.Name;
-			}
+			IEnumerable<IGrouping<string, TechniqueInfo>> getGroupedSteps() =>
+				from solvingStep in _analyisResult.SolvingSteps!
+				orderby solvingStep.Difficulty
+				group solvingStep by solvingStep.Name;
 
-			GridViewColumn createGridViewColumn(string name, double widthScale)
-			{
-				return new GridViewColumn
+			GridViewColumn createGridViewColumn(string name, double widthScale) =>
+				new GridViewColumn
 				{
 					Header = name,
 					DisplayMemberBinding = new Binding(name),
 					Width = _tabControlInfo.ActualWidth * widthScale - 4,
 				};
-			}
 		}
 
 		private void MenuItemAnalyzeSeMode_Click(object sender, RoutedEventArgs e) =>
