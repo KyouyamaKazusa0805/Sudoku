@@ -14,7 +14,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	/// <summary>
 	/// Encapsulates an <b>extended rectangle</b> technique searcher.
 	/// </summary>
-	[UniquenessSearcher]
 	[TechniqueDisplay("Extended Rectangle")]
 	public sealed class XrTechniqueSearcher : UniquenessTechniqueSearcher
 	{

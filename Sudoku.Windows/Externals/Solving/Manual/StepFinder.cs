@@ -16,6 +16,7 @@ using Sudoku.Solving.Manual.LastResorts;
 using Sudoku.Solving.Manual.Sdps;
 using Sudoku.Solving.Manual.Singles;
 using Sudoku.Solving.Manual.Subsets;
+using Sudoku.Solving.Manual.Uniqueness;
 using Sudoku.Solving.Manual.Uniqueness.Bugs;
 using Sudoku.Solving.Manual.Uniqueness.Extended;
 using Sudoku.Solving.Manual.Uniqueness.Loops;
@@ -111,7 +112,7 @@ namespace Sudoku.Solving.Manual
 			var bag = new Bag<TechniqueInfo>();
 			foreach (var searcher in searchers)
 			{
-				if (sukaku is true && searcher.HasMarkedAttribute<UniquenessSearcherAttribute>(false, out _))
+				if (sukaku is true && searcher is UniquenessTechniqueSearcher)
 				{
 					// Sukaku mode cannot use them.
 					// In fact, sukaku can use uniqueness tests, however the program should

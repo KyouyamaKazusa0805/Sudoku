@@ -20,6 +20,7 @@ using Sudoku.Solving.Manual.Sdps;
 using Sudoku.Solving.Manual.Singles;
 using Sudoku.Solving.Manual.Subsets;
 using Sudoku.Solving.Manual.Symmetry;
+using Sudoku.Solving.Manual.Uniqueness;
 using Sudoku.Solving.Manual.Uniqueness.Bugs;
 using Sudoku.Solving.Manual.Uniqueness.Extended;
 using Sudoku.Solving.Manual.Uniqueness.Loops;
@@ -161,7 +162,7 @@ namespace Sudoku.Solving.Manual
 				var searcherListGroup = searchers[i];
 				foreach (var searcher in searcherListGroup)
 				{
-					if (sukaku && searcher.HasMarkedAttribute<UniquenessSearcherAttribute>(false, out _))
+					if (sukaku is true && searcher is UniquenessTechniqueSearcher)
 					{
 						// Sukaku mode cannot use them.
 						// In fact, sukaku can use uniqueness tests, however the program should
@@ -386,7 +387,7 @@ namespace Sudoku.Solving.Manual
 			{
 				var searcher = searchers[i];
 
-				if (sukaku && searcher.HasMarkedAttribute<UniquenessSearcherAttribute>(false, out _))
+				if (sukaku is true && searcher is UniquenessTechniqueSearcher)
 				{
 					// Sukaku mode cannot use them.
 					// In fact, sukaku can use uniqueness tests, however the program should

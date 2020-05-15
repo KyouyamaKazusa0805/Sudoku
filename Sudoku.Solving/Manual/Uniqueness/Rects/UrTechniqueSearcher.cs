@@ -14,7 +14,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// Encapsulates an <b>unique rectangle</b> (UR) or
 	/// <b>avoidable rectangle</b> (AR) technique searcher.
 	/// </summary>
-	[UniquenessSearcher]
 	[TechniqueDisplay("Unique Rectangle")]
 	public sealed partial class UrTechniqueSearcher : UniquenessTechniqueSearcher
 	{

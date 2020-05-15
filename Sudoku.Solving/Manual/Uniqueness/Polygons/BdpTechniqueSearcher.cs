@@ -21,7 +21,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// <summary>
 	/// Encapsulates a <b>Borescoper's deadly pattern</b> technique searcher.
 	/// </summary>
-	[UniquenessSearcher]
 	[TechniqueDisplay("Borescoper's Deadly Pattern")]
 	public sealed partial class BdpTechniqueSearcher : UniquenessTechniqueSearcher
 	{
