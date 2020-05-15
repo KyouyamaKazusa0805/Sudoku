@@ -30,32 +30,14 @@ namespace Sudoku.Windows.Constants
 		/// <summary>
 		/// Indicates the name of this solution.
 		/// </summary>
-		public static string SolutionName
-		{
-			get
-			{
-				return Assembly
-					.GetExecutingAssembly()
-					.GetCustomAttribute<AssemblyProductAttribute>()
-					is AssemblyProductAttribute attr
-					? attr.Product
-					: "Sunnie's Sudoku Solution";
-			}
-		}
+		public static string SolutionName =>
+			Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyProductAttribute>() is AssemblyProductAttribute
+				attr ? attr.Product : "Sunnie's Sudoku Solution";
 
 		/// <summary>
 		/// Indicates the version.
 		/// </summary>
-		public static string SolutionVersion
-		{
-			get
-			{
-				return Assembly
-					.GetExecutingAssembly()
-					.GetName()
-					.Version
-					.NullableToString("Unknown version");
-			}
-		}
+		public static string SolutionVersion =>
+			Assembly.GetExecutingAssembly().GetName().Version.NullableToString("Unknown version");
 	}
 }

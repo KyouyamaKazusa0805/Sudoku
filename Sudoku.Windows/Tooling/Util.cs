@@ -32,13 +32,11 @@ namespace Sudoku.Windows.Tooling
 		/// <returns>The result.</returns>
 		public static string ToHexString(this WColor @this) => $"#{@this.A:X2}{@this.R:X2}{@this.G:X2}{@this.B:X2}";
 
-		public static WColor ColorFromHexString(string hex)
-		{
-			return WColor.FromRgb(
-			   Convert.ToByte(hex.Substring(1, 2), 16),
-			   Convert.ToByte(hex.Substring(3, 2), 16),
-			   Convert.ToByte(hex.Substring(5, 2), 16));
-		}
+		public static WColor ColorFromHexString(string hex) =>
+			WColor.FromRgb(
+				Convert.ToByte(hex.Substring(1, 2), 16),
+				Convert.ToByte(hex.Substring(3, 2), 16),
+				Convert.ToByte(hex.Substring(5, 2), 16));
 
 		public static BitmapImage GetBitmapImage(BitmapSource bitmapSource)
 		{
@@ -80,7 +78,7 @@ namespace Sudoku.Windows.Tooling
 				throw new ArgumentOutOfRangeException(
 					nameof(saturation), saturation, "Value must be within a range of 0 - 1.");
 			}
-			if (brightness < 0 ||  brightness > 1F)
+			if (brightness < 0 || brightness > 1F)
 			{
 				throw new ArgumentOutOfRangeException(
 					nameof(brightness), brightness, "Value must be within a range of 0 - 1.");
@@ -137,22 +135,20 @@ namespace Sudoku.Windows.Tooling
 		}
 
 
-		public static void SaveToXml<T>(this T @this, string filename)
-		{
-			var xml = @this.GetXmlText();
-
-			File.WriteAllText(filename, xml);
-		}
+		public static void SaveToXml<T>(this T @this, string filename) => File.WriteAllText(filename, @this.GetXmlText());
 
 		public static string GetXmlText<T>(this T obj)
 		{
 			using var sw = new StringWriter();
-			using var writer = XmlWriter.Create(sw, new XmlWriterSettings()
-			{
-				Indent = true,
-				IndentChars = "    ",
-				NewLineOnAttributes = false
-			});
+			using var writer =
+				XmlWriter.Create(
+					sw,
+					new XmlWriterSettings()
+					{
+						Indent = true,
+						IndentChars = "    ",
+						NewLineOnAttributes = false
+					});
 			new XmlSerializer(typeof(T)).Serialize(writer, obj);
 			return sw.ToString();
 		}

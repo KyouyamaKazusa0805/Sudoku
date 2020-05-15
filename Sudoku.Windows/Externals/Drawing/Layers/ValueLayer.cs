@@ -63,8 +63,7 @@ namespace Sudoku.Drawing.Layers
 			PointConverter pointConverter, decimal valueScale, decimal candidateScale,
 			Color givenColor, Color modifiableColor, Color candidateColor,
 			string givenFont, string modifiableFont, string candidateFont, Grid grid,
-			bool showCandidates)
-			: base(pointConverter)
+			bool showCandidates) : base(pointConverter)
 		{
 			_valueScale = valueScale;
 			_candidateScale = candidateScale;

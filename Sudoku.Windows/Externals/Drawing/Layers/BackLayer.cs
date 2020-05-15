@@ -20,8 +20,7 @@ namespace Sudoku.Drawing.Layers
 		/// </summary>
 		/// <param name="pointConverter">The point converter.</param>
 		/// <param name="color">The color.</param>
-		public BackLayer(PointConverter pointConverter, Color color)
-			: base(pointConverter) => _color = color;
+		public BackLayer(PointConverter pointConverter, Color color) : base(pointConverter) => _color = color;
 
 
 		/// <inheritdoc/>

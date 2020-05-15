@@ -14,7 +14,7 @@ namespace Sudoku.Drawing.Layers
 		/// <summary>
 		/// Indicates a basic string format.
 		/// </summary>
-		protected static readonly StringFormat DefaultStringFormat = new StringFormat()
+		protected static readonly StringFormat DefaultStringFormat = new StringFormat
 		{
 			Alignment = StringAlignment.Center,
 			LineAlignment = StringAlignment.Center
@@ -68,8 +68,7 @@ namespace Sudoku.Drawing.Layers
 
 
 		/// <inheritdoc/>
-		public sealed override bool Equals(object? obj) =>
-			obj is Layer comparer && Equals(comparer);
+		public sealed override bool Equals(object? obj) => obj is Layer comparer && Equals(comparer);
 
 		/// <inheritdoc/>
 		public bool Equals(Layer other) => Name == other.Name;
@@ -104,40 +103,16 @@ namespace Sudoku.Drawing.Layers
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(Layer left, Layer right) => !(left == right);
 
-		/// <summary>
-		/// Decide whether the priority of the <paramref name="left"/> layer is greater than
-		/// the <paramref name="right"/> one.
-		/// </summary>
-		/// <param name="left">The left layer.</param>
-		/// <param name="right">The right layer.</param>
-		/// <returns>The <see cref="bool"/> result.</returns>
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThan"]'/>
 		public static bool operator >(Layer left, Layer right) => left.CompareTo(right) > 0;
 
-		/// <summary>
-		/// Decide whether the priority of the <paramref name="left"/> layer is greater than
-		/// or equals to the <paramref name="right"/> one.
-		/// </summary>
-		/// <param name="left">The left layer.</param>
-		/// <param name="right">The right layer.</param>
-		/// <returns>The <see cref="bool"/> result.</returns>
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThanOrEqual"]'/>
 		public static bool operator >=(Layer left, Layer right) => left.CompareTo(right) >= 0;
 
-		/// <summary>
-		/// Decide whether the priority of the <paramref name="left"/> layer is less than
-		/// the <paramref name="right"/> one.
-		/// </summary>
-		/// <param name="left">The left layer.</param>
-		/// <param name="right">The right layer.</param>
-		/// <returns>The <see cref="bool"/> result.</returns>
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_LessThan"]'/>
 		public static bool operator <(Layer left, Layer right) => left.CompareTo(right) < 0;
 
-		/// <summary>
-		/// Decide whether the priority of the <paramref name="left"/> layer is less than
-		/// or equals to the <paramref name="right"/> one.
-		/// </summary>
-		/// <param name="left">The left layer.</param>
-		/// <param name="right">The right layer.</param>
-		/// <returns>The <see cref="bool"/> result.</returns>
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_LessThanOrEqual"]'/>
 		public static bool operator <=(Layer left, Layer right) => left.CompareTo(right) <= 0;
 	}
 }

@@ -78,7 +78,8 @@ namespace Sudoku.Drawing.Extensions
 		{
 			if (circleRadius >= Math.Max(rectangle.Width, rectangle.Height))
 			{
-				throw new ArgumentException($"{nameof(circleRadius)}：参数数据比矩形宽度还大，无法绘制。");
+				throw new ArgumentException(
+					"Specified argument is greater than the value in rectangle", nameof(circleRadius));
 			}
 
 			RectangleF r1, r2, r3, r4;

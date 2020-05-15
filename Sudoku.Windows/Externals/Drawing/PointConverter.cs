@@ -192,16 +192,12 @@ namespace Sudoku.Drawing
 			else if (region >= 9 && region < 18)
 			{
 				region -= 9;
-				return RectangleEx.CreateInstance(
-					GridPoints[0, region * 3],
-					GridPoints[27, region * 3 + 3]);
+				return RectangleEx.CreateInstance(GridPoints[0, region * 3], GridPoints[27, region * 3 + 3]);
 			}
 			else if (region >= 18 && region < 27)
 			{
 				region -= 18;
-				return RectangleEx.CreateInstance(
-					GridPoints[region * 3, 0],
-					GridPoints[region * 3 + 3, 27]);
+				return RectangleEx.CreateInstance(GridPoints[region * 3, 0], GridPoints[region * 3 + 3, 27]);
 			}
 			else
 			{

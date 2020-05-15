@@ -18,7 +18,9 @@ namespace Sudoku.Drawing
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
-		public LayerCollection() { }
+		public LayerCollection()
+		{
+		}
 
 		/// <summary>
 		/// Initializes an instance with specified layers.
