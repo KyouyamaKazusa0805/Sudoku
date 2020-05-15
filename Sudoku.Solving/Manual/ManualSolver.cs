@@ -161,12 +161,7 @@ namespace Sudoku.Solving.Manual
 				var searcherListGroup = searchers[i];
 				foreach (var searcher in searcherListGroup)
 				{
-					if (sukaku && (
-						searcher is UrTechniqueSearcher
-						|| searcher is XrTechniqueSearcher
-						|| searcher is UlTechniqueSearcher
-						|| searcher is BdpTechniqueSearcher
-						|| searcher is BugTechniqueSearcher))
+					if (sukaku && searcher.HasMarkedAttribute<UniquenessSearcherAttribute>(false, out _))
 					{
 						// Sukaku mode cannot use them.
 						// In fact, sukaku can use uniqueness tests, however the program should
@@ -391,12 +386,7 @@ namespace Sudoku.Solving.Manual
 			{
 				var searcher = searchers[i];
 
-				if (sukaku && (
-					searcher is UrTechniqueSearcher
-					|| searcher is XrTechniqueSearcher
-					|| searcher is UlTechniqueSearcher
-					|| searcher is BdpTechniqueSearcher
-					|| searcher is BugTechniqueSearcher))
+				if (sukaku && searcher.HasMarkedAttribute<UniquenessSearcherAttribute>(false, out _))
 				{
 					// Sukaku mode cannot use them.
 					// In fact, sukaku can use uniqueness tests, however the program should

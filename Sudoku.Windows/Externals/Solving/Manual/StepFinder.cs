@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Sudoku.Data;
+using Sudoku.Extensions;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Alses;
 using Sudoku.Solving.Manual.Alses.Basic;
@@ -110,12 +111,7 @@ namespace Sudoku.Solving.Manual
 			var bag = new Bag<TechniqueInfo>();
 			foreach (var searcher in searchers)
 			{
-				if (sukaku is true && (
-					searcher is UrTechniqueSearcher
-					|| searcher is XrTechniqueSearcher
-					|| searcher is UlTechniqueSearcher
-					|| searcher is BdpTechniqueSearcher
-					|| searcher is BugTechniqueSearcher))
+				if (sukaku is true && searcher.HasMarkedAttribute<UniquenessSearcherAttribute>(false, out _))
 				{
 					// Sukaku mode cannot use them.
 					// In fact, sukaku can use uniqueness tests, however the program should

@@ -6771,6 +6771,17 @@
             Indicates the brute force.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.UniquenessSearcherAttribute">
+            <summary>
+            <para>
+            To mark on a technique searcher (<see cref="T:Sudoku.Solving.TechniqueSearcher"/>) to indicate the searcher
+            is used for finding all deadly patterns.
+            </para>
+            <para>
+            This attribute is used when the puzzle is a sukaku, they will be disabled.
+            </para>
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleTechniqueInfo">
             <summary>
             Provides a usage of <b>BUG + n</b> technique.
