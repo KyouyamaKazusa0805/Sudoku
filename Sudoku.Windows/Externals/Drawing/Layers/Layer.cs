@@ -86,7 +86,7 @@ namespace Sudoku.Drawing.Layers
 		public int CompareTo(Layer other) => Priority.CompareTo(other.Priority);
 
 		/// <summary>
-		/// To redraw the to the bitmap.
+		/// To redraw to the bitmap.
 		/// </summary>
 		public void Redraw() => Draw();
 

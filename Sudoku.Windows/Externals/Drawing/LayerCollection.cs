@@ -147,6 +147,20 @@ namespace Sudoku.Drawing
 		}
 
 		/// <summary>
+		/// To integrate to the target bitmap, and then using the specified <see cref="Graphics"/>
+		/// instance to integrate all target images.
+		/// </summary>
+		/// <param name="g">The <see cref="Graphics"/> instance.</param>
+		public void IntegrateTo(Graphics g)
+		{
+			foreach (var layer in _internalList)
+			{
+				layer.Redraw();
+				g.DrawImage(layer.Target, 0, 0);
+			}
+		}
+
+		/// <summary>
 		/// To integrate to the target bitmap.
 		/// </summary>
 		/// <param name="bitmap">The bitmap.</param>

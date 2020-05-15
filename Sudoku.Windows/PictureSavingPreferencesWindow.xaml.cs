@@ -71,7 +71,7 @@ namespace Sudoku.Windows
 				{
 					AddExtension = true,
 					DefaultExt = "png",
-					Filter = "PNG files|*.png|JPG files|*.jpg|BMP files|*.bmp|GIF files|*.gif",
+					Filter = "PNG files|*.png|JPG files|*.jpg|BMP files|*.bmp|GIF files|*.gif|WMF files|*.wmf",
 					Title = "Save picture..."
 				};
 
@@ -111,16 +111,34 @@ namespace Sudoku.Windows
 				try
 				{
 					bitmap = new Bitmap((int)size, (int)size);
-					layerCollection.IntegrateTo(bitmap);
-					bitmap.Save(saveFileDialog.FileName, saveFileDialog.FilterIndex switch
+
+					int selectedIndex = saveFileDialog.FilterIndex;
+					string fileName = saveFileDialog.FileName;
+					if (selectedIndex >= -1 && selectedIndex <= 3)
 					{
-						-1 => ImageFormat.Png,
-						0 => ImageFormat.Png,
-						1 => ImageFormat.Jpeg,
-						2 => ImageFormat.Bmp,
-						3 => ImageFormat.Gif,
-						_ => throw Throwing.ImpossibleCase
-					});
+						// Normal picture formats.
+						layerCollection.IntegrateTo(bitmap);
+						bitmap.Save(
+							fileName,
+							selectedIndex switch
+							{
+								-1 => ImageFormat.Png,
+								0 => ImageFormat.Png,
+								1 => ImageFormat.Jpeg,
+								2 => ImageFormat.Bmp,
+								3 => ImageFormat.Gif,
+								_ => throw Throwing.ImpossibleCase
+							});
+					}
+					else
+					{
+						// Windows metafile format (WMF).
+						using var g = Graphics.FromImage(bitmap);
+						using var mf = new Metafile(fileName, g.GetHdc());
+						using var targetGraphics = Graphics.FromImage(mf);
+						layerCollection.IntegrateTo(targetGraphics);
+						targetGraphics.Save();
+					}
 				}
 				catch (Exception ex)
 				{
