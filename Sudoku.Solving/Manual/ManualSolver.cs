@@ -373,9 +373,7 @@ namespace Sudoku.Solving.Manual
 			static T g<T>(TechniqueSearcher s, string p) => (T)s.GetType().GetProperty(p)!.GetValue(null)!;
 			if (UseCalculationPriority)
 			{
-				Array.Sort(
-					searchers,
-					(a, b) => g<int>(a, "Priority").CompareTo(g<int>(b, "Priority")));
+				Array.Sort(searchers, (a, b) => g<int>(a, "Priority").CompareTo(g<int>(b, "Priority")));
 			}
 
 			var stepGrids = new Bag<IReadOnlyGrid>();
@@ -387,22 +385,13 @@ namespace Sudoku.Solving.Manual
 			{
 				var searcher = searchers[i];
 
-				if (sukaku is true && searcher is UniquenessTechniqueSearcher)
+				if (sukaku is true && searcher is UniquenessTechniqueSearcher || !g<bool>(searcher, "IsEnabled"))
 				{
-					// Sukaku mode cannot use them.
-					// In fact, sukaku can use uniqueness tests, however the program should
-					// produce a large modification.
-					continue;
-				}
-
-				if (!g<bool>(searcher, "IsEnabled"))
-				{
-					// Skip the technique when the static property 'IsEnabled' is set false.
 					continue;
 				}
 
 				searcher.GetAll(bag, cloneation);
-				if (!bag.Any())
+				if (bag.Count == 0)
 				{
 					continue;
 				}
@@ -535,12 +524,12 @@ namespace Sudoku.Solving.Manual
 					{
 						needAdd = true;
 
-						goto Label_Decide;
+						goto Label_Determine;
 					}
 				}
 			}
 
-		Label_Decide:
+		Label_Determine:
 			if (needAdd)
 			{
 				stepGrids.Add(cloneation.Clone());
