@@ -54,13 +54,7 @@ namespace Sudoku.Extensions
 		/// please use the method <see cref="AppendLine(StringBuilder, object)"/>.
 		/// </remarks>
 		/// <seealso cref="AppendLine(StringBuilder, object)"/>
-		public static StringBuilder AppendLine(this StringBuilder @this, char value)
-		{
-			@this.Append(value);
-			@this.AppendLine();
-
-			return @this;
-		}
+		public static StringBuilder AppendLine(this StringBuilder @this, char value) => @this.Append(value).AppendLine();
 
 		/// <summary>
 		/// Append a <see cref="string"/> representation of an object
@@ -109,8 +103,7 @@ namespace Sudoku.Extensions
 		{
 			if (@this.Length > @to.Length)
 			{
-				throw new ArgumentException(
-					"The specified string builder does not have enough space to copy.");
+				throw new ArgumentException("The specified string builder does not have enough space to copy.");
 			}
 
 			for (int i = 0; i < @this.Length; i++)

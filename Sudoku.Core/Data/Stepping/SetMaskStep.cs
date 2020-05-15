@@ -11,8 +11,7 @@
 		/// <param name="cell">The cell.</param>
 		/// <param name="oldMask">The old mask.</param>
 		/// <param name="newMask">The new mask.</param>
-		public SetMaskStep(int cell, short oldMask, short newMask) =>
-			(Cell, OldMask, NewMask) = (cell, oldMask, newMask);
+		public SetMaskStep(int cell, short oldMask, short newMask) => (Cell, OldMask, NewMask) = (cell, oldMask, newMask);
 
 
 		/// <summary>

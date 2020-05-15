@@ -26,8 +26,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="candidates">The candidates.</param>
 		/// <param name="nodeType">The type of this node.</param>
-		public Node(IEnumerable<int> candidates, NodeType nodeType)
-			: this(new FullGridMap(candidates), nodeType)
+		public Node(IEnumerable<int> candidates, NodeType nodeType) : this(new FullGridMap(candidates), nodeType)
 		{
 		}
 
@@ -164,40 +163,16 @@ namespace Sudoku.Data
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(Node left, Node right) => !(left == right);
 
-		/// <summary>
-		/// Check whether the <paramref name="left"/> node is greater than <paramref name="right"/>
-		/// node.
-		/// </summary>
-		/// <param name="left">The left node.</param>
-		/// <param name="right">The right node.</param>
-		/// <returns>The <see cref="bool"/> value.</returns>
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThan"]'/>
 		public static bool operator >(Node left, Node right) => left.CompareTo(right) > 0;
 
-		/// <summary>
-		/// Check whether the <paramref name="left"/> node is greater than
-		/// or equals to <paramref name="right"/> node.
-		/// </summary>
-		/// <param name="left">The left node.</param>
-		/// <param name="right">The right node.</param>
-		/// <returns>The <see cref="bool"/> value.</returns>
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThanOrEqual"]'/>
 		public static bool operator >=(Node left, Node right) => left.CompareTo(right) >= 0;
 
-		/// <summary>
-		/// Check whether the <paramref name="left"/> node is less than <paramref name="right"/>
-		/// node.
-		/// </summary>
-		/// <param name="left">The left node.</param>
-		/// <param name="right">The right node.</param>
-		/// <returns>The <see cref="bool"/> value.</returns>
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_LessThan"]'/>
 		public static bool operator <(Node left, Node right) => left.CompareTo(right) < 0;
 
-		/// <summary>
-		/// Check whether the <paramref name="left"/> node is less than or equals to
-		/// <paramref name="right"/> node.
-		/// </summary>
-		/// <param name="left">The left node.</param>
-		/// <param name="right">The right node.</param>
-		/// <returns>The <see cref="bool"/> value.</returns>
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_LessThanOrEqual"]'/>
 		public static bool operator <=(Node left, Node right) => left.CompareTo(right) <= 0;
 
 		/// <summary>
@@ -207,8 +182,7 @@ namespace Sudoku.Data
 		/// <param name="left">The left map.</param>
 		/// <param name="right">The right map.</param>
 		/// <returns>All candidates that satisfied the condition.</returns>
-		public static FullGridMap operator &(Node left, Node right) =>
-			left.CandidatesMap & right.CandidatesMap;
+		public static FullGridMap operator &(Node left, Node right) => left.CandidatesMap & right.CandidatesMap;
 
 		/// <summary>
 		/// Get all candidates from <paramref name="left"/> and <paramref name="right"/>
@@ -217,8 +191,7 @@ namespace Sudoku.Data
 		/// <param name="left">The left map.</param>
 		/// <param name="right">The right map.</param>
 		/// <returns>All candidates.</returns>
-		public static FullGridMap operator |(Node left, Node right) =>
-			left.CandidatesMap | right.CandidatesMap;
+		public static FullGridMap operator |(Node left, Node right) => left.CandidatesMap | right.CandidatesMap;
 
 		/// <summary>
 		/// Get all candidates that satisfy the formula <c>(a - b) | (b - a)</c>.
@@ -226,8 +199,7 @@ namespace Sudoku.Data
 		/// <param name="left">The left map.</param>
 		/// <param name="right">The right map.</param>
 		/// <returns>All candidates.</returns>
-		public static FullGridMap operator ^(Node left, Node right) =>
-			left.CandidatesMap ^ right.CandidatesMap;
+		public static FullGridMap operator ^(Node left, Node right) => left.CandidatesMap ^ right.CandidatesMap;
 
 		/// <summary>
 		/// Get all candidates that is in the <paramref name="left"/> map but not in
@@ -236,7 +208,6 @@ namespace Sudoku.Data
 		/// <param name="left">The left map.</param>
 		/// <param name="right">The right map.</param>
 		/// <returns>All candidates.</returns>
-		public static FullGridMap operator -(Node left, Node right) =>
-			left.CandidatesMap - right.CandidatesMap;
+		public static FullGridMap operator -(Node left, Node right) => left.CandidatesMap - right.CandidatesMap;
 	}
 }

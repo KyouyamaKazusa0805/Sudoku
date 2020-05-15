@@ -25,11 +25,9 @@
 
 
 		/// <inheritdoc/>
-		public override void UndoStepTo(UndoableGrid grid) =>
-			grid._masks[Cell] &= (short)~(1 << Digit);
+		public override void UndoStepTo(UndoableGrid grid) => grid._masks[Cell] &= (short)~(1 << Digit);
 
 		/// <inheritdoc/>
-		public override void DoStepTo(UndoableGrid grid) =>
-			grid._masks[Cell] |= (short)(1 << Digit);
+		public override void DoStepTo(UndoableGrid grid) => grid._masks[Cell] |= (short)(1 << Digit);
 	}
 }

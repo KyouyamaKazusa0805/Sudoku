@@ -139,16 +139,14 @@ namespace Sudoku.Data.Collections
 		/// </summary>
 		/// <param name="index">The index.</param>
 		/// <returns>The label.</returns>
-		private char GetLabel(int index)
-		{
-			return index switch
+		private char GetLabel(int index) =>
+			index switch
 			{
 				0 => 'b',
 				1 => 'r',
 				2 => 'c',
 				_ => throw Throwing.ImpossibleCase
 			};
-		}
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>

@@ -26,8 +26,7 @@ namespace Sudoku
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <param name="message">The error message.</param>
-		public WrongHandlingException(IReadOnlyGrid grid, string message) : base(message) =>
-			Grid = grid;
+		public WrongHandlingException(IReadOnlyGrid grid, string message) : base(message) => Grid = grid;
 
 		/// <summary>
 		/// Initializes an instance with a grid, an error message and an inner exception.
@@ -45,8 +44,7 @@ namespace Sudoku
 		/// <param name="grid">The grid.</param>
 		/// <param name="info">The streaming information.</param>
 		/// <param name="context">The streaming context.</param>
-		protected WrongHandlingException(
-			IReadOnlyGrid grid, SerializationInfo info, StreamingContext context)
+		protected WrongHandlingException(IReadOnlyGrid grid, SerializationInfo info, StreamingContext context)
 			: base(info, context) => Grid = grid;
 
 

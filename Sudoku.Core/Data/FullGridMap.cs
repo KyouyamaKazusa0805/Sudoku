@@ -157,15 +157,10 @@ namespace Sudoku.Data
 		/// Indicates the total number of cells where the corresponding
 		/// value are set <see langword="true"/>.
 		/// </summary>
-		public readonly int Count
-		{
-			get
-			{
-				return _line1.Count + _line2.Count + _line3.Count
-					+ _line4.Count + _line5.Count + _line6.Count
-					+ _line7.Count + _line8.Count + _line9.Count;
-			}
-		}
+		public readonly int Count =>
+			_line1.Count + _line2.Count + _line3.Count
+			+ _line4.Count + _line5.Count + _line6.Count
+			+ _line7.Count + _line8.Count + _line9.Count;
 
 		/// <summary>
 		/// Indicates all candidate offsets whose corresponding value
@@ -204,13 +199,11 @@ namespace Sudoku.Data
 		/// </returns>
 		public bool this[int offset]
 		{
-			readonly get
-			{
-				return stackalloc[]
+			readonly get =>
+				stackalloc[]
 				{
 					_line1, _line2, _line3, _line4, _line5, _line6, _line7, _line8, _line9
 				}[offset / 81][offset / 9 % 9 * 9 + offset % 9];
-			}
 			set
 			{
 				// We should get along with pointers extremely carefully.
@@ -235,8 +228,7 @@ namespace Sudoku.Data
 
 
 		/// <inheritdoc/>
-		public override bool Equals(object? obj) =>
-			obj is FullGridMap comparer && Equals(comparer);
+		public override bool Equals(object? obj) => obj is FullGridMap comparer && Equals(comparer);
 
 		/// <summary>
 		/// Indicates whether the current object has the same value with the other one.
@@ -336,16 +328,11 @@ namespace Sudoku.Data
 		/// <returns>An array of candidate offsets.</returns>
 		public readonly int[] ToArray() => Offsets.ToArray();
 
-		/// <inheritdoc/>
+		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		public override readonly int GetHashCode()
 		{
 			int result = GetType().GetHashCode();
-			foreach (var map in stackalloc[]
-			{
-				_line1, _line2, _line3,
-				_line4, _line5, _line6,
-				_line7, _line8, _line9
-			})
+			foreach (var map in stackalloc[] { _line1, _line2, _line3, _line4, _line5, _line6, _line7, _line8, _line9 })
 			{
 				result ^= map.GetHashCode();
 			}
@@ -491,12 +478,10 @@ namespace Sudoku.Data
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
-		public static bool operator ==(FullGridMap left, FullGridMap right) =>
-			left.Equals(right);
+		public static bool operator ==(FullGridMap left, FullGridMap right) => left.Equals(right);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
-		public static bool operator !=(FullGridMap left, FullGridMap right) =>
-			!(left == right);
+		public static bool operator !=(FullGridMap left, FullGridMap right) => !(left == right);
 
 		/// <summary>
 		/// Negate all bits.
@@ -518,8 +503,7 @@ namespace Sudoku.Data
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
 		/// <returns>The result.</returns>
-		public static FullGridMap operator -(FullGridMap left, FullGridMap right) =>
-			left & ~right;
+		public static FullGridMap operator -(FullGridMap left, FullGridMap right) => left & ~right;
 
 		/// <summary>
 		/// Intersect two <see cref="FullGridMap"/>s.

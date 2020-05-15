@@ -27,14 +27,12 @@ namespace System
 		/// <param name="v1">The value 1.</param>
 		/// <param name="v2">The value 2.</param>
 		/// <param name="primaryElementKey">The primary key.</param>
-		public PrimaryElementTuple(T1 v1, T2 v2, int primaryElementKey)
-		{
+		public PrimaryElementTuple(T1 v1, T2 v2, int primaryElementKey) =>
 			(Value1, Value2, PrimaryElementKey) = (
 				v1, v2,
 				primaryElementKey >= 1 && primaryElementKey <= 3
 					? primaryElementKey
 					: throw new ArgumentOutOfRangeException(nameof(primaryElementKey)));
-		}
 
 
 		/// <summary>
@@ -57,18 +55,13 @@ namespace System
 
 
 		/// <inheritdoc/>
-		object? ITuple.this[int index]
-		{
-			get
+		object? ITuple.this[int index] =>
+			PrimaryElementKey switch
 			{
-				return PrimaryElementKey switch
-				{
-					1 => Value1,
-					2 => Value2,
-					_ => throw Throwing.ImpossibleCase
-				};
-			}
-		}
+				1 => Value1,
+				2 => Value2,
+				_ => throw Throwing.ImpossibleCase
+			};
 
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
@@ -106,14 +99,12 @@ namespace System
 		/// <param name="v2">The value 2.</param>
 		/// <param name="v3">The value 3.</param>
 		/// <param name="primaryElementKey">The primary key.</param>
-		public PrimaryElementTuple(T1 v1, T2 v2, T3 v3, int primaryElementKey)
-		{
+		public PrimaryElementTuple(T1 v1, T2 v2, T3 v3, int primaryElementKey) =>
 			(Value1, Value2, Value3, PrimaryElementKey) = (
 				v1, v2, v3,
 				primaryElementKey >= 1 && primaryElementKey <= 3
 					? primaryElementKey
 					: throw new ArgumentOutOfRangeException(nameof(primaryElementKey)));
-		}
 
 
 		/// <summary>
@@ -141,19 +132,14 @@ namespace System
 
 
 		/// <inheritdoc/>
-		object? ITuple.this[int index]
-		{
-			get
+		object? ITuple.this[int index] =>
+			PrimaryElementKey switch
 			{
-				return PrimaryElementKey switch
-				{
-					1 => Value1,
-					2 => Value2,
-					3 => Value3,
-					_ => throw Throwing.ImpossibleCase
-				};
-			}
-		}
+				1 => Value1,
+				2 => Value2,
+				3 => Value3,
+				_ => throw Throwing.ImpossibleCase
+			};
 
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
@@ -196,14 +182,12 @@ namespace System
 		/// <param name="v3">The value 3.</param>
 		/// <param name="v4">The value 4.</param>
 		/// <param name="primaryElementKey">The primary key.</param>
-		public PrimaryElementTuple(T1 v1, T2 v2, T3 v3, T4 v4, int primaryElementKey)
-		{
+		public PrimaryElementTuple(T1 v1, T2 v2, T3 v3, T4 v4, int primaryElementKey) =>
 			(Value1, Value2, Value3, Value4, PrimaryElementKey) = (
 				v1, v2, v3, v4,
 				primaryElementKey >= 1 && primaryElementKey <= 3
 					? primaryElementKey
 					: throw new ArgumentOutOfRangeException(nameof(primaryElementKey)));
-		}
 
 
 		/// <summary>
@@ -236,20 +220,15 @@ namespace System
 
 
 		/// <inheritdoc/>
-		object? ITuple.this[int index]
-		{
-			get
+		object? ITuple.this[int index] =>
+			PrimaryElementKey switch
 			{
-				return PrimaryElementKey switch
-				{
-					1 => Value1,
-					2 => Value2,
-					3 => Value3,
-					4 => Value4,
-					_ => throw Throwing.ImpossibleCase
-				};
-			}
-		}
+				1 => Value1,
+				2 => Value2,
+				3 => Value3,
+				4 => Value4,
+				_ => throw Throwing.ImpossibleCase
+			};
 
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>

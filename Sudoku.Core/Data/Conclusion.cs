@@ -112,15 +112,13 @@ namespace Sudoku.Data
 		/// nor <see cref="ConclusionType.Elimination"/>.
 		/// </exception>
 		/// <seealso cref="ConclusionType"/>
-		public override string ToString()
-		{
-			return $@"r{CellOffset / 9 + 1}c{CellOffset % 9 + 1} {ConclusionType switch
+		public override string ToString() =>
+			$@"r{CellOffset / 9 + 1}c{CellOffset % 9 + 1} {ConclusionType switch
 			{
 				ConclusionType.Assignment => "=",
 				ConclusionType.Elimination => "<>",
 				_ => throw new InvalidOperationException("Cannot get the string due to invalid conclusion type.")
 			}} {Digit + 1}";
-		}
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>

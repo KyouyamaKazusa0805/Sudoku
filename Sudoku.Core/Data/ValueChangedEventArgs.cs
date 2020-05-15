@@ -17,8 +17,7 @@ namespace Sudoku.Data
 		/// The value to set on the cell. If the action is deletion,
 		/// this argument should be -1.
 		/// </param>
-		public ValueChangedEventArgs(
-			int cellOffset, short oldMask, short newMask, int setValue) =>
+		public ValueChangedEventArgs(int cellOffset, short oldMask, short newMask, int setValue) =>
 			(CellOffset, OldMask, NewMask, SetValue) = (cellOffset, oldMask, newMask, setValue);
 
 
@@ -48,8 +47,7 @@ namespace Sudoku.Data
 		/// <param name="oldMask">(<see langword="out"/> parameter) The old mask.</param>
 		/// <param name="newMask">(<see langword="out"/> parameter) The new mask.</param>
 		/// <param name="setValue">(<see langword="out"/> parameter) the set value.</param>
-		public void Deconstruct(
-			out int cellOffset, out short oldMask, out short newMask, out int setValue) =>
+		public void Deconstruct(out int cellOffset, out short oldMask, out short newMask, out int setValue) =>
 			(cellOffset, oldMask, newMask, setValue) = (CellOffset, OldMask, NewMask, SetValue);
 	}
 }

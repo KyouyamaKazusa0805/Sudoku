@@ -12,8 +12,7 @@ namespace Sudoku.Data.Stepping
 		/// </summary>
 		/// <param name="oldMasks">The old grid masks.</param>
 		/// <param name="newMasks">The new grid masks.</param>
-		public ResetStep(short[] oldMasks, short[] newMasks) =>
-			(OldMasks, NewMasks) = (oldMasks, newMasks);
+		public ResetStep(short[] oldMasks, short[] newMasks) => (OldMasks, NewMasks) = (oldMasks, newMasks);
 
 
 		/// <summary>

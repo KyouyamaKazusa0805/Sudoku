@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using Sudoku.Data;
+using Sudoku.Constants;
+using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Data.Extensions
 {
@@ -14,7 +15,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// The table of clockwise rotation.
 		/// </summary>
-		private static readonly int[] ClockwiseTable = new[]
+		private static readonly int[] ClockwiseTable =
 		{
 			72, 63, 54, 45, 36, 27, 18, 9, 0,
 			73, 64, 55, 46, 37, 28, 19, 10, 1,
@@ -30,7 +31,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// The table of counter-clockwise rotation.
 		/// </summary>
-		private static readonly int[] CounterClockwiseTable = new[]
+		private static readonly int[] CounterClockwiseTable =
 		{
 			8, 17, 26, 35, 44, 53, 62, 71, 80,
 			7, 16, 25, 34, 43, 52, 61, 70, 79,
@@ -46,7 +47,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// The table of pi-rotation.
 		/// </summary>
-		private static readonly int[] PiRotateTable = new[]
+		private static readonly int[] PiRotateTable =
 		{
 			80, 79, 78, 77, 76, 75, 74, 73, 72,
 			71, 70, 69, 68, 67, 66, 65, 64, 63,
@@ -235,32 +236,14 @@ namespace Sudoku.Data.Extensions
 			var result = @this.Clone();
 			for (int i = 0; i < 9; i++)
 			{
-				int c1 = GetCellOffset(region1, i);
-				int c2 = GetCellOffset(region2, i);
+				int c1 = RegionCells[region1][i];
+				int c2 = RegionCells[region2][i];
 				short temp = result.GetMask(c1);
 				result.SetMask(c1, result.GetMask(c2));
 				result.SetMask(c2, temp);
 			}
 
 			return result;
-		}
-
-		/// <summary>
-		/// Get the cell offset of the relative position in the specified
-		/// region.
-		/// </summary>
-		/// <param name="region">The region offset.</param>
-		/// <param name="rPos">The relative position.</param>
-		/// <returns>The cell offset.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static int GetCellOffset(int region, int rPos)
-		{
-			return region switch
-			{
-				_ when region < 9 => (region / 3 * 3 + rPos / 3) * 9 + region % 3 * 3 + rPos % 3,
-				_ when region < 18 => (region - 9) * 9 + rPos,
-				_ => rPos * 9 + (region - 18)
-			};
 		}
 	}
 }

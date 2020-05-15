@@ -37,16 +37,14 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <returns>The string.</returns>
-		public string ToString(Grid grid)
-		{
-			return Sukaku
+		public string ToString(Grid grid) =>
+			Sukaku
 				? ToSukakuString(grid)
 				: Multiline
 					? WithCandidates
 						? ToMultiLineStringCore(grid)
 						: Excel ? ToExcelString(grid) : ToMultiLineSimpleGridCore(grid)
 					: HodokuCompatible ? ToHodokuLibraryFormatString(grid) : ToSingleLineStringCore(grid);
-		}
 
 		/// <summary>
 		/// To Excel format string.
@@ -81,11 +79,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <returns>The string.</returns>
-		private string ToHodokuLibraryFormatString(Grid grid)
-		{
-			string result = ToSingleLineStringCore(grid);
-			return $":0000:x:{result}:::";
-		}
+		private string ToHodokuLibraryFormatString(Grid grid) => $":0000:x:{ToSingleLineStringCore(grid)}:::";
 
 
 		/// <summary>
@@ -100,24 +94,6 @@ namespace Sudoku.Data
 		[SuppressMessage("Style", "IDE0071WithoutSuggestion:Simplify interpolation", Justification = "<Pending>")]
 		private string ToSukakuString(Grid grid)
 		{
-			#region Obsolete code
-			//bool flag = true;
-			//for (int i = 0; i < 81; i++)
-			//{
-			//	if (grid.GetStatus(i) != CellStatus.Empty)
-			//	{
-			//		flag = false;
-			//		break;
-			//	}
-			//}
-			//if (!flag)
-			//{
-			//	throw new ArgumentException(
-			//		"The specified puzzle contains the given or modifiable values, which is an invalid sukaku grid.",
-			//		nameof(grid));
-			//}
-			#endregion
-
 			if (Multiline)
 			{
 				// Append all digits.
@@ -285,21 +261,22 @@ namespace Sudoku.Data
 		private string ToMultiLineSimpleGridCore(Grid grid)
 		{
 			string t = grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : $"{Placeholder}");
-			return new StringBuilder()
-				.AppendLine(SubtleGridLines ? ".-------+-------+-------." : "+-------+-------+-------+")
-				.AppendLine($"| {t[0]} {t[1]} {t[2]} | {t[3]} {t[4]} {t[5]} | {t[6]} {t[7]} {t[8]} |")
-				.AppendLine($"| {t[9]} {t[10]} {t[11]} | {t[12]} {t[13]} {t[14]} | {t[15]} {t[16]} {t[17]} |")
-				.AppendLine($"| {t[18]} {t[19]} {t[20]} | {t[21]} {t[22]} {t[23]} | {t[24]} {t[25]} {t[26]} |")
-				.AppendLine(SubtleGridLines ? ":-------+-------+-------:" : "+-------+-------+-------+")
-				.AppendLine($"| {t[27]} {t[28]} {t[29]} | {t[30]} {t[31]} {t[32]} | {t[33]} {t[34]} {t[35]} |")
-				.AppendLine($"| {t[36]} {t[37]} {t[38]} | {t[39]} {t[40]} {t[41]} | {t[42]} {t[43]} {t[44]} |")
-				.AppendLine($"| {t[45]} {t[46]} {t[47]} | {t[48]} {t[49]} {t[50]} | {t[51]} {t[52]} {t[53]} |")
-				.AppendLine(SubtleGridLines ? ":-------+-------+-------:" : "+-------+-------+-------+")
-				.AppendLine($"| {t[54]} {t[55]} {t[56]} | {t[57]} {t[58]} {t[59]} | {t[60]} {t[61]} {t[62]} |")
-				.AppendLine($"| {t[63]} {t[64]} {t[65]} | {t[66]} {t[67]} {t[68]} | {t[69]} {t[70]} {t[71]} |")
-				.AppendLine($"| {t[72]} {t[73]} {t[74]} | {t[75]} {t[76]} {t[77]} | {t[78]} {t[79]} {t[80]} |")
-				.AppendLine(SubtleGridLines ? "'-------+-------+-------'" : "+-------+-------+-------+")
-				.ToString();
+			return
+				new StringBuilder()
+					.AppendLine(SubtleGridLines ? ".-------+-------+-------." : "+-------+-------+-------+")
+					.AppendLine($"| {t[0]} {t[1]} {t[2]} | {t[3]} {t[4]} {t[5]} | {t[6]} {t[7]} {t[8]} |")
+					.AppendLine($"| {t[9]} {t[10]} {t[11]} | {t[12]} {t[13]} {t[14]} | {t[15]} {t[16]} {t[17]} |")
+					.AppendLine($"| {t[18]} {t[19]} {t[20]} | {t[21]} {t[22]} {t[23]} | {t[24]} {t[25]} {t[26]} |")
+					.AppendLine(SubtleGridLines ? ":-------+-------+-------:" : "+-------+-------+-------+")
+					.AppendLine($"| {t[27]} {t[28]} {t[29]} | {t[30]} {t[31]} {t[32]} | {t[33]} {t[34]} {t[35]} |")
+					.AppendLine($"| {t[36]} {t[37]} {t[38]} | {t[39]} {t[40]} {t[41]} | {t[42]} {t[43]} {t[44]} |")
+					.AppendLine($"| {t[45]} {t[46]} {t[47]} | {t[48]} {t[49]} {t[50]} | {t[51]} {t[52]} {t[53]} |")
+					.AppendLine(SubtleGridLines ? ":-------+-------+-------:" : "+-------+-------+-------+")
+					.AppendLine($"| {t[54]} {t[55]} {t[56]} | {t[57]} {t[58]} {t[59]} | {t[60]} {t[61]} {t[62]} |")
+					.AppendLine($"| {t[63]} {t[64]} {t[65]} | {t[66]} {t[67]} {t[68]} | {t[69]} {t[70]} {t[71]} |")
+					.AppendLine($"| {t[72]} {t[73]} {t[74]} | {t[75]} {t[76]} {t[77]} | {t[78]} {t[79]} {t[80]} |")
+					.AppendLine(SubtleGridLines ? "'-------+-------+-------'" : "+-------+-------+-------+")
+					.ToString();
 		}
 
 		/// <summary>
@@ -310,8 +287,8 @@ namespace Sudoku.Data
 		private string ToMultiLineStringCore(Grid grid)
 		{
 			// Step 1: gets the candidates information grouped by columns.
-			var valuesByColumn = GetDefaultList();
-			var valuesByRow = GetDefaultList();
+			var valuesByColumn = DefaultList;
+			var valuesByRow = DefaultList;
 			for (int i = 0; i < 81; i++)
 			{
 				short value = grid.GetMask(i);
@@ -387,13 +364,17 @@ namespace Sudoku.Data
 					}
 					default: // Print values and tabs.
 					{
-						PrintValueLines(valuesByRow[i switch
-						{
-							_ when i >= 1 && i < 4 => i - 1,
-							_ when i >= 5 && i < 8 => i - 2,
-							_ when i >= 9 && i < 12 => i - 3,
-							_ => throw Throwing.ImpossibleCaseWithMessage("On the border.")
-						}], '|', '|', maxLengths, sb);
+						PrintValueLines(
+							valuesByRow
+							[
+								i switch
+								{
+									_ when i >= 1 && i < 4 => i - 1,
+									_ when i >= 5 && i < 8 => i - 2,
+									_ when i >= 9 && i < 12 => i - 3,
+									_ => throw Throwing.ImpossibleCaseWithMessage("On the border.")
+								}
+							], '|', '|', maxLengths, sb);
 						break;
 					}
 				}
@@ -424,13 +405,15 @@ namespace Sudoku.Data
 				var cellStatus = GetCellStatus(value);
 				int digit = cellStatus != CellStatus.Empty ? (~value).FindFirstSet() : -1;
 
-				sb.Append((cellStatus switch
-				{
-					CellStatus.Given => $"<{digit + 1}>",
-					CellStatus.Modifiable => TreatValueAsGiven ? $"<{digit + 1}>" : $"*{digit + 1}*",
-					_ => PrintCandidates(value)
-				}).PadRight(maxLengths[i]));
-				sb.Append(i != end ? "  " : " ");
+				sb
+					.Append((
+						cellStatus switch
+						{
+							CellStatus.Given => $"<{digit + 1}>",
+							CellStatus.Modifiable => TreatValueAsGiven ? $"<{digit + 1}>" : $"*{digit + 1}*",
+							_ => PrintCandidates(value)
+						}).PadRight(maxLengths[i]))
+					.Append(i != end ? "  " : " ");
 			}
 		}
 
@@ -450,13 +433,14 @@ namespace Sudoku.Data
 
 		private static void PrintTabLines(char c1, char c2, char fillingChar, int[] maxLengths, StringBuilder sb)
 		{
-			sb.Append(c1);
-			sb.Append(string.Empty.PadRight(maxLengths[0] + maxLengths[1] + maxLengths[2] + 6, fillingChar));
-			sb.Append(c2);
-			sb.Append(string.Empty.PadRight(maxLengths[3] + maxLengths[4] + maxLengths[5] + 6, fillingChar));
-			sb.Append(c2);
-			sb.Append(string.Empty.PadRight(maxLengths[6] + maxLengths[7] + maxLengths[8] + 6, fillingChar));
-			sb.AppendLine(c1);
+			sb
+				.Append(c1)
+				.Append(string.Empty.PadRight(maxLengths[0] + maxLengths[1] + maxLengths[2] + 6, fillingChar))
+				.Append(c2)
+				.Append(string.Empty.PadRight(maxLengths[3] + maxLengths[4] + maxLengths[5] + 6, fillingChar))
+				.Append(c2)
+				.Append(string.Empty.PadRight(maxLengths[6] + maxLengths[7] + maxLengths[8] + 6, fillingChar))
+				.AppendLine(c1);
 		}
 
 		/// <summary>
@@ -471,10 +455,8 @@ namespace Sudoku.Data
 		/// Get the default list.
 		/// </summary>
 		/// <returns>The list.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static Dictionary<int, IList<short>> GetDefaultList()
-		{
-			return new Dictionary<int, IList<short>>
+		private static Dictionary<int, IList<short>> DefaultList =>
+			new Dictionary<int, IList<short>>
 			{
 				[0] = new List<short>(),
 				[1] = new List<short>(),
@@ -486,6 +468,5 @@ namespace Sudoku.Data
 				[7] = new List<short>(),
 				[8] = new List<short>()
 			};
-		}
 	}
 }

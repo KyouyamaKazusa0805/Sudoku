@@ -205,9 +205,7 @@ namespace Sudoku.Drawing.Extensions
 						int rows = size.Height;
 						int cols = size.Width;
 						var data = bitmap.LockBits(
-							new Rectangle(Point.Empty, size),
-							ImageLockMode.ReadOnly,
-							bitmap.PixelFormat);
+							new Rectangle(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
 
 						int fullByteCount = cols >> 3;
 						int partialBitCount = cols & 7;
@@ -246,8 +244,8 @@ namespace Sudoku.Drawing.Extensions
 				}
 				default:
 				{
-					using var tmp1 = new Image<Bgra, byte>(size);
-					byte[,,] data = tmp1.Data;
+					using var temp = new Image<Bgra, byte>(size);
+					byte[,,] data = temp.Data;
 					for (int i = 0; i < size.Width; i++)
 					{
 						for (int j = 0; j < size.Height; j++)
@@ -260,7 +258,7 @@ namespace Sudoku.Drawing.Extensions
 						}
 					}
 
-					image.ConvertFrom(tmp1);
+					image.ConvertFrom(temp);
 					break;
 				}
 			}

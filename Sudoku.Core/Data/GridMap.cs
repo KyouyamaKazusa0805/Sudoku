@@ -631,11 +631,9 @@ namespace Sudoku.Data
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly int CompareTo(GridMap other)
-		{
-			return ((new BigInteger(_high) << Shifting) + new BigInteger(_low)).CompareTo(
+		public readonly int CompareTo(GridMap other) =>
+			((new BigInteger(_high) << Shifting) + new BigInteger(_low)).CompareTo(
 				(new BigInteger(other._high) << Shifting) + new BigInteger(other._low));
-		}
 
 		/// <summary>
 		/// Get all cell offsets whose bits are set <see langword="true"/>.

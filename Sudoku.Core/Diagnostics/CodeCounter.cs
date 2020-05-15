@@ -44,8 +44,7 @@ namespace Sudoku.Diagnostics
 		///     filterPattern: @".+\.cs$");
 		/// </code>
 		/// </example>
-		public CodeCounter(string root, string? filterPattern) =>
-			(_root, _pattern) = (root, filterPattern);
+		public CodeCounter(string root, string? filterPattern) => (_root, _pattern) = (root, filterPattern);
 
 
 		/// <summary>
@@ -80,10 +79,7 @@ namespace Sudoku.Diagnostics
 
 					result += temp;
 					count++;
-				}
-				catch
-				{
-				}
+				} catch { }
 			}
 
 			filesCount = count;

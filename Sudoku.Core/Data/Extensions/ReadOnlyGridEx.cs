@@ -28,12 +28,10 @@ namespace Sudoku.Data.Extensions
 		/// Throws when <see cref="IReadOnlyGrid"/> cannot convert to a <see cref="Grid"/>.
 		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Grid ToMutable(this IReadOnlyGrid @this)
-		{
-			return @this is Grid result
+		public static Grid ToMutable(this IReadOnlyGrid @this) =>
+			@this is Grid result
 				? result
 				: throw new InvalidCastException("The specified read-only grid cannot converted to a normal one.");
-		}
 
 		/// <summary>
 		/// <para>Indicates whether the specified cell is a bivalue cell.</para>
@@ -134,14 +132,12 @@ namespace Sudoku.Data.Extensions
 		/// to decide whether a condition is true.
 		/// </example>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool? Exists(this IReadOnlyGrid @this, int cellOffset, int digit)
-		{
-			return @this.GetStatus(cellOffset) switch
+		public static bool? Exists(this IReadOnlyGrid @this, int cellOffset, int digit) =>
+			@this.GetStatus(cellOffset) switch
 			{
 				Empty => !@this[cellOffset, digit],
 				_ => null
 			};
-		}
 
 		/// <summary>
 		/// Checks whether the specified digit has given or modifiable values in

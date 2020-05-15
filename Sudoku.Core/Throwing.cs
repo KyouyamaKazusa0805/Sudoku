@@ -52,12 +52,10 @@ namespace Sudoku
 		/// <param name="paramName">The name of the parameter.</param>
 		/// <returns>The exception.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static ArgumentException ParsingError<TTarget>(string paramName)
-		{
-			return new ArgumentException(
+		public static ArgumentException ParsingError<TTarget>(string paramName) =>
+			new ArgumentException(
 				message: $"Argument cannot be parsed and converted to target type {typeof(TTarget)}.",
 				paramName);
-		}
 
 		/// <summary>
 		/// Indicates an exception throwing when the format string is error.
@@ -66,11 +64,9 @@ namespace Sudoku
 		/// <param name="paramName">The name of format string parameter.</param>
 		/// <returns>The exception.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static FormatException FormatErrorWithMessage(string message, string paramName)
-		{
-			return new FormatException(
+		public static FormatException FormatErrorWithMessage(string message, string paramName) =>
+			new FormatException(
 				message: "The specified format is invalid.",
 				innerException: new ArgumentException(message, paramName));
-		}
 	}
 }

@@ -24,16 +24,10 @@ namespace Sudoku.Extensions
 		/// Throws when the specified <paramref name="pattern"/> is not an valid regular
 		/// expression pattern.
 		/// </exception>
-		public static bool SatisfyPattern(this string @this, string pattern)
-		{
-			if (!pattern.IsRegexPattern())
-			{
-				throw new InvalidRegexStringException();
-			}
-
-			string? match = @this.Match(pattern);
-			return !(match is null) && match == @this;
-		}
+		public static bool SatisfyPattern(this string @this, string pattern) =>
+			pattern.IsRegexPattern()
+				? @this.Match(pattern) == @this
+				: throw new InvalidRegexStringException();
 
 		/// <summary>
 		/// Check whether the specified string instance can match the value
@@ -51,15 +45,10 @@ namespace Sudoku.Extensions
 		/// Throws when the specified <paramref name="pattern"/> is not an valid regular
 		/// expression pattern.
 		/// </exception>
-		public static bool IsMatch(this string @this, string pattern)
-		{
-			if (!pattern.IsRegexPattern())
-			{
-				throw new InvalidRegexStringException();
-			}
-
-			return Regex.IsMatch(@this, pattern);
-		}
+		public static bool IsMatch(this string @this, string pattern) =>
+			pattern.IsRegexPattern()
+				? Regex.IsMatch(@this, pattern)
+				: throw new InvalidRegexStringException();
 
 		/// <summary>
 		/// Searches the specified input string for the first occurrence of
@@ -80,15 +69,10 @@ namespace Sudoku.Extensions
 		/// Throws when the specified <paramref name="pattern"/> is not an valid regular
 		/// expression pattern.
 		/// </exception>
-		public static string? Match(this string @this, string pattern)
-		{
-			if (!pattern.IsRegexPattern())
-			{
-				throw new InvalidRegexStringException();
-			}
-
-			return @this.Match(pattern, RegexOptions.None);
-		}
+		public static string? Match(this string @this, string pattern) =>
+			pattern.IsRegexPattern()
+				? @this.Match(pattern, RegexOptions.None)
+				: throw new InvalidRegexStringException();
 
 		/// <summary>
 		/// Searches the input string for the first occurrence of the specified regular
@@ -140,15 +124,10 @@ namespace Sudoku.Extensions
 		/// expression pattern.
 		/// </exception>
 		/// <seealso cref="Regex.Matches(string, string)"/>
-		public static string[] MatchAll(this string @this, string pattern)
-		{
-			if (!pattern.IsRegexPattern())
-			{
-				throw new InvalidRegexStringException();
-			}
-
-			return @this.MatchAll(pattern, RegexOptions.None);
-		}
+		public static string[] MatchAll(this string @this, string pattern) =>
+			pattern.IsRegexPattern()
+				? @this.MatchAll(pattern, RegexOptions.None)
+				: throw new InvalidRegexStringException();
 
 		/// <summary>
 		/// Searches the specified input string for all occurrences of a
@@ -178,9 +157,8 @@ namespace Sudoku.Extensions
 				throw new InvalidRegexStringException();
 			}
 
-			var matches = Regex.Matches(@this, pattern, regexOption);
 			var result = new List<string>();
-			foreach (Match? match in matches) // Do not use 'var' ('var' is 'object?').
+			foreach (Match? match in Regex.Matches(@this, pattern, regexOption)) // Do not use 'var' ('var' is 'object?').
 			{
 				if (!(match is null))
 				{

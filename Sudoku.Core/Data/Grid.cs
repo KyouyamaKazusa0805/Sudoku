@@ -488,8 +488,7 @@ namespace Sudoku.Data
 		/// </param>
 		/// <returns>The result instance had converted.</returns>
 		/// <seealso cref="GridParser.CompatibleFirst"/>
-		public static Grid Parse(string str, bool compatibleFirst) =>
-			new GridParser(str, compatibleFirst).Parse();
+		public static Grid Parse(string str, bool compatibleFirst) => new GridParser(str, compatibleFirst).Parse();
 
 		/// <summary>
 		/// Parses a string value and converts to this type,
@@ -618,8 +617,7 @@ namespace Sudoku.Data
 		/// this argument will be <see langword="null"/>.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public static bool TryParse(
-			string str, GridParsingOption gridParsingOption, [NotNullWhen(true)] out Grid? result)
+		public static bool TryParse(string str, GridParsingOption gridParsingOption, [NotNullWhen(true)] out Grid? result)
 		{
 			try
 			{

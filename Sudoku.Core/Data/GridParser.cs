@@ -53,9 +53,8 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <returns>The grid.</returns>
 		/// <exception cref="ArgumentException">Throws when failed to parse.</exception>
-		public Grid Parse()
-		{
-			return OnParsingSimpleTable()
+		public Grid Parse() =>
+			OnParsingSimpleTable()
 				?? (CompatibleFirst ? OnParsingSukaku(true) : OnParsingSukaku(false))
 				?? (CompatibleFirst ? OnParsingSukaku(false) : OnParsingSukaku(true))
 				?? OnParsingSusser()
@@ -64,7 +63,6 @@ namespace Sudoku.Data
 				?? (CompatibleFirst ? OnParsingPencilMarked(true) : OnParsingPencilMarked(false))
 				?? (CompatibleFirst ? OnParsingPencilMarked(false) : OnParsingPencilMarked(true))
 				?? throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
-		}
 
 		/// <summary>
 		/// To parse the value with a specified grid parsing type.
@@ -74,9 +72,8 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentException">
 		/// Throws when failed to parse.
 		/// </exception>
-		public Grid Parse(GridParsingOption gridParsingOption)
-		{
-			return new Dictionary<GridParsingOption, Func<Grid?>>
+		public Grid Parse(GridParsingOption gridParsingOption) =>
+			new Dictionary<GridParsingOption, Func<Grid?>>
 			{
 				[Susser] = OnParsingSusser,
 				[Table] = OnParsingSimpleMultilineGrid,
@@ -87,7 +84,6 @@ namespace Sudoku.Data
 				[SukakuSingleLine] = () => OnParsingSukaku(true),
 				[Excel] = OnParsingExcel
 			}[gridParsingOption]() ?? throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
-		}
 
 		/// <summary>
 		/// Parse the value using multi-line simple grid (without any candidates).

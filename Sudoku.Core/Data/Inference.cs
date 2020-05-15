@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Sudoku.Data
 {
@@ -98,8 +99,7 @@ namespace Sudoku.Data
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="start">(<see langword="out"/> parameter) The start node.</param>
 		/// <param name="end">(<see langword="out"/> parameter) The end node.</param>
-		public void Deconstruct(out Node start, out Node end) =>
-			(start, end) = (Start, End);
+		public void Deconstruct(out Node start, out Node end) => (start, end) = (Start, End);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="startMap">
@@ -135,11 +135,15 @@ namespace Sudoku.Data
 		public override int GetHashCode() => Start.GetHashCode() ^ End.GetHashCode();
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			static string sgn(bool v) => v ? string.Empty : "!";
-			return $"{sgn(StartIsOn)}{Start} -> {sgn(EndIsOn)}{End}";
-		}
+		public override string ToString() => $"{Sgn(StartIsOn)}{Start} -> {Sgn(EndIsOn)}{End}";
+
+		/// <summary>
+		/// The sign function used in <see cref="ToString"/>.
+		/// </summary>
+		/// <param name="v">The value.</param>
+		/// <returns>The string.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private static string Sgn(bool v) => v ? string.Empty : "!";
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>

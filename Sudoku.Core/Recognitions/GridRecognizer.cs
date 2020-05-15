@@ -58,8 +58,7 @@ namespace Sudoku.Recognitions
 			// Resize image.
 			if (_image.Width > MaxSize && _image.Height > MaxSize)
 			{
-				_image = _image.Resize(
-					MaxSize, MaxSize * _image.Width / _image.Height, Inter.Linear, true);
+				_image = _image.Resize(MaxSize, MaxSize * _image.Width / _image.Height, Inter.Linear, true);
 			}
 
 			// Convert the image to gray-scale and filter out the noise.

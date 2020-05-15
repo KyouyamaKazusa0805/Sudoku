@@ -81,17 +81,14 @@ namespace Sudoku.Constants
 		/// <param name="label">The label.</param>
 		/// <returns>The label.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int GetRegion(int cell, RegionLabel label)
-		{
-			return (
-				label switch
-				{
-					Row => RowTable,
-					Column => ColumnTable,
-					Block => BlockTable,
-					_ => throw Throwing.ImpossibleCase
-				})[cell];
-		}
+		public static int GetRegion(int cell, RegionLabel label) =>
+			(label switch
+			{
+				Row => RowTable,
+				Column => ColumnTable,
+				Block => BlockTable,
+				_ => throw Throwing.ImpossibleCase
+			})[cell];
 
 		/// <summary>
 		/// Get the name in the specified region.

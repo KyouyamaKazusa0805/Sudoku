@@ -70,9 +70,7 @@ namespace Sudoku.Data.Stepping
 		/// <inheritdoc/>
 		public override int this[int offset]
 		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => base[offset];
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
 				var map = GridMap.Empty;
@@ -95,9 +93,7 @@ namespace Sudoku.Data.Stepping
 		/// <inheritdoc/>
 		public override bool this[int offset, int digit]
 		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => base[offset, digit];
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
 				_undoStack.Push(

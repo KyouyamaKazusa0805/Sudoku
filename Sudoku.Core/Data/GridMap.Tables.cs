@@ -5,7 +5,7 @@
 		/// <summary>
 		/// The cover table.
 		/// </summary>
-		private static readonly long[,] CoverTable = new long[,]
+		private static readonly long[,] CoverTable =
 		{
 			{ 0b000000000_000000000_000000000_000000000_0000L, 0b00000_000000000_000000111_000000111_000000111L },
 			{ 0b000000000_000000000_000000000_000000000_0000L, 0b00000_000000000_000111000_000111000_000111000L },
