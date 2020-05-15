@@ -4,6 +4,28 @@
         <name>Sudoku.Solving</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Solving.AliasAttribute">
+            <summary>
+            To mark on a enum field to give an alias.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.AliasAttribute.#ctor(System.Type,System.String)">
+            <summary>
+            Initializes an instance with the enum type and the field.
+            </summary>
+            <param name="enumType">The type.</param>
+            <param name="fieldName">The field name.</param>
+        </member>
+        <member name="P:Sudoku.Solving.AliasAttribute.EnumType">
+            <summary>
+            The type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.AliasAttribute.FieldName">
+            <summary>
+            The field name.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.AnalysisResult">
             <summary>
             Provides an analysis result after a puzzle solved.

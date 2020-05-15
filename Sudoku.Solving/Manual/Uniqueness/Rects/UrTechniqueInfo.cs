@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -61,38 +62,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public sealed override bool ShowDifficulty => true;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode =>
-			TypeCode switch
+		public override TechniqueCode TechniqueCode
+		{
+			get
 			{
-				UrTypeCode.Type1 => TechniqueCode.UrType1,
-				UrTypeCode.Type2 => TechniqueCode.UrType2,
-				UrTypeCode.Type3 => TechniqueCode.UrType3,
-				UrTypeCode.Type4 => TechniqueCode.UrType4,
-				UrTypeCode.Type5 => TechniqueCode.UrType5,
-				UrTypeCode.Type6 => TechniqueCode.UrType6,
-				UrTypeCode.Hidden => TechniqueCode.HiddenUr,
-				UrTypeCode.Plus2D => TechniqueCode.UrPlus2D,
-				UrTypeCode.Plus2B1SL => TechniqueCode.UrPlus2B1SL,
-				UrTypeCode.Plus2D1SL => TechniqueCode.UrPlus2D1SL,
-				UrTypeCode.Plus3X => TechniqueCode.UrPlus3X,
-				UrTypeCode.Plus3x1SL => TechniqueCode.UrPlus3x1SL,
-				UrTypeCode.Plus3X1SL => TechniqueCode.UrPlus3X1SL,
-				UrTypeCode.Plus3X2SL => TechniqueCode.UrPlus3X2SL,
-				UrTypeCode.Plus3N2SL => TechniqueCode.UrPlus3N2SL,
-				UrTypeCode.Plus3U2SL => TechniqueCode.UrPlus3U2SL,
-				UrTypeCode.Plus3E2SL => TechniqueCode.UrPlus3E2SL,
-				UrTypeCode.Plus4x1SL => TechniqueCode.UrPlus4x1SL,
-				UrTypeCode.Plus4X1SL => TechniqueCode.UrPlus4X1SL,
-				UrTypeCode.Plus4x2SL => TechniqueCode.UrPlus4x2SL,
-				UrTypeCode.Plus4X2SL => TechniqueCode.UrPlus4X2SL,
-				UrTypeCode.Plus4X3SL => TechniqueCode.UrPlus4X3SL,
-				UrTypeCode.Plus4C3SL => TechniqueCode.UrPlus4C3SL,
-				UrTypeCode.XyWing => TechniqueCode.UrXyWing,
-				UrTypeCode.XyzWing => TechniqueCode.UrXyzWing,
-				UrTypeCode.WxyzWing => TechniqueCode.VwxyzWing,
-				UrTypeCode.Sdc => TechniqueCode.UrSdc,
-				_ => throw Throwing.ImpossibleCase
-			};
+				TypeCode.HasMarkedAttribute<AliasAttribute>(false, out var list);
+				return Enum.Parse<TechniqueCode>(list!.First().FieldName);
+			}
+		}
 
 
 		/// <inheritdoc/>

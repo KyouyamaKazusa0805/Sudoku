@@ -885,7 +885,7 @@
 		/// <summary>
 		/// Indicates the UR sue de coq.
 		/// </summary>
-		[TechniqueDisplay("Unique Rectangle + Sue de Coq", Category = "Uniqueness>Rectangles>Extended")]
+		//[TechniqueDisplay("Unique Rectangle + Sue de Coq", Category = "Uniqueness>Rectangles>Extended")]
 		UrSdc,
 
 		/// <summary>
