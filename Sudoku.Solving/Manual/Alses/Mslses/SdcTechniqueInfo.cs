@@ -104,7 +104,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode =>
-			IsCannibalistic ? TechniqueCode.Sdc : TechniqueCode.CannibalizedSdc;
+			IsCannibalistic ? TechniqueCode.CannibalizedSdc : TechniqueCode.Sdc;
 
 
 		/// <inheritdoc/>
