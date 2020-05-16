@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
@@ -98,6 +99,8 @@ namespace Sudoku.Drawing.Layers
 			using var fGiven = GetFontByScale(_givenFont, cellWidth / 2F, _valueScale);
 			using var fModifiable = GetFontByScale(_modifiableFont, cellWidth / 2F, _valueScale);
 			using var fCandidate = GetFontByScale(_candidateFont, cellWidth / 2F, _candidateScale);
+			g.CompositingQuality = CompositingQuality.HighQuality;
+			g.SmoothingMode = SmoothingMode.HighQuality;
 			g.TextRenderingHint = TextRenderingHint.AntiAlias;
 
 			for (int cell = 0; cell < 81; cell++)

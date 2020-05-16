@@ -61,8 +61,7 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="pointConverter">The point converter.</param>
 		/// <param name="oldLayer">The older layer.</param>
-		public CustomViewLayer(PointConverter pointConverter, CustomViewLayer oldLayer)
-			: base(pointConverter) =>
+		public CustomViewLayer(PointConverter pointConverter, CustomViewLayer oldLayer) : base(pointConverter) =>
 			(_view, _conclusions, _colorDic, _eliminationColor, _cannibalismColor, _chainColor) = (
 				oldLayer._view, oldLayer._conclusions, oldLayer._colorDic,
 				oldLayer._eliminationColor, oldLayer._cannibalismColor,
@@ -95,7 +94,8 @@ namespace Sudoku.Drawing
 			const float offset = 6F;
 			var bitmap = new Bitmap((int)Width, (int)Height);
 			using var g = Graphics.FromImage(bitmap);
-			g.SmoothingMode = SmoothingMode.AntiAlias;
+			g.CompositingQuality = CompositingQuality.HighQuality;
+			g.SmoothingMode = SmoothingMode.HighQuality;
 
 			if (!(_view is null))
 			{
@@ -167,10 +167,7 @@ namespace Sudoku.Drawing
 
 			// Iterate on each inference to draw the links and grouped nodes (if so).
 			var (cw, ch) = _pointConverter.CandidateSize;
-			using var pen = new Pen(_chainColor, 2F)
-			{
-				CustomEndCap = new AdjustableArrowCap(cw / 4F, ch / 3F)
-			};
+			using var pen = new Pen(_chainColor, 2F) { CustomEndCap = new AdjustableArrowCap(cw / 4F, ch / 3F) };
 			using var groupedNodeBrush = new SolidBrush(Color.FromArgb(64, Color.Yellow));
 			foreach (var inference in _view.Links)
 			{
@@ -297,8 +294,8 @@ namespace Sudoku.Drawing
 			{
 				int cell = candidate / 9, digit = candidate % 9;
 				if (!(
-					_conclusions?.Any(
-						c => c.CellOffset == cell && c.Digit == digit && c.ConclusionType == Elimination) ?? false)
+					_conclusions?.Any(c => c.CellOffset == cell && c.Digit == digit && c.ConclusionType == Elimination)
+					?? false)
 					&& _colorDic.TryGetValue(id, out var color))
 				{
 					var (cw, ch) = _pointConverter.CandidateSize;

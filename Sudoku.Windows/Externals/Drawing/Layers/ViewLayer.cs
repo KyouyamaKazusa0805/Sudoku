@@ -95,7 +95,8 @@ namespace Sudoku.Drawing.Layers
 			const float offset = 6F;
 			var bitmap = new Bitmap((int)Width, (int)Height);
 			using var g = Graphics.FromImage(bitmap);
-			g.SmoothingMode = SmoothingMode.AntiAlias;
+			g.CompositingQuality = CompositingQuality.HighQuality;
+			g.SmoothingMode = SmoothingMode.HighQuality;
 
 			if (!(_view is null))
 			{
