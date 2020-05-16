@@ -7,6 +7,7 @@ using Microsoft.Win32;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Layers;
+using static System.Drawing.Imaging.ImageFormat;
 using PointConverter = Sudoku.Drawing.PointConverter;
 
 namespace Sudoku.Windows
@@ -135,13 +136,13 @@ namespace Sudoku.Windows
 							GetEncoderInfo(
 								selectedIndex switch
 								{
-									-1 => ImageFormat.Png,
-									0 => ImageFormat.Png,
-									1 => ImageFormat.Jpeg,
-									2 => ImageFormat.Bmp,
-									3 => ImageFormat.Gif,
+									-1 => Png,
+									0 => Png,
+									1 => Jpeg,
+									2 => Bmp,
+									3 => Gif,
 									_ => throw Throwing.ImpossibleCase
-								}) ?? throw new ArgumentNullException(),
+								}) ?? throw new NullReferenceException("The return value is null."),
 							encoderParameters);
 					}
 					else
