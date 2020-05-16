@@ -300,8 +300,7 @@ namespace Sudoku.Solving.Manual
 		/// Throws when the solver cannot solved due to wrong handling.
 		/// </exception>
 		private AnalysisResult SolveNaively(
-			IReadOnlyGrid grid, Grid cloneation, List<TechniqueInfo> steps,
-			IReadOnlyGrid solution, bool sukaku)
+			IReadOnlyGrid grid, Grid cloneation, List<TechniqueInfo> steps, IReadOnlyGrid solution, bool sukaku)
 		{
 			// Check symmetry first.
 			if (!sukaku && CheckGurthSymmetricalPlacement)

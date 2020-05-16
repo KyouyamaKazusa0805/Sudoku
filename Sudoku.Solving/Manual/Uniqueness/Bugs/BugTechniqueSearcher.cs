@@ -100,6 +100,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						if (_extended)
 						{
 							CheckMultiple(accumulator, grid, trueCandidates);
+							CheckXz(accumulator, grid, trueCandidates);
 						}
 
 						CheckType4(accumulator, grid, trueCandidates);
@@ -117,13 +118,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <summary>
 		/// Check type 3 (with naked subsets).
 		/// </summary>
-		/// <param name="result">The result.</param>
+		/// <param name="accumulator">The result.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
 		/// <param name="size">The size.</param>
 		private void CheckType3Naked(
-			IBag<TechniqueInfo> result, IReadOnlyGrid grid,
-			IReadOnlyList<int> trueCandidates, int size)
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates, int size)
 		{
 			// Check whether all true candidates lie on a same region.
 			var candsGroupByCell = from cand in trueCandidates group cand by cand / 9;
@@ -215,7 +215,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						}
 
 						// BUG type 3 (with naked pair).
-						result.Add(
+						accumulator.Add(
 							new BugType3(
 								conclusions,
 								views: new[]
@@ -260,12 +260,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 									foreach (int digit in digits)
 									{
-										if (!(grid.Exists(cell, digit) is true))
+										if (grid.Exists(cell, digit) is true)
 										{
-											continue;
+											conclusions.Add(new Conclusion(Elimination, cell, digit));
 										}
-
-										conclusions.Add(new Conclusion(Elimination, cell, digit));
 									}
 								}
 
@@ -290,7 +288,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 								}
 
 								// BUG type 3 (with naked triple).
-								result.Add(
+								accumulator.Add(
 									new BugType3(
 										conclusions,
 										views: new[]
@@ -336,12 +334,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 											foreach (int digit in digits)
 											{
-												if (!(grid.Exists(cell, digit) is true))
+												if (grid.Exists(cell, digit) is true)
 												{
-													continue;
+													conclusions.Add(new Conclusion(Elimination, cell, digit));
 												}
-
-												conclusions.Add(new Conclusion(Elimination, cell, digit));
 											}
 										}
 
@@ -370,7 +366,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 										}
 
 										// BUG type 3 (with naked quadruple).
-										result.Add(
+										accumulator.Add(
 											new BugType3(
 												conclusions,
 												views: new[]
@@ -416,12 +412,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 												foreach (int digit in digits)
 												{
-													if (!(grid.Exists(cell, digit) is true))
+													if (grid.Exists(cell, digit) is true)
 													{
-														continue;
+														conclusions.Add(new Conclusion(Elimination, cell, digit));
 													}
-
-													conclusions.Add(new Conclusion(Elimination, cell, digit));
 												}
 											}
 
@@ -454,7 +448,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 											}
 
 											// BUG type 3 (with naked quintuple).
-											result.Add(
+											accumulator.Add(
 												new BugType3(
 													conclusions,
 													views: new[]
@@ -482,11 +476,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <summary>
 		/// Check type 4.
 		/// </summary>
-		/// <param name="result">The result.</param>
+		/// <param name="accumulator">The result.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
-		private static void CheckType4(
-			IBag<TechniqueInfo> result, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
+		private void CheckType4(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			// Conjugate pairs should lie on two cells.
 			var candsGroupByCell = from cand in trueCandidates group cand by cand / 9;
@@ -577,7 +570,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					}
 
 					// BUG type 4.
-					result.Add(
+					accumulator.Add(
 						new BugType4(
 							conclusions,
 							views: new[]
@@ -601,13 +594,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		}
 
 		/// <summary>
-		/// Check BUG+n.
+		/// Check BUG + n.
 		/// </summary>
-		/// <param name="result">The result list.</param>
+		/// <param name="accumulator">The result list.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
-		private static void CheckMultiple(
-			IBag<TechniqueInfo> result, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
+		private void CheckMultiple(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			if (trueCandidates.Count > 18)
 			{
@@ -650,7 +642,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			}
 
 			// BUG + n.
-			result.Add(
+			accumulator.Add(
 				new BugMultiple(
 					conclusions,
 					views: new[]
@@ -669,15 +661,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <summary>
 		/// Check type 2.
 		/// </summary>
-		/// <param name="result">The result list.</param>
+		/// <param name="accumulator">The result list.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
-		private static void CheckType2(
-			IBag<TechniqueInfo> result, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
+		private void CheckType2(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
 		{
-			var map = new GridMap(
-				from cand in trueCandidates select cand / 9,
-				ProcessPeersAlso);
+			var map = new GridMap(from cand in trueCandidates select cand / 9, ProcessPeersAlso);
 			if (map.IsEmpty)
 			{
 				return;
@@ -703,7 +692,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			}
 
 			// BUG type 2.
-			result.Add(
+			accumulator.Add(
 				new BugType2(
 					conclusions,
 					views: new[]
@@ -718,6 +707,66 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					},
 					digit,
 					cells: trueCandidates));
+		}
+
+		/// <summary>
+		/// Check BUG-XZ.
+		/// </summary>
+		/// <param name="accumulator">The result list.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="trueCandidates">All true candidates.</param>
+		private void CheckXz(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
+		{
+			if (trueCandidates.Count > 2)
+			{
+				return;
+			}
+
+			int cand1 = trueCandidates[0], cand2 = trueCandidates[1];
+			int c1 = cand1 / 9, c2 = cand2 / 9, d1 = cand1 % 9, d2 = cand2 % 9;
+			short mask = (short)(1 << d1 | 1 << d2);
+			var bivalueCells = grid.GetBivalueCellsMap();
+			foreach (int cell in ((new GridMap(c1, false) ^ new GridMap(c2, false)) & bivalueCells).Offsets)
+			{
+				if (grid.GetCandidatesReversal(cell) != mask)
+				{
+					continue;
+				}
+
+				// BUG-XZ found.
+				var conclusions = new List<Conclusion>();
+				bool condition = new GridMap { c1, cell }.AllSetsAreInOneRegion(out _);
+				int anotherCell = condition ? c2 : c1;
+				int anotherDigit = condition ? d2 : d1;
+				foreach (int peer in new GridMap(stackalloc[] { cell, anotherCell }, ProcessPeersWithoutItself).Offsets)
+				{
+					if (grid.Exists(peer, anotherDigit) is true)
+					{
+						conclusions.Add(new Conclusion(Elimination, peer, anotherDigit));
+					}
+				}
+				if (conclusions.Count == 0)
+				{
+					continue;
+				}
+
+				var candidateOffsets = new List<(int, int)>(from c in trueCandidates select (0, c));
+				var cellOffsets = new List<(int, int)> { (0, cell) };
+				accumulator.Add(
+					new BugXzTechniqueInfo(
+						conclusions,
+						views: new[]
+						{
+							new View(
+								candidateOffsets,
+								cellOffsets,
+								regionOffsets: null,
+								links: null)
+						},
+						digitMask: mask,
+						cells: new[] { c1, c2 },
+						extraCell: cell));
+			}
 		}
 
 		/// <summary>

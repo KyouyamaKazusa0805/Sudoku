@@ -963,8 +963,20 @@
 		/// <summary>
 		/// Indicates the BUG + n.
 		/// </summary>
-		[TechniqueDisplay("Bivalue Universal Grave + n", Category = "Uniqueness>Bivalue Universal Graves")]
+		[TechniqueDisplay("Bivalue Universal Grave + n", Category = "Uniqueness>Bivalue Universal Graves>Extended")]
 		BugMultiple,
+
+		/// <summary>
+		/// Indicates the BUG + n.
+		/// </summary>
+		[TechniqueDisplay("Bivalue Universal Grave XZ Rule", Category = "Uniqueness>Bivalue Universal Graves>Extended")]
+		BugXz,
+
+		/// <summary>
+		/// Indicates the BUG + n.
+		/// </summary>
+		[TechniqueDisplay("Bivalue Universal Grave XYZ-Wing", Category = "Uniqueness>Bivalue Universal Graves>Extended")]
+		BugXyzWing,
 
 		/// <summary>
 		/// Indicates the BDP type 1.

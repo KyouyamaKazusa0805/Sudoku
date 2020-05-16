@@ -6556,6 +6556,16 @@
             Indicates the BUG + n.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.BugXz">
+            <summary>
+            Indicates the BUG + n.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.BugXyzWing">
+            <summary>
+            Indicates the BUG + n.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.BdpType1">
             <summary>
             Indicates the BDP type 1.
@@ -6847,7 +6857,7 @@
             <summary>
             Check type 3 (with naked subsets).
             </summary>
-            <param name="result">The result.</param>
+            <param name="accumulator">The result.</param>
             <param name="grid">The grid.</param>
             <param name="trueCandidates">All true candidates.</param>
             <param name="size">The size.</param>
@@ -6856,15 +6866,15 @@
             <summary>
             Check type 4.
             </summary>
-            <param name="result">The result.</param>
+            <param name="accumulator">The result.</param>
             <param name="grid">The grid.</param>
             <param name="trueCandidates">All true candidates.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckMultiple(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
-            Check BUG+n.
+            Check BUG + n.
             </summary>
-            <param name="result">The result list.</param>
+            <param name="accumulator">The result list.</param>
             <param name="grid">The grid.</param>
             <param name="trueCandidates">All true candidates.</param>
         </member>
@@ -6872,7 +6882,15 @@
             <summary>
             Check type 2.
             </summary>
-            <param name="result">The result list.</param>
+            <param name="accumulator">The result list.</param>
+            <param name="grid">The grid.</param>
+            <param name="trueCandidates">All true candidates.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckXz(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Check BUG-XZ.
+            </summary>
+            <param name="accumulator">The result list.</param>
             <param name="grid">The grid.</param>
             <param name="trueCandidates">All true candidates.</param>
         </member>
@@ -7043,6 +7061,48 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType4TechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BugXzTechniqueInfo">
+            <summary>
+            Provides a usage of <b>bivalue universal grave XZ rule</b> (BUG-XZ) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugXzTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="digitMask">The digits mask.</param>
+            <param name="cells">All cell offsets.</param>
+            <param name="extraCell">The extra cell.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugXzTechniqueInfo.DigitsMask">
+            <summary>
+            Indicates the digits mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugXzTechniqueInfo.Cells">
+            <summary>
+            Indicates the cell offsets.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugXzTechniqueInfo.ExtraCell">
+            <summary>
+            Indicates the extra cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugXzTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugXzTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugXzTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugXzTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueInfo">
