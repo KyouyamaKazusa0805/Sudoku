@@ -40,13 +40,13 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="layerName">The layer name.</param>
 		/// <returns>The layer.</returns>
-		public Layer? this[string layerName]
+		public Layer? this[Type layerType]
 		{
 			get
 			{
 				foreach (var layer in this)
 				{
-					if (layer.Name == layerName)
+					if (layer.Name == layerType.Name)
 					{
 						return layer;
 					}

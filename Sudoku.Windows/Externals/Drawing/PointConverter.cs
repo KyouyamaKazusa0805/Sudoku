@@ -246,9 +246,8 @@ namespace Sudoku.Drawing
 		{
 			var (width, height) = ControlSize = size;
 			var (gridWidth, gridHeight) = GridSize = new SizeF(width - (Offset << 1), height - (Offset << 1));
-			var (cellWidth, cellHeight) = CellSize = new SizeF(gridWidth / 9, gridHeight / 9);
+			CellSize = new SizeF(gridWidth / 9, gridHeight / 9);
 			CandidateSize = new SizeF(gridWidth / 27, gridHeight / 27);
-			PanelSize = new SizeF(cellWidth * 27 + (Offset << 1), cellHeight * 27 + (Offset << 1));
 		}
 
 		/// <summary>

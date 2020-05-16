@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Linq;
 using System.Windows;
 using Microsoft.Win32;
 using Sudoku.Data;
@@ -44,6 +45,16 @@ namespace Sudoku.Windows
 			(_settings, _grid, _oldCollection) = (settings, grid, layerCollection);
 			_textBoxSize.Text = _settings.SavingPictureSize.ToString();
 		}
+
+
+		/// <summary>
+		/// Get the encoder information.
+		/// </summary>
+		/// <param name="imageFormat">The image format.</param>
+		/// <returns>The info.</returns>
+		private ImageCodecInfo? GetEncoderInfo(ImageFormat imageFormat) =>
+			ImageCodecInfo.GetImageEncoders().FirstOrDefault(codec => codec.FormatID == imageFormat.Guid);
+
 
 		private void ButtonSave_Click(object sender, RoutedEventArgs e)
 		{
@@ -95,14 +106,12 @@ namespace Sudoku.Windows
 						_settings.CandidateFontName, _grid, _settings.ShowCandidates),
 				};
 
-				var cvl = _oldCollection[typeof(CustomViewLayer).Name];
-				if (cvl is CustomViewLayer customViewLayer)
+				if (_oldCollection[typeof(CustomViewLayer)] is CustomViewLayer customViewLayer)
 				{
 					layerCollection.Add(new CustomViewLayer(pc, customViewLayer));
 				}
 
-				var vl = _oldCollection[typeof(ViewLayer).Name];
-				if (vl is ViewLayer viewLayer)
+				if (_oldCollection[typeof(ViewLayer)] is ViewLayer viewLayer)
 				{
 					layerCollection.Add(new ViewLayer(pc, viewLayer));
 				}
@@ -118,24 +127,29 @@ namespace Sudoku.Windows
 					{
 						// Normal picture formats.
 						layerCollection.IntegrateTo(bitmap);
+
+						var encoderParameters = new EncoderParameters(1);
+						encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 100L);
 						bitmap.Save(
 							fileName,
-							selectedIndex switch
-							{
-								-1 => ImageFormat.Png,
-								0 => ImageFormat.Png,
-								1 => ImageFormat.Jpeg,
-								2 => ImageFormat.Bmp,
-								3 => ImageFormat.Gif,
-								_ => throw Throwing.ImpossibleCase
-							});
+							GetEncoderInfo(
+								selectedIndex switch
+								{
+									-1 => ImageFormat.Png,
+									0 => ImageFormat.Png,
+									1 => ImageFormat.Jpeg,
+									2 => ImageFormat.Bmp,
+									3 => ImageFormat.Gif,
+									_ => throw Throwing.ImpossibleCase
+								}) ?? throw new ArgumentNullException(),
+							encoderParameters);
 					}
 					else
 					{
 						// Windows metafile format (WMF).
 						using var g = Graphics.FromImage(bitmap);
-						using var mf = new Metafile(fileName, g.GetHdc());
-						using var targetGraphics = Graphics.FromImage(mf);
+						using var metaFile = new Metafile(fileName, g.GetHdc());
+						using var targetGraphics = Graphics.FromImage(metaFile);
 						layerCollection.IntegrateTo(targetGraphics);
 						targetGraphics.Save();
 					}
