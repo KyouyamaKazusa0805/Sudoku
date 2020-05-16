@@ -699,14 +699,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					{
 						new View(
 							cellOffsets: null,
-							candidateOffsets:
-								new List<(int, int)>(
-									from cand in trueCandidates select (0, cand)),
+							candidateOffsets: new List<(int, int)>(from cand in trueCandidates select (0, cand)),
 							regionOffsets: null,
 							links: null)
 					},
 					digit,
-					cells: trueCandidates));
+					cells: new List<int>(from c in trueCandidates select c / 9)));
 		}
 
 		/// <summary>
