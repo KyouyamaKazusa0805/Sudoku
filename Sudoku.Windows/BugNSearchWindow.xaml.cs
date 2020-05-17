@@ -45,13 +45,11 @@ namespace Sudoku.Windows
 				_listBoxTrueCandidates.ClearValue(ItemsControl.ItemsSourceProperty);
 				_labelStatus.Content = "Searching... The searching may be slow. Please wait.";
 
-				// To be honest, the true candidates can be searched very fast so
-				// that we do not need use 'async' keyword...
 				var list = new List<PrimaryElementTuple<int, string>>(
 					from candidate in await Task.Run(() => new BugChecker(_puzzle).GetAllTrueCandidates(64))
 					orderby candidate
 					select new PrimaryElementTuple<int, string>(
-						candidate, new CandidateCollection(stackalloc[] { candidate }).ToString(), 2));
+						candidate, new CandidateCollection(candidate).ToString(), 2));
 
 				_labelStatus.ClearValue(ContentProperty);
 				int count = list.Count;
@@ -64,7 +62,9 @@ namespace Sudoku.Windows
 					_listBoxTrueCandidates.ItemsSource = list;
 					string isOrAre = count == 1 ? "is" : "are";
 					string singularOrPlural = count == 1 ? string.Empty : "s";
-					_labelStatus.Content = $"There {isOrAre} {count} true candidate{singularOrPlural} in total.";
+					_labelStatus.Content =
+						$"There {isOrAre} {count} true candidate{singularOrPlural} in total. " +
+						$"Note that some puzzles may contain multiple cases.";
 				}
 			}
 		}

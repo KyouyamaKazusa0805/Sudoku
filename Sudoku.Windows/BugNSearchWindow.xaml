@@ -26,10 +26,12 @@
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition/>
 				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
 			</Grid.ColumnDefinitions>
-			<Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch"
+			<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
 				   VerticalAlignment="Stretch" Name="_labelStatus"/>
-			<Button Grid.Row="0" Grid.Column="1" Name="_buttonStartSearching"
+			<Button Grid.Row="0" Grid.Column="3" Name="_buttonStartSearching"
 					HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Start searching"
 					Click="ButtonStartSearching_Click"/>
 		</Grid>
