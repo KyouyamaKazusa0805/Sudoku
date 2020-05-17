@@ -184,7 +184,7 @@ namespace Sudoku.Solving.Manual
 
 					searcher.GetAll(bag, cloneation);
 				}
-				if (!bag.Any())
+				if (bag.None())
 				{
 					continue;
 				}
@@ -192,10 +192,8 @@ namespace Sudoku.Solving.Manual
 				if (FastSearch)
 				{
 					decimal minDiff = bag.Min(info => info.Difficulty);
-					var selection = from info in bag
-									where info.Difficulty == minDiff
-									select info;
-					if (!selection.Any())
+					var selection = from info in bag where info.Difficulty == minDiff select info;
+					if (selection.None())
 					{
 						continue;
 					}
@@ -222,7 +220,7 @@ namespace Sudoku.Solving.Manual
 					}
 					else
 					{
-						var wrongStep = (TechniqueInfo?)null;
+						TechniqueInfo? wrongStep = null;
 						foreach (var step in selection)
 						{
 							if (!CheckConclusionsValidity(solution, step.Conclusions))
@@ -249,8 +247,7 @@ namespace Sudoku.Solving.Manual
 						? CheckConclusionsValidity(solution, step.Conclusions)
 						: true)
 					{
-						if (RecordTechnique(
-							steps, step, grid, cloneation, stopwatch, stepGrids, out var result))
+						if (RecordTechnique(steps, step, grid, cloneation, stopwatch, stepGrids, out var result))
 						{
 							// The puzzle has been solved.
 							// :)
@@ -390,7 +387,7 @@ namespace Sudoku.Solving.Manual
 				}
 
 				searcher.GetAll(bag, cloneation);
-				if (bag.Count == 0)
+				if (bag.None())
 				{
 					continue;
 				}

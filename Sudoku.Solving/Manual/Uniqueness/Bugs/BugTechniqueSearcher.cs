@@ -496,7 +496,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			}
 
 			var regions = new GridMap(cells).CoveredRegions;
-			if (!regions.Any())
+			if (regions.None())
 			{
 				return;
 			}

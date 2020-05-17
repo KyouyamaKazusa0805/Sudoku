@@ -861,7 +861,7 @@ namespace Sudoku.Windows
 				}
 
 				_textBoxInfo.ClearValue(TextBox.TextProperty);
-				if (!backdoors.Any())
+				if (backdoors.None())
 				{
 					MessageBox.Show(
 						"The puzzle does not have any backdoors whose level is 0 or 1, " +

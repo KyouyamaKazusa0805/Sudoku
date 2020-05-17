@@ -52,7 +52,7 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
 		public decimal MaxDifficulty =>
-			SolvingSteps is null || !SolvingSteps.Any()
+			SolvingSteps is null || SolvingSteps.None()
 				? 20M
 				: SolvingSteps.Max(info => info.ShowDifficulty ? info.Difficulty : 0);
 

@@ -311,7 +311,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			short digitsMask, IReadOnlyList<int> allCells, IReadOnlyList<int> extraCells)
 		{
 			var regions = new GridMap(extraCells).CoveredRegions;
-			if (!regions.Any())
+			if (regions.None())
 			{
 				return;
 			}

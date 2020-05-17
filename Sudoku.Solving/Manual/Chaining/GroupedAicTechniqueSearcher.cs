@@ -1206,7 +1206,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				var start = (map & ptr1).Offsets;
 				var end = (map & ptr2).Offsets;
 				bool s = start.HasOnlyOneElement(), e = end.HasOnlyOneElement();
-				if (!start.Any() || !end.Any() || s && e)
+				if (start.None() || end.None() || s && e)
 				{
 					return null;
 				}
@@ -1274,7 +1274,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				var start = (map & ptr1).Offsets;
 				var end = (map & ptr2).Offsets;
 				bool s = start.HasOnlyOneElement(), e = end.HasOnlyOneElement();
-				if (!start.Any() || !end.Any() || s && e)
+				if (start.None() || end.None() || s && e)
 				{
 					return null;
 				}

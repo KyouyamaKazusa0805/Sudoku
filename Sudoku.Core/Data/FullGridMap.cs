@@ -144,7 +144,7 @@ namespace Sudoku.Data
 		/// This property is equivalent to code '<c>!<see langword="this"/>.IsNotEmpty</c>'.
 		/// </summary>
 		/// <seealso cref="IsNotEmpty"/>
-		public readonly bool IsEmpty => !Offsets.Any();
+		public readonly bool IsEmpty => Offsets.None();
 
 		/// <summary>
 		/// Indicates whether the map has at least one set bit.
