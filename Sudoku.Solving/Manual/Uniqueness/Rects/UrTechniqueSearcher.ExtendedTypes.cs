@@ -1105,6 +1105,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//   (ab )  abxy  *
 			//     ↑ corner2
 			// Note that 'abxy' cells should be in the same region.
+			//
 			// Subtype 2:
 			//     ↓ corner1
 			//   (ab )  abx   xz
@@ -1118,8 +1119,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			if (new GridMap { corner1, corner2 }.AllSetsAreInOneRegion(out int region) && region < 9)
 			{
 				// Subtype 1.
-				short mask1 = grid.GetCandidatesReversal(otherCellsMap.SetAt(0));
-				short mask2 = grid.GetCandidatesReversal(otherCellsMap.SetAt(1));
+				int otherCell1 = otherCellsMap.SetAt(0), otherCell2 = otherCellsMap.SetAt(1);
+				short mask1 = grid.GetCandidatesReversal(otherCell1);
+				short mask2 = grid.GetCandidatesReversal(otherCell2);
 				short mask = (short)(mask1 | mask2);
 				if (mask.CountSet() != 2 + size || (mask & comparer) != comparer
 					|| mask1 == comparer || mask2 == comparer)
@@ -1127,7 +1129,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					return;
 				}
 
-				var map = new GridMap(otherCellsMap, ProcessPeersWithoutItself) & bivalueCells;
+				var map = (new GridMap(otherCell1, false) | new GridMap(otherCell2, false)) & bivalueCells;
 				if (map.Count < size)
 				{
 					return;
@@ -1139,7 +1141,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				{
 					int c1 = cells[i1];
 					short m1 = grid.GetCandidatesReversal(c1);
-					if ((m1 & extraDigitsMask) == 0)
+					if ((m1 & ~extraDigitsMask) == 0)
 					{
 						continue;
 					}
@@ -1148,7 +1150,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					{
 						int c2 = cells[i2];
 						short m2 = grid.GetCandidatesReversal(c2);
-						if ((m2 & extraDigitsMask) == 0)
+						if ((m2 & ~extraDigitsMask) == 0)
 						{
 							continue;
 						}
@@ -1239,7 +1241,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							{
 								int c3 = cells[i3];
 								short m3 = grid.GetCandidatesReversal(c3);
-								if ((m3 & extraDigitsMask) == 0)
+								if ((m3 & ~extraDigitsMask) == 0)
 								{
 									continue;
 								}
@@ -1281,12 +1283,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										{
 											foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 											{
-												candidateOffsets.Add((true switch
-												{
-													_ when digit == elimDigit => otherCellsMap[cell] ? 2 : 0,
-													_ when (extraDigitsMask >> digit & 1) != 0 => 1,
-													_ => 0
-												}, cell * 9 + digit));
+												candidateOffsets.Add((
+													(extraDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 											}
 										}
 									}
@@ -1333,7 +1331,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									{
 										int c4 = cells[i4];
 										short m4 = grid.GetCandidatesReversal(c4);
-										if ((m4 & extraDigitsMask) == 0)
+										if ((m4 & ~extraDigitsMask) == 0)
 										{
 											continue;
 										}
@@ -1348,7 +1346,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										// Now check eliminations.
 										var conclusions = new List<Conclusion>();
 										int elimDigit = m.FindFirstSet();
-										var elimMap = new GridMap(stackalloc[] { c1, c2, c3, c4 }, ProcessPeersWithoutItself);
+										var elimMap = new GridMap(
+											stackalloc[] { c1, c2, c3, c4 }, ProcessPeersWithoutItself);
 										if (elimMap.IsEmpty)
 										{
 											continue;
@@ -1373,12 +1372,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											{
 												foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 												{
-													candidateOffsets.Add((true switch
-													{
-														_ when digit == elimDigit => otherCellsMap[cell] ? 2 : 0,
-														_ when (extraDigitsMask >> digit & 1) != 0 => 1,
-														_ => 0
-													}, cell * 9 + digit));
+													candidateOffsets.Add((
+														(extraDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 												}
 											}
 										}
