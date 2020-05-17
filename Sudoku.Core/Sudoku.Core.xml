@@ -5624,6 +5624,16 @@
             is decided in the element type.
             </returns>
         </member>
+        <member name="M:System.Linq.EnumerableEx.None``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Check whether the specified collection is empty (no elements in it).
+            </summary>
+            <typeparam name="TElement">
+            The type of the element. Although the list is empty maybe, the type is needed in syntax.
+            </typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
         <member name="M:System.Linq.EnumerableEx.HasOnlyOneElement``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             Check whether the specified list has only one element.

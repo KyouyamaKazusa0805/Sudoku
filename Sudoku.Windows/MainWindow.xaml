@@ -158,6 +158,8 @@
 						  Click="MenuItemViewsShowBugN_Click"/>
 				<MenuItem Header="Backdoor (level 0 &amp; 1) view!" Name="_menuItemAnalyzeBackdoorView"
 						  Click="MenuItemViewsBackdoorView_Click"/>
+				<MenuItem Header="Gurth's Symmetrical Placement view!" Name="_menuItemViewsGspView"
+						  Click="MenuItemViewsGspView_Click"/>
 			</MenuItem>
 
 			<!-- About... -->

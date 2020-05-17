@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 
 namespace System.Linq
 {
@@ -35,6 +36,17 @@ namespace System.Linq
 			(from element in @this orderby selector(element) select element).FirstOrDefault();
 
 		/// <summary>
+		/// Check whether the specified collection is empty (no elements in it).
+		/// </summary>
+		/// <typeparam name="TElement">
+		/// The type of the element. Although the list is empty maybe, the type is needed in syntax.
+		/// </typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool None<TElement>(this IEnumerable<TElement> @this) => !@this.Any();
+
+		/// <summary>
 		/// Check whether the specified list has only one element.
 		/// </summary>
 		/// <typeparam name="TElement">The type of the element.</typeparam>
@@ -43,9 +55,8 @@ namespace System.Linq
 		public static bool HasOnlyOneElement<TElement>(this IEnumerable<TElement> @this)
 			where TElement : notnull
 		{
-			if (!@this.Any())
+			if (@this.None())
 			{
-				// An empty list.
 				return false;
 			}
 

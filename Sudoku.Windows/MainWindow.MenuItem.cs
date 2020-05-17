@@ -26,6 +26,7 @@ using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Generating;
+using Sudoku.Solving.Manual.Symmetry;
 using static Sudoku.Windows.Constants.Processing;
 using AnonymousType = System.Object;
 using DColor = System.Drawing.Color;
@@ -896,6 +897,62 @@ namespace Sudoku.Windows
 
 				_textBoxInfo.Text = $"All backdoor(s) at level 0 or 1: {new ConclusionCollection(backdoors).ToString()}";
 			}
+		}
+
+		private void MenuItemViewsGspView_Click(object sender, RoutedEventArgs e)
+		{
+			if (Enumerable.Range(0, 81).All(i => _puzzle.GetStatus(i) == CellStatus.Empty))
+			{
+				MessageBox.Show("The sukaku puzzle does not support this function now.", "Info");
+				e.Handled = true;
+				return;
+			}
+
+			if (!(new GspTechniqueSearcher().TakeOne(_puzzle) is GspTechniqueInfo info))
+			{
+				MessageBox.Show("The puzzle does not contain any Gurth's symmetrical placement.", "Info");
+				e.Handled = true;
+				return;
+			}
+
+			bool[] series = new bool[9];
+			int?[] mapping = info.MappingTable;
+			var cellOffsets = new List<(int, int)>();
+			for (int i = 0, p = 0; i < 9; i++)
+			{
+				if (series[i])
+				{
+					continue;
+				}
+
+				int? value = mapping[i];
+				if (value is null)
+				{
+					continue;
+				}
+
+				int j = value.Value;
+				(series[i], series[j]) = (true, true);
+				for (int cell = 0; cell < 81; cell++)
+				{
+					int cellValue = _puzzle[cell];
+					if (cellValue == i || cellValue == j)
+					{
+						cellOffsets.Add((p, cell));
+					}
+				}
+
+				p++;
+			}
+
+			_textBoxInfo.Text = info.ToString();
+
+			_layerCollection.Add(
+				new ViewLayer(
+					_pointConverter, new View(cellOffsets, null, null, null), info.Conclusions, Settings.PaletteColors,
+					Settings.EliminationColor, Settings.CannibalismColor, Settings.ChainColor));
+
+			UpdateImageGrid();
 		}
 
 		private void MenuItemAboutMe_Click(object sender, RoutedEventArgs e) => new AboutMeWindow().Show();

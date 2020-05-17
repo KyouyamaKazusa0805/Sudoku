@@ -374,14 +374,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 					result.Add(
 						new GspTechniqueInfo(
 							conclusions: new[] { new Conclusion(Assignment, 40, digit) },
-							views: new[]
-							{
-								new View(
-									cellOffsets: null,
-									candidateOffsets: null,
-									regionOffsets: null,
-									links: null)
-							},
+							views: new[] { new View() },
 							symmetryType: SymmetryType.Central,
 							mappingTable: mapping));
 
