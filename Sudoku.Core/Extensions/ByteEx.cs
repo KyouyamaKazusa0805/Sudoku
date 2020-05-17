@@ -87,6 +87,11 @@ namespace Sudoku.Extensions
 		/// <returns>All offsets.</returns>
 		public static IEnumerable<int> GetAllSets(this byte @this)
 		{
+			if (@this == 0)
+			{
+				yield break;
+			}
+
 			for (int i = 0; i < 8; i++, @this >>= 1)
 			{
 				if ((@this & 1) != 0)

@@ -123,6 +123,11 @@ namespace Sudoku.Extensions
 		/// <returns>All offsets.</returns>
 		public static IEnumerable<int> GetAllSets(this int @this)
 		{
+			if (@this == 0)
+			{
+				yield break;
+			}
+
 			for (int i = 0; i < 32; i++, @this >>= 1)
 			{
 				if ((@this & 1) != 0)

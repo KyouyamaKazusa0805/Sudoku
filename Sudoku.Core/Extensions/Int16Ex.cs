@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
@@ -86,6 +87,11 @@ namespace Sudoku.Extensions
 		/// <returns>All offsets.</returns>
 		public static IEnumerable<int> GetAllSets(this short @this)
 		{
+			if (@this == 0)
+			{
+				yield break;
+			}
+
 			for (int i = 0; i < 16; i++, @this >>= 1)
 			{
 				if ((@this & 1) != 0)
