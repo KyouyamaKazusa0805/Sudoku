@@ -39,8 +39,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var emptyMap = grid.GetEmptyCellsMap();
-			if (emptyMap.Count < 7)
+			if (EmptyMap.Count < 7)
 			{
 				return;
 			}

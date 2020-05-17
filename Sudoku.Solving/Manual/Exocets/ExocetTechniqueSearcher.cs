@@ -183,7 +183,6 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="lockedNonTarget">The locked member that is non-target digits.</param>
 		/// <param name="baseCandidateMask">The base candidate mask.</param>
 		/// <param name="mirror">The mirror map.</param>
-		/// <param name="digitDistributions">The digit distributions.</param>
 		/// <param name="x">The x.</param>
 		/// <param name="onlyOne">The only one cell.</param>
 		/// <param name="cellOffsets">The cell offsets.</param>
@@ -191,8 +190,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <returns>All mirror eliminations.</returns>
 		protected (TargetEliminations, MirrorEliminations) CheckMirror(
 			IReadOnlyGrid grid, int target, int target2, short lockedNonTarget, short baseCandidateMask,
-			GridMap mirror, GridMap[] digitDistributions, int x, int onlyOne,
-			IList<(int, int)> cellOffsets, IList<(int, int)> candidateOffsets)
+			GridMap mirror, int x, int onlyOne, IList<(int, int)> cellOffsets, IList<(int, int)> candidateOffsets)
 		{
 			var targetElims = new TargetEliminations();
 			var mirrorElims = new MirrorEliminations();
@@ -203,8 +201,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				mirrorCandidatesMask & baseCandidateMask & grid.GetCandidatesReversal(target));
 			short targetElimination = (short)(
 				grid.GetCandidatesReversal(target) & ~(short)(commonBase | lockedNonTarget));
-			if (targetElimination != 0
-				&& grid.GetStatus(target) != Empty ^ grid.GetStatus(target2) != Empty)
+			if (targetElimination != 0 && grid.GetStatus(target) != Empty ^ grid.GetStatus(target2) != Empty)
 			{
 				foreach (int digit in targetElimination.GetAllSets())
 				{
@@ -343,25 +340,6 @@ namespace Sudoku.Solving.Manual.Exocets
 			return (targetElims, mirrorElims);
 		}
 
-
-		/// <summary>
-		/// Get the map of empty cells.
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <returns>The map.</returns>
-		protected static GridMap GetEmptyCellsMap(IReadOnlyGrid grid)
-		{
-			var result = GridMap.Empty;
-			for (int cell = 0; cell < 81; cell++)
-			{
-				if (grid.GetStatus(cell) == Empty)
-				{
-					result.Add(cell);
-				}
-			}
-
-			return result;
-		}
 
 		/// <summary>
 		/// Get all distributions for digits.

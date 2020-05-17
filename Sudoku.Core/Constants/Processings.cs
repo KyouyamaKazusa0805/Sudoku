@@ -129,19 +129,17 @@ namespace Sudoku.Constants
 		/// </param>
 		public static void Deconstruct(
 			this IReadOnlyGrid @this, out GridMap empty, out GridMap bivalue,
-			out GridMap[] candidates, out GridMap[] digits)
-		{
+			out GridMap[] candidates, out GridMap[] digits) =>
 			(empty, bivalue, candidates, digits) = (
 				@this.GetEmptyCellsMap(), @this.GetBivalueCellsMap(),
 				@this.GetCandidatesMap(), @this.GetDigitsMap());
-		}
 
 		/// <summary>
 		/// Get the map of all empty cells in this grid.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The map.</returns>
-		public static GridMap GetEmptyCellsMap(this IReadOnlyGrid @this)
+		private static GridMap GetEmptyCellsMap(this IReadOnlyGrid @this)
 		{
 			var result = GridMap.Empty;
 			for (int cell = 0; cell < 81; cell++)
@@ -160,7 +158,7 @@ namespace Sudoku.Constants
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The map.</returns>
-		public static GridMap GetBivalueCellsMap(this IReadOnlyGrid @this)
+		private static GridMap GetBivalueCellsMap(this IReadOnlyGrid @this)
 		{
 			var result = GridMap.Empty;
 			for (int cell = 0; cell < 81; cell++)
@@ -179,7 +177,7 @@ namespace Sudoku.Constants
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The map.</returns>
-		public static GridMap[] GetCandidatesMap(this IReadOnlyGrid @this)
+		private static GridMap[] GetCandidatesMap(this IReadOnlyGrid @this)
 		{
 			var result = new GridMap[9];
 			for (int digit = 0; digit < 9; digit++)
@@ -208,7 +206,7 @@ namespace Sudoku.Constants
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The map.</returns>
 		/// <seealso cref="GetCandidatesMap(IReadOnlyGrid)"/>
-		public static GridMap[] GetDigitsMap(this IReadOnlyGrid @this)
+		private static GridMap[] GetDigitsMap(this IReadOnlyGrid @this)
 		{
 			var digitDistributions = new GridMap[9];
 			for (int digit = 0; digit < 9; digit++)

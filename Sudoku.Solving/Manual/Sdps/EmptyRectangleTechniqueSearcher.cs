@@ -47,14 +47,13 @@ namespace Sudoku.Solving.Manual.Sdps
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var candMaps = grid.GetCandidatesMap();
 			for (int digit = 0; digit < 9; digit++)
 			{
 				for (int block = 0; block < 9; block++)
 				{
 					// Check the empty rectangle occupies more than 2 cells.
 					// and the structure forms an empty rectangle.
-					var erMap = candMaps[digit] & RegionMaps[block];
+					var erMap = CandMaps[digit] & RegionMaps[block];
 					if (erMap.Count < 2 || !IsEmptyRectangle(erMap, block, out int row, out int column))
 					{
 						continue;
@@ -63,7 +62,7 @@ namespace Sudoku.Solving.Manual.Sdps
 					// Search for conjugate pair.
 					for (int i = 0; i < 12; i++)
 					{
-						var linkMap = candMaps[digit] & RegionMaps[LinkIds[block, i]];
+						var linkMap = CandMaps[digit] & RegionMaps[LinkIds[block, i]];
 						if (linkMap.Count != 2)
 						{
 							continue;
@@ -79,8 +78,8 @@ namespace Sudoku.Solving.Manual.Sdps
 						int[] t = (linkMap - (i < 6 ? RegionMaps[column] : RegionMaps[row])).ToArray();
 						int elimRegion = i < 6 ? t[0] % 9 + 18 : t[0] / 9 + 9;
 						var elimCellMap = i < 6
-							? candMaps[digit] & RegionMaps[elimRegion] & RegionMaps[row]
-							: candMaps[digit] & RegionMaps[elimRegion] & RegionMaps[column];
+							? CandMaps[digit] & RegionMaps[elimRegion] & RegionMaps[row]
+							: CandMaps[digit] & RegionMaps[elimRegion] & RegionMaps[column];
 
 						if (elimCellMap.IsEmpty)
 						{

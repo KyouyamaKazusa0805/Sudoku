@@ -39,7 +39,6 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			var alses = Als.GetAllAlses(grid).ToArray();
-			var candsMap = grid.GetCandidatesMap();
 
 			// Gather all conjugate pairs.
 			var conjugatePairs = new ICollection<ConjugatePair>?[9];
@@ -47,7 +46,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			{
 				for (int region = 0; region < 27; region++)
 				{
-					var temp = RegionMaps[region] & candsMap[digit];
+					var temp = RegionMaps[region] & CandMaps[digit];
 					if (temp.Count != 2)
 					{
 						continue;
@@ -84,8 +83,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							continue;
 						}
 
-						var p1 = new GridMap(map1 & candsMap[x], ProcessPeersWithoutItself) & candsMap[x];
-						var p2 = new GridMap(map2 & candsMap[x], ProcessPeersWithoutItself) & candsMap[x];
+						var p1 = new GridMap(map1 & CandMaps[x], ProcessPeersWithoutItself) & CandMaps[x];
+						var p2 = new GridMap(map2 & CandMaps[x], ProcessPeersWithoutItself) & CandMaps[x];
 						if (p1.IsEmpty || p2.IsEmpty)
 						{
 							// At least one of two ALSes cannot see the node of the conjugate pair.
@@ -112,7 +111,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							foreach (int w in (mask & ~(1 << x)).GetAllSets())
 							{
 								var tempMap =
-									new GridMap((map1 | map2) & candsMap[w], ProcessPeersWithoutItself) & candsMap[w];
+									new GridMap((map1 | map2) & CandMaps[w], ProcessPeersWithoutItself) & CandMaps[w];
 								if (tempMap.IsEmpty)
 								{
 									continue;

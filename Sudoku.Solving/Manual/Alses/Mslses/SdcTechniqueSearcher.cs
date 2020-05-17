@@ -45,8 +45,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var (emptyMap, _, candMaps, _) = grid;
-			if (emptyMap.Count < 4)
+			if (EmptyMap.Count < 4)
 			{
 				// SdC needs at least 4 cells like:
 				// abc abd | ab
@@ -59,7 +58,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 			{
 				foreach (var ((baseSet, coverSet), (a, b, c)) in IntersectionMaps)
 				{
-					var emptyCellsInInterMap = c & emptyMap;
+					var emptyCellsInInterMap = c & EmptyMap;
 					if (emptyCellsInInterMap.Count < 2)
 					{
 						// The intersection needs at least two cells.
@@ -105,8 +104,8 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 							continue;
 						}
 
-						var blockMap = (b | (c - currentInterMap)) & emptyMap;
-						var lineMap = a & emptyMap;
+						var blockMap = (b | (c - currentInterMap)) & EmptyMap;
+						var lineMap = a & EmptyMap;
 
 						// Iterate on the number of the cells that should be selected in block.
 						for (int i = 1; i < blockMap.Count; i++)
@@ -127,7 +126,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 								// Get the elimination map in the block.
 								foreach (int digit in blockMask.GetAllSets())
 								{
-									elimMapBlock |= candMaps[digit];
+									elimMapBlock |= CandMaps[digit];
 								}
 								elimMapBlock &= blockMap - currentBlockMap;
 
@@ -150,7 +149,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 										// Get the elimination map in the line.
 										foreach (int digit in lineMask.GetAllSets())
 										{
-											elimMapLine |= candMaps[digit];
+											elimMapLine |= CandMaps[digit];
 										}
 										elimMapLine &= lineMap - currentLineMap;
 
@@ -174,10 +173,10 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 											elimMapIsolated =
 												new GridMap(
 													cannibalMode
-														? (currentBlockMap | currentLineMap) & candMaps[digitIsolated]
-														: currentInterMap & candMaps[digitIsolated],
+														? (currentBlockMap | currentLineMap) & CandMaps[digitIsolated]
+														: currentInterMap & CandMaps[digitIsolated],
 													ProcessPeersWithoutItself)
-												& candMaps[digitIsolated] & emptyMap;
+												& CandMaps[digitIsolated] & EmptyMap;
 										}
 
 										if (currentInterMap.Count + i + j ==

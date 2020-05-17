@@ -40,8 +40,6 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var candsMap = grid.GetCandidatesMap();
-
 			var house = (Span<int>)stackalloc int[2];
 			var alses = Als.GetAllAlses(grid).ToArray();
 			for (int i = 0, length = alses.Length; i < length - 1; i++)
@@ -81,7 +79,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					int nh = 0;
 					foreach (int digit in xzMask.GetAllSets())
 					{
-						if ((map & candsMap[digit]).AllSetsAreInOneRegion(out region))
+						if ((map & CandMaps[digit]).AllSetsAreInOneRegion(out region))
 						{
 							// 'digit' is the RCC digit.
 							rccMask |= (short)(1 << digit);
@@ -105,8 +103,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					var conclusions = new List<Conclusion>();
 					foreach (int elimDigit in z.GetAllSets())
 					{
-						var elimMap = new GridMap(candsMap[elimDigit] & map, ProcessPeersWithoutItself)
-							& candsMap[elimDigit];
+						var elimMap = new GridMap(CandMaps[elimDigit] & map, ProcessPeersWithoutItself)
+							& CandMaps[elimDigit];
 						if (elimMap.IsEmpty)
 						{
 							continue;
@@ -126,13 +124,13 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						isDoublyLinked = true;
 						foreach (int elimDigit in (z & ~rccMask).GetAllSets())
 						{
-							var zMap = candsMap[elimDigit] & map1;
+							var zMap = CandMaps[elimDigit] & map1;
 							if (zMap.IsEmpty)
 							{
 								continue;
 							}
 
-							var elimMap = new GridMap(zMap, ProcessPeersWithoutItself) & candsMap[elimDigit] & map2;
+							var elimMap = new GridMap(zMap, ProcessPeersWithoutItself) & CandMaps[elimDigit] & map2;
 							if (elimMap.IsEmpty)
 							{
 								continue;
@@ -145,7 +143,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						int k = 0;
 						foreach (int digit in rccMask.GetAllSets())
 						{
-							var elimMap = (RegionMaps[house[k]] & candsMap[digit]) - map;
+							var elimMap = (RegionMaps[house[k]] & CandMaps[digit]) - map;
 							if (elimMap.IsNotEmpty)
 							{
 								foreach (int cell in elimMap.Offsets)
@@ -162,10 +160,10 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 						// Possible eliminations.
 						var tempMap = map;
-						tempMap = candsMap[mask1.FindFirstSet()];
+						tempMap = CandMaps[mask1.FindFirstSet()];
 						for (k = 1; k < mask1.CountSet(); k++)
 						{
-							tempMap |= candsMap[mask1.SetAt(k)];
+							tempMap |= CandMaps[mask1.SetAt(k)];
 						}
 						tempMap &= possibleElimMap1;
 						if (tempMap.IsNotEmpty)
@@ -179,10 +177,10 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								}
 							}
 						}
-						tempMap = candsMap[mask2.FindFirstSet()];
+						tempMap = CandMaps[mask2.FindFirstSet()];
 						for (k = 1; k < mask2.CountSet(); k++)
 						{
-							tempMap |= candsMap[mask2.SetAt(k)];
+							tempMap |= CandMaps[mask2.SetAt(k)];
 						}
 						tempMap &= possibleElimMap2;
 						if (tempMap.IsNotEmpty)

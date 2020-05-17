@@ -115,7 +115,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				return;
 			}
 
-			if (!(_searcher.TakeOne(grid) is SingleTechniqueInfo singleInfo))
+			if (!(_searcher.GetOne(grid) is SingleTechniqueInfo singleInfo))
 			{
 				// The searcher cannot find any steps next.
 				// which means that this case (grid[cell] = digit)

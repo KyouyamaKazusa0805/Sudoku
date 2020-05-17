@@ -28,8 +28,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var candMaps = grid.GetCandidatesMap();
-			var templates = GetInvalidPos(grid, candMaps);
+			var templates = GetInvalidPos(grid);
 			for (int digit = 0; digit < 9; digit++)
 			{
 				var template = templates[digit];
@@ -52,9 +51,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// Get all invalid positions.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
-		/// <param name="digitDistributions">The distributions for each digit.</param>
 		/// <returns>The 9 maps for invalid positions of each digit.</returns>
-		private static GridMap[] GetInvalidPos(IReadOnlyGrid grid, GridMap[] digitDistributions)
+		private static GridMap[] GetInvalidPos(IReadOnlyGrid grid)
 		{
 			var result = new GridMap[9];
 			var invalidPos = new GridMap[9];
@@ -86,7 +84,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 					result[digit] |= map;
 				}
 
-				result[digit] = digitDistributions[digit] - result[digit];
+				result[digit] = CandMaps[digit] - result[digit];
 			}
 
 			return result;

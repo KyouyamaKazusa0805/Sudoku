@@ -108,6 +108,7 @@ namespace Sudoku.Solving.Manual
 				new SkLoopTechniqueSearcher(),
 			};
 
+			TechniqueSearcher.InitializeMaps(grid);
 			var bag = new Bag<TechniqueInfo>();
 			foreach (var searcher in searchers)
 			{

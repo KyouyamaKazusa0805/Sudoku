@@ -179,7 +179,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <returns>All ALSes searched.</returns>
 		public static IEnumerable<Als> GetAllAlses(IReadOnlyGrid grid)
 		{
-			var (emptyMap, bivalueMap, _, _) = grid;
+			var bivalueMap = TechniqueSearcher.BivalueMap;
+			var emptyMap = TechniqueSearcher.EmptyMap;
 
 			// Get all bi-value-cell ALSes.
 			foreach (int cell in bivalueMap.Offsets)

@@ -68,8 +68,6 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var candMaps = grid.GetCandidatesMap();
-
 			// Now search fishes.
 			if (_size <= 4)
 			{
@@ -77,7 +75,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				{
 					for (int digit = 0; digit < 9; digit++)
 					{
-						AccumulateAllBySize(accumulator, grid, digit, size, new GridMap[9], candMaps);
+						AccumulateAllBySize(accumulator, grid, digit, size, new GridMap[9]);
 					}
 				}
 			}
@@ -87,7 +85,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				{
 					for (int digit = 0; digit < 9; digit++)
 					{
-						AccumulateAllBySize(accumulator, grid, digit, size, new GridMap[9], candMaps);
+						AccumulateAllBySize(accumulator, grid, digit, size, new GridMap[9]);
 					}
 				}
 
@@ -124,7 +122,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				{
 					for (int digit = 0; digit < 9; digit++)
 					{
-						AccumulateAllBySize(accumulator, grid, digit, size, elimMaps, candMaps);
+						AccumulateAllBySize(accumulator, grid, digit, size, elimMaps);
 					}
 				}
 			}
@@ -138,10 +136,8 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="digit">The digit.</param>
 		/// <param name="size">The size.</param>
 		/// <param name="elimMaps">The possible elimination cells map.</param>
-		/// <param name="digitDistributions">The all distributions for each digit.</param>
 		private void AccumulateAllBySize(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, int digit, int size,
-			GridMap[] elimMaps, GridMap[] digitDistributions)
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, int digit, int size, GridMap[] elimMaps)
 		{
 			if (size > 4 && _checkTemplates && elimMaps[digit].IsEmpty)
 			{
@@ -168,8 +164,8 @@ namespace Sudoku.Solving.Manual.Fishes
 					{
 						// Check X-Wings.
 						// Iterate on each combination of cover sets.
-						var bodyMap = CreateMap(baseSets) & digitDistributions[digit];
-						CheckCoverSets(accumulator, grid, digit, size, elimMaps, digitDistributions, baseSets, bodyMap);
+						var bodyMap = CreateMap(baseSets) & CandMaps[digit];
+						CheckCoverSets(accumulator, grid, digit, size, elimMaps, baseSets, bodyMap);
 
 						baseSets.RemoveLastElement();
 					}
@@ -178,7 +174,7 @@ namespace Sudoku.Solving.Manual.Fishes
 						for (int bs3 = bs2 + 1; bs3 < 30 - size; bs3++)
 						{
 							if (grid.HasDigitValue(digit, bs3)
-								|| IsRedundantRegion(digit, digitDistributions, baseSets, bs3))
+								|| IsRedundantRegion(digit, baseSets, bs3))
 							{
 								continue;
 							}
@@ -189,8 +185,8 @@ namespace Sudoku.Solving.Manual.Fishes
 								baseSets.Add(bs3);
 
 								// Iterate on each combination of cover sets.
-								var bodyMap = CreateMap(baseSets) & digitDistributions[digit];
-								CheckCoverSets(accumulator, grid, digit, size, elimMaps, digitDistributions, baseSets, bodyMap);
+								var bodyMap = CreateMap(baseSets) & CandMaps[digit];
+								CheckCoverSets(accumulator, grid, digit, size, elimMaps, baseSets, bodyMap);
 
 								baseSets.RemoveLastElement();
 							}
@@ -199,7 +195,7 @@ namespace Sudoku.Solving.Manual.Fishes
 								for (int bs4 = bs3 + 1; bs4 < 31 - size; bs4++)
 								{
 									if (grid.HasDigitValue(digit, bs4)
-										|| IsRedundantRegion(digit, digitDistributions, baseSets, bs4))
+										|| IsRedundantRegion(digit, baseSets, bs4))
 									{
 										continue;
 									}
@@ -210,8 +206,9 @@ namespace Sudoku.Solving.Manual.Fishes
 										baseSets.Add(bs4);
 
 										// Iterate on each combination of cover sets.
-										var bodyMap = CreateMap(baseSets) & digitDistributions[digit];
-										CheckCoverSets(accumulator, grid, digit, size, elimMaps, digitDistributions, baseSets, bodyMap);
+										var bodyMap = CreateMap(baseSets) & CandMaps[digit];
+										CheckCoverSets(
+											accumulator, grid, digit, size, elimMaps, baseSets, bodyMap);
 
 										baseSets.RemoveLastElement();
 									}
@@ -220,7 +217,7 @@ namespace Sudoku.Solving.Manual.Fishes
 										for (int bs5 = bs4 + 1; bs5 < 32 - size; bs5++)
 										{
 											if (grid.HasDigitValue(digit, bs5)
-												|| IsRedundantRegion(digit, digitDistributions, baseSets, bs5))
+												|| IsRedundantRegion(digit, baseSets, bs5))
 											{
 												continue;
 											}
@@ -231,8 +228,10 @@ namespace Sudoku.Solving.Manual.Fishes
 												baseSets.Add(bs5);
 
 												// Iterate on each combination of cover sets.
-												var bodyMap = CreateMap(baseSets) & digitDistributions[digit];
-												CheckCoverSets(accumulator, grid, digit, size, elimMaps, digitDistributions, baseSets, bodyMap);
+												var bodyMap = CreateMap(baseSets) & CandMaps[digit];
+												CheckCoverSets(
+													accumulator, grid, digit, size, elimMaps, baseSets,
+													bodyMap);
 
 												baseSets.RemoveLastElement();
 											}
@@ -241,7 +240,7 @@ namespace Sudoku.Solving.Manual.Fishes
 												for (int bs6 = bs5 + 1; bs6 < 33 - size; bs6++)
 												{
 													if (grid.HasDigitValue(digit, bs6)
-														|| IsRedundantRegion(digit, digitDistributions, baseSets, bs6))
+														|| IsRedundantRegion(digit, baseSets, bs6))
 													{
 														continue;
 													}
@@ -252,10 +251,10 @@ namespace Sudoku.Solving.Manual.Fishes
 														baseSets.Add(bs6);
 
 														// Iterate on each combination of cover sets.
-														var bodyMap = CreateMap(baseSets) & digitDistributions[digit];
+														var bodyMap = CreateMap(baseSets) & CandMaps[digit];
 														CheckCoverSets(
 															accumulator, grid, digit, size, elimMaps,
-															digitDistributions, baseSets, bodyMap);
+															baseSets, bodyMap);
 
 														baseSets.RemoveLastElement();
 													}
@@ -265,7 +264,7 @@ namespace Sudoku.Solving.Manual.Fishes
 														{
 															if (grid.HasDigitValue(digit, bs7)
 																|| IsRedundantRegion(
-																	digit, digitDistributions, baseSets, bs7))
+																	digit, baseSets, bs7))
 															{
 																continue;
 															}
@@ -277,10 +276,10 @@ namespace Sudoku.Solving.Manual.Fishes
 
 																// Iterate on each combination of cover sets.
 																var bodyMap =
-																	CreateMap(baseSets) & digitDistributions[digit];
+																	CreateMap(baseSets) & CandMaps[digit];
 																CheckCoverSets(
 																	accumulator, grid, digit, size, elimMaps,
-																	digitDistributions, baseSets, bodyMap);
+																	baseSets, bodyMap);
 
 																baseSets.RemoveLastElement();
 															}
@@ -303,14 +302,12 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// Check whether the specified region to add is redundant.
 		/// </summary>
 		/// <param name="digit">The digit.</param>
-		/// <param name="digitDistributions">The digit distributions.</param>
 		/// <param name="baseSets">The base sets.</param>
 		/// <param name="baseSetToAdd">The base set to add.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private bool IsRedundantRegion(
-			int digit, GridMap[] digitDistributions, IReadOnlyList<int> baseSets, int baseSetToAdd) =>
-			(CreateMap(baseSets) & digitDistributions[digit]) == (CreateMap(baseSets.Append(baseSetToAdd)) & digitDistributions[digit]);
+		private bool IsRedundantRegion(int digit, IReadOnlyList<int> baseSets, int baseSetToAdd) =>
+			(CreateMap(baseSets) & CandMaps[digit]) == (CreateMap(baseSets.Append(baseSetToAdd)) & CandMaps[digit]);
 
 		/// <summary>
 		/// Check all cover sets combinations to verify whether the fish can be formed.
@@ -320,21 +317,19 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="digit">The digit.</param>
 		/// <param name="size">The size.</param>
 		/// <param name="elimMaps">The elimination maps.</param>
-		/// <param name="digitDistributions">The digit distributions.</param>
 		/// <param name="baseSets">The base sets.</param>
 		/// <param name="bodyMap">The body map.</param>
 		private void CheckCoverSets(
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, int digit, int size,
-			GridMap[] elimMaps, GridMap[] digitDistributions,
-			IReadOnlyList<int> baseSets, GridMap bodyMap)
+			GridMap[] elimMaps, IReadOnlyList<int> baseSets, GridMap bodyMap)
 		{
 			foreach (var coverSets in GetAllProperCoverSets(grid, digit, size, baseSets, elimMaps, bodyMap))
 			{
 				// Now search for exo-fins and endo-fins.
 				var tempBodyMap = bodyMap;
-				var elimMap = CreateMap(coverSets) & digitDistributions[digit];
+				var elimMap = CreateMap(coverSets) & CandMaps[digit];
 				var exofinsMap = GetExofinMap(tempBodyMap, elimMap);
-				var endofinsMap = GetEndofinMap(baseSets) & digitDistributions[digit];
+				var endofinsMap = GetEndofinMap(baseSets) & CandMaps[digit];
 				var finMap = exofinsMap | endofinsMap;
 
 				if (exofinsMap.Count > _exofinCount || endofinsMap.Count > _endofinCount)

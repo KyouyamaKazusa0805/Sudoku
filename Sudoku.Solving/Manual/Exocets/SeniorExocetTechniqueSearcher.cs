@@ -42,7 +42,6 @@ namespace Sudoku.Solving.Manual.Exocets
 		{
 			var compatibleCellsPlayground = (Span<int>)stackalloc int[4];
 			var cover = (Span<int>)stackalloc int[8];
-			var (emptyCellsMap, _, candMap, digitMaps) = grid;
 			foreach (var exocet in Exocets)
 			{
 				var (baseMap, targetMap, _) = exocet;
@@ -71,11 +70,11 @@ namespace Sudoku.Solving.Manual.Exocets
 				{
 					if (i++ == 0)
 					{
-						temp = digitMaps[digit];
+						temp = ValueMaps[digit];
 					}
 					else
 					{
-						temp |= digitMaps[digit];
+						temp |= ValueMaps[digit];
 					}
 				}
 				temp &= tempCrosslineMap;
@@ -119,7 +118,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						grid.GetCandidatesReversal(combination[0])
 						| grid.GetCandidatesReversal(combination[1])) & ~baseCandidatesMask);
 					if (!CheckCrossline(
-						/*baseCellsMap, */tempCrosslineMap, digitMaps, baseCandidatesMask,
+						/*baseCellsMap, */tempCrosslineMap, ValueMaps, baseCandidatesMask,
 						combination[0], combination[1], isRow, out int extraRegionsMask))
 					{
 						continue;
@@ -180,8 +179,8 @@ namespace Sudoku.Solving.Manual.Exocets
 						foreach (int digit in tbCands.GetAllSets())
 						{
 							var elimMap =
-								new GridMap((baseCellsMap & candMap[digit]).Offsets, ProcessPeersWithoutItself)
-								& candMap[digit];
+								new GridMap(baseCellsMap & CandMaps[digit], ProcessPeersWithoutItself)
+								& CandMaps[digit];
 							if (elimMap.IsEmpty)
 							{
 								continue;
@@ -235,13 +234,13 @@ namespace Sudoku.Solving.Manual.Exocets
 						{
 							var (tempTargetElims, tempMirrorElims) = CheckMirror(
 								grid, target, combination[(target == combination[0]).ToInt32()], 0,
-								baseCandidatesMask, mir, digitMaps, 0, -1, cellOffsets, candidateOffsets);
+								baseCandidatesMask, mir, 0, -1, cellOffsets, candidateOffsets);
 							targetElims = TargetEliminations.MergeAll(targetElims, tempTargetElims);
 							mirrorElims = MirrorEliminations.MergeAll(mirrorElims, tempMirrorElims);
 						}
 
 						short incompatible = CompatibilityTest(
-							baseCandidatesMask, digitMaps, tempCrosslineMap, baseCellsMap,
+							baseCandidatesMask, ValueMaps, tempCrosslineMap, baseCellsMap,
 							combination[0], combination[1]);
 						if (incompatible != 0)
 						{
@@ -267,8 +266,8 @@ namespace Sudoku.Solving.Manual.Exocets
 						}
 
 						CompatibilityTest2(
-							grid, ref compatibilityElims, baseCellsMap, digitMaps,
-							candMap, baseCandidatesMask, combination[0], combination[1]);
+							grid, ref compatibilityElims, baseCellsMap, baseCandidatesMask,
+							combination[0], combination[1]);
 					}
 
 					if (_checkAdvanced
@@ -528,16 +527,13 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="grid">The grid.</param>
 		/// <param name="compatibilityElims">The compatibility eliminations.</param>
 		/// <param name="baseCellsMap">The base cells map.</param>
-		/// <param name="digitMaps">The digit distributions.</param>
-		/// <param name="candMaps">Candidate maps for each digit.</param>
 		/// <param name="baseCandidatesMask">The base candidates mask.</param>
 		/// <param name="t1">The target cell 1.</param>
 		/// <param name="t2">The target cell 2.</param>
 		/// <seealso cref="CompatibilityTest(short, GridMap[], GridMap, GridMap, int, int)"/>
 		private void CompatibilityTest2(
 			IReadOnlyGrid grid, ref CompatibilityTestEliminations compatibilityElims,
-			GridMap baseCellsMap, GridMap[] digitMaps, GridMap[] candMaps,
-			short baseCandidatesMask, int t1, int t2)
+			GridMap baseCellsMap, short baseCandidatesMask, int t1, int t2)
 		{
 			if (grid.GetStatus(t1) != Empty && grid.GetStatus(t2) != Empty)
 			{
@@ -556,7 +552,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						continue;
 					}
 
-					var temp = (new GridMap(currentTarget, false) & digitMaps[digit])
+					var temp = (new GridMap(currentTarget, false) & ValueMaps[digit])
 						- new GridMap(baseCellsMap, ProcessPeersWithoutItself);
 
 					bool flag = false;
@@ -565,25 +561,25 @@ namespace Sudoku.Solving.Manual.Exocets
 					{
 						flag = true;
 						elimMap = new GridMap(
-							new GridMap(currentTarget, false) & candMaps[digit] & RegionMaps[r] | baseCellsMap,
+							new GridMap(currentTarget, false) & CandMaps[digit] & RegionMaps[r] | baseCellsMap,
 							ProcessPeersWithoutItself)
-							& candMaps[digit];
+							& CandMaps[digit];
 					}
 					else if (!temp.Overlaps(RegionMaps[c]))
 					{
 						flag = true;
 						elimMap = new GridMap(
-							new GridMap(currentTarget, false) & candMaps[digit] & RegionMaps[c] | baseCellsMap,
+							new GridMap(currentTarget, false) & CandMaps[digit] & RegionMaps[c] | baseCellsMap,
 							ProcessPeersWithoutItself)
-							& candMaps[digit];
+							& CandMaps[digit];
 					}
 					else if (!temp.Overlaps(RegionMaps[b]))
 					{
 						flag = true;
 						elimMap = new GridMap(
-							new GridMap(currentTarget, false) & candMaps[digit] & RegionMaps[b] | baseCellsMap,
+							new GridMap(currentTarget, false) & CandMaps[digit] & RegionMaps[b] | baseCellsMap,
 							ProcessPeersWithoutItself)
-							& candMaps[digit];
+							& CandMaps[digit];
 					}
 					if (!flag)
 					{

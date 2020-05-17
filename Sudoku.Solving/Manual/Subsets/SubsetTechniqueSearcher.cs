@@ -49,11 +49,9 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// <returns>All technique information searched.</returns>
 		private static void GetNakedSubsetsBySize(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, int size)
 		{
-			var candMaps = grid.GetCandidatesMap();
-			var emptyMap = grid.GetEmptyCellsMap();
 			for (int region = 0; region < 27; region++)
 			{
-				var currentEmptyMap = RegionMaps[region] & emptyMap;
+				var currentEmptyMap = RegionMaps[region] & EmptyMap;
 				if (currentEmptyMap.Count < 2)
 				{
 					continue;
@@ -77,8 +75,8 @@ namespace Sudoku.Solving.Manual.Subsets
 					foreach (int digit in mask.GetAllSets())
 					{
 						var map =
-							new GridMap(new GridMap(cells) & candMaps[digit], ProcessPeersWithoutItself)
-							& candMaps[digit];
+							new GridMap(new GridMap(cells) & CandMaps[digit], ProcessPeersWithoutItself)
+							& CandMaps[digit];
 						flagMask |= map.AllSetsAreInOneRegion(out _) ? (short)0 : (short)(1 << digit);
 
 						foreach (int cell in map.Offsets)

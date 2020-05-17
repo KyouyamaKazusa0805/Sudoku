@@ -31,14 +31,12 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var (emptyMap, bivalueMap, _, _) = grid;
-
 			// Finally search all irregular wings.
 			// Hybrid-Wings, Local-Wings, Split-Wings and M-Wings can
 			// be found in another searcher.
 			// These wings are not elementary and necessary techniques
 			// so we does not need to list them.
-			TakeAllWWings(accumulator, grid, emptyMap, bivalueMap);
+			TakeAllWWings(accumulator, grid);
 		}
 
 		/// <summary>
@@ -46,13 +44,10 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
-		/// <param name="emptyMap">The empty cells map.</param>
-		/// <param name="bivalueMap">The bi-value cells map.</param>
 		/// <returns>All technique information instances.</returns>
-		public static void TakeAllWWings(
-			IBag<TechniqueInfo> result, IReadOnlyGrid grid, GridMap emptyMap, GridMap bivalueMap)
+		public static void TakeAllWWings(IBag<TechniqueInfo> result, IReadOnlyGrid grid)
 		{
-			if (bivalueMap.Count < 2)
+			if (BivalueMap.Count < 2)
 			{
 				return;
 			}
@@ -60,14 +55,14 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 			// Iterate on each cells.
 			for (int c1 = 0; c1 < 72; c1++)
 			{
-				if (!bivalueMap[c1] || !emptyMap[c1])
+				if (!BivalueMap[c1] || !EmptyMap[c1])
 				{
 					continue;
 				}
 
 				// Iterate on each cells which are not peers in 'c1'.
 				int[] digits = grid.GetCandidatesReversal(c1).GetAllSets().ToArray();
-				foreach (int c2 in (bivalueMap - new GridMap(c1)).Offsets)
+				foreach (int c2 in (BivalueMap - new GridMap(c1)).Offsets)
 				{
 					if (c2 < c1 || grid.GetCandidatesReversal(c1) != grid.GetCandidatesReversal(c2))
 					{
@@ -75,7 +70,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 					}
 
 					var intersection = new GridMap(c1, false) & new GridMap(c2, false);
-					if (!emptyMap.Overlaps(intersection))
+					if (!EmptyMap.Overlaps(intersection))
 					{
 						continue;
 					}

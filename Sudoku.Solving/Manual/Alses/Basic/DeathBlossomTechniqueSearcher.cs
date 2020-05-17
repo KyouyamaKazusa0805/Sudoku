@@ -56,12 +56,10 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var (emptyMap, _, candMaps, _) = grid;
-
 			short[] checkedCandidates = new short[81];
 			int[,] death = new int[729, 1000];
-			var alsList = PreprocessAndRecordAlses(grid, emptyMap);
-			ProcessDeathAlsInfo(grid, candMaps, checkedCandidates, death, alsList);
+			var alsList = PreprocessAndRecordAlses(grid, EmptyMap);
+			ProcessDeathAlsInfo(grid, CandMaps, checkedCandidates, death, alsList);
 
 			for (int pivot = 0; pivot < 81; pivot++)
 			{
@@ -127,7 +125,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						var conclusions = new List<Conclusion>();
 						foreach (int d in allZ[n].GetAllSets())
 						{
-							var elimMap = new GridMap(temp & candMaps[d], ProcessPeersWithoutItself) & candMaps[d];
+							var elimMap = new GridMap(temp & CandMaps[d], ProcessPeersWithoutItself) & CandMaps[d];
 							if (elimMap.IsEmpty)
 							{
 								continue;

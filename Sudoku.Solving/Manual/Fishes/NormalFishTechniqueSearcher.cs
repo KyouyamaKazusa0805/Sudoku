@@ -53,7 +53,6 @@ namespace Sudoku.Solving.Manual.Fishes
 		private static void AccumulateAllBySize(
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, int size, bool searchRow)
 		{
-			var candMaps = grid.GetCandidatesMap();
 			int baseSetStart = searchRow ? 9 : 18;
 			int coverSetStart = searchRow ? 18 : 9;
 			var baseSets2 = (Span<int>)stackalloc int[2];
@@ -115,8 +114,8 @@ namespace Sudoku.Solving.Manual.Fishes
 									coverSets2[1] = cs2;
 									var bodyMap = GridMap.Empty;
 									var elimMap = GridMap.Empty;
-									GetGridMap(ref bodyMap, baseSets2, candMaps[digit]);
-									GetGridMap(ref elimMap, coverSets2, candMaps[digit]);
+									GetGridMap(ref bodyMap, baseSets2, CandMaps[digit]);
+									GetGridMap(ref elimMap, coverSets2, CandMaps[digit]);
 									bodyMap &= elimMap;
 									elimMap -= bodyMap;
 
@@ -134,7 +133,7 @@ namespace Sudoku.Solving.Manual.Fishes
 										foreach (int x in finMask.GetAllSets())
 										{
 											int possibleFinCellOffset = RegionCells[baseSet][x];
-											if (candMaps[digit][possibleFinCellOffset])
+											if (CandMaps[digit][possibleFinCellOffset])
 											{
 												finCellsMap.Add(possibleFinCellOffset);
 											}
@@ -290,8 +289,8 @@ namespace Sudoku.Solving.Manual.Fishes
 												coverSets3[2] = cs3;
 												var bodyMap = GridMap.Empty;
 												var elimMap = GridMap.Empty;
-												GetGridMap(ref bodyMap, baseSets3, candMaps[digit]);
-												GetGridMap(ref elimMap, coverSets3, candMaps[digit]);
+												GetGridMap(ref bodyMap, baseSets3, CandMaps[digit]);
+												GetGridMap(ref elimMap, coverSets3, CandMaps[digit]);
 												bodyMap &= elimMap;
 												elimMap -= bodyMap;
 
@@ -477,8 +476,8 @@ namespace Sudoku.Solving.Manual.Fishes
 														coverSets4[3] = cs4;
 														var bodyMap = GridMap.Empty;
 														var elimMap = GridMap.Empty;
-														GetGridMap(ref bodyMap, baseSets4, candMaps[digit]);
-														GetGridMap(ref elimMap, coverSets4, candMaps[digit]);
+														GetGridMap(ref bodyMap, baseSets4, CandMaps[digit]);
+														GetGridMap(ref elimMap, coverSets4, CandMaps[digit]);
 														bodyMap &= elimMap;
 														elimMap -= bodyMap;
 

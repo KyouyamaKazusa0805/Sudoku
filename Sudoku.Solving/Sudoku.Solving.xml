@@ -2480,7 +2480,7 @@
         <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetOnToOffRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,Sudoku.Data.Node,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Inference},Sudoku.Data.GridMap[],System.Collections.Generic.IList{Sudoku.Data.Node},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetOnToOffRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,Sudoku.Data.Node,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Inference},System.Collections.Generic.IList{Sudoku.Data.Node},System.Int32)">
             <summary>
             Get 'on' nodes to 'off' nodes recursively (Searching for weak links).
             </summary>
@@ -2489,11 +2489,10 @@
             <param name="candidatesUsed">The candidate used.</param>
             <param name="currentNode">The current node.</param>
             <param name="strongInferences">The strong inferences.</param>
-            <param name="digitDistributions">All digits' distributions.</param>
             <param name="stack">The stack.</param>
             <param name="length">The last length to search.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetOffToOnRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,Sudoku.Data.Node,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Inference},Sudoku.Data.GridMap[],System.Collections.Generic.IList{Sudoku.Data.Node},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetOffToOnRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,Sudoku.Data.Node,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Inference},System.Collections.Generic.IList{Sudoku.Data.Node},System.Int32)">
             <summary>
             Get 'off' nodes to 'on' nodes recursively (Searching for strong links).
             </summary>
@@ -2502,24 +2501,21 @@
             <param name="candidatesUsed">The candidates used.</param>
             <param name="currentNode">The current node.</param>
             <param name="strongInferences">All strong inferences.</param>
-            <param name="digitDistributions">All digits' distributions.</param>
             <param name="stack">The stack.</param>
             <param name="length">The last length to search.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetLcNodes(Sudoku.Data.GridMap[],System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetLcNodes(System.Int32,System.Int32)">
             <summary>
             Get all locked candidates nodes at current cell and digit.
             </summary>
-            <param name="digitDistributions">The digit distributions.</param>
             <param name="currentCell">The current cell.</param>
             <param name="currentDigit">The current digit.</param>
             <returns>All locked candidates nodes.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetLcNodes(Sudoku.Data.GridMap[],System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetLcNodes(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
             <summary>
             Get all locked candidates nodes at current cells and digit.
             </summary>
-            <param name="digitDistributions">The digit distributions.</param>
             <param name="currentCells">The current cells.</param>
             <param name="currentDigit">The current digit.</param>
             <returns>All locked candidates nodes.</returns>
@@ -3064,7 +3060,7 @@
 		<summary>The static constructor of this struct.</summary>
 	</staticConstructor>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckMirror(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap[],System.Int32,System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.CheckMirror(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Data.GridMap,System.Int32,System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
             <summary>
             Check mirror eliminations.
             </summary>
@@ -3076,19 +3072,11 @@
             <param name="lockedNonTarget">The locked member that is non-target digits.</param>
             <param name="baseCandidateMask">The base candidate mask.</param>
             <param name="mirror">The mirror map.</param>
-            <param name="digitDistributions">The digit distributions.</param>
             <param name="x">The x.</param>
             <param name="onlyOne">The only one cell.</param>
             <param name="cellOffsets">The cell offsets.</param>
             <param name="candidateOffsets">The candidate offsets.</param>
             <returns>All mirror eliminations.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetEmptyCellsMap(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Get the map of empty cells.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>The map.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetDigitDistributions(Sudoku.Data.IReadOnlyGrid)">
             <summary>
@@ -3157,13 +3145,12 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.CheckCrossline(Sudoku.Data.GridMap,System.Int16,Sudoku.Data.GridMap[])">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.CheckCrossline(Sudoku.Data.GridMap,System.Int16)">
             <summary>
             Check the cross-line cells.
             </summary>
             <param name="crossline">The cross line cells.</param>
             <param name="digitsNeedChecking">The digits that need checking.</param>
-            <param name="digitDistributions">All digit distributions.</param>
             <returns>
             A <see cref="T:System.Boolean"/> value indicating whether the structure passed the validation.
             </returns>
@@ -3370,7 +3357,7 @@
             <param name="t2">The target cell 2.</param>
             <returns>The mask of all incompatible values.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest2(Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations@,Sudoku.Data.GridMap,Sudoku.Data.GridMap[],Sudoku.Data.GridMap[],System.Int16,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest2(Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations@,Sudoku.Data.GridMap,System.Int16,System.Int32,System.Int32)">
             <summary>
             The compatibility testing after the method
             <see cref="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest(System.Int16,Sudoku.Data.GridMap[],Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int32,System.Int32)"/>.
@@ -3378,8 +3365,6 @@
             <param name="grid">The grid.</param>
             <param name="compatibilityElims">The compatibility eliminations.</param>
             <param name="baseCellsMap">The base cells map.</param>
-            <param name="digitMaps">The digit distributions.</param>
-            <param name="candMaps">Candidate maps for each digit.</param>
             <param name="baseCandidatesMask">The base candidates mask.</param>
             <param name="t1">The target cell 1.</param>
             <param name="t2">The target cell 2.</param>
@@ -3842,7 +3827,7 @@
         <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.AccumulateAllBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,Sudoku.Data.GridMap[],Sudoku.Data.GridMap[])">
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.AccumulateAllBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,Sudoku.Data.GridMap[])">
             <summary>
             Accumulate all results by the size of the fish.
             </summary>
@@ -3851,19 +3836,17 @@
             <param name="digit">The digit.</param>
             <param name="size">The size.</param>
             <param name="elimMaps">The possible elimination cells map.</param>
-            <param name="digitDistributions">The all distributions for each digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.IsRedundantRegion(System.Int32,Sudoku.Data.GridMap[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.IsRedundantRegion(System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
             <summary>
             Check whether the specified region to add is redundant.
             </summary>
             <param name="digit">The digit.</param>
-            <param name="digitDistributions">The digit distributions.</param>
             <param name="baseSets">The base sets.</param>
             <param name="baseSetToAdd">The base set to add.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.CheckCoverSets(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,Sudoku.Data.GridMap[],Sudoku.Data.GridMap[],System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.CheckCoverSets(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,Sudoku.Data.GridMap[],System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.GridMap)">
             <summary>
             Check all cover sets combinations to verify whether the fish can be formed.
             </summary>
@@ -3872,7 +3855,6 @@
             <param name="digit">The digit.</param>
             <param name="size">The size.</param>
             <param name="elimMaps">The elimination maps.</param>
-            <param name="digitDistributions">The digit distributions.</param>
             <param name="baseSets">The base sets.</param>
             <param name="bodyMap">The body map.</param>
         </member>
@@ -4602,12 +4584,11 @@
         <member name="M:Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher.GetInvalidPos(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap[])">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher.GetInvalidPos(Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Get all invalid positions.
             </summary>
             <param name="grid">The grid.</param>
-            <param name="digitDistributions">The distributions for each digit.</param>
             <returns>The 9 maps for invalid positions of each digit.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher.GetTemplates">
@@ -4687,22 +4668,20 @@
             Throws when the puzzle is not unique.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.GetAllTemplateSet(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap[])">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.GetAllTemplateSet(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Get all template sets.
             </summary>
             <param name="result">The result.</param>
             <param name="solution">The solution.</param>
-            <param name="digitDistributions">All digit distributions.</param>
             <returns>All template sets.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.GetAllTemplateDelete(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap[])">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.GetAllTemplateDelete(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Get all template deletes.
             </summary>
             <param name="result">The result.</param>
             <param name="solution">The solution.</param>
-            <param name="digitDistributions">All digit distributions.</param>
             <returns>All template deletes.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueSearcher.CreateInstance(Sudoku.Data.IReadOnlyGrid,System.Int32)">
@@ -8550,14 +8529,12 @@
         <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.TakeAllWWings(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.TakeAllWWings(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Search for all W-Wings.
             </summary>
             <param name="result">The result accumulator.</param>
             <param name="grid">The grid.</param>
-            <param name="emptyMap">The empty cells map.</param>
-            <param name="bivalueMap">The bi-value cells map.</param>
             <returns>All technique information instances.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.SearchWWingByRegions(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32[],System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
@@ -8701,21 +8678,13 @@
         <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.TakeAllBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.TakeAllBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32)">
             <summary>
             Take all technique steps by the specified size.
             </summary>
             <param name="result">The result accumulator.</param>
             <param name="grid">The grid.</param>
-            <param name="bivalueCellsMap">
-            (<see langword="in"/> parameter) bivalue cell information pair.
-            </param>
             <param name="size">The size.</param>
-            <remarks>
-            Parameter <paramref name="bivalueCellsMap"/> is passed by reference and cannot 
-            be modified because the instance is a pair of values, passed by
-            reference can make the value passing more simple.
-            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.CheckWhetherBivalueCellsAreSame(Sudoku.Data.IReadOnlyGrid,System.ReadOnlySpan{System.Int32})">
             <summary>
@@ -8954,7 +8923,43 @@
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
         </member>
-        <member name="M:Sudoku.Solving.TechniqueSearcher.TakeOne(Sudoku.Data.IReadOnlyGrid)">
+        <member name="P:Sudoku.Solving.TechniqueSearcher.EmptyMap">
+            <summary>
+            The empty cells map.
+            </summary>
+            <remarks>
+            This map will be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)"/> called.
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)"/>
+        </member>
+        <member name="P:Sudoku.Solving.TechniqueSearcher.BivalueMap">
+            <summary>
+            The bi-value cells map.
+            </summary>
+            <remarks>
+            This map will be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)"/> called.
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)"/>
+        </member>
+        <member name="P:Sudoku.Solving.TechniqueSearcher.CandMaps">
+            <summary>
+            The candidate maps.
+            </summary>
+            <remarks>
+            This map will be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)"/> called.
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)"/>
+        </member>
+        <member name="P:Sudoku.Solving.TechniqueSearcher.ValueMaps">
+            <summary>
+            The digit maps.
+            </summary>
+            <remarks>
+            This map will be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)"/> called.
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)"/>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueSearcher.GetOne(Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Take a technique step after searched all solving steps.
             </summary>
@@ -8982,6 +8987,12 @@
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.ToString">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Initialize the maps that used later.
+            </summary>
+            <param name="grid">The grid.</param>
         </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.GetPriority(Sudoku.Solving.TechniqueSearcher)">
             <summary>

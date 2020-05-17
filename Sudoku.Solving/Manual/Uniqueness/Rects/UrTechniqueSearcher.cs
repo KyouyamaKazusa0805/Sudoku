@@ -57,8 +57,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var bivalueMap = grid.GetBivalueCellsMap();
-
 			// Iterate on mode (whether use AR or UR mode to search).
 			var tempList = new List<UrTechniqueInfo>();
 			foreach (bool arMode in stackalloc[] { false, true })
@@ -126,13 +124,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									var tempOtherCellsMap = new GridMap(otherCellsMap) { [corner2] = false };
 
 									// Both diagonal and non-diagonal.
-									CheckType2(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
+									CheckType2(
+										tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2,
+										tempOtherCellsMap);
 
 									if (_searchExtended)
 									{
 										for (int size = 2; size <= 4; size++)
 										{
-											CheckWing(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, bivalueMap, size);
+											CheckWing(
+												tempList, grid, urCells, arMode, comparer, d1, d2,
+												corner1, corner2, tempOtherCellsMap, size);
 										}
 									}
 
@@ -141,12 +143,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										// Diagonal type.
 										if (!arMode)
 										{
-											CheckType6(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
+											CheckType6(
+												tempList, grid, urCells, false, comparer, d1, d2,
+												corner1, corner2, tempOtherCellsMap);
 
 											if (_searchExtended)
 											{
-												Check2D(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
-												Check2D1SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
+												Check2D(
+													tempList, grid, urCells, false, comparer, d1, d2,
+													corner1, corner2, tempOtherCellsMap);
+												Check2D1SL(
+													tempList, grid, urCells, false, comparer, d1, d2,
+													corner1, corner2, tempOtherCellsMap);
 											}
 										}
 									}
@@ -155,19 +163,31 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										// Non-diagonal type.
 										for (int size = 2; size <= 4; size++)
 										{
-											CheckType3Naked(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, size);
-											CheckType3Hidden(tempList, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, size);
+											CheckType3Naked(
+												tempList, grid, urCells, arMode, comparer, d1, d2,
+												corner1, corner2, tempOtherCellsMap, size);
+											CheckType3Hidden(
+												tempList, grid, urCells, arMode, comparer, d1, d2,
+												corner1, corner2, tempOtherCellsMap, size);
 										}
 
 										if (!arMode)
 										{
-											CheckType4(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
+											CheckType4(
+												tempList, grid, urCells, false, comparer, d1, d2,
+												corner1, corner2, tempOtherCellsMap);
 
 											if (_searchExtended)
 											{
-												Check2B1SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
-												Check4X3SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
-												Check4C3SL(tempList, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap);
+												Check2B1SL(
+													tempList, grid, urCells, false, comparer, d1, d2,
+													corner1, corner2, tempOtherCellsMap);
+												Check4X3SL(
+													tempList, grid, urCells, false, comparer, d1, d2,
+													corner1, corner2, tempOtherCellsMap);
+												Check4C3SL(
+													tempList, grid, urCells, false, comparer, d1, d2,
+													corner1, corner2, tempOtherCellsMap);
 											}
 										}
 									}
@@ -370,8 +390,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 		partial void CheckWing(
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap,
-			GridMap bivalueCells, int size);
+			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap, int size);
 		#endregion
 	}
 }

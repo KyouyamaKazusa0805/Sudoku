@@ -157,7 +157,9 @@ namespace Sudoku.Solving.Manual
 			var bag = new Bag<TechniqueInfo>();
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
+
 		Label_Restart:
+			TechniqueSearcher.InitializeMaps(cloneation);
 			for (int i = 0, length = searchers.Length; i < length; i++)
 			{
 				var searcherListGroup = searchers[i];
@@ -304,7 +306,7 @@ namespace Sudoku.Solving.Manual
 			if (!sukaku && CheckGurthSymmetricalPlacement)
 			{
 				var symmetrySearcher = new GspTechniqueSearcher();
-				var tempStep = symmetrySearcher.TakeOne(cloneation);
+				var tempStep = symmetrySearcher.GetOne(cloneation);
 				if (!(tempStep is null))
 				{
 					if (CheckConclusionsValidity(solution, tempStep.Conclusions))
@@ -377,7 +379,9 @@ namespace Sudoku.Solving.Manual
 			var bag = new Bag<TechniqueInfo>();
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
+
 		Label_Restart:
+			TechniqueSearcher.InitializeMaps(cloneation);
 			for (int i = 0, length = searchers.Length; i < length; i++)
 			{
 				var searcher = searchers[i];

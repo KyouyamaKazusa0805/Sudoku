@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Solving.Manual;
 
@@ -15,11 +16,48 @@ namespace Sudoku.Solving
 	public abstract class TechniqueSearcher : IComparable<TechniqueSearcher>, IEquatable<TechniqueSearcher>
 	{
 		/// <summary>
+		/// The empty cells map.
+		/// </summary>
+		/// <remarks>
+		/// This map will be used after <see cref="InitializeMaps"/> called.
+		/// </remarks>
+		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
+		internal static GridMap EmptyMap { get; private set; }
+
+		/// <summary>
+		/// The bi-value cells map.
+		/// </summary>
+		/// <remarks>
+		/// This map will be used after <see cref="InitializeMaps"/> called.
+		/// </remarks>
+		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
+		internal static GridMap BivalueMap { get; private set; }
+
+		/// <summary>
+		/// The candidate maps.
+		/// </summary>
+		/// <remarks>
+		/// This map will be used after <see cref="InitializeMaps"/> called.
+		/// </remarks>
+		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
+		internal static GridMap[] CandMaps { get; private set; } = null!;
+
+		/// <summary>
+		/// The digit maps.
+		/// </summary>
+		/// <remarks>
+		/// This map will be used after <see cref="InitializeMaps"/> called.
+		/// </remarks>
+		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
+		internal static GridMap[] ValueMaps { get; private set; } = null!;
+
+
+		/// <summary>
 		/// Take a technique step after searched all solving steps.
 		/// </summary>
 		/// <param name="grid">The grid to search steps.</param>
 		/// <returns>A technique information.</returns>
-		public TechniqueInfo? TakeOne(IReadOnlyGrid grid)
+		public TechniqueInfo? GetOne(IReadOnlyGrid grid)
 		{
 			var bag = new Bag<TechniqueInfo>();
 			GetAll(bag, grid);
@@ -48,6 +86,12 @@ namespace Sudoku.Solving
 		/// <inheritdoc/>
 		public override string ToString() => GetType().Name;
 
+
+		/// <summary>
+		/// Initialize the maps that used later.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		public static void InitializeMaps(IReadOnlyGrid grid) => (EmptyMap, BivalueMap, CandMaps, ValueMaps) = grid;
 
 		/// <summary>
 		/// To get the priority of the technique searcher.

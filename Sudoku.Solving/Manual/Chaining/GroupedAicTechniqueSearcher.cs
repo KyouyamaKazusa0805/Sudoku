@@ -177,11 +177,9 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			(_, _, var candMaps, _) = grid;
-
 			var candidatesUsed = FullGridMap.Empty;
 			var stack = new List<Node>();
-			var strongInferences = GetAllStrongInferences(grid, candMaps);
+			var strongInferences = GetAllStrongInferences(grid, CandMaps);
 
 			// Iterate on each strong relation, and search for weak relations.
 			foreach (var (start, end) in strongInferences)
@@ -198,7 +196,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					// Get 'on' to 'off' nodes and 'off' to 'on' nodes recursively.
 					GetOnToOffRecursively(
 						accumulator, grid, candidatesUsed, endNode, strongInferences,
-						candMaps, stack, _maxLength - 2);
+						stack, _maxLength - 2);
 
 					// Undo the step to recover the candidate status.
 					RemoveNode(start, ref candidatesUsed);
@@ -217,13 +215,12 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="candidatesUsed">The candidate used.</param>
 		/// <param name="currentNode">The current node.</param>
 		/// <param name="strongInferences">The strong inferences.</param>
-		/// <param name="digitDistributions">All digits' distributions.</param>
 		/// <param name="stack">The stack.</param>
 		/// <param name="length">The last length to search.</param>
 		private void GetOnToOffRecursively(
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, FullGridMap candidatesUsed,
 			Node currentNode, IReadOnlyList<Inference> strongInferences,
-			GridMap[] digitDistributions, IList<Node> stack, int length)
+			IList<Node> stack, int length)
 		{
 			if (length < 0)
 			{
@@ -258,7 +255,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 						GetOffToOnRecursively(
 							accumulator, grid, candidatesUsed, nextNode, strongInferences,
-							digitDistributions, stack, length - 1);
+							stack, length - 1);
 
 						candidatesUsed.Remove(nextCandidate);
 						stack.RemoveLastElement();
@@ -286,7 +283,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 							GetOffToOnRecursively(
 								accumulator, grid, candidatesUsed, nextNode, strongInferences,
-								digitDistributions, stack, length - 1);
+								stack, length - 1);
 
 							candidatesUsed.Remove(nextCandidate);
 							stack.RemoveLastElement();
@@ -296,7 +293,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					if (_searchLcNodes)
 					{
 						// Check locked candidate nodes.
-						foreach (var nextNode in GetLcNodes(digitDistributions, currentCell, currentDigit))
+						foreach (var nextNode in GetLcNodes(currentCell, currentDigit))
 						{
 							if (isFullInMap(nextNode) || nextNode.FullCovered(currentNode))
 							{
@@ -308,7 +305,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 							GetOffToOnRecursively(
 								accumulator, grid, candidatesUsed, nextNode, strongInferences,
-								digitDistributions, stack, length - 1);
+								stack, length - 1);
 
 							stack.RemoveLastElement();
 							candidatesUsed.RemoveRange(nextNode.Candidates);
@@ -345,7 +342,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 						GetOffToOnRecursively(
 							accumulator, grid, candidatesUsed, nextNode, strongInferences,
-							digitDistributions, stack, length - 1);
+							stack, length - 1);
 
 						candidatesUsed.Remove(nextCandidate);
 						stack.RemoveLastElement();
@@ -364,7 +361,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					if (_searchLcNodes)
 					{
 						// Check locked candidate nodes.
-						foreach (var nextNode in GetLcNodes(digitDistributions, currentCells, currentDigit))
+						foreach (var nextNode in GetLcNodes(currentCells, currentDigit))
 						{
 							if (isFullInMap(nextNode) || nextNode.IsCollideWith(currentNode))
 							{
@@ -377,7 +374,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 							GetOffToOnRecursively(
 								accumulator, grid, candidatesUsed, nextNode, strongInferences,
-								digitDistributions, stack, length - 1);
+								stack, length - 1);
 
 							stack.RemoveLastElement();
 							candidatesUsed.RemoveRange(nextNode.Candidates);
@@ -397,13 +394,11 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="candidatesUsed">The candidates used.</param>
 		/// <param name="currentNode">The current node.</param>
 		/// <param name="strongInferences">All strong inferences.</param>
-		/// <param name="digitDistributions">All digits' distributions.</param>
 		/// <param name="stack">The stack.</param>
 		/// <param name="length">The last length to search.</param>
 		private void GetOffToOnRecursively(
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, FullGridMap candidatesUsed,
-			Node currentNode, IReadOnlyList<Inference> strongInferences,
-			GridMap[] digitDistributions, IList<Node> stack, int length)
+			Node currentNode, IReadOnlyList<Inference> strongInferences, IList<Node> stack, int length)
 		{
 			if (length < 0)
 			{
@@ -449,7 +444,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 						GetOnToOffRecursively(
 							accumulator, grid, candidatesUsed, nextNode, strongInferences,
-							digitDistributions, stack, length - 1);
+							stack, length - 1);
 
 						candidatesUsed.Remove(nextCandidate);
 						stack.RemoveLastElement();
@@ -478,7 +473,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 							GetOnToOffRecursively(
 								accumulator, grid, candidatesUsed, nextNode, strongInferences,
-								digitDistributions, stack, length - 1);
+								stack, length - 1);
 
 							candidatesUsed.Remove(nextCandidate);
 							stack.RemoveLastElement();
@@ -487,7 +482,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 					if (_searchLcNodes)
 					{
-						foreach (var nextNode in GetLcNodes(digitDistributions, currentCell, currentDigit))
+						foreach (var nextNode in GetLcNodes(currentCell, currentDigit))
 						{
 							if ((nextNode.CandidatesMap | candidatesUsed) == candidatesUsed)
 							{
@@ -496,7 +491,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 							var tempMap = (nextNode.CandidatesMap | currentNode.CandidatesMap)
 								.Reduct(currentDigit);
-							if (((digitDistributions[currentDigit] & RegionMaps[tempMap.CoveredRegions.First()]) - tempMap).IsNotEmpty
+							if (((CandMaps[currentDigit] & RegionMaps[tempMap.CoveredRegions.First()]) - tempMap).IsNotEmpty
 								|| nextNode.FullCovered(currentNode))
 							{
 								continue;
@@ -514,7 +509,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 								GetOnToOffRecursively(
 									accumulator, grid, candidatesUsed, nextNode, strongInferences,
-									digitDistributions, stack, length - 1);
+									stack, length - 1);
 
 								candidatesUsed.RemoveRange(nextNode.Candidates);
 								stack.RemoveLastElement();
@@ -558,7 +553,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 						GetOnToOffRecursively(
 							accumulator, grid, candidatesUsed, nextNode, strongInferences,
-							digitDistributions, stack, length - 1);
+							stack, length - 1);
 
 						candidatesUsed.Remove(nextCandidate);
 						stack.RemoveLastElement();
@@ -576,16 +571,15 @@ namespace Sudoku.Solving.Manual.Chaining
 
 					if (_searchLcNodes)
 					{
-						foreach (var nextNode in GetLcNodes(digitDistributions, currentCells, currentDigit))
+						foreach (var nextNode in GetLcNodes(currentCells, currentDigit))
 						{
 							if ((nextNode.CandidatesMap | candidatesUsed) == candidatesUsed)
 							{
 								continue;
 							}
 
-							var tempMap = (nextNode.CandidatesMap | currentNode.CandidatesMap)
-								.Reduct(currentDigit);
-							if (((digitDistributions[currentDigit] & RegionMaps[tempMap.CoveredRegions.First()]) - tempMap).IsNotEmpty
+							var tempMap = (nextNode.CandidatesMap | currentNode.CandidatesMap).Reduct(currentDigit);
+							if (((CandMaps[currentDigit] & RegionMaps[tempMap.CoveredRegions.First()]) - tempMap).IsNotEmpty
 								|| nextNode == currentNode)
 							{
 								continue;
@@ -603,7 +597,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 								GetOnToOffRecursively(
 									accumulator, grid, candidatesUsed, nextNode, strongInferences,
-									digitDistributions, stack, length - 1);
+									stack, length - 1);
 
 								candidatesUsed.RemoveRange(nextNode.Candidates);
 								stack.RemoveLastElement();
@@ -619,18 +613,16 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Get all locked candidates nodes at current cell and digit.
 		/// </summary>
-		/// <param name="digitDistributions">The digit distributions.</param>
 		/// <param name="currentCell">The current cell.</param>
 		/// <param name="currentDigit">The current digit.</param>
 		/// <returns>All locked candidates nodes.</returns>
-		private IEnumerable<Node> GetLcNodes(
-			GridMap[] digitDistributions, int currentCell, int currentDigit)
+		private IEnumerable<Node> GetLcNodes(int currentCell, int currentDigit)
 		{
 			var result = new List<Node>();
 			int b = GetRegion(currentCell, RegionLabel.Block);
 			foreach (int region in IntersectionTable[b])
 			{
-				var map = RegionMaps[b] & RegionMaps[region] & digitDistributions[currentDigit];
+				var map = RegionMaps[b] & RegionMaps[region] & CandMaps[currentDigit];
 				if (map.Count < 2)
 				{
 					continue;
@@ -648,12 +640,10 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Get all locked candidates nodes at current cells and digit.
 		/// </summary>
-		/// <param name="digitDistributions">The digit distributions.</param>
 		/// <param name="currentCells">The current cells.</param>
 		/// <param name="currentDigit">The current digit.</param>
 		/// <returns>All locked candidates nodes.</returns>
-		private IEnumerable<Node> GetLcNodes(
-			GridMap[] digitDistributions, IEnumerable<int> currentCells, int currentDigit)
+		private IEnumerable<Node> GetLcNodes(IEnumerable<int> currentCells, int currentDigit)
 		{
 			var result = new List<Node>();
 			int[] coveredRegions = new GridMap(currentCells).CoveredRegions.ToArray();
@@ -666,7 +656,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					continue;
 				}
 
-				var map = RegionMaps[b] & RegionMaps[region] & digitDistributions[currentDigit];
+				var map = RegionMaps[b] & RegionMaps[region] & CandMaps[currentDigit];
 				if (map.Count < 2)
 				{
 					continue;

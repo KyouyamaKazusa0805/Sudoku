@@ -84,7 +84,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <returns>All RCCs searched.</returns>
 		public static IEnumerable<Rcc> GetAllRccs(IReadOnlyGrid grid, bool allowOverlap)
 		{
-			var candMaps = grid.GetCandidatesMap();
+			var candMaps = TechniqueSearcher.CandMaps;
 			var alses = Als.GetAllAlses(grid).ToArray();
 			for (int i = 0, length = alses.Length; i < length - 1; i++)
 			{

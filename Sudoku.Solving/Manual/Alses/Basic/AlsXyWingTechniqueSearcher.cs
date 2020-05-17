@@ -40,7 +40,6 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			var rccs = new List<(Als _left, Als _right, short _mask)>();
-			var candsMap = grid.GetCandidatesMap();
 			var alses = Als.GetAllAlses(grid).ToArray();
 
 			// Gather all RCCs.
@@ -67,7 +66,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					short rccMask = 0;
 					foreach (int digit in mask.GetAllSets())
 					{
-						if ((map & candsMap[digit]).AllSetsAreInOneRegion(out _))
+						if ((map & CandMaps[digit]).AllSetsAreInOneRegion(out _))
 						{
 							rccMask |= (short)(1 << digit);
 						}
@@ -145,8 +144,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							foreach (int digit in digitsMask.GetAllSets())
 							{
 								var elimMap = (
-									new GridMap((aMap | bMap) & candsMap[digit], ProcessPeersWithoutItself)
-									& candsMap[digit]) - (aMap | bMap | cMap);
+									new GridMap((aMap | bMap) & CandMaps[digit], ProcessPeersWithoutItself)
+									& CandMaps[digit]) - (aMap | bMap | cMap);
 								if (elimMap.IsEmpty)
 								{
 									continue;

@@ -50,12 +50,11 @@ namespace Sudoku.Solving.Manual.LastResorts
 		{
 			if (grid.IsValid(out var solution))
 			{
-				var candMaps = grid.GetCandidatesMap();
 				if (!_templateDeleteOnly)
 				{
-					GetAllTemplateSet(accumulator, solution, candMaps);
+					GetAllTemplateSet(accumulator, solution);
 				}
-				GetAllTemplateDelete(accumulator, solution, candMaps);
+				GetAllTemplateDelete(accumulator, solution);
 			}
 			else
 			{
@@ -69,15 +68,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// </summary>
 		/// <param name="result">The result.</param>
 		/// <param name="solution">The solution.</param>
-		/// <param name="digitDistributions">All digit distributions.</param>
 		/// <returns>All template sets.</returns>
-		private static void GetAllTemplateSet(
-			IBag<TechniqueInfo> result, IReadOnlyGrid solution, GridMap[] digitDistributions)
+		private static void GetAllTemplateSet(IBag<TechniqueInfo> result, IReadOnlyGrid solution)
 		{
 			for (int digit = 0; digit < 9; digit++)
 			{
 				var map = CreateInstance(solution, digit);
-				var resultMap = map & digitDistributions[digit];
+				var resultMap = map & CandMaps[digit];
 				var conclusions = new List<Conclusion>();
 				foreach (int cell in resultMap.Offsets)
 				{
@@ -112,15 +109,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// </summary>
 		/// <param name="result">The result.</param>
 		/// <param name="solution">The solution.</param>
-		/// <param name="digitDistributions">All digit distributions.</param>
 		/// <returns>All template deletes.</returns>
-		private static void GetAllTemplateDelete(
-			IBag<TechniqueInfo> result, IReadOnlyGrid solution, GridMap[] digitDistributions)
+		private static void GetAllTemplateDelete(IBag<TechniqueInfo> result, IReadOnlyGrid solution)
 		{
 			for (int digit = 0; digit < 9; digit++)
 			{
 				var map = CreateInstance(solution, digit);
-				var resultMap = digitDistributions[digit] - map;
+				var resultMap = CandMaps[digit] - map;
 				var conclusions = new List<Conclusion>();
 				foreach (int cell in resultMap.Offsets)
 				{

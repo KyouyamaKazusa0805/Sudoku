@@ -44,12 +44,10 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var bivalueCellsMap = grid.GetBivalueCellsMap();
-
 			// Iterates on size.
 			for (int size = 3; size <= _size; size++)
 			{
-				TakeAllBySize(accumulator, grid, bivalueCellsMap, size);
+				TakeAllBySize(accumulator, grid, size);
 			}
 		}
 
@@ -59,23 +57,15 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
-		/// <param name="bivalueCellsMap">
-		/// (<see langword="in"/> parameter) bivalue cell information pair.
-		/// </param>
 		/// <param name="size">The size.</param>
-		/// <remarks>
-		/// Parameter <paramref name="bivalueCellsMap"/> is passed by reference and cannot 
-		/// be modified because the instance is a pair of values, passed by
-		/// reference can make the value passing more simple.
-		/// </remarks>
 		private static void TakeAllBySize(
-			IBag<TechniqueInfo> result, IReadOnlyGrid grid, GridMap bivalueCellsMap, int size)
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int size)
 		{
 			// Check bivalue cells.
 			// If the number of bivalue cells is less than the specified size,
 			// which means that the bivalue cells is not enough for construct
 			// this technique structure, so we should return the empty list.
-			if (bivalueCellsMap.Count < size)
+			if (BivalueMap.Count < size)
 			{
 				return;
 			}
@@ -94,7 +84,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 				}
 
 				var pivotPeersMap = new GridMap(pivot, false);
-				var intersection = bivalueCellsMap & pivotPeersMap;
+				var intersection = BivalueMap & pivotPeersMap;
 				if (intersection.Count < size - 1)
 				{
 					goto Label_ContinueLoop;

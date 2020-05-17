@@ -33,8 +33,6 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var emptyMap = grid.GetEmptyCellsMap();
-
 			var pairs = (Span<short>)stackalloc short[8];
 			var tempLink = (Span<short>)stackalloc short[8];
 			var linkRegion = (Span<int>)stackalloc int[8];
@@ -127,10 +125,10 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					linkRegion[7] = GetRegion(cells[14], RegionLabel.Block);
 
 					var conclusions = new List<Conclusion>();
-					var map = new GridMap(cells) & emptyMap;
+					var map = new GridMap(cells) & EmptyMap;
 					for (k = 0; k < 8; k++)
 					{
-						var elimMap = (RegionMaps[linkRegion[k]] & emptyMap) - map;
+						var elimMap = (RegionMaps[linkRegion[k]] & EmptyMap) - map;
 						if (elimMap.IsEmpty)
 						{
 							continue;
@@ -139,14 +137,12 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						foreach (int cell in elimMap.Offsets)
 						{
 							short cands = (short)(grid.GetCandidatesReversal(cell) & tempLink[k]);
-							if (cands == 0)
+							if (cands != 0)
 							{
-								continue;
-							}
-
-							foreach (int digit in cands.GetAllSets())
-							{
-								conclusions.Add(new Conclusion(Elimination, cell, digit));
+								foreach (int digit in cands.GetAllSets())
+								{
+									conclusions.Add(new Conclusion(Elimination, cell, digit));
+								}
 							}
 						}
 					}

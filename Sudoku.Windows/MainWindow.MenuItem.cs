@@ -908,7 +908,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			if (!(new GspTechniqueSearcher().TakeOne(_puzzle) is GspTechniqueInfo info))
+			if (!(new GspTechniqueSearcher().GetOne(_puzzle) is GspTechniqueInfo info))
 			{
 				MessageBox.Show("The puzzle does not contain any Gurth's symmetrical placement.", "Info");
 				e.Handled = true;

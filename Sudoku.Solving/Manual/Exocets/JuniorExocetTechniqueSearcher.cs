@@ -54,14 +54,12 @@ namespace Sudoku.Solving.Manual.Exocets
 			var mirror1 = (Span<int>)stackalloc int[2];
 			var mirror2 = (Span<int>)stackalloc int[2];
 			var modes = (Span<bool>)stackalloc[] { true, false };
-			var emptyCellsMap = GetEmptyCellsMap(grid);
-			var digitDistributions = GetDigitDistributions(grid);
 			foreach (var exocet in Exocets)
 			{
 				var (baseMap, targetMap, _) = exocet;
 				var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2) = exocet;
 				// The base cells cannot be given or modifiable.
-				if ((baseMap - emptyCellsMap).IsNotEmpty)
+				if ((baseMap - EmptyMap).IsNotEmpty)
 				{
 					continue;
 				}
@@ -104,7 +102,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					| (short)(grid.GetCandidatesReversal(mirror2[0]) | grid.GetCandidatesReversal(mirror2[1])));
 				needChecking &= temp;
 				short lockedMemberR = (short)(baseCandidatesMask & ~(baseCandidatesMask & temp));
-				if (!CheckCrossline(s, needChecking, digitDistributions))
+				if (!CheckCrossline(s, needChecking))
 				{
 					continue;
 				}
@@ -236,7 +234,6 @@ namespace Sudoku.Solving.Manual.Exocets
 							lockedNonTarget: lockedNonTarget > 0 ? lockedNonTarget : (short)0,
 							baseCandidatesMask,
 							mirror,
-							digitDistributions,
 							x,
 							onlyOne:
 								(mask1 & baseCandidatesMask) != 0 && (mask2 & baseCandidatesMask) == 0
@@ -259,7 +256,6 @@ namespace Sudoku.Solving.Manual.Exocets
 							lockedNonTarget: lockedNonTarget > 0 ? lockedNonTarget : (short)0,
 							baseCandidatesMask,
 							mirror,
-							digitDistributions,
 							x,
 							onlyOne:
 								(mask1 & baseCandidatesMask) != 0 && (mask2 & baseCandidatesMask) == 0
@@ -283,15 +279,14 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </summary>
 		/// <param name="crossline">The cross line cells.</param>
 		/// <param name="digitsNeedChecking">The digits that need checking.</param>
-		/// <param name="digitDistributions">All digit distributions.</param>
 		/// <returns>
 		/// A <see cref="bool"/> value indicating whether the structure passed the validation.
 		/// </returns>
-		private bool CheckCrossline(GridMap crossline, short digitsNeedChecking, GridMap[] digitDistributions)
+		private bool CheckCrossline(GridMap crossline, short digitsNeedChecking)
 		{
 			foreach (int digit in digitsNeedChecking.GetAllSets())
 			{
-				var crosslinePerCandidate = crossline & digitDistributions[digit];
+				var crosslinePerCandidate = crossline & ValueMaps[digit];
 				int r = crosslinePerCandidate.RowMask, c = crosslinePerCandidate.ColumnMask;
 				if (r.CountSet() <= 2 || c.CountSet() <= 2)
 				{

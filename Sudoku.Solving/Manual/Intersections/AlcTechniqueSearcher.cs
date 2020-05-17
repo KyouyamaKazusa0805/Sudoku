@@ -61,11 +61,9 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <returns>The result.</returns>
 		private void AccumulateAllBySize(IBag<TechniqueInfo> result, IReadOnlyGrid grid, int size)
 		{
-			var emptyMap = grid.GetEmptyCellsMap();
-
 			foreach (var ((baseSet, coverSet), (a, b, c)) in IntersectionMaps)
 			{
-				if (c.Overlaps(emptyMap))
+				if (c.Overlaps(EmptyMap))
 				{
 					// Process for 2 cases.
 					Process(grid, result, size, baseSet, coverSet, a, b, c);

@@ -1097,7 +1097,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		partial void CheckWing(
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap,
-			GridMap bivalueCells, int size)
+			int size)
 		{
 			// Subtype 1:
 			//     ↓ corner1
@@ -1129,7 +1129,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					return;
 				}
 
-				var map = (new GridMap(otherCell1, false) | new GridMap(otherCell2, false)) & bivalueCells;
+				var map = (new GridMap(otherCell1, false) | new GridMap(otherCell2, false)) & BivalueMap;
 				if (map.Count < size)
 				{
 					return;
