@@ -5,6 +5,7 @@ using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
@@ -14,7 +15,8 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// <summary>
 	/// Encapsulates a <b>domino loop</b> technique.
 	/// </summary>
-	[HighAllocation, TechniqueDisplay("SK-Loop")]
+	[TechniqueDisplay("SK-Loop")]
+	[HighAllocation]
 	public sealed partial class SkLoopTechniqueSearcher : MslsTechniqueSearcher
 	{
 		/// <summary>

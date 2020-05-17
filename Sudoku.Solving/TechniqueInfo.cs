@@ -4,6 +4,7 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
 
 namespace Sudoku.Solving

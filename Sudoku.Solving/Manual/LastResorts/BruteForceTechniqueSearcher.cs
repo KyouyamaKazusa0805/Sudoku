@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Solving.Annotations;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {

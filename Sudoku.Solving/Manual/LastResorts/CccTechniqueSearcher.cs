@@ -5,6 +5,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.LastResorts
@@ -12,7 +13,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// <summary>
 	/// Encapsulates a <b>chute clue cover</b> (CCC) technique searcher.
 	/// </summary>
-	[HighAllocation, TechniqueDisplay("Chute Clue Cover")]
+	[TechniqueDisplay("Chute Clue Cover")]
+	[HighAllocation]
 	public sealed class CccTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <summary>

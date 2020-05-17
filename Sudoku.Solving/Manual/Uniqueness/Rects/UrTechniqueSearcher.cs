@@ -6,6 +6,7 @@ using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
+using Sudoku.Solving.Annotations;
 using static Sudoku.Data.CellStatus;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects

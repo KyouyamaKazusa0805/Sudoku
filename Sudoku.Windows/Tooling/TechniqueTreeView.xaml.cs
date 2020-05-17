@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using Sudoku.Extensions;
-using Sudoku.Solving;
+using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
 
 namespace Sudoku.Windows.Tooling

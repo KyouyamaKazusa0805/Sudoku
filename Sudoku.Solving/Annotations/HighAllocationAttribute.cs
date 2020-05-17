@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sudoku.Solving
+namespace Sudoku.Solving.Annotations
 {
 	/// <summary>
 	/// Represents a mark on a searcher which should allocate

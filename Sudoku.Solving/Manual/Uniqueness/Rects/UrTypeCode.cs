@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Manual.Uniqueness.Rects
+﻿using Sudoku.Solving.Annotations;
+
+namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
 	/// <summary>
 	/// Indicates the type code for each UR type. Some types have the another name,

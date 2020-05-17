@@ -4,6 +4,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual.Singles;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Data.NodeType;

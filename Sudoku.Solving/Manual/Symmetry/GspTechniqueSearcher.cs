@@ -2,6 +2,7 @@
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using Sudoku.Solving.Annotations;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
 using Action = System.Action<System.Collections.Generic.IBag<Sudoku.Solving.TechniqueInfo>, Sudoku.Data.IReadOnlyGrid>;

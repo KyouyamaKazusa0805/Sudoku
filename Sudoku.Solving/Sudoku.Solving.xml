@@ -4,31 +4,6 @@
         <name>Sudoku.Solving</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Solving.AliasAttribute">
-            <summary>
-            To mark on a enum field to give an alias.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.AliasAttribute.#ctor(System.String)">
-            <summary>
-            Initializes an instance with the enum field.
-            </summary>
-            <param name="fieldName">The field name.</param>
-        </member>
-        <member name="P:Sudoku.Solving.AliasAttribute.FieldName">
-            <summary>
-            The field name.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.AliasAttribute.Convert``2(``0)">
-            <summary>
-            Convert the specified enum field to the specified type field.
-            </summary>
-            <typeparam name="TEnumBase">The base type of the enum field.</typeparam>
-            <typeparam name="TEnumTarget">The target enum type to convert to.</typeparam>
-            <param name="enumField">The enum field.</param>
-            <returns>The result. Return <see langword="null"/> when the conversion is failed.</returns>
-        </member>
         <member name="T:Sudoku.Solving.AnalysisResult">
             <summary>
             Provides an analysis result after a puzzle solved.
@@ -371,6 +346,88 @@
             Get the data of bottleneck.
             </summary>
             <returns>The data.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Annotations.AliasAttribute">
+            <summary>
+            To mark on a enum field to give an alias.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Annotations.AliasAttribute.#ctor(System.String)">
+            <summary>
+            Initializes an instance with the enum field.
+            </summary>
+            <param name="fieldName">The field name.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Annotations.AliasAttribute.FieldName">
+            <summary>
+            The field name.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Annotations.AliasAttribute.Convert``2(``0)">
+            <summary>
+            Convert the specified enum field to the specified type field.
+            </summary>
+            <typeparam name="TEnumBase">The base type of the enum field.</typeparam>
+            <typeparam name="TEnumTarget">The target enum type to convert to.</typeparam>
+            <param name="enumField">The enum field.</param>
+            <returns>The result. Return <see langword="null"/> when the conversion is failed.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Annotations.HighAllocationAttribute">
+            <summary>
+            Represents a mark on a searcher which should allocate
+            extremely-high temporary memory.
+            If so, the manual solver will enable garbage collection forcedly
+            after finished. 
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Annotations.TechniqueDisplayAttribute">
+            <summary>
+            <para>
+            To mark on a technique searcher class (i.e. <see cref="T:Sudoku.Solving.TechniqueSearcher"/>),
+            to provide additional displaying messages which are used in UI forms, such as
+            technique priority settings form.
+            </para>
+            <para>
+            You can use this instance to mark on a enumeration field such as <see cref="T:Sudoku.Solving.Manual.TechniqueCode"/>
+            to show the name on the screen also.
+            </para>
+            </summary>
+            <seealso cref="T:Sudoku.Solving.TechniqueSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.TechniqueCode"/>
+        </member>
+        <member name="M:Sudoku.Solving.Annotations.TechniqueDisplayAttribute.#ctor(System.String)">
+            <summary>
+            Initializes an instance with the specified displaying name.
+            </summary>
+            <param name="displayName">The name.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Annotations.TechniqueDisplayAttribute.DisplayName">
+            <summary>
+            Indicates the display name of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Annotations.TechniqueDisplayAttribute.Category">
+            <summary>
+            <para>
+            Indicates the category of this instance to display.
+            This property is used for displaying when need grouping. The value is
+            <see langword="null"/> in default case.
+            </para>
+            <para>
+            The category will be displayed like <c>"Fishes&gt;Normal Fishes&gt;Finned"</c>,
+            which used '<c>&gt;</c>' character to make a new group or a new sub-group.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Annotations.TechniqueDisplayAttribute.GetDisplayName``1(``0)">
+            <summary>
+            Get the display name of the specified enum field.
+            </summary>
+            <typeparam name="TEnum">The type of the enum field.</typeparam>
+            <param name="enumField">The enum field to check.</param>
+            <returns>
+            The display name. Return <see langword="null"/> when the field does not mark this attribute.
+            </returns>
         </member>
         <member name="T:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver">
             <summary>
@@ -1033,14 +1090,6 @@
             Generates a puzzle.
             </summary>
             <returns>The puzzle.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.HighAllocationAttribute">
-            <summary>
-            Represents a mark on a searcher which should allocate
-            extremely-high temporary memory.
-            If so, the manual solver will enable garbage collection forcedly
-            after finished. 
-            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Als">
             <summary>
@@ -8764,55 +8813,6 @@
             <param name="grid">The puzzle.</param>
             <returns>
             An <see cref="T:Sudoku.Solving.AnalysisResult"/> displaying all information of solving.
-            </returns>
-        </member>
-        <member name="T:Sudoku.Solving.TechniqueDisplayAttribute">
-            <summary>
-            <para>
-            To mark on a technique searcher class (i.e. <see cref="T:Sudoku.Solving.TechniqueSearcher"/>),
-            to provide additional displaying messages which are used in UI forms, such as
-            technique priority settings form.
-            </para>
-            <para>
-            You can use this instance to mark on a enumeration field such as <see cref="T:Sudoku.Solving.Manual.TechniqueCode"/>
-            to show the name on the screen also.
-            </para>
-            </summary>
-            <seealso cref="T:Sudoku.Solving.TechniqueSearcher"/>
-            <seealso cref="T:Sudoku.Solving.Manual.TechniqueCode"/>
-        </member>
-        <member name="M:Sudoku.Solving.TechniqueDisplayAttribute.#ctor(System.String)">
-            <summary>
-            Initializes an instance with the specified displaying name.
-            </summary>
-            <param name="displayName">The name.</param>
-        </member>
-        <member name="P:Sudoku.Solving.TechniqueDisplayAttribute.DisplayName">
-            <summary>
-            Indicates the display name of this technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.TechniqueDisplayAttribute.Category">
-            <summary>
-            <para>
-            Indicates the category of this instance to display.
-            This property is used for displaying when need grouping. The value is
-            <see langword="null"/> in default case.
-            </para>
-            <para>
-            The category will be displayed like <c>"Fishes&gt;Normal Fishes&gt;Finned"</c>,
-            which used '<c>&gt;</c>' character to make a new group or a new sub-group.
-            </para>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.TechniqueDisplayAttribute.GetDisplayName``1(``0)">
-            <summary>
-            Get the display name of the specified enum field.
-            </summary>
-            <typeparam name="TEnum">The type of the enum field.</typeparam>
-            <param name="enumField">The enum field to check.</param>
-            <returns>
-            The display name. Return <see langword="null"/> when the field does not mark this attribute.
             </returns>
         </member>
         <member name="T:Sudoku.Solving.TechniqueInfo">

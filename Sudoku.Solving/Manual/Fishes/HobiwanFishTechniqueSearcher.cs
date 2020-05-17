@@ -6,9 +6,9 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using Sudoku.Solving.Annotations;
+using Sudoku.Solving.Manual.LastResorts;
 using static Sudoku.Constants.Processings;
-using Pair = System.ValueTuple<int, int>;
-using Templates = Sudoku.Solving.Manual.LastResorts.PomTechniqueSearcher;
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -97,7 +97,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				{
 					// Check templates.
 					// Now sum up all possible eliminations.
-					var searcher = new Templates();
+					var searcher = new PomTechniqueSearcher();
 					var bag = new Bag<TechniqueInfo>();
 					for (int digit = 0; digit < 9; digit++)
 					{
@@ -253,7 +253,9 @@ namespace Sudoku.Solving.Manual.Fishes
 
 														// Iterate on each combination of cover sets.
 														var bodyMap = CreateMap(baseSets) & digitDistributions[digit];
-														CheckCoverSets(accumulator, grid, digit, size, elimMaps, digitDistributions, baseSets, bodyMap);
+														CheckCoverSets(
+															accumulator, grid, digit, size, elimMaps,
+															digitDistributions, baseSets, bodyMap);
 
 														baseSets.RemoveLastElement();
 													}
@@ -262,7 +264,8 @@ namespace Sudoku.Solving.Manual.Fishes
 														for (int bs7 = bs6 + 1; bs7 < 34 - size; bs7++)
 														{
 															if (grid.HasDigitValue(digit, bs7)
-																|| IsRedundantRegion(digit, digitDistributions, baseSets, bs7))
+																|| IsRedundantRegion(
+																	digit, digitDistributions, baseSets, bs7))
 															{
 																continue;
 															}
@@ -273,24 +276,27 @@ namespace Sudoku.Solving.Manual.Fishes
 																baseSets.Add(bs7);
 
 																// Iterate on each combination of cover sets.
-																var bodyMap = CreateMap(baseSets) & digitDistributions[digit];
-																CheckCoverSets(accumulator, grid, digit, size, elimMaps, digitDistributions, baseSets, bodyMap);
+																var bodyMap =
+																	CreateMap(baseSets) & digitDistributions[digit];
+																CheckCoverSets(
+																	accumulator, grid, digit, size, elimMaps,
+																	digitDistributions, baseSets, bodyMap);
 
 																baseSets.RemoveLastElement();
 															}
 															// TODO: Check higher-order fishes.
-														} // end for bs7
-													} // end if size == 6
-												} // end for bs6
-											} // end if size == 5
-										} // end for bs5
-									} // end if size == 4
-								} // end for bs4
-							} // end if size == 3
-						} // end for bs3
-					} // end if size == 2
-				} // end for bs2
-			} // end for bs1
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 
 		/// <summary>
@@ -407,7 +413,7 @@ namespace Sudoku.Solving.Manual.Fishes
 			IBag<TechniqueInfo> accumulator, int digit, IReadOnlyList<int> baseSets,
 			GridMap bodyMap, IEnumerable<int> coverSets, GridMap exofinsMap,
 			GridMap endofinsMap, GridMap finMap, IReadOnlyList<Conclusion> conclusions,
-			IReadOnlyList<Pair> candidateOffsets, IReadOnlyList<Pair> regionOffsets)
+			IReadOnlyList<(int, int)> candidateOffsets, IReadOnlyList<(int, int)> regionOffsets)
 		{
 			accumulator.Add(
 				new HobiwanFishTechniqueInfo(
@@ -455,7 +461,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="coverSets">The cover sets.</param>
 		/// <param name="regionOffsets">The list of all highlight regions.</param>
 		private static void RecordHighlightRegions(
-			IReadOnlyList<int> baseSets, IEnumerable<int> coverSets, IList<Pair> regionOffsets)
+			IReadOnlyList<int> baseSets, IEnumerable<int> coverSets, IList<(int, int)> regionOffsets)
 		{
 			foreach (int region in baseSets)
 			{
@@ -478,7 +484,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="candidateOffsets">The list of highlight candidates.</param>
 		private static void RecordHighlightCandidates(
 			IReadOnlyGrid grid, int digit, GridMap bodyMap, GridMap exofinsMap,
-			GridMap endofinsMap, IList<Pair> candidateOffsets)
+			GridMap endofinsMap, IList<(int, int)> candidateOffsets)
 		{
 			foreach (int cell in bodyMap.Offsets)
 			{

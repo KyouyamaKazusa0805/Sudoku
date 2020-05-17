@@ -3,7 +3,7 @@ using System.Reflection;
 using Sudoku.Solving.Manual;
 using static System.AttributeTargets;
 
-namespace Sudoku.Solving
+namespace Sudoku.Solving.Annotations
 {
 	/// <summary>
 	/// <para>

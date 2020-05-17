@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Sudoku.Solving
+namespace Sudoku.Solving.Annotations
 {
 	/// <summary>
 	/// To mark on a enum field to give an alias.

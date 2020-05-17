@@ -5,6 +5,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
@@ -15,7 +16,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// <summary>
 	/// Encapsulates a <b>death blossom</b> technique.
 	/// </summary>
-	[TechniqueDisplay("Death Blossom"), HighAllocation]
+	[TechniqueDisplay("Death Blossom")]
+	[HighAllocation]
 	public sealed class DeathBlossomTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <summary>

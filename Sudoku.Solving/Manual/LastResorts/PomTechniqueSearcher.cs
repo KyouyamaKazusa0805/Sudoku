@@ -3,6 +3,7 @@ using System.Linq;
 using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Solving.Annotations;
 using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.LastResorts

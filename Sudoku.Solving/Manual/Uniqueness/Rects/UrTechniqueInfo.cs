@@ -5,6 +5,7 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using Sudoku.Solving.Annotations;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {

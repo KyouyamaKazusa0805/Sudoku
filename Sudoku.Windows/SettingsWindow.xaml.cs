@@ -9,6 +9,7 @@ using System.Windows.Media;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
 using Sudoku.Solving;
+using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Extensions;
 using Sudoku.Windows.Tooling;
