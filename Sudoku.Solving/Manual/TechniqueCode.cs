@@ -975,7 +975,7 @@
 		/// <summary>
 		/// Indicates the BUG + n.
 		/// </summary>
-		[TechniqueDisplay("Bivalue Universal Grave XYZ-Wing", Category = "Uniqueness>Bivalue Universal Graves>Extended")]
+		//[TechniqueDisplay("Bivalue Universal Grave XYZ-Wing", Category = "Uniqueness>Bivalue Universal Graves>Extended")]
 		BugXyzWing,
 
 		/// <summary>
