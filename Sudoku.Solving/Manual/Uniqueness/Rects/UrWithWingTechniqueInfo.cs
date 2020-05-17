@@ -2,7 +2,6 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Extensions;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
@@ -63,7 +62,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 		/// <inheritdoc/>
 		public override string Name =>
-			$"{(IsAr ? "Avoidable" : "Unique")} Rectangle {TypeCode.GetCustomName()}";
+			$"{(IsAr ? "Avoidable" : "Unique")} Rectangle {NameAttribute.GetName(TypeCode)}";
 
 
 		/// <inheritdoc/>

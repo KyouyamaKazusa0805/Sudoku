@@ -40,8 +40,7 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Indicates the technique name.
 		/// </summary>
-		public virtual string Name =>
-			TechniqueCode.GetCustomName<TechniqueCode, TechniqueDisplayAttribute>("DisplayName") ?? string.Empty;
+		public virtual string Name => TechniqueDisplayAttribute.GetDisplayName(TechniqueCode) ?? string.Empty;
 
 		/// <summary>
 		/// The technique code of this instance used for comparison

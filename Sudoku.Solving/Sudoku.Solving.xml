@@ -9,22 +9,25 @@
             To mark on a enum field to give an alias.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.AliasAttribute.#ctor(System.Type,System.String)">
+        <member name="M:Sudoku.Solving.AliasAttribute.#ctor(System.String)">
             <summary>
-            Initializes an instance with the enum type and the field.
+            Initializes an instance with the enum field.
             </summary>
-            <param name="enumType">The type.</param>
             <param name="fieldName">The field name.</param>
-        </member>
-        <member name="P:Sudoku.Solving.AliasAttribute.EnumType">
-            <summary>
-            The type.
-            </summary>
         </member>
         <member name="P:Sudoku.Solving.AliasAttribute.FieldName">
             <summary>
             The field name.
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.AliasAttribute.Convert``2(``0)">
+            <summary>
+            Convert the specified enum field to the specified type field.
+            </summary>
+            <typeparam name="TEnumBase">The base type of the enum field.</typeparam>
+            <typeparam name="TEnumTarget">The target enum type to convert to.</typeparam>
+            <param name="enumField">The enum field.</param>
+            <returns>The result. Return <see langword="null"/> when the conversion is failed.</returns>
         </member>
         <member name="T:Sudoku.Solving.AnalysisResult">
             <summary>
@@ -8801,6 +8804,16 @@
             which used '<c>&gt;</c>' character to make a new group or a new sub-group.
             </para>
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueDisplayAttribute.GetDisplayName``1(``0)">
+            <summary>
+            Get the display name of the specified enum field.
+            </summary>
+            <typeparam name="TEnum">The type of the enum field.</typeparam>
+            <param name="enumField">The enum field to check.</param>
+            <returns>
+            The display name. Return <see langword="null"/> when the field does not mark this attribute.
+            </returns>
         </member>
         <member name="T:Sudoku.Solving.TechniqueInfo">
             <summary>

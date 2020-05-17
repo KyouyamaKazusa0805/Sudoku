@@ -4231,25 +4231,6 @@
             </summary>
             <seealso cref="T:System.Enum"/>
         </member>
-        <member name="M:Sudoku.Extensions.EnumEx.GetCustomName``1(``0)">
-            <summary>
-            Get the custom name (<see cref="T:Sudoku.NameAttribute"/>) of the specified enumeration field.
-            </summary>
-            <typeparam name="TEnum">The type of the enumeration field.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
-            <returns>The custom name.</returns>
-            <seealso cref="T:Sudoku.NameAttribute"/>
-        </member>
-        <member name="M:Sudoku.Extensions.EnumEx.GetCustomName``2(``0,System.String)">
-            <summary>
-            Get the custom name of the specified enumeration field for the specified property to take.
-            </summary>
-            <typeparam name="TEnum">The type of the enumeration field.</typeparam>
-            <typeparam name="TAttribute">The type of the attribute.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
-            <param name="propertyName">The property of the attribute to take.</param>
-            <returns>The custom name.</returns>
-        </member>
         <member name="M:Sudoku.Extensions.EnumEx.GetValues``1">
             <summary>
             Get all enumeration fields.
@@ -4975,6 +4956,16 @@
             <summary>
             Indicates the name.
             </summary>
+        </member>
+        <member name="M:Sudoku.NameAttribute.GetName``1(``0)">
+            <summary>
+            Get the name of the specified enum field which has marked this attribute.
+            </summary>
+            <typeparam name="TEnum">The type of the enum field.</typeparam>
+            <param name="enumField">The enum field.</param>
+            <returns>
+            The name. Return <see langword="null"/> when the specified field does not mark this attribute.
+            </returns>
         </member>
         <member name="T:Sudoku.NoSolutionException">
             <summary>

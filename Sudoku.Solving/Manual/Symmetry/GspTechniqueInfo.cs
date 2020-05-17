@@ -61,7 +61,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 				sb.Append($"{i + 1}{(value is null || value == i ? "" : $" -> {(int)value + 1}")}{separator}");
 			}
 
-			string customName = SymmetryType.GetCustomName()!.ToLower();
+			string customName = NameAttribute.GetName(SymmetryType)!.ToLower();
 			string mapping = sb.RemoveFromEnd(separator.Length).ToString();
 			return $"{Name}: Symmetry type: {customName}, mapping relations: {mapping} => {conclusions}";
 		}
