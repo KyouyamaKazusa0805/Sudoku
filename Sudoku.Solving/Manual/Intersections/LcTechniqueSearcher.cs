@@ -53,20 +53,25 @@ namespace Sudoku.Solving.Manual.Intersections
 				foreach (int digit in m.GetAllSets())
 				{
 					GridMap elimMap;
-					var conclusions = new List<Conclusion>();
 					(r[0], r[1], elimMap) =
-						a.Overlaps(candMaps[digit]) ? (coverSet, baseSet, a) : (baseSet, coverSet, b);
+						a.Overlaps(candMaps[digit])
+							? (coverSet, baseSet, a & candMaps[digit])
+							: (baseSet, coverSet, b & candMaps[digit]);
 
+					var conclusions = new List<Conclusion>();
 					foreach (int cell in elimMap.Offsets)
 					{
-						if (grid.Exists(cell, digit) is true)
-						{
-							conclusions.Add(new Conclusion(Elimination, cell, digit));
-						}
+						conclusions.Add(new Conclusion(Elimination, cell, digit));
 					}
 					if (conclusions.Count == 0)
 					{
 						continue;
+					}
+
+					var candidateOffsets = new List<(int, int)>();
+					foreach (int cell in (c & candMaps[digit]).Offsets)
+					{
+						candidateOffsets.Add((0, cell * 9 + digit));
 					}
 
 					accumulator.Add(
@@ -76,11 +81,7 @@ namespace Sudoku.Solving.Manual.Intersections
 							{
 								new View(
 									cellOffsets: null,
-									candidateOffsets:
-										new List<(int, int)>(
-											from cell in c.Offsets
-											where grid.Exists(cell, digit) is true
-											select (0, cell * 9 + digit)),
+									candidateOffsets,
 									regionOffsets: new[] { (0, r[0]), (1, r[1]) },
 									links: null)
 							},
