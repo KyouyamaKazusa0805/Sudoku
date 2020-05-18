@@ -73,6 +73,10 @@ namespace Sudoku.Windows
 			_checkBoxSearchExtendedUniqueRectangle.IsChecked = Settings.SearchExtendedUniqueRectangles;
 			_textBoxMaxPetalsOfDeathBlossom.Text = Settings.MaxPetalsOfDeathBlossom.ToString();
 			_checkBoxCheckAdvancedInExocet.IsChecked = Settings.CheckAdvancedInExocet;
+			_textBoxMaximumSizeHobiwanFish.Text = Settings.HobiwanFishMaximumSize.ToString();
+			_textBoxMaximumExofinsHobiwanFish.Text = Settings.HobiwanFishMaximumExofinsCount.ToString();
+			_textBoxMaximumEndofinsHobiwanFish.Text = Settings.HobiwanFishMaximumEndofinsCount.ToString();
+			_checkBoxHobiwanFishCheckTemplates.IsChecked = Settings.HobiwanFishCheckTemplates;
 			_textBoxGridLineWidth.Text = Settings.GridLineWidth.ToString();
 			_textBoxBlockLineWidth.Text = Settings.BlockLineWidth.ToString();
 			_textBoxValueScale.Text = Settings.ValueScale.ToString();
@@ -216,6 +220,54 @@ namespace Sudoku.Windows
 
 		private void CheckBoxCheckAdvancedInExocet_Click(object sender, RoutedEventArgs e) =>
 			_checkBoxCheckAdvancedInExocet.IsChecked = Settings.CheckAdvancedInExocet = _manualSolver.CheckAdvancedInExocet ^= true;
+
+		private void TextBoxMaximumSizeHobiwanFish_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			if (sender is TextBox box && int.TryParse(box.Text, out int value))
+			{
+				if (value >= 2 && value <= 7)
+				{
+					Settings.HobiwanFishMaximumSize = _manualSolver.HobiwanFishMaximumSize = value;
+				}
+				else
+				{
+					MessageBox.Show("The value is invalid.", "Info");
+				}
+			}
+		}
+
+		private void TextBoxMaximumExofinsHobiwanFish_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			if (sender is TextBox box && int.TryParse(box.Text, out int value))
+			{
+				if (value >= 0 && value <= 10)
+				{
+					Settings.HobiwanFishMaximumExofinsCount = _manualSolver.HobiwanFishMaximumExofinsCount = value;
+				}
+				else
+				{
+					MessageBox.Show("The value is invalid.", "Info");
+				}
+			}
+		}
+
+		private void TextBoxMaximumEndofinsHobiwanFish_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			if (sender is TextBox box && int.TryParse(box.Text, out int value))
+			{
+				if (value >= 0 && value <= 10)
+				{
+					Settings.HobiwanFishMaximumEndofinsCount = _manualSolver.HobiwanFishMaximumEndofinsCount = value;
+				}
+				else
+				{
+					MessageBox.Show("The value is invalid.", "Info");
+				}
+			}
+		}
+
+		private void CheckBoxHobiwanFishCheckTemplates_Click(object sender, RoutedEventArgs e) =>
+			_checkBoxHobiwanFishCheckTemplates.IsChecked = Settings.HobiwanFishCheckTemplates = _manualSolver.HobiwanFishCheckTemplates ^= true;
 
 		private void TextBoxGridLineWidth_TextChanged(object sender, TextChangedEventArgs e)
 		{

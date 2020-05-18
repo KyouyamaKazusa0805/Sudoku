@@ -504,6 +504,11 @@ namespace Sudoku.Data
 		{
 			get
 			{
+				if (IsEmpty)
+				{
+					yield break;
+				}
+
 				long value;
 				int i;
 				for (value = _low, i = 0; i < Shifting; i++, value >>= 1)

@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual.LastResorts;
+using static System.Algorithms;
+using static System.Math;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.RegionLabel;
+using static Sudoku.Data.ConclusionType;
+using static Sudoku.Data.GridMap.InitializeOption;
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -34,11 +38,11 @@ namespace Sudoku.Solving.Manual.Fishes
 		private readonly int _size;
 
 		/// <summary>
-		/// Indicates whether the puzzle will check templates first.
+		/// Indicates whether the puzzle will check POM first.
 		/// If so and the digit does not have any eliminations, this digit
 		/// will be skipped rather than do empty and useless loops.
 		/// </summary>
-		private readonly bool _checkTemplates;
+		private readonly bool _checkPom;
 
 
 		/// <summary>
@@ -47,11 +51,11 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <param name="size">The size.</param>
 		/// <param name="exofinCount">The maximum number of exo-fins.</param>
 		/// <param name="endofinCount">The maximum number of endo-fins.</param>
-		/// <param name="checkTemplates">
-		/// Indicates whether the puzzle will check templates first.
+		/// <param name="checkPom">
+		/// Indicates whether the puzzle will check POM first.
 		/// </param>
-		public HobiwanFishTechniqueSearcher(int size, int exofinCount, int endofinCount, bool checkTemplates) =>
-			(_size, _exofinCount, _endofinCount, _checkTemplates) = (size, exofinCount, endofinCount, checkTemplates);
+		public HobiwanFishTechniqueSearcher(int size, int exofinCount, int endofinCount, bool checkPom) =>
+			(_size, _exofinCount, _endofinCount, _checkPom) = (size, exofinCount, endofinCount, checkPom);
 
 
 		/// <summary>
@@ -62,602 +66,272 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <summary>
 		/// Indicates whether the technique is enabled.
 		/// </summary>
-		public static bool IsEnabled { get; set; } = false;
+		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			// Now search fishes.
-			if (_size <= 4)
+			for (int size = 2; size <= _size; size++)
 			{
-				for (int size = 2; size <= _size; size++)
-				{
-					for (int digit = 0; digit < 9; digit++)
-					{
-						AccumulateAllBySize(accumulator, grid, digit, size, new GridMap[9]);
-					}
-				}
-			}
-			else
-			{
-				for (int size = 2; size <= 3; size++)
-				{
-					for (int digit = 0; digit < 9; digit++)
-					{
-						AccumulateAllBySize(accumulator, grid, digit, size, new GridMap[9]);
-					}
-				}
-
-				// Checking templates will be started at size greater than 4.
-				var elimMaps = new GridMap[9];
-				if (_checkTemplates)
-				{
-					// Check templates.
-					// Now sum up all possible eliminations.
-					var searcher = new PomTechniqueSearcher();
-					var bag = new Bag<TechniqueInfo>();
-					for (int digit = 0; digit < 9; digit++)
-					{
-						searcher.GetAll(bag, grid);
-
-						// Store all eliminations.
-						ref var map = ref elimMaps[digit];
-						if (bag.Any())
-						{
-							foreach (var info in bag)
-							{
-								foreach (var conclusion in info.Conclusions)
-								{
-									map.Add(conclusion.CellOffset);
-								}
-							}
-						}
-
-						bag.Clear();
-					}
-				}
-
-				for (int size = 4; size <= _size; size++)
-				{
-					for (int digit = 0; digit < 9; digit++)
-					{
-						AccumulateAllBySize(accumulator, grid, digit, size, elimMaps);
-					}
-				}
+				GetAll(accumulator, grid, size);
 			}
 		}
 
 		/// <summary>
-		/// Accumulate all results by the size of the fish.
+		/// Accumulate all technique information instances into the specified accumulator by size.
 		/// </summary>
 		/// <param name="accumulator">The accumulator.</param>
-		/// <param name="grid">The grid to check.</param>
-		/// <param name="digit">The digit.</param>
-		/// <param name="size">The size.</param>
-		/// <param name="elimMaps">The possible elimination cells map.</param>
-		private void AccumulateAllBySize(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, int digit, int size, GridMap[] elimMaps)
+		/// <param name="grid">The grid.</param>
+		/// <param name="size">The size to iterate on.</param>
+		[SuppressMessage("", "IDE0004:Cast is redundant")]
+		private void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, int size)
 		{
-			if (size > 4 && _checkTemplates && elimMaps[digit].IsEmpty)
+			var bag = new Bag<TechniqueInfo>();
+			var conclusionList = new GridMap[9];
+			if (_checkPom)
 			{
-				// No possible eliminations use.
-				return;
+				var searcher = new PomTechniqueSearcher();
+				searcher.GetAll(bag, grid);
+
+				foreach (var info in bag)
+				{
+					foreach (var (_, cell, digit) in info.Conclusions)
+					{
+						conclusionList[digit].Add(cell);
+					}
+				}
 			}
 
-			for (int bs1 = 0; bs1 < 28 - size; bs1++)
+			for (int digit = 0; digit < 9; digit++)
 			{
-				if (grid.HasDigitValue(digit, bs1))
+				var candMap = CandMaps[digit];
+				if (_checkPom && conclusionList[digit].IsEmpty || candMap.RowMask.CountSet() <= size)
 				{
+					// This digit does not contain any conclusions or
+					// No available fish can be found.
 					continue;
 				}
 
-				for (int bs2 = bs1 + 1; bs2 < 29 - size; bs2++)
+				var globalElimMap = conclusionList[digit];
+				int mask = candMap.RowMask << 9 | candMap.ColumnMask << 18 | (int)candMap.BlockMask;
+				var baseSetsList = GetCombinationsOfArray(mask.GetAllSets().ToArray(), size);
+
+				// Iterate on each combination.
+				foreach (int[] baseSets in baseSetsList)
 				{
-					if (grid.HasDigitValue(digit, bs2))
+					var baseRegionMap = new RegionMap(baseSets);
+					var baseSetsMap = GridMap.Empty;
+					foreach (int baseSet in baseSets)
+					{
+						baseSetsMap |= RegionMaps[baseSet];
+					}
+
+					var endoFinsMap = GridMap.Empty;
+					var tempMap = GridMap.Empty;
+					for (int i = 0; i < size; i++)
+					{
+						var baseSetMap = RegionMaps[baseSets[i]];
+						if (i != 0)
+						{
+							endoFinsMap |= baseSetMap & tempMap;
+						}
+
+						tempMap |= baseSetMap;
+					}
+					endoFinsMap &= candMap;
+
+					if (endoFinsMap.Count > _endofinCount)
 					{
 						continue;
 					}
 
-					var baseSets = new List<int> { bs1, bs2 };
-					if (size == 2)
+					var elimEndoFinsMap = GridMap.Empty;
+					if (endoFinsMap.IsNotEmpty)
 					{
-						// Check X-Wings.
-						// Iterate on each combination of cover sets.
-						var bodyMap = CreateMap(baseSets) & CandMaps[digit];
-						CheckCoverSets(accumulator, grid, digit, size, elimMaps, baseSets, bodyMap);
-
-						baseSets.RemoveLastElement();
-					}
-					else // size > 2
-					{
-						for (int bs3 = bs2 + 1; bs3 < 30 - size; bs3++)
+						elimEndoFinsMap = new GridMap(endoFinsMap, ProcessPeersWithoutItself) & candMap;
+						if (elimEndoFinsMap.IsEmpty)
 						{
-							if (grid.HasDigitValue(digit, bs3)
-								|| IsRedundantRegion(digit, baseSets, bs3))
-							{
-								continue;
-							}
+							continue;
+						}
+					}
 
-							if (size == 3)
-							{
-								// Check swordfishes.
-								baseSets.Add(bs3);
+					baseSetsMap &= candMap;
 
-								// Iterate on each combination of cover sets.
-								var bodyMap = CreateMap(baseSets) & CandMaps[digit];
-								CheckCoverSets(accumulator, grid, digit, size, elimMaps, baseSets, bodyMap);
+					mask = candMap.RowMask << 9 | candMap.ColumnMask << 18 | (int)candMap.BlockMask;
+					var coverCombinations = new RegionMap(mask);
+					foreach (int region in mask.GetAllSets())
+					{
+						if (baseRegionMap[region])
+						{
+							mask &= ~(1 << region);
+						}
+					}
 
-								baseSets.RemoveLastElement();
-							}
-							else // size > 3
+					// Gather the cover sets that contains the eliminations.
+					foreach (int cell in globalElimMap.Offsets)
+					{
+						mask &= ~(1 << GetRegion(cell, Row));
+						mask &= ~(1 << GetRegion(cell, Column));
+						mask &= ~(1 << GetRegion(cell, Block));
+					}
+
+					// Then 'mask' contains the regions that eliminations don't lie on.
+					var coverCombinationsDoNotContainElim = new RegionMap(mask);
+					var coverCombinationsContainElim = coverCombinations - coverCombinationsDoNotContainElim;
+					for (int internalSize = 1;
+						internalSize <= Min(coverCombinationsContainElim.Count, size);
+						internalSize++)
+					{
+						foreach (int[] comb in
+							GetCombinationsOfArray(coverCombinationsContainElim.ToArray(), internalSize))
+						{
+							foreach (int[] comb2 in
+								GetCombinationsOfArray(coverCombinationsDoNotContainElim.ToArray(), size - internalSize))
 							{
-								for (int bs4 = bs3 + 1; bs4 < 31 - size; bs4++)
+								var coverRegionMap = new RegionMap(comb) | new RegionMap(comb2);
+								var coverSets = coverRegionMap.ToArray();
+								var coverSetMap = GridMap.Empty;
+								foreach (int coverSet in coverSets)
 								{
-									if (grid.HasDigitValue(digit, bs4)
-										|| IsRedundantRegion(digit, baseSets, bs4))
+									coverSetMap |= RegionMaps[coverSet];
+								}
+
+								if (_checkPom && !coverSetMap.Overlaps(globalElimMap))
+								{
+									// God view: The cover set combination must contain the eliminations
+									// that found before.
+									continue;
+								}
+
+								if ((baseRegionMap.Mask & 0x3FFFF) == 0 && (coverRegionMap.Mask & 0x7FC01FF) == 0
+									|| (baseRegionMap.Mask & 0x7FC01FF) == 0 && (coverRegionMap.Mask & 0x3FFFF) == 0)
+								{
+									// Basic fish.
+									continue;
+								}
+
+								var exoFinsMap = baseSetsMap - coverSetMap - endoFinsMap;
+								if (exoFinsMap.Count > _exofinCount)
+								{
+									continue;
+								}
+
+								var elimExoFinsMap = GridMap.Empty;
+								if (exoFinsMap.IsNotEmpty)
+								{
+									elimExoFinsMap = new GridMap(exoFinsMap, ProcessPeersWithoutItself) & candMap;
+									if (elimExoFinsMap.IsEmpty)
 									{
 										continue;
 									}
+								}
 
-									if (size == 4)
+								var elimMap = (coverSetMap & candMap) - baseSetsMap;
+								if (exoFinsMap.IsNotEmpty)
+								{
+									elimMap &= elimExoFinsMap;
+								}
+								if (endoFinsMap.IsNotEmpty)
+								{
+									elimMap &= elimEndoFinsMap;
+								}
+
+								var (one, two) = (GridMap.Empty, GridMap.Empty);
+								for (int i = 0; i < coverSets.Length; i++)
+								{
+									var z = RegionMaps[coverSets[i]];
+									if (i > 0)
 									{
-										// Check jellyfishes.
-										baseSets.Add(bs4);
-
-										// Iterate on each combination of cover sets.
-										var bodyMap = CreateMap(baseSets) & CandMaps[digit];
-										CheckCoverSets(
-											accumulator, grid, digit, size, elimMaps, baseSets, bodyMap);
-
-										baseSets.RemoveLastElement();
+										two |= one & z;
 									}
-									else // size > 4
+
+									one |= z;
+								}
+
+								two &= candMap & baseSetsMap;
+								if (endoFinsMap.IsNotEmpty)
+								{
+									two &= elimEndoFinsMap;
+								}
+								if (exoFinsMap.IsNotEmpty)
+								{
+									two &= elimExoFinsMap;
+								}
+
+								if (elimMap.IsEmpty && two.IsEmpty)
+								{
+									continue;
+								}
+
+								var conclusions = new List<Conclusion>();
+								foreach (int cell in elimMap.Offsets)
+								{
+									// Normal eliminations.
+									conclusions.Add(new Conclusion(Elimination, cell, digit));
+								}
+								foreach (int cell in two.Offsets)
+								{
+									// Cannibalisms.
+									conclusions.Add(new Conclusion(Elimination, cell, digit));
+								}
+
+								var regionOffsets = new List<(int, int)>();
+								foreach (int baseSet in baseSets)
+								{
+									regionOffsets.Add((0, baseSet));
+								}
+								foreach (int coverSet in coverSets)
+								{
+									regionOffsets.Add((1, coverSet));
+								}
+
+								var candidateOffsets = new List<(int, int)>();
+								foreach (int cell in exoFinsMap.Offsets)
+								{
+									candidateOffsets.Add((1, cell * 9 + digit));
+								}
+								foreach (int cell in endoFinsMap.Offsets)
+								{
+									candidateOffsets.Add((2, cell * 9 + digit));
+								}
+								foreach (int cell in ((baseSetsMap & candMap) - exoFinsMap - endoFinsMap).Offsets)
+								{
+									candidateOffsets.Add((0, cell * 9 + digit));
+								}
+
+								bool isSashimi = false;
+								foreach (int baseSet in baseSets)
+								{
+									if ((RegionMaps[baseSet] - ((endoFinsMap | exoFinsMap) & candMap)).Count == 1)
 									{
-										for (int bs5 = bs4 + 1; bs5 < 32 - size; bs5++)
-										{
-											if (grid.HasDigitValue(digit, bs5)
-												|| IsRedundantRegion(digit, baseSets, bs5))
-											{
-												continue;
-											}
-
-											if (size == 5)
-											{
-												// Check starfishes.
-												baseSets.Add(bs5);
-
-												// Iterate on each combination of cover sets.
-												var bodyMap = CreateMap(baseSets) & CandMaps[digit];
-												CheckCoverSets(
-													accumulator, grid, digit, size, elimMaps, baseSets,
-													bodyMap);
-
-												baseSets.RemoveLastElement();
-											}
-											else // size > 5
-											{
-												for (int bs6 = bs5 + 1; bs6 < 33 - size; bs6++)
-												{
-													if (grid.HasDigitValue(digit, bs6)
-														|| IsRedundantRegion(digit, baseSets, bs6))
-													{
-														continue;
-													}
-
-													if (size == 6)
-													{
-														// Check whales.
-														baseSets.Add(bs6);
-
-														// Iterate on each combination of cover sets.
-														var bodyMap = CreateMap(baseSets) & CandMaps[digit];
-														CheckCoverSets(
-															accumulator, grid, digit, size, elimMaps,
-															baseSets, bodyMap);
-
-														baseSets.RemoveLastElement();
-													}
-													else // size > 6
-													{
-														for (int bs7 = bs6 + 1; bs7 < 34 - size; bs7++)
-														{
-															if (grid.HasDigitValue(digit, bs7)
-																|| IsRedundantRegion(
-																	digit, baseSets, bs7))
-															{
-																continue;
-															}
-
-															if (size == 7)
-															{
-																// Check leviathans.
-																baseSets.Add(bs7);
-
-																// Iterate on each combination of cover sets.
-																var bodyMap =
-																	CreateMap(baseSets) & CandMaps[digit];
-																CheckCoverSets(
-																	accumulator, grid, digit, size, elimMaps,
-																	baseSets, bodyMap);
-
-																baseSets.RemoveLastElement();
-															}
-															// TODO: Check higher-order fishes.
-														}
-													}
-												}
-											}
-										}
+										isSashimi = true;
+										break;
 									}
 								}
+
+								accumulator.Add(
+									new HobiwanFishTechniqueInfo(
+										conclusions,
+										views: new[]
+										{
+											new View(
+												cellOffsets: null,
+												candidateOffsets,
+												regionOffsets,
+												links: null)
+										},
+										digit,
+										baseSets,
+										coverSets,
+										exofins: exoFinsMap,
+										endofins: endoFinsMap,
+										isSashimi: (exoFinsMap | endoFinsMap).IsEmpty ? (bool?)null : isSashimi));
 							}
 						}
 					}
 				}
 			}
-		}
-
-		/// <summary>
-		/// Check whether the specified region to add is redundant.
-		/// </summary>
-		/// <param name="digit">The digit.</param>
-		/// <param name="baseSets">The base sets.</param>
-		/// <param name="baseSetToAdd">The base set to add.</param>
-		/// <returns>A <see cref="bool"/> value.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private bool IsRedundantRegion(int digit, IReadOnlyList<int> baseSets, int baseSetToAdd) =>
-			(CreateMap(baseSets) & CandMaps[digit]) == (CreateMap(baseSets.Append(baseSetToAdd)) & CandMaps[digit]);
-
-		/// <summary>
-		/// Check all cover sets combinations to verify whether the fish can be formed.
-		/// </summary>
-		/// <param name="accumulator">The result accumulator.</param>
-		/// <param name="grid">The grid.</param>
-		/// <param name="digit">The digit.</param>
-		/// <param name="size">The size.</param>
-		/// <param name="elimMaps">The elimination maps.</param>
-		/// <param name="baseSets">The base sets.</param>
-		/// <param name="bodyMap">The body map.</param>
-		private void CheckCoverSets(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, int digit, int size,
-			GridMap[] elimMaps, IReadOnlyList<int> baseSets, GridMap bodyMap)
-		{
-			foreach (var coverSets in GetAllProperCoverSets(grid, digit, size, baseSets, elimMaps, bodyMap))
-			{
-				// Now search for exo-fins and endo-fins.
-				var tempBodyMap = bodyMap;
-				var elimMap = CreateMap(coverSets) & CandMaps[digit];
-				var exofinsMap = GetExofinMap(tempBodyMap, elimMap);
-				var endofinsMap = GetEndofinMap(baseSets) & CandMaps[digit];
-				var finMap = exofinsMap | endofinsMap;
-
-				if (exofinsMap.Count > _exofinCount || endofinsMap.Count > _endofinCount)
-				{
-					continue;
-				}
-
-				// Reduct body map and elimination map.
-				// Then body map will contain only body cells (redundant cells
-				// will be cleared).
-				tempBodyMap &= elimMap;
-				elimMap -= tempBodyMap;
-
-				// Check whether a candidate of that digit exists
-				// on any fin cells.
-				// If so, we should check elimination and fin cells' intersection;
-				// otherwise, all cells in the elimination map will be the result.
-				foreach (int cell in finMap.Offsets)
-				{
-					if (!(grid.Exists(cell, digit) is true))
-					{
-						continue;
-					}
-
-					elimMap &= new GridMap(cell);
-				}
-				if (elimMap.IsEmpty)
-				{
-					continue;
-				}
-
-				// Now check eliminations.
-				var conclusions = new List<Conclusion>();
-				foreach (int cell in elimMap.Offsets)
-				{
-					if (!(grid.Exists(cell, digit) is true))
-					{
-						continue;
-					}
-
-					conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, digit));
-				}
-				if (conclusions.Count == 0)
-				{
-					continue;
-				}
-
-				// Record all highlight candidates.
-				var candidateOffsets = new List<(int, int)>();
-				RecordHighlightCandidates(grid, digit, tempBodyMap, exofinsMap, endofinsMap, candidateOffsets);
-
-				// Record all highlight regions.
-				var regionOffsets = new List<(int, int)>();
-				RecordHighlightRegions(baseSets, coverSets, regionOffsets);
-
-				AddTechnique(accumulator, digit, baseSets, bodyMap, coverSets, exofinsMap, endofinsMap, finMap, conclusions, candidateOffsets, regionOffsets);
-			}
-		}
-
-		/// <summary>
-		/// Add the technique to bag.
-		/// </summary>
-		/// <param name="accumulator">The bag.</param>
-		/// <param name="digit">The digit.</param>
-		/// <param name="baseSets">The base sets.</param>
-		/// <param name="bodyMap">The body map.</param>
-		/// <param name="coverSets">The cover sets.</param>
-		/// <param name="exofinsMap">The exo-fins map.</param>
-		/// <param name="endofinsMap">The endo-fins map.</param>
-		/// <param name="finMap">The fins map.</param>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="candidateOffsets">The highlight candidates.</param>
-		/// <param name="regionOffsets">The highlight regions.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void AddTechnique(
-			IBag<TechniqueInfo> accumulator, int digit, IReadOnlyList<int> baseSets,
-			GridMap bodyMap, IEnumerable<int> coverSets, GridMap exofinsMap,
-			GridMap endofinsMap, GridMap finMap, IReadOnlyList<Conclusion> conclusions,
-			IReadOnlyList<(int, int)> candidateOffsets, IReadOnlyList<(int, int)> regionOffsets)
-		{
-			accumulator.Add(
-				new HobiwanFishTechniqueInfo(
-					conclusions,
-					views: new[]
-					{
-						new View(
-							cellOffsets: null,
-							candidateOffsets,
-							regionOffsets,
-							links: null)
-					},
-					digit,
-					baseSets: baseSets.ToArray(),
-					coverSets: coverSets.ToArray(),
-					exofins: exofinsMap.IsEmpty ? null : exofinsMap.ToArray(),
-					endofins: endofinsMap.IsEmpty ? null : endofinsMap.ToArray(),
-					isSashimi: CheckSashimi(baseSets, bodyMap, finMap)));
-		}
-
-		/// <summary>
-		/// Check whether the fish is sashimi or not.
-		/// </summary>
-		/// <param name="baseSets">All base sets.</param>
-		/// <param name="bodyMap">The map of body cells.</param>
-		/// <param name="finMap">The map of fin cells.</param>
-		/// <returns>A <see cref="bool"/>? result.</returns>
-		private bool? CheckSashimi(IEnumerable<int> baseSets, GridMap bodyMap, GridMap finMap)
-		{
-			foreach (int baseSet in baseSets)
-			{
-				if ((bodyMap & RegionMaps[baseSet]).Count == 1)
-				{
-					return true;
-				}
-			}
-
-			return finMap.IsEmpty ? (bool?)null : false;
-		}
-
-		/// <summary>
-		/// Record all highlight regions.
-		/// </summary>
-		/// <param name="baseSets">The base sets.</param>
-		/// <param name="coverSets">The cover sets.</param>
-		/// <param name="regionOffsets">The list of all highlight regions.</param>
-		private static void RecordHighlightRegions(
-			IReadOnlyList<int> baseSets, IEnumerable<int> coverSets, IList<(int, int)> regionOffsets)
-		{
-			foreach (int region in baseSets)
-			{
-				regionOffsets.Add((0, region));
-			}
-			foreach (int region in coverSets)
-			{
-				regionOffsets.Add((1, region));
-			}
-		}
-
-		/// <summary>
-		/// Record all highlight candidates.
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <param name="digit">The digit.</param>
-		/// <param name="bodyMap">The body map.</param>
-		/// <param name="exofinsMap">The exo-fins map.</param>
-		/// <param name="endofinsMap">The endo-fins map.</param>
-		/// <param name="candidateOffsets">The list of highlight candidates.</param>
-		private static void RecordHighlightCandidates(
-			IReadOnlyGrid grid, int digit, GridMap bodyMap, GridMap exofinsMap,
-			GridMap endofinsMap, IList<(int, int)> candidateOffsets)
-		{
-			foreach (int cell in bodyMap.Offsets)
-			{
-				if (grid.Exists(cell, digit) is true)
-				{
-					candidateOffsets.Add((0, cell * 9 + digit));
-				}
-			}
-			foreach (int cell in exofinsMap.Offsets)
-			{
-				if (grid.Exists(cell, digit) is true)
-				{
-					candidateOffsets.Add((1, cell * 9 + digit));
-				}
-			}
-			foreach (int cell in endofinsMap.Offsets)
-			{
-				if (grid.Exists(cell, digit) is true)
-				{
-					candidateOffsets.Add((2, cell * 9 + digit));
-				}
-			}
-		}
-
-		/// <summary>
-		/// Get all proper cover sets combinations.
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <param name="digit">The digit.</param>
-		/// <param name="size">The size.</param>
-		/// <param name="baseSets">The base sets.</param>
-		/// <param name="elimMaps">All elimination maps.</param>
-		/// <param name="bodyMap">The body map.</param>
-		/// <returns>All cover sets combinations.</returns>
-		private IEnumerable<IEnumerable<int>> GetAllProperCoverSets(
-			IReadOnlyGrid grid, int digit, int size, IReadOnlyList<int> baseSets, GridMap[] elimMaps,
-			GridMap bodyMap)
-		{
-			foreach (int regionsMask in new BitCombinationGenerator(27, size))
-			{
-				if (!RegionsAreWorth(grid, digit, regionsMask, baseSets, elimMaps, bodyMap, size))
-				{
-					continue;
-				}
-
-				yield return regionsMask.GetAllSets();
-			}
-		}
-
-		/// <summary>
-		/// To check whether the specified iterated regions satisfy
-		/// the following conditions:
-		/// <list type="number">
-		/// <item>The region <b>cannot</b> contain the digit value.</item>
-		/// <item>
-		/// The specified regions <b>must</b> contain any one of eliminations
-		/// when the elimination map is not empty.
-		/// </item>
-		/// <item><b>None</b> of all regions is a part of base sets.</item>
-		/// <item>The region <b>must</b> contain at least one body cell.</item>
-		/// </list>
-		/// <b>Any one of</b> all conditions is false,
-		/// the method will return <see langword="false"/>.
-		/// </summary>
-		/// <param name="grid">The grid to check.</param>
-		/// <param name="digit">The digit.</param>
-		/// <param name="regionsMask">
-		/// The region mask (got by <see cref="BitCombinationGenerator"/>).
-		/// </param>
-		/// <param name="baseSets">Base sets.</param>
-		/// <param name="elimMaps">The elimination maps.</param>
-		/// <param name="bodyMap">The body map.</param>
-		/// <param name="size">The size.</param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		private bool RegionsAreWorth(
-			IReadOnlyGrid grid, int digit, int regionsMask, IReadOnlyList<int> baseSets,
-			GridMap[] elimMaps, GridMap bodyMap, int size)
-		{
-			var regions = regionsMask.GetAllSets();
-			if (regions.Any(region => grid.HasDigitValue(digit, region)))
-			{
-				return false;
-			}
-
-			if (regions.Any(region => baseSets.Contains(region)))
-			{
-				return false;
-			}
-
-			if (regions.Any(region => (bodyMap & RegionMaps[region]).IsEmpty))
-			{
-				return false;
-			}
-
-			static bool rowJudger(int region) => region / 9 == 1;
-			static bool columnJudger(int region) => region / 9 == 2;
-			if (baseSets.All(rowJudger) && regions.All(columnJudger)
-				|| baseSets.All(columnJudger) && regions.All(rowJudger))
-			{
-				return false;
-			}
-
-			var elimMap = elimMaps[digit];
-			if (elimMap.IsNotEmpty)
-			{
-				// If the elimination map is not empty,
-				// we will check whether the region iterated contains
-				// any one of the eliminations.
-				// If not, the combination is useless.
-				bool checker = false;
-				foreach (int region in regions)
-				{
-					if ((RegionMaps[region] & elimMap).IsEmpty)
-					{
-						checker = true;
-						break;
-					}
-				}
-
-				if (checker)
-				{
-					return false;
-				}
-			}
-
-			bool templatesChecked = size > 4 && _checkTemplates;
-			return templatesChecked && elimMap.IsNotEmpty || !templatesChecked;
-		}
-
-		/// <summary>
-		/// Get all cells from specified regions.
-		/// </summary>
-		/// <param name="regions">All regions.</param>
-		/// <returns>The instance containing all cells.</returns>
-		private GridMap CreateMap(IEnumerable<int> regions)
-		{
-			var result = GridMap.Empty;
-			foreach (int region in regions)
-			{
-				result |= RegionMaps[region];
-			}
-
-			return result;
-		}
-
-		/// <summary>
-		/// Get the endo-fins map.
-		/// </summary>
-		/// <param name="baseSets">All base sets.</param>
-		/// <returns>Endo-fin map.</returns>
-		private GridMap GetEndofinMap(IReadOnlyList<int> baseSets)
-		{
-			var result = GridMap.Empty;
-			foreach (int value in new BitCombinationGenerator(baseSets.Count, 2))
-			{
-				int p1 = value.FindFirstSet();
-
-				// Endo-fins are cells that lie on two base sets at the same time.
-				result |= RegionMaps[baseSets[p1]] & RegionMaps[baseSets[value.GetNextSet(p1)]];
-			}
-
-			return result;
-		}
-
-
-		/// <summary>
-		/// Get the exo-fins map.
-		/// </summary>
-		/// <param name="bodyMap">The map of body cells.</param>
-		/// <param name="elimMap">The map of elimination maps (cover sets).</param>
-		/// <returns>Exo-fin map.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static GridMap GetExofinMap(GridMap bodyMap, GridMap elimMap)
-		{
-			// Exo-fins are cells that lie on base sets but not in body,
-			// where the body is expressed with 'base & cover'
-			// (i.e. exo-fins: 'base - body').
-			return bodyMap - (bodyMap & elimMap);
 		}
 	}
 }

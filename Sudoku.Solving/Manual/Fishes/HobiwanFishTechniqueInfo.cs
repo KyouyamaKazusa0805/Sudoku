@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -53,8 +52,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		public HobiwanFishTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			int digit, IReadOnlyList<int> baseSets, IReadOnlyList<int> coverSets,
-			IReadOnlyList<int>? exofins, IReadOnlyList<int>? endofins, bool? isSashimi)
-			: base(conclusions, views, digit, baseSets, coverSets) =>
+			GridMap exofins, GridMap endofins, bool? isSashimi) : base(conclusions, views, digit, baseSets, coverSets) =>
 			(ExofinCells, EndofinCells, IsSashimi) = (exofins, endofins, isSashimi);
 
 
@@ -78,12 +76,12 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <summary>
 		/// Indicates all exo-fins.
 		/// </summary>
-		public IReadOnlyList<int>? ExofinCells { get; }
+		public GridMap ExofinCells { get; }
 
 		/// <summary>
 		/// Indicates all endo-fins.
 		/// </summary>
-		public IReadOnlyList<int>? EndofinCells { get; }
+		public GridMap EndofinCells { get; }
 
 		/// <inheritdoc/>
 		public override string Name =>
@@ -117,10 +115,10 @@ namespace Sudoku.Solving.Manual.Fishes
 		public override DifficultyLevel DifficultyLevel =>
 			Size switch
 			{
-				2 => DifficultyLevel.Hard,
-				3 => DifficultyLevel.VeryHard,
-				4 => DifficultyLevel.VeryHard,
-				_ => DifficultyLevel.Fiendish,
+				2 => DifficultyLevel.Fiendish,
+				3 => DifficultyLevel.Fiendish,
+				4 => DifficultyLevel.Fiendish,
+				_ => DifficultyLevel.Crazy,
 			};
 
 		/// <inheritdoc/>
@@ -191,8 +189,14 @@ namespace Sudoku.Solving.Manual.Fishes
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string baseSets = new RegionCollection(BaseSets).ToString();
 			string coverSets = new RegionCollection(CoverSets).ToString();
-			string exo = ExofinCells is null ? string.Empty : $"f{new CellCollection(ExofinCells).ToString()} ";
-			string endo = EndofinCells is null ? string.Empty : $"ef{new CellCollection(EndofinCells).ToString()} ";
+			string exo =
+				ExofinCells.IsEmpty
+					? string.Empty
+					: $"f{new CellCollection(ExofinCells.Offsets).ToString()} ";
+			string endo =
+				EndofinCells.IsEmpty
+				? string.Empty
+				: $"ef{new CellCollection(EndofinCells.Offsets).ToString()} ";
 			return $@"{Name}: {Digit + 1} in {baseSets}\{coverSets} {exo}{endo}=> {elimStr}";
 		}
 
@@ -202,9 +206,13 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <returns>A <see cref="bool"/> value.</returns>
 		private bool IsBasic()
 		{
-			static bool r(int region) => region / 9 == 1;
-			static bool c(int region) => region / 9 == 2;
-			return BaseSets.All(r) && CoverSets.All(c) || BaseSets.All(c) && CoverSets.All(r);
+			return false;
+
+			#region Obsolete code
+			//static bool r(int region) => region / 9 == 1;
+			//static bool c(int region) => region / 9 == 2;
+			//return BaseSets.All(r) && CoverSets.All(c) || BaseSets.All(c) && CoverSets.All(r);
+			#endregion
 		}
 
 		/// <summary>

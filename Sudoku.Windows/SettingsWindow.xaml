@@ -56,14 +56,14 @@
 			<TabItem Header="Solving">
 				<Grid Background="#FFE5E5E5">
 					<Grid.RowDefinitions>
+						<RowDefinition Height="3*"/>
+						<RowDefinition Height="2*"/>
 						<RowDefinition Height="4*"/>
 						<RowDefinition Height="2*"/>
-						<RowDefinition Height="6*"/>
 					</Grid.RowDefinitions>
 					<GroupBox Grid.Row="0" Grid.Column="0" Header="Chains">
 						<Grid>
 							<Grid.RowDefinitions>
-								<RowDefinition/>
 								<RowDefinition/>
 								<RowDefinition/>
 								<RowDefinition/>
@@ -138,8 +138,6 @@
 								<RowDefinition/>
 								<RowDefinition/>
 								<RowDefinition/>
-								<RowDefinition/>
-								<RowDefinition/>
 							</Grid.RowDefinitions>
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition/>
@@ -194,6 +192,39 @@
 									  HorizontalAlignment="Left" VerticalAlignment="Center"
 									  Content="Check advanced eliminations in exocets"
 									  Click="CheckBoxCheckAdvancedInExocet_Click"/>
+						</Grid>
+					</GroupBox>
+					<GroupBox Grid.Row="3" Grid.Column="0" Header="Hobiwan's Fish">
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+							</Grid.ColumnDefinitions>
+							<Label Content="Maximum size:" Grid.Row="0" Grid.Column="0"
+								   HorizontalAlignment="Left" VerticalAlignment="Center"/>
+							<TextBox Name="_textBoxMaximumSizeHobiwanFish" Grid.Row="0" Grid.Column="1"
+									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+									 TextChanged="TextBoxMaximumSizeHobiwanFish_TextChanged"/>
+							<Label Content="Maximum Exo-fins:" Grid.Row="0" Grid.Column="2"
+								   HorizontalAlignment="Left" VerticalAlignment="Center"/>
+							<TextBox Name="_textBoxMaximumExofinsHobiwanFish" Grid.Row="0" Grid.Column="3"
+									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+									 TextChanged="TextBoxMaximumExofinsHobiwanFish_TextChanged"/>
+							<Label Content="Maximum Endo-fins:" Grid.Row="1" Grid.Column="0"
+								   HorizontalAlignment="Left" VerticalAlignment="Center"/>
+							<TextBox Name="_textBoxMaximumEndofinsHobiwanFish" Grid.Row="1" Grid.Column="1"
+									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+									 TextChanged="TextBoxMaximumEndofinsHobiwanFish_TextChanged"/>
+							<CheckBox Name="_checkBoxHobiwanFishCheckTemplates" Grid.Row="1" Grid.Column="2"
+									  Grid.ColumnSpan="2" Content="Check templates" HorizontalAlignment="Left"
+									  VerticalAlignment="Center"
+									  Click="CheckBoxHobiwanFishCheckTemplates_Click"/>
 						</Grid>
 					</GroupBox>
 				</Grid>

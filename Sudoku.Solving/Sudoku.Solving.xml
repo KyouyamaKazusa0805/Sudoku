@@ -3709,7 +3709,7 @@
             The mutant shape extra difficulty rating table.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Nullable{System.Boolean})">
             <summary>
             Initializes an instance with the specified information.
             </summary>
@@ -3796,9 +3796,9 @@
             Indicates the maximum size will be found. The maximum value supporting is 7.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher._checkTemplates">
+        <member name="F:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher._checkPom">
             <summary>
-            Indicates whether the puzzle will check templates first.
+            Indicates whether the puzzle will check POM first.
             If so and the digit does not have any eliminations, this digit
             will be skipped rather than do empty and useless loops.
             </summary>
@@ -3810,8 +3810,8 @@
             <param name="size">The size.</param>
             <param name="exofinCount">The maximum number of exo-fins.</param>
             <param name="endofinCount">The maximum number of endo-fins.</param>
-            <param name="checkTemplates">
-            Indicates whether the puzzle will check templates first.
+            <param name="checkPom">
+            Indicates whether the puzzle will check POM first.
             </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.Priority">
@@ -3827,141 +3827,13 @@
         <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.AccumulateAllBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,Sudoku.Data.GridMap[])">
+        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32)">
             <summary>
-            Accumulate all results by the size of the fish.
+            Accumulate all technique information instances into the specified accumulator by size.
             </summary>
             <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid to check.</param>
-            <param name="digit">The digit.</param>
-            <param name="size">The size.</param>
-            <param name="elimMaps">The possible elimination cells map.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.IsRedundantRegion(System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
-            <summary>
-            Check whether the specified region to add is redundant.
-            </summary>
-            <param name="digit">The digit.</param>
-            <param name="baseSets">The base sets.</param>
-            <param name="baseSetToAdd">The base set to add.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.CheckCoverSets(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,Sudoku.Data.GridMap[],System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.GridMap)">
-            <summary>
-            Check all cover sets combinations to verify whether the fish can be formed.
-            </summary>
-            <param name="accumulator">The result accumulator.</param>
             <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="size">The size.</param>
-            <param name="elimMaps">The elimination maps.</param>
-            <param name="baseSets">The base sets.</param>
-            <param name="bodyMap">The body map.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.AddTechnique(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.GridMap,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}})">
-            <summary>
-            Add the technique to bag.
-            </summary>
-            <param name="accumulator">The bag.</param>
-            <param name="digit">The digit.</param>
-            <param name="baseSets">The base sets.</param>
-            <param name="bodyMap">The body map.</param>
-            <param name="coverSets">The cover sets.</param>
-            <param name="exofinsMap">The exo-fins map.</param>
-            <param name="endofinsMap">The endo-fins map.</param>
-            <param name="finMap">The fins map.</param>
-            <param name="conclusions">All conclusions.</param>
-            <param name="candidateOffsets">The highlight candidates.</param>
-            <param name="regionOffsets">The highlight regions.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.CheckSashimi(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
-            <summary>
-            Check whether the fish is sashimi or not.
-            </summary>
-            <param name="baseSets">All base sets.</param>
-            <param name="bodyMap">The map of body cells.</param>
-            <param name="finMap">The map of fin cells.</param>
-            <returns>A <see cref="T:System.Boolean"/>? result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.RecordHighlightRegions(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
-            <summary>
-            Record all highlight regions.
-            </summary>
-            <param name="baseSets">The base sets.</param>
-            <param name="coverSets">The cover sets.</param>
-            <param name="regionOffsets">The list of all highlight regions.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.RecordHighlightCandidates(Sudoku.Data.IReadOnlyGrid,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}})">
-            <summary>
-            Record all highlight candidates.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="bodyMap">The body map.</param>
-            <param name="exofinsMap">The exo-fins map.</param>
-            <param name="endofinsMap">The endo-fins map.</param>
-            <param name="candidateOffsets">The list of highlight candidates.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.GetAllProperCoverSets(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.GridMap[],Sudoku.Data.GridMap)">
-            <summary>
-            Get all proper cover sets combinations.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="size">The size.</param>
-            <param name="baseSets">The base sets.</param>
-            <param name="elimMaps">All elimination maps.</param>
-            <param name="bodyMap">The body map.</param>
-            <returns>All cover sets combinations.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.RegionsAreWorth(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.GridMap[],Sudoku.Data.GridMap,System.Int32)">
-            <summary>
-            To check whether the specified iterated regions satisfy
-            the following conditions:
-            <list type="number">
-            <item>The region <b>cannot</b> contain the digit value.</item>
-            <item>
-            The specified regions <b>must</b> contain any one of eliminations
-            when the elimination map is not empty.
-            </item>
-            <item><b>None</b> of all regions is a part of base sets.</item>
-            <item>The region <b>must</b> contain at least one body cell.</item>
-            </list>
-            <b>Any one of</b> all conditions is false,
-            the method will return <see langword="false"/>.
-            </summary>
-            <param name="grid">The grid to check.</param>
-            <param name="digit">The digit.</param>
-            <param name="regionsMask">
-            The region mask (got by <see cref="T:Sudoku.Data.BitCombinationGenerator"/>).
-            </param>
-            <param name="baseSets">Base sets.</param>
-            <param name="elimMaps">The elimination maps.</param>
-            <param name="bodyMap">The body map.</param>
-            <param name="size">The size.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.CreateMap(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Get all cells from specified regions.
-            </summary>
-            <param name="regions">All regions.</param>
-            <returns>The instance containing all cells.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.GetEndofinMap(System.Collections.Generic.IReadOnlyList{System.Int32})">
-            <summary>
-            Get the endo-fins map.
-            </summary>
-            <param name="baseSets">All base sets.</param>
-            <returns>Endo-fin map.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueSearcher.GetExofinMap(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
-            <summary>
-            Get the exo-fins map.
-            </summary>
-            <param name="bodyMap">The map of body cells.</param>
-            <param name="elimMap">The map of elimination maps (cover sets).</param>
-            <returns>Exo-fin map.</returns>
+            <param name="size">The size to iterate on.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo">
             <summary>
@@ -4056,6 +3928,169 @@
             <param name="map">(<see langword="ref"/> parameter) The map.</param>
             <param name="regionOffsets">All region offsets.</param>
             <param name="candMap">The candidate map.</param>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Fishes.RegionMap">
+            <summary>
+            Provides a region map that contains 27 bits indicating whether the corresponding region is used now.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance with the specified mask.
+            </summary>
+            <param name="mask">The specified mask.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.#ctor(System.Int32[])">
+            <summary>
+            Initializes a map with the specified regions.
+            </summary>
+            <param name="regions">The regions.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.#ctor(System.ReadOnlySpan{System.Int32})">
+            <summary>
+            Initializes a map with the specified regions.
+            </summary>
+            <param name="regions">The regions.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Initializes a map with the specified regions.
+            </summary>
+            <param name="regions">The regions.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.RegionMap.Mask">
+            <summary>
+            The mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.RegionMap.Count">
+            <summary>
+            Indicates how many regions are used now.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.RegionMap.Regions">
+            <summary>
+            Indicates all regions used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.RegionMap.Item(System.Int32)">
+            <summary>
+            Get whether the specified region is in this collection.
+            </summary>
+            <param name="region">The region.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.Equals(Sudoku.Solving.Manual.Fishes.RegionMap)">
+            <method name="Equals" paramType="__any">
+		<summary>
+			Determine whether the current instance contains the same information with
+			hat from the specified parameter.
+		</summary>
+		<param name="other">The other instance to determine.</param>
+		<returns>A <see cref="T:System.Boolean" /> value indicating that.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.GetHashCode">
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.ToArray">
+            <summary>
+            Get all regions, and copy them into an array.
+            </summary>
+            <returns>The array.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.GetEnumerator">
+            <summary>
+            Get the enumerator.
+            </summary>
+            <returns>The enumerator.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.Add(System.Int32)">
+            <summary>
+            Add a region.
+            </summary>
+            <param name="region">The region.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Add regions.
+            </summary>
+            <param name="regions">The regions.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.Remove(System.Int32)">
+            <summary>
+            Remove a region.
+            </summary>
+            <param name="region">The region.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.op_Equality(Sudoku.Solving.Manual.Fishes.RegionMap,Sudoku.Solving.Manual.Fishes.RegionMap)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.op_Inequality(Sudoku.Solving.Manual.Fishes.RegionMap,Sudoku.Solving.Manual.Fishes.RegionMap)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.op_OnesComplement(Sudoku.Solving.Manual.Fishes.RegionMap)">
+            <summary>
+            Negate the map.
+            </summary>
+            <param name="map"> The map.</param>
+            <returns>The map after being negated.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.op_BitwiseAnd(Sudoku.Solving.Manual.Fishes.RegionMap,Sudoku.Solving.Manual.Fishes.RegionMap)">
+            <summary>
+            Get the regions that two maps both contain.
+            </summary>
+            <param name="left">The left map.</param>
+            <param name="right">The right map.</param>
+            <returns>The result map.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.op_BitwiseOr(Sudoku.Solving.Manual.Fishes.RegionMap,Sudoku.Solving.Manual.Fishes.RegionMap)">
+            <summary>
+            Get all regions that comes from two maps.
+            </summary>
+            <param name="left">The left map.</param>
+            <param name="right">The right map.</param>
+            <returns>The result map.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.op_ExclusiveOr(Sudoku.Solving.Manual.Fishes.RegionMap,Sudoku.Solving.Manual.Fishes.RegionMap)">
+            <summary>
+            Get the regions that two maps contain but don't overlap with each other.
+            </summary>
+            <param name="left">The left map.</param>
+            <param name="right">The right map.</param>
+            <returns>The result map.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.RegionMap.op_Subtraction(Sudoku.Solving.Manual.Fishes.RegionMap,Sudoku.Solving.Manual.Fishes.RegionMap)">
+            <summary>
+            Get the regions that <paramref name="left"/> contains but the <paramref name="right"/> does not contain.
+            </summary>
+            <param name="left">The left map.</param>
+            <param name="right">The right map.</param>
+            <returns>The result map.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Intersections.AlcTechniqueInfo">
             <summary>

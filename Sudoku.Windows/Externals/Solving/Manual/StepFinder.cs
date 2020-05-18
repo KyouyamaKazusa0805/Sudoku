@@ -97,9 +97,9 @@ namespace Sudoku.Solving.Manual
 				//	false, false, true, _settings.AicMaximumLength, _settings.ReductDifferentPathAic,
 				//	_settings.OnlySaveShortestPathAic, _settings.CheckHeadCollision,
 				//	_settings.CheckContinuousNiceLoop),
-				//new HobiwanFishTechniqueSearcher(
-				//	HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
-				//	HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates),
+				new HobiwanFishTechniqueSearcher(
+					_settings.HobiwanFishMaximumSize, _settings.HobiwanFishMaximumExofinsCount,
+					_settings.HobiwanFishMaximumEndofinsCount, _settings.HobiwanFishCheckTemplates),
 				new BowmanBingoTechniqueSearcher(_settings.BowmanBingoMaximumLength),
 				new PomTechniqueSearcher(),
 				new CccTechniqueSearcher(),

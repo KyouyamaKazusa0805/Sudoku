@@ -359,6 +359,20 @@ namespace Sudoku.Windows
 
 		/// <summary>
 		/// <para>
+		/// Indicates whether the solver will check templates before searching
+		/// Hobiwan's fish.
+		/// </para>
+		/// <para>
+		/// The value is <see langword="true"/> in default case. If the value
+		/// is <see langword="true"/>, the solver will check templates first,
+		/// and get all possible eliminations for each digit. If the digit does
+		/// not contain any elimination, the digit will not exist any fish.
+		/// </para>
+		/// </summary>
+		public bool HobiwanFishCheckTemplates { get; set; } = true;
+
+		/// <summary>
+		/// <para>
 		/// Indicates the grid line width of the sudoku grid to render.
 		/// </para>
 		/// <para>The value is <c>1.5F</c> in default case.</para>
@@ -448,6 +462,33 @@ namespace Sudoku.Windows
 		/// </para>
 		/// </summary>
 		public int CurrentPuzzleNumber { get; set; } = -1;
+
+		/// <summary>
+		/// <para>
+		/// Indicates what size of the Hobiwan's fish will be searched for.
+		/// </para>
+		/// <para>
+		/// The value is <c>4</c> in default case. The maximum value supporting
+		/// is <c>7</c>.
+		/// </para>
+		/// </summary>
+		public int HobiwanFishMaximumSize { get; set; } = 4;
+
+		/// <summary>
+		/// <para>
+		/// Indicates how many exo-fins in Hobiwan's fish will be searched for.
+		/// </para>
+		/// <para>The value is <c>3</c> in default case.</para>
+		/// </summary>
+		public int HobiwanFishMaximumExofinsCount { get; set; } = 3;
+
+		/// <summary>
+		/// <para>
+		/// Indicates how many endo-fins in Hobiwan's fish will be searched for.
+		/// </para>
+		/// <para>The value is <c>1</c> in default case.</para>
+		/// </summary>
+		public int HobiwanFishMaximumEndofinsCount { get; set; } = 1;
 
 		/// <summary>
 		/// <para>Indicates the max petals of death blossom.</para>
