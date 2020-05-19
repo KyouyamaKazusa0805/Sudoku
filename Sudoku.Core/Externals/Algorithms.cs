@@ -16,6 +16,11 @@ namespace System
 		/// <returns>All combinations.</returns>
 		public static IEnumerable<int[]> GetCombinationsOfArray(int[] array, int count)
 		{
+			if (count == 0)
+			{
+				return Array.Empty<int[]>();
+			}
+
 			int[] temp = new int[count];
 			var result = new List<int[]>();
 			GetCombinationRecursively(ref result, array, array.Length, count, temp, count);
