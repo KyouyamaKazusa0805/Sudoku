@@ -2,6 +2,10 @@
 
 标题：**向向的数独解决方案 (SSS)**
 
+> The author updates the files slower than the past due to the graduation approaching, which brings much more things.
+>
+> 这个作者目前更新文件会比以前更新得慢，因为临近毕业了，就有很多的事情。
+
 A sudoku handling SDK using brute forces and logical techniques (update gradually). Now this solution supports generating puzzles, solving puzzles (with logical & illogical techniques) and some attribute checking (for example, to determine whether the specified grid is a minimal puzzle, which will become multiple solutions when any a digit is missing).
 
 一个使用暴力破解和普通逻辑算法解题的数独分析解题 SDK（逐渐更新）。目前该解决方案支持对数独的题目生成、使用逻辑技巧或无逻辑技巧解题和一些常见数独特性的验证（例如，验证是否一个指定的盘面是一个最小题目。所谓的最小题目指的是，盘面任意一个数字消失后，都会使得题目多解的题）。
