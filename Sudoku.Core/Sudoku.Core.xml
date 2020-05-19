@@ -5334,6 +5334,171 @@
             <param name="b">Auxiliary variable.</param>
             <param name="c">Auxiliary variable.</param>
         </member>
+        <member name="T:System.Collections.Generic.Dlx">
+            <summary>
+            Encapsulates the dancing link.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.Dlx.KMaxNodes">
+            <summary>
+            The number of max nodes.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.Dlx.KMaxColumns">
+            <summary>
+            The number of max columns.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.Dlx.KRow">
+            <summary>
+            The number of max rows / columns / blocks.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.Dlx.KColumn">
+            <summary>
+            The number of max rows / columns / blocks.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.Dlx.KBlock">
+            <summary>
+            The number of max rows / columns / blocks.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.Dlx.N">
+            <summary>
+            The size.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.Dlx.#ctor(System.Int32[])">
+            <summary>
+            Initializes an instance with the specified grid array.
+            </summary>
+            <param name="gridArray">The array.</param>
+        </member>
+        <member name="F:System.Collections.Generic.Dlx.Root">
+            <summary>
+            The root.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.Dlx.InOut">
+            <summary>
+            In out value.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.Dlx.Columns">
+            <summary>
+            The array of all columns.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.Dlx.Stack">
+            <summary>
+            The stack.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.Dlx.Nodes">
+            <summary>
+            The nodes.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.Dlx.CurrentNode">
+            <summary>
+            The current node.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.Dlx.GetRowColumn(System.Int32,System.Int32)">
+            <summary>
+            Get the index of the value lying on the specified row.
+            </summary>
+            <param name="row">The row.</param>
+            <param name="value">The value.</param>
+            <returns>The code.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.Dlx.GetColumnColumn(System.Int32,System.Int32)">
+            <summary>
+            Get the index of the value lying on the specified column.
+            </summary>
+            <param name="column">The column.</param>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.Dlx.GetBlockColumn(System.Int32,System.Int32)">
+            <summary>
+            Get the index of the value lying on the specified block.
+            </summary>
+            <param name="block">The block.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:System.Collections.Generic.Dlx.AppendColumn(System.Int32)">
+            <summary>
+            Append a column.
+            </summary>
+            <param name="n">The number label.</param>
+            <exception cref="T:System.Exception">Throws when the current node is not null.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.Dlx.Cover(System.Collections.DlxNode*)">
+            <summary>
+            Cover the specified column.
+            </summary>
+            <param name="c">The column.</param>
+        </member>
+        <member name="M:System.Collections.Generic.Dlx.Uncover(System.Collections.DlxNode*)">
+            <summary>
+            Uncover the specified column.
+            </summary>
+            <param name="c">The column.</param>
+        </member>
+        <member name="M:System.Collections.Generic.Dlx.PutLeft(System.Collections.DlxNode*,System.Collections.DlxNode*)">
+            <summary>
+            Put the new node into the left side of the old node.
+            </summary>
+            <param name="oldNode">The old node.</param>
+            <param name="newNode">The new node.</param>
+        </member>
+        <member name="M:System.Collections.Generic.Dlx.PutUp(System.Collections.DlxNode*,System.Collections.DlxNode*)">
+            <summary>
+            Put the new node into the up side of the old node.
+            </summary>
+            <param name="oldNode">The old node.</param>
+            <param name="newNode">The new node.</param>
+        </member>
+        <member name="M:System.Collections.Generic.Dlx.Solve">
+            <summary>
+            To solve the specified puzzle.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.Dlx.GetNewRow(System.Int32)">
+            <summary>
+            Get a new row.
+            </summary>
+            <param name="column">The column label.</param>
+            <returns>The pointer.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.Dlx.GetNewColumn(System.Int32)">
+            <summary>
+            Get a new column with the specified number label.
+            </summary>
+            <param name="n">The number label.</param>
+            <returns>The pointer of the node.</returns>
+            <exception cref="T:System.Exception">
+            Throws when the current node is greater than <see cref="F:System.Collections.Generic.Dlx.KMaxNodes"/>.
+            </exception>
+            <seealso cref="F:System.Collections.Generic.Dlx.KMaxNodes"/>
+        </member>
+        <member name="M:System.Collections.Generic.Dlx.CreateInstance">
+            <summary>
+            The default constructor.
+            </summary>
+            <returns>The instance.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.Dlx.MemSet(System.Void*,System.Int32,System.Int32)">
+            <summary>
+            The C language <c>memset</c> method.
+            </summary>
+            <param name="dest">The destination pointer.</param>
+            <param name="c">The value.</param>
+            <param name="count">The count.</param>
+            <returns></returns>
+        </member>
         <member name="T:System.Collections.Generic.Bag`1">
             <summary>
             <para>
@@ -5507,6 +5672,75 @@
         </member>
         <member name="M:System.Collections.Generic.TreeNode`1.ToString">
             <inheritdoc/>
+        </member>
+        <member name="T:System.Collections.DlxNode">
+            <summary>
+            Indicates a node used for dancing links.
+            </summary>
+        </member>
+        <member name="F:System.Collections.DlxNode.Left">
+            <summary>
+            The pointer to the left node.
+            </summary>
+        </member>
+        <member name="F:System.Collections.DlxNode.Right">
+            <summary>
+            The pointer to the right node.
+            </summary>
+        </member>
+        <member name="F:System.Collections.DlxNode.Up">
+            <summary>
+            The pointer to the up node.
+            </summary>
+        </member>
+        <member name="F:System.Collections.DlxNode.Down">
+            <summary>
+            The pointer to the right node.
+            </summary>
+        </member>
+        <member name="F:System.Collections.DlxNode.Column">
+            <summary>
+            The pointer to the head node.
+            </summary>
+        </member>
+        <member name="F:System.Collections.DlxNode.Code">
+            <summary>
+            The unique code for this node.
+            </summary>
+        </member>
+        <member name="F:System.Collections.DlxNode.Size">
+            <summary>
+            The size of the current column.
+            </summary>
+        </member>
+        <member name="M:System.Collections.DlxNode.Equals(System.Object)">
+            <method name="Equals" paramType="object">
+		<summary>
+			Determines whether the specified object is equal to the current object.
+		</summary>
+		<param name="obj">The object to compare with the current object.</param>
+		<returns>
+			<see langword="true" /> if the specified object is equal to the
+			current object; otherwise, <see langword="false" />.
+		</returns>
+	</method>
+        </member>
+        <member name="M:System.Collections.DlxNode.Equals(System.Collections.DlxNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.DlxNode.GetHashCode">
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
+        </member>
+        <member name="M:System.Collections.DlxNode.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
         </member>
         <member name="T:System.Collections.TreeNode">
             <summary>
