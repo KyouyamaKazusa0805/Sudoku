@@ -1,4 +1,4 @@
-> I update the files slower than the past due to the graduation approaching, which brings much more things.
+> I update the files slower than the past due to the graduation approaching, which brings me much more things.
 >
 > 这个作者目前更新文件会比以前更新得慢，因为临近毕业了，就有很多的事情。
 >
