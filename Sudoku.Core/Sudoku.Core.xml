@@ -5497,7 +5497,7 @@
             <param name="dest">The destination pointer.</param>
             <param name="c">The value.</param>
             <param name="count">The count.</param>
-            <returns></returns>
+            <returns>The pointer.</returns>
         </member>
         <member name="T:System.Collections.Generic.Bag`1">
             <summary>

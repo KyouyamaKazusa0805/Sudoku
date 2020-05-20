@@ -336,7 +336,7 @@ namespace System.Collections.Generic
 		/// <param name="dest">The destination pointer.</param>
 		/// <param name="c">The value.</param>
 		/// <param name="count">The count.</param>
-		/// <returns></returns>
+		/// <returns>The pointer.</returns>
 		[DllImport("msvcrt.dll", EntryPoint = "memset", CallingConvention = Cdecl, SetLastError = false)]
 		private static extern unsafe void* MemSet(void* dest, int c, int count);
 	}
