@@ -206,8 +206,7 @@ namespace Sudoku.Recognitions
 		/// <param name="upperAngle">The upper angle. The default value is <c>105</c>.</param>
 		/// <param name="ratio">The ratio. The default value is <c>.35</c>.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		private bool IsRectangle(
-			PointF[] contour, int lowerAngle = 75, int upperAngle = 105, double ratio = .35)
+		private bool IsRectangle(PointF[] contour, int lowerAngle = 75, int upperAngle = 105, double ratio = .35)
 		{
 			if (contour.Length > 4)
 			{

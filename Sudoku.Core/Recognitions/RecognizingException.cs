@@ -16,14 +16,12 @@ namespace Sudoku.Recognitions
 		public RecognizingException(string message) : base(message) { }
 
 		/// <inheritdoc/>
-		public RecognizingException(string message, Exception innerException)
-			: base(message, innerException)
+		public RecognizingException(string message, Exception innerException) : base(message, innerException)
 		{
 		}
 
 		/// <inheritdoc/>
-		protected RecognizingException(SerializationInfo info, StreamingContext context)
-			: base(info, context)
+		protected RecognizingException(SerializationInfo info, StreamingContext context) : base(info, context)
 		{
 		}
 	}

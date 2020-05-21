@@ -49,13 +49,12 @@ namespace Sudoku.Recognitions
 			if (ToolIsInitialized)
 			{
 				using var gridRecognizer = new GridRecognizer(image);
-				var grid = _recognizingServiceProvider.RecognizeDigits(gridRecognizer.Recognize());
-				return grid;
+				return _recognizingServiceProvider.RecognizeDigits(gridRecognizer.Recognize());
 			}
 
 			throw new RecognizingException(
-				message: "The recognizer has not initialized.",
-				innerException: new NullReferenceException());
+				"The recognizer has not initialized.",
+				new NullReferenceException("The tool is current null."));
 		}
 	}
 }

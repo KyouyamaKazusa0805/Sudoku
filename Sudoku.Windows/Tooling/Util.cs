@@ -2,26 +2,44 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Media.Imaging;
 using System.Xml;
 using System.Xml.Serialization;
 using Sudoku.Drawing.Extensions;
+using static System.Reflection.BindingFlags;
 using DColor = System.Drawing.Color;
 using WColor = System.Windows.Media.Color;
 
 namespace Sudoku.Windows.Tooling
 {
+	/// <summary>
+	/// Methods for the internal utilities.
+	/// </summary>
 	internal static class Util
 	{
+		/// <summary>
+		/// Color HLS to RGB.
+		/// </summary>
+		/// <param name="H">The H value.</param>
+		/// <param name="L">The L value.</param>
+		/// <param name="S">The S value.</param>
+		/// <returns></returns>
 		[DllImport("shlwapi.dll")]
 		public static extern int ColorHLSToRGB(int H, int L, int S);
 
+		/// <summary>
+		/// Get a new color from the specified H, S and L values.
+		/// </summary>
+		/// <param name="H">The H value.</param>
+		/// <param name="S">The S value.</param>
+		/// <param name="L">The L value.</param>
+		/// <returns>The <see cref="WColor"/>.</returns>
 		public static WColor ColorFromHSL(int H, int S, int L)
 		{
-			int colorInt = ColorHLSToRGB(H, L, S);
-			byte[] bytes = BitConverter.GetBytes(colorInt);
+			byte[] bytes = BitConverter.GetBytes(ColorHLSToRGB(H, L, S));
 			return WColor.FromArgb(255, bytes[0], bytes[1], bytes[2]);
 		}
 
@@ -32,12 +50,22 @@ namespace Sudoku.Windows.Tooling
 		/// <returns>The result.</returns>
 		public static string ToHexString(this WColor @this) => $"#{@this.A:X2}{@this.R:X2}{@this.G:X2}{@this.B:X2}";
 
+		/// <summary>
+		/// Get the specified color from the specified hex string such as "<c>#FFFFFF</c>".
+		/// </summary>
+		/// <param name="hex">The hex string.</param>
+		/// <returns>The <see cref="WColor"/>.</returns>
 		public static WColor ColorFromHexString(string hex) =>
 			WColor.FromRgb(
 				Convert.ToByte(hex.Substring(1, 2), 16),
 				Convert.ToByte(hex.Substring(3, 2), 16),
 				Convert.ToByte(hex.Substring(5, 2), 16));
 
+		/// <summary>
+		/// Get the <see cref="BitmapImage"/> from the specified <see cref="BitmapSource"/>.
+		/// </summary>
+		/// <param name="bitmapSource">The bitmap source.</param>
+		/// <returns>The image.</returns>
 		public static BitmapImage GetBitmapImage(BitmapSource bitmapSource)
 		{
 			var encoder = new JpegBitmapEncoder();
@@ -55,23 +83,46 @@ namespace Sudoku.Windows.Tooling
 			return bImg;
 		}
 
-		public static float GetHue(this WColor c) => DColor.FromArgb(c.A, c.R, c.G, c.B).GetHue();
+		/// <summary>
+		/// Get the hue from the specified <see cref="WColor"/>.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The color.</param>
+		/// <returns>A <see cref="float"/> value.</returns>
+		public static float GetHue(this WColor @this) => DColor.FromArgb(@this.A, @this.R, @this.G, @this.B).GetHue();
 
-		public static float GetBrightness(this WColor c) => DColor.FromArgb(c.A, c.R, c.G, c.B).GetBrightness();
+		/// <summary>
+		/// Get the brightness from the specified <see cref="WColor"/>.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The color.</param>
+		/// <returns>A <see cref="float"/> value.</returns>
+		public static float GetBrightness(this WColor @this) =>
+			DColor.FromArgb(@this.A, @this.R, @this.G, @this.B).GetBrightness();
 
-		public static float GetSaturation(this WColor c) => DColor.FromArgb(c.A, c.R, c.G, c.B).GetSaturation();
+		/// <summary>
+		/// Get the saturation from the specified <see cref="WColor"/>.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The color.</param>
+		/// <returns>A <see cref="float"/> value.</returns>
+		public static float GetSaturation(this WColor @this) =>
+			DColor.FromArgb(@this.A, @this.R, @this.G, @this.B).GetSaturation();
 
+		/// <summary>
+		/// Get a color from alpha, hue, saturation and brightness.
+		/// </summary>
+		/// <param name="alpha">The alpha.</param>
+		/// <param name="hue">The hue.</param>
+		/// <param name="saturation">The saturation.</param>
+		/// <param name="brightness">The brightness.</param>
+		/// <returns>The <see cref="WColor"/>.</returns>
 		public static WColor FromAhsb(int alpha, float hue, float saturation, float brightness)
 		{
 			if (0 > alpha || 255 < alpha)
 			{
-				throw new ArgumentOutOfRangeException(
-					nameof(alpha), alpha, "Value must be within a range of 0 - 255.");
+				throw new ArgumentOutOfRangeException(nameof(alpha), alpha, "Value must be within a range of 0 - 255.");
 			}
 			if (hue < 0 || hue > 360F)
 			{
-				throw new ArgumentOutOfRangeException(
-					nameof(hue), hue, "Value must be within a range of 0 - 360.");
+				throw new ArgumentOutOfRangeException(nameof(hue), hue, "Value must be within a range of 0 - 360.");
 			}
 			if (saturation < 0 || saturation > 1F)
 			{
@@ -123,36 +174,54 @@ namespace Sudoku.Windows.Tooling
 			};
 		}
 
-		public static List<WColor> GetWebColors()
-		{
-			var list = new List<WColor>();
-			foreach (var info in typeof(DColor).GetProperties(BindingFlags.Public | BindingFlags.Static))
-			{
-				list.Add(DColor.FromName(info.Name).ToWColor());
-			}
+		/// <summary>
+		/// Get all colors especially used for HTML.
+		/// </summary>
+		/// <returns>All colors.</returns>
+		public static IReadOnlyList<WColor> GetWebColors() =>
+			new List<WColor>(
+				from property in typeof(DColor).GetProperties(Public | Static)
+				where property.PropertyType == typeof(DColor)
+				select DColor.FromName(property.Name).ToWColor());
 
-			return list;
-		}
-
-
+		/// <summary>
+		/// Serialize the specified instance to the specified file.
+		/// </summary>
+		/// <typeparam name="T">The type of the specified instance.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <param name="filename">The file name.</param>
 		public static void SaveToXml<T>(this T @this, string filename) => File.WriteAllText(filename, @this.GetXmlText());
 
-		public static string GetXmlText<T>(this T obj)
+		/// <summary>
+		/// Get the text from the specified text.
+		/// </summary>
+		/// <typeparam name="T">The type of the element.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <returns>The string.</returns>
+		public static string GetXmlText<T>(this T @this)
 		{
 			using var sw = new StringWriter();
 			using var writer =
 				XmlWriter.Create(
 					sw,
-					new XmlWriterSettings()
+					new XmlWriterSettings
 					{
 						Indent = true,
 						IndentChars = "    ",
 						NewLineOnAttributes = false
 					});
-			new XmlSerializer(typeof(T)).Serialize(writer, obj);
+			new XmlSerializer(typeof(T)).Serialize(writer, @this);
 			return sw.ToString();
 		}
 
+		/// <summary>
+		/// Deserialize the file.
+		/// </summary>
+		/// <typeparam name="T">The type of the instance.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <param name="filename">The file name.</param>
+		/// <returns>The instance.</returns>
+		[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
 		[return: MaybeNull]
 		public static T LoadFromXml<T>(this T @this, string filename)
 		{
@@ -167,6 +236,14 @@ namespace Sudoku.Windows.Tooling
 			return result;
 		}
 
+		/// <summary>
+		/// Deserialize the text.
+		/// </summary>
+		/// <typeparam name="T">The type of the instance.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <param name="xml">The text.</param>
+		/// <returns>The instance.</returns>
+		[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
 		[return: MaybeNull]
 		public static T LoadFromXmlText<T>(this T @this, string xml)
 		{

@@ -113,7 +113,7 @@ namespace Sudoku.Extensions
 		{
 			@this = (short)(@this >> 1 & 0x5555 | (@this & 0x5555) << 1);
 			@this = (short)(@this >> 2 & 0x3333 | (@this & 0x3333) << 2);
-			@this = (short)(@this >> 4 & 0x0f0f | (@this & 0x0f0f) << 4);
+			@this = (short)(@this >> 4 & 0x0F0F | (@this & 0x0F0F) << 4);
 			@this = (short)(@this >> 8 | @this << 8);
 		}
 	}

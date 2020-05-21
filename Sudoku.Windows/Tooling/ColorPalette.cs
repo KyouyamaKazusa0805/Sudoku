@@ -132,7 +132,7 @@ namespace Sudoku.Windows.Tooling
 		/// </summary>
 		/// <param name="colors">The colors to iterate on.</param>
 		/// <returns>The list of colors.</returns>
-		protected IEnumerable<ColorSwatchItem> GetColorSwatchItems(List<Color> colors) =>
+		protected IEnumerable<ColorSwatchItem> GetColorSwatchItems(IReadOnlyList<Color> colors) =>
 			from x in colors select new ColorSwatchItem() { Color = x, HexString = x.ToHexString() };
 	}
 }

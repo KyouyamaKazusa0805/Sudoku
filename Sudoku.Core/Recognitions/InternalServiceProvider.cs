@@ -55,9 +55,7 @@ namespace Sudoku.Recognitions
 				{
 					// Recognize digit from cell.
 					int recognition =
-						RecognizeCellNumber(
-							field.GetSubRect(
-								new Rectangle(o + w * x, o + w * y, w - o * 2, w - o * 2)));
+						RecognizeCellNumber(field.GetSubRect(new Rectangle(o + w * x, o + w * y, w - o * 2, w - o * 2)));
 					if (recognition == 0)
 					{
 						continue;
@@ -118,13 +116,7 @@ namespace Sudoku.Recognitions
 				}
 			}
 
-			if (numberText.Length > 1)
-			{
-				return 0;
-			}
-
-			int.TryParse(numberText, out int digit);
-			return digit;
+			return numberText.Length > 1 ? 0 : int.Parse(numberText);
 		}
 
 		/// <summary>

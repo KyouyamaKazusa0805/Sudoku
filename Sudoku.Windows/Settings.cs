@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Sudoku.Windows
 {
@@ -21,12 +22,9 @@ namespace Sudoku.Windows
 		/// <param name="newSetting">The new settings instance.</param>
 		public void CoverBy(Settings newSetting)
 		{
-			foreach (var property in GetType().GetProperties())
+			foreach (var property in from property in GetType().GetProperties() where property.CanWrite select property)
 			{
-				if (property.CanWrite)
-				{
-					property.SetValue(this, property.GetValue(newSetting));
-				}
+				property.SetValue(this, property.GetValue(newSetting));
 			}
 		}
 
