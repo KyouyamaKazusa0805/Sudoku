@@ -10,7 +10,7 @@ namespace Sudoku.Data
 	/// <remarks>
 	/// This data structure is so heavy...
 	/// </remarks>
-	public sealed class Inference : IEquatable<Inference>
+	public sealed class Inference : IEquatable<Inference?>
 	{
 		/// <summary>
 		/// Initializes an instance with the specified information.
@@ -129,7 +129,13 @@ namespace Sudoku.Data
 		public override bool Equals(object? obj) => obj is Inference comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(Inference other) => Start == other.Start && End == other.End;
+		public bool Equals(Inference? other) =>
+			(this is null, other is null) switch
+			{
+				(true, true) => true,
+				(false, false) => Start == other!.Start && End == other.End,
+				_ => false
+			};
 
 		/// <inheritdoc/>
 		public override int GetHashCode() => Start.GetHashCode() ^ End.GetHashCode();

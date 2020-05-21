@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable disable warnings
+
+using System;
 using System.Collections.Generic;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops

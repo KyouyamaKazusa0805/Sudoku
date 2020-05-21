@@ -1,9 +1,10 @@
-﻿using System;
+﻿#nullable disable warnings
+
+using System;
 using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
 

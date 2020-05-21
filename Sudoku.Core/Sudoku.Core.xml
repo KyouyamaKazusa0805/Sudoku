@@ -1542,15 +1542,15 @@
             cases are below:
             <list type="table">
             <item>
-            <term>0b001 (1)</term>
+            <term><c>0b001</c> (1)</term>
             <description>The cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/>.</description>
             </item>
             <item>
-            <term>0b010 (2)</term>
+            <term><c>0b010</c> (2)</term>
             <description>The cell is <see cref="F:Sudoku.Data.CellStatus.Modifiable"/>.</description>
             </item>
             <item>
-            <term>0b100 (4)</term>
+            <term><c>0b100</c> (4)</term>
             <description>The cell is <see cref="F:Sudoku.Data.CellStatus.Given"/>.</description>
             </item>
             </list>
@@ -1564,6 +1564,7 @@
             the initial grid. The field will not be modified until this instance
             destructs.
             </summary>
+            <seealso cref="F:Sudoku.Data.Grid._masks"/>
         </member>
         <member name="M:Sudoku.Data.Grid.#ctor(System.Int16[])">
             <summary>
@@ -2004,30 +2005,18 @@
         </member>
         <member name="F:Sudoku.Data.GridMap._high">
             <summary>
-            <para>
             Indicates the internal two <see cref="T:System.Int64"/> values,
             which represents 81 bits. <see cref="F:Sudoku.Data.GridMap._high"/> represent the higher
             40 bits and <see cref="F:Sudoku.Data.GridMap._low"/> represents the lower 41 bits.
-            </para>
-            <para>
-            This data structure is mutable because of these two fields (these
-            two fields are not <see langword="readonly"/>, but Roslyn lies).
-            </para>
             </summary>
             <seealso cref="F:Sudoku.Data.GridMap._low"/>
             <seealso cref="F:Sudoku.Data.GridMap._high"/>
         </member>
         <member name="F:Sudoku.Data.GridMap._low">
             <summary>
-            <para>
             Indicates the internal two <see cref="T:System.Int64"/> values,
             which represents 81 bits. <see cref="F:Sudoku.Data.GridMap._high"/> represent the higher
             40 bits and <see cref="F:Sudoku.Data.GridMap._low"/> represents the lower 41 bits.
-            </para>
-            <para>
-            This data structure is mutable because of these two fields (these
-            two fields are not <see langword="readonly"/>, but Roslyn lies).
-            </para>
             </summary>
             <seealso cref="F:Sudoku.Data.GridMap._low"/>
             <seealso cref="F:Sudoku.Data.GridMap._high"/>
@@ -2101,7 +2090,14 @@
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.ReadOnlySpan{System.Int32})">
             <summary>
-            <para>Initializes an instance with a series of cell offsets.</para>
+            Initializes an instance with a series of cell offsets.
+            </summary>
+            <param name="offsets">cell offsets.</param>
+            <remarks>
+            <para>
+            Note that all offsets will be set <see langword="true"/>, but their own peers
+            will not be set <see langword="true"/>.
+            </para>
             <para>
             In some case, you can use object initializer instead.
             You can use the code
@@ -2113,11 +2109,6 @@
             var map = new GridMap(stackalloc[] { 0, 3, 5 });
             </code>
             </para>
-            </summary>
-            <param name="offsets">cell offsets.</param>
-            <remarks>
-            Note that all offsets will be set <see langword="true"/>, but their own peers
-            will not be set <see langword="true"/>.
             </remarks>
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.ReadOnlySpan{System.Int32},Sudoku.Data.GridMap.InitializeOption)">
@@ -2135,6 +2126,10 @@
         <member name="M:Sudoku.Data.GridMap.#ctor(Sudoku.Data.GridMap)">
             <summary>
             To copy an instance with the specified information.
+            </summary>
+            <param name="another">Another instance.</param>
+            <remarks>
+            <para>
             This constructor is only used for adding or removing some extra cells like:
             <code>
             var y = new GridMap(x) { [i] = true };
@@ -2143,8 +2138,8 @@
             <code>
             var y = new GridMap(x) { i };
             </code>
-            </summary>
-            <param name="another">Another instance.</param>
+            </para>
+            </remarks>
         </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(Sudoku.Data.GridMap,Sudoku.Data.GridMap.InitializeOption)">
             <summary>
@@ -2199,14 +2194,14 @@
         <member name="P:Sudoku.Data.GridMap.IsEmpty">
             <summary>
             Indicates whether the map has no set bits.
-            This property is equivalent to code '<c>!<see langword="this"/>.IsNotEmpty</c>'.
+            This property is equivalent to code '<c>!this.IsNotEmpty</c>'.
             </summary>
             <seealso cref="P:Sudoku.Data.GridMap.IsNotEmpty"/>
         </member>
         <member name="P:Sudoku.Data.GridMap.IsNotEmpty">
             <summary>
             Indicates whether the map has at least one set bit.
-            This property is equivalent to code '<c>!<see langword="this"/>.IsEmpty</c>'.
+            This property is equivalent to code '<c>!this.IsEmpty</c>'.
             </summary>
             <seealso cref="P:Sudoku.Data.GridMap.IsEmpty"/>
         </member>
@@ -2276,7 +2271,16 @@
             <param name="low">(<see langword="out" /> parameter) Lower 41 bits.</param>
         </member>
         <member name="M:Sudoku.Data.GridMap.Equals(System.Object)">
-            <inheritdoc/>
+            <method name="Equals" paramType="object">
+		<summary>
+			Determines whether the specified object is equal to the current object.
+		</summary>
+		<param name="obj">The object to compare with the current object.</param>
+		<returns>
+			<see langword="true" /> if the specified object is equal to the
+			current object; otherwise, <see langword="false" />.
+		</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Data.GridMap.Equals(Sudoku.Data.GridMap)">
             <summary>
@@ -2331,7 +2335,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.GridMap.GetHashCode">
-            <inheritdoc/>
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Data.GridMap.ToString">
             <method name="ToString" paramType="__noparam">

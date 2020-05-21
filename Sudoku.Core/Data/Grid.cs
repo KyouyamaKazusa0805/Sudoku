@@ -12,7 +12,7 @@ namespace Sudoku.Data
 	/// Encapsulates a basic sudoku grid, which uses mask table to store all information for 81 cells.
 	/// </summary>
 	[DebuggerStepThrough]
-	public class Grid : ICloneable<Grid>, IEnumerable, IEnumerable<short>, IEquatable<Grid>, IReadOnlyGrid
+	public class Grid : ICloneable<Grid>, IEnumerable, IEnumerable<short>, IEquatable<Grid?>, IReadOnlyGrid
 	{
 		/// <summary>
 		/// Indicates the empty grid string.
@@ -43,15 +43,15 @@ namespace Sudoku.Data
 		/// cases are below:
 		/// <list type="table">
 		/// <item>
-		/// <term>0b001 (1)</term>
+		/// <term><c>0b001</c> (1)</term>
 		/// <description>The cell is <see cref="CellStatus.Empty"/>.</description>
 		/// </item>
 		/// <item>
-		/// <term>0b010 (2)</term>
+		/// <term><c>0b010</c> (2)</term>
 		/// <description>The cell is <see cref="CellStatus.Modifiable"/>.</description>
 		/// </item>
 		/// <item>
-		/// <term>0b100 (4)</term>
+		/// <term><c>0b100</c> (4)</term>
 		/// <description>The cell is <see cref="CellStatus.Given"/>.</description>
 		/// </item>
 		/// </list>
@@ -65,6 +65,7 @@ namespace Sudoku.Data
 		/// the initial grid. The field will not be modified until this instance
 		/// destructs.
 		/// </summary>
+		/// <seealso cref="_masks"/>
 		protected internal readonly short[] _initialMasks;
 
 
@@ -281,17 +282,30 @@ namespace Sudoku.Data
 		public override bool Equals(object? obj) => obj is Grid comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(Grid other)
+		public bool Equals(Grid? other)
 		{
-			for (int i = 0; i < 81; i++)
+			bool a = this is null, b = other is null;
+			if (a && b)
 			{
-				if (_masks[i] != other._masks[i])
-				{
-					return false;
-				}
+				return true;
 			}
+			else if (a ^ b)
+			{
+				return false;
+			}
+			else
+			{
+				// Both not null.
+				for (int i = 0; i < 81; i++)
+				{
+					if (_masks[i] != other!._masks[i])
+					{
+						return false;
+					}
+				}
 
-			return true;
+				return true;
+			}
 		}
 
 		/// <inheritdoc/>
@@ -310,15 +324,15 @@ namespace Sudoku.Data
 		/// <inheritdoc/>
 		public int[] ToArray()
 		{
-			int[] result = new int[81];
+			var span = (Span<int>)stackalloc int[81];
 			for (int i = 0; i < 81; i++)
 			{
 				// 'this[i]' is always in range -1 to 8 (-1 is empty, and 0 to 8 is 1 to 9 for
 				// mankind representation).
-				result[i] = this[i] + 1;
+				span[i] = this[i] + 1;
 			}
 
-			return result;
+			return span.ToArray();
 		}
 
 		/// <inheritdoc/>
@@ -427,27 +441,25 @@ namespace Sudoku.Data
 			int count = 0;
 			for (int i = 0; i < 81; i++)
 			{
-				if (GetStatus(i) == CellStatus.Given)
+				switch (GetStatus(i))
 				{
-					count++;
-				}
+					case CellStatus.Modifiable:
+						goto Label_NonEmpty;
+					case CellStatus.Given:
+						count++;
 
-				int curDigit, peerDigit;
-				if (GetStatus(i) != CellStatus.Empty)
-				{
-					curDigit = this[i];
-					foreach (int peerOffset in new GridMap(i).Offsets)
-					{
-						if (peerOffset == i)
+					Label_NonEmpty:
+						int curDigit, peerDigit;
+						curDigit = this[i];
+						foreach (int peerOffset in new GridMap(i).Offsets)
 						{
-							continue;
+							if (peerOffset != i && (peerDigit = this[peerOffset]) != -1 && curDigit == peerDigit)
+							{
+								return false;
+							}
 						}
 
-						if ((peerDigit = this[peerOffset]) != -1 && curDigit == peerDigit)
-						{
-							return false;
-						}
-					}
+						break;
 				}
 			}
 

@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using Sudoku.Extensions;
 
 namespace System.Collections.Generic
@@ -47,7 +48,7 @@ namespace System.Collections.Generic
 
 
 		/// <inheritdoc/>
-		public void Add(T item) => _internalList.Add(item);
+		public void Add([NotNull] T item) => _internalList.Add(item);
 
 		/// <summary>
 		/// Add a serial of elements.
@@ -59,7 +60,7 @@ namespace System.Collections.Generic
 		public void Clear() => _internalList.Clear();
 
 		/// <inheritdoc/>
-		public bool Contains(T item) => _internalList.Contains(item);
+		public bool Contains([NotNull] T item) => _internalList.Contains(item);
 
 		/// <inheritdoc/>
 		public IEnumerator<T> GetEnumerator() => _internalList.GetEnumerator();

@@ -9,15 +9,14 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Provides an elementary unit in a chain.
 	/// </summary>
-	public sealed class Node : IComparable<Node>, IEquatable<Node>
+	public sealed class Node : IComparable<Node?>, IEquatable<Node?>
 	{
 		/// <summary>
 		/// Initializes an instance with a specified candidate and its type.
 		/// </summary>
 		/// <param name="candidate">The candidates.</param>
 		/// <param name="nodeType">The type of this node.</param>
-		public Node(int candidate, NodeType nodeType)
-			: this(new FullGridMap(stackalloc[] { candidate }), nodeType)
+		public Node(int candidate, NodeType nodeType) : this(new FullGridMap(stackalloc[] { candidate }), nodeType)
 		{
 		}
 
@@ -94,13 +93,19 @@ namespace Sudoku.Data
 		/// <param name="other">The other node.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public bool FullCovered(Node other) =>
-			CandidatesMap.Count < other.CandidatesMap.Count ? false : (this | other) == CandidatesMap;
+			CandidatesMap.Count >= other.CandidatesMap.Count && (this | other) == CandidatesMap;
 
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is Node comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(Node other) => CandidatesMap == other.CandidatesMap;
+		public bool Equals(Node? other) =>
+			(this is null, other is null) switch
+			{
+				(true, true) => true,
+				(false, false) => CandidatesMap == other!.CandidatesMap,
+				_ => false
+			};
 
 		/// <inheritdoc/>
 		/// <remarks>
@@ -110,7 +115,13 @@ namespace Sudoku.Data
 		public override int GetHashCode() => CandidatesMap.GetHashCode();
 
 		/// <inheritdoc/>
-		public int CompareTo(Node other) => this[0].CompareTo(other[^1]);
+		public int CompareTo(Node? other) =>
+			(this is null, other is null) switch
+			{
+				(true, true) => 0,
+				(false, false) => this[0].CompareTo(other![^1]),
+				_ => this is null ? -1 : 1
+			};
 
 		/// <inheritdoc/>
 		/// <remarks>

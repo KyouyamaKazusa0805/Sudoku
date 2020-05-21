@@ -50,8 +50,7 @@ namespace Sudoku.Data.Stepping
 		/// </exception>
 		public UndoableGrid(IReadOnlyGrid grid)
 			: this((short[])(
-				(grid as Grid)?._masks.Clone()
-				?? throw new ArgumentException("The type is invalid.", nameof(grid))))
+				(grid as Grid)?._masks.Clone() ?? throw new ArgumentException("The type is invalid.", nameof(grid))))
 		{
 		}
 
@@ -97,9 +96,7 @@ namespace Sudoku.Data.Stepping
 			set
 			{
 				_undoStack.Push(
-					value
-						? (Step)new EliminationStep(digit, offset)
-						: new AntiEliminationStep(digit, offset));
+					value ? (Step)new EliminationStep(digit, offset) : new AntiEliminationStep(digit, offset));
 
 				// Do step.
 				base[offset, digit] = value;
@@ -219,12 +216,11 @@ namespace Sudoku.Data.Stepping
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override bool Equals(object? obj) =>
-			obj is UndoableGrid comparer && Equals(comparer);
+		public override bool Equals(object? obj) => obj is UndoableGrid comparer && Equals(comparer);
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool Equals(UndoableGrid other) => Equals(other.ToMutable());
+		public bool Equals(UndoableGrid? other) => Equals(other?.ToMutable());
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -232,27 +228,21 @@ namespace Sudoku.Data.Stepping
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
-		public static bool operator ==(UndoableGrid left, UndoableGrid right) =>
-			left.Equals(right);
+		public static bool operator ==(UndoableGrid left, UndoableGrid right) => left.Equals(right);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
-		public static bool operator ==(Grid left, UndoableGrid right) =>
-			left.Equals(right);
+		public static bool operator ==(Grid left, UndoableGrid right) => left.Equals(right);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
-		public static bool operator ==(UndoableGrid left, Grid right) =>
-			left.Equals(right);
+		public static bool operator ==(UndoableGrid left, Grid right) => left.Equals(right);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
-		public static bool operator !=(UndoableGrid left, UndoableGrid right) =>
-			!(left == right);
+		public static bool operator !=(UndoableGrid left, UndoableGrid right) => !(left == right);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
-		public static bool operator !=(Grid left, UndoableGrid right) =>
-			!(left == right);
+		public static bool operator !=(Grid left, UndoableGrid right) => !(left == right);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
-		public static bool operator !=(UndoableGrid left, Grid right) =>
-			!(left == right);
+		public static bool operator !=(UndoableGrid left, Grid right) => !(left == right);
 	}
 }

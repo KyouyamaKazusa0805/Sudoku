@@ -5,7 +5,7 @@ namespace System.Collections
 	/// <summary>
 	/// Encapsulates a tree node.
 	/// </summary>
-	public sealed class TreeNode : IComparable<TreeNode>
+	public sealed class TreeNode : IComparable<TreeNode?>
 	{
 		/// <summary>
 		/// Indicates the current ID.
@@ -29,7 +29,13 @@ namespace System.Collections
 
 
 		/// <inheritdoc/>
-		public int CompareTo(TreeNode other) => Id.CompareTo(other.Id);
+		public int CompareTo(TreeNode? other) =>
+			(this is null, other is null) switch
+			{
+				(true, true) => 0,
+				(false, false) => Id.CompareTo(other!.Id),
+				_ => this is null ? -1 : 1
+			};
 
 		/// <inheritdoc/>
 		public override string ToString() =>

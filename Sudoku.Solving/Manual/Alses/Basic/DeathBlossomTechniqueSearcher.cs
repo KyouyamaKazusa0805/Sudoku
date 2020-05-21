@@ -162,7 +162,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							{
 								for (int j = i + 1; j < length; j++)
 								{
-									if ((alsesUsed[i].Map & alsesUsed[j].Map).IsNotEmpty)
+									if (alsesUsed[i].Map.Overlaps(alsesUsed[j].Map))
 									{
 										overlap = true;
 										goto Label_Determine;
@@ -261,9 +261,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				var (_, region, digitsMask, map, _, _) = als;
 				foreach (int digit in digitsMask.GetAllSets())
 				{
-					var temp =
-						new GridMap((candMaps[digit] & map).Offsets, ProcessPeersWithoutItself)
-						& candMaps[digit];
+					var temp = new GridMap(candMaps[digit] & map, ProcessPeersWithoutItself) & candMaps[digit];
 					if (temp.IsEmpty)
 					{
 						continue;

@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -33,7 +32,7 @@ namespace Sudoku.Data
 		/// </para>
 		/// </summary>
 		/// <seealso cref="GridMap()"/>
-		public static readonly GridMap Empty = new GridMap();
+		public static readonly GridMap Empty = default;
 
 		/// <summary>
 		/// Indicates the instance that all bits are set <see langword="true"/> ahead of time.
@@ -48,15 +47,9 @@ namespace Sudoku.Data
 
 
 		/// <summary>
-		/// <para>
 		/// Indicates the internal two <see cref="long"/> values,
 		/// which represents 81 bits. <see cref="_high"/> represent the higher
 		/// 40 bits and <see cref="_low"/> represents the lower 41 bits.
-		/// </para>
-		/// <para>
-		/// This data structure is mutable because of these two fields (these
-		/// two fields are not <see langword="readonly"/>, but Roslyn lies).
-		/// </para>
 		/// </summary>
 		/// <seealso cref="_low"/>
 		/// <seealso cref="_high"/>
@@ -169,7 +162,14 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// <para>Initializes an instance with a series of cell offsets.</para>
+		/// Initializes an instance with a series of cell offsets.
+		/// </summary>
+		/// <param name="offsets">cell offsets.</param>
+		/// <remarks>
+		/// <para>
+		/// Note that all offsets will be set <see langword="true"/>, but their own peers
+		/// will not be set <see langword="true"/>.
+		/// </para>
 		/// <para>
 		/// In some case, you can use object initializer instead.
 		/// You can use the code
@@ -181,11 +181,6 @@ namespace Sudoku.Data
 		/// var map = new GridMap(stackalloc[] { 0, 3, 5 });
 		/// </code>
 		/// </para>
-		/// </summary>
-		/// <param name="offsets">cell offsets.</param>
-		/// <remarks>
-		/// Note that all offsets will be set <see langword="true"/>, but their own peers
-		/// will not be set <see langword="true"/>.
 		/// </remarks>
 		public GridMap(ReadOnlySpan<int> offsets) : this()
 		{
@@ -252,6 +247,10 @@ namespace Sudoku.Data
 
 		/// <summary>
 		/// To copy an instance with the specified information.
+		/// </summary>
+		/// <param name="another">Another instance.</param>
+		/// <remarks>
+		/// <para>
 		/// This constructor is only used for adding or removing some extra cells like:
 		/// <code>
 		/// var y = new GridMap(x) { [i] = true };
@@ -260,8 +259,8 @@ namespace Sudoku.Data
 		/// <code>
 		/// var y = new GridMap(x) { i };
 		/// </code>
-		/// </summary>
-		/// <param name="another">Another instance.</param>
+		/// </para>
+		/// </remarks>
 		public GridMap(GridMap another) => (_high, _low, Count) = (another._high, another._low, another.Count);
 
 		/// <summary>
@@ -270,8 +269,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="another">Another instance.</param>
 		/// <param name="initializeOption">The initialization option.</param>
-		public GridMap(GridMap another, InitializeOption initializeOption)
-			: this(another.Offsets, initializeOption)
+		public GridMap(GridMap another, InitializeOption initializeOption) : this(another.Offsets, initializeOption)
 		{
 		}
 
@@ -352,11 +350,8 @@ namespace Sudoku.Data
 		/// <param name="high">Higher 27 bits.</param>
 		/// <param name="mid">Medium 27 bits.</param>
 		/// <param name="low">Lower 27 bits.</param>
-		[SuppressMessage("", "IDE0004")]
 		public GridMap(int high, int mid, int low)
-			: this(
-				  ((long)high & 134217727) << 13 | (long)(mid >> 14 & 8191),
-				  ((long)mid & 16383) << 27 | (long)(low & 134217727))
+			: this((high & 0x7FFFFFFL) << 13 | (mid >> 14 & 0x1FFFL), (mid & 0x3FFFL) << 27 | (low & 0x7FFFFFFL))
 		{
 		}
 
@@ -374,14 +369,14 @@ namespace Sudoku.Data
 
 		/// <summary>
 		/// Indicates whether the map has no set bits.
-		/// This property is equivalent to code '<c>!<see langword="this"/>.IsNotEmpty</c>'.
+		/// This property is equivalent to code '<c>!this.IsNotEmpty</c>'.
 		/// </summary>
 		/// <seealso cref="IsNotEmpty"/>
 		public readonly bool IsEmpty => _high == 0 && _low == 0;
 
 		/// <summary>
 		/// Indicates whether the map has at least one set bit.
-		/// This property is equivalent to code '<c>!<see langword="this"/>.IsEmpty</c>'.
+		/// This property is equivalent to code '<c>!this.IsEmpty</c>'.
 		/// </summary>
 		/// <seealso cref="IsEmpty"/>
 		public readonly bool IsNotEmpty => _high != 0 || _low != 0;
@@ -573,7 +568,7 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly void Deconstruct(out long high, out long low) => (high, low) = (_high, _low);
 
-		/// <inheritdoc/>
+		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly bool Equals(object? obj) => obj is GridMap comparer && Equals(comparer);
 
@@ -660,10 +655,9 @@ namespace Sudoku.Data
 			}
 		}
 
-		/// <inheritdoc/>
+		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override readonly int GetHashCode() =>
-			GetType().GetHashCode() ^ (int)((_low ^ _high) & int.MaxValue);
+		public override readonly int GetHashCode() => GetType().GetHashCode() ^ (int)((_low ^ _high) & int.MaxValue);
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override readonly string ToString()

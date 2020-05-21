@@ -6,7 +6,7 @@ namespace System.Collections.Generic
 	/// Encapsulates a tree node.
 	/// </summary>
 	/// <typeparam name="T">The type of the element.</typeparam>
-	public sealed class TreeNode<T> : IComparable<TreeNode<T>>
+	public sealed class TreeNode<T> : IComparable<TreeNode<T>?>
 	{
 		/// <summary>
 		/// Indicates the current ID.
@@ -31,7 +31,13 @@ namespace System.Collections.Generic
 
 
 		/// <inheritdoc/>
-		public int CompareTo(TreeNode<T> other) => Id.CompareTo(other.Id);
+		public int CompareTo(TreeNode<T>? other) =>
+			(this is null, other is null) switch
+			{
+				(true, true) => 0,
+				(false, false) => Id.CompareTo(other!.Id),
+				_ => this is null ? -1 : 1
+			};
 
 		/// <inheritdoc/>
 		public override string ToString() =>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable disable warnings
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
