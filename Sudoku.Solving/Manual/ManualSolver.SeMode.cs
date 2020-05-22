@@ -126,7 +126,7 @@ namespace Sudoku.Solving.Manual
 					}
 
 					if (EnableGarbageCollectionForcedly
-						&& searcher.HasMarkedAttribute<HighAllocationAttribute>(false, out _))
+						&& searcher.HasMarked<TechniqueSearcher, HighAllocationAttribute>(out _))
 					{
 						GC.Collect();
 					}

@@ -3,34 +3,36 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 
 namespace Sudoku.Extensions
 {
 	/// <summary>
-	/// Provides extension methods on <see cref="object"/>.
+	/// Provides extension methods on generic instance.
 	/// </summary>
-	/// <seealso cref="object"/>
-	//[DebuggerStepThrough]
-	public static class ObjectEx
+	[DebuggerStepThrough]
+	public static class GenericEx
 	{
 		/// <summary>
 		/// Returns a <see cref="string"/> that represents the current object
-		/// though the object is <see langword="null"/>.
+		/// though the object is <see langword="null"/>. This method will never throw.
 		/// </summary>
+		/// <typeparam name="T">The type of this instance.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The object.</param>
 		/// <returns>
 		/// A <see cref="string"/> represents the current object.
 		/// If the current object is <see langword="null"/>, this value will be
-		/// <see cref="string.Empty"/>. Therefore, this method will never throw.
+		/// <see cref="string.Empty"/>.
 		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static string NullableToString(this object? @this) => @this.NullableToString(string.Empty);
+		public static string NullableToString<T>([MaybeNull] this T @this) => @this.NullableToString(string.Empty);
 
 		/// <summary>
 		/// Returns a <see cref="string"/> that represents the current object
-		/// though the object is <see langword="null"/>.
+		/// though the object is <see langword="null"/>. This method will never throw.
 		/// </summary>
+		/// <typeparam name="T">The type of this instance.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The object.</param>
 		/// <param name="defaultValue">
 		/// The default return value when the current object is <see langword="null"/>.
@@ -38,32 +40,27 @@ namespace Sudoku.Extensions
 		/// <returns>
 		/// A <see cref="string"/> represents the current object.
 		/// If the current object is <see langword="null"/>, this value will be
-		/// <paramref name="defaultValue"/>. Therefore, this method will never throw.
+		/// <paramref name="defaultValue"/>.
 		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static string NullableToString(this object? @this, string defaultValue) =>
+		public static string NullableToString<T>([MaybeNull] this T @this, string defaultValue) =>
 			@this?.ToString() ?? defaultValue;
 
 		/// <summary>
-		/// To check whether the specified type has marked the specified attribute.
+		/// To check whether the specified instance has marked the specified attribute or not.
 		/// </summary>
+		/// <typeparam name="T">
+		/// The type of the instance. This instance should not be <see langword="null"/>.
+		/// </typeparam>
 		/// <typeparam name="TAttribute">The type of the attribute.</typeparam>
-		/// <param name="this">
-		/// (<see langword="this"/> parameter) The instance. This instance will
-		/// never be useful except to get its type.
-		/// </param>
-		/// <param name="inherit">
-		/// <see langword="true"/> to search this member's inheritance chain
-		/// to find the attributes; otherwise, <see langword="false"/>.
-		/// This parameter is ignored for properties and events.
-		/// </param>
-		/// <param name="attributes">
-		/// (<see langword="out"/> parameter) All attributes found.
-		/// </param>
-		/// <returns>A <see cref="bool"/> indicating that.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasMarkedAttribute<TAttribute>(
-			this object @this, bool inherit, [NotNullWhen(true)] out IEnumerable<TAttribute>? attributes)
+		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <param name="attributes">(<see langword="out"/> parameter) The attribute instances.</param>
+		/// <param name="inherit">The parameter used for <see cref="MemberInfo.GetCustomAttributes(bool)"/>.</param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		/// <seealso cref="MemberInfo.GetCustomAttributes(bool)"/>
+		public static bool HasMarked<T, TAttribute>(
+			[NotNull] this T @this, [NotNullWhen(true)] out IEnumerable<TAttribute>? attributes, bool inherit = false)
+			where T : notnull
 			where TAttribute : Attribute
 		{
 			var temp = @this.GetType().GetCustomAttributes(inherit).OfType<TAttribute>();

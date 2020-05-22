@@ -159,7 +159,7 @@ namespace Sudoku.Solving.Manual
 						// to continue solving puzzle.
 						bag.Clear();
 						if (EnableGarbageCollectionForcedly
-							&& searcher.HasMarkedAttribute<HighAllocationAttribute>(false, out _))
+							&& searcher.HasMarked<TechniqueSearcher, HighAllocationAttribute>(out _))
 						{
 							GC.Collect();
 						}
@@ -208,7 +208,7 @@ namespace Sudoku.Solving.Manual
 							// to continue solving puzzle.
 							bag.Clear();
 							if (EnableGarbageCollectionForcedly
-								&& searcher.HasMarkedAttribute<HighAllocationAttribute>(false, out _))
+								&& searcher.HasMarked<TechniqueSearcher, HighAllocationAttribute>(out _))
 							{
 								GC.Collect();
 							}
