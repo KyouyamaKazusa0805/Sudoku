@@ -338,6 +338,6 @@ namespace System.Collections.Generic
 		/// <param name="count">The count.</param>
 		/// <returns>The pointer.</returns>
 		[DllImport("msvcrt.dll", EntryPoint = "memset", CallingConvention = Cdecl, SetLastError = false)]
-		private static extern unsafe void* MemSet(void* dest, int c, int count);
+		private static extern void* MemSet(void* dest, int c, int count);
 	}
 }
