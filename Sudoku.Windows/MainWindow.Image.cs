@@ -65,7 +65,7 @@ namespace Sudoku.Windows
 							}
 						}
 
-						_layerCollection.Remove(typeof(FocusLayer).Name);
+						_layerCollection.Remove<FocusLayer>();
 						_layerCollection.Add(
 							new CustomViewLayer(
 								_pointConverter, _view, null, Settings.PaletteColors,

@@ -411,7 +411,7 @@ namespace Sudoku.Windows
 					Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
 					Settings.GivenFontName, Settings.ModifiableFontName, Settings.CandidateFontName,
 					_puzzle = new UndoableGrid(_initialPuzzle), Settings.ShowCandidates));
-			_layerCollection.Remove(typeof(ViewLayer).Name);
+			_layerCollection.Remove<ViewLayer>();
 
 			UpdateImageGrid();
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);

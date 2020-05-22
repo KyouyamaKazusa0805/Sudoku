@@ -160,7 +160,7 @@ namespace Sudoku.Windows
 			_customDrawingMode = -1;
 
 			_view.Clear();
-			_layerCollection.Remove(typeof(CustomViewLayer).Name);
+			_layerCollection.Remove<CustomViewLayer>();
 
 			UpdateImageGrid();
 		}

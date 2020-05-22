@@ -174,7 +174,7 @@ namespace Sudoku.Windows
 						Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
 						Settings.GivenFontName, Settings.ModifiableFontName,
 						Settings.CandidateFontName, _puzzle = value, Settings.ShowCandidates));
-				_layerCollection.Remove(typeof(ViewLayer).Name);
+				_layerCollection.Remove<ViewLayer>();
 				_initialPuzzle = value.Clone();
 
 				GC.Collect();
@@ -348,7 +348,7 @@ namespace Sudoku.Windows
 			{
 				// Clear focused cells.
 				_focusedCells.Clear();
-				_layerCollection.Remove(typeof(FocusLayer).Name);
+				_layerCollection.Remove<FocusLayer>();
 
 				UpdateImageGrid();
 			}

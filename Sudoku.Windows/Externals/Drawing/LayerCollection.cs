@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using Sudoku.Drawing.Layers;
+using System.Linq;
+using Sudoku.Extensions;
 
 namespace Sudoku.Drawing
 {
@@ -14,25 +16,17 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// The internal list.
 		/// </summary>
-		private readonly ISet<Layer> _internalList = new SortedSet<Layer>();
+		private readonly ISet<Layer> _internalList;
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
-		public LayerCollection()
-		{
-		}
+		public LayerCollection() => _internalList = new SortedSet<Layer>();
 
 		/// <summary>
 		/// Initializes an instance with specified layers.
 		/// </summary>
 		/// <param name="layers">The layers.</param>
-		public LayerCollection(IEnumerable<Layer> layers)
-		{
-			foreach (var layer in layers)
-			{
-				_internalList.Add(layer);
-			}
-		}
+		public LayerCollection(IEnumerable<Layer> layers) : this() => _internalList.AddRange(layers);
 
 
 		/// <summary>
@@ -40,21 +34,8 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="layerName">The layer name.</param>
 		/// <returns>The layer.</returns>
-		public Layer? this[Type layerType]
-		{
-			get
-			{
-				foreach (var layer in this)
-				{
-					if (layer.Name == layerType.Name)
-					{
-						return layer;
-					}
-				}
-
-				return null;
-			}
-		}
+		public Layer? this[Type layerType] =>
+			(from layer in _internalList where layer.Name == layerType.Name select layer).FirstOrDefault();
 
 
 		/// <inheritdoc/>
@@ -82,25 +63,28 @@ namespace Sudoku.Drawing
 		}
 
 		/// <summary>
-		/// <para>
-		/// Remove a series of layers from this collection.
-		/// If the collection does not contain any layers with the specified value,
-		/// the method will do nothing rather than throwing an exception.
-		/// </para>
-		/// <para>
-		/// Please use code '<c>Remove(typeof(LayerName).Name)</c>' to remove.
-		/// </para>
+		/// Remove a layer.
 		/// </summary>
-		/// <param name="layerName">The layer name.</param>
-		public void Remove(string layerName)
+		/// <typeparam name="TLayer">The type of the layer.</typeparam>
+		/// <exception cref="ArgumentException">
+		/// Throws when the specified type parameter is abstract.
+		/// </exception>
+		public void Remove<TLayer>() where TLayer : Layer
 		{
-		Label_Start:
+			if (typeof(TLayer).IsAbstract)
+			{
+				throw new ArgumentException(
+					$"The specified type parameter is invalid: It is not instance class, but abstract.",
+					nameof(TLayer));
+			}
+
+			string name = typeof(TLayer).Name;
 			foreach (var layer in _internalList)
 			{
-				if (layer.Name == layerName)
+				if (layer.Name == name)
 				{
 					Remove(layer);
-					goto Label_Start;
+					return;
 				}
 			}
 		}
@@ -121,15 +105,20 @@ namespace Sudoku.Drawing
 		/// <param name="predicate">The condition.</param>
 		public void RemoveWhen(Predicate<Layer> predicate)
 		{
-		Label_Start:
-			foreach (var layer in _internalList)
+			bool flag;
+			do
 			{
-				if (predicate(layer))
+				foreach (var layer in _internalList)
 				{
-					Remove(layer);
-					goto Label_Start;
+					if (predicate(layer))
+					{
+						Remove(layer);
+						continue;
+					}
 				}
-			}
+
+				flag = false;
+			} while (!flag);
 		}
 
 		/// <summary>
@@ -160,117 +149,10 @@ namespace Sudoku.Drawing
 			}
 		}
 
-		/// <summary>
-		/// To integrate to the target bitmap.
-		/// </summary>
-		/// <param name="bitmap">The bitmap.</param>
-		/// <param name="graphicsUnit">The graphics unit.</param>
-		public void IntegrateTo(Bitmap bitmap, GraphicsUnit graphicsUnit)
-		{
-			using var g = Graphics.FromImage(bitmap);
-			g.PageUnit = graphicsUnit;
-			foreach (var layer in _internalList)
-			{
-				layer.Redraw();
-				g.DrawImage(layer.Target, 0, 0);
-			}
-		}
-
-		/// <summary>
-		/// Returns a <see cref="bool"/> value indicating whether the specified collection
-		/// contains the specified layer whose name is same as specified argument.
-		/// </summary>
-		/// <param name="layerName">The layer name.</param>
-		/// <returns>A <see cref="bool"/> value.</returns>
-		public bool Contains(string layerName)
-		{
-			foreach (var layer in _internalList)
-			{
-				if (layer.Name == layerName)
-				{
-					return true;
-				}
-			}
-
-			return false;
-		}
-
-		/// <summary>
-		/// Returns a <see cref="bool"/> value indicating whether the specified collection
-		/// contains the specified layer.
-		/// </summary>
-		/// <param name="layer">The layer.</param>
-		/// <returns>A <see cref="bool"/> value.</returns>
-		public bool Contains(Layer layer) => _internalList.Contains(layer);
-
 		/// <inheritdoc/>
 		public IEnumerator<Layer> GetEnumerator() => _internalList.GetEnumerator();
 
 		/// <inheritdoc/>
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-
-
-		/// <summary>
-		/// Add a layer to this list. This operator can be used like:
-		/// <code>
-		/// var newLayer = ...;<br/>
-		/// var layers = ...;<br/>
-		/// layers += layer;
-		/// </code>
-		/// which is equivalent to
-		/// <code>
-		/// var newLayer = ...;<br/>
-		/// var layers = ...;<br/>
-		/// layers.Add(newLayer);
-		/// </code>
-		/// </summary>
-		/// <param name="layers">The layers.</param>
-		/// <param name="layer">The layer to add.</param>
-		/// <returns>The reference of this collection.</returns>
-		public static LayerCollection operator +(LayerCollection layers, Layer layer)
-		{
-			layers.Add(layer);
-			return layers;
-		}
-
-		/// <summary>
-		/// Remove a series of layers whose name is same as the specified argument.
-		/// The operator can be used like:
-		/// <code>layers -= "Basic";</code>
-		/// which is equivalent to
-		/// <code>
-		/// layers.RemoveAll("Basic"); <br/>
-		/// // or<br/>
-		/// layers.RemoveWhen(layer => layer.Name == "Basic");
-		/// </code>
-		/// </summary>
-		/// <param name="layers">The collection to remove layers.</param>
-		/// <param name="layerName">The layer name.</param>
-		/// <returns>The reference of this collection.</returns>
-		public static LayerCollection operator -(LayerCollection layers, string layerName)
-		{
-			layers.Remove(layerName);
-			return layers;
-		}
-
-		/// <summary>
-		/// Remove a series of layers that match the specified condition.
-		/// The operator can be used like:
-		/// <code>
-		/// layers -= layer => layer.Name == "Basic";
-		/// </code>
-		/// which is equivalent to
-		/// <code>
-		/// layers.RemoveWhen(layer => layer.Name == "Basic");
-		/// </code>
-		/// </summary>
-		/// <param name="layers">The layers.</param>
-		/// <param name="predicate">The condition.</param>
-		/// <returns>The reference of this collection.</returns>
-		public static LayerCollection operator -(LayerCollection layers, Predicate<Layer> predicate)
-		{
-			layers.RemoveWhen(predicate);
-			return layers;
-		}
 	}
 }

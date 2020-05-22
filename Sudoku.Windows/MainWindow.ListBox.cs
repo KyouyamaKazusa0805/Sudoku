@@ -76,13 +76,12 @@ namespace Sudoku.Windows
 				var (_, info, isEnabled) = triplet;
 				if (isEnabled)
 				{
-					if (Settings.CheckConclusionValidityAfterSearched
-						? CheckConclusionsValidity(new BitwiseSolver().Solve(_puzzle).Solution!, info.Conclusions)
-						: true)
+					if (!Settings.CheckConclusionValidityAfterSearched
+						|| CheckConclusionsValidity(new BitwiseSolver().Solve(_puzzle).Solution!, info.Conclusions))
 					{
 						info.ApplyTo(_puzzle);
 
-						_layerCollection.Remove(typeof(ViewLayer).Name);
+						_layerCollection.Remove<ViewLayer>();
 						_layerCollection.Add(
 							new ValueLayer(
 								_pointConverter, Settings.ValueScale, Settings.CandidateScale,

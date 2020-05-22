@@ -710,45 +710,35 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// The color table for each difficulty level.
 		/// </summary>
-		public IDictionary<DifficultyLevel, (Color _foreground, Color _background)> DiffColors
-		{
-			get
+		public IDictionary<DifficultyLevel, (Color _foreground, Color _background)> DiffColors =>
+			new Dictionary<DifficultyLevel, (Color, Color)>
 			{
-				return new Dictionary<DifficultyLevel, (Color, Color)>
-				{
-					[Unknown] = (Color.Black, Color.Gray),
-					[VeryEasy] = (Color.Black, Color.FromArgb(204, 204, 255)),
-					[Easy] = (Color.Black, Color.FromArgb(204, 204, 255)),
-					[Moderate] = (Color.Black, Color.FromArgb(100, 255, 100)),
-					[Advanced] = (Color.Black, Color.FromArgb(100, 255, 100)),
-					[Hard] = (Color.Black, Color.FromArgb(255, 255, 100)),
-					[VeryHard] = (Color.Black, Color.FromArgb(255, 255, 100)),
-					[Fiendish] = (Color.Black, Color.FromArgb(255, 150, 80)),
-					[Diabolical] = (Color.Black, Color.FromArgb(255, 150, 80)),
-					[Crazy] = (Color.Black, Color.FromArgb(255, 100, 100)),
-					[Nightmare] = (Color.Black, Color.FromArgb(255, 100, 100)),
-					[BeyondNightmare] = (Color.Black, Color.FromArgb(255, 100, 100)),
-					[LastResort] = (Color.Black, Color.FromArgb(255, 100, 100))
-				};
-			}
-		}
+				[Unknown] = (Color.Black, Color.Gray),
+				[VeryEasy] = (Color.Black, Color.FromArgb(204, 204, 255)),
+				[Easy] = (Color.Black, Color.FromArgb(204, 204, 255)),
+				[Moderate] = (Color.Black, Color.FromArgb(100, 255, 100)),
+				[Advanced] = (Color.Black, Color.FromArgb(100, 255, 100)),
+				[Hard] = (Color.Black, Color.FromArgb(255, 255, 100)),
+				[VeryHard] = (Color.Black, Color.FromArgb(255, 255, 100)),
+				[Fiendish] = (Color.Black, Color.FromArgb(255, 150, 80)),
+				[Diabolical] = (Color.Black, Color.FromArgb(255, 150, 80)),
+				[Crazy] = (Color.Black, Color.FromArgb(255, 100, 100)),
+				[Nightmare] = (Color.Black, Color.FromArgb(255, 100, 100)),
+				[BeyondNightmare] = (Color.Black, Color.FromArgb(255, 100, 100)),
+				[LastResort] = (Color.Black, Color.FromArgb(255, 100, 100))
+			};
 
 		/// <summary>
 		/// Indicates the palette colors.
 		/// </summary>
-		public IDictionary<int, Color> PaletteColors
-		{
-			get
+		public IDictionary<int, Color> PaletteColors =>
+			new Dictionary<int, Color>
 			{
-				return new Dictionary<int, Color>
-				{
-					[-4] = Color8, [-3] = Color7, [-2] = Color6, [-1] = Color5,
-					[0] = Color1, [1] = Color2, [2] = Color3,
-					[3] = Color4, [4] = Color9, [5] = Color10,
-					[6] = Color11, [7] = Color12, [8] = Color13,
-					[9] = Color14, [10] = Color15,
-				};
-			}
-		}
+				[-4] = Color8, [-3] = Color7, [-2] = Color6, [-1] = Color5,
+				[0] = Color1, [1] = Color2, [2] = Color3,
+				[3] = Color4, [4] = Color9, [5] = Color10,
+				[6] = Color11, [7] = Color12, [8] = Color13,
+				[9] = Color14, [10] = Color15,
+			};
 	}
 }

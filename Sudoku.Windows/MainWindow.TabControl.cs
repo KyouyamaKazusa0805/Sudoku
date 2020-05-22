@@ -9,7 +9,7 @@ namespace Sudoku.Windows
 		{
 			if (ReferenceEquals(_tabControlInfo.SelectedItem, _tabItemDrawing))
 			{
-				_layerCollection.Remove(typeof(ViewLayer).Name);
+				_layerCollection.Remove<ViewLayer>();
 
 				UpdateImageGrid();
 			}

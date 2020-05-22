@@ -1,9 +1,8 @@
-﻿#nullable disable warnings
-
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Drawing;
 using Sudoku.Drawing.Extensions;
+using static System.Drawing.StringAlignment;
 
 namespace Sudoku.Drawing.Layers
 {
@@ -11,15 +10,15 @@ namespace Sudoku.Drawing.Layers
 	/// Define a layer for displaying on the form controls.
 	/// </summary>
 	[DebuggerStepThrough]
-	public abstract class Layer : IComparable<Layer>, IDisposable, IEquatable<Layer>
+	public abstract class Layer : IComparable<Layer?>, IDisposable, IEquatable<Layer?>
 	{
 		/// <summary>
 		/// Indicates a basic string format.
 		/// </summary>
 		protected static readonly StringFormat DefaultStringFormat = new StringFormat
 		{
-			Alignment = StringAlignment.Center,
-			LineAlignment = StringAlignment.Center
+			Alignment = Center,
+			LineAlignment = Center
 		};
 
 
@@ -73,7 +72,13 @@ namespace Sudoku.Drawing.Layers
 		public sealed override bool Equals(object? obj) => obj is Layer comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(Layer other) => Name == other.Name;
+		public bool Equals(Layer? other) =>
+			(this is null, other is null) switch
+			{
+				(true, true) => true,
+				(false, false) => Name == other!.Name,
+				_ => false
+			};
 
 		/// <inheritdoc/>
 		public sealed override int GetHashCode() => Name.GetHashCode();
@@ -85,7 +90,13 @@ namespace Sudoku.Drawing.Layers
 		public void Dispose() => Target?.Dispose();
 
 		/// <inheritdoc/>
-		public int CompareTo(Layer other) => Priority.CompareTo(other.Priority);
+		public int CompareTo(Layer? other) =>
+			(this is null, other is null) switch
+			{
+				(true, true) => 0,
+				(false, false) => Priority.CompareTo(other!.Priority),
+				_ => this is null ? -1 : 1
+			};
 
 		/// <summary>
 		/// To redraw to the bitmap.
