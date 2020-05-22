@@ -233,7 +233,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						if (target != -1)
 						{
 							var (tempTargetElims, tempMirrorElims) = CheckMirror(
-								grid, target, combination[(target == combination[0]).ToInt32()], 0,
+								grid, target, combination[target == combination[0] ? 1 : 0], 0,
 								baseCandidatesMask, mir, 0, -1, cellOffsets, candidateOffsets);
 							targetElims = TargetEliminations.MergeAll(targetElims, tempTargetElims);
 							mirrorElims = MirrorEliminations.MergeAll(mirrorElims, tempMirrorElims);
@@ -278,7 +278,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						continue;
 					}
 
-					int endoTargetCell = combination[(!s[combination[0]]).ToInt32()];
+					int endoTargetCell = combination[s[combination[0]] ? 0 : 1];
 					short m1 = grid.GetCandidatesReversal(b1);
 					short m2 = grid.GetCandidatesReversal(b2);
 					short m = (short)(m1 | m2);

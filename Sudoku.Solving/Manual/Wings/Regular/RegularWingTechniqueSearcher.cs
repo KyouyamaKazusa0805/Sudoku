@@ -355,9 +355,9 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 								new List<(int, int)>((
 									from cell in cellsArray
 									from digit in grid.GetCandidatesReversal(cell).GetAllSets()
-									select ((digit == elimDigit).ToInt32(), cell * 9 + digit)).Concat(
+									select (digit == elimDigit ? 1 : 0, cell * 9 + digit)).Concat(
 									from digit in grid.GetCandidatesReversal(pivot).GetAllSets()
-									select ((digit == elimDigit).ToInt32(), pivot * 9 + digit))),
+									select (digit == elimDigit ? 1 : 0, pivot * 9 + digit))),
 							regionOffsets: null,
 							links: null)
 					},

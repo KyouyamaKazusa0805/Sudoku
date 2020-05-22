@@ -840,15 +840,14 @@ namespace Sudoku.Solving.Manual.Chaining
 					{
 						case NodeType.Candidate:
 						{
-							candidateOffsets.Add((@switch.ToInt32(), node[0]));
+							candidateOffsets.Add((@switch ? 1 : 0, node[0]));
 
 							break;
 						}
 						case NodeType.LockedCandidates:
 						{
 							candidateOffsets.AddRange(
-								from candidate in node.Candidates
-								select (@switch.ToInt32(), candidate));
+								from candidate in node.Candidates select (@switch ? 1 : 0, candidate));
 
 							break;
 						}

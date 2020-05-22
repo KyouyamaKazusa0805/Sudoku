@@ -255,8 +255,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 								{
 									foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 									{
-										candidateOffsets.Add(
-											((digit == extraDigit).ToInt32(), cell * 9 + digit));
+										candidateOffsets.Add((digit == extraDigit ? 1 : 0, cell * 9 + digit));
 									}
 								}
 

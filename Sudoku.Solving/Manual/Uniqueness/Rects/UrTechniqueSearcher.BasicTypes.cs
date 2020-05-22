@@ -134,7 +134,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 				foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 				{
-					candidateOffsets.Add(((digit == extraDigit).ToInt32(), cell * 9 + digit));
+					candidateOffsets.Add((digit == extraDigit ? 1 : 0, cell * 9 + digit));
 				}
 			}
 			if (!_allowUncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
@@ -267,7 +267,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 							foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
 							{
-								candidateOffsets.Add(((d != d1 && d != d2).ToInt32(), cell * 9 + d));
+								candidateOffsets.Add((d != d1 && d != d2 ? 1 : 0, cell * 9 + d));
 							}
 						}
 						foreach (int d in grid.GetCandidatesReversal(c1).GetAllSets())
@@ -366,7 +366,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 									foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
 									{
-										candidateOffsets.Add(((d != d1 && d != d2).ToInt32(), cell * 9 + d));
+										candidateOffsets.Add((d != d1 && d != d2 ? 1 : 0, cell * 9 + d));
 									}
 								}
 								foreach (int d in grid.GetCandidatesReversal(c1).GetAllSets())
@@ -469,7 +469,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 										foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
 										{
-											candidateOffsets.Add(((d != d1 && d != d2).ToInt32(), cell * 9 + d));
+											candidateOffsets.Add((d != d1 && d != d2 ? 1 : 0, cell * 9 + d));
 										}
 									}
 									foreach (int d in grid.GetCandidatesReversal(c1).GetAllSets())
@@ -595,7 +595,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 						if (totalMap[cell])
 						{
-							int id = (!otherCellsMap[cell]).ToInt32();
+							int id = otherCellsMap[cell] ? 0 : 1;
 							void record(int digit)
 							{
 								if (grid.Exists(cell, digit) is true)
@@ -699,7 +699,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 								if (totalMap[cell])
 								{
-									int id = (!otherCellsMap[cell]).ToInt32();
+									int id = otherCellsMap[cell] ? 0 : 1;
 									void record(int digit)
 									{
 										if (grid.Exists(cell, digit) is true)
@@ -801,7 +801,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 									if (totalMap[cell])
 									{
-										int id = (!otherCellsMap[cell]).ToInt32();
+										int id = otherCellsMap[cell] ? 0 : 1;
 										void record(int digit)
 										{
 											if (grid.Exists(cell, digit) is true)
@@ -1015,7 +1015,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 				foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 				{
-					candidateOffsets.Add(((digit == extraDigit).ToInt32(), cell * 9 + digit));
+					candidateOffsets.Add((digit == extraDigit ? 1 : 0, cell * 9 + digit));
 				}
 			}
 			if (!_allowUncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
@@ -1112,7 +1112,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					{
 						foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
 						{
-							candidateOffsets.Add(((d == digit).ToInt32(), cell * 9 + d));
+							candidateOffsets.Add((d == digit ? 1 : 0, cell * 9 + d));
 						}
 					}
 				}
@@ -1200,7 +1200,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 							if (grid.Exists(cell, d) is true)
 							{
-								candidateOffsets.Add(((d != elimDigit).ToInt32(), cell * 9 + d));
+								candidateOffsets.Add((d != elimDigit ? 1 : 0, cell * 9 + d));
 							}
 						}
 

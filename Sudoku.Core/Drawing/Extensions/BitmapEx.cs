@@ -7,7 +7,6 @@ using System.Runtime.InteropServices;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.Util;
-using Sudoku.Extensions;
 using static Sudoku.Extensions.TypeEx;
 
 namespace Sudoku.Drawing.Extensions
@@ -188,9 +187,7 @@ namespace Sudoku.Drawing.Extensions
 					else
 					{
 						var data = bitmap.LockBits(
-							new Rectangle(Point.Empty, size),
-							ImageLockMode.ReadOnly,
-							bitmap.PixelFormat);
+							new Rectangle(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
 						using var tmp = new Image<Bgr, byte>(size.Width, size.Height, data.Stride, data.Scan0);
 						image.ConvertFrom(tmp);
 						bitmap.UnlockBits(data);
@@ -215,7 +212,7 @@ namespace Sudoku.Drawing.Extensions
 						long srcAddress = data.Scan0.ToInt64();
 						byte[,,] imagedata = (image.Data as byte[,,])!;
 
-						byte[] row = new byte[fullByteCount + (partialBitCount != 0).ToInt32()];
+						byte[] row = new byte[fullByteCount + (partialBitCount == 0 ? 0 : 1)];
 
 						int v = 0;
 						for (int i = 0; i < rows; i++, srcAddress += data.Stride)
@@ -307,11 +304,7 @@ namespace Sudoku.Drawing.Extensions
 			where TColor : struct, IColor
 			where TDepth : new()
 		{
-			var data = bmp.LockBits(
-				new Rectangle(Point.Empty, bmp.Size),
-				ImageLockMode.ReadOnly,
-				bmp.PixelFormat);
-
+			var data = bmp.LockBits(new Rectangle(Point.Empty, bmp.Size), ImageLockMode.ReadOnly, bmp.PixelFormat);
 			using var mat = new Matrix<TDepth>(bmp.Height, bmp.Width, image.NumberOfChannels, data.Scan0, data.Stride);
 			CvInvoke.cvCopy(mat.Ptr, image.Ptr, IntPtr.Zero);
 			bmp.UnlockBits(data);

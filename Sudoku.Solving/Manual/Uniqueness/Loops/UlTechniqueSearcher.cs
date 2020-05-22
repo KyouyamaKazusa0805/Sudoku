@@ -360,7 +360,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						{
 							for (int digit = 0; digit < 9; digit++)
 							{
-								candidateOffsets.Add(((!digits.Contains(digit)).ToInt32(), cell * 9 + digit));
+								candidateOffsets.Add((digits.Contains(digit) ? 0 : 1, cell * 9 + digit));
 							}
 						}
 						foreach (int digit in m1.GetAllSets())
@@ -440,7 +440,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								{
 									for (int digit = 0; digit < 9; digit++)
 									{
-										candidateOffsets.Add(((!digits.Contains(digit)).ToInt32(), cell * 9 + digit));
+										candidateOffsets.Add((digits.Contains(digit) ? 0 : 1, cell * 9 + digit));
 									}
 								}
 								foreach (int digit in m1.GetAllSets())
@@ -523,7 +523,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 									{
 										for (int digit = 0; digit < 9; digit++)
 										{
-											candidateOffsets.Add(((!digits.Contains(digit)).ToInt32(), cell * 9 + digit));
+											candidateOffsets.Add((digits.Contains(digit) ? 0 : 1, cell * 9 + digit));
 										}
 									}
 									foreach (int digit in m1.GetAllSets())
