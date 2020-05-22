@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using Sudoku.Constants;
 using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Data.Extensions

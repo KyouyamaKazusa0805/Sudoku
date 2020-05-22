@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -58,8 +57,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="size">The size.</param>
-		private static void TakeAllBySize(
-			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int size)
+		private static void TakeAllBySize(IBag<TechniqueInfo> result, IReadOnlyGrid grid, int size)
 		{
 			// Check bivalue cells.
 			// If the number of bivalue cells is less than the specified size,
@@ -391,12 +389,10 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			}
 			foreach (int offset in map.Offsets)
 			{
-				if (!(grid.Exists(offset, zDigit) is true))
+				if (grid.Exists(offset, zDigit) is true)
 				{
-					continue;
+					conclusions.Add(new Conclusion(Elimination, offset, zDigit));
 				}
-
-				conclusions.Add(new Conclusion(Elimination, offset, zDigit));
 			}
 
 			return conclusions;

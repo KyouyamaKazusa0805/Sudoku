@@ -1,31 +1,12 @@
-﻿using System.Collections.Generic;
-using static Sudoku.Constants.Processings;
+﻿using Sudoku.Data;
 
-namespace Sudoku.Data.Extensions
+namespace Sudoku.Solving.Manual.Wings.Regular
 {
 	/// <summary>
 	/// Provides extensions for a mask.
 	/// </summary>
-	public static class MaskExtensions
+	internal static class MaskExtensions
 	{
-		/// <summary>
-		/// Get cells with specified mask, which consist of 9 bits and 1 is
-		/// for yielding.
-		/// </summary>
-		/// <param name="region">The region.</param>
-		/// <param name="mask">The mask.</param>
-		/// <returns>The cells.</returns>
-		public static IEnumerable<int> GetCells(int region, short mask)
-		{
-			for (int i = 0, t = mask; i < 9; i++, t >>= 1)
-			{
-				if ((t & 1) != 0)
-				{
-					yield return RegionCells[region][i];
-				}
-			}
-		}
-
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
 		/// <param name="cellStatus">(<see langword="out"/> parameter) The cell status.</param>
