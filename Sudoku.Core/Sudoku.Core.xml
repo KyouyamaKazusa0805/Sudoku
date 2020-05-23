@@ -4546,42 +4546,6 @@
             <param name="epsilon">The epsilon value (the minimal differ).</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Extensions.SpanEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Span`1"/> and <see cref="T:System.ReadOnlySpan`1"/>.
-            </summary>
-            <seealso cref="T:System.Span`1"/>
-            <seealso cref="T:System.ReadOnlySpan`1"/>
-        </member>
-        <member name="M:Sudoku.Extensions.SpanEx.CountWhen``1(System.Span{``0},System.Predicate{``0})">
-            <summary>
-            Sum up the number of all elements satisfied the specified condition.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The elements.</param>
-            <param name="predicate">The condition.</param>
-            <returns>The number of elements satisfied the condition.</returns>
-        </member>
-        <member name="M:Sudoku.Extensions.SpanEx.CountWhen``1(System.ReadOnlySpan{``0},System.Predicate{``0})">
-            <summary>
-            Sum up the number of all elements satisfied the specified condition.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The elements.</param>
-            <param name="predicate">The condition.</param>
-            <returns>The number of elements satisfied the condition.</returns>
-        </member>
-        <member name="M:Sudoku.Extensions.SpanEx.ElementAt``1(System.Span{``0},System.Int32,System.Predicate{``0})">
-            <summary>
-            Get the specified element with the specified index of all elements that
-            satisfied the specified condition.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The elements.</param>
-            <param name="index">The index.</param>
-            <param name="predicate">The condition.</param>
-            <returns>The result.</returns>
-        </member>
         <member name="T:Sudoku.Extensions.StringBuilderEx">
             <summary>
             Provides extension methods on <see cref="T:System.Text.StringBuilder"/>.

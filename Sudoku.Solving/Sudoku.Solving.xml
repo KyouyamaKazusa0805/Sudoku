@@ -7804,6 +7804,14 @@
             Encapsulates a <b>Borescoper's deadly pattern</b> technique searcher.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.Patterns">
+            <summary>
+            All different patterns.
+            </summary>
+            <remarks>
+            All possible heptagons and octagons are in here.
+            </remarks>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.Priority">
             <summary>
             Indicates the priority of this technique.
@@ -7821,6 +7829,13 @@
             <summary>
             All combinations in a block.
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.#cctor">
+            <staticConstructor>
+		<summary>The static constructor of this class.</summary>
+	</staticConstructor><staticConstructor aimTo="struct">
+		<summary>The static constructor of this struct.</summary>
+	</staticConstructor>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1DetailData">
             <summary>
@@ -7923,6 +7938,125 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4DetailData.ToString">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern">
+            <summary>
+            Indicates the borescoper's deadly pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern._mask">
+            <summary>
+            Indicates the internal structure.
+            </summary>
+            <remarks>
+            <para>
+            This mask is of type <see cref="T:System.Int64"/>:
+            <code>
+            0      7     14     21     28     35     42     49     56<br/>
+            ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓<br/>
+            |-------|-------|-------|-------|-------|-------|-------|-------|<br/>
+            </code>
+            where the bit [0..56] is for 8 cells, the last 7 bits determine the pattern is a
+            heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
+            </para>
+            <para>
+            Due to the rendering engine, you have to check this file rather than the tip window.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.#ctor(System.Int64)">
+            <summary>
+            Initializes an instance with the specified mask.
+            </summary>
+            <param name="mask">The mask.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.Pair1">
+            <summary>
+            Indicates the pair 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.Pair2">
+            <summary>
+            Indicates the pair 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.OtherCells">
+            <summary>
+            Indicates the other three (or four) cells.
+            </summary>
+            <remarks>
+            <b>If and only if</b> the fourth value in the returned quadruple is available.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.IsHeptagon">
+            <summary>
+            Indicates whether the specified pattern is a heptagon.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.Pair1Map">
+            <summary>
+            Indicates the map of pair 1 cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.Pair2Map">
+            <summary>
+            Indicates the map of pair 2 cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.OtherCellsMap">
+            <summary>
+            The map of other three (or four) cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.Map">
+            <summary>
+            The map.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.Equals(System.Object)">
+            <method name="Equals" paramType="object">
+		<summary>
+			Determines whether the specified object is equal to the current object.
+		</summary>
+		<param name="obj">The object to compare with the current object.</param>
+		<returns>
+			<see langword="true" /> if the specified object is equal to the
+			current object; otherwise, <see langword="false" />.
+		</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.Equals(Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.GetHashCode">
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.op_Equality(Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.op_Inequality(Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrTechniqueInfo">
             <summary>

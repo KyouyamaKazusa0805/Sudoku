@@ -11,9 +11,14 @@
 // Global suppressions.
 [assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessage("", "IDE0001")]
 [assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessage("", "IDE0002")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessage("", "IDE0065")]
 
 namespace Sudoku.Debugging
 {
+	using System.Diagnostics;
+	using Sudoku.Diagnostics;
+	using static System.Console;
+
 	/// <summary>
 	/// The class aiming to this console application.
 	/// </summary>
@@ -25,9 +30,9 @@ namespace Sudoku.Debugging
 		/// </summary>
 		private static void Main()
 		{
-			var w = new System.Diagnostics.Stopwatch();
+			var w = new Stopwatch();
 
-			var z = new Sudoku.Diagnostics.CodeCounter(Sudoku.Diagnostics.Solution.PathRoot, @".+\.cs$");
+			var z = new CodeCounter(Solution.PathRoot, @".+\.cs$");
 
 			w.Start();
 			int codeLines = z.CountCodeLines(out int count);
@@ -35,11 +40,10 @@ namespace Sudoku.Debugging
 
 			foreach (var fileName in z.FileList)
 			{
-				System.Console.WriteLine(fileName);
+				WriteLine(fileName);
 			}
 
-			System.Console.WriteLine(
-				$"Code lines: {codeLines}, found files: {count}, time elapsed: {w.Elapsed:hh':'mm'.'ss'.'fff}");
+			WriteLine($"Code lines: {codeLines}, found files: {count}, time elapsed: {w.Elapsed:hh':'mm'.'ss'.'fff}");
 		}
 	}
 }
