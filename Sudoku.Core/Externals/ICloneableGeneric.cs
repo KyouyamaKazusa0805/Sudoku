@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace System
+﻿namespace System
 {
 	/// <summary>
 	/// Supports cloning, which creates a new instance of a class with the same value
@@ -13,6 +11,7 @@ namespace System
 	/// by value, at this time all value members (fields and properties) will be copied
 	/// one by one.
 	/// </typeparam>
+	/// <seealso cref="ICloneable"/>
 	public interface ICloneable<out T> : ICloneable where T : class
 	{
 		/// <summary>
@@ -23,7 +22,6 @@ namespace System
 		/// used and defined before using this method, so the return type will be
 		/// never <see langword="null"/>.
 		/// </returns>
-		[return: NotNull]
 		new T Clone();
 
 		/// <inheritdoc/>

@@ -5774,6 +5774,7 @@
             by value, at this time all value members (fields and properties) will be copied
             one by one.
             </typeparam>
+            <seealso cref="T:System.ICloneable"/>
         </member>
         <member name="M:System.ICloneable`1.Clone">
             <summary>

@@ -142,47 +142,67 @@ namespace Sudoku.Data
 		{
 			get
 			{
-				if (GetStatus(offset) == CellStatus.Empty)
+				switch (GetStatus(offset))
 				{
-					// Empty cells does not have a fixed value.
-					return -1;
-				}
-				else
-				{
-					short mask = _masks[offset];
-					for (int i = 0; i < 9; i++, mask >>= 1)
+					case CellStatus.Empty:
 					{
-						if ((mask & 1) == 0)
-						{
-							return i;
-						}
+						// Empty cells does not have a fixed value.
+						return -1;
 					}
+					case CellStatus.Modifiable:
+					case CellStatus.Given:
+					{
+						short mask = _masks[offset];
+						for (int i = 0; i < 9; i++, mask >>= 1)
+						{
+							if ((mask & 1) == 0)
+							{
+								return i;
+							}
+						}
 
-					// Modifiables and givens contain no fixed digit? What the hell?
-					return -1;
+						// Modifiables and givens contain no fixed digit? What the hell?
+						return -1;
+					}
+					default:
+					{
+						throw Throwing.ImpossibleCase;
+					}
 				}
 			}
 			set
 			{
-				if (value >= 0 && value < 9)
+				switch (value)
 				{
-					ref short result = ref _masks[offset];
-					short copy = result;
-
-					// Set cell status to 'CellStatus.Modifiable'.
-					result = (short)((short)CellStatus.Modifiable << 9 | 511 & ~(1 << value));
-
-					// To trigger the event, which is used for eliminate
-					// all same candidates in peer cells.
-					ValueChanged?.Invoke(this, new ValueChangedEventArgs(offset, copy, result, value));
-				}
-				else if (value == -1)
-				{
-					// If 'value' is -1, we should reset the grid.
-					// Note that reset candidates may not trigger the event.
-					if (GetStatus(offset) == CellStatus.Modifiable)
+					case -1 when GetStatus(offset) == CellStatus.Modifiable:
 					{
+						// If 'value' is -1, we should reset the grid.
+						// Note that reset candidates may not trigger the event.
 						Reset();
+
+						break;
+					}
+					case 0:
+					case 1:
+					case 2:
+					case 3:
+					case 4:
+					case 5:
+					case 6:
+					case 7:
+					case 8:
+					{
+						ref short result = ref _masks[offset];
+						short copy = result;
+
+						// Set cell status to 'CellStatus.Modifiable'.
+						result = (short)((short)CellStatus.Modifiable << 9 | 511 & ~(1 << value));
+
+						// To trigger the event, which is used for eliminate
+						// all same candidates in peer cells.
+						ValueChanged?.Invoke(this, new ValueChangedEventArgs(offset, copy, result, value));
+
+						break;
 					}
 				}
 			}
@@ -450,12 +470,13 @@ namespace Sudoku.Data
 			{
 				switch (GetStatus(i))
 				{
-					case CellStatus.Modifiable:
-						goto Label_NonEmpty;
 					case CellStatus.Given:
+					{
 						count++;
-
-					Label_NonEmpty:
+						goto case CellStatus.Modifiable;
+					}
+					case CellStatus.Modifiable:
+					{
 						int curDigit, peerDigit;
 						curDigit = this[i];
 						foreach (int peerOffset in new GridMap(i).Offsets)
@@ -467,6 +488,7 @@ namespace Sudoku.Data
 						}
 
 						break;
+					}
 				}
 			}
 
