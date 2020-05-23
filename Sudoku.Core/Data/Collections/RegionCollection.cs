@@ -55,6 +55,15 @@ namespace Sudoku.Data.Collections
 		public int Count => _mask.CountSet();
 
 
+		/// <summary>
+		/// Gets a <see cref="bool"/> value indicating whether the bit of the corresponding specified region
+		/// is set <see langword="true"/>.
+		/// </summary>
+		/// <param name="region">The region.</param>
+		/// <returns>A <see cref="bool"/> value.</returns>
+		public bool this[int region] => (_mask >> region & 1) != 0;
+
+
 		/// <inheritdoc/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
@@ -96,7 +105,7 @@ namespace Sudoku.Data.Collections
 			}
 
 			var sb = new StringBuilder();
-			for (int i = 0; i < 3; i++)
+			for (int i = 1, j = 0; j < 3; i = (i + 1) % 3, j++)
 			{
 				if (!dic.ContainsKey(i))
 				{
@@ -120,9 +129,12 @@ namespace Sudoku.Data.Collections
 		public string ToSimpleString()
 		{
 			var sb = new StringBuilder();
-			foreach (int region in this)
+			for (int region = 9, i = 0; i < 27; i++, region = (region + 1) % 27)
 			{
-				sb.Append(GetLabel(region / 9));
+				if (this[region])
+				{
+					sb.Append(GetLabel(region / 9));
+				}
 			}
 
 			return sb.ToString();

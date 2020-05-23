@@ -708,6 +708,14 @@
             Indicates the number of regions that contain in this collection.
             </summary>
         </member>
+        <member name="P:Sudoku.Data.Collections.RegionCollection.Item(System.Int32)">
+            <summary>
+            Gets a <see cref="T:System.Boolean"/> value indicating whether the bit of the corresponding specified region
+            is set <see langword="true"/>.
+            </summary>
+            <param name="region">The region.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
         <member name="M:Sudoku.Data.Collections.RegionCollection.Equals(System.Object)">
             <inheritdoc/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
