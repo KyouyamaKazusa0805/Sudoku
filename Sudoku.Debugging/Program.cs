@@ -9,9 +9,9 @@
 // Here is Sunnie's debugging room!
 
 // Global suppressions.
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessage("", "IDE0001")]
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessage("", "IDE0002")]
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessage("", "IDE0065")]
+#pragma warning disable IDE0001
+#pragma warning disable IDE0002
+#pragma warning disable IDE0065
 
 namespace Sudoku.Debugging
 {
