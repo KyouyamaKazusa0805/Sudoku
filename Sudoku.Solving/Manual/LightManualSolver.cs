@@ -75,9 +75,8 @@ namespace Sudoku.Solving.Manual
 		/// <param name="step">The current step.</param>
 		/// <param name="cloneation">The cloneation of the grid.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		private bool RecordTechnique(List<TechniqueInfo> steps, TechniqueInfo step, Grid cloneation)
+		private bool RecordTechnique(ICollection<TechniqueInfo> steps, TechniqueInfo step, Grid cloneation)
 		{
-			bool needAdd = false;
 			foreach (var conclusion in step.Conclusions)
 			{
 				switch (conclusion.ConclusionType)
@@ -85,22 +84,11 @@ namespace Sudoku.Solving.Manual
 					case Assignment when cloneation.GetStatus(conclusion.CellOffset) == Empty:
 					case Elimination when cloneation.Exists(conclusion.CellOffset, conclusion.Digit) is true:
 					{
-						needAdd = true;
+						step.ApplyTo(cloneation);
+						steps.Add(step);
 
-						goto Label_Checking;
+						return cloneation.HasSolved;
 					}
-				}
-			}
-
-		Label_Checking:
-			if (needAdd)
-			{
-				step.ApplyTo(cloneation);
-				steps.Add(step);
-
-				if (cloneation.HasSolved)
-				{
-					return true;
 				}
 			}
 

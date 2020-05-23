@@ -4763,7 +4763,7 @@
             solved the puzzle successfully.
             </returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LightManualSolver.RecordTechnique(System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.TechniqueInfo,Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Solving.Manual.LightManualSolver.RecordTechnique(System.Collections.Generic.ICollection{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.TechniqueInfo,Sudoku.Data.Grid)">
             <summary>
             To record the current technique step.
             </summary>

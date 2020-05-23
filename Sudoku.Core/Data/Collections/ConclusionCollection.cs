@@ -88,7 +88,9 @@ namespace Sudoku.Data.Collections
 						};
 					});
 
-				foreach (var typeGroup in from conc in concs group conc by conc.ConclusionType)
+				var selection = from conc in concs group conc by conc.ConclusionType;
+				bool hasOnlyOneType = selection.HasOnlyOneElement();
+				foreach (var typeGroup in selection)
 				{
 					string op = typeGroup.Key == ConclusionType.Assignment ? " = " : " <> ";
 					foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
@@ -101,6 +103,10 @@ namespace Sudoku.Data.Collections
 					}
 
 					sb.RemoveFromEnd(separator.Length);
+					if (!hasOnlyOneType)
+					{
+						sb.Append(separator);
+					}
 				}
 			}
 			else
