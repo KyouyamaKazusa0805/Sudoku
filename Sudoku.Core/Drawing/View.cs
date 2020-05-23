@@ -14,7 +14,9 @@ namespace Sudoku.Drawing
 		/// <remarks>
 		/// The constructor is equivalent to code '<c>new View(null, null, null, null)</c>'.
 		/// </remarks>
-		public View() { }
+		public View()
+		{
+		}
 
 		/// <summary>
 		/// Initializes an instance with information.
