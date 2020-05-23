@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
+using System.Security;
 using Sudoku.Extensions;
 
 namespace Sudoku.Data
@@ -57,6 +58,9 @@ namespace Sudoku.Data
 		/// </list>
 		/// </para>
 		/// </remarks>
+		/// <permission cref="PermissionSet">
+		/// The current project or the derived class can access this field.
+		/// </permission>
 		/// <seealso cref="CellStatus"/>
 		protected internal readonly short[] _masks;
 
@@ -65,6 +69,9 @@ namespace Sudoku.Data
 		/// the initial grid. The field will not be modified until this instance
 		/// destructs.
 		/// </summary>
+		/// <permission cref="PermissionSet">
+		/// The current project or the derived class can access this field.
+		/// </permission>
 		/// <seealso cref="_masks"/>
 		protected internal readonly short[] _initialMasks;
 

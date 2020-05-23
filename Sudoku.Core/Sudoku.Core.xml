@@ -984,28 +984,6 @@
             or two regions are not in same region type.
             </exception>
         </member>
-        <member name="T:Sudoku.Data.Extensions.MaskExtensions">
-            <summary>
-            Provides extensions for a mask.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.MaskExtensions.GetCells(System.Int32,System.Int16)">
-            <summary>
-            Get cells with specified mask, which consist of 9 bits and 1 is
-            for yielding.
-            </summary>
-            <param name="region">The region.</param>
-            <param name="mask">The mask.</param>
-            <returns>The cells.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.MaskExtensions.Deconstruct(System.Int16,Sudoku.Data.CellStatus@,System.Int16@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
-            <param name="this">(<see langword="this" /> parameter) The value.</param>
-            <param name="cellStatus">(<see langword="out" /> parameter) The cell status.</param>
-            <param name="candidatesMask">(<see langword="out" /> parameter) The candidate mask.</param>
-        </member>
         <member name="T:Sudoku.Data.Extensions.ReadOnlyGridEx">
             <summary>
             Provides extension methods on <see cref="T:Sudoku.Data.IReadOnlyGrid"/>.
@@ -1556,6 +1534,9 @@
             </list>
             </para>
             </remarks>
+            <permission cref="T:System.Security.PermissionSet">
+            The current project or the derived class can access this field.
+            </permission>
             <seealso cref="T:Sudoku.Data.CellStatus"/>
         </member>
         <member name="F:Sudoku.Data.Grid._initialMasks">
@@ -1564,6 +1545,9 @@
             the initial grid. The field will not be modified until this instance
             destructs.
             </summary>
+            <permission cref="T:System.Security.PermissionSet">
+            The current project or the derived class can access this field.
+            </permission>
             <seealso cref="F:Sudoku.Data.Grid._masks"/>
         </member>
         <member name="M:Sudoku.Data.Grid.#ctor(System.Int16[])">

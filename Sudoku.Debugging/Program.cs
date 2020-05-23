@@ -1,5 +1,16 @@
-﻿[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("", "IDE0001")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("", "IDE0002")]
+﻿/////////////////////////////////////////////////////////
+// ███████╗██╗   ██╗██████╗  ██████╗ ██╗  ██╗██╗   ██╗ //
+// ██╔════╝██║   ██║██╔══██╗██╔═══██╗██║ ██╔╝██║   ██║ //
+// ███████╗██║   ██║██║  ██║██║   ██║█████╔╝ ██║   ██║ //
+// ╚════██║██║   ██║██║  ██║██║   ██║██╔═██╗ ██║   ██║ //
+// ███████║╚██████╔╝██████╔╝╚██████╔╝██║  ██╗╚██████╔╝ //
+// ╚══════╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝  //
+/////////////////////////////////////////////////////////
+// Here is Sunnie's debugging room!
+
+// Global suppressions.
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessage("", "IDE0001")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessage("", "IDE0002")]
 
 namespace Sudoku.Debugging
 {
