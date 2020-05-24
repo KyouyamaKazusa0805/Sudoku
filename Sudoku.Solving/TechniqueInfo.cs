@@ -1,6 +1,4 @@
-﻿#nullable disable warnings
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
@@ -14,7 +12,7 @@ namespace Sudoku.Solving
 	/// Encapsulates all information after searched a solving step,
 	/// which include the conclusion, the difficulty and so on.
 	/// </summary>
-	public abstract class TechniqueInfo : IEquatable<TechniqueInfo>
+	public abstract class TechniqueInfo : IEquatable<TechniqueInfo?>
 	{
 		/// <summary>
 		/// Provides passing data when initializing an instance of derived types.
@@ -45,15 +43,15 @@ namespace Sudoku.Solving
 		public virtual string Name => TechniqueDisplayAttribute.GetDisplayName(TechniqueCode) ?? string.Empty;
 
 		/// <summary>
-		/// The technique code of this instance used for comparison
-		/// (e.g. search for specified puzzle that contains this technique).
-		/// </summary>
-		public virtual TechniqueCode TechniqueCode { get; }
-
-		/// <summary>
 		/// The difficulty or this step.
 		/// </summary>
 		public abstract decimal Difficulty { get; }
+
+		/// <summary>
+		/// The technique code of this instance used for comparison
+		/// (e.g. search for specified puzzle that contains this technique).
+		/// </summary>
+		public abstract TechniqueCode TechniqueCode { get; }
 
 		/// <summary>
 		/// The difficulty level of this step.
@@ -119,10 +117,16 @@ namespace Sudoku.Solving
 		}
 
 		/// <inheritdoc/>
-		public override bool Equals(object? obj) => obj is TechniqueInfo comparer && Equals(comparer);
+		public override bool Equals(object? obj) => Equals(obj as TechniqueInfo);
 
 		/// <inheritdoc/>
-		public virtual bool Equals(TechniqueInfo other) => ToString() == other.ToString();
+		public virtual bool Equals(TechniqueInfo? other) =>
+			(this is null, other is null) switch
+			{
+				(true, true) => true,
+				(false, false) => ToString() == other!.ToString(),
+				_ => false
+			};
 
 		/// <inheritdoc/>
 		public override int GetHashCode() => ToString().GetHashCode();

@@ -8892,15 +8892,15 @@
             Indicates the technique name.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.TechniqueInfo.Difficulty">
+            <summary>
+            The difficulty or this step.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.TechniqueInfo.TechniqueCode">
             <summary>
             The technique code of this instance used for comparison
             (e.g. search for specified puzzle that contains this technique).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.TechniqueInfo.Difficulty">
-            <summary>
-            The difficulty or this step.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.TechniqueInfo.DifficultyLevel">
