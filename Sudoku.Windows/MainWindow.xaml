@@ -218,7 +218,9 @@
 		<Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 			   Name="_imageGrid" Grid.Row="2" Grid.Column="0" Width="576" Height="576"
 			   MouseLeftButtonDown="ImageGrid_MouseLeftButtonDown"
-			   MouseRightButtonDown="ImageGrid_MouseRightButtonDown">
+			   MouseRightButtonDown="ImageGrid_MouseRightButtonDown"
+			   MouseRightButtonUp="ImageGrid_MouseRightButtonUp"
+			   ContextMenuOpening="ImageGrid_ContextMenuOpening">
 			<Image.ContextMenu>
 				<ContextMenu Name="_imageGridContextMenu">
 					<MenuItem Header="Set 1" Name="_menuItemImageGridSet1"
@@ -319,8 +321,8 @@
 					<Grid.RowDefinitions>
 						<RowDefinition/>
 						<RowDefinition/>
-						<RowDefinition Height="2*"/>
-						<RowDefinition Height="2*"/>
+						<RowDefinition/>
+						<RowDefinition Height="3*"/>
 					</Grid.RowDefinitions>
 					<Grid Grid.Row="0">
 						<Grid.RowDefinitions>
@@ -333,7 +335,7 @@
 							<ColumnDefinition/>
 							<ColumnDefinition/>
 						</Grid.ColumnDefinitions>
-						<Label Grid.Row="0" Grid.ColumnSpan="3" Content="Choose color for cell:"
+						<Label Grid.Row="0" Grid.ColumnSpan="3" Content="Choose color for cells:"
 							   HorizontalAlignment="Center" VerticalAlignment="Center"/>
 						<Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
 							<Grid.RowDefinitions>
@@ -394,7 +396,7 @@
 							<ColumnDefinition/>
 							<ColumnDefinition/>
 						</Grid.ColumnDefinitions>
-						<Label Grid.Row="0" Grid.ColumnSpan="3" Content="Choose color for candidate:"
+						<Label Grid.Row="0" Grid.ColumnSpan="3" Content="Choose color for candidates:"
 							   HorizontalAlignment="Center" VerticalAlignment="Center"/>
 						<Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
 							<Grid.RowDefinitions>
@@ -440,6 +442,67 @@
 									Click="ButtonCandidateColor14_Click"/>
 						</Grid>
 						<Button Name="_buttonCandidateReset" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
+								HorizontalAlignment="Left" Width="50" Height="30" Margin="20,0,0,0"
+								Content="Reset!" Background="White"
+								Click="ButtonCellReset_Click"/>
+					</Grid>
+					<Grid Grid.Row="2">
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition/>
+							<ColumnDefinition/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<Label Grid.Row="0" Grid.ColumnSpan="3" Content="Choose color for regions:"
+							   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						<Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
+							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+							</Grid.ColumnDefinitions>
+							<Button Name="_buttonRegionColor1" Grid.Row="0" Grid.Column="0"
+									Click="ButtonRegionColor1_Click"/>
+							<Button Name="_buttonRegionColor2" Grid.Row="0" Grid.Column="1"
+									Click="ButtonRegionColor2_Click"/>
+							<Button Name="_buttonRegionColor3" Grid.Row="0" Grid.Column="2"
+									Click="ButtonRegionColor3_Click"/>
+							<Button Name="_buttonRegionColor4" Grid.Row="0" Grid.Column="3"
+									Click="ButtonRegionColor4_Click"/>
+							<Button Name="_buttonRegionColor5" Grid.Row="0" Grid.Column="4"
+									Click="ButtonRegionColor5_Click"/>
+							<Button Name="_buttonRegionColor6" Grid.Row="0" Grid.Column="5"
+									Click="ButtonRegionColor6_Click"/>
+							<Button Name="_buttonRegionColor7" Grid.Row="0" Grid.Column="6"
+									Click="ButtonRegionColor7_Click"/>
+							<Button Name="_buttonRegionColor8" Grid.Row="1" Grid.Column="0"
+									Click="ButtonRegionColor8_Click"/>
+							<Button Name="_buttonRegionColor9" Grid.Row="1" Grid.Column="1"
+									Click="ButtonRegionColor9_Click"/>
+							<Button Name="_buttonRegionColor10" Grid.Row="1" Grid.Column="2"
+									Click="ButtonRegionColor10_Click"/>
+							<Button Name="_buttonRegionColor11" Grid.Row="1" Grid.Column="3"
+									Click="ButtonRegionColor11_Click"/>
+							<Button Name="_buttonRegionColor12" Grid.Row="1" Grid.Column="4"
+									Click="ButtonRegionColor12_Click"/>
+							<Button Name="_buttonRegionColor13" Grid.Row="1" Grid.Column="5"
+									Click="ButtonRegionColor13_Click"/>
+							<Button Name="_buttonRegionColor14" Grid.Row="1" Grid.Column="6"
+									Click="ButtonRegionColor14_Click"/>
+						</Grid>
+						<Button Name="_buttonRegionReset" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
 								HorizontalAlignment="Left" Width="50" Height="30" Margin="20,0,0,0"
 								Content="Reset!" Background="White"
 								Click="ButtonCellReset_Click"/>

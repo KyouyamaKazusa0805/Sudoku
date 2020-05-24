@@ -332,5 +332,89 @@ namespace Sudoku.Windows
 			_currentColor = 9;
 			_customDrawingMode = 1;
 		}
+
+		private void ButtonRegionColor1_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 0;
+			_customDrawingMode = 2;
+		}
+
+		private void ButtonRegionColor2_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 1;
+			_customDrawingMode = 2;
+		}
+
+		private void ButtonRegionColor3_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 2;
+			_customDrawingMode = 2;
+		}
+
+		private void ButtonRegionColor4_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 3;
+			_customDrawingMode = 2;
+		}
+
+		private void ButtonRegionColor5_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = -1;
+			_customDrawingMode = 2;
+		}
+
+		private void ButtonRegionColor6_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = -2;
+			_customDrawingMode = 2;
+		}
+
+		private void ButtonRegionColor7_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = -3;
+			_customDrawingMode = 2;
+		}
+
+		private void ButtonRegionColor8_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = -4;
+			_customDrawingMode = 2;
+		}
+
+		private void ButtonRegionColor9_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 4;
+			_customDrawingMode = 2;
+		}
+
+		private void ButtonRegionColor10_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 5;
+			_customDrawingMode = 2;
+		}
+
+		private void ButtonRegionColor11_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 6;
+			_customDrawingMode = 2;
+		}
+
+		private void ButtonRegionColor12_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 7;
+			_customDrawingMode = 2;
+		}
+
+		private void ButtonRegionColor13_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 8;
+			_customDrawingMode = 2;
+		}
+
+		private void ButtonRegionColor14_Click(object sender, RoutedEventArgs e)
+		{
+			_currentColor = 9;
+			_customDrawingMode = 2;
+		}
 	}
 }

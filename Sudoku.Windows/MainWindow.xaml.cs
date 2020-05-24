@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 #if SUDOKU_RECOGNIZING
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 #endif
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -30,6 +30,8 @@ using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Drawing.Layers;
 using Sudoku.Windows.Extensions;
+using static System.StringSplitOptions;
+using static System.Windows.MessageBoxButton;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Windows.Constants.Processing;
@@ -106,6 +108,11 @@ namespace Sudoku.Windows
 		/// check the cell (set and delete a candidate from a grid using context menu).
 		/// </summary>
 		private WPoint _currentRightClickPos;
+
+		/// <summary>
+		/// The map of selected cells while drawing regions.
+		/// </summary>
+		private GridMap _selectedCellsWhileDrawingRegions = GridMap.Empty;
 
 		/// <summary>
 		/// Indicates all focused cells.
@@ -205,7 +212,7 @@ namespace Sudoku.Windows
 					$"Cannot to calculate{NewLine}" +
 					$"  Source: {ex.Source}{NewLine}" +
 					$"  Message: {ex.Message}",
-					"Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					"Error", OK, MessageBoxImage.Error);
 			}
 #endif
 
@@ -240,7 +247,7 @@ namespace Sudoku.Windows
 		{
 			// Ask when worth.
 			if (Settings.AskWhileQuitting
-				&& MessageBox.Show("Are you sure to quit?", "Info", MessageBoxButton.YesNo) == MessageBoxResult.No)
+				&& MessageBox.Show("Are you sure to quit?", "Info", YesNo) == MessageBoxResult.No)
 			{
 				e.Cancel = true;
 				return;
@@ -380,7 +387,7 @@ namespace Sudoku.Windows
 				|| MessageBox.Show(
 					"You have used a database at the previous time you use the program. " +
 					"Do you want to load now?",
-					"Info", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+					"Info", YesNo) != MessageBoxResult.Yes)
 			{
 				return;
 			}
@@ -396,7 +403,7 @@ namespace Sudoku.Windows
 			}
 
 			using var sr = new StreamReader(_database = Settings.CurrentPuzzleDatabase);
-			_puzzlesText = sr.ReadToEnd().Split(Splitter, StringSplitOptions.RemoveEmptyEntries);
+			_puzzlesText = sr.ReadToEnd().Split(Splitter, RemoveEmptyEntries);
 
 			int current = Settings.CurrentPuzzleNumber;
 			int max = _puzzlesText.Length;
@@ -608,6 +615,20 @@ namespace Sudoku.Windows
 			_buttonCandidateColor12.Background = new SolidColorBrush(Settings.Color12.ToWColor());
 			_buttonCandidateColor13.Background = new SolidColorBrush(Settings.Color13.ToWColor());
 			_buttonCandidateColor14.Background = new SolidColorBrush(Settings.Color14.ToWColor());
+			_buttonRegionColor1.Background = new SolidColorBrush(Settings.Color1.ToWColor());
+			_buttonRegionColor2.Background = new SolidColorBrush(Settings.Color2.ToWColor());
+			_buttonRegionColor3.Background = new SolidColorBrush(Settings.Color3.ToWColor());
+			_buttonRegionColor4.Background = new SolidColorBrush(Settings.Color4.ToWColor());
+			_buttonRegionColor5.Background = new SolidColorBrush(Settings.Color5.ToWColor());
+			_buttonRegionColor6.Background = new SolidColorBrush(Settings.Color6.ToWColor());
+			_buttonRegionColor7.Background = new SolidColorBrush(Settings.Color7.ToWColor());
+			_buttonRegionColor8.Background = new SolidColorBrush(Settings.Color8.ToWColor());
+			_buttonRegionColor9.Background = new SolidColorBrush(Settings.Color9.ToWColor());
+			_buttonRegionColor10.Background = new SolidColorBrush(Settings.Color10.ToWColor());
+			_buttonRegionColor11.Background = new SolidColorBrush(Settings.Color11.ToWColor());
+			_buttonRegionColor12.Background = new SolidColorBrush(Settings.Color12.ToWColor());
+			_buttonRegionColor13.Background = new SolidColorBrush(Settings.Color13.ToWColor());
+			_buttonRegionColor14.Background = new SolidColorBrush(Settings.Color14.ToWColor());
 
 			_manualSolver = Settings.MainManualSolver;
 
