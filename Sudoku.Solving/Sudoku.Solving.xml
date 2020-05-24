@@ -7709,96 +7709,6 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType4DetailData.ToString">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpDetailData">
-            <summary>
-            Provides all data for Borescoper's deadly pattern
-            (basic and extended types).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpDetailData.#ctor(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
-            <summary>
-            Provides passing data when initializing an instance of derived types.
-            </summary>
-            <param name="cells">All cells.</param>
-            <param name="digits">All digits.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpDetailData.Type">
-            <summary>
-            <para>
-            Indicates the type of the Borescoper's deadly pattern.
-            where the value is between 1 and 4.
-            </para>
-            <para>
-            You can find all types in detail in 'remarks' part of this page.
-            </para>
-            </summary>
-            <remarks>
-            All types:
-            <list type="table">
-            <item>Type 1<term></term>
-            <description>Basic type.</description>
-            </item>
-            <item>Type 2<term></term>
-            <description>Generalized locked candidates type.</description>
-            </item>
-            <item>Type 3<term></term>
-            <description>
-            Generalized subset type (+ naked or hidden subset).
-            </description>
-            </item>
-            <item>Type 4<term></term>
-            <description>Conjugate pair type.</description>
-            </item>
-            </list>
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpDetailData.Digits">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpDetailData.Cells">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpDetailData.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo">
-            <summary>
-            Provides a usage of <b>Borescoper's deadly pattern</b> (BDP) technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Polygons.BdpDetailData)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
-            <param name="detailData">The detail data.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.DetailData">
-            <summary>
-            The detail data of the technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.Size">
-            <summary>
-            Indicates the size.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.TechniqueCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.ToString">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher">
             <summary>
             Encapsulates a <b>Borescoper's deadly pattern</b> technique searcher.
@@ -7845,24 +7755,6 @@
 		<summary>The static constructor of this struct.</summary>
 	</staticConstructor>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1DetailData">
-            <summary>
-            Indicates the detail data of BDP type 1.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1DetailData.#ctor(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
-            <summary>
-            Initializes an instance with cells.
-            </summary>
-            <param name="cells">Cells.</param>
-            <param name="digits">Digits.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1DetailData.Type">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1DetailData.ToString">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1TechniqueInfo">
             <summary>
             Provides a usage of <b>Borescoper's deadly pattern type 1</b> (BDP) technique.
@@ -7899,88 +7791,46 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1TechniqueInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2DetailData">
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2TechniqueInfo">
             <summary>
-            Indicates the detail data of BDP type 2.
+            Provides a usage of <b>Borescoper's deadly pattern type 2</b> (BDP) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2DetailData.#ctor(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,Sudoku.Data.GridMap,System.Int32)">
             <summary>
             Initializes an instance with the specified information.
             </summary>
-            <param name="cells">All cells.</param>
-            <param name="digits">All digits.</param>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="digitsMask">The digits mask.</param>
+            <param name="map">The cells used.</param>
             <param name="extraDigit">The extra digit.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2DetailData.ExtraDigit">
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2TechniqueInfo.DigitsMask">
             <summary>
-            Indicates the extra digit in this pattern.
+            Indicates the digits used.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2DetailData.Type">
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2TechniqueInfo.Map">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2TechniqueInfo.ExtraDigit">
+            <summary>
+            Indicates the extra digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2TechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2DetailData.ToString">
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2TechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3DetailData">
-            <summary>
-            Indicates the detail data of BDP type 3.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3DetailData.#ctor(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="cells">All cells.</param>
-            <param name="digits">All digits.</param>
-            <param name="subsetDigits">All subset digits.</param>
-            <param name="subsetCells">All subset cells.</param>
-            <param name="isNaked">Indicates whether the subset is naked or not.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3DetailData.Type">
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2TechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3DetailData.SubsetDigits">
-            <summary>
-            Indicates all subset digits in this pattern.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3DetailData.SubsetCells">
-            <summary>
-            Indicates all subset cells in this pattern.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3DetailData.IsNaked">
-            <summary>
-            Indicates whether this subset is naked or not.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3DetailData.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4DetailData">
-            <summary>
-            Indicates the detail data of UR type 4.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4DetailData.#ctor(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="cells">All cells.</param>
-            <param name="digits">All digits.</param>
-            <param name="region">The so-called "conjugate region".</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4DetailData.Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4DetailData.Region">
-            <summary>
-            Indicates the conjugate pair used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4DetailData.ToString">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2TechniqueInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern">

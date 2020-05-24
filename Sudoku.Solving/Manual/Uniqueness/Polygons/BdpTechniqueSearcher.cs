@@ -6,6 +6,7 @@ using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static System.Algorithms;
 using static Sudoku.Data.ConclusionType;
+using static Sudoku.Data.GridMap.InitializeOption;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
@@ -56,6 +57,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				short cornerMask2 = GetMask(grid, pattern.Pair2Map);
 				short centerMask = GetMask(grid, pattern.CenterCellsMap);
 				CheckType1(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask);
+				CheckType2(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask);
 			}
 		}
 
@@ -63,9 +65,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask)
 		{
-			// ab  ab     | abc abc
-			// abc abc ab | abc abc abc
-			//     abc ab |     abc abc
 			short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 			if (orMask.CountSet() != (pattern.IsHeptagon ? 4 : 5))
 			{
@@ -129,6 +128,67 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						},
 						digitsMask: tempMask,
 						map));
+			}
+		}
+
+		private void CheckType2(
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
+			short cornerMask2, short centerMask)
+		{
+			short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
+			if (orMask.CountSet() != (pattern.IsHeptagon ? 4 : 5))
+			{
+				return;
+			}
+
+			// Iterate on each combination.
+			var map = pattern.Map;
+			foreach (int[] digits in GetCombinationsOfArray(orMask.GetAllSets().ToArray(), pattern.IsHeptagon ? 3 : 4))
+			{
+				short tempMask = 0;
+				foreach (int digit in digits)
+				{
+					tempMask |= (short)(1 << digit);
+				}
+
+				int otherDigit = (orMask & ~tempMask).FindFirstSet();
+				var mapContainingThatDigit = map & CandMaps[otherDigit];
+				var elimMap =
+					(new GridMap(mapContainingThatDigit, ProcessPeersWithoutItself) - map) & CandMaps[otherDigit];
+				if (elimMap.IsEmpty)
+				{
+					continue;
+				}
+
+				var conclusions = new List<Conclusion>();
+				foreach (int cell in elimMap.Offsets)
+				{
+					conclusions.Add(new Conclusion(Elimination, cell, otherDigit));
+				}
+
+				var candidateOffsets = new List<(int, int)>();
+				foreach (int cell in map.Offsets)
+				{
+					foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+					{
+						candidateOffsets.Add((digit == otherDigit ? 1 : 0, cell * 9 + digit));
+					}
+				}
+
+				accumulator.Add(
+					new BdpType2TechniqueInfo(
+						conclusions,
+						views: new[]
+						{
+							new View(
+								cellOffsets: null,
+								candidateOffsets,
+								regionOffsets: null,
+								links: null)
+						},
+						digitsMask: tempMask,
+						map,
+						extraDigit: otherDigit));
 			}
 		}
 
