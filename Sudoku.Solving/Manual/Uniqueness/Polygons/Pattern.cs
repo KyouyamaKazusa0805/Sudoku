@@ -53,7 +53,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <remarks>
 		/// <b>If and only if</b> the fourth value in the returned quadruple is available.
 		/// </remarks>
-		public (int _1, int _2, int _3, int _4) OtherCells =>
+		public (int _1, int _2, int _3, int _4) CenterCells =>
 			((int)(_mask >> 49 & 127), (int)(_mask >> 42 & 127), (int)(_mask >> 35 & 127), (int)(_mask >> 28 & 127));
 
 		/// <summary>
@@ -74,11 +74,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <summary>
 		/// The map of other three (or four) cells.
 		/// </summary>
-		public GridMap OtherCellsMap
+		public GridMap CenterCellsMap
 		{
 			get
 			{
-				var (a, b, c, d) = OtherCells;
+				var (a, b, c, d) = CenterCells;
 				return IsHeptagon ? new GridMap { a, b, c } : new GridMap { a, b, c, d };
 			}
 		}
@@ -86,7 +86,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <summary>
 		/// The map.
 		/// </summary>
-		public GridMap Map => Pair1Map | Pair2Map | OtherCellsMap;
+		public GridMap Map => Pair1Map | Pair2Map | CenterCellsMap;
 
 
 		/// <include file='../../../../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>

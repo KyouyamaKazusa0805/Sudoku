@@ -521,8 +521,7 @@ namespace Sudoku.Windows
 		/// <seealso cref="UIElement.IsEnabled"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void AddShortCut(
-			Key key, ModifierKeys modifierKeys, UIElement? matchControl,
-			ExecutedRoutedEventHandler executed)
+			Key key, ModifierKeys modifierKeys, UIElement? matchControl, ExecutedRoutedEventHandler executed)
 		{
 			var routedCommand = new RoutedCommand();
 			routedCommand.InputGestures.Add(new KeyGesture(key, modifierKeys));
@@ -732,12 +731,18 @@ namespace Sudoku.Windows
 			_imageUndoIcon.Source =
 				new BitmapImage(
 					new Uri(
-						$"Resources/ImageIcon-Undo{((_menuItemEditUndo.IsEnabled = _puzzle.HasUndoSteps) ? string.Empty : "Disable")}.png",
+						$@"Resources/ImageIcon-Undo{(
+							(_menuItemEditUndo.IsEnabled = _puzzle.HasUndoSteps)
+								? string.Empty
+								: "Disable")}.png",
 						UriKind.Relative));
 			_imageRedoIcon.Source =
 				new BitmapImage(
 					new Uri(
-						$"Resources/ImageIcon-Redo{((_menuItemEditRedo.IsEnabled = _puzzle.HasRedoSteps) ? string.Empty : "Disable")}.png",
+						$@"Resources/ImageIcon-Redo{(
+							(_menuItemEditRedo.IsEnabled = _puzzle.HasRedoSteps)
+								? string.Empty
+								: "Disable")}.png",
 						UriKind.Relative));
 		}
 

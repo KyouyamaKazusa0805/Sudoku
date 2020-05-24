@@ -7825,6 +7825,14 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.GetMask(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap)">
+            <summary>
+            Get the mask.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="map">The map.</param>
+            <returns>The mask.</returns>
+        </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.Quads">
             <summary>
             All combinations in a block.
@@ -7853,6 +7861,42 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1DetailData.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1TechniqueInfo">
+            <summary>
+            Provides a usage of <b>Borescoper's deadly pattern type 1</b> (BDP) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,Sudoku.Data.GridMap)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="digitsMask">The digits mask.</param>
+            <param name="map">The cells used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1TechniqueInfo.DigitsMask">
+            <summary>
+            Indicates the digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1TechniqueInfo.Map">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1TechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1TechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1TechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1TechniqueInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2DetailData">
@@ -7980,7 +8024,7 @@
             Indicates the pair 2.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.OtherCells">
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.CenterCells">
             <summary>
             Indicates the other three (or four) cells.
             </summary>
@@ -8003,7 +8047,7 @@
             Indicates the map of pair 2 cells.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.OtherCellsMap">
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.CenterCellsMap">
             <summary>
             The map of other three (or four) cells.
             </summary>
