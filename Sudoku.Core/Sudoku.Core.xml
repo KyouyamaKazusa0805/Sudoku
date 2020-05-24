@@ -2228,6 +2228,11 @@
             Indicates all regions covered.
             </summary>
         </member>
+        <member name="P:Sudoku.Data.GridMap.Regions">
+            <summary>
+            All regions that the map used.
+            </summary>
+        </member>
         <member name="P:Sudoku.Data.GridMap.Offsets">
             <summary>
             <para>

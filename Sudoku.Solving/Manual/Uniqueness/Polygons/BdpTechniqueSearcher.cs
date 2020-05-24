@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static System.Algorithms;
+using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Data.GridMap.InitializeOption;
 
@@ -58,6 +60,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				short centerMask = GetMask(grid, pattern.CenterCellsMap);
 				CheckType1(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask);
 				CheckType2(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask);
+				CheckType4(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask);
 			}
 		}
 
@@ -189,6 +192,108 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						digitsMask: tempMask,
 						map,
 						extraDigit: otherDigit));
+			}
+		}
+
+		[SuppressMessage("", "IDE0004:Remove redundant cast")]
+		private void CheckType4(
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
+			short cornerMask2, short centerMask)
+		{
+			// The type 4 may be complex and terrible to process.
+			// All regions that the pattern lies on should be checked.
+			var map = pattern.Map;
+			short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
+			foreach (int region in map.Regions)
+			{
+				var currentMap = RegionMaps[region] & map;
+				var otherCellsMap = map - currentMap;
+				short currentMask = GetMask(grid, currentMap);
+				short otherMask = GetMask(grid, otherCellsMap);
+
+				// Iterate on each possible digit combination.
+				// For example, if values are { 1, 2, 3 }, then all combinations taken 2 values
+				// are { 1, 2 }, { 2, 3 } and { 1, 3 }.
+				foreach (int[] digits in
+					GetCombinationsOfArray(orMask.GetAllSets().ToArray(), pattern.IsHeptagon ? 3 : 4))
+				{
+					short tempMask = 0;
+					foreach (int digit in digits)
+					{
+						tempMask |= (short)(1 << digit);
+					}
+					if (otherMask != tempMask)
+					{
+						continue;
+					}
+
+					// Iterate on each combination.
+					// Only one digit should be eliminated, and other digits should form a "conjugate region".
+					// In a so-called conjugate region, the digits can only appear in these cells in this region.
+					foreach (int[] combination in
+						GetCombinationsOfArray((tempMask & orMask).GetAllSets().ToArray(), currentMap.Count - 1))
+					{
+						short combinationMask = 0;
+						var combinationMap = GridMap.Empty;
+						foreach (int digit in combination)
+						{
+							combinationMask |= (short)(1 << digit);
+							combinationMap |= CandMaps[digit] & RegionMaps[region];
+						}
+						if (combinationMap != currentMap)
+						{
+							// If not equal, the map may contains other digits in this region.
+							// Therefore the conjugate region cannot form.
+							continue;
+						}
+
+						// Type 4 forms. Now check eliminations.
+						int finalDigit = (tempMask & ~combinationMask).FindFirstSet();
+						var elimMap = combinationMap & CandMaps[finalDigit];
+						if (elimMap.IsEmpty)
+						{
+							continue;
+						}
+
+						var conclusions = new List<Conclusion>();
+						foreach (int cell in elimMap.Offsets)
+						{
+							conclusions.Add(new Conclusion(Elimination, cell, finalDigit));
+						}
+
+						var candidateOffsets = new List<(int, int)>();
+						foreach (int cell in currentMap.Offsets)
+						{
+							foreach (int digit in (grid.GetCandidatesReversal(cell) & combinationMask).GetAllSets())
+							{
+								candidateOffsets.Add((1, cell * 9 + digit));
+							}
+						}
+						foreach (int cell in otherCellsMap.Offsets)
+						{
+							foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+							{
+								candidateOffsets.Add((0, cell * 9 + digit));
+							}
+						}
+
+						accumulator.Add(
+							new BdpType4TechniqueInfo(
+								conclusions,
+								views: new[]
+								{
+									new View(
+										cellOffsets: null,
+										candidateOffsets,
+										regionOffsets: new[] { (0, region) },
+										links: null)
+								},
+								digitsMask: otherMask,
+								map,
+								conjugateRegion: currentMap,
+								extraMask: combinationMask));
+					}
+				}
 			}
 		}
 

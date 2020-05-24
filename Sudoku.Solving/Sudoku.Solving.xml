@@ -7833,6 +7833,56 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2TechniqueInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo">
+            <summary>
+            Provides a usage of <b>Borescoper's deadly pattern type 4</b> (BDP) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int16)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="digitsMask">The digits mask.</param>
+            <param name="map">The cells used.</param>
+            <param name="conjugateRegion">The conjugate region.</param>
+            <param name="extraMask">The extra mask.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo.DigitsMask">
+            <summary>
+            Indicates the digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo.ExtraMask">
+            <summary>
+            Indicates the mask of digits that is the combination.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo.Map">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo.ConjugateRegion">
+            <summary>
+            The so-called conjugate region. If you do not know what is a "conjugate region",
+            please read the comments in the method <see cref="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.CheckType4(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern,System.Int16,System.Int16,System.Int16)"/> for more details.
+            </summary>
+            <seealso cref="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.CheckType4(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern,System.Int16,System.Int16,System.Int16)"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern">
             <summary>
             Indicates the borescoper's deadly pattern.

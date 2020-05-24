@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -482,6 +483,12 @@ namespace Sudoku.Data
 				}
 			}
 		}
+
+		/// <summary>
+		/// All regions that the map used.
+		/// </summary>
+		[SuppressMessage("", "IDE0004:Remove redundant cast")]
+		public readonly IEnumerable<int> Regions => ((int)BlockMask | RowMask << 9 | ColumnMask << 18).GetAllSets();
 
 		/// <summary>
 		/// <para>
