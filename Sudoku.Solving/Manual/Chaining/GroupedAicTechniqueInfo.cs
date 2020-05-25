@@ -180,7 +180,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override bool Equals(object? obj) => obj is GroupedAicTechniqueInfo comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public override bool Equals(TechniqueInfo obj) => obj is GroupedAicTechniqueInfo comparer && Equals(comparer);
+		public override bool Equals(TechniqueInfo? obj) => obj is GroupedAicTechniqueInfo comparer && Equals(comparer);
 
 		/// <inheritdoc/>
 		public bool Equals(GroupedAicTechniqueInfo other)

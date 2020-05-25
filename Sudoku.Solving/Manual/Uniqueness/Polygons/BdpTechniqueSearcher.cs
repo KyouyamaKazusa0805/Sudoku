@@ -58,16 +58,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				short cornerMask1 = GetMask(grid, pattern.Pair1Map);
 				short cornerMask2 = GetMask(grid, pattern.Pair2Map);
 				short centerMask = GetMask(grid, pattern.CenterCellsMap);
-				CheckType1(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask);
-				CheckType2(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask);
-				CheckType3(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask);
-				CheckType4(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask);
+				var map = pattern.Map;
+				CheckType1(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask, map);
+				CheckType2(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask, map);
+				CheckType3(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask, map);
+				CheckType4(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask, map);
 			}
 		}
 
 		private void CheckType1(
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
-			short cornerMask2, short centerMask)
+			short cornerMask2, short centerMask, GridMap map)
 		{
 			short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 			if (orMask.CountSet() != (pattern.IsHeptagon ? 4 : 5))
@@ -76,7 +77,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			}
 
 			// Iterate on each combination.
-			var map = pattern.Map;
 			foreach (int[] digits in GetCombinationsOfArray(orMask.GetAllSets().ToArray(), pattern.IsHeptagon ? 3 : 4))
 			{
 				short tempMask = 0;
@@ -137,7 +137,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 		private void CheckType2(
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
-			short cornerMask2, short centerMask)
+			short cornerMask2, short centerMask, GridMap map)
 		{
 			short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 			if (orMask.CountSet() != (pattern.IsHeptagon ? 4 : 5))
@@ -146,7 +146,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			}
 
 			// Iterate on each combination.
-			var map = pattern.Map;
 			foreach (int[] digits in GetCombinationsOfArray(orMask.GetAllSets().ToArray(), pattern.IsHeptagon ? 3 : 4))
 			{
 				short tempMask = 0;
@@ -198,20 +197,117 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 		private void CheckType3(
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
-			short cornerMask2, short centerMask)
+			short cornerMask2, short centerMask, GridMap map)
 		{
-			var map = pattern.Map;
-			// TODO: Finish BDP type 3.
+			short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
+			foreach (int region in map.Regions)
+			{
+				var currentMap = RegionMaps[region] & map;
+				var otherCellsMap = map - currentMap;
+				short currentMask = GetMask(grid, currentMap);
+				short otherMask = GetMask(grid, otherCellsMap);
+
+				foreach (int[] digits in
+					GetCombinationsOfArray(orMask.GetAllSets().ToArray(), pattern.IsHeptagon ? 3 : 4))
+				{
+					short tempMask = 0;
+					foreach (int digit in digits)
+					{
+						tempMask |= (short)(1 << digit);
+					}
+					if (otherMask != tempMask)
+					{
+						continue;
+					}
+
+					// Iterate on the cells by the specified size.
+					var iterationCellsMap = RegionMaps[region] - currentMap;
+					int[] iterationCells = iterationCellsMap.ToArray();
+					short otherDigitsMask = (short)(orMask & ~tempMask);
+					foreach (int[] combination in GetCombinationsOfArray(iterationCells, otherDigitsMask.CountSet()))
+					{
+						short comparer = 0;
+						foreach (int cell in combination)
+						{
+							comparer |= grid.GetCandidatesReversal(cell);
+						}
+						if (comparer != otherDigitsMask)
+						{
+							continue;
+						}
+
+						// Type 3 found.
+						// Now check eliminations.
+						var conclusions = new List<Conclusion>();
+						foreach (int digit in comparer.GetAllSets())
+						{
+							var cells = iterationCellsMap & CandMaps[digit];
+							if (cells.IsEmpty)
+							{
+								continue;
+							}
+
+							foreach (int cell in cells.Offsets)
+							{
+								conclusions.Add(new Conclusion(Elimination, cell, digit));
+							}
+						}
+
+						if (conclusions.None())
+						{
+							continue;
+						}
+
+						var candidateOffsets = new List<(int, int)>();
+						foreach (int cell in currentMap.Offsets)
+						{
+							foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+							{
+								candidateOffsets.Add(((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+							}
+						}
+						foreach (int cell in otherCellsMap.Offsets)
+						{
+							foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+							{
+								candidateOffsets.Add((0, cell * 9 + digit));
+							}
+						}
+						foreach (int cell in combination)
+						{
+							foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+							{
+								candidateOffsets.Add((1, cell * 9 + digit));
+							}
+						}
+
+						accumulator.Add(
+							new BdpType3TechniqueInfo(
+								conclusions,
+								views: new[]
+								{
+									new View(
+										cellOffsets: null,
+										candidateOffsets,
+										regionOffsets: new[] { (0, region) },
+										links: null)
+								},
+								digitsMask: tempMask,
+								map,
+								extraCellsMap: new GridMap(combination),
+								extraDigitsMask: otherDigitsMask));
+					}
+				}
+			}
 		}
 
 		[SuppressMessage("", "IDE0004:Remove redundant cast")]
 		private void CheckType4(
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
-			short cornerMask2, short centerMask)
+			short cornerMask2, short centerMask, GridMap map)
 		{
 			// The type 4 may be complex and terrible to process.
 			// All regions that the pattern lies on should be checked.
-			var map = pattern.Map;
 			short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 			foreach (int region in map.Regions)
 			{

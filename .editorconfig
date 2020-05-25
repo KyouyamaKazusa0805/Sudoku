@@ -343,6 +343,9 @@ dotnet_diagnostic.CS8714.severity = error
 # CS8762: Parameter may not have a null value when exiting in some condition.
 dotnet_diagnostic.CS8762.severity = error
 
+# CS8765: Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).
+dotnet_diagnostic.CS8765.severity = error
+
 # CS8767: Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
 dotnet_diagnostic.CS8767.severity = error
 

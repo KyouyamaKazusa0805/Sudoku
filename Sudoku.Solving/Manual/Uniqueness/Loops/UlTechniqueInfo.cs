@@ -75,7 +75,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		public UlDetailData DetailData { get; }
 
 		/// <inheritdoc/>
-		public override bool Equals(TechniqueInfo other) =>
+		public override bool Equals(TechniqueInfo? other) =>
 			other is UlTechniqueInfo comparer && DetailData.Equals(comparer.DetailData);
 
 		/// <inheritdoc/>

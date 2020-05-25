@@ -82,8 +82,7 @@ namespace Sudoku.Data
 		/// var map = new GridMap(offset) { [offset] = false };
 		/// </code>
 		/// </param>
-		public GridMap(int offset, bool setItself) : this((IEnumerable<int>)Peers[offset]) =>
-			this[offset] = setItself;
+		public GridMap(int offset, bool setItself) : this((IEnumerable<int>)Peers[offset]) => this[offset] = setItself;
 
 		/// <summary>
 		/// Initializes an instance with the specified cell offset
