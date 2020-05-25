@@ -2,7 +2,7 @@
 >
 > 这个作者目前更新文件会比以前更新得慢，因为临近毕业了，就有很多的事情。
 >
-> BTW, I have been studying and learning the sudoku algorithm, so some technique searchers contain bugs inevitably perhaps. If you find them, please tell me, thank you.
+> BTW, I have been studying and learning the sudoku algorithm, so some technique searchers contain bugs inevitably perhaps. If you find them, please tell me. Thank you.
 >
 > 顺带一提，我目前一直都在学习和研究数独相关的算法，所以一些算法可能难免包含一些程序漏洞。如果你找到了，请你告诉我，万分感谢。
 
@@ -14,7 +14,7 @@ A sudoku handling SDK using brute forces and logical techniques (update graduall
 
 一个使用暴力破解和普通逻辑算法解题的数独分析解题 SDK（逐渐更新）。目前该解决方案支持对数独的题目生成、使用逻辑技巧或无逻辑技巧解题和一些常见数独特性的验证（例如，验证是否一个指定的盘面是一个最小题目。所谓的最小题目指的是，盘面任意一个数字消失后，都会使得题目多解的题）。
 
-> The form may be like the program Hodoku, however, using the program Hodoku is for reference only.
+> The form may be like the program Hodoku. However, using the program Hodoku is for reference only.
 >
 > 这个窗体可能看起来跟 Hodoku 差不多，因为我并不知道什么样子是一个漂亮的界面。使用 Hodoku 仅仅是为了参考。
 >
