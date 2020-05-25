@@ -60,6 +60,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				short centerMask = GetMask(grid, pattern.CenterCellsMap);
 				CheckType1(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask);
 				CheckType2(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask);
+				CheckType3(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask);
 				CheckType4(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask);
 			}
 		}
@@ -193,6 +194,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						map,
 						extraDigit: otherDigit));
 			}
+		}
+
+		private void CheckType3(
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
+			short cornerMask2, short centerMask)
+		{
+			var map = pattern.Map;
+			// TODO: Finish BDP type 3.
 		}
 
 		[SuppressMessage("", "IDE0004:Remove redundant cast")]
