@@ -109,15 +109,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			// Type 2 or 5 found. Now check elimination.
 			int extraDigit = extraMask.FindFirstSet();
 			var conclusions = new List<Conclusion>();
-			foreach (int cell in
-				new GridMap(stackalloc[] { corner1, corner2 }, ProcessPeersWithoutItself).Offsets)
+			foreach (int cell in new GridMap(stackalloc[] { corner1, corner2 }, ProcessPeersWithoutItself).Offsets)
 			{
-				if (!(grid.Exists(cell, extraDigit) is true))
+				if (grid.Exists(cell, extraDigit) is true)
 				{
-					continue;
+					conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
 				}
-
-				conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
 			}
 			if (conclusions.Count == 0)
 			{
@@ -127,14 +124,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			var candidateOffsets = new List<(int, int)>();
 			foreach (int cell in urCells)
 			{
-				if (grid.GetStatus(cell) != Empty)
+				if (grid.GetStatus(cell) == Empty)
 				{
-					continue;
-				}
-
-				foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
-				{
-					candidateOffsets.Add((digit == extraDigit ? 1 : 0, cell * 9 + digit));
+					foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+					{
+						candidateOffsets.Add((digit == extraDigit ? 1 : 0, cell * 9 + digit));
+					}
 				}
 			}
 			if (!_allowUncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
@@ -244,12 +239,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								where grid.Exists(cell, digit) is true
 								select cell, ProcessPeersWithoutItself).Offsets)
 							{
-								if (!(grid.Exists(cell, digit) is true))
+								if (grid.Exists(cell, digit) is true)
 								{
-									continue;
+									conclusions.Add(new Conclusion(Elimination, cell, digit));
 								}
-
-								conclusions.Add(new Conclusion(Elimination, cell, digit));
 							}
 						}
 						if (conclusions.Count == 0)
@@ -260,14 +253,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						var candidateOffsets = new List<(int, int)>();
 						foreach (int cell in urCells)
 						{
-							if (grid.GetStatus(cell) != Empty)
+							if (grid.GetStatus(cell) == Empty)
 							{
-								continue;
-							}
-
-							foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
-							{
-								candidateOffsets.Add((d != d1 && d != d2 ? 1 : 0, cell * 9 + d));
+								foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
+								{
+									candidateOffsets.Add((d != d1 && d != d2 ? 1 : 0, cell * 9 + d));
+								}
 							}
 						}
 						foreach (int d in grid.GetCandidatesReversal(c1).GetAllSets())
@@ -343,12 +334,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										where grid.Exists(cell, digit) is true
 										select cell, ProcessPeersWithoutItself).Offsets)
 									{
-										if (!(grid.Exists(cell, digit) is true))
+										if (grid.Exists(cell, digit) is true)
 										{
-											continue;
+											conclusions.Add(new Conclusion(Elimination, cell, digit));
 										}
-
-										conclusions.Add(new Conclusion(Elimination, cell, digit));
 									}
 								}
 								if (conclusions.Count == 0)
@@ -359,14 +348,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								var candidateOffsets = new List<(int, int)>();
 								foreach (int cell in urCells)
 								{
-									if (grid.GetStatus(cell) != Empty)
+									if (grid.GetStatus(cell) == Empty)
 									{
-										continue;
-									}
-
-									foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
-									{
-										candidateOffsets.Add((d != d1 && d != d2 ? 1 : 0, cell * 9 + d));
+										foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
+										{
+											candidateOffsets.Add((d != d1 && d != d2 ? 1 : 0, cell * 9 + d));
+										}
 									}
 								}
 								foreach (int d in grid.GetCandidatesReversal(c1).GetAllSets())
@@ -446,12 +433,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											where grid.Exists(cell, digit) is true
 											select cell, ProcessPeersWithoutItself).Offsets)
 										{
-											if (!(grid.Exists(cell, digit) is true))
+											if (grid.Exists(cell, digit) is true)
 											{
-												continue;
+												conclusions.Add(new Conclusion(Elimination, cell, digit));
 											}
-
-											conclusions.Add(new Conclusion(Elimination, cell, digit));
 										}
 									}
 									if (conclusions.Count == 0)
@@ -462,14 +447,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									var candidateOffsets = new List<(int, int)>();
 									foreach (int cell in urCells)
 									{
-										if (grid.GetStatus(cell) != Empty)
+										if (grid.GetStatus(cell) == Empty)
 										{
-											continue;
-										}
-
-										foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
-										{
-											candidateOffsets.Add((d != d1 && d != d2 ? 1 : 0, cell * 9 + d));
+											foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
+											{
+												candidateOffsets.Add((d != d1 && d != d2 ? 1 : 0, cell * 9 + d));
+											}
 										}
 									}
 									foreach (int d in grid.GetCandidatesReversal(c1).GetAllSets())

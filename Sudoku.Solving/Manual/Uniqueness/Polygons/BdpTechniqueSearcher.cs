@@ -224,78 +224,81 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					var iterationCellsMap = RegionMaps[region] - currentMap;
 					int[] iterationCells = iterationCellsMap.ToArray();
 					short otherDigitsMask = (short)(orMask & ~tempMask);
-					foreach (int[] combination in GetCombinationsOfArray(iterationCells, otherDigitsMask.CountSet()))
+					for (int size = otherDigitsMask.CountSet(); size <= iterationCellsMap.Count; size++)
 					{
-						short comparer = 0;
-						foreach (int cell in combination)
+						foreach (int[] combination in GetCombinationsOfArray(iterationCells, size))
 						{
-							comparer |= grid.GetCandidatesReversal(cell);
-						}
-						if (comparer != otherDigitsMask)
-						{
-							continue;
-						}
-
-						// Type 3 found.
-						// Now check eliminations.
-						var conclusions = new List<Conclusion>();
-						foreach (int digit in comparer.GetAllSets())
-						{
-							var cells = iterationCellsMap & CandMaps[digit];
-							if (cells.IsEmpty)
+							short comparer = 0;
+							foreach (int cell in combination)
+							{
+								comparer |= grid.GetCandidatesReversal(cell);
+							}
+							if (comparer != otherDigitsMask)
 							{
 								continue;
 							}
 
-							foreach (int cell in cells.Offsets)
+							// Type 3 found.
+							// Now check eliminations.
+							var conclusions = new List<Conclusion>();
+							foreach (int digit in comparer.GetAllSets())
 							{
-								conclusions.Add(new Conclusion(Elimination, cell, digit));
-							}
-						}
-
-						if (conclusions.None())
-						{
-							continue;
-						}
-
-						var candidateOffsets = new List<(int, int)>();
-						foreach (int cell in currentMap.Offsets)
-						{
-							foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
-							{
-								candidateOffsets.Add(((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
-							}
-						}
-						foreach (int cell in otherCellsMap.Offsets)
-						{
-							foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
-							{
-								candidateOffsets.Add((0, cell * 9 + digit));
-							}
-						}
-						foreach (int cell in combination)
-						{
-							foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
-							{
-								candidateOffsets.Add((1, cell * 9 + digit));
-							}
-						}
-
-						accumulator.Add(
-							new BdpType3TechniqueInfo(
-								conclusions,
-								views: new[]
+								var cells = iterationCellsMap & CandMaps[digit];
+								if (cells.IsEmpty)
 								{
+									continue;
+								}
+
+								foreach (int cell in cells.Offsets)
+								{
+									conclusions.Add(new Conclusion(Elimination, cell, digit));
+								}
+							}
+
+							if (conclusions.None())
+							{
+								continue;
+							}
+
+							var candidateOffsets = new List<(int, int)>();
+							foreach (int cell in currentMap.Offsets)
+							{
+								foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+								{
+									candidateOffsets.Add(((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+								}
+							}
+							foreach (int cell in otherCellsMap.Offsets)
+							{
+								foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+								{
+									candidateOffsets.Add((0, cell * 9 + digit));
+								}
+							}
+							foreach (int cell in combination)
+							{
+								foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+								{
+									candidateOffsets.Add((1, cell * 9 + digit));
+								}
+							}
+
+							accumulator.Add(
+								new BdpType3TechniqueInfo(
+									conclusions,
+									views: new[]
+									{
 									new View(
 										cellOffsets: null,
 										candidateOffsets,
 										regionOffsets: new[] { (0, region) },
 										links: null)
-								},
-								digitsMask: tempMask,
-								map,
-								extraCellsMap: new GridMap(combination),
-								extraDigitsMask: otherDigitsMask));
+									},
+									digitsMask: tempMask,
+									map,
+									extraCellsMap: new GridMap(combination),
+									extraDigitsMask: otherDigitsMask));
+						}
 					}
 				}
 			}
