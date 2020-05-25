@@ -256,7 +256,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								views: new[]
 								{
 									new View(
-										cellOffsets,
+										cellOffsets: arMode ? cellOffsets : null,
 										candidateOffsets,
 										regionOffsets: new[] { (0, region) },
 										links: null)

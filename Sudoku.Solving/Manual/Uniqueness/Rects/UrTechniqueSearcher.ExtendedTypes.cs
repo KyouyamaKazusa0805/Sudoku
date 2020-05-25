@@ -911,7 +911,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					}
 					if (grid.Exists(extra, b) is true)
 					{
-						conclusions.Add(new Conclusion(Elimination, head, b));
+						conclusions.Add(new Conclusion(Elimination, extra, b));
 					}
 					if (conclusions.Count == 0)
 					{
