@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -221,10 +222,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					}
 
 					// Iterate on the cells by the specified size.
-					var iterationCellsMap = RegionMaps[region] - currentMap;
+					var iterationCellsMap = (RegionMaps[region] - currentMap) & EmptyMap;
 					int[] iterationCells = iterationCellsMap.ToArray();
 					short otherDigitsMask = (short)(orMask & ~tempMask);
-					for (int size = otherDigitsMask.CountSet(); size <= iterationCellsMap.Count; size++)
+					for (int size = otherDigitsMask.CountSet() - 1; size < iterationCellsMap.Count; size++)
 					{
 						foreach (int[] combination in GetCombinationsOfArray(iterationCells, size))
 						{
@@ -233,7 +234,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							{
 								comparer |= grid.GetCandidatesReversal(cell);
 							}
-							if (comparer != otherDigitsMask)
+							if ((tempMask & comparer) != 0 || tempMask.CountSet() - 1 != size
+								|| (tempMask & otherDigitsMask) != otherDigitsMask)
 							{
 								continue;
 							}
@@ -255,7 +257,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 								}
 							}
 
-							if (conclusions.None())
+							if (conclusions.Count == 0)
 							{
 								continue;
 							}
@@ -265,7 +267,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							{
 								foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 								{
-									candidateOffsets.Add(((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+									candidateOffsets.Add(((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 								}
 							}
 							foreach (int cell in otherCellsMap.Offsets)
@@ -343,11 +345,24 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					{
 						short combinationMask = 0;
 						var combinationMap = GridMap.Empty;
+						bool flag = false;
 						foreach (int digit in combination)
 						{
+							if (grid.HasDigitValue(digit, region))
+							{
+								flag = true;
+								break;
+							}
+
 							combinationMask |= (short)(1 << digit);
 							combinationMap |= CandMaps[digit] & RegionMaps[region];
 						}
+						if (flag)
+						{
+							// The region contains digit value, which is not a normal pattern.
+							continue;
+						}
+
 						if (combinationMap != currentMap)
 						{
 							// If not equal, the map may contains other digits in this region.

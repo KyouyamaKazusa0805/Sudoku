@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
@@ -161,15 +160,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									else
 									{
 										// Non-diagonal type.
-										for (int size = 2; size <= 4; size++)
-										{
-											CheckType3Naked(
-												tempList, grid, urCells, arMode, comparer, d1, d2,
-												corner1, corner2, tempOtherCellsMap, size);
-											CheckType3Hidden(
-												tempList, grid, urCells, arMode, comparer, d1, d2,
-												corner1, corner2, tempOtherCellsMap, size);
-										}
+										CheckType3Naked(
+											tempList, grid, urCells, arMode, comparer, d1, d2,
+											corner1, corner2, tempOtherCellsMap);
 
 										if (!arMode)
 										{
@@ -326,11 +319,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 		partial void CheckType3Naked(
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap, int size);
-
-		partial void CheckType3Hidden(
-			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
-			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap, int size);
+			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap);
 
 		partial void CheckType4(
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
