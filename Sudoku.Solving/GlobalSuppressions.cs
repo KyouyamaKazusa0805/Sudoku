@@ -1,1 +1,0 @@
-﻿[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("", "IDE0010:Add missing cases", Justification = "<Pending>")]
