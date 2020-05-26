@@ -99,7 +99,7 @@ namespace Sudoku.Solving
 
 						var info = steps[i];
 						string infoStr = showSimple ? info.ToSimpleString() : info.ToString();
-						bool showDiff = showDifficulty ? info.ShowDifficulty : false;
+						bool showDiff = showDifficulty && info.ShowDifficulty;
 						string labelInfo = (showStepNum, showDiff) switch
 						{
 							(true, true) => $"{i + 1,4}, {$"({info.Difficulty}",5:0.0}) ",

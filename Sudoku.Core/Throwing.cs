@@ -18,21 +18,25 @@ namespace Sudoku
 		/// generate a warning (CS8509).
 		/// </para>
 		/// </summary>
-		public static SwitchExpressionException ImpossibleCase =>
-			new SwitchExpressionException("Impossible case.");
+		public static SwitchExpressionException ImpossibleCase => new SwitchExpressionException("Impossible case.");
 
 		/// <summary>
 		/// Indicates an exception throwing when the format string is invalid.
 		/// </summary>
-		public static FormatException FormatError =>
-			new FormatException("The specified format is invalid.");
+		public static FormatException FormatError => new FormatException("The specified format is invalid.");
 
 		/// <summary>
-		/// Indicates all <see langword="ref"/> <see langword="struct"/>s cannot
+		/// Indicates all <see langword="ref struct"/>s cannot
 		/// use any boxing operations.
 		/// </summary>
 		public static NotSupportedException RefStructNotSupported =>
 			new NotSupportedException("Ref structs cannot use any boxing operations.");
+
+		/// <summary>
+		/// Indicates the current operation is invalid.
+		/// </summary>
+		public static InvalidOperationException InvalidOperation =>
+			new InvalidOperationException("The specified operation is invalid.");
 
 
 		/// <summary>

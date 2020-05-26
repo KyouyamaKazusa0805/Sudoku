@@ -6,6 +6,7 @@ using System.Linq;
 using Sudoku.Extensions;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridParsingOption;
+using Sudoku.Constants;
 
 namespace Sudoku.Data
 {
@@ -91,7 +92,7 @@ namespace Sudoku.Data
 		/// <returns>The result.</returns>
 		private Grid? OnParsingSimpleMultilineGrid()
 		{
-			string[] matches = ParsingValue.MatchAll(@"[\d\.]");
+			string[] matches = ParsingValue.MatchAll(RegularExpressions.DigitOrEmptyCell);
 			int length = matches.Length;
 			if (length != 81 && length != 83)
 			{
@@ -153,8 +154,8 @@ namespace Sudoku.Data
 		private Grid? OnParsingPencilMarked(bool treatSingleValueAsGiven)
 		{
 			// Older regular expression pattern:
-			// string[] matches = ParsingValue.MatchAll(@"(\<\d\>|\*\d\*|\d{1,9})");
-			string[] matches = ParsingValue.MatchAll(@"(\<\d\>|\*\d\*|\d*\-?\d+)");
+			// string[] matches = ParsingValue.MatchAll(RegularExpressions.PmGridUnit_Old);
+			string[] matches = ParsingValue.MatchAll(RegularExpressions.PmGridUnit);
 			if (matches.Length != 81)
 			{
 				return null;
@@ -163,7 +164,7 @@ namespace Sudoku.Data
 			var result = Grid.Empty.Clone();
 			for (int offset = 0; offset < 81; offset++)
 			{
-				string s = matches[offset].Reserve(@"\d");
+				string s = matches[offset].Reserve(RegularExpressions.Digit);
 				int length = s.Length;
 				if (length > 9)
 				{
@@ -247,7 +248,7 @@ namespace Sudoku.Data
 						return null;
 					}
 				}
-				else if (s.SatisfyPattern(@"[1-9]{1,9}"))
+				else if (s.SatisfyPattern(RegularExpressions.PmGridCandidates))
 				{
 					// Candidates.
 					// Here do not need to check the length of the string,
@@ -278,7 +279,7 @@ namespace Sudoku.Data
 		/// <returns>The grid.</returns>
 		private Grid? OnParsingSimpleTable()
 		{
-			string? match = ParsingValue.Match(@"([\d\.\+]{9}(\n|\r)){8}[\d\.\+]{9}");
+			string? match = ParsingValue.Match(RegularExpressions.SimpleTable);
 			if (match is null)
 			{
 				return null;
@@ -301,7 +302,7 @@ namespace Sudoku.Data
 		/// <returns>The result.</returns>
 		private Grid? OnParsingSusser()
 		{
-			string? match = ParsingValue.Match(@"[\d\.\+]{81,}(\:(\d{3}\s+)*\d{3})?");
+			string? match = ParsingValue.Match(RegularExpressions.Susser);
 			if (match is null)
 			{
 				return null;
@@ -379,11 +380,10 @@ namespace Sudoku.Data
 			}
 
 			// Step 2: eliminates candidates if exist.
-			// If we have met the colon sign ':', this loop would not be executed. 
-			string? elimMatch = match.Match(@"(?<=\:)(\d{3}\s+)*\d{3}");
-			if (!(elimMatch is null))
+			// If we have met the colon sign ':', this loop would not be executed.
+			if (match.Match(RegularExpressions.ExtendedSusserEliminations) is string elimMatch)
 			{
-				string[] eliminationBlocks = elimMatch.MatchAll(@"\d{3}");
+				string[] eliminationBlocks = elimMatch.MatchAll(RegularExpressions.ThreeDigitsCandidate);
 				foreach (string eliminationBlock in eliminationBlocks)
 				{
 					// Set the candidate true value to eliminate the candidate.
@@ -428,7 +428,7 @@ namespace Sudoku.Data
 			}
 			else
 			{
-				string[] matches = ParsingValue.MatchAll(@"\d*\-?\d+");
+				string[] matches = ParsingValue.MatchAll(RegularExpressions.PmGridCandidatesUnit);
 				if (matches.Length != 81)
 				{
 					return null;
@@ -437,7 +437,7 @@ namespace Sudoku.Data
 				var result = Grid.Empty.Clone();
 				for (int offset = 0; offset < 81; offset++)
 				{
-					string s = matches[offset].Reserve(@"\d");
+					string s = matches[offset].Reserve(RegularExpressions.Digit);
 					if (s.Length > 9)
 					{
 						// More than 9 characters.

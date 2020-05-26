@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Security;
+using Sudoku.Constants;
 using Sudoku.Extensions;
 
 namespace Sudoku.Data
@@ -407,7 +408,7 @@ namespace Sudoku.Data
 			var formatter = GridFormatFactory.Create(format);
 			return format switch
 			{
-				":" => formatter.ToString(this).Match(@"(?<=\:)(\d{3}\s+)*\d{3}").NullableToString(),
+				":" => formatter.ToString(this).Match(RegularExpressions.ExtendedSusserEliminations).NullableToString(),
 				"!" => formatter.ToString(this).ToString().Replace("+", string.Empty),
 				".!" => formatter.ToString(this).ToString().Replace("+", string.Empty),
 				"!." => formatter.ToString(this).ToString().Replace("+", string.Empty),
