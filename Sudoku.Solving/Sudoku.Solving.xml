@@ -1118,11 +1118,11 @@
         <member name="M:Sudoku.Solving.Generating.TechniqueFilteringPuzzleGenerator.Generate">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Generating.TechniqueFilteringPuzzleGenerator.Generate(Sudoku.Solving.Manual.TechniqueCode[])">
+        <member name="M:Sudoku.Solving.Generating.TechniqueFilteringPuzzleGenerator.Generate(Sudoku.Solving.Manual.TechniqueCodeFilter)">
             <summary>
             To generate a puzzle that contains the specified technique code.
             </summary>
-            <param name="techniqueCodes">
+            <param name="techniqueCodeFilter">
             The technique codes to filter. If the parameter is <see langword="null"/>,
             the process will use the default filter.
             </param>
@@ -6875,6 +6875,47 @@
             <summary>
             Indicates the brute force.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.TechniqueCodeFilter">
+            <summary>
+            Encapsulates a technique code filter that contains some of technique codes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCodeFilter._internalList">
+            <summary>
+            The internal list.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.#ctor(Sudoku.Solving.Manual.TechniqueCode[])">
+            <summary>
+            Initializes an instance with the specified technique codes.
+            </summary>
+            <param name="techniqueCodes">The technique codes.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.Add(Sudoku.Solving.Manual.TechniqueCode)">
+            <summary>
+            To add a technique code.
+            </summary>
+            <param name="techniqueCode">The technique code.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.TechniqueCode})">
+            <summary>
+            Add a serial of technique codes to this list.
+            </summary>
+            <param name="techniqueCodes">The codes.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.Remove(Sudoku.Solving.Manual.TechniqueCode)">
+            <summary>
+            To remove a technique code.
+            </summary>
+            <param name="techniqueCode">The technique code.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.Contains(Sudoku.Solving.Manual.TechniqueCode)">
+            <summary>
+            To determine whether the specified filter contains the technique.
+            </summary>
+            <param name="techniqueCode">The technique code to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleTechniqueInfo">
             <summary>
