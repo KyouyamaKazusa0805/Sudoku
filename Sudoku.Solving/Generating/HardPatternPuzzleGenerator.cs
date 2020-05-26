@@ -11,7 +11,7 @@ namespace Sudoku.Solving.Generating
 	/// <summary>
 	/// Provides an extended puzzle generator.
 	/// </summary>
-	public sealed class HardPatternPuzzleGenerator : DiggingPuzzleGenerator
+	public class HardPatternPuzzleGenerator : DiggingPuzzleGenerator
 	{
 		/// <summary>
 		/// The backdoor searcher.
@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Generating
 		public override IReadOnlyGrid Generate() => Generate(-1);
 
 		/// <inheritdoc/>
-		protected override void CreatePattern(int[] pattern)
+		protected sealed override void CreatePattern(int[] pattern)
 		{
 			//[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			static double rnd() => Rng.NextDouble();
