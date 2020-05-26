@@ -26,7 +26,9 @@ using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Generating;
+#if DEBUG
 using Sudoku.Solving.Manual;
+#endif
 using Sudoku.Solving.Manual.Symmetry;
 using static Sudoku.Windows.Constants.Processing;
 using AnonymousType = System.Object;
@@ -538,8 +540,12 @@ namespace Sudoku.Windows
 			}
 		}
 
+#if DEBUG
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemGenerateWithTechniqueFiltering_Click(object sender, RoutedEventArgs e)
+#else
+		private void MenuItemGenerateWithTechniqueFiltering_Click(object sender, RoutedEventArgs e)
+#endif
 		{
 #if DEBUG
 			await internalOperation();
