@@ -31,21 +31,10 @@ namespace Sudoku
 		/// The name. Return <see langword="null"/> when the specified field does not mark this attribute.
 		/// </returns>
 		public static string? GetName<TEnum>(TEnum enumField)
-			where TEnum : Enum
-		{
-			var fieldInfo = typeof(TEnum).GetField(enumField.ToString());
-			if (fieldInfo is null)
-			{
-				return null;
-			}
-
-			var attribute = fieldInfo.GetCustomAttribute<NameAttribute>();
-			if (attribute is null)
-			{
-				return null;
-			}
-
-			return attribute.Name;
-		}
+			where TEnum : Enum =>
+			typeof(TEnum).GetField(enumField.ToString()) is FieldInfo fieldInfo
+				&& fieldInfo.GetCustomAttribute<NameAttribute>() is NameAttribute attribute
+				? attribute.Name
+				: null;
 	}
 }

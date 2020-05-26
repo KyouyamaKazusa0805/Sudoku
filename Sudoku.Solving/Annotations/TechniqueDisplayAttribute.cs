@@ -56,21 +56,10 @@ namespace Sudoku.Solving.Annotations
 		/// The display name. Return <see langword="null"/> when the field does not mark this attribute.
 		/// </returns>
 		public static string? GetDisplayName<TEnum>(TEnum enumField)
-			where TEnum : Enum
-		{
-			var fieldInfo = typeof(TEnum).GetField(enumField.ToString());
-			if (fieldInfo is null)
-			{
-				return null;
-			}
-
-			var attribute = fieldInfo.GetCustomAttribute<TechniqueDisplayAttribute>();
-			if (attribute is null)
-			{
-				return null;
-			}
-
-			return attribute.DisplayName;
-		}
+			where TEnum : Enum =>
+			typeof(TEnum).GetField(enumField.ToString()) is FieldInfo fieldInfo
+				&& fieldInfo.GetCustomAttribute<TechniqueDisplayAttribute>() is TechniqueDisplayAttribute attribute
+				? attribute.DisplayName
+				: null;
 	}
 }

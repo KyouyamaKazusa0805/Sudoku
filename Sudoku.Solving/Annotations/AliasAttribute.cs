@@ -31,21 +31,10 @@ namespace Sudoku.Solving.Annotations
 		/// <returns>The result. Return <see langword="null"/> when the conversion is failed.</returns>
 		public static TEnumTarget? Convert<TEnumBase, TEnumTarget>(TEnumBase enumField)
 			where TEnumBase : Enum
-			where TEnumTarget : struct, Enum
-		{
-			var fieldInfo = typeof(TEnumBase).GetField(enumField.ToString());
-			if (fieldInfo is null)
-			{
-				return null;
-			}
-
-			var attribute = fieldInfo.GetCustomAttribute<AliasAttribute>();
-			if (attribute is null)
-			{
-				return null;
-			}
-
-			return Enum.Parse<TEnumTarget>(attribute.FieldName);
-		}
+			where TEnumTarget : struct, Enum =>
+			typeof(TEnumBase).GetField(enumField.ToString()) is FieldInfo fieldInfo
+				&& fieldInfo.GetCustomAttribute<AliasAttribute>() is AliasAttribute attribute
+				? Enum.Parse<TEnumTarget>(attribute.FieldName)
+				: (TEnumTarget?)null;
 	}
 }
