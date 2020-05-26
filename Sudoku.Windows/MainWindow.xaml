@@ -115,6 +115,10 @@
 				<MenuItem Header="Hard pattern" Name="_menuItemGenerateHardPattern"
 						  InputGestureText="Ctrl + H"
 						  Click="MenuItemGenerateHardPattern_Click"/>
+				<!--#region DEBUG -->
+				<MenuItem Header="Technique Filtering..." Name="_menuItemGenerateWithTechniqueFiltering"
+						  Click="MenuItemGenerateWithTechniqueFiltering_Click"/>
+				<!--#endregion-->
 			</MenuItem>
 
 			<!-- Analyze... -->

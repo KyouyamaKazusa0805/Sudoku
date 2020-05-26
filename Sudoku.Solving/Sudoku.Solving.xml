@@ -6917,6 +6917,12 @@
             <param name="techniqueCode">The technique code to check.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleTechniqueInfo">
             <summary>
             Provides a usage of <b>BUG + n</b> technique.

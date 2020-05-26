@@ -6,7 +6,7 @@ namespace Sudoku.Solving.Manual
 	/// <summary>
 	/// Encapsulates a technique code filter that contains some of technique codes.
 	/// </summary>
-	public sealed class TechniqueCodeFilter
+	public sealed class TechniqueCodeFilter : IEnumerable<TechniqueCode>
 	{
 		/// <summary>
 		/// The internal list.
@@ -57,5 +57,20 @@ namespace Sudoku.Solving.Manual
 		/// <param name="techniqueCode">The technique code to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public bool Contains(TechniqueCode techniqueCode) => _internalList[(int)techniqueCode];
+
+		/// <inheritdoc/>
+		public IEnumerator<TechniqueCode> GetEnumerator()
+		{
+			for (int i = 0; i < _internalList.Count; i++)
+			{
+				if (_internalList[i])
+				{
+					yield return (TechniqueCode)i;
+				}
+			}
+		}
+
+		/// <inheritdoc/>
+		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 	}
 }

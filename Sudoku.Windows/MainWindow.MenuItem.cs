@@ -26,6 +26,7 @@ using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Generating;
+using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Symmetry;
 using static Sudoku.Windows.Constants.Processing;
 using AnonymousType = System.Object;
@@ -535,6 +536,31 @@ namespace Sudoku.Windows
 				ClearItemSourcesWhenGeneratedOrSolving();
 				UpdateImageGrid();
 			}
+		}
+
+		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+		private async void MenuItemGenerateWithTechniqueFiltering_Click(object sender, RoutedEventArgs e)
+		{
+#if DEBUG
+			await internalOperation();
+
+			async Task internalOperation()
+			{
+				DisableGeneratingControls();
+
+				Puzzle = new UndoableGrid(
+					await Task.Run(() =>
+						new TechniqueFilteringPuzzleGenerator().Generate(
+							new TechniqueCodeFilter { TechniqueCode.AlmostLockedPair })));
+
+				EnableGeneratingControls();
+				SwitchOnGeneratingComboBoxesDisplaying();
+				ClearItemSourcesWhenGeneratedOrSolving();
+				UpdateImageGrid();
+			}
+#else
+			MessageBox.Show("This function is for debugging use now. Sorry. >_<", "Info");
+#endif
 		}
 
 		private void MenuItemAnalyzeSolve_Click(object sender, RoutedEventArgs e)
