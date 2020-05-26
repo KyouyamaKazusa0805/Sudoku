@@ -903,6 +903,15 @@
             The names of all fishes by their size.
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.Constants.Processings.BitwiseOrMasks(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap)">
+            <summary>
+            Get the mask that is a result after the bitwise or operation processed all cells
+            in the specified map.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="map">The map.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Constants.Processings.GetExtraDifficultyByLength(System.Int32)">
             <summary>
             Get extra difficulty rating for a chain node sequence.
@@ -4273,14 +4282,6 @@
         <member name="M:Sudoku.Solving.Manual.Intersections.LcTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.LcTechniqueSearcher.BitwiseOrMasks(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap)">
-            <summary>
-            Bitwise or all masks.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="map">The grid map.</param>
-            <returns>The result.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueInfo">
             <summary>
             Provides a usage of <b>Bowman's bingo</b> technique.
@@ -6624,12 +6625,12 @@
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.BugXz">
             <summary>
-            Indicates the BUG + n.
+            Indicates the BUG-XZ.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.BugXyzWing">
             <summary>
-            Indicates the BUG + n.
+            Indicates the BUG-XY-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.BdpType1">
@@ -7734,14 +7735,6 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.GetMask(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap)">
-            <summary>
-            Get the mask.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="map">The map.</param>
-            <returns>The mask.</returns>
         </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.Quads">
             <summary>

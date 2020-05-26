@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
+using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
@@ -55,15 +54,15 @@ namespace Sudoku.Solving.Manual.Intersections
 						a.Overlaps(CandMaps[digit])
 							? (coverSet, baseSet, a & CandMaps[digit])
 							: (baseSet, coverSet, b & CandMaps[digit]);
+					if (elimMap.IsEmpty)
+					{
+						continue;
+					}
 
 					var conclusions = new List<Conclusion>();
 					foreach (int cell in elimMap.Offsets)
 					{
 						conclusions.Add(new Conclusion(Elimination, cell, digit));
-					}
-					if (conclusions.Count == 0)
-					{
-						continue;
 					}
 
 					var candidateOffsets = new List<(int, int)>();
@@ -88,24 +87,6 @@ namespace Sudoku.Solving.Manual.Intersections
 							coverSet: r[1]));
 				}
 			}
-		}
-
-
-		/// <summary>
-		/// Bitwise or all masks.
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <param name="map">The grid map.</param>
-		/// <returns>The result.</returns>
-		private static short BitwiseOrMasks(IReadOnlyGrid grid, GridMap map)
-		{
-			short mask = 0;
-			foreach (int offset in map.Offsets)
-			{
-				mask |= grid.GetCandidatesReversal(offset);
-			}
-
-			return mask;
 		}
 	}
 }

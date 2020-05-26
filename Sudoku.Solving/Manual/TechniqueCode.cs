@@ -969,13 +969,13 @@ namespace Sudoku.Solving.Manual
 		BugMultiple,
 
 		/// <summary>
-		/// Indicates the BUG + n.
+		/// Indicates the BUG-XZ.
 		/// </summary>
 		[TechniqueDisplay("Bivalue Universal Grave XZ Rule", Category = "Uniqueness>Bivalue Universal Graves>Extended")]
 		BugXz,
 
 		/// <summary>
-		/// Indicates the BUG + n.
+		/// Indicates the BUG-XY-Wing.
 		/// </summary>
 		//[TechniqueDisplay("Bivalue Universal Grave XYZ-Wing", Category = "Uniqueness>Bivalue Universal Graves>Extended")]
 		BugXyzWing,

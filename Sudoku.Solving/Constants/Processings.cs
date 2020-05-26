@@ -1,4 +1,5 @@
-﻿using Sudoku.Extensions;
+﻿using Sudoku.Data;
+using Sudoku.Extensions;
 
 namespace Sudoku.Solving.Constants
 {
@@ -26,6 +27,25 @@ namespace Sudoku.Solving.Constants
 			string.Empty, "Cyclopsfish", "X-Wing", "Swordfish", "Jellyfish",
 			"Squirmbag", "Whale", "Leviathan", "Octopus", "Dragon"
 		};
+
+
+		/// <summary>
+		/// Get the mask that is a result after the bitwise or operation processed all cells
+		/// in the specified map.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="map">The map.</param>
+		/// <returns>The result.</returns>
+		public static short BitwiseOrMasks(IReadOnlyGrid grid, GridMap map)
+		{
+			short mask = 0;
+			foreach (int cell in map.Offsets)
+			{
+				mask |= grid.GetCandidatesReversal(cell);
+			}
+
+			return mask;
+		}
 
 		/// <summary>
 		/// Get extra difficulty rating for a chain node sequence.

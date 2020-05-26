@@ -10,6 +10,7 @@ using static System.Algorithms;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Data.GridMap.InitializeOption;
+using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
@@ -56,9 +57,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					continue;
 				}
 
-				short cornerMask1 = GetMask(grid, pattern.Pair1Map);
-				short cornerMask2 = GetMask(grid, pattern.Pair2Map);
-				short centerMask = GetMask(grid, pattern.CenterCellsMap);
+				short cornerMask1 = BitwiseOrMasks(grid, pattern.Pair1Map);
+				short cornerMask2 = BitwiseOrMasks(grid, pattern.Pair2Map);
+				short centerMask = BitwiseOrMasks(grid, pattern.CenterCellsMap);
 				var map = pattern.Map;
 				CheckType1(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask, map);
 				CheckType2(accumulator, grid, pattern, cornerMask1, cornerMask2, centerMask, map);
@@ -205,8 +206,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			{
 				var currentMap = RegionMaps[region] & map;
 				var otherCellsMap = map - currentMap;
-				short currentMask = GetMask(grid, currentMap);
-				short otherMask = GetMask(grid, otherCellsMap);
+				short currentMask = BitwiseOrMasks(grid, currentMap);
+				short otherMask = BitwiseOrMasks(grid, otherCellsMap);
 
 				foreach (int[] digits in
 					GetCombinationsOfArray(orMask.GetAllSets().ToArray(), pattern.IsHeptagon ? 3 : 4))
@@ -318,8 +319,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			{
 				var currentMap = RegionMaps[region] & map;
 				var otherCellsMap = map - currentMap;
-				short currentMask = GetMask(grid, currentMap);
-				short otherMask = GetMask(grid, otherCellsMap);
+				short currentMask = BitwiseOrMasks(grid, currentMap);
+				short otherMask = BitwiseOrMasks(grid, otherCellsMap);
 
 				// Iterate on each possible digit combination.
 				// For example, if values are { 1, 2, 3 }, then all combinations taken 2 values
@@ -418,24 +419,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					}
 				}
 			}
-		}
-
-
-		/// <summary>
-		/// Get the mask.
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <param name="map">The map.</param>
-		/// <returns>The mask.</returns>
-		private static short GetMask(IReadOnlyGrid grid, GridMap map)
-		{
-			short mask = 0;
-			foreach (int cell in map.Offsets)
-			{
-				mask |= grid.GetCandidatesReversal(cell);
-			}
-
-			return mask;
 		}
 	}
 }
