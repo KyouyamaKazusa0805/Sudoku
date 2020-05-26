@@ -185,15 +185,14 @@ namespace Sudoku.Windows
 							$"If you are not sure, please click NO button.",
 							"Info", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
 						{
-							_textBoxInfo.Text = "Load picture successfully, now grab all digits in the picture, please wait...";
+							_textBoxInfo.Text =
+								"Load picture successfully, now grab all digits in the picture, please wait...";
 							using (var bitmap = new Bitmap(dialog.FileName))
 							{
 								var grid = (await Task.Run(() => _recognition.Recorgnize(bitmap))).ToMutable();
 								grid.Fix();
 								Puzzle = new UndoableGrid(grid);
 							}
-
-							_textBoxInfo.ClearValue(TextBox.TextProperty);
 
 							UpdateUndoRedoControls();
 							UpdateImageGrid();
@@ -208,6 +207,8 @@ namespace Sudoku.Windows
 				{
 					MessageBox.Show(ex.Message, "Warning");
 				}
+
+				_textBoxInfo.ClearValue(TextBox.TextProperty);
 			}
 #else
 			MessageBox.Show("Your machine cannot use image recognition.", "Info");

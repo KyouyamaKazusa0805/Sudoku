@@ -56,9 +56,18 @@ namespace Sudoku.Recognitions
 					// Recognize digit from cell.
 					int recognition =
 						RecognizeCellNumber(field.GetSubRect(new Rectangle(o + w * x, o + w * y, w - o * 2, w - o * 2)));
-					if (recognition == 0)
+					switch (recognition)
 					{
-						continue;
+						case 0:
+						{
+							continue;
+						}
+						case -1:
+						{
+							throw new RecognizingException(
+								$"Recognition error. Cannot fill the cell r{x + 1}c{y + 1} because the current value " +
+								$"is not a valid number.");
+						}
 					}
 
 					int cell = x * 9 + y, digit = recognition - 1;
@@ -116,7 +125,7 @@ namespace Sudoku.Recognitions
 				}
 			}
 
-			return numberText.Length > 1 ? 0 : int.Parse(numberText);
+			return numberText.Length > 1 ? -1 : int.TryParse(numberText, out int resultValue) ? resultValue : -1;
 		}
 
 		/// <summary>
