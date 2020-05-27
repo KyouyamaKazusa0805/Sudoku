@@ -69,6 +69,9 @@ namespace Sudoku.Constants
 		/// '-------'-------'-------'
 		/// </code>
 		/// </para>
+		/// <para>
+		/// In addition, in this data structure, "<c>_coverSet</c>" is a block and "<c>_baseSet</c>" is a line.
+		/// </para>
 		/// </summary>
 		public static readonly IReadOnlyDictionary<(byte _baseSet, byte _coverSet), (GridMap _a, GridMap _b, GridMap _c)> IntersectionMaps;
 #nullable restore warnings

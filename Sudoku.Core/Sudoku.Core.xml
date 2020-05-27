@@ -65,6 +65,9 @@
             '-------'-------'-------'
             </code>
             </para>
+            <para>
+            In addition, in this data structure, "<c>_coverSet</c>" is a block and "<c>_baseSet</c>" is a line.
+            </para>
             </summary>
         </member>
         <member name="M:Sudoku.Constants.Processings.GetRegion(System.Int32,Sudoku.Constants.RegionLabel)">

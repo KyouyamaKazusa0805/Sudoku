@@ -102,18 +102,12 @@ namespace Sudoku.Solving.Manual.Intersections
 						continue;
 					}
 
-					var maskList = new List<short>();
+					short ahsMask = 0;
 					foreach (int digit in digits)
 					{
-						maskList.Add(grid.GetDigitAppearingMask(digit, coverSet, b));
+						ahsMask |= grid.GetDigitAppearingMask(digit, coverSet, b);
 					}
-
-					short ahsMask = 0;
-					foreach (short mask in maskList)
-					{
-						ahsMask |= mask;
-					}
-					if (ahsMask.CountSet() != 1)
+					if (!ahsMask.IsPowerOfTwo())
 					{
 						continue;
 					}
@@ -125,32 +119,17 @@ namespace Sudoku.Solving.Manual.Intersections
 					var candidateOffsets = new List<(int, int)>();
 					foreach (int digit in digits)
 					{
-						if (!(grid.Exists(c1, digit) is true))
-						{
-							continue;
-						}
-
 						candidateOffsets.Add((0, c1 * 9 + digit));
 					}
 					foreach (int cell in c.Offsets)
 					{
-						foreach (int digit in digits)
+						foreach (int digit in (mask1 & grid.GetCandidatesReversal(cell)).GetAllSets())
 						{
-							if (!(grid.Exists(cell, digit) is true))
-							{
-								continue;
-							}
-
 							candidateOffsets.Add((1, cell * 9 + digit));
 						}
 					}
-					foreach (int digit in digits)
+					foreach (int digit in (mask1 & grid.GetCandidatesReversal(ahsCell)).GetAllSets())
 					{
-						if (!(grid.Exists(ahsCell, digit) is true))
-						{
-							continue;
-						}
-
 						candidateOffsets.Add((0, ahsCell * 9 + digit));
 					}
 
@@ -163,34 +142,25 @@ namespace Sudoku.Solving.Manual.Intersections
 							continue;
 						}
 
-						foreach (int digit in digits)
+						foreach (int digit in (mask1 & grid.GetCandidatesReversal(aCell)).GetAllSets())
 						{
-							if (!(grid.Exists(aCell, digit) is true))
-							{
-								continue;
-							}
-
 							conclusions.Add(new Conclusion(Elimination, aCell, digit));
 						}
 					}
 
-					for (int digit = 0, temp = (short)(511 & (short)~mask1); digit < 9; digit++, temp >>= 1)
+					for (int digit = 0, temp = 511 & ~mask1; digit < 9; digit++, temp >>= 1)
 					{
-						if ((temp & 1) == 0 || !(grid.Exists(ahsCell, digit) is true))
+						if ((temp & 1) != 0 && grid.Exists(ahsCell, digit) is true)
 						{
-							continue;
+							conclusions.Add(new Conclusion(Elimination, ahsCell, digit));
 						}
-
-						conclusions.Add(new Conclusion(Elimination, ahsCell, digit));
 					}
-
 					if (conclusions.Count == 0)
 					{
 						continue;
 					}
 
-					int[] cells = new[] { c1, ahsCell };
-					var valueCells = from cell in cells
+					var valueCells = from cell in new[] { c1, ahsCell }
 									 where grid.GetStatus(cell) != Empty
 									 select (0, cell);
 					result.Add(
@@ -199,7 +169,7 @@ namespace Sudoku.Solving.Manual.Intersections
 							views: new[]
 							{
 								new View(
-									cellOffsets: valueCells.Any() ? valueCells.ToList() : null,
+									cellOffsets: valueCells.Any() ? valueCells.ToArray() : null,
 									candidateOffsets,
 									regionOffsets: new[] { (0, baseSet), (1, coverSet) },
 									links: null)
@@ -225,17 +195,11 @@ namespace Sudoku.Solving.Manual.Intersections
 								continue;
 							}
 
-							var maskList = new List<short>();
+							short ahsMask = 0;
 							foreach (int digit in digits)
 							{
-								maskList.Add(grid.GetDigitAppearingMask(digit, coverSet, b));
+								ahsMask |= grid.GetDigitAppearingMask(digit, coverSet, b);
 							}
-							short ahsMask = 0;
-							foreach (short mask in maskList)
-							{
-								ahsMask |= mask;
-							}
-
 							if (ahsMask.CountSet() != 2)
 							{
 								continue;
@@ -261,13 +225,8 @@ namespace Sudoku.Solving.Manual.Intersections
 							}
 							foreach (int cell in c.Offsets)
 							{
-								foreach (int digit in digits)
+								foreach (int digit in (m & grid.GetCandidatesReversal(cell)).GetAllSets())
 								{
-									if (!(grid.Exists(cell, digit) is true))
-									{
-										continue;
-									}
-
 									candidateOffsets.Add((1, cell * 9 + digit));
 								}
 							}
@@ -292,41 +251,32 @@ namespace Sudoku.Solving.Manual.Intersections
 									continue;
 								}
 
-								foreach (int digit in digits)
+								foreach (int digit in (m & grid.GetCandidatesReversal(aCell)).GetAllSets())
 								{
-									if (!(grid.Exists(aCell, digit) is true))
-									{
-										continue;
-									}
-
 									conclusions.Add(new Conclusion(Elimination, aCell, digit));
 								}
 							}
 
-							for (int digit = 0, temp = (short)(511 & (short)~m); digit < 9; digit++, temp >>= 1)
+							for (int digit = 0, temp = 511 & ~m; digit < 9; digit++, temp >>= 1)
 							{
-								if ((temp & 1) == 0)
+								if ((temp & 1) != 0)
 								{
-									continue;
-								}
-
-								if (grid.Exists(ahsCell1, digit) is true)
-								{
-									conclusions.Add(new Conclusion(Elimination, ahsCell1, digit));
-								}
-								if (grid.Exists(ahsCell2, digit) is true)
-								{
-									conclusions.Add(new Conclusion(Elimination, ahsCell2, digit));
+									if (grid.Exists(ahsCell1, digit) is true)
+									{
+										conclusions.Add(new Conclusion(Elimination, ahsCell1, digit));
+									}
+									if (grid.Exists(ahsCell2, digit) is true)
+									{
+										conclusions.Add(new Conclusion(Elimination, ahsCell2, digit));
+									}
 								}
 							}
-
 							if (conclusions.Count == 0)
 							{
 								continue;
 							}
 
-							int[] cells = new[] { c1, c2, ahsCell1, ahsCell2 };
-							var valueCells = from cell in cells
+							var valueCells = from cell in new[] { c1, c2, ahsCell1, ahsCell2 }
 											 where grid.GetStatus(cell) != Empty
 											 select (0, cell);
 							result.Add(
@@ -335,7 +285,7 @@ namespace Sudoku.Solving.Manual.Intersections
 									views: new[]
 									{
 										new View(
-											cellOffsets: valueCells.Any() ? valueCells.ToList() : null,
+											cellOffsets: valueCells.Any() ? valueCells.ToArray() : null,
 											candidateOffsets,
 											regionOffsets: new[] { (0, baseSet), (1, coverSet) },
 											links: null)
@@ -360,18 +310,11 @@ namespace Sudoku.Solving.Manual.Intersections
 									continue;
 								}
 
-								var maskList = new List<short>();
+								short ahsMask = 0;
 								foreach (int digit in digits)
 								{
-									maskList.Add(grid.GetDigitAppearingMask(digit, coverSet, b));
+									ahsMask |= grid.GetDigitAppearingMask(digit, coverSet, b);
 								}
-
-								short ahsMask = 0;
-								foreach (short mask in maskList)
-								{
-									ahsMask |= mask;
-								}
-
 								if (ahsMask.CountSet() != 3)
 								{
 									continue;
@@ -402,13 +345,8 @@ namespace Sudoku.Solving.Manual.Intersections
 								}
 								foreach (int cell in c.Offsets)
 								{
-									foreach (int digit in digits)
+									foreach (int digit in (m & grid.GetCandidatesReversal(cell)).GetAllSets())
 									{
-										if (!(grid.Exists(cell, digit) is true))
-										{
-											continue;
-										}
-
 										candidateOffsets.Add((1, cell * 9 + digit));
 									}
 								}
@@ -437,35 +375,28 @@ namespace Sudoku.Solving.Manual.Intersections
 										continue;
 									}
 
-									foreach (int digit in digits)
+									foreach (int digit in (m & grid.GetCandidatesReversal(aCell)).GetAllSets())
 									{
-										if (!(grid.Exists(aCell, digit) is true))
-										{
-											continue;
-										}
-
 										conclusions.Add(new Conclusion(Elimination, aCell, digit));
 									}
 								}
 
-								for (int digit = 0, temp = (short)(511 & (short)~m); digit < 9; digit++, temp >>= 1)
+								for (int digit = 0, temp = 511 & ~m; digit < 9; digit++, temp >>= 1)
 								{
-									if ((temp & 1) == 0)
+									if ((temp & 1) != 0)
 									{
-										continue;
-									}
-
-									if (grid.Exists(ahsCell1, digit) is true)
-									{
-										conclusions.Add(new Conclusion(Elimination, ahsCell1, digit));
-									}
-									if (grid.Exists(ahsCell2, digit) is true)
-									{
-										conclusions.Add(new Conclusion(Elimination, ahsCell2, digit));
-									}
-									if (grid.Exists(ahsCell3, digit) is true)
-									{
-										conclusions.Add(new Conclusion(Elimination, ahsCell3, digit));
+										if (grid.Exists(ahsCell1, digit) is true)
+										{
+											conclusions.Add(new Conclusion(Elimination, ahsCell1, digit));
+										}
+										if (grid.Exists(ahsCell2, digit) is true)
+										{
+											conclusions.Add(new Conclusion(Elimination, ahsCell2, digit));
+										}
+										if (grid.Exists(ahsCell3, digit) is true)
+										{
+											conclusions.Add(new Conclusion(Elimination, ahsCell3, digit));
+										}
 									}
 								}
 
@@ -474,8 +405,7 @@ namespace Sudoku.Solving.Manual.Intersections
 									continue;
 								}
 
-								int[] cells = new[] { c1, c2, c3, ahsCell1, ahsCell2, ahsCell3 };
-								var valueCells = from cell in cells
+								var valueCells = from cell in new[] { c1, c2, c3, ahsCell1, ahsCell2, ahsCell3 }
 												 where grid.GetStatus(cell) != Empty
 												 select (0, cell);
 								result.Add(
@@ -484,7 +414,7 @@ namespace Sudoku.Solving.Manual.Intersections
 										views: new[]
 										{
 											new View(
-												cellOffsets: valueCells.Any() ? valueCells.ToList() : null,
+												cellOffsets: valueCells.Any() ? valueCells.ToArray() : null,
 												candidateOffsets,
 												regionOffsets: new[] { (0, baseSet), (1, coverSet) },
 												links: null)
