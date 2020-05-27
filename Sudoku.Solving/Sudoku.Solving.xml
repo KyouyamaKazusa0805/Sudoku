@@ -6890,7 +6890,13 @@
             <summary>
             Initializes an instance with the specified technique codes.
             </summary>
-            <param name="techniqueCodes">The technique codes.</param>
+            <param name="techniqueCodes">(<see langword="params"/> parameter) The technique codes.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.#ctor(System.Collections.BitArray)">
+            <summary>
+            Initializes an instance with the specified bit array.
+            </summary>
+            <param name="bitArray">The bit array.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.Add(Sudoku.Solving.Manual.TechniqueCode)">
             <summary>
@@ -6918,6 +6924,9 @@
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.Clone">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.System#Collections#IEnumerable#GetEnumerator">

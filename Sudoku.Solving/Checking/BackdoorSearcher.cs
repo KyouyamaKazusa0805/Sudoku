@@ -109,10 +109,7 @@ namespace Sudoku.Solving.Checking
 					{
 						for (int d = 0, z = solution[c]; d < 9; d++)
 						{
-							result.Add(
-								d == z
-									? new[] { new Conclusion(Assignment, c, d) }
-									: new[] { new Conclusion(Elimination, c, d) });
+							result.Add(new[] { new Conclusion(d == z ? Assignment : Elimination, c, d) });
 						}
 					}
 				}
@@ -144,16 +141,16 @@ namespace Sudoku.Solving.Checking
 			}
 
 			// Store all incorrect candidates to prepare for search elimination backdoors.
-			var incorrectCandidates = new List<int>(
+			var incorrectCandidates = (
 				from cell in Enumerable.Range(0, 81)
 				where grid.GetStatus(cell) == Empty
 				let Value = solution[cell]
 				from digit in Enumerable.Range(0, 9)
 				where !grid[cell, digit] && Value != digit
-				select cell * 9 + digit);
+				select cell * 9 + digit).ToArray();
 
 			// Search backdoors (Eliminations).
-			for (int i1 = 0, count = incorrectCandidates.Count; i1 < count + 1 - depth; i1++)
+			for (int i1 = 0, count = incorrectCandidates.Length; i1 < count + 1 - depth; i1++)
 			{
 				int c1 = incorrectCandidates[i1];
 				tempGrid[c1 / 9, c1 % 9] = true;

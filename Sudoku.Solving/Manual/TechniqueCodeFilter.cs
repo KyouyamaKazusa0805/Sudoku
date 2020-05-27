@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Sudoku.Solving.Manual
@@ -6,7 +7,7 @@ namespace Sudoku.Solving.Manual
 	/// <summary>
 	/// Encapsulates a technique code filter that contains some of technique codes.
 	/// </summary>
-	public sealed class TechniqueCodeFilter : IEnumerable<TechniqueCode>
+	public sealed class TechniqueCodeFilter : ICloneable<TechniqueCodeFilter>, IEnumerable<TechniqueCode>
 	{
 		/// <summary>
 		/// The internal list.
@@ -17,7 +18,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Initializes an instance with the specified technique codes.
 		/// </summary>
-		/// <param name="techniqueCodes">The technique codes.</param>
+		/// <param name="techniqueCodes">(<see langword="params"/> parameter) The technique codes.</param>
 		public TechniqueCodeFilter(params TechniqueCode[] techniqueCodes)
 		{
 			foreach (var techniqueCode in techniqueCodes)
@@ -25,6 +26,12 @@ namespace Sudoku.Solving.Manual
 				_internalList[(int)techniqueCode] = true;
 			}
 		}
+
+		/// <summary>
+		/// Initializes an instance with the specified bit array.
+		/// </summary>
+		/// <param name="bitArray">The bit array.</param>
+		private TechniqueCodeFilter(BitArray bitArray) => _internalList = bitArray;
 
 
 		/// <summary>
@@ -69,6 +76,9 @@ namespace Sudoku.Solving.Manual
 				}
 			}
 		}
+
+		/// <inheritdoc/>
+		public TechniqueCodeFilter Clone() => new TechniqueCodeFilter((BitArray)_internalList.Clone());
 
 		/// <inheritdoc/>
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
