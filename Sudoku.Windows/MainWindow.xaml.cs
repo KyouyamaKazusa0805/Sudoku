@@ -12,6 +12,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -34,7 +35,7 @@ using static System.StringSplitOptions;
 using static System.Windows.MessageBoxButton;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Windows.Constants.Processing;
+using static Sudoku.Windows.Constants.Processings;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
 using WPoint = System.Windows.Point;
@@ -199,6 +200,17 @@ namespace Sudoku.Windows
 		{
 			// Call the base method.
 			base.OnInitialized(e);
+
+			var mutex = new Mutex(true, SolutionName, out bool mutexIsNew);
+			if (mutexIsNew)
+			{
+				mutex.ReleaseMutex();
+			}
+			else
+			{
+				MessageBox.Show("This program does not support multiple thread open at the same time.", "Info");
+				Environment.Exit(0);
+			}
 
 #if SUDOKU_RECOGNIZING
 			// Then initialize for recognizer.

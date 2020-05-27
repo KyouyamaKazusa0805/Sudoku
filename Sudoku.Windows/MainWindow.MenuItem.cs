@@ -30,7 +30,7 @@ using Sudoku.Solving.Generating;
 using Sudoku.Solving.Manual;
 #endif
 using Sudoku.Solving.Manual.Symmetry;
-using static Sudoku.Windows.Constants.Processing;
+using static Sudoku.Windows.Constants.Processings;
 using AnonymousType = System.Object;
 using DColor = System.Drawing.Color;
 using SudokuGrid = Sudoku.Data.Grid;

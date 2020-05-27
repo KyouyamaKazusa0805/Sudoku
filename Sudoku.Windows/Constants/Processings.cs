@@ -12,7 +12,7 @@ namespace Sudoku.Windows.Constants
 	/// Some values should be used after the window initialized, so they cannot be fields
 	/// (Properties can be used as a method called for specified uses).
 	/// </remarks>
-	internal static class Processing
+	internal static class Processings
 	{
 		/// <summary>
 		/// The splitter in using <see cref="string.Split(char[]?)"/> or other split methods

@@ -1,5 +1,5 @@
 ﻿using System.Windows.Controls;
-using static Sudoku.Windows.Constants.Processing;
+using static Sudoku.Windows.Constants.Processings;
 
 namespace Sudoku.Windows
 {

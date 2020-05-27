@@ -10,7 +10,7 @@ using Sudoku.Drawing.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
-using static Sudoku.Windows.Constants.Processing;
+using static Sudoku.Windows.Constants.Processings;
 
 namespace Sudoku.Windows
 {
