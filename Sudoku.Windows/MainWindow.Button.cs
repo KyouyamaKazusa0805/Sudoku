@@ -10,6 +10,7 @@ using Sudoku.Drawing.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
+using Sudoku.Windows.Constants;
 using static Sudoku.Windows.Constants.Processings;
 
 namespace Sudoku.Windows
@@ -25,7 +26,7 @@ namespace Sudoku.Windows
 			{
 				if (!_puzzle.IsValid(out _))
 				{
-					MessageBox.Show("The puzzle is invalid, so you cannot use this function.", "Warning");
+					Messagings.FunctionIsUnavailable();
 
 					e.Handled = true;
 					return;
@@ -57,7 +58,7 @@ namespace Sudoku.Windows
 								Content =
 									new PrimaryElementTuple<string, TechniqueInfo, bool>(
 										info.ToSimpleString(), info, true),
-								BorderThickness = new Thickness(),
+								BorderThickness = default,
 								Foreground = new SolidColorBrush(fore.ToWColor()),
 								Background = new SolidColorBrush(back.ToWColor()),
 							});

@@ -63,7 +63,7 @@ namespace Sudoku.Data
 				?? OnParsingSimpleMultilineGrid()
 				?? (CompatibleFirst ? OnParsingPencilMarked(true) : OnParsingPencilMarked(false))
 				?? (CompatibleFirst ? OnParsingPencilMarked(false) : OnParsingPencilMarked(true))
-				?? throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
+				?? throw Throwings.ParsingError<Grid>(nameof(ParsingValue));
 
 		/// <summary>
 		/// To parse the value with a specified grid parsing type.
@@ -84,7 +84,7 @@ namespace Sudoku.Data
 				[Sukaku] = () => OnParsingSukaku(false),
 				[SukakuSingleLine] = () => OnParsingSukaku(true),
 				[Excel] = OnParsingExcel
-			}[gridParsingOption]() ?? throw Throwing.ParsingError<Grid>(nameof(ParsingValue));
+			}[gridParsingOption]() ?? throw Throwings.ParsingError<Grid>(nameof(ParsingValue));
 
 		/// <summary>
 		/// Parse the value using multi-line simple grid (without any candidates).

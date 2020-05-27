@@ -90,7 +90,7 @@ namespace Sudoku.Constants
 				Row => RowTable,
 				Column => ColumnTable,
 				Block => BlockTable,
-				_ => throw Throwing.ImpossibleCase
+				_ => throw Throwings.ImpossibleCase
 			})[cell];
 
 		/// <summary>

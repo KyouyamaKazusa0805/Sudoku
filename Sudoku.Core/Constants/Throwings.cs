@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace Sudoku
+namespace Sudoku.Constants
 {
 	/// <summary>
 	/// Provides operations for throwing exceptions.
 	/// </summary>
-	public static class Throwing
+	public static class Throwings
 	{
 		/// <summary>
 		/// <para>

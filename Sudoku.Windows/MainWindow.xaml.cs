@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-#if SUDOKU_RECOGNIZING
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-#endif
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -18,27 +14,29 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Drawing.Layers;
 using Sudoku.Extensions;
-#if SUDOKU_RECOGNIZING
-using Sudoku.Recognitions;
-#endif
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
+using Sudoku.Windows.Constants;
 using Sudoku.Windows.Drawing.Layers;
 using Sudoku.Windows.Extensions;
 using static System.StringSplitOptions;
-using static System.Windows.MessageBoxButton;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Windows.Constants.Processings;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
 using WPoint = System.Windows.Point;
+#if SUDOKU_RECOGNIZING
+using System.Diagnostics;
+using Sudoku.Recognitions;
+#endif
 
 namespace Sudoku.Windows
 {
@@ -132,14 +130,13 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Indicates an recognition instance.
 		/// </summary>
-		[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
 		private RecognitionServiceProvider? _recognition;
 #endif
 
 		/// <summary>
 		/// Indicates the analysis result after solving of the current grid.
 		/// </summary>
-		private AnalysisResult? _analyisResult = null;
+		private AnalysisResult? _analyisResult;
 
 		/// <summary>
 		/// The grid.
@@ -208,7 +205,7 @@ namespace Sudoku.Windows
 			}
 			else
 			{
-				MessageBox.Show("This program does not support multiple thread open at the same time.", "Info");
+				Messagings.OnlyOpenOneProgram();
 				Environment.Exit(0);
 			}
 
@@ -220,11 +217,7 @@ namespace Sudoku.Windows
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(
-					$"Cannot to calculate{NewLine}" +
-					$"  Source: {ex.Source}{NewLine}" +
-					$"  Message: {ex.Message}",
-					"Error", OK, MessageBoxImage.Error);
+				Messagings.FailedToLoadRecognitionTool(ex);
 			}
 #endif
 
@@ -258,8 +251,7 @@ namespace Sudoku.Windows
 		protected override void OnClosing(CancelEventArgs e)
 		{
 			// Ask when worth.
-			if (Settings.AskWhileQuitting
-				&& MessageBox.Show("Are you sure to quit?", "Info", YesNo) == MessageBoxResult.No)
+			if (Settings.AskWhileQuitting && Messagings.AskWhileQuitting() == MessageBoxResult.No)
 			{
 				e.Cancel = true;
 				return;
@@ -329,14 +321,15 @@ namespace Sudoku.Windows
 				// Move the focused cell.
 				int cell = _focusedCells.SetAt(0);
 				_focusedCells.Clear();
-				_focusedCells.Add(e.Key switch
-				{
-					Key.Up => cell - 9 < 0 ? cell + 72 : cell - 9,
-					Key.Down => cell + 9 >= 81 ? cell - 72 : cell + 9,
-					Key.Left => cell - 1 < 0 ? cell + 8 : cell - 1,
-					Key.Right => (cell + 1) % 81,
-					_ => throw Throwing.ImpossibleCase
-				});
+				_focusedCells.Add(
+					e.Key switch
+					{
+						Key.Up => cell - 9 < 0 ? cell + 72 : cell - 9,
+						Key.Down => cell + 9 >= 81 ? cell - 72 : cell + 9,
+						Key.Left => cell - 1 < 0 ? cell + 8 : cell - 1,
+						Key.Right => (cell + 1) % 81,
+						_ => throw Throwings.ImpossibleCase
+					});
 
 				_layerCollection.Add(new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
 
@@ -396,17 +389,14 @@ namespace Sudoku.Windows
 		private void LoadDatabaseIfWorth()
 		{
 			if (Settings.CurrentPuzzleDatabase is null
-				|| MessageBox.Show(
-					"You have used a database at the previous time you use the program. " +
-					"Do you want to load now?",
-					"Info", YesNo) != MessageBoxResult.Yes)
+				|| Messagings.AskWhileLoadingAndCoveringDatabase() != MessageBoxResult.Yes)
 			{
 				return;
 			}
 
 			if (!File.Exists(Settings.CurrentPuzzleDatabase))
 			{
-				MessageBox.Show("File is missing... Load failed >_<", "Warning");
+				Messagings.FailedToLoadDatabase();
 
 				Settings.CurrentPuzzleDatabase = null;
 				Settings.CurrentPuzzleNumber = -1;
@@ -475,18 +465,19 @@ namespace Sudoku.Windows
 			Settings = new Settings();
 			if (File.Exists(path))
 			{
-				var fs = new FileStream(path, FileMode.Open);
+				FileStream? fs = null;
 				try
 				{
+					fs = new FileStream(path, FileMode.Open);
 					Settings = (Settings)new BinaryFormatter().Deserialize(fs);
 				}
 				catch
 				{
-					MessageBox.Show("Failed to load the settings.", "Info");
+					Messagings.FailedToLoadSettings();
 				}
 				finally
 				{
-					fs.Close();
+					fs?.Close();
 				}
 			}
 			else
@@ -501,21 +492,20 @@ namespace Sudoku.Windows
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void SaveConfig(string path = "configurations.scfg")
 		{
-			var fs = new FileStream(path, FileMode.Create);
+			FileStream? fs = null;
 			try
 			{
+				fs = new FileStream(path, FileMode.Create);
 				var formatter = new BinaryFormatter();
 				formatter.Serialize(fs, Settings);
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(
-					$"The configuration file cannot be saved due to exception throws:{NewLine}{ex.Message}",
-					"Warning");
+				Messagings.FailedToSaveConfig(ex);
 			}
 			finally
 			{
-				fs.Close();
+				fs?.Close();
 			}
 		}
 
@@ -525,7 +515,7 @@ namespace Sudoku.Windows
 		/// <param name="key">The key.</param>
 		/// <param name="modifierKeys">The modifiers.</param>
 		/// <param name="matchControl">
-		/// The matching control. The hot-key can be executed if and only if this control
+		/// The matching control. The hot-key can be executed <b>if and only if</b> this control
 		/// is enabled, in other words, the <see cref="UIElement.IsEnabled"/>
 		/// is <see langword="true"/>.
 		/// </param>
@@ -540,13 +530,7 @@ namespace Sudoku.Windows
 			CommandBindings.Add(
 				new CommandBinding(
 					routedCommand,
-					(sender, e) =>
-					{
-						if (matchControl?.IsEnabled ?? true)
-						{
-							executed(sender, e);
-						}
-					}));
+					(sender, e) => { if (matchControl?.IsEnabled ?? true) executed(sender, e); }));
 		}
 
 		/// <summary>
@@ -558,23 +542,19 @@ namespace Sudoku.Windows
 		{
 			try
 			{
-				// This may throw exception.
-				//Clipboard.SetText(_puzzle.ToString(format));
 				Clipboard.SetDataObject(_puzzle.ToString(format));
+				#region Obsolete code
+				// This may throw exceptions being called while solving and generating puzzles.
+				//Clipboard.SetText(_puzzle.ToString(format));
+				#endregion
 			}
 			catch (ArgumentNullException ex)
 			{
-				MessageBox.Show(
-					$"Cannot save text to clipboard due to:{NewLine}{ex.Message}",
-					"Warning");
+				Messagings.FailedToSaveToClipboardDueToArgumentNullException(ex);
 			}
 			catch (COMException ex) when (ex.HResult == unchecked((int)2147746256))
 			{
-				MessageBox.Show(
-					"Your clipboard is unavailable now, " +
-					"because the program is running for generating or solving." +
-					"Please close this program or wait for finishing and try later.",
-					"Info");
+				Messagings.FailedToSaveToClipboardDueToAsyncCalling();
 			}
 		}
 
@@ -650,7 +630,8 @@ namespace Sudoku.Windows
 					typeof(SymmetryType)
 						.GetField(Enum.GetName(typeof(SymmetryType), field)!)!
 						.GetCustomAttribute<NameAttribute>()!
-						.Name, field);
+						.Name,
+					field);
 			_comboBoxSymmetry.SelectedIndex = Settings.GeneratingSymmetryModeComboBoxSelectedIndex;
 			_comboBoxMode.SelectedIndex = Settings.GeneratingModeComboBoxSelectedIndex;
 			SwitchOnGeneratingComboBoxesDisplaying();
@@ -717,7 +698,7 @@ namespace Sudoku.Windows
 			}
 			catch (ArgumentException)
 			{
-				MessageBox.Show("The specified puzzle is invalid.", "Warning");
+				Messagings.FailedToLoadPuzzle();
 			}
 		}
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -51,7 +52,7 @@ namespace Sudoku.Solving.Manual.Subsets
 				2 => 3M,
 				3 => 3.6M,
 				4 => 5M,
-				_ => throw Throwing.ImpossibleCase
+				_ => throw Throwings.ImpossibleCase
 			} + IsLocked switch
 			{
 				null => 0,
@@ -59,7 +60,7 @@ namespace Sudoku.Solving.Manual.Subsets
 				{
 					2 => -1M,
 					3 => -1.1M,
-					_ => throw Throwing.ImpossibleCase
+					_ => throw Throwings.ImpossibleCase
 				},
 				false => .1M
 			};
@@ -76,7 +77,7 @@ namespace Sudoku.Solving.Manual.Subsets
 				(null, 3) => TechniqueCode.NakedTriple,
 				(false, 4) => TechniqueCode.NakedQuadruplePlus,
 				(null, 4) => TechniqueCode.NakedQuadruple,
-				_ => throw Throwing.ImpossibleCase
+				_ => throw Throwings.ImpossibleCase
 			};
 
 

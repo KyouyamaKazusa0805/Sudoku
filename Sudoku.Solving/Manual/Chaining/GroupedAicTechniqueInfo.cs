@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -164,7 +165,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				"Grouped XY-Wing" => TechniqueCode.GroupedXyWing,
 				"Grouped XY-Chain" => TechniqueCode.GroupedXyChain,
 				"Grouped XY-Cycle" => TechniqueCode.GroupedXyChain,
-				_ => throw Throwing.ImpossibleCase
+				_ => throw Throwings.ImpossibleCase
 			};
 
 

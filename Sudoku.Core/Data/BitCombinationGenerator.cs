@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using Sudoku.Constants;
 
 namespace Sudoku.Data
 {
@@ -64,19 +65,19 @@ namespace Sudoku.Data
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[DoesNotReturn]
-		public override readonly bool Equals(object? obj) => throw Throwing.RefStructNotSupported;
+		public override readonly bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[DoesNotReturn]
-		public override readonly int GetHashCode() => throw Throwing.RefStructNotSupported;
+		public override readonly int GetHashCode() => throw Throwings.RefStructNotSupported;
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[DoesNotReturn]
-		public override readonly string ToString() => throw Throwing.RefStructNotSupported;
+		public override readonly string ToString() => throw Throwings.RefStructNotSupported;
 
 		/// <summary>
 		/// Indicates whether the generator has the next combination number to iterate.

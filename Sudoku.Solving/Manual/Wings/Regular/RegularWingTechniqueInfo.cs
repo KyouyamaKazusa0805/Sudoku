@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -111,7 +112,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 				6 => TechniqueCode.UvwxyzWing,
 				7 => TechniqueCode.TuvwxyzWing,
 				8 => TechniqueCode.RstuvwxyzWing,
-				_ => throw Throwing.ImpossibleCase
+				_ => throw Throwings.ImpossibleCase
 			};
 
 

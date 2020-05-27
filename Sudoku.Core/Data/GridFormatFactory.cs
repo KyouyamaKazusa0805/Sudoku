@@ -1,4 +1,5 @@
 ﻿using System;
+using Sudoku.Constants;
 
 namespace Sudoku.Data
 {
@@ -301,7 +302,7 @@ namespace Sudoku.Data
 				}
 				default:
 				{
-					throw Throwing.FormatError;
+					throw Throwings.FormatError;
 				}
 			}
 		}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -70,7 +71,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				2 => 3.2M,
 				3 => 3.8M,
 				4 => 5.2M,
-				_ => throw Throwing.ImpossibleCase
+				_ => throw Throwings.ImpossibleCase
 			} + IsSashimi switch
 			{
 				null => 0,
@@ -79,7 +80,7 @@ namespace Sudoku.Solving.Manual.Fishes
 					2 => .3M,
 					3 => .3M,
 					4 => .4M,
-					_ => throw Throwing.ImpossibleCase
+					_ => throw Throwings.ImpossibleCase
 				},
 				false => .2M
 			};

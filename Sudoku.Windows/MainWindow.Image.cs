@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Sudoku.Constants;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
@@ -17,12 +18,7 @@ namespace Sudoku.Windows
 	{
 		private void ImageGrid_ContextMenuOpening(object sender, ContextMenuEventArgs e)
 		{
-			if (!(_imageGridContextMenu.IsOpen = _customDrawingMode == -1))
-			{
-				e.Handled = true;
-				return;
-			}
-			else
+			if (_imageGridContextMenu.IsOpen = _customDrawingMode == -1)
 			{
 				_selectedCellsWhileDrawingRegions.Clear();
 			}
@@ -141,10 +137,11 @@ namespace Sudoku.Windows
 				// Disable all menu items.
 				for (int i = 0; i < 9; i++)
 				{
-					((MenuItem)GetType()
-						.GetField($"_menuItemImageGridSet{i + 1}", NonPublic | Instance)!.GetValue(this)!).IsEnabled = false;
-					((MenuItem)GetType()
-						.GetField($"_menuItemImageGridDelete{i + 1}", NonPublic | Instance)!.GetValue(this)!
+					((MenuItem)
+						GetType().GetField($"_menuItemImageGridSet{i + 1}", NonPublic | Instance)!.GetValue(this)!
+					).IsEnabled = false;
+					((MenuItem)
+						GetType().GetField($"_menuItemImageGridDelete{i + 1}", NonPublic | Instance)!.GetValue(this)!
 					).IsEnabled = false;
 				}
 
@@ -153,10 +150,11 @@ namespace Sudoku.Windows
 					_puzzle.GetCandidatesReversal(
 						_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF())).GetAllSets())
 				{
-					((MenuItem)GetType()
-						.GetField($"_menuItemImageGridSet{i + 1}", NonPublic | Instance)!.GetValue(this)!).IsEnabled = true;
-					((MenuItem)GetType()
-						.GetField($"_menuItemImageGridDelete{i + 1}", NonPublic | Instance)!.GetValue(this)!
+					((MenuItem)
+						GetType().GetField($"_menuItemImageGridSet{i + 1}", NonPublic | Instance)!.GetValue(this)!
+					).IsEnabled = true;
+					((MenuItem)
+						GetType().GetField($"_menuItemImageGridDelete{i + 1}", NonPublic | Instance)!.GetValue(this)!
 					).IsEnabled = true;
 				}
 			}
@@ -242,13 +240,12 @@ namespace Sudoku.Windows
 			MenuItemEditRedo_Click(sender, e);
 
 		private void ImageGeneratingIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
-			(
-				(Action<object, RoutedEventArgs>)(
+			((Action<object, RoutedEventArgs>)(
 				_comboBoxMode.SelectedIndex switch
 				{
 					0 => (sender, e) => MenuItemGenerateWithSymmetry_Click(sender, e),
 					1 => (sender, e) => MenuItemGenerateHardPattern_Click(sender, e),
-					_ => throw Throwing.ImpossibleCase
+					_ => throw Throwings.ImpossibleCase
 				})
 			)(sender, e);
 

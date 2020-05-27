@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Sudoku.Constants;
 using Sudoku.Data.Collections;
 using Sudoku.Extensions;
 
@@ -80,7 +81,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <inheritdoc/>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[DoesNotReturn]
-		public override readonly bool Equals(object? obj) => throw Throwing.RefStructNotSupported;
+		public override readonly bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
 
 		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

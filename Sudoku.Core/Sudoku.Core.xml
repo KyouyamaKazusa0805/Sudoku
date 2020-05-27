@@ -242,6 +242,63 @@
             Indicates the regular expression to match a digit.
             </summary>
         </member>
+        <member name="T:Sudoku.Constants.Throwings">
+            <summary>
+            Provides operations for throwing exceptions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Constants.Throwings.ImpossibleCase">
+            <summary>
+            <para>
+            Indicates an exception throwing when the case is impossible
+            in switch expressions or switch-case clauses.
+            </para>
+            <para>
+            This property will be used as a placeholder when expressions
+            generate a warning (CS8509).
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Constants.Throwings.FormatError">
+            <summary>
+            Indicates an exception throwing when the format string is invalid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Constants.Throwings.RefStructNotSupported">
+            <summary>
+            Indicates all <see langword="ref struct"/>s cannot
+            use any boxing operations.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Constants.Throwings.InvalidOperation">
+            <summary>
+            Indicates the current operation is invalid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Constants.Throwings.ImpossibleCaseWithMessage(System.String)">
+            <summary>
+            Indicates an exception throwing when the case is impossible
+            in switch expressions or switch-case clauses.
+            </summary>
+            <param name="message">The specified message to display.</param>
+            <returns>The exception.</returns>
+        </member>
+        <member name="M:Sudoku.Constants.Throwings.ParsingError``1(System.String)">
+            <summary>
+            Indicates an exception throwing when the parsing is failed.
+            </summary>
+            <typeparam name="TTarget">The target type to parse.</typeparam>
+            <param name="paramName">The name of the parameter.</param>
+            <returns>The exception.</returns>
+        </member>
+        <member name="M:Sudoku.Constants.Throwings.FormatErrorWithMessage(System.String,System.String)">
+            <summary>
+            Indicates an exception throwing when the format string is error.
+            </summary>
+            <param name="message">The inner message to display.</param>
+            <param name="paramName">The name of format string parameter.</param>
+            <returns>The exception.</returns>
+        </member>
         <member name="T:Sudoku.Data.BitCombinationGenerator">
             <summary>
             Encapsulates a bit combination generator.
@@ -5253,63 +5310,6 @@
         </member>
         <member name="M:Sudoku.SudokuRuntimeException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Throwing">
-            <summary>
-            Provides operations for throwing exceptions.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Throwing.ImpossibleCase">
-            <summary>
-            <para>
-            Indicates an exception throwing when the case is impossible
-            in switch expressions or switch-case clauses.
-            </para>
-            <para>
-            This property will be used as a placeholder when expressions
-            generate a warning (CS8509).
-            </para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Throwing.FormatError">
-            <summary>
-            Indicates an exception throwing when the format string is invalid.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Throwing.RefStructNotSupported">
-            <summary>
-            Indicates all <see langword="ref struct"/>s cannot
-            use any boxing operations.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Throwing.InvalidOperation">
-            <summary>
-            Indicates the current operation is invalid.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Throwing.ImpossibleCaseWithMessage(System.String)">
-            <summary>
-            Indicates an exception throwing when the case is impossible
-            in switch expressions or switch-case clauses.
-            </summary>
-            <param name="message">The specified message to display.</param>
-            <returns>The exception.</returns>
-        </member>
-        <member name="M:Sudoku.Throwing.ParsingError``1(System.String)">
-            <summary>
-            Indicates an exception throwing when the parsing is failed.
-            </summary>
-            <typeparam name="TTarget">The target type to parse.</typeparam>
-            <param name="paramName">The name of the parameter.</param>
-            <returns>The exception.</returns>
-        </member>
-        <member name="M:Sudoku.Throwing.FormatErrorWithMessage(System.String,System.String)">
-            <summary>
-            Indicates an exception throwing when the format string is error.
-            </summary>
-            <param name="message">The inner message to display.</param>
-            <param name="paramName">The name of format string parameter.</param>
-            <returns>The exception.</returns>
         </member>
         <member name="T:Sudoku.WrongHandlingException">
             <summary>

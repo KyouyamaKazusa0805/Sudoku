@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
@@ -87,7 +88,7 @@ namespace Sudoku.Solving.Generating
 							c * 9 + r, c * 9 + (8 - r), (8 - c) * 9 + r, (8 - c) * 9 + (8 - r)
 						},
 						None => new[] { r * 9 + c },
-						_ => throw Throwing.ImpossibleCaseWithMessage("You should not add an option that does not contain in the table of symmetrical types.")
+						_ => throw Throwings.ImpossibleCaseWithMessage("You should not add an option that does not contain in the table of symmetrical types.")
 					})
 					{
 						solution[tCell] = '0';

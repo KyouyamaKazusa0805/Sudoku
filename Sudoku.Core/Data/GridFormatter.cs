@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Sudoku.Constants;
 using Sudoku.Extensions;
 using static System.Math;
 
@@ -372,7 +373,7 @@ namespace Sudoku.Data
 									_ when i >= 1 && i < 4 => i - 1,
 									_ when i >= 5 && i < 8 => i - 2,
 									_ when i >= 9 && i < 12 => i - 3,
-									_ => throw Throwing.ImpossibleCaseWithMessage("On the border.")
+									_ => throw Throwings.ImpossibleCaseWithMessage("On the border.")
 								}
 							], '|', '|', maxLengths, sb);
 						break;

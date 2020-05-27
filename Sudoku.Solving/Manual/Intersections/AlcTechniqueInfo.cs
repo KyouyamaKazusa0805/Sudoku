@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -56,8 +57,8 @@ namespace Sudoku.Solving.Manual.Intersections
 
 		/// <inheritdoc/>
 		public override decimal Difficulty =>
-			Size switch { 2 => 4.5M, 3 => 5.2M, 4 => 5.7M, _ => throw Throwing.ImpossibleCase }
-			+ (HasValueCell ? Size switch { 2 => .1M, 3 => .1M, 4 => .2M, _ => throw Throwing.ImpossibleCase } : 0);
+			Size switch { 2 => 4.5M, 3 => 5.2M, 4 => 5.7M, _ => throw Throwings.ImpossibleCase }
+			+ (HasValueCell ? Size switch { 2 => .1M, 3 => .1M, 4 => .2M, _ => throw Throwings.ImpossibleCase } : 0);
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

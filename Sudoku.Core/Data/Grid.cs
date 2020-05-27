@@ -167,7 +167,7 @@ namespace Sudoku.Data
 					}
 					default:
 					{
-						throw Throwing.ImpossibleCase;
+						throw Throwings.ImpossibleCase;
 					}
 				}
 			}
@@ -578,19 +578,19 @@ namespace Sudoku.Data
 			{
 				if (!format.StartsWith('@'))
 				{
-					throw Throwing.FormatErrorWithMessage(
+					throw Throwings.FormatErrorWithMessage(
 						"Multi-line identifier '@' must be at the first place.",
 						nameof(format));
 				}
 				else if ((format.Contains('0') || format.Contains('.')) && format.Contains(':'))
 				{
-					throw Throwing.FormatErrorWithMessage(
+					throw Throwings.FormatErrorWithMessage(
 						"In multi-line environment, '0' and '.' cannot appear with ':' together.",
 						nameof(format));
 				}
 				else if (format.IsMatch(@"\@[^0\!\~\*\.\:]+"))
 				{
-					throw Throwing.FormatErrorWithMessage(
+					throw Throwings.FormatErrorWithMessage(
 						"Multi-line identifier '@' must follow only character '!', '*', '0', '.' or ':'.",
 						nameof(format));
 				}
@@ -599,31 +599,31 @@ namespace Sudoku.Data
 			{
 				if (!format.StartsWith('#'))
 				{
-					throw Throwing.FormatErrorWithMessage(
+					throw Throwings.FormatErrorWithMessage(
 						"Intelligence option character '#' must be at the first place.",
 						nameof(format));
 				}
 				else if (format.IsMatch(@"\#[^\.0]+"))
 				{
-					throw Throwing.FormatErrorWithMessage(
+					throw Throwings.FormatErrorWithMessage(
 						"Intelligence option character '#' must be with placeholder '0' or '.'.",
 						nameof(format));
 				}
 				else if (format.Contains('0') && format.Contains('.'))
 				{
-					throw Throwing.FormatErrorWithMessage(
+					throw Throwings.FormatErrorWithMessage(
 						"Placeholder character '0' and '.' cannot appear both.",
 						nameof(format));
 				}
 				else if (format.Contains('+') && format.Contains('!'))
 				{
-					throw Throwing.FormatErrorWithMessage(
+					throw Throwings.FormatErrorWithMessage(
 						"Cell status character '+' and '!' cannot appear both.",
 						nameof(format));
 				}
 				else if (format.Contains(':') && !format.EndsWith(':'))
 				{
-					throw Throwing.FormatErrorWithMessage(
+					throw Throwings.FormatErrorWithMessage(
 						"Candidate leading character ':' must be at the last place.",
 						nameof(format));
 				}
@@ -632,7 +632,7 @@ namespace Sudoku.Data
 			{
 				if (format.IsMatch(@"(\~[^\@\.0]|[^\@0\.]\~)"))
 				{
-					throw Throwing.FormatErrorWithMessage(
+					throw Throwings.FormatErrorWithMessage(
 						"Sukaku character '~' can only be together with the characters '0', '.' or '@'.",
 						nameof(format));
 				}
@@ -641,7 +641,7 @@ namespace Sudoku.Data
 			{
 				if (format.Length > 1)
 				{
-					throw Throwing.FormatErrorWithMessage(
+					throw Throwings.FormatErrorWithMessage(
 						"Excel option character '%' cannot be used with other characters together.",
 						nameof(format));
 				}

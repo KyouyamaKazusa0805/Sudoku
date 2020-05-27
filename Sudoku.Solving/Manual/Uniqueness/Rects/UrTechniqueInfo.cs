@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -96,15 +97,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						0 => TypeCode.CompareTo(other.TypeCode),
 						1 => 1,
 						-1 => -1,
-						_ => throw Throwing.ImpossibleCase
+						_ => throw Throwings.ImpossibleCase
 					},
 					1 => 1,
 					-1 => -1,
-					_ => throw Throwing.ImpossibleCase
+					_ => throw Throwings.ImpossibleCase
 				},
 				1 => 1,
 				-1 => -1,
-				_ => throw Throwing.ImpossibleCase
+				_ => throw Throwings.ImpossibleCase
 			};
 	}
 }

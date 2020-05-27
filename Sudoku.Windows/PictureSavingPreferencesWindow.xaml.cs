@@ -4,6 +4,7 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Windows;
 using Microsoft.Win32;
+using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Layers;
@@ -141,7 +142,7 @@ namespace Sudoku.Windows
 									1 => Jpeg,
 									2 => Bmp,
 									3 => Gif,
-									_ => throw Throwing.ImpossibleCase
+									_ => throw Throwings.ImpossibleCase
 								}) ?? throw new NullReferenceException("The return value is null."),
 							encoderParameters);
 					}

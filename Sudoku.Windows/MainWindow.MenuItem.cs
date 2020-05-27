@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-#if SUDOKU_RECOGNIZING
-using System.Drawing;
-#endif
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,14 +23,18 @@ using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Generating;
-#if DEBUG
-using Sudoku.Solving.Manual;
-#endif
 using Sudoku.Solving.Manual.Symmetry;
 using static Sudoku.Windows.Constants.Processings;
 using AnonymousType = System.Object;
 using DColor = System.Drawing.Color;
 using SudokuGrid = Sudoku.Data.Grid;
+#if SUDOKU_RECOGNIZING
+using System.Drawing;
+using Sudoku.Windows.Constants;
+#endif
+#if DEBUG
+using Sudoku.Solving.Manual;
+#endif
 
 namespace Sudoku.Windows
 {
@@ -49,14 +50,11 @@ namespace Sudoku.Windows
 				Title = "Open sudoku file from..."
 			};
 
-			if (!(dialog.ShowDialog() is true))
+			if (dialog.ShowDialog() is true)
 			{
-				e.Handled = true;
-				return;
+				using var sr = new StreamReader(dialog.FileName);
+				LoadPuzzle(sr.ReadToEnd());
 			}
-
-			using var sr = new StreamReader(dialog.FileName);
-			LoadPuzzle(sr.ReadToEnd());
 		}
 
 		private void MenuItemFileSave_Click(object sender, RoutedEventArgs e)
@@ -70,14 +68,11 @@ namespace Sudoku.Windows
 				Title = "Save sudoku file to..."
 			};
 
-			if (!(dialog.ShowDialog() is true))
+			if (dialog.ShowDialog() is true)
 			{
-				e.Handled = true;
-				return;
+				using var sw = new StreamWriter(dialog.FileName);
+				sw.Write(_puzzle.ToString("#"));
 			}
-
-			using var sw = new StreamWriter(dialog.FileName);
-			sw.Write(_puzzle.ToString("#"));
 		}
 
 		private void MenuItemFileOpenDatabase_Click(object sender, RoutedEventArgs e)
@@ -90,27 +85,22 @@ namespace Sudoku.Windows
 				Title = "Open sudoku file from..."
 			};
 
-			if (!(dialog.ShowDialog() is true))
+			if (dialog.ShowDialog() is true)
 			{
-				e.Handled = true;
-				return;
+				using var sr = new StreamReader(Settings.CurrentPuzzleDatabase = _database = dialog.FileName);
+				_puzzlesText = sr.ReadToEnd().Split(Splitter, StringSplitOptions.RemoveEmptyEntries);
+
+				Messagings.LoadDatabase(_puzzlesText.Length);
+
+				if (_puzzlesText.Length != 0)
+				{
+					LoadPuzzle(_puzzlesText[Settings.CurrentPuzzleNumber = 0].TrimEnd(Splitter));
+					UpdateDatabaseControls(false, false, true, true);
+
+					_textBoxJumpTo.IsEnabled = true;
+					_labelPuzzleNumber.Content = $"1/{_puzzlesText.Length}";
+				}
 			}
-
-			using var sr = new StreamReader(Settings.CurrentPuzzleDatabase = _database = dialog.FileName);
-			_puzzlesText = sr.ReadToEnd().Split(Splitter, StringSplitOptions.RemoveEmptyEntries);
-
-			MessageBox.Show($"Load {_puzzlesText.Length} puzzles.", "Info");
-			if (_puzzlesText.Length == 0)
-			{
-				e.Handled = true;
-				return;
-			}
-
-			LoadPuzzle(_puzzlesText[Settings.CurrentPuzzleNumber = 0].TrimEnd(Splitter));
-			UpdateDatabaseControls(false, false, true, true);
-
-			_textBoxJumpTo.IsEnabled = true;
-			_labelPuzzleNumber.Content = $"1/{_puzzlesText.Length}";
 		}
 
 		private void MenuItemBackupConfig_Click(object sender, RoutedEventArgs e)
@@ -124,19 +114,16 @@ namespace Sudoku.Windows
 				Title = "Save configuration file to..."
 			};
 
-			if (!(dialog.ShowDialog() is true))
+			if (dialog.ShowDialog() is true)
 			{
-				e.Handled = true;
-				return;
-			}
-
-			try
-			{
-				SaveConfig(dialog.FileName);
-			}
-			catch (Exception)
-			{
-				MessageBox.Show("Configuration file is failed to save due to internal error.", "Warning");
+				try
+				{
+					SaveConfig(dialog.FileName);
+				}
+				catch
+				{
+					Messagings.FailedToBackupConfig();
+				}
 			}
 		}
 
@@ -154,7 +141,7 @@ namespace Sudoku.Windows
 			{
 				if (_recognition is null)
 				{
-					MessageBox.Show("Failed to initialize. Please restart the window and try again.", "Info");
+					Messagings.FailedToLoadPicture();
 
 					e.Handled = true;
 					return;
@@ -169,52 +156,42 @@ namespace Sudoku.Windows
 					Title = "Load picture from..."
 				};
 
-				if (!(dialog.ShowDialog() is true))
+				if (dialog.ShowDialog() is true)
 				{
-					e.Handled = true;
-					return;
-				}
-
-				try
-				{
-					if (_recognition.ToolIsInitialized)
+					try
 					{
-						if (MessageBox.Show(
-							$"Ensure your picture be clear.{Environment.NewLine}" +
-							$"Due to the limitation of the OCR algorithm, " +
-							$"the program can only recognize the puzzle picture with given values. " +
-							$"All modifiable values will be treated as given ones " +
-							$"because OCR engine cannot recognize the color of the value.{Environment.NewLine}" +
-							$"If you are not sure, please click NO button.",
-							"Info", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+						if (_recognition.ToolIsInitialized)
 						{
-							_textBoxInfo.Text =
-								"Load picture successfully, now grab all digits in the picture, please wait...";
-							using (var bitmap = new Bitmap(dialog.FileName))
+							if (Messagings.AskWhileLoadingPicture() == MessageBoxResult.Yes)
 							{
-								var grid = (await Task.Run(() => _recognition.Recorgnize(bitmap))).ToMutable();
-								grid.Fix();
-								Puzzle = new UndoableGrid(grid);
-							}
+								_textBoxInfo.Text =
+									"Load picture successfully, now grab all digits in the picture, please wait...";
+								using (var bitmap = new Bitmap(dialog.FileName))
+								{
+									var grid = (await Task.Run(() => _recognition.Recorgnize(bitmap))).ToMutable();
+									grid.Fix();
+									Puzzle = new UndoableGrid(grid);
+								}
 
-							UpdateUndoRedoControls();
-							UpdateImageGrid();
+								UpdateUndoRedoControls();
+								UpdateImageGrid();
+							}
+						}
+						else
+						{
+							Messagings.FailedToLoadPictureDueToNotHavingInitialized();
 						}
 					}
-					else
+					catch (Exception ex)
 					{
-						MessageBox.Show("The OCR tool has not recognized yet.", "Info");
+						Messagings.ShowExceptionMessage(ex);
 					}
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show(ex.Message, "Warning");
-				}
 
-				_textBoxInfo.ClearValue(TextBox.TextProperty);
+					_textBoxInfo.ClearValue(TextBox.TextProperty);
+				}
 			}
 #else
-			MessageBox.Show("Your machine cannot use image recognition.", "Info");
+			Messagings.NotSupportedForLoadingPicture();
 #endif
 		}
 
@@ -229,7 +206,7 @@ namespace Sudoku.Windows
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show($"Save failed due to:{NewLine}{ex.Message}.", "Warning");
+				Messagings.ShowExceptionMessage(ex);
 			}
 		}
 
@@ -295,11 +272,8 @@ namespace Sudoku.Windows
 			var grid = SudokuGrid.CreateInstance(z);
 			if (new BitwiseSolver().Solve(grid.ToString(), null, 2) == 0)
 			{
-				MessageBox.Show(
-					"The puzzle is invalid or may be a sukaku. " +
-					"If invalid, Please check your input and retry; " +
-					"however if sukaku, this function cannot use because the specified puzzle" +
-					"has no given or modifiable values.", "Info");
+				Messagings.SukakuCannotUseThisFunction();
+
 				e.Handled = true;
 				return;
 			}
@@ -330,9 +304,7 @@ namespace Sudoku.Windows
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(
-					$"Cannot save text to clipboard due to:{Environment.NewLine}{ex.Message}",
-					"Warning");
+				Messagings.ShowExceptionMessage(ex);
 			}
 		}
 
@@ -349,44 +321,37 @@ namespace Sudoku.Windows
 		private void MenuItemEditPaste_Click(object sender, RoutedEventArgs e)
 		{
 			string puzzleStr = Clipboard.GetText();
-			if (puzzleStr is null)
+			if (!(puzzleStr is null))
 			{
-				// 'value' is not null always.
-				e.Handled = true;
-				return;
+				LoadPuzzle(puzzleStr);
+
+				_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
+				_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
+				_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 			}
-
-			LoadPuzzle(puzzleStr);
-
-			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
-			_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
-			_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 		}
 
 		private void MenuItemEditPasteAsSukaku_Click(object sender, RoutedEventArgs e)
 		{
 			string puzzleStr = Clipboard.GetText();
-			if (puzzleStr is null)
+			if (!(puzzleStr is null))
 			{
-				e.Handled = true;
-				return;
-			}
+				try
+				{
+					Puzzle = new UndoableGrid(SudokuGrid.Parse(puzzleStr, GridParsingOption.Sukaku));
 
-			try
-			{
-				Puzzle = new UndoableGrid(SudokuGrid.Parse(puzzleStr, GridParsingOption.Sukaku));
+					_menuItemEditUndo.IsEnabled = _menuItemEditRedo.IsEnabled = false;
+					UpdateImageGrid();
+				}
+				catch (ArgumentException)
+				{
+					Messagings.FailedToPasteText();
+				}
 
-				_menuItemEditUndo.IsEnabled = _menuItemEditRedo.IsEnabled = false;
-				UpdateImageGrid();
+				_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
+				_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
+				_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 			}
-			catch (ArgumentException)
-			{
-				MessageBox.Show("The specified puzzle is invalid.", "Warning");
-			}
-
-			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
-			_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
-			_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 		}
 
 		private void MenuItemEditFix_Click(object sender, RoutedEventArgs e)
@@ -425,10 +390,7 @@ namespace Sudoku.Windows
 		private void MenuItemClearStack_Click(object sender, RoutedEventArgs e)
 		{
 			if ((_puzzle.HasUndoSteps || _puzzle.HasRedoSteps)
-				&& MessageBox.Show(
-					$"The steps will be cleared. " +
-					$"If so, you cannot undo any steps to previous puzzle status.{Environment.NewLine}" +
-					$"Do you want to clear anyway?", "Info", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+				&& Messagings.AskWhileClearingStack() == MessageBoxResult.Yes)
 			{
 				_puzzle.ClearStack();
 
@@ -472,34 +434,26 @@ namespace Sudoku.Windows
 				//}
 				#endregion
 
-				if (!(_database is null)
-					&& MessageBox.Show(
-						"You are now working on the puzzle database. " +
-						"If you click YES button, the generating will start, " +
-						"but the database history will be cleared." +
-						"A hard decision, isn't it?", "Info", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+				if (_database is null || Messagings.AskWhileGeneratingWithDatabase() == MessageBoxResult.Yes)
 				{
-					e.Handled = true;
-					return;
+					// Disable relative database controls.
+					Settings.CurrentPuzzleDatabase = _database = null;
+					Settings.CurrentPuzzleNumber = -1;
+					UpdateDatabaseControls(false, false, false, false);
+
+					DisableGeneratingControls();
+
+					// These two value should be assigned first, rather than 
+					// inlining in the asynchronized environment.
+					var symmetry = ((PrimaryElementTuple<string, SymmetryType>)_comboBoxSymmetry.SelectedItem).Value2;
+					//var diff = (DifficultyLevel)_comboBoxDifficulty.SelectedItem;
+					Puzzle = new UndoableGrid(await Task.Run(() => new BasicPuzzleGenerator().Generate(33, symmetry)));
+
+					EnableGeneratingControls();
+					SwitchOnGeneratingComboBoxesDisplaying();
+					ClearItemSourcesWhenGeneratedOrSolving();
+					UpdateImageGrid();
 				}
-
-				// Disable relative database controls.
-				Settings.CurrentPuzzleDatabase = _database = null;
-				Settings.CurrentPuzzleNumber = -1;
-				UpdateDatabaseControls(false, false, false, false);
-
-				DisableGeneratingControls();
-
-				// These two value should be assigned first, rather than 
-				// inlining in the asynchronized environment.
-				var symmetry = ((PrimaryElementTuple<string, SymmetryType>)_comboBoxSymmetry.SelectedItem).Value2;
-				//var diff = (DifficultyLevel)_comboBoxDifficulty.SelectedItem;
-				Puzzle = new UndoableGrid(await Task.Run(() => new BasicPuzzleGenerator().Generate(33, symmetry)));
-
-				EnableGeneratingControls();
-				SwitchOnGeneratingComboBoxesDisplaying();
-				ClearItemSourcesWhenGeneratedOrSolving();
-				UpdateImageGrid();
 			}
 		}
 
@@ -510,33 +464,25 @@ namespace Sudoku.Windows
 
 			async Task internalOperation()
 			{
-				if (!(_database is null)
-					&& MessageBox.Show(
-						"You are now working on the puzzle database, isn't it? " +
-						"If you click YES button, the generating will start, " +
-						"but the database history will be cleared. " +
-						"That's a hard decision, isn't it?", "Info", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+				if (_database is null || Messagings.AskWhileGeneratingWithDatabase() == MessageBoxResult.Yes)
 				{
-					e.Handled = true;
-					return;
+					// Disable relative database controls.
+					Settings.CurrentPuzzleDatabase = _database = null;
+					Settings.CurrentPuzzleNumber = -1;
+					UpdateDatabaseControls(false, false, false, false);
+					_labelPuzzleNumber.ClearValue(ContentProperty);
+
+					DisableGeneratingControls();
+
+					int depth = _comboBoxBackdoorFilteringDepth.SelectedIndex;
+					Puzzle = new UndoableGrid(
+						await Task.Run(() => new HardPatternPuzzleGenerator().Generate(depth - 1)));
+
+					EnableGeneratingControls();
+					SwitchOnGeneratingComboBoxesDisplaying();
+					ClearItemSourcesWhenGeneratedOrSolving();
+					UpdateImageGrid();
 				}
-
-				// Disable relative database controls.
-				Settings.CurrentPuzzleDatabase = _database = null;
-				Settings.CurrentPuzzleNumber = -1;
-				UpdateDatabaseControls(false, false, false, false);
-				_labelPuzzleNumber.ClearValue(ContentProperty);
-
-				DisableGeneratingControls();
-
-				int depth = _comboBoxBackdoorFilteringDepth.SelectedIndex;
-				Puzzle = new UndoableGrid(
-					await Task.Run(() => new HardPatternPuzzleGenerator().Generate(depth - 1)));
-
-				EnableGeneratingControls();
-				SwitchOnGeneratingComboBoxesDisplaying();
-				ClearItemSourcesWhenGeneratedOrSolving();
-				UpdateImageGrid();
 			}
 		}
 
@@ -565,7 +511,7 @@ namespace Sudoku.Windows
 				UpdateImageGrid();
 			}
 #else
-			MessageBox.Show("This function is for debugging use now. Sorry. >_<", "Info");
+			Messagings.NotSupportedWhileGeneratingWithFilter();
 #endif
 		}
 
@@ -573,7 +519,8 @@ namespace Sudoku.Windows
 		{
 			if (!applyNormal() && !applySukaku())
 			{
-				MessageBox.Show("The puzzle is invalid. Please check your input and retry.", "Info");
+				Messagings.FailedToApplyPuzzle();
+				e.Handled = true;
 				return;
 			}
 
@@ -616,7 +563,7 @@ namespace Sudoku.Windows
 		{
 			if (!await internalOperation(false) && !await internalOperation(true))
 			{
-				MessageBox.Show("The puzzle is invalid. Please check your input and retry.", "Info");
+				Messagings.FailedToApplyPuzzle();
 				e.Handled = true;
 				return;
 			}
@@ -625,7 +572,7 @@ namespace Sudoku.Windows
 			{
 				if (_puzzle.HasSolved)
 				{
-					MessageBox.Show("The puzzle has already solved.", "Info");
+					Messagings.PuzzleAlreadySolved();
 					return !(e.Handled = true);
 				}
 
@@ -658,16 +605,17 @@ namespace Sudoku.Windows
 				DisableSolvingControls();
 
 				// Run the solver asynchronizedly, during solving you can do other work.
-				_analyisResult = await Task.Run(() =>
-				{
-					if (!Settings.SolveFromCurrent)
+				_analyisResult =
+					await Task.Run(() =>
 					{
-						_puzzle.Reset();
-						_puzzle.ClearStack();
-					}
+						if (!Settings.SolveFromCurrent)
+						{
+							_puzzle.Reset();
+							_puzzle.ClearStack();
+						}
 
-					return _manualSolver.Solve(_puzzle);
-				});
+						return _manualSolver.Solve(_puzzle);
+					});
 
 				// Solved. Now update the technique summary.
 				EnableSolvingControls();
@@ -704,7 +652,10 @@ namespace Sudoku.Windows
 					var collection = new List<AnonymousType>();
 					decimal summary = 0, summaryMax = 0;
 					int summaryCount = 0;
-					foreach (var techniqueGroup in getGroupedSteps())
+					foreach (var techniqueGroup in
+						from solvingStep in _analyisResult.SolvingSteps!
+						orderby solvingStep.Difficulty
+						group solvingStep by solvingStep.Name)
 					{
 						string name = techniqueGroup.Key;
 						int count = techniqueGroup.Count();
@@ -743,22 +694,11 @@ namespace Sudoku.Windows
 				}
 				else
 				{
-					MessageBox.Show(
-						$"The puzzle cannot be solved because " +
-						$"the solver has found a wrong conclusion to apply " +
-						$"or else the puzzle has eliminated the correct value.{NewLine}" +
-						$"You should check the puzzle or notify the author.{NewLine}" +
-						$"Error technique step: {_analyisResult.Additional}",
-						"Warning");
+					Messagings.FailedToSolveWithMessage(_analyisResult);
 				}
 
 				return true;
 			}
-
-			IEnumerable<IGrouping<string, TechniqueInfo>> getGroupedSteps() =>
-				from solvingStep in _analyisResult.SolvingSteps!
-				orderby solvingStep.Difficulty
-				group solvingStep by solvingStep.Name;
 
 			GridViewColumn createGridViewColumn(string name, double widthScale) =>
 				new GridViewColumn
@@ -797,7 +737,7 @@ namespace Sudoku.Windows
 		{
 			if (_analyisResult is null)
 			{
-				MessageBox.Show("You should solve the puzzle first.", "Information");
+				Messagings.YouShouldSolveFirst();
 				e.Handled = true;
 				return;
 			}
@@ -812,7 +752,7 @@ namespace Sudoku.Windows
 		{
 			if (!_puzzle.IsValid(out _))
 			{
-				MessageBox.Show("The puzzle is invalid.", "Warning");
+				Messagings.FailedToCheckDueToInvaildPuzzle();
 				e.Handled = true;
 				return;
 			}
@@ -829,7 +769,7 @@ namespace Sudoku.Windows
 			{
 				if (!_puzzle.IsValid(out _))
 				{
-					MessageBox.Show("The puzzle is invalid.", "Warning");
+					Messagings.FailedToCheckDueToInvaildPuzzle();
 					e.Handled = true;
 					return;
 				}
@@ -843,7 +783,7 @@ namespace Sudoku.Windows
 				_textBoxInfo.ClearValue(TextBox.TextProperty);
 				if (trueCandidates.Count == 0)
 				{
-					MessageBox.Show("The puzzle is not a valid BUG pattern.", "Info");
+					Messagings.DoesNotContainBugMultiple();
 					e.Handled = true;
 					return;
 				}
@@ -874,7 +814,7 @@ namespace Sudoku.Windows
 			{
 				if (!_puzzle.IsValid(out _))
 				{
-					MessageBox.Show("The puzzle is invalid.", "Warning");
+					Messagings.FailedToCheckDueToInvaildPuzzle();
 					e.Handled = true;
 					return;
 				}
@@ -896,9 +836,7 @@ namespace Sudoku.Windows
 				_textBoxInfo.ClearValue(TextBox.TextProperty);
 				if (backdoors.None())
 				{
-					MessageBox.Show(
-						"The puzzle does not have any backdoors whose level is 0 or 1, " +
-						"which means the puzzle can be solved difficultly with brute forces.", "Info");
+					Messagings.DoesNotContainBackdoor();
 					e.Handled = true;
 					return;
 				}
@@ -934,16 +872,16 @@ namespace Sudoku.Windows
 
 		private void MenuItemViewsGspView_Click(object sender, RoutedEventArgs e)
 		{
-			if (Enumerable.Range(0, 81).All(i => _puzzle.GetStatus(i) == CellStatus.Empty))
+			if (Enumerable.Range(0, 81).All(i => _puzzle.GetStatus(i) != CellStatus.Given))
 			{
-				MessageBox.Show("The sukaku puzzle does not support this function now.", "Info");
+				Messagings.SukakuCannotUseGspChecking();
 				e.Handled = true;
 				return;
 			}
 
 			if (!(new GspTechniqueSearcher().GetOne(_puzzle) is GspTechniqueInfo info))
 			{
-				MessageBox.Show("The puzzle does not contain any Gurth's symmetrical placement.", "Info");
+				Messagings.DoesNotContainGsp();
 				e.Handled = true;
 				return;
 			}
@@ -1006,7 +944,7 @@ namespace Sudoku.Windows
 				}
 				catch
 				{
-					MessageBox.Show("Cannot copy due to internal error, please try later.", "Warning");
+					Messagings.CannotCopyStep();
 				}
 			}
 		}
@@ -1027,7 +965,7 @@ namespace Sudoku.Windows
 				}
 				catch
 				{
-					MessageBox.Show("Cannot copy due to internal error, please try later.", "Warning");
+					Messagings.CannotCopyStep();
 				}
 			}
 		}

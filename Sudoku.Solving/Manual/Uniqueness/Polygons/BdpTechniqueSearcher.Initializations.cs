@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Constants;
 using Sudoku.Data;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
@@ -61,7 +62,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						4 => (9, 2), 5 => (9, 2),
 						6 => (18, 1), 7 => (18, 1),
 						8 => (18, 2),
-						_ => throw Throwing.ImpossibleCase
+						_ => throw Throwings.ImpossibleCase
 					};
 					if (region1 >= 9 && region1 < 18)
 					{
@@ -119,7 +120,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					4 => (9, 2), 5 => (9, 2),
 					6 => (18, 1), 7 => (18, 1),
 					8 => (18, 2),
-					_ => throw Throwing.ImpossibleCase
+					_ => throw Throwings.ImpossibleCase
 				};
 				if (region1 >= 9 && region1 < 18)
 				{
@@ -173,7 +174,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						1 => region >= 18 && region < 27 ? (cell - increment, cell) : (cell, cell + increment),
 						2 => region >= 9 && region < 18 ? (cell - increment, cell) : (cell, cell + increment),
 						3 => (cell - increment, cell),
-						_ => throw Throwing.ImpossibleCase
+						_ => throw Throwings.ImpossibleCase
 					};
 					cur++;
 				}

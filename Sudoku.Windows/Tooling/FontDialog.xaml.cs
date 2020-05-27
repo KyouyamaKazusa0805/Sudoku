@@ -4,6 +4,7 @@ using System.Drawing.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Sudoku.Constants;
 using Sudoku.Drawing.Extensions;
 using d = System.Drawing;
 
@@ -101,7 +102,7 @@ namespace Sudoku.Windows.Tooling
 						1 => d::FontStyle.Bold,
 						2 => d::FontStyle.Italic,
 						3 => d::FontStyle.Bold | d::FontStyle.Italic,
-						_ => throw Throwing.ImpossibleCase
+						_ => throw Throwings.ImpossibleCase
 					});
 
 				DrawString();

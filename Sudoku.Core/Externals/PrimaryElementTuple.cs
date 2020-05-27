@@ -1,5 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
-using Sudoku;
+using Sudoku.Constants;
 using Sudoku.Extensions;
 
 namespace System
@@ -60,7 +60,7 @@ namespace System
 			{
 				1 => Value1,
 				2 => Value2,
-				_ => throw Throwing.ImpossibleCase
+				_ => throw Throwings.ImpossibleCase
 			};
 
 
@@ -138,7 +138,7 @@ namespace System
 				1 => Value1,
 				2 => Value2,
 				3 => Value3,
-				_ => throw Throwing.ImpossibleCase
+				_ => throw Throwings.ImpossibleCase
 			};
 
 
@@ -227,7 +227,7 @@ namespace System
 				2 => Value2,
 				3 => Value3,
 				4 => Value4,
-				_ => throw Throwing.ImpossibleCase
+				_ => throw Throwings.ImpossibleCase
 			};
 
 

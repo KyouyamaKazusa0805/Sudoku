@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -26,7 +27,7 @@ namespace Sudoku.Solving.Manual.Subsets
 				2 => 3.4M,
 				3 => 4M,
 				4 => 5.4M,
-				_ => throw Throwing.ImpossibleCase
+				_ => throw Throwings.ImpossibleCase
 			};
 
 		/// <summary>
@@ -41,7 +42,7 @@ namespace Sudoku.Solving.Manual.Subsets
 				2 => TechniqueCode.HiddenPair,
 				3 => TechniqueCode.HiddenTriple,
 				4 => TechniqueCode.HiddenQuadruple,
-				_ => throw Throwing.ImpossibleCase
+				_ => throw Throwings.ImpossibleCase
 			};
 
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -64,7 +65,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					2 => TechniqueCode.UlType2,
 					3 => TechniqueCode.UlType3,
 					4 => TechniqueCode.UlType4,
-					_ => throw Throwing.ImpossibleCase
+					_ => throw Throwings.ImpossibleCase
 				};
 			}
 		}

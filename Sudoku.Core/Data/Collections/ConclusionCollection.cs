@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
+using Sudoku.Constants;
 using Sudoku.Extensions;
 
 namespace Sudoku.Data.Collections
@@ -36,7 +37,7 @@ namespace Sudoku.Data.Collections
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[DoesNotReturn]
-		public override bool Equals(object? obj) => throw Throwing.RefStructNotSupported;
+		public override bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
 		public bool Equals(ConclusionCollection other) => _collection == other._collection;
@@ -45,7 +46,7 @@ namespace Sudoku.Data.Collections
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[DoesNotReturn]
-		public override int GetHashCode() => throw Throwing.RefStructNotSupported;
+		public override int GetHashCode() => throw Throwings.RefStructNotSupported;
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString() => ToString(true, ", ");
