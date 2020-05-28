@@ -1203,6 +1203,12 @@ namespace Sudoku.Solving.Manual
 		SkLoop,
 
 		/// <summary>
+		/// Indicates the multi-sector locked sets.
+		/// </summary>
+		[TechniqueDisplay("Almost Locked Sets Net", Category = "Multi-sector Locked Sets")]
+		Msls,
+
+		/// <summary>
 		/// Indicates the POM.
 		/// </summary>
 		[TechniqueDisplay("Pattern Overlay", Category = "Last Resorts")]
