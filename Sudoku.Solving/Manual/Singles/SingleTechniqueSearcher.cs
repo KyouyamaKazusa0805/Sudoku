@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -53,58 +52,25 @@ namespace Sudoku.Solving.Manual.Singles
 			{
 				for (int region = 0; region < 27; region++)
 				{
-					int cands = 0, emptyCellCount = 0, fullHouseCellOffset = 0;
-					for (int pos = 0; pos < 9; pos++)
+					var map = RegionMaps[region] & EmptyMap;
+					if (map.Count == 1)
 					{
-						int cellOffset = RegionCells[region][pos];
-						int digit = grid[cellOffset];
-						if (digit == -1)
-						{
-							// -1 means the cell is empty.
-							switch (++emptyCellCount)
-							{
-								case 1:
-								{
-									fullHouseCellOffset = cellOffset;
-									break;
-								}
-								case 2:
-								{
-									// Two or more empty cells, which means that
-									// full house does not exist. Exit this loop.
-									goto Label_ToNextRegion;
-								}
-							}
-						}
-						else
-						{
-							// The cell must be given or modifiables.
-							cands |= 1 << digit;
-						}
-					}
-
-					// Check the 'emptyCellCount' is 1 or not.
-					if (emptyCellCount == 1)
-					{
-						// If the number of empty cells is only 1,
-						// We can conclude that this only empty cell is the full house.
-						int digit = ((short)(511 & ~cands)).FindFirstSet();
+						int cell = map.SetAt(0);
+						int digit = grid.GetCandidatesReversal(cell).FindFirstSet();
 						accumulator.Add(
 							new FullHouseTechniqueInfo(
-								conclusions: new[] { new Conclusion(Assignment, fullHouseCellOffset, digit) },
+								conclusions: new[] { new Conclusion(Assignment, cell, digit) },
 								views: new[]
 								{
 									new View(
 										cellOffsets: null,
-										candidateOffsets: new[] { (0, fullHouseCellOffset * 9 + digit) },
+										candidateOffsets: new[] { (0, cell * 9 + digit) },
 										regionOffsets: new[] { (0, region) },
 										links: null)
 								},
-								cellOffset: fullHouseCellOffset,
+								cellOffset: cell,
 								digit));
 					}
-
-				Label_ToNextRegion:;
 				}
 			}
 
@@ -113,27 +79,8 @@ namespace Sudoku.Solving.Manual.Singles
 			{
 				for (int region = 0; region < 27; region++)
 				{
-					int hiddenSingleCellOffset = 0, count = 0;
-					foreach (int cellOffset in RegionCells[region])
-					{
-						if (grid.Exists(cellOffset, digit) is true)
-						{
-							switch (++count)
-							{
-								case 1:
-								{
-									hiddenSingleCellOffset = cellOffset;
-									break;
-								}
-								case 2:
-								{
-									goto Label_ToNextRegion;
-								}
-							}
-						}
-					}
-
-					if (count == 1)
+					var map = RegionMaps[region] & CandMaps[digit];
+					if (map.Count == 1)
 					{
 						bool enableAndIsLastDigit = false;
 						var cellOffsets = new List<(int, int)>();
@@ -153,32 +100,31 @@ namespace Sudoku.Solving.Manual.Singles
 							enableAndIsLastDigit = digitCount == 8;
 						}
 
+						int cell = map.SetAt(0);
 						accumulator.Add(
 							new HiddenSingleTechniqueInfo(
-								conclusions: new[] { new Conclusion(Assignment, hiddenSingleCellOffset, digit) },
+								conclusions: new[] { new Conclusion(Assignment, cell, digit) },
 								views: new[]
 								{
 									new View(
 										cellOffsets: enableAndIsLastDigit ? cellOffsets : null,
-										candidateOffsets: new[] { (0, hiddenSingleCellOffset * 9 + digit) },
+										candidateOffsets: new[] { (0, cell * 9 + digit) },
 										regionOffsets: enableAndIsLastDigit ? null : new[] { (0, region) },
 										links: null)
 								},
 								regionOffset: region,
-								cellOffset: hiddenSingleCellOffset,
+								cellOffset: cell,
 								digit,
 								enableAndIsLastDigit));
 					}
-
-				Label_ToNextRegion:;
 				}
 			}
 
 			// Search for naked singles.
-			for (int i = 0; i < 81; i++)
+			foreach (int cell in EmptyMap.Offsets)
 			{
-				short mask = grid.GetCandidatesReversal(i);
-				if (grid.GetStatus(i) != CellStatus.Empty || !mask.IsPowerOfTwo())
+				short mask = grid.GetCandidatesReversal(cell);
+				if (grid.GetStatus(cell) != CellStatus.Empty || !mask.IsPowerOfTwo())
 				{
 					// 'a.IsPowerOfTwo()' is equivalent to the formula: a & (a - 1) == 0,
 					// which means the number 'a' has only one bit is set.
@@ -194,16 +140,16 @@ namespace Sudoku.Solving.Manual.Singles
 				int digit = mask.FindFirstSet();
 				accumulator.Add(
 					new NakedSingleTechniqueInfo(
-						conclusions: new[] { new Conclusion(Assignment, i, digit) },
+						conclusions: new[] { new Conclusion(Assignment, cell, digit) },
 						views: new[]
 						{
 							new View(
 								cellOffsets: null,
-								candidateOffsets: new[] { (0, i * 9 + digit) },
+								candidateOffsets: new[] { (0, cell * 9 + digit) },
 								regionOffsets: null,
 								links: null)
 						},
-						cellOffset: i,
+						cellOffset: cell,
 						digit));
 			}
 		}

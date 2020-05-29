@@ -770,7 +770,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="gridMap">The instance to negate.</param>
 		/// <returns>The negative result.</returns>
-		public static GridMap operator ~(GridMap gridMap) => new GridMap(~gridMap._high, ~gridMap._low);
+		public static GridMap operator ~(GridMap gridMap) => new GridMap(~gridMap._high & 0xFFFFFFFFFFL, ~gridMap._low);
 
 		/// <summary>
 		/// Add a cell into the specified map.
