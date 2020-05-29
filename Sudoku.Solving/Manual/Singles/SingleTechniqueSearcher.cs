@@ -124,33 +124,23 @@ namespace Sudoku.Solving.Manual.Singles
 			foreach (int cell in EmptyMap.Offsets)
 			{
 				short mask = grid.GetCandidatesReversal(cell);
-				if (grid.GetStatus(cell) != CellStatus.Empty || !mask.IsPowerOfTwo())
+				if (mask.IsPowerOfTwo())
 				{
-					// 'a.IsPowerOfTwo()' is equivalent to the formula: a & (a - 1) == 0,
-					// which means the number 'a' has only one bit is set.
-					// For example, a value is 0b001_000_000 in binary, then:
-					//     a: 0b001_000_000
-					// a - 1: 0b000_111_111
-					//     &: 0b000_000_000
-					// If and only if the result is 0, the value will contain
-					// only one set bit.
-					continue;
-				}
-
-				int digit = mask.FindFirstSet();
-				accumulator.Add(
-					new NakedSingleTechniqueInfo(
-						conclusions: new[] { new Conclusion(Assignment, cell, digit) },
-						views: new[]
-						{
+					int digit = mask.FindFirstSet();
+					accumulator.Add(
+						new NakedSingleTechniqueInfo(
+							conclusions: new[] { new Conclusion(Assignment, cell, digit) },
+							views: new[]
+							{
 							new View(
 								cellOffsets: null,
 								candidateOffsets: new[] { (0, cell * 9 + digit) },
 								regionOffsets: null,
 								links: null)
-						},
-						cellOffset: cell,
-						digit));
+							},
+							cellOffset: cell,
+							digit));
+				}
 			}
 		}
 	}
