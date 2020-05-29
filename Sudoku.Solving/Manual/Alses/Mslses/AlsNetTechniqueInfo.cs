@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -18,8 +17,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		/// <param name="conclusions">All conclusions.</param>
 		/// <param name="views">All views.</param>
 		/// <param name="cells">The cells.</param>
-		public AlsNetTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, GridMap cells)
+		public AlsNetTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, GridMap cells)
 			: base(conclusions, views) => (Cells) = (cells);
 
 
