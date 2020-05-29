@@ -70,7 +70,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 				return Size switch
 				{
 					3 => isIncompleted ? "XY-Wing" : "XYZ-Wing",
-					_ when Size >= 4 && Size < 9 => isIncompleted ? $"Uncompleted {names[Size]}" : names[Size],
+					_ when Size >= 4 && Size < 9 => isIncompleted ? $"Incompleted {names[Size]}" : names[Size],
 					_ => throw new NotSupportedException($"The specified {nameof(Size)} is out of range.")
 				};
 			}

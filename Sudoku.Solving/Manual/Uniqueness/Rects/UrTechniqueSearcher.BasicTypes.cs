@@ -59,7 +59,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					candidateOffsets.Add((0, cell * 9 + digit));
 				}
 			}
-			if (!_allowUncompletedUr && (candidateOffsets.Count != 6 || conclusions.Count != 2))
+			if (!_allowIncompletedUr && (candidateOffsets.Count != 6 || conclusions.Count != 2))
 			{
 				return;
 			}
@@ -133,7 +133,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					}
 				}
 			}
-			if (!_allowUncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
+			if (!_allowIncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
 			{
 				return;
 			}
@@ -351,7 +351,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						}
 					}
 
-					if (!_allowUncompletedUr && (candidateOffsets.Count != 6 || conclusions.Count != 2))
+					if (!_allowIncompletedUr && (candidateOffsets.Count != 6 || conclusions.Count != 2))
 					{
 						continue;
 					}
@@ -440,7 +440,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					candidateOffsets.Add((digit == extraDigit ? 1 : 0, cell * 9 + digit));
 				}
 			}
-			if (!_allowUncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
+			if (!_allowIncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
 			{
 				return;
 			}
@@ -539,7 +539,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					}
 				}
 
-				if (!_allowUncompletedUr && (candidateOffsets.Count != 6 || conclusions.Count != 2))
+				if (!_allowIncompletedUr && (candidateOffsets.Count != 6 || conclusions.Count != 2))
 				{
 					return;
 				}
@@ -638,7 +638,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					}
 				}
 
-				if (!_allowUncompletedUr && candidateOffsets.Count != 7)
+				if (!_allowIncompletedUr && candidateOffsets.Count != 7)
 				{
 					continue;
 				}

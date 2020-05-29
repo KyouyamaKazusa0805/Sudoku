@@ -55,7 +55,7 @@ namespace Sudoku.Solving.Manual
 					new RegularWingTechniqueSearcher(CheckRegularWingSize),
 					new IrregularWingTechniqueSearcher(),
 					new TwoStrongLinksTechniqueSearcher(),
-					new UrTechniqueSearcher(CheckUncompletedUniquenessPatterns, SearchExtendedUniqueRectangles),
+					new UrTechniqueSearcher(CheckIncompletedUniquenessPatterns, SearchExtendedUniqueRectangles),
 					new XrTechniqueSearcher(),
 					new UlTechniqueSearcher(),
 					new EmptyRectangleTechniqueSearcher(),

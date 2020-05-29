@@ -288,80 +288,93 @@ namespace Sudoku.Windows
 			base.OnKeyDown(e);
 
 			// Get all cases for being pressed keys.
-			if (e.Key.IsDigit())
+			switch (e.Key)
 			{
-				var pt = Mouse.GetPosition(_imageGrid);
-				if (IsPointOutOfRange(_imageGrid, pt))
+				case var key when key.IsDigit():
 				{
-					e.Handled = true;
-					return;
-				}
-
-				// Input or eliminate a digit.
-				if (Keyboard.Modifiers == ModifierKeys.Shift)
-				{
-					// Eliminate a digit.
-					_puzzle[
-						_pointConverter.GetCellOffset(pt.ToDPointF()),
-						e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1] = true;
-				}
-				else if (Keyboard.Modifiers == ModifierKeys.None)
-				{
-					// Input a digit.
-					_puzzle[_pointConverter.GetCellOffset(pt.ToDPointF())] =
-						e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1;
-				}
-
-				UpdateUndoRedoControls();
-				UpdateImageGrid();
-			}
-			else if (e.Key.IsArrow() && _focusedCells.Count == 1)
-			{
-				// Move the focused cell.
-				int cell = _focusedCells.SetAt(0);
-				_focusedCells.Clear();
-				_focusedCells.Add(
-					e.Key switch
+					var pt = Mouse.GetPosition(_imageGrid);
+					if (IsPointOutOfRange(_imageGrid, pt))
 					{
-						Key.Up => cell - 9 < 0 ? cell + 72 : cell - 9,
-						Key.Down => cell + 9 >= 81 ? cell - 72 : cell + 9,
-						Key.Left => cell - 1 < 0 ? cell + 8 : cell - 1,
-						Key.Right => (cell + 1) % 81,
-						_ => throw Throwings.ImpossibleCase
-					});
+						e.Handled = true;
+						return;
+					}
 
-				_layerCollection.Add(new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
+					// Input or eliminate a digit.
+					if (Keyboard.Modifiers == ModifierKeys.Shift)
+					{
+						// Eliminate a digit.
+						_puzzle[
+							_pointConverter.GetCellOffset(pt.ToDPointF()),
+							e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1] = true;
+					}
+					else if (Keyboard.Modifiers == ModifierKeys.None)
+					{
+						// Input a digit.
+						_puzzle[_pointConverter.GetCellOffset(pt.ToDPointF())] =
+							e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1;
+					}
 
-				UpdateImageGrid();
-			}
-			else if (e.Key == Key.Space)
-			{
-				// View the intersection.
-				_previewMap = _focusedCells;
-				_focusedCells = _focusedCells.PeerIntersection;
+					UpdateUndoRedoControls();
+					UpdateImageGrid();
 
-				_layerCollection.Add(new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
+					break;
+				}
+				case var key when key.IsArrow() && _focusedCells.Count == 1:
+				{
+					// Move the focused cell.
+					int cell = _focusedCells.SetAt(0);
+					_focusedCells.Clear();
+					_focusedCells.Add(
+						e.Key switch
+						{
+							Key.Up => cell - 9 < 0 ? cell + 72 : cell - 9,
+							Key.Down => cell + 9 >= 81 ? cell - 72 : cell + 9,
+							Key.Left => cell - 1 < 0 ? cell + 8 : cell - 1,
+							Key.Right => (cell + 1) % 81,
+							_ => throw Throwings.ImpossibleCase
+						});
 
-				UpdateImageGrid();
-			}
-			else if (e.Key == Key.Tab)
-			{
-				// Move to next box row.
-				int cell = _focusedCells.IsEmpty ? 0 : _focusedCells.SetAt(0);
-				_focusedCells.Clear();
-				_focusedCells.Add((cell + 3) % 81);
+					_layerCollection.Add(new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
 
-				_layerCollection.Add(new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
+					UpdateImageGrid();
 
-				UpdateImageGrid();
-			}
-			else if (e.Key == Key.Escape)
-			{
-				// Clear focused cells.
-				_focusedCells.Clear();
-				_layerCollection.Remove<FocusLayer>();
+					break;
+				}
+				case Key.Space:
+				{
+					// View the intersection.
+					_previewMap = _focusedCells;
+					_focusedCells = _focusedCells.PeerIntersection;
 
-				UpdateImageGrid();
+					_layerCollection.Add(new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
+
+					UpdateImageGrid();
+
+					break;
+				}
+				case Key.Tab:
+				{
+					// Move to next box row.
+					int cell = _focusedCells.IsEmpty ? 0 : _focusedCells.SetAt(0);
+					_focusedCells.Clear();
+					_focusedCells.Add((cell + 3) % 81);
+
+					_layerCollection.Add(new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
+
+					UpdateImageGrid();
+
+					break;
+				}
+				case Key.Escape:
+				{
+					// Clear focused cells.
+					_focusedCells.Clear();
+					_layerCollection.Remove<FocusLayer>();
+
+					UpdateImageGrid();
+
+					break;
+				}
 			}
 
 			GC.Collect();
@@ -372,7 +385,7 @@ namespace Sudoku.Windows
 		{
 			base.OnKeyUp(e);
 
-			if (e.Key == Key.Space && !(_previewMap is null))
+			if (!(_previewMap is null) && e.Key == Key.Space)
 			{
 				_focusedCells = _previewMap.Value;
 

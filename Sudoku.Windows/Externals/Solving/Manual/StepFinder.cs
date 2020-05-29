@@ -67,7 +67,7 @@ namespace Sudoku.Solving.Manual
 				new IrregularWingTechniqueSearcher(),
 				new TwoStrongLinksTechniqueSearcher(),
 				new UrTechniqueSearcher(
-					_settings.MainManualSolver.CheckUncompletedUniquenessPatterns,
+					_settings.MainManualSolver.CheckIncompletedUniquenessPatterns,
 					_settings.MainManualSolver.SearchExtendedUniqueRectangles),
 				new XrTechniqueSearcher(),
 				new UlTechniqueSearcher(),

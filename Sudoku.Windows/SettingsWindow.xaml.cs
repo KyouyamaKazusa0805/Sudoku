@@ -67,7 +67,7 @@ namespace Sudoku.Windows
 			_checkBoxAllowAlsCycles.IsChecked = Settings.MainManualSolver.AllowAlsCycles;
 			_textBoxBowmanBingoMaxLength.Text = Settings.MainManualSolver.BowmanBingoMaximumLength.ToString();
 			_checkBoxAllowAlq.IsChecked = Settings.MainManualSolver.CheckAlmostLockedQuadruple;
-			_checkBoxCheckUncompletedUr.IsChecked = Settings.MainManualSolver.CheckUncompletedUniquenessPatterns;
+			_checkBoxCheckIncompletedUr.IsChecked = Settings.MainManualSolver.CheckIncompletedUniquenessPatterns;
 			_textBoxMaxRegularWingSize.Text = Settings.MainManualSolver.CheckRegularWingSize.ToString();
 			_checkBoxUseExtendedBugSearcher.IsChecked = Settings.MainManualSolver.UseExtendedBugSearcher;
 			_checkBoxSearchExtendedUniqueRectangle.IsChecked = Settings.MainManualSolver.SearchExtendedUniqueRectangles;
@@ -152,20 +152,13 @@ namespace Sudoku.Windows
 
 			list.Sort(
 				(a, b) =>
-				{
-					return (
-						(PrimaryElementTuple<string, int, Type>)a.Content
-					).Value2.CompareTo(
-						(
-							(PrimaryElementTuple<string, int, Type>)b.Content
-						).Value2
-					);
-				});
+					((PrimaryElementTuple<string, int, Type>)a.Content).Value2.CompareTo(
+						((PrimaryElementTuple<string, int, Type>)b.Content).Value2));
 			_listBoxPriority.ItemsSource = list;
 			_listBoxPriority.SelectedIndex = 0;
-			(_, int selectionPriority, _) = (PrimaryElementTuple<string, int, Type>)(
-				(ListBoxItem)_listBoxPriority.SelectedItem).Content;
-			_textBoxPriority.Text = selectionPriority.ToString();
+			_textBoxPriority.Text = (
+				(PrimaryElementTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content
+			).Value2.ToString();
 		}
 
 		/// <summary>
@@ -479,19 +472,16 @@ namespace Sudoku.Windows
 
 		private void TextBoxBowmanBingoMaxLength_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			if (!(sender is TextBox textBox) || !int.TryParse(textBox.Text, out int value))
+			if (sender is TextBox textBox && int.TryParse(textBox.Text, out int value))
 			{
-				e.Handled = true;
-				return;
-			}
-
-			if (value >= 1 && value <= 64)
-			{
-				_manualSolver.BowmanBingoMaximumLength = value;
-			}
-			else
-			{
-				MessageBox.Show("The value is invalid.", "Info");
+				if (value >= 1 && value <= 64)
+				{
+					_manualSolver.BowmanBingoMaximumLength = value;
+				}
+				else
+				{
+					MessageBox.Show("The value is invalid.", "Info");
+				}
 			}
 		}
 
@@ -504,8 +494,8 @@ namespace Sudoku.Windows
 		private void CheckBoxCheckHeadCollision_Click(object sender, RoutedEventArgs e) =>
 			_checkBoxCheckHeadCollision.IsChecked = _manualSolver.CheckHeadCollision ^= true;
 
-		private void CheckBoxCheckUncompletedUr_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxCheckUncompletedUr.IsChecked = _manualSolver.CheckUncompletedUniquenessPatterns ^= true;
+		private void CheckBoxCheckIncompletedUr_Click(object sender, RoutedEventArgs e) =>
+			_checkBoxCheckIncompletedUr.IsChecked = _manualSolver.CheckIncompletedUniquenessPatterns ^= true;
 
 		private void TextBoxMaxRegularWingSize_TextChanged(object sender, TextChangedEventArgs e)
 		{

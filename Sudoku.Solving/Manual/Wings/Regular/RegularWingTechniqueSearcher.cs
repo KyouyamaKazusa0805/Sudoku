@@ -113,7 +113,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 							// Check.
 							if ((~inter & 511).CountSet() == 3)
 							{
-								// Check whether uncompleted.
+								// Check whether incompleted.
 								int typeCount = (~union & 511).CountSet();
 								if (typeCount != 0 && typeCount != 1)
 								{
@@ -165,7 +165,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 									// Check.
 									if ((~inter & 511).CountSet() == 4)
 									{
-										// Check whether uncompleted.
+										// Check whether incompleted.
 										int typeCount = (~union & 511).CountSet();
 										if (typeCount != 0 && typeCount != 1)
 										{
@@ -220,7 +220,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 											// Check.
 											if ((~inter & 511).CountSet() == 5)
 											{
-												// Check whether uncompleted.
+												// Check whether incompleted.
 												int typeCount = (~union & 511).CountSet();
 												if (typeCount != 0 && typeCount != 1)
 												{
@@ -303,7 +303,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// </param>
 		/// <param name="cells">All body cells.</param>
 		/// <param name="pivot">The pivot cell.</param>
-		/// <param name="isIncompleted">Indicates whether the technique is uncompleted.</param>
+		/// <param name="isIncompleted">Indicates whether the technique is incompleted.</param>
 		/// <param name="map">
 		/// (<see langword="out"/> parameter) The result grid intersection map.
 		/// </param>
@@ -372,7 +372,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <param name="union">The union mask.</param>
 		/// <param name="unionWithoutPivot">The union mask without using pivot mask.</param>
 		/// <param name="isIncompleted">
-		/// Indicates whether the technique is uncompleted.
+		/// Indicates whether the technique is incompleted.
 		/// </param>
 		/// <param name="map">The intersection grid map.</param>
 		/// <returns>The conclusions.</returns>

@@ -5029,11 +5029,10 @@
             <para>The value is <see langword="true"/> in default case.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckUncompletedUniquenessPatterns">
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckIncompletedUniquenessPatterns">
             <summary>
             <para>
-            Indicates whether the solver should check
-            uncompleted uniqueness patterns.
+            Indicates whether the solver should check incompleted uniqueness patterns.
             </para>
             <para>
             The value is <see langword="true"/> in debug environment,
@@ -8363,9 +8362,9 @@
             <b>avoidable rectangle</b> (AR) technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher._allowUncompletedUr">
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher._allowIncompletedUr">
             <summary>
-            Indicates whether the UR can be uncompleted. In other words,
+            Indicates whether the UR can be incompleted. In other words,
             some of UR candidates can be removed before the pattern forms.
             </summary>
         </member>
@@ -8377,10 +8376,10 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.#ctor(System.Boolean,System.Boolean)">
             <summary>
             Initializes an instance with the specified value indicating
-            whether the structure can be uncompleted, and a value indicating
+            whether the structure can be incompleted, and a value indicating
             whether the searcher can search for extended URs.
             </summary>
-            <param name="allowUncompletedUr">
+            <param name="allowIncompletedUr">
             A <see cref="T:System.Boolean"/> value indicating that.
             </param>
             <param name="searchExtended">A <see cref="T:System.Boolean"/> value indicating that.</param>
@@ -9021,7 +9020,7 @@
             </param>
             <param name="cells">All body cells.</param>
             <param name="pivot">The pivot cell.</param>
-            <param name="isIncompleted">Indicates whether the technique is uncompleted.</param>
+            <param name="isIncompleted">Indicates whether the technique is incompleted.</param>
             <param name="map">
             (<see langword="out"/> parameter) The result grid intersection map.
             </param>
@@ -9046,7 +9045,7 @@
             <param name="union">The union mask.</param>
             <param name="unionWithoutPivot">The union mask without using pivot mask.</param>
             <param name="isIncompleted">
-            Indicates whether the technique is uncompleted.
+            Indicates whether the technique is incompleted.
             </param>
             <param name="map">The intersection grid map.</param>
             <returns>The conclusions.</returns>

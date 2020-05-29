@@ -475,8 +475,7 @@ namespace Sudoku.Windows
 					DisableGeneratingControls();
 
 					int depth = _comboBoxBackdoorFilteringDepth.SelectedIndex;
-					Puzzle = new UndoableGrid(
-						await Task.Run(() => new HardPatternPuzzleGenerator().Generate(depth - 1)));
+					Puzzle = new UndoableGrid(await Task.Run(() => new HardPatternPuzzleGenerator().Generate(depth - 1)));
 
 					EnableGeneratingControls();
 					SwitchOnGeneratingComboBoxesDisplaying();
