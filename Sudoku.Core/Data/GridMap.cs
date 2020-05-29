@@ -35,11 +35,6 @@ namespace Sudoku.Data
 		/// <seealso cref="GridMap()"/>
 		public static readonly GridMap Empty = default;
 
-		/// <summary>
-		/// Indicates the instance that all bits are set <see langword="true"/> ahead of time.
-		/// </summary>
-		public static readonly GridMap Full;
-
 
 		/// <summary>
 		/// The value used for shifting.
@@ -351,10 +346,6 @@ namespace Sudoku.Data
 		/// <param name="high">Higher 40 bits.</param>
 		/// <param name="low">Lower 41 bits.</param>
 		private GridMap(long high, long low) => Count = (_high = high).CountSet() + (_low = low).CountSet();
-
-
-		/// <include file='../../GlobalDocComments.xml' path='comments/staticConstructor[@aimTo="struct"]'/>
-		static GridMap() => (Full._high, Full._low, Full.Count) = (-1L, -1L, 81);
 
 
 		/// <summary>

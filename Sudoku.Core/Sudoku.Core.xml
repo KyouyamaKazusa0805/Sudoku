@@ -2100,11 +2100,6 @@
             </summary>
             <seealso cref="M:Sudoku.Data.GridMap.#ctor"/>
         </member>
-        <member name="F:Sudoku.Data.GridMap.Full">
-            <summary>
-            Indicates the instance that all bits are set <see langword="true"/> ahead of time.
-            </summary>
-        </member>
         <member name="F:Sudoku.Data.GridMap.Shifting">
             <summary>
             The value used for shifting.
@@ -2284,11 +2279,6 @@
             </summary>
             <param name="high">Higher 40 bits.</param>
             <param name="low">Lower 41 bits.</param>
-        </member>
-        <member name="M:Sudoku.Data.GridMap.#cctor">
-            <staticConstructor aimTo="struct">
-		<summary>The static constructor of this struct.</summary>
-	</staticConstructor>
         </member>
         <member name="P:Sudoku.Data.GridMap.IsEmpty">
             <summary>
