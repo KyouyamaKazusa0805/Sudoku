@@ -16,7 +16,9 @@ namespace Sudoku.Drawing.Extensions
 	/// </summary>
 	/// <remarks>
 	/// Some methods of this file is copied by the <see cref="Emgu.CV"/>'s
-	/// <a href="https://github.com/emgucv/emgucv/blob/6ee487ad2709d1258cc014103deab2719b026303/Emgu.CV.NativeImage/BitmapExtension.cs">site</a>.
+	/// <a href="https://github.com/emgucv/emgucv/blob/6ee487ad2709d1258cc014103deab2719b026303/Emgu.CV.NativeImage/BitmapExtension.cs">
+	/// site
+	/// </a>.
 	/// </remarks>
 	/// <seealso cref="Bitmap"/>
 	[DebuggerStepThrough]
@@ -80,8 +82,9 @@ namespace Sudoku.Drawing.Extensions
 		}
 
 		/// <summary>
-		/// Create an Image &lt; TColor, TDepth &gt; from Bitmap
+		/// Create an <c>Image&lt;TColor, TDepth&gt;</c> from <see cref="Bitmap"/>.
 		/// </summary>
+		/// <seealso cref="Bitmap"/>
 		public static Image<TColor, TDepth> ToImage<TColor, TDepth>(this Bitmap bitmap)
 			where TColor : struct, IColor
 			where TDepth : new()

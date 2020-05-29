@@ -153,8 +153,7 @@ namespace Sudoku.Solving.Manual
 					{
 						foreach (var step in selection)
 						{
-							if (RecordTechnique(
-								steps, step, grid, cloneation, stopwatch, stepGrids, out var result))
+							if (RecordTechnique(steps, step, grid, cloneation, stopwatch, stepGrids, out var result))
 							{
 								stopwatch.Stop();
 								return result;
@@ -192,8 +191,7 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
-					if (!CheckConclusionValidityAfterSearched
-						|| CheckConclusionsValidity(solution, step.Conclusions))
+					if (!CheckConclusionValidityAfterSearched || CheckConclusionsValidity(solution, step.Conclusions))
 					{
 						if (RecordTechnique(steps, step, grid, cloneation, stopwatch, stepGrids, out var result))
 						{

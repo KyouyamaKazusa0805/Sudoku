@@ -4052,7 +4052,9 @@
             </summary>
             <remarks>
             Some methods of this file is copied by the <see cref="N:Emgu.CV"/>'s
-            <a href="https://github.com/emgucv/emgucv/blob/6ee487ad2709d1258cc014103deab2719b026303/Emgu.CV.NativeImage/BitmapExtension.cs">site</a>.
+            <a href="https://github.com/emgucv/emgucv/blob/6ee487ad2709d1258cc014103deab2719b026303/Emgu.CV.NativeImage/BitmapExtension.cs">
+            site
+            </a>.
             </remarks>
             <seealso cref="T:System.Drawing.Bitmap"/>
         </member>
@@ -4064,8 +4066,9 @@
         </member>
         <member name="M:Sudoku.Drawing.Extensions.BitmapEx.ToImage``2(System.Drawing.Bitmap)">
             <summary>
-            Create an Image &lt; TColor, TDepth &gt; from Bitmap
+            Create an <c>Image&lt;TColor, TDepth&gt;</c> from <see cref="T:System.Drawing.Bitmap"/>.
             </summary>
+            <seealso cref="T:System.Drawing.Bitmap"/>
         </member>
         <member name="M:Sudoku.Drawing.Extensions.BitmapEx.ColorPaletteToLookupTable(System.Drawing.Imaging.ColorPalette,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@)">
             <summary>

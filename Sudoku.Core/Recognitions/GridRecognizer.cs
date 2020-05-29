@@ -236,8 +236,7 @@ namespace Sudoku.Recognitions
 			{
 				for (int j = 0; j < 4; j++)
 				{
-					if (sides[i].Length / sides[j].Length < ratio
-						|| sides[i].Length / sides[j].Length > 1 + ratio)
+					if (sides[i].Length / sides[j].Length < ratio || sides[i].Length / sides[j].Length > 1 + ratio)
 					{
 						return false;
 					}
