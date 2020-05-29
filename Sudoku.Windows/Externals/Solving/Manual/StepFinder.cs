@@ -106,6 +106,7 @@ namespace Sudoku.Solving.Manual
 				new JuniorExocetTechniqueSearcher(_settings.CheckAdvancedInExocet),
 				new SeniorExocetTechniqueSearcher(_settings.CheckAdvancedInExocet),
 				new SkLoopTechniqueSearcher(),
+				new AlsNetTechniqueSearcher(),
 			};
 
 			TechniqueSearcher.InitializeMaps(grid);

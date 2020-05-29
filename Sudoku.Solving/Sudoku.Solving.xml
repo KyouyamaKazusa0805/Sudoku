@@ -1887,6 +1887,68 @@
         <member name="M:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueInfo">
+            <summary>
+            Provides a usage of <b>almost locked sets net</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap)">
+            <summary>
+            Initializes an instance with the specified cells and the relations.
+            </summary>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
+            <param name="cells">The cells.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueInfo.Cells">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueSearcher">
+            <summary>
+            Encapsulates a <b>multi-sector locked sets</b> (MSLS) technique. This searcher is
+            the real technique, different with the abstract class <see cref="T:Sudoku.Solving.Manual.Alses.Mslses.MslsTechniqueSearcher"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.Alses.Mslses.MslsTechniqueSearcher"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueSearcher.Priority">
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueSearcher.Patterns">
+            <summary>
+            Indicates the list initialized with the static constructor.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueSearcher.#cctor">
+            <staticConstructor>
+		<summary>The static constructor of this class.</summary>
+	</staticConstructor><staticConstructor aimTo="struct">
+		<summary>The static constructor of this struct.</summary>
+	</staticConstructor>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Mslses.MslsTechniqueInfo">
             <summary>
             Provides a usage of <b>multi-sector locked set</b> (MSLS) technique.
@@ -6844,6 +6906,11 @@
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.SkLoop">
             <summary>
             Indicates the SK-Loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Msls">
+            <summary>
+            Indicates the multi-sector locked sets.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.Pom">

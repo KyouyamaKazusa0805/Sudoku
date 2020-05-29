@@ -133,23 +133,34 @@ namespace Sudoku.Windows
 						"The specified searcher does not contain any displaying information.");
 				}
 
-				var attribute = attributes.First();
-				int priority = (int)(
-					type.GetProperty("Priority", BindingFlags.Public | BindingFlags.Static)!.GetValue(null)!);
-				var item = new ListBoxItem
-				{
-					Content = new PrimaryElementTuple<string, int, Type>(attribute.DisplayName, priority, type)
-				};
-
-				list.Add(item);
+				list.Add(
+					new ListBoxItem
+					{
+						Content =
+							new PrimaryElementTuple<string, int, Type>(
+								attributes.First().DisplayName,
+								(int)(
+									type.GetProperty(
+										"Priority",
+										BindingFlags.Public | BindingFlags.Static
+									)!.GetValue(null)!
+								),
+								type
+							)
+					});
 			}
 
-			list.Sort((a, b) =>
-			{
-				(_, int priority1, _) = (PrimaryElementTuple<string, int, Type>)a.Content;
-				(_, int priority2, _) = (PrimaryElementTuple<string, int, Type>)b.Content;
-				return priority1.CompareTo(priority2);
-			});
+			list.Sort(
+				(a, b) =>
+				{
+					return (
+						(PrimaryElementTuple<string, int, Type>)a.Content
+					).Value2.CompareTo(
+						(
+							(PrimaryElementTuple<string, int, Type>)b.Content
+						).Value2
+					);
+				});
 			_listBoxPriority.ItemsSource = list;
 			_listBoxPriority.SelectedIndex = 0;
 			(_, int selectionPriority, _) = (PrimaryElementTuple<string, int, Type>)(

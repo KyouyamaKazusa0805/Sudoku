@@ -13,15 +13,9 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	public sealed partial class AlsNetTechniqueSearcher : MslsTechniqueSearcher
 	{
 		/// <summary>
-		/// Indicates the list initialized with the static constructor.
-		/// </summary>
-		private static readonly GridMap[] Patterns = new GridMap[78975];
-
-
-		/// <summary>
 		/// Indicates the priority of this technique.
 		/// </summary>
-		public static int Priority { get; set; } = 50;
+		public static int Priority { get; set; } = 96;
 
 		/// <summary>
 		/// Indicates whether the technique is enabled.
@@ -32,7 +26,10 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
+			foreach (var pattern in Patterns)
+			{
 
+			}
 		}
 	}
 }

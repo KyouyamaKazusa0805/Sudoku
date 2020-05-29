@@ -95,6 +95,7 @@ namespace Sudoku.Solving.Manual
 					new JuniorExocetTechniqueSearcher(CheckAdvancedInExocet),
 					new SeniorExocetTechniqueSearcher(CheckAdvancedInExocet),
 					new SkLoopTechniqueSearcher(),
+					new AlsNetTechniqueSearcher(),
 				},
 				new[] { new BruteForceTechniqueSearcher(solution) }
 			};

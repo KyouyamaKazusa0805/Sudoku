@@ -109,6 +109,7 @@ namespace Sudoku.Solving.Manual
 				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 				new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
 				new CccTechniqueSearcher(),
+				new AlsNetTechniqueSearcher(),
 				new BruteForceTechniqueSearcher(solution),
 			};
 
