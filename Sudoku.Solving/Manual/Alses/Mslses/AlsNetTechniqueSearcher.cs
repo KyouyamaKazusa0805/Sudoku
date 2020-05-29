@@ -79,7 +79,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 								elimMap |= (CandMaps[digit] & RegionMaps[region] & map).PeerIntersection;
 							}
 						}
-						else if (cMask.CountSet() == temp)
+						if (cMask.CountSet() == temp)
 						{
 							check++;
 							foreach (int i in cMask.GetAllSets())
@@ -89,7 +89,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 								elimMap |= (CandMaps[digit] & RegionMaps[region] & map).PeerIntersection;
 							}
 						}
-						else if (bMask.CountSet() == temp)
+						if (bMask.CountSet() == temp)
 						{
 							check++;
 							foreach (int i in bMask.GetAllSets())
