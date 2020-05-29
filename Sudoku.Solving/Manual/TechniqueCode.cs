@@ -1205,7 +1205,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Indicates the multi-sector locked sets.
 		/// </summary>
-		[TechniqueDisplay("Almost Locked Sets Net", Category = "Multi-sector Locked Sets")]
+		[TechniqueDisplay("Multi-sector Locked Sets", Category = "Multi-sector Locked Sets")]
 		Msls,
 
 		/// <summary>
