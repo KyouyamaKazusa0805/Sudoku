@@ -132,11 +132,11 @@ namespace Sudoku.Solving.Manual.Singles
 							conclusions: new[] { new Conclusion(Assignment, cell, digit) },
 							views: new[]
 							{
-							new View(
-								cellOffsets: null,
-								candidateOffsets: new[] { (0, cell * 9 + digit) },
-								regionOffsets: null,
-								links: null)
+								new View(
+									cellOffsets: null,
+									candidateOffsets: new[] { (0, cell * 9 + digit) },
+									regionOffsets: null,
+									links: null)
 							},
 							cellOffset: cell,
 							digit));
