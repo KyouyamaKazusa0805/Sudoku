@@ -568,14 +568,14 @@ namespace Sudoku.Windows
 #endif
 
 			_menuItemOptionsShowCandidates.IsChecked = Settings.ShowCandidates;
-			_menuItemAnalyzeSeMode.IsChecked = Settings.AnalyzeDifficultyStrictly;
-			_menuItemAnalyzeFastSearch.IsChecked = Settings.FastSearch;
-			_menuItemAnalyzeCheckGurthSymmetricalPlacement.IsChecked = Settings.CheckGurthSymmetricalPlacement;
+			_menuItemAnalyzeSeMode.IsChecked = Settings.MainManualSolver.AnalyzeDifficultyStrictly;
+			_menuItemAnalyzeFastSearch.IsChecked = Settings.MainManualSolver.FastSearch;
+			_menuItemAnalyzeCheckGurthSymmetricalPlacement.IsChecked = Settings.MainManualSolver.CheckGurthSymmetricalPlacement;
 			_menuItemAnalyzeShowFullHouses.IsChecked = Settings.MainManualSolver.EnableFullHouse;
 			_menuItemAnalyzeShowLastDigits.IsChecked = Settings.MainManualSolver.EnableLastDigit;
-			_menuItemAnalyzeOptimizeApplyingOrder.IsChecked = Settings.OptimizedApplyingOrder;
-			_menuItemAnalyzeUseCalculationPriority.IsChecked = Settings.UseCalculationPriority;
-			_menuItemAnalyzeCheckConclusionValidityAfterSearched.IsChecked = Settings.CheckConclusionValidityAfterSearched;
+			_menuItemAnalyzeOptimizeApplyingOrder.IsChecked = Settings.MainManualSolver.OptimizedApplyingOrder;
+			_menuItemAnalyzeUseCalculationPriority.IsChecked = Settings.MainManualSolver.UseCalculationPriority;
+			_menuItemAnalyzeCheckConclusionValidityAfterSearched.IsChecked = Settings.MainManualSolver.CheckConclusionValidityAfterSearched;
 
 			_buttonCellColor1.Background = new SolidColorBrush(Settings.Color1.ToWColor());
 			_buttonCellColor2.Background = new SolidColorBrush(Settings.Color2.ToWColor());

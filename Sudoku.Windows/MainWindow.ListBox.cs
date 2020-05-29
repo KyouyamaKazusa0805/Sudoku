@@ -73,7 +73,7 @@ namespace Sudoku.Windows
 				var (_, info, isEnabled) = triplet;
 				if (isEnabled)
 				{
-					if (!Settings.CheckConclusionValidityAfterSearched
+					if (!Settings.MainManualSolver.CheckConclusionValidityAfterSearched
 						|| CheckConclusionsValidity(new BitwiseSolver().Solve(_puzzle).Solution!, info.Conclusions))
 					{
 						info.ApplyTo(_puzzle);

@@ -53,7 +53,7 @@ namespace Sudoku.Windows
 		private void InitializeSettingControls()
 		{
 			_checkBoxAskWhileQuitting.IsChecked = Settings.AskWhileQuitting;
-			_checkBoxEnableGcForcedly.IsChecked = Settings.EnableGarbageCollectionForcedly;
+			_checkBoxEnableGcForcedly.IsChecked = Settings.MainManualSolver.EnableGarbageCollectionForcedly;
 			_checkBoxSolveFromCurrent.IsChecked = Settings.SolveFromCurrent;
 			_checkBoxTextFormatPlaceholdersAreZero.IsChecked = Settings.TextFormatPlaceholdersAreZero;
 			_checkBoxPmGridCompatible.IsChecked = Settings.PmGridCompatible;
@@ -317,8 +317,7 @@ namespace Sudoku.Windows
 			var dialog = new FontDialog();
 			if (dialog.ShowDialog() is true)
 			{
-				_labelGivenFontName.FontFamily = new FontFamily(
-					Settings.GivenFontName = dialog.SelectedFont.Name);
+				_labelGivenFontName.FontFamily = new FontFamily(Settings.GivenFontName = dialog.SelectedFont.Name);
 				_labelGivenFontName.Content = dialog.SelectedFont.Name;
 			}
 		}
@@ -339,8 +338,7 @@ namespace Sudoku.Windows
 			var dialog = new FontDialog();
 			if (dialog.ShowDialog() is true)
 			{
-				_labelCandidateFontName.FontFamily = new FontFamily(
-					Settings.CandidateFontName = dialog.SelectedFont.Name);
+				_labelCandidateFontName.FontFamily = new FontFamily(Settings.CandidateFontName = dialog.SelectedFont.Name);
 				_labelCandidateFontName.Content = dialog.SelectedFont.Name;
 			}
 		}
@@ -425,50 +423,35 @@ namespace Sudoku.Windows
 			}
 		}
 
-		private void ButtonColor1_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, Settings, 1);
+		private void ButtonColor1_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 1);
 
-		private void ButtonColor2_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, Settings, 2);
+		private void ButtonColor2_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 2);
 
-		private void ButtonColor3_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, Settings, 3);
+		private void ButtonColor3_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 3);
 
-		private void ButtonColor4_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, Settings, 4);
+		private void ButtonColor4_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 4);
 
-		private void ButtonColor5_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, Settings, 5);
+		private void ButtonColor5_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 5);
 
-		private void ButtonColor6_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, Settings, 6);
+		private void ButtonColor6_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 6);
 
-		private void ButtonColor7_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, Settings, 7);
+		private void ButtonColor7_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 7);
 
-		private void ButtonColor8_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, Settings, 8);
+		private void ButtonColor8_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 8);
 
-		private void ButtonColor9_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, Settings, 9);
+		private void ButtonColor9_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 9);
 
-		private void ButtonColor10_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, Settings, 10);
+		private void ButtonColor10_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 10);
 
-		private void ButtonColor11_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, Settings, 11);
+		private void ButtonColor11_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 11);
 
-		private void ButtonColor12_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, Settings, 12);
+		private void ButtonColor12_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 12);
 
-		private void ButtonColor13_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, Settings, 13);
+		private void ButtonColor13_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 13);
 
-		private void ButtonColor14_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, Settings, 14);
+		private void ButtonColor14_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 14);
 
-		private void ButtonColor15_Click(object sender, RoutedEventArgs e) =>
-			HandleColor(sender, Settings, 15);
+		private void ButtonColor15_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 15);
 
 		private void TextBoxMaxLength_TextChanged(object sender, TextChangedEventArgs e)
 		{
@@ -576,7 +559,7 @@ namespace Sudoku.Windows
 		}
 
 		private void CheckBoxEnableGcForcedly_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxEnableGcForcedly.IsEnabled = Settings.EnableGarbageCollectionForcedly = _manualSolver.EnableGarbageCollectionForcedly ^= true;
+			_checkBoxEnableGcForcedly.IsEnabled = _manualSolver.EnableGarbageCollectionForcedly ^= true;
 
 		private void ListBoxPriority_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
