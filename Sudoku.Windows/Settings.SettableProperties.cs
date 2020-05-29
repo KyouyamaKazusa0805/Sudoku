@@ -99,94 +99,6 @@ namespace Sudoku.Windows
 
 		/// <summary>
 		/// <para>
-		/// Indicates whether two ALSes can be overlapped with each other.
-		/// </para>
-		/// <para>The value is <see langword="true"/> in default case.</para>
-		/// </summary>
-		public bool AllowOverlappingAlses { get; set; } = true;
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether all ALSes shows highlight regions
-		/// instead of cells.
-		/// </para>
-		/// <para>The value is <see langword="true"/> in default case.</para>
-		/// </summary>
-		public bool AlsHighlightRegionInsteadOfCell { get; set; } = true;
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether the solver should check the technique Almost
-		/// Locked Quadruple (ALQ).
-		/// </para>
-		/// <para>
-		/// The value is <see langword="true"/> in debug environment,
-		/// and <see langword="false"/> in release environment.
-		/// </para>
-		/// </summary>
-#if DEBUG
-		public bool CheckAlmostLockedQuadruple { get; set; } = true;
-#else
-		public bool CheckAlmostLockedQuadruple { get; set; } = false;
-#endif
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether the solver will check the chain finally forms a
-		/// continuous nice loop. If so, the structure may eliminate more candidates
-		/// than those of normal AICs.
-		/// </para>
-		/// <para>The value is <see langword="true"/> in default case.</para>
-		/// </summary>
-		public bool CheckContinuousNiceLoop { get; set; } = true;
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether the solver will check head collision in searching for
-		/// AICs.
-		/// </para>
-		/// <para>
-		/// If the value is <see langword="true"/>, the searcher will search for
-		/// AICs whose head nodes are same as tail nodes. In this case, the AIC
-		/// will raise a conclusion that the head node is absolutely true.
-		/// </para>
-		/// <para>The value is <see langword="true"/> in default case.</para>
-		/// </summary>
-		public bool CheckHeadCollision { get; set; } = true;
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether the solver should check
-		/// uncompleted uniqueness patterns.
-		/// </para>
-		/// <para>
-		/// The value is <see langword="true"/> in debug environment,
-		/// and <see langword="false"/> in release environment.
-		/// </para>
-		/// </summary>
-#if DEBUG
-		public bool CheckUncompletedUniquenessPatterns { get; set; } = true;
-#else
-		public bool CheckUncompletedUniquenessPatterns { get; set; } = false;
-#endif
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether the solver will record the step
-		/// whose name or kind is full house.
-		/// </para>
-		/// <para>The value is <see langword="true"/> in default case.</para>
-		/// </summary>
-		/// <remarks>
-		/// <b>Full house</b>s are the techniques that used in a single
-		/// region. When the specified region has only one empty cell,
-		/// the full house will be found at this empty cell (the last
-		/// value in this region).
-		/// </remarks>
-		public bool EnableFullHouse { get; set; } = true;
-
-		/// <summary>
-		/// <para>
 		/// Indicates whether the solver enables the garbage collection
 		/// after finished searching a technique whose searcher is
 		/// high space-complexity.
@@ -194,33 +106,6 @@ namespace Sudoku.Windows
 		/// <para>This value is <see langword="true"/> in default case.</para>
 		/// </summary>
 		public bool EnableGarbageCollectionForcedly { get; set; } = true;
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether the solver will record the step
-		/// whose name or kind is last digit.
-		/// </para>
-		/// <para>The value is <see langword="true"/> in default case.</para>
-		/// </summary>
-		/// <remarks>
-		/// <b>Last digit</b>s are the techniques that used in a single
-		/// digit. When the whole grid has 8 same digits, the last
-		/// one will be always found and set in the last position,
-		/// which is last digit.
-		/// </remarks>
-		public bool EnableLastDigit { get; set; } = true;
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether the searcher will save the shortest path in AICs only.
-		/// </para>
-		/// <para>
-		/// The value is <see langword="false"/> in default case. If the value
-		/// is <see langword="true"/>, the searcher will check all chains had stored
-		/// in the list and get the shortest one, but the speed is slow.
-		/// </para>
-		/// </summary>
-		public bool OnlySaveShortestPathAic { get; set; } = false;
 
 		/// <summary>
 		/// <para>Indicates whether the solver will optimizes the applying order.</para>
@@ -241,21 +126,6 @@ namespace Sudoku.Windows
 
 		/// <summary>
 		/// <para>
-		/// Indicates whether the solver will record only one AIC
-		/// when searched AICs that contain same head node and tail node,
-		/// but different path.
-		/// </para>
-		/// <para>
-		/// The value is <see langword="true"/> in default case. If the value
-		/// is <see langword="true"/>, the solver will save only one chain with
-		/// the condition above, but the length of the chain may not be the shortest
-		/// one.
-		/// </para>
-		/// </summary>
-		public bool ReductDifferentPathAic { get; set; } = true;
-
-		/// <summary>
-		/// <para>
 		/// Indicates whether the solver should order all technique searchers
 		/// by its priority.
 		/// </para>
@@ -269,23 +139,6 @@ namespace Sudoku.Windows
 		/// </summary>
 		/// <seealso cref="AnalyzeDifficultyStrictly"/>
 		public bool UseCalculationPriority { get; set; } = false;
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether the solver should use extended BUG checker
-		/// to searcher for all true candidates no matter how difficult
-		/// the true candidates looking for.
-		/// </para>
-		/// <para>
-		/// The value is <see langword="true"/> in debug environment,
-		/// and <see langword="false"/> in release environment.
-		/// </para>
-		/// </summary>
-#if DEBUG
-		public bool UseExtendedBugSearcher { get; set; } = true;
-#else
-		public bool UseExtendedBugSearcher { get; set; } = false;
-#endif
 
 		/// <summary>
 		/// <para>
@@ -328,51 +181,6 @@ namespace Sudoku.Windows
 
 		/// <summary>
 		/// <para>
-		/// Indicates whether the solver should search for extended
-		/// unique rectangles.
-		/// </para>
-		/// <para>
-		/// The value is <see langword="true"/> in debug environment,
-		/// and <see langword="false"/> in release environment.
-		/// </para>
-		/// </summary>
-#if DEBUG
-		public bool SearchExtendedUniqueRectangles { get; set; } = true;
-#else
-		public bool SearchExtendedUniqueRectangles { get; set; } = false;
-#endif
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether the solver should check advanced eliminations
-		/// during finding exocets.
-		/// </para>
-		/// <para>The value is <see langword="true"/> in default case.</para>
-		/// </summary>
-		public bool CheckAdvancedInExocet { get; set; } = true;
-
-		/// <summary>
-		/// <para>Indicates whether the solver should check ALS cycles.</para>
-		/// <para>The value is <see langword="true"/> in default case.</para>
-		/// </summary>
-		public bool AllowAlsCycles { get; set; } = true;
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether the solver will check templates before searching
-		/// Hobiwan's fish.
-		/// </para>
-		/// <para>
-		/// The value is <see langword="true"/> in default case. If the value
-		/// is <see langword="true"/>, the solver will check templates first,
-		/// and get all possible eliminations for each digit. If the digit does
-		/// not contain any elimination, the digit will not exist any fish.
-		/// </para>
-		/// </summary>
-		public bool HobiwanFishCheckTemplates { get; set; } = true;
-
-		/// <summary>
-		/// <para>
 		/// Indicates the grid line width of the sudoku grid to render.
 		/// </para>
 		/// <para>The value is <c>1.5F</c> in default case.</para>
@@ -392,42 +200,6 @@ namespace Sudoku.Windows
 		/// <para>The default value is <c>800F</c>.</para>
 		/// </summary>
 		public float SavingPictureSize { get; set; } = 800F;
-
-		/// <summary>
-		/// <para>
-		/// Indicates the maximum length of a chain to search.
-		/// </para>
-		/// <para>The value is <c>10</c> in default case.</para>
-		/// </summary>
-		public int AicMaximumLength { get; set; } = 10;
-
-		/// <summary>
-		/// <para>
-		/// Indicates the number of nodes to be searched for in bowman bingos.
-		/// </para>
-		/// <para>
-		/// The value is <c>32</c> in default case. You can let this value
-		/// be higher because this value take a little influence on the solver.
-		/// However, each unique solution has more than 17 hints (given digits),
-		/// which means you cannot set this value more than <c>64</c> (81 - 17 = 64).
-		/// </para>
-		/// </summary>
-		public int BowmanBingoMaximumLength { get; set; } = 32;
-
-		/// <summary>
-		/// <para>
-		/// Indicates all regular wings with the size less than
-		/// or equals to this specified value. This value should
-		/// be between 3 and 5.
-		/// </para>
-		/// <para>The value is <c>5</c> in default case.</para>
-		/// </summary>
-		/// <remarks>
-		/// In fact this value can be 9 at most (i.e. <c>value &gt;&#61; 3
-		/// &amp;&amp; value &lt;&#61; 9</c>) theoretically, however the searching
-		/// is too low so I do not allow them.
-		/// </remarks>
-		public int CheckRegularWingSize { get; set; } = 5;
 
 		/// <summary>
 		/// <para>
@@ -462,39 +234,6 @@ namespace Sudoku.Windows
 		/// </para>
 		/// </summary>
 		public int CurrentPuzzleNumber { get; set; } = -1;
-
-		/// <summary>
-		/// <para>
-		/// Indicates what size of the Hobiwan's fish will be searched for.
-		/// </para>
-		/// <para>
-		/// The value is <c>4</c> in default case. The maximum value supporting
-		/// is <c>7</c>.
-		/// </para>
-		/// </summary>
-		public int HobiwanFishMaximumSize { get; set; } = 4;
-
-		/// <summary>
-		/// <para>
-		/// Indicates how many exo-fins in Hobiwan's fish will be searched for.
-		/// </para>
-		/// <para>The value is <c>3</c> in default case.</para>
-		/// </summary>
-		public int HobiwanFishMaximumExofinsCount { get; set; } = 3;
-
-		/// <summary>
-		/// <para>
-		/// Indicates how many endo-fins in Hobiwan's fish will be searched for.
-		/// </para>
-		/// <para>The value is <c>1</c> in default case.</para>
-		/// </summary>
-		public int HobiwanFishMaximumEndofinsCount { get; set; } = 1;
-
-		/// <summary>
-		/// <para>Indicates the max petals of death blossom.</para>
-		/// <para>The default is <c>5</c>.</para>
-		/// </summary>
-		public int MaxPetalsOfDeathBlossom { get; set; } = 5;
 
 		/// <summary>
 		/// <para>Indicates the scale of values.</para>

@@ -722,10 +722,10 @@ namespace Sudoku.Windows
 			_manualSolver.CheckGurthSymmetricalPlacement = _menuItemAnalyzeCheckGurthSymmetricalPlacement.IsChecked = Settings.CheckGurthSymmetricalPlacement ^= true;
 
 		private void MenuItemShowFullHouses_Click(object sender, RoutedEventArgs e) =>
-			_manualSolver.EnableFullHouse = _menuItemAnalyzeShowFullHouses.IsChecked = Settings.EnableFullHouse ^= true;
+			_manualSolver.EnableFullHouse = _menuItemAnalyzeShowFullHouses.IsChecked ^= true;
 
 		private void MenuItemShowLastDigits_Click(object sender, RoutedEventArgs e) =>
-			_manualSolver.EnableLastDigit = _menuItemAnalyzeShowLastDigits.IsChecked = Settings.EnableLastDigit ^= true;
+			_manualSolver.EnableLastDigit = _menuItemAnalyzeShowLastDigits.IsChecked ^= true;
 
 		private void MenuItemOptimizeApplyingOrder_Click(object sender, RoutedEventArgs e) =>
 			_manualSolver.OptimizedApplyingOrder = _menuItemAnalyzeOptimizeApplyingOrder.IsChecked = Settings.OptimizedApplyingOrder ^= true;

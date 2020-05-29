@@ -571,8 +571,8 @@ namespace Sudoku.Windows
 			_menuItemAnalyzeSeMode.IsChecked = Settings.AnalyzeDifficultyStrictly;
 			_menuItemAnalyzeFastSearch.IsChecked = Settings.FastSearch;
 			_menuItemAnalyzeCheckGurthSymmetricalPlacement.IsChecked = Settings.CheckGurthSymmetricalPlacement;
-			_menuItemAnalyzeShowFullHouses.IsChecked = Settings.EnableFullHouse;
-			_menuItemAnalyzeShowLastDigits.IsChecked = Settings.EnableLastDigit;
+			_menuItemAnalyzeShowFullHouses.IsChecked = Settings.MainManualSolver.EnableFullHouse;
+			_menuItemAnalyzeShowLastDigits.IsChecked = Settings.MainManualSolver.EnableLastDigit;
 			_menuItemAnalyzeOptimizeApplyingOrder.IsChecked = Settings.OptimizedApplyingOrder;
 			_menuItemAnalyzeUseCalculationPriority.IsChecked = Settings.UseCalculationPriority;
 			_menuItemAnalyzeCheckConclusionValidityAfterSearched.IsChecked = Settings.CheckConclusionValidityAfterSearched;

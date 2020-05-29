@@ -57,26 +57,26 @@ namespace Sudoku.Windows
 			_checkBoxSolveFromCurrent.IsChecked = Settings.SolveFromCurrent;
 			_checkBoxTextFormatPlaceholdersAreZero.IsChecked = Settings.TextFormatPlaceholdersAreZero;
 			_checkBoxPmGridCompatible.IsChecked = Settings.PmGridCompatible;
-			_textBoxMaxLength.Text = Settings.AicMaximumLength.ToString();
-			_checkBoxCheckLoop.IsChecked = Settings.CheckContinuousNiceLoop;
-			_checkBoxCheckHeadCollision.IsChecked = Settings.CheckHeadCollision;
-			_checkBoxOnlyRecordShortestPathAic.IsChecked = Settings.OnlySaveShortestPathAic;
-			_checkBoxReductDifferentPathAic.IsChecked = Settings.ReductDifferentPathAic;
-			_checkBoxAllowOverlappingAlses.IsChecked = Settings.AllowOverlappingAlses;
-			_checkBoxHighlightRegions.IsChecked = Settings.AlsHighlightRegionInsteadOfCell;
-			_checkBoxAllowAlsCycles.IsChecked = Settings.AllowAlsCycles;
-			_textBoxBowmanBingoMaxLength.Text = Settings.BowmanBingoMaximumLength.ToString();
-			_checkBoxAllowAlq.IsChecked = Settings.CheckAlmostLockedQuadruple;
-			_checkBoxCheckUncompletedUr.IsChecked = Settings.CheckUncompletedUniquenessPatterns;
-			_textBoxMaxRegularWingSize.Text = Settings.CheckRegularWingSize.ToString();
-			_checkBoxUseExtendedBugSearcher.IsChecked = Settings.UseExtendedBugSearcher;
-			_checkBoxSearchExtendedUniqueRectangle.IsChecked = Settings.SearchExtendedUniqueRectangles;
-			_textBoxMaxPetalsOfDeathBlossom.Text = Settings.MaxPetalsOfDeathBlossom.ToString();
-			_checkBoxCheckAdvancedInExocet.IsChecked = Settings.CheckAdvancedInExocet;
-			_textBoxMaximumSizeHobiwanFish.Text = Settings.HobiwanFishMaximumSize.ToString();
-			_textBoxMaximumExofinsHobiwanFish.Text = Settings.HobiwanFishMaximumExofinsCount.ToString();
-			_textBoxMaximumEndofinsHobiwanFish.Text = Settings.HobiwanFishMaximumEndofinsCount.ToString();
-			_checkBoxHobiwanFishCheckTemplates.IsChecked = Settings.HobiwanFishCheckTemplates;
+			_textBoxMaxLength.Text = Settings.MainManualSolver.AicMaximumLength.ToString();
+			_checkBoxCheckLoop.IsChecked = Settings.MainManualSolver.CheckContinuousNiceLoop;
+			_checkBoxCheckHeadCollision.IsChecked = Settings.MainManualSolver.CheckHeadCollision;
+			_checkBoxOnlyRecordShortestPathAic.IsChecked = Settings.MainManualSolver.OnlySaveShortestPathAic;
+			_checkBoxReductDifferentPathAic.IsChecked = Settings.MainManualSolver.ReductDifferentPathAic;
+			_checkBoxAllowOverlappingAlses.IsChecked = Settings.MainManualSolver.AllowOverlappingAlses;
+			_checkBoxHighlightRegions.IsChecked = Settings.MainManualSolver.AlsHighlightRegionInsteadOfCell;
+			_checkBoxAllowAlsCycles.IsChecked = Settings.MainManualSolver.AllowAlsCycles;
+			_textBoxBowmanBingoMaxLength.Text = Settings.MainManualSolver.BowmanBingoMaximumLength.ToString();
+			_checkBoxAllowAlq.IsChecked = Settings.MainManualSolver.CheckAlmostLockedQuadruple;
+			_checkBoxCheckUncompletedUr.IsChecked = Settings.MainManualSolver.CheckUncompletedUniquenessPatterns;
+			_textBoxMaxRegularWingSize.Text = Settings.MainManualSolver.CheckRegularWingSize.ToString();
+			_checkBoxUseExtendedBugSearcher.IsChecked = Settings.MainManualSolver.UseExtendedBugSearcher;
+			_checkBoxSearchExtendedUniqueRectangle.IsChecked = Settings.MainManualSolver.SearchExtendedUniqueRectangles;
+			_textBoxMaxPetalsOfDeathBlossom.Text = Settings.MainManualSolver.MaxPetalsOfDeathBlossom.ToString();
+			_checkBoxCheckAdvancedInExocet.IsChecked = Settings.MainManualSolver.CheckAdvancedInExocet;
+			_textBoxMaximumSizeHobiwanFish.Text = Settings.MainManualSolver.HobiwanFishMaximumSize.ToString();
+			_textBoxMaximumExofinsHobiwanFish.Text = Settings.MainManualSolver.HobiwanFishMaximumExofinsCount.ToString();
+			_textBoxMaximumEndofinsHobiwanFish.Text = Settings.MainManualSolver.HobiwanFishMaximumEndofinsCount.ToString();
+			_checkBoxHobiwanFishCheckTemplates.IsChecked = Settings.MainManualSolver.HobiwanFishCheckTemplates;
 			_textBoxGridLineWidth.Text = Settings.GridLineWidth.ToString();
 			_textBoxBlockLineWidth.Text = Settings.BlockLineWidth.ToString();
 			_textBoxValueScale.Text = Settings.ValueScale.ToString();
@@ -212,7 +212,7 @@ namespace Sudoku.Windows
 			_checkBoxPmGridCompatible.IsChecked = Settings.PmGridCompatible ^= true;
 
 		private void CheckBoxSearchExtendedUniqueRectangle_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxSearchExtendedUniqueRectangle.IsChecked = Settings.SearchExtendedUniqueRectangles = _manualSolver.SearchExtendedUniqueRectangles ^= true;
+			_checkBoxSearchExtendedUniqueRectangle.IsChecked = _manualSolver.SearchExtendedUniqueRectangles ^= true;
 
 		private void TextBoxMaxPetalsOfDeathBlossom_TextChanged(object sender, TextChangedEventArgs e)
 		{
@@ -220,7 +220,7 @@ namespace Sudoku.Windows
 			{
 				if (value >= 2 && value <= 9)
 				{
-					Settings.MaxPetalsOfDeathBlossom = _manualSolver.MaxPetalsOfDeathBlossom = value;
+					_manualSolver.MaxPetalsOfDeathBlossom = value;
 				}
 				else
 				{
@@ -230,7 +230,7 @@ namespace Sudoku.Windows
 		}
 
 		private void CheckBoxCheckAdvancedInExocet_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxCheckAdvancedInExocet.IsChecked = Settings.CheckAdvancedInExocet = _manualSolver.CheckAdvancedInExocet ^= true;
+			_checkBoxCheckAdvancedInExocet.IsChecked = _manualSolver.CheckAdvancedInExocet ^= true;
 
 		private void TextBoxMaximumSizeHobiwanFish_TextChanged(object sender, TextChangedEventArgs e)
 		{
@@ -238,7 +238,7 @@ namespace Sudoku.Windows
 			{
 				if (value >= 2 && value <= 7)
 				{
-					Settings.HobiwanFishMaximumSize = _manualSolver.HobiwanFishMaximumSize = value;
+					_manualSolver.HobiwanFishMaximumSize = value;
 				}
 				else
 				{
@@ -253,7 +253,7 @@ namespace Sudoku.Windows
 			{
 				if (value >= 0 && value <= 10)
 				{
-					Settings.HobiwanFishMaximumExofinsCount = _manualSolver.HobiwanFishMaximumExofinsCount = value;
+					_manualSolver.HobiwanFishMaximumExofinsCount = value;
 				}
 				else
 				{
@@ -268,7 +268,7 @@ namespace Sudoku.Windows
 			{
 				if (value >= 0 && value <= 10)
 				{
-					Settings.HobiwanFishMaximumEndofinsCount = _manualSolver.HobiwanFishMaximumEndofinsCount = value;
+					_manualSolver.HobiwanFishMaximumEndofinsCount = value;
 				}
 				else
 				{
@@ -278,7 +278,7 @@ namespace Sudoku.Windows
 		}
 
 		private void CheckBoxHobiwanFishCheckTemplates_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxHobiwanFishCheckTemplates.IsChecked = Settings.HobiwanFishCheckTemplates = _manualSolver.HobiwanFishCheckTemplates ^= true;
+			_checkBoxHobiwanFishCheckTemplates.IsChecked = _manualSolver.HobiwanFishCheckTemplates ^= true;
 
 		private void TextBoxGridLineWidth_TextChanged(object sender, TextChangedEventArgs e)
 		{
@@ -476,7 +476,7 @@ namespace Sudoku.Windows
 			{
 				if (value >= 3 && value <= 20)
 				{
-					_manualSolver.AicMaximumLength = Settings.AicMaximumLength = value;
+					_manualSolver.AicMaximumLength = value;
 				}
 				else
 				{
@@ -486,13 +486,13 @@ namespace Sudoku.Windows
 		}
 
 		private void CheckBoxAllowOverlappingAlses_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxAllowOverlappingAlses.IsChecked = _manualSolver.AllowOverlappingAlses = Settings.AllowOverlappingAlses ^= true;
+			_checkBoxAllowOverlappingAlses.IsChecked = _manualSolver.AllowOverlappingAlses ^= true;
 
 		private void CheckBoxHighlightRegions_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxHighlightRegions.IsChecked = Settings.AlsHighlightRegionInsteadOfCell = _manualSolver.AlsHighlightRegionInsteadOfCell ^= true;
+			_checkBoxHighlightRegions.IsChecked = _manualSolver.AlsHighlightRegionInsteadOfCell ^= true;
 
 		private void CheckBoxAllowAlsCycles_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxAllowAlsCycles.IsChecked = _manualSolver.AllowAlsCycles = Settings.AllowAlsCycles ^= true;
+			_checkBoxAllowAlsCycles.IsChecked = _manualSolver.AllowAlsCycles ^= true;
 
 		private void TextBoxBowmanBingoMaxLength_TextChanged(object sender, TextChangedEventArgs e)
 		{
@@ -504,7 +504,7 @@ namespace Sudoku.Windows
 
 			if (value >= 1 && value <= 64)
 			{
-				_manualSolver.BowmanBingoMaximumLength = Settings.BowmanBingoMaximumLength = value;
+				_manualSolver.BowmanBingoMaximumLength = value;
 			}
 			else
 			{
@@ -513,16 +513,16 @@ namespace Sudoku.Windows
 		}
 
 		private void CheckBoxAllowAlq_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxAllowAlq.IsChecked = _manualSolver.CheckAlmostLockedQuadruple = Settings.CheckAlmostLockedQuadruple ^= true;
+			_checkBoxAllowAlq.IsChecked = _manualSolver.CheckAlmostLockedQuadruple ^= true;
 
 		private void CheckBoxCheckLoop_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxCheckLoop.IsChecked = Settings.CheckContinuousNiceLoop = _manualSolver.CheckContinuousNiceLoop ^= true;
+			_checkBoxCheckLoop.IsChecked = _manualSolver.CheckContinuousNiceLoop ^= true;
 
 		private void CheckBoxCheckHeadCollision_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxCheckHeadCollision.IsChecked = Settings.CheckHeadCollision = _manualSolver.CheckHeadCollision ^= true;
+			_checkBoxCheckHeadCollision.IsChecked = _manualSolver.CheckHeadCollision ^= true;
 
 		private void CheckBoxCheckUncompletedUr_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxCheckUncompletedUr.IsChecked = Settings.CheckUncompletedUniquenessPatterns = _manualSolver.CheckUncompletedUniquenessPatterns ^= true;
+			_checkBoxCheckUncompletedUr.IsChecked = _manualSolver.CheckUncompletedUniquenessPatterns ^= true;
 
 		private void TextBoxMaxRegularWingSize_TextChanged(object sender, TextChangedEventArgs e)
 		{
@@ -530,7 +530,7 @@ namespace Sudoku.Windows
 			{
 				if (value >= 3 && value <= 5)
 				{
-					_manualSolver.CheckRegularWingSize = Settings.CheckRegularWingSize = value;
+					_manualSolver.CheckRegularWingSize = value;
 				}
 				else
 				{
@@ -540,13 +540,13 @@ namespace Sudoku.Windows
 		}
 
 		private void CheckBoxOnlyRecordShortestPathAic_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxOnlyRecordShortestPathAic.IsChecked = Settings.OnlySaveShortestPathAic = _manualSolver.OnlySaveShortestPathAic ^= true;
+			_checkBoxOnlyRecordShortestPathAic.IsChecked = _manualSolver.OnlySaveShortestPathAic ^= true;
 
 		private void CheckBoxReductDifferentPathAic_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxReductDifferentPathAic.IsChecked = Settings.ReductDifferentPathAic = _manualSolver.ReductDifferentPathAic ^= true;
+			_checkBoxReductDifferentPathAic.IsChecked = _manualSolver.ReductDifferentPathAic ^= true;
 
 		private void CheckBoxUseExtendedBugSearcher_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxUseExtendedBugSearcher.IsChecked = Settings.UseExtendedBugSearcher = _manualSolver.UseExtendedBugSearcher ^= true;
+			_checkBoxUseExtendedBugSearcher.IsChecked = _manualSolver.UseExtendedBugSearcher ^= true;
 
 		private void TextBoxBowmanBingoMaxLength_PreviewKeyDown(object sender, KeyEventArgs e)
 		{
