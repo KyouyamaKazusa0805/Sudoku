@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -9,7 +8,6 @@ using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Data.GridMap.InitializeOption;
 
 namespace Sudoku.Solving.Manual.Alses.Basic
 {
@@ -103,8 +101,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					var conclusions = new List<Conclusion>();
 					foreach (int elimDigit in z.GetAllSets())
 					{
-						var elimMap = new GridMap(CandMaps[elimDigit] & map, ProcessPeersWithoutItself)
-							& CandMaps[elimDigit];
+						var elimMap = (CandMaps[elimDigit] & map).PeerIntersection & CandMaps[elimDigit];
 						if (elimMap.IsEmpty)
 						{
 							continue;
@@ -130,7 +127,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								continue;
 							}
 
-							var elimMap = new GridMap(zMap, ProcessPeersWithoutItself) & CandMaps[elimDigit] & map2;
+							var elimMap = zMap.PeerIntersection & CandMaps[elimDigit] & map2;
 							if (elimMap.IsEmpty)
 							{
 								continue;

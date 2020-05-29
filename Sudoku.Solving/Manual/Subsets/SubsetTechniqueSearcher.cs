@@ -9,7 +9,6 @@ using Sudoku.Solving.Annotations;
 using static System.Algorithms;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Data.GridMap.InitializeOption;
 
 namespace Sudoku.Solving.Manual.Subsets
 {
@@ -74,9 +73,7 @@ namespace Sudoku.Solving.Manual.Subsets
 					var conclusions = new List<Conclusion>();
 					foreach (int digit in mask.GetAllSets())
 					{
-						var map =
-							new GridMap(new GridMap(cells) & CandMaps[digit], ProcessPeersWithoutItself)
-							& CandMaps[digit];
+						var map = (new GridMap(cells) & CandMaps[digit]).PeerIntersection & CandMaps[digit];
 						flagMask |= map.AllSetsAreInOneRegion(out _) ? (short)0 : (short)(1 << digit);
 
 						foreach (int cell in map.Offsets)

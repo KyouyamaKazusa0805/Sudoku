@@ -9,7 +9,6 @@ using Sudoku.Solving.Annotations;
 using static System.Algorithms;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
@@ -158,8 +157,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 				int otherDigit = (orMask & ~tempMask).FindFirstSet();
 				var mapContainingThatDigit = map & CandMaps[otherDigit];
-				var elimMap =
-					(new GridMap(mapContainingThatDigit, ProcessPeersWithoutItself) - map) & CandMaps[otherDigit];
+				var elimMap = (mapContainingThatDigit.PeerIntersection - map) & CandMaps[otherDigit];
 				if (elimMap.IsEmpty)
 				{
 					continue;

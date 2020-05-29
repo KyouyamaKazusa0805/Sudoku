@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Data;
@@ -12,7 +11,6 @@ using static System.Math;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Data.GridMap.InitializeOption;
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -149,7 +147,7 @@ namespace Sudoku.Solving.Manual.Fishes
 					var elimEndoFinsMap = GridMap.Empty;
 					if (endoFinsMap.IsNotEmpty)
 					{
-						elimEndoFinsMap = new GridMap(endoFinsMap, ProcessPeersWithoutItself) & candMap;
+						elimEndoFinsMap = endoFinsMap.PeerIntersection & candMap;
 						if (elimEndoFinsMap.IsEmpty)
 						{
 							continue;
@@ -220,7 +218,7 @@ namespace Sudoku.Solving.Manual.Fishes
 								var elimExoFinsMap = GridMap.Empty;
 								if (exoFinsMap.IsNotEmpty)
 								{
-									elimExoFinsMap = new GridMap(exoFinsMap, ProcessPeersWithoutItself) & candMap;
+									elimExoFinsMap = exoFinsMap.PeerIntersection & candMap;
 									if (elimExoFinsMap.IsEmpty)
 									{
 										continue;

@@ -7,7 +7,6 @@ using Sudoku.Solving.Annotations;
 using static System.Algorithms;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Data.GridMap.InitializeOption;
 
 namespace Sudoku.Solving.Manual.Alses.Mslses
 {
@@ -169,18 +168,16 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 										if (digitIsolated != -1)
 										{
 											elimMapIsolated =
-												new GridMap(
-													cannibalMode
-														? (currentBlockMap | currentLineMap) & CandMaps[digitIsolated]
-														: currentInterMap & CandMaps[digitIsolated],
-													ProcessPeersWithoutItself)
-												& CandMaps[digitIsolated] & EmptyMap;
+											(
+												cannibalMode
+													? (currentBlockMap | currentLineMap) & CandMaps[digitIsolated]
+													: currentInterMap & CandMaps[digitIsolated]
+											).PeerIntersection & CandMaps[digitIsolated] & EmptyMap;
 										}
 
 										if (currentInterMap.Count + i + j ==
 											blockMask.CountSet() + lineMask.CountSet() + maskOnlyInInter.CountSet()
-											&& (
-												elimMapBlock.IsNotEmpty || elimMapLine.IsNotEmpty
+											&& (elimMapBlock.IsNotEmpty || elimMapLine.IsNotEmpty
 												|| elimMapIsolated.IsNotEmpty))
 										{
 											// Check eliminations.

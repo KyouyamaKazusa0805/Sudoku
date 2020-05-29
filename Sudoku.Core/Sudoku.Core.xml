@@ -2248,14 +2248,6 @@
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Data.GridMap.#ctor(Sudoku.Data.GridMap,Sudoku.Data.GridMap.InitializeOption)">
-            <summary>
-            To copy an instance with the specified information and specify the current initialization
-            mode.
-            </summary>
-            <param name="another">Another instance.</param>
-            <param name="initializeOption">The initialization option.</param>
-        </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
             Initializes an instance with a series of cell offsets.
@@ -2336,6 +2328,19 @@
             <summary>
             Indicates the total number of cells where the corresponding
             value are set <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.GridMap.PeerIntersection">
+            <summary>
+            Indicates the map of cells, which is the peer intersections. For example,
+            the code
+            <code>
+            var map = testMap.PeerIntersection;
+            </code>
+            is equivalent to the code
+            <code>
+            var map = new GridMap(testMap, InitializeOption.ProcessPeersWithoutItself);
+            </code>
             </summary>
         </member>
         <member name="P:Sudoku.Data.GridMap.CoveredRegions">

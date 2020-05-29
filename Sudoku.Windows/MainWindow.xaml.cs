@@ -27,7 +27,6 @@ using Sudoku.Windows.Constants;
 using Sudoku.Windows.Drawing.Layers;
 using Sudoku.Windows.Extensions;
 using static System.StringSplitOptions;
-using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Windows.Constants.Processings;
 using PointConverter = Sudoku.Drawing.PointConverter;
@@ -339,7 +338,7 @@ namespace Sudoku.Windows
 			{
 				// View the intersection.
 				_previewMap = _focusedCells;
-				_focusedCells = new GridMap(_focusedCells, ProcessPeersWithoutItself);
+				_focusedCells = _focusedCells.PeerIntersection;
 
 				_layerCollection.Add(new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
 

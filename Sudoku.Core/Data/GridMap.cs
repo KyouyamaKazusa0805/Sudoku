@@ -264,16 +264,6 @@ namespace Sudoku.Data
 		public GridMap(GridMap another) => (_high, _low, Count) = (another._high, another._low, another.Count);
 
 		/// <summary>
-		/// To copy an instance with the specified information and specify the current initialization
-		/// mode.
-		/// </summary>
-		/// <param name="another">Another instance.</param>
-		/// <param name="initializeOption">The initialization option.</param>
-		public GridMap(GridMap another, InitializeOption initializeOption) : this(another.Offsets, initializeOption)
-		{
-		}
-
-		/// <summary>
 		/// Initializes an instance with a series of cell offsets.
 		/// </summary>
 		/// <param name="offsets">cell offsets.</param>
@@ -465,6 +455,19 @@ namespace Sudoku.Data
 		/// value are set <see langword="true"/>.
 		/// </summary>
 		public int Count { readonly get; private set; }
+
+		/// <summary>
+		/// Indicates the map of cells, which is the peer intersections. For example,
+		/// the code
+		/// <code>
+		/// var map = testMap.PeerIntersection;
+		/// </code>
+		/// is equivalent to the code
+		/// <code>
+		/// var map = new GridMap(testMap, InitializeOption.ProcessPeersWithoutItself);
+		/// </code>
+		/// </summary>
+		public readonly GridMap PeerIntersection => new GridMap(Offsets, ProcessPeersWithoutItself);
 
 		/// <summary>
 		/// Indicates all regions covered.

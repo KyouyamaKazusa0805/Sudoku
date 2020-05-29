@@ -7,7 +7,6 @@ using Sudoku.Solving.Annotations;
 using static System.Algorithms;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Data.GridMap.InitializeOption;
 
 namespace Sudoku.Solving.Manual.Alses.Mslses
 {
@@ -77,8 +76,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 							{
 								int region = i + 9;
 								linkForEachRegion[region] |= (short)(1 << digit);
-								elimMap |=
-									new GridMap(CandMaps[digit] & RegionMaps[region] & map, ProcessPeersWithoutItself);
+								elimMap |= (CandMaps[digit] & RegionMaps[region] & map).PeerIntersection;
 							}
 						}
 						else if (cMask.CountSet() == temp)
@@ -88,8 +86,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 							{
 								int region = i + 18;
 								linkForEachRegion[region] |= (short)(1 << digit);
-								elimMap |=
-									new GridMap(CandMaps[digit] & RegionMaps[region] & map, ProcessPeersWithoutItself);
+								elimMap |= (CandMaps[digit] & RegionMaps[region] & map).PeerIntersection;
 							}
 						}
 						else if (bMask.CountSet() == temp)
@@ -98,8 +95,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 							foreach (int i in bMask.GetAllSets())
 							{
 								linkForEachRegion[i] |= (short)(1 << digit);
-								elimMap |=
-									new GridMap(CandMaps[digit] & RegionMaps[i] & map, ProcessPeersWithoutItself);
+								elimMap |= (CandMaps[digit] & RegionMaps[i] & map).PeerIntersection;
 							}
 						}
 

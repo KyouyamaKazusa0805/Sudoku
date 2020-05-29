@@ -7,7 +7,6 @@ using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Data.GridMap.InitializeOption;
 
 namespace Sudoku.Solving.Manual.Alses.Basic
 {
@@ -83,8 +82,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							continue;
 						}
 
-						var p1 = new GridMap(map1 & CandMaps[x], ProcessPeersWithoutItself) & CandMaps[x];
-						var p2 = new GridMap(map2 & CandMaps[x], ProcessPeersWithoutItself) & CandMaps[x];
+						var p1 = (map1 & CandMaps[x]).PeerIntersection & CandMaps[x];
+						var p2 = (map2 & CandMaps[x]).PeerIntersection & CandMaps[x];
 						if (p1.IsEmpty || p2.IsEmpty)
 						{
 							// At least one of two ALSes cannot see the node of the conjugate pair.
@@ -110,8 +109,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 							foreach (int w in (mask & ~(1 << x)).GetAllSets())
 							{
-								var tempMap =
-									new GridMap((map1 | map2) & CandMaps[w], ProcessPeersWithoutItself) & CandMaps[w];
+								var tempMap = ((map1 | map2) & CandMaps[w]).PeerIntersection & CandMaps[w];
 								if (tempMap.IsEmpty)
 								{
 									continue;

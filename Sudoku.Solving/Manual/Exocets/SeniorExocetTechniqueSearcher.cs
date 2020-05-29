@@ -10,7 +10,6 @@ using static System.Algorithms;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Data.GridMap.InitializeOption;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -178,9 +177,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					{
 						foreach (int digit in tbCands.GetAllSets())
 						{
-							var elimMap =
-								new GridMap(baseCellsMap & CandMaps[digit], ProcessPeersWithoutItself)
-								& CandMaps[digit];
+							var elimMap = (baseCellsMap & CandMaps[digit]).PeerIntersection & CandMaps[digit];
 							if (elimMap.IsEmpty)
 							{
 								continue;
@@ -459,9 +456,8 @@ namespace Sudoku.Solving.Manual.Exocets
 			foreach (int digit in baseCandidatesMask.GetAllSets())
 			{
 				bool flag = false;
-				var baseElimsMap = new GridMap(baseCellsMap & digitMaps[digit], ProcessPeersWithoutItself);
-				foreach (int[] combination in
-					GetCombinationsOfArray((tempCrossline & digitMaps[digit]).ToArray(), 3))
+				var baseElimsMap = (baseCellsMap & digitMaps[digit]).PeerIntersection;
+				foreach (int[] combination in GetCombinationsOfArray((tempCrossline & digitMaps[digit]).ToArray(), 3))
 				{
 					var (a, b, c) = (combination[0], combination[1], combination[2]);
 					int r1 = GetRegion(a, RegionLabel.Row);
@@ -552,34 +548,33 @@ namespace Sudoku.Solving.Manual.Exocets
 						continue;
 					}
 
-					var temp = (new GridMap(currentTarget, false) & ValueMaps[digit])
-						- new GridMap(baseCellsMap, ProcessPeersWithoutItself);
+					var temp = (new GridMap(currentTarget, false) & ValueMaps[digit]) - baseCellsMap.PeerIntersection;
 
 					bool flag = false;
 					var elimMap = GridMap.Empty;
 					if (!temp.Overlaps(RegionMaps[r]))
 					{
 						flag = true;
-						elimMap = new GridMap(
-							new GridMap(currentTarget, false) & CandMaps[digit] & RegionMaps[r] | baseCellsMap,
-							ProcessPeersWithoutItself)
-							& CandMaps[digit];
+						elimMap =
+						(
+							new GridMap(currentTarget, false) & CandMaps[digit] & RegionMaps[r] | baseCellsMap
+						).PeerIntersection & CandMaps[digit];
 					}
 					else if (!temp.Overlaps(RegionMaps[c]))
 					{
 						flag = true;
-						elimMap = new GridMap(
-							new GridMap(currentTarget, false) & CandMaps[digit] & RegionMaps[c] | baseCellsMap,
-							ProcessPeersWithoutItself)
-							& CandMaps[digit];
+						elimMap =
+						(
+							new GridMap(currentTarget, false) & CandMaps[digit] & RegionMaps[c] | baseCellsMap
+						).PeerIntersection & CandMaps[digit];
 					}
 					else if (!temp.Overlaps(RegionMaps[b]))
 					{
 						flag = true;
-						elimMap = new GridMap(
-							new GridMap(currentTarget, false) & CandMaps[digit] & RegionMaps[b] | baseCellsMap,
-							ProcessPeersWithoutItself)
-							& CandMaps[digit];
+						elimMap =
+						(
+							new GridMap(currentTarget, false) & CandMaps[digit] & RegionMaps[b] | baseCellsMap
+						).PeerIntersection & CandMaps[digit];
 					}
 					if (!flag)
 					{

@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Data.GridMap.InitializeOption;
 
 namespace Sudoku.Solving.Manual.Alses.Basic
 {
@@ -144,7 +142,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							foreach (int digit in digitsMask.GetAllSets())
 							{
 								var elimMap = (
-									new GridMap((aMap | bMap) & CandMaps[digit], ProcessPeersWithoutItself)
+									((aMap | bMap) & CandMaps[digit]).PeerIntersection
 									& CandMaps[digit]) - (aMap | bMap | cMap);
 								if (elimMap.IsEmpty)
 								{
