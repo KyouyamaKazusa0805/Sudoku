@@ -2087,7 +2087,7 @@
             The instance stores two <see cref="T:System.Int64"/> values, consisting of 81 bits,
             where <see langword="true"/> bit (1) is for the cell having that digit,
             and the <see langword="false"/> bit (0) is for the cell not containing
-            the digit. Sometimes this type will be used for other cases.
+            the digit.
             </remarks>
         </member>
         <member name="F:Sudoku.Data.GridMap.Empty">
@@ -2547,6 +2547,10 @@
             </summary>
             <param name="gridMap">The instance to negate.</param>
             <returns>The negative result.</returns>
+            <remarks>
+            While reversing the higher 40 bits, the unused bits will be fixed and never be modified the state,
+            that is why using the code "<c>higherBits &amp; 0xFFFFFFFFFFL</c>".
+            </remarks>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_Addition(Sudoku.Data.GridMap,System.Int32)">
             <summary>

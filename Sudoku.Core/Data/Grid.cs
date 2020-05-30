@@ -183,15 +183,7 @@ namespace Sudoku.Data
 
 						break;
 					}
-					case 0:
-					case 1:
-					case 2:
-					case 3:
-					case 4:
-					case 5:
-					case 6:
-					case 7:
-					case 8:
+					case int v when v >= 0 && v < 9:
 					{
 						ref short result = ref _masks[offset];
 						short copy = result;
@@ -201,7 +193,7 @@ namespace Sudoku.Data
 
 						// To trigger the event, which is used for eliminate
 						// all same candidates in peer cells.
-						ValueChanged?.Invoke(this, new ValueChangedEventArgs(offset, copy, result, value));
+						ValueChanged.Invoke(this, new ValueChangedEventArgs(offset, copy, result, value));
 
 						break;
 					}

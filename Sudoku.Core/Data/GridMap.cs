@@ -20,10 +20,10 @@ namespace Sudoku.Data
 	/// The instance stores two <see cref="long"/> values, consisting of 81 bits,
 	/// where <see langword="true"/> bit (1) is for the cell having that digit,
 	/// and the <see langword="false"/> bit (0) is for the cell not containing
-	/// the digit. Sometimes this type will be used for other cases.
+	/// the digit.
 	/// </remarks>
 	[DebuggerStepThrough]
-	public partial struct GridMap : IComparable<GridMap>, IEnumerable<bool>, IEquatable<GridMap>
+	public partial struct GridMap : IComparable<GridMap>, IEnumerable<int>, IEquatable<GridMap>
 	{
 		/// <summary>
 		/// <para>Indicates an empty instance (all bits are 0).</para>
@@ -643,17 +643,8 @@ namespace Sudoku.Data
 		public readonly int[] ToArray() => Offsets.ToArray();
 
 		/// <inheritdoc/>
-		public readonly IEnumerator<bool> GetEnumerator()
-		{
-			for (long l = _low; l != 0; l >>= 1)
-			{
-				yield return (l & 1) != 0;
-			}
-			for (long h = _high; h != 0; h >>= 1)
-			{
-				yield return (h & 1) != 0;
-			}
-		}
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly IEnumerator<int> GetEnumerator() => Offsets.GetEnumerator();
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -761,6 +752,10 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="gridMap">The instance to negate.</param>
 		/// <returns>The negative result.</returns>
+		/// <remarks>
+		/// While reversing the higher 40 bits, the unused bits will be fixed and never be modified the state,
+		/// that is why using the code "<c>higherBits &amp; 0xFFFFFFFFFFL</c>".
+		/// </remarks>
 		public static GridMap operator ~(GridMap gridMap) => new GridMap(~gridMap._high & 0xFFFFFFFFFFL, ~gridMap._low);
 
 		/// <summary>
