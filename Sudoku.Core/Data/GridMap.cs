@@ -495,7 +495,7 @@ namespace Sudoku.Data
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ToArray"/>
-		public readonly IEnumerable<int> Offsets
+		private readonly IEnumerable<int> Offsets
 		{
 			get
 			{
@@ -506,6 +506,11 @@ namespace Sudoku.Data
 
 				long value;
 				int i;
+				if (_low == 0)
+				{
+					goto Label_GetHigh;
+				}
+
 				for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
 				{
 					if ((value & 1) != 0)
@@ -513,7 +518,9 @@ namespace Sudoku.Data
 						yield return i;
 					}
 				}
-				for (value = _high; i < 81; i++, value >>= 1)
+
+			Label_GetHigh:
+				for (value = _high, i = Shifting; i < 81; i++, value >>= 1)
 				{
 					if ((value & 1) != 0)
 					{

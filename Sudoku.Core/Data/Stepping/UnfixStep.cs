@@ -21,7 +21,7 @@
 		/// <inheritdoc/>
 		public override void DoStepTo(UndoableGrid grid)
 		{
-			foreach (int cell in AllCells.Offsets)
+			foreach (int cell in AllCells)
 			{
 				// To prevent the event re-invoke.
 				ref short mask = ref grid._masks[cell];
@@ -32,7 +32,7 @@
 		/// <inheritdoc/>
 		public override void UndoStepTo(UndoableGrid grid)
 		{
-			foreach (int cell in AllCells.Offsets)
+			foreach (int cell in AllCells)
 			{
 				// To prevent the event re-invoke.
 				ref short mask = ref grid._masks[cell];

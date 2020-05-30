@@ -117,7 +117,7 @@ namespace Sudoku.Data.Stepping
 			}
 
 			_undoStack.Push(new FixStep(map));
-			foreach (int cell in map.Offsets)
+			foreach (int cell in map)
 			{
 				ref short mask = ref _masks[cell];
 				mask = (short)((int)CellStatus.Given << 9 | mask & 511);
@@ -139,7 +139,7 @@ namespace Sudoku.Data.Stepping
 			}
 
 			_undoStack.Push(new UnfixStep(map));
-			foreach (int cell in map.Offsets)
+			foreach (int cell in map)
 			{
 				ref short mask = ref _masks[cell];
 				mask = (short)((int)CellStatus.Modifiable << 9 | mask & 511);

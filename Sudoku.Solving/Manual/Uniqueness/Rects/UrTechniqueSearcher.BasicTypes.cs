@@ -26,7 +26,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			// Get the summary mask.
 			short mask = 0;
-			foreach (int cell in otherCellsMap.Offsets)
+			foreach (int cell in otherCellsMap)
 			{
 				mask |= grid.GetCandidatesReversal(cell);
 			}
@@ -52,7 +52,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			var candidateOffsets = new List<(int, int)>();
-			foreach (int cell in otherCellsMap.Offsets)
+			foreach (int cell in otherCellsMap)
 			{
 				foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 				{
@@ -91,7 +91,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			// Get the summary mask.
 			short mask = 0;
-			foreach (int cell in otherCellsMap.Offsets)
+			foreach (int cell in otherCellsMap)
 			{
 				mask |= grid.GetCandidatesReversal(cell);
 			}
@@ -110,7 +110,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			// Type 2 or 5 found. Now check elimination.
 			int extraDigit = extraMask.FindFirstSet();
 			var conclusions = new List<Conclusion>();
-			foreach (int cell in new GridMap(stackalloc[] { corner1, corner2 }, ProcessPeersWithoutItself).Offsets)
+			foreach (int cell in new GridMap(stackalloc[] { corner1, corner2 }, ProcessPeersWithoutItself))
 			{
 				if (grid.Exists(cell, extraDigit) is true)
 				{
@@ -166,7 +166,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			// (ab ) (ab )
 			//  abx   aby
 			if ((grid.GetCandidatesReversal(corner1) | grid.GetCandidatesReversal(corner2)) != comparer
-				|| otherCellsMap.Offsets.Any(c =>
+				|| otherCellsMap.Any(c =>
 				{
 					short mask = grid.GetCandidatesReversal(c);
 					return (mask & comparer) == 0 || mask == comparer || arMode && grid.GetStatus(c) != Empty;
@@ -176,7 +176,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			short mask = 0;
-			foreach (int cell in otherCellsMap.Offsets)
+			foreach (int cell in otherCellsMap)
 			{
 				mask |= grid.GetCandidatesReversal(cell);
 			}
@@ -212,7 +212,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						var conclusions = new List<Conclusion>();
 						foreach (int digit in tempMask.GetAllSets())
 						{
-							foreach (int cell in ((iterationMap - new GridMap(iteratedCells)) & CandMaps[digit]).Offsets)
+							foreach (int cell in (iterationMap - new GridMap(iteratedCells)) & CandMaps[digit])
 							{
 								conclusions.Add(new Conclusion(Elimination, cell, digit));
 							}
@@ -305,14 +305,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					// Now check elimination.
 					int elimDigit = (comparer ^ (1 << digit)).FindFirstSet();
 					var conclusions = new List<Conclusion>();
-					foreach (int cell in otherCellsMap.Offsets)
+					foreach (int cell in otherCellsMap)
 					{
-						if (!(grid.Exists(cell, elimDigit) is true))
+						if (grid.Exists(cell, elimDigit) is true)
 						{
-							continue;
+							conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
 						}
-
-						conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
 					}
 					if (conclusions.Count == 0)
 					{
@@ -391,7 +389,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			// Get the summary mask.
 			short mask = 0;
-			foreach (int cell in otherCellsMap.Offsets)
+			foreach (int cell in otherCellsMap)
 			{
 				mask |= grid.GetCandidatesReversal(cell);
 			}
@@ -405,21 +403,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			// Type 5 found. Now check elimination.
 			int extraDigit = extraMask.FindFirstSet();
 			var conclusions = new List<Conclusion>();
-			var cellsThatContainsExtraDigit = from cell in otherCellsMap.Offsets
-											  where grid.Exists(cell, extraDigit) is true
-											  select cell;
+			var cellsThatContainsExtraDigit = otherCellsMap & CandMaps[extraDigit];
 			if (cellsThatContainsExtraDigit.HasOnlyOneElement())
 			{
 				return;
 			}
 
-			foreach (int cell in new GridMap(cellsThatContainsExtraDigit, ProcessPeersWithoutItself).Offsets)
+			foreach (int cell in cellsThatContainsExtraDigit.PeerIntersection & CandMaps[extraDigit])
 			{
-				if (!(grid.Exists(cell, extraDigit) is true))
-				{
-					continue;
-				}
-
 				conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
 			}
 			if (conclusions.Count == 0)
@@ -502,7 +493,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 				// Check eliminations.
 				var conclusions = new List<Conclusion>();
-				foreach (int cell in otherCellsMap.Offsets)
+				foreach (int cell in otherCellsMap)
 				{
 					if (grid.Exists(cell, digit) is true)
 					{

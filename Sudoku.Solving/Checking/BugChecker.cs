@@ -5,6 +5,7 @@ using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.RegionLabel;
 
 namespace Sudoku.Solving.Checking
 {
@@ -99,9 +100,9 @@ namespace Sudoku.Solving.Checking
 						ref var map = ref stack[0, digit];
 						map.Add(bivalueCell);
 
-						span[0] = GetRegion(bivalueCell, RegionLabel.Row);
-						span[1] = GetRegion(bivalueCell, RegionLabel.Column);
-						span[2] = GetRegion(bivalueCell, RegionLabel.Block);
+						span[0] = GetRegion(bivalueCell, Row);
+						span[1] = GetRegion(bivalueCell, Column);
+						span[2] = GetRegion(bivalueCell, Block);
 						for (int k = 0; k < 3; k++)
 						{
 							if ((map & allRegionsMap[span[k]]).Count > 2)
@@ -148,9 +149,9 @@ namespace Sudoku.Solving.Checking
 						var temp = stack[pt - 1, mask.SetAt(j)];
 						temp.Add(ps);
 
-						playground[0] = GetRegion(ps, RegionLabel.Block);
-						playground[1] = GetRegion(ps, RegionLabel.Row);
-						playground[2] = GetRegion(ps, RegionLabel.Column);
+						playground[0] = GetRegion(ps, Block);
+						playground[1] = GetRegion(ps, Row);
+						playground[2] = GetRegion(ps, Column);
 						for (int k = 0; k < 3; k++)
 						{
 							if ((temp & allRegionsMap[playground[k]]).Count > 2)
@@ -174,16 +175,16 @@ namespace Sudoku.Solving.Checking
 					}
 
 					chosen[pt] = i;
-					var digits = mask.GetAllSets();
-					stack[pt, digits.ElementAt(0)].Add(ps);
-					stack[pt, digits.ElementAt(1)].Add(ps);
+					int pos1 = mask.FindFirstSet();
+					stack[pt, pos1].Add(ps);
+					stack[pt, mask.GetNextSet(pos1)].Add(ps);
 					if (pt == multivalueCellsCount)
 					{
 						for (int k = 0; k < 9; k++)
 						{
 							ref var map = ref resultMap[k];
 							map = _candMaps[k] - stack[pt, k];
-							foreach (int cell in map.Offsets)
+							foreach (int cell in map)
 							{
 								result.Add(cell * 9 + k);
 							}

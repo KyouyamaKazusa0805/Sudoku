@@ -121,7 +121,7 @@ namespace Sudoku.Solving.Manual.Intersections
 					{
 						candidateOffsets.Add((0, c1 * 9 + digit));
 					}
-					foreach (int cell in c.Offsets)
+					foreach (int cell in c)
 					{
 						foreach (int digit in (mask1 & grid.GetCandidatesReversal(cell)).GetAllSets())
 						{
@@ -135,7 +135,7 @@ namespace Sudoku.Solving.Manual.Intersections
 
 					// Record all eliminations.
 					var conclusions = new List<Conclusion>();
-					foreach (int aCell in a.Offsets)
+					foreach (int aCell in a)
 					{
 						if (aCell == c1)
 						{
@@ -223,7 +223,7 @@ namespace Sudoku.Solving.Manual.Intersections
 									candidateOffsets.Add((0, c2 * 9 + digit));
 								}
 							}
-							foreach (int cell in c.Offsets)
+							foreach (int cell in c)
 							{
 								foreach (int digit in (m & grid.GetCandidatesReversal(cell)).GetAllSets())
 								{
@@ -244,7 +244,7 @@ namespace Sudoku.Solving.Manual.Intersections
 
 							// Record all eliminations.
 							var conclusions = new List<Conclusion>();
-							foreach (int aCell in a.Offsets)
+							foreach (int aCell in a)
 							{
 								if (aCell == c1 || aCell == c2)
 								{
@@ -343,7 +343,7 @@ namespace Sudoku.Solving.Manual.Intersections
 										candidateOffsets.Add((0, c3 * 9 + digit));
 									}
 								}
-								foreach (int cell in c.Offsets)
+								foreach (int cell in c)
 								{
 									foreach (int digit in (m & grid.GetCandidatesReversal(cell)).GetAllSets())
 									{
@@ -368,7 +368,7 @@ namespace Sudoku.Solving.Manual.Intersections
 
 								// Record all eliminations.
 								var conclusions = new List<Conclusion>();
-								foreach (int aCell in a.Offsets)
+								foreach (int aCell in a)
 								{
 									if (aCell == c1 || aCell == c2 || aCell == c3)
 									{

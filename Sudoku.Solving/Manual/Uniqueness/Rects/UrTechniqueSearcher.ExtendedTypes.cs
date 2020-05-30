@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			int x = xyMask.FindFirstSet();
 			int y = xyMask.GetNextSet(x);
 			var inter = new GridMap(otherCells, ProcessPeersWithoutItself) - new GridMap(urCells);
-			foreach (int possibleXyCell in inter.Offsets)
+			foreach (int possibleXyCell in inter)
 			{
 				if (grid.GetCandidatesReversal(possibleXyCell) != xyMask)
 				{
@@ -51,7 +51,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				// Now check eliminations.
 				var elimMap = inter & new GridMap(possibleXyCell, false);
 				var conclusions = new List<Conclusion>();
-				foreach (int cell in elimMap.Offsets)
+				foreach (int cell in elimMap)
 				{
 					if (grid.Exists(cell, x) is true)
 					{
@@ -154,7 +154,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							continue;
 						}
 
-						int elimCell = new GridMap(otherCellsMap) { [sameRegionCell] = false }.Offsets.First();
+						int elimCell = new GridMap(otherCellsMap) { [sameRegionCell] = false }.SetAt(0);
 						if (!(grid.Exists(sameRegionCell, digit) is true))
 						{
 							continue;
@@ -275,7 +275,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							continue;
 						}
 
-						int elimCell = new GridMap(otherCellsMap) { [sameRegionCell] = false }.Offsets.First();
+						int elimCell = new GridMap(otherCellsMap) { [sameRegionCell] = false }.SetAt(0);
 						if (!(grid.Exists(sameRegionCell, digit) is true))
 						{
 							continue;
@@ -385,7 +385,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			int x = xyMask.FindFirstSet();
 			int y = xyMask.GetNextSet(x);
 			var inter = otherCellsMap.PeerIntersection - new GridMap(urCells);
-			foreach (int possibleXyCell in inter.Offsets)
+			foreach (int possibleXyCell in inter)
 			{
 				if (grid.GetCandidatesReversal(possibleXyCell) != xyMask)
 				{
@@ -395,7 +395,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				// Possible XY cell found.
 				// Now check eliminations.
 				var conclusions = new List<Conclusion>();
-				foreach (int cell in (inter & new GridMap(possibleXyCell, false)).Offsets)
+				foreach (int cell in inter & new GridMap(possibleXyCell, false))
 				{
 					if (grid.Exists(cell, x) is true)
 					{
@@ -1173,7 +1173,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								continue;
 							}
 
-							foreach (int cell in elimMap.Offsets)
+							foreach (int cell in elimMap)
 							{
 								if (grid.Exists(cell, elimDigit) is true)
 								{
@@ -1232,7 +1232,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									cells: urCells,
 									extraCells: new[] { c1, c2 },
 									extraDigits: extraDigitsMask.GetAllSets(),
-									pivots: otherCellsMap.Offsets,
+									pivots: otherCellsMap,
 									isAr: arMode));
 						}
 						else // size > 2
@@ -1264,7 +1264,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										continue;
 									}
 
-									foreach (int cell in elimMap.Offsets)
+									foreach (int cell in elimMap)
 									{
 										if (grid.Exists(cell, elimDigit) is true)
 										{
@@ -1322,7 +1322,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											cells: urCells,
 											extraCells: new[] { c1, c2, c3 },
 											extraDigits: extraDigitsMask.GetAllSets(),
-											pivots: otherCellsMap.Offsets,
+											pivots: otherCellsMap,
 											isAr: arMode));
 								}
 								else // size == 4
@@ -1353,7 +1353,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											continue;
 										}
 
-										foreach (int cell in elimMap.Offsets)
+										foreach (int cell in elimMap)
 										{
 											if (grid.Exists(cell, elimDigit) is true)
 											{
@@ -1415,7 +1415,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 												cells: urCells,
 												extraCells: new[] { c1, c2, c3, c4 },
 												extraDigits: extraDigitsMask.GetAllSets(),
-												pivots: otherCellsMap.Offsets,
+												pivots: otherCellsMap,
 												isAr: arMode));
 									}
 								}

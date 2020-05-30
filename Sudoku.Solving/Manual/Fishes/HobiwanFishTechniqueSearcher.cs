@@ -167,7 +167,7 @@ namespace Sudoku.Solving.Manual.Fishes
 					}
 
 					// Gather the cover sets that contains the eliminations.
-					foreach (int cell in globalElimMap.Offsets)
+					foreach (int cell in globalElimMap)
 					{
 						mask &= ~(1 << GetRegion(cell, Row));
 						mask &= ~(1 << GetRegion(cell, Column));
@@ -263,12 +263,12 @@ namespace Sudoku.Solving.Manual.Fishes
 								}
 
 								var conclusions = new List<Conclusion>();
-								foreach (int cell in elimMap.Offsets)
+								foreach (int cell in elimMap)
 								{
 									// Normal eliminations.
 									conclusions.Add(new Conclusion(Elimination, cell, digit));
 								}
-								foreach (int cell in two.Offsets)
+								foreach (int cell in two)
 								{
 									// Cannibalisms.
 									conclusions.Add(new Conclusion(Elimination, cell, digit));
@@ -285,15 +285,15 @@ namespace Sudoku.Solving.Manual.Fishes
 								}
 
 								var candidateOffsets = new List<(int, int)>();
-								foreach (int cell in exoFinsMap.Offsets)
+								foreach (int cell in exoFinsMap)
 								{
 									candidateOffsets.Add((1, cell * 9 + digit));
 								}
-								foreach (int cell in endoFinsMap.Offsets)
+								foreach (int cell in endoFinsMap)
 								{
 									candidateOffsets.Add((2, cell * 9 + digit));
 								}
-								foreach (int cell in ((baseSetsMap & candMap) - exoFinsMap - endoFinsMap).Offsets)
+								foreach (int cell in (baseSetsMap & candMap) - exoFinsMap - endoFinsMap)
 								{
 									candidateOffsets.Add((0, cell * 9 + digit));
 								}

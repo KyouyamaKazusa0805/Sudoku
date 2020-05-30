@@ -387,7 +387,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 				// No possible value to eliminate.
 				return conclusions;
 			}
-			foreach (int offset in map.Offsets)
+			foreach (int offset in map)
 			{
 				if (grid.Exists(offset, zDigit) is true)
 				{

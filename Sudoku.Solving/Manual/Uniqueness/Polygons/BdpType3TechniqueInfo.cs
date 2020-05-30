@@ -60,10 +60,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		public override string ToString()
 		{
 			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
-			string cellsStr = new CellCollection(Map.Offsets).ToString();
+			string cellsStr = new CellCollection(Map).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string exDigitsStr = new DigitCollection(ExtraDigitsMask.GetAllSets()).ToString();
-			string exCellsStr = new CellCollection(ExtraCells.Offsets).ToString();
+			string exCellsStr = new CellCollection(ExtraCells).ToString();
 			return
 				$"{Name}: {digitsStr} in cells {cellsStr} with the digits {exDigitsStr} in cells {exCellsStr}" +
 				$" => {elimStr}";

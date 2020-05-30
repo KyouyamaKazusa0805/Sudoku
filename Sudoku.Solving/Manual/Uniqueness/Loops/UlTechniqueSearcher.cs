@@ -133,14 +133,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								// Record all eliminations.
 								var conclusions = new List<Conclusion>();
 								var elimMap = new GridMap(extraCells, GridMap.InitializeOption.ProcessPeersWithoutItself);
-								foreach (int elimCell in elimMap.Offsets)
+								foreach (int elimCell in elimMap)
 								{
-									if (!(grid.Exists(elimCell, extraDigit) is true))
+									if (grid.Exists(elimCell, extraDigit) is true)
 									{
-										continue;
+										conclusions.Add(new Conclusion(Elimination, elimCell, extraDigit));
 									}
-
-									conclusions.Add(new Conclusion(Elimination, elimCell, extraDigit));
 								}
 
 								if (conclusions.Count == 0)
@@ -250,14 +248,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			var conclusions = new List<Conclusion>();
 			var elimMap = new GridMap(extraCells, GridMap.InitializeOption.ProcessPeersWithoutItself);
 
-			foreach (int cell in elimMap.Offsets)
+			foreach (int cell in elimMap)
 			{
-				if (!(grid.Exists(cell, extraDigit) is true))
+				if (grid.Exists(cell, extraDigit) is true)
 				{
-					continue;
+					conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
 				}
-
-				conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
 			}
 
 			if (conclusions.Count == 0)

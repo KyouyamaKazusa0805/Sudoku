@@ -439,7 +439,7 @@ namespace Sudoku.Data
 				return;
 			}
 
-			foreach (int peerOffset in new GridMap(offset).Offsets)
+			foreach (int peerOffset in new GridMap(offset))
 			{
 				if (peerOffset == offset || GetStatus(peerOffset) != CellStatus.Empty)
 				{
@@ -472,7 +472,7 @@ namespace Sudoku.Data
 					{
 						int curDigit, peerDigit;
 						curDigit = this[i];
-						foreach (int peerOffset in new GridMap(i).Offsets)
+						foreach (int peerOffset in new GridMap(i))
 						{
 							if (peerOffset != i && (peerDigit = this[peerOffset]) != -1 && curDigit == peerDigit)
 							{

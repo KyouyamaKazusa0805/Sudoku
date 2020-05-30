@@ -62,7 +62,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 
 				// Iterate on each cells which are not peers in 'c1'.
 				int[] digits = grid.GetCandidatesReversal(c1).GetAllSets().ToArray();
-				foreach (int c2 in (BivalueMap - new GridMap(c1)).Offsets)
+				foreach (int c2 in BivalueMap - new GridMap(c1))
 				{
 					if (c2 < c1 || grid.GetCandidatesReversal(c1) != grid.GetCandidatesReversal(c2))
 					{
@@ -130,7 +130,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 				// W-Wing found.
 				var conclusions = new List<Conclusion>();
 				int elimDigit = i == 0 ? digits[1] : digits[0];
-				foreach (int offset in intersection.Offsets)
+				foreach (int offset in intersection)
 				{
 					if (grid.Exists(offset, elimDigit) is true)
 					{

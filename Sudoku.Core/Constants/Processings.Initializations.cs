@@ -187,11 +187,7 @@ namespace Sudoku.Constants
 				RegionMaps = new GridMap[27];
 				for (int i = 0; i < 27; i++)
 				{
-					ref var map = ref RegionMaps[i];
-					foreach (int cell in RegionCells[i])
-					{
-						map.Add(cell);
-					}
+					RegionMaps[i].AddRange((IEnumerable<int>)RegionCells[i]);
 				}
 			}
 			#endregion

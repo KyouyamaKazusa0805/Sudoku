@@ -76,7 +76,7 @@ namespace Sudoku.Solving.Manual.Subsets
 						var map = (new GridMap(cells) & CandMaps[digit]).PeerIntersection & CandMaps[digit];
 						flagMask |= map.AllSetsAreInOneRegion(out _) ? (short)0 : (short)(1 << digit);
 
-						foreach (int cell in map.Offsets)
+						foreach (int cell in map)
 						{
 							conclusions.Add(new Conclusion(Elimination, cell, digit));
 						}

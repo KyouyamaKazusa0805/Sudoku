@@ -9,6 +9,8 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Data.ConclusionType;
+using static Sudoku.Data.GridMap.InitializeOption;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -236,7 +238,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					int currentCell = currentCandidate / 9, currentDigit = currentCandidate % 9;
 
 					// Search for same regions.
-					foreach (int nextCell in new GridMap(currentCell, false).Offsets)
+					foreach (int nextCell in new GridMap(currentCell, false))
 					{
 						if (!(grid.Exists(nextCell, currentDigit) is true))
 						{
@@ -322,8 +324,7 @@ namespace Sudoku.Solving.Manual.Chaining
 									   select cand / 9;
 
 					// Search for same regions.
-					foreach (int nextCell in
-						new GridMap(currentCells, GridMap.InitializeOption.ProcessPeersWithoutItself).Offsets)
+					foreach (int nextCell in new GridMap(currentCells, ProcessPeersWithoutItself))
 					{
 						if (!(grid.Exists(nextCell, currentDigit) is true))
 						{
@@ -628,10 +629,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					continue;
 				}
 
-				result.Add(
-					new Node(
-						from cell in map.Offsets select cell * 9 + currentDigit,
-						NodeType.LockedCandidates));
+				result.Add(new Node(from cell in map select cell * 9 + currentDigit, NodeType.LockedCandidates));
 			}
 
 			return result;
@@ -662,10 +660,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					continue;
 				}
 
-				result.Add(
-					new Node(
-						from cell in map.Offsets select cell * 9 + currentDigit,
-						NodeType.LockedCandidates));
+				result.Add(new Node(from cell in map select cell * 9 + currentDigit, NodeType.LockedCandidates));
 			}
 
 			return result;
@@ -708,11 +703,11 @@ namespace Sudoku.Solving.Manual.Chaining
 				var conclusions = new List<Conclusion>();
 				foreach (var eliminationSet in eliminationSets)
 				{
-					foreach (int candidate in eliminationSet.Offsets)
+					foreach (int candidate in eliminationSet)
 					{
 						if (grid.Exists(candidate / 9, candidate % 9) is true)
 						{
-							conclusions.Add(new Conclusion(ConclusionType.Elimination, candidate));
+							conclusions.Add(new Conclusion(Elimination, candidate));
 						}
 					}
 				}
@@ -812,11 +807,11 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 
 				var conclusions = new List<Conclusion>();
-				foreach (int candidate in elimMap.Offsets)
+				foreach (int candidate in elimMap)
 				{
 					if (grid.Exists(candidate / 9, candidate % 9) is true)
 					{
-						conclusions.Add(new Conclusion(ConclusionType.Elimination, candidate));
+						conclusions.Add(new Conclusion(Elimination, candidate));
 					}
 				}
 
@@ -1193,23 +1188,20 @@ namespace Sudoku.Solving.Manual.Chaining
 					return null;
 				}
 
-				var start = (map & ptr1).Offsets;
-				var end = (map & ptr2).Offsets;
+				var start = map & ptr1;
+				var end = map & ptr2;
 				bool s = start.HasOnlyOneElement(), e = end.HasOnlyOneElement();
-				if (start.None() || end.None() || s && e)
-				{
-					return null;
-				}
-
-				return new Inference(
-					new Node(
-						from cell in start select cell * 9 + digit,
-						s ? NodeType.Candidate : NodeType.LockedCandidates),
-					false,
-					new Node(
-						from cell in end select cell * 9 + digit,
-						e ? NodeType.Candidate : NodeType.LockedCandidates),
-					true);
+				return !start.None() && !end.None() && (!s || !e)
+					? new Inference(
+						new Node(
+							from cell in start select cell * 9 + digit,
+							s ? NodeType.Candidate : NodeType.LockedCandidates),
+						false,
+						new Node(
+							from cell in end select cell * 9 + digit,
+							e ? NodeType.Candidate : NodeType.LockedCandidates),
+						true)
+					: null;
 			}
 			else
 			{
@@ -1261,23 +1253,20 @@ namespace Sudoku.Solving.Manual.Chaining
 					return null;
 				}
 
-				var start = (map & ptr1).Offsets;
-				var end = (map & ptr2).Offsets;
+				var start = map & ptr1;
+				var end = map & ptr2;
 				bool s = start.HasOnlyOneElement(), e = end.HasOnlyOneElement();
-				if (start.None() || end.None() || s && e)
-				{
-					return null;
-				}
-
-				return new Inference(
-					new Node(
-						from cell in start select cell * 9 + digit,
-						s ? NodeType.Candidate : NodeType.LockedCandidates),
-					false,
-					new Node(
-						from cell in end select cell * 9 + digit,
-						e ? NodeType.Candidate : NodeType.LockedCandidates),
-					true);
+				return !start.None() && !end.None() && (!s || !e)
+					? new Inference(
+						new Node(
+							from cell in start select cell * 9 + digit,
+							s ? NodeType.Candidate : NodeType.LockedCandidates),
+						false,
+						new Node(
+							from cell in end select cell * 9 + digit,
+							e ? NodeType.Candidate : NodeType.LockedCandidates),
+						true)
+					: null;
 			}
 		}
 

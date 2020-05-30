@@ -175,7 +175,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				cellOffsets.AddRange(new[] { (1, tq1), (1, tq2), (1, tr1), (1, tr2) });
-				foreach (int cell in s.Offsets)
+				foreach (int cell in s)
 				{
 					cellOffsets.Add((2, cell));
 				}
@@ -533,11 +533,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			// Then check target pairs if worth.
 			if (last.CountSet() == 2)
 			{
-				var elimMap = new GridMap(
-					from cell in new[] { tq1, tq2, tr1, tr2 }
-					where grid.GetStatus(cell) == Empty
-					select cell, ProcessPeersWithoutItself);
-
+				var elimMap = (new GridMap { tq1, tq2, tr1, tr2 } & EmptyMap).PeerIntersection;
 				if (elimMap.IsEmpty)
 				{
 					// Exit the method.
@@ -545,14 +541,11 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				var digits = last.GetAllSets();
-				foreach (int cell in elimMap.Offsets)
+				foreach (int digit in digits)
 				{
-					foreach (int digit in digits)
+					foreach (int cell in elimMap & CandMaps[digit])
 					{
-						if (grid.Exists(cell, digit) is true)
-						{
-							targetPairElims.Add(new Conclusion(Elimination, cell, digit));
-						}
+						targetPairElims.Add(new Conclusion(Elimination, cell, digit));
 					}
 				}
 				elimMap = new GridMap(stackalloc[] { b1, b2 }, ProcessPeersWithoutItself);
@@ -561,17 +554,14 @@ namespace Sudoku.Solving.Manual.Exocets
 					return true;
 				}
 
-				foreach (int cell in elimMap.Offsets)
+				foreach (int digit in digits)
 				{
-					foreach (int digit in digits)
+					foreach (int cell in elimMap & CandMaps[digit])
 					{
-						if (grid.Exists(cell, digit) is true)
-						{
-							targetPairElims.Add(new Conclusion(Elimination, cell, digit));
-						}
+						targetPairElims.Add(new Conclusion(Elimination, cell, digit));
 					}
 				}
-
+				
 				// Then check swordfish pattern.
 				foreach (int digit in digits)
 				{
@@ -579,20 +569,12 @@ namespace Sudoku.Solving.Manual.Exocets
 					foreach (int offset in mask.GetAllSets())
 					{
 						int region = offset + (isRow ? 9 : 18);
-						var map = crossline & RegionMaps[region];
-						if (map.Offsets.All(c => !(grid.Exists(c, digit) is true)))
+						if ((crossline & RegionMaps[region] & CandMaps[digit]).IsNotEmpty)
 						{
-							continue;
-						}
-
-						foreach (int cell in RegionCells[region])
-						{
-							if (crossline[cell] || !(grid.Exists(cell, digit) is true))
+							foreach (int cell in (RegionMaps[region] & CandMaps[digit]) - crossline)
 							{
-								continue;
+								swordfishElims.Add(new Conclusion(Elimination, cell, digit));
 							}
-
-							swordfishElims.Add(new Conclusion(Elimination, cell, digit));
 						}
 					}
 				}

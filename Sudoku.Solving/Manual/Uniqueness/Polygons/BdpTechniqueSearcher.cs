@@ -107,7 +107,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				}
 
 				var candidateOffsets = new List<(int, int)>();
-				foreach (int cell in map.Offsets)
+				foreach (int cell in map)
 				{
 					if (mapContainingThatDigit[cell])
 					{
@@ -164,13 +164,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				}
 
 				var conclusions = new List<Conclusion>();
-				foreach (int cell in elimMap.Offsets)
+				foreach (int cell in elimMap)
 				{
 					conclusions.Add(new Conclusion(Elimination, cell, otherDigit));
 				}
 
 				var candidateOffsets = new List<(int, int)>();
-				foreach (int cell in map.Offsets)
+				foreach (int cell in map)
 				{
 					foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 					{
@@ -250,7 +250,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 									continue;
 								}
 
-								foreach (int cell in cells.Offsets)
+								foreach (int cell in cells)
 								{
 									conclusions.Add(new Conclusion(Elimination, cell, digit));
 								}
@@ -262,14 +262,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							}
 
 							var candidateOffsets = new List<(int, int)>();
-							foreach (int cell in currentMap.Offsets)
+							foreach (int cell in currentMap)
 							{
 								foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 								{
 									candidateOffsets.Add(((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 								}
 							}
-							foreach (int cell in otherCellsMap.Offsets)
+							foreach (int cell in otherCellsMap)
 							{
 								foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 								{
@@ -378,20 +378,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						}
 
 						var conclusions = new List<Conclusion>();
-						foreach (int cell in elimMap.Offsets)
+						foreach (int cell in elimMap)
 						{
 							conclusions.Add(new Conclusion(Elimination, cell, finalDigit));
 						}
 
 						var candidateOffsets = new List<(int, int)>();
-						foreach (int cell in currentMap.Offsets)
+						foreach (int cell in currentMap)
 						{
 							foreach (int digit in (grid.GetCandidatesReversal(cell) & combinationMask).GetAllSets())
 							{
 								candidateOffsets.Add((1, cell * 9 + digit));
 							}
 						}
-						foreach (int cell in otherCellsMap.Offsets)
+						foreach (int cell in otherCellsMap)
 						{
 							foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 							{

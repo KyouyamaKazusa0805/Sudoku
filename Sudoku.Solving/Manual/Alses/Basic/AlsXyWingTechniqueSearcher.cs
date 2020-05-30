@@ -150,7 +150,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								}
 
 								finalZ |= (short)(1 << digit);
-								foreach (int cell in elimMap.Offsets)
+								foreach (int cell in elimMap)
 								{
 									conclusions.Add(new Conclusion(Elimination, cell, digit));
 								}
@@ -163,7 +163,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							// Record highlight candidates and cells.
 							var cellOffsets = new List<(int, int)>();
 							var candidateOffsets = new List<(int, int)>();
-							foreach (int cell in aMap.Offsets)
+							foreach (int cell in aMap)
 							{
 								short mask = grid.GetCandidatesReversal(cell);
 								short alsDigitsMask = (short)(mask & ~(finalX | finalZ));
@@ -182,7 +182,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 									candidateOffsets.Add((2, cell * 9 + digit));
 								}
 							}
-							foreach (int cell in bMap.Offsets)
+							foreach (int cell in bMap)
 							{
 								short mask = grid.GetCandidatesReversal(cell);
 								short alsDigitsMask = (short)(mask & ~(finalY | finalZ));
@@ -201,7 +201,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 									candidateOffsets.Add((2, cell * 9 + digit));
 								}
 							}
-							foreach (int cell in cMap.Offsets)
+							foreach (int cell in cMap)
 							{
 								short mask = grid.GetCandidatesReversal(cell);
 								short alsDigitsMask = (short)(mask & ~(finalX | finalY));

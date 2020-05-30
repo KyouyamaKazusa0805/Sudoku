@@ -282,7 +282,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <returns>The cell.</returns>
 		private static int GetSameRegionCell(int currentCell, GridMap otherCellsMap, out IEnumerable<int> region)
 		{
-			foreach (int c in otherCellsMap.Offsets)
+			foreach (int c in otherCellsMap)
 			{
 				var coveredRegions = new GridMap { c, currentCell }.CoveredRegions;
 				if (coveredRegions.None())

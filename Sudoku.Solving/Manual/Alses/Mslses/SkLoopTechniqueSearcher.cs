@@ -134,7 +134,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 							continue;
 						}
 
-						foreach (int cell in elimMap.Offsets)
+						foreach (int cell in elimMap)
 						{
 							short cands = (short)(grid.GetCandidatesReversal(cell) & tempLink[k]);
 							if (cands != 0)
@@ -157,7 +157,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					for (k = 0; k < 8; k++)
 					{
 						link[linkRegion[k]] = tempLink[k];
-						foreach (int cell in (map & RegionMaps[linkRegion[k]]).Offsets)
+						foreach (int cell in map & RegionMaps[linkRegion[k]])
 						{
 							short cands = (short)(grid.GetCandidatesReversal(cell) & tempLink[k]);
 							if (cands == 0)

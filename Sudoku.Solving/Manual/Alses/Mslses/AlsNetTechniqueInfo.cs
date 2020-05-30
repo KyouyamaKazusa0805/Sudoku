@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string cellsStr = new CellCollection(Cells.Offsets).ToString();
+			string cellsStr = new CellCollection(Cells).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {Cells.Count} cells {cellsStr} => {elimStr}";
 		}

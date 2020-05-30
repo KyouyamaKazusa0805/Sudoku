@@ -43,7 +43,7 @@ namespace Sudoku.Windows.Drawing.Layers
 			var bitmap = new Bitmap((int)Width, (int)Height);
 			using var g = Graphics.FromImage(bitmap);
 			using var brush = new SolidBrush(_color);
-			foreach (int cell in _cells.Offsets)
+			foreach (int cell in _cells)
 			{
 				g.FillRectangle(brush, _pointConverter.GetMousePointRectangle(cell));
 			}

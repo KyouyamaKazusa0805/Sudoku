@@ -61,11 +61,11 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 							SkLoopTable[n] = new int[16];
 							int pos = 0;
-							foreach (int cell in (all & RegionMaps[a]).Offsets)
+							foreach (int cell in all & RegionMaps[a])
 							{
 								SkLoopTable[n][pos++] = cell;
 							}
-							foreach (int cell in (all & RegionMaps[d]).Offsets)
+							foreach (int cell in all & RegionMaps[d])
 							{
 								SkLoopTable[n][pos++] = cell;
 							}

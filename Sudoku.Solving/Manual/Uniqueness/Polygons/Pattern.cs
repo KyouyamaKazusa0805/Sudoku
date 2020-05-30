@@ -99,7 +99,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		public override int GetHashCode() => (int)_mask;
 
 		/// <include file='../../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
-		public override string ToString() => $"{new CellCollection(Map.Offsets).ToString()}";
+		public override string ToString() => $"{new CellCollection(Map).ToString()}";
 
 
 		/// <include file='../../../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>

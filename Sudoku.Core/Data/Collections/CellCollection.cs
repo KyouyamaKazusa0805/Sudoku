@@ -157,7 +157,7 @@ namespace Sudoku.Data.Collections
 		/// Get the enumerator.
 		/// </summary>
 		/// <returns>The enumerator.</returns>
-		public IEnumerator<int> GetEnumerator() => _map.Offsets.GetEnumerator();
+		public IEnumerator<int> GetEnumerator() => _map.GetEnumerator();
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>

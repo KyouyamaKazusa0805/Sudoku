@@ -186,13 +186,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 		private static (IReadOnlyList<int> _candList, short _mask) RecordUndoInfo(Grid grid, int cell, int digit)
 		{
 			var list = new List<int>();
-			foreach (int c in new GridMap(cell, false).Offsets)
+			foreach (int c in new GridMap(cell, false) & CandMaps[digit])
 			{
-				if (!(grid.Exists(c, digit) is true))
-				{
-					continue;
-				}
-
 				list.Add(c * 9 + digit);
 			}
 
@@ -224,7 +219,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <param name="cell">The cell.</param>
 		/// <returns>The result.</returns>
 		private static bool IsValidGrid(IReadOnlyGrid grid, int cell) =>
-			new GridMap(cell, false).Offsets.All(c =>
+			new GridMap(cell, false).All(c =>
 			{
 				var status = grid.GetStatus(c);
 				return (status != CellStatus.Empty && grid[c] != grid[cell] || status == CellStatus.Empty)

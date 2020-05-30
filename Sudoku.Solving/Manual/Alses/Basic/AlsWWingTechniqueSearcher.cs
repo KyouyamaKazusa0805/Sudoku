@@ -116,7 +116,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								}
 
 								wDigitsMask |= (short)(1 << w);
-								foreach (int cell in tempMap.Offsets)
+								foreach (int cell in tempMap)
 								{
 									conclusions.Add(new Conclusion(Elimination, cell, w));
 								}
@@ -129,14 +129,14 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 							// Record highlight cell and candidate offsets.
 							var cellOffsets = new List<(int, int)>();
-							cellOffsets.AddRange(from cell in map1.Offsets select (-1, cell));
-							cellOffsets.AddRange(from cell in map2.Offsets select (-2, cell));
+							cellOffsets.AddRange(from cell in map1 select (-1, cell));
+							cellOffsets.AddRange(from cell in map2 select (-2, cell));
 
 							var candidateOffsets = new List<(int, int)>
 							{
 								(0, cpMap.SetAt(0) * 9 + x), (0, cpMap.SetAt(1) * 9 + x)
 							};
-							foreach (int cell in map1.Offsets)
+							foreach (int cell in map1)
 							{
 								foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 								{
@@ -150,7 +150,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 										cell * 9 + digit));
 								}
 							}
-							foreach (int cell in map2.Offsets)
+							foreach (int cell in map2)
 							{
 								foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 								{

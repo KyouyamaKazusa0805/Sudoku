@@ -19,7 +19,7 @@ namespace Sudoku.Data
 	/// <see cref="GridMap"/> instead of this data structure as much as possible.
 	/// </remarks>
 	[DebuggerStepThrough]
-	public struct FullGridMap : IEquatable<FullGridMap>, IEnumerable<bool>
+	public struct FullGridMap : IEquatable<FullGridMap>, IEnumerable<int>
 	{
 		/// <summary>
 		/// Indicates an empty instance (making no changes).
@@ -82,7 +82,7 @@ namespace Sudoku.Data
 
 			for (int i = 0; i < 9; i++)
 			{
-				this[cell * 9 + i] = i == digit ? setItself : true;
+				this[cell * 9 + i] = i != digit || setItself;
 			}
 		}
 
@@ -177,7 +177,7 @@ namespace Sudoku.Data
 
 				for (int i = 0; i < 9; i++)
 				{
-					foreach (int offset in lines[i].Offsets)
+					foreach (int offset in lines[i])
 					{
 						yield return i * 81 + offset;
 					}
@@ -360,13 +360,7 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc/>
-		public readonly IEnumerator<bool> GetEnumerator()
-		{
-			for (int i = 0; i < 729; i++)
-			{
-				yield return this[i];
-			}
-		}
+		public readonly IEnumerator<int> GetEnumerator() => Offsets.GetEnumerator();
 
 		/// <summary>
 		/// Add the candidate into the list.

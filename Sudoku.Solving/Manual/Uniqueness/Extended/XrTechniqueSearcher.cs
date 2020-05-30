@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -165,7 +164,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							// Possible type 1 or 2 found.
 							// Now check extra cells.
 							var extraCells = new List<int>();
-							foreach (int cell in allCellsMap.Offsets)
+							foreach (int cell in allCellsMap)
 							{
 								if ((grid.GetCandidatesReversal(cell) >> extraDigits[0] & 1) != 0)
 								{
@@ -173,8 +172,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 								}
 							}
 
-							var extraCellsMap = new GridMap(extraCells);
-							if (extraCellsMap.Offsets.All(c => grid.GetStatus(c) != Empty))
+							var extraCellsMap = new GridMap(extraCells) & EmptyMap;
+							if (extraCellsMap.IsEmpty)
 							{
 								continue;
 							}
@@ -186,7 +185,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							if (extraCellsMap.Count == 1)
 							{
 								// Type 1.
-								foreach (int cell in allCellsMap.Offsets)
+								foreach (int cell in allCellsMap)
 								{
 									if (cell == extraCells[0])
 									{
@@ -235,7 +234,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 								// Type 2.
 								// Check eliminations.
 								var elimMap = new GridMap(extraCells, ProcessPeersWithoutItself);
-								foreach (int cell in elimMap.Offsets)
+								foreach (int cell in elimMap)
 								{
 									if (!(grid.Exists(cell, extraDigit) is true))
 									{
@@ -251,7 +250,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 								}
 
 								// Record all highlight candidates.
-								foreach (int cell in allCellsMap.Offsets)
+								foreach (int cell in allCellsMap)
 								{
 									foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 									{
@@ -308,7 +307,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		{
 			// Now check extra cells.
 			var extraCells = new List<int>();
-			foreach (int cell in allCellsMap.Offsets)
+			foreach (int cell in allCellsMap)
 			{
 				foreach (int digit in extraDigits)
 				{
@@ -343,7 +342,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 
 				// Record all highlight candidates.
 				var candidateOffsets = new List<(int, int)>();
-				foreach (int cell in allCellsMap.Offsets)
+				foreach (int cell in allCellsMap)
 				{
 					if (cell == extraCell)
 					{
@@ -437,7 +436,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 
 					short subsetMask = 0;
 					var usedCellsMap = RegionMaps[region] - unavailableCellsMap;
-					foreach (int cell in usedCellsMap.Offsets)
+					foreach (int cell in usedCellsMap)
 					{
 						subsetMask |= grid.GetCandidatesReversal(cell);
 					}
@@ -458,16 +457,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					// Record all eliminations.
 					var conclusions = new List<Conclusion>();
 					var elimMap = RegionMaps[region] - unavailableCellsMap - usedCellsMap;
-					foreach (int cell in elimMap.Offsets)
+					foreach (int cell in elimMap)
 					{
 						foreach (int digit in extraDigits)
 						{
-							if (!(grid.Exists(cell, digit) is true))
+							if (grid.Exists(cell, digit) is true)
 							{
-								continue;
+								conclusions.Add(new Conclusion(Elimination, cell, digit));
 							}
-
-							conclusions.Add(new Conclusion(Elimination, cell, digit));
 						}
 					}
 
@@ -478,7 +475,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 
 					// Record all highlight candidates.
 					var candidateOffsets = new List<(int, int)>();
-					foreach (int cell in allCellsMap.Offsets)
+					foreach (int cell in allCellsMap)
 					{
 						foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 						{

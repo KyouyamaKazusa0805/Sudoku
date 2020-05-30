@@ -627,7 +627,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			// BUG + n found.
 			// Check eliminations.
 			var conclusions = new List<Conclusion>();
-			foreach (int candidate in map.Offsets)
+			foreach (int candidate in map)
 			{
 				if (!(grid.Exists(candidate / 9, candidate % 9) is true))
 				{
@@ -677,7 +677,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			// Check eliminations.
 			var conclusions = new List<Conclusion>();
 			int digit = trueCandidates[0] % 9;
-			foreach (int cell in map.Offsets)
+			foreach (int cell in map)
 			{
 				if (!(grid.Exists(cell, digit) is true))
 				{
@@ -724,7 +724,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			int cand1 = trueCandidates[0], cand2 = trueCandidates[1];
 			int c1 = cand1 / 9, c2 = cand2 / 9, d1 = cand1 % 9, d2 = cand2 % 9;
 			short mask = (short)(1 << d1 | 1 << d2);
-			foreach (int cell in ((new GridMap(c1, false) ^ new GridMap(c2, false)) & BivalueMap).Offsets)
+			foreach (int cell in ((new GridMap(c1, false) ^ new GridMap(c2, false)) & BivalueMap))
 			{
 				if (grid.GetCandidatesReversal(cell) != mask)
 				{
@@ -736,7 +736,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				bool condition = new GridMap { c1, cell }.AllSetsAreInOneRegion(out _);
 				int anotherCell = condition ? c2 : c1;
 				int anotherDigit = condition ? d2 : d1;
-				foreach (int peer in new GridMap(stackalloc[] { cell, anotherCell }, ProcessPeersWithoutItself).Offsets)
+				foreach (int peer in new GridMap(stackalloc[] { cell, anotherCell }, ProcessPeersWithoutItself))
 				{
 					if (grid.Exists(peer, anotherDigit) is true)
 					{

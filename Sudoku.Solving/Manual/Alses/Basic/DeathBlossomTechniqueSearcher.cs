@@ -130,7 +130,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								continue;
 							}
 
-							foreach (int cell in elimMap.Offsets)
+							foreach (int cell in elimMap)
 							{
 								if (grid.Exists(cell, d) is true)
 								{
@@ -181,7 +181,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						int z = 0;
 						foreach (var (d, a) in dic)
 						{
-							foreach (int c in a.Map.Offsets)
+							foreach (int c in a.Map)
 							{
 								cellOffsets.Add((-z - 1, c));
 							}
@@ -194,7 +194,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						z = 0;
 						foreach (var (d, a) in dic)
 						{
-							foreach (int c in a.Map.Offsets)
+							foreach (int c in a.Map)
 							{
 								foreach (int dd in grid.GetCandidatesReversal(c).GetAllSets())
 								{
@@ -266,7 +266,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						continue;
 					}
 
-					foreach (int cell in temp.Offsets)
+					foreach (int cell in temp)
 					{
 						if ((digitsMask & ~grid.GetCandidatesReversal(cell)) == 0)
 						{

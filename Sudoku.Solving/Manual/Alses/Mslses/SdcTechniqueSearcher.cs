@@ -90,7 +90,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					foreach (var currentInterMap in list)
 					{
 						short selectedInterMask = 0;
-						foreach (int cell in currentInterMap.Offsets)
+						foreach (int cell in currentInterMap)
 						{
 							selectedInterMask |= grid.GetCandidatesReversal(cell);
 						}
@@ -182,7 +182,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 										{
 											// Check eliminations.
 											var conclusions = new List<Conclusion>();
-											foreach (int cell in elimMapBlock.Offsets)
+											foreach (int cell in elimMapBlock)
 											{
 												foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 												{
@@ -192,7 +192,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 													}
 												}
 											}
-											foreach (int cell in elimMapLine.Offsets)
+											foreach (int cell in elimMapLine)
 											{
 												foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 												{
@@ -202,7 +202,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 													}
 												}
 											}
-											foreach (int cell in elimMapIsolated.Offsets)
+											foreach (int cell in elimMapIsolated)
 											{
 												conclusions.Add(new Conclusion(Elimination, cell, digitIsolated));
 											}
@@ -213,12 +213,12 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 											// Record highlight candidates and cells.
 											var cellOffsets = new List<(int, int)>();
-											cellOffsets.AddRange(from cell in currentBlockMap.Offsets select (0, cell));
-											cellOffsets.AddRange(from cell in currentLineMap.Offsets select (1, cell));
-											cellOffsets.AddRange(from cell in currentInterMap.Offsets select (2, cell));
+											cellOffsets.AddRange(from cell in currentBlockMap select (0, cell));
+											cellOffsets.AddRange(from cell in currentLineMap select (1, cell));
+											cellOffsets.AddRange(from cell in currentInterMap select (2, cell));
 
 											var candidateOffsets = new List<(int, int)>();
-											foreach (int cell in currentBlockMap.Offsets)
+											foreach (int cell in currentBlockMap)
 											{
 												foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 												{
@@ -227,7 +227,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 														cell * 9 + digit));
 												}
 											}
-											foreach (int cell in currentLineMap.Offsets)
+											foreach (int cell in currentLineMap)
 											{
 												foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 												{
@@ -236,7 +236,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 														cell * 9 + digit));
 												}
 											}
-											foreach (int cell in currentInterMap.Offsets)
+											foreach (int cell in currentInterMap)
 											{
 												foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 												{

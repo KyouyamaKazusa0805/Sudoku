@@ -60,13 +60,13 @@ namespace Sudoku.Solving.Manual.Intersections
 					}
 
 					var conclusions = new List<Conclusion>();
-					foreach (int cell in elimMap.Offsets)
+					foreach (int cell in elimMap)
 					{
 						conclusions.Add(new Conclusion(Elimination, cell, digit));
 					}
 
 					var candidateOffsets = new List<(int, int)>();
-					foreach (int cell in (c & CandMaps[digit]).Offsets)
+					foreach (int cell in c & CandMaps[digit])
 					{
 						candidateOffsets.Add((0, cell * 9 + digit));
 					}

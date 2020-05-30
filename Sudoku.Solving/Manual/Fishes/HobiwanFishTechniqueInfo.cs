@@ -192,11 +192,11 @@ namespace Sudoku.Solving.Manual.Fishes
 			string exo =
 				ExofinCells.IsEmpty
 					? string.Empty
-					: $"f{new CellCollection(ExofinCells.Offsets).ToString()} ";
+					: $"f{new CellCollection(ExofinCells).ToString()} ";
 			string endo =
 				EndofinCells.IsEmpty
 				? string.Empty
-				: $"ef{new CellCollection(EndofinCells.Offsets).ToString()} ";
+				: $"ef{new CellCollection(EndofinCells).ToString()} ";
 			return $@"{Name}: {Digit + 1} in {baseSets}\{coverSets} {exo}{endo}=> {elimStr}";
 		}
 

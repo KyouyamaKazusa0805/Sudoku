@@ -5,6 +5,7 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Sdps
 {
@@ -92,18 +93,15 @@ namespace Sudoku.Solving.Manual.Sdps
 						head = cells1[headIndex];
 						tail = cells2[tailIndex];
 						var conclusions = new List<Conclusion>();
-						var gridMap = new GridMap(head, false) & new GridMap(tail, false);
+						var gridMap = new GridMap(head, false) & new GridMap(tail, false) & CandMaps[digit];
 						if (gridMap.IsEmpty)
 						{
 							continue;
 						}
 
-						foreach (int cell in gridMap.Offsets)
+						foreach (int cell in gridMap)
 						{
-							if (grid.Exists(cell, digit) is true)
-							{
-								conclusions.Add(new Conclusion(ConclusionType.Elimination, cell, digit));
-							}
+							conclusions.Add(new Conclusion(Elimination, cell, digit));
 						}
 
 						if (conclusions.Count == 0)

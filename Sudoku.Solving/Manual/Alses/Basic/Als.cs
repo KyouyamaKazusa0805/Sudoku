@@ -117,7 +117,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public bool ContainsDigit(IReadOnlyGrid grid, int digit, out GridMap result)
 		{
 			result = GridMap.Empty;
-			foreach (int cell in Map.Offsets)
+			foreach (int cell in Map)
 			{
 				if ((grid.GetCandidatesReversal(cell) >> digit & 1) != 0)
 				{
@@ -155,21 +155,19 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		}
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			return IsBivalueCell
+		public override string ToString() =>
+			IsBivalueCell
 				? new StringBuilder()
 					.Append(new DigitCollection(DigitsMask.GetAllSets()).ToString(null))
 					.Append("/")
-					.Append(new CellCollection(Map.Offsets).ToString())
+					.Append(new CellCollection(Map).ToString())
 					.ToString()
 				: new StringBuilder()
 					.Append(new DigitCollection(DigitsMask.GetAllSets()).ToString(null))
 					.Append("/")
-					.Append(new CellCollection(Map.Offsets).ToString())
+					.Append(new CellCollection(Map).ToString())
 					.Append($" in {new RegionCollection(Region).ToString()}")
 					.ToString();
-		}
 
 
 		/// <summary>
@@ -183,7 +181,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			var emptyMap = TechniqueSearcher.EmptyMap;
 
 			// Get all bi-value-cell ALSes.
-			foreach (int cell in bivalueMap.Offsets)
+			foreach (int cell in bivalueMap)
 			{
 				yield return new Als(
 					grid.GetCandidatesReversal(cell), new GridMap { cell }, new GridMap(cell, false) & emptyMap);

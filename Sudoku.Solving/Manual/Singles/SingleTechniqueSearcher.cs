@@ -121,7 +121,7 @@ namespace Sudoku.Solving.Manual.Singles
 			}
 
 			// Search for naked singles.
-			foreach (int cell in EmptyMap.Offsets)
+			foreach (int cell in EmptyMap)
 			{
 				short mask = grid.GetCandidatesReversal(cell);
 				if (mask.IsPowerOfTwo())

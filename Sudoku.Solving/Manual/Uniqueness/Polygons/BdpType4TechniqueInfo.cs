@@ -63,8 +63,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		{
 			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
 			string combStr = new DigitCollection(ExtraMask.GetAllSets()).ToString();
-			string cellsStr = new CellCollection(Map.Offsets).ToString();
-			string conjRegion = new CellCollection(ConjugateRegion.Offsets).ToString();
+			string cellsStr = new CellCollection(Map).ToString();
+			string conjRegion = new CellCollection(ConjugateRegion).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
 				$"{Name}: {digitsStr} in cells {cellsStr} with the conjugate region {conjRegion} " +

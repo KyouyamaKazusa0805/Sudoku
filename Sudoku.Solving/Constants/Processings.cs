@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Constants
 		public static short BitwiseOrMasks(IReadOnlyGrid grid, GridMap map)
 		{
 			short mask = 0;
-			foreach (int cell in map.Offsets)
+			foreach (int cell in map)
 			{
 				mask |= grid.GetCandidatesReversal(cell);
 			}

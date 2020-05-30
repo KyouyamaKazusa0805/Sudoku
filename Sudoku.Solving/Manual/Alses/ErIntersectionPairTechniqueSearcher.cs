@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -64,12 +63,12 @@ namespace Sudoku.Solving.Manual.Alses
 					// Check the block that two cells both see.
 					var intersectionMap = new GridMap(stackalloc[] { c1, c2 }, ProcessPeersWithoutItself);
 					var unionMap = new GridMap(c1) | new GridMap(c2);
-					foreach (int interCell in intersectionMap.Offsets)
+					foreach (int interCell in intersectionMap)
 					{
 						int block = GetRegion(interCell, RegionLabel.Block);
 						var regionMap = RegionMaps[block];
 						var checkingMap = regionMap - unionMap & regionMap;
-						if (checkingMap.Offsets.Any(c => grid.Exists(c, d1) is true || grid.Exists(c, d2) is true))
+						if (checkingMap.Overlaps(CandMaps[d1]) || checkingMap.Overlaps(CandMaps[d2]))
 						{
 							continue;
 						}
@@ -80,11 +79,10 @@ namespace Sudoku.Solving.Manual.Alses
 						int b1 = GetRegion(inter1, RegionLabel.Block);
 						int b2 = GetRegion(inter2, RegionLabel.Block);
 						var erMap =
-							(unionMap & RegionMaps[b1] - intersectionMap)
-							| (unionMap & RegionMaps[b2] - intersectionMap);
+							(unionMap & RegionMaps[b1] - intersectionMap) | (unionMap & RegionMaps[b2] - intersectionMap);
 						var erCellsMap = regionMap & erMap;
 						short m = 0;
-						foreach (int cell in erCellsMap.Offsets)
+						foreach (int cell in erCellsMap)
 						{
 							m |= grid.GetCandidatesReversal(cell);
 						}
@@ -98,8 +96,7 @@ namespace Sudoku.Solving.Manual.Alses
 						int z = (intersectionMap & regionMap).SetAt(0);
 						var c1Map = RegionMaps[new GridMap { z, c1 }.CoveredLine];
 						var c2Map = RegionMaps[new GridMap { z, c2 }.CoveredLine];
-						foreach (int elimCell in (
-							new GridMap(c1Map | c2Map) { [c1] = false, [c2] = false } - erMap).Offsets)
+						foreach (int elimCell in new GridMap(c1Map | c2Map) { [c1] = false, [c2] = false } - erMap)
 						{
 							if (grid.Exists(elimCell, d1) is true)
 							{
@@ -124,7 +121,7 @@ namespace Sudoku.Solving.Manual.Alses
 						{
 							candidateOffsets.Add((0, c2 * 9 + digit));
 						}
-						foreach (int cell in erCellsMap.Offsets)
+						foreach (int cell in erCellsMap)
 						{
 							foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 							{

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
@@ -76,7 +75,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				var map = CreateInstance(solution, digit);
 				var resultMap = map & CandMaps[digit];
 				var conclusions = new List<Conclusion>();
-				foreach (int cell in resultMap.Offsets)
+				foreach (int cell in resultMap)
 				{
 					conclusions.Add(new Conclusion(Assignment, cell, digit));
 				}
@@ -117,7 +116,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				var map = CreateInstance(solution, digit);
 				var resultMap = CandMaps[digit] - map;
 				var conclusions = new List<Conclusion>();
-				foreach (int cell in resultMap.Offsets)
+				foreach (int cell in resultMap)
 				{
 					conclusions.Add(new Conclusion(Elimination, cell, digit));
 				}

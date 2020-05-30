@@ -47,7 +47,7 @@ namespace Sudoku.Data.Stepping
 		{
 			grid._masks[Cell] = Mask;
 
-			foreach (int peerCell in InnerMap.Offsets)
+			foreach (int peerCell in InnerMap)
 			{
 				grid._masks[peerCell] &= (short)~(1 << Digit);
 			}

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Sdps
 {
@@ -68,7 +68,7 @@ namespace Sudoku.Solving.Manual.Sdps
 							continue;
 						}
 
-						if (linkMap.BlockMask.CountSet() == 1
+						if (linkMap.BlockMask.IsPowerOfTwo()
 							|| i < 6 && (linkMap & RegionMaps[column]).IsEmpty
 							|| i >= 6 && (linkMap & RegionMaps[row]).IsEmpty)
 						{
@@ -86,7 +86,7 @@ namespace Sudoku.Solving.Manual.Sdps
 							continue;
 						}
 
-						int elimCell = elimCellMap.Offsets.First();
+						int elimCell = elimCellMap.SetAt(0);
 						if (!(grid.Exists(elimCell, digit) is true))
 						{
 							continue;
@@ -95,16 +95,11 @@ namespace Sudoku.Solving.Manual.Sdps
 						// Record all highlight candidates.
 						var candidateOffsets = new List<(int, int)>();
 						var cpCells = new List<int>(2);
-						foreach (int cell in RegionCells[block])
+						foreach (int cell in RegionMaps[block] & CandMaps[digit])
 						{
-							if (!(grid.Exists(cell, digit) is true))
-							{
-								continue;
-							}
-
 							candidateOffsets.Add((1, cell * 9 + digit));
 						}
-						foreach (int cell in linkMap.Offsets)
+						foreach (int cell in linkMap)
 						{
 							candidateOffsets.Add((0, cell * 9 + digit));
 							cpCells.Add(cell);
@@ -113,7 +108,7 @@ namespace Sudoku.Solving.Manual.Sdps
 						// Empty rectangle.
 						accumulator.Add(
 							new EmptyRectangleTechniqueInfo(
-								conclusions: new[] { new Conclusion(ConclusionType.Elimination, elimCell, digit) },
+								conclusions: new[] { new Conclusion(Elimination, elimCell, digit) },
 								views: new[]
 								{
 									new View(

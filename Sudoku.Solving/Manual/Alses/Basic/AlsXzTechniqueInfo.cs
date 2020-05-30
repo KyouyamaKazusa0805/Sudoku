@@ -95,13 +95,13 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				// Extended subset principle.
 				if (ZDigitsMask == 0)
 				{
-					string cellsStr = new CellCollection((Als1.Map | Als2.Map).Offsets).ToString();
+					string cellsStr = new CellCollection(Als1.Map | Als2.Map).ToString();
 					return $"{Name}: All digits cannot be duplicate in cells {cellsStr} => {elimStr}";
 				}
 				else
 				{
 					string digitStr = (ZDigitsMask.FindFirstSet() + 1).ToString();
-					string cellsStr = new CellCollection((Als1.Map | Als2.Map).Offsets).ToString();
+					string cellsStr = new CellCollection(Als1.Map | Als2.Map).ToString();
 					return $"{Name}: Only the digit {digitStr} can be duplicate in cells {cellsStr} => {elimStr}";
 				}
 			}

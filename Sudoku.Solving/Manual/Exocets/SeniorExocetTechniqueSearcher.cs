@@ -183,7 +183,7 @@ namespace Sudoku.Solving.Manual.Exocets
 								continue;
 							}
 
-							foreach (int cell in elimMap.Offsets)
+							foreach (int cell in elimMap)
 							{
 								trueBaseElims.Add(new Conclusion(Elimination, cell, digit));
 							}
@@ -196,7 +196,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					var mir = default(GridMap);
 
 					var cellOffsets = new List<(int, int)> { (0, b1), (0, b2) };
-					foreach (int cell in tempCrosslineMap.Offsets)
+					foreach (int cell in tempCrosslineMap)
 					{
 						cellOffsets.Add((cell == combination[0] || cell == combination[1] ? 1 : 2, cell));
 					}
@@ -588,7 +588,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 					if (elimMap.IsNotEmpty)
 					{
-						foreach (int cell in elimMap.Offsets)
+						foreach (int cell in elimMap)
 						{
 							compatibilityElims.Add(new Conclusion(Elimination, cell, digit));
 						}

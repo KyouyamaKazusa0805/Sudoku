@@ -44,7 +44,7 @@ namespace Sudoku.Solving.Generating
 					}
 				}
 
-				foreach (int cell in map.Offsets)
+				foreach (int cell in map)
 				{
 					do
 					{
@@ -69,7 +69,7 @@ namespace Sudoku.Solving.Generating
 		private static bool CheckDuplicate(StringBuilder gridArray, int cell)
 		{
 			char value = gridArray[cell];
-			foreach (int c in new GridMap(cell, false).Offsets)
+			foreach (int c in new GridMap(cell, false))
 			{
 				if (value != '0' && gridArray[c] == value)
 				{

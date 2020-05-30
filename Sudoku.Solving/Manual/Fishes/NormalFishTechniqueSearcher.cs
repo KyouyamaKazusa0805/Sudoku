@@ -158,7 +158,7 @@ namespace Sudoku.Solving.Manual.Fishes
 									}
 
 									// Get intersection.
-									foreach (int finCell in finCellsMap.Offsets)
+									foreach (int finCell in finCellsMap)
 									{
 										elimMap &= new GridMap(finCell);
 									}
@@ -170,7 +170,7 @@ namespace Sudoku.Solving.Manual.Fishes
 										// Finned/Sashimi X-Wing found.
 										// Check eliminations.
 										var conclusions = new List<Conclusion>();
-										foreach (int offset in elimMap.Offsets)
+										foreach (int offset in elimMap)
 										{
 											conclusions.Add(new Conclusion(Elimination, offset * 9 + digit));
 										}
@@ -182,13 +182,13 @@ namespace Sudoku.Solving.Manual.Fishes
 										// Eliminations does exist.
 										// Check all highlight candidates.
 										var candidateOffsets = new List<(int, int)>();
-										foreach (int cell in bodyMap.Offsets)
+										foreach (int cell in bodyMap)
 										{
 											candidateOffsets.Add((0, cell * 9 + digit));
 										}
 										if (finCellsMap.IsNotEmpty)
 										{
-											foreach (int cell in finCellsMap.Offsets)
+											foreach (int cell in finCellsMap)
 											{
 												candidateOffsets.Add((1, cell * 9 + digit));
 											}
@@ -201,7 +201,7 @@ namespace Sudoku.Solving.Manual.Fishes
 											isSashimi = true;
 											int finCell = finCellsMap.SetAt(0);
 											int block = finCell / 9 / 3 * 3 + finCell % 9 / 3;
-											foreach (int offset in bodyMap.Offsets)
+											foreach (int offset in bodyMap)
 											{
 												if (offset / 9 / 3 * 3 + offset % 9 / 3 == block)
 												{
@@ -333,7 +333,7 @@ namespace Sudoku.Solving.Manual.Fishes
 												}
 
 												// Get intersection.
-												foreach (int finCell in finCellsMap.Offsets)
+												foreach (int finCell in finCellsMap)
 												{
 													elimMap &= new GridMap(finCell);
 												}
@@ -345,7 +345,7 @@ namespace Sudoku.Solving.Manual.Fishes
 													// Finned/Sashimi X-Wing found.
 													// Check eliminations.
 													var conclusions = new List<Conclusion>();
-													foreach (int cell in elimMap.Offsets)
+													foreach (int cell in elimMap)
 													{
 														conclusions.Add(new Conclusion(Elimination, cell * 9 + digit));
 													}
@@ -357,13 +357,13 @@ namespace Sudoku.Solving.Manual.Fishes
 													// Eliminations does exist.
 													// Check all highlight candidates.
 													var candidateOffsets = new List<(int, int)>();
-													foreach (int cell in bodyMap.Offsets)
+													foreach (int cell in bodyMap)
 													{
 														candidateOffsets.Add((0, cell * 9 + digit));
 													}
 													if (finCellsMap.IsNotEmpty)
 													{
-														foreach (int cell in finCellsMap.Offsets)
+														foreach (int cell in finCellsMap)
 														{
 															candidateOffsets.Add((1, cell * 9 + digit));
 														}
@@ -376,7 +376,7 @@ namespace Sudoku.Solving.Manual.Fishes
 														isSashimi = true;
 														int finCell = finCellsMap.SetAt(0);
 														int block = finCell / 9 / 3 * 3 + finCell % 9 / 3;
-														foreach (int offset in bodyMap.Offsets)
+														foreach (int offset in bodyMap)
 														{
 															if (offset / 9 / 3 * 3 + offset % 9 / 3 == block)
 															{
@@ -524,7 +524,7 @@ namespace Sudoku.Solving.Manual.Fishes
 														}
 
 														// Get intersection.
-														foreach (int finCell in finCellsMap.Offsets)
+														foreach (int finCell in finCellsMap)
 														{
 															elimMap &= new GridMap(finCell);
 														}
@@ -536,7 +536,7 @@ namespace Sudoku.Solving.Manual.Fishes
 															// Finned/Sashimi X-Wing found.
 															// Check eliminations.
 															var conclusions = new List<Conclusion>();
-															foreach (int offset in elimMap.Offsets)
+															foreach (int offset in elimMap)
 															{
 																conclusions.Add(
 																	new Conclusion(Elimination, offset * 9 + digit));
@@ -549,13 +549,13 @@ namespace Sudoku.Solving.Manual.Fishes
 															// Eliminations does exist.
 															// Check all highlight candidates.
 															var candidateOffsets = new List<(int, int)>();
-															foreach (int cell in bodyMap.Offsets)
+															foreach (int cell in bodyMap)
 															{
 																candidateOffsets.Add((0, cell * 9 + digit));
 															}
 															if (finCellsMap.IsNotEmpty)
 															{
-																foreach (int cell in finCellsMap.Offsets)
+																foreach (int cell in finCellsMap)
 																{
 																	candidateOffsets.Add((1, cell * 9 + digit));
 																}
@@ -568,7 +568,7 @@ namespace Sudoku.Solving.Manual.Fishes
 																isSashimi = true;
 																int finCell = finCellsMap.SetAt(0);
 																int block = finCell / 9 / 3 * 3 + finCell % 9 / 3;
-																foreach (int offset in bodyMap.Offsets)
+																foreach (int offset in bodyMap)
 																{
 																	if (offset / 9 / 3 * 3 + offset % 9 / 3 == block
 																		&& grid.Exists(offset, digit) is true)

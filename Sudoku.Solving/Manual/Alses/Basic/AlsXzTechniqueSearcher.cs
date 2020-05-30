@@ -60,7 +60,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					// in the intersection of two ALSes.
 					if (overlapMap.IsNotEmpty)
 					{
-						foreach (int cell in overlapMap.Offsets)
+						foreach (int cell in overlapMap)
 						{
 							xzMask &= (short)~grid.GetCandidatesReversal(cell);
 						}
@@ -107,7 +107,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							continue;
 						}
 
-						foreach (int cell in elimMap.Offsets)
+						foreach (int cell in elimMap)
 						{
 							conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
 						}
@@ -143,7 +143,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							var elimMap = (RegionMaps[house[k]] & CandMaps[digit]) - map;
 							if (elimMap.IsNotEmpty)
 							{
-								foreach (int cell in elimMap.Offsets)
+								foreach (int cell in elimMap)
 								{
 									if (grid.Exists(cell, digit) is true)
 									{
@@ -165,7 +165,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						tempMap &= possibleElimMap1;
 						if (tempMap.IsNotEmpty)
 						{
-							foreach (int cell in tempMap.Offsets)
+							foreach (int cell in tempMap)
 							{
 								foreach (int digit in
 									(grid.GetCandidatesReversal(cell) & (mask1 & ~rccMask)).GetAllSets())
@@ -182,7 +182,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						tempMap &= possibleElimMap2;
 						if (tempMap.IsNotEmpty)
 						{
-							foreach (int cell in tempMap.Offsets)
+							foreach (int cell in tempMap)
 							{
 								foreach (int digit in
 									(grid.GetCandidatesReversal(cell) & (mask2 & ~rccMask)).GetAllSets())
@@ -204,7 +204,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					var cellOffsets = new List<(int, int)>();
 					if (isEsp)
 					{
-						foreach (int cell in map.Offsets)
+						foreach (int cell in map)
 						{
 							foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
 							{
@@ -214,7 +214,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					}
 					else
 					{
-						foreach (int cell in map1.Offsets)
+						foreach (int cell in map1)
 						{
 							short mask = grid.GetCandidatesReversal(cell);
 							short alsDigitsMask = (short)(mask & ~(finalZ | rccMask));
@@ -233,7 +233,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								candidateOffsets.Add((1, cell * 9 + digit));
 							}
 						}
-						foreach (int cell in map2.Offsets)
+						foreach (int cell in map2)
 						{
 							short mask = grid.GetCandidatesReversal(cell);
 							short alsDigitsMask = (short)(mask & ~(finalZ | rccMask));

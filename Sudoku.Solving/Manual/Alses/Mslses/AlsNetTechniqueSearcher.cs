@@ -110,7 +110,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 							continue;
 						}
 
-						foreach (int cell in elimMap.Offsets)
+						foreach (int cell in elimMap)
 						{
 							if (map[cell])
 							{
@@ -134,7 +134,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 							continue;
 						}
 
-						foreach (int cell in (map & RegionMaps[region]).Offsets)
+						foreach (int cell in map & RegionMaps[region])
 						{
 							short cands = (short)(grid.GetCandidatesReversal(cell) & linkMask);
 							if (cands == 0)
