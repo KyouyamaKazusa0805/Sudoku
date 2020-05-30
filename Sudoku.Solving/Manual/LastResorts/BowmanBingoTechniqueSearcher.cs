@@ -55,15 +55,10 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			var tempGrid = grid.Clone();
-			for (int cell = 0; cell < 81; cell++)
+			for (int digit = 0; digit < 9; digit++)
 			{
-				for (int digit = 0; digit < 9; digit++)
+				foreach (int cell in CandMaps[digit])
 				{
-					if (!(tempGrid.Exists(cell, digit) is true))
-					{
-						continue;
-					}
-
 					_tempConclusions.Add(new Conclusion(Assignment, cell, digit));
 					var (candList, mask) = RecordUndoInfo(tempGrid, cell, digit);
 
@@ -219,11 +214,12 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <param name="cell">The cell.</param>
 		/// <returns>The result.</returns>
 		private static bool IsValidGrid(IReadOnlyGrid grid, int cell) =>
-			new GridMap(cell, false).All(c =>
-			{
-				var status = grid.GetStatus(c);
-				return (status != CellStatus.Empty && grid[c] != grid[cell] || status == CellStatus.Empty)
-					&& grid.GetCandidatesReversal(c) != 0;
-			});
+			new GridMap(cell, false).All(
+				c =>
+				{
+					var status = grid.GetStatus(c);
+					return (status != CellStatus.Empty && grid[c] != grid[cell] || status == CellStatus.Empty)
+						&& grid.GetCandidatesReversal(c) != 0;
+				});
 	}
 }
