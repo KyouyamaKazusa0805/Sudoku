@@ -130,7 +130,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				result.Add(
 					new TemplateTechniqueInfo(
 						conclusions,
-						views: new[] { new View() },
+						views: View.DefaultViews,
 						isTemplateDeletion: true));
 			}
 		}

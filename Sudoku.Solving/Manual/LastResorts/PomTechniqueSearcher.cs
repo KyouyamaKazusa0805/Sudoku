@@ -41,9 +41,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 					new PomTechniqueInfo(
 						conclusions:
 							new List<Conclusion>(
-								from cell in template.Offsets
-								select new Conclusion(Elimination, cell, digit)),
-						views: new[] { new View() }));
+								from cell in template.Offsets select new Conclusion(Elimination, cell, digit)),
+						views: View.DefaultViews));
 			}
 		}
 

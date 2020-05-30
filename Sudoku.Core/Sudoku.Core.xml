@@ -4092,13 +4092,10 @@
             Encapsulates a view when displaying the information on forms.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.View.#ctor">
-            <defaultConstructor>
-		<summary>Create an instance with default initialization.</summary>
-	</defaultConstructor>
-            <remarks>
-            The constructor is equivalent to code '<c>new View(null, null, null, null)</c>'.
-            </remarks>
+        <member name="F:Sudoku.Drawing.View.DefaultViews">
+            <summary>
+            Provides a new default view list for initialization.
+            </summary>
         </member>
         <member name="M:Sudoku.Drawing.View.#ctor(System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Inference})">
             <summary>
