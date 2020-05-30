@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -48,29 +49,48 @@ namespace Sudoku.Solving.Manual.Singles
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			// Search for full houses.
+			// Note that this technique searcher will be used in other functions,
+			// so we should not use base maps like 'EmptyMap'.
+			// Those maps will be initialized in the special cases.
 			if (_enableFullHouse)
 			{
 				for (int region = 0; region < 27; region++)
 				{
-					var map = RegionMaps[region] & EmptyMap;
-					if (map.Count == 1)
+					var map = RegionMaps[region];
+					int count = 0;
+					bool flag = true;
+					int resultCell = -1;
+					foreach (int cell in map)
 					{
-						int cell = map.SetAt(0);
-						int digit = grid.GetCandidatesReversal(cell).FindFirstSet();
-						accumulator.Add(
-							new FullHouseTechniqueInfo(
-								conclusions: new[] { new Conclusion(Assignment, cell, digit) },
-								views: new[]
-								{
-									new View(
-										cellOffsets: null,
-										candidateOffsets: new[] { (0, cell * 9 + digit) },
-										regionOffsets: new[] { (0, region) },
-										links: null)
-								},
-								cellOffset: cell,
-								digit));
+						if (grid.GetStatus(cell) == CellStatus.Empty)
+						{
+							resultCell = cell;
+							if (++count > 1)
+							{
+								flag.Flip();
+								break;
+							}
+						}
 					}
+					if (!flag || count != 1)
+					{
+						continue;
+					}
+
+					int digit = grid.GetCandidatesReversal(resultCell).FindFirstSet();
+					accumulator.Add(
+						new FullHouseTechniqueInfo(
+							conclusions: new[] { new Conclusion(Assignment, resultCell, digit) },
+							views: new[]
+							{
+								new View(
+									cellOffsets: null,
+									candidateOffsets: new[] { (0, resultCell * 9 + digit) },
+									regionOffsets: new[] { (0, region) },
+									links: null)
+							},
+							cellOffset: resultCell,
+							digit));
 				}
 			}
 
@@ -79,44 +99,59 @@ namespace Sudoku.Solving.Manual.Singles
 			{
 				for (int region = 0; region < 27; region++)
 				{
-					var map = RegionMaps[region] & CandMaps[digit];
-					if (map.Count == 1)
+					var map = RegionMaps[region];
+					int count = 0, resultCell = -1;
+					bool flag = true;
+					foreach (int cell in map)
 					{
-						bool enableAndIsLastDigit = false;
-						var cellOffsets = new List<(int, int)>();
-						if (_enableLastDigit)
+						if (grid.Exists(cell, digit) is true)
 						{
-							// Sum up the number of appearing in the grid of 'digit'.
-							int digitCount = 0;
-							for (int i = 0; i < 81; i++)
+							resultCell = cell;
+							if (++count > 1)
 							{
-								if (grid[i] == digit)
-								{
-									digitCount++;
-									cellOffsets.Add((0, i));
-								}
+								flag.Flip();
+								break;
 							}
+						}
+					}
+					if (!flag || count != 1)
+					{
+						continue;
+					}
 
-							enableAndIsLastDigit = digitCount == 8;
+					bool enableAndIsLastDigit = false;
+					var cellOffsets = new List<(int, int)>();
+					if (_enableLastDigit)
+					{
+						// Sum up the number of appearing in the grid of 'digit'.
+						int digitCount = 0;
+						for (int i = 0; i < 81; i++)
+						{
+							if (grid[i] == digit)
+							{
+								digitCount++;
+								cellOffsets.Add((0, i));
+							}
 						}
 
-						int cell = map.SetAt(0);
-						accumulator.Add(
-							new HiddenSingleTechniqueInfo(
-								conclusions: new[] { new Conclusion(Assignment, cell, digit) },
-								views: new[]
-								{
-									new View(
-										cellOffsets: enableAndIsLastDigit ? cellOffsets : null,
-										candidateOffsets: new[] { (0, cell * 9 + digit) },
-										regionOffsets: enableAndIsLastDigit ? null : new[] { (0, region) },
-										links: null)
-								},
-								regionOffset: region,
-								cellOffset: cell,
-								digit,
-								enableAndIsLastDigit));
+						enableAndIsLastDigit = digitCount == 8;
 					}
+
+					accumulator.Add(
+						new HiddenSingleTechniqueInfo(
+							conclusions: new[] { new Conclusion(Assignment, resultCell, digit) },
+							views: new[]
+							{
+								new View(
+									cellOffsets: enableAndIsLastDigit ? cellOffsets : null,
+									candidateOffsets: new[] { (0, resultCell * 9 + digit) },
+									regionOffsets: enableAndIsLastDigit ? null : new[] { (0, region) },
+									links: null)
+							},
+							regionOffset: region,
+							cellOffset: resultCell,
+							digit,
+							enableAndIsLastDigit));
 				}
 			}
 

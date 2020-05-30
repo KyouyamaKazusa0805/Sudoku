@@ -24,7 +24,7 @@ namespace Sudoku.Solving
 		/// This map will be used after <see cref="InitializeMaps"/> called.
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
-		internal static GridMap EmptyMap { get; private set; }
+		internal static GridMap EmptyMap { get; set; }
 
 		/// <summary>
 		/// The bi-value cells map.
@@ -33,7 +33,7 @@ namespace Sudoku.Solving
 		/// This map will be used after <see cref="InitializeMaps"/> called.
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
-		internal static GridMap BivalueMap { get; private set; }
+		internal static GridMap BivalueMap { get; set; }
 
 		/// <summary>
 		/// The candidate maps.
@@ -42,7 +42,7 @@ namespace Sudoku.Solving
 		/// This map will be used after <see cref="InitializeMaps"/> called.
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
-		internal static GridMap[] CandMaps { get; private set; } = null!;
+		internal static GridMap[] CandMaps { get; set; } = null!;
 
 		/// <summary>
 		/// The digit maps.
@@ -51,7 +51,7 @@ namespace Sudoku.Solving
 		/// This map will be used after <see cref="InitializeMaps"/> called.
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
-		internal static GridMap[] ValueMaps { get; private set; } = null!;
+		internal static GridMap[] ValueMaps { get; set; } = null!;
 
 
 		/// <summary>
