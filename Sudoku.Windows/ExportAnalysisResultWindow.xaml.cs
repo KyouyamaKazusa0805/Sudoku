@@ -38,24 +38,14 @@ namespace Sudoku.Windows
 		public ExportAnalysisResultWindow(AnalysisResult analysisResult)
 		{
 			InitializeComponent();
-			InitializeControls();
+
+			// Initialize controls.
+			foreach (var control in _gridMain.Children.OfType<CheckBox>())
+			{
+				control.IsChecked = _dic[control.Tag.ToString()![0]];
+			}
 
 			_analysisResult = analysisResult;
-		}
-
-
-		/// <summary>
-		/// Initialize controls.
-		/// </summary>
-		private void InitializeControls()
-		{
-			foreach (var control in _gridMain.Children)
-			{
-				if (control is CheckBox checkBox)
-				{
-					checkBox.IsChecked = _dic[checkBox.Tag!.ToString()![0]];
-				}
-			}
 		}
 
 
@@ -70,34 +60,24 @@ namespace Sudoku.Windows
 			_textBoxAnalysisResult.Text = _analysisResult.ToString(format.ToString());
 		}
 
-		private void CheckBoxShowSeparators_Click(object sender, RoutedEventArgs e) =>
-			_dic['-'] ^= true;
+		private void CheckBoxShowSeparators_Click(object sender, RoutedEventArgs e) => _dic['-'] ^= true;
 
-		private void CheckBoxShowStepIndices_Click(object sender, RoutedEventArgs e) =>
-			_dic['#'] ^= true;
+		private void CheckBoxShowStepIndices_Click(object sender, RoutedEventArgs e) => _dic['#'] ^= true;
 
-		private void CheckBoxShowLogic_Click(object sender, RoutedEventArgs e) =>
-			_dic['@'] ^= true;
+		private void CheckBoxShowLogic_Click(object sender, RoutedEventArgs e) => _dic['@'] ^= true;
 
-		private void CheckBoxShowBottleneck_Click(object sender, RoutedEventArgs e) =>
-			_dic['?'] ^= true;
+		private void CheckBoxShowBottleneck_Click(object sender, RoutedEventArgs e) => _dic['?'] ^= true;
 
-		private void CheckBoxShowDifficulty_Click(object sender, RoutedEventArgs e) =>
-			_dic['!'] ^= true;
+		private void CheckBoxShowDifficulty_Click(object sender, RoutedEventArgs e) => _dic['!'] ^= true;
 
-		private void CheckboxShowStepsAfterBottleneck_Click(object sender, RoutedEventArgs e) =>
-			_dic['.'] ^= true;
+		private void CheckboxShowStepsAfterBottleneck_Click(object sender, RoutedEventArgs e) => _dic['.'] ^= true;
 
-		private void CheckBoxShowAttributesOfPuzzle_Click(object sender, RoutedEventArgs e) =>
-			_dic['a'] ^= true;
+		private void CheckBoxShowAttributesOfPuzzle_Click(object sender, RoutedEventArgs e) => _dic['a'] ^= true;
 
-		private void CheckBoxShowMagicCells_Click(object sender, RoutedEventArgs e) =>
-			_dic['b'] ^= true;
+		private void CheckBoxShowMagicCells_Click(object sender, RoutedEventArgs e) => _dic['b'] ^= true;
 
-		private void CheckBoxShowDifficultyDetail_Click(object sender, RoutedEventArgs e) =>
-			_dic['d'] ^= true;
+		private void CheckBoxShowDifficultyDetail_Click(object sender, RoutedEventArgs e) => _dic['d'] ^= true;
 
-		private void CheckBoxShowTechniqueSteps_Click(object sender, RoutedEventArgs e) =>
-			_dic['l'] ^= true;
+		private void CheckBoxShowTechniqueSteps_Click(object sender, RoutedEventArgs e) => _dic['l'] ^= true;
 	}
 }

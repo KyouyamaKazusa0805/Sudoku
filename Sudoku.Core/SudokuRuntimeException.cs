@@ -20,14 +20,12 @@ namespace Sudoku
 		}
 
 		/// <inheritdoc/>
-		public SudokuRuntimeException(
-			string message, Exception innerException) : base(message, innerException)
+		public SudokuRuntimeException(string message, Exception innerException) : base(message, innerException)
 		{
 		}
 
 		/// <inheritdoc/>
-		protected SudokuRuntimeException(
-			SerializationInfo info, StreamingContext context) : base(info, context)
+		protected SudokuRuntimeException(SerializationInfo info, StreamingContext context) : base(info, context)
 		{
 		}
 	}

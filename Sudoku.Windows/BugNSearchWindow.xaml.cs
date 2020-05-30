@@ -45,11 +45,12 @@ namespace Sudoku.Windows
 				_listBoxTrueCandidates.ClearValue(ItemsControl.ItemsSourceProperty);
 				_labelStatus.Content = "Searching... The searching may be slow. Please wait.";
 
-				var list = new List<PrimaryElementTuple<int, string>>(
-					from candidate in await Task.Run(() => new BugChecker(_puzzle).GetAllTrueCandidates(64))
-					orderby candidate
-					select new PrimaryElementTuple<int, string>(
-						candidate, new CandidateCollection(candidate).ToString(), 2));
+				var list =
+					new List<PrimaryElementTuple<int, string>>(
+						from candidate in await Task.Run(() => new BugChecker(_puzzle).GetAllTrueCandidates(64))
+						orderby candidate
+						select new PrimaryElementTuple<int, string>(
+							candidate, new CandidateCollection(candidate).ToString(), 2));
 
 				_labelStatus.ClearValue(ContentProperty);
 				int count = list.Count;

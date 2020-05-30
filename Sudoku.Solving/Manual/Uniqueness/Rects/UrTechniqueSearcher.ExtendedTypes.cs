@@ -1135,6 +1135,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					return;
 				}
 
+				var testMap = new GridMap(stackalloc[] { otherCell1, otherCell2 }, ProcessPeersWithoutItself);
 				short extraDigitsMask = (short)(mask ^ comparer);
 				int[] cells = map.ToArray();
 				for (int i1 = 0, length = cells.Length; i1 < length - size + 1; i1++)
@@ -1164,10 +1165,28 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								continue;
 							}
 
+							// Now check whether all cells found should see their corresponding
+							// cells in UR structure ('otherCells1' or 'otherCells2').
+							bool flag = true;
+							foreach (int cell in stackalloc[] { c1, c2 })
+							{
+								int extraDigit = (grid.GetCandidatesReversal(cell) & ~m).FindFirstSet();
+								if (!(testMap & CandMaps[extraDigit])[cell])
+								{
+									flag = false;
+									break;
+								}
+							}
+							if (!flag)
+							{
+								continue;
+							}
+
 							// Now check eliminations.
 							var conclusions = new List<Conclusion>();
 							int elimDigit = m.FindFirstSet();
-							var elimMap = new GridMap(stackalloc[] { c1, c2 }, ProcessPeersWithoutItself);
+							var elimMap =
+								new GridMap(stackalloc[] { c1, c2 }, ProcessPeersWithoutItself) & CandMaps[elimDigit];
 							if (elimMap.IsEmpty)
 							{
 								continue;
@@ -1175,14 +1194,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 							foreach (int cell in elimMap)
 							{
-								if (grid.Exists(cell, elimDigit) is true)
-								{
-									conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
-								}
-							}
-							if (conclusions.Count == 0)
-							{
-								continue;
+								conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
 							}
 
 							var candidateOffsets = new List<(int, int)>();
@@ -1255,10 +1267,29 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										continue;
 									}
 
+									// Now check whether all cells found should see their corresponding
+									// cells in UR structure ('otherCells1' or 'otherCells2').
+									bool flag = true;
+									foreach (int cell in stackalloc[] { c1, c2, c3 })
+									{
+										int extraDigit = (grid.GetCandidatesReversal(cell) & ~m).FindFirstSet();
+										if (!(testMap & CandMaps[extraDigit])[cell])
+										{
+											flag = false;
+											break;
+										}
+									}
+									if (!flag)
+									{
+										continue;
+									}
+
 									// Now check eliminations.
 									var conclusions = new List<Conclusion>();
 									int elimDigit = m.FindFirstSet();
-									var elimMap = new GridMap(stackalloc[] { c1, c2, c3 }, ProcessPeersWithoutItself);
+									var elimMap =
+										new GridMap(stackalloc[] { c1, c2, c3 }, ProcessPeersWithoutItself)
+										& CandMaps[elimDigit];
 									if (elimMap.IsEmpty)
 									{
 										continue;
@@ -1266,14 +1297,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 									foreach (int cell in elimMap)
 									{
-										if (grid.Exists(cell, elimDigit) is true)
-										{
-											conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
-										}
-									}
-									if (conclusions.Count == 0)
-									{
-										continue;
+										conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
 									}
 
 									var candidateOffsets = new List<(int, int)>();
@@ -1343,11 +1367,29 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											continue;
 										}
 
+										// Now check whether all cells found should see their corresponding
+										// cells in UR structure ('otherCells1' or 'otherCells2').
+										bool flag = true;
+										foreach (int cell in stackalloc[] { c1, c2, c3, c4 })
+										{
+											int extraDigit = (grid.GetCandidatesReversal(cell) & ~m).FindFirstSet();
+											if (!(testMap & CandMaps[extraDigit])[cell])
+											{
+												flag = false;
+												break;
+											}
+										}
+										if (!flag)
+										{
+											continue;
+										}
+
 										// Now check eliminations.
 										var conclusions = new List<Conclusion>();
 										int elimDigit = m.FindFirstSet();
-										var elimMap = new GridMap(
-											stackalloc[] { c1, c2, c3, c4 }, ProcessPeersWithoutItself);
+										var elimMap =
+											new GridMap(stackalloc[] { c1, c2, c3, c4 }, ProcessPeersWithoutItself)
+											& CandMaps[elimDigit];
 										if (elimMap.IsEmpty)
 										{
 											continue;
@@ -1355,14 +1397,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 										foreach (int cell in elimMap)
 										{
-											if (grid.Exists(cell, elimDigit) is true)
-											{
-												conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
-											}
-										}
-										if (conclusions.Count == 0)
-										{
-											continue;
+											conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
 										}
 
 										var candidateOffsets = new List<(int, int)>();

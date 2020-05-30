@@ -38,6 +38,7 @@ namespace Sudoku.Windows
 			_labelGrid.Content = $"Grid: {_puzzle:#}";
 		}
 
+
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void ButtonStartSearching_Click(object sender, RoutedEventArgs e)
 		{
@@ -72,8 +73,7 @@ namespace Sudoku.Windows
 				}
 
 				_listBoxBackdoors.ItemsSource =
-					from collection in collections
-					select new ConclusionCollection(collection).ToString();
+					from collection in collections select new ConclusionCollection(collection).ToString();
 			}
 		}
 

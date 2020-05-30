@@ -34,8 +34,8 @@ namespace Sudoku
 		/// <param name="grid">The grid.</param>
 		/// <param name="message">The error message.</param>
 		/// <param name="inner">The inner exception.</param>
-		public WrongHandlingException(IReadOnlyGrid grid, string message, Exception inner)
-			: base(message, inner) => Grid = grid;
+		public WrongHandlingException(IReadOnlyGrid grid, string message, Exception inner) : base(message, inner) =>
+			Grid = grid;
 
 		/// <summary>
 		/// Initializes an instance with a grid, a serialization information instance and
@@ -55,7 +55,6 @@ namespace Sudoku
 
 
 		/// <inheritdoc/>
-		public override string Message =>
-			"The specified message cannot be solved due to wrong handling in manual solver.";
+		public override string Message => "The specified message cannot be solved due to wrong handling in manual solver.";
 	}
 }
