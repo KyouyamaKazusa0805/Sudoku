@@ -9245,7 +9245,8 @@
             The empty cells map.
             </summary>
             <remarks>
-            This map will be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)"/> called.
+            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)"/> called, and you<b>'d
+            better</b> not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher"/> instance.
             </remarks>
             <seealso cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)"/>
         </member>
@@ -9254,7 +9255,8 @@
             The bi-value cells map.
             </summary>
             <remarks>
-            This map will be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)"/> called.
+            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)"/> called, and you<b>'d
+            better</b> not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher"/> instance.
             </remarks>
             <seealso cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)"/>
         </member>
@@ -9263,7 +9265,8 @@
             The candidate maps.
             </summary>
             <remarks>
-            This map will be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)"/> called.
+            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)"/> called, and you<b>'d
+            better</b> not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher"/> instance.
             </remarks>
             <seealso cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)"/>
         </member>
@@ -9272,7 +9275,8 @@
             The digit maps.
             </summary>
             <remarks>
-            This map will be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)"/> called.
+            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)"/> called, and you<b>'d
+            better</b> not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher"/> instance.
             </remarks>
             <seealso cref="M:Sudoku.Solving.TechniqueSearcher.InitializeMaps(Sudoku.Data.IReadOnlyGrid)"/>
         </member>

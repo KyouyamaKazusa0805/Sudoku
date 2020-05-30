@@ -7,6 +7,7 @@ using System.Reflection;
 using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Solving.Manual;
+using Sudoku.Solving.Manual.Singles;
 
 namespace Sudoku.Solving
 {
@@ -21,7 +22,8 @@ namespace Sudoku.Solving
 		/// The empty cells map.
 		/// </summary>
 		/// <remarks>
-		/// This map will be used after <see cref="InitializeMaps"/> called.
+		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d
+		/// better</b> not use this field on <see cref="SingleTechniqueSearcher"/> instance.
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
 		internal static GridMap EmptyMap { get; set; }
@@ -30,7 +32,8 @@ namespace Sudoku.Solving
 		/// The bi-value cells map.
 		/// </summary>
 		/// <remarks>
-		/// This map will be used after <see cref="InitializeMaps"/> called.
+		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d
+		/// better</b> not use this field on <see cref="SingleTechniqueSearcher"/> instance.
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
 		internal static GridMap BivalueMap { get; set; }
@@ -39,7 +42,8 @@ namespace Sudoku.Solving
 		/// The candidate maps.
 		/// </summary>
 		/// <remarks>
-		/// This map will be used after <see cref="InitializeMaps"/> called.
+		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d
+		/// better</b> not use this field on <see cref="SingleTechniqueSearcher"/> instance.
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
 		internal static GridMap[] CandMaps { get; set; } = null!;
@@ -48,7 +52,8 @@ namespace Sudoku.Solving
 		/// The digit maps.
 		/// </summary>
 		/// <remarks>
-		/// This map will be used after <see cref="InitializeMaps"/> called.
+		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d
+		/// better</b> not use this field on <see cref="SingleTechniqueSearcher"/> instance.
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
 		internal static GridMap[] ValueMaps { get; set; } = null!;
