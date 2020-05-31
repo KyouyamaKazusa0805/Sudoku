@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Media.Imaging;
 using System.Xml;
@@ -225,7 +224,7 @@ namespace Sudoku.Windows.Tooling
 		[return: MaybeNull]
 		public static T LoadFromXml<T>(this T @this, string filename)
 		{
-			var result = default(T);
+			T result = default;
 			if (File.Exists(filename))
 			{
 				using var sr = new StreamReader(filename);
@@ -247,7 +246,7 @@ namespace Sudoku.Windows.Tooling
 		[return: MaybeNull]
 		public static T LoadFromXmlText<T>(this T @this, string xml)
 		{
-			var result = default(T);
+			T result = default;
 			if (!string.IsNullOrEmpty(xml))
 			{
 				using var xr = XmlReader.Create(new StringReader(xml));

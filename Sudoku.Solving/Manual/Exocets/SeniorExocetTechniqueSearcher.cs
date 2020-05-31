@@ -64,7 +64,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				i = 0;
-				var temp = default(GridMap);
+				GridMap temp = default;
 				foreach (int digit in baseCandidatesMask.GetAllSets())
 				{
 					if (i++ == 0)
@@ -193,7 +193,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					var mirrorElims = new MirrorEliminations();
 					var compatibilityElims = new CompatibilityTestEliminations();
 					int target = -1;
-					var mir = default(GridMap);
+					GridMap mir = default;
 
 					var cellOffsets = new List<(int, int)> { (0, b1), (0, b2) };
 					foreach (int cell in tempCrosslineMap)

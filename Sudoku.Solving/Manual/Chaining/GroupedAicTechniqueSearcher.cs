@@ -1152,8 +1152,8 @@ namespace Sudoku.Solving.Manual.Chaining
 					tempMaps[i] = map & intersectionMaps[region, i];
 				}
 
-				var ptr1 = default(GridMap);
-				var ptr2 = default(GridMap);
+				GridMap ptr1 = default;
+				GridMap ptr2 = default;
 				int count = 0;
 				for (int i = 0; i < 6; i++)
 				{
@@ -1217,8 +1217,8 @@ namespace Sudoku.Solving.Manual.Chaining
 					tempMaps[i] = map & intersectionMaps[region, i];
 				}
 
-				var ptr1 = default(GridMap);
-				var ptr2 = default(GridMap);
+				GridMap ptr1 = default;
+				GridMap ptr2 = default;
 				int count = 0;
 				for (int i = 0; i < 3; i++)
 				{

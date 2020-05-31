@@ -454,7 +454,7 @@ namespace Sudoku.Data
 		public static FullGridMap CreateInstance(IEnumerable<int> candidates, bool setItself = false)
 		{
 			int i = 0;
-			var result = default(FullGridMap);
+			FullGridMap result = default;
 			foreach (int candidate in candidates)
 			{
 				if (i++ == 0)

@@ -778,7 +778,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			var bugCells = new List<int>();
 			var bugValues = new Dictionary<int, short>();
 			short allBugValues = 0;
-			var commonCells = default(GridMap);
+			GridMap commonCells = default;
 			int t = 0;
 			for (int region = 0; region < 27; region++)
 			{
