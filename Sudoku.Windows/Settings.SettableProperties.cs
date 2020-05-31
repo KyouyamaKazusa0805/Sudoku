@@ -127,7 +127,7 @@ namespace Sudoku.Windows
 
 		/// <summary>
 		/// <para>Indicates the scale of values.</para>
-		/// <para>The value is <c>0.8M</c> in default case.</para>
+		/// <para>The value is <c>0.9M</c> in default case.</para>
 		/// </summary>
 		public decimal ValueScale { get; set; } = .9M;
 
