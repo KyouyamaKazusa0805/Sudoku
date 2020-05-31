@@ -31,6 +31,7 @@ using SudokuGrid = Sudoku.Data.Grid;
 #if SUDOKU_RECOGNIZING
 using System.Drawing;
 using Sudoku.Windows.Constants;
+using static Sudoku.Solving.Manual.ManualSolver;
 #endif
 #if DEBUG
 using Sudoku.Solving.Manual;
@@ -604,6 +605,9 @@ namespace Sudoku.Windows
 				DisableSolvingControls();
 
 				// Run the solver asynchronizedly, during solving you can do other work.
+				var dialog = new ProgressWindow();
+				dialog.Show();
+
 				_analyisResult =
 					await Task.Run(() =>
 					{
@@ -613,8 +617,20 @@ namespace Sudoku.Windows
 							_puzzle.ClearStack();
 						}
 
-						return _manualSolver.Solve(_puzzle);
+						return _manualSolver.Solve(
+							_puzzle,
+							new Progress<ProgressResult>(
+								(ProgressResult e) =>
+								{
+									// The dispatcher instance will help us to modify the state of
+									// controls while using multi-threads.
+									dialog._progressBarInfo.Dispatcher.Invoke(() => dialog._progressBarInfo.Value = e.Percentage);
+									dialog._textBlockInfo.Dispatcher.Invoke(() => dialog._textBlockInfo.Text = e.ToString());
+								}));
 					});
+
+				dialog._closeValue = true;
+				dialog.Close();
 
 				// Solved. Now update the technique summary.
 				EnableSolvingControls();

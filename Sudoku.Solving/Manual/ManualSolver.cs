@@ -16,17 +16,38 @@ namespace Sudoku.Solving.Manual
 
 
 		/// <inheritdoc/>
-		public override AnalysisResult Solve(IReadOnlyGrid grid)
+		public override AnalysisResult Solve(IReadOnlyGrid grid) => Solve(grid, null);
+
+		/// <summary>
+		/// To solve the puzzle.
+		/// </summary>
+		/// <param name="grid">The puzzle.</param>
+		/// <param name="progress">The progress instance to report the state.</param>
+		/// <returns>The analysis result.</returns>
+		public AnalysisResult Solve(IReadOnlyGrid grid, IProgress<ProgressResult>? progress)
 		{
 			if (grid.IsValid(out var solution, out bool? sukaku))
 			{
 				// Solve the puzzle.
+				int emptyCellsCount = grid.EmptyCellsCount;
+				int candsCount = grid.CandidatesCount;
 				try
 				{
-					return AnalyzeDifficultyStrictly
-						? SolveWithStrictDifficultyRating(
-							grid, grid.Clone(), new List<TechniqueInfo>(), solution, sukaku.Value)
-						: SolveNaively(grid, grid.Clone(), new List<TechniqueInfo>(), solution, sukaku.Value);
+					ProgressResult defaultValue = default;
+					var progressResult = new ProgressResult(candsCount, emptyCellsCount, candsCount);
+					ref var paramProgressResult = ref progress is null ? ref defaultValue : ref progressResult;
+					var tempList = new List<TechniqueInfo>();
+					return AnalyzeDifficultyStrictly switch
+					{
+						true =>
+							SolveWithStrictDifficultyRating(
+								grid, grid.Clone(), tempList, solution, sukaku.Value,
+								ref paramProgressResult, progress),
+						_ =>
+							SolveNaively(
+								grid, grid.Clone(), tempList, solution, sukaku.Value,
+								ref paramProgressResult, progress)
+					};
 				}
 				catch (WrongHandlingException ex)
 				{

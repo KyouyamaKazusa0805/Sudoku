@@ -1690,6 +1690,12 @@
         <member name="P:Sudoku.Data.Grid.HasSolved">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Data.Grid.CandidatesCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.Grid.EmptyCellsCount">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Data.Grid.Item(System.Int32)">
             <inheritdoc/>
         </member>
@@ -3134,6 +3140,16 @@
             <summary>
             Indicates the grid has already solved. If the value is <see langword="true"/>,
             the grid is solved; otherwise, <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IReadOnlyGrid.CandidatesCount">
+            <summary>
+            Indicates the number of total candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IReadOnlyGrid.EmptyCellsCount">
+            <summary>
+            Indicates the current number of the empty cells.
             </summary>
         </member>
         <member name="P:Sudoku.Data.IReadOnlyGrid.Item(System.Int32)">

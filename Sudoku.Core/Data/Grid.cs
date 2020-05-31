@@ -137,6 +137,42 @@ namespace Sudoku.Data
 			}
 		}
 
+		/// <inheritdoc/>
+		public int CandidatesCount
+		{
+			get
+			{
+				int count = 0;
+				for (int i = 0; i < 81; i++)
+				{
+					if (GetStatus(i) == CellStatus.Empty)
+					{
+						count += GetCandidatesReversal(i).CountSet();
+					}
+				}
+
+				return count;
+			}
+		}
+
+		/// <inheritdoc/>
+		public int EmptyCellsCount
+		{
+			get
+			{
+				int count = 0;
+				for (int i = 0; i < 81; i++)
+				{
+					if (GetStatus(i) == CellStatus.Empty)
+					{
+						count++;
+					}
+				}
+
+				return count;
+			}
+		}
+
 
 		/// <inheritdoc/>
 		public virtual int this[int offset]

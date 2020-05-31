@@ -38,12 +38,24 @@ namespace Sudoku.Solving.Manual
 		/// <param name="steps">All steps found.</param>
 		/// <param name="solution">The solution.</param>
 		/// <param name="sukaku">Indicates whether the current mode is sukaku.</param>
+		/// <param name="progressResult">
+		/// (<see langword="ref"/> parameter)
+		/// The progress result. This parameter is used for modify the state of UI controls.
+		/// The current argument will not be used until <paramref name="progress"/> isn't <see langword="null"/>.
+		/// In the default case, this parameter is <see langword="default"/>(<see cref="ProgressResult"/>) is okay.
+		/// </param>
+		/// <param name="progress">
+		/// The progress used for report the current state. If we don't need, the value should
+		/// be assigned <see langword="null"/>.
+		/// </param>
 		/// <returns>The analysis result.</returns>
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the solver cannot solved due to wrong handling.
 		/// </exception>
+		/// <seealso cref="ProgressResult"/>
 		private AnalysisResult SolveNaively(
-			IReadOnlyGrid grid, Grid cloneation, List<TechniqueInfo> steps, IReadOnlyGrid solution, bool sukaku)
+			IReadOnlyGrid grid, Grid cloneation, List<TechniqueInfo> steps, IReadOnlyGrid solution, bool sukaku,
+			ref ProgressResult progressResult, IProgress<ProgressResult>? progress)
 		{
 			// Check symmetry first.
 			if (!sukaku && CheckGurthSymmetricalPlacement)
@@ -56,6 +68,12 @@ namespace Sudoku.Solving.Manual
 					{
 						tempStep.ApplyTo(cloneation);
 						steps.Add(tempStep);
+
+						if (!(progress is null))
+						{
+							ReportProgress(cloneation, progress, ref progressResult);
+						}
+
 						goto Label_Searching;
 					}
 					else
@@ -165,6 +183,11 @@ namespace Sudoku.Solving.Manual
 							GC.Collect();
 						}
 
+						if (!(progress is null))
+						{
+							ReportProgress(cloneation, progress, ref progressResult);
+						}
+
 						goto Label_Restart;
 					}
 					else
@@ -212,6 +235,11 @@ namespace Sudoku.Solving.Manual
 								&& searcher.HasMarked<TechniqueSearcher, HighAllocationAttribute>(out _))
 							{
 								GC.Collect();
+							}
+
+							if (!(progress is null))
+							{
+								ReportProgress(cloneation, progress, ref progressResult);
 							}
 
 							goto Label_Restart;

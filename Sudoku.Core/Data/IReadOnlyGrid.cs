@@ -15,6 +15,16 @@ namespace Sudoku.Data
 		/// </summary>
 		bool HasSolved { get; }
 
+		/// <summary>
+		/// Indicates the number of total candidates.
+		/// </summary>
+		int CandidatesCount { get; }
+
+		/// <summary>
+		/// Indicates the current number of the empty cells.
+		/// </summary>
+		int EmptyCellsCount { get; }
+
 
 		/// <summary>
 		/// Gets or sets a digit into a cell.
