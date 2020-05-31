@@ -11,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
+using Sudoku.ComponentModels;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
@@ -31,7 +32,6 @@ using SudokuGrid = Sudoku.Data.Grid;
 #if SUDOKU_RECOGNIZING
 using System.Drawing;
 using Sudoku.Windows.Constants;
-using static Sudoku.Solving.Manual.ManualSolver;
 #endif
 #if DEBUG
 using Sudoku.Solving.Manual;
@@ -619,8 +619,8 @@ namespace Sudoku.Windows
 
 						return _manualSolver.Solve(
 							_puzzle,
-							new Progress<ProgressResult>(
-								(ProgressResult e) =>
+							new Progress<GridProgressResult>(
+								(GridProgressResult e) =>
 								{
 									// The dispatcher instance will help us to modify the state of
 									// controls while using multi-threads.

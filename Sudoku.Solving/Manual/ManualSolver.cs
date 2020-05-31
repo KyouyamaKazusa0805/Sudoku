@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sudoku.ComponentModels;
 using Sudoku.Data;
 using Sudoku.Solving.Checking;
 
@@ -24,7 +25,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="grid">The puzzle.</param>
 		/// <param name="progress">The progress instance to report the state.</param>
 		/// <returns>The analysis result.</returns>
-		public AnalysisResult Solve(IReadOnlyGrid grid, IProgress<ProgressResult>? progress)
+		public AnalysisResult Solve(IReadOnlyGrid grid, IProgress<GridProgressResult>? progress)
 		{
 			if (grid.IsValid(out var solution, out bool? sukaku))
 			{
@@ -33,21 +34,17 @@ namespace Sudoku.Solving.Manual
 				int candsCount = grid.CandidatesCount;
 				try
 				{
-					ProgressResult defaultValue = default;
-					var progressResult = new ProgressResult(candsCount, emptyCellsCount, candsCount);
+					GridProgressResult defaultValue = default;
+					var progressResult = new GridProgressResult(candsCount, emptyCellsCount, candsCount);
 					ref var paramProgressResult = ref progress is null ? ref defaultValue : ref progressResult;
 					var tempList = new List<TechniqueInfo>();
-					return AnalyzeDifficultyStrictly switch
-					{
-						true =>
-							SolveWithStrictDifficultyRating(
-								grid, grid.Clone(), tempList, solution, sukaku.Value,
-								ref paramProgressResult, progress),
-						_ =>
-							SolveNaively(
-								grid, grid.Clone(), tempList, solution, sukaku.Value,
-								ref paramProgressResult, progress)
-					};
+					return AnalyzeDifficultyStrictly
+						? SolveWithStrictDifficultyRating(
+							grid, grid.Clone(), tempList, solution, sukaku.Value,
+							ref paramProgressResult, progress)
+						: SolveNaively(
+							grid, grid.Clone(), tempList, solution, sukaku.Value,
+							ref paramProgressResult, progress);
 				}
 				catch (WrongHandlingException ex)
 				{

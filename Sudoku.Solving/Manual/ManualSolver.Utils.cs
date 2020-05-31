@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
+using Sudoku.ComponentModels;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using static Sudoku.Data.ConclusionType;
@@ -22,8 +23,8 @@ namespace Sudoku.Solving.Manual
 		/// <param name="stepGrids">The step grids.</param>
 		/// <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		/// <seealso cref="SolveNaively(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, bool, ref ProgressResult, IProgress{ProgressResult}?)"/>
-		/// <seealso cref="SolveWithStrictDifficultyRating(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, bool, ref ProgressResult, IProgress{ProgressResult}?)"/>
+		/// <seealso cref="SolveNaively(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, bool, ref GridProgressResult, IProgress{GridProgressResult}?)"/>
+		/// <seealso cref="SolveWithStrictDifficultyRating(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, bool, ref GridProgressResult, IProgress{GridProgressResult}?)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool RecordTechnique(
 			List<TechniqueInfo> steps, TechniqueInfo step, IReadOnlyGrid grid,
@@ -103,7 +104,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="progress">The progress reporter.</param>
 		/// <param name="progressResult">(<see langword="ref"/> parameter) The progress result.</param>
 		private static void ReportProgress(
-			IReadOnlyGrid cloneation, IProgress<ProgressResult> progress, ref ProgressResult progressResult)
+			IReadOnlyGrid cloneation, IProgress<GridProgressResult> progress, ref GridProgressResult progressResult)
 		{
 			progressResult.CurrentCandidatesCount = cloneation.CandidatesCount;
 			progressResult.CurrentCellsCount = cloneation.EmptyCellsCount;

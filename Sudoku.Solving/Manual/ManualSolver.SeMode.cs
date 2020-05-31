@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Sudoku.ComponentModels;
 using Sudoku.Data;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -41,7 +42,7 @@ namespace Sudoku.Solving.Manual
 		/// (<see langword="ref"/> parameter)
 		/// The progress result. This parameter is used for modify the state of UI controls.
 		/// The current argument will not be used until <paramref name="progress"/> isn't <see langword="null"/>.
-		/// In the default case, this parameter is <see langword="default"/>(<see cref="ProgressResult"/>) is okay.
+		/// In the default case, this parameter is <see langword="default"/>(<see cref="GridProgressResult"/>) is okay.
 		/// </param>
 		/// <param name="progress">
 		/// The progress used for report the current state. If we don't need, the value should
@@ -51,9 +52,10 @@ namespace Sudoku.Solving.Manual
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the solver cannot solved due to wrong handling.
 		/// </exception>
+		/// <seealso cref="GridProgressResult"/>
 		private AnalysisResult SolveWithStrictDifficultyRating(
 			IReadOnlyGrid grid, Grid cloneation, List<TechniqueInfo> steps, IReadOnlyGrid solution, bool sukaku,
-			ref ProgressResult progressResult, IProgress<ProgressResult>? progress)
+			ref GridProgressResult progressResult, IProgress<GridProgressResult>? progress)
 		{
 			var searchers = new TechniqueSearcher[][]
 			{

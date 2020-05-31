@@ -4,6 +4,62 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.ComponentModels.GridProgressResult">
+            <summary>
+            Encapsulates a progress result used for report the current state.
+            </summary>
+        </member>
+        <member name="M:Sudoku.ComponentModels.GridProgressResult.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance with the specified current point and the total point.
+            </summary>
+            <param name="currentCandidatesCount">The current point.</param>
+            <param name="currentCellsCount">The number of unsolved cells.</param>
+            <param name="initialCandidatesCount">The number of unsolved candidates in the initial grid.</param>
+        </member>
+        <member name="P:Sudoku.ComponentModels.GridProgressResult.CurrentCellsCount">
+            <summary>
+            Indicates the number of unsolved cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.ComponentModels.GridProgressResult.CurrentCandidatesCount">
+            <summary>
+            Indicates the number of unsolved candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.ComponentModels.GridProgressResult.InitialCandidatesCount">
+            <summary>
+            Indicates the number of unsolved candidates in the initial grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.ComponentModels.GridProgressResult.Percentage">
+            <summary>
+            Indicates the current percentage.
+            </summary>
+        </member>
+        <member name="M:Sudoku.ComponentModels.GridProgressResult.Deconstruct(System.Int32@,System.Int32@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="current">(<see langword="out" /> parameter) The number of unsolved candidates.</param>
+            <param name="unsolvedCells">(<see langword="out" /> parameter) The number of unsolved cells.</param>
+        </member>
+        <member name="M:Sudoku.ComponentModels.GridProgressResult.Deconstruct(System.Int32@,System.Int32@,System.Int32@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="currentCandidatesCount">(<see langword="out" /> parameter) The number of unsolved candidates.</param>
+            <param name="currentCellsCount">(<see langword="out" /> parameter) The number of unsolved cells.</param>
+            <param name="initialCandidatesCount">
+            (<see langword="out" /> parameter) The number of unsolved candidates in the initial grid.
+            </param>
+        </member>
+        <member name="M:Sudoku.ComponentModels.GridProgressResult.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
         <member name="T:Sudoku.Constants.Processings">
             <summary>
             The tables for grid processing. All fields will be initialized in
