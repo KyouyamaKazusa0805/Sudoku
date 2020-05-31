@@ -4874,7 +4874,7 @@
         <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.IReadOnlyGrid,System.IProgress{Sudoku.ComponentModels.GridProgressResult})">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.IReadOnlyGrid,System.IProgress{Sudoku.ComponentModel.GridProgressResult})">
             <summary>
             To solve the puzzle.
             </summary>
@@ -4882,7 +4882,7 @@
             <param name="progress">The progress instance to report the state.</param>
             <returns>The analysis result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean,Sudoku.ComponentModels.GridProgressResult@,System.IProgress{Sudoku.ComponentModels.GridProgressResult})">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean,Sudoku.ComponentModel.GridProgressResult@,System.IProgress{Sudoku.ComponentModel.GridProgressResult})">
             <summary>
             Solve naively.
             </summary>
@@ -4895,7 +4895,7 @@
             (<see langword="ref"/> parameter)
             The progress result. This parameter is used for modify the state of UI controls.
             The current argument will not be used until <paramref name="progress"/> isn't <see langword="null"/>.
-            In the default case, this parameter is <see langword="default"/>(<see cref="T:Sudoku.ComponentModels.GridProgressResult"/>) is okay.
+            In the default case, this parameter is <see langword="default"/>(<see cref="T:Sudoku.ComponentModel.GridProgressResult"/>) is okay.
             </param>
             <param name="progress">
             The progress used for report the current state. If we don't need, the value should
@@ -4905,9 +4905,9 @@
             <exception cref="T:Sudoku.WrongHandlingException">
             Throws when the solver cannot solved due to wrong handling.
             </exception>
-            <seealso cref="T:Sudoku.ComponentModels.GridProgressResult"/>
+            <seealso cref="T:Sudoku.ComponentModel.GridProgressResult"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean,Sudoku.ComponentModels.GridProgressResult@,System.IProgress{Sudoku.ComponentModels.GridProgressResult})">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean,Sudoku.ComponentModel.GridProgressResult@,System.IProgress{Sudoku.ComponentModel.GridProgressResult})">
             <summary>
             Solve the puzzle with <see cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/> option.
             </summary>
@@ -4920,7 +4920,7 @@
             (<see langword="ref"/> parameter)
             The progress result. This parameter is used for modify the state of UI controls.
             The current argument will not be used until <paramref name="progress"/> isn't <see langword="null"/>.
-            In the default case, this parameter is <see langword="default"/>(<see cref="T:Sudoku.ComponentModels.GridProgressResult"/>) is okay.
+            In the default case, this parameter is <see langword="default"/>(<see cref="T:Sudoku.ComponentModel.GridProgressResult"/>) is okay.
             </param>
             <param name="progress">
             The progress used for report the current state. If we don't need, the value should
@@ -4930,7 +4930,7 @@
             <exception cref="T:Sudoku.WrongHandlingException">
             Throws when the solver cannot solved due to wrong handling.
             </exception>
-            <seealso cref="T:Sudoku.ComponentModels.GridProgressResult"/>
+            <seealso cref="T:Sudoku.ComponentModel.GridProgressResult"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.AllowAlsCycles">
             <summary>
@@ -5332,8 +5332,8 @@
             <param name="stepGrids">The step grids.</param>
             <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean,Sudoku.ComponentModels.GridProgressResult@,System.IProgress{Sudoku.ComponentModels.GridProgressResult})"/>
-            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean,Sudoku.ComponentModels.GridProgressResult@,System.IProgress{Sudoku.ComponentModels.GridProgressResult})"/>
+            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean,Sudoku.ComponentModel.GridProgressResult@,System.IProgress{Sudoku.ComponentModel.GridProgressResult})"/>
+            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean,Sudoku.ComponentModel.GridProgressResult@,System.IProgress{Sudoku.ComponentModel.GridProgressResult})"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.CheckConclusionsValidity(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <summary>
@@ -5343,7 +5343,7 @@
             <param name="conclusions">The conclusions.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.ReportProgress(Sudoku.Data.IReadOnlyGrid,System.IProgress{Sudoku.ComponentModels.GridProgressResult},Sudoku.ComponentModels.GridProgressResult@)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.ReportProgress(Sudoku.Data.IReadOnlyGrid,System.IProgress{Sudoku.ComponentModel.GridProgressResult},Sudoku.ComponentModel.GridProgressResult@)">
             <summary>
             To report the progress.
             </summary>

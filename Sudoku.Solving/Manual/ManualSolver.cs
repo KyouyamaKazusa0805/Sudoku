@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Sudoku.ComponentModels;
+using Sudoku.ComponentModel;
 using Sudoku.Data;
 using Sudoku.Solving.Checking;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
-using Sudoku.ComponentModels;
+using Sudoku.ComponentModel;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using static Sudoku.Data.ConclusionType;

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.ComponentModels
+﻿namespace Sudoku.ComponentModel
 {
 	/// <summary>
 	/// Encapsulates a progress result used for report the current state.

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Sudoku.ComponentModels;
+using Sudoku.ComponentModel;
 using Sudoku.Data;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
