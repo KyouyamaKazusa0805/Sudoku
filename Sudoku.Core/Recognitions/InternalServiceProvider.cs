@@ -62,12 +62,12 @@ namespace Sudoku.Recognitions
 						{
 							continue;
 						}
-						case -1:
-						{
-							throw new RecognizingException(
-								$"Recognition error. Cannot fill the cell r{x + 1}c{y + 1} because the current value " +
-								$"is not a valid number.");
-						}
+						//case -1:
+						//{
+						//	throw new RecognizingException(
+						//		$"Recognition error. Cannot fill the cell r{x + 1}c{y + 1} because the current value " +
+						//		$"is not a valid number.");
+						//}
 					}
 
 					int cell = x * 9 + y, digit = recognition - 1;
