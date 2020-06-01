@@ -676,24 +676,26 @@ namespace Sudoku.Windows
 						collection.Add(new { Technique = name, Count = count, Total = total, Max = maximum });
 					}
 
-					collection.Add(new
-					{
-						Technique = default(string?),
-						Count = summaryCount,
-						Total = summary,
-						Max = summaryMax
-					});
+					collection.Add(
+						new
+						{
+							Technique = default(string?),
+							Count = summaryCount,
+							Total = summary,
+							Max = summaryMax
+						});
 
 					GridView view;
 					_listViewSummary.ItemsSource = collection;
 					_listViewSummary.View = view = new GridView();
-					view.Columns.AddRange(new[]
-					{
-						createGridViewColumn("Technique", .6),
-						createGridViewColumn("Count", .1),
-						createGridViewColumn("Total", .2),
-						createGridViewColumn("Max", .1)
-					});
+					view.Columns.AddRange(
+						new[]
+						{
+							createGridViewColumn("Technique", .6),
+							createGridViewColumn("Count", .1),
+							createGridViewColumn("Total", .2),
+							createGridViewColumn("Max", .1)
+						});
 					view.AllowsColumnReorder = false;
 				}
 				else
