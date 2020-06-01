@@ -56,7 +56,7 @@ namespace Sudoku.Solving.Manual
 		/// <seealso cref="GridProgressResult"/>
 		private AnalysisResult SolveNaively(
 			IReadOnlyGrid grid, Grid cloneation, List<TechniqueInfo> steps, IReadOnlyGrid solution, bool sukaku,
-			ref GridProgressResult progressResult, IProgress<GridProgressResult>? progress)
+			ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
 		{
 			// Check symmetry first.
 			if (!sukaku && CheckGurthSymmetricalPlacement)

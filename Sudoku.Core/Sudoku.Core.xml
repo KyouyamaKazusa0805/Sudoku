@@ -60,6 +60,59 @@
 		<returns>A string that represents the current object.</returns>
 	</method>
         </member>
+        <member name="T:Sudoku.ComponentModel.IProgressResult">
+            <summary>
+            Encapsulates and provides with a progress result instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.ComponentModel.IProgressResult.Percentage">
+            <summary>
+            Indicates the current percentage.
+            </summary>
+        </member>
+        <member name="M:Sudoku.ComponentModel.IProgressResult.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="T:Sudoku.ComponentModel.TechniqueProgressResult">
+            <summary>
+            Indicates a technique progress result.
+            </summary>
+        </member>
+        <member name="M:Sudoku.ComponentModel.TechniqueProgressResult.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance with the specified technique count.
+            </summary>
+            <param name="totalSearchers">The total number of searchers.</param>
+        </member>
+        <member name="P:Sudoku.ComponentModel.TechniqueProgressResult.Percentage">
+            <summary>
+            Indicates the current percentage finished.
+            </summary>
+        </member>
+        <member name="P:Sudoku.ComponentModel.TechniqueProgressResult.CurrentTechnique">
+            <summary>
+            Indicates the current technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.ComponentModel.TechniqueProgressResult.CurrentIndex">
+            <summary>
+            The current index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.ComponentModel.TechniqueProgressResult.TotalSearchers">
+            <summary>
+            The total number of searchers.
+            </summary>
+        </member>
+        <member name="M:Sudoku.ComponentModel.TechniqueProgressResult.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
         <member name="T:Sudoku.Constants.Processings">
             <summary>
             The tables for grid processing. All fields will be initialized in
@@ -5012,6 +5065,1221 @@
             <typeparam name="T2">The type 2.</typeparam>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Annotations.AliasAttribute">
+            <summary>
+            To mark on a enum field to give an alias.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Annotations.AliasAttribute.#ctor(System.String)">
+            <summary>
+            Initializes an instance with the enum field.
+            </summary>
+            <param name="fieldName">The field name.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Annotations.AliasAttribute.FieldName">
+            <summary>
+            The field name.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Annotations.AliasAttribute.Convert``2(``0)">
+            <summary>
+            Convert the specified enum field to the specified type field.
+            </summary>
+            <typeparam name="TEnumBase">The base type of the enum field.</typeparam>
+            <typeparam name="TEnumTarget">The target enum type to convert to.</typeparam>
+            <param name="enumField">The enum field.</param>
+            <returns>The result. Return <see langword="null"/> when the conversion is failed.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Annotations.TechniqueDisplayAttribute">
+            <summary>
+            <para>
+            To mark on a technique searcher class (i.e. <see cref="!:TechniqueSearcher"/>),
+            to provide additional displaying messages which are used in UI forms, such as
+            technique priority settings form.
+            </para>
+            <para>
+            You can use this instance to mark on a enumeration field such as <see cref="T:Sudoku.Solving.Manual.TechniqueCode"/>
+            to show the name on the screen also.
+            </para>
+            </summary>
+            <seealso cref="!:TechniqueSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.TechniqueCode"/>
+        </member>
+        <member name="M:Sudoku.Solving.Annotations.TechniqueDisplayAttribute.#ctor(System.String)">
+            <summary>
+            Initializes an instance with the specified displaying name.
+            </summary>
+            <param name="displayName">The name.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Annotations.TechniqueDisplayAttribute.DisplayName">
+            <summary>
+            Indicates the display name of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Annotations.TechniqueDisplayAttribute.Category">
+            <summary>
+            <para>
+            Indicates the category of this instance to display.
+            This property is used for displaying when need grouping. The value is
+            <see langword="null"/> in default case.
+            </para>
+            <para>
+            The category will be displayed like <c>"Fishes&gt;Normal Fishes&gt;Finned"</c>,
+            which used '<c>&gt;</c>' character to make a new group or a new sub-group.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Annotations.TechniqueDisplayAttribute.GetDisplayName``1(``0)">
+            <summary>
+            Get the display name of the specified enum field.
+            </summary>
+            <typeparam name="TEnum">The type of the enum field.</typeparam>
+            <param name="enumField">The enum field to check.</param>
+            <returns>
+            The display name. Return <see langword="null"/> when the field does not mark this attribute.
+            </returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.TechniqueCode">
+            <summary>
+            Represents a technique instance, which is used for comparison.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.None">
+            <summary>
+            The placeholder of this enumeration type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FullHouse">
+            <summary>
+            Indicates the full house.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.LastDigit">
+            <summary>
+            Indicates the last digit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.HiddenSingle">
+            <summary>
+            Indicates the hidden single.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.NakedSingle">
+            <summary>
+            Indicates the naked single.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Pointing">
+            <summary>
+            Indicates the pointing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Claiming">
+            <summary>
+            Indicates the claiming.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.AlmostLockedPair">
+            <summary>
+            Indicates the ALP.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.AlmostLockedTriple">
+            <summary>
+            Indicates the ALT.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.AlmostLockedQuadruple">
+            <summary>
+            Indicates the ALQ.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.NakedPair">
+            <summary>
+            Indicates the naked pair.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.NakedPairPlus">
+            <summary>
+            Indicates the naked pair plus (naked pair (+)).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.LockedPair">
+            <summary>
+            Indicates the locked pair.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.HiddenPair">
+            <summary>
+            Indicates the hidden pair.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.NakedTriple">
+            <summary>
+            Indicates the naked triple.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.NakedTriplePlus">
+            <summary>
+            Indicates the naked triple plus (naked triple (+)).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.LockedTriple">
+            <summary>
+            Indicates the locked triple.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.HiddenTriple">
+            <summary>
+            Indicates the hidden triple.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.NakedQuadruple">
+            <summary>
+            Indicates the naked quadruple.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.NakedQuadruplePlus">
+            <summary>
+            Indicates the naked quadruple plus (naked quadruple (+)).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.HiddenQuadruple">
+            <summary>
+            Indicates the hidden quadruple.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.XWing">
+            <summary>
+            Indicates the X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FinnedXWing">
+            <summary>
+            Indicates the finned X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SashimiXWing">
+            <summary>
+            Indicates the sashimi X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseFinnedXWing">
+            <summary>
+            Indicates the siamese finned X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseSashimiXWing">
+            <summary>
+            Indicates the siamese sashimi X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FrankenXWing">
+            <summary>
+            Indicates the franken X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FinnedFrankenXWing">
+            <summary>
+            Indicates the finned franken X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SashimiFrankenXWing">
+            <summary>
+            Indicates the sashimi franken X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseFinnedFrankenXWing">
+            <summary>
+            Indicates the siamese finned franken X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseSashimiFrankenXWing">
+            <summary>
+            Indicates the siamese sashimi franken X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.MutantXWing">
+            <summary>
+            Indicates the mutant X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FinnedMutantXWing">
+            <summary>
+            Indicates the finned mutant X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SashimiMutantXWing">
+            <summary>
+            Indicates the sashimi mutant X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseFinnedMutantXWing">
+            <summary>
+            Indicates the siamese finned mutant X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseSashimiMutantXWing">
+            <summary>
+            Indicates the siamese sashimi mutant X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Swordfish">
+            <summary>
+            Indicates the swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FinnedSwordfish">
+            <summary>
+            Indicates the finned swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SashimiSwordfish">
+            <summary>
+            Indicates the sashimi swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseFinnedSwordfish">
+            <summary>
+            Indicates the siamese finned swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseSashimiSwordfish">
+            <summary>
+            Indicates the siamese sashimi swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FrankenSwordfish">
+            <summary>
+            Indicates the swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FinnedFrankenSwordfish">
+            <summary>
+            Indicates the finned franken swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SashimiFrankenSwordfish">
+            <summary>
+            Indicates the sashimi franken swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseFinnedFrankenSwordfish">
+            <summary>
+            Indicates the siamese finned franken swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseSashimiFrankenSwordfish">
+            <summary>
+            Indicates the siamese sashimi franken swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.MutantSwordfish">
+            <summary>
+            Indicates the mutant swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FinnedMutantSwordfish">
+            <summary>
+            Indicates the finned mutant swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SashimiMutantSwordfish">
+            <summary>
+            Indicates the sashimi mutant swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseFinnedMutantSwordfish">
+            <summary>
+            Indicates the siamese finned mutant swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseSashimiMutantSwordfish">
+            <summary>
+            Indicates the siamese sashimi mutant swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Jellyfish">
+            <summary>
+            Indicates the jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FinnedJellyfish">
+            <summary>
+            Indicates the finned jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SashimiJellyfish">
+            <summary>
+            Indicates the sashimi jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseFinnedJellyfish">
+            <summary>
+            Indicates the siamese finned jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseSashimiJellyfish">
+            <summary>
+            Indicates the siamese sashimi jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FrankenJellyfish">
+            <summary>
+            Indicates the franken jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FinnedFrankenJellyfish">
+            <summary>
+            Indicates the finned franken jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SashimiFrankenJellyfish">
+            <summary>
+            Indicates the sashimi franken jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseFinnedFrankenJellyfish">
+            <summary>
+            Indicates the siamese finned franken jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseSashimiFrankenJellyfish">
+            <summary>
+            Indicates the siamese sashimi franken jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.MutantJellyfish">
+            <summary>
+            Indicates the mutant jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FinnedMutantJellyfish">
+            <summary>
+            Indicates the finned mutant jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SashimiMutantJellyfish">
+            <summary>
+            Indicates the sashimi mutant jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseFinnedMutantJellyfish">
+            <summary>
+            Indicates the siamese finned mutant jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseSashimiMutantJellyfish">
+            <summary>
+            Indicates the siamese sashimi mutant jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Squirmbag">
+            <summary>
+            Indicates the squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FinnedSquirmbag">
+            <summary>
+            Indicates the finned squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SashimiSquirmbag">
+            <summary>
+            Indicates the sashimi squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseFinnedSquirmbag">
+            <summary>
+            Indicates the siamese finned squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseSashimiSquirmbag">
+            <summary>
+            Indicates the siamese sashimi squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FrankenSquirmbag">
+            <summary>
+            Indicates the franken squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FinnedFrankenSquirmbag">
+            <summary>
+            Indicates the finned franken squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SashimiFrankenSquirmbag">
+            <summary>
+            Indicates the sashimi franken squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseFinnedFrankenSquirmbag">
+            <summary>
+            Indicates the siamese finned franken squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseSashimiFrankenSquirmbag">
+            <summary>
+            Indicates the siamese sashimi franken squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.MutantSquirmbag">
+            <summary>
+            Indicates the mutant squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FinnedMutantSquirmbag">
+            <summary>
+            Indicates the finned mutant squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SashimiMutantSquirmbag">
+            <summary>
+            Indicates the sashimi mutant squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseFinnedMutantSquirmbag">
+            <summary>
+            Indicates the siamese finned mutant squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseSashimiMutantSquirmbag">
+            <summary>
+            Indicates the siamese sashimi mutant squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Whale">
+            <summary>
+            Indicates the whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FinnedWhale">
+            <summary>
+            Indicates the finned whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SashimiWhale">
+            <summary>
+            Indicates the sashimi whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseFinnedWhale">
+            <summary>
+            Indicates the siamese finned whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseSashimiWhale">
+            <summary>
+            Indicates the siamese sashimi whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FrankenWhale">
+            <summary>
+            Indicates the franken whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FinnedFrankenWhale">
+            <summary>
+            Indicates the finned franken whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SashimiFrankenWhale">
+            <summary>
+            Indicates the sashimi franken whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseFinnedFrankenWhale">
+            <summary>
+            Indicates the siamese finned franken whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseSashimiFrankenWhale">
+            <summary>
+            Indicates the siamese sashimi franken whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.MutantWhale">
+            <summary>
+            Indicates the mutant whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FinnedMutantWhale">
+            <summary>
+            Indicates the finned mutant whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SashimiMutantWhale">
+            <summary>
+            Indicates the sashimi mutant whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseFinnedMutantWhale">
+            <summary>
+            Indicates the siamese finned mutant whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseSashimiMutantWhale">
+            <summary>
+            Indicates the siamese sashimi mutant whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Leviathan">
+            <summary>
+            Indicates the leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FinnedLeviathan">
+            <summary>
+            Indicates the finned leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SashimiLeviathan">
+            <summary>
+            Indicates the sashimi leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseFinnedLeviathan">
+            <summary>
+            Indicates the siamese finned leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseSashimiLeviathan">
+            <summary>
+            Indicates the siamese sashimi leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FrankenLeviathan">
+            <summary>
+            Indicates the franken leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FinnedFrankenLeviathan">
+            <summary>
+            Indicates the finned franken leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SashimiFrankenLeviathan">
+            <summary>
+            Indicates the sashimi franken leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseFinnedFrankenLeviathan">
+            <summary>
+            Indicates the siamese finned franken leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseSashimiFrankenLeviathan">
+            <summary>
+            Indicates the siamese sashimi franken leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.MutantLeviathan">
+            <summary>
+            Indicates the mutant leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FinnedMutantLeviathan">
+            <summary>
+            Indicates the finned mutant leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SashimiMutantLeviathan">
+            <summary>
+            Indicates the sashimi mutant leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseFinnedMutantLeviathan">
+            <summary>
+            Indicates the siamese finned mutant leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseSashimiMutantLeviathan">
+            <summary>
+            Indicates the siamese sashimi mutant leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.XyWing">
+            <summary>
+            Indicates the XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.XyzWing">
+            <summary>
+            Indicates the XYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.WxyzWing">
+            <summary>
+            Indicates the WXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.VwxyzWing">
+            <summary>
+            Indicates the VWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UvwxyzWing">
+            <summary>
+            Indicates the UVWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.TuvwxyzWing">
+            <summary>
+            Indicates the TUVWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.StuvwxyzWing">
+            <summary>
+            Indicates the STUVWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.RstuvwxyzWing">
+            <summary>
+            Indicates the RSTUVWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.WWing">
+            <summary>
+            Indicates the W-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.MWing">
+            <summary>
+            Indicates the M-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.LocalWing">
+            <summary>
+            Indicates the local wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SplitWing">
+            <summary>
+            Indicates the split wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.HybridWing">
+            <summary>
+            Indicates the hybrid wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedXyWing">
+            <summary>
+            Indicates the grouped XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedWWing">
+            <summary>
+            Indicates the grouped W-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedMWing">
+            <summary>
+            Indicates the grouped M-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedLocalWing">
+            <summary>
+            Indicates the grouped local wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedSplitWing">
+            <summary>
+            Indicates the grouped split wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedHybridWing">
+            <summary>
+            Indicates the grouped hybrid wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrType1">
+            <summary>
+            Indicates the UR type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrType2">
+            <summary>
+            Indicates the UR type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrType3">
+            <summary>
+            Indicates the UR type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrType4">
+            <summary>
+            Indicates the UR type 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrType5">
+            <summary>
+            Indicates the UR type 5.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrType6">
+            <summary>
+            Indicates the UR type 6.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.HiddenUr">
+            <summary>
+            Indicates the hidden UR.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus2D">
+            <summary>
+            Indicates the UR + 2D.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus2B1SL">
+            <summary>
+            Indicates the UR + 2B / 1SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus2D1SL">
+            <summary>
+            Indicates the UR + 2D / 1SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus3X">
+            <summary>
+            Indicates the UR + 3X.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus3x1SL">
+            <summary>
+            Indicates the UR + 3x / 1SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus3X1SL">
+            <summary>
+            Indicates the UR + 3X / 1SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus3X2SL">
+            <summary>
+            Indicates the UR + 3X / 2SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus3N2SL">
+            <summary>
+            Indicates the UR + 3N / 2SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus3U2SL">
+            <summary>
+            Indicates the UR + 3U / 2SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus3E2SL">
+            <summary>
+            Indicates the UR + 3E / 2SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus4x1SL">
+            <summary>
+            Indicates the UR + 4x / 1SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus4X1SL">
+            <summary>
+            Indicates the UR + 4X / 1SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus4x2SL">
+            <summary>
+            Indicates the UR + 4x / 2SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus4X2SL">
+            <summary>
+            Indicates the UR + 4X / 2SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus4X3SL">
+            <summary>
+            Indicates the UR + 4X / 3SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrPlus4C3SL">
+            <summary>
+            Indicates the UR + 4C / 3SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrXyWing">
+            <summary>
+            Indicates the UR-XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrXyzWing">
+            <summary>
+            Indicates the UR-XYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrWxyzWing">
+            <summary>
+            Indicates the UR-WXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UrSdc">
+            <summary>
+            Indicates the UR sue de coq.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UlType1">
+            <summary>
+            Indicates the UL type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UlType2">
+            <summary>
+            Indicates the UL type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UlType3">
+            <summary>
+            Indicates the UL type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UlType4">
+            <summary>
+            Indicates the UL type 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.XrType1">
+            <summary>
+            Indicates the XR type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.XrType2">
+            <summary>
+            Indicates the XR type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.XrType3">
+            <summary>
+            Indicates the XR type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.XrType4">
+            <summary>
+            Indicates the XR type 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.BugType1">
+            <summary>
+            Indicates the BUG type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.BugType2">
+            <summary>
+            Indicates the BUG type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.BugType3">
+            <summary>
+            Indicates the BUG type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.BugType4">
+            <summary>
+            Indicates the BUG type 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.BugMultiple">
+            <summary>
+            Indicates the BUG + n.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.BugXz">
+            <summary>
+            Indicates the BUG-XZ.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.BugXyzWing">
+            <summary>
+            Indicates the BUG-XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.BdpType1">
+            <summary>
+            Indicates the BDP type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.BdpType2">
+            <summary>
+            Indicates the BDP type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.BdpType3">
+            <summary>
+            Indicates the BDP type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.BdpType4">
+            <summary>
+            Indicates the BDP type 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Sdc">
+            <summary>
+            Indicates the SdC.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.CannibalizedSdc">
+            <summary>
+            Indicates the cannibalized SdC.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Skyscraper">
+            <summary>
+            Indicates the skyscraper.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.TwoStringKite">
+            <summary>
+            Indicates the two-string kite.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.TurbotFish">
+            <summary>
+            Indicates the turbot fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.EmptyRectangle">
+            <summary>
+            Indicates the empty rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.XChain">
+            <summary>
+            Indicates the X-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.XyChain">
+            <summary>
+            Indicates the XY-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.XyXChain">
+            <summary>
+            Indicates the XY-X-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.PurpleCow">
+            <summary>
+            Indicates the purple cow.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.DiscontinuousNiceLoop">
+            <summary>
+            Indicates the discontinuous nice loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.ContinuousNiceLoop">
+            <summary>
+            Indicates the continuous nice loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Aic">
+            <summary>
+            Indicates the AIC.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedXChain">
+            <summary>
+            Indicates the grouped X-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedXyChain">
+            <summary>
+            Indicates the grouped XY-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedXyXChain">
+            <summary>
+            Indicates the grouped XY-X-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedPurpleCow">
+            <summary>
+            Indicates the grouped purple cow.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedDiscontinuousNiceLoop">
+            <summary>
+            Indicates the grouped discontinuous nice loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedContinuousNiceLoop">
+            <summary>
+            Indicates the grouped continuous nice loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedAic">
+            <summary>
+            Indicates the grouped AIC.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Erip">
+            <summary>
+            Indicates the ERIP.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Esp">
+            <summary>
+            Indicates the ESP.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SinglyLinkedAlsXz">
+            <summary>
+            Indicates the singly linked ALS-XZ.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.DoublyLinkedAlsXz">
+            <summary>
+            Indicates the doubly linked ALS-XZ.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.AlsXyWing">
+            <summary>
+            Indicates the ALS-XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.AlsWWing">
+            <summary>
+            Indicates the ALS-W-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.DeathBlossom">
+            <summary>
+            Indicates the death blossom.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Gsp">
+            <summary>
+            Indicates the GSP.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Je">
+            <summary>
+            Indicates the JE.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Se">
+            <summary>
+            Indicates the SE.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseJe">
+            <summary>
+            Indicates the siamese JE. 
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseSe">
+            <summary>
+            Indicates the siamese SE.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.SkLoop">
+            <summary>
+            Indicates the SK-Loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Msls">
+            <summary>
+            Indicates the multi-sector locked sets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Pom">
+            <summary>
+            Indicates the POM.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.TemplateSet">
+            <summary>
+            Indicates the template set.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.TemplateDelete">
+            <summary>
+            Indicates the template delete.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.BowmanBingo">
+            <summary>
+            Indicates the bowman's bingo.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Ccc">
+            <summary>
+            Indicates the CCC.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.BruteForce">
+            <summary>
+            Indicates the brute force.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.TechniqueCodeFilter">
+            <summary>
+            Encapsulates a technique code filter that contains some of technique codes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCodeFilter._internalList">
+            <summary>
+            The internal list.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.#ctor(Sudoku.Solving.Manual.TechniqueCode[])">
+            <summary>
+            Initializes an instance with the specified technique codes.
+            </summary>
+            <param name="techniqueCodes">(<see langword="params"/> parameter) The technique codes.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.#ctor(System.Collections.BitArray)">
+            <summary>
+            Initializes an instance with the specified bit array.
+            </summary>
+            <param name="bitArray">The bit array.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.Add(Sudoku.Solving.Manual.TechniqueCode)">
+            <summary>
+            To add a technique code.
+            </summary>
+            <param name="techniqueCode">The technique code.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.TechniqueCode})">
+            <summary>
+            Add a serial of technique codes to this list.
+            </summary>
+            <param name="techniqueCodes">The codes.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.Remove(Sudoku.Solving.Manual.TechniqueCode)">
+            <summary>
+            To remove a technique code.
+            </summary>
+            <param name="techniqueCode">The technique code.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.Contains(Sudoku.Solving.Manual.TechniqueCode)">
+            <summary>
+            To determine whether the specified filter contains the technique.
+            </summary>
+            <param name="techniqueCode">The technique code to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.InternalSettings">
             <summary>
             Define the internal settings.
@@ -6039,17 +7307,12 @@
             <inheritdoc/>
         </member>
         <member name="M:System.PrimaryElementTuple`2.Deconstruct(`0@,`1@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
+            <!-- Failed to insert some or all of included XML --><include file="../../GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="v1">(<see langword="out" /> parameter) The value 1.</param>
             <param name="v2">(<see langword="out" /> parameter) The value 2.</param>
         </member>
         <member name="M:System.PrimaryElementTuple`2.ToString">
-            <method name="ToString" paramType="__noparam">
-		<summary>Returns a string that represents the current object.</summary>
-		<returns>A string that represents the current object.</returns>
-	</method>
+            <!-- Failed to insert some or all of included XML --><include file="../../GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
         </member>
         <member name="T:System.PrimaryElementTuple`3">
             <summary>
@@ -6104,18 +7367,13 @@
             <inheritdoc/>
         </member>
         <member name="M:System.PrimaryElementTuple`3.Deconstruct(`0@,`1@,`2@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
+            <!-- Failed to insert some or all of included XML --><include file="../../GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="v1">(<see langword="out" /> parameter) The value 1.</param>
             <param name="v2">(<see langword="out" /> parameter) The value 2.</param>
             <param name="v3">(<see langword="out" /> parameter) The value 3.</param>
         </member>
         <member name="M:System.PrimaryElementTuple`3.ToString">
-            <method name="ToString" paramType="__noparam">
-		<summary>Returns a string that represents the current object.</summary>
-		<returns>A string that represents the current object.</returns>
-	</method>
+            <!-- Failed to insert some or all of included XML --><include file="../../GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
         </member>
         <member name="T:System.PrimaryElementTuple`4">
             <summary>
@@ -6178,19 +7436,14 @@
             <inheritdoc/>
         </member>
         <member name="M:System.PrimaryElementTuple`4.Deconstruct(`0@,`1@,`2@,`3@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
+            <!-- Failed to insert some or all of included XML --><include file="../../GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="v1">(<see langword="out" /> parameter) The value 1.</param>
             <param name="v2">(<see langword="out" /> parameter) The value 2.</param>
             <param name="v3">(<see langword="out" /> parameter) The value 3.</param>
             <param name="v4">(<see langword="out" /> parameter) The value 4.</param>
         </member>
         <member name="M:System.PrimaryElementTuple`4.ToString">
-            <method name="ToString" paramType="__noparam">
-		<summary>Returns a string that represents the current object.</summary>
-		<returns>A string that represents the current object.</returns>
-	</method>
+            <!-- Failed to insert some or all of included XML --><include file="../../GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
         </member>
         <member name="T:System.Text.RegularExpressions.InvalidRegexStringException">
             <summary>

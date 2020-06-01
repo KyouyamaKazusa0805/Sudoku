@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="grid">The puzzle.</param>
 		/// <param name="progress">The progress instance to report the state.</param>
 		/// <returns>The analysis result.</returns>
-		public AnalysisResult Solve(IReadOnlyGrid grid, IProgress<GridProgressResult>? progress)
+		public AnalysisResult Solve(IReadOnlyGrid grid, IProgress<IProgressResult>? progress)
 		{
 			if (grid.IsValid(out var solution, out bool? sukaku))
 			{

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
+using Sudoku.ComponentModel;
 
 namespace Sudoku.Windows
 {
@@ -25,11 +26,27 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// The close value. The form can be closed if and only if the value is <see langword="true"/>.
 		/// </summary>
-		internal bool _closeValue = false;
+		private bool _closeValue = false;
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public ProgressWindow() => InitializeComponent();
+
+
+		/// <summary>
+		/// The default progress processing method.
+		/// </summary>
+		public IProgress<IProgressResult> DefaultReporting =>
+			new Progress<IProgressResult>(
+				e =>
+				{
+					// The dispatcher instance will help us to modify the state of
+					// controls while using multi-threads.
+					var progressBar = _progressBarInfo;
+					var textBlock = _textBlockInfo;
+					progressBar.Dispatcher.Invoke(() => progressBar.Value = e.Percentage);
+					textBlock.Dispatcher.Invoke(() => textBlock.Text = e.ToString());
+				});
 
 
 		/// <inheritdoc/>
@@ -53,6 +70,16 @@ namespace Sudoku.Windows
 			{
 				e.Cancel = true;
 			}
+		}
+
+		/// <summary>
+		/// Close the window anyway. This method will set <see cref="_closeValue"/> <see langword="true"/>
+		/// value without any condition.
+		/// </summary>
+		public void CloseAnyway()
+		{
+			_closeValue = true;
+			Close();
 		}
 
 

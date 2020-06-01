@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Encapsulates a progress result used for report the current state.
 	/// </summary>
-	public struct GridProgressResult
+	public struct GridProgressResult : IProgressResult
 	{
 		/// <summary>
 		/// Initializes an instance with the specified current point and the total point.
@@ -34,7 +34,8 @@
 		/// <summary>
 		/// Indicates the current percentage.
 		/// </summary>
-		public readonly double Percentage => (double)(InitialCandidatesCount - CurrentCandidatesCount) / InitialCandidatesCount * 100;
+		public readonly double Percentage =>
+			(double)(InitialCandidatesCount - CurrentCandidatesCount) / InitialCandidatesCount * 100;
 
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>

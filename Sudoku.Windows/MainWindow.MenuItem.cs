@@ -11,7 +11,6 @@ using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
-using Sudoku.ComponentModel;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
@@ -617,20 +616,10 @@ namespace Sudoku.Windows
 							_puzzle.ClearStack();
 						}
 
-						return _manualSolver.Solve(
-							_puzzle,
-							new Progress<GridProgressResult>(
-								(GridProgressResult e) =>
-								{
-									// The dispatcher instance will help us to modify the state of
-									// controls while using multi-threads.
-									dialog._progressBarInfo.Dispatcher.Invoke(() => dialog._progressBarInfo.Value = e.Percentage);
-									dialog._textBlockInfo.Dispatcher.Invoke(() => dialog._textBlockInfo.Text = e.ToString());
-								}));
+						return _manualSolver.Solve(_puzzle, dialog.DefaultReporting);
 					});
 
-				dialog._closeValue = true;
-				dialog.Close();
+				dialog.CloseAnyway();
 
 				// Solved. Now update the technique summary.
 				EnableSolvingControls();

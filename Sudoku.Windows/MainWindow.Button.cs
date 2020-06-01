@@ -37,7 +37,10 @@ namespace Sudoku.Windows
 				_buttonFindAllSteps.IsEnabled = false;
 				DisableSolvingControls();
 
-				var techniqueGroups = await new StepFinder(Settings).SearchAsync(_puzzle);
+				var dialog = new ProgressWindow();
+				dialog.Show();
+				var techniqueGroups =
+					await Task.Run(() => new StepFinder(Settings).Search(_puzzle, dialog.DefaultReporting));
 
 				EnableSolvingControls();
 				SwitchOnGeneratingComboBoxesDisplaying();
@@ -64,6 +67,8 @@ namespace Sudoku.Windows
 							});
 					}
 				}
+
+				dialog.CloseAnyway();
 
 				_listBoxTechniques.ItemsSource = list;
 			}

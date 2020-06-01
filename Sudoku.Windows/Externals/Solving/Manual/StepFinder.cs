@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Sudoku.ComponentModel;
 using Sudoku.Data;
+using Sudoku.Extensions;
+using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Alses;
 using Sudoku.Solving.Manual.Alses.Basic;
@@ -49,53 +51,43 @@ namespace Sudoku.Solving.Manual
 		/// Search for all possible steps in a grid.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
-		public async Task<IEnumerable<IGrouping<string, TechniqueInfo>>> SearchAsync(IReadOnlyGrid grid)
+		/// <param name="progress">The progress.</param>
+		public IEnumerable<IGrouping<string, TechniqueInfo>> Search(
+			IReadOnlyGrid grid, IProgress<IProgressResult>? progress)
 		{
 			if (grid.HasSolved || !grid.IsValid(out _, out bool? sukaku))
 			{
 				return Array.Empty<IGrouping<string, TechniqueInfo>>();
 			}
 
+			var solver = _settings.MainManualSolver;
 			var searchers = new TechniqueSearcher[]
 			{
-				new SingleTechniqueSearcher(
-					_settings.MainManualSolver.EnableFullHouse, _settings.MainManualSolver.EnableLastDigit),
+				new SingleTechniqueSearcher(solver.EnableFullHouse, solver.EnableLastDigit),
 				new LcTechniqueSearcher(),
 				new SubsetTechniqueSearcher(),
 				new NormalFishTechniqueSearcher(),
-				new RegularWingTechniqueSearcher(_settings.MainManualSolver.CheckRegularWingSize),
+				new RegularWingTechniqueSearcher(solver.CheckRegularWingSize),
 				new IrregularWingTechniqueSearcher(),
 				new TwoStrongLinksTechniqueSearcher(),
-				new UrTechniqueSearcher(
-					_settings.MainManualSolver.CheckIncompletedUniquenessPatterns,
-					_settings.MainManualSolver.SearchExtendedUniqueRectangles),
+				new UrTechniqueSearcher(solver.CheckIncompletedUniquenessPatterns, solver.SearchExtendedUniqueRectangles),
 				new XrTechniqueSearcher(),
 				new UlTechniqueSearcher(),
 				new EmptyRectangleTechniqueSearcher(),
-				new AlcTechniqueSearcher(_settings.MainManualSolver.CheckAlmostLockedQuadruple),
+				new AlcTechniqueSearcher(solver.CheckAlmostLockedQuadruple),
 				new SdcTechniqueSearcher(
-					_settings.MainManualSolver.AllowOverlappingAlses,
-					_settings.MainManualSolver.AlsHighlightRegionInsteadOfCell,
-					_settings.MainManualSolver.AllowAlsCycles),
+					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.AllowAlsCycles),
 				new BdpTechniqueSearcher(),
-				new BugTechniqueSearcher(_settings.MainManualSolver.UseExtendedBugSearcher),
+				new BugTechniqueSearcher(solver.UseExtendedBugSearcher),
 				new ErIntersectionPairTechniqueSearcher(),
 				new AlsXzTechniqueSearcher(
-					_settings.MainManualSolver.AllowOverlappingAlses,
-					_settings.MainManualSolver.AlsHighlightRegionInsteadOfCell,
-					_settings.MainManualSolver.AllowAlsCycles),
+					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.AllowAlsCycles),
 				new AlsXyWingTechniqueSearcher(
-					_settings.MainManualSolver.AllowOverlappingAlses,
-					_settings.MainManualSolver.AlsHighlightRegionInsteadOfCell,
-					_settings.MainManualSolver.AllowAlsCycles),
+					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.AllowAlsCycles),
 				new AlsWWingTechniqueSearcher(
-					_settings.MainManualSolver.AllowOverlappingAlses,
-					_settings.MainManualSolver.AlsHighlightRegionInsteadOfCell,
-					_settings.MainManualSolver.AllowAlsCycles),
+					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.AllowAlsCycles),
 				new DeathBlossomTechniqueSearcher(
-					_settings.MainManualSolver.AllowOverlappingAlses,
-					_settings.MainManualSolver.AlsHighlightRegionInsteadOfCell,
-					_settings.MainManualSolver.MaxPetalsOfDeathBlossom),
+					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.MaxPetalsOfDeathBlossom),
 				//new GroupedAicTechniqueSearcher(
 				//	true, false, false, _settings.MainManualSolver.AicMaximumLength,
 				//	_settings.MainManualSolver.ReductDifferentPathAic,
@@ -119,17 +111,18 @@ namespace Sudoku.Solving.Manual
 				//	_settings.MainManualSolver.HobiwanFishMaximumExofinsCount,
 				//	_settings.MainManualSolver.HobiwanFishMaximumEndofinsCount,
 				//	_settings.MainManualSolver.HobiwanFishCheckTemplates),
-				new BowmanBingoTechniqueSearcher(_settings.MainManualSolver.BowmanBingoMaximumLength),
+				new BowmanBingoTechniqueSearcher(solver.BowmanBingoMaximumLength),
 				new PomTechniqueSearcher(),
 				new CccTechniqueSearcher(),
-				new JuniorExocetTechniqueSearcher(_settings.MainManualSolver.CheckAdvancedInExocet),
-				new SeniorExocetTechniqueSearcher(_settings.MainManualSolver.CheckAdvancedInExocet),
+				new JuniorExocetTechniqueSearcher(solver.CheckAdvancedInExocet),
+				new SeniorExocetTechniqueSearcher(solver.CheckAdvancedInExocet),
 				new SkLoopTechniqueSearcher(),
 				new AlsNetTechniqueSearcher(),
 			};
 
 			TechniqueSearcher.InitializeMaps(grid);
 			var bag = new Bag<TechniqueInfo>();
+			var progressResult = new TechniqueProgressResult(searchers.Length);
 			foreach (var searcher in searchers)
 			{
 				if (sukaku is true && searcher is UniquenessTechniqueSearcher)
@@ -140,10 +133,25 @@ namespace Sudoku.Solving.Manual
 					continue;
 				}
 
-				await Task.Run(() => searcher.GetAll(bag, grid));
+				if (!(progress is null))
+				{
+					_ = searcher.HasMarked<TechniqueSearcher, TechniqueDisplayAttribute>(out var attributes);
+					progressResult.CurrentTechnique = attributes.First().DisplayName;
+					progress.Report(progressResult);
+				}
+
+				searcher.GetAll(bag, grid);
 			}
 
-			return await Task.Run(() => from step in bag group step by step.Name);
+			// Group them up.
+			if (!(progress is null))
+			{
+				progressResult.CurrentTechnique = "Summary...";
+				progress.Report(progressResult);
+			}
+
+			// Return the result.
+			return from step in bag group step by step.Name;
 		}
 	}
 }
