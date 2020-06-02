@@ -114,7 +114,7 @@ namespace Sudoku.Drawing.Layers
 					case CellStatus.Empty when _showCandidates:
 					{
 						// Draw candidates.
-						short candidateMask = (short)(~mask & 511);
+						short candidateMask = (short)(~mask & Grid.MaxCandidatesMask);
 						foreach (int digit in candidateMask.GetAllSets())
 						{
 							var point = _pointConverter.GetMousePointInCenter(cell, digit);

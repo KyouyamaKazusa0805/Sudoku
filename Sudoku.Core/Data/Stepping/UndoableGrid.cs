@@ -120,7 +120,7 @@ namespace Sudoku.Data.Stepping
 			foreach (int cell in map)
 			{
 				ref short mask = ref _masks[cell];
-				mask = (short)((int)CellStatus.Given << 9 | mask & 511);
+				mask = (short)((int)CellStatus.Given << 9 | mask & Grid.MaxCandidatesMask);
 			}
 
 			Array.Copy(_masks, _initialMasks, 81);
@@ -142,7 +142,7 @@ namespace Sudoku.Data.Stepping
 			foreach (int cell in map)
 			{
 				ref short mask = ref _masks[cell];
-				mask = (short)((int)CellStatus.Modifiable << 9 | mask & 511);
+				mask = (short)((int)CellStatus.Modifiable << 9 | mask & Grid.MaxCandidatesMask);
 			}
 		}
 

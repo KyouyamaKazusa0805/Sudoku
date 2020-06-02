@@ -58,7 +58,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				int i = 0;
 				int r = GetRegion(b1, RegionLabel.Row) - 9, c = GetRegion(b1, RegionLabel.Column) - 18;
-				foreach (int pos in ((short)(511 & ~(1 << (isRow ? r : c)))).GetAllSets())
+				foreach (int pos in ((short)(Grid.MaxCandidatesMask & ~(1 << (isRow ? r : c)))).GetAllSets())
 				{
 					cover[i++] = isRow ? pos : pos + 9;
 				}

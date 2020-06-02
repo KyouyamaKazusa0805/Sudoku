@@ -28,6 +28,17 @@ namespace Sudoku.Data
 
 
 		/// <summary>
+		/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
+		/// </summary>
+		public const short DefaultMask = (short)CellStatus.Empty << 9;
+
+		/// <summary>
+		/// Indicates the maximum candidate mask that used.
+		/// </summary>
+		public const short MaxCandidatesMask = 0b111_111_111;
+
+
+		/// <summary>
 		/// Binary masks of all cells.
 		/// </summary>
 		/// <remarks>
@@ -107,7 +118,7 @@ namespace Sudoku.Data
 			_masks = new short[81];
 			for (int i = 0; i < 81; i++)
 			{
-				_masks[i] = (short)CellStatus.Empty << 9;
+				_masks[i] = DefaultMask;
 			}
 			_initialMasks = (short[])_masks.Clone();
 
@@ -225,7 +236,7 @@ namespace Sudoku.Data
 						short copy = result;
 
 						// Set cell status to 'CellStatus.Modifiable'.
-						result = (short)((short)CellStatus.Modifiable << 9 | 511 & ~(1 << value));
+						result = (short)((short)CellStatus.Modifiable << 9 | MaxCandidatesMask & ~(1 << value));
 
 						// To trigger the event, which is used for eliminate
 						// all same candidates in peer cells.
@@ -314,7 +325,7 @@ namespace Sudoku.Data
 		{
 			ref short mask = ref _masks[offset];
 			short copy = mask;
-			mask = (short)((int)cellStatus << 9 | mask & 511);
+			mask = (short)((int)cellStatus << 9 | mask & MaxCandidatesMask);
 
 			ValueChanged.Invoke(this, new ValueChangedEventArgs(offset, copy, mask, -1));
 		}
@@ -397,11 +408,11 @@ namespace Sudoku.Data
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public short GetCandidates(int offset) => (short)(_masks[offset] & 511);
+		public short GetCandidates(int offset) => (short)(_masks[offset] & MaxCandidatesMask);
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public short GetCandidatesReversal(int offset) => (short)(~_masks[offset] & 511);
+		public short GetCandidatesReversal(int offset) => (short)(~_masks[offset] & MaxCandidatesMask);
 
 		/// <inheritdoc/>
 		public sealed override string ToString() => ToString(null, null);

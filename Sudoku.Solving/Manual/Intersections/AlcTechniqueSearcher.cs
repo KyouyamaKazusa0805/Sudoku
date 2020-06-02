@@ -149,7 +149,7 @@ namespace Sudoku.Solving.Manual.Intersections
 						}
 					}
 
-					for (int digit = 0, temp = 511 & ~mask1; digit < 9; digit++, temp >>= 1)
+					for (int digit = 0, temp = Grid.MaxCandidatesMask & ~mask1; digit < 9; digit++, temp >>= 1)
 					{
 						if ((temp & 1) != 0 && grid.Exists(ahsCell, digit) is true)
 						{
@@ -259,7 +259,7 @@ namespace Sudoku.Solving.Manual.Intersections
 								}
 							}
 
-							for (int digit = 0, temp = 511 & ~m; digit < 9; digit++, temp >>= 1)
+							for (int digit = 0, temp = Grid.MaxCandidatesMask & ~m; digit < 9; digit++, temp >>= 1)
 							{
 								if ((temp & 1) != 0)
 								{
@@ -384,7 +384,7 @@ namespace Sudoku.Solving.Manual.Intersections
 									}
 								}
 
-								for (int digit = 0, temp = 511 & ~m; digit < 9; digit++, temp >>= 1)
+								for (int digit = 0, temp = Grid.MaxCandidatesMask & ~m; digit < 9; digit++, temp >>= 1)
 								{
 									if ((temp & 1) != 0)
 									{

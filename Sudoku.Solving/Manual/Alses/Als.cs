@@ -79,12 +79,12 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <summary>
 		/// Indicates the relative positions mask.
 		/// </summary>
-		public short RelativePosMask => (short)(_mask >> 9 & 511);
+		public short RelativePosMask => (short)(_mask >> 9 & Grid.MaxCandidatesMask);
 
 		/// <summary>
 		/// Indicates the digits mask.
 		/// </summary>
-		public short DigitsMask => (short)(_mask & 511);
+		public short DigitsMask => (short)(_mask & Grid.MaxCandidatesMask);
 
 		/// <summary>
 		/// Indicates the cells used in this ALS.
@@ -174,14 +174,12 @@ namespace Sudoku.Solving.Manual.Alses
 		public override bool Equals(object? obj) => obj is Als comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(Als other)
-		{
-			return IsBivalueCellAls && other.IsBivalueCellAls
-				? (_mask & 511) == (other._mask & 511)
+		public bool Equals(Als other) =>
+			IsBivalueCellAls && other.IsBivalueCellAls
+				? (_mask & Grid.MaxCandidatesMask) == (other._mask & Grid.MaxCandidatesMask)
 					&& RegionCells[Region][RelativePosMask.FindFirstSet()]
 					== RegionCells[other.Region][other.RelativePosMask.FindFirstSet()]
 				: _mask == other._mask;
-		}
 
 		/// <summary>
 		/// Indicates whether the specified grid contains the digit.

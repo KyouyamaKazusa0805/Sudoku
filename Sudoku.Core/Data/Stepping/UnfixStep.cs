@@ -25,7 +25,7 @@
 			{
 				// To prevent the event re-invoke.
 				ref short mask = ref grid._masks[cell];
-				mask = (short)((int)CellStatus.Modifiable << 9 | mask & 511);
+				mask = (short)((int)CellStatus.Modifiable << 9 | mask & Grid.MaxCandidatesMask);
 			}
 		}
 
@@ -36,7 +36,7 @@
 			{
 				// To prevent the event re-invoke.
 				ref short mask = ref grid._masks[cell];
-				mask = (short)((int)CellStatus.Given << 9 | mask & 511);
+				mask = (short)((int)CellStatus.Given << 9 | mask & Grid.MaxCandidatesMask);
 			}
 		}
 	}

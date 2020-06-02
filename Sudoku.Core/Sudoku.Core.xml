@@ -1661,6 +1661,16 @@
             Indicates an empty grid, where all values are zero.
             </summary>
         </member>
+        <member name="F:Sudoku.Data.Grid.DefaultMask">
+            <summary>
+            Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Grid.MaxCandidatesMask">
+            <summary>
+            Indicates the maximum candidate mask that used.
+            </summary>
+        </member>
         <member name="F:Sudoku.Data.Grid._masks">
             <summary>
             Binary masks of all cells.

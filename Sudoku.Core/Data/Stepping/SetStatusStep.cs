@@ -36,7 +36,7 @@
 		{
 			// To prevent the infinity recursion.
 			ref short mask = ref grid._masks[Cell];
-			mask = (short)((int)NewStatus << 9 | mask & 511);
+			mask = (short)((int)NewStatus << 9 | mask & Grid.MaxCandidatesMask);
 		}
 
 		/// <inheritdoc/>
@@ -44,7 +44,7 @@
 		{
 			// To prevent the infinity recursion.
 			ref short mask = ref grid._masks[Cell];
-			mask = (short)((int)OldStatus << 9 | mask & 511);
+			mask = (short)((int)OldStatus << 9 | mask & Grid.MaxCandidatesMask);
 		}
 	}
 }

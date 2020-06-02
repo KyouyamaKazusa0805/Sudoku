@@ -509,7 +509,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 			// Now check all base digits last.
 			short last = (short)(dic[b1] | dic[b2]);
-			foreach (int digit in (511 & ~last).GetAllSets())
+			foreach (int digit in (Grid.MaxCandidatesMask & ~last).GetAllSets())
 			{
 				if (grid.Exists(tq1, digit) is true)
 				{

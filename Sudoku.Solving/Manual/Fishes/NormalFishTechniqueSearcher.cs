@@ -131,7 +131,7 @@ namespace Sudoku.Solving.Manual.Fishes
 									}
 
 									// Confirm all fin cells.
-									short finMask = (short)(baseMask & ~(1 << i | 1 << j) & 511);
+									short finMask = (short)(baseMask & ~(1 << i | 1 << j) & Grid.MaxCandidatesMask);
 									foreach (int baseSet in baseSets2)
 									{
 										foreach (int x in finMask.GetAllSets())
@@ -306,7 +306,8 @@ namespace Sudoku.Solving.Manual.Fishes
 												}
 
 												// Confirm all fin cells.
-												short finMask = (short)(baseMask & ~(1 << i | 1 << j | 1 << k) & 511);
+												short finMask = (short)(
+													baseMask & ~(1 << i | 1 << j | 1 << k) & Grid.MaxCandidatesMask);
 												foreach (int baseSet in baseSets3)
 												{
 													foreach (int x in finMask.GetAllSets())
@@ -491,7 +492,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 														// Get the fin mask.
 														short finMask = (short)(
-															baseMask & ~(1 << i | 1 << j | 1 << k | 1 << l) & 511);
+															baseMask & ~(1 << i | 1 << j | 1 << k | 1 << l) & Grid.MaxCandidatesMask);
 
 														// Confirm all fin cells.
 														foreach (int baseSet in baseSets4)

@@ -230,7 +230,7 @@ namespace Sudoku.Data
 		private static int GetFirstFalseCandidate(short value)
 		{
 			// To truncate the value to range 0 to 511.
-			value = (short)~(value & 511);
+			value = (short)~(value & Grid.MaxCandidatesMask);
 
 			// Special case: the value is 0.
 			if (value == 0)
