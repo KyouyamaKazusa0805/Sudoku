@@ -78,7 +78,7 @@ namespace Sudoku.Solving.Checking
 			int multivalueCellsCount = 0;
 			foreach (int value in array)
 			{
-				int candidatesCount = Grid.GetCandidatesReversal(value).CountSet();
+				int candidatesCount = Grid.GetCandidates(value).CountSet();
 				if (candidatesCount == 1 || candidatesCount > 2 && ++multivalueCellsCount > maximumEmptyCells)
 				{
 					return Array.Empty<int>();
@@ -93,7 +93,7 @@ namespace Sudoku.Solving.Checking
 				int[] bivalueCells = _bivalueMap.ToArray();
 				foreach (int bivalueCell in bivalueCells)
 				{
-					int[] digits = Grid.GetCandidatesReversal(bivalueCell).GetAllSets().ToArray();
+					int[] digits = Grid.GetCandidates(bivalueCell).GetAllSets().ToArray();
 					for (int j = 0; j < 2; j++)
 					{
 						int digit = digits[j];
@@ -120,7 +120,7 @@ namespace Sudoku.Solving.Checking
 			int[] multivalueCellsMap = (_emptyMap - _bivalueMap).ToArray();
 			for (int i = 0; i < multivalueCellsMap.Length; i++)
 			{
-				mask = Grid.GetCandidatesReversal(multivalueCellsMap[i]);
+				mask = Grid.GetCandidates(multivalueCellsMap[i]);
 				short[] list = GetAllCombinations(mask, 2);
 				pairs[i, 0] = (short)list.Length;
 

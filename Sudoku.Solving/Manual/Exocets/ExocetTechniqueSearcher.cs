@@ -196,11 +196,11 @@ namespace Sudoku.Solving.Manual.Exocets
 			var mirrorElims = new MirrorEliminations();
 			var playground = (Span<int>)stackalloc[] { mirror.SetAt(0), mirror.SetAt(1) };
 			short mirrorCandidatesMask = (short)(
-				grid.GetCandidatesReversal(playground[0]) | grid.GetCandidatesReversal(playground[1]));
+				grid.GetCandidates(playground[0]) | grid.GetCandidates(playground[1]));
 			short commonBase = (short)(
-				mirrorCandidatesMask & baseCandidateMask & grid.GetCandidatesReversal(target));
+				mirrorCandidatesMask & baseCandidateMask & grid.GetCandidates(target));
 			short targetElimination = (short)(
-				grid.GetCandidatesReversal(target) & ~(short)(commonBase | lockedNonTarget));
+				grid.GetCandidates(target) & ~(short)(commonBase | lockedNonTarget));
 			if (targetElimination != 0 && grid.GetStatus(target) != Empty ^ grid.GetStatus(target2) != Empty)
 			{
 				foreach (int digit in targetElimination.GetAllSets())
@@ -212,12 +212,12 @@ namespace Sudoku.Solving.Manual.Exocets
 			if (_checkAdvanced)
 			{
 				var regions = (Span<int>)stackalloc int[2];
-				short m1 = (short)(grid.GetCandidatesReversal(playground[0]) & baseCandidateMask);
-				short m2 = (short)(grid.GetCandidatesReversal(playground[1]) & baseCandidateMask);
+				short m1 = (short)(grid.GetCandidates(playground[0]) & baseCandidateMask);
+				short m2 = (short)(grid.GetCandidates(playground[1]) & baseCandidateMask);
 				if (m1 != 0 ^ m2 != 0)
 				{
 					int p = playground[m1 == 0 ? 1 : 0];
-					short candidateMask = (short)(grid.GetCandidatesReversal(p) & ~commonBase);
+					short candidateMask = (short)(grid.GetCandidates(p) & ~commonBase);
 					if (candidateMask != 0
 						&& grid.GetStatus(target) != Empty ^ grid.GetStatus(target2) != Empty)
 					{
@@ -253,7 +253,7 @@ namespace Sudoku.Solving.Manual.Exocets
 								continue;
 							}
 
-							if ((grid.GetCandidatesReversal(p) & mask) != 0)
+							if ((grid.GetCandidates(p) & mask) != 0)
 							{
 								count++;
 							}
@@ -264,10 +264,10 @@ namespace Sudoku.Solving.Manual.Exocets
 							for (int j = 0; j < 9; j++)
 							{
 								int p = RegionCells[regions[i]][j];
-								if ((grid.GetCandidatesReversal(p) & mask) == 0
+								if ((grid.GetCandidates(p) & mask) == 0
 									|| grid.GetStatus(p) != Empty || p == onlyOne
 									|| p == playground[0] || p == playground[1]
-									|| (grid.GetCandidatesReversal(p) & ~mask) == 0)
+									|| (grid.GetCandidates(p) & ~mask) == 0)
 								{
 									continue;
 								}
@@ -288,16 +288,16 @@ namespace Sudoku.Solving.Manual.Exocets
 							cellOffsets.Add((3, playground[1]));
 						}
 
-						short mask1 = grid.GetCandidatesReversal(playground[0]);
-						short mask2 = grid.GetCandidatesReversal(playground[1]);
+						short mask1 = grid.GetCandidates(playground[0]);
+						short mask2 = grid.GetCandidates(playground[1]);
 						if (locked.CountSet() == 1 && (mask1 & locked) != 0 ^ (mask2 & locked) != 0)
 						{
 							short candidateMask = (short)(
 								~(
-									grid.GetCandidatesReversal(
+									grid.GetCandidates(
 										playground[(mask1 & locked) != 0 ? 1 : 0]
-									) & grid.GetCandidatesReversal(target) & baseCandidateMask
-								) & grid.GetCandidatesReversal(target) & baseCandidateMask);
+									) & grid.GetCandidates(target) & baseCandidateMask
+								) & grid.GetCandidates(target) & baseCandidateMask);
 							if (candidateMask != 0)
 							{
 								foreach (int digit in candidateMask.GetAllSets())
@@ -312,7 +312,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						bool record(Span<int> playground, int i)
 						{
 							short candidateMask = (short)(
-								grid.GetCandidatesReversal(playground[i]) & ~(baseCandidateMask | locked));
+								grid.GetCandidates(playground[i]) & ~(baseCandidateMask | locked));
 							if (candidateMask != 0)
 							{
 								foreach (int digit in locked.GetAllSets())
@@ -354,7 +354,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				ref var map = ref digitDistributions[digit];
 				for (int cell = 0; cell < 81; cell++)
 				{
-					if ((grid.GetCandidatesReversal(cell) >> digit & 1) != 0)
+					if ((grid.GetCandidates(cell) >> digit & 1) != 0)
 					{
 						map.Add(cell);
 					}

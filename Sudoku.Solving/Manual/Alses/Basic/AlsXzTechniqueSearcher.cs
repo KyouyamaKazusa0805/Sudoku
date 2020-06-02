@@ -61,7 +61,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					{
 						foreach (int cell in overlapMap)
 						{
-							xzMask &= (short)~grid.GetCandidatesReversal(cell);
+							xzMask &= (short)~grid.GetCandidates(cell);
 						}
 					}
 
@@ -164,7 +164,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							foreach (int cell in tempMap)
 							{
 								foreach (int digit in
-									(grid.GetCandidatesReversal(cell) & (mask1 & ~rccMask)).GetAllSets())
+									(grid.GetCandidates(cell) & (mask1 & ~rccMask)).GetAllSets())
 								{
 									conclusions.Add(new Conclusion(Elimination, cell, digit));
 								}
@@ -181,7 +181,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							foreach (int cell in tempMap)
 							{
 								foreach (int digit in
-									(grid.GetCandidatesReversal(cell) & (mask2 & ~rccMask)).GetAllSets())
+									(grid.GetCandidates(cell) & (mask2 & ~rccMask)).GetAllSets())
 								{
 									conclusions.Add(new Conclusion(Elimination, cell, digit));
 								}
@@ -202,7 +202,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					{
 						foreach (int cell in map)
 						{
-							foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+							foreach (int digit in grid.GetCandidates(cell).GetAllSets())
 							{
 								candidateOffsets.Add((finalZ >> digit & 1, cell * 9 + digit));
 							}
@@ -212,7 +212,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					{
 						foreach (int cell in map1)
 						{
-							short mask = grid.GetCandidatesReversal(cell);
+							short mask = grid.GetCandidates(cell);
 							short alsDigitsMask = (short)(mask & ~(finalZ | rccMask));
 							short targetDigitsMask = (short)(mask & finalZ);
 							short rccDigitsMask = (short)(mask & rccMask);
@@ -231,7 +231,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						}
 						foreach (int cell in map2)
 						{
-							short mask = grid.GetCandidatesReversal(cell);
+							short mask = grid.GetCandidates(cell);
 							short alsDigitsMask = (short)(mask & ~(finalZ | rccMask));
 							short targetDigitsMask = (short)(mask & finalZ);
 							short rccDigitsMask = (short)(mask & rccMask);

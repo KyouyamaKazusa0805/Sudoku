@@ -102,7 +102,7 @@ namespace Sudoku.Data
 				for (int i = 0; i < 81; i++)
 				{
 					builders[i] = new StringBuilder();
-					foreach (int digit in grid.GetCandidatesReversal(i).GetAllSets())
+					foreach (int digit in grid.GetCandidates(i).GetAllSets())
 					{
 						builders[i].Append(digit + 1);
 					}

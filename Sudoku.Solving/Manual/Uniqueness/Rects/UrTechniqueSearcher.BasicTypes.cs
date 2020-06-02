@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			short mask = 0;
 			foreach (int cell in otherCellsMap)
 			{
-				mask |= grid.GetCandidatesReversal(cell);
+				mask |= grid.GetCandidates(cell);
 			}
 
 			if (mask != comparer)
@@ -54,7 +54,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			var candidateOffsets = new List<(int, int)>();
 			foreach (int cell in otherCellsMap)
 			{
-				foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+				foreach (int digit in grid.GetCandidates(cell).GetAllSets())
 				{
 					candidateOffsets.Add((0, cell * 9 + digit));
 				}
@@ -93,7 +93,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			short mask = 0;
 			foreach (int cell in otherCellsMap)
 			{
-				mask |= grid.GetCandidatesReversal(cell);
+				mask |= grid.GetCandidates(cell);
 			}
 
 			if (mask != comparer)
@@ -101,7 +101,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				return;
 			}
 
-			int extraMask = (grid.GetCandidatesReversal(corner1) | grid.GetCandidatesReversal(corner2)) ^ comparer;
+			int extraMask = (grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) ^ comparer;
 			if (extraMask.CountSet() != 1)
 			{
 				return;
@@ -126,7 +126,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			{
 				if (grid.GetStatus(cell) == Empty)
 				{
-					foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+					foreach (int digit in grid.GetCandidates(cell).GetAllSets())
 					{
 						candidateOffsets.Add((digit == extraDigit ? 1 : 0, cell * 9 + digit));
 					}
@@ -164,10 +164,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//  ↓ corner1, corner2
 			// (ab ) (ab )
 			//  abx   aby
-			if ((grid.GetCandidatesReversal(corner1) | grid.GetCandidatesReversal(corner2)) != comparer
+			if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer
 				|| otherCellsMap.Any(c =>
 				{
-					short mask = grid.GetCandidatesReversal(c);
+					short mask = grid.GetCandidates(c);
 					return (mask & comparer) == 0 || mask == comparer || arMode && grid.GetStatus(c) != Empty;
 				}))
 			{
@@ -177,7 +177,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			short mask = 0;
 			foreach (int cell in otherCellsMap)
 			{
-				mask |= grid.GetCandidatesReversal(cell);
+				mask |= grid.GetCandidates(cell);
 			}
 			if ((mask & comparer) != comparer)
 			{
@@ -200,7 +200,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						short tempMask = 0;
 						foreach (int cell in iteratedCells)
 						{
-							tempMask |= grid.GetCandidatesReversal(cell);
+							tempMask |= grid.GetCandidates(cell);
 						}
 						if ((tempMask & comparer) != 0 || tempMask.CountSet() - 1 != size
 							|| (tempMask & otherDigitsMask) != otherDigitsMask)
@@ -235,7 +235,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							if (grid.GetStatus(cell) == Empty)
 							{
-								foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+								foreach (int digit in grid.GetCandidates(cell).GetAllSets())
 								{
 									candidateOffsets.Add(((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 								}
@@ -243,7 +243,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						}
 						foreach (int cell in iteratedCells)
 						{
-							foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+							foreach (int digit in grid.GetCandidates(cell).GetAllSets())
 							{
 								candidateOffsets.Add((1, cell * 9 + digit));
 							}
@@ -280,7 +280,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//  ↓ corner1, corner2
 			// (ab ) ab
 			//  abx  aby
-			if ((grid.GetCandidatesReversal(corner1) | grid.GetCandidatesReversal(corner2)) != comparer)
+			if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 			{
 				return;
 			}
@@ -340,7 +340,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						else
 						{
 							// Corner1 and corner2.
-							foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
+							foreach (int d in grid.GetCandidates(cell).GetAllSets())
 							{
 								candidateOffsets.Add((0, cell * 9 + d));
 							}
@@ -380,7 +380,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//  ↓ cornerCell
 			// (ab ) abc
 			//  abc  abc
-			if (grid.GetCandidatesReversal(cornerCell) != comparer)
+			if (grid.GetCandidates(cornerCell) != comparer)
 			{
 				return;
 			}
@@ -389,7 +389,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			short mask = 0;
 			foreach (int cell in otherCellsMap)
 			{
-				mask |= grid.GetCandidatesReversal(cell);
+				mask |= grid.GetCandidates(cell);
 			}
 
 			int extraMask = mask ^ comparer;
@@ -424,7 +424,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					continue;
 				}
 
-				foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+				foreach (int digit in grid.GetCandidates(cell).GetAllSets())
 				{
 					candidateOffsets.Add((digit == extraDigit ? 1 : 0, cell * 9 + digit));
 				}
@@ -461,7 +461,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			// (ab )  aby
 			//  abx  (ab)
 			//        ↑corner2
-			if ((grid.GetCandidatesReversal(corner1) | grid.GetCandidatesReversal(corner2)) != comparer)
+			if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 			{
 				return;
 			}
@@ -520,7 +520,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					}
 					else
 					{
-						foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
+						foreach (int d in grid.GetCandidates(cell).GetAllSets())
 						{
 							candidateOffsets.Add((d == digit ? 1 : 0, cell * 9 + d));
 						}
@@ -563,7 +563,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//  ↓ cornerCell
 			// (ab ) abx
 			//  aby  abz
-			if (grid.GetCandidatesReversal(cornerCell) != comparer)
+			if (grid.GetCandidates(cornerCell) != comparer)
 			{
 				return;
 			}
@@ -613,7 +613,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					}
 					else
 					{
-						foreach (int d in grid.GetCandidatesReversal(cell).GetAllSets())
+						foreach (int d in grid.GetCandidates(cell).GetAllSets())
 						{
 							candidateOffsets.Add((0, cell * 9 + d));
 						}

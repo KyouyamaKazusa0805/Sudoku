@@ -177,7 +177,7 @@ namespace Sudoku.Constants
 			var result = GridMap.Empty;
 			for (int cell = 0; cell < 81; cell++)
 			{
-				if (@this.GetCandidatesReversal(cell).CountSet() == 2)
+				if (@this.GetCandidates(cell).CountSet() == 2)
 				{
 					result.Add(cell);
 				}
@@ -228,7 +228,7 @@ namespace Sudoku.Constants
 				ref var map = ref result[digit];
 				for (int cell = 0; cell < 81; cell++)
 				{
-					if ((@this.GetCandidatesReversal(cell) >> digit & 1) != 0)
+					if ((@this.GetCandidates(cell) >> digit & 1) != 0)
 					{
 						map.Add(cell);
 					}

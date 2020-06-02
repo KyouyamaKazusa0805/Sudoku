@@ -80,22 +80,16 @@ namespace Sudoku.Data
 		short GetMask(int offset);
 
 		/// <summary>
-		/// Get the candidate mask part of the specified cell, where the return
-		/// value is 0 if the candidate exists (or cell is filled this digit),
-		/// or value is 1 if the candidate does not exist.
-		/// </summary>
-		/// <param name="offset">The cell offset you want to get.</param>
-		/// <returns>The candidate mask.</returns>
-		short GetCandidates(int offset);
-
-		/// <summary>
-		/// Get the candidate mask after reversed all bits mask part
-		/// of the specified cell, where the return value is 0 if the candidate
-		/// does not exist, or 1 if the candidate exists or cell is filled this digit.
+		/// Get the candidate mask part of the specified cell.
 		/// </summary>
 		/// <param name="cell">The cell offset you want to get.</param>
-		/// <returns>The candidate mask.</returns>
-		short GetCandidatesReversal(int cell);
+		/// <returns>
+		/// The candidate mask. The return value is a 9-bit <see cref="short"/>
+		/// value, where the bit will be <c>0</c> if the corresponding digit <b>does not exist</b> in the cell,
+		/// and will be <c>1</c> if the corresponding contains this digit (either the cell
+		/// is filled with this digit or the cell is an empty cell, whose candidates contains the digit).
+		/// </returns>
+		short GetCandidates(int cell);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
 		string ToString(string format);

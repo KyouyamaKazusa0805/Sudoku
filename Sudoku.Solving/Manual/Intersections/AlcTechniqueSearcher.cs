@@ -92,7 +92,7 @@ namespace Sudoku.Solving.Manual.Intersections
 			for (int i1 = 0; i1 < 8 - size; i1++)
 			{
 				int c1 = aCells[i1];
-				short mask1 = grid.GetCandidatesReversal(c1);
+				short mask1 = grid.GetCandidates(c1);
 				if (size == 2)
 				{
 					// Check almost locked pair.
@@ -124,12 +124,12 @@ namespace Sudoku.Solving.Manual.Intersections
 					}
 					foreach (int cell in c)
 					{
-						foreach (int digit in (mask1 & grid.GetCandidatesReversal(cell)).GetAllSets())
+						foreach (int digit in (mask1 & grid.GetCandidates(cell)).GetAllSets())
 						{
 							candidateOffsets.Add((1, cell * 9 + digit));
 						}
 					}
-					foreach (int digit in (mask1 & grid.GetCandidatesReversal(ahsCell)).GetAllSets())
+					foreach (int digit in (mask1 & grid.GetCandidates(ahsCell)).GetAllSets())
 					{
 						candidateOffsets.Add((0, ahsCell * 9 + digit));
 					}
@@ -143,7 +143,7 @@ namespace Sudoku.Solving.Manual.Intersections
 							continue;
 						}
 
-						foreach (int digit in (mask1 & grid.GetCandidatesReversal(aCell)).GetAllSets())
+						foreach (int digit in (mask1 & grid.GetCandidates(aCell)).GetAllSets())
 						{
 							conclusions.Add(new Conclusion(Elimination, aCell, digit));
 						}
@@ -185,7 +185,7 @@ namespace Sudoku.Solving.Manual.Intersections
 					for (int i2 = i1 + 1; i2 < 9 - size; i2++)
 					{
 						int c2 = aCells[i2];
-						short mask2 = grid.GetCandidatesReversal(c2);
+						short mask2 = grid.GetCandidates(c2);
 						if (size == 3)
 						{
 							// Check almost locked triple.
@@ -227,7 +227,7 @@ namespace Sudoku.Solving.Manual.Intersections
 							}
 							foreach (int cell in c)
 							{
-								foreach (int digit in (m & grid.GetCandidatesReversal(cell)).GetAllSets())
+								foreach (int digit in (m & grid.GetCandidates(cell)).GetAllSets())
 								{
 									candidateOffsets.Add((1, cell * 9 + digit));
 								}
@@ -253,7 +253,7 @@ namespace Sudoku.Solving.Manual.Intersections
 									continue;
 								}
 
-								foreach (int digit in (m & grid.GetCandidatesReversal(aCell)).GetAllSets())
+								foreach (int digit in (m & grid.GetCandidates(aCell)).GetAllSets())
 								{
 									conclusions.Add(new Conclusion(Elimination, aCell, digit));
 								}
@@ -302,7 +302,7 @@ namespace Sudoku.Solving.Manual.Intersections
 							for (int i3 = i2 + 1; i3 < 6; i3++)
 							{
 								int c3 = aCells[i3];
-								short mask3 = grid.GetCandidatesReversal(c3);
+								short mask3 = grid.GetCandidates(c3);
 
 								// Check almost locked quadruple.
 								short m = (short)((short)(mask1 | mask2) | mask3);
@@ -348,7 +348,7 @@ namespace Sudoku.Solving.Manual.Intersections
 								}
 								foreach (int cell in c)
 								{
-									foreach (int digit in (m & grid.GetCandidatesReversal(cell)).GetAllSets())
+									foreach (int digit in (m & grid.GetCandidates(cell)).GetAllSets())
 									{
 										candidateOffsets.Add((1, cell * 9 + digit));
 									}
@@ -378,7 +378,7 @@ namespace Sudoku.Solving.Manual.Intersections
 										continue;
 									}
 
-									foreach (int digit in (m & grid.GetCandidatesReversal(aCell)).GetAllSets())
+									foreach (int digit in (m & grid.GetCandidates(aCell)).GetAllSets())
 									{
 										conclusions.Add(new Conclusion(Elimination, aCell, digit));
 									}

@@ -220,7 +220,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				{
 					var status = grid.GetStatus(c);
 					return (status != CellStatus.Empty && grid[c] != grid[cell] || status == CellStatus.Empty)
-						&& grid.GetCandidatesReversal(c) != 0;
+						&& grid.GetCandidates(c) != 0;
 				});
 	}
 }

@@ -137,7 +137,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 					continue;
 				}
 
-				foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+				foreach (int digit in grid.GetCandidates(cell).GetAllSets())
 				{
 					if (singleDigitList.Contains(digit))
 					{
@@ -269,7 +269,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 					continue;
 				}
 
-				foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+				foreach (int digit in grid.GetCandidates(cell).GetAllSets())
 				{
 					if (singleDigitList.Contains(digit))
 					{

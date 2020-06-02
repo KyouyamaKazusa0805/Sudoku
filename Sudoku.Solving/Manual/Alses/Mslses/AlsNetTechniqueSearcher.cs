@@ -136,7 +136,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 						foreach (int cell in map & RegionMaps[region])
 						{
-							short cands = (short)(grid.GetCandidatesReversal(cell) & linkMask);
+							short cands = (short)(grid.GetCandidates(cell) & linkMask);
 							if (cands == 0)
 							{
 								continue;

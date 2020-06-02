@@ -147,7 +147,7 @@ namespace Sudoku.Windows
 
 				// Then enable some of them.
 				foreach (int i in
-					_puzzle.GetCandidatesReversal(
+					_puzzle.GetCandidates(
 						_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF())).GetAllSets())
 				{
 					((MenuItem)

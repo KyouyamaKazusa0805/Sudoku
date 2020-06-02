@@ -159,7 +159,7 @@ namespace Sudoku.Data
 				{
 					if (GetStatus(i) == CellStatus.Empty)
 					{
-						count += GetCandidatesReversal(i).CountSet();
+						count += GetCandidates(i).CountSet();
 					}
 				}
 
@@ -267,7 +267,7 @@ namespace Sudoku.Data
 				}
 
 				// To trigger the event.
-				ValueChanged?.Invoke(this, new ValueChangedEventArgs(offset, copy, result, -1));
+				ValueChanged.Invoke(this, new ValueChangedEventArgs(offset, copy, result, -1));
 			}
 		}
 
@@ -409,11 +409,7 @@ namespace Sudoku.Data
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public short GetCandidates(int offset) => (short)(_masks[offset] & MaxCandidatesMask);
-
-		/// <inheritdoc/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public short GetCandidatesReversal(int offset) => (short)(~_masks[offset] & MaxCandidatesMask);
+		public short GetCandidates(int offset) => (short)(~_masks[offset] & MaxCandidatesMask);
 
 		/// <inheritdoc/>
 		public sealed override string ToString() => ToString(null, null);

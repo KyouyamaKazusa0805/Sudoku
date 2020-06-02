@@ -165,7 +165,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				for (int i1 = 0; i1 < 11 - size; i1++)
 				{
 					int c1 = RegionCells[region][i1];
-					short mask1 = grid.GetCandidatesReversal(c1);
+					short mask1 = grid.GetCandidates(c1);
 					if (size == 2)
 					{
 						// Check naked pair.
@@ -209,7 +209,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						{
 							candidateOffsets.Add((0, cand));
 						}
-						var digitsInCell1 = grid.GetCandidatesReversal(c1).GetAllSets();
+						var digitsInCell1 = grid.GetCandidates(c1).GetAllSets();
 						foreach (int digit in digitsInCell1)
 						{
 							candidateOffsets.Add((1, c1 * 9 + digit));
@@ -237,7 +237,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						for (int i2 = i1 + 1; i2 < 12 - size; i2++)
 						{
 							int c2 = RegionCells[region][i2];
-							short mask2 = grid.GetCandidatesReversal(c2);
+							short mask2 = grid.GetCandidates(c2);
 							if (size == 3)
 							{
 								// Check naked triple.
@@ -279,11 +279,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 								{
 									candidateOffsets.Add((0, cand));
 								}
-								foreach (int digit in grid.GetCandidatesReversal(c1).GetAllSets())
+								foreach (int digit in grid.GetCandidates(c1).GetAllSets())
 								{
 									candidateOffsets.Add((1, c1 * 9 + digit));
 								}
-								foreach (int digit in grid.GetCandidatesReversal(c2).GetAllSets())
+								foreach (int digit in grid.GetCandidates(c2).GetAllSets())
 								{
 									candidateOffsets.Add((1, c2 * 9 + digit));
 								}
@@ -310,7 +310,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 								for (int i3 = i2 + 1; i3 < 13 - size; i3++)
 								{
 									int c3 = RegionCells[region][i3];
-									short mask3 = grid.GetCandidatesReversal(c3);
+									short mask3 = grid.GetCandidates(c3);
 									if (size == 4)
 									{
 										// Check naked quadruple.
@@ -353,15 +353,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 										{
 											candidateOffsets.Add((0, cand));
 										}
-										foreach (int digit in grid.GetCandidatesReversal(c1).GetAllSets())
+										foreach (int digit in grid.GetCandidates(c1).GetAllSets())
 										{
 											candidateOffsets.Add((1, c1 * 9 + digit));
 										}
-										foreach (int digit in grid.GetCandidatesReversal(c2).GetAllSets())
+										foreach (int digit in grid.GetCandidates(c2).GetAllSets())
 										{
 											candidateOffsets.Add((1, c2 * 9 + digit));
 										}
-										foreach (int digit in grid.GetCandidatesReversal(c3).GetAllSets())
+										foreach (int digit in grid.GetCandidates(c3).GetAllSets())
 										{
 											candidateOffsets.Add((1, c3 * 9 + digit));
 										}
@@ -388,7 +388,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 										for (int i4 = i3 + 1; i4 < 9; i4++)
 										{
 											int c4 = RegionCells[region][i4];
-											short mask4 = grid.GetCandidatesReversal(c4);
+											short mask4 = grid.GetCandidates(c4);
 
 											// Check naked quintuple.
 											short mask = (short)((short)((short)((short)
@@ -431,19 +431,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 											{
 												candidateOffsets.Add((0, cand));
 											}
-											foreach (int digit in grid.GetCandidatesReversal(c1).GetAllSets())
+											foreach (int digit in grid.GetCandidates(c1).GetAllSets())
 											{
 												candidateOffsets.Add((1, c1 * 9 + digit));
 											}
-											foreach (int digit in grid.GetCandidatesReversal(c2).GetAllSets())
+											foreach (int digit in grid.GetCandidates(c2).GetAllSets())
 											{
 												candidateOffsets.Add((1, c2 * 9 + digit));
 											}
-											foreach (int digit in grid.GetCandidatesReversal(c3).GetAllSets())
+											foreach (int digit in grid.GetCandidates(c3).GetAllSets())
 											{
 												candidateOffsets.Add((1, c3 * 9 + digit));
 											}
-											foreach (int digit in grid.GetCandidatesReversal(c4).GetAllSets())
+											foreach (int digit in grid.GetCandidates(c4).GetAllSets())
 											{
 												candidateOffsets.Add((1, c4 * 9 + digit));
 											}
@@ -726,7 +726,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			short mask = (short)(1 << d1 | 1 << d2);
 			foreach (int cell in (PeerMaps[c1] ^ PeerMaps[c2]) & BivalueMap)
 			{
-				if (grid.GetCandidatesReversal(cell) != mask)
+				if (grid.GetCandidates(cell) != mask)
 				{
 					continue;
 				}
@@ -796,7 +796,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						foreach (int i in positions.GetAllSets())
 						{
 							int cell = RegionCells[region][i];
-							int cellCardinality = tempGrid.GetCandidatesReversal(cell).CountSet();
+							int cellCardinality = tempGrid.GetCandidates(cell).CountSet();
 							if (cellCardinality >= 3)
 							{
 								newBugCells.Add(cell);
@@ -855,7 +855,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			for (int cell = 0; cell < 81; cell++)
 			{
 				if (tempGrid.GetStatus(cell) == Empty
-					&& tempGrid.GetCandidatesReversal(cell).CountSet() != 2)
+					&& tempGrid.GetCandidates(cell).CountSet() != 2)
 				{
 					// Not a BUG.
 					return Array.Empty<int>();

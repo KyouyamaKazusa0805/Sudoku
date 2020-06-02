@@ -138,7 +138,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							};
 							foreach (int cell in map1)
 							{
-								foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+								foreach (int digit in grid.GetCandidates(cell).GetAllSets())
 								{
 									candidateOffsets.Add((
 										true switch
@@ -152,7 +152,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							}
 							foreach (int cell in map2)
 							{
-								foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
+								foreach (int digit in grid.GetCandidates(cell).GetAllSets())
 								{
 									candidateOffsets.Add((
 										true switch

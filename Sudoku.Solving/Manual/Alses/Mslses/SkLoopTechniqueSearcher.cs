@@ -52,7 +52,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					}
 					else
 					{
-						pairs[i] |= grid.GetCandidatesReversal(cells[i << 1]);
+						pairs[i] |= grid.GetCandidates(cells[i << 1]);
 					}
 
 					if (grid.GetStatus(cells[(i << 1) + 1]) != Empty)
@@ -61,7 +61,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					}
 					else
 					{
-						pairs[i] |= grid.GetCandidatesReversal(cells[(i << 1) + 1]);
+						pairs[i] |= grid.GetCandidates(cells[(i << 1) + 1]);
 					}
 
 					if (n > 4 || pairs[i].CountSet() > 5 || pairs[i] == 0)
@@ -136,7 +136,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 						foreach (int cell in elimMap)
 						{
-							short cands = (short)(grid.GetCandidatesReversal(cell) & tempLink[k]);
+							short cands = (short)(grid.GetCandidates(cell) & tempLink[k]);
 							if (cands != 0)
 							{
 								foreach (int digit in cands.GetAllSets())
@@ -159,7 +159,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						link[linkRegion[k]] = tempLink[k];
 						foreach (int cell in map & RegionMaps[linkRegion[k]])
 						{
-							short cands = (short)(grid.GetCandidatesReversal(cell) & tempLink[k]);
+							short cands = (short)(grid.GetCandidates(cell) & tempLink[k]);
 							if (cands == 0)
 							{
 								continue;

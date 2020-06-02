@@ -1809,9 +1809,6 @@
         <member name="M:Sudoku.Data.Grid.GetCandidates(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Grid.GetCandidatesReversal(System.Int32)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Data.Grid.ToString">
             <inheritdoc/>
         </member>
@@ -3280,21 +3277,15 @@
         </member>
         <member name="M:Sudoku.Data.IReadOnlyGrid.GetCandidates(System.Int32)">
             <summary>
-            Get the candidate mask part of the specified cell, where the return
-            value is 0 if the candidate exists (or cell is filled this digit),
-            or value is 1 if the candidate does not exist.
-            </summary>
-            <param name="offset">The cell offset you want to get.</param>
-            <returns>The candidate mask.</returns>
-        </member>
-        <member name="M:Sudoku.Data.IReadOnlyGrid.GetCandidatesReversal(System.Int32)">
-            <summary>
-            Get the candidate mask after reversed all bits mask part
-            of the specified cell, where the return value is 0 if the candidate
-            does not exist, or 1 if the candidate exists or cell is filled this digit.
+            Get the candidate mask part of the specified cell.
             </summary>
             <param name="cell">The cell offset you want to get.</param>
-            <returns>The candidate mask.</returns>
+            <returns>
+            The candidate mask. The return value is a 9-bit <see cref="T:System.Int16"/>
+            value, where the bit will be <c>0</c> if the corresponding digit <b>does not exist</b> in the cell,
+            and will be <c>1</c> if the corresponding contains this digit (either the cell
+            is filled with this digit or the cell is an empty cell, whose candidates contains the digit).
+            </returns>
         </member>
         <member name="M:Sudoku.Data.IReadOnlyGrid.ToString(System.String)">
             <method name="ToString" paramType="string">

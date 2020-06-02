@@ -62,13 +62,13 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			for (int pivot = 0; pivot < 81; pivot++)
 			{
 				if (grid.GetStatus(pivot) != Empty
-					|| checkedCandidates[pivot] != grid.GetCandidatesReversal(pivot)
+					|| checkedCandidates[pivot] != grid.GetCandidates(pivot)
 					|| checkedCandidates[pivot].CountSet() > _maxPetals)
 				{
 					continue;
 				}
 
-				short cands = grid.GetCandidatesReversal(pivot);
+				short cands = grid.GetCandidates(pivot);
 				int digitsCount = cands.CountSet();
 				short[] allZ = new short[digitsCount];
 				int[] stack = new int[digitsCount];
@@ -192,7 +192,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						{
 							foreach (int c in a.Map)
 							{
-								foreach (int dd in grid.GetCandidatesReversal(c).GetAllSets())
+								foreach (int dd in grid.GetCandidates(c).GetAllSets())
 								{
 									candidateOffsets.Add((d == dd ? 1 : -z - 1, c * 9 + dd));
 								}
@@ -264,7 +264,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 					foreach (int cell in temp)
 					{
-						if ((digitsMask & ~grid.GetCandidatesReversal(cell)) == 0)
+						if ((digitsMask & ~grid.GetCandidates(cell)) == 0)
 						{
 							continue;
 						}
@@ -319,7 +319,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						short cands = 0;
 						foreach (int cell in cells)
 						{
-							cands |= grid.GetCandidatesReversal(cell);
+							cands |= grid.GetCandidates(cell);
 						}
 						if (cands.CountSet() != i + 1)
 						{
