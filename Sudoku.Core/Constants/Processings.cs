@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#nullable disable warnings
+
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -14,7 +16,6 @@ namespace Sudoku.Constants
 	/// </summary>
 	public static partial class Processings
 	{
-#nullable disable warnings
 		/// <summary>
 		/// The block table.
 		/// </summary>
@@ -73,8 +74,8 @@ namespace Sudoku.Constants
 		/// In addition, in this data structure, "<c>_coverSet</c>" is a block and "<c>_baseSet</c>" is a line.
 		/// </para>
 		/// </summary>
-		public static readonly IReadOnlyDictionary<(byte _baseSet, byte _coverSet), (GridMap _a, GridMap _b, GridMap _c)> IntersectionMaps;
-#nullable restore warnings
+		public static readonly
+			IReadOnlyDictionary<(byte _baseSet, byte _coverSet), (GridMap _a, GridMap _b, GridMap _c)> IntersectionMaps;
 
 
 		/// <summary>
@@ -130,12 +131,16 @@ namespace Sudoku.Constants
 		/// (<see langword="out"/> parameter) The map of all cells that contain the candidate of that digit
 		/// or that value in given or modifiable.
 		/// </param>
+		/// <param name="values">
+		/// (<see langword="out"/> parameter) The map of all cells that is the given or modifiable value,
+		/// and the digit is the specified one.
+		/// </param>
 		public static void Deconstruct(
 			this IReadOnlyGrid @this, out GridMap empty, out GridMap bivalue,
-			out GridMap[] candidates, out GridMap[] digits) =>
-			(empty, bivalue, candidates, digits) = (
+			out GridMap[] candidates, out GridMap[] digits, out GridMap[] values) =>
+			(empty, bivalue, candidates, digits, values) = (
 				@this.GetEmptyCellsMap(), @this.GetBivalueCellsMap(),
-				@this.GetCandidatesMap(), @this.GetDigitsMap());
+				@this.GetCandidatesMap(), @this.GetDigitsMap(), @this.GetValuesMap());
 
 		/// <summary>
 		/// Get the map of all empty cells in this grid.
@@ -211,10 +216,10 @@ namespace Sudoku.Constants
 		/// <seealso cref="GetCandidatesMap(IReadOnlyGrid)"/>
 		private static GridMap[] GetDigitsMap(this IReadOnlyGrid @this)
 		{
-			var digitDistributions = new GridMap[9];
+			var result = new GridMap[9];
 			for (int digit = 0; digit < 9; digit++)
 			{
-				ref var map = ref digitDistributions[digit];
+				ref var map = ref result[digit];
 				for (int cell = 0; cell < 81; cell++)
 				{
 					if ((@this.GetCandidatesReversal(cell) >> digit & 1) != 0)
@@ -224,7 +229,30 @@ namespace Sudoku.Constants
 				}
 			}
 
-			return digitDistributions;
+			return result;
+		}
+
+		/// <summary>
+		/// Get the map of all distributions for digits.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <returns>The map.</returns>
+		private static GridMap[] GetValuesMap(this IReadOnlyGrid @this)
+		{
+			var result = new GridMap[9];
+			for (int digit = 0; digit < 9; digit++)
+			{
+				ref var map = ref result[digit];
+				for (int cell = 0; cell < 81; cell++)
+				{
+					if (@this[cell] == digit)
+					{
+						map.Add(cell);
+					}
+				}
+			}
+
+			return result;
 		}
 	}
 }

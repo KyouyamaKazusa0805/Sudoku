@@ -85,8 +85,8 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <param name="b">The right grid map.</param>
 		/// <param name="c">The intersection.</param>
 		private static void Process(
-			IReadOnlyGrid grid, IBag<TechniqueInfo> result, int size,
-			int baseSet, int coverSet, GridMap a, GridMap b, GridMap c)
+			IReadOnlyGrid grid, IBag<TechniqueInfo> result, int size, int baseSet, int coverSet,
+			GridMap a, GridMap b, GridMap c)
 		{
 			int[] aCells = a.ToArray();
 			for (int i1 = 0; i1 < 8 - size; i1++)
@@ -97,7 +97,8 @@ namespace Sudoku.Solving.Manual.Intersections
 				{
 					// Check almost locked pair.
 					var digits = mask1.GetAllSets();
-					if (mask1.CountSet() != 2 || digits.Any(digit => grid.HasDigitValue(digit, coverSet)))
+					if (mask1.CountSet() != 2
+						|| digits.Any(digit => ValueMaps[digit].Overlaps(RegionMaps[coverSet])))
 					{
 						continue;
 					}
@@ -105,7 +106,7 @@ namespace Sudoku.Solving.Manual.Intersections
 					short ahsMask = 0;
 					foreach (int digit in digits)
 					{
-						ahsMask |= grid.GetDigitAppearingMask(digit, coverSet, b);
+						ahsMask |= (RegionMaps[coverSet] & CandMaps[digit] & b).GetSubviewMask(coverSet);
 					}
 					if (!ahsMask.IsPowerOfTwo())
 					{
@@ -190,7 +191,8 @@ namespace Sudoku.Solving.Manual.Intersections
 							// Check almost locked triple.
 							short m = (short)(mask1 | mask2);
 							var digits = m.GetAllSets();
-							if (m.CountSet() != 3 || digits.Any(digit => grid.HasDigitValue(digit, coverSet)))
+							if (m.CountSet() != 3
+								|| digits.Any(digit => ValueMaps[digit].Overlaps(RegionMaps[coverSet])))
 							{
 								continue;
 							}
@@ -198,7 +200,7 @@ namespace Sudoku.Solving.Manual.Intersections
 							short ahsMask = 0;
 							foreach (int digit in digits)
 							{
-								ahsMask |= grid.GetDigitAppearingMask(digit, coverSet, b);
+								ahsMask |= (RegionMaps[coverSet] & CandMaps[digit] & b).GetSubviewMask(coverSet);
 							}
 							if (ahsMask.CountSet() != 2)
 							{
@@ -305,7 +307,8 @@ namespace Sudoku.Solving.Manual.Intersections
 								// Check almost locked quadruple.
 								short m = (short)((short)(mask1 | mask2) | mask3);
 								var digits = m.GetAllSets();
-								if (m.CountSet() != 4 || digits.Any(digit => grid.HasDigitValue(digit, coverSet)))
+								if (m.CountSet() != 4
+									|| digits.Any(digit => ValueMaps[digit].Overlaps(RegionMaps[coverSet])))
 								{
 									continue;
 								}
@@ -313,7 +316,7 @@ namespace Sudoku.Solving.Manual.Intersections
 								short ahsMask = 0;
 								foreach (int digit in digits)
 								{
-									ahsMask |= grid.GetDigitAppearingMask(digit, coverSet, b);
+									ahsMask |= (RegionMaps[coverSet] & CandMaps[digit] & b).GetSubviewMask(coverSet);
 								}
 								if (ahsMask.CountSet() != 3)
 								{

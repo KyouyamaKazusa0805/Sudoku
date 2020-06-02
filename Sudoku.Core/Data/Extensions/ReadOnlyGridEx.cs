@@ -51,41 +51,9 @@ namespace Sudoku.Data.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsBivalueCell(this IReadOnlyGrid @this, int cellOffset, out short mask)
 		{
-			if (@this.GetStatus(cellOffset) != Empty)
-			{
-				mask = 0;
-				return false;
-			}
-
-			mask = @this.GetCandidatesReversal(cellOffset);
-			return mask.CountSet() == 2;
-		}
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether the specified region is a bi-location region
-		/// for the specified digit.
-		/// </para>
-		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
-		/// <param name="digit">The digit.</param>
-		/// <param name="region">The region.</param>
-		/// <param name="mask">
-		/// (<see langword="out"/> parameter) The mask off digit appearing mask.
-		/// If the region has the value cell with this digit, this value will be 0.
-		/// </param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsBilocationRegion(this IReadOnlyGrid @this, int digit, int region, out short mask)
-		{
-			if (@this.HasDigitValue(digit, region))
-			{
-				mask = 0;
-				return false;
-			}
-
-			mask = @this.GetDigitAppearingMask(digit, region);
-			return mask.CountSet() == 2;
+			mask = 0;
+			return @this.GetStatus(cellOffset) == Empty
+				&& (mask = @this.GetCandidatesReversal(cellOffset)).CountSet() == 2;
 		}
 
 		/// <summary>
@@ -133,119 +101,6 @@ namespace Sudoku.Data.Extensions
 		/// </example>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool? Exists(this IReadOnlyGrid @this, int cellOffset, int digit) =>
-			@this.GetStatus(cellOffset) switch
-			{
-				Empty => !@this[cellOffset, digit],
-				_ => null
-			};
-
-		/// <summary>
-		/// Checks whether the specified digit has given or modifiable values in
-		/// the specified region.
-		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
-		/// <param name="digit">The digit.</param>
-		/// <param name="regionOffset">The region.</param>
-		/// <returns>A <see cref="bool"/> indicating that.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasDigitValue(this IReadOnlyGrid @this, int digit, int regionOffset) =>
-			RegionCells[regionOffset].Any(o => @this.GetStatus(o) != Empty && @this[o] == digit);
-
-		/// <summary>
-		/// <para>
-		/// Gets a mask of digit appearing in the specified region offset.
-		/// </para>
-		/// <para>
-		/// Note that given and modifiable cells always make this method
-		/// return <see langword="false"/>.
-		/// </para>
-		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
-		/// <param name="digit">The digit.</param>
-		/// <param name="regionOffset">The region.</param>
-		/// <returns>
-		/// The mask. This value consists of 9 bits, which represents all nine cells
-		/// in a specified region. The mask uses 1 to make the cell 'have this digit',
-		/// and 0 to make the cell 'does not have this digit'.
-		/// </returns>
-		public static short GetDigitAppearingMask(this IReadOnlyGrid @this, int digit, int regionOffset)
-		{
-			int result = 0;
-			int[] cells = RegionCells[regionOffset];
-			for (int i = 0, length = cells.Length; i < length; result = i != 8 ? result << 1 : result, i++)
-			{
-				result += (@this.Exists(cells[i], digit) is true).ToInt32();
-			}
-
-			// Now should reverse all bits. Note that this extension method
-			// will be passed a ref value ('ref int', not 'int').
-			result.ReverseBits();
-			return (short)(result >> 23 & 511); // 23 == 32 - 9
-		}
-
-		/// <summary>
-		/// <para>
-		/// Gets a mask of digit appearing in the specified region offset.
-		/// If the cell is not in <paramref name="map"/>, its mask will
-		/// not calculated to the result.
-		/// </para>
-		/// <para>
-		/// Note that given and modifiable cells always make this method
-		/// return <see langword="false"/>.
-		/// </para>
-		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
-		/// <param name="digit">The digit.</param>
-		/// <param name="regionOffset">The region offset.</param>
-		/// <param name="map">The grid map.</param>
-		/// <returns>
-		/// The mask. This value consists of 9 bits, which represents all nine cells
-		/// in a specified region. The mask uses 1 to make the cell 'have this digit',
-		/// and 0 to make the cell 'does not have this digit'.
-		/// </returns>
-		public static short GetDigitAppearingMask(this IReadOnlyGrid @this, int digit, int regionOffset, GridMap map)
-		{
-			int result = 0, i = 0;
-			foreach (int cell in RegionCells[regionOffset])
-			{
-				result += (@this.Exists(cell, digit) is true && map[cell]).ToInt32();
-
-				if (i++ != 8)
-				{
-					result <<= 1;
-				}
-			}
-
-			result.ReverseBits();
-			return (short)(result >> 23 & 511); // 23 == 32 - 9
-		}
-
-		/// <summary>
-		/// <para>
-		/// Gets a <see cref="GridMap"/> of cells whose input digit appearing
-		/// in the specified region offset.
-		/// </para>
-		/// <para>
-		/// Note that given and modifiable cells always make this method
-		/// return <see langword="false"/>.
-		/// </para>
-		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
-		/// <param name="digit">The digit.</param>
-		/// <param name="regionOffset">The region.</param>
-		/// <returns>The cells' map.</returns>
-		public static GridMap GetDigitAppearingCells(this IReadOnlyGrid @this, int digit, int regionOffset)
-		{
-			var result = GridMap.Empty;
-			foreach (int cell in RegionCells[regionOffset])
-			{
-				if (@this.Exists(cell, digit) is true)
-				{
-					result.Add(cell);
-				}
-			}
-
-			return result;
-		}
+			@this.GetStatus(cellOffset) == Empty ? !@this[cellOffset, digit] : (bool?)null;
 	}
 }

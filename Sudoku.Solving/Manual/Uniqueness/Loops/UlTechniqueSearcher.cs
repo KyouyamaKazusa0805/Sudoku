@@ -584,7 +584,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						continue;
 					}
 
-					short m1 = grid.GetDigitAppearingMask(d1, region);
+					short m1 = (RegionMaps[region] & CandMaps[d1]).GetSubviewMask(region);
 					if (m1 == 0)
 					{
 						continue;
@@ -597,7 +597,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							continue;
 						}
 
-						short m2 = grid.GetDigitAppearingMask(d2, region);
+						short m2 = (RegionMaps[region] & CandMaps[d2]).GetSubviewMask(region);
 						if (m2 == 0)
 						{
 							continue;
@@ -705,7 +705,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						{
 							for (int d3 = d2 + 1; d3 < 12 - size; d3++)
 							{
-								short m3 = grid.GetDigitAppearingMask(d3, region);
+								short m3 = (RegionMaps[region] & CandMaps[d3]).GetSubviewMask(region);
 								if (m3 == 0)
 								{
 									continue;
@@ -819,7 +819,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								{
 									for (int d4 = d3 + 1; d4 < 9; d4++)
 									{
-										short m4 = grid.GetDigitAppearingMask(d4, region);
+										short m4 = (RegionMaps[region] & CandMaps[d4]).GetSubviewMask(region);
 										if (m4 == 0)
 										{
 											continue;
@@ -957,7 +957,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				for (int i = 0; i < 2; i++)
 				{
 					int digit = digits[i];
-					short mask = grid.GetDigitAppearingMask(digit, region);
+					short mask = (RegionMaps[region] & CandMaps[digit]).GetSubviewMask(region);
 					if (mask.CountSet() == 2 && mask.GetAllSets().All(i => loop.Contains(RegionCells[region][i])))
 					{
 						// Type 4 found.

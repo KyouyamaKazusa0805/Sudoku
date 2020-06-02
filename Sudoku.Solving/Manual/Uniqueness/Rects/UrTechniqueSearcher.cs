@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Data.CellStatus;
+using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
@@ -233,14 +233,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// of the specified digit, and the cells where they contain the digit
 		/// is same as the given map contains.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
 		/// <param name="digit">The digit.</param>
 		/// <param name="map">The map.</param>
 		/// <param name="region">The region.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static bool IsConjugatePair(IReadOnlyGrid grid, int digit, GridMap map, int region) =>
-			grid.GetDigitAppearingCells(digit, region) == map;
+		private static bool IsConjugatePair(int digit, GridMap map, int region) =>
+			(RegionMaps[region] & CandMaps[digit]) == map;
 
 		/// <summary>
 		/// Check highlight type.

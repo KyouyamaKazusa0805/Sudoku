@@ -649,6 +649,27 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly int[] ToArray() => Offsets.ToArray();
 
+		/// <summary>
+		/// Get the subview mask of this map.
+		/// </summary>
+		/// <param name="region">The region.</param>
+		/// <returns>The mask.</returns>
+		public readonly short GetSubviewMask(int region)
+		{
+			short p = 0, i = 0;
+			foreach (int cell in RegionCells[region])
+			{
+				if (this[cell])
+				{
+					p |= (short)(1 << i);
+				}
+
+				i++;
+			}
+
+			return p;
+		}
+
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly IEnumerator<int> GetEnumerator() => Offsets.GetEnumerator();

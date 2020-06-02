@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Checking
 		{
 			if (grid.IsValid(out _))
 			{
-				(_emptyMap, _bivalueMap, _candMaps, _) = Grid = grid;
+				(_emptyMap, _bivalueMap, _candMaps, _, _) = Grid = grid;
 			}
 			else
 			{

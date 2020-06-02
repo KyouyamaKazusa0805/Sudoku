@@ -286,7 +286,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		{
 			foreach (int digit in digitsNeedChecking.GetAllSets())
 			{
-				var crosslinePerCandidate = crossline & ValueMaps[digit];
+				var crosslinePerCandidate = crossline & DigitMaps[digit];
 				int r = crosslinePerCandidate.RowMask, c = crosslinePerCandidate.ColumnMask;
 				if (r.CountSet() <= 2 || c.CountSet() <= 2)
 				{

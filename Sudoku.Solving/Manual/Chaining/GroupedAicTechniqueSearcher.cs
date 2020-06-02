@@ -421,7 +421,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						GetRegion(currentCell, RegionLabel.Block)
 					})
 					{
-						var map = grid.GetDigitAppearingCells(currentDigit, region);
+						var map = RegionMaps[region] & CandMaps[currentDigit];
 						if (map.Count != 2)
 						{
 							continue;
@@ -530,8 +530,8 @@ namespace Sudoku.Solving.Manual.Chaining
 					// Search for same regions.
 					foreach (int region in new GridMap(currentCells).CoveredRegions)
 					{
-						var map = grid.GetDigitAppearingCells(currentDigit, region)
-							- currentNode.CandidatesMap.Reduct(currentDigit);
+						var map =
+							(RegionMaps[region] & CandMaps[currentDigit]) - currentNode.CandidatesMap.Reduct(currentDigit);
 						if (map.Count != 1)
 						{
 							continue;
@@ -1032,11 +1032,13 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				for (int digit = 0; digit < 9; digit++)
 				{
-					if (!grid.IsBilocationRegion(digit, region, out short mask))
+					var map = RegionMaps[region] & CandMaps[digit];
+					if (map.Count != 2)
 					{
 						continue;
 					}
 
+					short mask = map.GetSubviewMask(region);
 					int pos1 = mask.FindFirstSet();
 					result.Add(
 						new Inference(

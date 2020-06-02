@@ -9,7 +9,7 @@ namespace Sudoku.Constants
 		/// <include file='../GlobalDocComments.xml' path='comments/staticConstructor'/>
 		/// <remarks>
 		/// The initialization order between static constructor and static fields
-		/// may be annoying, so I use static constructor both.
+		/// may be annoying, so I use static constructor.
 		/// </remarks>
 		static Processings()
 		{

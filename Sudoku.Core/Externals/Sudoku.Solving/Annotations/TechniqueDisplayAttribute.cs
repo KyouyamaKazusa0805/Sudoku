@@ -7,16 +7,14 @@ namespace Sudoku.Solving.Annotations
 {
 	/// <summary>
 	/// <para>
-	/// To mark on a technique searcher class (i.e. <see cref="TechniqueSearcher"/>),
-	/// to provide additional displaying messages which are used in UI forms, such as
-	/// technique priority settings form.
+	/// To mark on a technique searcher class to provide additional displaying messages
+	/// which are used in UI forms, such as technique priority settings form.
 	/// </para>
 	/// <para>
 	/// You can use this instance to mark on a enumeration field such as <see cref="TechniqueCode"/>
 	/// to show the name on the screen also.
 	/// </para>
 	/// </summary>
-	/// <seealso cref="TechniqueSearcher"/>
 	/// <seealso cref="TechniqueCode"/>
 	[AttributeUsage(Class | Field, Inherited = false)]
 	public sealed class TechniqueDisplayAttribute : Attribute

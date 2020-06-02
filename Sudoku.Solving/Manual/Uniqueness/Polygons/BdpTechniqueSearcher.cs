@@ -347,7 +347,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						bool flag = false;
 						foreach (int digit in combination)
 						{
-							if (grid.HasDigitValue(digit, region))
+							if (ValueMaps[digit].Overlaps(RegionMaps[region]))
 							{
 								flag = true;
 								break;

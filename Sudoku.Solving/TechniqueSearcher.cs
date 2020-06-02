@@ -46,7 +46,7 @@ namespace Sudoku.Solving
 		/// better</b> not use this field on <see cref="SingleTechniqueSearcher"/> instance.
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
-		internal static GridMap[] CandMaps { get; set; } = null!;
+		internal static GridMap[] CandMaps { get; set; }
 
 		/// <summary>
 		/// The digit maps.
@@ -56,7 +56,16 @@ namespace Sudoku.Solving
 		/// better</b> not use this field on <see cref="SingleTechniqueSearcher"/> instance.
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
-		internal static GridMap[] ValueMaps { get; set; } = null!;
+		internal static GridMap[] DigitMaps { get; set; }
+
+		/// <summary>
+		/// The value maps.
+		/// </summary>
+		/// <remarks>
+		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d
+		/// better</b> not use this field on <see cref="SingleTechniqueSearcher"/> instance.
+		/// </remarks>
+		internal static GridMap[] ValueMaps { get; set; }
 
 
 		/// <summary>
@@ -98,7 +107,8 @@ namespace Sudoku.Solving
 		/// Initialize the maps that used later.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
-		public static void InitializeMaps(IReadOnlyGrid grid) => (EmptyMap, BivalueMap, CandMaps, ValueMaps) = grid;
+		public static void InitializeMaps(IReadOnlyGrid grid) =>
+			(EmptyMap, BivalueMap, CandMaps, DigitMaps, ValueMaps) = grid;
 
 		/// <summary>
 		/// To get the priority of the technique searcher.

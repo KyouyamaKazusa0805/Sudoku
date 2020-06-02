@@ -188,7 +188,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			short otherDigitsMask = (short)(mask ^ comparer);
 			foreach (int region in otherCellsMap.CoveredRegions)
 			{
-				if (grid.HasDigitValue(d1, region) || grid.HasDigitValue(d2, region))
+				if ((ValueMaps[d1] | ValueMaps[d2]).Overlaps(RegionMaps[region]))
 				{
 					return;
 				}
@@ -296,7 +296,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 				foreach (int digit in stackalloc[] { d1, d2 })
 				{
-					if (!IsConjugatePair(grid, digit, otherCellsMap, region))
+					if (!IsConjugatePair(digit, otherCellsMap, region))
 					{
 						continue;
 					}
@@ -482,11 +482,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			void gather(bool isRow, int digit, int region1, int region2)
 			{
 				if ((!isRow
-					|| !IsConjugatePair(grid, digit, new GridMap { corner1, o1 }, region1)
-					|| !IsConjugatePair(grid, digit, new GridMap { corner2, o2 }, region2))
+					|| !IsConjugatePair(digit, new GridMap { corner1, o1 }, region1)
+					|| !IsConjugatePair(digit, new GridMap { corner2, o2 }, region2))
 					&& (isRow
-					|| !IsConjugatePair(grid, digit, new GridMap { corner1, o2 }, region1)
-					|| !IsConjugatePair(grid, digit, new GridMap { corner2, o1 }, region2)))
+					|| !IsConjugatePair(digit, new GridMap { corner1, o2 }, region1)
+					|| !IsConjugatePair(digit, new GridMap { corner2, o1 }, region2)))
 				{
 					return;
 				}
@@ -581,8 +581,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				int abyCell = adjacentCellsMap.SetAt(1);
 				var map1 = new GridMap { abzCell, abxCell };
 				var map2 = new GridMap { abzCell, abyCell };
-				if (!IsConjugatePair(grid, digit, map1, map1.CoveredLine)
-					|| !IsConjugatePair(grid, digit, map2, map2.CoveredLine))
+				if (!IsConjugatePair(digit, map1, map1.CoveredLine)
+					|| !IsConjugatePair(digit, map2, map2.CoveredLine))
 				{
 					continue;
 				}

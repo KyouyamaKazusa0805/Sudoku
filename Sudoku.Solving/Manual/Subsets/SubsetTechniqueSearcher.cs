@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -133,20 +132,20 @@ namespace Sudoku.Solving.Manual.Subsets
 			{
 				for (int d1 = 0; d1 < 10 - size; d1++)
 				{
-					if (grid.HasDigitValue(d1, region))
+					if (ValueMaps[d1].Overlaps(RegionMaps[region]))
 					{
 						continue;
 					}
 
-					short mask = grid.GetDigitAppearingMask(d1, region);
+					short mask = (RegionMaps[region] & CandMaps[d1]).GetSubviewMask(region);
 					for (int d2 = d1 + 1; d2 < 11 - size; d2++)
 					{
-						if (grid.HasDigitValue(d2, region))
+						if (ValueMaps[d2].Overlaps(RegionMaps[region]))
 						{
 							continue;
 						}
 
-						short mask2 = (short)(grid.GetDigitAppearingMask(d2, region) | mask);
+						short mask2 = (short)((RegionMaps[region] & CandMaps[d2]).GetSubviewMask(region) | mask);
 						if (size == 2)
 						{
 							if (mask2.CountSet() != 2)
@@ -155,7 +154,7 @@ namespace Sudoku.Solving.Manual.Subsets
 							}
 
 							// Hidden pair found.
-							var digits = new[] { d1, d2 };
+							int[] digits = new[] { d1, d2 };
 							var conclusions =
 								GetHiddenSubsetsConclusions(
 									grid, region, mask2, digits, out var cellOffsets,
@@ -185,12 +184,12 @@ namespace Sudoku.Solving.Manual.Subsets
 						{
 							for (int d3 = d2 + 1; d3 < 12 - size; d3++)
 							{
-								if (grid.HasDigitValue(d3, region))
+								if (ValueMaps[d3].Overlaps(RegionMaps[region]))
 								{
 									continue;
 								}
 
-								short mask3 = (short)(grid.GetDigitAppearingMask(d3, region) | mask2);
+								short mask3 = (short)((RegionMaps[region] & CandMaps[d3]).GetSubviewMask(region) | mask2);
 								if (size == 3)
 								{
 									if (mask3.CountSet() != 3)
@@ -199,7 +198,7 @@ namespace Sudoku.Solving.Manual.Subsets
 									}
 
 									// Hidden triple found.
-									var digits = new[] { d1, d2, d3 };
+									int[] digits = new[] { d1, d2, d3 };
 									var conclusions =
 										GetHiddenSubsetsConclusions(
 											grid, region, mask3, digits, out var cellOffsets,
@@ -229,21 +228,22 @@ namespace Sudoku.Solving.Manual.Subsets
 								{
 									for (int d4 = d3 + 1; d4 < 9; d4++)
 									{
-										if (grid.HasDigitValue(d4, region))
+										if (ValueMaps[d4].Overlaps(RegionMaps[region]))
 										{
 											continue;
 										}
 
 										// 'size == 4' is always true.
 										// Now check hidden quadruple.
-										short mask4 = (short)(grid.GetDigitAppearingMask(d4, region) | mask3);
+										short mask4 = (short)(
+											(RegionMaps[region] & CandMaps[d4]).GetSubviewMask(region) | mask3);
 										if (mask4.CountSet() != 4)
 										{
 											continue;
 										}
 
 										// Hidden quadruple found.
-										var digits = new[] { d1, d2, d3, d4 };
+										int[] digits = new[] { d1, d2, d3, d4 };
 										var conclusions =
 											GetHiddenSubsetsConclusions(
 												grid, region, mask4, digits, out var cellOffsets,
@@ -294,8 +294,7 @@ namespace Sudoku.Solving.Manual.Subsets
 		/// <returns>All conclusions.</returns>
 		private static IReadOnlyList<Conclusion> GetHiddenSubsetsConclusions(
 			IReadOnlyGrid grid, int region, short mask, IReadOnlyList<int> digits,
-			out IReadOnlyList<int> cellOffsetList,
-			out IReadOnlyList<(int, int)> highlightedCandidates)
+			out IReadOnlyList<int> cellOffsetList, out IReadOnlyList<(int, int)> highlightedCandidates)
 		{
 			var tempCellList = new List<int>();
 			var tempCandList = new List<(int, int)>();

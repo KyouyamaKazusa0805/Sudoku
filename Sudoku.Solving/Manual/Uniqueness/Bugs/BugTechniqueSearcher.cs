@@ -519,7 +519,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				for (int conjuagtePairDigit = 0; conjuagtePairDigit < 9; conjuagtePairDigit++)
 				{
 					// Check whether forms a conjugate pair.
-					short mask = grid.GetDigitAppearingMask(conjuagtePairDigit, region);
+					short mask = (RegionMaps[region] & CandMaps[conjuagtePairDigit]).GetSubviewMask(region);
 					if (mask.CountSet() != 2)
 					{
 						continue;
@@ -785,7 +785,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				for (int digit = 0; digit < 9; digit++)
 				{
 					// Possible positions of a value in a region.
-					short positions = tempGrid.GetDigitAppearingMask(digit, region);
+					short positions = (RegionMaps[region] & CandMaps[digit]).GetSubviewMask(region);
 					int cardinality = positions.CountSet();
 					if (cardinality != 0 && cardinality != 2)
 					{
@@ -868,7 +868,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			{
 				for (int digit = 0; digit < 9; digit++)
 				{
-					short mask = tempGrid.GetDigitAppearingMask(digit, region);
+					short mask = (RegionMaps[region] & CandMaps[digit]).GetSubviewMask(region);
 					int count = mask.CountSet();
 					if (count != 0 && count != 2)
 					{

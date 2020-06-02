@@ -108,11 +108,13 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 			for (int i = 0; i < 2; i++)
 			{
 				int digit = digits[i];
-				if (!grid.IsBilocationRegion(digit, region, out short mask))
+				var map = RegionMaps[region] & CandMaps[digit];
+				if (map.Count != 2)
 				{
 					continue;
 				}
 
+				short mask = map.GetSubviewMask(region);
 				int pos1 = mask.FindFirstSet(), pos2 = mask.GetNextSet(pos1);
 				int bridgeStart = RegionCells[region][pos1], bridgeEnd = RegionCells[region][pos2];
 				if (c1 == bridgeStart || c2 == bridgeStart || c1 == bridgeEnd || c2 == bridgeEnd)

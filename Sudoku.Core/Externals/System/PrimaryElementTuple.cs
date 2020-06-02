@@ -64,12 +64,12 @@ namespace System
 			};
 
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="v1">(<see langword="out"/> parameter) The value 1.</param>
 		/// <param name="v2">(<see langword="out"/> parameter) The value 2.</param>
 		public void Deconstruct(out T1 v1, out T2 v2) => (v1, v2) = (Value1, Value2);
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString() => ((ITuple)this)[PrimaryElementKey].NullableToString();
 	}
 
@@ -142,14 +142,14 @@ namespace System
 			};
 
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="v1">(<see langword="out"/> parameter) The value 1.</param>
 		/// <param name="v2">(<see langword="out"/> parameter) The value 2.</param>
 		/// <param name="v3">(<see langword="out"/> parameter) The value 3.</param>
 		public void Deconstruct(out T1 v1, out T2 v2, out T3 v3) =>
 			(v1, v2, v3) = (Value1, Value2, Value3);
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString() => ((ITuple)this)[PrimaryElementKey].NullableToString();
 	}
 
@@ -231,7 +231,7 @@ namespace System
 			};
 
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="v1">(<see langword="out"/> parameter) The value 1.</param>
 		/// <param name="v2">(<see langword="out"/> parameter) The value 2.</param>
 		/// <param name="v3">(<see langword="out"/> parameter) The value 3.</param>
@@ -239,7 +239,7 @@ namespace System
 		public void Deconstruct(out T1 v1, out T2 v2, out T3 v3, out T4 v4) =>
 			(v1, v2, v3, v4) = (Value1, Value2, Value3, Value4);
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString() => ((ITuple)this)[PrimaryElementKey].NullableToString();
 	}
 }

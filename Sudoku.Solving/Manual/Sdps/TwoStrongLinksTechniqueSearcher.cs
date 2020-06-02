@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -36,8 +35,8 @@ namespace Sudoku.Solving.Manual.Sdps
 					for (int r2 = r1 + 1; r2 < 27; r2++)
 					{
 						// Get masks.
-						short mask1 = grid.GetDigitAppearingMask(digit, r1);
-						short mask2 = grid.GetDigitAppearingMask(digit, r2);
+						short mask1 = (RegionMaps[r1] & CandMaps[digit]).GetSubviewMask(r1);
+						short mask2 = (RegionMaps[r2] & CandMaps[digit]).GetSubviewMask(r2);
 						if (mask1.CountSet() != 2 || mask2.CountSet() != 2)
 						{
 							continue;

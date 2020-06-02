@@ -32,9 +32,9 @@ namespace Sudoku.Solving.Manual.Fishes
 		{
 			for (int size = 2; size <= 4; size++)
 			{
-				foreach (bool value in new[] { false, true })
+				foreach (bool searchRow in stackalloc[] { false, true })
 				{
-					AccumulateAllBySize(accumulator, grid, size, value);
+					AccumulateAllBySize(accumulator, grid, size, searchRow);
 				}
 			}
 		}
@@ -63,27 +63,31 @@ namespace Sudoku.Solving.Manual.Fishes
 			var coverSets4 = (Span<int>)stackalloc int[4];
 			for (int digit = 0; digit < 9; digit++)
 			{
+				var candMap = CandMaps[digit];
+				if (candMap.IsEmpty)
+				{
+					continue;
+				}
+
 				for (int bs1 = baseSetStart; bs1 < baseSetStart + 10 - size; bs1++)
 				{
-					// Get the appearing mask of 'digit' in 'bs1'.
-					short baseMask1 = grid.GetDigitAppearingMask(digit, bs1);
-					if (baseMask1.CountSet() < 2)
+					var baseMap1 = RegionMaps[bs1] & candMap;
+					if (baseMap1.Count < 2)
 					{
 						continue;
 					}
 
 					for (int bs2 = bs1 + 1; bs2 < baseSetStart + 11 - size; bs2++)
 					{
-						// Get the appearing mask of 'digit' in 'bs2'.
-						short baseMask2 = grid.GetDigitAppearingMask(digit, bs2);
-						if (baseMask2.CountSet() < 2)
+						var baseMap2 = RegionMaps[bs2] & candMap;
+						if (baseMap2.Count < 2)
 						{
 							continue;
 						}
 
+						short baseMask = (short)(baseMap1.GetSubviewMask(bs1) | baseMap2.GetSubviewMask(bs2));
 						if (size == 2)
 						{
-							short baseMask = (short)(baseMask1 | baseMask2);
 							int finAndBodyCount = baseMask.CountSet();
 							if (finAndBodyCount >= 5)
 							{
@@ -240,15 +244,15 @@ namespace Sudoku.Solving.Manual.Fishes
 							for (int bs3 = bs2 + 1; bs3 < baseSetStart + 12 - size; bs3++)
 							{
 								// Get the appearing mask of 'digit' in 'bs3'.
-								short baseMask3 = grid.GetDigitAppearingMask(digit, bs3);
-								if (baseMask3.CountSet() < 2)
+								var baseMap3 = RegionMaps[bs3] & candMap;
+								if (baseMap3.Count < 2)
 								{
 									continue;
 								}
 
+								baseMask |= baseMap3.GetSubviewMask(bs3);
 								if (size == 3)
 								{
-									short baseMask = (short)((short)(baseMask1 | baseMask2) | baseMask3);
 									int finAndBodyCount = baseMask.CountSet();
 									if (finAndBodyCount >= 6)
 									{
@@ -416,14 +420,13 @@ namespace Sudoku.Solving.Manual.Fishes
 									for (int bs4 = bs3 + 1; bs4 < baseSetStart + 9; bs4++)
 									{
 										// Get the appearing mask of 'digit' in 'bs4'.
-										short baseMask4 = grid.GetDigitAppearingMask(digit, bs4);
-										if (baseMask4.CountSet() < 2)
+										var baseMap4 = RegionMaps[bs4] & candMap;
+										if (baseMap4.Count < 2)
 										{
 											continue;
 										}
 
-										short baseMask = (short)((short)((short)(
-											baseMask1 | baseMask2) | baseMask3) | baseMask4);
+										baseMask |= baseMap4.GetSubviewMask(bs4);
 										int finAndBodyCount = baseMask.CountSet();
 										if (finAndBodyCount >= 7)
 										{
@@ -455,9 +458,7 @@ namespace Sudoku.Solving.Manual.Fishes
 														continue;
 													}
 
-													for (int cs4 = cs3 + 1, l = k + 1;
-														cs4 < coverSetStart + 9;
-														cs4++, l++)
+													for (int cs4 = cs3 + 1, l = k + 1; cs4 < coverSetStart + 9; cs4++, l++)
 													{
 														// Check whether this cover set has 'digit'.
 														if ((baseMask >> l & 1) == 0)
@@ -568,10 +569,10 @@ namespace Sudoku.Solving.Manual.Fishes
 																isSashimi = true;
 																int finCell = finCellsMap.SetAt(0);
 																int block = finCell / 9 / 3 * 3 + finCell % 9 / 3;
-																foreach (int offset in bodyMap)
+																foreach (int cell in bodyMap)
 																{
-																	if (offset / 9 / 3 * 3 + offset % 9 / 3 == block
-																		&& grid.Exists(offset, digit) is true)
+																	if (cell / 9 / 3 * 3 + cell % 9 / 3 == block
+																		&& grid.Exists(cell, digit) is true)
 																	{
 																		isSashimi = false;
 																		break;

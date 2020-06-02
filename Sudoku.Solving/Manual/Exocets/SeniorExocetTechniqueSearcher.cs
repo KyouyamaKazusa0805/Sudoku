@@ -69,11 +69,11 @@ namespace Sudoku.Solving.Manual.Exocets
 				{
 					if (i++ == 0)
 					{
-						temp = ValueMaps[digit];
+						temp = DigitMaps[digit];
 					}
 					else
 					{
-						temp |= ValueMaps[digit];
+						temp |= DigitMaps[digit];
 					}
 				}
 				temp &= tempCrosslineMap;
@@ -117,7 +117,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						grid.GetCandidatesReversal(combination[0])
 						| grid.GetCandidatesReversal(combination[1])) & ~baseCandidatesMask);
 					if (!CheckCrossline(
-						/*baseCellsMap, */tempCrosslineMap, ValueMaps, baseCandidatesMask,
+						/*baseCellsMap, */tempCrosslineMap, DigitMaps, baseCandidatesMask,
 						combination[0], combination[1], isRow, out int extraRegionsMask))
 					{
 						continue;
@@ -237,7 +237,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						}
 
 						short incompatible = CompatibilityTest(
-							baseCandidatesMask, ValueMaps, tempCrosslineMap, baseCellsMap,
+							baseCandidatesMask, DigitMaps, tempCrosslineMap, baseCellsMap,
 							combination[0], combination[1]);
 						if (incompatible != 0)
 						{
@@ -548,7 +548,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						continue;
 					}
 
-					var temp = (new GridMap(currentTarget, false) & ValueMaps[digit]) - baseCellsMap.PeerIntersection;
+					var temp = (new GridMap(currentTarget, false) & DigitMaps[digit]) - baseCellsMap.PeerIntersection;
 
 					bool flag = false;
 					var elimMap = GridMap.Empty;
