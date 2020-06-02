@@ -128,8 +128,8 @@ namespace Sudoku.Solving.Manual
 				if (sukaku is true && searcher is UniquenessTechniqueSearcher)
 				{
 					// Sukaku mode cannot use them.
-					// In fact, sukaku can use uniqueness tests, however the program should
-					// produce a large modification.
+					// In fact, sukaku can use uniqueness tests, but this will make the project
+					// a large modification.
 					continue;
 				}
 

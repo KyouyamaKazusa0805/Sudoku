@@ -6,26 +6,8 @@ using Sudoku.ComponentModel;
 using Sudoku.Data;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
-using Sudoku.Solving.Manual.Alses;
-using Sudoku.Solving.Manual.Alses.Basic;
-using Sudoku.Solving.Manual.Alses.Mslses;
-using Sudoku.Solving.Manual.Chaining;
-using Sudoku.Solving.Manual.Exocets;
-using Sudoku.Solving.Manual.Fishes;
-using Sudoku.Solving.Manual.Intersections;
-using Sudoku.Solving.Manual.LastResorts;
-using Sudoku.Solving.Manual.Sdps;
-using Sudoku.Solving.Manual.Singles;
-using Sudoku.Solving.Manual.Subsets;
 using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Solving.Manual.Uniqueness;
-using Sudoku.Solving.Manual.Uniqueness.Bugs;
-using Sudoku.Solving.Manual.Uniqueness.Extended;
-using Sudoku.Solving.Manual.Uniqueness.Loops;
-using Sudoku.Solving.Manual.Uniqueness.Polygons;
-using Sudoku.Solving.Manual.Uniqueness.Rects;
-using Sudoku.Solving.Manual.Wings.Irregular;
-using Sudoku.Solving.Manual.Wings.Regular;
 
 namespace Sudoku.Solving.Manual
 {
@@ -86,51 +68,7 @@ namespace Sudoku.Solving.Manual
 
 		Label_Searching:
 			// Start searching.
-			var searchers = new TechniqueSearcher[]
-			{
-				new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit),
-				new LcTechniqueSearcher(),
-				new SubsetTechniqueSearcher(),
-				new NormalFishTechniqueSearcher(),
-				new RegularWingTechniqueSearcher(CheckRegularWingSize),
-				new IrregularWingTechniqueSearcher(),
-				new TwoStrongLinksTechniqueSearcher(),
-				new UrTechniqueSearcher(CheckIncompletedUniquenessPatterns, SearchExtendedUniqueRectangles),
-				new XrTechniqueSearcher(),
-				new UlTechniqueSearcher(),
-				new EmptyRectangleTechniqueSearcher(),
-				new AlcTechniqueSearcher(CheckAlmostLockedQuadruple),
-				new SdcTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-				new BdpTechniqueSearcher(),
-				new BugTechniqueSearcher(UseExtendedBugSearcher),
-				new ErIntersectionPairTechniqueSearcher(),
-				new AlsXzTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-				new AlsXyWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-				new AlsWWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-				new DeathBlossomTechniqueSearcher(
-					AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, MaxPetalsOfDeathBlossom),
-				new GroupedAicTechniqueSearcher(
-					true, false, false, AicMaximumLength, ReductDifferentPathAic,
-					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
-				new GroupedAicTechniqueSearcher(
-					false, true, false, AicMaximumLength, ReductDifferentPathAic,
-					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
-				new GroupedAicTechniqueSearcher(
-					false, false, true, AicMaximumLength, ReductDifferentPathAic,
-					OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
-				new HobiwanFishTechniqueSearcher(
-					HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
-					HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates),
-				new JuniorExocetTechniqueSearcher(CheckAdvancedInExocet),
-				new SeniorExocetTechniqueSearcher(CheckAdvancedInExocet),
-				new SkLoopTechniqueSearcher(),
-				new PomTechniqueSearcher(),
-				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
-				new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
-				new CccTechniqueSearcher(),
-				new AlsNetTechniqueSearcher(),
-				new BruteForceTechniqueSearcher(solution),
-			};
+			var searchers = GetSearchersHodokuMode(solution);
 
 			static T g<T>(TechniqueSearcher s, string p) => (T)s.GetType().GetProperty(p)!.GetValue(null)!;
 			if (UseCalculationPriority)

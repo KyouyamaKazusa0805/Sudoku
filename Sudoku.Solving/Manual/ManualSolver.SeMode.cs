@@ -6,25 +6,7 @@ using Sudoku.ComponentModel;
 using Sudoku.Data;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
-using Sudoku.Solving.Manual.Alses;
-using Sudoku.Solving.Manual.Alses.Basic;
-using Sudoku.Solving.Manual.Alses.Mslses;
-using Sudoku.Solving.Manual.Chaining;
-using Sudoku.Solving.Manual.Exocets;
-using Sudoku.Solving.Manual.Fishes;
-using Sudoku.Solving.Manual.Intersections;
-using Sudoku.Solving.Manual.LastResorts;
-using Sudoku.Solving.Manual.Sdps;
-using Sudoku.Solving.Manual.Singles;
-using Sudoku.Solving.Manual.Subsets;
 using Sudoku.Solving.Manual.Uniqueness;
-using Sudoku.Solving.Manual.Uniqueness.Bugs;
-using Sudoku.Solving.Manual.Uniqueness.Extended;
-using Sudoku.Solving.Manual.Uniqueness.Loops;
-using Sudoku.Solving.Manual.Uniqueness.Polygons;
-using Sudoku.Solving.Manual.Uniqueness.Rects;
-using Sudoku.Solving.Manual.Wings.Irregular;
-using Sudoku.Solving.Manual.Wings.Regular;
 
 namespace Sudoku.Solving.Manual
 {
@@ -57,62 +39,7 @@ namespace Sudoku.Solving.Manual
 			IReadOnlyGrid grid, Grid cloneation, List<TechniqueInfo> steps, IReadOnlyGrid solution, bool sukaku,
 			ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
 		{
-			var searchers = new TechniqueSearcher[][]
-			{
-				new[] { new SingleTechniqueSearcher(EnableFullHouse, EnableLastDigit) },
-				new[] { new LcTechniqueSearcher() },
-				new TechniqueSearcher[]
-				{
-					new SubsetTechniqueSearcher(),
-					new NormalFishTechniqueSearcher(),
-					new RegularWingTechniqueSearcher(CheckRegularWingSize),
-					new IrregularWingTechniqueSearcher(),
-					new TwoStrongLinksTechniqueSearcher(),
-					new UrTechniqueSearcher(CheckIncompletedUniquenessPatterns, SearchExtendedUniqueRectangles),
-					new XrTechniqueSearcher(),
-					new UlTechniqueSearcher(),
-					new EmptyRectangleTechniqueSearcher(),
-					new AlcTechniqueSearcher(CheckAlmostLockedQuadruple),
-					new SdcTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-					new BdpTechniqueSearcher(),
-					new BugTechniqueSearcher(UseExtendedBugSearcher),
-					new ErIntersectionPairTechniqueSearcher(),
-					new AlsXzTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-					new AlsXyWingTechniqueSearcher(
-						AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-					new AlsWWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-					new GroupedAicTechniqueSearcher(
-						true, false, false, AicMaximumLength, ReductDifferentPathAic,
-						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
-					new GroupedAicTechniqueSearcher(
-						false, true, false, AicMaximumLength, ReductDifferentPathAic,
-						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
-					new GroupedAicTechniqueSearcher(
-						false, false, true, AicMaximumLength, ReductDifferentPathAic,
-						OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
-				},
-				new TechniqueSearcher[]
-				{
-					new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
-					new DeathBlossomTechniqueSearcher(
-						AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, MaxPetalsOfDeathBlossom),
-					new HobiwanFishTechniqueSearcher(
-						HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
-						HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates),
-					new PomTechniqueSearcher(),
-					new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
-				},
-				new TechniqueSearcher[]
-				{
-					new CccTechniqueSearcher(),
-					new JuniorExocetTechniqueSearcher(CheckAdvancedInExocet),
-					new SeniorExocetTechniqueSearcher(CheckAdvancedInExocet),
-					new SkLoopTechniqueSearcher(),
-					new AlsNetTechniqueSearcher(),
-				},
-				new[] { new BruteForceTechniqueSearcher(solution) }
-			};
-
+			var searchers = GetSearchersSeMode(solution);
 			var stepGrids = new Bag<IReadOnlyGrid>();
 			var bag = new Bag<TechniqueInfo>();
 			var stopwatch = new Stopwatch();

@@ -5246,6 +5246,20 @@
             <para>The value is <c>5</c> in default case.</para>
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.GetSearchersHodokuMode(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Get all searchers using in Hodoku-like mode.
+            </summary>
+            <param name="solution">The solution used for brute forces.</param>
+            <returns>The searchers.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.GetSearchersSeMode(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Get all searchers using in Sudoku Explainer-like mode.
+            </summary>
+            <param name="solution">The solution used for brute forces.</param>
+            <returns>The searchers.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.RecordTechnique(System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.TechniqueInfo,Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Diagnostics.Stopwatch,System.Collections.Generic.IBag{Sudoku.Data.IReadOnlyGrid},Sudoku.Solving.AnalysisResult@)">
             <summary>
             Bound with on-solving methods returns the solving state.
