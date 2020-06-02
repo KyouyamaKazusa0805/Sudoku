@@ -3,7 +3,6 @@ using System.Linq;
 using System.Text;
 using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
 using static Sudoku.Data.SymmetryType;
 
