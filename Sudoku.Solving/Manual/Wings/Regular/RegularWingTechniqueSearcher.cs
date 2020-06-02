@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -134,7 +133,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 								}
 
 								// Check eliminations.
-								var conclusions = GetConclusions(grid, union, unionWithoutPivot, isIncompleted, map);
+								var conclusions = GetConclusions(union, unionWithoutPivot, isIncompleted, map);
 
 								if (conclusions.Count != 0)
 								{
@@ -189,7 +188,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 
 										// Check eliminations.
 										var conclusions = GetConclusions(
-											grid, union, unionWithoutPivot, isIncompleted, map);
+											union, unionWithoutPivot, isIncompleted, map);
 
 										if (conclusions.Count != 0)
 										{
@@ -244,7 +243,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 
 												// Check eliminations.
 												var conclusions = GetConclusions(
-													grid, union, unionWithoutPivot, isIncompleted, map);
+													union, unionWithoutPivot, isIncompleted, map);
 
 												if (conclusions.Count != 0)
 												{
@@ -368,7 +367,6 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <summary>
 		/// Get all conclusions.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
 		/// <param name="union">The union mask.</param>
 		/// <param name="unionWithoutPivot">The union mask without using pivot mask.</param>
 		/// <param name="isIncompleted">
@@ -377,7 +375,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <param name="map">The intersection grid map.</param>
 		/// <returns>The conclusions.</returns>
 		private static IReadOnlyList<Conclusion> GetConclusions(
-			IReadOnlyGrid grid, short union, short unionWithoutPivot, bool isIncompleted, GridMap map)
+			short union, short unionWithoutPivot, bool isIncompleted, GridMap map)
 		{
 			var conclusions = new List<Conclusion>();
 			int valueToCheck = isIncompleted ? unionWithoutPivot : union;
@@ -387,12 +385,9 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 				// No possible value to eliminate.
 				return conclusions;
 			}
-			foreach (int offset in map)
+			foreach (int offset in map & CandMaps[zDigit])
 			{
-				if (grid.Exists(offset, zDigit) is true)
-				{
-					conclusions.Add(new Conclusion(Elimination, offset, zDigit));
-				}
+				conclusions.Add(new Conclusion(Elimination, offset, zDigit));
 			}
 
 			return conclusions;

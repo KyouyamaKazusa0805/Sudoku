@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -132,10 +131,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 							foreach (int cell in elimMap)
 							{
-								if (grid.Exists(cell, d) is true)
-								{
-									conclusions.Add(new Conclusion(Elimination, cell, d));
-								}
+								conclusions.Add(new Conclusion(Elimination, cell, d));
 							}
 						}
 

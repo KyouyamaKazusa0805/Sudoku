@@ -238,13 +238,8 @@ namespace Sudoku.Solving.Manual.Chaining
 					int currentCell = currentCandidate / 9, currentDigit = currentCandidate % 9;
 
 					// Search for same regions.
-					foreach (int nextCell in new GridMap(currentCell, false))
+					foreach (int nextCell in new GridMap(currentCell, false) & CandMaps[currentDigit])
 					{
-						if (!(grid.Exists(nextCell, currentDigit) is true))
-						{
-							continue;
-						}
-
 						int nextCandidate = nextCell * 9 + currentDigit;
 						if (candidatesUsed[nextCandidate])
 						{
@@ -324,13 +319,8 @@ namespace Sudoku.Solving.Manual.Chaining
 									   select cand / 9;
 
 					// Search for same regions.
-					foreach (int nextCell in new GridMap(currentCells, ProcessPeersWithoutItself))
+					foreach (int nextCell in new GridMap(currentCells, ProcessPeersWithoutItself) & CandMaps[currentDigit])
 					{
-						if (!(grid.Exists(nextCell, currentDigit) is true))
-						{
-							continue;
-						}
-
 						int nextCandidate = nextCell * 9 + currentDigit;
 						if (candidatesUsed[nextCandidate])
 						{

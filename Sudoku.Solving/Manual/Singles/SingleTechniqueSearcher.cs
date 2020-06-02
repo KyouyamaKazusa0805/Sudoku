@@ -46,12 +46,14 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		/// <inheritdoc/>
+		/// <remarks>
+		/// Note that this technique searcher will be used in other functions,
+		/// so we should not use base maps like 'EmptyMap'.
+		/// Those maps will be initialized in the special cases.
+		/// </remarks>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			// Search for full houses.
-			// Note that this technique searcher will be used in other functions,
-			// so we should not use base maps like 'EmptyMap'.
-			// Those maps will be initialized in the special cases.
 			if (_enableFullHouse)
 			{
 				for (int region = 0; region < 27; region++)

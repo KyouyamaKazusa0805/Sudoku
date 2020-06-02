@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using static System.Algorithms;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Data.GridMap.InitializeOption;
@@ -109,17 +109,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			// Type 2 or 5 found. Now check elimination.
 			int extraDigit = extraMask.FindFirstSet();
-			var conclusions = new List<Conclusion>();
-			foreach (int cell in new GridMap(stackalloc[] { corner1, corner2 }, ProcessPeersWithoutItself))
-			{
-				if (grid.Exists(cell, extraDigit) is true)
-				{
-					conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
-				}
-			}
-			if (conclusions.Count == 0)
+			var elimMap = new GridMap(stackalloc[] { corner1, corner2 }, ProcessPeersWithoutItself) & CandMaps[extraDigit];
+			if (elimMap.IsEmpty)
 			{
 				return;
+			}
+
+			var conclusions = new List<Conclusion>();
+			foreach (int cell in elimMap)
+			{
+				conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
 			}
 
 			var candidateOffsets = new List<(int, int)>();
@@ -304,17 +303,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					// Yes, Type 4 found.
 					// Now check elimination.
 					int elimDigit = (comparer ^ (1 << digit)).FindFirstSet();
-					var conclusions = new List<Conclusion>();
-					foreach (int cell in otherCellsMap)
-					{
-						if (grid.Exists(cell, elimDigit) is true)
-						{
-							conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
-						}
-					}
-					if (conclusions.Count == 0)
+					var elimMap = otherCellsMap & CandMaps[elimDigit];
+					if (elimMap.IsEmpty)
 					{
 						continue;
+					}
+
+					var conclusions = new List<Conclusion>();
+					foreach (int cell in elimMap)
+					{
+						conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
 					}
 
 					var candidateOffsets = new List<(int, int)>();
@@ -469,8 +467,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			int o1 = otherCellsMap.SetAt(0), o2 = otherCellsMap.SetAt(1);
-			int r1 = GetRegion(corner1, RegionLabel.Row), c1 = GetRegion(corner1, RegionLabel.Column);
-			int r2 = GetRegion(corner2, RegionLabel.Row), c2 = GetRegion(corner2, RegionLabel.Column);
+			int r1 = GetRegion(corner1, Row), c1 = GetRegion(corner1, Column);
+			int r2 = GetRegion(corner2, Row), c2 = GetRegion(corner2, Column);
 			foreach (int digit in stackalloc[] { d1, d2 })
 			{
 				foreach (var (region1, region2) in stackalloc[] { (r1, r2), (c1, c2) })
@@ -492,17 +490,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				}
 
 				// Check eliminations.
-				var conclusions = new List<Conclusion>();
-				foreach (int cell in otherCellsMap)
-				{
-					if (grid.Exists(cell, digit) is true)
-					{
-						conclusions.Add(new Conclusion(Elimination, cell, digit));
-					}
-				}
-				if (conclusions.Count == 0)
+				var elimMap = otherCellsMap & CandMaps[digit];
+				if (elimMap.IsEmpty)
 				{
 					return;
+				}
+
+				var conclusions = new List<Conclusion>();
+				foreach (int cell in elimMap)
+				{
+					conclusions.Add(new Conclusion(Elimination, cell, digit));
 				}
 
 				var candidateOffsets = new List<(int, int)>();
@@ -573,7 +570,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			int abzCell = GetDiagonalCell(urCells, cornerCell);
 			var adjacentCellsMap = new GridMap(otherCellsMap) { [abzCell] = false };
-			int r = GetRegion(abzCell, RegionLabel.Row), c = GetRegion(abzCell, RegionLabel.Column);
+			int r = GetRegion(abzCell, Row), c = GetRegion(abzCell, Column);
 
 			foreach (int digit in stackalloc[] { d1, d2 })
 			{
@@ -581,8 +578,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				int abyCell = adjacentCellsMap.SetAt(1);
 				var map1 = new GridMap { abzCell, abxCell };
 				var map2 = new GridMap { abzCell, abyCell };
-				if (!IsConjugatePair(digit, map1, map1.CoveredLine)
-					|| !IsConjugatePair(digit, map2, map2.CoveredLine))
+				if (!IsConjugatePair(digit, map1, map1.CoveredLine) || !IsConjugatePair(digit, map2, map2.CoveredLine))
 				{
 					continue;
 				}
@@ -606,12 +602,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					{
 						void record(int d)
 						{
-							if (cell == abzCell && d == elimDigit)
-							{
-								return;
-							}
-
-							if (grid.Exists(cell, d) is true)
+							if ((cell != abzCell || d != elimDigit) && grid.Exists(cell, d) is true)
 							{
 								candidateOffsets.Add((d != elimDigit ? 1 : 0, cell * 9 + d));
 							}

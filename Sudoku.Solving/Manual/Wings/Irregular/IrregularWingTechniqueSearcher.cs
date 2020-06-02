@@ -2,7 +2,6 @@
 using System.Linq;
 using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -85,7 +84,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 							continue;
 						}
 
-						SearchWWingByRegions(result, grid, digits, region, c1, c2, intersection);
+						SearchWWingByRegions(result, digits, region, c1, c2, intersection);
 					}
 				}
 			}
@@ -95,15 +94,13 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		/// Searches W-Wing technique by region.
 		/// </summary>
 		/// <param name="result">The result.</param>
-		/// <param name="grid">The grid.</param>
 		/// <param name="digits">The digits.</param>
 		/// <param name="region">The region.</param>
 		/// <param name="c1">Cell 1.</param>
 		/// <param name="c2">Cell 2.</param>
 		/// <param name="intersection">The intersection.</param>
 		private static void SearchWWingByRegions(
-			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int[] digits, int region,
-			int c1, int c2, GridMap intersection)
+			IBag<TechniqueInfo> result, int[] digits, int region, int c1, int c2, GridMap intersection)
 		{
 			for (int i = 0; i < 2; i++)
 			{
@@ -132,16 +129,15 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 				// W-Wing found.
 				var conclusions = new List<Conclusion>();
 				int elimDigit = i == 0 ? digits[1] : digits[0];
-				foreach (int offset in intersection)
-				{
-					if (grid.Exists(offset, elimDigit) is true)
-					{
-						conclusions.Add(new Conclusion(Elimination, offset, elimDigit));
-					}
-				}
-				if (conclusions.Count == 0)
+				var elimMap = intersection & CandMaps[elimDigit];
+				if (elimMap.IsEmpty)
 				{
 					continue;
+				}
+
+				foreach (int offset in elimMap)
+				{
+					conclusions.Add(new Conclusion(Elimination, offset, elimDigit));
 				}
 
 				result.Add(

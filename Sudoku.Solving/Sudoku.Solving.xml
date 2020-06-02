@@ -5579,6 +5579,11 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
+            <remarks>
+            Note that this technique searcher will be used in other functions,
+            so we should not use base maps like 'EmptyMap'.
+            Those maps will be initialized in the special cases.
+            </remarks>
         </member>
         <member name="T:Sudoku.Solving.Manual.Subsets.HiddenSubsetTechniqueInfo">
             <summary>
@@ -6514,12 +6519,11 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.CheckType2(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueSearcher.CheckType2(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Check for type 2 (with two extra cells).
             </summary>
             <param name="result">The result.</param>
-            <param name="grid">The grid.</param>
             <param name="extraDigit">The extra digit.</param>
             <param name="extraCells">All extra cells.</param>
             <param name="digits">All digits.</param>
@@ -7663,12 +7667,11 @@
             <param name="grid">The grid.</param>
             <returns>All technique information instances.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.SearchWWingByRegions(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32[],System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.SearchWWingByRegions(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},System.Int32[],System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
             <summary>
             Searches W-Wing technique by region.
             </summary>
             <param name="result">The result.</param>
-            <param name="grid">The grid.</param>
             <param name="digits">The digits.</param>
             <param name="region">The region.</param>
             <param name="c1">Cell 1.</param>
@@ -7859,11 +7862,10 @@
             <param name="inter">The intersection mask.</param>
             <param name="conclusions">The conclusions.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.GetConclusions(Sudoku.Data.IReadOnlyGrid,System.Int16,System.Int16,System.Boolean,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueSearcher.GetConclusions(System.Int16,System.Int16,System.Boolean,Sudoku.Data.GridMap)">
             <summary>
             Get all conclusions.
             </summary>
-            <param name="grid">The grid.</param>
             <param name="union">The union mask.</param>
             <param name="unionWithoutPivot">The union mask without using pivot mask.</param>
             <param name="isIncompleted">

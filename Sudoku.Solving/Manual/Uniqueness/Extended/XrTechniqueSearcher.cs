@@ -233,23 +233,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							{
 								// Type 2.
 								// Check eliminations.
-								var elimMap = new GridMap(extraCells, ProcessPeersWithoutItself);
-								foreach (int cell in elimMap)
-								{
-									if (!(grid.Exists(cell, extraDigit) is true))
-									{
-										continue;
-									}
-
-									conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
-								}
-
-								if (conclusions.Count == 0)
+								var elimMap = new GridMap(extraCells, ProcessPeersWithoutItself) & CandMaps[extraDigit];
+								if (elimMap.IsEmpty)
 								{
 									continue;
 								}
 
-								// Record all highlight candidates.
+								foreach (int cell in elimMap)
+								{
+									conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
+								}
+
 								foreach (int cell in allCellsMap)
 								{
 									foreach (int digit in grid.GetCandidatesReversal(cell).GetAllSets())
@@ -327,12 +321,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 				int extraCell = extraCells[0];
 				foreach (int digit in normalDigits)
 				{
-					if (!(grid.Exists(extraCell, digit) is true))
+					if (grid.Exists(extraCell, digit) is true)
 					{
-						continue;
+						conclusions.Add(new Conclusion(Elimination, extraCell, digit));
 					}
-
-					conclusions.Add(new Conclusion(Elimination, extraCell, digit));
 				}
 
 				if (conclusions.Count == 0)
