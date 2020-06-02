@@ -13,6 +13,20 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 	public sealed class RegularWingTechniqueInfo : WingTechniqueInfo
 	{
 		/// <summary>
+		/// The names.
+		/// </summary>
+		private static readonly string[] Names =
+		{
+			string.Empty, string.Empty, string.Empty, string.Empty, "WXYZ-Wing", "VWXYZ-Wing",
+			"UVWXYZ-Wing", "TUVWXYZ-Wing", "STUVWXYZ-Wing", "RSTUVWXYZ-Wing"
+		};
+
+		/// <summary>
+		/// The difficulty rating.
+		/// </summary>
+		private static readonly decimal[] DifficultyRating = { 0, 0, 0, 0, 4.6M, 4.8M, 5.1M, 5.4M, 5.7M, 6M };
+
+		/// <summary>
 		/// Initializes an instance with the information.
 		/// </summary>
 		/// <param name="conclusions">The conclusions.</param>
@@ -60,19 +74,22 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		{
 			get
 			{
-				string[] names =
-				{
-					"", "", "", "", "WXYZ-Wing", "VWXYZ-Wing",
-					"UVWXYZ-Wing", "TUVWXYZ-Wing", "STUVWXYZ-Wing",
-					"RSTUVWXYZ-Wing"
-				};
 				bool isIncompleted = Size == PivotCellCandidatesCount + 1;
-				return Size switch
+				switch (Size)
 				{
-					3 => isIncompleted ? "XY-Wing" : "XYZ-Wing",
-					_ when Size >= 4 && Size < 9 => isIncompleted ? $"Incompleted {names[Size]}" : names[Size],
-					_ => throw new NotSupportedException($"The specified {nameof(Size)} is out of range.")
-				};
+					case 3:
+					{
+						return isIncompleted ? "XY-Wing" : "XYZ-Wing";
+					}
+					case int s when s >= 4 && s < 9:
+					{
+						return isIncompleted ? $"Incompleted {Names[Size]}" : Names[Size];
+					}
+					default:
+					{
+						throw Throwings.ImpossibleCase;
+					}
+				}
 			}
 		}
 
@@ -81,14 +98,22 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		{
 			get
 			{
-				var values = (ReadOnlySpan<decimal>)stackalloc[] { 0, 0, 0, 0, 4.6M, 4.8M, 5.1M, 5.4M, 5.7M, 6M };
 				bool isIncompleted = Size == PivotCellCandidatesCount + 1;
-				return Size switch
+				switch (Size)
 				{
-					3 => isIncompleted ? 4.2M : 4.4M,
-					_ when Size >= 4 && Size < 9 => isIncompleted ? values[Size] + .1M : values[Size],
-					_ => throw new NotSupportedException($"The specified {nameof(Size)} is out of range.")
-				};
+					case 3:
+					{
+						return isIncompleted ? 4.2M : 4.4M;
+					}
+					case int s when s >= 4 && s < 9:
+					{
+						return isIncompleted ? DifficultyRating[Size] + .1M : DifficultyRating[Size];
+					}
+					default:
+					{
+						throw Throwings.ImpossibleCase;
+					}
+				}
 			}
 		}
 
@@ -120,7 +145,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		public override string ToString()
 		{
 			string digitsStr = new DigitCollection(Digits).ToString();
-			string pivotCellStr = new CellCollection(stackalloc[] { Pivot }).ToString();
+			string pivotCellStr = new CellCollection(Pivot).ToString();
 			string cellOffsetsStr = new CellCollection(CellOffsets).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {digitsStr} in {pivotCellStr} with {cellOffsetsStr} => {elimStr}";

@@ -7752,6 +7752,16 @@
             Provides a usage of <b>regular wing</b> technique.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.Names">
+            <summary>
+            The names.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.DifficultyRating">
+            <summary>
+            The difficulty rating.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Initializes an instance with the information.
