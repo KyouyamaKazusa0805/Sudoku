@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using Sudoku.Data;
 using Sudoku.Solving.BruteForces.Bitwise;
+using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Solving.Generating
 {
@@ -69,7 +70,7 @@ namespace Sudoku.Solving.Generating
 		private static bool CheckDuplicate(StringBuilder gridArray, int cell)
 		{
 			char value = gridArray[cell];
-			foreach (int c in new GridMap(cell, false))
+			foreach (int c in PeerMaps[cell])
 			{
 				if (value != '0' && gridArray[c] == value)
 				{

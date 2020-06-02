@@ -184,7 +184,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			foreach (int cell in bivalueMap)
 			{
 				yield return new Als(
-					grid.GetCandidatesReversal(cell), new GridMap { cell }, new GridMap(cell, false) & emptyMap);
+					grid.GetCandidatesReversal(cell), new GridMap { cell }, PeerMaps[cell] & emptyMap);
 			}
 
 			// Get all non-bi-value-cell ALSes.

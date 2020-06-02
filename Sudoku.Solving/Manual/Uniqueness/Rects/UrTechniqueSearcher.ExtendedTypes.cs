@@ -4,6 +4,7 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Data.ConclusionType;
@@ -49,7 +50,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 				// 'xy' found.
 				// Now check eliminations.
-				var elimMap = inter & new GridMap(possibleXyCell, false);
+				var elimMap = inter & PeerMaps[possibleXyCell];
 				var conclusions = new List<Conclusion>();
 				foreach (int cell in elimMap)
 				{
@@ -395,7 +396,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				// Possible XY cell found.
 				// Now check eliminations.
 				var conclusions = new List<Conclusion>();
-				foreach (int cell in inter & new GridMap(possibleXyCell, false))
+				foreach (int cell in inter & PeerMaps[possibleXyCell])
 				{
 					if (grid.Exists(cell, x) is true)
 					{
@@ -1129,7 +1130,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					return;
 				}
 
-				var map = (new GridMap(otherCell1, false) | new GridMap(otherCell2, false)) & BivalueMap;
+				var map = (PeerMaps[otherCell1] | PeerMaps[otherCell2]) & BivalueMap;
 				if (map.Count < size)
 				{
 					return;

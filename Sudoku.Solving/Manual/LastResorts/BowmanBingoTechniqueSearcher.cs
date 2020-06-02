@@ -6,6 +6,7 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual.Singles;
+using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Data.NodeType;
 
@@ -181,7 +182,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		private static (IReadOnlyList<int> _candList, short _mask) RecordUndoInfo(Grid grid, int cell, int digit)
 		{
 			var list = new List<int>();
-			foreach (int c in new GridMap(cell, false) & CandMaps[digit])
+			foreach (int c in PeerMaps[cell] & CandMaps[digit])
 			{
 				list.Add(c * 9 + digit);
 			}
@@ -214,7 +215,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <param name="cell">The cell.</param>
 		/// <returns>The result.</returns>
 		private static bool IsValidGrid(IReadOnlyGrid grid, int cell) =>
-			new GridMap(cell, false).All(
+			Peers[cell].All(
 				c =>
 				{
 					var status = grid.GetStatus(c);

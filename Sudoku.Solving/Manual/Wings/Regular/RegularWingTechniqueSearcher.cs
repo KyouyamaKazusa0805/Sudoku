@@ -6,6 +6,7 @@ using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static System.Algorithms;
 using static System.Math;
+using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Wings.Regular
@@ -59,7 +60,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 						continue;
 					}
 
-					var map = new GridMap(pivot, false) & BivalueMap;
+					var map = PeerMaps[pivot] & BivalueMap;
 					if (map.Count < size - 1)
 					{
 						// Bivalue cells are not enough.
@@ -121,15 +122,15 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 						int zDigit = maskToCheck.FindFirstSet();
 
 						// Check elimination map.
-						var elimMap = new GridMap(cells[0], false);
+						var elimMap = PeerMaps[cells[0]];
 						for (int i = 1; i < cells.Length; i++)
 						{
 							int cell = cells[i];
-							elimMap &= new GridMap(cell, false);
+							elimMap &= PeerMaps[cell];
 						}
 						if (!isIncompleted)
 						{
-							elimMap &= new GridMap(pivot, false);
+							elimMap &= PeerMaps[pivot];
 						}
 						elimMap.Remove(pivot);
 						elimMap &= CandMaps[zDigit];

@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Security;
 using Sudoku.Constants;
 using Sudoku.Extensions;
+using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Data
 {
@@ -486,16 +487,12 @@ namespace Sudoku.Data
 				return;
 			}
 
-			foreach (int peerOffset in new GridMap(offset))
+			foreach (int cell in PeerMaps[offset])
 			{
-				if (peerOffset == offset || GetStatus(peerOffset) != CellStatus.Empty)
+				if (GetStatus(cell) == CellStatus.Empty)
 				{
-					// Same cell,
-					// or else the peer cell is empty or not.
-					continue;
+					_masks[cell] |= (short)(1 << setValue);
 				}
-
-				_masks[peerOffset] |= (short)(1 << setValue);
 			}
 		}
 
@@ -517,11 +514,10 @@ namespace Sudoku.Data
 					}
 					case CellStatus.Modifiable:
 					{
-						int curDigit, peerDigit;
-						curDigit = this[i];
-						foreach (int peerOffset in new GridMap(i))
+						int curDigit = this[i];
+						foreach (int cell in PeerMaps[i])
 						{
-							if (peerOffset != i && (peerDigit = this[peerOffset]) != -1 && curDigit == peerDigit)
+							if (curDigit == this[cell])
 							{
 								return false;
 							}

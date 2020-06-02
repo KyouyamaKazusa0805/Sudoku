@@ -147,6 +147,14 @@ namespace Sudoku.Constants
 			}
 			#endregion
 
+			#region PeerMaps
+			PeerMaps = new GridMap[81];
+			for (int i = 0; i < 81; i++)
+			{
+				PeerMaps[i] = new GridMap(Peers[i]);
+			}
+			#endregion
+
 			#region RegionCells
 			{
 				RegionCells = new int[][]

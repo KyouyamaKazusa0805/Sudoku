@@ -164,7 +164,7 @@ namespace Sudoku.Solving.Manual.Fishes
 									// Get intersection.
 									foreach (int finCell in finCellsMap)
 									{
-										elimMap &= new GridMap(finCell);
+										elimMap &= PeerMaps[finCell];
 									}
 
 								Label_CheckWhetherTheNumberOfIntersectionCellsIsNotZero:
@@ -340,7 +340,7 @@ namespace Sudoku.Solving.Manual.Fishes
 												// Get intersection.
 												foreach (int finCell in finCellsMap)
 												{
-													elimMap &= new GridMap(finCell);
+													elimMap &= PeerMaps[finCell];
 												}
 
 											Label_CheckWhetherTheNumberOfIntersectionCellsIsNotZero:
@@ -528,7 +528,7 @@ namespace Sudoku.Solving.Manual.Fishes
 														// Get intersection.
 														foreach (int finCell in finCellsMap)
 														{
-															elimMap &= new GridMap(finCell);
+															elimMap &= PeerMaps[finCell];
 														}
 
 													Label_CheckWhetherTheNumberOfIntersectionCellsIsNotZero:

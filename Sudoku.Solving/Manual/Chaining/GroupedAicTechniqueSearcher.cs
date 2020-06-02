@@ -238,7 +238,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					int currentCell = currentCandidate / 9, currentDigit = currentCandidate % 9;
 
 					// Search for same regions.
-					foreach (int nextCell in new GridMap(currentCell, false) & CandMaps[currentDigit])
+					foreach (int nextCell in PeerMaps[currentCell] & CandMaps[currentDigit])
 					{
 						int nextCandidate = nextCell * 9 + currentDigit;
 						if (candidatesUsed[nextCandidate])

@@ -68,7 +68,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 						continue;
 					}
 
-					var intersection = new GridMap(c1, false) & new GridMap(c2, false);
+					var intersection = PeerMaps[c1] & PeerMaps[c2];
 					if (!EmptyMap.Overlaps(intersection))
 					{
 						continue;
@@ -119,8 +119,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 					continue;
 				}
 
-				static bool c(int c1, int c2) =>
-					(new GridMap(c1, false) & new GridMap(c2, false)).AllSetsAreInOneRegion(out _);
+				static bool c(int c1, int c2) => (PeerMaps[c1] & PeerMaps[c2]).AllSetsAreInOneRegion(out _);
 				if (!(c(bridgeStart, c1) && c(bridgeEnd, c2)) && !(c(bridgeStart, c2) && c(bridgeEnd, c1)))
 				{
 					continue;

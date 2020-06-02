@@ -724,7 +724,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			int cand1 = trueCandidates[0], cand2 = trueCandidates[1];
 			int c1 = cand1 / 9, c2 = cand2 / 9, d1 = cand1 % 9, d2 = cand2 % 9;
 			short mask = (short)(1 << d1 | 1 << d2);
-			foreach (int cell in ((new GridMap(c1, false) ^ new GridMap(c2, false)) & BivalueMap))
+			foreach (int cell in (PeerMaps[c1] ^ PeerMaps[c2]) & BivalueMap)
 			{
 				if (grid.GetCandidatesReversal(cell) != mask)
 				{

@@ -62,24 +62,6 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Initializes an instance with the specified cell offset.
-		/// This will set all bits of all peers of this cell. Another
-		/// <see cref="bool"/> value indicates whether this initialization
-		/// will set the bit of itself.
-		/// </summary>
-		/// <param name="offset">The cell offset.</param>
-		/// <param name="setItself">
-		/// A <see cref="bool"/> value indicating whether this initialization
-		/// will set the bit of itself.
-		/// If the value is <see langword="false"/>, it will be equivalent
-		/// to below:
-		/// <code>
-		/// var map = new GridMap(offset) { [offset] = false };
-		/// </code>
-		/// </param>
-		public GridMap(int offset, bool setItself) : this((IEnumerable<int>)Peers[offset]) => this[offset] = setItself;
-
-		/// <summary>
 		/// Initializes an instance with the specified cell offset
 		/// with an initialize option.
 		/// </summary>
@@ -103,10 +85,7 @@ namespace Sudoku.Data
 				case ProcessPeersAlso:
 				case ProcessPeersWithoutItself:
 				{
-					foreach (int peer in Peers[offset])
-					{
-						Add(peer);
-					}
+					this = PeerMaps[offset];
 
 					if (initializeOption == ProcessPeersAlso)
 					{
@@ -339,6 +318,24 @@ namespace Sudoku.Data
 			: this((high & 0x7FFFFFFL) << 13 | (mid >> 14 & 0x1FFFL), (mid & 0x3FFFL) << 27 | (low & 0x7FFFFFFL))
 		{
 		}
+
+		/// <summary>
+		/// Initializes an instance with the specified cell offset.
+		/// This will set all bits of all peers of this cell. Another
+		/// <see cref="bool"/> value indicates whether this initialization
+		/// will set the bit of itself.
+		/// </summary>
+		/// <param name="offset">The cell offset.</param>
+		/// <param name="setItself">
+		/// A <see cref="bool"/> value indicating whether this initialization
+		/// will set the bit of itself.
+		/// If the value is <see langword="false"/>, it will be equivalent
+		/// to below:
+		/// <code>
+		/// var map = new GridMap(offset) { [offset] = false };
+		/// </code>
+		/// </param>
+		private GridMap(int offset, bool setItself) : this((IEnumerable<int>)Peers[offset]) => this[offset] = setItself;
 
 		/// <summary>
 		/// Initializes an instance with two binary values.

@@ -60,6 +60,12 @@ namespace Sudoku.Constants
 		public static readonly GridMap[] RegionMaps;
 
 		/// <summary>
+		/// Indicates the peer maps using <see cref="Peers"/> table.
+		/// </summary>
+		/// <seealso cref="Peers"/>
+		public static readonly GridMap[] PeerMaps;
+
+		/// <summary>
 		/// <para>
 		/// Indicates all maps that forms the each intersection. The pattern will be like:
 		/// <code>

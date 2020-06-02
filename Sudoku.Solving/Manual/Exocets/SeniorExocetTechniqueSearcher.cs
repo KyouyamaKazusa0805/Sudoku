@@ -417,8 +417,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				bool flag = false;
-				var check = digitMaps[digit] - (
-					new GridMap(a, false) | new GridMap(b, false) | new GridMap(c, false) | baseElimMap);
+				var check = digitMaps[digit] - (PeerMaps[a] | PeerMaps[b] | PeerMaps[c] | baseElimMap);
 				for (i = 9, p = 0; p < 27; i = (i + 1) % 27)
 				{
 					if (!RegionMaps[i].Overlaps(check))
@@ -548,7 +547,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						continue;
 					}
 
-					var temp = (new GridMap(currentTarget, false) & DigitMaps[digit]) - baseCellsMap.PeerIntersection;
+					var temp = (PeerMaps[currentTarget] & DigitMaps[digit]) - baseCellsMap.PeerIntersection;
 
 					bool flag = false;
 					var elimMap = GridMap.Empty;
@@ -557,7 +556,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						flag = true;
 						elimMap =
 						(
-							new GridMap(currentTarget, false) & CandMaps[digit] & RegionMaps[r] | baseCellsMap
+							PeerMaps[currentTarget] & CandMaps[digit] & RegionMaps[r] | baseCellsMap
 						).PeerIntersection & CandMaps[digit];
 					}
 					else if (!temp.Overlaps(RegionMaps[c]))
@@ -565,7 +564,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						flag = true;
 						elimMap =
 						(
-							new GridMap(currentTarget, false) & CandMaps[digit] & RegionMaps[c] | baseCellsMap
+							PeerMaps[currentTarget] & CandMaps[digit] & RegionMaps[c] | baseCellsMap
 						).PeerIntersection & CandMaps[digit];
 					}
 					else if (!temp.Overlaps(RegionMaps[b]))
@@ -573,7 +572,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						flag = true;
 						elimMap =
 						(
-							new GridMap(currentTarget, false) & CandMaps[digit] & RegionMaps[b] | baseCellsMap
+							PeerMaps[currentTarget] & CandMaps[digit] & RegionMaps[b] | baseCellsMap
 						).PeerIntersection & CandMaps[digit];
 					}
 					if (!flag)
