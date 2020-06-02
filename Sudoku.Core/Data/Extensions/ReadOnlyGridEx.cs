@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Extensions;
 using static Sudoku.Data.CellStatus;
-using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Data.Extensions
 {
