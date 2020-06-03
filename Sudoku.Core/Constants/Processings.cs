@@ -1,6 +1,7 @@
 ﻿#nullable disable warnings
 
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -14,6 +15,7 @@ namespace Sudoku.Constants
 	/// The tables for grid processing. All fields will be initialized in
 	/// the static constructor.
 	/// </summary>
+	[DebuggerStepThrough]
 	public static partial class Processings
 	{
 		/// <summary>
