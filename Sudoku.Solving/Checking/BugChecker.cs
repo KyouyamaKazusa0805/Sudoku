@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Extensions;
@@ -33,17 +32,17 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// Initializes an instance with the specified grid.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
-		public BugChecker(IReadOnlyGrid grid)
+		/// <param name="puzzle">The current puzzle grid.</param>
+		public BugChecker(IReadOnlyGrid puzzle)
 		{
-			if (grid.IsValid(out _))
+			if (puzzle.IsValid(out _))
 			{
-				(_emptyMap, _bivalueMap, _candMaps, _, _) = Grid = grid;
+				(_emptyMap, _bivalueMap, _candMaps, _, _) = Puzzle = puzzle;
 			}
 			else
 			{
 				throw new ArgumentException(
-					"The specified grid does not have a unique solution.", nameof(grid));
+					"The specified grid does not have a unique solution.", nameof(puzzle));
 			}
 		}
 
@@ -56,12 +55,18 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// The grid.
 		/// </summary>
-		public IReadOnlyGrid Grid { get; }
+		public IReadOnlyGrid Puzzle { get; }
 
 		/// <summary>
 		/// Indicates all true candidates (non-BUG candidates).
 		/// </summary>
 		public IReadOnlyList<int> TrueCandidates => GetAllTrueCandidates();
+
+		/// <summary>
+		/// The default list used for return.
+		/// </summary>
+		private static int[] DefaultList => Array.Empty<int>();
+
 
 		/// <summary>
 		/// Get all true candidates when the number of empty cells
@@ -71,43 +76,45 @@ namespace Sudoku.Solving.Checking
 		/// <returns>All true candidates.</returns>
 		public IReadOnlyList<int> GetAllTrueCandidates(int maximumEmptyCells)
 		{
-			var allRegionsMap = GetAllRegionMaps();
-			int[] array = _emptyMap.ToArray();
-
 			// Get the number of multivalue cells.
+			// If the number of that is greater than the specified number,
+			// here will return the default list directly.
 			int multivalueCellsCount = 0;
-			foreach (int value in array)
+			foreach (int value in _emptyMap)
 			{
-				int candidatesCount = Grid.GetCandidates(value).CountSet();
-				if (candidatesCount == 1 || candidatesCount > 2 && ++multivalueCellsCount > maximumEmptyCells)
+				int candidatesCount = Puzzle.GetCandidates(value).CountSet();
+				switch (candidatesCount)
 				{
-					return Array.Empty<int>();
+					case 1:
+					case int z when z > 2 && ++multivalueCellsCount > maximumEmptyCells:
+					{
+						return DefaultList;
+					}
 				}
 			}
 
-			// Store all bivalue cells.
+			// Store all bivalue cells and construct the relations.
 			var span = (Span<int>)stackalloc int[3];
 			var stack = new GridMap[multivalueCellsCount + 1, 9];
 			if (_bivalueMap.IsNotEmpty)
 			{
-				int[] bivalueCells = _bivalueMap.ToArray();
-				foreach (int bivalueCell in bivalueCells)
+				foreach (int cell in _bivalueMap)
 				{
-					int[] digits = Grid.GetCandidates(bivalueCell).GetAllSets().ToArray();
-					for (int j = 0; j < 2; j++)
+					foreach (int digit in Puzzle.GetCandidates(cell).GetAllSets())
 					{
-						int digit = digits[j];
 						ref var map = ref stack[0, digit];
-						map.Add(bivalueCell);
+						map.Add(cell);
 
-						span[0] = GetRegion(bivalueCell, Row);
-						span[1] = GetRegion(bivalueCell, Column);
-						span[2] = GetRegion(bivalueCell, Block);
-						for (int k = 0; k < 3; k++)
+						span[0] = GetRegion(cell, Row);
+						span[1] = GetRegion(cell, Column);
+						span[2] = GetRegion(cell, Block);
+						foreach (int region in span)
 						{
-							if ((map & allRegionsMap[span[k]]).Count > 2)
+							if ((map & RegionMaps[region]).Count > 2)
 							{
-								return Array.Empty<int>();
+								// The specified region contains at least three positions to fill with the digit,
+								// which is invalid in any BUG + n patterns.
+								return DefaultList;
 							}
 						}
 					}
@@ -115,46 +122,52 @@ namespace Sudoku.Solving.Checking
 			}
 
 			// Store all multivalue cells.
+			// Suppose the pattern is the simplest BUG + 1 pattern (i.e. Only one multi-value cell).
+			// The comments will help you to understand the processing.
 			short mask = default;
-			short[,] pairs = new short[multivalueCellsCount, 37];
-			int[] multivalueCellsMap = (_emptyMap - _bivalueMap).ToArray();
-			for (int i = 0; i < multivalueCellsMap.Length; i++)
+			short[,] pairs = new short[multivalueCellsCount, 37]; // 37 == (1 + 8) * 8 / 2 + 1
+			int[] multivalueCells = (_emptyMap - _bivalueMap).ToArray();
+			for (int i = 0, length = multivalueCells.Length; i < length; i++)
 			{
-				mask = Grid.GetCandidates(multivalueCellsMap[i]);
-				short[] list = GetAllCombinations(mask, 2);
-				pairs[i, 0] = (short)list.Length;
+				mask = Puzzle.GetCandidates(multivalueCells[i]); // eg. { 2, 4, 6 } (42)
+				short[] pairList = GetAllCombinations(mask, 2); // eg. { 2, 4 }, { 4, 6 }, { 2, 6 } (10, 40, 34)
 
-				for (int z = 1; z <= list.Length; z++)
+				// eg. pairs[i, ..] = { 3, { 2, 4 }, { 4, 6 }, { 2, 6 } } ({ 3, 10, 40, 34 })
+				pairs[i, 0] = (short)pairList.Length;
+				for (int z = 1, pairListLength = pairList.Length; z <= pairListLength; z++)
 				{
-					pairs[i, z] = list[z - 1];
+					pairs[i, z] = pairList[z - 1];
 				}
 			}
 
+			// Now check the pattern.
+			// If the pattern is a valid BUG + n, the processing here will give you one plan of all possible
+			// combinations; otherwise, none will be found.
 			var playground = (Span<int>)stackalloc int[3];
-			int pt = 1;
+			int currentIndex = 1;
 			int[] chosen = new int[multivalueCellsCount + 1];
 			var resultMap = new GridMap[9];
 			var result = new List<int>();
 			do
 			{
 				int i;
-				int ps = multivalueCellsMap[pt - 1];
+				int currentCell = multivalueCells[currentIndex - 1];
 				bool @continue = false;
-				for (i = chosen[pt] + 1; i <= pairs[pt - 1, 0]; i++)
+				for (i = chosen[currentIndex] + 1; i <= pairs[currentIndex - 1, 0]; i++)
 				{
 					@continue = true;
-					mask = pairs[pt - 1, i];
-					for (int j = 0; j < 2; j++)
+					mask = pairs[currentIndex - 1, i];
+					foreach (int digit in pairs[currentIndex - 1, i].GetAllSets())
 					{
-						var temp = stack[pt - 1, mask.SetAt(j)];
-						temp.Add(ps);
+						var temp = stack[currentIndex - 1, digit];
+						temp.Add(currentCell);
 
-						playground[0] = GetRegion(ps, Block);
-						playground[1] = GetRegion(ps, Row);
-						playground[2] = GetRegion(ps, Column);
-						for (int k = 0; k < 3; k++)
+						playground[0] = GetRegion(currentCell, Block);
+						playground[1] = GetRegion(currentCell, Row);
+						playground[2] = GetRegion(currentCell, Column);
+						foreach (int region in playground)
 						{
-							if ((temp & allRegionsMap[playground[k]]).Count > 2)
+							if ((temp & RegionMaps[region]).Count > 2)
 							{
 								@continue = false;
 								break;
@@ -171,36 +184,40 @@ namespace Sudoku.Solving.Checking
 				{
 					for (int z = 0; z < stack.GetLength(1); z++)
 					{
-						stack[pt, z] = stack[pt - 1, z];
+						stack[currentIndex, z] = stack[currentIndex - 1, z];
 					}
 
-					chosen[pt] = i;
+					chosen[currentIndex] = i;
 					int pos1 = mask.FindFirstSet();
-					stack[pt, pos1].Add(ps);
-					stack[pt, mask.GetNextSet(pos1)].Add(ps);
-					if (pt == multivalueCellsCount)
+					stack[currentIndex, pos1].Add(currentCell);
+					stack[currentIndex, mask.GetNextSet(pos1)].Add(currentCell);
+					if (currentIndex == multivalueCellsCount)
 					{
-						for (int k = 0; k < 9; k++)
+						// Iterate on each digit.
+						for (int digit = 0; digit < 9; digit++)
 						{
-							ref var map = ref resultMap[k];
-							map = _candMaps[k] - stack[pt, k];
+							// Take the cell that does not contain in the map above.
+							// Here, the cell is the "true candidate cell".
+							ref var map = ref resultMap[digit];
+							map = _candMaps[digit] - stack[currentIndex, digit];
 							foreach (int cell in map)
 							{
-								result.Add(cell * 9 + k);
+								result.Add(cell * 9 + digit);
 							}
 						}
 
 						return result;
 					}
-
-					pt++;
+					else
+					{
+						currentIndex++;
+					}
 				}
 				else
 				{
-					chosen[pt] = 0;
-					pt--;
+					chosen[currentIndex--] = 0;
 				}
-			} while (pt > 0);
+			} while (currentIndex > 0);
 
 			return result;
 		}
@@ -232,25 +249,6 @@ namespace Sudoku.Solving.Checking
 			}
 
 			return result.ToArray();
-		}
-
-		/// <summary>
-		/// Get all grid maps about all regions (all cells lie on
-		/// specified region will be set <see langword="true"/>).
-		/// </summary>
-		/// <returns>The grid maps.</returns>
-		private static GridMap[] GetAllRegionMaps()
-		{
-			var result = new GridMap[27];
-			for (int region = 0; region < 27; region++)
-			{
-				foreach (int offset in RegionCells[region])
-				{
-					result[region].Add(offset);
-				}
-			}
-
-			return result;
 		}
 	}
 }

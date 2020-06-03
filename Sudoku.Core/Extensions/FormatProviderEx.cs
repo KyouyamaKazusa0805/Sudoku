@@ -25,6 +25,15 @@ namespace Sudoku.Extensions
 		/// this value will not be <see langword="null"/>.
 		/// </param>
 		/// <returns>The <see cref="bool"/> value indicating that.</returns>
+		/// <example>
+		/// Using the method, you can simplify the check if the code is like:
+		/// <code>
+		/// if (formatProvider.HasFormatted(this, format, out string? result))<br/>
+		/// {<br/>
+		/// 	return result;<br/>
+		/// }
+		/// </code>
+		/// </example>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasFormatted(
 			this IFormatProvider? @this, object obj, string? format, [NotNullWhen(true)] out string? result)

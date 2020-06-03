@@ -619,14 +619,14 @@
             <summary>
             Initializes an instance with the specified grid.
             </summary>
-            <param name="grid">The grid.</param>
+            <param name="puzzle">The current puzzle grid.</param>
         </member>
         <member name="P:Sudoku.Solving.Checking.BugChecker.IsBugPattern">
             <summary>
             Indicates the current grid is a BUG+n pattern.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Checking.BugChecker.Grid">
+        <member name="P:Sudoku.Solving.Checking.BugChecker.Puzzle">
             <summary>
             The grid.
             </summary>
@@ -634,6 +634,11 @@
         <member name="P:Sudoku.Solving.Checking.BugChecker.TrueCandidates">
             <summary>
             Indicates all true candidates (non-BUG candidates).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Checking.BugChecker.DefaultList">
+            <summary>
+            The default list used for return.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Checking.BugChecker.GetAllTrueCandidates(System.Int32)">
@@ -659,13 +664,6 @@
             The number of <see langword="true"/> bits.
             </param>
             <returns>All combinations.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Checking.BugChecker.GetAllRegionMaps">
-            <summary>
-            Get all grid maps about all regions (all cells lie on
-            specified region will be set <see langword="true"/>).
-            </summary>
-            <returns>The grid maps.</returns>
         </member>
         <member name="T:Sudoku.Solving.Checking.PuzzleAttributeChecker">
             <summary>

@@ -89,6 +89,11 @@ namespace Sudoku.Data
 		/// and will be <c>1</c> if the corresponding contains this digit (either the cell
 		/// is filled with this digit or the cell is an empty cell, whose candidates contains the digit).
 		/// </returns>
+		/// <remarks>
+		/// Please note that the grid masks is represented with bits, where 0 is for the digit containing in a
+		/// cell, 1 is for the digit <b>not</b> containing. However, here the return mask is the reversal:
+		/// 1 is for containing and 0 is for <b>not</b>.
+		/// </remarks>
 		short GetCandidates(int cell);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>

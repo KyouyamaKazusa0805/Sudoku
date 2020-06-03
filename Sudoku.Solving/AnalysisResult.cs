@@ -245,8 +245,7 @@ namespace Sudoku.Solving
 		/// (<see langword="out"/> parameter) The all solving steps.
 		/// </param>
 		public void Deconstruct(
-			out bool hasSolved, out int solvingStepsCount,
-			out IReadOnlyList<TechniqueInfo>? solvingSteps) =>
+			out bool hasSolved, out int solvingStepsCount, out IReadOnlyList<TechniqueInfo>? solvingSteps) =>
 			(hasSolved, solvingStepsCount, solvingSteps) = (HasSolved, SolvingStepsCount, SolvingSteps);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
@@ -262,9 +261,7 @@ namespace Sudoku.Solving
 		/// <param name="diamond">
 		/// (<see langword="out"/> parameter) The diamond difficulty.
 		/// </param>
-		public void Deconstruct(
-			out decimal? total, out decimal max,
-			out decimal? pearl, out decimal? diamond) =>
+		public void Deconstruct(out decimal? total, out decimal max, out decimal? pearl, out decimal? diamond) =>
 			(total, max, pearl, diamond) = (TotalDifficulty, MaxDifficulty, PearlDifficulty, DiamondDifficulty);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>

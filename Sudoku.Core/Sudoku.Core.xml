@@ -3286,6 +3286,11 @@
             and will be <c>1</c> if the corresponding contains this digit (either the cell
             is filled with this digit or the cell is an empty cell, whose candidates contains the digit).
             </returns>
+            <remarks>
+            Please note that the grid masks is represented with bits, where 0 is for the digit containing in a
+            cell, 1 is for the digit <b>not</b> containing. However, here the return mask is the reversal:
+            1 is for containing and 0 is for <b>not</b>.
+            </remarks>
         </member>
         <member name="M:Sudoku.Data.IReadOnlyGrid.ToString(System.String)">
             <method name="ToString" paramType="string">
@@ -4469,6 +4474,15 @@
             this value will not be <see langword="null"/>.
             </param>
             <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <example>
+            Using the method, you can simplify the check if the code is like:
+            <code>
+            if (formatProvider.HasFormatted(this, format, out string? result))<br/>
+            {<br/>
+            	return result;<br/>
+            }
+            </code>
+            </example>
         </member>
         <member name="T:Sudoku.Extensions.GenericEx">
             <summary>
