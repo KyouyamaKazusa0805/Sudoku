@@ -5402,6 +5402,11 @@
             Encapsulates a <b>guardian</b> technique searcher.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Sdps.GuardianTechniqueSearcher.InvalidLabel">
+            <summary>
+            Indicates the invalid label (used in the start of the recursion).
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.GuardianTechniqueSearcher.Priority">
             <summary>
             Indicates the priority of this technique.
@@ -5414,19 +5419,6 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.GuardianTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Sdps.GuardianTechniqueSearcher.GetLoopRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap@,Sudoku.Data.GridMap,Sudoku.Constants.RegionLabel)">
-            <summary>
-            Get the loop map recursively.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="cell">The current cell.</param>
-            <param name="startCell">The cell of the start in the loop.</param>
-            <param name="digit">The digit.</param>
-            <param name="loop">(<see langword="ref"/> parameter) The current loop.</param>
-            <param name="candMap">The current digit map of candidates distribution.</param>
-            <param name="lastRegionType">The last region type (is in range 0..3).</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Sdps.SdpTechniqueInfo">
             <summary>
