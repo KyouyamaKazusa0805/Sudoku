@@ -37,6 +37,9 @@ namespace Sudoku.Solving.Manual
 					GridProgressResult defaultValue = default;
 					var progressResult = new GridProgressResult(candsCount, emptyCellsCount, candsCount);
 					ref var paramProgressResult = ref progress is null ? ref defaultValue : ref progressResult;
+
+					progress?.Report(progressResult);
+
 					var tempList = new List<TechniqueInfo>();
 					return AnalyzeDifficultyStrictly
 						? SolveWithStrictDifficultyRating(
