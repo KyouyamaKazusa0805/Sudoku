@@ -1041,6 +1041,12 @@ namespace Sudoku.Solving.Manual
 		EmptyRectangle,
 
 		/// <summary>
+		/// Indicates the guardian.
+		/// </summary>
+		[TechniqueDisplay("Guardian", Category = "Single Digit Patterns")]
+		Guardian,
+
+		/// <summary>
 		/// Indicates the X-Chain.
 		/// </summary>
 		[TechniqueDisplay("X-Chain", Category = "Chains>Alternating Inference Chains")]

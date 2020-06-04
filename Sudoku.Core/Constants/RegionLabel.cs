@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Indicates the region label.
 	/// </summary>
-	public enum RegionLabel : byte
+	public enum RegionLabel : sbyte
 	{
 		/// <summary>
 		/// Indicates the block.
@@ -18,6 +18,6 @@
 		/// <summary>
 		/// Indicates the column.
 		/// </summary>
-		Column
+		Column,
 	}
 }

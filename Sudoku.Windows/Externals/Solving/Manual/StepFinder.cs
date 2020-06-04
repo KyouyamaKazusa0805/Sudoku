@@ -78,6 +78,7 @@ namespace Sudoku.Solving.Manual
 				new SdcTechniqueSearcher(
 					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.AllowAlsCycles),
 				new BdpTechniqueSearcher(),
+				new GuardianTechniqueSearcher(),
 				new BugTechniqueSearcher(solver.UseExtendedBugSearcher),
 				new ErIntersectionPairTechniqueSearcher(),
 				new AlsXzTechniqueSearcher(

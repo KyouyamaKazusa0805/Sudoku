@@ -62,6 +62,7 @@ namespace Sudoku.Solving.Checking
 		/// </summary>
 		public IReadOnlyList<int> TrueCandidates => GetAllTrueCandidates();
 
+
 		/// <summary>
 		/// The default list used for return.
 		/// </summary>

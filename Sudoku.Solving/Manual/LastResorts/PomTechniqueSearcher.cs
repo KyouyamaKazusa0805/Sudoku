@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
@@ -22,7 +21,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <summary>
 		/// Indicates whether the technique is enabled.
 		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
+		public static bool IsEnabled { get; set; } = false;
 
 
 		/// <inheritdoc/>
@@ -39,8 +38,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 				accumulator.Add(
 					new PomTechniqueInfo(
-						conclusions:
-							new List<Conclusion>(from cell in template select new Conclusion(Elimination, cell, digit)),
+						conclusions: (from cell in template select new Conclusion(Elimination, cell, digit)).ToList(),
 						views: View.DefaultViews));
 			}
 		}

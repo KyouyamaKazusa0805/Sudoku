@@ -53,6 +53,7 @@ namespace Sudoku.Solving.Manual
 				new AlcTechniqueSearcher(CheckAlmostLockedQuadruple),
 				new SdcTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
 				new BdpTechniqueSearcher(),
+				new GuardianTechniqueSearcher(),
 				new BugTechniqueSearcher(UseExtendedBugSearcher),
 				new ErIntersectionPairTechniqueSearcher(),
 				new AlsXzTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
@@ -108,8 +109,10 @@ namespace Sudoku.Solving.Manual
 					new AlcTechniqueSearcher(CheckAlmostLockedQuadruple),
 					new SdcTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
 					new BdpTechniqueSearcher(),
+					new GuardianTechniqueSearcher(),
 					new BugTechniqueSearcher(UseExtendedBugSearcher),
 					new ErIntersectionPairTechniqueSearcher(),
+					new GuardianTechniqueSearcher(),
 					new AlsXzTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
 					new AlsXyWingTechniqueSearcher(
 						AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),

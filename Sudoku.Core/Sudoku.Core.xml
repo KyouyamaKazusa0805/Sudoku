@@ -191,7 +191,7 @@
             </summary>
             <param name="cell">The cell.</param>
             <param name="label">The label.</param>
-            <returns>The label.</returns>
+            <returns>The region index (<c>0..27</c>).</returns>
         </member>
         <member name="M:Sudoku.Constants.Processings.GetLabel(System.Int32)">
             <summary>
@@ -6006,6 +6006,11 @@
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.EmptyRectangle">
             <summary>
             Indicates the empty rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Guardian">
+            <summary>
+            Indicates the guardian.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.XChain">
