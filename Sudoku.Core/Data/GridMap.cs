@@ -235,7 +235,7 @@ namespace Sudoku.Data
 		/// </code>
 		/// </para>
 		/// </remarks>
-		public GridMap(GridMap another) => (_high, _low, Count) = (another._high, another._low, another.Count);
+		public GridMap(GridMap another) => this = another;
 
 		/// <summary>
 		/// Initializes an instance with a series of cell offsets.

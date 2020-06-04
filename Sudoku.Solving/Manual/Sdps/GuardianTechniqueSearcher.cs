@@ -62,12 +62,16 @@ namespace Sudoku.Solving.Manual.Sdps
 					tempGuardians.Clear();
 					var loop = GridMap.Empty;
 
-					f(cell, InvalidLabel);
+					f(cell, InvalidLabel, -1);
 
-					void f(int cell, RegionLabel lastLabel)
+					void f(int cell, RegionLabel lastLabel, int lastRegion)
 					{
 						tempList.Add(cell);
 						loop.Add(cell);
+						if (lastRegion != -1)
+						{
+							tempGuardians.Add((RegionMaps[lastRegion] & candMap) - loop);
+						}
 
 						bool flag = false;
 						foreach (int tempRegion in loop.Regions)
@@ -100,9 +104,9 @@ namespace Sudoku.Solving.Manual.Sdps
 
 								if (tempList[0] == nextCell && loop.Count >= 5 && (loop.Count & 1) == 1)
 								{
-									// Check eliminations.
 									tempGuardians.Add((RegionMaps[region] & candMap) - loop);
 
+									// Check eliminations.
 									var guardians = GridMap.Empty;
 									foreach (var guardian in tempGuardians)
 									{
@@ -160,9 +164,7 @@ namespace Sudoku.Solving.Manual.Sdps
 								}
 								else if (!loop[nextCell])
 								{
-									tempGuardians.Add((RegionMaps[region] & candMap) - loop);
-
-									f(nextCell, label);
+									f(nextCell, label, region);
 
 									loop.Remove(nextCell);
 									tempList.RemoveLastElement();
