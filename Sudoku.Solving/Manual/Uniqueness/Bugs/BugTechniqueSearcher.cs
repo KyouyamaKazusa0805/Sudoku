@@ -7,15 +7,11 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Checking;
+using static System.Algorithms;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Data.GridMap.InitializeOption;
-using BugMultiple = Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleTechniqueInfo;
-using BugType1 = Sudoku.Solving.Manual.Uniqueness.Bugs.BugType1TechniqueInfo;
-using BugType2 = Sudoku.Solving.Manual.Uniqueness.Bugs.BugType2TechniqueInfo;
-using BugType3 = Sudoku.Solving.Manual.Uniqueness.Bugs.BugType3TechniqueInfo;
-using BugType4 = Sudoku.Solving.Manual.Uniqueness.Bugs.BugType4TechniqueInfo;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {
@@ -78,7 +74,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				{
 					// BUG + 1 found.
 					accumulator.Add(
-						new BugType1(
+						new BugType1TechniqueInfo(
 							conclusions: new[] { new Conclusion(Assignment, trueCandidates[0]) },
 							views: new[]
 							{
@@ -94,7 +90,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				{
 					if (CheckSingleDigit(trueCandidates))
 					{
-						CheckType2(accumulator, grid, trueCandidates);
+						CheckType2(accumulator, trueCandidates);
 					}
 					else
 					{
@@ -104,11 +100,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 							CheckXz(accumulator, grid, trueCandidates);
 						}
 
+						CheckType3Naked(accumulator, grid, trueCandidates);
 						CheckType4(accumulator, grid, trueCandidates);
-						for (int size = 2; size <= 5; size++)
-						{
-							CheckType3Naked(accumulator, grid, trueCandidates, size);
-						}
 					}
 
 					break;
@@ -117,358 +110,153 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		}
 
 		/// <summary>
+		/// Check type 2.
+		/// </summary>
+		/// <param name="accumulator">The result list.</param>
+		/// <param name="trueCandidates">All true candidates.</param>
+		private void CheckType2(IBag<TechniqueInfo> accumulator, IReadOnlyList<int> trueCandidates)
+		{
+			var selection = from cand in trueCandidates select cand / 9;
+			var map = new GridMap(selection, ProcessPeersWithoutItself);
+			if (map.IsEmpty)
+			{
+				return;
+			}
+
+			int digit = trueCandidates[0] % 9;
+			var elimMap = map & CandMaps[digit];
+			if (elimMap.IsEmpty)
+			{
+				return;
+			}
+
+			var conclusions = new List<Conclusion>();
+			foreach (int cell in elimMap)
+			{
+				conclusions.Add(new Conclusion(Elimination, cell, digit));
+			}
+
+			var candidateOffsets = new List<(int, int)>();
+			foreach (int candidate in trueCandidates)
+			{
+				candidateOffsets.Add((0, candidate));
+			}
+
+			// BUG type 2.
+			accumulator.Add(
+				new BugType2TechniqueInfo(
+					conclusions,
+					views: new[]
+					{
+						new View(
+							cellOffsets: null,
+							candidateOffsets,
+							regionOffsets: null,
+							links: null)
+					},
+					digit,
+					cells: selection.ToArray()));
+		}
+
+		/// <summary>
 		/// Check type 3 (with naked subsets).
 		/// </summary>
 		/// <param name="accumulator">The result.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
-		/// <param name="size">The size.</param>
 		private void CheckType3Naked(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates, int size)
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			// Check whether all true candidates lie on a same region.
-			var candsGroupByCell = from cand in trueCandidates group cand by cand / 9;
-			var trueCandidateCells = from candGroupByCell in candsGroupByCell
-									 select candGroupByCell.Key;
-			int trueCandidateCellsCount = 0;
-			var map = new GridMap(trueCandidateCells, ProcessPeersAlso);
-			if (map.Count != 9)
+			var map = new GridMap(from c in trueCandidates group c by c / 9 into z select z.Key);
+			if (!map.AllSetsAreInOneRegion(out _))
 			{
 				return;
 			}
 
-			foreach (var candGroupByCell in candsGroupByCell)
+			// Get the digit mask.
+			short digitsMask = 0;
+			foreach (int candidate in trueCandidates)
 			{
-				// Get the region.
-				int region = default;
-				for (int i = 0; i < 27; i++)
-				{
-					if (RegionMaps[i] == map)
-					{
-						region = i;
-						break;
-					}
-				}
+				digitsMask |= (short)(1 << candidate % 9);
+			}
 
-				int[] cells = RegionCells[region];
-				if (cells.Count(c => grid.GetStatus(c) == Empty) - trueCandidateCellsCount <= size - 1)
+			// Iterate on each region that the true candidates lying on.
+			foreach (int region in map.CoveredRegions)
+			{
+				var regionMap = RegionMaps[region];
+				var otherCellsMap = (regionMap & EmptyMap) - map;
+				if (otherCellsMap.IsEmpty)
 				{
 					continue;
 				}
 
-				short maskInTrueCandidateCells = 0;
-				foreach (int cand in trueCandidates)
+				// Iterate on each size.
+				int[] otherCells = otherCellsMap.ToArray();
+				for (int size = 1, length = Math.Min(otherCells.Length, 5); size < length; size++)
 				{
-					maskInTrueCandidateCells |= (short)(1 << cand % 9);
-				}
-
-				for (int i1 = 0; i1 < 11 - size; i1++)
-				{
-					int c1 = RegionCells[region][i1];
-					short mask1 = grid.GetCandidates(c1);
-					if (size == 2)
+					foreach (int[] cells in GetCombinationsOfArray(otherCells, size))
 					{
-						// Check naked pair.
-						short mask = (short)(mask1 | maskInTrueCandidateCells);
-						if (mask.CountSet() != 2)
+						short mask = digitsMask;
+						foreach (int cell in cells)
+						{
+							mask |= grid.GetCandidates(cell);
+						}
+						if (mask.CountSet() != size + 1)
 						{
 							continue;
 						}
 
-						// Naked pair found.
-						var digits = mask.GetAllSets();
-
-						// Record all eliminations.
-						var conclusions = new List<Conclusion>();
-						foreach (int cell in cells)
+						var elimMap = (regionMap - new GridMap(cells) - map) & EmptyMap;
+						if (elimMap.IsEmpty)
 						{
-							if (trueCandidateCells.Contains(cell) || c1 == cell)
-							{
-								continue;
-							}
-
-							foreach (int digit in digits)
-							{
-								if (!(grid.Exists(cell, digit) is true))
-								{
-									continue;
-								}
-
-								conclusions.Add(new Conclusion(Elimination, cell, digit));
-							}
+							continue;
 						}
 
+						var conclusions = new List<Conclusion>();
+						foreach (int cell in elimMap)
+						{
+							foreach (int digit in grid.GetCandidates(cell).GetAllSets())
+							{
+								if ((mask >> digit & 1) != 0)
+								{
+									conclusions.Add(new Conclusion(Elimination, cell, digit));
+								}
+							}
+						}
 						if (conclusions.Count == 0)
 						{
 							continue;
 						}
 
-						// Record all highlight candidates.
 						var candidateOffsets = new List<(int, int)>();
-						foreach (int cand in candGroupByCell)
+						foreach (int cand in trueCandidates)
 						{
 							candidateOffsets.Add((0, cand));
 						}
-						var digitsInCell1 = grid.GetCandidates(c1).GetAllSets();
-						foreach (int digit in digitsInCell1)
+						foreach (int cell in cells)
 						{
-							candidateOffsets.Add((1, c1 * 9 + digit));
+							foreach (int digit in grid.GetCandidates(cell).GetAllSets())
+							{
+								candidateOffsets.Add((1, cell * 9 + digit));
+							}
 						}
 
-						// BUG type 3 (with naked pair).
 						accumulator.Add(
-							new BugType3(
+							new BugType3TechniqueInfo(
 								conclusions,
 								views: new[]
 								{
 									new View(
 										cellOffsets: null,
 										candidateOffsets,
-										regionOffsets: new[] { (0, region) },
+										regionOffsets: null,
 										links: null)
 								},
 								trueCandidates,
-								digits: digits.ToArray(),
-								cells: new[] { c1 },
+								digits: digitsMask.GetAllSets().ToArray(),
+								cells,
 								isNaked: true));
-					}
-					else // size > 2
-					{
-						for (int i2 = i1 + 1; i2 < 12 - size; i2++)
-						{
-							int c2 = RegionCells[region][i2];
-							short mask2 = grid.GetCandidates(c2);
-							if (size == 3)
-							{
-								// Check naked triple.
-								short mask = (short)((short)(mask1 | mask2) | maskInTrueCandidateCells);
-								if (mask.CountSet() != 3)
-								{
-									continue;
-								}
-
-								// Naked triple found.
-								var digits = mask.GetAllSets();
-
-								// Record all eliminations.
-								var conclusions = new List<Conclusion>();
-								foreach (int cell in cells)
-								{
-									if (trueCandidateCells.Contains(cell) || c1 == cell || c2 == cell)
-									{
-										continue;
-									}
-
-									foreach (int digit in digits)
-									{
-										if (grid.Exists(cell, digit) is true)
-										{
-											conclusions.Add(new Conclusion(Elimination, cell, digit));
-										}
-									}
-								}
-
-								if (conclusions.Count == 0)
-								{
-									continue;
-								}
-
-								// Record all highlight candidates.
-								var candidateOffsets = new List<(int, int)>();
-								foreach (int cand in candGroupByCell)
-								{
-									candidateOffsets.Add((0, cand));
-								}
-								foreach (int digit in grid.GetCandidates(c1).GetAllSets())
-								{
-									candidateOffsets.Add((1, c1 * 9 + digit));
-								}
-								foreach (int digit in grid.GetCandidates(c2).GetAllSets())
-								{
-									candidateOffsets.Add((1, c2 * 9 + digit));
-								}
-
-								// BUG type 3 (with naked triple).
-								accumulator.Add(
-									new BugType3(
-										conclusions,
-										views: new[]
-										{
-											new View(
-												cellOffsets: null,
-												candidateOffsets,
-												regionOffsets: new[] { (0, region) },
-												links: null)
-										},
-										trueCandidates,
-										digits: digits.ToArray(),
-										cells: new[] { c1, c2 },
-										isNaked: true));
-							}
-							else // size > 3
-							{
-								for (int i3 = i2 + 1; i3 < 13 - size; i3++)
-								{
-									int c3 = RegionCells[region][i3];
-									short mask3 = grid.GetCandidates(c3);
-									if (size == 4)
-									{
-										// Check naked quadruple.
-										short mask = (short)((short)((short)(mask1 | mask2) | mask3) | maskInTrueCandidateCells);
-										if (mask.CountSet() != 4)
-										{
-											continue;
-										}
-
-										// Naked quadruple found.
-										var digits = mask.GetAllSets();
-
-										// Record all eliminations.
-										var conclusions = new List<Conclusion>();
-										foreach (int cell in cells)
-										{
-											if (trueCandidateCells.Contains(cell)
-												|| c1 == cell || c2 == cell || c3 == cell)
-											{
-												continue;
-											}
-
-											foreach (int digit in digits)
-											{
-												if (grid.Exists(cell, digit) is true)
-												{
-													conclusions.Add(new Conclusion(Elimination, cell, digit));
-												}
-											}
-										}
-
-										if (conclusions.Count == 0)
-										{
-											continue;
-										}
-
-										// Record all highlight candidates.
-										var candidateOffsets = new List<(int, int)>();
-										foreach (int cand in candGroupByCell)
-										{
-											candidateOffsets.Add((0, cand));
-										}
-										foreach (int digit in grid.GetCandidates(c1).GetAllSets())
-										{
-											candidateOffsets.Add((1, c1 * 9 + digit));
-										}
-										foreach (int digit in grid.GetCandidates(c2).GetAllSets())
-										{
-											candidateOffsets.Add((1, c2 * 9 + digit));
-										}
-										foreach (int digit in grid.GetCandidates(c3).GetAllSets())
-										{
-											candidateOffsets.Add((1, c3 * 9 + digit));
-										}
-
-										// BUG type 3 (with naked quadruple).
-										accumulator.Add(
-											new BugType3(
-												conclusions,
-												views: new[]
-												{
-													new View(
-														cellOffsets: null,
-														candidateOffsets,
-														regionOffsets: new[] { (0, region) },
-														links: null)
-												},
-												trueCandidates,
-												digits: digits.ToArray(),
-												cells: new[] { c1, c2, c3 },
-												isNaked: true));
-									}
-									else // size == 5
-									{
-										for (int i4 = i3 + 1; i4 < 9; i4++)
-										{
-											int c4 = RegionCells[region][i4];
-											short mask4 = grid.GetCandidates(c4);
-
-											// Check naked quintuple.
-											short mask = (short)((short)((short)((short)
-												(mask1 | mask2) | mask3) | mask4) | maskInTrueCandidateCells);
-											if (mask.CountSet() != 5)
-											{
-												continue;
-											}
-
-											// Naked quintuple found.
-											var digits = mask.GetAllSets();
-
-											// Record all eliminations.
-											var conclusions = new List<Conclusion>();
-											foreach (int cell in cells)
-											{
-												if (trueCandidateCells.Contains(cell)
-													|| c1 == cell || c2 == cell || c3 == cell || c4 == cell)
-												{
-													continue;
-												}
-
-												foreach (int digit in digits)
-												{
-													if (grid.Exists(cell, digit) is true)
-													{
-														conclusions.Add(new Conclusion(Elimination, cell, digit));
-													}
-												}
-											}
-
-											if (conclusions.Count == 0)
-											{
-												continue;
-											}
-
-											// Record all highlight candidates.
-											var candidateOffsets = new List<(int, int)>();
-											foreach (int cand in candGroupByCell)
-											{
-												candidateOffsets.Add((0, cand));
-											}
-											foreach (int digit in grid.GetCandidates(c1).GetAllSets())
-											{
-												candidateOffsets.Add((1, c1 * 9 + digit));
-											}
-											foreach (int digit in grid.GetCandidates(c2).GetAllSets())
-											{
-												candidateOffsets.Add((1, c2 * 9 + digit));
-											}
-											foreach (int digit in grid.GetCandidates(c3).GetAllSets())
-											{
-												candidateOffsets.Add((1, c3 * 9 + digit));
-											}
-											foreach (int digit in grid.GetCandidates(c4).GetAllSets())
-											{
-												candidateOffsets.Add((1, c4 * 9 + digit));
-											}
-
-											// BUG type 3 (with naked quintuple).
-											accumulator.Add(
-												new BugType3(
-													conclusions,
-													views: new[]
-													{
-														new View(
-															cellOffsets: null,
-															candidateOffsets,
-															regionOffsets: new[] { (0, region) },
-															links: null)
-													},
-													trueCandidates,
-													digits: digits.ToArray(),
-													cells: new[] { c1, c2, c3, c4 },
-													isNaked: true));
-										}
-									}
-								}
-							}
-						}
 					}
 				}
 			}
@@ -480,7 +268,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="accumulator">The result.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
-		private void CheckType4(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
+		private void CheckType4(
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			// Conjugate pairs should lie on two cells.
 			var candsGroupByCell = from cand in trueCandidates group cand by cand / 9;
@@ -572,7 +361,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 					// BUG type 4.
 					accumulator.Add(
-						new BugType4(
+						new BugType4TechniqueInfo(
 							conclusions,
 							views: new[]
 							{
@@ -587,7 +376,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 									regionOffsets: new[] { (0, region) },
 									links: null)
 							},
-							digits.ToList(),
+							digits: digits.ToList(),
 							cells,
 							conjugatePair: new ConjugatePair(c1, c2, conjuagtePairDigit)));
 				}
@@ -600,26 +389,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="accumulator">The result list.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
-		private void CheckMultiple(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
+		private void CheckMultiple(
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			if (trueCandidates.Count > 18)
 			{
 				return;
 			}
 
-			var digits = new List<int>();
-			foreach (int cand in trueCandidates)
-			{
-				digits.AddIfDoesNotContain(cand % 9);
-			}
-
-			if (digits.Count > 2)
-			{
-				return;
-			}
-
 			var map = FullGridMap.CreateInstance(trueCandidates);
-			if (map.Count == 0)
+			if (map.IsEmpty)
 			{
 				return;
 			}
@@ -629,14 +408,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			var conclusions = new List<Conclusion>();
 			foreach (int candidate in map)
 			{
-				if (!(grid.Exists(candidate / 9, candidate % 9) is true))
+				if (grid.Exists(candidate / 9, candidate % 9) is true)
 				{
-					continue;
+					conclusions.Add(new Conclusion(Elimination, candidate));
 				}
-
-				conclusions.Add(new Conclusion(Elimination, candidate));
 			}
-
 			if (conclusions.Count == 0)
 			{
 				return;
@@ -644,68 +420,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 			// BUG + n.
 			accumulator.Add(
-				new BugMultiple(
+				new BugMultipleTechniqueInfo(
 					conclusions,
 					views: new[]
 					{
 						new View(
 							cellOffsets: null,
 							candidateOffsets:
-								new List<(int, int)>(
-									from cand in trueCandidates select (0, cand)),
+								new List<(int, int)>(from cand in trueCandidates select (0, cand)),
 							regionOffsets: null,
 							links: null)
 					},
 					candidates: trueCandidates));
-		}
-
-		/// <summary>
-		/// Check type 2.
-		/// </summary>
-		/// <param name="accumulator">The result list.</param>
-		/// <param name="grid">The grid.</param>
-		/// <param name="trueCandidates">All true candidates.</param>
-		private void CheckType2(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
-		{
-			var map = new GridMap(from cand in trueCandidates select cand / 9, ProcessPeersAlso);
-			if (map.IsEmpty)
-			{
-				return;
-			}
-
-			// BUG type 2 found.
-			// Check eliminations.
-			var conclusions = new List<Conclusion>();
-			int digit = trueCandidates[0] % 9;
-			foreach (int cell in map)
-			{
-				if (!(grid.Exists(cell, digit) is true))
-				{
-					continue;
-				}
-
-				conclusions.Add(new Conclusion(Elimination, cell, digit));
-			}
-
-			if (conclusions.Count == 0)
-			{
-				return;
-			}
-
-			// BUG type 2.
-			accumulator.Add(
-				new BugType2(
-					conclusions,
-					views: new[]
-					{
-						new View(
-							cellOffsets: null,
-							candidateOffsets: new List<(int, int)>(from cand in trueCandidates select (0, cand)),
-							regionOffsets: null,
-							links: null)
-					},
-					digit,
-					cells: new List<int>(from c in trueCandidates select c / 9)));
 		}
 
 		/// <summary>

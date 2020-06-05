@@ -5970,14 +5970,20 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckType2(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Check type 2.
+            </summary>
+            <param name="accumulator">The result list.</param>
+            <param name="trueCandidates">All true candidates.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Check type 3 (with naked subsets).
             </summary>
             <param name="accumulator">The result.</param>
             <param name="grid">The grid.</param>
             <param name="trueCandidates">All true candidates.</param>
-            <param name="size">The size.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckType4(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
@@ -5990,14 +5996,6 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckMultiple(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Check BUG + n.
-            </summary>
-            <param name="accumulator">The result list.</param>
-            <param name="grid">The grid.</param>
-            <param name="trueCandidates">All true candidates.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckType2(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})">
-            <summary>
-            Check type 2.
             </summary>
             <param name="accumulator">The result list.</param>
             <param name="grid">The grid.</param>

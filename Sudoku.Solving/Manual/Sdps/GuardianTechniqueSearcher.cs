@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Sdps
 		/// <summary>
 		/// Indicates whether the technique is enabled.
 		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
+		public static bool IsEnabled { get; set; } = false;
 
 
 		/// <inheritdoc/>
