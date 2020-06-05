@@ -37,14 +37,14 @@ namespace Sudoku.Solving.Manual.Alses
 			{
 				int c1 = bivalueCells[i];
 
-				short mask = grid.GetCandidates(c1);
+				short mask = grid.GetCandidateMask(c1);
 				int d1 = mask.FindFirstSet(), d2 = mask.GetNextSet(d1);
 				for (int j = i + 1; j < length; j++)
 				{
 					int c2 = bivalueCells[j];
 
 					// Check the candidates that cell holds is totally same with 'c1'.
-					if (grid.GetCandidates(c2) != mask)
+					if (grid.GetCandidateMask(c2) != mask)
 					{
 						continue;
 					}
@@ -85,7 +85,7 @@ namespace Sudoku.Solving.Manual.Alses
 						short m = 0;
 						foreach (int cell in erCellsMap)
 						{
-							m |= grid.GetCandidates(cell);
+							m |= grid.GetCandidateMask(cell);
 						}
 						if ((m & mask) != mask)
 						{
@@ -114,17 +114,17 @@ namespace Sudoku.Solving.Manual.Alses
 						}
 
 						var candidateOffsets = new List<(int, int)>();
-						foreach (int digit in grid.GetCandidates(c1).GetAllSets())
+						foreach (int digit in grid.GetCandidates(c1))
 						{
 							candidateOffsets.Add((0, c1 * 9 + digit));
 						}
-						foreach (int digit in grid.GetCandidates(c2).GetAllSets())
+						foreach (int digit in grid.GetCandidates(c2))
 						{
 							candidateOffsets.Add((0, c2 * 9 + digit));
 						}
 						foreach (int cell in erCellsMap)
 						{
-							foreach (int digit in grid.GetCandidates(cell).GetAllSets())
+							foreach (int digit in grid.GetCandidates(cell))
 							{
 								if (digit != d1 && digit != d2)
 								{

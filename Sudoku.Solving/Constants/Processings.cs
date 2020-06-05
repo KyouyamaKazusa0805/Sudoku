@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Constants
 			short mask = 0;
 			foreach (int cell in map)
 			{
-				mask |= grid.GetCandidates(cell);
+				mask |= grid.GetCandidateMask(cell);
 			}
 
 			return mask;

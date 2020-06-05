@@ -51,7 +51,7 @@ namespace Sudoku.Data.Extensions
 		{
 			mask = 0;
 			return @this.GetStatus(cellOffset) == Empty
-				&& (mask = @this.GetCandidates(cellOffset)).CountSet() == 2;
+				&& (mask = @this.GetCandidateMask(cellOffset)).CountSet() == 2;
 		}
 
 		/// <summary>

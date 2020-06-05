@@ -92,7 +92,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						short selectedInterMask = 0;
 						foreach (int cell in currentInterMap)
 						{
-							selectedInterMask |= grid.GetCandidates(cell);
+							selectedInterMask |= grid.GetCandidateMask(cell);
 						}
 						if (selectedInterMask.CountSet() <= currentInterMap.Count + 1)
 						{
@@ -117,7 +117,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 								// Get the links of the block.
 								foreach (int cell in selectedCellsInBlock)
 								{
-									blockMask |= grid.GetCandidates(cell);
+									blockMask |= grid.GetCandidateMask(cell);
 								}
 
 								// Get the elimination map in the block.
@@ -140,7 +140,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 										// Get the links of the line.
 										foreach (int cell in selectedCellsInLine)
 										{
-											lineMask |= grid.GetCandidates(cell);
+											lineMask |= grid.GetCandidateMask(cell);
 										}
 
 										// Get the elimination map in the line.
@@ -184,7 +184,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 											var conclusions = new List<Conclusion>();
 											foreach (int cell in elimMapBlock)
 											{
-												foreach (int digit in grid.GetCandidates(cell).GetAllSets())
+												foreach (int digit in grid.GetCandidates(cell))
 												{
 													if ((blockMask >> digit & 1) != 0)
 													{
@@ -194,7 +194,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 											}
 											foreach (int cell in elimMapLine)
 											{
-												foreach (int digit in grid.GetCandidates(cell).GetAllSets())
+												foreach (int digit in grid.GetCandidates(cell))
 												{
 													if ((lineMask >> digit & 1) != 0)
 													{
@@ -220,7 +220,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 											var candidateOffsets = new List<(int, int)>();
 											foreach (int cell in currentBlockMap)
 											{
-												foreach (int digit in grid.GetCandidates(cell).GetAllSets())
+												foreach (int digit in grid.GetCandidates(cell))
 												{
 													candidateOffsets.Add((
 														!cannibalMode && digit == digitIsolated ? 2 : 0,
@@ -229,7 +229,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 											}
 											foreach (int cell in currentLineMap)
 											{
-												foreach (int digit in grid.GetCandidates(cell).GetAllSets())
+												foreach (int digit in grid.GetCandidates(cell))
 												{
 													candidateOffsets.Add((
 														!cannibalMode && digit == digitIsolated ? 2 : 1,
@@ -238,7 +238,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 											}
 											foreach (int cell in currentInterMap)
 											{
-												foreach (int digit in grid.GetCandidates(cell).GetAllSets())
+												foreach (int digit in grid.GetCandidates(cell))
 												{
 													candidateOffsets.Add((true switch
 													{

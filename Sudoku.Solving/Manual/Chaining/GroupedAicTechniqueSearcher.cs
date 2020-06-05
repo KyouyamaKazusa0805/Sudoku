@@ -261,7 +261,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					// Search for the cells.
 					if (_searchY || _searchLcNodes)
 					{
-						foreach (int nextDigit in grid.GetCandidates(currentCell).GetAllSets())
+						foreach (int nextDigit in grid.GetCandidates(currentCell))
 						{
 							if (nextDigit == currentDigit)
 							{

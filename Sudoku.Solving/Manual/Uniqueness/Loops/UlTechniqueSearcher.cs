@@ -63,7 +63,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							var extraCells = new List<int>(2);
 							foreach (int loopCell in loop)
 							{
-								if (grid.GetCandidates(loopCell).CountSet() > 2)
+								if (grid.GetCandidateMask(loopCell).CountSet() > 2)
 								{
 									extraCells.Add(loopCell);
 								}
@@ -126,7 +126,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								short extraDigitMask = 0;
 								foreach (int extraCell in extraCells)
 								{
-									extraDigitMask |= grid.GetCandidates(extraCell);
+									extraDigitMask |= grid.GetCandidateMask(extraCell);
 								}
 								extraDigitMask &= (short)~((1 << d1) | (1 << d2));
 								int extraDigit = extraDigitMask.FindFirstSet();
@@ -186,7 +186,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								int c1 = extraCells[0];
 								int c2 = extraCells[1];
 								short extraDigitMask = (short)(
-									grid.GetCandidates(c1) | grid.GetCandidates(c2));
+									grid.GetCandidateMask(c1) | grid.GetCandidateMask(c2));
 								extraDigitMask &= (short)~((1 << d1) | (1 << d2));
 								int count = extraDigitMask.CountSet();
 								if (count == 1)
@@ -300,7 +300,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 						continue;
 					}
 
-					short m1 = grid.GetCandidates(c1);
+					short m1 = grid.GetCandidateMask(c1);
 					if (size == 2)
 					{
 						// Check naked pair.
@@ -376,7 +376,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								continue;
 							}
 
-							short m2 = grid.GetCandidates(c2);
+							short m2 = grid.GetCandidateMask(c2);
 							if (size == 3)
 							{
 								// Check naked triple.
@@ -456,7 +456,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 										continue;
 									}
 
-									short m3 = grid.GetCandidates(c3);
+									short m3 = grid.GetCandidateMask(c3);
 
 									// Check naked quadruple.
 									short mask = (short)((short)((short)(m1 | m2) | m3) | extraDigits);
@@ -1091,7 +1091,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					}
 					else if (!loop.Contains(nextCell) && !grid[nextCell, d1] && !grid[nextCell, d2])
 					{
-						short nextCellMask = grid.GetCandidates(nextCell);
+						short nextCellMask = grid.GetCandidateMask(nextCell);
 						exDigitsMask |= nextCellMask;
 						exDigitsMask &= (short)~((1 << d1) | (1 << d2));
 						int digitsCount = nextCellMask.CountSet();

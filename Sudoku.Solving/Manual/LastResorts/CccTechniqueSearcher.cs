@@ -214,7 +214,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			}
 			else
 			{
-				foreach (int digit in grid.GetCandidates(n / 3 * 9 + n % 3 + i * 3).GetAllSets())
+				foreach (int digit in grid.GetCandidateMask(n / 3 * 9 + n % 3 + i * 3).GetAllSets())
 				{
 					series[n] = digit + 1;
 					if (!IsValidTower(grid, series, i, n))
@@ -253,7 +253,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			}
 			else
 			{
-				foreach (int digit in grid.GetCandidates(i * 27 + n).GetAllSets())
+				foreach (int digit in grid.GetCandidateMask(i * 27 + n).GetAllSets())
 				{
 					series[n] = digit + 1;
 					if (!IsValidFloor(grid, series, n))

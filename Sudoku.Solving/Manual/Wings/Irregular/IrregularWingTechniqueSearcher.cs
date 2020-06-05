@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Wings.Irregular
@@ -60,10 +60,10 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 				}
 
 				// Iterate on each cells which are not peers in 'c1'.
-				int[] digits = grid.GetCandidates(c1).GetAllSets().ToArray();
+				int[] digits = grid.GetCandidates(c1).ToArray();
 				foreach (int c2 in BivalueMap - new GridMap(c1))
 				{
-					if (c2 < c1 || grid.GetCandidates(c1) != grid.GetCandidates(c2))
+					if (c2 < c1 || grid.GetCandidateMask(c1) != grid.GetCandidateMask(c2))
 					{
 						continue;
 					}
@@ -76,10 +76,9 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 
 					for (int region = 9; region < 27; region++)
 					{
-						if (region < 18 && (
-							GetRegion(c1, RegionLabel.Row) == region || GetRegion(c2, RegionLabel.Row) == region)
+						if (region < 18 && (GetRegion(c1, Row) == region || GetRegion(c2, Row) == region)
 							|| region >= 18 && (
-							GetRegion(c1, RegionLabel.Column) == region || GetRegion(c2, RegionLabel.Column) == region))
+							GetRegion(c1, Column) == region || GetRegion(c2, Column) == region))
 						{
 							continue;
 						}

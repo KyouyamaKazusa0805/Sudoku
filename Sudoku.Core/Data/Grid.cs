@@ -159,7 +159,7 @@ namespace Sudoku.Data
 				{
 					if (GetStatus(i) == CellStatus.Empty)
 					{
-						count += GetCandidates(i).CountSet();
+						count += GetCandidateMask(i).CountSet();
 					}
 				}
 
@@ -409,7 +409,7 @@ namespace Sudoku.Data
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public short GetCandidates(int offset) => (short)(~_masks[offset] & MaxCandidatesMask);
+		public short GetCandidateMask(int offset) => (short)(~_masks[offset] & MaxCandidatesMask);
 
 		/// <inheritdoc/>
 		public sealed override string ToString() => ToString(null, null);

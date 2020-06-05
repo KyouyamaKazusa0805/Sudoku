@@ -45,8 +45,8 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				var (baseMap, targetMap, _) = exocet;
 				var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2) = exocet;
-				if (grid.GetCandidates(b1).CountSet() < 2
-					|| grid.GetCandidates(b2).CountSet() < 2)
+				if (grid.GetCandidateMask(b1).CountSet() < 2
+					|| grid.GetCandidateMask(b2).CountSet() < 2)
 				{
 					continue;
 				}
@@ -54,7 +54,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				var baseCellsMap = new GridMap { b1, b2 };
 				bool isRow = baseCellsMap.CoveredLine < 18;
 				var tempCrosslineMap = new GridMap(s) { tq1, tq2, tr1, tr2 };
-				short baseCandidatesMask = (short)(grid.GetCandidates(b1) | grid.GetCandidates(b2));
+				short baseCandidatesMask = (short)(grid.GetCandidateMask(b1) | grid.GetCandidateMask(b2));
 
 				int i = 0;
 				int r = GetRegion(b1, RegionLabel.Row) - 9, c = GetRegion(b1, RegionLabel.Column) - 18;
@@ -114,8 +114,8 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 
 					short elimDigits = (short)((
-						grid.GetCandidates(combination[0])
-						| grid.GetCandidates(combination[1])) & ~baseCandidatesMask);
+						grid.GetCandidateMask(combination[0])
+						| grid.GetCandidateMask(combination[1])) & ~baseCandidatesMask);
 					if (!CheckCrossline(
 						/*baseCellsMap, */tempCrosslineMap, DigitMaps, baseCandidatesMask,
 						combination[0], combination[1], isRow, out int extraRegionsMask))
@@ -124,7 +124,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 
 					var targetElims = new TargetEliminations();
-					short cands = (short)(elimDigits & grid.GetCandidates(combination[0]));
+					short cands = (short)(elimDigits & grid.GetCandidateMask(combination[0]));
 					if (cands != 0)
 					{
 						foreach (int digit in cands.GetAllSets())
@@ -132,7 +132,7 @@ namespace Sudoku.Solving.Manual.Exocets
 							targetElims.Add(new Conclusion(Elimination, combination[0], digit));
 						}
 					}
-					cands = (short)(elimDigits & grid.GetCandidates(combination[1]));
+					cands = (short)(elimDigits & grid.GetCandidateMask(combination[1]));
 					if (cands != 0)
 					{
 						foreach (int digit in cands.GetAllSets())
@@ -144,9 +144,9 @@ namespace Sudoku.Solving.Manual.Exocets
 					short tbCands = 0;
 					for (int j = 0; j < 2; j++)
 					{
-						if (grid.GetCandidates(combination[j]).CountSet() == 1)
+						if (grid.GetCandidateMask(combination[j]).CountSet() == 1)
 						{
-							tbCands |= grid.GetCandidates(combination[j]);
+							tbCands |= grid.GetCandidateMask(combination[j]);
 						}
 					}
 
@@ -161,7 +161,7 @@ namespace Sudoku.Solving.Manual.Exocets
 								continue;
 							}
 
-							if ((cands = (short)(grid.GetCandidates(combination[j]) & tbCands)) == 0)
+							if ((cands = (short)(grid.GetCandidateMask(combination[j]) & tbCands)) == 0)
 							{
 								continue;
 							}
@@ -205,22 +205,22 @@ namespace Sudoku.Solving.Manual.Exocets
 					{
 						for (int k = 0; k < 2; k++)
 						{
-							if (combination[k] == tq1 && (baseCandidatesMask & grid.GetCandidates(tr2)) == 0)
+							if (combination[k] == tq1 && (baseCandidatesMask & grid.GetCandidateMask(tr2)) == 0)
 							{
 								target = combination[k];
 								mir = mq1;
 							}
-							if (combination[k] == tq2 && (baseCandidatesMask & grid.GetCandidates(tr1)) == 0)
+							if (combination[k] == tq2 && (baseCandidatesMask & grid.GetCandidateMask(tr1)) == 0)
 							{
 								target = combination[k];
 								mir = mq2;
 							}
-							if (combination[k] == tr1 && (baseCandidatesMask & grid.GetCandidates(tq2)) == 0)
+							if (combination[k] == tr1 && (baseCandidatesMask & grid.GetCandidateMask(tq2)) == 0)
 							{
 								target = combination[k];
 								mir = mr1;
 							}
-							if (combination[k] == tr2 && (baseCandidatesMask & grid.GetCandidates(tq1)) == 0)
+							if (combination[k] == tr2 && (baseCandidatesMask & grid.GetCandidateMask(tq1)) == 0)
 							{
 								target = combination[k];
 								mir = mr2;
@@ -248,7 +248,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 							for (int k = 0; k < 4; k++)
 							{
-								cands = (short)(incompatible & grid.GetCandidates(compatibleCellsPlayground[k]));
+								cands = (short)(incompatible & grid.GetCandidateMask(compatibleCellsPlayground[k]));
 								if (cands == 0)
 								{
 									continue;
@@ -276,8 +276,8 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 
 					int endoTargetCell = combination[s[combination[0]] ? 0 : 1];
-					short m1 = grid.GetCandidates(b1);
-					short m2 = grid.GetCandidates(b2);
+					short m1 = grid.GetCandidateMask(b1);
+					short m2 = grid.GetCandidateMask(b2);
 					short m = (short)(m1 | m2);
 					foreach (int digit in m1.GetAllSets())
 					{
@@ -542,7 +542,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				int b = GetRegion(currentTarget, RegionLabel.Block);
 				foreach (int digit in baseCandidatesMask.GetAllSets())
 				{
-					if ((grid.GetCandidates(currentTarget) >> digit & 1) == 0)
+					if ((grid.GetCandidateMask(currentTarget) >> digit & 1) == 0)
 					{
 						continue;
 					}

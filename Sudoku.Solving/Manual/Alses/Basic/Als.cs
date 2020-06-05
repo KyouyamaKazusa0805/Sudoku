@@ -119,7 +119,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			result = GridMap.Empty;
 			foreach (int cell in Map)
 			{
-				if ((grid.GetCandidates(cell) >> digit & 1) != 0)
+				if ((grid.GetCandidateMask(cell) >> digit & 1) != 0)
 				{
 					result.Add(cell);
 				}
@@ -184,7 +184,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			foreach (int cell in bivalueMap)
 			{
 				yield return new Als(
-					grid.GetCandidates(cell), new GridMap { cell }, PeerMaps[cell] & emptyMap);
+					grid.GetCandidateMask(cell), new GridMap { cell }, PeerMaps[cell] & emptyMap);
 			}
 
 			// Get all non-bi-value-cell ALSes.
@@ -217,7 +217,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						short digitsMask = 0;
 						foreach (int cell in cells)
 						{
-							digitsMask |= grid.GetCandidates(cell);
+							digitsMask |= grid.GetCandidateMask(cell);
 						}
 						if (digitsMask.CountSet() - 1 != size)
 						{

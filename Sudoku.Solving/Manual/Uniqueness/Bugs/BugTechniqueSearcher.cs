@@ -200,7 +200,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						short mask = digitsMask;
 						foreach (int cell in cells)
 						{
-							mask |= grid.GetCandidates(cell);
+							mask |= grid.GetCandidateMask(cell);
 						}
 						if (mask.CountSet() != size + 1)
 						{
@@ -216,7 +216,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						var conclusions = new List<Conclusion>();
 						foreach (int cell in elimMap)
 						{
-							foreach (int digit in grid.GetCandidates(cell).GetAllSets())
+							foreach (int digit in grid.GetCandidates(cell))
 							{
 								if ((mask >> digit & 1) != 0)
 								{
@@ -236,7 +236,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						}
 						foreach (int cell in cells)
 						{
-							foreach (int digit in grid.GetCandidates(cell).GetAllSets())
+							foreach (int digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add((1, cell * 9 + digit));
 							}
@@ -452,7 +452,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			short mask = (short)(1 << d1 | 1 << d2);
 			foreach (int cell in (PeerMaps[c1] ^ PeerMaps[c2]) & BivalueMap)
 			{
-				if (grid.GetCandidates(cell) != mask)
+				if (grid.GetCandidateMask(cell) != mask)
 				{
 					continue;
 				}
@@ -522,7 +522,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						foreach (int i in positions.GetAllSets())
 						{
 							int cell = RegionCells[region][i];
-							int cellCardinality = tempGrid.GetCandidates(cell).CountSet();
+							int cellCardinality = tempGrid.GetCandidateMask(cell).CountSet();
 							if (cellCardinality >= 3)
 							{
 								newBugCells.Add(cell);
@@ -581,7 +581,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			for (int cell = 0; cell < 81; cell++)
 			{
 				if (tempGrid.GetStatus(cell) == Empty
-					&& tempGrid.GetCandidates(cell).CountSet() != 2)
+					&& tempGrid.GetCandidateMask(cell).CountSet() != 2)
 				{
 					// Not a BUG.
 					return Array.Empty<int>();

@@ -79,7 +79,7 @@ namespace Sudoku.Solving.Manual.Singles
 						continue;
 					}
 
-					int digit = grid.GetCandidates(resultCell).FindFirstSet();
+					int digit = grid.GetCandidateMask(resultCell).FindFirstSet();
 					accumulator.Add(
 						new FullHouseTechniqueInfo(
 							conclusions: new[] { new Conclusion(Assignment, resultCell, digit) },
@@ -160,7 +160,7 @@ namespace Sudoku.Solving.Manual.Singles
 			// Search for naked singles.
 			foreach (int cell in EmptyMap)
 			{
-				short mask = grid.GetCandidates(cell);
+				short mask = grid.GetCandidateMask(cell);
 				if (mask.IsPowerOfTwo())
 				{
 					int digit = mask.FindFirstSet();

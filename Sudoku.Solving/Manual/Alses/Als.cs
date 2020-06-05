@@ -193,7 +193,7 @@ namespace Sudoku.Solving.Manual.Alses
 			result = GridMap.Empty;
 			foreach (int cell in Cells)
 			{
-				if ((grid.GetCandidates(cell) >> digit & 1) != 0)
+				if ((grid.GetCandidateMask(cell) >> digit & 1) != 0)
 				{
 					result.Add(cell);
 				}
@@ -283,7 +283,7 @@ namespace Sudoku.Solving.Manual.Alses
 						short digitsMask = 0;
 						foreach (int cell in GetCells(region, realMask))
 						{
-							digitsMask |= grid.GetCandidates(cell);
+							digitsMask |= grid.GetCandidateMask(cell);
 						}
 						if (digitsMask.CountSet() - 1 != size)
 						{

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sudoku.Data.Extensions;
+using Sudoku.Extensions;
 
 namespace Sudoku.Data
 {
@@ -94,7 +95,7 @@ namespace Sudoku.Data
 		/// cell, 1 is for the digit <b>not</b> containing. However, here the return mask is the reversal:
 		/// 1 is for containing and 0 is for <b>not</b>.
 		/// </remarks>
-		short GetCandidates(int cell);
+		short GetCandidateMask(int cell);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
 		string ToString(string format);
@@ -105,6 +106,13 @@ namespace Sudoku.Data
 		/// <param name="cell">The cell offset you want to get.</param>
 		/// <returns>The cell status.</returns>
 		CellStatus GetStatus(int cell);
+
+		/// <summary>
+		/// Get all candidates containing in the specified cell.
+		/// </summary>
+		/// <param name="cell">The cell you want to get.</param>
+		/// <returns>All candidates.</returns>
+		public IEnumerable<int> GetCandidates(int cell) => GetCandidateMask(cell).GetAllSets();
 
 		/// <summary>
 		/// Formats the value of the current instance using the specified format.

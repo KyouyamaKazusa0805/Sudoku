@@ -57,7 +57,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			{
 				for (int cell = 0; cell < 81; cell++)
 				{
-					if ((grid.GetCandidates(cell) >> digit & 1) == 0)
+					if ((grid.GetCandidateMask(cell) >> digit & 1) == 0)
 					{
 						invalidPos[digit].Add(cell);
 					}

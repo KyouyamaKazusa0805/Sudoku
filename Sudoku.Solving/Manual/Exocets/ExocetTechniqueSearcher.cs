@@ -196,11 +196,11 @@ namespace Sudoku.Solving.Manual.Exocets
 			var mirrorElims = new MirrorEliminations();
 			var playground = (Span<int>)stackalloc[] { mirror.SetAt(0), mirror.SetAt(1) };
 			short mirrorCandidatesMask = (short)(
-				grid.GetCandidates(playground[0]) | grid.GetCandidates(playground[1]));
+				grid.GetCandidateMask(playground[0]) | grid.GetCandidateMask(playground[1]));
 			short commonBase = (short)(
-				mirrorCandidatesMask & baseCandidateMask & grid.GetCandidates(target));
+				mirrorCandidatesMask & baseCandidateMask & grid.GetCandidateMask(target));
 			short targetElimination = (short)(
-				grid.GetCandidates(target) & ~(short)(commonBase | lockedNonTarget));
+				grid.GetCandidateMask(target) & ~(short)(commonBase | lockedNonTarget));
 			if (targetElimination != 0 && grid.GetStatus(target) != Empty ^ grid.GetStatus(target2) != Empty)
 			{
 				foreach (int digit in targetElimination.GetAllSets())
@@ -212,12 +212,12 @@ namespace Sudoku.Solving.Manual.Exocets
 			if (_checkAdvanced)
 			{
 				var regions = (Span<int>)stackalloc int[2];
-				short m1 = (short)(grid.GetCandidates(playground[0]) & baseCandidateMask);
-				short m2 = (short)(grid.GetCandidates(playground[1]) & baseCandidateMask);
+				short m1 = (short)(grid.GetCandidateMask(playground[0]) & baseCandidateMask);
+				short m2 = (short)(grid.GetCandidateMask(playground[1]) & baseCandidateMask);
 				if (m1 != 0 ^ m2 != 0)
 				{
 					int p = playground[m1 == 0 ? 1 : 0];
-					short candidateMask = (short)(grid.GetCandidates(p) & ~commonBase);
+					short candidateMask = (short)(grid.GetCandidateMask(p) & ~commonBase);
 					if (candidateMask != 0
 						&& grid.GetStatus(target) != Empty ^ grid.GetStatus(target2) != Empty)
 					{
@@ -253,7 +253,7 @@ namespace Sudoku.Solving.Manual.Exocets
 								continue;
 							}
 
-							if ((grid.GetCandidates(p) & mask) != 0)
+							if ((grid.GetCandidateMask(p) & mask) != 0)
 							{
 								count++;
 							}
@@ -264,10 +264,10 @@ namespace Sudoku.Solving.Manual.Exocets
 							for (int j = 0; j < 9; j++)
 							{
 								int p = RegionCells[regions[i]][j];
-								if ((grid.GetCandidates(p) & mask) == 0
+								if ((grid.GetCandidateMask(p) & mask) == 0
 									|| grid.GetStatus(p) != Empty || p == onlyOne
 									|| p == playground[0] || p == playground[1]
-									|| (grid.GetCandidates(p) & ~mask) == 0)
+									|| (grid.GetCandidateMask(p) & ~mask) == 0)
 								{
 									continue;
 								}
@@ -288,16 +288,16 @@ namespace Sudoku.Solving.Manual.Exocets
 							cellOffsets.Add((3, playground[1]));
 						}
 
-						short mask1 = grid.GetCandidates(playground[0]);
-						short mask2 = grid.GetCandidates(playground[1]);
+						short mask1 = grid.GetCandidateMask(playground[0]);
+						short mask2 = grid.GetCandidateMask(playground[1]);
 						if (locked.CountSet() == 1 && (mask1 & locked) != 0 ^ (mask2 & locked) != 0)
 						{
 							short candidateMask = (short)(
 								~(
-									grid.GetCandidates(
+									grid.GetCandidateMask(
 										playground[(mask1 & locked) != 0 ? 1 : 0]
-									) & grid.GetCandidates(target) & baseCandidateMask
-								) & grid.GetCandidates(target) & baseCandidateMask);
+									) & grid.GetCandidateMask(target) & baseCandidateMask
+								) & grid.GetCandidateMask(target) & baseCandidateMask);
 							if (candidateMask != 0)
 							{
 								foreach (int digit in candidateMask.GetAllSets())
@@ -312,7 +312,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						bool record(Span<int> playground, int i)
 						{
 							short candidateMask = (short)(
-								grid.GetCandidates(playground[i]) & ~(baseCandidateMask | locked));
+								grid.GetCandidateMask(playground[i]) & ~(baseCandidateMask | locked));
 							if (candidateMask != 0)
 							{
 								foreach (int digit in locked.GetAllSets())
@@ -354,7 +354,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				ref var map = ref digitDistributions[digit];
 				for (int cell = 0; cell < 81; cell++)
 				{
-					if ((grid.GetCandidates(cell) >> digit & 1) != 0)
+					if ((grid.GetCandidateMask(cell) >> digit & 1) != 0)
 					{
 						map.Add(cell);
 					}

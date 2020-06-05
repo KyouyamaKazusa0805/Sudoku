@@ -52,7 +52,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 				// Iterate on each pivot cell.
 				foreach (int pivot in EmptyMap)
 				{
-					short mask = grid.GetCandidates(pivot);
+					short mask = grid.GetCandidateMask(pivot);
 					int candsCount = mask.CountSet();
 					if (candsCount != size && candsCount != size - 1)
 					{
@@ -94,7 +94,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 						short union = mask, inter = (short)(Grid.MaxCandidatesMask & mask);
 						foreach (int cell in cells)
 						{
-							short m = grid.GetCandidates(cell);
+							short m = grid.GetCandidateMask(cell);
 							union |= m;
 							inter &= m;
 						}
@@ -111,7 +111,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 
 						// Get the Z digit (The removing value).
 						bool isIncompleted = inter == 0;
-						short interWithoutPivot = (short)(inter & ~grid.GetCandidates(pivot));
+						short interWithoutPivot = (short)(inter & ~grid.GetCandidateMask(pivot));
 						short maskToCheck = isIncompleted ? interWithoutPivot : inter;
 						if (maskToCheck == 0)
 						{
@@ -150,12 +150,12 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 						var candidateOffsets = new List<(int, int)>();
 						foreach (int cell in cells)
 						{
-							foreach (int digit in grid.GetCandidates(cell).GetAllSets())
+							foreach (int digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add((digit == zDigit ? 1 : 0, cell * 9 + digit));
 							}
 						}
-						foreach (int digit in grid.GetCandidates(pivot).GetAllSets())
+						foreach (int digit in grid.GetCandidates(pivot))
 						{
 							candidateOffsets.Add((digit == zDigit ? 1 : 0, pivot * 9 + digit));
 						}

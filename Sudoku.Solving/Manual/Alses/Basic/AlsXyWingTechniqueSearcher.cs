@@ -165,7 +165,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							var candidateOffsets = new List<(int, int)>();
 							foreach (int cell in aMap)
 							{
-								short mask = grid.GetCandidates(cell);
+								short mask = grid.GetCandidateMask(cell);
 								short alsDigitsMask = (short)(mask & ~(finalX | finalZ));
 								short xDigitsMask = (short)(mask & (finalX));
 								short zDigitsMask = (short)(mask & finalZ);
@@ -184,7 +184,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							}
 							foreach (int cell in bMap)
 							{
-								short mask = grid.GetCandidates(cell);
+								short mask = grid.GetCandidateMask(cell);
 								short alsDigitsMask = (short)(mask & ~(finalY | finalZ));
 								short yDigitsMask = (short)(mask & finalY);
 								short zDigitsMask = (short)(mask & finalZ);
@@ -203,7 +203,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							}
 							foreach (int cell in cMap)
 							{
-								short mask = grid.GetCandidates(cell);
+								short mask = grid.GetCandidateMask(cell);
 								short alsDigitsMask = (short)(mask & ~(finalX | finalY));
 								short xyDigitsMask = (short)(mask & (finalX | finalY));
 								foreach (int digit in alsDigitsMask.GetAllSets())

@@ -60,7 +60,7 @@ namespace Sudoku.Solving.Manual.Subsets
 					short mask = 0;
 					foreach (int cell in cells)
 					{
-						mask |= grid.GetCandidates(cell);
+						mask |= grid.GetCandidateMask(cell);
 					}
 					if (mask.CountSet() != size)
 					{
@@ -88,7 +88,7 @@ namespace Sudoku.Solving.Manual.Subsets
 					var candidateOffsets = new List<(int, int)>();
 					foreach (int cell in cells)
 					{
-						foreach (int digit in grid.GetCandidates(cell).GetAllSets())
+						foreach (int digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add((0, cell * 9 + digit));
 						}

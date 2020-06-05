@@ -73,7 +73,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					short mask = 0;
 					foreach (int urCell in urCells)
 					{
-						mask |= grid.GetCandidates(urCell);
+						mask |= grid.GetCandidateMask(urCell);
 					}
 
 					// Iterate on each possible digit combination.
@@ -88,7 +88,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							// All possible UR patterns should contain at least one cell
 							// that contains both 'd1' and 'd2'.
 							short comparer = (short)(1 << d1 | 1 << d2);
-							if (!arMode && urCells.All(c => (grid.GetCandidates(c) & comparer).CountSet() != 2))
+							if (!arMode && urCells.All(c => (grid.GetCandidateMask(c) & comparer).CountSet() != 2))
 							{
 								continue;
 							}

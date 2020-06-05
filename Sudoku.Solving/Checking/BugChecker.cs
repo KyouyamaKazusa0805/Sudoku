@@ -83,7 +83,7 @@ namespace Sudoku.Solving.Checking
 			int multivalueCellsCount = 0;
 			foreach (int value in _emptyMap)
 			{
-				int candidatesCount = Puzzle.GetCandidates(value).CountSet();
+				int candidatesCount = Puzzle.GetCandidateMask(value).CountSet();
 				switch (candidatesCount)
 				{
 					case 1:
@@ -101,7 +101,7 @@ namespace Sudoku.Solving.Checking
 			{
 				foreach (int cell in _bivalueMap)
 				{
-					foreach (int digit in Puzzle.GetCandidates(cell).GetAllSets())
+					foreach (int digit in Puzzle.GetCandidates(cell))
 					{
 						ref var map = ref stack[0, digit];
 						map.Add(cell);
@@ -130,7 +130,7 @@ namespace Sudoku.Solving.Checking
 			int[] multivalueCells = (_emptyMap - _bivalueMap).ToArray();
 			for (int i = 0, length = multivalueCells.Length; i < length; i++)
 			{
-				mask = Puzzle.GetCandidates(multivalueCells[i]); // eg. { 2, 4, 6 } (42)
+				mask = Puzzle.GetCandidateMask(multivalueCells[i]); // eg. { 2, 4, 6 } (42)
 				short[] pairList = GetAllCombinations(mask, 2); // eg. { 2, 4 }, { 4, 6 }, { 2, 6 } (10, 40, 34)
 
 				// eg. pairs[i, ..] = { 3, { 2, 4 }, { 4, 6 }, { 2, 6 } } ({ 3, 10, 40, 34 })
