@@ -16,6 +16,12 @@ namespace Sudoku.Solving.Manual
 		public override string SolverName => "Manual";
 
 
+		/// <summary>
+		/// Indicates the list that used as a cache.
+		/// </summary>
+		private static List<TechniqueInfo> TempList => new List<TechniqueInfo>();
+
+
 		/// <inheritdoc/>
 		public override AnalysisResult Solve(IReadOnlyGrid grid) => Solve(grid, null);
 
@@ -40,13 +46,12 @@ namespace Sudoku.Solving.Manual
 
 					progress?.Report(progressResult);
 
-					var tempList = new List<TechniqueInfo>();
 					return AnalyzeDifficultyStrictly
 						? SolveWithStrictDifficultyRating(
-							grid, grid.Clone(), tempList, solution, sukaku.Value,
+							grid, grid.Clone(), TempList, solution, sukaku.Value,
 							ref paramProgressResult, progress)
 						: SolveNaively(
-							grid, grid.Clone(), tempList, solution, sukaku.Value,
+							grid, grid.Clone(), TempList, solution, sukaku.Value,
 							ref paramProgressResult, progress);
 				}
 				catch (WrongHandlingException ex)

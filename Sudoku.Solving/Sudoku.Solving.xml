@@ -4795,6 +4795,11 @@
         <member name="P:Sudoku.Solving.Manual.ManualSolver.SolverName">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.TempList">
+            <summary>
+            Indicates the list that used as a cache.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
