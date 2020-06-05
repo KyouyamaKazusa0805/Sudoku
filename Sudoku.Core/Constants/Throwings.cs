@@ -18,7 +18,8 @@ namespace Sudoku.Constants
 		/// generate a warning (CS8509).
 		/// </para>
 		/// </summary>
-		public static SwitchExpressionException ImpossibleCase => new SwitchExpressionException("Impossible case.");
+		public static SwitchExpressionException ImpossibleCase =>
+			new SwitchExpressionException("Impossible case.");
 
 		/// <summary>
 		/// Indicates an exception throwing when the format string is invalid.

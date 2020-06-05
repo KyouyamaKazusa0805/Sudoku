@@ -19,12 +19,12 @@
 		/// <summary>
 		/// Indicates the number of unsolved cells.
 		/// </summary>
-		public int CurrentCellsCount { get; set; }
+		public int CurrentCellsCount { readonly get; set; }
 
 		/// <summary>
 		/// Indicates the number of unsolved candidates.
 		/// </summary>
-		public int CurrentCandidatesCount { get; set; }
+		public int CurrentCandidatesCount { readonly get; set; }
 
 		/// <summary>
 		/// Indicates the number of unsolved candidates in the initial grid.

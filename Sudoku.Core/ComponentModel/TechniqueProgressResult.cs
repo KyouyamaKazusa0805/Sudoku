@@ -20,12 +20,12 @@
 		/// <summary>
 		/// Indicates the current technique.
 		/// </summary>
-		public string CurrentTechnique { get; set; }
+		public string CurrentTechnique { readonly get; set; }
 
 		/// <summary>
 		/// The current index.
 		/// </summary>
-		public int CurrentIndex { get; set; }
+		public int CurrentIndex { readonly get; set; }
 
 		/// <summary>
 		/// The total number of searchers.
