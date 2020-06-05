@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
 
@@ -112,21 +113,25 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="cell">The cell you want to get.</param>
 		/// <returns>All candidates.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public IEnumerable<int> GetCandidates(int cell) => GetCandidateMask(cell).GetAllSets();
 
 		/// <summary>
 		/// Formats the value of the current instance using the specified format.
 		/// </summary>
 		/// <returns>The string.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public string ToString() => ToString(null, null);
 
 		/// <summary>
 		/// Creates a new instance that is a copy of the current instance.
 		/// </summary>
 		/// <returns>The cloneation.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Grid Clone() => this.ToMutable().Clone();
 
 		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		string IFormattable.ToString(string? format, IFormatProvider? formatProvider) =>
 			this.ToMutable().ToString(format, formatProvider);
 	}
