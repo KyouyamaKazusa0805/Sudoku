@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Data.GridMap.InitializeOption;
@@ -52,11 +52,11 @@ namespace Sudoku.Solving.Manual.Exocets
 		{
 			var mirror1 = (Span<int>)stackalloc int[2];
 			var mirror2 = (Span<int>)stackalloc int[2];
-			var modes = (Span<bool>)stackalloc[] { true, false };
 			foreach (var exocet in Exocets)
 			{
 				var (baseMap, targetMap, _) = exocet;
 				var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2) = exocet;
+
 				// The base cells cannot be given or modifiable.
 				if ((baseMap - EmptyMap).IsNotEmpty)
 				{
@@ -64,21 +64,19 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				// The number of different candidates in base cells cannot be greater than 5.
-				short m1 = grid.GetCandidateMask(b1);
-				short m2 = grid.GetCandidateMask(b2);
-				short baseCandidatesMask = (short)(m1 | m2);
+				short baseCandidatesMask = (short)(grid.GetCandidateMask(b1) | grid.GetCandidateMask(b2));
 				if (baseCandidatesMask.CountSet() > 5)
 				{
 					continue;
 				}
 
 				// At least one cell should be empty.
-				if (grid.GetStatus(tq1) != Empty && grid.GetStatus(tq2) != Empty
-					&& grid.GetStatus(tr1) != Empty && grid.GetStatus(tr2) != Empty)
+				if (!new GridMap { tq1, tq2, tr1, tr2 }.Overlaps(EmptyMap))
 				{
 					continue;
 				}
 
+				// Then check target eliminations.
 				if (!CheckTarget(grid, tq1, tq2, baseCandidatesMask, out short nonBaseQ, out _)
 					|| !CheckTarget(grid, tr1, tr2, baseCandidatesMask, out short nonBaseR, out _))
 				{
@@ -119,10 +117,10 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				// Check target eliminations.
-				// '|' first, '&&' second. (Do you know my mean?)
+				// '|' first, '&&' second. (Do you know my meaning?)
 				var targetElims = new TargetEliminations();
 				temp = (short)(nonBaseQ > 0 ? baseCandidatesMask | nonBaseQ : baseCandidatesMask);
-				if (recordTargetEliminations(tq1) | recordTargetEliminations(tq2)
+				if (t(tq1) | t(tq2)
 					&& nonBaseQ != 0 && grid.GetStatus(tq1) == Empty && grid.GetStatus(tq2) == Empty)
 				{
 					int conjugatPairDigit = nonBaseQ.FindFirstSet();
@@ -136,7 +134,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 				}
 				temp = (short)(nonBaseR > 0 ? baseCandidatesMask | nonBaseR : baseCandidatesMask);
-				if (recordTargetEliminations(tr1) | recordTargetEliminations(tr2)
+				if (t(tr1) | t(tr2)
 					&& nonBaseR != 0 && grid.GetStatus(tr1) == Empty && grid.GetStatus(tr2) == Empty)
 				{
 					int conjugatPairDigit = nonBaseR.FindFirstSet();
@@ -151,8 +149,8 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				bool isRow = new GridMap { b1, b2 }.CoveredLine < 18;
-				var (tar1, mir1) = recordMirrorEliminations(tq1, tq2, tr1, tr2, mq1, mq2, nonBaseQ, 0);
-				var (tar2, mir2) = recordMirrorEliminations(tr1, tr2, tq1, tq2, mr1, mr2, nonBaseR, 1);
+				var (tar1, mir1) = m(tq1, tq2, tr1, tr2, mq1, mq2, nonBaseQ, 0);
+				var (tar2, mir2) = m(tr1, tr2, tq1, tq2, mr1, mr2, nonBaseR, 1);
 				var targetEliminations = TargetEliminations.MergeAll(targetElims, tar1, tar2);
 				var mirrorEliminations = MirrorEliminations.MergeAll(mir1, mir2);
 				var bibiEliminations = new BibiPatternEliminations();
@@ -162,8 +160,8 @@ namespace Sudoku.Solving.Manual.Exocets
 				{
 					CheckBibiPattern(
 						grid, baseCandidatesMask, b1, b2, tq1, tq2, tr1, tr2, s,
-						isRow, out bibiEliminations, out targetPairEliminations,
-						out swordfishEliminations);
+						isRow, nonBaseQ, nonBaseR, out bibiEliminations,
+						out targetPairEliminations, out swordfishEliminations);
 				}
 
 				if (_checkAdvanced && targetEliminations.Count == 0 && mirrorEliminations.Count == 0
@@ -173,7 +171,10 @@ namespace Sudoku.Solving.Manual.Exocets
 					continue;
 				}
 
-				cellOffsets.AddRange(new[] { (1, tq1), (1, tq2), (1, tr1), (1, tr2) });
+				cellOffsets.Add((1, tq1));
+				cellOffsets.Add((1, tq2));
+				cellOffsets.Add((1, tr1));
+				cellOffsets.Add((1, tr2));
 				foreach (int cell in s)
 				{
 					cellOffsets.Add((2, cell));
@@ -200,7 +201,8 @@ namespace Sudoku.Solving.Manual.Exocets
 						targetPairEliminations,
 						swordfishEliminations));
 
-				bool recordTargetEliminations(int cell)
+				// This local function is for gathering target eliminations.
+				bool t(int cell)
 				{
 					short candidateMask = (short)(grid.GetCandidateMask(cell) & ~temp);
 					if (grid.GetStatus(cell) == Empty && candidateMask != 0
@@ -213,13 +215,15 @@ namespace Sudoku.Solving.Manual.Exocets
 
 						return true;
 					}
-
-					return false;
+					else
+					{
+						return false;
+					}
 				}
 
-				(TargetEliminations, MirrorEliminations) recordMirrorEliminations(
-					int tq1, int tq2, int tr1, int tr2, GridMap m1, GridMap m2,
-					short lockedNonTarget, int x)
+				// This local function is for gathering mirror eliminations.
+				(TargetEliminations, MirrorEliminations) m(
+					int tq1, int tq2, int tr1, int tr2, GridMap m1, GridMap m2, short lockedNonTarget, int x)
 				{
 					if ((grid.GetCandidateMask(tq1) & baseCandidatesMask) != 0)
 					{
@@ -267,7 +271,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 					else
 					{
-						return (new TargetEliminations(), new MirrorEliminations());
+						return default;
 					}
 				}
 			}
@@ -364,11 +368,11 @@ namespace Sudoku.Solving.Manual.Exocets
 			// Therefore, we should check on non-base digits, whether the non-base digits
 			// covers only one of two last cells; otherwise, false.
 			short candidatesMask = (short)((m1 | m2) & ~baseCandidatesMask);
-			int r1 = GetRegion(pos1, RegionLabel.Row);
+			int r1 = GetRegion(pos1, Row);
 			var span = (Span<int>)stackalloc[]
 			{
-				GetRegion(pos1, RegionLabel.Block),
-				r1 == GetRegion(pos2, RegionLabel.Row) ? r1 : GetRegion(pos1, RegionLabel.Column)
+				GetRegion(pos1, Block),
+				r1 == GetRegion(pos2, Row) ? r1 : GetRegion(pos1, Column)
 			};
 			foreach (short mask in GetCombinations(candidatesMask))
 			{
@@ -392,13 +396,8 @@ namespace Sudoku.Solving.Manual.Exocets
 						for (int j = 0; j < 9; j++)
 						{
 							int p = RegionCells[span[i]][j];
-							if (grid.GetStatus(p) != Empty || (grid.GetCandidateMask(p) & mask) == 0)
-							{
-								continue;
-							}
-
-							if ((grid.GetCandidateMask(p) & ~mask) == 0
-								|| p == pos1 || p == pos2)
+							if (grid.GetStatus(p) != Empty || (grid.GetCandidateMask(p) & mask) == 0
+								|| (grid.GetCandidateMask(p) & ~mask) == 0 || p == pos1 || p == pos2)
 							{
 								continue;
 							}
@@ -429,6 +428,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="isRow">
 		/// Indicates whether the specified exocet is in the horizontal direction.
 		/// </param>
+		/// <param name="lockedQ">The locked member Q.</param>
+		/// <param name="lockedR">The locked member R.</param>
 		/// <param name="bibiElims">
 		/// (<see langword="out"/> parameter) The Bi-bi pattern eliminations.
 		/// </param>
@@ -442,21 +443,22 @@ namespace Sudoku.Solving.Manual.Exocets
 		private bool CheckBibiPattern(
 			IReadOnlyGrid grid, short baseCandidatesMask, int b1, int b2,
 			int tq1, int tq2, int tr1, int tr2, GridMap crossline, bool isRow,
+			short lockedQ, short lockedR,
 			out BibiPatternEliminations bibiElims, out TargetPairEliminations targetPairElims,
 			out SwordfishEliminations swordfishElims)
 		{
-			bibiElims = new BibiPatternEliminations();
-			targetPairElims = new TargetPairEliminations();
-			swordfishElims = new SwordfishEliminations();
+			bibiElims = default;
+			targetPairElims = default;
+			swordfishElims = default;
 			var playground = (Span<short>)stackalloc short[3];
-			int block = GetRegion(b1, RegionLabel.Block);
+			int block = GetRegion(b1, Block);
 			short[] temp = new short[4];
 			for (int i = 0; i < 9; i++)
 			{
 				for (int j = 0; j < 4; j++)
 				{
 					int p = RegionCells[BibiIter[block, j]][i];
-					if (grid.GetCandidateMask(p).CountSet() != 1)
+					if (!grid.GetCandidateMask(p).IsPowerOfTwo())
 					{
 						continue;
 					}
@@ -466,12 +468,13 @@ namespace Sudoku.Solving.Manual.Exocets
 			}
 
 			short commonCandidatesMask = (short)((temp[0] | temp[3]) & (temp[1] | temp[2]) & baseCandidatesMask);
-			playground[1] = (short)(temp[0] & temp[3] & baseCandidatesMask & ~commonCandidatesMask & baseCandidatesMask);
-			playground[2] = (short)(temp[1] & temp[2] & baseCandidatesMask & ~commonCandidatesMask & baseCandidatesMask);
-
+			playground[1] = (short)(
+				temp[0] & temp[3] & baseCandidatesMask & ~commonCandidatesMask & baseCandidatesMask);
+			playground[2] = (short)(
+				temp[1] & temp[2] & baseCandidatesMask & ~commonCandidatesMask & baseCandidatesMask);
 			if (playground[1] == 0 || playground[2] == 0)
 			{
-				// Contains no Bi-bi pattern.
+				// Does not contain Bi-bi pattern.
 				return false;
 			}
 
@@ -486,7 +489,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				{
 					var (pos1, pos2) = j == 1 ? (b1, b2) : (b2, b1);
 					short ck = (short)(grid.GetCandidateMask(pos1) & playground[i]);
-					if (ck.CountSet() > 1
+					if (ck != 0 && !ck.IsPowerOfTwo()
 						|| (grid.GetCandidateMask(pos1) & ~(ck | playground[i == 1 ? 2 : 1])) != 0)
 					{
 						continue;
@@ -509,7 +512,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 			// Now check all base digits last.
 			short last = (short)(dic[b1] | dic[b2]);
-			foreach (int digit in (Grid.MaxCandidatesMask & ~last).GetAllSets())
+			foreach (int digit in (Grid.MaxCandidatesMask & ~last & ~lockedQ).GetAllSets())
 			{
 				if (grid.Exists(tq1, digit) is true)
 				{
@@ -519,6 +522,9 @@ namespace Sudoku.Solving.Manual.Exocets
 				{
 					bibiElims.Add(new Conclusion(Elimination, tq2, digit));
 				}
+			}
+			foreach (int digit in (Grid.MaxCandidatesMask & ~last & ~lockedR).GetAllSets())
+			{
 				if (grid.Exists(tr1, digit) is true)
 				{
 					bibiElims.Add(new Conclusion(Elimination, tr1, digit));

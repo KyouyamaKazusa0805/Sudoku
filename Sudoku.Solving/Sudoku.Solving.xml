@@ -3003,16 +3003,15 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher">
             <summary>
-            <para>Encapsulates an <b>exocet</b> technique searcher.</para>
             <para>
-            The pattern will be like:
+            Encapsulates an <b>exocet</b> technique searcher. The pattern will be like:
             <code>
             .-------.-------.-------.<br/>
-            | B B * | * . . | * . . | B = Base Cells<br/>
-            | . . * | Q . . | R . . | Q = 1st Object Pair<br/>
-            | . . * | Q . . | R . . | R = 2nd Object Pair<br/>
-            :-------+-------+-------: S = Cross-line Cells<br/>
-            | . . S | S . . | S . . | * = Escape Cells<br/>
+            | B B E | E . . | E . . |<br/>
+            | . . E | Q . . | R . . |<br/>
+            | . . E | Q . . | R . . |<br/>
+            :-------+-------+-------:<br/>
+            | . . S | S . . | S . . |<br/>
             | . . S | S . . | S . . |<br/>
             | . . S | S . . | S . . |<br/>
             :-------+-------+-------:<br/>
@@ -3021,6 +3020,16 @@
             | . . S | S . . | S . . |<br/>
             '-------'-------'-------'
             </code>
+            Where:
+            <list type="table">
+            <item><term>B</term><description>Base Cells.</description></item>
+            <item><term>Q</term><description>1st Object Pair.</description></item>
+            <item><term>R</term><description>2nd Object Pair.</description></item>
+            <item><term>S</term><description>Cross-line Cells.</description></item>
+            <item><term>E</term><description>Escape Cells.</description></item>
+            </list>
+            </para>
+            <para>
             In the data structure, all letters will be used as the same one in this exemplar.
             In addition, if senior exocet, one of two target cells will lie on cross-line cells,
             and the lines of two target cells lying on cannot contain any base digits.
@@ -3100,13 +3109,6 @@
             <param name="cellOffsets">The cell offsets.</param>
             <param name="candidateOffsets">The candidate offsets.</param>
             <returns>All mirror eliminations.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetDigitDistributions(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Get all distributions for digits.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>The digit distributions.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.GetCombinations(System.Int16)">
             <summary>
@@ -3194,7 +3196,7 @@
             </param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.CheckBibiPattern(Sudoku.Data.IReadOnlyGrid,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,System.Boolean,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations@,Sudoku.Solving.Manual.Exocets.TargetPairEliminations@,Sudoku.Solving.Manual.Exocets.SwordfishEliminations@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.CheckBibiPattern(Sudoku.Data.IReadOnlyGrid,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,System.Boolean,System.Int16,System.Int16,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations@,Sudoku.Solving.Manual.Exocets.TargetPairEliminations@,Sudoku.Solving.Manual.Exocets.SwordfishEliminations@)">
             <summary>
             Check Bi-bi pattern eliminations.
             </summary>
@@ -3210,6 +3212,8 @@
             <param name="isRow">
             Indicates whether the specified exocet is in the horizontal direction.
             </param>
+            <param name="lockedQ">The locked member Q.</param>
+            <param name="lockedR">The locked member R.</param>
             <param name="bibiElims">
             (<see langword="out"/> parameter) The Bi-bi pattern eliminations.
             </param>

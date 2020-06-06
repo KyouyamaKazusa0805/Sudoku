@@ -1,26 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
 	/// <summary>
-	/// <para>Encapsulates an <b>exocet</b> technique searcher.</para>
 	/// <para>
-	/// The pattern will be like:
+	/// Encapsulates an <b>exocet</b> technique searcher. The pattern will be like:
 	/// <code>
 	/// .-------.-------.-------.<br/>
-	/// | B B * | * . . | * . . | B = Base Cells<br/>
-	/// | . . * | Q . . | R . . | Q = 1st Object Pair<br/>
-	/// | . . * | Q . . | R . . | R = 2nd Object Pair<br/>
-	/// :-------+-------+-------: S = Cross-line Cells<br/>
-	/// | . . S | S . . | S . . | * = Escape Cells<br/>
+	/// | B B E | E . . | E . . |<br/>
+	/// | . . E | Q . . | R . . |<br/>
+	/// | . . E | Q . . | R . . |<br/>
+	/// :-------+-------+-------:<br/>
+	/// | . . S | S . . | S . . |<br/>
 	/// | . . S | S . . | S . . |<br/>
 	/// | . . S | S . . | S . . |<br/>
 	/// :-------+-------+-------:<br/>
@@ -29,6 +28,16 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// | . . S | S . . | S . . |<br/>
 	/// '-------'-------'-------'
 	/// </code>
+	/// Where:
+	/// <list type="table">
+	/// <item><term>B</term><description>Base Cells.</description></item>
+	/// <item><term>Q</term><description>1st Object Pair.</description></item>
+	/// <item><term>R</term><description>2nd Object Pair.</description></item>
+	/// <item><term>S</term><description>Cross-line Cells.</description></item>
+	/// <item><term>E</term><description>Escape Cells.</description></item>
+	/// </list>
+	/// </para>
+	/// <para>
 	/// In the data structure, all letters will be used as the same one in this exemplar.
 	/// In addition, if senior exocet, one of two target cells will lie on cross-line cells,
 	/// and the lines of two target cells lying on cannot contain any base digits.
@@ -233,12 +242,10 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				short nonBase = (short)(mirrorCandidatesMask & ~baseCandidateMask);
-				int r1 = GetRegion(playground[0], RegionLabel.Row);
+				int r1 = GetRegion(playground[0], Row);
 				(regions[0], regions[1]) = (
-					GetRegion(playground[0], RegionLabel.Block),
-					r1 == GetRegion(playground[1], RegionLabel.Row)
-						? r1
-						: GetRegion(playground[0], RegionLabel.Column));
+					GetRegion(playground[0], Block),
+					r1 == GetRegion(playground[1], Row) ? r1 : GetRegion(playground[0], Column));
 				short locked = default;
 				foreach (short mask in GetCombinations(nonBase))
 				{
@@ -340,29 +347,6 @@ namespace Sudoku.Solving.Manual.Exocets
 			return (targetElims, mirrorElims);
 		}
 
-
-		/// <summary>
-		/// Get all distributions for digits.
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <returns>The digit distributions.</returns>
-		protected static GridMap[] GetDigitDistributions(IReadOnlyGrid grid)
-		{
-			var digitDistributions = new GridMap[9];
-			for (int digit = 0; digit < 9; digit++)
-			{
-				ref var map = ref digitDistributions[digit];
-				for (int cell = 0; cell < 81; cell++)
-				{
-					if ((grid.GetCandidateMask(cell) >> digit & 1) != 0)
-					{
-						map.Add(cell);
-					}
-				}
-			}
-
-			return digitDistributions;
-		}
 
 		/// <summary>
 		/// Get all combinations that contains all set bits from the specified number.
