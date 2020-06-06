@@ -1,89 +1,84 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using UlType3 = Sudoku.Solving.Manual.Uniqueness.Loops.UlType3DetailData;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops
 {
 	/// <summary>
 	/// Provides a usage of <b>unique loop</b> (UL) technique.
 	/// </summary>
-	public sealed class UlTechniqueInfo : UniquenessTechniqueInfo
+	public abstract class UlTechniqueInfo : UniquenessTechniqueInfo
 	{
 		/// <summary>
 		/// The difficulty extra.
 		/// </summary>
-		private static readonly decimal[] DifficultyExtra = { 0, 0, 0, 0, .1M, 0, .2M, 0, .3M, 0, .4M, 0, .5M, 0, .6M };
+		private static readonly decimal[] DifficultyExtra = { 0, 0, .1M, .2M, .3M, .4M, .5M, .6M };
 
 
 		/// <summary>
-		/// Initializes an instance with the information.
+		/// Initializes an instance with the specified information.
 		/// </summary>
-		/// <param name="conclusions">The conclusions.</param>
-		/// <param name="views">The views.</param>
-		/// <param name="detailData">The data of details.</param>
+		/// <param name="conclusions">All conclusions.</param>
+		/// <param name="views">All views.</param>
+		/// <param name="d1">The digit 1.</param>
+		/// <param name="d2">The digit 2.</param>
+		/// <param name="loop">The loop.</param>
 		public UlTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, UlDetailData detailData)
-			: base(conclusions, views) => DetailData = detailData;
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int d1, int d2, GridMap loop)
+			: base(conclusions, views) => (Digit1, Digit2, Loop) = (d1, d2, loop);
 
-
-		/// <inheritdoc/>
-		public override string Name =>
-			$"Unique {(DetailData.Cells.Count == 4 ? "Rectangle" : "Loop")} Type {DetailData.Type}";
-
-		/// <inheritdoc/>
-		public override decimal Difficulty
-		{
-			get
-			{
-				UlType3 data() => (UlType3)DetailData;
-				return DetailData.Type switch
-				{
-					1 => 4.5M,
-					2 => 4.6M,
-					3 => (data().IsNaked ? 4.5M : 4.6M) + data().SubsetCells.Count * .1M,
-					4 => 4.6M,
-					_ => throw new NotSupportedException($"The specified {nameof(DetailData.Type)} is out of range.")
-				} + DifficultyExtra[DetailData.Cells.Count];
-			}
-		}
-
-		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode
-		{
-			get
-			{
-				return DetailData.Type switch
-				{
-					1 => TechniqueCode.UlType1,
-					2 => TechniqueCode.UlType2,
-					3 => TechniqueCode.UlType3,
-					4 => TechniqueCode.UlType4,
-					_ => throw Throwings.ImpossibleCase
-				};
-			}
-		}
 
 		/// <summary>
-		/// The data of the specified unique rectangle type.
+		/// Indicates the digit 1.
 		/// </summary>
-		public UlDetailData DetailData { get; }
+		public int Digit1 { get; }
+
+		/// <summary>
+		/// Indicates the digit 2.
+		/// </summary>
+		public int Digit2 { get; }
+
+		/// <summary>
+		/// Indicates the loop.
+		/// </summary>
+		public GridMap Loop { get; }
+
+		/// <summary>
+		/// Indicates the type.
+		/// </summary>
+		public abstract int Type { get; }
 
 		/// <inheritdoc/>
-		public override bool Equals(TechniqueInfo? other) =>
-			other is UlTechniqueInfo comparer && DetailData.Equals(comparer.DetailData);
+		public sealed override string Name => $"Unique Loop Type {Type}";
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: {DetailData} => {elimStr}";
-		}
+		public sealed override decimal Difficulty =>
+			Type switch
+			{
+				1 => 4.5M,
+				2 => 4.6M,
+				3 => 4.5M + ((UlType3TechniqueInfo)this).SubsetCells.Count * .1M,
+				4 => 4.6M,
+				_ => throw Throwings.ImpossibleCase
+			} + DifficultyExtra[Loop.Count >> 1];
+
+		/// <inheritdoc/>
+		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
+
+		/// <inheritdoc/>
+		public sealed override TechniqueCode TechniqueCode =>
+			Type switch
+			{
+				1 => TechniqueCode.UlType1,
+				2 => TechniqueCode.UlType2,
+				3 => TechniqueCode.UlType3,
+				4 => TechniqueCode.UlType4,
+				_ => throw Throwings.ImpossibleCase
+			};
+
+
+		/// <inheritdoc/>
+		public abstract override string ToString();
 	}
 }

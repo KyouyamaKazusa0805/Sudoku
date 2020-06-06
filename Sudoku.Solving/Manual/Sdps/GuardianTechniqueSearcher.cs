@@ -18,12 +18,6 @@ namespace Sudoku.Solving.Manual.Sdps
 	public sealed class GuardianTechniqueSearcher : SdpTechniqueSearcher
 	{
 		/// <summary>
-		/// Indicates the invalid label (used in the start of the recursion).
-		/// </summary>
-		private const RegionLabel InvalidLabel = (RegionLabel)(-1);
-
-
-		/// <summary>
 		/// Indicates the priority of this technique.
 		/// </summary>
 		public static int Priority { get; set; } = 55;
@@ -62,7 +56,7 @@ namespace Sudoku.Solving.Manual.Sdps
 					tempGuardians.Clear();
 					var loop = GridMap.Empty;
 
-					f(cell, InvalidLabel, -1);
+					f(cell, LowerLimit, -1);
 
 					void f(int cell, RegionLabel lastLabel, int lastRegion)
 					{

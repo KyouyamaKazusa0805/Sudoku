@@ -193,7 +193,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 				// Iterate on each size.
 				int[] otherCells = otherCellsMap.ToArray();
-				for (int size = 1, length = Math.Min(otherCells.Length, 5); size < length; size++)
+				for (int size = 1, length = otherCells.Length; size < length; size++)
 				{
 					foreach (int[] cells in GetCombinationsOfArray(otherCells, size))
 					{
