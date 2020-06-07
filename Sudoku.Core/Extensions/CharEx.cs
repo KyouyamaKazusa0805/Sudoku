@@ -16,6 +16,6 @@ namespace Sudoku.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The character.</param>
 		/// <returns>The <see cref="bool"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsDigit(this char @this) => char.IsDigit(@this);
+		public static bool IsDigit(this char @this) => @this >= '0' & @this <= '9';
 	}
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
@@ -12,41 +11,19 @@ namespace Sudoku.Extensions
 	[DebuggerStepThrough]
 	public static class Int16Ex
 	{
-		/// <summary>
-		/// Indicates whether the specified value is the power of two.
-		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		/// <include file='CoreDocComments.xml' path='comments/method[@name="IsPowerOfTwo"]'/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsPowerOfTwo(this short @this) => @this != 0 && (@this & (@this - 1)) == 0;
 
-		/// <summary>
-		/// Find the first offset of set bit of the binary representation of the specified value.
-		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
-		/// <returns>
-		/// An <see cref="int"/> value indicating that. If the value is 0, this method
-		/// will always return 0.
-		/// </returns>
-		/// <seealso cref="Int32Ex.FindFirstSet(int)"/>
+		/// <include file='CoreDocComments.xml' path='comments/method[@name="FindFirstSet"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static int FindFirstSet(this short @this) => Int32Ex.FindFirstSet(@this);
 
-		/// <summary>
-		/// Get the total number of set bits of the binary representation of a specified value.
-		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
-		/// <returns>An <see cref="int"/> value indicating that.</returns>
-		/// <seealso cref="Int32Ex.CountSet(int)"/>
+		/// <include file='CoreDocComments.xml' path='comments/method[@name="CountSet"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static int CountSet(this short @this) => Int32Ex.CountSet(@this);
 
-		/// <summary>
-		/// Find a index of the binary representation of a value
-		/// after the specified index, whose bit is set <see langword="true"/>.
-		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
-		/// <param name="index">The index.</param>
-		/// <returns>The index.</returns>
+		/// <include file='CoreDocComments.xml' path='comments/method[@name="GetNextSet"]'/>
 		public static int GetNextSet(this short @this, int index)
 		{
 			for (int i = index + 1; i < 16; i++)
@@ -60,13 +37,7 @@ namespace Sudoku.Extensions
 			return -1;
 		}
 
-		/// <summary>
-		/// Get an <see cref="int"/> value, indicating that the absolute position of
-		/// all set bits with the specified set bit order.
-		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
-		/// <param name="order">The number of the order of set bits.</param>
-		/// <returns>The position.</returns>
+		/// <include file='CoreDocComments.xml' path='comments/method[@name="SetAt"]'/>
 		public static int SetAt(this short @this, int order)
 		{
 			for (int i = 0, count = -1; i < 16; i++, @this >>= 1)
@@ -80,11 +51,7 @@ namespace Sudoku.Extensions
 			return -1;
 		}
 
-		/// <summary>
-		/// Find all offsets of set bits of the binary representation of a specified value.
-		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
-		/// <returns>All offsets.</returns>
+		/// <include file='CoreDocComments.xml' path='comments/method[@name="GetAllSets"]'/>
 		public static IEnumerable<int> GetAllSets(this short @this)
 		{
 			if (@this == 0)
@@ -101,14 +68,12 @@ namespace Sudoku.Extensions
 			}
 		}
 
-		/// <summary>
-		/// <para>Reverse all bits in a specified value.</para>
-		/// <para>
-		/// Note that the value is passed by <b>reference</b> though the
-		/// method is an extension method, and returns nothing.
-		/// </para>
-		/// </summary>
-		/// <param name="this">(<see langword="this ref"/> parameter) The value.</param>
+		/// <include file='CoreDocComments.xml' path='comments/method[@name="GetEnumerator"]'/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IEnumerator<int> GetEnumerator(this short @this) => @this.GetAllSets().GetEnumerator();
+
+		/// <include file='CoreDocComments.xml' path='comments/method[@name="ReverseBits"]'/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void ReverseBits(this ref short @this)
 		{
 			@this = (short)(@this >> 1 & 0x5555 | (@this & 0x5555) << 1);
