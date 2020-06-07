@@ -637,14 +637,14 @@ namespace Sudoku.Windows
 					foreach (var step in _analyisResult.SolvingSteps!)
 					{
 						var (fore, back) = Settings.DiffColors[step.DifficultyLevel];
-						var item = new ListBoxItem
-						{
-							Foreground = new SolidColorBrush(fore.ToWColor()),
-							Background = new SolidColorBrush(back.ToWColor()),
-							Content = new PrimaryElementTuple<int, TechniqueInfo>(i++, step, 2),
-							BorderThickness = new Thickness()
-						};
-						pathList.Add(item);
+						pathList.Add(
+							new ListBoxItem
+							{
+								Foreground = new SolidColorBrush(fore.ToWColor()),
+								Background = new SolidColorBrush(back.ToWColor()),
+								Content = new PrimaryElementTuple<int, TechniqueInfo>(i++, step, 2),
+								BorderThickness = default
+							});
 					}
 					_listBoxPaths.ItemsSource = pathList;
 

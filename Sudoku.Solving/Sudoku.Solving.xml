@@ -5776,41 +5776,6 @@
         <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetNakedSubsetsBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32)">
-            <summary>
-            Get all naked subsets technique information, for searching the specified size.
-            </summary>
-            <param name="accumulator">The result accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="size">The size.</param>
-            <returns>All technique information searched.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetHiddenSubsetsBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32)">
-            <summary>
-            Get all hidden subsets technique information, for searching the specified size.
-            </summary>
-            <param name="accumulator">The result accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="size">The size.</param>
-            <returns>All technique information searched.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetHiddenSubsetsConclusions(Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32}@,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}}@)">
-            <summary>
-            Get conclusions after a hidden subset searched.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="region">The region offset.</param>
-            <param name="mask">
-            The mask that calculated in
-            <see cref="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueSearcher.GetHiddenSubsetsBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32)"/>.
-            </param>
-            <param name="digits">All digits.</param>
-            <param name="cellOffsetList">(<see langword="out"/> parameter) All cell offsets.</param>
-            <param name="highlightedCandidates">
-            (<see langword="out"/> parameter) All highlight candidate offsets.
-            </param>
-            <returns>All conclusions.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Symmetry.GspTechniqueInfo">
             <summary>
             Provides a usage of <b>Gurth's symmetrical placement</b> (GSP) technique.
