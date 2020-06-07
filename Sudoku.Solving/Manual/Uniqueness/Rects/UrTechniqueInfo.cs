@@ -16,11 +16,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// </summary>
 	public abstract class UrTechniqueInfo : UniquenessTechniqueInfo, IComparable<UrTechniqueInfo>
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="typeCode">The type code.</param>
 		/// <param name="digit1">The digit 1.</param>
 		/// <param name="digit2">The digit 2.</param>

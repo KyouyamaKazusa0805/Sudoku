@@ -11,11 +11,7 @@ namespace Sudoku.Solving.Manual.Singles
 	/// </summary>
 	public sealed class HiddenSingleTechniqueInfo : SingleTechniqueInfo
 	{
-		/// <summary>
-		/// Initializes an instance with information.
-		/// </summary>
-		/// <param name="conclusions">The conclusions.</param>
-		/// <param name="views">The views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="regionOffset">The region offset.</param>
 		/// <param name="cellOffset">The cell offset.</param>
 		/// <param name="digit">The digit.</param>

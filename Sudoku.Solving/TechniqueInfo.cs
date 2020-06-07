@@ -14,11 +14,7 @@ namespace Sudoku.Solving
 	/// </summary>
 	public abstract class TechniqueInfo : IEquatable<TechniqueInfo?>
 	{
-		/// <summary>
-		/// Provides passing data when initializing an instance of derived types.
-		/// </summary>
-		/// <param name="conclusions">The conclusions.</param>
-		/// <param name="views">The views of this solving step.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		protected TechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views) =>
 			(Conclusions, Views) = (conclusions, views);
 

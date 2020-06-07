@@ -11,11 +11,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// </summary>
 	public sealed class BowmanBingoTechniqueInfo : LastResortTechniqueInfo
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="contradictionSeries">The contradiction series.</param>
 		public BowmanBingoTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,

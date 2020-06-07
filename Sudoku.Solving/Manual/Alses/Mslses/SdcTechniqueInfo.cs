@@ -11,11 +11,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// </summary>
 	public sealed class SdcTechniqueInfo : MslsTechniqueInfo
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="block">The block.</param>
 		/// <param name="line">The line.</param>
 		/// <param name="blockMask">The block mask.</param>
@@ -30,8 +26,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			int block, int line, short blockMask, short lineMask, short intersectionMask,
 			bool isCannibalistic, short isolatedDigitsMask, GridMap blockCells, GridMap lineCells,
-			GridMap intersectionCells)
-			: base(conclusions, views)
+			GridMap intersectionCells) : base(conclusions, views)
 		{
 			Block = block;
 			Line = line;

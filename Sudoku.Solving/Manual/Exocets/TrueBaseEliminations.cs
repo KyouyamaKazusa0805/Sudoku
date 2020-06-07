@@ -12,43 +12,26 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// </summary>
 	public struct TrueBaseEliminations : IEnumerable<Conclusion>
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="IEliminations"]'/>
 		public TrueBaseEliminations(IList<Conclusion> conclusions) => Conclusions = conclusions;
 
 
-		/// <summary>
-		/// Indicates the number of all conclusions.
-		/// </summary>
+		/// <include file='SolvingDocComments.xml' path='comments/property[@name="Count" and @type="IEliminations"]'/>
 		public readonly int Count => Conclusions?.Count ?? 0;
 
-		/// <summary>
-		/// Indicates the conclusions.
-		/// </summary>
+		/// <include file='SolvingDocComments.xml' path='comments/property[@name="Conclusions" and @type="IEliminations"]'/>
 		public IList<Conclusion>? Conclusions { readonly get; private set; }
 
 
-		/// <summary>
-		/// Add the conclusion into the collection.
-		/// </summary>
-		/// <param name="conclusion">The conclusion.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/method[@name="Add" and @type="IEliminations"]'/>
 		public void Add(Conclusion conclusion) =>
 			(Conclusions ??= new List<Conclusion>()).AddIfDoesNotContain(conclusion);
 
-		/// <summary>
-		/// Add a serial of conclusions into this collection.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/method[@name="AddRange" and @type="IEliminations"]'/>
 		public void AddRange(IEnumerable<Conclusion> conclusions) =>
 			(Conclusions ??= new List<Conclusion>()).AddRange(conclusions, true);
 
-		/// <summary>
-		/// Merge all eliminations.
-		/// </summary>
-		/// <param name="eliminations">All instances to merge.</param>
-		/// <returns>The merged result.</returns>
+		/// <include file='SolvingDocComments.xml' path='comments/method[@name="Merge" and @type="IEliminations"]'/>
 		public readonly TrueBaseEliminations Merge(params TrueBaseEliminations?[] eliminations)
 		{
 			var result = new TrueBaseEliminations();
@@ -78,11 +61,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 
-		/// <summary>
-		/// Merge all conclusions.
-		/// </summary>
-		/// <param name="list">The list.</param>
-		/// <returns>The merged result.</returns>
+		/// <include file='SolvingDocComments.xml' path='comments/method[@name="MergeAll" and @type="IEliminations"]'/>
 		public static TrueBaseEliminations MergeAll(IEnumerable<TrueBaseEliminations> list)
 		{
 			var result = new TrueBaseEliminations();
@@ -99,11 +78,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			return result;
 		}
 
-		/// <summary>
-		/// Merge all conclusions.
-		/// </summary>
-		/// <param name="list">The list.</param>
-		/// <returns>The merged result.</returns>
+		/// <include file='SolvingDocComments.xml' path='comments/method[@name="MergeAll" and @type="IEliminations"]'/>
 		public static TrueBaseEliminations MergeAll(params TrueBaseEliminations[] list) =>
 			MergeAll((IEnumerable<TrueBaseEliminations>)list);
 	}

@@ -10,11 +10,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// </summary>
 	public sealed class EmptyRectangleTechniqueInfo : SdpTechniqueInfo
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="digit">The digit.</param>
 		/// <param name="block">The block.</param>
 		/// <param name="conjugatePair">The conjugate pair.</param>

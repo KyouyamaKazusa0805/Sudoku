@@ -12,11 +12,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 	/// </summary>
 	public sealed class GspTechniqueInfo : SymmetryTechniqueInfo
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="symmetryType">The symmetry type.</param>
 		/// <param name="mappingTable">The mapping table.</param>
 		public GspTechniqueInfo(

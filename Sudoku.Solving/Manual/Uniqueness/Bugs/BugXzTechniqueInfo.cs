@@ -11,17 +11,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// </summary>
 	public sealed class BugXzTechniqueInfo : UniquenessTechniqueInfo
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="digitMask">The digits mask.</param>
 		/// <param name="cells">All cell offsets.</param>
 		/// <param name="extraCell">The extra cell.</param>
 		public BugXzTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, short digitMask, IReadOnlyList<int> cells,
-			int extraCell) : base(conclusions, views) => (DigitsMask, Cells, ExtraCell) = (digitMask, cells, extraCell);
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
+			short digitMask, IReadOnlyList<int> cells, int extraCell) : base(conclusions, views) =>
+			(DigitsMask, Cells, ExtraCell) = (digitMask, cells, extraCell);
 
 
 		/// <summary>

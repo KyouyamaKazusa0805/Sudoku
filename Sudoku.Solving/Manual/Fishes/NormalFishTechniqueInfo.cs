@@ -13,11 +13,7 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// </summary>
 	public sealed class NormalFishTechniqueInfo : FishTechniqueInfo
 	{
-		/// <summary>
-		/// Initializes an instance with information.
-		/// </summary>
-		/// <param name="conclusions">The conclusions.</param>
-		/// <param name="views">The views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="digit">The digit.</param>
 		/// <param name="baseSets">The base sets.</param>
 		/// <param name="coverSets">The cover sets.</param>

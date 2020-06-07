@@ -11,11 +11,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// </summary>
 	public sealed class TwoStrongLinksTechniqueInfo : SdpTechniqueInfo
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="digit">The digit.</param>
 		/// <param name="baseRegion">The base region.</param>
 		/// <param name="targetRegion">The target region.</param>

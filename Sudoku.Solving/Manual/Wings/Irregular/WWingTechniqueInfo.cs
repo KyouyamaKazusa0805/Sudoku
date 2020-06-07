@@ -10,11 +10,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 	/// </summary>
 	public sealed class WWingTechniqueInfo : IrregularWingTechniqueInfo
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">The conclusions.</param>
-		/// <param name="views">The views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="startCellOffset">Start cell offset.</param>
 		/// <param name="endCellOffset">End cell offsets.</param>
 		/// <param name="conjugatePair">The conjugate pair.</param>

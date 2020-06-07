@@ -9,16 +9,12 @@ namespace Sudoku.Solving.Manual.Singles
 	/// </summary>
 	public abstract class SingleTechniqueInfo : TechniqueInfo
 	{
-		/// <summary>
-		/// Provides passing data when initializing an instance of derived types.
-		/// </summary>
-		/// <param name="conclusions">The conclusions.</param>
-		/// <param name="views">The views of this solving step.</param>
-		/// <param name="cellOffset">The cell offset.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
+		/// <param name="cell">The cell.</param>
 		/// <param name="digit">The digit.</param>
 		protected SingleTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int cellOffset, int digit)
-			: base(conclusions, views) => (Cell, Digit) = (cellOffset, digit);
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int cell, int digit)
+			: base(conclusions, views) => (Cell, Digit) = (cell, digit);
 
 
 		/// <summary>

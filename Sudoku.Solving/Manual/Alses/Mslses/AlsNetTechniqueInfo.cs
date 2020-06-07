@@ -11,14 +11,11 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// </summary>
 	public sealed class AlsNetTechniqueInfo : MslsTechniqueInfo
 	{
-		/// <summary>
-		/// Initializes an instance with the specified cells and the relations.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="cells">The cells.</param>
-		public AlsNetTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, GridMap cells)
-			: base(conclusions, views) => (Cells) = (cells);
+		public AlsNetTechniqueInfo(
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, GridMap cells)
+			: base(conclusions, views) => Cells = cells;
 
 
 		/// <summary>

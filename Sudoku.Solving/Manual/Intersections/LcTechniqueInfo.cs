@@ -10,11 +10,7 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// </summary>
 	public sealed class LcTechniqueInfo : IntersectionTechniqueInfo
 	{
-		/// <summary>
-		/// Initializes an instance with information.
-		/// </summary>
-		/// <param name="conclusions">The conclusions.</param>
-		/// <param name="views">The views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="digit">The digit.</param>
 		/// <param name="baseSet">The base set.</param>
 		/// <param name="coverSet">The cover set.</param>

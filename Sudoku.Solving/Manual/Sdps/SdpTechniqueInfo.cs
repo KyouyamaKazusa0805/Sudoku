@@ -9,11 +9,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// </summary>
 	public abstract class SdpTechniqueInfo : TechniqueInfo
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="digit">The digit.</param>
 		protected SdpTechniqueInfo(IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int digit)
 			: base(conclusions, views) => Digit = digit;

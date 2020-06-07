@@ -10,11 +10,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// </summary>
 	public sealed class UlType4TechniqueInfo : UlTechniqueInfo
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="d1">The digit 1.</param>
 		/// <param name="d2">The digit 2.</param>
 		/// <param name="loop">The loop.</param>

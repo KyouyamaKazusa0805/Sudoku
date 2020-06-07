@@ -10,11 +10,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// </summary>
 	public sealed class GuardianTechniqueInfo : SdpTechniqueInfo
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="digit">The digit.</param>
 		/// <param name="loop">The loop.</param>
 		/// <param name="guardians">The guardians.</param>

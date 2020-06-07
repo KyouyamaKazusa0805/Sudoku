@@ -23,11 +23,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		private static readonly Index LastIndex = ^1;
 
 
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="nodes">All nodes.</param>
 		/// <param name="isContinuousNiceLoop">
 		/// Indicates whether the structure is a continuous nice loop.

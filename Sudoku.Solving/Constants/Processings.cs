@@ -11,21 +11,30 @@ namespace Sudoku.Solving.Constants
 	public static class Processings
 	{
 		/// <summary>
-		/// The names of all subsets by their size.
+		/// The names of all subsets by their sizes.
 		/// </summary>
-		public static string[] SubsetNames =
+		public static readonly string[] SubsetNames =
 		{
 			string.Empty, "Single", "Pair", "Triple", "Quadruple",
 			"Quintuple", "Sextuple", "Septuple", "Octuple", "Nonuple"
 		};
 
 		/// <summary>
-		/// The names of all fishes by their size.
+		/// The names of all fishes by their sizes.
 		/// </summary>
-		public static string[] FishNames =
+		public static readonly string[] FishNames =
 		{
 			string.Empty, "Cyclopsfish", "X-Wing", "Swordfish", "Jellyfish",
 			"Squirmbag", "Whale", "Leviathan", "Octopus", "Dragon"
+		};
+
+		/// <summary>
+		/// The names of all regular wings by their sizes.
+		/// </summary>
+		public static readonly string[] RegularWingNames =
+		{
+			string.Empty, string.Empty, string.Empty, string.Empty, "WXYZ-Wing", "VWXYZ-Wing",
+			"UVWXYZ-Wing", "TUVWXYZ-Wing", "STUVWXYZ-Wing", "RSTUVWXYZ-Wing"
 		};
 
 
@@ -63,9 +72,9 @@ namespace Sudoku.Solving.Constants
 			}
 			return added;
 
+			#region Obsolete code
 			// I have seen the code of Sudoku Explainer.
 			// The calculation formula (older one) is:
-			#region Obsolete code
 			//int[] steps =
 			//{
 			//	4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128,

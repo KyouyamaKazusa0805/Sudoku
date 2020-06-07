@@ -16,11 +16,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		private static readonly decimal[] DifficultyExtra = { 0, 0, .1M, .2M, .3M, .4M, .5M, .6M };
 
 
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="d1">The digit 1.</param>
 		/// <param name="d2">The digit 2.</param>
 		/// <param name="loop">The loop.</param>

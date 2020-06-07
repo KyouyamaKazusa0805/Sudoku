@@ -20,11 +20,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		};
 
 
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="digit">The digit.</param>
 		/// <param name="cells">All cell offsets.</param>
 		public BugType2TechniqueInfo(

@@ -819,12 +819,17 @@
         </member>
         <member name="F:Sudoku.Solving.Constants.Processings.SubsetNames">
             <summary>
-            The names of all subsets by their size.
+            The names of all subsets by their sizes.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Constants.Processings.FishNames">
             <summary>
-            The names of all fishes by their size.
+            The names of all fishes by their sizes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Constants.Processings.RegularWingNames">
+            <summary>
+            The names of all regular wings by their sizes.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Constants.Processings.BitwiseOrMasks(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap)">
@@ -1397,11 +1402,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsWWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Basic.Als,Sudoku.Solving.Manual.Alses.Basic.Als,Sudoku.Solving.ConjugatePair,System.Int16,System.Int32)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="als1">The ALS 1.</param>
             <param name="als2">The ALS 2.</param>
             <param name="conjugatePair">The conjugate pair.</param>
@@ -1472,11 +1479,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXyWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Basic.Als,Sudoku.Solving.Manual.Alses.Basic.Als,Sudoku.Solving.Manual.Alses.Basic.Als,System.Int16,System.Int16,System.Int16)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="als1">The ALS 1.</param>
             <param name="als2">The ALS 2.</param>
             <param name="bridgeAls">The bridge ALS.</param>
@@ -1554,11 +1563,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.AlsXzTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Basic.Als,Sudoku.Solving.Manual.Alses.Basic.Als,System.Int16,System.Int16,System.Nullable{System.Boolean})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="als1">The ALS 1 used.</param>
             <param name="als2">The ALS 2 used.</param>
             <param name="xDigitsMask">The X digits mask.</param>
@@ -1646,11 +1657,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Solving.Manual.Alses.Basic.Als})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="pivot">The pivot cell.</param>
             <param name="alses">All ALSes used.</param>
         </member>
@@ -1745,11 +1758,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.ErIntersectionPairTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="startCell">The start cell.</param>
             <param name="endCell">The end cell.</param>
             <param name="region">The region that empty rectangle forms.</param>
@@ -1817,11 +1832,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap)">
-            <summary>
-            Initializes an instance with the specified cells and the relations.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="cells">The cells.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Mslses.AlsNetTechniqueInfo.Cells">
@@ -1892,11 +1909,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="block">The block.</param>
             <param name="line">The line.</param>
             <param name="blockMask">The block mask.</param>
@@ -2002,11 +2021,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="cells">All cells.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Mslses.SkLoopTechniqueInfo.Cells">
@@ -2213,11 +2234,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Node},System.Boolean)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="nodes">All nodes.</param>
             <param name="isContinuousNiceLoop">
             Indicates whether the structure is a continuous nice loop.
@@ -2624,39 +2647,51 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
+            <constructor type="IEliminations">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</constructor>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.Count">
-            <summary>
-            Indicates the number of all conclusions.
-            </summary>
+            <property name="Count" type="IEliminations">
+		<summary>
+			Indicates the number of all conclusions.
+		</summary>
+	</property>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.Conclusions">
-            <summary>
-            Indicates the conclusions.
-            </summary>
+            <property name="Conclusions" type="IEliminations">
+		<summary>
+			Indicates the conclusions.
+		</summary>
+	</property>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.Add(Sudoku.Data.Conclusion)">
-            <summary>
-            Add the conclusion into the collection.
-            </summary>
-            <param name="conclusion">The conclusion.</param>
+            <method name="Add" type="IEliminations">
+		<summary>
+			Add the conclusion into the collection.
+		</summary>
+		<param name="conclusion">The conclusion.</param>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <summary>
-            Add a serial of conclusions into this collection.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
+            <method name="AddRange" type="IEliminations">
+		<summary>
+			Add a serial of conclusions into this collection.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.BibiPatternEliminations}[])">
-            <summary>
-            Merge all eliminations.
-            </summary>
-            <param name="eliminations">All instances to merge.</param>
-            <returns>The merged result.</returns>
+            <method name="Merge" type="IEliminations">
+		<summary>
+			Merge all eliminations.
+		</summary>
+		<param name="eliminations">All instances to merge.</param>
+		<returns>The merged result.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.GetEnumerator">
             <inheritdoc/>
@@ -2671,18 +2706,22 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.BibiPatternEliminations})">
-            <summary>
-            Merge all conclusions.
-            </summary>
-            <param name="list">The list.</param>
-            <returns>The merged result.</returns>
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.BibiPatternEliminations[])">
-            <summary>
-            Merge all conclusions.
-            </summary>
-            <param name="list">The list.</param>
-            <returns>The merged result.</returns>
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations">
             <summary>
@@ -2690,39 +2729,51 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
+            <constructor type="IEliminations">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</constructor>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.Count">
-            <summary>
-            Indicates the number of all conclusions.
-            </summary>
+            <property name="Count" type="IEliminations">
+		<summary>
+			Indicates the number of all conclusions.
+		</summary>
+	</property>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.Conclusions">
-            <summary>
-            Indicates the conclusions.
-            </summary>
+            <property name="Conclusions" type="IEliminations">
+		<summary>
+			Indicates the conclusions.
+		</summary>
+	</property>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.Add(Sudoku.Data.Conclusion)">
-            <summary>
-            Add the conclusion into the collection.
-            </summary>
-            <param name="conclusion">The conclusion.</param>
+            <method name="Add" type="IEliminations">
+		<summary>
+			Add the conclusion into the collection.
+		</summary>
+		<param name="conclusion">The conclusion.</param>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <summary>
-            Add a serial of conclusions into this collection.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
+            <method name="AddRange" type="IEliminations">
+		<summary>
+			Add a serial of conclusions into this collection.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations}[])">
-            <summary>
-            Merge all eliminations.
-            </summary>
-            <param name="eliminations">All instances to merge.</param>
-            <returns>The merged result.</returns>
+            <method name="Merge" type="IEliminations">
+		<summary>
+			Merge all eliminations.
+		</summary>
+		<param name="eliminations">All instances to merge.</param>
+		<returns>The merged result.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.GetEnumerator">
             <inheritdoc/>
@@ -2737,18 +2788,22 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations})">
-            <summary>
-            Merge all conclusions.
-            </summary>
-            <param name="list">The list.</param>
-            <returns>The merged result.</returns>
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations[])">
-            <summary>
-            Merge all conclusions.
-            </summary>
-            <param name="list">The list.</param>
-            <returns>The merged result.</returns>
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.Exocet">
             <summary>
@@ -2903,11 +2958,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.TechniqueCode,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.TargetEliminations,Sudoku.Solving.Manual.Exocets.MirrorEliminations,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations,Sudoku.Solving.Manual.Exocets.TargetPairEliminations,Sudoku.Solving.Manual.Exocets.SwordfishEliminations,Sudoku.Solving.Manual.Exocets.TrueBaseEliminations,Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="exocet">The exocet.</param>
             <param name="digits">All digits.</param>
             <param name="techniqueCode">The technique code.</param>
@@ -3123,11 +3180,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.TargetEliminations,Sudoku.Solving.Manual.Exocets.MirrorEliminations,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations,Sudoku.Solving.Manual.Exocets.TargetPairEliminations,Sudoku.Solving.Manual.Exocets.SwordfishEliminations)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="exocet">The exocet.</param>
             <param name="digits">All digits.</param>
             <param name="lockedMemberQ">The locked member Q.</param>
@@ -3231,39 +3290,51 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
+            <constructor type="IEliminations">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</constructor>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Count">
-            <summary>
-            Indicates the number of all conclusions.
-            </summary>
+            <property name="Count" type="IEliminations">
+		<summary>
+			Indicates the number of all conclusions.
+		</summary>
+	</property>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Conclusions">
-            <summary>
-            Indicates the conclusions.
-            </summary>
+            <property name="Conclusions" type="IEliminations">
+		<summary>
+			Indicates the conclusions.
+		</summary>
+	</property>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Add(Sudoku.Data.Conclusion)">
-            <summary>
-            Add the conclusion into the collection.
-            </summary>
-            <param name="conclusion">The conclusion.</param>
+            <method name="Add" type="IEliminations">
+		<summary>
+			Add the conclusion into the collection.
+		</summary>
+		<param name="conclusion">The conclusion.</param>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <summary>
-            Add a serial of conclusions into this collection.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
+            <method name="AddRange" type="IEliminations">
+		<summary>
+			Add a serial of conclusions into this collection.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.MirrorEliminations}[])">
-            <summary>
-            Merge all mirror eliminations.
-            </summary>
-            <param name="eliminations">All instances to merge.</param>
-            <returns>The merged result.</returns>
+            <method name="Merge" type="IEliminations">
+		<summary>
+			Merge all eliminations.
+		</summary>
+		<param name="eliminations">All instances to merge.</param>
+		<returns>The merged result.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.GetEnumerator">
             <inheritdoc/>
@@ -3278,18 +3349,22 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.MirrorEliminations})">
-            <summary>
-            Merge all conclusions.
-            </summary>
-            <param name="list">The list.</param>
-            <returns>The merged result.</returns>
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.MirrorEliminations[])">
-            <summary>
-            Merge all conclusions.
-            </summary>
-            <param name="list">The list.</param>
-            <returns>The merged result.</returns>
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo">
             <summary>
@@ -3297,11 +3372,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},System.Int32,Sudoku.Solving.Manual.Exocets.TargetEliminations,Sudoku.Solving.Manual.Exocets.TrueBaseEliminations,Sudoku.Solving.Manual.Exocets.MirrorEliminations,Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="exocet">The exocet.</param>
             <param name="digits">All digits.</param>
             <param name="endoTargetCell">The endo target cell.</param>
@@ -3403,39 +3480,51 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
+            <constructor type="IEliminations">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</constructor>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.Count">
-            <summary>
-            Indicates the number of all conclusions.
-            </summary>
+            <property name="Count" type="IEliminations">
+		<summary>
+			Indicates the number of all conclusions.
+		</summary>
+	</property>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.Conclusions">
-            <summary>
-            Indicates the conclusions.
-            </summary>
+            <property name="Conclusions" type="IEliminations">
+		<summary>
+			Indicates the conclusions.
+		</summary>
+	</property>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.Add(Sudoku.Data.Conclusion)">
-            <summary>
-            Add the conclusion into the collection.
-            </summary>
-            <param name="conclusion">The conclusion.</param>
+            <method name="Add" type="IEliminations">
+		<summary>
+			Add the conclusion into the collection.
+		</summary>
+		<param name="conclusion">The conclusion.</param>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <summary>
-            Add a serial of conclusions into this collection.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
+            <method name="AddRange" type="IEliminations">
+		<summary>
+			Add a serial of conclusions into this collection.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.SwordfishEliminations}[])">
-            <summary>
-            Merge all eliminations.
-            </summary>
-            <param name="eliminations">All instances to merge.</param>
-            <returns>The merged result.</returns>
+            <method name="Merge" type="IEliminations">
+		<summary>
+			Merge all eliminations.
+		</summary>
+		<param name="eliminations">All instances to merge.</param>
+		<returns>The merged result.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.GetEnumerator">
             <inheritdoc/>
@@ -3450,18 +3539,22 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.BibiPatternEliminations})">
-            <summary>
-            Merge all conclusions.
-            </summary>
-            <param name="list">The list.</param>
-            <returns>The merged result.</returns>
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.BibiPatternEliminations[])">
-            <summary>
-            Merge all conclusions.
-            </summary>
-            <param name="list">The list.</param>
-            <returns>The merged result.</returns>
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.TargetEliminations">
             <summary>
@@ -3469,39 +3562,51 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
+            <constructor type="IEliminations">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</constructor>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.TargetEliminations.Count">
-            <summary>
-            Indicates the number of all conclusions.
-            </summary>
+            <property name="Count" type="IEliminations">
+		<summary>
+			Indicates the number of all conclusions.
+		</summary>
+	</property>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.TargetEliminations.Conclusions">
-            <summary>
-            Indicates the conclusions.
-            </summary>
+            <property name="Conclusions" type="IEliminations">
+		<summary>
+			Indicates the conclusions.
+		</summary>
+	</property>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.Add(Sudoku.Data.Conclusion)">
-            <summary>
-            Add the conclusion into the collection.
-            </summary>
-            <param name="conclusion">The conclusion.</param>
+            <method name="Add" type="IEliminations">
+		<summary>
+			Add the conclusion into the collection.
+		</summary>
+		<param name="conclusion">The conclusion.</param>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <summary>
-            Add a serial of conclusions into this collection.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
+            <method name="AddRange" type="IEliminations">
+		<summary>
+			Add a serial of conclusions into this collection.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.TargetEliminations}[])">
-            <summary>
-            Merge all eliminations.
-            </summary>
-            <param name="eliminations">All instances to merge.</param>
-            <returns>The merged result.</returns>
+            <method name="Merge" type="IEliminations">
+		<summary>
+			Merge all eliminations.
+		</summary>
+		<param name="eliminations">All instances to merge.</param>
+		<returns>The merged result.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.GetEnumerator">
             <inheritdoc/>
@@ -3516,18 +3621,22 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.TargetEliminations})">
-            <summary>
-            Merge all conclusions.
-            </summary>
-            <param name="list">The list.</param>
-            <returns>The merged result.</returns>
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.TargetEliminations[])">
-            <summary>
-            Merge all conclusions.
-            </summary>
-            <param name="list">The list.</param>
-            <returns>The merged result.</returns>
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.TargetPairEliminations">
             <summary>
@@ -3535,39 +3644,51 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
+            <constructor type="IEliminations">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</constructor>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.Count">
-            <summary>
-            Indicates the number of all conclusions.
-            </summary>
+            <property name="Count" type="IEliminations">
+		<summary>
+			Indicates the number of all conclusions.
+		</summary>
+	</property>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.Conclusions">
-            <summary>
-            Indicates the conclusions.
-            </summary>
+            <property name="Conclusions" type="IEliminations">
+		<summary>
+			Indicates the conclusions.
+		</summary>
+	</property>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.Add(Sudoku.Data.Conclusion)">
-            <summary>
-            Add the conclusion into the collection.
-            </summary>
-            <param name="conclusion">The conclusion.</param>
+            <method name="Add" type="IEliminations">
+		<summary>
+			Add the conclusion into the collection.
+		</summary>
+		<param name="conclusion">The conclusion.</param>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <summary>
-            Add a serial of conclusions into this collection.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
+            <method name="AddRange" type="IEliminations">
+		<summary>
+			Add a serial of conclusions into this collection.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.TargetPairEliminations}[])">
-            <summary>
-            Merge all eliminations.
-            </summary>
-            <param name="eliminations">All instances to merge.</param>
-            <returns>The merged result.</returns>
+            <method name="Merge" type="IEliminations">
+		<summary>
+			Merge all eliminations.
+		</summary>
+		<param name="eliminations">All instances to merge.</param>
+		<returns>The merged result.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.GetEnumerator">
             <inheritdoc/>
@@ -3582,18 +3703,22 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.TargetPairEliminations})">
-            <summary>
-            Merge all conclusions.
-            </summary>
-            <param name="list">The list.</param>
-            <returns>The merged result.</returns>
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.TargetPairEliminations[])">
-            <summary>
-            Merge all conclusions.
-            </summary>
-            <param name="list">The list.</param>
-            <returns>The merged result.</returns>
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations">
             <summary>
@@ -3601,39 +3726,51 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
+            <constructor type="IEliminations">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</constructor>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.Count">
-            <summary>
-            Indicates the number of all conclusions.
-            </summary>
+            <property name="Count" type="IEliminations">
+		<summary>
+			Indicates the number of all conclusions.
+		</summary>
+	</property>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.Conclusions">
-            <summary>
-            Indicates the conclusions.
-            </summary>
+            <property name="Conclusions" type="IEliminations">
+		<summary>
+			Indicates the conclusions.
+		</summary>
+	</property>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.Add(Sudoku.Data.Conclusion)">
-            <summary>
-            Add the conclusion into the collection.
-            </summary>
-            <param name="conclusion">The conclusion.</param>
+            <method name="Add" type="IEliminations">
+		<summary>
+			Add the conclusion into the collection.
+		</summary>
+		<param name="conclusion">The conclusion.</param>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <summary>
-            Add a serial of conclusions into this collection.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
+            <method name="AddRange" type="IEliminations">
+		<summary>
+			Add a serial of conclusions into this collection.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.TrueBaseEliminations}[])">
-            <summary>
-            Merge all eliminations.
-            </summary>
-            <param name="eliminations">All instances to merge.</param>
-            <returns>The merged result.</returns>
+            <method name="Merge" type="IEliminations">
+		<summary>
+			Merge all eliminations.
+		</summary>
+		<param name="eliminations">All instances to merge.</param>
+		<returns>The merged result.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.GetEnumerator">
             <inheritdoc/>
@@ -3648,18 +3785,22 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.TrueBaseEliminations})">
-            <summary>
-            Merge all conclusions.
-            </summary>
-            <param name="list">The list.</param>
-            <returns>The merged result.</returns>
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.TrueBaseEliminations[])">
-            <summary>
-            Merge all conclusions.
-            </summary>
-            <param name="list">The list.</param>
-            <returns>The merged result.</returns>
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo">
             <summary>
@@ -3667,11 +3808,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
-            <summary>
-            Provides passing data when initializing an instance of derived types.
-            </summary>
-            <param name="conclusions">The conclusions.</param>
-            <param name="views">The views of this solving step.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="digit">The digit.</param>
             <param name="baseSets">The base sets.</param>
             <param name="coverSets">The cover sets.</param>
@@ -3737,11 +3880,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Nullable{System.Boolean})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="digit">The digit.</param>
             <param name="baseSets">The base sets.</param>
             <param name="coverSets">The cover sets.</param>
@@ -3868,11 +4013,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean})">
-            <summary>
-            Initializes an instance with information.
-            </summary>
-            <param name="conclusions">The conclusions.</param>
-            <param name="views">The views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="digit">The digit.</param>
             <param name="baseSets">The base sets.</param>
             <param name="coverSets">The cover sets.</param>
@@ -4125,11 +4272,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="digits">The digits.</param>
             <param name="baseCells">The base cells.</param>
             <param name="targetCells">The target cells.</param>
@@ -4246,11 +4395,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.LcTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Initializes an instance with information.
-            </summary>
-            <param name="conclusions">The conclusions.</param>
-            <param name="views">The views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="digit">The digit.</param>
             <param name="baseSet">The base set.</param>
             <param name="coverSet">The cover set.</param>
@@ -4306,11 +4457,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="contradictionSeries">The contradiction series.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueInfo.ContradictionSeries">
@@ -4417,11 +4570,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.BruteForceTechniqueInfo.Difficulty">
             <inheritdoc/>
@@ -4483,11 +4638,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.CccTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="count">The total number of combinations traversed.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.CccTechniqueInfo.Count">
@@ -4597,11 +4754,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.PomTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.PomTechniqueInfo.Digit">
             <summary>
@@ -4657,11 +4816,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Boolean)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="isTemplateDeletion">
             Indicates whether this technique is template deletion.
             </param>
@@ -5304,11 +5465,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Solving.ConjugatePair)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="digit">The digit.</param>
             <param name="block">The block.</param>
             <param name="conjugatePair">The conjugate pair.</param>
@@ -5375,11 +5538,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.GuardianTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="digit">The digit.</param>
             <param name="loop">The loop.</param>
             <param name="guardians">The guardians.</param>
@@ -5430,11 +5595,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.SdpTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="digit">The digit.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.SdpTechniqueInfo.Digit">
@@ -5453,11 +5620,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.TwoStrongLinksTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="digit">The digit.</param>
             <param name="baseRegion">The base region.</param>
             <param name="targetRegion">The target region.</param>
@@ -5508,11 +5677,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Singles.FullHouseTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32)">
-            <summary>
-            Initializes an instance with information.
-            </summary>
-            <param name="conclusions">The conclusion.</param>
-            <param name="views">The views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="cellOffset">The cell offset.</param>
             <param name="digit">The digit.</param>
         </member>
@@ -5531,11 +5702,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Initializes an instance with information.
-            </summary>
-            <param name="conclusions">The conclusions.</param>
-            <param name="views">The views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="regionOffset">The region offset.</param>
             <param name="cellOffset">The cell offset.</param>
             <param name="digit">The digit.</param>
@@ -5571,11 +5744,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Singles.NakedSingleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32)">
-            <summary>
-            Initializes an instance with information.
-            </summary>
-            <param name="conclusions">The conclusions.</param>
-            <param name="views">The views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="cellOffset">The cell offset.</param>
             <param name="digit">The digit.</param>
         </member>
@@ -5594,12 +5769,14 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Singles.SingleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32)">
-            <summary>
-            Provides passing data when initializing an instance of derived types.
-            </summary>
-            <param name="conclusions">The conclusions.</param>
-            <param name="views">The views of this solving step.</param>
-            <param name="cellOffset">The cell offset.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
+            <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Singles.SingleTechniqueInfo.Cell">
@@ -5689,11 +5866,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Subsets.NakedSubsetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean})">
-            <summary>
-            Provides passing data when initializing an instance of derived types.
-            </summary>
-            <param name="conclusions">The conclusions.</param>
-            <param name="views">The views of this solving step.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="regionOffset">The region offset.</param>
             <param name="cellOffsets">The cell offsets.</param>
             <param name="digits">The digits.</param>
@@ -5731,11 +5910,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Subsets.SubsetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
-            <summary>
-            Provides passing data when initializing an instance of derived types.
-            </summary>
-            <param name="conclusions">The conclusions.</param>
-            <param name="views">The views of this solving step.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="regionOffset">The region offset.</param>
             <param name="cellOffsets">The cell offsets.</param>
             <param name="digits">The digits.</param>
@@ -5782,11 +5963,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Symmetry.GspTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.SymmetryType,System.Nullable{System.Int32}[])">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="symmetryType">The symmetry type.</param>
             <param name="mappingTable">The mapping table.</param>
         </member>
@@ -5878,11 +6061,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="candidates">All candidates.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleTechniqueInfo.Candidates">
@@ -5998,11 +6183,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType1TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType1TechniqueInfo.Difficulty">
             <inheritdoc/>
@@ -6027,11 +6214,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="digit">The digit.</param>
             <param name="cells">All cell offsets.</param>
         </member>
@@ -6063,11 +6252,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType3TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="trueCandidates">All true candidates.</param>
             <param name="digits">All digits.</param>
             <param name="cells">All cells.</param>
@@ -6111,11 +6302,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType4TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Solving.ConjugatePair)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="digits">All digits.</param>
             <param name="cells">All cells.</param>
             <param name="conjugatePair">The conjugate pair.</param>
@@ -6153,11 +6346,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugXzTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="digitMask">The digits mask.</param>
             <param name="cells">All cell offsets.</param>
             <param name="extraCell">The extra cell.</param>
@@ -6205,11 +6400,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.String,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="typeCode">The type code.</param>
             <param name="typeName">The type name.</param>
             <param name="cells">All cells.</param>
@@ -6344,11 +6541,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.String,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="typeCode">The type code.</param>
             <param name="typeName">The type name.</param>
             <param name="cells">All cells.</param>
@@ -6378,11 +6577,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType3TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.String,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="typeCode">The type code.</param>
             <param name="typeName">The type name.</param>
             <param name="cells">All cells.</param>
@@ -6418,86 +6619,6 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType3TechniqueInfo.GetAdditional">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Uniqueness.Loops.UlDetailData">
-            <summary>
-            Provides all data for unique loops (basic and extended types).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlDetailData.#ctor(System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
-            <summary>
-            Provides passing data when initializing an instance of derived types.
-            </summary>
-            <param name="cells">All cells.</param>
-            <param name="digits">All digits.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlDetailData.Type">
-            <summary>
-            <para>
-            Indicates the type of the unique loop,
-            where the value is between 1 to 4.
-            </para>
-            <para>
-            You can find all types in detail in 'remarks' part of this page.
-            </para>
-            </summary>
-            <remarks>
-            All types:
-            <list type="table">
-            <item>Type 1<term></term>
-            <description>Basic type.</description>
-            </item>
-            <item>Type 2<term></term>
-            <description>Generalized locked candidates type.</description>
-            </item>
-            <item>Type 3<term></term>
-            <description>
-            Generalized subset type (+ naked or hidden subset).
-            </description>
-            </item>
-            <item>Type 4<term></term>
-            <description>Conjugate pair type.</description>
-            </item>
-            </list>
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlDetailData.Cells">
-            <summary>
-            Indicates all cells used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlDetailData.Digits">
-            <summary>
-            Indicates all digits used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlDetailData.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlDetailData.Equals(Sudoku.Solving.Manual.Uniqueness.Loops.UlDetailData)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlDetailData.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlDetailData.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlDetailData.op_Equality(Sudoku.Solving.Manual.Uniqueness.Loops.UlDetailData,Sudoku.Solving.Manual.Uniqueness.Loops.UlDetailData)">
-            <operator name="op_Equality">
-		<summary>Indicates whether two instances have a same value.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
-	</operator>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlDetailData.op_Inequality(Sudoku.Solving.Manual.Uniqueness.Loops.UlDetailData,Sudoku.Solving.Manual.Uniqueness.Loops.UlDetailData)">
-            <operator name="op_Inequality">
-		<summary>Indicates whether two instances have two different values.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
-	</operator>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueInfo">
             <summary>
             Provides a usage of <b>unique loop</b> (UL) technique.
@@ -6509,11 +6630,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.GridMap)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="d1">The digit 1.</param>
             <param name="d2">The digit 2.</param>
             <param name="loop">The loop.</param>
@@ -6646,11 +6769,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.GridMap,System.Int32)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="d1">The digit 1.</param>
             <param name="d2">The digit 2.</param>
             <param name="loop">The loop.</param>
@@ -6673,11 +6798,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType3TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.GridMap,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32})">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="d1">The digit 1.</param>
             <param name="d2">The digit 2.</param>
             <param name="loop">The loop.</param>
@@ -6706,11 +6833,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType4TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Solving.ConjugatePair)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="d1">The digit 1.</param>
             <param name="d2">The digit 2.</param>
             <param name="loop">The loop.</param>
@@ -6771,11 +6900,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,Sudoku.Data.GridMap)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="digitsMask">The digits mask.</param>
             <param name="map">The cells used.</param>
         </member>
@@ -6807,11 +6938,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,Sudoku.Data.GridMap,System.Int32)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="digitsMask">The digits mask.</param>
             <param name="map">The cells used.</param>
             <param name="extraDigit">The extra digit.</param>
@@ -6849,11 +6982,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int16)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="digitsMask">The digits mask.</param>
             <param name="map">The cells used.</param>
             <param name="extraCellsMap">The extra cells map.</param>
@@ -6897,11 +7032,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int16)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="digitsMask">The digits mask.</param>
             <param name="map">The cells used.</param>
             <param name="conjugateRegion">The conjugate region.</param>
@@ -7067,11 +7204,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Collections.Generic.IReadOnlyList{Sudoku.Solving.ConjugatePair},System.Boolean)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="digit1">The digit 1.</param>
             <param name="digit2">The digit 2.</param>
             <param name="cells">All cells.</param>
@@ -7088,11 +7227,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Int32,System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="typeCode">The type code.</param>
             <param name="digit1">The digit 1.</param>
             <param name="digit2">The digit 2.</param>
@@ -7133,11 +7274,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Collections.Generic.IReadOnlyList{Sudoku.Solving.ConjugatePair},System.Boolean)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="typeCode">The type code.</param>
             <param name="digit1">The digit 1.</param>
             <param name="digit2">The digit 2.</param>
@@ -7166,11 +7309,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Boolean)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="typeCode">The type code.</param>
             <param name="digit1">The digit 1.</param>
             <param name="digit2">The digit 2.</param>
@@ -7319,11 +7464,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Boolean)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="digit1">The digit 1.</param>
             <param name="digit2">The digit 2.</param>
             <param name="cells">All cells.</param>
@@ -7345,11 +7492,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="typeCode">The type code.</param>
             <param name="digit1">The digit 1.</param>
             <param name="digit2">The digit 2.</param>
@@ -7378,11 +7527,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32,System.Boolean,System.Boolean)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="digit1">The digit 1.</param>
             <param name="digit2">The digit 2.</param>
             <param name="cells">All cells.</param>
@@ -7613,11 +7764,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode,System.Int32,System.Int32,System.Int32[],System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="typeCode">The type code.</param>
             <param name="digit1">The digit 1.</param>
             <param name="digit2">The digit 2.</param>
@@ -7724,11 +7877,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Irregular.WWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Solving.ConjugatePair)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="conclusions">The conclusions.</param>
-            <param name="views">The views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="startCellOffset">Start cell offset.</param>
             <param name="endCellOffset">End cell offsets.</param>
             <param name="conjugatePair">The conjugate pair.</param>
@@ -7765,22 +7920,19 @@
             Provides a usage of <b>regular wing</b> technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.Names">
-            <summary>
-            The names.
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.DifficultyRating">
             <summary>
             The difficulty rating.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
-            <summary>
-            Initializes an instance with the information.
-            </summary>
-            <param name="conclusions">The conclusions.</param>
-            <param name="views">The views.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
             <param name="pivot">The pivot cell offset.</param>
             <param name="pivotCandidatesCount">
             The number of candidates in pivot cell.
@@ -7896,11 +8048,13 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
-            <summary>
-            Provides passing data when initializing an instance of derived types.
-            </summary>
-            <param name="conclusions">The conclusions.</param>
-            <param name="views">The views of this solving step.</param>
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
         </member>
         <member name="P:Sudoku.Solving.TechniqueInfo.ShowDifficulty">
             <summary>

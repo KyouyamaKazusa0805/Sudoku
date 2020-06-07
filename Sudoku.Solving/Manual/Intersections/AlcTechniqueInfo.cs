@@ -12,11 +12,7 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// </summary>
 	public sealed class AlcTechniqueInfo : IntersectionTechniqueInfo
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="digits">The digits.</param>
 		/// <param name="baseCells">The base cells.</param>
 		/// <param name="targetCells">The target cells.</param>

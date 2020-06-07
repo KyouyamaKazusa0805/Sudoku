@@ -3,7 +3,6 @@ using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Constants;
 
 namespace Sudoku.Solving.Manual.Subsets
 {
@@ -12,11 +11,7 @@ namespace Sudoku.Solving.Manual.Subsets
 	/// </summary>
 	public sealed class NakedSubsetTechniqueInfo : SubsetTechniqueInfo
 	{
-		/// <summary>
-		/// Provides passing data when initializing an instance of derived types.
-		/// </summary>
-		/// <param name="conclusions">The conclusions.</param>
-		/// <param name="views">The views of this solving step.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="regionOffset">The region offset.</param>
 		/// <param name="cellOffsets">The cell offsets.</param>
 		/// <param name="digits">The digits.</param>

@@ -27,11 +27,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		private readonly int _typeCode;
 
 
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="typeCode">The type code.</param>
 		/// <param name="typeName">The type name.</param>
 		/// <param name="cells">All cells.</param>

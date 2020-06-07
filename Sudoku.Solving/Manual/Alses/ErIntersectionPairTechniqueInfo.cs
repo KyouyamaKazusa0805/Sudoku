@@ -10,11 +10,7 @@ namespace Sudoku.Solving.Manual.Alses
 	/// </summary>
 	public sealed class ErIntersectionPairTechniqueInfo : AlsTechniqueInfo
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="startCell">The start cell.</param>
 		/// <param name="endCell">The end cell.</param>
 		/// <param name="region">The region that empty rectangle forms.</param>

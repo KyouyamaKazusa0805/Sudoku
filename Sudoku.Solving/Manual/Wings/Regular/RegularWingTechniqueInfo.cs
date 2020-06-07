@@ -4,6 +4,7 @@ using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Wings.Regular
 {
@@ -13,24 +14,12 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 	public sealed class RegularWingTechniqueInfo : WingTechniqueInfo
 	{
 		/// <summary>
-		/// The names.
-		/// </summary>
-		private static readonly string[] Names =
-		{
-			string.Empty, string.Empty, string.Empty, string.Empty, "WXYZ-Wing", "VWXYZ-Wing",
-			"UVWXYZ-Wing", "TUVWXYZ-Wing", "STUVWXYZ-Wing", "RSTUVWXYZ-Wing"
-		};
-
-		/// <summary>
 		/// The difficulty rating.
 		/// </summary>
 		private static readonly decimal[] DifficultyRating = { 0, 0, 0, 0, 4.6M, 4.8M, 5.1M, 5.4M, 5.7M, 6M };
 
-		/// <summary>
-		/// Initializes an instance with the information.
-		/// </summary>
-		/// <param name="conclusions">The conclusions.</param>
-		/// <param name="views">The views.</param>
+
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="pivot">The pivot cell offset.</param>
 		/// <param name="pivotCandidatesCount">
 		/// The number of candidates in pivot cell.
@@ -83,7 +72,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 					}
 					case int s when s >= 4 && s < 9:
 					{
-						return isIncompleted ? $"Incompleted {Names[Size]}" : Names[Size];
+						return isIncompleted ? $"Incompleted {RegularWingNames[Size]}" : RegularWingNames[Size];
 					}
 					default:
 					{

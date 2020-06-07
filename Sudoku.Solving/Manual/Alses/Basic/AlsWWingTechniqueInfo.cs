@@ -11,11 +11,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// </summary>
 	public sealed class AlsWWingTechniqueInfo : AlsTechniqueInfo
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="als1">The ALS 1.</param>
 		/// <param name="als2">The ALS 2.</param>
 		/// <param name="conjugatePair">The conjugate pair.</param>

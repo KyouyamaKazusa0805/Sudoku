@@ -9,11 +9,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// </summary>
 	public sealed class JuniorExocetTechniqueInfo : ExocetTechniqueInfo
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="exocet">The exocet.</param>
 		/// <param name="digits">All digits.</param>
 		/// <param name="lockedMemberQ">The locked member Q.</param>

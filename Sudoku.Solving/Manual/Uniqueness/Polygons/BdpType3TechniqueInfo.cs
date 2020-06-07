@@ -11,11 +11,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// </summary>
 	public sealed class BdpType3TechniqueInfo : UniquenessTechniqueInfo
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="digitsMask">The digits mask.</param>
 		/// <param name="map">The cells used.</param>
 		/// <param name="extraCellsMap">The extra cells map.</param>

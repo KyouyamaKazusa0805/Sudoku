@@ -10,11 +10,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// </summary>
 	public sealed class SkLoopTechniqueInfo : MslsTechniqueInfo
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="cells">All cells.</param>
 		public SkLoopTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, IReadOnlyList<int> cells)

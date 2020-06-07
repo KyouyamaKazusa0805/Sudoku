@@ -11,11 +11,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// </summary>
 	public sealed class BugType3TechniqueInfo : UniquenessTechniqueInfo
 	{
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
+		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="trueCandidates">All true candidates.</param>
 		/// <param name="digits">All digits.</param>
 		/// <param name="cells">All cells.</param>
