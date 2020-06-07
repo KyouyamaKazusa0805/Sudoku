@@ -99,7 +99,7 @@ The program supports technique below at present:
 * Almost Locked Sets: Empty Rectangle Intersection Pair, Extended Subset Principle, Almost Locked Sets XZ Rule, Almost Locked Sets XY-Wing, Almost Locked Sets W-Wing, Death Blossom<br/>待定数组：对交空矩形、伪数组、ALS-双强链、ALS-XY-Wing、ALS-W-Wing、死亡绽放
 * Chains: Alternating Inference Chain (+ Locked Candidates), Continuous Nice Loop (+ Locked Candidates)<br/>链：普通链（+区块）、普通环（+区块）
 * Last Resorts: Pattern Overlay Method, Template, Bowman's Bingo, Chute Clue Cover (Half implemented), Brute Force<br/>爆破技巧：图案叠加删减、模板、人工试数、大行列提示信息覆盖（实现了一半）、计算机试数
-* Exocet: Junior Exocet, Senior Exocet<br/>飞鱼导弹：初级飞鱼导弹、高级飞鱼导弹
+* Exocet: Junior Exocet, Senior Exocet, Complex Senior Exocet<br/>飞鱼导弹：初级飞鱼导弹、高级飞鱼导弹、复杂高级飞鱼导弹
 * Generalized Locked Sets: Sue de Coq (Basic & Cannibalized), Stephen Kurzhal's Loop, Multi-sector Locked Sets<br/>广义数组：融合待定数组（标准和自噬）、多米诺环、网
 * Other techniques: Gurth's Symmetrical Placement<br/>其它技巧：宇宙法
 
