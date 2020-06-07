@@ -18,13 +18,13 @@
 		<DefineConstants>DEBUG;SUDOKU_RECOGNIZING; TARGET_64BIT</DefineConstants>
 	</PropertyGroup>
 
-	<ItemGroup>
-	  <None Remove="Resources\ColorPalette.png" />
-	  <None Remove="Resources\ColorSample.png" />
-	</ItemGroup>
+	<!--<ItemGroup>
+		<None Remove="Resources\ColorPalette.png" />
+		<None Remove="Resources\ColorSample.png" />
+	</ItemGroup>-->
 
 	<ItemGroup>
-	  <PackageReference Include="WriteableBitmapEx" Version="1.6.5" />
+		<PackageReference Include="WriteableBitmapEx" Version="1.6.5" />
 	</ItemGroup>
 
 	<ItemGroup>

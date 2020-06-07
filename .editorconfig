@@ -288,6 +288,9 @@ dotnet_diagnostic.IDE0010.severity = silent
 # IDE0058: Expression value is never used
 csharp_style_unused_value_expression_statement_preference = discard_variable:none
 
+# IDE0072: Add missing cases
+dotnet_diagnostic.IDE0072.severity = none
+
 
 # CS8600: Converting null literal or possible null value to non-nullable type.
 dotnet_diagnostic.CS8600.severity = error
