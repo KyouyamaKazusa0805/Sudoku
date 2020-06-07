@@ -55,8 +55,6 @@ namespace Sudoku.Solving.Checking
 			this IReadOnlyGrid @this, [NotNullWhen(true)] out IReadOnlyGrid? solutionIfValid,
 			[NotNullWhen(true)] out bool? sukaku)
 		{
-			solutionIfValid = null;
-
 			if (new BitwiseSolver().CheckValidity(@this.ToString(), out string? solution))
 			{
 				solutionIfValid = Grid.Parse(solution);
@@ -71,6 +69,7 @@ namespace Sudoku.Solving.Checking
 			}
 			else
 			{
+				solutionIfValid = null;
 				sukaku = null;
 				return false;
 			}
@@ -158,6 +157,6 @@ namespace Sudoku.Solving.Checking
 		/// <param name="this">(<see langword="this"/> parameter) The puzzle.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool CanBeSolvedUsingOnlySsts(this IReadOnlyGrid @this) =>
-			@this.IsValid(out _) ? new ManualSolver().Solve(@this).DifficultyLevel <= DifficultyLevel.Advanced : false;
+			@this.IsValid(out _) && new ManualSolver().Solve(@this).DifficultyLevel <= DifficultyLevel.Advanced;
 	}
 }
