@@ -5,15 +5,15 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Extensions;
 
-namespace Sudoku.Solving.Manual.Exocets
+namespace Sudoku.Solving.Manual.Exocets.Eliminations
 {
 	/// <summary>
-	/// Indicates the mirror cell eliminations.
+	/// Indicates the swordfish pattern eliminations.
 	/// </summary>
-	public struct MirrorEliminations : IEnumerable<Conclusion>
+	public struct SwordfishEliminations : IEnumerable<Conclusion>
 	{
 		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="IEliminations"]'/>
-		public MirrorEliminations(IList<Conclusion> conclusions) => Conclusions = conclusions;
+		public SwordfishEliminations(IList<Conclusion> conclusions) => Conclusions = conclusions;
 
 
 		/// <include file='SolvingDocComments.xml' path='comments/property[@name="Count" and @type="IEliminations"]'/>
@@ -32,9 +32,9 @@ namespace Sudoku.Solving.Manual.Exocets
 			(Conclusions ??= new List<Conclusion>()).AddRange(conclusions, true);
 
 		/// <include file='SolvingDocComments.xml' path='comments/method[@name="Merge" and @type="IEliminations"]'/>
-		public readonly MirrorEliminations Merge(params MirrorEliminations?[] eliminations)
+		public readonly SwordfishEliminations Merge(params SwordfishEliminations?[] eliminations)
 		{
-			var result = new MirrorEliminations();
+			var result = new SwordfishEliminations();
 			foreach (var instance in eliminations)
 			{
 				if (instance is null)
@@ -53,18 +53,18 @@ namespace Sudoku.Solving.Manual.Exocets
 			(Conclusions ?? Array.Empty<Conclusion>()).GetEnumerator();
 
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='../../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override readonly string? ToString() =>
-			Conclusions is null ? null : $"  * Mirror eliminations: {new ConclusionCollection(Conclusions).ToString()}";
+			Conclusions is null ? null : $"  * Swordfish eliminations: {new ConclusionCollection(Conclusions).ToString()}";
 
 		/// <inheritdoc/>
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 
 		/// <include file='SolvingDocComments.xml' path='comments/method[@name="MergeAll" and @type="IEliminations"]'/>
-		public static MirrorEliminations MergeAll(IEnumerable<MirrorEliminations> list)
+		public static BibiPatternEliminations MergeAll(IEnumerable<BibiPatternEliminations> list)
 		{
-			var result = new MirrorEliminations();
+			var result = new BibiPatternEliminations();
 			foreach (var z in list)
 			{
 				if (z.Conclusions is null)
@@ -79,7 +79,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		}
 
 		/// <include file='SolvingDocComments.xml' path='comments/method[@name="MergeAll" and @type="IEliminations"]'/>
-		public static MirrorEliminations MergeAll(params MirrorEliminations[] list) =>
-			MergeAll((IEnumerable<MirrorEliminations>)list);
+		public static BibiPatternEliminations MergeAll(params BibiPatternEliminations[] list) =>
+			MergeAll((IEnumerable<BibiPatternEliminations>)list);
 	}
 }

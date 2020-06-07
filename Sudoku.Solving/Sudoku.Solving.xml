@@ -2641,12 +2641,12 @@
             <param name="node">The node.</param>
             <param name="map">The map.</param>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations">
+        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations">
             <summary>
             Indicates the Bi-bi pattern eliminations.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
             <constructor type="IEliminations">
 		<summary>
 			Initializes an instance with the specified information.
@@ -2654,21 +2654,21 @@
 		<param name="conclusions">All conclusions.</param>
 	</constructor>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.Count">
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.Count">
             <property name="Count" type="IEliminations">
 		<summary>
 			Indicates the number of all conclusions.
 		</summary>
 	</property>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.Conclusions">
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.Conclusions">
             <property name="Conclusions" type="IEliminations">
 		<summary>
 			Indicates the conclusions.
 		</summary>
 	</property>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.Add(Sudoku.Data.Conclusion)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.Add(Sudoku.Data.Conclusion)">
             <method name="Add" type="IEliminations">
 		<summary>
 			Add the conclusion into the collection.
@@ -2676,7 +2676,7 @@
 		<param name="conclusion">The conclusion.</param>
 	</method>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <method name="AddRange" type="IEliminations">
 		<summary>
 			Add a serial of conclusions into this collection.
@@ -2684,7 +2684,7 @@
 		<param name="conclusions">All conclusions.</param>
 	</method>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.BibiPatternEliminations}[])">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations}[])">
             <method name="Merge" type="IEliminations">
 		<summary>
 			Merge all eliminations.
@@ -2693,19 +2693,19 @@
 		<returns>The merged result.</returns>
 	</method>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.GetEnumerator">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.ToString">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.ToString">
             <method name="ToString" paramType="__noparam">
 		<summary>Returns a string that represents the current object.</summary>
 		<returns>A string that represents the current object.</returns>
 	</method>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.BibiPatternEliminations})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations})">
             <method name="MergeAll" type="IEliminations">
 		<summary>
 			Merge all conclusions.
@@ -2714,7 +2714,7 @@
 		<returns>The merged result.</returns>
 	</method>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.BibiPatternEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.BibiPatternEliminations[])">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations[])">
             <method name="MergeAll" type="IEliminations">
 		<summary>
 			Merge all conclusions.
@@ -2723,12 +2723,12 @@
 		<returns>The merged result.</returns>
 	</method>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations">
+        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations">
             <summary>
             Indicates the compatibility test eliminations.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
             <constructor type="IEliminations">
 		<summary>
 			Initializes an instance with the specified information.
@@ -2736,21 +2736,21 @@
 		<param name="conclusions">All conclusions.</param>
 	</constructor>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.Count">
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.Count">
             <property name="Count" type="IEliminations">
 		<summary>
 			Indicates the number of all conclusions.
 		</summary>
 	</property>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.Conclusions">
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.Conclusions">
             <property name="Conclusions" type="IEliminations">
 		<summary>
 			Indicates the conclusions.
 		</summary>
 	</property>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.Add(Sudoku.Data.Conclusion)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.Add(Sudoku.Data.Conclusion)">
             <method name="Add" type="IEliminations">
 		<summary>
 			Add the conclusion into the collection.
@@ -2758,7 +2758,7 @@
 		<param name="conclusion">The conclusion.</param>
 	</method>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <method name="AddRange" type="IEliminations">
 		<summary>
 			Add a serial of conclusions into this collection.
@@ -2766,7 +2766,7 @@
 		<param name="conclusions">All conclusions.</param>
 	</method>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations}[])">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations}[])">
             <method name="Merge" type="IEliminations">
 		<summary>
 			Merge all eliminations.
@@ -2775,19 +2775,19 @@
 		<returns>The merged result.</returns>
 	</method>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.GetEnumerator">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.ToString">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.ToString">
             <method name="ToString" paramType="__noparam">
 		<summary>Returns a string that represents the current object.</summary>
 		<returns>A string that represents the current object.</returns>
 	</method>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations})">
             <method name="MergeAll" type="IEliminations">
 		<summary>
 			Merge all conclusions.
@@ -2796,7 +2796,417 @@
 		<returns>The merged result.</returns>
 	</method>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations[])">
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations[])">
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations">
+            <summary>
+            Indicates the mirror cell eliminations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
+            <constructor type="IEliminations">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</constructor>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.Count">
+            <property name="Count" type="IEliminations">
+		<summary>
+			Indicates the number of all conclusions.
+		</summary>
+	</property>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.Conclusions">
+            <property name="Conclusions" type="IEliminations">
+		<summary>
+			Indicates the conclusions.
+		</summary>
+	</property>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.Add(Sudoku.Data.Conclusion)">
+            <method name="Add" type="IEliminations">
+		<summary>
+			Add the conclusion into the collection.
+		</summary>
+		<param name="conclusion">The conclusion.</param>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
+            <method name="AddRange" type="IEliminations">
+		<summary>
+			Add a serial of conclusions into this collection.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations}[])">
+            <method name="Merge" type="IEliminations">
+		<summary>
+			Merge all eliminations.
+		</summary>
+		<param name="eliminations">All instances to merge.</param>
+		<returns>The merged result.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations})">
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations[])">
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations">
+            <summary>
+            Indicates the swordfish pattern eliminations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
+            <constructor type="IEliminations">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</constructor>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.Count">
+            <property name="Count" type="IEliminations">
+		<summary>
+			Indicates the number of all conclusions.
+		</summary>
+	</property>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.Conclusions">
+            <property name="Conclusions" type="IEliminations">
+		<summary>
+			Indicates the conclusions.
+		</summary>
+	</property>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.Add(Sudoku.Data.Conclusion)">
+            <method name="Add" type="IEliminations">
+		<summary>
+			Add the conclusion into the collection.
+		</summary>
+		<param name="conclusion">The conclusion.</param>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
+            <method name="AddRange" type="IEliminations">
+		<summary>
+			Add a serial of conclusions into this collection.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations}[])">
+            <method name="Merge" type="IEliminations">
+		<summary>
+			Merge all eliminations.
+		</summary>
+		<param name="eliminations">All instances to merge.</param>
+		<returns>The merged result.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations})">
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations[])">
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations">
+            <summary>
+            Indicates the target eliminations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
+            <constructor type="IEliminations">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</constructor>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.Count">
+            <property name="Count" type="IEliminations">
+		<summary>
+			Indicates the number of all conclusions.
+		</summary>
+	</property>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.Conclusions">
+            <property name="Conclusions" type="IEliminations">
+		<summary>
+			Indicates the conclusions.
+		</summary>
+	</property>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.Add(Sudoku.Data.Conclusion)">
+            <method name="Add" type="IEliminations">
+		<summary>
+			Add the conclusion into the collection.
+		</summary>
+		<param name="conclusion">The conclusion.</param>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
+            <method name="AddRange" type="IEliminations">
+		<summary>
+			Add a serial of conclusions into this collection.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations}[])">
+            <method name="Merge" type="IEliminations">
+		<summary>
+			Merge all eliminations.
+		</summary>
+		<param name="eliminations">All instances to merge.</param>
+		<returns>The merged result.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations})">
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations[])">
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations">
+            <summary>
+            Indicates the target pair eliminations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
+            <constructor type="IEliminations">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</constructor>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.Count">
+            <property name="Count" type="IEliminations">
+		<summary>
+			Indicates the number of all conclusions.
+		</summary>
+	</property>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.Conclusions">
+            <property name="Conclusions" type="IEliminations">
+		<summary>
+			Indicates the conclusions.
+		</summary>
+	</property>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.Add(Sudoku.Data.Conclusion)">
+            <method name="Add" type="IEliminations">
+		<summary>
+			Add the conclusion into the collection.
+		</summary>
+		<param name="conclusion">The conclusion.</param>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
+            <method name="AddRange" type="IEliminations">
+		<summary>
+			Add a serial of conclusions into this collection.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations}[])">
+            <method name="Merge" type="IEliminations">
+		<summary>
+			Merge all eliminations.
+		</summary>
+		<param name="eliminations">All instances to merge.</param>
+		<returns>The merged result.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations})">
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations[])">
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations">
+            <summary>
+            Indicates the true base eliminations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
+            <constructor type="IEliminations">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</constructor>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.Count">
+            <property name="Count" type="IEliminations">
+		<summary>
+			Indicates the number of all conclusions.
+		</summary>
+	</property>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.Conclusions">
+            <property name="Conclusions" type="IEliminations">
+		<summary>
+			Indicates the conclusions.
+		</summary>
+	</property>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.Add(Sudoku.Data.Conclusion)">
+            <method name="Add" type="IEliminations">
+		<summary>
+			Add the conclusion into the collection.
+		</summary>
+		<param name="conclusion">The conclusion.</param>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
+            <method name="AddRange" type="IEliminations">
+		<summary>
+			Add a serial of conclusions into this collection.
+		</summary>
+		<param name="conclusions">All conclusions.</param>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations}[])">
+            <method name="Merge" type="IEliminations">
+		<summary>
+			Merge all eliminations.
+		</summary>
+		<param name="eliminations">All instances to merge.</param>
+		<returns>The merged result.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations})">
+            <method name="MergeAll" type="IEliminations">
+		<summary>
+			Merge all conclusions.
+		</summary>
+		<param name="list">The list.</param>
+		<returns>The merged result.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations[])">
             <method name="MergeAll" type="IEliminations">
 		<summary>
 			Merge all conclusions.
@@ -2957,7 +3367,7 @@
             Provides a usage of <b>exocet</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.TechniqueCode,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.TargetEliminations,Sudoku.Solving.Manual.Exocets.MirrorEliminations,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations,Sudoku.Solving.Manual.Exocets.TargetPairEliminations,Sudoku.Solving.Manual.Exocets.SwordfishEliminations,Sudoku.Solving.Manual.Exocets.TrueBaseEliminations,Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.TechniqueCode,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations)">
             <constructor type="TechniqueInfo">
 		<summary>
 			Initializes an instance with the specified information.
@@ -3179,7 +3589,7 @@
             Provides a usage of <b>junior exocet</b> (JE) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.TargetEliminations,Sudoku.Solving.Manual.Exocets.MirrorEliminations,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations,Sudoku.Solving.Manual.Exocets.TargetPairEliminations,Sudoku.Solving.Manual.Exocets.SwordfishEliminations)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations)">
             <constructor type="TechniqueInfo">
 		<summary>
 			Initializes an instance with the specified information.
@@ -3247,7 +3657,7 @@
             <param name="candidateOffsets">The highliht candidates.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.GatheringTargetEliminations(System.Int32,Sudoku.Data.IReadOnlyGrid,System.Int16,System.Int16,Sudoku.Solving.Manual.Exocets.TargetEliminations@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.GatheringTargetEliminations(System.Int32,Sudoku.Data.IReadOnlyGrid,System.Int16,System.Int16,Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations@)">
             <summary>
             The method for gathering target eliminations.
             </summary>
@@ -3282,7 +3692,7 @@
             <param name="otherRegion">(<see langword="out"/> parameter) The other region.</param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.CheckBibiPattern(Sudoku.Data.IReadOnlyGrid,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,System.Boolean,System.Int16,System.Int16,Sudoku.Data.GridMap,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations@,Sudoku.Solving.Manual.Exocets.TargetPairEliminations@,Sudoku.Solving.Manual.Exocets.SwordfishEliminations@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.CheckBibiPattern(Sudoku.Data.IReadOnlyGrid,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,System.Boolean,System.Int16,System.Int16,Sudoku.Data.GridMap,Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.TargetPairEliminations@,Sudoku.Solving.Manual.Exocets.Eliminations.SwordfishEliminations@)">
             <summary>
             Check Bi-bi pattern eliminations.
             </summary>
@@ -3312,94 +3722,12 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating whether the pattern exists.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Exocets.MirrorEliminations">
-            <summary>
-            Indicates the mirror cell eliminations.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <constructor type="IEliminations">
-		<summary>
-			Initializes an instance with the specified information.
-		</summary>
-		<param name="conclusions">All conclusions.</param>
-	</constructor>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Count">
-            <property name="Count" type="IEliminations">
-		<summary>
-			Indicates the number of all conclusions.
-		</summary>
-	</property>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Conclusions">
-            <property name="Conclusions" type="IEliminations">
-		<summary>
-			Indicates the conclusions.
-		</summary>
-	</property>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Add(Sudoku.Data.Conclusion)">
-            <method name="Add" type="IEliminations">
-		<summary>
-			Add the conclusion into the collection.
-		</summary>
-		<param name="conclusion">The conclusion.</param>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <method name="AddRange" type="IEliminations">
-		<summary>
-			Add a serial of conclusions into this collection.
-		</summary>
-		<param name="conclusions">All conclusions.</param>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.MirrorEliminations}[])">
-            <method name="Merge" type="IEliminations">
-		<summary>
-			Merge all eliminations.
-		</summary>
-		<param name="eliminations">All instances to merge.</param>
-		<returns>The merged result.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.ToString">
-            <method name="ToString" paramType="__noparam">
-		<summary>Returns a string that represents the current object.</summary>
-		<returns>A string that represents the current object.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.MirrorEliminations})">
-            <method name="MergeAll" type="IEliminations">
-		<summary>
-			Merge all conclusions.
-		</summary>
-		<param name="list">The list.</param>
-		<returns>The merged result.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.MirrorEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.MirrorEliminations[])">
-            <method name="MergeAll" type="IEliminations">
-		<summary>
-			Merge all conclusions.
-		</summary>
-		<param name="list">The list.</param>
-		<returns>The merged result.</returns>
-	</method>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo">
             <summary>
             Provides a usage of <b>senior exocet</b> (SE) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},System.Int32,Sudoku.Solving.Manual.Exocets.TargetEliminations,Sudoku.Solving.Manual.Exocets.TrueBaseEliminations,Sudoku.Solving.Manual.Exocets.MirrorEliminations,Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},System.Int32,Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations)">
             <constructor type="TechniqueInfo">
 		<summary>
 			Initializes an instance with the specified information.
@@ -3489,7 +3817,7 @@
             <param name="t2">The target cell 2.</param>
             <returns>The mask of all incompatible values.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest2(Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Exocets.CompatibilityTestEliminations@,Sudoku.Data.GridMap,System.Int16,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest2(Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations@,Sudoku.Data.GridMap,System.Int16,System.Int32,System.Int32)">
             <summary>
             The compatibility testing after the method
             <see cref="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest(System.Int16,Sudoku.Data.GridMap[],Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int32,System.Int32)"/>.
@@ -3501,334 +3829,6 @@
             <param name="t1">The target cell 1.</param>
             <param name="t2">The target cell 2.</param>
             <seealso cref="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest(System.Int16,Sudoku.Data.GridMap[],Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int32,System.Int32)"/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Exocets.SwordfishEliminations">
-            <summary>
-            Indicates the swordfish pattern eliminations.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <constructor type="IEliminations">
-		<summary>
-			Initializes an instance with the specified information.
-		</summary>
-		<param name="conclusions">All conclusions.</param>
-	</constructor>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.Count">
-            <property name="Count" type="IEliminations">
-		<summary>
-			Indicates the number of all conclusions.
-		</summary>
-	</property>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.Conclusions">
-            <property name="Conclusions" type="IEliminations">
-		<summary>
-			Indicates the conclusions.
-		</summary>
-	</property>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.Add(Sudoku.Data.Conclusion)">
-            <method name="Add" type="IEliminations">
-		<summary>
-			Add the conclusion into the collection.
-		</summary>
-		<param name="conclusion">The conclusion.</param>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <method name="AddRange" type="IEliminations">
-		<summary>
-			Add a serial of conclusions into this collection.
-		</summary>
-		<param name="conclusions">All conclusions.</param>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.SwordfishEliminations}[])">
-            <method name="Merge" type="IEliminations">
-		<summary>
-			Merge all eliminations.
-		</summary>
-		<param name="eliminations">All instances to merge.</param>
-		<returns>The merged result.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.ToString">
-            <method name="ToString" paramType="__noparam">
-		<summary>Returns a string that represents the current object.</summary>
-		<returns>A string that represents the current object.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.BibiPatternEliminations})">
-            <method name="MergeAll" type="IEliminations">
-		<summary>
-			Merge all conclusions.
-		</summary>
-		<param name="list">The list.</param>
-		<returns>The merged result.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SwordfishEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.BibiPatternEliminations[])">
-            <method name="MergeAll" type="IEliminations">
-		<summary>
-			Merge all conclusions.
-		</summary>
-		<param name="list">The list.</param>
-		<returns>The merged result.</returns>
-	</method>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Exocets.TargetEliminations">
-            <summary>
-            Indicates the target eliminations.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <constructor type="IEliminations">
-		<summary>
-			Initializes an instance with the specified information.
-		</summary>
-		<param name="conclusions">All conclusions.</param>
-	</constructor>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.TargetEliminations.Count">
-            <property name="Count" type="IEliminations">
-		<summary>
-			Indicates the number of all conclusions.
-		</summary>
-	</property>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.TargetEliminations.Conclusions">
-            <property name="Conclusions" type="IEliminations">
-		<summary>
-			Indicates the conclusions.
-		</summary>
-	</property>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.Add(Sudoku.Data.Conclusion)">
-            <method name="Add" type="IEliminations">
-		<summary>
-			Add the conclusion into the collection.
-		</summary>
-		<param name="conclusion">The conclusion.</param>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <method name="AddRange" type="IEliminations">
-		<summary>
-			Add a serial of conclusions into this collection.
-		</summary>
-		<param name="conclusions">All conclusions.</param>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.TargetEliminations}[])">
-            <method name="Merge" type="IEliminations">
-		<summary>
-			Merge all eliminations.
-		</summary>
-		<param name="eliminations">All instances to merge.</param>
-		<returns>The merged result.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.ToString">
-            <method name="ToString" paramType="__noparam">
-		<summary>Returns a string that represents the current object.</summary>
-		<returns>A string that represents the current object.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.TargetEliminations})">
-            <method name="MergeAll" type="IEliminations">
-		<summary>
-			Merge all conclusions.
-		</summary>
-		<param name="list">The list.</param>
-		<returns>The merged result.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.TargetEliminations[])">
-            <method name="MergeAll" type="IEliminations">
-		<summary>
-			Merge all conclusions.
-		</summary>
-		<param name="list">The list.</param>
-		<returns>The merged result.</returns>
-	</method>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Exocets.TargetPairEliminations">
-            <summary>
-            Indicates the target pair eliminations.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <constructor type="IEliminations">
-		<summary>
-			Initializes an instance with the specified information.
-		</summary>
-		<param name="conclusions">All conclusions.</param>
-	</constructor>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.Count">
-            <property name="Count" type="IEliminations">
-		<summary>
-			Indicates the number of all conclusions.
-		</summary>
-	</property>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.Conclusions">
-            <property name="Conclusions" type="IEliminations">
-		<summary>
-			Indicates the conclusions.
-		</summary>
-	</property>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.Add(Sudoku.Data.Conclusion)">
-            <method name="Add" type="IEliminations">
-		<summary>
-			Add the conclusion into the collection.
-		</summary>
-		<param name="conclusion">The conclusion.</param>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <method name="AddRange" type="IEliminations">
-		<summary>
-			Add a serial of conclusions into this collection.
-		</summary>
-		<param name="conclusions">All conclusions.</param>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.TargetPairEliminations}[])">
-            <method name="Merge" type="IEliminations">
-		<summary>
-			Merge all eliminations.
-		</summary>
-		<param name="eliminations">All instances to merge.</param>
-		<returns>The merged result.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.ToString">
-            <method name="ToString" paramType="__noparam">
-		<summary>Returns a string that represents the current object.</summary>
-		<returns>A string that represents the current object.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.TargetPairEliminations})">
-            <method name="MergeAll" type="IEliminations">
-		<summary>
-			Merge all conclusions.
-		</summary>
-		<param name="list">The list.</param>
-		<returns>The merged result.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TargetPairEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.TargetPairEliminations[])">
-            <method name="MergeAll" type="IEliminations">
-		<summary>
-			Merge all conclusions.
-		</summary>
-		<param name="list">The list.</param>
-		<returns>The merged result.</returns>
-	</method>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations">
-            <summary>
-            Indicates the true base eliminations.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.#ctor(System.Collections.Generic.IList{Sudoku.Data.Conclusion})">
-            <constructor type="IEliminations">
-		<summary>
-			Initializes an instance with the specified information.
-		</summary>
-		<param name="conclusions">All conclusions.</param>
-	</constructor>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.Count">
-            <property name="Count" type="IEliminations">
-		<summary>
-			Indicates the number of all conclusions.
-		</summary>
-	</property>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.Conclusions">
-            <property name="Conclusions" type="IEliminations">
-		<summary>
-			Indicates the conclusions.
-		</summary>
-	</property>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.Add(Sudoku.Data.Conclusion)">
-            <method name="Add" type="IEliminations">
-		<summary>
-			Add the conclusion into the collection.
-		</summary>
-		<param name="conclusion">The conclusion.</param>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <method name="AddRange" type="IEliminations">
-		<summary>
-			Add a serial of conclusions into this collection.
-		</summary>
-		<param name="conclusions">All conclusions.</param>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.Merge(System.Nullable{Sudoku.Solving.Manual.Exocets.TrueBaseEliminations}[])">
-            <method name="Merge" type="IEliminations">
-		<summary>
-			Merge all eliminations.
-		</summary>
-		<param name="eliminations">All instances to merge.</param>
-		<returns>The merged result.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.ToString">
-            <method name="ToString" paramType="__noparam">
-		<summary>Returns a string that represents the current object.</summary>
-		<returns>A string that represents the current object.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.MergeAll(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Exocets.TrueBaseEliminations})">
-            <method name="MergeAll" type="IEliminations">
-		<summary>
-			Merge all conclusions.
-		</summary>
-		<param name="list">The list.</param>
-		<returns>The merged result.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.TrueBaseEliminations.MergeAll(Sudoku.Solving.Manual.Exocets.TrueBaseEliminations[])">
-            <method name="MergeAll" type="IEliminations">
-		<summary>
-			Merge all conclusions.
-		</summary>
-		<param name="list">The list.</param>
-		<returns>The merged result.</returns>
-	</method>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.FishTechniqueInfo">
             <summary>

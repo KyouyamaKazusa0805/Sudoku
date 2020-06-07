@@ -5,15 +5,15 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Extensions;
 
-namespace Sudoku.Solving.Manual.Exocets
+namespace Sudoku.Solving.Manual.Exocets.Eliminations
 {
 	/// <summary>
-	/// Indicates the compatibility test eliminations.
+	/// Indicates the true base eliminations.
 	/// </summary>
-	public struct CompatibilityTestEliminations : IEnumerable<Conclusion>
+	public struct TrueBaseEliminations : IEnumerable<Conclusion>
 	{
 		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="IEliminations"]'/>
-		public CompatibilityTestEliminations(IList<Conclusion> conclusions) => Conclusions = conclusions;
+		public TrueBaseEliminations(IList<Conclusion> conclusions) => Conclusions = conclusions;
 
 
 		/// <include file='SolvingDocComments.xml' path='comments/property[@name="Count" and @type="IEliminations"]'/>
@@ -32,9 +32,9 @@ namespace Sudoku.Solving.Manual.Exocets
 			(Conclusions ??= new List<Conclusion>()).AddRange(conclusions, true);
 
 		/// <include file='SolvingDocComments.xml' path='comments/method[@name="Merge" and @type="IEliminations"]'/>
-		public readonly CompatibilityTestEliminations Merge(params CompatibilityTestEliminations?[] eliminations)
+		public readonly TrueBaseEliminations Merge(params TrueBaseEliminations?[] eliminations)
 		{
-			var result = new CompatibilityTestEliminations();
+			var result = new TrueBaseEliminations();
 			foreach (var instance in eliminations)
 			{
 				if (instance is null)
@@ -53,18 +53,18 @@ namespace Sudoku.Solving.Manual.Exocets
 			(Conclusions ?? Array.Empty<Conclusion>()).GetEnumerator();
 
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='../../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override readonly string? ToString() =>
-			Conclusions is null ? null : $"  * Compatibility test: {new ConclusionCollection(Conclusions).ToString()}";
+			Conclusions is null ? null : $"  * True base eliminations: {new ConclusionCollection(Conclusions).ToString()}";
 
 		/// <inheritdoc/>
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 
 		/// <include file='SolvingDocComments.xml' path='comments/method[@name="MergeAll" and @type="IEliminations"]'/>
-		public static CompatibilityTestEliminations MergeAll(IEnumerable<CompatibilityTestEliminations> list)
+		public static TrueBaseEliminations MergeAll(IEnumerable<TrueBaseEliminations> list)
 		{
-			var result = new CompatibilityTestEliminations();
+			var result = new TrueBaseEliminations();
 			foreach (var z in list)
 			{
 				if (z.Conclusions is null)
@@ -79,7 +79,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		}
 
 		/// <include file='SolvingDocComments.xml' path='comments/method[@name="MergeAll" and @type="IEliminations"]'/>
-		public static CompatibilityTestEliminations MergeAll(params CompatibilityTestEliminations[] list) =>
-			MergeAll((IEnumerable<CompatibilityTestEliminations>)list);
+		public static TrueBaseEliminations MergeAll(params TrueBaseEliminations[] list) =>
+			MergeAll((IEnumerable<TrueBaseEliminations>)list);
 	}
 }

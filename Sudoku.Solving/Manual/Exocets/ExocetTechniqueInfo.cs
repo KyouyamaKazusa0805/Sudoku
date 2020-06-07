@@ -5,6 +5,7 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using Sudoku.Solving.Manual.Exocets.Eliminations;
 
 namespace Sudoku.Solving.Manual.Exocets
 {

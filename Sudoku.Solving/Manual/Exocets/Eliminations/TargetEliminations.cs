@@ -5,15 +5,15 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Extensions;
 
-namespace Sudoku.Solving.Manual.Exocets
+namespace Sudoku.Solving.Manual.Exocets.Eliminations
 {
 	/// <summary>
-	/// Indicates the target pair eliminations.
+	/// Indicates the target eliminations.
 	/// </summary>
-	public struct TargetPairEliminations : IEnumerable<Conclusion>
+	public struct TargetEliminations : IEnumerable<Conclusion>
 	{
 		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="IEliminations"]'/>
-		public TargetPairEliminations(IList<Conclusion> conclusions) => Conclusions = conclusions;
+		public TargetEliminations(IList<Conclusion> conclusions) => Conclusions = conclusions;
 
 
 		/// <include file='SolvingDocComments.xml' path='comments/property[@name="Count" and @type="IEliminations"]'/>
@@ -32,9 +32,9 @@ namespace Sudoku.Solving.Manual.Exocets
 			(Conclusions ??= new List<Conclusion>()).AddRange(conclusions, true);
 
 		/// <include file='SolvingDocComments.xml' path='comments/method[@name="Merge" and @type="IEliminations"]'/>
-		public readonly TargetPairEliminations Merge(params TargetPairEliminations?[] eliminations)
+		public readonly TargetEliminations Merge(params TargetEliminations?[] eliminations)
 		{
-			var result = new TargetPairEliminations();
+			var result = new TargetEliminations();
 			foreach (var instance in eliminations)
 			{
 				if (instance is null)
@@ -53,18 +53,18 @@ namespace Sudoku.Solving.Manual.Exocets
 			(Conclusions ?? Array.Empty<Conclusion>()).GetEnumerator();
 
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='../../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override readonly string? ToString() =>
-			Conclusions is null ? null : $"  * Target pair eliminations: {new ConclusionCollection(Conclusions).ToString()}";
+			Conclusions is null ? null : $"  * Target eliminations: {new ConclusionCollection(Conclusions).ToString()}";
 
 		/// <inheritdoc/>
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 
 		/// <include file='SolvingDocComments.xml' path='comments/method[@name="MergeAll" and @type="IEliminations"]'/>
-		public static TargetPairEliminations MergeAll(IEnumerable<TargetPairEliminations> list)
+		public static TargetEliminations MergeAll(IEnumerable<TargetEliminations> list)
 		{
-			var result = new TargetPairEliminations();
+			var result = new TargetEliminations();
 			foreach (var z in list)
 			{
 				if (z.Conclusions is null)
@@ -79,7 +79,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		}
 
 		/// <include file='SolvingDocComments.xml' path='comments/method[@name="MergeAll" and @type="IEliminations"]'/>
-		public static TargetPairEliminations MergeAll(params TargetPairEliminations[] list) =>
-			MergeAll((IEnumerable<TargetPairEliminations>)list);
+		public static TargetEliminations MergeAll(params TargetEliminations[] list) =>
+			MergeAll((IEnumerable<TargetEliminations>)list);
 	}
 }

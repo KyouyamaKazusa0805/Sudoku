@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
+using Sudoku.Solving.Manual.Exocets.Eliminations;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.CellStatus;

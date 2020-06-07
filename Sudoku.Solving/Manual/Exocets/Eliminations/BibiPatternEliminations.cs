@@ -5,15 +5,15 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Extensions;
 
-namespace Sudoku.Solving.Manual.Exocets
+namespace Sudoku.Solving.Manual.Exocets.Eliminations
 {
 	/// <summary>
-	/// Indicates the swordfish pattern eliminations.
+	/// Indicates the Bi-bi pattern eliminations.
 	/// </summary>
-	public struct SwordfishEliminations : IEnumerable<Conclusion>
+	public struct BibiPatternEliminations : IEnumerable<Conclusion>
 	{
 		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="IEliminations"]'/>
-		public SwordfishEliminations(IList<Conclusion> conclusions) => Conclusions = conclusions;
+		public BibiPatternEliminations(IList<Conclusion> conclusions) => Conclusions = conclusions;
 
 
 		/// <include file='SolvingDocComments.xml' path='comments/property[@name="Count" and @type="IEliminations"]'/>
@@ -32,9 +32,9 @@ namespace Sudoku.Solving.Manual.Exocets
 			(Conclusions ??= new List<Conclusion>()).AddRange(conclusions, true);
 
 		/// <include file='SolvingDocComments.xml' path='comments/method[@name="Merge" and @type="IEliminations"]'/>
-		public readonly SwordfishEliminations Merge(params SwordfishEliminations?[] eliminations)
+		public readonly BibiPatternEliminations Merge(params BibiPatternEliminations?[] eliminations)
 		{
-			var result = new SwordfishEliminations();
+			var result = new BibiPatternEliminations();
 			foreach (var instance in eliminations)
 			{
 				if (instance is null)
@@ -53,9 +53,9 @@ namespace Sudoku.Solving.Manual.Exocets
 			(Conclusions ?? Array.Empty<Conclusion>()).GetEnumerator();
 
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='../../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override readonly string? ToString() =>
-			Conclusions is null ? null : $"  * Swordfish eliminations: {new ConclusionCollection(Conclusions).ToString()}";
+			Conclusions is null ? null : $"  * Bi-bi pattern eliminations: {new ConclusionCollection(Conclusions).ToString()}";
 
 		/// <inheritdoc/>
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
