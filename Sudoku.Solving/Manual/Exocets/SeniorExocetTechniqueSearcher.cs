@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -42,8 +43,10 @@ namespace Sudoku.Solving.Manual.Exocets
 		{
 			var compatibleCells = (Span<int>)stackalloc int[4];
 			var cover = (Span<int>)stackalloc int[8];
+			int zzzzz = -1;
 			foreach (var exocet in Exocets)
 			{
+				zzzzz++;
 				var (baseMap, targetMap, _) = exocet;
 				var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2) = exocet;
 				if (grid.GetCandidateMask(b1).CountSet() < 2 || grid.GetCandidateMask(b2).CountSet() < 2)
@@ -59,7 +62,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				int r = GetRegion(b1, Row) - 9, c = GetRegion(b1, Column) - 18;
 				foreach (int pos in (Grid.MaxCandidatesMask & ~(1 << (isRow ? r : c))).GetAllSets())
 				{
-					cover[i++] = isRow ? pos : pos + 9;
+					cover[i++] = isRow ? pos + 9 : pos + 18;
 				}
 
 				i = 0;
@@ -80,7 +83,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				var tempTarget = new List<int>();
 				for (i = 0; i < 8; i++)
 				{
-					var check = temp & RegionMaps[cover[i] + 9];
+					var check = temp & RegionMaps[cover[i]];
 					if (check.Count != 1)
 					{
 						continue;
@@ -92,7 +95,6 @@ namespace Sudoku.Solving.Manual.Exocets
 				{
 					continue;
 				}
-
 				int borT = isRow ? b1 / 9 / 3 : b1 % 9 / 3; // Base or target (B or T).
 				foreach (int[] combination in GetCombinationsOfArray(tempTarget.ToArray(), 2))
 				{
@@ -114,8 +116,8 @@ namespace Sudoku.Solving.Manual.Exocets
 						grid.GetCandidateMask(combination[0]) | grid.GetCandidateMask(combination[1])
 					) & ~baseCandidatesMask);
 					if (!CheckCrossline(
-						/*baseCellsMap, */tempCrosslineMap, DigitMaps, baseCandidatesMask,
-						combination[0], combination[1], isRow, out int extraRegionsMask))
+						baseMap, tempCrosslineMap, baseCandidatesMask,
+						combination[0], combination[1], isRow, out int[]? extraRegionsMask))
 					{
 						continue;
 					}
@@ -287,16 +289,23 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 
 					// Gather extra region cells (mutant exocets).
-					foreach (int region in extraRegionsMask.GetAllSets())
+					var extraMap = GridMap.Empty;
+					for (int digit = 0; digit < 9; digit++)
 					{
-						foreach (int cell in RegionCells[region])
+						foreach (int region in extraRegionsMask[digit].GetAllSets())
 						{
-							if (tempCrosslineMap[cell] || b1 == cell || b2 == cell)
+							foreach (int cell in RegionCells[region])
 							{
-								continue;
+								if (/*!tempCrosslineMap[cell] && */b1 != cell && b2 != cell && !extraMap[cell])
+								{
+									extraMap.Add(cell);
+									cellOffsets.Add((4, cell));
+								}
+								if (grid.Exists(cell, digit) is true)
+								{
+									candidateOffsets.Add((2, cell * 9 + digit));
+								}
 							}
-
-							cellOffsets.Add((2, cell));
 						}
 					}
 
@@ -314,6 +323,7 @@ namespace Sudoku.Solving.Manual.Exocets
 							exocet,
 							digits: m.GetAllSets(),
 							endoTargetCell,
+							extraRegionsMask,
 							targetEliminations: targetElims,
 							trueBaseEliminations: trueBaseElims,
 							mirrorEliminations: mirrorElims,
@@ -322,35 +332,31 @@ namespace Sudoku.Solving.Manual.Exocets
 			}
 		}
 
-		///// <summary>
-		///// Check the cross-line cells.
-		///// </summary>
-		///// <param name="baseCellsMap">The base cells map.</param>
 		/// <summary>
 		/// Check the cross-line cells.
 		/// </summary>
+		/// <param name="baseMap">The base cells map.</param>
 		/// <param name="tempCrossline">The cross-line map.</param>
-		/// <param name="digitMaps">The digit distributions.</param>
 		/// <param name="baseCandidatesMask">The base candidate mask.</param>
 		/// <param name="t1">The target cell 1.</param>
 		/// <param name="t2">The target cell 2.</param>
 		/// <param name="isRow">Indicates whether the specified computation is for rows.</param>
 		/// <param name="extraRegionsMask">
 		/// (<see langword="out"/> parameter) The extra region to add
-		/// (used for franken/mutant exocets). If normal, the value will be 0 (not null if
-		/// and only if need extra regions).
+		/// (used for franken/mutant exocets). If normal, the value will be an array with 9 elements
+		/// representing 9 different digits.
 		/// </param>
 		/// <returns>The <see cref="bool"/> result.</returns>
 		private bool CheckCrossline(
-			/*GridMap baseMap, */GridMap tempCrossline, GridMap[] digitMaps,
-			short baseCandidatesMask, int t1, int t2, bool isRow, out int extraRegionsMask)
+			GridMap baseMap, GridMap tempCrossline, short baseCandidatesMask,
+			int t1, int t2, bool isRow, [NotNullWhen(true)] out int[]? extraRegionsMask)
 		{
 			var xx = new GridMap { t1, t2 };
-			int tempMask = 0;
+			int[] tempMask = new int[9];
 			foreach (int digit in baseCandidatesMask.GetAllSets())
 			{
 				bool flag = true;
-				var temp = (tempCrossline & digitMaps[digit]) - xx;
+				var temp = (tempCrossline & DigitMaps[digit]) - xx;
 				if ((isRow ? temp.RowMask : temp.ColumnMask).CountSet() > 2)
 				{
 					flag = false;
@@ -361,21 +367,15 @@ namespace Sudoku.Solving.Manual.Exocets
 					continue;
 				}
 
-				#region Obsolete code
-				//if (DeepCrosslineCheck(
-				//	digit,
-				//	new GridMap(baseMap & digitDistributions[digit], ProcessPeersWithoutItself),
-				//	digitDistributions,
-				//	temp,
-				//	ref tempMask))
-				//{
-				//	continue;
-				//}
-				#endregion
+				// Extra regions check.
+				if (DeepCrosslineCheck(digit, (baseMap & DigitMaps[digit]).PeerIntersection, temp, tempMask))
+				{
+					continue;
+				}
 
 				if (!flag)
 				{
-					extraRegionsMask = 0;
+					extraRegionsMask = null;
 					return false;
 				}
 			}
@@ -389,17 +389,13 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </summary>
 		/// <param name="digit">The digit.</param>
 		/// <param name="baseElimMap">The base elimination map.</param>
-		/// <param name="digitMaps">The digit distributions.</param>
 		/// <param name="tempCrossline">The cross-line map.</param>
-		/// <param name="extraRegionsMask">
-		/// (<see langword="ref"/> parameter) The extra regions.
-		/// </param>
+		/// <param name="extraRegionsMask">The extra regions.</param>
 		/// <returns>The <see cref="bool"/> result.</returns>
 		private bool DeepCrosslineCheck(
-			int digit, GridMap baseElimMap, GridMap[] digitMaps, GridMap tempCrossline,
-			ref int extraRegionsMask)
+			int digit, GridMap baseElimMap, GridMap tempCrossline, int[] extraRegionsMask)
 		{
-			int i = default, p;
+			int region = default, p;
 			foreach (int[] combination in GetCombinationsOfArray(tempCrossline.ToArray(), 3))
 			{
 				var (a, b, c) = (combination[0], combination[1], combination[2]);
@@ -412,10 +408,10 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				bool flag = false;
-				var check = digitMaps[digit] - (PeerMaps[a] | PeerMaps[b] | PeerMaps[c] | baseElimMap);
-				for (i = 9, p = 0; p < 27; i = (i + 1) % 27)
+				var check = DigitMaps[digit] - (PeerMaps[a] | PeerMaps[b] | PeerMaps[c] | baseElimMap);
+				for (region = 9, p = 0; p < 27; region = (region + 1) % 27, p++)
 				{
-					if (!RegionMaps[i].Overlaps(check))
+					if (!RegionMaps[region].Overlaps(check))
 					{
 						flag = true;
 						break;
@@ -428,7 +424,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 			}
 
-			extraRegionsMask |= 1 << i;
+			extraRegionsMask[digit] |= 1 << region;
 			return true;
 		}
 

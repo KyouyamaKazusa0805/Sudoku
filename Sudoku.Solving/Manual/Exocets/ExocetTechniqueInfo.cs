@@ -144,7 +144,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
 		/// <inheritdoc/>
-		public sealed override TechniqueCode TechniqueCode { get; }
+		public override TechniqueCode TechniqueCode { get; }
 
 
 

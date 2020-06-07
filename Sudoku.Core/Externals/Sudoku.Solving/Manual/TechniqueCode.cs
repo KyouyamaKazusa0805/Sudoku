@@ -1191,6 +1191,12 @@ namespace Sudoku.Solving.Manual
 		Se,
 
 		/// <summary>
+		/// Indicates the complex SE.
+		/// </summary>
+		[TechniqueDisplay("Complex Senior Exocet", Category = "Exocets")]
+		ComplexSe,
+
+		/// <summary>
 		/// Indicates the siamese JE. 
 		/// </summary>
 		//[TechniqueDisplay("Siamese Junior Exocet", Category = "Exocets")]

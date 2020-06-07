@@ -3727,7 +3727,7 @@
             Provides a usage of <b>senior exocet</b> (SE) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},System.Int32,Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Exocet,System.Collections.Generic.IEnumerable{System.Int32},System.Int32,System.Int32[],Sudoku.Solving.Manual.Exocets.Eliminations.TargetEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.TrueBaseEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.MirrorEliminations,Sudoku.Solving.Manual.Exocets.Eliminations.CompatibilityTestEliminations)">
             <constructor type="TechniqueInfo">
 		<summary>
 			Initializes an instance with the specified information.
@@ -3738,15 +3738,29 @@
             <param name="exocet">The exocet.</param>
             <param name="digits">All digits.</param>
             <param name="endoTargetCell">The endo target cell.</param>
+            <param name="extraRegionsMask">The extra regions mask.</param>
             <param name="targetEliminations">The target eliminations.</param>
             <param name="trueBaseEliminations">The true base eliminations.</param>
             <param name="mirrorEliminations">The mirror eliminations.</param>
             <param name="compatibilityEliminations">The compatibility eliminations.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.ContainsExtraRegions">
+            <summary>
+            Indicates whether the specified instance contains any extra regions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.ExtraRegionsMask">
+            <summary>
+            Indicates the extra regions mask.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.EndoTargetCell">
             <summary>
             Indicates the target cell that lies on the cross-line.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueInfo.Difficulty">
             <inheritdoc/>
@@ -3775,34 +3789,31 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CheckCrossline(Sudoku.Data.GridMap,Sudoku.Data.GridMap[],System.Int16,System.Int32,System.Int32,System.Boolean,System.Int32@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CheckCrossline(Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int16,System.Int32,System.Int32,System.Boolean,System.Int32[]@)">
             <summary>
             Check the cross-line cells.
             </summary>
+            <param name="baseMap">The base cells map.</param>
             <param name="tempCrossline">The cross-line map.</param>
-            <param name="digitMaps">The digit distributions.</param>
             <param name="baseCandidatesMask">The base candidate mask.</param>
             <param name="t1">The target cell 1.</param>
             <param name="t2">The target cell 2.</param>
             <param name="isRow">Indicates whether the specified computation is for rows.</param>
             <param name="extraRegionsMask">
             (<see langword="out"/> parameter) The extra region to add
-            (used for franken/mutant exocets). If normal, the value will be 0 (not null if
-            and only if need extra regions).
+            (used for franken/mutant exocets). If normal, the value will be an array with 9 elements
+            representing 9 different digits.
             </param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.DeepCrosslineCheck(System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap[],Sudoku.Data.GridMap,System.Int32@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.DeepCrosslineCheck(System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int32[])">
             <summary>
             Deeply check of cross-line cells (franken/mutant exocets can be searched here).
             </summary>
             <param name="digit">The digit.</param>
             <param name="baseElimMap">The base elimination map.</param>
-            <param name="digitMaps">The digit distributions.</param>
             <param name="tempCrossline">The cross-line map.</param>
-            <param name="extraRegionsMask">
-            (<see langword="ref"/> parameter) The extra regions.
-            </param>
+            <param name="extraRegionsMask">The extra regions.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.SeniorExocetTechniqueSearcher.CompatibilityTest(System.Int16,Sudoku.Data.GridMap[],Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int32,System.Int32)">

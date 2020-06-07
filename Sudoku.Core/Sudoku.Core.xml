@@ -6395,6 +6395,11 @@
             Indicates the SE.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.ComplexSe">
+            <summary>
+            Indicates the complex SE.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.SiameseJe">
             <summary>
             Indicates the siamese JE. 
