@@ -61,7 +61,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		protected override string? GetAdditional()
 		{
 			const string separator = ", ";
-			string endoTargetStr = $"Endo-target: {new CellCollection(EndoTargetCell).ToString()}";
+			string endoTargetStr = $"endo-target: {new CellCollection(EndoTargetCell).ToString()}";
 			if (!(ExtraRegionsMask is null))
 			{
 				var sb = new StringBuilder();
@@ -78,7 +78,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				if (count != 0)
 				{
-					return $"{endoTargetStr}, and extra regions will be included: {sb.RemoveFromEnd(separator.Length)}";
+					return $"{endoTargetStr}. Extra regions will be included: {sb.RemoveFromEnd(separator.Length)}";
 				}
 			}
 
