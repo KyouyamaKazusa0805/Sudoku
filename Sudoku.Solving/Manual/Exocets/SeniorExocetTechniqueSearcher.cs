@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var compatibleCellsPlayground = (Span<int>)stackalloc int[4];
+			var compatibleCells = (Span<int>)stackalloc int[4];
 			var cover = (Span<int>)stackalloc int[8];
 			foreach (var exocet in Exocets)
 			{
@@ -50,14 +50,13 @@ namespace Sudoku.Solving.Manual.Exocets
 					continue;
 				}
 
-				var baseCellsMap = new GridMap { b1, b2 };
-				bool isRow = baseCellsMap.CoveredLine < 18;
-				var tempCrosslineMap = new GridMap(s) { tq1, tq2, tr1, tr2 };
+				bool isRow = baseMap.CoveredLine < 18;
+				var tempCrosslineMap = s | targetMap;
 				short baseCandidatesMask = (short)(grid.GetCandidateMask(b1) | grid.GetCandidateMask(b2));
 
 				int i = 0;
 				int r = GetRegion(b1, Row) - 9, c = GetRegion(b1, Column) - 18;
-				foreach (int pos in ((short)(Grid.MaxCandidatesMask & ~(1 << (isRow ? r : c)))).GetAllSets())
+				foreach (int pos in (Grid.MaxCandidatesMask & ~(1 << (isRow ? r : c))).GetAllSets())
 				{
 					cover[i++] = isRow ? pos : pos + 9;
 				}
@@ -110,10 +109,9 @@ namespace Sudoku.Solving.Manual.Exocets
 						continue;
 					}
 
-					short elimDigits = (short)(
-						(
-							grid.GetCandidateMask(combination[0]) | grid.GetCandidateMask(combination[1])
-						) & ~baseCandidatesMask);
+					short elimDigits = (short)((
+						grid.GetCandidateMask(combination[0]) | grid.GetCandidateMask(combination[1])
+					) & ~baseCandidatesMask);
 					if (!CheckCrossline(
 						/*baseCellsMap, */tempCrosslineMap, DigitMaps, baseCandidatesMask,
 						combination[0], combination[1], isRow, out int extraRegionsMask))
@@ -121,7 +119,8 @@ namespace Sudoku.Solving.Manual.Exocets
 						continue;
 					}
 
-					var targetElims = new TargetEliminations();
+					// Get all target eliminations.
+					TargetEliminations targetElims = default;
 					short cands = (short)(elimDigits & grid.GetCandidateMask(combination[0]));
 					if (cands != 0)
 					{
@@ -148,7 +147,8 @@ namespace Sudoku.Solving.Manual.Exocets
 						}
 					}
 
-					var trueBaseElims = new TrueBaseEliminations();
+					// Get all true base eliminations.
+					TrueBaseEliminations trueBaseElims = default;
 					if (tbCands != 0
 						&& (grid.GetStatus(combination[0]) != Empty || grid.GetStatus(combination[1]) != Empty))
 					{
@@ -175,7 +175,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					{
 						foreach (int digit in tbCands.GetAllSets())
 						{
-							var elimMap = (baseCellsMap & CandMaps[digit]).PeerIntersection & CandMaps[digit];
+							var elimMap = (baseMap & CandMaps[digit]).PeerIntersection & CandMaps[digit];
 							if (elimMap.IsEmpty)
 							{
 								continue;
@@ -188,11 +188,11 @@ namespace Sudoku.Solving.Manual.Exocets
 						}
 					}
 
-					var mirrorElims = new MirrorEliminations();
-					var compatibilityElims = new CompatibilityTestEliminations();
-					int target = -1;
+					// Get mirror and compatibility test eliminations.
+					MirrorEliminations mirrorElims = default;
+					CompatibilityTestEliminations compatibilityElims = default;
 					GridMap mir = default;
-
+					int target = -1;
 					var cellOffsets = new List<(int, int)> { (0, b1), (0, b2) };
 					foreach (int cell in tempCrosslineMap)
 					{
@@ -227,26 +227,27 @@ namespace Sudoku.Solving.Manual.Exocets
 
 						if (target != -1)
 						{
-							var (tempTargetElims, tempMirrorElims) = CheckMirror(
-								grid, target, combination[target == combination[0] ? 1 : 0], 0,
-								baseCandidatesMask, mir, 0, -1, cellOffsets, candidateOffsets);
+							var (tempTargetElims, tempMirrorElims) =
+								CheckMirror(
+									grid, target, combination[target == combination[0] ? 1 : 0], 0,
+									baseCandidatesMask, mir, 0, -1, cellOffsets, candidateOffsets);
 							targetElims = TargetEliminations.MergeAll(targetElims, tempTargetElims);
 							mirrorElims = MirrorEliminations.MergeAll(mirrorElims, tempMirrorElims);
 						}
 
-						short incompatible = CompatibilityTest(
-							baseCandidatesMask, DigitMaps, tempCrosslineMap, baseCellsMap,
-							combination[0], combination[1]);
+						short incompatible =
+							CompatibilityTest(
+								baseCandidatesMask, DigitMaps, tempCrosslineMap, baseMap, combination[0], combination[1]);
 						if (incompatible != 0)
 						{
-							compatibleCellsPlayground[0] = b1;
-							compatibleCellsPlayground[1] = b2;
-							compatibleCellsPlayground[2] = combination[0];
-							compatibleCellsPlayground[3] = combination[1];
+							compatibleCells[0] = b1;
+							compatibleCells[1] = b2;
+							compatibleCells[2] = combination[0];
+							compatibleCells[3] = combination[1];
 
 							for (int k = 0; k < 4; k++)
 							{
-								cands = (short)(incompatible & grid.GetCandidateMask(compatibleCellsPlayground[k]));
+								cands = (short)(incompatible & grid.GetCandidateMask(compatibleCells[k]));
 								if (cands == 0)
 								{
 									continue;
@@ -254,28 +255,26 @@ namespace Sudoku.Solving.Manual.Exocets
 
 								foreach (int digit in cands.GetAllSets())
 								{
-									compatibilityElims.Add(
-										new Conclusion(Elimination, compatibleCellsPlayground[k], digit));
+									compatibilityElims.Add(new Conclusion(Elimination, compatibleCells[k], digit));
 								}
 							}
 						}
 
 						CompatibilityTest2(
-							grid, ref compatibilityElims, baseCellsMap, baseCandidatesMask,
+							grid, ref compatibilityElims, baseMap, baseCandidatesMask,
 							combination[0], combination[1]);
 					}
 
 					if (_checkAdvanced
 						? mirrorElims.Count == 0 && compatibilityElims.Count == 0
-						&& targetElims.Count == 0 && trueBaseElims.Count == 0
+							&& targetElims.Count == 0 && trueBaseElims.Count == 0
 						: mirrorElims.Count == 0 && compatibilityElims.Count == 0)
 					{
 						continue;
 					}
 
 					int endoTargetCell = combination[s[combination[0]] ? 0 : 1];
-					short m1 = grid.GetCandidateMask(b1);
-					short m2 = grid.GetCandidateMask(b2);
+					short m1 = grid.GetCandidateMask(b1), m2 = grid.GetCandidateMask(b2);
 					short m = (short)(m1 | m2);
 					foreach (int digit in m1.GetAllSets())
 					{
@@ -286,7 +285,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						candidateOffsets.Add((0, b2 * 9 + digit));
 					}
 
-					// Record extra region cells (mutant exocets).
+					// Gather extra region cells (mutant exocets).
 					foreach (int region in extraRegionsMask.GetAllSets())
 					{
 						foreach (int cell in RegionCells[region])
@@ -302,7 +301,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 					accumulator.Add(
 						new SeniorExocetTechniqueInfo(
-							conclusions: new List<Conclusion>(),
+							conclusions: new List<Conclusion>(), // Special eliminations will use this empty list.
 							views: new[]
 							{
 								new View(
@@ -342,7 +341,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </param>
 		/// <returns>The <see cref="bool"/> result.</returns>
 		private bool CheckCrossline(
-			/*GridMap baseCellsMap, */GridMap tempCrossline, GridMap[] digitMaps,
+			/*GridMap baseMap, */GridMap tempCrossline, GridMap[] digitMaps,
 			short baseCandidatesMask, int t1, int t2, bool isRow, out int extraRegionsMask)
 		{
 			var xx = new GridMap { t1, t2 };
@@ -364,7 +363,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				#region Obsolete code
 				//if (DeepCrosslineCheck(
 				//	digit,
-				//	new GridMap(baseCellsMap & digitDistributions[digit], ProcessPeersWithoutItself),
+				//	new GridMap(baseMap & digitDistributions[digit], ProcessPeersWithoutItself),
 				//	digitDistributions,
 				//	temp,
 				//	ref tempMask))

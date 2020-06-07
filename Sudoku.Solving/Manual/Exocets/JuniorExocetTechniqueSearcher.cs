@@ -50,8 +50,6 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var mirror1 = (Span<int>)stackalloc int[2];
-			var mirror2 = (Span<int>)stackalloc int[2];
 			foreach (var exocet in Exocets)
 			{
 				var (baseMap, targetMap, _) = exocet;
@@ -71,12 +69,14 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				// At least one cell should be empty.
-				if (!new GridMap { tq1, tq2, tr1, tr2 }.Overlaps(EmptyMap))
+				if (!targetMap.Overlaps(EmptyMap))
 				{
 					continue;
 				}
 
 				// Then check target eliminations.
+				// Here 'nonBaseQ' and 'nonBaseR' are the conjugate pair in target Q and target R cells pair,
+				// different with 'lockedMemberQ' and 'lockedMemberR'.
 				if (!CheckTarget(grid, tq1, tq2, baseCandidatesMask, out short nonBaseQ, out _)
 					|| !CheckTarget(grid, tr1, tr2, baseCandidatesMask, out short nonBaseR, out _))
 				{
@@ -84,27 +84,25 @@ namespace Sudoku.Solving.Manual.Exocets
 				}
 
 				// Get all locked members.
-				(mirror1[0], mirror1[1]) = (mq1.SetAt(0), mq1.SetAt(1));
-				(mirror2[0], mirror2[1]) = (mq2.SetAt(0), mq2.SetAt(1));
-				short temp = (short)(
-					(short)(grid.GetCandidateMask(mirror1[0]) | grid.GetCandidateMask(mirror1[1]))
-					| (short)(grid.GetCandidateMask(mirror2[0]) | grid.GetCandidateMask(mirror2[1])));
+				int v1 = grid.GetCandidateMask(mq1.SetAt(0)) | grid.GetCandidateMask(mq1.SetAt(1));
+				int v2 = grid.GetCandidateMask(mq2.SetAt(0)) | grid.GetCandidateMask(mq2.SetAt(1));
+				short temp = (short)(v1 | v2);
 				short needChecking = (short)(baseCandidatesMask & temp);
 				short lockedMemberQ = (short)(baseCandidatesMask & ~needChecking);
 
-				(mirror1[0], mirror1[1]) = (mr1.SetAt(0), mr1.SetAt(1));
-				(mirror2[0], mirror2[1]) = (mr2.SetAt(0), mr2.SetAt(1));
-				temp = (short)(
-					(short)(grid.GetCandidateMask(mirror1[0]) | grid.GetCandidateMask(mirror1[1]))
-					| (short)(grid.GetCandidateMask(mirror2[0]) | grid.GetCandidateMask(mirror2[1])));
+				v1 = grid.GetCandidateMask(mr1.SetAt(0)) | grid.GetCandidateMask(mr1.SetAt(1));
+				v2 = grid.GetCandidateMask(mr2.SetAt(0)) | grid.GetCandidateMask(mr2.SetAt(1));
+				temp = (short)(v1 | v2);
 				needChecking &= temp;
 				short lockedMemberR = (short)(baseCandidatesMask & ~(baseCandidatesMask & temp));
+
+				// Check crossline.
 				if (!CheckCrossline(s, needChecking))
 				{
 					continue;
 				}
 
-				// Record highlight cells and candidates.
+				// Gather highlight cells and candidates.
 				var cellOffsets = new List<(int, int)> { (0, b1), (0, b2) };
 				var candidateOffsets = new List<(int, int)>();
 				foreach (int digit in grid.GetCandidates(b1))
@@ -118,9 +116,10 @@ namespace Sudoku.Solving.Manual.Exocets
 
 				// Check target eliminations.
 				// '|' first, '&&' second. (Do you know my meaning?)
-				var targetElims = new TargetEliminations();
+				TargetEliminations targetElims = default;
 				temp = (short)(nonBaseQ > 0 ? baseCandidatesMask | nonBaseQ : baseCandidatesMask);
-				if (t(tq1) | t(tq2)
+				if (GatheringTargetEliminations(tq1, grid, baseCandidatesMask, temp, ref targetElims)
+					| GatheringTargetEliminations(tq2, grid, baseCandidatesMask, temp, ref targetElims)
 					&& nonBaseQ != 0 && grid.GetStatus(tq1) == Empty && grid.GetStatus(tq2) == Empty)
 				{
 					int conjugatPairDigit = nonBaseQ.FindFirstSet();
@@ -133,8 +132,10 @@ namespace Sudoku.Solving.Manual.Exocets
 						candidateOffsets.Add((1, tq2 * 9 + conjugatPairDigit));
 					}
 				}
+
 				temp = (short)(nonBaseR > 0 ? baseCandidatesMask | nonBaseR : baseCandidatesMask);
-				if (t(tr1) | t(tr2)
+				if (GatheringTargetEliminations(tr1, grid, baseCandidatesMask, temp, ref targetElims)
+					| GatheringTargetEliminations(tr2, grid, baseCandidatesMask, temp, ref targetElims)
 					&& nonBaseR != 0 && grid.GetStatus(tr1) == Empty && grid.GetStatus(tr2) == Empty)
 				{
 					int conjugatPairDigit = nonBaseR.FindFirstSet();
@@ -148,25 +149,30 @@ namespace Sudoku.Solving.Manual.Exocets
 					}
 				}
 
-				bool isRow = new GridMap { b1, b2 }.CoveredLine < 18;
-				var (tar1, mir1) = m(tq1, tq2, tr1, tr2, mq1, mq2, nonBaseQ, 0);
-				var (tar2, mir2) = m(tr1, tr2, tq1, tq2, mr1, mr2, nonBaseR, 1);
+				bool isRow = baseMap.CoveredLine < 18;
+				var (tar1, mir1) =
+					GatheringMirrorEliminations(
+						tq1, tq2, tr1, tr2, mq1, mq2, nonBaseQ, 0, grid,
+						baseCandidatesMask, cellOffsets, candidateOffsets);
+				var (tar2, mir2) =
+					GatheringMirrorEliminations(
+						tr1, tr2, tq1, tq2, mr1, mr2, nonBaseR, 1, grid,
+						baseCandidatesMask, cellOffsets, candidateOffsets);
 				var targetEliminations = TargetEliminations.MergeAll(targetElims, tar1, tar2);
 				var mirrorEliminations = MirrorEliminations.MergeAll(mir1, mir2);
-				var bibiEliminations = new BibiPatternEliminations();
-				var targetPairEliminations = new TargetPairEliminations();
-				var swordfishEliminations = new SwordfishEliminations();
+				BibiPatternEliminations bibiEliminations = default;
+				TargetPairEliminations targetPairEliminations = default;
+				SwordfishEliminations swordfishEliminations = default;
 				if (_checkAdvanced && baseCandidatesMask.CountSet() > 2)
 				{
 					CheckBibiPattern(
 						grid, baseCandidatesMask, b1, b2, tq1, tq2, tr1, tr2, s,
-						isRow, nonBaseQ, nonBaseR, out bibiEliminations,
+						isRow, nonBaseQ, nonBaseR, targetMap, out bibiEliminations,
 						out targetPairEliminations, out swordfishEliminations);
 				}
 
 				if (_checkAdvanced && targetEliminations.Count == 0 && mirrorEliminations.Count == 0
-					&& bibiEliminations.Count == 0
-					|| !_checkAdvanced && targetEliminations.Count == 0)
+					&& bibiEliminations.Count == 0 || !_checkAdvanced && targetEliminations.Count == 0)
 				{
 					continue;
 				}
@@ -196,84 +202,90 @@ namespace Sudoku.Solving.Manual.Exocets
 						lockedMemberQ: lockedMemberQ == 0 ? null : lockedMemberQ.GetAllSets(),
 						lockedMemberR: lockedMemberR == 0 ? null : lockedMemberR.GetAllSets(),
 						targetEliminations,
-						mirrorEliminations: _checkAdvanced ? mirrorEliminations : new MirrorEliminations(),
+						mirrorEliminations: _checkAdvanced ? mirrorEliminations : default,
 						bibiEliminations,
 						targetPairEliminations,
 						swordfishEliminations));
+			}
+		}
 
-				// This local function is for gathering target eliminations.
-				bool t(int cell)
+		/// <summary>
+		/// Gathering mirror eliminations. This method is an entry for the method check mirror in base class.
+		/// </summary>
+		/// <param name="tq1">The target Q1 cell.</param>
+		/// <param name="tq2">The target Q2 cell.</param>
+		/// <param name="tr1">The target R1 cell.</param>
+		/// <param name="tr2">The target R2 cell.</param>
+		/// <param name="m1">The mirror 1 cell.</param>
+		/// <param name="m2">The mirror 2 cell.</param>
+		/// <param name="lockedNonTarget">The locked digits that is not the target digits.</param>
+		/// <param name="x">The X digit.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="baseCandidatesMask">The base candidates mask.</param>
+		/// <param name="cellOffsets">The highlight cells.</param>
+		/// <param name="candidateOffsets">The highliht candidates.</param>
+		/// <returns>The result.</returns>
+		private (TargetEliminations, MirrorEliminations) GatheringMirrorEliminations(
+			int tq1, int tq2, int tr1, int tr2, GridMap m1, GridMap m2, short lockedNonTarget,
+			int x, IReadOnlyGrid grid, short baseCandidatesMask, List<(int, int)> cellOffsets,
+			List<(int, int)> candidateOffsets)
+		{
+			if ((grid.GetCandidateMask(tq1) & baseCandidatesMask) != 0)
+			{
+				short mask1 = grid.GetCandidateMask(tr1), mask2 = grid.GetCandidateMask(tr2);
+				var (target, target2, mirror) = (tq1, tq2, m1);
+				return CheckMirror(
+					grid, target, target2, lockedNonTarget > 0 ? lockedNonTarget : (short)0,
+					baseCandidatesMask, mirror, x,
+					(mask1 & baseCandidatesMask) != 0 && (mask2 & baseCandidatesMask) == 0
+						? tr1
+						: (mask1 & baseCandidatesMask) == 0 && (mask2 & baseCandidatesMask) != 0 ? tr2 : -1,
+					cellOffsets, candidateOffsets);
+			}
+			else if ((grid.GetCandidateMask(tq2) & baseCandidatesMask) != 0)
+			{
+				short mask1 = grid.GetCandidateMask(tq1), mask2 = grid.GetCandidateMask(tq2);
+				var (target, target2, mirror) = (tq2, tq1, m2);
+				return CheckMirror(
+					grid, target, target2, lockedNonTarget > 0 ? lockedNonTarget : (short)0,
+					baseCandidatesMask, mirror, x,
+					(mask1 & baseCandidatesMask) != 0 && (mask2 & baseCandidatesMask) == 0
+						? tr1
+						: (mask1 & baseCandidatesMask) == 0 && (mask2 & baseCandidatesMask) != 0 ? tr2 : -1,
+					cellOffsets, candidateOffsets);
+			}
+			else
+			{
+				return default;
+			}
+		}
+
+		/// <summary>
+		/// The method for gathering target eliminations.
+		/// </summary>
+		/// <param name="cell">The cell.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="baseCandidatesMask">The base candidates mask.</param>
+		/// <param name="temp">The temp mask.</param>
+		/// <param name="targetElims">(<see langword="ref"/> parameter) The target eliminations.</param>
+		/// <returns>A <see cref="bool"/> value indicating whether this method has been found eliminations.</returns>
+		private static bool GatheringTargetEliminations(
+			int cell, IReadOnlyGrid grid, short baseCandidatesMask, short temp, ref TargetEliminations targetElims)
+		{
+			short candidateMask = (short)(grid.GetCandidateMask(cell) & ~temp);
+			if (grid.GetStatus(cell) == Empty && candidateMask != 0
+				&& (grid.GetCandidateMask(cell) & baseCandidatesMask) != 0)
+			{
+				foreach (int digit in candidateMask.GetAllSets())
 				{
-					short candidateMask = (short)(grid.GetCandidateMask(cell) & ~temp);
-					if (grid.GetStatus(cell) == Empty && candidateMask != 0
-						&& (grid.GetCandidateMask(cell) & baseCandidatesMask) != 0)
-					{
-						foreach (int digit in candidateMask.GetAllSets())
-						{
-							targetElims.Add(new Conclusion(Elimination, cell, digit));
-						}
-
-						return true;
-					}
-					else
-					{
-						return false;
-					}
+					targetElims.Add(new Conclusion(Elimination, cell, digit));
 				}
 
-				// This local function is for gathering mirror eliminations.
-				(TargetEliminations, MirrorEliminations) m(
-					int tq1, int tq2, int tr1, int tr2, GridMap m1, GridMap m2, short lockedNonTarget, int x)
-				{
-					if ((grid.GetCandidateMask(tq1) & baseCandidatesMask) != 0)
-					{
-						short mask1 = grid.GetCandidateMask(tr1);
-						short mask2 = grid.GetCandidateMask(tr2);
-						var (target, target2, mirror) = (tq1, tq2, m1);
-						return CheckMirror(
-							grid,
-							target,
-							target2,
-							lockedNonTarget: lockedNonTarget > 0 ? lockedNonTarget : (short)0,
-							baseCandidatesMask,
-							mirror,
-							x,
-							onlyOne:
-								(mask1 & baseCandidatesMask) != 0 && (mask2 & baseCandidatesMask) == 0
-									? tr1
-									: (mask1 & baseCandidatesMask) == 0 && (mask2 & baseCandidatesMask) != 0
-										? tr2
-										: -1,
-							cellOffsets,
-							candidateOffsets);
-					}
-					else if ((grid.GetCandidateMask(tq2) & baseCandidatesMask) != 0)
-					{
-						short mask1 = grid.GetCandidateMask(tq1);
-						short mask2 = grid.GetCandidateMask(tq2);
-						var (target, target2, mirror) = (tq2, tq1, m2);
-						return CheckMirror(
-							grid,
-							target,
-							target2,
-							lockedNonTarget: lockedNonTarget > 0 ? lockedNonTarget : (short)0,
-							baseCandidatesMask,
-							mirror,
-							x,
-							onlyOne:
-								(mask1 & baseCandidatesMask) != 0 && (mask2 & baseCandidatesMask) == 0
-									? tr1
-									: (mask1 & baseCandidatesMask) == 0 && (mask2 & baseCandidatesMask) != 0
-										? tr2
-										: -1,
-							cellOffsets,
-							candidateOffsets);
-					}
-					else
-					{
-						return default;
-					}
-				}
+				return true;
+			}
+			else
+			{
+				return false;
 			}
 		}
 
@@ -333,9 +345,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="otherCandidatesMask">
 		/// (<see langword="out"/> parameter) The other candidate mask.
 		/// </param>
-		/// <param name="otherRegion">
-		/// (<see langword="out"/> parameter) The other region.
-		/// </param>
+		/// <param name="otherRegion">(<see langword="out"/> parameter) The other region.</param>
 		/// <returns>The <see cref="bool"/> value.</returns>
 		private bool CheckTarget(
 			IReadOnlyGrid grid, int pos1, int pos2, int baseCandidatesMask,
@@ -430,6 +440,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </param>
 		/// <param name="lockedQ">The locked member Q.</param>
 		/// <param name="lockedR">The locked member R.</param>
+		/// <param name="targetMap">The target map.</param>
 		/// <param name="bibiElims">
 		/// (<see langword="out"/> parameter) The Bi-bi pattern eliminations.
 		/// </param>
@@ -443,7 +454,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		private bool CheckBibiPattern(
 			IReadOnlyGrid grid, short baseCandidatesMask, int b1, int b2,
 			int tq1, int tq2, int tr1, int tr2, GridMap crossline, bool isRow,
-			short lockedQ, short lockedR,
+			short lockedQ, short lockedR, GridMap targetMap,
 			out BibiPatternEliminations bibiElims, out TargetPairEliminations targetPairElims,
 			out SwordfishEliminations swordfishElims)
 		{
@@ -538,7 +549,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			// Then check target pairs if worth.
 			if (last.CountSet() == 2)
 			{
-				var elimMap = (new GridMap { tq1, tq2, tr1, tr2 } & EmptyMap).PeerIntersection;
+				var elimMap = (targetMap & EmptyMap).PeerIntersection;
 				if (elimMap.IsEmpty)
 				{
 					// Exit the method.
@@ -566,7 +577,7 @@ namespace Sudoku.Solving.Manual.Exocets
 						targetPairElims.Add(new Conclusion(Elimination, cell, digit));
 					}
 				}
-				
+
 				// Then check swordfish pattern.
 				foreach (int digit in digits)
 				{

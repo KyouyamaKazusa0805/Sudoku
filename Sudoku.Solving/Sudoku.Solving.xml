@@ -3229,6 +3229,35 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.GatheringMirrorEliminations(System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int16,System.Int32,Sudoku.Data.IReadOnlyGrid,System.Int16,System.Collections.Generic.List{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.List{System.ValueTuple{System.Int32,System.Int32}})">
+            <summary>
+            Gathering mirror eliminations. This method is an entry for the method check mirror in base class.
+            </summary>
+            <param name="tq1">The target Q1 cell.</param>
+            <param name="tq2">The target Q2 cell.</param>
+            <param name="tr1">The target R1 cell.</param>
+            <param name="tr2">The target R2 cell.</param>
+            <param name="m1">The mirror 1 cell.</param>
+            <param name="m2">The mirror 2 cell.</param>
+            <param name="lockedNonTarget">The locked digits that is not the target digits.</param>
+            <param name="x">The X digit.</param>
+            <param name="grid">The grid.</param>
+            <param name="baseCandidatesMask">The base candidates mask.</param>
+            <param name="cellOffsets">The highlight cells.</param>
+            <param name="candidateOffsets">The highliht candidates.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.GatheringTargetEliminations(System.Int32,Sudoku.Data.IReadOnlyGrid,System.Int16,System.Int16,Sudoku.Solving.Manual.Exocets.TargetEliminations@)">
+            <summary>
+            The method for gathering target eliminations.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="grid">The grid.</param>
+            <param name="baseCandidatesMask">The base candidates mask.</param>
+            <param name="temp">The temp mask.</param>
+            <param name="targetElims">(<see langword="ref"/> parameter) The target eliminations.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether this method has been found eliminations.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.CheckCrossline(Sudoku.Data.GridMap,System.Int16)">
             <summary>
             Check the cross-line cells.
@@ -3250,12 +3279,10 @@
             <param name="otherCandidatesMask">
             (<see langword="out"/> parameter) The other candidate mask.
             </param>
-            <param name="otherRegion">
-            (<see langword="out"/> parameter) The other region.
-            </param>
+            <param name="otherRegion">(<see langword="out"/> parameter) The other region.</param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.CheckBibiPattern(Sudoku.Data.IReadOnlyGrid,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,System.Boolean,System.Int16,System.Int16,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations@,Sudoku.Solving.Manual.Exocets.TargetPairEliminations@,Sudoku.Solving.Manual.Exocets.SwordfishEliminations@)">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JuniorExocetTechniqueSearcher.CheckBibiPattern(Sudoku.Data.IReadOnlyGrid,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,System.Boolean,System.Int16,System.Int16,Sudoku.Data.GridMap,Sudoku.Solving.Manual.Exocets.BibiPatternEliminations@,Sudoku.Solving.Manual.Exocets.TargetPairEliminations@,Sudoku.Solving.Manual.Exocets.SwordfishEliminations@)">
             <summary>
             Check Bi-bi pattern eliminations.
             </summary>
@@ -3273,6 +3300,7 @@
             </param>
             <param name="lockedQ">The locked member Q.</param>
             <param name="lockedR">The locked member R.</param>
+            <param name="targetMap">The target map.</param>
             <param name="bibiElims">
             (<see langword="out"/> parameter) The Bi-bi pattern eliminations.
             </param>
