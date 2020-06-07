@@ -74,7 +74,7 @@ namespace Sudoku.Solving.Manual
 
 					searcher.GetAll(bag, cloneation);
 				}
-				if (bag.None())
+				if (bag.Count == 0)
 				{
 					continue;
 				}

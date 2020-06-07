@@ -73,7 +73,7 @@ namespace Sudoku.Solving.Manual
 			static T g<T>(TechniqueSearcher s, string p) => (T)s.GetType().GetProperty(p)!.GetValue(null)!;
 			if (UseCalculationPriority)
 			{
-				Array.Sort(searchers, (a, b) => g<int>(a, "Priority").CompareTo(g<int>(b, "Priority")));
+				searchers.Sort((a, b) => g<int>(a, "Priority").CompareTo(g<int>(b, "Priority")));
 			}
 
 			var stepGrids = new Bag<IReadOnlyGrid>();
@@ -93,7 +93,7 @@ namespace Sudoku.Solving.Manual
 				}
 
 				searcher.GetAll(bag, cloneation);
-				if (bag.None())
+				if (bag.Count == 0)
 				{
 					continue;
 				}

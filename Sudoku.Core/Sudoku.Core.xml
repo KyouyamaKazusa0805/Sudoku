@@ -4264,6 +4264,25 @@
             <param name="element">The element.</param>
             <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="M:Sudoku.Extensions.ArrayEx.Sort``1(``0[])">
+            <summary>
+            Sorts the elements in an entire <typeparamref name="T"/>[] using the default
+            <see cref="T:System.IComparable`1"/> generic interface implementation of each element
+            of the <see cref="T:System.Array"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The array.</param>
+            <seealso cref="T:System.IComparable`1"/>
+        </member>
+        <member name="M:Sudoku.Extensions.ArrayEx.Sort``1(``0[],System.Comparison{``0})">
+            <summary>
+            Sorts the elements in an <typeparamref name="T"/>[] using the specified <see cref="T:System.Comparison`1"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The array.</param>
+            <param name="comparison">The comparison method.</param>
+            <seealso cref="T:System.Comparison`1"/>
+        </member>
         <member name="T:Sudoku.Extensions.BooleanEx">
             <summary>
             Provides extension methods on <see cref="T:System.Boolean"/>.

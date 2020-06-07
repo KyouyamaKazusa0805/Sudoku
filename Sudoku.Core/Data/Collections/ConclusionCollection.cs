@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using Sudoku.Constants;
 using Sudoku.Extensions;
+using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Data.Collections
 {
@@ -73,27 +74,23 @@ namespace Sudoku.Data.Collections
 			var sb = new StringBuilder();
 			if (shouldSort)
 			{
-				Array.Sort(
-					concs,
+				concs.Sort(
 					(a, b) =>
 					{
 						var (t1, c1, d1) = a;
 						var (t2, c2, d2) = b;
-						return true switch
-						{
-							_ when t1 > t2 => 1,
-							_ when t1 < t2 => -1,
-							_ when d1 > d2 => 1,
-							_ when d1 < d2 => -1,
-							_ => 0
-						};
+						if (t1 > t2) return 1;
+						if (t1 < t2) return -1;
+						if (d1 > d2) return 1;
+						if (d1 < d2) return -1;
+						return 0;
 					});
 
 				var selection = from conc in concs group conc by conc.ConclusionType;
 				bool hasOnlyOneType = selection.HasOnlyOneElement();
 				foreach (var typeGroup in selection)
 				{
-					string op = typeGroup.Key == ConclusionType.Assignment ? " = " : " <> ";
+					string op = typeGroup.Key == Assignment ? " = " : " <> ";
 					foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
 					{
 						sb
