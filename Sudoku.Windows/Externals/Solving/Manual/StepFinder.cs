@@ -138,6 +138,7 @@ namespace Sudoku.Solving.Manual
 				{
 					_ = searcher.HasMarked<TechniqueSearcher, TechniqueDisplayAttribute>(out var attributes);
 					progressResult.CurrentTechnique = attributes.First().DisplayName;
+					progressResult.CurrentIndex++;
 					progress.Report(progressResult);
 				}
 
@@ -148,6 +149,7 @@ namespace Sudoku.Solving.Manual
 			if (!(progress is null))
 			{
 				progressResult.CurrentTechnique = "Summary...";
+				progressResult.CurrentIndex++;
 				progress.Report(progressResult);
 			}
 
