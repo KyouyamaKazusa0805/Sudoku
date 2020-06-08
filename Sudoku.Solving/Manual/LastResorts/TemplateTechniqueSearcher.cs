@@ -91,13 +91,9 @@ namespace Sudoku.Solving.Manual.LastResorts
 						views: new[]
 						{
 							new View(
-								cellOffsets: null,
-								candidateOffsets:
-									new List<(int, int)>(
-										from conclusion in conclusions
-										select (0, conclusion.CellOffset * 9 + conclusion.Digit)),
-								regionOffsets: null,
-								links: null)
+								new List<(int, int)>(
+									from conclusion in conclusions
+									select (0, conclusion.CellOffset * 9 + conclusion.Digit)))
 						},
 						isTemplateDeletion: false));
 			}

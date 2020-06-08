@@ -222,7 +222,7 @@ namespace Sudoku.Solving.Manual.Fishes
 												{
 													new View(
 														cellOffsets: null,
-														candidateOffsets: candidateOffsets,
+														candidateOffsets,
 														regionOffsets: new[]
 														{
 															(0, bs1), (0, bs2),
@@ -398,7 +398,7 @@ namespace Sudoku.Solving.Manual.Fishes
 															{
 																new View(
 																	cellOffsets: null,
-																	candidateOffsets: candidateOffsets,
+																	candidateOffsets,
 																	regionOffsets: new[]
 																	{
 																		(0, bs1), (0, bs2), (0, bs3),
@@ -589,7 +589,7 @@ namespace Sudoku.Solving.Manual.Fishes
 																	{
 																		new View(
 																			cellOffsets: null,
-																			candidateOffsets: candidateOffsets,
+																			candidateOffsets,
 																			regionOffsets: new[]
 																			{
 																				(0, bs1), (0, bs2),

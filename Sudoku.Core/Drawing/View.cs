@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 
 namespace Sudoku.Drawing
@@ -13,8 +14,18 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Provides a new default view list for initialization.
 		/// </summary>
-		public static readonly View[] DefaultViews = new[] { new View(null, null, null, null) };
+		public static readonly View[] DefaultViews = new[] { new View() };
 
+		/// <summary>
+		/// Initializes an instance with the specified highlighted candidate offsets.
+		/// </summary>
+		/// <param name="candidateOffsets">
+		/// The list of pairs of identifier and candidate offset.
+		/// </param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public View(IReadOnlyList<(int, int)> candidateOffsets) : this(null, candidateOffsets, null, null)
+		{
+		}
 
 		/// <summary>
 		/// Initializes an instance with information.
@@ -33,6 +44,12 @@ namespace Sudoku.Drawing
 			IReadOnlyList<(int, int)>? cellOffsets, IReadOnlyList<(int, int)>? candidateOffsets,
 			IReadOnlyList<(int, int)>? regionOffsets, IReadOnlyList<Inference>? links) =>
 			(CellOffsets, CandidateOffsets, RegionOffsets, Links) = (cellOffsets, candidateOffsets, regionOffsets, links);
+
+		/// <include file='../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private View() : this(null, null, null, null)
+		{
+		}
 
 
 		/// <summary>

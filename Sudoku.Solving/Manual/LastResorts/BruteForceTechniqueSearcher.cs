@@ -2,6 +2,8 @@
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
+using static Sudoku.Data.CellStatus;
+using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {
@@ -65,7 +67,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		{
 			foreach (int offset in TryAndErrorOrder)
 			{
-				if (grid.GetStatus(offset) != CellStatus.Empty)
+				if (grid.GetStatus(offset) != Empty)
 				{
 					continue;
 				}
@@ -73,15 +75,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 				int cand = offset * 9 + _solution[offset];
 				accumulator.Add(
 					new BruteForceTechniqueInfo(
-						conclusions: new[] { new Conclusion(ConclusionType.Assignment, cand) },
-						views: new[]
-						{
-							new View(
-								cellOffsets: null,
-								candidateOffsets: new[] { (0, cand) },
-								regionOffsets: null,
-								links: null)
-						}));
+						conclusions: new[] { new Conclusion(Assignment, cand) },
+						views: new[] { new View(new[] { (0, cand) }) }));
 			}
 		}
 	}

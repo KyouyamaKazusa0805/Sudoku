@@ -234,14 +234,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			accumulator.Add(
 				new XrType1TechniqueInfo(
 					conclusions,
-					views: new[]
-					{
-						new View(
-							cellOffsets: null,
-							candidateOffsets,
-							regionOffsets: null,
-							links: null)
-					},
+					views: new[] { new View(candidateOffsets) },
 					cells: allCellsMap,
 					digits: normalDigits));
 		}
@@ -272,14 +265,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			accumulator.Add(
 				new XrType2TechniqueInfo(
 					conclusions,
-					views: new[]
-					{
-						new View(
-							cellOffsets: null,
-							candidateOffsets,
-							regionOffsets: null,
-							links: null)
-					},
+					views: new[] { new View(candidateOffsets) },
 					cells: allCellsMap,
 					digits: normalDigits,
 					extraDigit));
@@ -404,14 +390,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 				accumulator.Add(
 					new XrType1TechniqueInfo(
 						conclusions,
-						views: new[]
-						{
-							new View(
-								cellOffsets: null,
-								candidateOffsets,
-								regionOffsets: null,
-								links: null)
-						},
+						views: new[] { new View(candidateOffsets) },
 						cells: allCellsMap,
 						digits: normalDigits));
 			}

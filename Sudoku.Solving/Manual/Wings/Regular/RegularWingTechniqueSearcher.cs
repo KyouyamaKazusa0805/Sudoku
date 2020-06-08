@@ -163,14 +163,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 						accumulator.Add(
 							new RegularWingTechniqueInfo(
 								conclusions,
-								views: new[]
-								{
-									new View(
-										cellOffsets: null,
-										candidateOffsets,
-										regionOffsets: null,
-										links: null)
-								},
+								views: new[] { new View(candidateOffsets) },
 								pivot,
 								pivotCandidatesCount: mask.CountSet(),
 								digits: union.GetAllSets().ToArray(),

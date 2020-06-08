@@ -122,14 +122,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				accumulator.Add(
 					new BdpType1TechniqueInfo(
 						conclusions,
-						views: new[]
-						{
-							new View(
-								cellOffsets: null,
-								candidateOffsets,
-								regionOffsets: null,
-								links: null)
-						},
+						views: new[] { new View(candidateOffsets) },
 						digitsMask: tempMask,
 						map));
 			}
@@ -180,14 +173,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				accumulator.Add(
 					new BdpType2TechniqueInfo(
 						conclusions,
-						views: new[]
-						{
-							new View(
-								cellOffsets: null,
-								candidateOffsets,
-								regionOffsets: null,
-								links: null)
-						},
+						views: new[] { new View(candidateOffsets) },
 						digitsMask: tempMask,
 						map,
 						extraDigit: otherDigit));

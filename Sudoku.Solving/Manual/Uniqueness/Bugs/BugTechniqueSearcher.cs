@@ -76,14 +76,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					accumulator.Add(
 						new BugType1TechniqueInfo(
 							conclusions: new[] { new Conclusion(Assignment, trueCandidates[0]) },
-							views: new[]
-							{
-								new View(
-									cellOffsets: null,
-									candidateOffsets: new[] { (0, trueCandidates[0]) },
-									regionOffsets: null,
-									links: null)
-							}));
+							views: new[] { new View(new[] { (0, trueCandidates[0]) }) }));
 					break;
 				}
 				default:
@@ -146,14 +139,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			accumulator.Add(
 				new BugType2TechniqueInfo(
 					conclusions,
-					views: new[]
-					{
-						new View(
-							cellOffsets: null,
-							candidateOffsets,
-							regionOffsets: null,
-							links: null)
-					},
+					views: new[] { new View(candidateOffsets) },
 					digit,
 					cells: selection.ToArray()));
 		}
@@ -250,7 +236,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 									new View(
 										cellOffsets: null,
 										candidateOffsets,
-										regionOffsets: null,
+										regionOffsets: new[] { (0, region) },
 										links: null)
 								},
 								trueCandidates,
@@ -422,15 +408,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			accumulator.Add(
 				new BugMultipleTechniqueInfo(
 					conclusions,
-					views: new[]
-					{
-						new View(
-							cellOffsets: null,
-							candidateOffsets:
-								new List<(int, int)>(from cand in trueCandidates select (0, cand)),
-							regionOffsets: null,
-							links: null)
-					},
+					views: new[] { new View(new List<(int, int)>(from cand in trueCandidates select (0, cand))) },
 					candidates: trueCandidates));
 		}
 

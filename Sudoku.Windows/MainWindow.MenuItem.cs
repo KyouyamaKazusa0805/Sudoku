@@ -797,11 +797,7 @@ namespace Sudoku.Windows
 				_layerCollection.Add(
 					new ViewLayer(
 						_pointConverter,
-						new View(
-							null,
-							new List<(int, int)>(from candidate in trueCandidates select (0, candidate)),
-							null,
-							null),
+						new View(new List<(int, int)>(from candidate in trueCandidates select (0, candidate))),
 						null,
 						Settings.PaletteColors, DColor.Empty, DColor.Empty, DColor.Empty));
 
@@ -860,13 +856,10 @@ namespace Sudoku.Windows
 					new ViewLayer(
 						_pointConverter,
 						new View(
-							null,
 							new List<(int, int)>(
 								from conclusion in backdoors
 								where conclusion.ConclusionType == ConclusionType.Assignment
-								select (0, conclusion.CellOffset * 9 + conclusion.Digit)),
-							null,
-							null),
+								select (0, conclusion.CellOffset * 9 + conclusion.Digit))),
 						backdoors,
 						Settings.PaletteColors, Settings.EliminationColor, DColor.Empty, DColor.Empty));
 

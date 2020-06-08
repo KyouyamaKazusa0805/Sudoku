@@ -157,14 +157,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 			result.Add(
 				new GspTechniqueInfo(
 					conclusions,
-					views: new[]
-					{
-						new View(
-							cellOffsets: null,
-							candidateOffsets,
-							regionOffsets: null,
-							links: null)
-					},
+					views: new[] { new View(candidateOffsets) },
 					symmetryType: SymmetryType.Diagonal,
 					mappingTable: mapping));
 		}
@@ -289,14 +282,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 			result.Add(
 				new GspTechniqueInfo(
 					conclusions,
-					views: new[]
-					{
-						new View(
-							cellOffsets: null,
-							candidateOffsets,
-							regionOffsets: null,
-							links: null)
-					},
+					views: new[] { new View(candidateOffsets) },
 					symmetryType: SymmetryType.AntiDiagonal,
 					mappingTable: mapping));
 		}

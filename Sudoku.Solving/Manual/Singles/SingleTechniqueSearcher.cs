@@ -167,14 +167,7 @@ namespace Sudoku.Solving.Manual.Singles
 					accumulator.Add(
 						new NakedSingleTechniqueInfo(
 							conclusions: new[] { new Conclusion(Assignment, cell, digit) },
-							views: new[]
-							{
-								new View(
-									cellOffsets: null,
-									candidateOffsets: new[] { (0, cell * 9 + digit) },
-									regionOffsets: null,
-									links: null)
-							},
+							views: new[] { new View(new[] { (0, cell * 9 + digit) }) },
 							cellOffset: cell,
 							digit));
 				}

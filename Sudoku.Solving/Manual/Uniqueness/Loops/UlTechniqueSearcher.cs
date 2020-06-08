@@ -196,14 +196,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			accumulator.AddIfDoesNotContain(
 				new UlType1TechniqueInfo(
 					conclusions,
-					views: new[]
-					{
-						new View(
-							cellOffsets: null,
-							candidateOffsets,
-							regionOffsets: null,
-							links: null)
-					},
+					views: new[] { new View(candidateOffsets) },
 					d1,
 					d2,
 					loop));
@@ -260,14 +253,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			accumulator.AddIfDoesNotContain(
 				new UlType2TechniqueInfo(
 					conclusions,
-					views: new[]
-					{
-						new View(
-							cellOffsets: null,
-							candidateOffsets,
-							regionOffsets: null,
-							links: null)
-					},
+					views: new[] { new View(candidateOffsets) },
 					d1,
 					d2,
 					loop,

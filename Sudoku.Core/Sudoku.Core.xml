@@ -4190,6 +4190,14 @@
             Provides a new default view list for initialization.
             </summary>
         </member>
+        <member name="M:Sudoku.Drawing.View.#ctor(System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}})">
+            <summary>
+            Initializes an instance with the specified highlighted candidate offsets.
+            </summary>
+            <param name="candidateOffsets">
+            The list of pairs of identifier and candidate offset.
+            </param>
+        </member>
         <member name="M:Sudoku.Drawing.View.#ctor(System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Inference})">
             <summary>
             Initializes an instance with information.
@@ -4204,6 +4212,11 @@
             The list of pairs of identifier and region offset.
             </param>
             <param name="links">The list of links.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.View.#ctor">
+            <defaultConstructor>
+		<summary>Create an instance with default initialization.</summary>
+	</defaultConstructor>
         </member>
         <member name="P:Sudoku.Drawing.View.CellOffsets">
             <summary>
