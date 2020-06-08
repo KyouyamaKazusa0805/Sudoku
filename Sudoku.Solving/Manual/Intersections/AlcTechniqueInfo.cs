@@ -4,6 +4,7 @@ using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
@@ -21,7 +22,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// </param>
 		public AlcTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			IReadOnlyList<int> digits, IReadOnlyList<int> baseCells, IReadOnlyList<int> targetCells,
+			short digits, GridMap baseCells, GridMap targetCells,
 			bool hasValueCell) : base(conclusions, views) =>
 			(Digits, BaseCells, TargetCells, HasValueCell) = (digits, baseCells, targetCells, hasValueCell);
 
@@ -29,17 +30,17 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <summary>
 		/// Indicates the digits the technique used.
 		/// </summary>
-		public IReadOnlyList<int> Digits { get; }
+		public short Digits { get; }
 
 		/// <summary>
 		/// Indicates the base cells.
 		/// </summary>
-		public IReadOnlyList<int> BaseCells { get; }
+		public GridMap BaseCells { get; }
 
 		/// <summary>
 		/// Indicates the target cells.
 		/// </summary>
-		public IReadOnlyList<int> TargetCells { get; }
+		public GridMap TargetCells { get; }
 
 		/// <summary>
 		/// Indicates whether the structure has a value cell.
@@ -49,7 +50,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <summary>
 		/// Indicates the size.
 		/// </summary>
-		public int Size => Digits.Count;
+		public int Size => Digits.CountSet();
 
 		/// <inheritdoc/>
 		public override decimal Difficulty =>
@@ -73,7 +74,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string digitsStr = new DigitCollection(Digits).ToString();
+			string digitsStr = new DigitCollection(Digits.GetAllSets()).ToString();
 			string baseCellsStr = new CellCollection(BaseCells).ToString();
 			string targetCellsStr = new CellCollection(TargetCells).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();

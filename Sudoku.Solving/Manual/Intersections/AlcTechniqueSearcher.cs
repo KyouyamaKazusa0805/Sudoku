@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -175,21 +174,22 @@ namespace Sudoku.Solving.Manual.Intersections
 				}
 
 				var valueCells = from cell in (cellsMap | ahsCells) - EmptyMap select (0, cell);
+				bool hasValueCell = valueCells.Any();
 				result.Add(
 					new AlcTechniqueInfo(
 						conclusions,
 						views: new[]
 						{
 							new View(
-								cellOffsets: valueCells.Any() ? valueCells.ToArray() : null,
+								cellOffsets: hasValueCell ? valueCells.ToArray() : null,
 								candidateOffsets,
 								regionOffsets: new[] { (0, baseSet), (1, coverSet) },
 								links: null)
 						},
-						digits: digits.ToArray(),
-						baseCells: cells,
-						targetCells: ahsCells.ToArray(),
-						hasValueCell: valueCells.Any()));
+						digits: mask,
+						baseCells: cellsMap,
+						targetCells: ahsCells,
+						hasValueCell));
 			}
 		}
 	}

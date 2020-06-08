@@ -4331,7 +4331,7 @@
             Provides a usage of <b>almost locked candidates</b> (ALC) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Boolean)">
             <constructor type="TechniqueInfo">
 		<summary>
 			Initializes an instance with the specified information.
