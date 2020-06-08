@@ -6509,27 +6509,6 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.CheckType14(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap,System.Int16,System.Int16)">
-            <summary>
-            Check type 1 or 4.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="allCellsMap">All cells map.</param>
-            <param name="normalDigits">The normal digits.</param>
-            <param name="extraDigits">The extra digits.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap,System.Int32,System.Int16,System.Int16)">
-            <summary>
-            Check type 3 naked subsets.
-            </summary>
-            <param name="accumulator">The result accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="allCellsMap">All cells map.</param>
-            <param name="size">The size to check.</param>
-            <param name="normalDigits">The normal digits.</param>
-            <param name="extraDigits">The extra digits.</param>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1TechniqueInfo">
             <summary>
             Provides a usage of <b>extended rectangle</b> (XR) type 1 technique.

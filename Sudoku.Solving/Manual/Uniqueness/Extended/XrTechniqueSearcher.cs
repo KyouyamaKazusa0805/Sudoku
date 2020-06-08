@@ -6,9 +6,7 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Data.GridMap.InitializeOption;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Extended
 {
@@ -152,17 +150,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 						{
 							// Possible type 1 or 2 found.
 							// Now check extra cells.
-							var extraCells = new List<int>();
 							int extraDigit = extraDigits.FindFirstSet();
-							foreach (int cell in allCellsMap)
-							{
-								if ((grid.GetCandidateMask(cell) >> extraDigit & 1) != 0)
-								{
-									extraCells.Add(cell);
-								}
-							}
-
-							var extraCellsMap = new GridMap(extraCells) & EmptyMap;
+							var extraCellsMap = allCellsMap & CandMaps[extraDigit];
 							if (extraCellsMap.IsEmpty)
 							{
 								continue;
@@ -173,94 +162,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							var candidateOffsets = new List<(int, int)>();
 							if (extraCellsMap.Count == 1)
 							{
-								// Type 1.
-								foreach (int cell in allCellsMap)
-								{
-									if (cell == extraCells[0])
-									{
-										foreach (int digit in grid.GetCandidates(cell))
-										{
-											if (digit != extraDigit)
-											{
-												conclusions.Add(new Conclusion(Elimination, cell, digit));
-											}
-										}
-									}
-									else
-									{
-										foreach (int digit in grid.GetCandidates(cell))
-										{
-											candidateOffsets.Add((0, cell * 9 + digit));
-										}
-									}
-								}
-
-								if (conclusions.Count == 0)
-								{
-									continue;
-								}
-
-								accumulator.Add(
-									new XrType1TechniqueInfo(
-										conclusions,
-										views: new[]
-										{
-											new View(
-												cellOffsets: null,
-												candidateOffsets,
-												regionOffsets: null,
-												links: null)
-										},
-										cells: allCellsMap.ToArray(),
-										digits: normalDigits.GetAllSets().ToArray()));
+								CheckType1(
+									accumulator, grid, allCellsMap, conclusions, candidateOffsets,
+									extraCellsMap, normalDigits, extraDigit);
 							}
 							else
 							{
-								// Type 2.
-								// Check eliminations.
-								var elimMap = new GridMap(extraCells, ProcessPeersWithoutItself) & CandMaps[extraDigit];
-								if (elimMap.IsEmpty)
-								{
-									continue;
-								}
-
-								foreach (int cell in elimMap)
-								{
-									conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
-								}
-
-								foreach (int cell in allCellsMap)
-								{
-									foreach (int digit in grid.GetCandidates(cell))
-									{
-										candidateOffsets.Add((digit == extraDigit ? 1 : 0, cell * 9 + digit));
-									}
-								}
-
-								accumulator.Add(
-									new XrType2TechniqueInfo(
-										conclusions,
-										views: new[]
-										{
-											new View(
-												cellOffsets: null,
-												candidateOffsets,
-												regionOffsets: null,
-												links: null)
-										},
-										cells: allCellsMap.ToArray(),
-										digits: normalDigits.GetAllSets().ToArray(),
-										extraDigit));
+								CheckType2(
+									accumulator, grid, allCellsMap, conclusions, candidateOffsets,
+									extraCellsMap, normalDigits, extraDigit);
 							}
 						}
 						else
 						{
-							// Check type 3 or 4.
-							for (int subsetSize = 2; subsetSize <= 8 - size; subsetSize++)
-							{
-								CheckType3Naked(accumulator, grid, allCellsMap, subsetSize, normalDigits, extraDigits);
-							}
-
+							CheckType3Naked(accumulator, grid, allCellsMap, normalDigits, extraDigits);
 							CheckType14(accumulator, grid, allCellsMap, normalDigits, extraDigits);
 						}
 					}
@@ -268,14 +183,99 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			}
 		}
 
-		/// <summary>
-		/// Check type 1 or 4.
-		/// </summary>
-		/// <param name="accumulator">The accumulator.</param>
-		/// <param name="grid">The grid.</param>
-		/// <param name="allCellsMap">All cells map.</param>
-		/// <param name="normalDigits">The normal digits.</param>
-		/// <param name="extraDigits">The extra digits.</param>
+		private void CheckType1(
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap allCellsMap, List<Conclusion> conclusions,
+			List<(int, int)> candidateOffsets, GridMap extraCells, short normalDigits, int extraDigit)
+		{
+			foreach (int cell in allCellsMap)
+			{
+				if (cell == extraCells.SetAt(0))
+				{
+					foreach (int digit in grid.GetCandidates(cell))
+					{
+						if (digit != extraDigit)
+						{
+							conclusions.Add(new Conclusion(Elimination, cell, digit));
+						}
+					}
+				}
+				else
+				{
+					foreach (int digit in grid.GetCandidates(cell))
+					{
+						candidateOffsets.Add((0, cell * 9 + digit));
+					}
+				}
+			}
+
+			if (conclusions.Count == 0)
+			{
+				return;
+			}
+
+			accumulator.Add(
+				new XrType1TechniqueInfo(
+					conclusions,
+					views: new[]
+					{
+						new View(
+							cellOffsets: null,
+							candidateOffsets,
+							regionOffsets: null,
+							links: null)
+					},
+					cells: allCellsMap.ToArray(),
+					digits: normalDigits.GetAllSets().ToArray()));
+		}
+
+		private void CheckType2(
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap allCellsMap, List<Conclusion> conclusions,
+			List<(int, int)> candidateOffsets, GridMap extraCells, short normalDigits, int extraDigit)
+		{
+			var elimMap = extraCells.PeerIntersection & CandMaps[extraDigit];
+			if (elimMap.IsEmpty)
+			{
+				return;
+			}
+
+			foreach (int cell in elimMap)
+			{
+				conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
+			}
+
+			foreach (int cell in allCellsMap)
+			{
+				foreach (int digit in grid.GetCandidates(cell))
+				{
+					candidateOffsets.Add((digit == extraDigit ? 1 : 0, cell * 9 + digit));
+				}
+			}
+
+			accumulator.Add(
+				new XrType2TechniqueInfo(
+					conclusions,
+					views: new[]
+					{
+						new View(
+							cellOffsets: null,
+							candidateOffsets,
+							regionOffsets: null,
+							links: null)
+					},
+					cells: allCellsMap.ToArray(),
+					digits: normalDigits.GetAllSets().ToArray(),
+					extraDigit));
+		}
+
+		private void CheckType3Naked(
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap allCellsMap,
+			short normalDigits, short extraDigits)
+		{
+			foreach (int region in allCellsMap.Regions)
+			{
+			}
+		}
+
 		private void CheckType14(
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap allCellsMap,
 			short normalDigits, short extraDigits)
@@ -345,128 +345,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			else
 			{
 
-			}
-		}
-
-		/// <summary>
-		/// Check type 3 naked subsets.
-		/// </summary>
-		/// <param name="accumulator">The result accumulator.</param>
-		/// <param name="grid">The grid.</param>
-		/// <param name="allCellsMap">All cells map.</param>
-		/// <param name="size">The size to check.</param>
-		/// <param name="normalDigits">The normal digits.</param>
-		/// <param name="extraDigits">The extra digits.</param>
-		private void CheckType3Naked(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap allCellsMap,
-			int size, short normalDigits, short extraDigits)
-		{
-			foreach (int region in allCellsMap.Regions)
-			{
-				// Firstly, we should check all cells to iterate,
-				// which are empty cells and not in the structure.
-				var unavailableCellsMap = RegionMaps[region];
-				foreach (int cell in RegionCells[region])
-				{
-					if (grid.GetStatus(cell) == Empty && !allCellsMap[cell])
-					{
-						unavailableCellsMap.Remove(cell);
-					}
-				}
-
-				if (8 - unavailableCellsMap.Count < size)
-				{
-					// The number of last cells are not enough to form a light subset.
-					continue;
-				}
-
-				// Get the mask.
-				short unavailableCellsMask = 0;
-				short index = 0;
-				foreach (int cell in RegionCells[region])
-				{
-					if (unavailableCellsMap[cell])
-					{
-						unavailableCellsMask |= index;
-					}
-
-					index++;
-				}
-
-				// Now iterate on them.
-				foreach (short mask in new BitCombinationGenerator(9, size - 1))
-				{
-					if ((mask & unavailableCellsMask) != 0)
-					{
-						continue;
-					}
-
-					short subsetMask = 0;
-					var usedCellsMap = RegionMaps[region] - unavailableCellsMap;
-					foreach (int cell in usedCellsMap)
-					{
-						subsetMask |= grid.GetCandidateMask(cell);
-					}
-
-					short extraMask = 0;
-					foreach (int digit in extraDigits.GetAllSets())
-					{
-						extraMask |= (short)(1 << digit);
-					}
-
-					subsetMask |= extraMask;
-					if (subsetMask.CountSet() != size)
-					{
-						continue;
-					}
-
-					// XR type 3 found.
-					// Record all eliminations.
-					var conclusions = new List<Conclusion>();
-					var elimMap = RegionMaps[region] - unavailableCellsMap - usedCellsMap;
-					foreach (int cell in elimMap)
-					{
-						foreach (int digit in extraDigits.GetAllSets())
-						{
-							if (grid.Exists(cell, digit) is true)
-							{
-								conclusions.Add(new Conclusion(Elimination, cell, digit));
-							}
-						}
-					}
-
-					if (conclusions.Count == 0)
-					{
-						continue;
-					}
-
-					// Record all highlight candidates.
-					var candidateOffsets = new List<(int, int)>();
-					foreach (int cell in allCellsMap)
-					{
-						foreach (int digit in grid.GetCandidates(cell))
-						{
-							candidateOffsets.Add((extraMask >> digit & 1, cell * 9 + digit));
-						}
-					}
-
-					accumulator.Add(
-						new XrType3TechniqueInfo(
-							conclusions,
-							views: new[]
-							{
-								new View(
-									cellOffsets: null,
-									candidateOffsets,
-									regionOffsets: new[] { (0, region) },
-									links: null)
-							},
-							cells: allCellsMap.ToArray(),
-							digits: normalDigits.GetAllSets().ToArray(),
-							extraCells: usedCellsMap.ToArray(),
-							extraDigits: extraDigits.GetAllSets().ToArray(),
-							region));
-				}
 			}
 		}
 	}
