@@ -5,6 +5,7 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
+using static System.Algorithms;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
 
@@ -175,8 +176,26 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 						}
 						else
 						{
-							CheckType3Naked(accumulator, grid, allCellsMap, normalDigits, extraDigits);
-							CheckType14(accumulator, grid, allCellsMap, normalDigits, extraDigits);
+							var extraCellsMap = GridMap.Empty;
+							foreach (int cell in allCellsMap)
+							{
+								foreach (int digit in extraDigits.GetAllSets())
+								{
+									if (!grid[cell, digit])
+									{
+										extraCellsMap.Add(cell);
+										break;
+									}
+								}
+							}
+
+							if (!extraCellsMap.AllSetsAreInOneRegion(out _))
+							{
+								continue;
+							}
+
+							CheckType3Naked(accumulator, grid, allCellsMap, normalDigits, extraDigits, extraCellsMap);
+							CheckType14(accumulator, grid, allCellsMap, normalDigits, extraDigits, extraCellsMap);
 						}
 					}
 				}
@@ -269,37 +288,92 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 
 		private void CheckType3Naked(
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap allCellsMap,
-			short normalDigits, short extraDigits)
+			short normalDigits, short extraDigits, GridMap extraCellsMap)
 		{
-			foreach (int region in allCellsMap.Regions)
+			foreach (int region in extraCellsMap.CoveredRegions)
 			{
+				int[] otherCells = ((RegionMaps[region] & EmptyMap) - allCellsMap).ToArray();
+				for (int size = 1; size < otherCells.Length; size++)
+				{
+					foreach (int[] cells in GetCombinationsOfArray(otherCells, size))
+					{
+						short mask = 0;
+						foreach (int cell in cells)
+						{
+							mask |= grid.GetCandidateMask(cell);
+						}
+
+						if ((mask & extraDigits) != extraDigits || mask.CountSet() != size + 1)
+						{
+							continue;
+						}
+
+						var elimMap = (RegionMaps[region] & EmptyMap) - allCellsMap - new GridMap(cells);
+						if (elimMap.IsEmpty)
+						{
+							continue;
+						}
+
+						var conclusions = new List<Conclusion>();
+						foreach (int digit in mask.GetAllSets())
+						{
+							foreach (int cell in elimMap & CandMaps[digit])
+							{
+								conclusions.Add(new Conclusion(Elimination, cell, digit));
+							}
+						}
+						if (conclusions.Count == 0)
+						{
+							continue;
+						}
+
+						var candidateOffsets = new List<(int, int)>();
+						foreach (int cell in allCellsMap)
+						{
+							foreach (int digit in grid.GetCandidates(cell))
+							{
+								candidateOffsets.Add(((mask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+							}
+						}
+						foreach (int cell in cells)
+						{
+							foreach (int digit in grid.GetCandidates(cell))
+							{
+								candidateOffsets.Add((1, cell * 9 + digit));
+							}
+						}
+
+						accumulator.Add(
+							new XrType3TechniqueInfo(
+								conclusions,
+								views: new[]
+								{
+									new View(
+										cellOffsets: null,
+										candidateOffsets,
+										regionOffsets: new[] { (0, region) },
+										links: null)
+								},
+								cells: allCellsMap.ToArray(),
+								digits: normalDigits.GetAllSets().ToArray(),
+								extraCells: cells,
+								extraDigits: mask.GetAllSets().ToArray(),
+								region));
+					}
+				}
 			}
 		}
 
 		private void CheckType14(
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap allCellsMap,
-			short normalDigits, short extraDigits)
+			short normalDigits, short extraDigits, GridMap extraCellsMap)
 		{
-			// Now check extra cells.
-			var extraCells = new List<int>();
-			foreach (int cell in allCellsMap)
-			{
-				foreach (int digit in extraDigits.GetAllSets())
-				{
-					if ((grid.GetCandidateMask(cell) >> digit & 1) != 0)
-					{
-						extraCells.Add(cell);
-					}
-				}
-			}
-
-			int extraCellsCount = extraCells.Count;
-			if (extraCellsCount == 1)
+			if (extraCellsMap.Count == 1)
 			{
 				// Type 1 found.
 				// Check eliminations.
 				var conclusions = new List<Conclusion>();
-				int extraCell = extraCells[0];
+				int extraCell = extraCellsMap.SetAt(0);
 				foreach (int digit in normalDigits.GetAllSets())
 				{
 					if (grid.Exists(extraCell, digit) is true)
