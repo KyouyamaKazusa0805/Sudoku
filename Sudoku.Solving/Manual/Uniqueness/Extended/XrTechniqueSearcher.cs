@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -87,13 +88,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					// Iterate on each combination.
 					foreach (short mask in masks)
 					{
-						var positions = mask.GetAllSets();
 						var allCellsMap = GridMap.Empty;
 						var pairs = new List<(int, int)>();
-						foreach (int pos in positions)
+						foreach (int pos in mask.GetAllSets())
 						{
-							int c1 = RegionCells[r1][pos];
-							int c2 = RegionCells[r2][pos];
+							int c1 = RegionCells[r1][pos], c2 = RegionCells[r2][pos];
 							allCellsMap.Add(c1);
 							allCellsMap.Add(c2);
 							pairs.Add((c1, c2));
@@ -105,7 +104,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 						bool checkKindsFlag = true;
 						foreach (var (l, r) in pairs)
 						{
-							if ((grid.GetCandidateMask(l) & grid.GetCandidateMask(r)).CountSet() < 2)
+							short tempMask = (short)(grid.GetCandidateMask(l) & grid.GetCandidateMask(r));
+							if (tempMask == 0 || tempMask.IsPowerOfTwo())
 							{
 								checkKindsFlag = false;
 								break;
@@ -125,11 +125,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							m2 |= grid.GetCandidateMask(r);
 						}
 
-						int resultMask = m1 | m2;
-						var normalDigits = new List<int>();
-						var extraDigits = new List<int>();
-						var digits = resultMask.GetAllSets();
-						foreach (int digit in digits)
+						short resultMask = (short)(m1 | m2);
+						short normalDigits = 0, extraDigits = 0;
+						foreach (int digit in resultMask.GetAllSets())
 						{
 							int count = 0;
 							foreach (var (l, r) in pairs)
@@ -141,19 +139,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 								}
 							}
 
-							if (count >= 2)
-							{
-								// This candidate must be in the structure.
-								normalDigits.Add(digit);
-							}
-							else
-							{
-								// This candidate must be the extra digit.
-								extraDigits.Add(digit);
-							}
+							(count >= 2 ? ref normalDigits : ref extraDigits) |= (short)(1 << digit);
 						}
 
-						if (normalDigits.Count != size)
+						if (normalDigits.CountSet() != size)
 						{
 							// The number of normal digits are not enough.
 							continue;
@@ -164,9 +153,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							// Possible type 1 or 2 found.
 							// Now check extra cells.
 							var extraCells = new List<int>();
+							int extraDigit = extraDigits.FindFirstSet();
 							foreach (int cell in allCellsMap)
 							{
-								if ((grid.GetCandidateMask(cell) >> extraDigits[0] & 1) != 0)
+								if ((grid.GetCandidateMask(cell) >> extraDigit & 1) != 0)
 								{
 									extraCells.Add(cell);
 								}
@@ -179,7 +169,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							}
 
 							// Get all eliminations and highlight candidates.
-							int extraDigit = extraDigits[0];
 							var conclusions = new List<Conclusion>();
 							var candidateOffsets = new List<(int, int)>();
 							if (extraCellsMap.Count == 1)
@@ -191,12 +180,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 									{
 										foreach (int digit in grid.GetCandidates(cell))
 										{
-											if (digit == extraDigit)
+											if (digit != extraDigit)
 											{
-												continue;
+												conclusions.Add(new Conclusion(Elimination, cell, digit));
 											}
-
-											conclusions.Add(new Conclusion(Elimination, cell, digit));
 										}
 									}
 									else
@@ -224,10 +211,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 												regionOffsets: null,
 												links: null)
 										},
-										typeCode: 1,
-										typeName: "Type 1",
 										cells: allCellsMap.ToArray(),
-										digits: normalDigits));
+										digits: normalDigits.GetAllSets().ToArray()));
 							}
 							else
 							{
@@ -263,10 +248,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 												regionOffsets: null,
 												links: null)
 										},
-										typeCode: 2,
-										typeName: "Type 2",
 										cells: allCellsMap.ToArray(),
-										digits: normalDigits,
+										digits: normalDigits.GetAllSets().ToArray(),
 										extraDigit));
 							}
 						}
@@ -275,9 +258,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							// Check type 3 or 4.
 							for (int subsetSize = 2; subsetSize <= 8 - size; subsetSize++)
 							{
-								CheckType3Naked(
-									accumulator, grid, allCellsMap, subsetSize, r1, r2, pairs,
-									normalDigits, extraDigits);
+								CheckType3Naked(accumulator, grid, allCellsMap, subsetSize, normalDigits, extraDigits);
 							}
 
 							CheckType14(accumulator, grid, allCellsMap, normalDigits, extraDigits);
@@ -297,13 +278,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <param name="extraDigits">The extra digits.</param>
 		private void CheckType14(
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap allCellsMap,
-			IReadOnlyList<int> normalDigits, IReadOnlyList<int> extraDigits)
+			short normalDigits, short extraDigits)
 		{
 			// Now check extra cells.
 			var extraCells = new List<int>();
 			foreach (int cell in allCellsMap)
 			{
-				foreach (int digit in extraDigits)
+				foreach (int digit in extraDigits.GetAllSets())
 				{
 					if ((grid.GetCandidateMask(cell) >> digit & 1) != 0)
 					{
@@ -319,7 +300,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 				// Check eliminations.
 				var conclusions = new List<Conclusion>();
 				int extraCell = extraCells[0];
-				foreach (int digit in normalDigits)
+				foreach (int digit in normalDigits.GetAllSets())
 				{
 					if (grid.Exists(extraCell, digit) is true)
 					{
@@ -358,14 +339,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 								regionOffsets: null,
 								links: null)
 						},
-						typeCode: 1,
-						typeName: "Type 1",
 						cells: allCellsMap.ToArray(),
-						digits: normalDigits));
+						digits: normalDigits.GetAllSets().ToArray()));
 			}
 			else
 			{
-				// TODO: Check XR type 4.
+
 			}
 		}
 
@@ -376,17 +355,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <param name="grid">The grid.</param>
 		/// <param name="allCellsMap">All cells map.</param>
 		/// <param name="size">The size to check.</param>
-		/// <param name="r1">The region 1.</param>
-		/// <param name="r2">The region 2.</param>
-		/// <param name="pairs">The pairs.</param>
 		/// <param name="normalDigits">The normal digits.</param>
 		/// <param name="extraDigits">The extra digits.</param>
 		private void CheckType3Naked(
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap allCellsMap,
-			int size, int r1, int r2, IReadOnlyList<(int, int)> pairs, IReadOnlyList<int> normalDigits,
-			IReadOnlyList<int> extraDigits)
+			int size, short normalDigits, short extraDigits)
 		{
-			foreach (int region in GetRegions(r1, r2, pairs))
+			foreach (int region in allCellsMap.Regions)
 			{
 				// Firstly, we should check all cells to iterate,
 				// which are empty cells and not in the structure.
@@ -434,7 +409,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					}
 
 					short extraMask = 0;
-					foreach (int digit in extraDigits)
+					foreach (int digit in extraDigits.GetAllSets())
 					{
 						extraMask |= (short)(1 << digit);
 					}
@@ -451,7 +426,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					var elimMap = RegionMaps[region] - unavailableCellsMap - usedCellsMap;
 					foreach (int cell in elimMap)
 					{
-						foreach (int digit in extraDigits)
+						foreach (int digit in extraDigits.GetAllSets())
 						{
 							if (grid.Exists(cell, digit) is true)
 							{
@@ -486,37 +461,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 									regionOffsets: new[] { (0, region) },
 									links: null)
 							},
-							typeCode: 3,
-							typeName: "Type 3",
 							cells: allCellsMap.ToArray(),
-							digits: normalDigits,
+							digits: normalDigits.GetAllSets().ToArray(),
 							extraCells: usedCellsMap.ToArray(),
-							extraDigits,
+							extraDigits: extraDigits.GetAllSets().ToArray(),
 							region));
 				}
 			}
-		}
-
-
-		/// <summary>
-		/// Get all regions to iterate (used for type 3).
-		/// </summary>
-		/// <param name="r1">The region 1.</param>
-		/// <param name="r2">The region 2.</param>
-		/// <param name="pairs">The pairs.</param>
-		/// <returns>All regions.</returns>
-		private static IEnumerable<int> GetRegions(int r1, int r2, IReadOnlyList<(int, int)> pairs)
-		{
-			foreach (var (l, r) in pairs)
-			{
-				foreach (int region in new GridMap { l, r }.CoveredRegions)
-				{
-					yield return region;
-				}
-			}
-
-			yield return r1;
-			yield return r2;
 		}
 	}
 }

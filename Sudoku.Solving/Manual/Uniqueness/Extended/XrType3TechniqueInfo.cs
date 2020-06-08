@@ -11,18 +11,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	public sealed class XrType3TechniqueInfo : XrTechniqueInfo
 	{
 		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="typeCode">The type code.</param>
-		/// <param name="typeName">The type name.</param>
 		/// <param name="cells">All cells.</param>
 		/// <param name="digits">All digits.</param>
 		/// <param name="extraCells">All extra cells.</param>
 		/// <param name="extraDigits">All extra digits.</param>
 		/// <param name="region">The region.</param>
 		public XrType3TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int typeCode,
-			string typeName, IReadOnlyList<int> cells, IReadOnlyList<int> digits,
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
+			IReadOnlyList<int> cells, IReadOnlyList<int> digits,
 			IReadOnlyList<int> extraCells, IReadOnlyList<int> extraDigits, int region)
-			: base(conclusions, views, typeCode, typeName, cells, digits) =>
+			: base(conclusions, views, cells, digits) =>
 			(ExtraCells, ExtraDigits, Region) = (extraCells, extraDigits, region);
 
 

@@ -6433,12 +6433,7 @@
             The difficulty extra.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueInfo._typeCode">
-            <summary>
-            The type code.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.String,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <constructor type="TechniqueInfo">
 		<summary>
 			Initializes an instance with the specified information.
@@ -6446,8 +6441,6 @@
 		<param name="conclusions">The conclusions.</param>
 		<param name="views">The views of this solving step.</param>
 	</constructor>
-            <param name="typeCode">The type code.</param>
-            <param name="typeName">The type name.</param>
             <param name="cells">All cells.</param>
             <param name="digits">All digits.</param>
         </member>
@@ -6461,15 +6454,13 @@
             Indicates all digits.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueInfo.TypeName">
-            <summary>
-            Indicates the type name.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueInfo.Size">
             <summary>
             Indicates the size of the instance.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueInfo.ShowDifficulty">
             <inheritdoc/>
@@ -6482,9 +6473,6 @@
             Get additional string.
             </summary>
             <returns>The additional string.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueInfo.System#IComparable{Sudoku#Solving#Manual#Uniqueness#Extended#XrTechniqueInfo}#CompareTo(Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueInfo)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher">
             <summary>
@@ -6521,7 +6509,7 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.CheckType14(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.CheckType14(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap,System.Int16,System.Int16)">
             <summary>
             Check type 1 or 4.
             </summary>
@@ -6531,7 +6519,7 @@
             <param name="normalDigits">The normal digits.</param>
             <param name="extraDigits">The extra digits.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap,System.Int32,System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.CheckType3Naked(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap,System.Int32,System.Int16,System.Int16)">
             <summary>
             Check type 3 naked subsets.
             </summary>
@@ -6539,27 +6527,15 @@
             <param name="grid">The grid.</param>
             <param name="allCellsMap">All cells map.</param>
             <param name="size">The size to check.</param>
-            <param name="r1">The region 1.</param>
-            <param name="r2">The region 2.</param>
-            <param name="pairs">The pairs.</param>
             <param name="normalDigits">The normal digits.</param>
             <param name="extraDigits">The extra digits.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.GetRegions(System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}})">
-            <summary>
-            Get all regions to iterate (used for type 3).
-            </summary>
-            <param name="r1">The region 1.</param>
-            <param name="r2">The region 2.</param>
-            <param name="pairs">The pairs.</param>
-            <returns>All regions.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1TechniqueInfo">
             <summary>
             Provides a usage of <b>extended rectangle</b> (XR) type 1 technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.String,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1TechniqueInfo.Difficulty">
@@ -6579,7 +6555,7 @@
             Provides a usage of <b>extended rectangle</b> (XR) type 2 technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.String,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
             <constructor type="TechniqueInfo">
 		<summary>
 			Initializes an instance with the specified information.
@@ -6587,8 +6563,6 @@
 		<param name="conclusions">The conclusions.</param>
 		<param name="views">The views of this solving step.</param>
 	</constructor>
-            <param name="typeCode">The type code.</param>
-            <param name="typeName">The type name.</param>
             <param name="cells">All cells.</param>
             <param name="digits">All digits.</param>
             <param name="extraDigit">The extra digit.</param>
@@ -6615,7 +6589,7 @@
             Provides a usage of <b>extended rectangle</b> (XR) type 3 technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType3TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.String,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType3TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
             <constructor type="TechniqueInfo">
 		<summary>
 			Initializes an instance with the specified information.
@@ -6623,8 +6597,6 @@
 		<param name="conclusions">The conclusions.</param>
 		<param name="views">The views of this solving step.</param>
 	</constructor>
-            <param name="typeCode">The type code.</param>
-            <param name="typeName">The type name.</param>
             <param name="cells">All cells.</param>
             <param name="digits">All digits.</param>
             <param name="extraCells">All extra cells.</param>
@@ -6656,6 +6628,46 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType3TechniqueInfo.GetAdditional">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4TechniqueInfo">
+            <summary>
+            Provides a usage of <b>extended rectangle</b> (XR) type 4 technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int16,Sudoku.Data.GridMap)">
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
+            <param name="cells">All cells.</param>
+            <param name="digits">All digits.</param>
+            <param name="extraMask">The extra mask.</param>
+            <param name="conjugateRegion">The conjugate region.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4TechniqueInfo.ExtraMask">
+            <summary>
+            Indicates the mask of digits that is the combination.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4TechniqueInfo.ConjugateRegion">
+            <summary>
+            The so-called conjugate region.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4TechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4TechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4TechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4TechniqueInfo.GetAdditional">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueInfo">

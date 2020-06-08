@@ -10,15 +10,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	public sealed class XrType2TechniqueInfo : XrTechniqueInfo
 	{
 		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="typeCode">The type code.</param>
-		/// <param name="typeName">The type name.</param>
 		/// <param name="cells">All cells.</param>
 		/// <param name="digits">All digits.</param>
 		/// <param name="extraDigit">The extra digit.</param>
 		public XrType2TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int typeCode,
-			string typeName, IReadOnlyList<int> cells, IReadOnlyList<int> digits, int extraDigit)
-			: base(conclusions, views, typeCode, typeName, cells, digits) =>
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
+			IReadOnlyList<int> cells, IReadOnlyList<int> digits, int extraDigit)
+			: base(conclusions, views, cells, digits) =>
 			ExtraDigit = extraDigit;
 
 

@@ -1,7 +1,4 @@
-﻿#nullable disable warnings
-
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -11,7 +8,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	/// <summary>
 	/// Provides a usage of <b>extended rectangle</b> (XR) technique.
 	/// </summary>
-	public abstract class XrTechniqueInfo : UniquenessTechniqueInfo, IComparable<XrTechniqueInfo>
+	public abstract class XrTechniqueInfo : UniquenessTechniqueInfo
 	{
 		/// <summary>
 		/// The difficulty extra.
@@ -21,22 +18,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			0, 0, 0, 0, .1M, 0, .2M, 0, .3M, 0, .4M, 0, .5M, 0, .6M
 		};
 
-		/// <summary>
-		/// The type code.
-		/// </summary>
-		private readonly int _typeCode;
-
-
 		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="typeCode">The type code.</param>
-		/// <param name="typeName">The type name.</param>
 		/// <param name="cells">All cells.</param>
 		/// <param name="digits">All digits.</param>
 		public XrTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int typeCode, string typeName, IReadOnlyList<int> cells, IReadOnlyList<int> digits)
-			: base(conclusions, views) =>
-			(Cells, Digits, _typeCode, TypeName) = (cells, digits, typeCode, typeName);
+			IReadOnlyList<int> cells, IReadOnlyList<int> digits) : base(conclusions, views) =>
+			(Cells, Digits) = (cells, digits);
 
 
 		/// <summary>
@@ -50,14 +38,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		public IReadOnlyList<int> Digits { get; }
 
 		/// <summary>
-		/// Indicates the type name.
-		/// </summary>
-		public string TypeName { get; }
-
-		/// <summary>
 		/// Indicates the size of the instance.
 		/// </summary>
 		public int Size => Cells.Count >> 1;
+
+		/// <inheritdoc/>
+		public abstract override TechniqueCode TechniqueCode { get; }
 
 		/// <inheritdoc/>
 		public sealed override bool ShowDifficulty => true;
@@ -80,9 +66,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// </summary>
 		/// <returns>The additional string.</returns>
 		protected abstract string? GetAdditional();
-
-		/// <inheritdoc/>
-		int IComparable<XrTechniqueInfo>.CompareTo(XrTechniqueInfo other) =>
-			_typeCode.CompareTo(other._typeCode);
 	}
 }

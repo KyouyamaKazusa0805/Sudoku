@@ -11,9 +11,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	{
 		/// <inheritdoc/>
 		public XrType1TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, int typeCode,
-			string typeName, IReadOnlyList<int> cells, IReadOnlyList<int> digits)
-			: base(conclusions, views, typeCode, typeName, cells, digits)
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
+			IReadOnlyList<int> cells, IReadOnlyList<int> digits)
+			: base(conclusions, views, cells, digits)
 		{
 		}
 
