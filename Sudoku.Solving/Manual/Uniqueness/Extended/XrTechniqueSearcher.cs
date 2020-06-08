@@ -194,7 +194,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							}
 
 							CheckType3Naked(accumulator, grid, allCellsMap, normalDigits, extraDigits, extraCellsMap);
-							CheckType14(accumulator, grid, allCellsMap, normalDigits, extraDigits, extraCellsMap);
+							CheckType14(accumulator, grid, allCellsMap, normalDigits, extraCellsMap);
 						}
 					}
 				}
@@ -351,52 +351,118 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 
 		private void CheckType14(
 			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap allCellsMap,
-			short normalDigits, short extraDigits, GridMap extraCellsMap)
+			short normalDigits, GridMap extraCellsMap)
 		{
-			if (extraCellsMap.Count == 1)
+			switch (extraCellsMap.Count)
 			{
-				// Type 1 found.
-				// Check eliminations.
-				var conclusions = new List<Conclusion>();
-				int extraCell = extraCellsMap.SetAt(0);
-				foreach (int digit in normalDigits.GetAllSets())
+				case 1:
 				{
-					if (grid.Exists(extraCell, digit) is true)
+					// Type 1 found.
+					// Check eliminations.
+					var conclusions = new List<Conclusion>();
+					int extraCell = extraCellsMap.SetAt(0);
+					foreach (int digit in normalDigits.GetAllSets())
 					{
-						conclusions.Add(new Conclusion(Elimination, extraCell, digit));
-					}
-				}
-
-				if (conclusions.Count == 0)
-				{
-					return;
-				}
-
-				// Record all highlight candidates.
-				var candidateOffsets = new List<(int, int)>();
-				foreach (int cell in allCellsMap)
-				{
-					if (cell == extraCell)
-					{
-						continue;
+						if (grid.Exists(extraCell, digit) is true)
+						{
+							conclusions.Add(new Conclusion(Elimination, extraCell, digit));
+						}
 					}
 
-					foreach (int digit in grid.GetCandidates(cell))
+					if (conclusions.Count == 0)
 					{
-						candidateOffsets.Add((0, cell * 9 + digit));
+						return;
 					}
+
+					// Record all highlight candidates.
+					var candidateOffsets = new List<(int, int)>();
+					foreach (int cell in allCellsMap)
+					{
+						if (cell == extraCell)
+						{
+							continue;
+						}
+
+						foreach (int digit in grid.GetCandidates(cell))
+						{
+							candidateOffsets.Add((0, cell * 9 + digit));
+						}
+					}
+
+					accumulator.Add(
+						new XrType1TechniqueInfo(
+							conclusions,
+							views: new[] { new View(candidateOffsets) },
+							cells: allCellsMap,
+							digits: normalDigits));
+
+					break;
 				}
+				case 2:
+				{
+					// Type 4.
+					short m1 = grid.GetCandidateMask(extraCellsMap.SetAt(0));
+					short m2 = grid.GetCandidateMask(extraCellsMap.SetAt(1));
+					short conjugateMask = (short)(m1 & m2 & normalDigits);
+					if (!conjugateMask.IsPowerOfTwo())
+					{
+						break;
+					}
 
-				accumulator.Add(
-					new XrType1TechniqueInfo(
-						conclusions,
-						views: new[] { new View(candidateOffsets) },
-						cells: allCellsMap,
-						digits: normalDigits));
-			}
-			else
-			{
+					int conjugateDigit = conjugateMask.FindFirstSet();
+					foreach (int region in extraCellsMap.CoveredRegions)
+					{
+						var map = RegionMaps[region] & allCellsMap & extraCellsMap;
+						if (map != extraCellsMap)
+						{
+							continue;
+						}
 
+						short elimDigits = (short)(normalDigits & ~conjugateMask);
+						var conclusions = new List<Conclusion>();
+						foreach (int digit in elimDigits.GetAllSets())
+						{
+							foreach (int cell in extraCellsMap & CandMaps[digit])
+							{
+								conclusions.Add(new Conclusion(Elimination, cell, digit));
+							}
+						}
+						if (conclusions.Count == 0)
+						{
+							continue;
+						}
+
+						var candidateOffsets = new List<(int, int)>();
+						foreach (int cell in allCellsMap - extraCellsMap)
+						{
+							foreach (int digit in grid.GetCandidates(cell))
+							{
+								candidateOffsets.Add((0, cell * 9 + digit));
+							}
+						}
+						foreach (int cell in extraCellsMap)
+						{
+							candidateOffsets.Add((1, cell * 9 + conjugateDigit));
+						}
+
+						accumulator.Add(
+							new XrType4TechniqueInfo(
+								conclusions,
+								views: new[]
+								{
+									new View(
+										cellOffsets: null,
+										candidateOffsets,
+										regionOffsets: new[] { (0, region) },
+										links: null)
+								},
+								cells: allCellsMap,
+								digits: normalDigits,
+								conjugatePair: new ConjugatePair(extraCellsMap, conjugateDigit)));
+					}
+
+					break;
+				}
 			}
 		}
 	}

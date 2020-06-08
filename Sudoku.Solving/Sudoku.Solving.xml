@@ -6614,7 +6614,7 @@
             Provides a usage of <b>extended rectangle</b> (XR) type 4 technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap,System.Int16,System.Int16,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap,System.Int16,Sudoku.Solving.ConjugatePair)">
             <constructor type="TechniqueInfo">
 		<summary>
 			Initializes an instance with the specified information.
@@ -6624,17 +6624,11 @@
 	</constructor>
             <param name="cells">All cells.</param>
             <param name="digits">All digits.</param>
-            <param name="extraMask">The extra mask.</param>
-            <param name="conjugateRegion">The conjugate region.</param>
+            <param name="conjugatePair">The conjugate pair.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4TechniqueInfo.ExtraMask">
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4TechniqueInfo.ConjugatePair">
             <summary>
-            Indicates the mask of digits that is the combination.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4TechniqueInfo.ConjugateRegion">
-            <summary>
-            The so-called conjugate region.
+            The conjugate pair.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4TechniqueInfo.Difficulty">
