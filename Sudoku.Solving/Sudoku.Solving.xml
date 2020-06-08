@@ -4414,21 +4414,21 @@
         <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher.AccumulateAllBySize(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32)">
             <summary>
-            Take all by size.
+            Get all technique information instances by size.
             </summary>
             <param name="result">The result accumulator.</param>
             <param name="grid">The grid.</param>
             <param name="size">The size.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher.Process(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlcTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <summary>
             Process the calculation.
             </summary>
-            <param name="grid">The grid.</param>
             <param name="result">The result.</param>
+            <param name="grid">The grid.</param>
             <param name="size">The size.</param>
             <param name="baseSet">The base set.</param>
             <param name="coverSet">The cover set.</param>

@@ -5,8 +5,8 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
+using static System.Algorithms;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Intersections
@@ -48,388 +48,148 @@ namespace Sudoku.Solving.Manual.Intersections
 		{
 			for (int size = 2; size <= (_checkAlq ? 4 : 3); size++)
 			{
-				AccumulateAllBySize(accumulator, grid, size);
+				GetAll(accumulator, grid, size);
 			}
 		}
 
+
 		/// <summary>
-		/// Take all by size.
+		/// Get all technique information instances by size.
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="size">The size.</param>
 		/// <returns>The result.</returns>
-		private void AccumulateAllBySize(IBag<TechniqueInfo> result, IReadOnlyGrid grid, int size)
+		private static void GetAll(IBag<TechniqueInfo> result, IReadOnlyGrid grid, int size)
 		{
 			foreach (var ((baseSet, coverSet), (a, b, c)) in IntersectionMaps)
 			{
 				if (c.Overlaps(EmptyMap))
 				{
 					// Process for 2 cases.
-					Process(grid, result, size, baseSet, coverSet, a, b, c);
-					Process(grid, result, size, coverSet, baseSet, b, a, c);
+					GetAll(result, grid, size, baseSet, coverSet, a, b, c);
+					GetAll(result, grid, size, coverSet, baseSet, b, a, c);
 				}
 			}
 		}
 
-
 		/// <summary>
 		/// Process the calculation.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
 		/// <param name="result">The result.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="size">The size.</param>
 		/// <param name="baseSet">The base set.</param>
 		/// <param name="coverSet">The cover set.</param>
 		/// <param name="a">The left grid map.</param>
 		/// <param name="b">The right grid map.</param>
 		/// <param name="c">The intersection.</param>
-		private static void Process(
-			IReadOnlyGrid grid, IBag<TechniqueInfo> result, int size, int baseSet, int coverSet,
+		private static void GetAll(
+			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int size, int baseSet, int coverSet,
 			GridMap a, GridMap b, GridMap c)
 		{
-			int[] aCells = a.ToArray();
-			for (int i1 = 0; i1 < 8 - size; i1++)
+			foreach (int[] cells in GetCombinationsOfArray(a.ToArray(), size - 1))
 			{
-				int c1 = aCells[i1];
-				short mask1 = grid.GetCandidateMask(c1);
-				if (size == 2)
+				short mask = 0;
+				foreach (int cell in cells)
 				{
-					// Check almost locked pair.
-					var digits = mask1.GetAllSets();
-					if (mask1.CountSet() != 2
-						|| digits.Any(digit => ValueMaps[digit].Overlaps(RegionMaps[coverSet])))
-					{
-						continue;
-					}
-
-					short ahsMask = 0;
-					foreach (int digit in digits)
-					{
-						ahsMask |= (RegionMaps[coverSet] & CandMaps[digit] & b).GetSubviewMask(coverSet);
-					}
-					if (!ahsMask.IsPowerOfTwo())
-					{
-						continue;
-					}
-
-					// Almost locked pair found.
-					int ahsCell = RegionCells[coverSet][ahsMask.FindFirstSet()];
-
-					// Record all highlight candidates.
-					var candidateOffsets = new List<(int, int)>();
-					foreach (int digit in digits)
-					{
-						candidateOffsets.Add((0, c1 * 9 + digit));
-					}
-					foreach (int cell in c)
-					{
-						foreach (int digit in (mask1 & grid.GetCandidateMask(cell)).GetAllSets())
-						{
-							candidateOffsets.Add((1, cell * 9 + digit));
-						}
-					}
-					foreach (int digit in (mask1 & grid.GetCandidateMask(ahsCell)).GetAllSets())
-					{
-						candidateOffsets.Add((0, ahsCell * 9 + digit));
-					}
-
-					// Record all eliminations.
-					var conclusions = new List<Conclusion>();
-					foreach (int aCell in a)
-					{
-						if (aCell == c1)
-						{
-							continue;
-						}
-
-						foreach (int digit in (mask1 & grid.GetCandidateMask(aCell)).GetAllSets())
-						{
-							conclusions.Add(new Conclusion(Elimination, aCell, digit));
-						}
-					}
-
-					for (int digit = 0, temp = Grid.MaxCandidatesMask & ~mask1; digit < 9; digit++, temp >>= 1)
-					{
-						if ((temp & 1) != 0 && grid.Exists(ahsCell, digit) is true)
-						{
-							conclusions.Add(new Conclusion(Elimination, ahsCell, digit));
-						}
-					}
-					if (conclusions.Count == 0)
-					{
-						continue;
-					}
-
-					var valueCells = from cell in new[] { c1, ahsCell }
-									 where grid.GetStatus(cell) != Empty
-									 select (0, cell);
-					result.Add(
-						new AlcTechniqueInfo(
-							conclusions,
-							views: new[]
-							{
-								new View(
-									cellOffsets: valueCells.Any() ? valueCells.ToArray() : null,
-									candidateOffsets,
-									regionOffsets: new[] { (0, baseSet), (1, coverSet) },
-									links: null)
-							},
-							digits: digits.ToArray(),
-							baseCells: new[] { c1 },
-							targetCells: new[] { ahsCell },
-							hasValueCell: valueCells.Any()));
+					mask |= grid.GetCandidateMask(cell);
 				}
-				else // size > 2
+
+				if (mask.CountSet() != size)
 				{
-					for (int i2 = i1 + 1; i2 < 9 - size; i2++)
+					continue;
+				}
+
+				var digits = mask.GetAllSets();
+				if (digits.Any(d => ValueMaps[d].Overlaps(RegionMaps[coverSet])))
+				{
+					continue;
+				}
+
+				short ahsMask = 0;
+				foreach (int digit in digits)
+				{
+					ahsMask |= (RegionMaps[coverSet] & DigitMaps[digit] & b).GetSubviewMask(coverSet);
+				}
+				if (ahsMask.CountSet() != size - 1)
+				{
+					continue;
+				}
+
+				var ahsCells = GridMap.Empty;
+				foreach (int pos in ahsMask.GetAllSets())
+				{
+					ahsCells.Add(RegionCells[coverSet][pos]);
+				}
+
+				// Record all eliminations.
+				var cellsMap = new GridMap(cells);
+				var conclusions = new List<Conclusion>();
+				foreach (int aCell in a)
+				{
+					if (cellsMap[aCell])
 					{
-						int c2 = aCells[i2];
-						short mask2 = grid.GetCandidateMask(c2);
-						if (size == 3)
-						{
-							// Check almost locked triple.
-							short m = (short)(mask1 | mask2);
-							var digits = m.GetAllSets();
-							if (m.CountSet() != 3
-								|| digits.Any(digit => ValueMaps[digit].Overlaps(RegionMaps[coverSet])))
-							{
-								continue;
-							}
+						continue;
+					}
 
-							short ahsMask = 0;
-							foreach (int digit in digits)
-							{
-								ahsMask |= (RegionMaps[coverSet] & CandMaps[digit] & b).GetSubviewMask(coverSet);
-							}
-							if (ahsMask.CountSet() != 2)
-							{
-								continue;
-							}
-
-							// Almost locked pair found.
-							int[] ahsCellPositions = ahsMask.GetAllSets().ToArray();
-							int ahsCell1 = RegionCells[coverSet][ahsCellPositions[0]];
-							int ahsCell2 = RegionCells[coverSet][ahsCellPositions[1]];
-
-							// Record all highlight candidates.
-							var candidateOffsets = new List<(int, int)>();
-							foreach (int digit in digits)
-							{
-								if (grid.Exists(c1, digit) is true)
-								{
-									candidateOffsets.Add((0, c1 * 9 + digit));
-								}
-								if (grid.Exists(c2, digit) is true)
-								{
-									candidateOffsets.Add((0, c2 * 9 + digit));
-								}
-							}
-							foreach (int cell in c)
-							{
-								foreach (int digit in (m & grid.GetCandidateMask(cell)).GetAllSets())
-								{
-									candidateOffsets.Add((1, cell * 9 + digit));
-								}
-							}
-							foreach (int digit in digits)
-							{
-								if (grid.Exists(ahsCell1, digit) is true)
-								{
-									candidateOffsets.Add((0, ahsCell1 * 9 + digit));
-								}
-								if (grid.Exists(ahsCell2, digit) is true)
-								{
-									candidateOffsets.Add((0, ahsCell2 * 9 + digit));
-								}
-							}
-
-							// Record all eliminations.
-							var conclusions = new List<Conclusion>();
-							foreach (int aCell in a)
-							{
-								if (aCell == c1 || aCell == c2)
-								{
-									continue;
-								}
-
-								foreach (int digit in (m & grid.GetCandidateMask(aCell)).GetAllSets())
-								{
-									conclusions.Add(new Conclusion(Elimination, aCell, digit));
-								}
-							}
-
-							for (int digit = 0, temp = Grid.MaxCandidatesMask & ~m; digit < 9; digit++, temp >>= 1)
-							{
-								if ((temp & 1) != 0)
-								{
-									if (grid.Exists(ahsCell1, digit) is true)
-									{
-										conclusions.Add(new Conclusion(Elimination, ahsCell1, digit));
-									}
-									if (grid.Exists(ahsCell2, digit) is true)
-									{
-										conclusions.Add(new Conclusion(Elimination, ahsCell2, digit));
-									}
-								}
-							}
-							if (conclusions.Count == 0)
-							{
-								continue;
-							}
-
-							var valueCells = from cell in new[] { c1, c2, ahsCell1, ahsCell2 }
-											 where grid.GetStatus(cell) != Empty
-											 select (0, cell);
-							result.Add(
-								new AlcTechniqueInfo(
-									conclusions,
-									views: new[]
-									{
-										new View(
-											cellOffsets: valueCells.Any() ? valueCells.ToArray() : null,
-											candidateOffsets,
-											regionOffsets: new[] { (0, baseSet), (1, coverSet) },
-											links: null)
-									},
-									digits: digits.ToArray(),
-									baseCells: new[] { c1, c2 },
-									targetCells: new[] { ahsCell1, ahsCell2 },
-									hasValueCell: valueCells.Any()));
-						}
-						else // size == 4
-						{
-							for (int i3 = i2 + 1; i3 < 6; i3++)
-							{
-								int c3 = aCells[i3];
-								short mask3 = grid.GetCandidateMask(c3);
-
-								// Check almost locked quadruple.
-								short m = (short)((short)(mask1 | mask2) | mask3);
-								var digits = m.GetAllSets();
-								if (m.CountSet() != 4
-									|| digits.Any(digit => ValueMaps[digit].Overlaps(RegionMaps[coverSet])))
-								{
-									continue;
-								}
-
-								short ahsMask = 0;
-								foreach (int digit in digits)
-								{
-									ahsMask |= (RegionMaps[coverSet] & CandMaps[digit] & b).GetSubviewMask(coverSet);
-								}
-								if (ahsMask.CountSet() != 3)
-								{
-									continue;
-								}
-
-								// Almost locked pair found.
-								int[] ahsCellPositions = ahsMask.GetAllSets().ToArray();
-								int ahsCell1 = RegionCells[coverSet][ahsCellPositions[0]];
-								int ahsCell2 = RegionCells[coverSet][ahsCellPositions[1]];
-								int ahsCell3 = RegionCells[coverSet][ahsCellPositions[2]];
-
-								// Record all highlight candidates.
-								var candidateOffsets = new List<(int, int)>();
-								foreach (int digit in digits)
-								{
-									if (grid.Exists(c1, digit) is true)
-									{
-										candidateOffsets.Add((0, c1 * 9 + digit));
-									}
-									if (grid.Exists(c2, digit) is true)
-									{
-										candidateOffsets.Add((0, c2 * 9 + digit));
-									}
-									if (grid.Exists(c3, digit) is true)
-									{
-										candidateOffsets.Add((0, c3 * 9 + digit));
-									}
-								}
-								foreach (int cell in c)
-								{
-									foreach (int digit in (m & grid.GetCandidateMask(cell)).GetAllSets())
-									{
-										candidateOffsets.Add((1, cell * 9 + digit));
-									}
-								}
-								foreach (int digit in digits)
-								{
-									if (grid.Exists(ahsCell1, digit) is true)
-									{
-										candidateOffsets.Add((0, ahsCell1 * 9 + digit));
-									}
-									if (grid.Exists(ahsCell2, digit) is true)
-									{
-										candidateOffsets.Add((0, ahsCell2 * 9 + digit));
-									}
-									if (grid.Exists(ahsCell3, digit) is true)
-									{
-										candidateOffsets.Add((0, ahsCell3 * 9 + digit));
-									}
-								}
-
-								// Record all eliminations.
-								var conclusions = new List<Conclusion>();
-								foreach (int aCell in a)
-								{
-									if (aCell == c1 || aCell == c2 || aCell == c3)
-									{
-										continue;
-									}
-
-									foreach (int digit in (m & grid.GetCandidateMask(aCell)).GetAllSets())
-									{
-										conclusions.Add(new Conclusion(Elimination, aCell, digit));
-									}
-								}
-
-								for (int digit = 0, temp = Grid.MaxCandidatesMask & ~m; digit < 9; digit++, temp >>= 1)
-								{
-									if ((temp & 1) != 0)
-									{
-										if (grid.Exists(ahsCell1, digit) is true)
-										{
-											conclusions.Add(new Conclusion(Elimination, ahsCell1, digit));
-										}
-										if (grid.Exists(ahsCell2, digit) is true)
-										{
-											conclusions.Add(new Conclusion(Elimination, ahsCell2, digit));
-										}
-										if (grid.Exists(ahsCell3, digit) is true)
-										{
-											conclusions.Add(new Conclusion(Elimination, ahsCell3, digit));
-										}
-									}
-								}
-
-								if (conclusions.Count == 0)
-								{
-									continue;
-								}
-
-								var valueCells = from cell in new[] { c1, c2, c3, ahsCell1, ahsCell2, ahsCell3 }
-												 where grid.GetStatus(cell) != Empty
-												 select (0, cell);
-								result.Add(
-									new AlcTechniqueInfo(
-										conclusions,
-										views: new[]
-										{
-											new View(
-												cellOffsets: valueCells.Any() ? valueCells.ToArray() : null,
-												candidateOffsets,
-												regionOffsets: new[] { (0, baseSet), (1, coverSet) },
-												links: null)
-										},
-										digits: digits.ToArray(),
-										baseCells: new[] { c1, c2, c3 },
-										targetCells: new[] { ahsCell1, ahsCell2, ahsCell3 },
-										hasValueCell: valueCells.Any()));
-							}
-						}
+					foreach (int digit in (mask & grid.GetCandidateMask(aCell)).GetAllSets())
+					{
+						conclusions.Add(new Conclusion(Elimination, aCell, digit));
 					}
 				}
+				foreach (int digit in (Grid.MaxCandidatesMask & ~mask).GetAllSets())
+				{
+					foreach (int ahsCell in ahsCells & CandMaps[digit])
+					{
+						conclusions.Add(new Conclusion(Elimination, ahsCell, digit));
+					}
+				}
+				if (conclusions.Count == 0)
+				{
+					continue;
+				}
+
+				// Gather highlight candidates.
+				var candidateOffsets = new List<(int, int)>();
+				foreach (int digit in digits)
+				{
+					foreach (int cell in cellsMap & CandMaps[digit])
+					{
+						candidateOffsets.Add((0, cell * 9 + digit));
+					}
+				}
+				foreach (int cell in c)
+				{
+					foreach (int digit in (mask & grid.GetCandidateMask(cell)).GetAllSets())
+					{
+						candidateOffsets.Add((1, cell * 9 + digit));
+					}
+				}
+				foreach (int cell in ahsCells)
+				{
+					foreach (int digit in (mask & grid.GetCandidateMask(cell)).GetAllSets())
+					{
+						candidateOffsets.Add((0, cell * 9 + digit));
+					}
+				}
+
+				var valueCells = from cell in (cellsMap | ahsCells) - EmptyMap select (0, cell);
+				result.Add(
+					new AlcTechniqueInfo(
+						conclusions,
+						views: new[]
+						{
+							new View(
+								cellOffsets: valueCells.Any() ? valueCells.ToArray() : null,
+								candidateOffsets,
+								regionOffsets: new[] { (0, baseSet), (1, coverSet) },
+								links: null)
+						},
+						digits: digits.ToArray(),
+						baseCells: cells,
+						targetCells: ahsCells.ToArray(),
+						hasValueCell: valueCells.Any()));
 			}
 		}
 	}
