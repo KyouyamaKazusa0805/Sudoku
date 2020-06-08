@@ -15,6 +15,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// Encapsulates a <b>guardian</b> technique searcher.
 	/// </summary>
 	[TechniqueDisplay("Guardian")]
+	[HasBug("Recursion is too slow and the handling may be wrong.")]
 	public sealed class GuardianTechniqueSearcher : SdpTechniqueSearcher
 	{
 		/// <summary>
@@ -25,7 +26,7 @@ namespace Sudoku.Solving.Manual.Sdps
 		/// <summary>
 		/// Indicates whether the technique is enabled.
 		/// </summary>
-		public static bool IsEnabled { get; set; } = false;
+		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

@@ -347,6 +347,27 @@
             </summary>
             <returns>The data.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Annotations.HasBugAttribute">
+            <summary>
+            Indicates the <see cref="T:Sudoku.Solving.TechniqueSearcher"/> contains any bug.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Annotations.HasBugAttribute.#ctor">
+            <defaultConstructor>
+		<summary>Create an instance with default initialization.</summary>
+	</defaultConstructor>
+        </member>
+        <member name="M:Sudoku.Solving.Annotations.HasBugAttribute.#ctor(System.String)">
+            <summary>
+            Intializes an instance with the specified information.
+            </summary>
+            <param name="bugInfo">The bug information.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Annotations.HasBugAttribute.BugInfo">
+            <summary>
+            Indicates the bug information.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Annotations.HighAllocationAttribute">
             <summary>
             Represents a mark on a searcher which should allocate

@@ -87,6 +87,12 @@ namespace Sudoku.Solving.Manual
 			{
 				var searcher = searchers[i];
 
+				if (searcher.HasMarked<TechniqueSearcher, HasBugAttribute>(out _))
+				{
+					// Skip the searcher if the searcher has bugs to fix.
+					continue;
+				}
+
 				if (sukaku is true && searcher is UniquenessTechniqueSearcher || !g<bool>(searcher, "IsEnabled"))
 				{
 					continue;

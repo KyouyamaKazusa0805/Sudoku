@@ -78,7 +78,7 @@ namespace Sudoku.Solving.Manual
 				new SdcTechniqueSearcher(
 					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.AllowAlsCycles),
 				new BdpTechniqueSearcher(),
-				//new GuardianTechniqueSearcher(),
+				new GuardianTechniqueSearcher(),
 				new BugTechniqueSearcher(solver.UseExtendedBugSearcher),
 				new ErIntersectionPairTechniqueSearcher(),
 				new AlsXzTechniqueSearcher(
@@ -126,6 +126,12 @@ namespace Sudoku.Solving.Manual
 			var progressResult = new TechniqueProgressResult(searchers.Length);
 			foreach (var searcher in searchers)
 			{
+				if (searcher.HasMarked<TechniqueSearcher, HasBugAttribute>(out _))
+				{
+					// Skip the searcher if the searcher has bugs to fix.
+					continue;
+				}
+
 				if (sukaku is true && searcher is UniquenessTechniqueSearcher)
 				{
 					// Sukaku mode cannot use them.
