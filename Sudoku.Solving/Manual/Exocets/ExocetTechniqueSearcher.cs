@@ -32,8 +32,8 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// Where:
 	/// <list type="table">
 	/// <item><term>B</term><description>Base Cells.</description></item>
-	/// <item><term>Q</term><description>1st Object Pair.</description></item>
-	/// <item><term>R</term><description>2nd Object Pair.</description></item>
+	/// <item><term>Q</term><description>1st Object Pair (Target cells pair 1).</description></item>
+	/// <item><term>R</term><description>2nd Object Pair (Target cells pair 2).</description></item>
 	/// <item><term>S</term><description>Cross-line Cells.</description></item>
 	/// <item><term>E</term><description>Escape Cells.</description></item>
 	/// </list>
@@ -290,7 +290,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					{
 						// Here you should use '|' operator rather than '||'.
 						// Operator '||' will not execute the second method if the first condition is true.
-						if (record(playground, 0) | record(playground, 1))
+						if (g(playground, 0) | g(playground, 1))
 						{
 							cellOffsets.Add((3, playground[0]));
 							cellOffsets.Add((3, playground[1]));
@@ -317,7 +317,8 @@ namespace Sudoku.Solving.Manual.Exocets
 
 						break;
 
-						bool record(Span<int> playground, int i)
+						// Gathering.
+						bool g(Span<int> playground, int i)
 						{
 							short candidateMask = (short)(
 								grid.GetCandidateMask(playground[i]) & ~(baseCandidateMask | locked));

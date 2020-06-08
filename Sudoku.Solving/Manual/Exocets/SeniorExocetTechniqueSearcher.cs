@@ -43,10 +43,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		{
 			var compatibleCells = (Span<int>)stackalloc int[4];
 			var cover = (Span<int>)stackalloc int[8];
-			int zzzzz = -1;
 			foreach (var exocet in Exocets)
 			{
-				zzzzz++;
 				var (baseMap, targetMap, _) = exocet;
 				var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2) = exocet;
 				if (grid.GetCandidateMask(b1).CountSet() < 2 || grid.GetCandidateMask(b2).CountSet() < 2)
@@ -461,23 +459,20 @@ namespace Sudoku.Solving.Manual.Exocets
 						continue;
 					}
 
-					#region Obsolete code
-					//bool flag2 = false;
-					//var check = digitDistributions[digit] - (
-					//	new GridMap(a, false) | new GridMap(b, false) | new GridMap(c, false) | baseElimsMap);
-					//for (int i = 0; i < 27; i++)
-					//{
-					//	if (!RegionMaps[i].Overlaps(check))
-					//	{
-					//		flag2 = true;
-					//		break;
-					//	}
-					//}
-					//if (flag2)
-					//{
-					//	continue;
-					//}
-					#endregion
+					bool flag2 = false;
+					var check = DigitMaps[digit] - (PeerMaps[a] | PeerMaps[b] | PeerMaps[c] | baseElimsMap);
+					for (int i = 0; i < 27; i++)
+					{
+						if (!RegionMaps[i].Overlaps(check))
+						{
+							flag2 = true;
+							break;
+						}
+					}
+					if (flag2)
+					{
+						continue;
+					}
 
 					int n = 0;
 					for (int i = 0; i < 3; i++)
