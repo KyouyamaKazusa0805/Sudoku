@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
@@ -52,14 +51,5 @@ namespace Sudoku.Extensions
 		/// <seealso cref="Comparison{T}"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Sort<T>(this T[] @this, Comparison<T> comparison) => Array.Sort(@this, comparison);
-
-		/// <summary>
-		/// Returns a read-only wrapper for the specified array.
-		/// </summary>
-		/// <typeparam name="T">The type of each element.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The array.</param>
-		/// <returns>The read-only array.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IReadOnlyList<T> AsReadOnly<T>(this T[] @this) => @this;
 	}
 }

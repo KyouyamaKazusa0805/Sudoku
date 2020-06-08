@@ -4296,14 +4296,6 @@
             <param name="comparison">The comparison method.</param>
             <seealso cref="T:System.Comparison`1"/>
         </member>
-        <member name="M:Sudoku.Extensions.ArrayEx.AsReadOnly``1(``0[])">
-            <summary>
-            Returns a read-only wrapper for the specified array.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The array.</param>
-            <returns>The read-only array.</returns>
-        </member>
         <member name="T:Sudoku.Extensions.BooleanEx">
             <summary>
             Provides extension methods on <see cref="T:System.Boolean"/>.
