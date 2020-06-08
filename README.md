@@ -59,9 +59,9 @@ git clone https://github.com/Sunnie-Shine/Sudoku.git
 
 标题：**编译和运行**
 
-Please check this [file](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/require/ReadMe.txt).
+Please check [this file](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/require/ReadMe.txt) in [this folder](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref/require).
 
-请参看[这个文件](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/require/ReadMe.txt)。
+请参看这个[文件夹](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref/require)下的这个[文件](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/require/ReadMe.txt)。
 
 
 
@@ -94,7 +94,7 @@ The program supports technique below at present:
 * Subset: Naked Subset (Locked Subset & Partial Locked Subset), Hidden Subset<br/>数组：显性数组（死锁数组和区块数组）、隐性数组
 * Fishes: (Finned, Sashimi) X-Wing, Swordfish, Jellyfish, (Finned, Sashimi) Franken X-Wing, Swordfish, Jellyfish, Starfish, Whale, Leviathan, (Finned, Sashimi) Mutant X-Wing, Swordfish, Jellyfish, Starfish, Whale, Leviathan<br/>鱼：（鳍、退化）二链列、三链列和四链列、（鳍、退化）宫内二链列、三链列、四链列、五链列、六链列和七链列、（鳍、退化）交叉二链列、三链列、四链列、五链列、六链列和七链列
 * Wings: XY-Wing, XYZ-Wing, (Uncompleted) WXYZ-Wing, (Uncompleted) VWXYZ-Wing, W-Wing, M-Wing, Split-Wing, Local-Wing, Hybrid-Wing<br/>Wing 结构：XY-Wing、XYZ-Wing、（残缺）WXYZ-Wing、（残缺）VWXYZ-Wing、W-Wing、M-Wing、Split-Wing、Local-Wing、Hybrid-Wing
-* Uniqueness: Unique Rectangle (Type 1 to 6, Hidden), UR + 2, UR + 2 / 1SL, UR + 3, UR + 3 / 2SL, UR + 4 / 3SL, Unique Rectangle XY-Wing, Unique Rectangle XYZ-Wing, Unique Rectangle WXYZ-Wing, Avoidable Rectangle (Type 1, 2, 3, 5, Hidden), Avoidable Rectangle XY-Wing, Avoidable Rectangle XYZ-Wing, Avoidable Rectangle WXYZ-Wing, Extended Rectangle (Type 1 to 3), Unique Loop (Type 1 to 4), Avoidable Rectangle, Bivalue Universal Grave (Type 1 to 4 and BUG + n), BUG-XZ, Borescoper's Deadly Pattern (Type 1 to 4)<br/>唯一性：唯一矩形（类型 1 到 6、隐性唯一矩形）、唯一矩形 + 2、唯一矩形 + 2（带 1 个共轭对）、唯一矩形 + 3、唯一矩形 + 3（带 2 个共轭对）、唯一矩形 + 4（带 3 个共轭对）、UR-XY-Wing、UR-XYZ-Wing、UR-WXYZ-Wing、可规避矩形（类型 1、2、3、5、隐性可规避矩形）、AR-XY-Wing、AR-XYZ-Wing、AR-WXYZ-Wing、拓展矩形（类型 1 到 3）、唯一环（类型 1 到 4）、全双值格致死解法（类型 1 到 4 和 BUG + n）、BUG-双强链、探长致命结构（类型 1 到 4）
+* Uniqueness: Unique Rectangle (Type 1 to 6, Hidden), UR + 2, UR + 2 / 1SL, UR + 3, UR + 3 / 2SL, UR + 4 / 3SL, Unique Rectangle XY-Wing, Unique Rectangle XYZ-Wing, Unique Rectangle WXYZ-Wing, Avoidable Rectangle (Type 1, 2, 3, 5, Hidden), Avoidable Rectangle XY-Wing, Avoidable Rectangle XYZ-Wing, Avoidable Rectangle WXYZ-Wing, Extended Rectangle (Type 1 to 4), Unique Loop (Type 1 to 4), Avoidable Rectangle, Bivalue Universal Grave (Type 1 to 4 and BUG + n), BUG-XZ, Borescoper's Deadly Pattern (Type 1 to 4)<br/>唯一性：唯一矩形（类型 1 到 6、隐性唯一矩形）、唯一矩形 + 2、唯一矩形 + 2（带 1 个共轭对）、唯一矩形 + 3、唯一矩形 + 3（带 2 个共轭对）、唯一矩形 + 4（带 3 个共轭对）、UR-XY-Wing、UR-XYZ-Wing、UR-WXYZ-Wing、可规避矩形（类型 1、2、3、5、隐性可规避矩形）、AR-XY-Wing、AR-XYZ-Wing、AR-WXYZ-Wing、拓展矩形（类型 1 到 4）、唯一环（类型 1 到 4）、全双值格致死解法（类型 1 到 4 和 BUG + n）、BUG-双强链、探长致命结构（类型 1 到 4）
 * Single Digit Patterns: Skyscraper, Two-string Kite, Turbot Fish, Empty Rectangle<br/>同数链式结构：摩天楼、双线风筝、多宝鱼、空矩形
 * Almost Locked Sets: Empty Rectangle Intersection Pair, Extended Subset Principle, Almost Locked Sets XZ Rule, Almost Locked Sets XY-Wing, Almost Locked Sets W-Wing, Death Blossom<br/>待定数组：对交空矩形、伪数组、ALS-双强链、ALS-XY-Wing、ALS-W-Wing、死亡绽放
 * Chains: Alternating Inference Chain (+ Locked Candidates), Continuous Nice Loop (+ Locked Candidates)<br/>链：普通链（+区块）、普通环（+区块）
