@@ -15,8 +15,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <param name="extraDigit">The extra digit.</param>
 		public XrType2TechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			IReadOnlyList<int> cells, IReadOnlyList<int> digits, int extraDigit)
-			: base(conclusions, views, cells, digits) =>
+			GridMap cells, short digits, int extraDigit) : base(conclusions, views, cells, digits) =>
 			ExtraDigit = extraDigit;
 
 

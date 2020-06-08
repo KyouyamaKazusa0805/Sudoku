@@ -18,8 +18,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <param name="conjugateRegion">The conjugate region.</param>
 		public XrType4TechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			IReadOnlyList<int> cells, IReadOnlyList<int> digits, short extraMask,
-			GridMap conjugateRegion) : base(conclusions, views, cells, digits) =>
+			GridMap cells, short digits, short extraMask, GridMap conjugateRegion)
+			: base(conclusions, views, cells, digits) =>
 			(ExtraMask, ConjugateRegion) = (extraMask, conjugateRegion);
 
 

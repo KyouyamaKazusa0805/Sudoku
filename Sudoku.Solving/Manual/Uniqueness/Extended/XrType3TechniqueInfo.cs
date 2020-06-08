@@ -2,6 +2,7 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Extended
 {
@@ -18,8 +19,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <param name="region">The region.</param>
 		public XrType3TechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			IReadOnlyList<int> cells, IReadOnlyList<int> digits,
-			IReadOnlyList<int> extraCells, IReadOnlyList<int> extraDigits, int region)
+			GridMap cells, short digits, IReadOnlyList<int> extraCells, short extraDigits, int region)
 			: base(conclusions, views, cells, digits) =>
 			(ExtraCells, ExtraDigits, Region) = (extraCells, extraDigits, region);
 
@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <summary>
 		/// Indicates the extra digits.
 		/// </summary>
-		public IReadOnlyList<int> ExtraDigits { get; }
+		public short ExtraDigits { get; }
 
 		/// <summary>
 		/// Indicates the region.
@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		public int Region { get; }
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 4.5M + DifficultyExtra[Size] + .1M * ExtraDigits.Count;
+		public override decimal Difficulty => 4.5M + DifficultyExtra[Size] + .1M * ExtraDigits.CountSet();
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
@@ -52,7 +52,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <inheritdoc/>
 		protected override string GetAdditional()
 		{
-			string digitsStr = new DigitCollection(ExtraDigits).ToString();
+			string digitsStr = new DigitCollection(ExtraDigits.GetAllSets()).ToString();
 			string cellsStr = new CellCollection(ExtraCells).ToString();
 			string regionStr = new RegionCollection(Region).ToString();
 			return $"{digitsStr} in cells {cellsStr} in {regionStr}";

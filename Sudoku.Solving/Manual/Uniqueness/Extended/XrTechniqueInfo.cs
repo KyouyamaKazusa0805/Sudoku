@@ -2,6 +2,7 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Extended
 {
@@ -23,19 +24,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <param name="digits">All digits.</param>
 		public XrTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			IReadOnlyList<int> cells, IReadOnlyList<int> digits) : base(conclusions, views) =>
+			GridMap cells, short digits) : base(conclusions, views) =>
 			(Cells, Digits) = (cells, digits);
 
 
 		/// <summary>
 		/// Indicates the cells.
 		/// </summary>
-		public IReadOnlyList<int> Cells { get; }
+		public GridMap Cells { get; }
 
 		/// <summary>
 		/// Indicates all digits.
 		/// </summary>
-		public IReadOnlyList<int> Digits { get; }
+		public short Digits { get; }
 
 		/// <summary>
 		/// Indicates the size of the instance.
@@ -52,7 +53,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string digitsStr = new DigitCollection(Digits).ToString();
+			string digitsStr = new DigitCollection(Digits.GetAllSets()).ToString();
 			string cellsStr = new CellCollection(Cells).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string? additional = GetAdditional();

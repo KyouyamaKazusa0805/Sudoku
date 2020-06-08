@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -243,8 +242,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							regionOffsets: null,
 							links: null)
 					},
-					cells: allCellsMap.ToArray(),
-					digits: normalDigits.GetAllSets().ToArray()));
+					cells: allCellsMap,
+					digits: normalDigits));
 		}
 
 		private void CheckType2(
@@ -281,8 +280,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							regionOffsets: null,
 							links: null)
 					},
-					cells: allCellsMap.ToArray(),
-					digits: normalDigits.GetAllSets().ToArray(),
+					cells: allCellsMap,
+					digits: normalDigits,
 					extraDigit));
 		}
 
@@ -354,10 +353,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 										regionOffsets: new[] { (0, region) },
 										links: null)
 								},
-								cells: allCellsMap.ToArray(),
-								digits: normalDigits.GetAllSets().ToArray(),
+								cells: allCellsMap,
+								digits: normalDigits,
 								extraCells: cells,
-								extraDigits: mask.GetAllSets().ToArray(),
+								extraDigits: mask,
 								region));
 					}
 				}
@@ -413,8 +412,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 								regionOffsets: null,
 								links: null)
 						},
-						cells: allCellsMap.ToArray(),
-						digits: normalDigits.GetAllSets().ToArray()));
+						cells: allCellsMap,
+						digits: normalDigits));
 			}
 			else
 			{
