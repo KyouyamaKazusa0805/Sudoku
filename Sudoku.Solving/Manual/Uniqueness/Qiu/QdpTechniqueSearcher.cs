@@ -371,6 +371,21 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						continue;
 					}
 
+					short otherDigitsMask = (short)(comparer & ~(1 << digit));
+					bool flag = false;
+					foreach (int d in otherDigitsMask.GetAllSets())
+					{
+						if (ValueMaps[d].Overlaps(RegionMaps[region]) || (RegionMaps[region] & CandMaps[d]) != square)
+						{
+							flag = true;
+							break;
+						}
+					}
+					if (flag)
+					{
+						continue;
+					}
+
 					int elimDigit = (comparer & ~(1 << digit)).FindFirstSet();
 					var elimMap = pair & CandMaps[elimDigit];
 					if (elimMap.IsEmpty)
