@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </param>
 		public ExocetTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			Exocet exocet, IEnumerable<int> digits, TechniqueCode techniqueCode,
+			Pattern exocet, IEnumerable<int> digits, TechniqueCode techniqueCode,
 			IEnumerable<int>? lockedMemberQ, IEnumerable<int>? lockedMemberR,
 			TargetEliminations targetEliminations, MirrorEliminations mirrorEliminations,
 			BibiPatternEliminations bibiEliminations, TargetPairEliminations targetPairEliminations,
@@ -103,7 +103,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// The exocet.
 		/// </summary>
-		public Exocet Exocet { get; }
+		public Pattern Exocet { get; }
 
 		/// <summary>
 		/// The target eliminations.

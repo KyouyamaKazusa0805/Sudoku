@@ -24,7 +24,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="mirrorEliminations">The mirror eliminations.</param>
 		/// <param name="compatibilityEliminations">The compatibility eliminations.</param>
 		public SeniorExocetTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, Exocet exocet,
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, Pattern exocet,
 			IEnumerable<int> digits, int endoTargetCell, int[]? extraRegionsMask, TargetEliminations targetEliminations,
 			TrueBaseEliminations trueBaseEliminations, MirrorEliminations mirrorEliminations,
 			CompatibilityTestEliminations compatibilityEliminations)

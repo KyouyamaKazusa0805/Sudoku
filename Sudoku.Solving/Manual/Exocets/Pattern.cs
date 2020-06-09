@@ -7,7 +7,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// <summary>
 	/// Indicates an exocet pattern.
 	/// </summary>
-	public readonly struct Exocet : IEquatable<Exocet>
+	public readonly struct Pattern : IEquatable<Pattern>
 	{
 		/// <summary>
 		/// Initializes an instance with the specified cells.
@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="mq2">The mirror Q2 cell.</param>
 		/// <param name="mr1">The mirror R1 cell.</param>
 		/// <param name="mr2">The mirror R2 cell.</param>
-		public Exocet(
+		public Pattern(
 			int base1, int base2, int tq1, int tq2, int tr1, int tr2, GridMap crossline,
 			GridMap mq1, GridMap mq2, GridMap mr1, GridMap mr2)
 		{
@@ -132,10 +132,10 @@ namespace Sudoku.Solving.Manual.Exocets
 		}
 
 		/// <inheritdoc/>
-		public override bool Equals(object? obj) => obj is Exocet comparer && Equals(comparer);
+		public override bool Equals(object? obj) => obj is Pattern comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(Exocet other) =>
+		public bool Equals(Pattern other) =>
 			Base1 == other.Base1 && Base2 == other.Base2
 			&& TargetQ1 == other.TargetQ1 && TargetQ2 == other.TargetQ2
 			&& TargetR1 == other.TargetR1 && TargetR2 == other.TargetR2
@@ -171,9 +171,9 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <include file='../../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
-		public static bool operator ==(Exocet left, Exocet right) => left.Equals(right);
+		public static bool operator ==(Pattern left, Pattern right) => left.Equals(right);
 
 		/// <include file='../../../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
-		public static bool operator !=(Exocet left, Exocet right) => !(left == right);
+		public static bool operator !=(Pattern left, Pattern right) => !(left == right);
 	}
 }

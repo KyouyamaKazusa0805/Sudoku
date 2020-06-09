@@ -49,7 +49,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Indicates all exocet patterns to iterate on.
 		/// </summary>
-		protected static readonly Exocet[] Exocets;
+		protected static readonly Pattern[] Exocets;
 
 
 		/// <summary>
@@ -129,7 +129,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			var t = (Span<int>)stackalloc int[3];
 			var crossline = (Span<int>)stackalloc int[25]; // Only use [7]..[24].
 			int n = 0;
-			Exocets = new Exocet[1458];
+			Exocets = new Pattern[1458];
 			for (int i = 0; i < 18; i++)
 			{
 				for (int z = i / 9 * 9, j = z; j < z + 9; j++)
@@ -162,7 +162,7 @@ namespace Sudoku.Solving.Manual.Exocets
 								}
 							}
 
-							exocet = new Exocet(
+							exocet = new Pattern(
 								b1,
 								b2,
 								tq1,
