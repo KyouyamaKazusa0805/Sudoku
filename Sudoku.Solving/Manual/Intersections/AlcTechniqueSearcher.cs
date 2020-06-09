@@ -87,7 +87,7 @@ namespace Sudoku.Solving.Manual.Intersections
 			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int size, int baseSet, int coverSet,
 			GridMap a, GridMap b, GridMap c)
 		{
-			foreach (int[] cells in GetCombinationsOfArray(a.ToArray(), size - 1))
+			foreach (int[] cells in GetCombinationsOfArray((a & EmptyMap).ToArray(), size - 1))
 			{
 				short mask = 0;
 				foreach (int cell in cells)
@@ -109,7 +109,7 @@ namespace Sudoku.Solving.Manual.Intersections
 				short ahsMask = 0;
 				foreach (int digit in digits)
 				{
-					ahsMask |= (RegionMaps[coverSet] & DigitMaps[digit] & b).GetSubviewMask(coverSet);
+					ahsMask |= (RegionMaps[coverSet] & CandMaps[digit] & b).GetSubviewMask(coverSet);
 				}
 				if (ahsMask.CountSet() != size - 1)
 				{
