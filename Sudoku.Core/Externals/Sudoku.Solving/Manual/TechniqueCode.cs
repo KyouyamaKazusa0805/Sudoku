@@ -1005,6 +1005,30 @@ namespace Sudoku.Solving.Manual
 		BdpType4,
 
 		/// <summary>
+		/// Indicates the QDP type 1.
+		/// </summary>
+		[TechniqueDisplay("Qiu's Deadly Pattern Type 1", Category = "Uniqueness>Qiu's Deadly Patterns")]
+		QdpType1,
+
+		/// <summary>
+		/// Indicates the QDP type 2.
+		/// </summary>
+		[TechniqueDisplay("Qiu's Deadly Pattern Type 2", Category = "Uniqueness>Qiu's Deadly Patterns")]
+		QdpType2,
+
+		/// <summary>
+		/// Indicates the QDP type 3.
+		/// </summary>
+		[TechniqueDisplay("Qiu's Deadly Pattern Type 3", Category = "Uniqueness>Qiu's Deadly Patterns")]
+		QdpType3,
+
+		/// <summary>
+		/// Indicates the QDP type 4.
+		/// </summary>
+		[TechniqueDisplay("Qiu's Deadly Pattern Type 4", Category = "Uniqueness>Qiu's Deadly Patterns")]
+		QdpType4,
+
+		/// <summary>
 		/// Indicates the SdC.
 		/// </summary>
 		[TechniqueDisplay("Sue de Coq", Category = "Almost Locked Sets")]

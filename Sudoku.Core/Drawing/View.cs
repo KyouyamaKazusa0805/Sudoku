@@ -16,6 +16,7 @@ namespace Sudoku.Drawing
 		/// </summary>
 		public static readonly View[] DefaultViews = new[] { new View() };
 
+
 		/// <summary>
 		/// Initializes an instance with the specified highlighted candidate offsets.
 		/// </summary>

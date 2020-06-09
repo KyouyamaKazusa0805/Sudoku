@@ -6901,6 +6901,50 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType4TechniqueInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo">
+            <summary>
+            Provides a usage of <b>Borescoper's deadly pattern</b> (BDP) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap,System.Int16)">
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
+            <param name="digitsMask">The digits mask.</param>
+            <param name="map">The cells used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.Map">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.DigitsMask">
+            <summary>
+            Indicates the digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher">
             <summary>
             Encapsulates a <b>Borescoper's deadly pattern</b> technique searcher.
@@ -6944,31 +6988,7 @@
             Provides a usage of <b>Borescoper's deadly pattern type 1</b> (BDP) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,Sudoku.Data.GridMap)">
-            <constructor type="TechniqueInfo">
-		<summary>
-			Initializes an instance with the specified information.
-		</summary>
-		<param name="conclusions">The conclusions.</param>
-		<param name="views">The views of this solving step.</param>
-	</constructor>
-            <param name="digitsMask">The digits mask.</param>
-            <param name="map">The cells used.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1TechniqueInfo.DigitsMask">
-            <summary>
-            Indicates the digits used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1TechniqueInfo.Map">
-            <summary>
-            Indicates the cells used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1TechniqueInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1TechniqueInfo.DifficultyLevel">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap,System.Int16)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1TechniqueInfo.TechniqueCode">
@@ -6982,7 +7002,7 @@
             Provides a usage of <b>Borescoper's deadly pattern type 2</b> (BDP) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,Sudoku.Data.GridMap,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap,System.Int16,System.Int32)">
             <constructor type="TechniqueInfo">
 		<summary>
 			Initializes an instance with the specified information.
@@ -6990,19 +7010,9 @@
 		<param name="conclusions">The conclusions.</param>
 		<param name="views">The views of this solving step.</param>
 	</constructor>
-            <param name="digitsMask">The digits mask.</param>
             <param name="map">The cells used.</param>
+            <param name="digitsMask">The digits mask.</param>
             <param name="extraDigit">The extra digit.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2TechniqueInfo.DigitsMask">
-            <summary>
-            Indicates the digits used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2TechniqueInfo.Map">
-            <summary>
-            Indicates the cells used.
-            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2TechniqueInfo.ExtraDigit">
             <summary>
@@ -7010,9 +7020,6 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2TechniqueInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2TechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2TechniqueInfo.TechniqueCode">
@@ -7026,7 +7033,7 @@
             Provides a usage of <b>Borescoper's deadly pattern type 3</b> (BDP) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap,System.Int16,Sudoku.Data.GridMap,System.Int16)">
             <constructor type="TechniqueInfo">
 		<summary>
 			Initializes an instance with the specified information.
@@ -7034,20 +7041,10 @@
 		<param name="conclusions">The conclusions.</param>
 		<param name="views">The views of this solving step.</param>
 	</constructor>
-            <param name="digitsMask">The digits mask.</param>
             <param name="map">The cells used.</param>
+            <param name="digitsMask">The digits mask.</param>
             <param name="extraCellsMap">The extra cells map.</param>
             <param name="extraDigitsMask">The extra digits mask.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3TechniqueInfo.DigitsMask">
-            <summary>
-            Indicates the digits used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3TechniqueInfo.Map">
-            <summary>
-            Indicates the cells used.
-            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3TechniqueInfo.ExtraCells">
             <summary>
@@ -7062,9 +7059,6 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3TechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3TechniqueInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3TechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -7076,7 +7070,7 @@
             Provides a usage of <b>Borescoper's deadly pattern type 4</b> (BDP) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap,System.Int16,Sudoku.Data.GridMap,System.Int16)">
             <constructor type="TechniqueInfo">
 		<summary>
 			Initializes an instance with the specified information.
@@ -7084,24 +7078,14 @@
 		<param name="conclusions">The conclusions.</param>
 		<param name="views">The views of this solving step.</param>
 	</constructor>
-            <param name="digitsMask">The digits mask.</param>
             <param name="map">The cells used.</param>
+            <param name="digitsMask">The digits mask.</param>
             <param name="conjugateRegion">The conjugate region.</param>
             <param name="extraMask">The extra mask.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo.DigitsMask">
-            <summary>
-            Indicates the digits used.
-            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo.ExtraMask">
             <summary>
             Indicates the mask of digits that is the combination.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo.Map">
-            <summary>
-            Indicates the cells used.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo.ConjugateRegion">
@@ -7112,9 +7096,6 @@
             <seealso cref="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpTechniqueSearcher.CheckType4(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern,System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap)"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4TechniqueInfo.TechniqueCode">
@@ -7241,6 +7222,151 @@
 		<param name="right">The right instance.</param>
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern">
+            <summary>
+            Encapsulates a pattern for Qiu's deadly pattern (QDP).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.#ctor(Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+            <summary>
+            Initializes an instance with the specified maps.
+            </summary>
+            <param name="square">The square.</param>
+            <param name="baseLine">The base line.</param>
+            <param name="pair">The pair.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Square">
+            <summary>
+            Indicates the square.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.BaseLine">
+            <summary>
+            Indicates the base line.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Pair">
+            <summary>
+            Indicates the pair.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.FullMap">
+            <summary>
+            Indicates the full map.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Deconstruct(Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="pair">(<see langword="out" /> parameter) The pair map.</param>
+            <param name="square">(<see langword="out" /> parameter) The square map.</param>
+            <param name="baseLine">(<see langword="out" /> parameter) The base line map.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueInfo">
+            <summary>
+            Provides a usage of <b>Qiu's deadly pattern</b> (QDP) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern)">
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
+            <param name="pattern">The pattern.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueInfo.Pattern">
+            <summary>
+            Indicates the pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher">
+            <summary>
+            Encapsulates a <b>Qiu's deadly pattern</b> technique searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.Patterns">
+            <summary>
+            All different patterns.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.Priority">
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.BaseLineIterator">
+            <summary>
+            The base line iterator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.StartCells">
+            <summary>
+            The start cells iterator (used as a <see cref="P:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Pair"/>).
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Pair"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.#cctor">
+            <defaultConstructor>
+		<summary>Create an instance with default initialization.</summary>
+	</defaultConstructor>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType1TechniqueInfo">
+            <summary>
+            Provides a usage of <b>Qiu's deadly pattern type 1</b> (QDP) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType1TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern,System.Int32)">
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
+            <param name="pattern">The pattern.</param>
+            <param name="candidate">The candidate.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType1TechniqueInfo.Candidate">
+            <summary>
+            Indicates the candidate.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType1TechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType1TechniqueInfo.ToString">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrTechniqueInfo">
             <summary>

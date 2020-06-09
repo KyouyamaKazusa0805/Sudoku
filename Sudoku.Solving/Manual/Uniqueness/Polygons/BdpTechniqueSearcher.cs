@@ -123,8 +123,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					new BdpType1TechniqueInfo(
 						conclusions,
 						views: new[] { new View(candidateOffsets) },
-						digitsMask: tempMask,
-						map));
+						map,
+						digitsMask: tempMask));
 			}
 		}
 
@@ -174,8 +174,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					new BdpType2TechniqueInfo(
 						conclusions,
 						views: new[] { new View(candidateOffsets) },
+						map: map,
 						digitsMask: tempMask,
-						map,
 						extraDigit: otherDigit));
 			}
 		}
@@ -280,8 +280,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 										regionOffsets: new[] { (0, region) },
 										links: null)
 									},
+									map: map,
 									digitsMask: tempMask,
-									map,
 									extraCellsMap: new GridMap(combination),
 									extraDigitsMask: otherDigitsMask));
 						}
@@ -395,8 +395,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 										regionOffsets: new[] { (0, region) },
 										links: null)
 								},
+								map: map,
 								digitsMask: otherMask,
-								map,
 								conjugateRegion: currentMap,
 								extraMask: combinationMask));
 					}

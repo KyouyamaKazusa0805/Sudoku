@@ -9,31 +9,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// <summary>
 	/// Provides a usage of <b>Borescoper's deadly pattern type 1</b> (BDP) technique.
 	/// </summary>
-	public sealed class BdpType1TechniqueInfo : UniquenessTechniqueInfo
+	public sealed class BdpType1TechniqueInfo : BdpTechniqueInfo
 	{
-		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
-		/// <param name="digitsMask">The digits mask.</param>
-		/// <param name="map">The cells used.</param>
+		/// <inheritdoc/>
 		public BdpType1TechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, short digitsMask, GridMap map)
-			: base(conclusions, views) => (DigitsMask, Map) = (digitsMask, map);
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, GridMap map, short digitsMask)
+			: base(conclusions, views, map, digitsMask)
+		{
+		}
 
-
-		/// <summary>
-		/// Indicates the digits used.
-		/// </summary>
-		public short DigitsMask { get; }
-
-		/// <summary>
-		/// Indicates the cells used.
-		/// </summary>
-		public GridMap Map { get; }
-
-		/// <inheritdoc/>
-		public override decimal Difficulty => 5.3M;
-
-		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode => TechniqueCode.BdpType1;

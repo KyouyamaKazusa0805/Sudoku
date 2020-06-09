@@ -6253,6 +6253,26 @@
             Indicates the BDP type 4.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.QdpType1">
+            <summary>
+            Indicates the QDP type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.QdpType2">
+            <summary>
+            Indicates the QDP type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.QdpType3">
+            <summary>
+            Indicates the QDP type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.QdpType4">
+            <summary>
+            Indicates the QDP type 4.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.Sdc">
             <summary>
             Indicates the SdC.
