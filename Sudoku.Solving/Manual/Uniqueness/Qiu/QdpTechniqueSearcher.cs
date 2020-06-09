@@ -119,18 +119,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					// Qdp forms.
 					// Now check each type.
 					short comparer = (short)(1 << d1 | 1 << d2);
-					CheckType1(accumulator, grid, isRow, pair, square, baseLine, pattern, pairMask, comparer);
-					CheckType2(accumulator, grid, isRow, pair, square, baseLine, pattern, pairMask, comparer);
-					CheckType3(accumulator, grid, isRow, pair, square, baseLine, pattern, pairMask, comparer);
+					short otherDigitsMask = (short)(pairMask & ~comparer);
+					CheckType1(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask);
+					CheckType2(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask);
+					CheckType3(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask);
+					CheckType4(accumulator, isRow, pair, square, baseLine, pattern, comparer);
 				}
 			}
 		}
 
 		private void CheckType1(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow,
-			GridMap pair, GridMap square, GridMap baseLine, Pattern pattern, short pairMask, short comparer)
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow, GridMap pair, GridMap square,
+			GridMap baseLine, Pattern pattern, short comparer, short otherDigitsMask)
 		{
-			short otherDigitsMask = (short)(pairMask & ~comparer);
 			if (!otherDigitsMask.IsPowerOfTwo())
 			{
 				return;
@@ -190,10 +191,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		}
 
 		private void CheckType2(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow,
-			GridMap pair, GridMap square, GridMap baseLine, Pattern pattern, short pairMask, short comparer)
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow, GridMap pair, GridMap square,
+			GridMap baseLine, Pattern pattern, short comparer, short otherDigitsMask)
 		{
-			short otherDigitsMask = (short)(pairMask & ~comparer);
 			if (!otherDigitsMask.IsPowerOfTwo())
 			{
 				return;
@@ -249,10 +249,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		}
 
 		private void CheckType3(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow,
-			GridMap pair, GridMap square, GridMap baseLine, Pattern pattern, short pairMask, short comparer)
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow, GridMap pair, GridMap square,
+			GridMap baseLine, Pattern pattern, short comparer, short otherDigitsMask)
 		{
-			short otherDigitsMask = (short)(pairMask & ~comparer);
 			foreach (int region in pair.CoveredRegions)
 			{
 				var allCellsMap = (RegionMaps[region] & EmptyMap) - pair;
@@ -327,6 +326,66 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 								extraDigitsMask: mask,
 								extraCells: cells));
 					}
+				}
+			}
+		}
+
+		private void CheckType4(
+			IBag<TechniqueInfo> accumulator, bool isRow, GridMap pair, GridMap square,
+			GridMap baseLine, Pattern pattern, short comparer)
+		{
+			foreach (int region in pair.CoveredRegions)
+			{
+				foreach (int digit in comparer.GetAllSets())
+				{
+					if ((CandMaps[digit] & RegionMaps[region]) != pair)
+					{
+						continue;
+					}
+
+					int elimDigit = (comparer & ~(1 << digit)).FindFirstSet();
+					var elimMap = pair & CandMaps[elimDigit];
+					if (elimMap.IsEmpty)
+					{
+						continue;
+					}
+
+					var conclusions = new List<Conclusion>();
+					foreach (int cell in elimMap)
+					{
+						conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
+					}
+
+					var cellOffsets = new List<(int, int)>(from cell in square | pair select (0, cell));
+					var candidateOffsets = new List<(int, int)>();
+					foreach (int d in comparer.GetAllSets())
+					{
+						foreach (int cell in square & CandMaps[d])
+						{
+							candidateOffsets.Add((1, cell * 9 + d));
+						}
+					}
+					foreach (int cell in pair)
+					{
+						candidateOffsets.Add((1, cell * 9 + digit));
+					}
+
+					accumulator.Add(
+						new QdpType4TechniqueInfo(
+							conclusions,
+							views: new[]
+							{
+								new View(
+									cellOffsets,
+									candidateOffsets,
+									regionOffsets:
+										new List<(int, int)>(
+											from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
+											select (0, pos + (isRow ? 9 : 18))),
+									links: null)
+							},
+							pattern,
+							conjugatePair: new ConjugatePair(pair, digit)));
 				}
 			}
 		}

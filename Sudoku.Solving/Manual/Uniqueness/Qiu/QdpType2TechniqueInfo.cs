@@ -24,7 +24,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		public int ExtraDigit { get; }
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 5.9M;
+		public override decimal Difficulty => base.Difficulty + .1M;
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode => TechniqueCode.QdpType2;

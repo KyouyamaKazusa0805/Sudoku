@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		public IReadOnlyList<int> ExtraCells { get; }
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 5.8M + ExtraDigitsMask.CountSet() * .1M;
+		public override decimal Difficulty => base.Difficulty + ExtraDigitsMask.CountSet() * .1M;
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode => TechniqueCode.QdpType3;
