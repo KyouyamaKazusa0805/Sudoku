@@ -42,6 +42,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				bool isRow = i < length >> 1;
 				var (pair, square, baseLine) = pattern;
 
+				// To check whether both two pair cells are empty.
+				if (!EmptyMap[pair.SetAt(0)] || !EmptyMap[pair.SetAt(1)])
+				{
+					continue;
+				}
+
 				// Step 1: To determine whether the distinction degree of base line is 1.
 				short appearedDigitsMask = 0, distinctionMask = 0;
 				for (int j = 0, region = isRow ? 18 : 9; j < 9; j++, region++)
@@ -114,6 +120,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					// Now check each type.
 					short comparer = (short)(1 << d1 | 1 << d2);
 					CheckType1(accumulator, grid, isRow, pair, square, baseLine, pattern, pairMask, comparer);
+					CheckType2(accumulator, grid, isRow, pair, square, baseLine, pattern, pairMask, comparer);
 				}
 			}
 		}
@@ -179,6 +186,65 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					},
 					pattern,
 					candidate: elimCell * 9 + extraDigit));
+		}
+
+		private void CheckType2(
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow,
+			GridMap pair, GridMap square, GridMap baseLine, Pattern pattern, short pairMask, short comparer)
+		{
+			short otherDigitsMask = (short)(pairMask & ~comparer);
+			if (!otherDigitsMask.IsPowerOfTwo())
+			{
+				return;
+			}
+
+			int extraDigit = otherDigitsMask.FindFirstSet();
+			var map = pair & CandMaps[extraDigit];
+			var elimMap = map.PeerIntersection & CandMaps[extraDigit];
+			if (elimMap.IsEmpty)
+			{
+				return;
+			}
+
+			var conclusions = new List<Conclusion>();
+			foreach (int cell in elimMap)
+			{
+				conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
+			}
+
+			var cellOffsets = new List<(int, int)>(from cell in square | pair select (0, cell));
+			var candidateOffsets = new List<(int, int)>();
+			foreach (int digit in comparer.GetAllSets())
+			{
+				foreach (int cell in square & CandMaps[digit])
+				{
+					candidateOffsets.Add((1, cell * 9 + digit));
+				}
+			}
+			foreach (int cell in pair)
+			{
+				foreach (int digit in grid.GetCandidates(cell))
+				{
+					candidateOffsets.Add((digit == extraDigit ? 1 : 0, cell * 9 + digit));
+				}
+			}
+
+			accumulator.Add(
+				new QdpType2TechniqueInfo(
+					conclusions,
+					views: new[]
+					{
+						new View(
+							cellOffsets,
+							candidateOffsets,
+							regionOffsets:
+								new List<(int, int)>(
+									from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
+									select (0, pos + (isRow ? 9 : 18))),
+							links: null)
+					},
+					pattern,
+					extraDigit));
 		}
 	}
 }

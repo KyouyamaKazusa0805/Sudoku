@@ -22,6 +22,7 @@ using Sudoku.Solving.Manual.Uniqueness.Bugs;
 using Sudoku.Solving.Manual.Uniqueness.Extended;
 using Sudoku.Solving.Manual.Uniqueness.Loops;
 using Sudoku.Solving.Manual.Uniqueness.Polygons;
+using Sudoku.Solving.Manual.Uniqueness.Qiu;
 using Sudoku.Solving.Manual.Uniqueness.Rects;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
@@ -78,6 +79,7 @@ namespace Sudoku.Solving.Manual
 				new SdcTechniqueSearcher(
 					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.AllowAlsCycles),
 				new BdpTechniqueSearcher(),
+				new QdpTechniqueSearcher(),
 				new GuardianTechniqueSearcher(),
 				new BugTechniqueSearcher(solver.UseExtendedBugSearcher),
 				new ErIntersectionPairTechniqueSearcher(),

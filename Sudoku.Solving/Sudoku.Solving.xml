@@ -7368,6 +7368,33 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType1TechniqueInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType2TechniqueInfo">
+            <summary>
+            Provides a usage of <b>Qiu's deadly pattern type 2</b> (QDP) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern,System.Int32)">
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
+            <param name="pattern">The pattern.</param>
+            <param name="extraDigit">The extra digit.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType2TechniqueInfo.ExtraDigit">
+            <summary>
+            Indicates the extra digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType2TechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType2TechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrTechniqueInfo">
             <summary>
             Provides a usage of <b>hidden unique rectangle</b> (HUR) or
