@@ -8249,7 +8249,7 @@
             The difficulty rating.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <constructor type="TechniqueInfo">
 		<summary>
 			Initializes an instance with the specified information.
@@ -8261,7 +8261,7 @@
             <param name="pivotCandidatesCount">
             The number of candidates in pivot cell.
             </param>
-            <param name="digits">The digits used.</param>
+            <param name="digitsMask">The digits mask.</param>
             <param name="cellOffsets">The cell offsets used.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.Size">
@@ -8279,9 +8279,9 @@
             Indicates the number of candidates in the pivot cell.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.Digits">
+        <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.DigitsMask">
             <summary>
-            Indicates all digits used.
+            Indicates the digits mask.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.CellOffsets">

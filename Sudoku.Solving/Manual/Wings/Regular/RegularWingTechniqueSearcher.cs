@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
@@ -108,26 +107,25 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 						bool isIncompleted = inter == 0;
 						short interWithoutPivot = (short)(union & ~grid.GetCandidateMask(pivot));
 						short maskToCheck = isIncompleted ? interWithoutPivot : inter;
-						if (maskToCheck == 0)
+						if (!maskToCheck.IsPowerOfTwo())
 						{
-							// No available value.
 							continue;
 						}
 
+						// The pattern should be "az, bz, cz, dz, ... , abcd(z)".
 						int zDigit = maskToCheck.FindFirstSet();
+						var cellsMap = new GridMap(cells);
+						if (((cellsMap + pivot) & CandMaps[zDigit]).Count != (isIncompleted ? size - 1 : size))
+						{
+							continue;
+						}
 
 						// Check elimination map.
-						var elimMap = PeerMaps[cells[0]];
-						for (int i = 1; i < cells.Length; i++)
-						{
-							int cell = cells[i];
-							elimMap &= PeerMaps[cell];
-						}
+						var elimMap = cellsMap.PeerIntersection;
 						if (!isIncompleted)
 						{
 							elimMap &= PeerMaps[pivot];
 						}
-						elimMap.Remove(pivot);
 						elimMap &= CandMaps[zDigit];
 						if (elimMap.IsEmpty)
 						{
@@ -161,7 +159,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 								views: new[] { new View(candidateOffsets) },
 								pivot,
 								pivotCandidatesCount: mask.CountSet(),
-								digits: union.GetAllSets().ToArray(),
+								digitsMask: union,
 								cellOffsets: cells));
 					}
 				}

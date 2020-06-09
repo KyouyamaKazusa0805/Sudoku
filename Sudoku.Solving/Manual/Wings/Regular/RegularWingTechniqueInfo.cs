@@ -4,6 +4,7 @@ using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
 using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Wings.Regular
@@ -24,19 +25,19 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <param name="pivotCandidatesCount">
 		/// The number of candidates in pivot cell.
 		/// </param>
-		/// <param name="digits">The digits used.</param>
+		/// <param name="digitsMask">The digits mask.</param>
 		/// <param name="cellOffsets">The cell offsets used.</param>
 		public RegularWingTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			int pivot, int pivotCandidatesCount, IReadOnlyList<int> digits,
+			int pivot, int pivotCandidatesCount, short digitsMask,
 			IReadOnlyList<int> cellOffsets) : base(conclusions, views) =>
-			(Pivot, PivotCellCandidatesCount, Digits, CellOffsets) = (pivot, pivotCandidatesCount, digits, cellOffsets);
+			(Pivot, PivotCellCandidatesCount, DigitsMask, CellOffsets) = (pivot, pivotCandidatesCount, digitsMask, cellOffsets);
 
 
 		/// <summary>
 		/// Indicates the size of this regular wing.
 		/// </summary>
-		public int Size => Digits.Count;
+		public int Size => DigitsMask.CountSet();
 
 		/// <summary>
 		/// Indicates the pivot cell.
@@ -49,9 +50,9 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		public int PivotCellCandidatesCount { get; }
 
 		/// <summary>
-		/// Indicates all digits used.
+		/// Indicates the digits mask.
 		/// </summary>
-		public IReadOnlyList<int> Digits { get; }
+		public short DigitsMask { get; }
 
 		/// <summary>
 		/// Indicates all cell offsets used.
@@ -133,7 +134,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string digitsStr = new DigitCollection(Digits).ToString();
+			string digitsStr = new DigitCollection(DigitsMask.GetAllSets()).ToString();
 			string pivotCellStr = new CellCollection(Pivot).ToString();
 			string cellOffsetsStr = new CellCollection(CellOffsets).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
