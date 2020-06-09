@@ -7296,6 +7296,12 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueInfo.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -7389,10 +7395,49 @@
             Indicates the extra digit.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType2TechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType2TechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType2TechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType3TechniqueInfo">
+            <summary>
+            Provides a usage of <b>Qiu's deadly pattern type 3</b> (QDP) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType3TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
+            <param name="pattern">The pattern.</param>
+            <param name="extraDigitsMask">The extra digits mask.</param>
+            <param name="extraCells">The extra cells.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType3TechniqueInfo.ExtraDigitsMask">
+            <summary>
+            Indicates the extra digits mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType3TechniqueInfo.ExtraCells">
+            <summary>
+            Indicates the extra cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType3TechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType3TechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType3TechniqueInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrTechniqueInfo">

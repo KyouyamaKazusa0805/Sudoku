@@ -121,6 +121,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					short comparer = (short)(1 << d1 | 1 << d2);
 					CheckType1(accumulator, grid, isRow, pair, square, baseLine, pattern, pairMask, comparer);
 					CheckType2(accumulator, grid, isRow, pair, square, baseLine, pattern, pairMask, comparer);
+					CheckType3(accumulator, grid, isRow, pair, square, baseLine, pattern, pairMask, comparer);
 				}
 			}
 		}
@@ -245,6 +246,89 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					},
 					pattern,
 					extraDigit));
+		}
+
+		private void CheckType3(
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow,
+			GridMap pair, GridMap square, GridMap baseLine, Pattern pattern, short pairMask, short comparer)
+		{
+			short otherDigitsMask = (short)(pairMask & ~comparer);
+			foreach (int region in pair.CoveredRegions)
+			{
+				var allCellsMap = (RegionMaps[region] & EmptyMap) - pair;
+				int[] allCells = allCellsMap.ToArray();
+				for (int size = otherDigitsMask.CountSet() - 1; size < allCells.Length; size++)
+				{
+					foreach (int[] cells in GetCombinationsOfArray(allCells, size))
+					{
+						short mask = 0;
+						foreach (int cell in cells)
+						{
+							mask |= grid.GetCandidateMask(cell);
+						}
+
+						if ((mask & comparer) != comparer || mask.CountSet() != size + 1)
+						{
+							continue;
+						}
+
+						var conclusions = new List<Conclusion>();
+						foreach (int digit in mask.GetAllSets())
+						{
+							foreach (int cell in allCellsMap - new GridMap(cells) & CandMaps[digit])
+							{
+								conclusions.Add(new Conclusion(Elimination, cell, digit));
+							}
+						}
+						if (conclusions.Count == 0)
+						{
+							continue;
+						}
+
+						var cellOffsets = new List<(int, int)>(from cell in square | pair select (0, cell));
+						var candidateOffsets = new List<(int, int)>();
+						foreach (int digit in comparer.GetAllSets())
+						{
+							foreach (int cell in square & CandMaps[digit])
+							{
+								candidateOffsets.Add((1, cell * 9 + digit));
+							}
+						}
+						foreach (int cell in pair)
+						{
+							foreach (int digit in grid.GetCandidates(cell))
+							{
+								candidateOffsets.Add(((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+							}
+						}
+						foreach (int cell in cells)
+						{
+							foreach (int digit in grid.GetCandidates(cell))
+							{
+								candidateOffsets.Add((1, cell * 9 + digit));
+							}
+						}
+
+						accumulator.Add(
+							new QdpType3TechniqueInfo(
+								conclusions,
+								views: new[]
+								{
+									new View(
+										cellOffsets,
+										candidateOffsets,
+										regionOffsets:
+											new List<(int, int)>(
+												from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
+												select (0, pos + (isRow ? 9 : 18))),
+										links: null)
+								},
+								pattern,
+								extraDigitsMask: mask,
+								extraCells: cells));
+					}
+				}
+			}
 		}
 	}
 }

@@ -24,6 +24,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		public int ExtraDigit { get; }
 
 		/// <inheritdoc/>
+		public override decimal Difficulty => 5.9M;
+
+		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode => TechniqueCode.QdpType2;
 
 
@@ -33,7 +36,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			string patternStr = new CellCollection(Pattern.FullMap).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
-				$"{Name}: Cells will be a deadly pattern {patternStr} " +
+				$"{Name}: Cells {patternStr} will be a deadly pattern " +
 				$"if the extra digits {ExtraDigit + 1} in pair cells is both false => {elimStr}";
 		}
 	}

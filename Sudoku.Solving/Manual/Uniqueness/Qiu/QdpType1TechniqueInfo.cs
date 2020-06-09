@@ -30,11 +30,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string candStr = new CandidateCollection(Candidate).ToString();
 			string patternStr = new CellCollection(Pattern.FullMap).ToString();
+			string candStr = new CandidateCollection(Candidate).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
-				$"{Name}: Cells will be a deadly pattern {patternStr} " +
+				$"{Name}: Cells {patternStr} will be a deadly pattern " +
 				$"if {candStr} is false => {elimStr}";
 		}
 	}
