@@ -99,19 +99,14 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 							inter &= m;
 						}
 
-						if (union.CountSet() != size)
-						{
-							continue;
-						}
-
-						if (inter != 0 && !inter.IsPowerOfTwo())
+						if (union.CountSet() != size || inter != 0 && !inter.IsPowerOfTwo())
 						{
 							continue;
 						}
 
 						// Get the Z digit (The removing value).
 						bool isIncompleted = inter == 0;
-						short interWithoutPivot = (short)(inter & ~grid.GetCandidateMask(pivot));
+						short interWithoutPivot = (short)(union & ~grid.GetCandidateMask(pivot));
 						short maskToCheck = isIncompleted ? interWithoutPivot : inter;
 						if (maskToCheck == 0)
 						{
