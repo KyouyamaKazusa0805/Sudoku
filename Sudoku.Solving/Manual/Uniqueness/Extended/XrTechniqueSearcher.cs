@@ -413,7 +413,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					foreach (int region in extraCellsMap.CoveredRegions)
 					{
 						var map = RegionMaps[region] & allCellsMap & extraCellsMap;
-						if (map != extraCellsMap)
+						if (map != extraCellsMap || map != (CandMaps[conjugateDigit] & RegionMaps[region]))
 						{
 							continue;
 						}
