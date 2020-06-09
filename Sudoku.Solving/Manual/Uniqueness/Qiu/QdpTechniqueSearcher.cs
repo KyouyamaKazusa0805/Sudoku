@@ -72,6 +72,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 
 				// Step 1: To determine whether the distinction degree of base line is 1.
 				short appearedDigitsMask = 0, distinctionMask = 0;
+				int appearedParts = 0;
 				for (int j = 0, region = isRow ? 18 : 9; j < 9; j++, region++)
 				{
 					var tempMap = baseLine & RegionMaps[region];
@@ -80,21 +81,28 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						continue;
 					}
 
+					bool flag = false;
 					int c1 = tempMap.SetAt(0), c2 = tempMap.SetAt(1);
 					if (!EmptyMap[c1])
 					{
 						int d1 = grid[c1];
 						distinctionMask ^= (short)(1 << d1);
 						appearedDigitsMask |= (short)(1 << d1);
+
+						flag = true;
 					}
 					if (!EmptyMap[c2])
 					{
 						int d2 = grid[c2];
 						distinctionMask ^= (short)(1 << d2);
 						appearedDigitsMask |= (short)(1 << d2);
+
+						flag = true;
 					}
+
+					appearedParts += flag ? 1 : 0;
 				}
-				if (!distinctionMask.IsPowerOfTwo())
+				if (!distinctionMask.IsPowerOfTwo() || appearedParts != appearedDigitsMask.CountSet())
 				{
 					continue;
 				}
@@ -140,13 +148,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						CheckType1(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask);
 						CheckType2(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask);
 						CheckType3(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask);
-						CheckType4A(accumulator, isRow, pair, square, baseLine, pattern, comparer);
-					}
-					else// if (pairMask.CountSet() == 2)
-					{
-						CheckLockedType(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer);
 					}
 				}
+
+				CheckType4(accumulator, isRow, pair, square, baseLine, pattern, pairMask);
+				CheckLockedType(accumulator, grid, isRow, pair, square, baseLine, pattern, pairMask);
 			}
 		}
 
@@ -352,7 +358,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			}
 		}
 
-		private void CheckType4A(
+		private void CheckType4(
 			IBag<TechniqueInfo> accumulator, bool isRow, GridMap pair, GridMap square,
 			GridMap baseLine, Pattern pattern, short comparer)
 		{
@@ -421,10 +427,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			var otherCellsMap = (RegionMaps[block] & EmptyMap) - square;
 			var tempMap = GridMap.Empty;
 			var pairDigits = comparer.GetAllSets();
+
+			bool flag = false;
 			foreach (int digit in pairDigits)
 			{
+				if (ValueMaps[digit].Overlaps(RegionMaps[block]))
+				{
+					flag = true;
+					break;
+				}
+
 				tempMap |= CandMaps[digit];
 			}
+			if (flag)
+			{
+				return;
+			}
+
 			otherCellsMap &= tempMap;
 			if (otherCellsMap.IsEmpty || otherCellsMap.Count > 5)
 			{
@@ -480,20 +499,24 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 					candidateOffsets.Add((0, cell * 9 + digit));
 				}
 			}
+			foreach (int candidate in candidates)
+			{
+				candidateOffsets.Add((2, candidate));
+			}
 
 			accumulator.Add(
 				new QdpLockedTypeTechniqueInfo(
 					conclusions,
 					views: new[]
 					{
-							new View(
-								cellOffsets,
-								candidateOffsets,
-								regionOffsets:
-									new List<(int, int)>(
-										from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
-										select (0, pos + (isRow ? 9 : 18))),
-								links: null)
+						new View(
+							cellOffsets,
+							candidateOffsets,
+							regionOffsets:
+								new List<(int, int)>(
+									from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
+									select (0, pos + (isRow ? 9 : 18))),
+							links: null)
 					},
 					pattern,
 					candidates));
