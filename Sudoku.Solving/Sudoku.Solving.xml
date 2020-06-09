@@ -7270,6 +7270,36 @@
 		<returns>A string that represents the current object.</returns>
 	</method>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpLockedTypeTechniqueInfo">
+            <summary>
+            Provides a usage of <b>Qiu's deadly pattern locked type</b> (QDP) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpLockedTypeTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern,System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
+            <param name="pattern">The pattern.</param>
+            <param name="candidates">The candidates.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpLockedTypeTechniqueInfo.Candidates">
+            <summary>
+            Indicates the candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpLockedTypeTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpLockedTypeTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpLockedTypeTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueInfo">
             <summary>
             Provides a usage of <b>Qiu's deadly pattern</b> (QDP) technique.
@@ -7311,6 +7341,27 @@
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher">
             <summary>
             Encapsulates a <b>Qiu's deadly pattern</b> technique searcher.
+            <code>
+            .-------.-------.-------.<br/>
+            | . . . | . . . | . . . |<br/>
+            | . . . | . . . | . . . |<br/>
+            | P P . | . . . | . . . |<br/>
+            :-------+-------+-------:<br/>
+            | S S B | B B B | B B B |<br/>
+            | S S B | B B B | B B B |<br/>
+            | . . . | . . . | . . . |<br/>
+            :-------+-------+-------:<br/>
+            | . . . | . . . | . . . |<br/>
+            | . . . | . . . | . . . |<br/>
+            | . . . | . . . | . . . |<br/>
+            '-------'-------'-------'
+            </code>
+            Where:
+            <list type="table">
+            <item><term>P</term><description>Pair Cells.</description></item>
+            <item><term>S</term><description>Square Cells.</description></item>
+            <item><term>B</term><description>Base Line Cells.</description></item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpTechniqueSearcher.Patterns">

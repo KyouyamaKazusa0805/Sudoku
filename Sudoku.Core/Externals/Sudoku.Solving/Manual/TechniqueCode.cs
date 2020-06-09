@@ -1029,6 +1029,12 @@ namespace Sudoku.Solving.Manual
 		QdpType4,
 
 		/// <summary>
+		/// Indicates the locked QDP.
+		/// </summary>
+		[TechniqueDisplay("Locked Qiu's Deadly Pattern", Category = "Uniqueness>Qiu's Deadly Patterns")]
+		LockedQdp,
+
+		/// <summary>
 		/// Indicates the SdC.
 		/// </summary>
 		[TechniqueDisplay("Sue de Coq", Category = "Almost Locked Sets")]

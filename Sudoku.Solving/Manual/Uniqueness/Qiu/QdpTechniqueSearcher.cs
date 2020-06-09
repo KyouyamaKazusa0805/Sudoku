@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
@@ -12,6 +13,27 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 {
 	/// <summary>
 	/// Encapsulates a <b>Qiu's deadly pattern</b> technique searcher.
+	/// <code>
+	/// .-------.-------.-------.<br/>
+	/// | . . . | . . . | . . . |<br/>
+	/// | . . . | . . . | . . . |<br/>
+	/// | P P . | . . . | . . . |<br/>
+	/// :-------+-------+-------:<br/>
+	/// | S S B | B B B | B B B |<br/>
+	/// | S S B | B B B | B B B |<br/>
+	/// | . . . | . . . | . . . |<br/>
+	/// :-------+-------+-------:<br/>
+	/// | . . . | . . . | . . . |<br/>
+	/// | . . . | . . . | . . . |<br/>
+	/// | . . . | . . . | . . . |<br/>
+	/// '-------'-------'-------'
+	/// </code>
+	/// Where:
+	/// <list type="table">
+	/// <item><term>P</term><description>Pair Cells.</description></item>
+	/// <item><term>S</term><description>Square Cells.</description></item>
+	/// <item><term>B</term><description>Base Line Cells.</description></item>
+	/// </list>
 	/// </summary>
 	[TechniqueDisplay("Qiu's Deadly Pattern")]
 	public sealed partial class QdpTechniqueSearcher : UniquenessTechniqueSearcher
@@ -95,13 +117,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						continue;
 					}
 
-					int block = square.BlockMask.FindFirstSet();
-					var globalMap = (CandMaps[d1] | CandMaps[d2]) & RegionMaps[block];
-					if (appearingMap != globalMap)
-					{
-						continue;
-					}
-
 					bool flag = false;
 					foreach (int digit in digits)
 					{
@@ -116,14 +131,21 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						continue;
 					}
 
-					// Qdp forms.
-					// Now check each type.
 					short comparer = (short)(1 << d1 | 1 << d2);
 					short otherDigitsMask = (short)(pairMask & ~comparer);
-					CheckType1(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask);
-					CheckType2(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask);
-					CheckType3(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask);
-					CheckType4(accumulator, isRow, pair, square, baseLine, pattern, comparer);
+					if (appearingMap == ((CandMaps[d1] | CandMaps[d2]) & RegionMaps[square.BlockMask.FindFirstSet()]))
+					{
+						// Qdp forms.
+						// Now check each type.
+						CheckType1(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask);
+						CheckType2(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask);
+						CheckType3(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask);
+						CheckType4A(accumulator, isRow, pair, square, baseLine, pattern, comparer);
+					}
+					else// if (pairMask.CountSet() == 2)
+					{
+						CheckLockedType(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer);
+					}
 				}
 			}
 		}
@@ -330,7 +352,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			}
 		}
 
-		private void CheckType4(
+		private void CheckType4A(
 			IBag<TechniqueInfo> accumulator, bool isRow, GridMap pair, GridMap square,
 			GridMap baseLine, Pattern pattern, short comparer)
 		{
@@ -388,6 +410,93 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 							conjugatePair: new ConjugatePair(pair, digit)));
 				}
 			}
+		}
+
+		private void CheckLockedType(
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow, GridMap pair, GridMap square,
+			GridMap baseLine, Pattern pattern, short comparer)
+		{
+			// Firstly, we should check the cells in the block that the square cells lying on.
+			int block = square.BlockMask.FindFirstSet();
+			var otherCellsMap = (RegionMaps[block] & EmptyMap) - square;
+			var tempMap = GridMap.Empty;
+			var pairDigits = comparer.GetAllSets();
+			foreach (int digit in pairDigits)
+			{
+				tempMap |= CandMaps[digit];
+			}
+			otherCellsMap &= tempMap;
+			if (otherCellsMap.IsEmpty || otherCellsMap.Count > 5)
+			{
+				return;
+			}
+
+			// May be in one region or span two regions.
+			// Now we check for this case.
+			var candidates = new List<int>();
+			foreach (int cell in otherCellsMap)
+			{
+				foreach (int digit in pairDigits)
+				{
+					if (grid.Exists(cell, digit) is true)
+					{
+						candidates.Add(cell * 9 + digit);
+					}
+				}
+			}
+
+			var elimMap = FullGridMap.CreateInstance(candidates);
+			if (elimMap.IsEmpty)
+			{
+				return;
+			}
+
+			var conclusions = new List<Conclusion>();
+			foreach (int candidate in elimMap.Offsets)
+			{
+				if (grid.Exists(candidate / 9, candidate % 9) is true)
+				{
+					conclusions.Add(new Conclusion(Elimination, candidate));
+				}
+			}
+			if (conclusions.Count == 0)
+			{
+				return;
+			}
+
+			var cellOffsets = new List<(int, int)>(from cell in square | pair select (0, cell));
+			var candidateOffsets = new List<(int, int)>();
+			foreach (int d in comparer.GetAllSets())
+			{
+				foreach (int cell in square & CandMaps[d])
+				{
+					candidateOffsets.Add((1, cell * 9 + d));
+				}
+			}
+			foreach (int cell in pair)
+			{
+				foreach (int digit in grid.GetCandidates(cell))
+				{
+					candidateOffsets.Add((0, cell * 9 + digit));
+				}
+			}
+
+			accumulator.Add(
+				new QdpLockedTypeTechniqueInfo(
+					conclusions,
+					views: new[]
+					{
+							new View(
+								cellOffsets,
+								candidateOffsets,
+								regionOffsets:
+									new List<(int, int)>(
+										from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
+										select (0, pos + (isRow ? 9 : 18))),
+								links: null)
+					},
+					pattern,
+					candidates));
 		}
 	}
 }

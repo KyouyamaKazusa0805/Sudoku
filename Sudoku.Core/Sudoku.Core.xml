@@ -6273,6 +6273,11 @@
             Indicates the QDP type 4.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.LockedQdp">
+            <summary>
+            Indicates the locked QDP.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.Sdc">
             <summary>
             Indicates the SdC.
