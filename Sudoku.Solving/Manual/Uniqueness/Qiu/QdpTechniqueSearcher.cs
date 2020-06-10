@@ -114,40 +114,51 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				}
 
 				// Iterate on each combination.
-				foreach (int[] digits in GetCombinationsOfArray(pairMask.GetAllSets().ToArray(), 2))
+				for (int size = 2, count = pairMask.CountSet(); size < count; size++)
 				{
-					// Step 2: To determine whether the digits in pair cells
-					// will only appears in square cells.
-					int d1 = digits[0], d2 = digits[1];
-					var appearingMap = (CandMaps[d1] | CandMaps[d2]) & square;
-					if (appearingMap.Count != 4)
+					foreach (int[] digits in GetCombinationsOfArray(pairMask.GetAllSets().ToArray(), size))
 					{
-						continue;
-					}
-
-					bool flag = false;
-					foreach (int digit in digits)
-					{
-						if (!square.Overlaps(CandMaps[digit]))
+						// Step 2: To determine whether the digits in pair cells
+						// will only appears in square cells.
+						var tempMap = GridMap.Empty;
+						foreach (int digit in digits)
 						{
-							flag = true;
-							break;
+							tempMap |= CandMaps[digit];
 						}
-					}
-					if (flag)
-					{
-						continue;
-					}
+						var appearingMap = tempMap & square;
+						if (appearingMap.Count != 4)
+						{
+							continue;
+						}
 
-					short comparer = (short)(1 << d1 | 1 << d2);
-					short otherDigitsMask = (short)(pairMask & ~comparer);
-					if (appearingMap == ((CandMaps[d1] | CandMaps[d2]) & RegionMaps[square.BlockMask.FindFirstSet()]))
-					{
-						// Qdp forms.
-						// Now check each type.
-						CheckType1(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask);
-						CheckType2(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask);
-						CheckType3(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask);
+						bool flag = false;
+						foreach (int digit in digits)
+						{
+							if (!square.Overlaps(CandMaps[digit]))
+							{
+								flag = true;
+								break;
+							}
+						}
+						if (flag)
+						{
+							continue;
+						}
+
+						short comparer = 0;
+						foreach (int digit in digits)
+						{
+							comparer |= (short)(1 << digit);
+						}
+						short otherDigitsMask = (short)(pairMask & ~comparer);
+						if (appearingMap == (tempMap & RegionMaps[square.BlockMask.FindFirstSet()]))
+						{
+							// Qdp forms.
+							// Now check each type.
+							CheckType1(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask);
+							CheckType2(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask);
+							CheckType3(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask);
+						}
 					}
 				}
 
