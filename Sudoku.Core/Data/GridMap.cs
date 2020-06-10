@@ -753,21 +753,27 @@ namespace Sudoku.Data
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==(GridMap left, GridMap right) => left.Equals(right);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=(GridMap left, GridMap right) => !(left == right);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThan"]'/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator >(GridMap left, GridMap right) => left.CompareTo(right) > 0;
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThanOrEqual"]'/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator >=(GridMap left, GridMap right) => left.CompareTo(right) >= 0;
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_LessThan"]'/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator <(GridMap left, GridMap right) => left.CompareTo(right) < 0;
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_LessThanOrEqual"]'/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator <=(GridMap left, GridMap right) => left.CompareTo(right) <= 0;
 
 		/// <summary>
@@ -781,6 +787,7 @@ namespace Sudoku.Data
 		/// While reversing the higher 40 bits, the unused bits will be fixed and never be modified the state,
 		/// that is why using the code "<c>higherBits &amp; 0xFFFFFFFFFFL</c>".
 		/// </remarks>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static GridMap operator ~(GridMap gridMap) => new GridMap(~gridMap._high & 0xFFFFFFFFFFL, ~gridMap._low);
 
 		/// <summary>
@@ -796,6 +803,7 @@ namespace Sudoku.Data
 		/// var map2 = map + 3; // Is equivalent to 'map2 = map | new GridMap { 3 }'.
 		/// </code>
 		/// </example>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static GridMap operator +(GridMap map, int cell) => map | new GridMap { cell };
 
 		/// <summary>
@@ -811,6 +819,7 @@ namespace Sudoku.Data
 		/// var map2 = map - 4; // Is equivalent to 'map2 = map - new GridMap { 4 }'.
 		/// </code>
 		/// </example>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static GridMap operator -(GridMap map, int cell) => map - new GridMap { cell };
 
 		/// <summary>
@@ -820,6 +829,7 @@ namespace Sudoku.Data
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
 		/// <returns>The result.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static GridMap operator -(GridMap left, GridMap right) => left & ~right;
 
 		/// <summary>
@@ -828,6 +838,7 @@ namespace Sudoku.Data
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
 		/// <returns>The intersection result.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static GridMap operator &(GridMap left, GridMap right) =>
 			new GridMap(left._high & right._high, left._low & right._low);
 
@@ -837,6 +848,7 @@ namespace Sudoku.Data
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
 		/// <returns>The union result.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static GridMap operator |(GridMap left, GridMap right) =>
 			new GridMap(left._high | right._high, left._low | right._low);
 
@@ -850,7 +862,30 @@ namespace Sudoku.Data
 		/// <returns>The result.</returns>
 		/// <seealso cref="operator -(GridMap, GridMap)"/>
 		/// <seealso cref="operator |(GridMap, GridMap)"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static GridMap operator ^(GridMap left, GridMap right) =>
 			new GridMap(left._high ^ right._high, left._low ^ right._low);
+
+
+		/// <summary>
+		/// Implicite cast from <see cref="int"/>[] to <see cref="GridMap"/>.
+		/// </summary>
+		/// <param name="cells">The cells.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static implicit operator GridMap(int[] cells) => new GridMap(cells);
+
+		/// <summary>
+		/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <see cref="GridMap"/>.
+		/// </summary>
+		/// <param name="cells">The cells.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static implicit operator GridMap(ReadOnlySpan<int> cells) => new GridMap(cells);
+
+		/// <summary>
+		/// Explicit cast from <see cref="GridMap"/> to <see cref="int"/>[].
+		/// </summary>
+		/// <param name="map">The map.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static explicit operator int[](GridMap map) => map.ToArray();
 	}
 }

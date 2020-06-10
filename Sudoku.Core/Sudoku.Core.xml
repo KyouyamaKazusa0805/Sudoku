@@ -2692,6 +2692,24 @@
             <seealso cref="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap,Sudoku.Data.GridMap)"/>
             <seealso cref="M:Sudoku.Data.GridMap.op_BitwiseOr(Sudoku.Data.GridMap,Sudoku.Data.GridMap)"/>
         </member>
+        <member name="M:Sudoku.Data.GridMap.op_Implicit(System.Int32[])~Sudoku.Data.GridMap">
+            <summary>
+            Implicite cast from <see cref="T:System.Int32"/>[] to <see cref="T:Sudoku.Data.GridMap"/>.
+            </summary>
+            <param name="cells">The cells.</param>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.op_Implicit(System.ReadOnlySpan{System.Int32})~Sudoku.Data.GridMap">
+            <summary>
+            Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> to <see cref="T:Sudoku.Data.GridMap"/>.
+            </summary>
+            <param name="cells">The cells.</param>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.op_Explicit(Sudoku.Data.GridMap)~System.Int32[]">
+            <summary>
+            Explicit cast from <see cref="T:Sudoku.Data.GridMap"/> to <see cref="T:System.Int32"/>[].
+            </summary>
+            <param name="map">The map.</param>
+        </member>
         <member name="T:Sudoku.Data.GridMap.InitializeOption">
             <summary>
             Provides an option for initialization of the base type <see cref="T:Sudoku.Data.GridMap"/>.

@@ -8266,6 +8266,43 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType2TechniqueInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Square.UsType3TechniqueInfo">
+            <summary>
+            Provides a usage of <b>unique square type 3</b> (US) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType3TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap,System.Int16,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
+            <param name="cells">The cells.</param>
+            <param name="digitsMask">The digits mask.</param>
+            <param name="extraDigitsMask">The extra digits mask.</param>
+            <param name="extraCells">The extra cells.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsType3TechniqueInfo.ExtraDigitsMask">
+            <summary>
+            Indicates the extra digits mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsType3TechniqueInfo.ExtraCells">
+            <summary>
+            Indicates the extra cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsType3TechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsType3TechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType3TechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo">
             <summary>
             Provides a usage of <b>uniqueness</b> technique.

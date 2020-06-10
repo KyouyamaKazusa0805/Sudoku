@@ -5,6 +5,7 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static System.Algorithms;
+using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Square
@@ -50,6 +51,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 
 				CheckType1(accumulator, grid, pattern, mask);
 				CheckType2(accumulator, pattern, mask);
+				CheckType3(accumulator, grid, pattern, mask);
 			}
 		}
 
@@ -156,6 +158,96 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 						cells: pattern,
 						digitsMask,
 						extraDigit));
+			}
+		}
+
+		private void CheckType3(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask)
+		{
+			foreach (int[] digits in GetCombinationsOfArray(mask.GetAllSets().ToArray(), 4))
+			{
+				short digitsMask = 0;
+				foreach (int digit in digits)
+				{
+					digitsMask |= (short)(1 << digit);
+				}
+
+				short extraDigitsMask = (short)(mask & ~digitsMask);
+				var tempMap = GridMap.Empty;
+				foreach (int digit in extraDigitsMask.GetAllSets())
+				{
+					tempMap |= CandMaps[digit];
+				}
+				if (tempMap.AllSetsAreInOneRegion(out _))
+				{
+					continue;
+				}
+
+				foreach (int region in tempMap.CoveredRegions)
+				{
+					int[] allCells = ((RegionMaps[region] & EmptyMap) - pattern).ToArray();
+					for (int size = extraDigitsMask.CountSet() - 1, count = allCells.Length; size < count; size++)
+					{
+						foreach (int[] cells in GetCombinationsOfArray(allCells, size))
+						{
+							short tempMask = 0;
+							foreach (int cell in cells)
+							{
+								tempMask |= grid.GetCandidateMask(cell);
+							}
+
+							if (tempMask.CountSet() != size + 1 || (tempMask & extraDigitsMask) != extraDigitsMask)
+							{
+								continue;
+							}
+
+							var cellsMap = new GridMap(cells);
+							var conclusions = new List<Conclusion>();
+							foreach (int digit in tempMask.GetAllSets())
+							{
+								foreach (int cell in (allCells - cellsMap) & CandMaps[digit])
+								{
+									conclusions.Add(new Conclusion(Elimination, cell, digit));
+								}
+							}
+							if (conclusions.Count == 0)
+							{
+								continue;
+							}
+
+							var candidateOffsets = new List<(int, int)>();
+							foreach (int cell in pattern)
+							{
+								foreach (int digit in grid.GetCandidates(cell))
+								{
+									candidateOffsets.Add(((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+								}
+							}
+							foreach (int cell in cells)
+							{
+								foreach (int digit in grid.GetCandidates(cell))
+								{
+									candidateOffsets.Add((1, cell * 9 + digit));
+								}
+							}
+
+							accumulator.Add(
+								new UsType3TechniqueInfo(
+									conclusions,
+									views: new[]
+									{
+										new View(
+											cellOffsets: null,
+											candidateOffsets,
+											regionOffsets: new[] { (0, region) },
+											links: null)
+									},
+									cells: pattern,
+									digitsMask,
+									extraDigitsMask,
+									extraCells: cells));
+						}
+					}
+				}
 			}
 		}
 	}
