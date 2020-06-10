@@ -52,6 +52,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				CheckType1(accumulator, grid, pattern, mask);
 				CheckType2(accumulator, pattern, mask);
 				CheckType3(accumulator, grid, pattern, mask);
+				CheckType4(accumulator, grid, pattern, mask);
 			}
 		}
 
@@ -247,6 +248,106 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 									extraCells: cells));
 						}
 					}
+				}
+			}
+		}
+
+		private void CheckType4(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask)
+		{
+			foreach (int[] digits in GetCombinationsOfArray(mask.GetAllSets().ToArray(), 4))
+			{
+				short digitsMask = 0;
+				foreach (int digit in digits)
+				{
+					digitsMask |= (short)(1 << digit);
+				}
+
+				short extraDigitsMask = (short)(mask & ~digitsMask);
+				var tempMap = GridMap.Empty;
+				foreach (int digit in extraDigitsMask.GetAllSets())
+				{
+					tempMap |= CandMaps[digit];
+				}
+				if (tempMap.AllSetsAreInOneRegion(out _))
+				{
+					continue;
+				}
+
+				foreach (int region in tempMap.CoveredRegions)
+				{
+					int d1 = -1, d2 = -1, count = 0;
+					var compareMap = RegionMaps[region] & pattern;
+					foreach (int digit in digits)
+					{
+						if ((compareMap | RegionMaps[region] & CandMaps[digit]) == compareMap)
+						{
+							switch (count++)
+							{
+								case 0:
+								{
+									d1 = digit;
+
+									break;
+								}
+								case 1:
+								{
+									d2 = digit;
+
+									goto Label_Z;
+								}
+							}
+						}
+					}
+
+				Label_Z:
+					short comparer = (short)(1 << d1 | 1 << d2);
+					short otherDigitsMask = (short)(digitsMask & ~comparer);
+					var conclusions = new List<Conclusion>();
+					foreach (int digit in otherDigitsMask.GetAllSets())
+					{
+						foreach (int cell in compareMap & CandMaps[digit])
+						{
+							conclusions.Add(new Conclusion(Elimination, cell, digit));
+						}
+					}
+					if (conclusions.Count == 0)
+					{
+						continue;
+					}
+
+					var candidateOffsets = new List<(int, int)>();
+					foreach (int cell in pattern - compareMap)
+					{
+						foreach (int digit in grid.GetCandidates(cell))
+						{
+							candidateOffsets.Add((0, cell * 9 + digit));
+						}
+					}
+					foreach (int cell in compareMap & CandMaps[d1])
+					{
+						candidateOffsets.Add((1, cell * 9 + d1));
+					}
+					foreach (int cell in compareMap & CandMaps[d2])
+					{
+						candidateOffsets.Add((1, cell * 9 + d2));
+					}
+
+					accumulator.Add(
+						new UsType4TechniqueInfo(
+							conclusions,
+							views: new[]
+							{
+								new View(
+									cellOffsets: null,
+									candidateOffsets,
+									regionOffsets: new[] { (0, region) },
+									links: null)
+							},
+							cells: pattern,
+							digitsMask,
+							d1,
+							d2,
+							conjugateRegion: compareMap));
 				}
 			}
 		}
