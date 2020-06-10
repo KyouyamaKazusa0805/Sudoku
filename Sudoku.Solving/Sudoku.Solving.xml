@@ -8131,6 +8131,141 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo.GetAdditional">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueInfo">
+            <summary>
+            Provides a usage of <b>unique square</b> (US) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap,System.Int16)">
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
+            <param name="cells">The cells.</param>
+            <param name="digitsMask">The digits mask.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueInfo.Cells">
+            <summary>
+            Indicates the cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueInfo.DigitsMask">
+            <summary>
+            Indicates the digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueInfo.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher">
+            <summary>
+            Encapsulates a <b>uniqueness square</b> (US) technique searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher.Patterns">
+            <summary>
+            Indicates the patterns.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher.Priority">
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher.ChuteIterator">
+            <summary>
+            The chute iterator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsTechniqueSearcher.#cctor">
+            <staticConstructor>
+		<summary>The static constructor of this class.</summary>
+	</staticConstructor><staticConstructor aimTo="struct">
+		<summary>The static constructor of this struct.</summary>
+	</staticConstructor>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Square.UsType1TechniqueInfo">
+            <summary>
+            Provides a usage of <b>unique square type 1</b> (US) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType1TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap,System.Int16,System.Int32)">
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
+            <param name="cells">The cells.</param>
+            <param name="digitsMask">The digits mask.</param>
+            <param name="candidate">The candidate.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsType1TechniqueInfo.Candidate">
+            <summary>
+            Indicates the true candidate.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsType1TechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType1TechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Square.UsType2TechniqueInfo">
+            <summary>
+            Provides a usage of <b>unique square type 2</b> (US) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType2TechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.GridMap,System.Int16,System.Int32)">
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
+            <param name="cells">The cells.</param>
+            <param name="digitsMask">The digits mask.</param>
+            <param name="extraDigit">The extra digit.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsType2TechniqueInfo.ExtraDigit">
+            <summary>
+            Indicates the extra digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsType2TechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType2TechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.UniquenessTechniqueInfo">
             <summary>
             Provides a usage of <b>uniqueness</b> technique.

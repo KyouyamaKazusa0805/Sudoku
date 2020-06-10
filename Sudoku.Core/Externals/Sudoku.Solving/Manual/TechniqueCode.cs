@@ -1035,6 +1035,30 @@ namespace Sudoku.Solving.Manual
 		LockedQdp,
 
 		/// <summary>
+		/// Indicates the US type 1.
+		/// </summary>
+		[TechniqueDisplay("Unique Square Type 1", Category = "Uniqueness>Unique Square")]
+		UsType1,
+
+		/// <summary>
+		/// Indicates the US type 2.
+		/// </summary>
+		[TechniqueDisplay("Unique Square Type 2", Category = "Uniqueness>Unique Square")]
+		UsType2,
+
+		/// <summary>
+		/// Indicates the US type 3.
+		/// </summary>
+		[TechniqueDisplay("Unique Square Type 3", Category = "Uniqueness>Unique Square")]
+		UsType3,
+
+		/// <summary>
+		/// Indicates the US type 4.
+		/// </summary>
+		[TechniqueDisplay("Unique Square Type 4", Category = "Uniqueness>Unique Square")]
+		UsType4,
+
+		/// <summary>
 		/// Indicates the SdC.
 		/// </summary>
 		[TechniqueDisplay("Sue de Coq", Category = "Almost Locked Sets")]

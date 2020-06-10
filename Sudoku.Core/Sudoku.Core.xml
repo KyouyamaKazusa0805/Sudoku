@@ -6278,6 +6278,26 @@
             Indicates the locked QDP.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UsType1">
+            <summary>
+            Indicates the US type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UsType2">
+            <summary>
+            Indicates the US type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UsType3">
+            <summary>
+            Indicates the US type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.UsType4">
+            <summary>
+            Indicates the US type 4.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.Sdc">
             <summary>
             Indicates the SdC.
