@@ -3377,9 +3377,9 @@
             </para>
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.Exocets">
+        <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.Patterns">
             <summary>
-            Indicates all exocet patterns to iterate on.
+            Indicates all patterns.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Exocets.ExocetTechniqueSearcher.SIter">

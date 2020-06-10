@@ -43,7 +43,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		{
 			var compatibleCells = (Span<int>)stackalloc int[4];
 			var cover = (Span<int>)stackalloc int[8];
-			foreach (var exocet in Exocets)
+			foreach (var exocet in Patterns)
 			{
 				var (baseMap, targetMap, _) = exocet;
 				var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2) = exocet;

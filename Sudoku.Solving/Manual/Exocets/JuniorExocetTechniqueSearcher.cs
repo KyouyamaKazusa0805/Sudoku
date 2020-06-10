@@ -51,7 +51,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			foreach (var exocet in Exocets)
+			foreach (var exocet in Patterns)
 			{
 				var (baseMap, targetMap, _) = exocet;
 				var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2) = exocet;

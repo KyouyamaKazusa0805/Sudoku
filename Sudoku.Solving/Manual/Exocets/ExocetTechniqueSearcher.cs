@@ -47,18 +47,15 @@ namespace Sudoku.Solving.Manual.Exocets
 	public abstract class ExocetTechniqueSearcher : TechniqueSearcher
 	{
 		/// <summary>
-		/// Indicates all exocet patterns to iterate on.
+		/// Indicates all patterns.
 		/// </summary>
-		protected static readonly Pattern[] Exocets;
+		protected static readonly Pattern[] Patterns = new Pattern[1458];
 
 
 		/// <summary>
 		/// The cross line cells iterator.
 		/// </summary>
-		private static readonly int[,] SIter =
-		{
-			{ 3, 4, 5, 6, 7, 8 }, { 0, 1, 2, 6, 7, 8 }, { 0, 1, 2, 3, 4, 5 }
-		};
+		private static readonly int[,] SIter = { { 3, 4, 5, 6, 7, 8 }, { 0, 1, 2, 6, 7, 8 }, { 0, 1, 2, 3, 4, 5 } };
 
 		/// <summary>
 		/// The base cells iterator.
@@ -92,10 +89,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// The base list.
 		/// </summary>
-		private static readonly int[] B =
-		{
-			0, 3, 6, 27, 30, 33, 54, 57, 60, 0, 27, 54, 3, 30, 57, 6, 33, 60
-		};
+		private static readonly int[] B = { 0, 3, 6, 27, 30, 33, 54, 57, 60, 0, 27, 54, 3, 30, 57, 6, 33, 60 };
 
 		/// <summary>
 		/// The combinations for base list <see cref="B"/>.
@@ -129,7 +123,6 @@ namespace Sudoku.Solving.Manual.Exocets
 			var t = (Span<int>)stackalloc int[3];
 			var crossline = (Span<int>)stackalloc int[25]; // Only use [7]..[24].
 			int n = 0;
-			Exocets = new Pattern[1458];
 			for (int i = 0; i < 18; i++)
 			{
 				for (int z = i / 9 * 9, j = z; j < z + 9; j++)
@@ -138,7 +131,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					{
 						for (int l = y; l < y + 3; l++)
 						{
-							ref var exocet = ref Exocets[n];
+							ref var exocet = ref Patterns[n];
 							var (b1, b2) = (B[i] + BIter[j, 0], B[i] + BIter[j, 1]);
 							var (tq1, tr1) = (B[BC[i, 0]] + RqIter[k, 0], B[BC[i, 1]] + RqIter[l, 0]);
 
@@ -207,10 +200,8 @@ namespace Sudoku.Solving.Manual.Exocets
 			var playground = (Span<int>)stackalloc[] { mirror.SetAt(0), mirror.SetAt(1) };
 			short mirrorCandidatesMask = (short)(
 				grid.GetCandidateMask(playground[0]) | grid.GetCandidateMask(playground[1]));
-			short commonBase = (short)(
-				mirrorCandidatesMask & baseCandidateMask & grid.GetCandidateMask(target));
-			short targetElimination = (short)(
-				grid.GetCandidateMask(target) & ~(short)(commonBase | lockedNonTarget));
+			short commonBase = (short)(mirrorCandidatesMask & baseCandidateMask & grid.GetCandidateMask(target));
+			short targetElimination = (short)(grid.GetCandidateMask(target) & ~(short)(commonBase | lockedNonTarget));
 			if (targetElimination != 0 && grid.GetStatus(target) != Empty ^ grid.GetStatus(target2) != Empty)
 			{
 				foreach (int digit in targetElimination.GetAllSets())
@@ -228,8 +219,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				{
 					int p = playground[m1 == 0 ? 1 : 0];
 					short candidateMask = (short)(grid.GetCandidateMask(p) & ~commonBase);
-					if (candidateMask != 0
-						&& grid.GetStatus(target) != Empty ^ grid.GetStatus(target2) != Empty)
+					if (candidateMask != 0 && grid.GetStatus(target) != Empty ^ grid.GetStatus(target2) != Empty)
 					{
 						cellOffsets.Add((3, playground[0]));
 						cellOffsets.Add((3, playground[1]));
