@@ -28,7 +28,7 @@
 		/// <summary>
 		/// Indicates the regular expression of a digit or empty cell placeholder.
 		/// </summary>
-		public const string DigitOrEmptyCell = @"[\d\.]";
+		public const string DigitOrEmptyCell = @"(\+?\d|\.)";
 
 		/// <summary>
 		/// Indicates the unit in the basic PM grid.

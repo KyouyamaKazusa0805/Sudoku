@@ -13,7 +13,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a grid parser.
 	/// </summary>
-	[DebuggerStepThrough]
+	//[DebuggerStepThrough]
 	internal sealed class GridParser
 	{
 		/// <summary>
@@ -56,11 +56,11 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentException">Throws when failed to parse.</exception>
 		public Grid Parse() =>
 			OnParsingSimpleTable()
+				?? OnParsingSimpleMultilineGrid()
 				?? (CompatibleFirst ? OnParsingSukaku(true) : OnParsingSukaku(false))
 				?? (CompatibleFirst ? OnParsingSukaku(false) : OnParsingSukaku(true))
 				?? OnParsingSusser()
 				?? OnParsingExcel()
-				?? OnParsingSimpleMultilineGrid()
 				?? (CompatibleFirst ? OnParsingPencilMarked(true) : OnParsingPencilMarked(false))
 				?? (CompatibleFirst ? OnParsingPencilMarked(false) : OnParsingPencilMarked(true))
 				?? throw Throwings.ParsingError<Grid>(nameof(ParsingValue));
@@ -94,7 +94,7 @@ namespace Sudoku.Data
 		{
 			string[] matches = ParsingValue.MatchAll(RegularExpressions.DigitOrEmptyCell);
 			int length = matches.Length;
-			if (length != 81 && length != 83)
+			if (length != 81 && length != 85)
 			{
 				// Subtle grid outline will bring 2 '.'s on first line of the grid.
 				return null;
@@ -103,10 +103,40 @@ namespace Sudoku.Data
 			var result = Grid.Empty.Clone();
 			for (int i = 0; i < 81; i++)
 			{
-				char match = matches[length == 81 ? i : i + 2][0];
-				if (match != '.' && match != '0')
+				string currentMatch = matches[length - 81 + i];
+				switch (currentMatch.Length)
 				{
-					result[i] = match - '1';
+					case 1:
+					{
+						char match = currentMatch[0];
+						if (match != '.' && match != '0')
+						{
+							result[i] = match - '1';
+							result.SetStatus(i, Given);
+						}
+
+						break;
+					}
+					case 2:
+					{
+						char match = currentMatch[1];
+						if (match == '.' || match == '0')
+						{
+							// '+0' or '+.'? Invalid combination.
+							return null;
+						}
+
+						result[i] = match - '1';
+						result.SetStatus(i, Modifiable);
+
+						break;
+					}
+					default:
+					{
+						// The sub-match contains more than 2 characters or empty string,
+						// which is invalid.
+						return null;
+					}
 				}
 			}
 
