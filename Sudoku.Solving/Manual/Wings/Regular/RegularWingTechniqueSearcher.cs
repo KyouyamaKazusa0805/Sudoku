@@ -104,9 +104,9 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 						}
 
 						// Get the Z digit (The removing value).
-						bool isIncompleted = inter == 0;
+						bool isIncomplete = inter == 0;
 						short interWithoutPivot = (short)(union & ~grid.GetCandidateMask(pivot));
-						short maskToCheck = isIncompleted ? interWithoutPivot : inter;
+						short maskToCheck = isIncomplete ? interWithoutPivot : inter;
 						if (!maskToCheck.IsPowerOfTwo())
 						{
 							continue;
@@ -115,14 +115,14 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 						// The pattern should be "az, bz, cz, dz, ... , abcd(z)".
 						int zDigit = maskToCheck.FindFirstSet();
 						var cellsMap = new GridMap(cells);
-						if (((cellsMap + pivot) & CandMaps[zDigit]).Count != (isIncompleted ? size - 1 : size))
+						if (((cellsMap + pivot) & CandMaps[zDigit]).Count != (isIncomplete ? size - 1 : size))
 						{
 							continue;
 						}
 
 						// Check elimination map.
 						var elimMap = cellsMap.PeerIntersection;
-						if (!isIncompleted)
+						if (!isIncomplete)
 						{
 							elimMap &= PeerMaps[pivot];
 						}

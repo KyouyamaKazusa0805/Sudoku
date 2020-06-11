@@ -18,10 +18,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	public sealed partial class UrTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>
-		/// Indicates whether the UR can be incompleted. In other words,
+		/// Indicates whether the UR can be incomplete. In other words,
 		/// some of UR candidates can be removed before the pattern forms.
 		/// </summary>
-		private readonly bool _allowIncompletedUr;
+		private readonly bool _allowIncompleteUr;
 
 		/// <summary>
 		/// Indicates whether the searcher can search for extended URs.
@@ -31,15 +31,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 		/// <summary>
 		/// Initializes an instance with the specified value indicating
-		/// whether the structure can be incompleted, and a value indicating
+		/// whether the structure can be incomplete, and a value indicating
 		/// whether the searcher can search for extended URs.
 		/// </summary>
-		/// <param name="allowIncompletedUr">
+		/// <param name="allowIncomplete">
 		/// A <see cref="bool"/> value indicating that.
 		/// </param>
 		/// <param name="searchExtended">A <see cref="bool"/> value indicating that.</param>
-		public UrTechniqueSearcher(bool allowIncompletedUr, bool searchExtended) =>
-			(_allowIncompletedUr, _searchExtended) = (allowIncompletedUr, searchExtended);
+		public UrTechniqueSearcher(bool allowIncomplete, bool searchExtended) =>
+			(_allowIncompleteUr, _searchExtended) = (allowIncomplete, searchExtended);
 
 
 		/// <summary>

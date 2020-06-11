@@ -67,7 +67,7 @@ namespace Sudoku.Windows
 			_checkBoxAllowAlsCycles.IsChecked = Settings.MainManualSolver.AllowAlsCycles;
 			_textBoxBowmanBingoMaxLength.Text = Settings.MainManualSolver.BowmanBingoMaximumLength.ToString();
 			_checkBoxAllowAlq.IsChecked = Settings.MainManualSolver.CheckAlmostLockedQuadruple;
-			_checkBoxCheckIncompletedUr.IsChecked = Settings.MainManualSolver.CheckIncompletedUniquenessPatterns;
+			_checkBoxCheckIncompleteUr.IsChecked = Settings.MainManualSolver.CheckIncompleteUniquenessPatterns;
 			_textBoxMaxRegularWingSize.Text = Settings.MainManualSolver.CheckRegularWingSize.ToString();
 			_checkBoxUseExtendedBugSearcher.IsChecked = Settings.MainManualSolver.UseExtendedBugSearcher;
 			_checkBoxSearchExtendedUniqueRectangle.IsChecked = Settings.MainManualSolver.SearchExtendedUniqueRectangles;
@@ -494,8 +494,8 @@ namespace Sudoku.Windows
 		private void CheckBoxCheckHeadCollision_Click(object sender, RoutedEventArgs e) =>
 			_checkBoxCheckHeadCollision.IsChecked = _manualSolver.CheckHeadCollision ^= true;
 
-		private void CheckBoxCheckIncompletedUr_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxCheckIncompletedUr.IsChecked = _manualSolver.CheckIncompletedUniquenessPatterns ^= true;
+		private void CheckBoxCheckIncompleteUr_Click(object sender, RoutedEventArgs e) =>
+			_checkBoxCheckIncompleteUr.IsChecked = _manualSolver.CheckIncompleteUniquenessPatterns ^= true;
 
 		private void TextBoxMaxRegularWingSize_TextChanged(object sender, TextChangedEventArgs e)
 		{

@@ -126,7 +126,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							{
 								// Here, unique loop can be found if and only if
 								// two cells both contain 'd1' and 'd2'.
-								// Incompleted ULs cannot be found at present.
+								// Incomplete ULs cannot be found at present.
 								short nextCellMask = grid.GetCandidateMask(nextCell);
 								exDigitsMask |= nextCellMask;
 								exDigitsMask &= (short)~((1 << d1) | (1 << d2));

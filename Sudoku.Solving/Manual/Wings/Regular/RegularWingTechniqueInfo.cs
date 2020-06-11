@@ -64,16 +64,16 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		{
 			get
 			{
-				bool isIncompleted = Size == PivotCellCandidatesCount + 1;
+				bool isIncomplete = Size == PivotCellCandidatesCount + 1;
 				switch (Size)
 				{
 					case 3:
 					{
-						return isIncompleted ? "XY-Wing" : "XYZ-Wing";
+						return isIncomplete ? "XY-Wing" : "XYZ-Wing";
 					}
 					case int s when s >= 4 && s < 9:
 					{
-						return isIncompleted ? $"Incompleted {RegularWingNames[Size]}" : RegularWingNames[Size];
+						return isIncomplete ? $"Incomplete {RegularWingNames[Size]}" : RegularWingNames[Size];
 					}
 					default:
 					{
@@ -88,16 +88,16 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		{
 			get
 			{
-				bool isIncompleted = Size == PivotCellCandidatesCount + 1;
+				bool isIncomplete = Size == PivotCellCandidatesCount + 1;
 				switch (Size)
 				{
 					case 3:
 					{
-						return isIncompleted ? 4.2M : 4.4M;
+						return isIncomplete ? 4.2M : 4.4M;
 					}
 					case int s when s >= 4 && s < 9:
 					{
-						return isIncompleted ? DifficultyRating[Size] + .1M : DifficultyRating[Size];
+						return isIncomplete ? DifficultyRating[Size] + .1M : DifficultyRating[Size];
 					}
 					default:
 					{

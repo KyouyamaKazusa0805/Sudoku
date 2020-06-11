@@ -91,7 +91,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					candidateOffsets.Add((1, possibleXyCell * 9 + digit));
 				}
 
-				if (!_allowIncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
+				if (!_allowIncompleteUr && candidateOffsets.Count(CheckHighlightType) != 8)
 				{
 					continue;
 				}
@@ -211,7 +211,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							}
 						}
 
-						if (!_allowIncompletedUr && candidateOffsets.Count != 7)
+						if (!_allowIncompleteUr && candidateOffsets.Count != 7)
 						{
 							continue;
 						}
@@ -328,7 +328,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							}
 						}
 
-						if (!_allowIncompletedUr && candidateOffsets.Count != 7)
+						if (!_allowIncompleteUr && candidateOffsets.Count != 7)
 						{
 							continue;
 						}
@@ -434,7 +434,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				{
 					candidateOffsets.Add((1, possibleXyCell * 9 + digit));
 				}
-				if (!_allowIncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
+				if (!_allowIncompleteUr && candidateOffsets.Count(CheckHighlightType) != 8)
 				{
 					continue;
 				}
@@ -530,7 +530,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				{
 					candidateOffsets.Add((0, cornerCell * 9 + digit));
 				}
-				if (!_allowIncompletedUr && candidateOffsets.Count != 6)
+				if (!_allowIncompleteUr && candidateOffsets.Count != 6)
 				{
 					continue;
 				}
@@ -636,7 +636,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							candidateOffsets.Add((0, end * 9 + d));
 						}
 					}
-					if (!_allowIncompletedUr && candidateOffsets.Count != 7)
+					if (!_allowIncompleteUr && candidateOffsets.Count != 7)
 					{
 						continue;
 					}
@@ -738,7 +738,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							candidateOffsets.Add((d == b ? 1 : 0, abzCell * 9 + d));
 						}
 					}
-					if (!_allowIncompletedUr && candidateOffsets.Count != 7)
+					if (!_allowIncompleteUr && candidateOffsets.Count != 7)
 					{
 						continue;
 					}
@@ -840,7 +840,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							candidateOffsets.Add((d == a ? 1 : 0, abzCell * 9 + d));
 						}
 					}
-					if (!_allowIncompletedUr && candidateOffsets.Count != 7)
+					if (!_allowIncompleteUr && candidateOffsets.Count != 7)
 					{
 						continue;
 					}
@@ -948,7 +948,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							candidateOffsets.Add((1, end * 9 + d));
 						}
 					}
-					if (!_allowIncompletedUr && (candidateOffsets.Count != 6 || conclusions.Count != 2))
+					if (!_allowIncompleteUr && (candidateOffsets.Count != 6 || conclusions.Count != 2))
 					{
 						continue;
 					}
@@ -1058,7 +1058,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							candidateOffsets.Add((1, end * 9 + d));
 						}
 					}
-					if (!_allowIncompletedUr && candidateOffsets.Count != 7)
+					if (!_allowIncompleteUr && candidateOffsets.Count != 7)
 					{
 						continue;
 					}
@@ -1223,7 +1223,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							{
 								candidateOffsets.Add((digit == elimDigit ? 2 : 1, c2 * 9 + digit));
 							}
-							if (!_allowIncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
+							if (!_allowIncompleteUr && candidateOffsets.Count(CheckHighlightType) != 8)
 							{
 								continue;
 							}
@@ -1325,7 +1325,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									{
 										candidateOffsets.Add((digit == elimDigit ? 2 : 1, c3 * 9 + digit));
 									}
-									if (!_allowIncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
+									if (!_allowIncompleteUr && candidateOffsets.Count(CheckHighlightType) != 8)
 									{
 										continue;
 									}
@@ -1429,7 +1429,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										{
 											candidateOffsets.Add((digit == elimDigit ? 2 : 1, c4 * 9 + digit));
 										}
-										if (!_allowIncompletedUr && candidateOffsets.Count(CheckHighlightType) != 8)
+										if (!_allowIncompleteUr && candidateOffsets.Count(CheckHighlightType) != 8)
 										{
 											continue;
 										}

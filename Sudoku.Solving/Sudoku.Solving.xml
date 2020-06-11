@@ -5209,10 +5209,10 @@
             <para>The value is <see langword="true"/> in default case.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckIncompletedUniquenessPatterns">
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckIncompleteUniquenessPatterns">
             <summary>
             <para>
-            Indicates whether the solver should check incompleted uniqueness patterns.
+            Indicates whether the solver should check incomplete uniqueness patterns.
             </para>
             <para>
             The value is <see langword="true"/> in debug environment,
@@ -7694,9 +7694,9 @@
             <b>avoidable rectangle</b> (AR) technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher._allowIncompletedUr">
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher._allowIncompleteUr">
             <summary>
-            Indicates whether the UR can be incompleted. In other words,
+            Indicates whether the UR can be incomplete. In other words,
             some of UR candidates can be removed before the pattern forms.
             </summary>
         </member>
@@ -7708,10 +7708,10 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrTechniqueSearcher.#ctor(System.Boolean,System.Boolean)">
             <summary>
             Initializes an instance with the specified value indicating
-            whether the structure can be incompleted, and a value indicating
+            whether the structure can be incomplete, and a value indicating
             whether the searcher can search for extended URs.
             </summary>
-            <param name="allowIncompletedUr">
+            <param name="allowIncomplete">
             A <see cref="T:System.Boolean"/> value indicating that.
             </param>
             <param name="searchExtended">A <see cref="T:System.Boolean"/> value indicating that.</param>

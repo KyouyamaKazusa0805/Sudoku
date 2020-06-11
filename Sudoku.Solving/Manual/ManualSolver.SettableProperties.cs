@@ -135,7 +135,7 @@
 
 		/// <summary>
 		/// <para>
-		/// Indicates whether the solver should check incompleted uniqueness patterns.
+		/// Indicates whether the solver should check incomplete uniqueness patterns.
 		/// </para>
 		/// <para>
 		/// The value is <see langword="true"/> in debug environment,
@@ -143,9 +143,9 @@
 		/// </para>
 		/// </summary>
 #if DEBUG
-		public bool CheckIncompletedUniquenessPatterns { get; set; } = true;
+		public bool CheckIncompleteUniquenessPatterns { get; set; } = true;
 #else
-		public bool CheckIncompletedUniquenessPatterns { get; set; } = false;
+		public bool CheckIncompleteUniquenessPatterns { get; set; } = false;
 #endif
 
 		/// <summary>

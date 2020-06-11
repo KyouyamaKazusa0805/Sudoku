@@ -161,8 +161,8 @@
 									  Click="CheckBoxAllowAlq_Click"/>
 							<CheckBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
 									  HorizontalAlignment="Left" VerticalAlignment="Center"
-									  Name="_checkBoxCheckIncompletedUr" Content="Check uncompleted URs"
-									  Click="CheckBoxCheckIncompletedUr_Click"/>
+									  Name="_checkBoxCheckIncompleteUr" Content="Check incomplete URs"
+									  Click="CheckBoxCheckIncompleteUr_Click"/>
 							<Label Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2"
 								   HorizontalAlignment="Left" VerticalAlignment="Center"
 								   Content="Max regular wing size:"/>
