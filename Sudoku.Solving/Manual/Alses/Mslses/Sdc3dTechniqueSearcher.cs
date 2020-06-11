@@ -12,9 +12,9 @@ using static Sudoku.Data.ConclusionType;
 namespace Sudoku.Solving.Manual.Alses.Mslses
 {
 	/// <summary>
-	/// Encapsulates a <b>3-demension sue de coq</b> technique.
+	/// Encapsulates a <b>3-dimension sue de coq</b> technique.
 	/// </summary>
-	[TechniqueDisplay("3-Demension Sue de Coq")]
+	[TechniqueDisplay("3-Dimension Sue de Coq")]
 	public sealed class Sdc3dTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <inheritdoc/>

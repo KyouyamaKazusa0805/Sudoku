@@ -1926,7 +1926,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueInfo">
             <summary>
-            Provides a usage of <b>3-demension sue de coq</b> technique.
+            Provides a usage of <b>3-dimension sue de coq</b> technique.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
@@ -1988,7 +1988,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueSearcher">
             <summary>
-            Encapsulates a <b>3-demension sue de coq</b> technique.
+            Encapsulates a <b>3-dimension sue de coq</b> technique.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">

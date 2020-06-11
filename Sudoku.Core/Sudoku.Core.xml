@@ -6323,7 +6323,7 @@
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.Sdc3d">
             <summary>
-            Indicates the 3-demension SdC.
+            Indicates the 3-dimension SdC.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.CannibalizedSdc">

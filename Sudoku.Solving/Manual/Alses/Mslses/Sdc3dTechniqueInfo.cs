@@ -7,7 +7,7 @@ using Sudoku.Extensions;
 namespace Sudoku.Solving.Manual.Alses.Mslses
 {
 	/// <summary>
-	/// Provides a usage of <b>3-demension sue de coq</b> technique.
+	/// Provides a usage of <b>3-dimension sue de coq</b> technique.
 	/// </summary>
 	public sealed class Sdc3dTechniqueInfo : MslsTechniqueInfo
 	{
