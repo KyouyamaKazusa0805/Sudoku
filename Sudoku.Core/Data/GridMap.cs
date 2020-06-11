@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.GridMap.InitializeOption;
+using static Sudoku.Data.GridMap.InitializationOption;
 
 namespace Sudoku.Data
 {
@@ -72,7 +72,7 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentException">
 		/// Throws when the specified initialize option is invalid.
 		/// </exception>
-		public GridMap(int offset, InitializeOption initializeOption) : this()
+		public GridMap(int offset, InitializationOption initializeOption) : this()
 		{
 			switch (initializeOption)
 			{
@@ -127,10 +127,10 @@ namespace Sudoku.Data
 		/// Indicates the behavior of the initialization.
 		/// </param>
 		/// <remarks>
-		/// This method is same behavior of <see cref="GridMap(IEnumerable{int}, InitializeOption)"/>
+		/// This method is same behavior of <see cref="GridMap(IEnumerable{int}, InitializationOption)"/>
 		/// </remarks>
-		/// <seealso cref="GridMap(IEnumerable{int}, InitializeOption)"/>
-		public GridMap(int[] offsets, InitializeOption initializeOption)
+		/// <seealso cref="GridMap(IEnumerable{int}, InitializationOption)"/>
+		public GridMap(int[] offsets, InitializationOption initializeOption)
 			: this((IEnumerable<int>)offsets, initializeOption)
 		{
 		}
@@ -175,7 +175,7 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentException">
 		/// Throws when the specified initialize option is invalid.
 		/// </exception>
-		public GridMap(ReadOnlySpan<int> offsets, InitializeOption initializeOption) : this()
+		public GridMap(ReadOnlySpan<int> offsets, InitializationOption initializeOption) : this()
 		{
 			switch (initializeOption)
 			{
@@ -264,7 +264,7 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentException">
 		/// Throws when the specified initialize option is invalid.
 		/// </exception>
-		public GridMap(IEnumerable<int> offsets, InitializeOption initializeOption) : this()
+		public GridMap(IEnumerable<int> offsets, InitializationOption initializeOption) : this()
 		{
 			switch (initializeOption)
 			{
