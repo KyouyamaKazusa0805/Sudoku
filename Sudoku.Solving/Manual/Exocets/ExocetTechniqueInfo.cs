@@ -141,6 +141,15 @@ namespace Sudoku.Solving.Manual.Exocets
 		public CompatibilityTestEliminations CompatibilityTestEliminations { get; }
 
 		/// <inheritdoc/>
+		public sealed override string Name => base.Name;
+
+		/// <inheritdoc/>
+		public sealed override bool ShowDifficulty => base.ShowDifficulty;
+
+		/// <inheritdoc/>
+		public abstract override decimal Difficulty { get; }
+
+		/// <inheritdoc/>
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
 		/// <inheritdoc/>
@@ -151,23 +160,29 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			var (b1, b2, tq1, tq2, tr1, tr2) = Exocet;
+			var (baseMap, targetMap, _) = Exocet;
 			string? addtional = GetAdditional();
 
 			return new StringBuilder(Name)
 				.Append(": Digits ")
 				.Append(new DigitCollection(Digits).ToString())
 				.Append(" in base cells ")
-				.Append(new CellCollection(stackalloc[] { b1, b2 }).ToString())
+				.Append(new CellCollection(baseMap).ToString())
 				.Append(", target cells ")
-				.Append(new CellCollection(stackalloc[] { tq1, tq2, tr1, tr2 }).ToString())
+				.Append(new CellCollection(targetMap).ToString())
 				.NullableAppend(
 					LockedMemberQ is null ? null : $", locked member 1: {new DigitCollection(LockedMemberQ).ToString()}")
 				.NullableAppend(
 					LockedMemberR is null ? null : $", locked member 2: {new DigitCollection(LockedMemberR).ToString()}")
 				.Append(addtional is null ? string.Empty : $" with {addtional}")
 				.Append(" => ")
-				.AppendLine(new ConclusionCollection(Conclusions).ToString())
+				.Append(new ConclusionCollection(Conclusions).ToString())
+				.ToString();
+		}
+
+		/// <inheritdoc/>
+		public sealed override string ToFullString() =>
+			new StringBuilder(ToString())
 				.NullableAppendLine(TargetEliminations.ToString())
 				.NullableAppendLine(MirrorEliminations.ToString())
 				.NullableAppendLine(BibiEliminations.ToString())
@@ -176,7 +191,6 @@ namespace Sudoku.Solving.Manual.Exocets
 				.NullableAppendLine(TrueBaseEliminations.ToString())
 				.NullableAppendLine(CompatibilityTestEliminations.ToString())
 				.ToString();
-		}
 
 		/// <summary>
 		/// Get the additional message.

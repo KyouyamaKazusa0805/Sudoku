@@ -5,6 +5,7 @@ using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
+using Sudoku.Solving.Manual.Exocets;
 
 namespace Sudoku.Solving
 {
@@ -127,7 +128,16 @@ namespace Sudoku.Solving
 		/// <inheritdoc/>
 		public override int GetHashCode() => ToString().GetHashCode();
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Returns a string that only contains the name and the basic information. Different with
+		/// <see cref="ToFullString"/>, the method will only contains the basic introduction about the technique.
+		/// For example, in the <see cref="ExocetTechniqueInfo"/>, the detail will contain the several special
+		/// eliminations, in this method, those will not be displayed, But the method <see cref="ToFullString"/>
+		/// will.
+		/// </summary>
+		/// <returns>The string instance.</returns>
+		/// <seealso cref="ExocetTechniqueInfo"/>
+		/// <seealso cref="ToFullString"/>
 		public abstract override string ToString();
 
 		/// <summary>
@@ -135,6 +145,13 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <returns>The string instance.</returns>
 		public string ToSimpleString() => $"{Name} => {new ConclusionCollection(Conclusions).ToString()}";
+
+		/// <summary>
+		/// Returns a string that contains the name, the conclusions and its all details.
+		/// This method is used for displaying details in text box control.
+		/// </summary>
+		/// <returns>The string instance.</returns>
+		public virtual string ToFullString() => ToString();
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>

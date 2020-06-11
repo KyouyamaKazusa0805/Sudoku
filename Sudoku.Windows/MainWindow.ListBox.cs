@@ -38,7 +38,7 @@ namespace Sudoku.Windows
 					new ViewLayer(
 						_pointConverter, s.Views[0], techniqueInfo.Conclusions, Settings.PaletteColors,
 						Settings.EliminationColor, Settings.CannibalismColor, Settings.ChainColor));
-				_textBoxInfo.Text = techniqueInfo.ToString();
+				_textBoxInfo.Text = techniqueInfo.ToFullString();
 
 				UpdateImageGrid();
 			}
@@ -57,7 +57,7 @@ namespace Sudoku.Windows
 						new ViewLayer(
 							_pointConverter, info.Views[0], info.Conclusions, Settings.PaletteColors,
 							Settings.EliminationColor, Settings.CannibalismColor, Settings.ChainColor));
-					_textBoxInfo.Text = info.ToString();
+					_textBoxInfo.Text = info.ToFullString();
 
 					UpdateImageGrid();
 				}

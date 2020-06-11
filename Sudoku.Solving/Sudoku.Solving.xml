@@ -3327,6 +3327,15 @@
             The compatibility test eliminations.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -3334,6 +3343,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.ToFullString">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo.GetAdditional">
@@ -8687,11 +8699,27 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.TechniqueInfo.ToString">
-            <inheritdoc/>
+            <summary>
+            Returns a string that only contains the name and the basic information. Different with
+            <see cref="M:Sudoku.Solving.TechniqueInfo.ToFullString"/>, the method will only contains the basic introduction about the technique.
+            For example, in the <see cref="T:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo"/>, the detail will contain the several special
+            eliminations, in this method, those will not be displayed, But the method <see cref="M:Sudoku.Solving.TechniqueInfo.ToFullString"/>
+            will.
+            </summary>
+            <returns>The string instance.</returns>
+            <seealso cref="T:Sudoku.Solving.Manual.Exocets.ExocetTechniqueInfo"/>
+            <seealso cref="M:Sudoku.Solving.TechniqueInfo.ToFullString"/>
         </member>
         <member name="M:Sudoku.Solving.TechniqueInfo.ToSimpleString">
             <summary>
             Returns a string that only contains the name and the conclusions.
+            </summary>
+            <returns>The string instance.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.TechniqueInfo.ToFullString">
+            <summary>
+            Returns a string that contains the name, the conclusions and its all details.
+            This method is used for displaying details in text box control.
             </summary>
             <returns>The string instance.</returns>
         </member>
