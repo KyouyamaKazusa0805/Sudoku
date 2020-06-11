@@ -120,7 +120,6 @@ namespace Sudoku.Solving.Manual
 				//	_settings.MainManualSolver.HobiwanFishCheckTemplates),
 				new BowmanBingoTechniqueSearcher(solver.BowmanBingoMaximumLength),
 				new PomTechniqueSearcher(),
-				new CccTechniqueSearcher(),
 				new JuniorExocetTechniqueSearcher(solver.CheckAdvancedInExocet),
 				new SeniorExocetTechniqueSearcher(solver.CheckAdvancedInExocet),
 				new SkLoopTechniqueSearcher(),

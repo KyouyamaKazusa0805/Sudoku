@@ -6,9 +6,9 @@ using System.Runtime.CompilerServices;
 using Sudoku.ComponentModel;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
+using Sudoku.Solving.Manual.Alses;
 using Sudoku.Solving.Manual.Alses.Basic;
 using Sudoku.Solving.Manual.Alses.Mslses;
-using Sudoku.Solving.Manual.Alses;
 using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Solving.Manual.Fishes;
@@ -21,12 +21,12 @@ using Sudoku.Solving.Manual.Uniqueness.Bugs;
 using Sudoku.Solving.Manual.Uniqueness.Extended;
 using Sudoku.Solving.Manual.Uniqueness.Loops;
 using Sudoku.Solving.Manual.Uniqueness.Polygons;
+using Sudoku.Solving.Manual.Uniqueness.Qiu;
 using Sudoku.Solving.Manual.Uniqueness.Rects;
+using Sudoku.Solving.Manual.Uniqueness.Square;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using static Sudoku.Data.ConclusionType;
-using Sudoku.Solving.Manual.Uniqueness.Qiu;
-using Sudoku.Solving.Manual.Uniqueness.Square;
 
 namespace Sudoku.Solving.Manual
 {
@@ -83,7 +83,6 @@ namespace Sudoku.Solving.Manual
 				new PomTechniqueSearcher(),
 				new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 				new TemplateTechniqueSearcher(OnlyRecordTemplateDelete),
-				new CccTechniqueSearcher(),
 				new AlsNetTechniqueSearcher(),
 				new BruteForceTechniqueSearcher(solution),
 			};
@@ -146,7 +145,6 @@ namespace Sudoku.Solving.Manual
 				},
 				new TechniqueSearcher[]
 				{
-					new CccTechniqueSearcher(),
 					new JuniorExocetTechniqueSearcher(CheckAdvancedInExocet),
 					new SeniorExocetTechniqueSearcher(CheckAdvancedInExocet),
 					new SkLoopTechniqueSearcher(),
