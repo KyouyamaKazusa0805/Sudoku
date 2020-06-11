@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <comments>
-	<!--constructors-->
+	<!-- Instance constructors -->
 	<defaultConstructor>
 		<summary>Create an instance with default initialization.</summary>
 	</defaultConstructor>
 
-	<!--static constructors-->
+	<!-- Static constructors -->
 	<staticConstructor>
 		<summary>The static constructor of this class.</summary>
 	</staticConstructor>
@@ -13,7 +13,7 @@
 		<summary>The static constructor of this struct.</summary>
 	</staticConstructor>
 	
-	<!--methods-->
+	<!-- Methods -->
 	<method name="ToString" paramType="__noparam">
 		<summary>Returns a string that represents the current object.</summary>
 		<returns>A string that represents the current object.</returns>
@@ -54,7 +54,7 @@
 		<returns>A <see cref="bool"/> value indicating that.</returns>
 	</method>
 	
-	<!--operators-->
+	<!-- Operators -->
 	<operator name="op_Equality">
 		<summary>Indicates whether two instances have a same value.</summary>
 		<param name="left">The left instance.</param>
