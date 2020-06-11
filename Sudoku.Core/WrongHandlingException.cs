@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 using Sudoku.Data;
+using Sudoku.Extensions;
 
 namespace Sudoku
 {
@@ -11,8 +11,6 @@ namespace Sudoku
 	/// manual logic tools.
 	/// </summary>
 	[Serializable, DebuggerStepThrough]
-	[SuppressMessage("Usage", "CA2229:Implement serialization constructors", Justification = "<Pending>")]
-	[SuppressMessage("Design", "CA1032:Implement standard exception constructors", Justification = "<Pending>")]
 	public class WrongHandlingException : SudokuRuntimeException
 	{
 		/// <summary>
@@ -25,17 +23,18 @@ namespace Sudoku
 		/// Initializes an instance with a grid and an error message.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
-		/// <param name="message">The error message.</param>
-		public WrongHandlingException(IReadOnlyGrid grid, string message) : base(message) => Grid = grid;
+		/// <param name="wrongInfo">The error message.</param>
+		public WrongHandlingException(IReadOnlyGrid grid, string wrongInfo) : base(wrongInfo) =>
+			(Grid, WrongInfo) = (grid, wrongInfo);
 
 		/// <summary>
 		/// Initializes an instance with a grid, an error message and an inner exception.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
-		/// <param name="message">The error message.</param>
+		/// <param name="wrongInfo">The error message.</param>
 		/// <param name="inner">The inner exception.</param>
-		public WrongHandlingException(IReadOnlyGrid grid, string message, Exception inner) : base(message, inner) =>
-			Grid = grid;
+		public WrongHandlingException(IReadOnlyGrid grid, string wrongInfo, Exception inner) : base(wrongInfo, inner) =>
+			(Grid, WrongInfo) = (grid, wrongInfo);
 
 		/// <summary>
 		/// Initializes an instance with a grid, a serialization information instance and
@@ -49,12 +48,17 @@ namespace Sudoku
 
 
 		/// <summary>
+		/// Indicates the wrong information.
+		/// </summary>
+		public string? WrongInfo { get; }
+
+		/// <summary>
 		/// The grid.
 		/// </summary>
 		public IReadOnlyGrid Grid { get; }
 
-
 		/// <inheritdoc/>
-		public override string Message => "The specified message cannot be solved due to wrong handling in manual solver.";
+		public override string Message =>
+			$"The specified message cannot be solved due to: {WrongInfo.NullableToString("<Unknown case>")}.";
 	}
 }

@@ -6969,14 +6969,14 @@
             Initializes an instance with a grid and an error message.
             </summary>
             <param name="grid">The grid.</param>
-            <param name="message">The error message.</param>
+            <param name="wrongInfo">The error message.</param>
         </member>
         <member name="M:Sudoku.WrongHandlingException.#ctor(Sudoku.Data.IReadOnlyGrid,System.String,System.Exception)">
             <summary>
             Initializes an instance with a grid, an error message and an inner exception.
             </summary>
             <param name="grid">The grid.</param>
-            <param name="message">The error message.</param>
+            <param name="wrongInfo">The error message.</param>
             <param name="inner">The inner exception.</param>
         </member>
         <member name="M:Sudoku.WrongHandlingException.#ctor(Sudoku.Data.IReadOnlyGrid,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
@@ -6987,6 +6987,11 @@
             <param name="grid">The grid.</param>
             <param name="info">The streaming information.</param>
             <param name="context">The streaming context.</param>
+        </member>
+        <member name="P:Sudoku.WrongHandlingException.WrongInfo">
+            <summary>
+            Indicates the wrong information.
+            </summary>
         </member>
         <member name="P:Sudoku.WrongHandlingException.Grid">
             <summary>
