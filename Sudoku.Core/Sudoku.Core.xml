@@ -6321,6 +6321,11 @@
             Indicates the SdC.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Sdc3d">
+            <summary>
+            Indicates the 3-demension SdC.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.CannibalizedSdc">
             <summary>
             Indicates the cannibalized SdC.

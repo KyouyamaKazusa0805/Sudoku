@@ -1924,6 +1924,93 @@
             Encapsulates a <b>multi-sector locked sets</b> (MSLS) technique.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueInfo">
+            <summary>
+            Provides a usage of <b>3-demension sue de coq</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,System.Int16,System.Int16,Sudoku.Data.GridMap,Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
+            <param name="rowDigitsMask">The row digits mask.</param>
+            <param name="columnDigitsMask">The column digits mask.</param>
+            <param name="blockDigitsMask">The block digits mask.</param>
+            <param name="rowCells">The row cells map.</param>
+            <param name="columnCells">The column cells map.</param>
+            <param name="blockCells">The block cells map.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueInfo.RowDigitsMask">
+            <summary>
+            Indicates the row digits mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueInfo.ColumnDigitsMask">
+            <summary>
+            Indicates the column digits mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueInfo.BlockDigitsMask">
+            <summary>
+            Indicates the block digits mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueInfo.RowCells">
+            <summary>
+            Indicates the row cells map.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueInfo.ColumnCells">
+            <summary>
+            Indicates the column cells map.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueInfo.BlockCells">
+            <summary>
+            Indicates the block cells map.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueSearcher">
+            <summary>
+            Encapsulates a <b>3-demension sue de coq</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+            <inheritdoc/>
+            <remarks>
+            The fields <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowAlsCycles"/> and
+            <see cref="F:Sudoku.Solving.Manual.Alses.AlsTechniqueSearcher._allowOverlapping"/> will not be used here.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueSearcher.Priority">
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Mslses.Sdc3dTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Mslses.SdcTechniqueInfo">
             <summary>
             Provides a usage of <b>sue de coq</b> (SdC) technique.

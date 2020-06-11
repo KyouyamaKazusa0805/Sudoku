@@ -45,8 +45,8 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 			if (EmptyMap.Count < 4)
 			{
 				// SdC needs at least 4 cells like:
-				// abc abd | ab
-				// cd      |
+				// abcd abcd | ab
+				// cd        |
 				return;
 			}
 
@@ -101,7 +101,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 							continue;
 						}
 
-						var blockMap = (b | (c - currentInterMap)) & EmptyMap;
+						var blockMap = (b | c - currentInterMap) & EmptyMap;
 						var lineMap = a & EmptyMap;
 
 						// Iterate on the number of the cells that should be selected in block.

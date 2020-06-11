@@ -79,6 +79,8 @@ namespace Sudoku.Solving.Manual
 				new AlcTechniqueSearcher(solver.CheckAlmostLockedQuadruple),
 				new SdcTechniqueSearcher(
 					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.AllowAlsCycles),
+				new Sdc3dTechniqueSearcher(
+					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.AllowAlsCycles),
 				new BdpTechniqueSearcher(),
 				new QdpTechniqueSearcher(),
 				new UsTechniqueSearcher(),

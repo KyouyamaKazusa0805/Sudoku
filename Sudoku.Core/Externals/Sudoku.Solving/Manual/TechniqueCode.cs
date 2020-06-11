@@ -1065,6 +1065,12 @@ namespace Sudoku.Solving.Manual
 		Sdc,
 
 		/// <summary>
+		/// Indicates the 3-demension SdC.
+		/// </summary>
+		[TechniqueDisplay("3 Demension Sue de Coq", Category = "Almost Locked Sets")]
+		Sdc3d,
+
+		/// <summary>
 		/// Indicates the cannibalized SdC.
 		/// </summary>
 		[TechniqueDisplay("Cannibalized Sue de Coq", Category = "Almost Locked Sets")]
