@@ -13,7 +13,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a grid parser.
 	/// </summary>
-	//[DebuggerStepThrough]
+	[DebuggerStepThrough]
 	internal sealed class GridParser
 	{
 		/// <summary>
@@ -57,12 +57,12 @@ namespace Sudoku.Data
 		public Grid Parse() =>
 			OnParsingSimpleTable()
 				?? OnParsingSimpleMultilineGrid()
+				?? (CompatibleFirst ? OnParsingPencilMarked(true) : OnParsingPencilMarked(false))
+				?? (CompatibleFirst ? OnParsingPencilMarked(false) : OnParsingPencilMarked(true))
 				?? (CompatibleFirst ? OnParsingSukaku(true) : OnParsingSukaku(false))
 				?? (CompatibleFirst ? OnParsingSukaku(false) : OnParsingSukaku(true))
 				?? OnParsingSusser()
 				?? OnParsingExcel()
-				?? (CompatibleFirst ? OnParsingPencilMarked(true) : OnParsingPencilMarked(false))
-				?? (CompatibleFirst ? OnParsingPencilMarked(false) : OnParsingPencilMarked(true))
 				?? throw Throwings.ParsingError<Grid>(nameof(ParsingValue));
 
 		/// <summary>
