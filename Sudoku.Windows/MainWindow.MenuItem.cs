@@ -532,25 +532,39 @@ namespace Sudoku.Windows
 					return !(e.Handled = true);
 				}
 
-				Puzzle = new UndoableGrid(SudokuGrid.Parse(sb.ToString()));
+				var grid = SudokuGrid.Parse(sb.ToString());
+				grid.Unfix();
+
+				Puzzle = new UndoableGrid(grid);
 				UpdateImageGrid();
 				return true;
 			}
 
 			bool applyNormal()
 			{
-				var sb = new StringBuilder(SudokuGrid.EmptyString);
+				var oldSb = new StringBuilder(SudokuGrid.EmptyString);
 				for (int cell = 0; cell < 81; cell++)
 				{
-					sb[cell] += (char)(_puzzle[cell] + 1);
+					oldSb[cell] += (char)(_puzzle[cell] + 1);
 				}
 
-				if (new BitwiseSolver().Solve(sb.ToString(), sb, 2) != 1)
+				string oldOne = oldSb.ToString();
+				if (new BitwiseSolver().Solve(oldOne, oldSb, 2) != 1)
 				{
 					return !(e.Handled = true);
 				}
 
-				Puzzle = new UndoableGrid(SudokuGrid.Parse(sb.ToString()));
+				var newSb = new StringBuilder();
+				for (int cell = 0; cell < 81; cell++)
+				{
+					if (oldOne[cell] == '0')
+					{
+						newSb.Append("+");
+					}
+
+					newSb.Append(oldSb[cell]);
+				}
+				Puzzle = new UndoableGrid(SudokuGrid.Parse(newSb.ToString()));
 				UpdateImageGrid();
 				return true;
 			}
