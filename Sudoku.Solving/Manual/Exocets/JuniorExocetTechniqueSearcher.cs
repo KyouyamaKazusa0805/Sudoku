@@ -10,7 +10,7 @@ using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Data.GridMap.InitializationOption;
+using static Sudoku.Data.GridMap.InitializeOption;
 
 namespace Sudoku.Solving.Manual.Exocets
 {

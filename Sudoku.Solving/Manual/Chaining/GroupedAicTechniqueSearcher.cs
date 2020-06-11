@@ -10,7 +10,7 @@ using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Data.GridMap.InitializationOption;
+using static Sudoku.Data.GridMap.InitializeOption;
 
 namespace Sudoku.Solving.Manual.Chaining
 {

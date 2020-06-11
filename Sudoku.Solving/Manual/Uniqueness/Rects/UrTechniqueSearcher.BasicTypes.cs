@@ -9,7 +9,7 @@ using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Data.GridMap.InitializationOption;
+using static Sudoku.Data.GridMap.InitializeOption;
 using static Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects

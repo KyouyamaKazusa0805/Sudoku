@@ -5,7 +5,7 @@
 		/// <summary>
 		/// Provides an option for initialization of the base type <see cref="GridMap"/>.
 		/// </summary>
-		public enum InitializationOption : byte
+		public enum InitializeOption : byte
 		{
 			/// <summary>
 			/// Indicates each candidate will be processed with the normal case.
