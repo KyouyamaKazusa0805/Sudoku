@@ -6501,18 +6501,6 @@
             The table of regions to traverse.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.Combinations">
-            <summary>
-            All combinations.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.#cctor">
-            <staticConstructor>
-		<summary>The static constructor of this class.</summary>
-	</staticConstructor><staticConstructor aimTo="struct">
-		<summary>The static constructor of this struct.</summary>
-	</staticConstructor>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.Priority">
             <summary>
             Indicates the priority of this technique.
@@ -6525,6 +6513,18 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.Combinations">
+            <summary>
+            All combinations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.#cctor">
+            <staticConstructor>
+		<summary>The static constructor of this class.</summary>
+	</staticConstructor><staticConstructor aimTo="struct">
+		<summary>The static constructor of this struct.</summary>
+	</staticConstructor>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1TechniqueInfo">
             <summary>
