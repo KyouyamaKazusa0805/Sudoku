@@ -432,8 +432,7 @@ namespace Sudoku.Data
 			return sb.ToString();
 		}
 
-		private static void PrintTabLines(char c1, char c2, char fillingChar, int[] maxLengths, StringBuilder sb)
-		{
+		private static void PrintTabLines(char c1, char c2, char fillingChar, int[] maxLengths, StringBuilder sb) =>
 			sb
 				.Append(c1)
 				.Append(string.Empty.PadRight(maxLengths[0] + maxLengths[1] + maxLengths[2] + 6, fillingChar))
@@ -442,7 +441,6 @@ namespace Sudoku.Data
 				.Append(c2)
 				.Append(string.Empty.PadRight(maxLengths[6] + maxLengths[7] + maxLengths[8] + 6, fillingChar))
 				.AppendLine(c1);
-		}
 
 		/// <summary>
 		/// Get cell status for a value.

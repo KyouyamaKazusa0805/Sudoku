@@ -445,8 +445,10 @@ namespace Sudoku.Data
 		public int Count { readonly get; private set; }
 
 		/// <summary>
-		/// Indicates the map of cells, which is the peer intersections. For example,
-		/// the code
+		/// Indicates the map of cells, which is the peer intersections.
+		/// </summary>
+		/// <example>
+		/// For example, the code
 		/// <code>
 		/// var map = testMap.PeerIntersection;
 		/// </code>
@@ -454,11 +456,15 @@ namespace Sudoku.Data
 		/// <code>
 		/// var map = new GridMap(testMap.Offsets, InitializeOption.ProcessPeersWithoutItself);
 		/// </code>
-		/// </summary>
+		/// </example>
 		public readonly GridMap PeerIntersection => new GridMap(Offsets, ProcessPeersWithoutItself);
 
 		/// <summary>
-		/// Indicates all regions covered.
+		/// Indicates all regions covered. This property is used to check all regions that all cells
+		/// of this instance covered. For examp;le, if the cells are { 0, 1 }, the property
+		/// <see cref="CoveredRegions"/> will return the region 0 (block 1) and region 9 (row 1);
+		/// however, if cells spaned two regions or more (e.g. cells { 0, 1, 27 }), this property will not contain
+		/// any regions.
 		/// </summary>
 		public readonly IEnumerable<int> CoveredRegions
 		{
@@ -475,7 +481,10 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// All regions that the map used.
+		/// All regions that the map spaned. This property is used to check all regions that all cells of
+		/// this instance spaned. For example, if the cells are { 0, 1 }, the property
+		/// <see cref="Regions"/> will return the region 0 (block 1), region 9 (row 1), region 18 (column 1)
+		/// and the region 19 (column 2).
 		/// </summary>
 		[SuppressMessage("", "IDE0004:Remove redundant cast")]
 		public readonly IEnumerable<int> Regions => ((int)BlockMask | RowMask << 9 | ColumnMask << 18).GetAllSets();
@@ -576,14 +585,7 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly bool Equals(object? obj) => obj is GridMap comparer && Equals(comparer);
 
-		/// <summary>
-		/// Indicates whether the current object has the same value with the other one.
-		/// </summary>
-		/// <param name="other">The other value to compare.</param>
-		/// <returns>
-		/// The result of this comparison. <see langword="true"/> if two instances hold a same
-		/// value; otherwise, <see langword="false"/>.
-		/// </returns>
+		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly bool Equals(GridMap other) => _high == other._high && _low == other._low;
 
@@ -594,14 +596,6 @@ namespace Sudoku.Data
 		/// <returns>The <see cref="bool"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly bool Overlaps(GridMap other) => (this & other).IsNotEmpty;
-
-		/// <summary>
-		/// Check whether the grid map is fully covered all cells in the specified region.
-		/// </summary>
-		/// <param name="regionOffset">The region offset.</param>
-		/// <returns>A <see cref="bool"/> result.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly bool AllCellCovers(int regionOffset) => Count - (this - RegionMaps[regionOffset]).Count == 9;
 
 		/// <summary>
 		/// Indicates whether all cells in this instance are in one region.
@@ -715,30 +709,6 @@ namespace Sudoku.Data
 		public void Add(int offset) => this[offset] = true;
 
 		/// <summary>
-		/// Set the specified cells as <see langword="true"/> value.
-		/// </summary>
-		/// <param name="offsets">The cells to add.</param>
-		public void AddRange(ReadOnlySpan<int> offsets)
-		{
-			foreach (int cell in offsets)
-			{
-				Add(cell);
-			}
-		}
-
-		/// <summary>
-		/// Set the specified cells as <see langword="true"/> value.
-		/// </summary>
-		/// <param name="offsets">The cells to add.</param>
-		public void AddRange(IEnumerable<int> offsets)
-		{
-			foreach (int cell in offsets)
-			{
-				Add(cell);
-			}
-		}
-
-		/// <summary>
 		/// Set the specified cell as <see langword="false"/> value.
 		/// </summary>
 		/// <param name="offset">The cell offset.</param>
@@ -750,6 +720,30 @@ namespace Sudoku.Data
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Clear() => _low = _high = Count = 0;
+
+		/// <summary>
+		/// Set the specified cells as <see langword="true"/> value.
+		/// </summary>
+		/// <param name="offsets">The cells to add.</param>
+		internal void AddRange(ReadOnlySpan<int> offsets)
+		{
+			foreach (int cell in offsets)
+			{
+				Add(cell);
+			}
+		}
+
+		/// <summary>
+		/// Set the specified cells as <see langword="true"/> value.
+		/// </summary>
+		/// <param name="offsets">The cells to add.</param>
+		internal void AddRange(IEnumerable<int> offsets)
+		{
+			foreach (int cell in offsets)
+			{
+				Add(cell);
+			}
+		}
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
@@ -777,7 +771,7 @@ namespace Sudoku.Data
 		public static bool operator <=(GridMap left, GridMap right) => left.CompareTo(right) <= 0;
 
 		/// <summary>
-		/// Reverse all cells' statuses, which means all <see langword="true"/> bits
+		/// Reverse status for all cells, which means all <see langword="true"/> bits
 		/// will be set <see langword="false"/>, and all <see langword="false"/> bits
 		/// will be set <see langword="true"/>.
 		/// </summary>
@@ -805,6 +799,22 @@ namespace Sudoku.Data
 		/// </example>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static GridMap operator +(GridMap map, int cell) => map | new GridMap { cell };
+
+		/// <summary>
+		/// Add a cell into the specified map.
+		/// </summary>
+		/// <param name="map">The map.</param>
+		/// <param name="cell">The cell to remove.</param>
+		/// <returns>The map after adding.</returns>
+		/// <example>
+		/// You can write code like this:
+		/// <code>
+		/// var map = new GridMap { 1 };
+		/// var map2 = 3 + map; // Is equivalent to 'map2 = map | new GridMap { 3 }'.
+		/// </code>
+		/// </example>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static GridMap operator +(int cell, GridMap map) => map | new GridMap { cell };
 
 		/// <summary>
 		/// Remove a cell from the specified map.
@@ -853,15 +863,11 @@ namespace Sudoku.Data
 			new GridMap(left._high | right._high, left._low | right._low);
 
 		/// <summary>
-		/// Equivalent to code <c>(a - b) | (b - a)</c>, where the operator '<c>-</c>'
-		/// is <see cref="operator -(GridMap, GridMap)"/>, and '<c>|</c>'
-		/// is <see cref="operator |(GridMap, GridMap)"/>.
+		/// Get all cells that only appears once in two <see cref="GridMap"/>s.
 		/// </summary>
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
-		/// <returns>The result.</returns>
-		/// <seealso cref="operator -(GridMap, GridMap)"/>
-		/// <seealso cref="operator |(GridMap, GridMap)"/>
+		/// <returns>The symmetrical difference result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static GridMap operator ^(GridMap left, GridMap right) =>
 			new GridMap(left._high ^ right._high, left._low ^ right._low);

@@ -1923,14 +1923,6 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Data.Grid.CheckFormatString(System.String)">
-            <summary>
-            To check the format string, delegated from the method
-            <see cref="M:Sudoku.Data.Grid.ToString(System.String,System.IFormatProvider)"/>.
-            </summary>
-            <param name="format">The format.</param>
-            <seealso cref="M:Sudoku.Data.Grid.ToString(System.String,System.IFormatProvider)"/>
-        </member>
         <member name="M:Sudoku.Data.Grid.TryParse(System.String,Sudoku.Data.GridParsingOption,Sudoku.Data.Grid@)">
             <summary>
             Try to parse a string and converts to this type, and returns a
@@ -1951,12 +1943,13 @@
             <param name="gridValues">The array of grid values.</param>
             <returns>The result instance.</returns>
         </member>
-        <member name="M:Sudoku.Data.Grid.CreateInstance(System.Int32[0:,0:])">
+        <member name="M:Sudoku.Data.Grid.CheckFormatString(System.String)">
             <summary>
-            Creates an instance using grid values.
+            To check the format string, delegated from the method
+            <see cref="M:Sudoku.Data.Grid.ToString(System.String,System.IFormatProvider)"/>.
             </summary>
-            <param name="gridValues">The array of grid values.</param>
-            <returns>The result instance.</returns>
+            <param name="format">The format.</param>
+            <seealso cref="M:Sudoku.Data.Grid.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Data.Grid.op_Equality(Sudoku.Data.Grid,Sudoku.Data.Grid)">
             <operator name="op_Equality">
@@ -2388,8 +2381,10 @@
         </member>
         <member name="P:Sudoku.Data.GridMap.PeerIntersection">
             <summary>
-            Indicates the map of cells, which is the peer intersections. For example,
-            the code
+            Indicates the map of cells, which is the peer intersections.
+            </summary>
+            <example>
+            For example, the code
             <code>
             var map = testMap.PeerIntersection;
             </code>
@@ -2397,16 +2392,23 @@
             <code>
             var map = new GridMap(testMap.Offsets, InitializeOption.ProcessPeersWithoutItself);
             </code>
-            </summary>
+            </example>
         </member>
         <member name="P:Sudoku.Data.GridMap.CoveredRegions">
             <summary>
-            Indicates all regions covered.
+            Indicates all regions covered. This property is used to check all regions that all cells
+            of this instance covered. For examp;le, if the cells are { 0, 1 }, the property
+            <see cref="P:Sudoku.Data.GridMap.CoveredRegions"/> will return the region 0 (block 1) and region 9 (row 1);
+            however, if cells spaned two regions or more (e.g. cells { 0, 1, 27 }), this property will not contain
+            any regions.
             </summary>
         </member>
         <member name="P:Sudoku.Data.GridMap.Regions">
             <summary>
-            All regions that the map used.
+            All regions that the map spaned. This property is used to check all regions that all cells of
+            this instance spaned. For example, if the cells are { 0, 1 }, the property
+            <see cref="P:Sudoku.Data.GridMap.Regions"/> will return the region 0 (block 1), region 9 (row 1), region 18 (column 1)
+            and the region 19 (column 2).
             </summary>
         </member>
         <member name="P:Sudoku.Data.GridMap.Offsets">
@@ -2456,14 +2458,14 @@
 	</method>
         </member>
         <member name="M:Sudoku.Data.GridMap.Equals(Sudoku.Data.GridMap)">
-            <summary>
-            Indicates whether the current object has the same value with the other one.
-            </summary>
-            <param name="other">The other value to compare.</param>
-            <returns>
-            The result of this comparison. <see langword="true"/> if two instances hold a same
-            value; otherwise, <see langword="false"/>.
-            </returns>
+            <method name="Equals" paramType="__any">
+		<summary>
+			Determine whether the current instance contains the same information with
+			hat from the specified parameter.
+		</summary>
+		<param name="other">The other instance to determine.</param>
+		<returns>A <see cref="T:System.Boolean" /> value indicating that.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Data.GridMap.Overlaps(Sudoku.Data.GridMap)">
             <summary>
@@ -2471,13 +2473,6 @@
             </summary>
             <param name="other">The other map.</param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Data.GridMap.AllCellCovers(System.Int32)">
-            <summary>
-            Check whether the grid map is fully covered all cells in the specified region.
-            </summary>
-            <param name="regionOffset">The region offset.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Data.GridMap.AllSetsAreInOneRegion(System.Int32@)">
             <summary>
@@ -2537,6 +2532,17 @@
             </summary>
             <param name="offset">The cell offset.</param>
         </member>
+        <member name="M:Sudoku.Data.GridMap.Remove(System.Int32)">
+            <summary>
+            Set the specified cell as <see langword="false"/> value.
+            </summary>
+            <param name="offset">The cell offset.</param>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.Clear">
+            <summary>
+            Clear all bits.
+            </summary>
+        </member>
         <member name="M:Sudoku.Data.GridMap.AddRange(System.ReadOnlySpan{System.Int32})">
             <summary>
             Set the specified cells as <see langword="true"/> value.
@@ -2548,17 +2554,6 @@
             Set the specified cells as <see langword="true"/> value.
             </summary>
             <param name="offsets">The cells to add.</param>
-        </member>
-        <member name="M:Sudoku.Data.GridMap.Remove(System.Int32)">
-            <summary>
-            Set the specified cell as <see langword="false"/> value.
-            </summary>
-            <param name="offset">The cell offset.</param>
-        </member>
-        <member name="M:Sudoku.Data.GridMap.Clear">
-            <summary>
-            Clear all bits.
-            </summary>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_Equality(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <operator name="op_Equality">
@@ -2614,7 +2609,7 @@
         </member>
         <member name="M:Sudoku.Data.GridMap.op_OnesComplement(Sudoku.Data.GridMap)">
             <summary>
-            Reverse all cells' statuses, which means all <see langword="true"/> bits
+            Reverse status for all cells, which means all <see langword="true"/> bits
             will be set <see langword="false"/>, and all <see langword="false"/> bits
             will be set <see langword="true"/>.
             </summary>
@@ -2637,6 +2632,21 @@
             <code>
             var map = new GridMap { 1 };
             var map2 = map + 3; // Is equivalent to 'map2 = map | new GridMap { 3 }'.
+            </code>
+            </example>
+        </member>
+        <member name="M:Sudoku.Data.GridMap.op_Addition(System.Int32,Sudoku.Data.GridMap)">
+            <summary>
+            Add a cell into the specified map.
+            </summary>
+            <param name="map">The map.</param>
+            <param name="cell">The cell to remove.</param>
+            <returns>The map after adding.</returns>
+            <example>
+            You can write code like this:
+            <code>
+            var map = new GridMap { 1 };
+            var map2 = 3 + map; // Is equivalent to 'map2 = map | new GridMap { 3 }'.
             </code>
             </example>
         </member>
@@ -2682,15 +2692,11 @@
         </member>
         <member name="M:Sudoku.Data.GridMap.op_ExclusiveOr(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <summary>
-            Equivalent to code <c>(a - b) | (b - a)</c>, where the operator '<c>-</c>'
-            is <see cref="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap,Sudoku.Data.GridMap)"/>, and '<c>|</c>'
-            is <see cref="M:Sudoku.Data.GridMap.op_BitwiseOr(Sudoku.Data.GridMap,Sudoku.Data.GridMap)"/>.
+            Get all cells that only appears once in two <see cref="T:Sudoku.Data.GridMap"/>s.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
-            <returns>The result.</returns>
-            <seealso cref="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap,Sudoku.Data.GridMap)"/>
-            <seealso cref="M:Sudoku.Data.GridMap.op_BitwiseOr(Sudoku.Data.GridMap,Sudoku.Data.GridMap)"/>
+            <returns>The symmetrical difference result.</returns>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_Implicit(System.Int32[])~Sudoku.Data.GridMap">
             <summary>

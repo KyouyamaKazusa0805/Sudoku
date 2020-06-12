@@ -1,5 +1,6 @@
 ﻿using System;
 using Sudoku.Constants;
+using static Sudoku.Data.GridOutputOptions;
 
 namespace Sudoku.Data
 {
@@ -16,38 +17,38 @@ namespace Sudoku.Data
 		public static GridFormatter Create(GridOutputOptions gridOutputOption)
 		{
 			// Special cases.
-			if (gridOutputOption == GridOutputOptions.Excel)
+			if (gridOutputOption == Excel)
 			{
 				return new GridFormatter(true) { Excel = true };
 			}
 
-			var formatter = new GridFormatter(gridOutputOption.HasFlag(GridOutputOptions.Multiline));
-			if (gridOutputOption.HasFlag(GridOutputOptions.WithModifiers))
+			var formatter = new GridFormatter(gridOutputOption.HasFlag(Multiline));
+			if (gridOutputOption.HasFlag(WithModifiers))
 			{
 				formatter.WithModifiables = true;
 			}
-			if (gridOutputOption.HasFlag(GridOutputOptions.WithCandidates))
+			if (gridOutputOption.HasFlag(WithCandidates))
 			{
 				formatter.WithCandidates = true;
 			}
-			if (gridOutputOption.HasFlag(GridOutputOptions.TreatValueAsGiven))
+			if (gridOutputOption.HasFlag(TreatValueAsGiven))
 			{
 				formatter.TreatValueAsGiven = true;
 			}
-			if (gridOutputOption.HasFlag(GridOutputOptions.SubtleGridLines))
+			if (gridOutputOption.HasFlag(SubtleGridLines))
 			{
 				formatter.SubtleGridLines = true;
 			}
-			if (gridOutputOption.HasFlag(GridOutputOptions.HodokuCompatible))
+			if (gridOutputOption.HasFlag(HodokuCompatible))
 			{
 				formatter.HodokuCompatible = true;
 			}
-			if (gridOutputOption == GridOutputOptions.Sukaku)
+			if (gridOutputOption == Sukaku)
 			{
 				formatter.Sukaku = true;
 			}
 
-			formatter.Placeholder = gridOutputOption.HasFlag(GridOutputOptions.DotPlaceholder) ? '.' : '0';
+			formatter.Placeholder = gridOutputOption.HasFlag(DotPlaceholder) ? '.' : '0';
 
 			return formatter;
 		}

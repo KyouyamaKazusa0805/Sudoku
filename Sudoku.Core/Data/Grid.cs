@@ -292,7 +292,7 @@ namespace Sudoku.Data
 				}
 			}
 
-			Array.Copy(_masks, _initialMasks, 81);
+			_masks.CopyTo(_initialMasks, 81);
 		}
 
 		/// <summary>
@@ -314,7 +314,7 @@ namespace Sudoku.Data
 		/// To reset the grid.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public virtual void Reset() => Array.Copy(_initialMasks, _masks, 81);
+		public virtual void Reset() => _initialMasks.CopyTo(_masks, 81);
 
 		/// <summary>
 		/// Set the status in a cell.
@@ -347,7 +347,7 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc/>
-		public override bool Equals(object? obj) => obj is Grid comparer && Equals(comparer);
+		public override bool Equals(object? obj) => Equals(obj as Grid);
 
 		/// <inheritdoc/>
 		public bool Equals(Grid? other)
@@ -598,6 +598,56 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
+		/// Try to parse a string and converts to this type, and returns a
+		/// <see cref="bool"/> value indicating the result of the conversion.
+		/// </summary>
+		/// <param name="str">The string.</param>
+		/// <param name="gridParsingOption">The grid parsing type.</param>
+		/// <param name="result">
+		/// (<see langword="out"/> parameter) The result parsed. If the conversion is failed,
+		/// this argument will be <see langword="null"/>.
+		/// </param>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
+		public static bool TryParse(string str, GridParsingOption gridParsingOption, [NotNullWhen(true)] out Grid? result)
+		{
+			try
+			{
+				result = Parse(str, gridParsingOption);
+				return true;
+			}
+			catch
+			{
+				result = null;
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// Creates an instance using grid values.
+		/// </summary>
+		/// <param name="gridValues">The array of grid values.</param>
+		/// <returns>The result instance.</returns>
+		public static Grid CreateInstance(int[] gridValues)
+		{
+			var result = Empty.Clone();
+			for (int i = 0; i < 81; i++)
+			{
+				int value = gridValues[i];
+				if (value != 0)
+				{
+					// Calls the indexer to trigger the event
+					// (Clear the candidates in peer cells).
+					result[i] = value - 1;
+
+					// Set the status to 'CellStatus.Given'.
+					result.SetStatus(i, CellStatus.Given);
+				}
+			}
+
+			return result;
+		}
+
+		/// <summary>
 		/// To check the format string, delegated from the method
 		/// <see cref="ToString(string, IFormatProvider)"/>.
 		/// </summary>
@@ -677,81 +727,6 @@ namespace Sudoku.Data
 						nameof(format));
 				}
 			}
-		}
-
-		/// <summary>
-		/// Try to parse a string and converts to this type, and returns a
-		/// <see cref="bool"/> value indicating the result of the conversion.
-		/// </summary>
-		/// <param name="str">The string.</param>
-		/// <param name="gridParsingOption">The grid parsing type.</param>
-		/// <param name="result">
-		/// (<see langword="out"/> parameter) The result parsed. If the conversion is failed,
-		/// this argument will be <see langword="null"/>.
-		/// </param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public static bool TryParse(string str, GridParsingOption gridParsingOption, [NotNullWhen(true)] out Grid? result)
-		{
-			try
-			{
-				result = Parse(str, gridParsingOption);
-				return true;
-			}
-			catch
-			{
-				result = null;
-				return false;
-			}
-		}
-
-		/// <summary>
-		/// Creates an instance using grid values.
-		/// </summary>
-		/// <param name="gridValues">The array of grid values.</param>
-		/// <returns>The result instance.</returns>
-		public static Grid CreateInstance(int[] gridValues)
-		{
-			var result = Empty.Clone();
-			for (int i = 0; i < 81; i++)
-			{
-				int value = gridValues[i];
-				if (value != 0)
-				{
-					// Calls the indexer to trigger the event
-					// (Clear the candidates in peer cells).
-					result[i] = value - 1;
-
-					// Set the status to 'CellStatus.Given'.
-					result.SetStatus(i, CellStatus.Given);
-				}
-			}
-
-			return result;
-		}
-
-		/// <summary>
-		/// Creates an instance using grid values.
-		/// </summary>
-		/// <param name="gridValues">The array of grid values.</param>
-		/// <returns>The result instance.</returns>
-		public static Grid CreateInstance(int[,] gridValues)
-		{
-			var result = Empty.Clone();
-			for (int i = 0; i < 9; i++)
-			{
-				for (int j = 0; j < 9; j++)
-				{
-					int value = gridValues[i, j];
-					if (value != 0)
-					{
-						int pos = i * 9 + j;
-						result[pos] = value - 1;
-						result.SetStatus(pos, CellStatus.Given);
-					}
-				}
-			}
-
-			return result;
 		}
 
 
