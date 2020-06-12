@@ -98,7 +98,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 						continue;
 					}
 
-					CheckType1(accumulator, grid, allCellsMap, extraCellsMap, normalDigits, extraDigit);
+					if (extraCellsMap.Count == 1)
+					{
+						CheckType1(accumulator, grid, allCellsMap, extraCellsMap, normalDigits, extraDigit);
+					}
+
 					CheckType2(accumulator, grid, allCellsMap, extraCellsMap, normalDigits, extraDigit);
 				}
 				else

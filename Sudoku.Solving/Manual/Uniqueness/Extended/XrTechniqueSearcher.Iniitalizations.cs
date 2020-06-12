@@ -20,6 +20,32 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			{ 24, 25 }, { 24, 26 }, { 25, 26 }
 		};
 
+		/// <summary>
+		/// The fit type XRs table (row direction).
+		/// </summary>
+		private static readonly int[,] FitTableRow =
+		{
+			{ 0, 3 }, { 0, 4 }, { 0, 5 }, { 0, 6 }, { 0, 7 }, { 0, 8 },
+			{ 1, 3 }, { 1, 4 }, { 1, 5 }, { 1, 6 }, { 1, 7 }, { 1, 8 },
+			{ 2, 3 }, { 2, 4 }, { 2, 5 }, { 2, 6 }, { 2, 7 }, { 2, 8 },
+			{ 3, 6 }, { 3, 7 }, { 3, 8 },
+			{ 4, 6 }, { 4, 7 }, { 4, 8 },
+			{ 5, 6 }, { 5, 7 }, { 5, 8 },
+		};
+
+		/// <summary>
+		/// The fit type XRs table (column direction).
+		/// </summary>
+		private static readonly int[,] FitTableColumn =
+		{
+			{ 0, 27 }, { 0, 36 }, { 0, 45 }, { 0, 54 }, { 0, 63 }, { 0, 72 },
+			{ 9, 27 }, { 9, 36 }, { 9, 45 }, { 9, 54 }, { 9, 63 }, { 9, 72 },
+			{ 18, 27 }, { 18, 36 }, { 18, 45 }, { 18, 54 }, { 18, 63 }, { 18, 72 },
+			{ 27, 54 }, { 27, 63 }, { 27, 72 },
+			{ 36, 54 }, { 36, 63 }, { 36, 72 },
+			{ 45, 54 }, { 45, 63 }, { 45, 72 },
+		};
+
 
 		/// <summary>
 		/// All combinations.
@@ -31,6 +57,41 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		static XrTechniqueSearcher()
 		{
 			var combinations = new List<(GridMap, IReadOnlyList<(int, int)>, int)>();
+
+			// Fit type. e.g.
+			// ab | ab
+			// bc | bc
+			// ac | ac
+			for (int j = 0; j < 3; j++)
+			{
+				for (int i = 0, length = FitTableRow.Length >> 1; i < length; i++)
+				{
+					int c11 = FitTableRow[i, 0] + j * 27, c21 = FitTableRow[i, 1] + j * 27;
+					int c12 = c11 + 9, c22 = c21 + 9;
+					int c13 = c11 + 18, c23 = c21 + 18;
+					combinations.Add((
+						new GridMap { c11, c12, c13, c21, c22, c23 },
+						new[] { (c11, c21), (c12, c22), (c13, c23) },
+						3));
+				}
+			}
+			for (int j = 0; j < 3; j++)
+			{
+				for (int i = 0, length = FitTableColumn.Length >> 1; i < length; i++)
+				{
+					int c11 = FitTableColumn[i, 0] + j * 3, c21 = FitTableColumn[i, 1] + j * 3;
+					int c12 = c11 + 1, c22 = c21 + 1;
+					int c13 = c11 + 2, c23 = c21 + 2;
+					combinations.Add((
+						new GridMap { c11, c12, c13, c21, c22, c23 },
+						new[] { (c11, c21), (c12, c22), (c13, c23) },
+						3));
+				}
+			}
+			
+			// Fat type. e.g.
+			// ab | . ac . | bc
+			// ab | . ac . | bc
 			for (int size = 3; size <= 7; size++)
 			{
 				for (int i = 0, length = Regions.Length >> 1; i < length; i++)

@@ -6514,6 +6514,16 @@
             The table of regions to traverse.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.FitTableRow">
+            <summary>
+            The fit type XRs table (row direction).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.FitTableColumn">
+            <summary>
+            The fit type XRs table (column direction).
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Extended.XrTechniqueSearcher.Combinations">
             <summary>
             All combinations.
