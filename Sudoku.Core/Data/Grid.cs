@@ -292,7 +292,7 @@ namespace Sudoku.Data
 				}
 			}
 
-			_masks.CopyTo(_initialMasks, 81);
+			Array.Copy(_masks, _initialMasks, 81);
 		}
 
 		/// <summary>
@@ -314,7 +314,7 @@ namespace Sudoku.Data
 		/// To reset the grid.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public virtual void Reset() => _initialMasks.CopyTo(_masks, 81);
+		public virtual void Reset() => Array.Copy(_initialMasks, _masks, 81);
 
 		/// <summary>
 		/// Set the status in a cell.

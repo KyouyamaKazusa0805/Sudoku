@@ -790,15 +790,14 @@ namespace Sudoku.Data
 		/// <param name="map">The map.</param>
 		/// <param name="cell">The cell to remove.</param>
 		/// <returns>The map after adding.</returns>
-		/// <example>
-		/// You can write code like this:
-		/// <code>
-		/// var map = new GridMap { 1 };
-		/// var map2 = map + 3; // Is equivalent to 'map2 = map | new GridMap { 3 }'.
-		/// </code>
-		/// </example>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static GridMap operator +(GridMap map, int cell) => map | new GridMap { cell };
+		public static GridMap operator +(GridMap map, int cell)
+		{
+			var result = map;
+			result.Add(cell);
+
+			return result;
+		}
 
 		/// <summary>
 		/// Add a cell into the specified map.
@@ -806,15 +805,14 @@ namespace Sudoku.Data
 		/// <param name="map">The map.</param>
 		/// <param name="cell">The cell to remove.</param>
 		/// <returns>The map after adding.</returns>
-		/// <example>
-		/// You can write code like this:
-		/// <code>
-		/// var map = new GridMap { 1 };
-		/// var map2 = 3 + map; // Is equivalent to 'map2 = map | new GridMap { 3 }'.
-		/// </code>
-		/// </example>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static GridMap operator +(int cell, GridMap map) => map | new GridMap { cell };
+		public static GridMap operator +(int cell, GridMap map)
+		{
+			var result = map;
+			result.Add(cell);
+
+			return result;
+		}
 
 		/// <summary>
 		/// Remove a cell from the specified map.
@@ -822,15 +820,14 @@ namespace Sudoku.Data
 		/// <param name="map">The map.</param>
 		/// <param name="cell">The cell to remove.</param>
 		/// <returns>The map after removing.</returns>
-		/// <example>
-		/// You can write code like this:
-		/// <code>
-		/// var map = new GridMap { 1, 4 };
-		/// var map2 = map - 4; // Is equivalent to 'map2 = map - new GridMap { 4 }'.
-		/// </code>
-		/// </example>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static GridMap operator -(GridMap map, int cell) => map - new GridMap { cell };
+		public static GridMap operator -(GridMap map, int cell)
+		{
+			var result = map;
+			result.Remove(cell);
+
+			return result;
+		}
 
 		/// <summary>
 		/// Get a <see cref="GridMap"/> that contains all <paramref name="left"/> cells

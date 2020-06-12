@@ -2627,13 +2627,6 @@
             <param name="map">The map.</param>
             <param name="cell">The cell to remove.</param>
             <returns>The map after adding.</returns>
-            <example>
-            You can write code like this:
-            <code>
-            var map = new GridMap { 1 };
-            var map2 = map + 3; // Is equivalent to 'map2 = map | new GridMap { 3 }'.
-            </code>
-            </example>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_Addition(System.Int32,Sudoku.Data.GridMap)">
             <summary>
@@ -2642,13 +2635,6 @@
             <param name="map">The map.</param>
             <param name="cell">The cell to remove.</param>
             <returns>The map after adding.</returns>
-            <example>
-            You can write code like this:
-            <code>
-            var map = new GridMap { 1 };
-            var map2 = 3 + map; // Is equivalent to 'map2 = map | new GridMap { 3 }'.
-            </code>
-            </example>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap,System.Int32)">
             <summary>
@@ -2657,13 +2643,6 @@
             <param name="map">The map.</param>
             <param name="cell">The cell to remove.</param>
             <returns>The map after removing.</returns>
-            <example>
-            You can write code like this:
-            <code>
-            var map = new GridMap { 1, 4 };
-            var map2 = map - 4; // Is equivalent to 'map2 = map - new GridMap { 4 }'.
-            </code>
-            </example>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_Subtraction(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
             <summary>
