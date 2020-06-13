@@ -67,4 +67,47 @@
 	<sys:String x:Key="_menuItemAboutMe">关于作者…</sys:String>
 	<sys:String x:Key="_menuItemAboutSpecialThanks">特别感谢…</sys:String>
 	<sys:String x:Key="_menuItemAboutImplementedTechniques">该程序已经实现的技巧…</sys:String>
+
+	<sys:String x:Key="_labelMode">模式：</sys:String>
+	<sys:String x:Key="_comboBoxItemSymmetryMode">带对称性的题</sys:String>
+	<sys:String x:Key="_comboBoxItemHardMode">带难题特征的题</sys:String>
+	<sys:String x:Key="_labelSymmetry">对称性：</sys:String>
+	<sys:String x:Key="_labelBackdoorFilteringDepth">后门筛选深度：</sys:String>
+	<sys:String x:Key="_comboBoxItemBackdoorFilteringDepthMinus1">-1 (禁用该筛选)</sys:String>
+	<sys:String x:Key="_comboBoxItemBackdoorFilteringDepth0">0</sys:String>
+	<sys:String x:Key="_comboBoxItemBackdoorFilteringDepth1">1</sys:String>
+	<sys:String x:Key="_comboBoxItemBackdoorFilteringDepth2">2</sys:String>
+	<sys:String x:Key="_comboBoxItemBackdoorFilteringDepth3">3</sys:String>
+
+	<sys:String x:Key="_menuItemImageGridSet1">填入 1</sys:String>
+	<sys:String x:Key="_menuItemImageGridSet2">填入 2</sys:String>
+	<sys:String x:Key="_menuItemImageGridSet3">填入 3</sys:String>
+	<sys:String x:Key="_menuItemImageGridSet4">填入 4</sys:String>
+	<sys:String x:Key="_menuItemImageGridSet5">填入 5</sys:String>
+	<sys:String x:Key="_menuItemImageGridSet6">填入 6</sys:String>
+	<sys:String x:Key="_menuItemImageGridSet7">填入 7</sys:String>
+	<sys:String x:Key="_menuItemImageGridSet8">填入 8</sys:String>
+	<sys:String x:Key="_menuItemImageGridSet9">填入 9</sys:String>
+	<sys:String x:Key="_menuItemImageGridDelete1">删除 1</sys:String>
+	<sys:String x:Key="_menuItemImageGridDelete2">删除 2</sys:String>
+	<sys:String x:Key="_menuItemImageGridDelete3">删除 3</sys:String>
+	<sys:String x:Key="_menuItemImageGridDelete4">删除 4</sys:String>
+	<sys:String x:Key="_menuItemImageGridDelete5">删除 5</sys:String>
+	<sys:String x:Key="_menuItemImageGridDelete6">删除 6</sys:String>
+	<sys:String x:Key="_menuItemImageGridDelete7">删除 7</sys:String>
+	<sys:String x:Key="_menuItemImageGridDelete8">删除 8</sys:String>
+	<sys:String x:Key="_menuItemImageGridDelete9">删除 9</sys:String>
+
+	<sys:String x:Key="_tabItemSummary">技巧信息</sys:String>
+	<sys:String x:Key="_tabItemSolutionPath">解题路径</sys:String>
+	<sys:String x:Key="_contextListBoxPathsCopyCurrentStep">复制当前步骤信息</sys:String>
+	<sys:String x:Key="_contextListBoxPathsCopyAllSteps">复制所有步骤信息</sys:String>
+	<sys:String x:Key="_tabItemAllPossibleSteps">所有可能步骤</sys:String>
+	<sys:String x:Key="_contextMenuListBoxTechniquesApply">应用当前步骤</sys:String>
+	<sys:String x:Key="_buttonFindAllSteps">搜索当前盘式下的所有步骤</sys:String>
+	<sys:String x:Key="_tabItemDrawing">绘图</sys:String>
+	<sys:String x:Key="_labelChooseColorForCells">为单元格选择颜色：</sys:String>
+	<sys:String x:Key="_labelChooseColorForCandidates">为候选数选择颜色：</sys:String>
+	<sys:String x:Key="_labelChooseColorForRegions">为区域选择颜色：</sys:String>
+	<sys:String x:Key="_buttonColorReset">重置颜色！</sys:String>
 </ResourceDictionary>

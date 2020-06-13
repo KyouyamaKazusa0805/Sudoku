@@ -67,4 +67,47 @@
 	<sys:String x:Key="_menuItemAboutMe">About me...</sys:String>
 	<sys:String x:Key="_menuItemAboutSpecialThanks">Special thanks...</sys:String>
 	<sys:String x:Key="_menuItemAboutImplementedTechniques">Implemented techniques...</sys:String>
+
+	<sys:String x:Key="_labelMode">Mode:</sys:String>
+	<sys:String x:Key="_comboBoxItemSymmetryMode">Symmetry pattern</sys:String>
+	<sys:String x:Key="_comboBoxItemHardMode">Hard pattern</sys:String>
+	<sys:String x:Key="_labelSymmetry">Symmetry:</sys:String>
+	<sys:String x:Key="_labelBackdoorFilteringDepth">Backdoor filtering depth:</sys:String>
+	<sys:String x:Key="_comboBoxItemBackdoorFilteringDepthMinus1">-1 (Disable)</sys:String>
+	<sys:String x:Key="_comboBoxItemBackdoorFilteringDepth0">0</sys:String>
+	<sys:String x:Key="_comboBoxItemBackdoorFilteringDepth1">1</sys:String>
+	<sys:String x:Key="_comboBoxItemBackdoorFilteringDepth2">2</sys:String>
+	<sys:String x:Key="_comboBoxItemBackdoorFilteringDepth3">3</sys:String>
+
+	<sys:String x:Key="_menuItemImageGridSet1">Set 1</sys:String>
+	<sys:String x:Key="_menuItemImageGridSet2">Set 2</sys:String>
+	<sys:String x:Key="_menuItemImageGridSet3">Set 3</sys:String>
+	<sys:String x:Key="_menuItemImageGridSet4">Set 4</sys:String>
+	<sys:String x:Key="_menuItemImageGridSet5">Set 5</sys:String>
+	<sys:String x:Key="_menuItemImageGridSet6">Set 6</sys:String>
+	<sys:String x:Key="_menuItemImageGridSet7">Set 7</sys:String>
+	<sys:String x:Key="_menuItemImageGridSet8">Set 8</sys:String>
+	<sys:String x:Key="_menuItemImageGridSet9">Set 9</sys:String>
+	<sys:String x:Key="_menuItemImageGridDelete1">Delete 1</sys:String>
+	<sys:String x:Key="_menuItemImageGridDelete2">Delete 2</sys:String>
+	<sys:String x:Key="_menuItemImageGridDelete3">Delete 3</sys:String>
+	<sys:String x:Key="_menuItemImageGridDelete4">Delete 4</sys:String>
+	<sys:String x:Key="_menuItemImageGridDelete5">Delete 5</sys:String>
+	<sys:String x:Key="_menuItemImageGridDelete6">Delete 6</sys:String>
+	<sys:String x:Key="_menuItemImageGridDelete7">Delete 7</sys:String>
+	<sys:String x:Key="_menuItemImageGridDelete8">Delete 8</sys:String>
+	<sys:String x:Key="_menuItemImageGridDelete9">Delete 9</sys:String>
+
+	<sys:String x:Key="_tabItemSummary">Summary</sys:String>
+	<sys:String x:Key="_tabItemSolutionPath">Solution path</sys:String>
+	<sys:String x:Key="_contextListBoxPathsCopyCurrentStep">Copy the current step</sys:String>
+	<sys:String x:Key="_contextListBoxPathsCopyAllSteps">Copy all steps</sys:String>
+	<sys:String x:Key="_tabItemAllPossibleSteps">All possible steps</sys:String>
+	<sys:String x:Key="_contextMenuListBoxTechniquesApply">Apply this step</sys:String>
+	<sys:String x:Key="_buttonFindAllSteps">Find all steps</sys:String>
+	<sys:String x:Key="_tabItemDrawing">Drawing</sys:String>
+	<sys:String x:Key="_labelChooseColorForCells">Choose color for cells:</sys:String>
+	<sys:String x:Key="_labelChooseColorForCandidates">Choose color for candidates:</sys:String>
+	<sys:String x:Key="_labelChooseColorForRegions">Choose color for regions:</sys:String>
+	<sys:String x:Key="_buttonColorReset">Reset!</sys:String>
 </ResourceDictionary>
