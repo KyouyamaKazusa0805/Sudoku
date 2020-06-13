@@ -33,7 +33,7 @@ namespace Sudoku.Windows
 				}
 
 				_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
-				_textBoxInfo.Text = "The solver is running slowly, please wait...";
+				_textBoxInfo.Text = (string)Application.Current.Resources["WhileFindingAllSteps"];
 				_buttonFindAllSteps.IsEnabled = false;
 				DisableSolvingControls();
 
@@ -72,48 +72,6 @@ namespace Sudoku.Windows
 
 				_listBoxTechniques.ItemsSource = list;
 			}
-
-			#region Obsolete code
-			//_treeView.ClearValue(ItemsControl.ItemsSourceProperty);
-			//_textBoxInfo.Text = "The solver is running to find all possible steps, please wait...";
-			//_buttonFindAllSteps.IsEnabled = false;
-			//DisableSolvingControls();
-			//
-			//var techniqueGroups = await new StepFinder(Settings).SearchAsync(_puzzle);
-			//
-			//EnableSolvingControls();
-			//_buttonFindAllSteps.IsEnabled = true;
-			//_textBoxInfo.ClearValue(TextBox.TextProperty);
-			//
-			//var itemList = new List<TreeViewItem>();
-			//foreach (var techniqueGroup in techniqueGroups)
-			//{
-			//	var techniqueRoot = new TreeNode
-			//	{
-			//		DisplayName = new PrimaryElementTuple<string, TechniqueInfo?, bool>(
-			//			techniqueGroup.Key, null, false)
-			//	};
-			//	foreach (var info in techniqueGroup)
-			//	{
-			//		techniqueRoot.Children.Add(new TreeViewItem
-			//		{
-			//			Header = new TreeNode
-			//			{
-			//				DisplayName = new PrimaryElementTuple<string, TechniqueInfo?, bool>(
-			//					info.Name, info, true)
-			//			}
-			//		});
-			//	}
-			//
-			//	itemList.Add(new TreeViewItem
-			//	{
-			//		Header = techniqueRoot,
-			//		IsExpanded = true
-			//	});
-			//}
-			//
-			//_treeView.ItemsSource = itemList;
-			#endregion
 		}
 
 		private void ButtonFirst_Click(object sender, RoutedEventArgs e)

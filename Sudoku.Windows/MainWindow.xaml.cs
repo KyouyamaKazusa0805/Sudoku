@@ -204,7 +204,7 @@ namespace Sudoku.Windows
 			ChangeLanguage(Settings.LanguageCode ??= "en-us");
 
 			// Prevent you opening the second same window.
-			var mutex = new Mutex(true, (string)Application.Current.Resources["SolutionName"], out bool mutexIsNew);
+			var mutex = new Mutex(true, Application.Current.Resources["SolutionName"] as string, out bool mutexIsNew);
 			if (mutexIsNew)
 			{
 				mutex.ReleaseMutex();
@@ -464,6 +464,7 @@ namespace Sudoku.Windows
 		/// <see cref="UIElement.IsEnabled"/> of <see cref="_buttonLast"/> at once.
 		/// </param>
 		/// <seealso cref="UIElement.IsEnabled"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void UpdateDatabaseControls(bool first, bool prev, bool next, bool last)
 		{
 			_buttonFirst.IsEnabled = first;
@@ -582,6 +583,10 @@ namespace Sudoku.Windows
 		{
 #if !SUDOKU_RECOGNIZING
 			_menuItemFileLoadPicture.IsEnabled = false;
+#endif
+
+#if !DEBUG
+			_menuItemGenerateWithTechniqueFiltering.IsEnabled = false;
 #endif
 
 			_menuItemOptionsShowCandidates.IsChecked = Settings.ShowCandidates;
@@ -741,17 +746,13 @@ namespace Sudoku.Windows
 				new BitmapImage(
 					new Uri(
 						$@"Resources/ImageIcon-Undo{(
-							(_menuItemEditUndo.IsEnabled = _puzzle.HasUndoSteps)
-								? string.Empty
-								: "Disable")}.png",
+							(_menuItemEditUndo.IsEnabled = _puzzle.HasUndoSteps) ? string.Empty : "Disable")}.png",
 						UriKind.Relative));
 			_imageRedoIcon.Source =
 				new BitmapImage(
 					new Uri(
 						$@"Resources/ImageIcon-Redo{(
-							(_menuItemEditRedo.IsEnabled = _puzzle.HasRedoSteps)
-								? string.Empty
-								: "Disable")}.png",
+							(_menuItemEditRedo.IsEnabled = _puzzle.HasRedoSteps) ? string.Empty : "Disable")}.png",
 						UriKind.Relative));
 		}
 
@@ -761,7 +762,7 @@ namespace Sudoku.Windows
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void DisableGeneratingControls()
 		{
-			_textBoxInfo.Text = "Generating...";
+			_textBoxInfo.Text = (string)Application.Current.Resources["WhileGenerating"];
 			_menuItemFileOpen.IsEnabled = false;
 			_menuItemFileOpenDatabase.IsEnabled = false;
 			_menuItemOptionsSettings.IsEnabled = false;

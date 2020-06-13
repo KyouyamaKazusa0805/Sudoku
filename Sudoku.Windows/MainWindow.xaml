@@ -388,7 +388,6 @@
 							</ContextMenu>
 						</ListBox.ContextMenu>
 					</ListBox>
-					<!--<TreeView Grid.Row="0" Grid.Column="0" Name="_treeView"/>-->
 					<Button Content="{DynamicResource _buttonFindAllSteps}"
 							Name="_buttonFindAllSteps" Grid.Row="1" Grid.Column="0"
 							Click="ButtonFindAllSteps_Click"/>

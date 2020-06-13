@@ -184,12 +184,9 @@ namespace Sudoku.Windows
 								{
 									int first = _selectedCellsWhileDrawingRegions.SetAt(0);
 									int second = _selectedCellsWhileDrawingRegions.SetAt(1);
-									int r1 = GetRegion(first, Row);
-									int c1 = GetRegion(first, Column);
-									int b1 = GetRegion(first, Block);
-									int r2 = GetRegion(second, Row);
-									int c2 = GetRegion(second, Column);
-									int b2 = GetRegion(second, Block);
+									int r1 = GetRegion(first, Row), r2 = GetRegion(second, Row);
+									int c1 = GetRegion(first, Column), c2 = GetRegion(second, Column);
+									int b1 = GetRegion(first, Block), b2 = GetRegion(second, Block);
 									int region = true switch
 									{
 										_ when r1 == r2 => r1,

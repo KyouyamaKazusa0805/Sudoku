@@ -45,9 +45,9 @@ namespace Sudoku.Windows
 			var dialog = new OpenFileDialog
 			{
 				DefaultExt = "sudoku",
-				Filter = "Text file|*.txt|Sudoku file|*.sudoku|All files|*.*",
+				Filter = (string)Application.Current.Resources["FilterLoadingPuzzles"],
 				Multiselect = false,
-				Title = "Open sudoku file from..."
+				Title = (string)Application.Current.Resources["TitleLoadingPuzzles"]
 			};
 
 			if (dialog.ShowDialog() is true)
@@ -64,8 +64,8 @@ namespace Sudoku.Windows
 				AddExtension = true,
 				CheckPathExists = true,
 				DefaultExt = "sudoku",
-				Filter = "Text file|*.txt|Sudoku file|*.sudoku",
-				Title = "Save sudoku file to..."
+				Filter = (string)Application.Current.Resources["FilterSavingPuzzles"],
+				Title = (string)Application.Current.Resources["TitleSavingPuzzles"]
 			};
 
 			if (dialog.ShowDialog() is true)
@@ -79,10 +79,10 @@ namespace Sudoku.Windows
 		{
 			var dialog = new OpenFileDialog
 			{
-				DefaultExt = ".sudokus",
-				Filter = "Text file|*.txt|Sudoku database file|*.sudokus|All files|*.*",
+				DefaultExt = "sudokus",
+				Filter = (string)Application.Current.Resources["FilterOpeningDatabase"],
 				Multiselect = false,
-				Title = "Open sudoku file from..."
+				Title = (string)Application.Current.Resources["TitleOpeningDatabase"]
 			};
 
 			if (dialog.ShowDialog() is true)
@@ -110,8 +110,8 @@ namespace Sudoku.Windows
 				AddExtension = true,
 				CheckPathExists = true,
 				DefaultExt = "scfg",
-				Filter = "Configuration file|*.scfg",
-				Title = "Save configuration file to..."
+				Filter = (string)Application.Current.Resources["FilterBackupingConfigurations"],
+				Title = (string)Application.Current.Resources["TitleBackupingConfigurations"]
 			};
 
 			if (dialog.ShowDialog() is true)
@@ -151,9 +151,9 @@ namespace Sudoku.Windows
 				{
 					AddExtension = true,
 					DefaultExt = "png",
-					Filter = "PNG file|*.png|JPEG file|*.jpg;*.jpeg|BMP file|*.bmp|GIF file|*.gif",
+					Filter = (string)Application.Current.Resources["FilterOpeningPictures"],
 					Multiselect = false,
-					Title = "Load picture from..."
+					Title = (string)Application.Current.Resources["TitleOpeningPictures"]
 				};
 
 				if (dialog.ShowDialog() is true)
@@ -164,8 +164,7 @@ namespace Sudoku.Windows
 						{
 							if (Messagings.AskWhileLoadingPicture() == MessageBoxResult.Yes)
 							{
-								_textBoxInfo.Text =
-									"Load picture successfully, now grab all digits in the picture, please wait...";
+								_textBoxInfo.Text = (string)Application.Current.Resources["TextOpeningPictures"];
 								using (var bitmap = new Bitmap(dialog.FileName))
 								{
 									var grid = (await Task.Run(() => _recognition.Recorgnize(bitmap))).ToMutable();
@@ -618,7 +617,7 @@ namespace Sudoku.Windows
 
 				// Update status.
 				ClearItemSourcesWhenGeneratedOrSolving();
-				_textBoxInfo.Text = "Solving, please wait. During solving you can do some other work...";
+				_textBoxInfo.Text = (string)Application.Current.Resources["WhileSolving"];
 				DisableSolvingControls();
 
 				// Run the solver asynchronizedly, during solving you can do other work.
@@ -647,8 +646,15 @@ namespace Sudoku.Windows
 				{
 					_textBoxInfo.Text =
 						$"{_analyisResult.SolvingStepsCount} " +
-						$"{(_analyisResult.SolvingStepsCount == 1 ? "step" : "steps")}, " +
-						$"time elapsed: {_analyisResult.ElapsedTime:hh':'mm'.'ss'.'fff}.";
+						$@"{(
+							_analyisResult.SolvingStepsCount == 1
+								? Application.Current.Resources["StepSingular"]
+								: Application.Current.Resources["StepPlural"]
+						)}" +
+						$"{Application.Current.Resources["Comma"]}" +
+						$"{Application.Current.Resources["TimeElapsed"]}" +
+						$"{_analyisResult.ElapsedTime:hh':'mm'.'ss'.'fff}" +
+						$"{Application.Current.Resources["Period"]}";
 
 					int i = 0;
 					var pathList = new List<ListBoxItem>();
@@ -709,10 +715,10 @@ namespace Sudoku.Windows
 					view.Columns.AddRange(
 						new[]
 						{
-							createGridViewColumn("Technique", .6),
-							createGridViewColumn("Count", .1),
-							createGridViewColumn("Total", .2),
-							createGridViewColumn("Max", .1)
+							createGridViewColumn(Application.Current.Resources["TechniqueHeader"], "Technique", .6),
+							createGridViewColumn(Application.Current.Resources["TechniqueCount"], "Count", .1),
+							createGridViewColumn(Application.Current.Resources["TechniqueTotal"], "Total", .15),
+							createGridViewColumn(Application.Current.Resources["TechniqueMax"], "Max", .15)
 						});
 					view.AllowsColumnReorder = false;
 				}
@@ -724,10 +730,10 @@ namespace Sudoku.Windows
 				return true;
 			}
 
-			GridViewColumn createGridViewColumn(string name, double widthScale) =>
+			GridViewColumn createGridViewColumn(object header, string name, double widthScale) =>
 				new GridViewColumn
 				{
-					Header = name,
+					Header = header,
 					DisplayMemberBinding = new Binding(name),
 					Width = _tabControlInfo.ActualWidth * widthScale - 4,
 				};
@@ -798,9 +804,7 @@ namespace Sudoku.Windows
 					return;
 				}
 
-				_textBoxInfo.Text =
-					"The program is running as quickly as possible to search " +
-					"all non-BUG candidates (true candidates). Please wait.";
+				_textBoxInfo.Text = (string)Application.Current.Resources["WhileCalculatingTrueCandidates"];
 
 				var trueCandidates = await Task.Run(() => new BugChecker(_puzzle).GetAllTrueCandidates(64));
 
@@ -821,7 +825,9 @@ namespace Sudoku.Windows
 
 				UpdateImageGrid();
 
-				_textBoxInfo.Text = $"All true candidate(s): {new CandidateCollection(trueCandidates).ToString()}";
+				_textBoxInfo.Text =
+					$"{Application.Current.Resources["AllTrueCandidates"]}" +
+					$"{new CandidateCollection(trueCandidates).ToString()}";
 			}
 		}
 
@@ -839,9 +845,7 @@ namespace Sudoku.Windows
 					return;
 				}
 
-				_textBoxInfo.Text =
-					"The program is running as quickly as possible to search " +
-					"all backdoors (at level 0 or 1). Please wait.";
+				_textBoxInfo.Text = (string)Application.Current.Resources["WhileCalculatingBackdoorsLevel0Or1"];
 
 				var backdoors = new List<Conclusion>();
 				for (int level = 0; level <= 1; level++)
@@ -854,7 +858,7 @@ namespace Sudoku.Windows
 				}
 
 				_textBoxInfo.ClearValue(TextBox.TextProperty);
-				if (backdoors.None())
+				if (backdoors.Count == 0)
 				{
 					Messagings.DoesNotContainBackdoor();
 					e.Handled = true;
@@ -883,7 +887,9 @@ namespace Sudoku.Windows
 
 				UpdateImageGrid();
 
-				_textBoxInfo.Text = $"All backdoor(s) at level 0 or 1: {new ConclusionCollection(backdoors).ToString()}";
+				_textBoxInfo.Text =
+					$"{Application.Current.Resources["AllBackdoorsAtLevel0Or1"]}" +
+					$"{new ConclusionCollection(backdoors).ToString()}";
 			}
 		}
 

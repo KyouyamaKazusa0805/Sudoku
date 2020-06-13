@@ -17,7 +17,7 @@
 	<sys:String x:Key="_menuItemOptionsSettings">Settings...</sys:String>
 
 	<sys:String x:Key="_menuItemLanguages">Languages</sys:String>
-	<sys:String x:Key="_menuItemLanguagesChinese">简体中文 (zh-cn)</sys:String>
+	<sys:String x:Key="_menuItemLanguagesChinese">Simplified Chinese (zh-cn)</sys:String>
 	<sys:String x:Key="_menuItemLanguagesEnglish">English (en-us)</sys:String>
 
 	<sys:String x:Key="_menuItemEdit">Edit</sys:String>
@@ -114,4 +114,35 @@
 	
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">Sunnie's Sudoku Solution</sys:String>
+	<sys:String x:Key="WhileGenerating">Generating...</sys:String>
+	<sys:String x:Key="WhileFindingAllSteps">The solver is running slowly, please wait.</sys:String>
+	<sys:String x:Key="FilterLoadingPuzzles">Text file|*.txt|Sudoku file|*.sudoku|All files|*.*</sys:String>
+	<sys:String x:Key="TitleLoadingPuzzles">Open sudoku file from...</sys:String>
+	<sys:String x:Key="FilterSavingPuzzles">Text file|*.txt|Sudoku file|*.sudoku</sys:String>
+	<sys:String x:Key="TitleSavingPuzzles">Save sudoku file to...</sys:String>
+	<sys:String x:Key="FilterOpeningDatabase">Text file|*.txt|Sudoku database file|*.sudokus|All files|*.*</sys:String>
+	<sys:String x:Key="TitleOpeningDatabase">Open sudoku file from...</sys:String>
+	<sys:String x:Key="FilterBackupingConfigurations">Configuration file|*.scfg</sys:String>
+	<sys:String x:Key="TitleBackupingConfigurations">Save configuration file to...</sys:String>
+	<sys:String x:Key="FilterOpeningPictures">PNG file|*.png|JPEG file|*.jpg;*.jpeg|BMP file|*.bmp|GIF file|*.gif</sys:String>
+	<sys:String x:Key="TitleOpeningPictures">Load picture from...</sys:String>
+	<sys:String x:Key="TextOpeningPictures">Load picture successfully, now grab all digits in the picture, please wait.</sys:String>
+	<sys:String x:Key="WhileSolving">Solving, please wait. During solving you can do some other work...</sys:String>
+	<sys:String x:Key="WhileCalculatingTrueCandidates">The program is running as quickly as possible to search all non-BUG candidates (true candidates). Please wait.</sys:String>
+	<sys:String x:Key="WhileCalculatingBackdoorsLevel0Or1">The program is running as quickly as possible to search all backdoors (at level 0 or 1). Please wait.</sys:String>
+	<sys:String x:Key="TechniqueHeader">Technique</sys:String>
+	<sys:String x:Key="TechniqueCount">Count</sys:String>
+	<sys:String x:Key="TechniqueTotal">Total</sys:String>
+	<sys:String x:Key="TechniqueMax">Max</sys:String>
+	
+	<!-- Separate texts -->
+	<sys:String x:Key="TimeElapsed">time elapsed:</sys:String>
+	<sys:String x:Key="StepSingular">step</sys:String>
+	<sys:String x:Key="StepPlural">steps</sys:String>
+	<sys:String x:Key="AllTrueCandidates">All true candidate(s):</sys:String>
+	<sys:String x:Key="AllBackdoorsAtLevel0Or1">All backdoor(s) at level 0 or 1:</sys:String>
+	
+	<!-- Punctuation marks -->
+	<sys:String x:Key="Comma">, </sys:String>
+	<sys:String x:Key="Period">. </sys:String>
 </ResourceDictionary>
