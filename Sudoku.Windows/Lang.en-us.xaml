@@ -195,6 +195,17 @@
 	<sys:String x:Key="AllTrueCandidates">All true candidate(s):</sys:String>
 	<sys:String x:Key="AllBackdoorsAtLevel0Or1">All backdoor(s) at level 0 or 1:</sys:String>
 	
+	<!-- Symmetry enumeration type -->
+	<sys:String x:Key="None">No symmetry</sys:String>
+	<sys:String x:Key="Central">Central symmetry type</sys:String>
+	<sys:String x:Key="Diagonal">Diagonal symmetry type</sys:String>
+	<sys:String x:Key="AntiDiagonal">Anti-diagonal symmetry type</sys:String>
+	<sys:String x:Key="XAxis">X-axis symmetry type</sys:String>
+	<sys:String x:Key="YAxis">Y-axis symmetry type</sys:String>
+	<sys:String x:Key="AxisBoth">Both X-axis and Y-axis</sys:String>
+	<sys:String x:Key="DiagonalBoth">Both diagonal and anti-diagonal</sys:String>
+	<sys:String x:Key="All">All symmetry types</sys:String>
+	
 	<!-- Punctuation marks -->
 	<sys:String x:Key="Comma">, </sys:String>
 	<sys:String x:Key="Period">. </sys:String>

@@ -195,6 +195,17 @@
 	<sys:String x:Key="AllTrueCandidates">所有真数：</sys:String>
 	<sys:String x:Key="AllBackdoorsAtLevel0Or1">所有后门（第 0 和 1 级）：</sys:String>
 
+	<!-- Symmetry enumeration type -->
+	<sys:String x:Key="None">无对称性</sys:String>
+	<sys:String x:Key="Central">中心对称</sys:String>
+	<sys:String x:Key="Diagonal">捺对角线对称</sys:String>
+	<sys:String x:Key="AntiDiagonal">撇对角线对称</sys:String>
+	<sys:String x:Key="XAxis">X 轴对称</sys:String>
+	<sys:String x:Key="YAxis">Y 轴对称</sys:String>
+	<sys:String x:Key="AxisBoth">同时两种轴对称</sys:String>
+	<sys:String x:Key="DiagonalBoth">同时两种对角线对称</sys:String>
+	<sys:String x:Key="All">全对称</sys:String>
+
 	<!-- Punctuation marks -->
 	<sys:String x:Key="Comma">，</sys:String>
 	<sys:String x:Key="Period">。</sys:String>

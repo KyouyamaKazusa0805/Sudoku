@@ -648,10 +648,7 @@ namespace Sudoku.Windows
 			_comboBoxSymmetry.ItemsSource =
 				from field in EnumEx.GetValues<SymmetryType>()
 				select new PrimaryElementTuple<string, SymmetryType>(
-					typeof(SymmetryType)
-						.GetField(Enum.GetName(typeof(SymmetryType), field)!)!
-						.GetCustomAttribute<NameAttribute>()!
-						.Name,
+					(string)Application.Current.Resources[field.ToString()],
 					field);
 			_comboBoxSymmetry.SelectedIndex = Settings.GeneratingSymmetryModeComboBoxSelectedIndex;
 			_comboBoxMode.SelectedIndex = Settings.GeneratingModeComboBoxSelectedIndex;
