@@ -45,9 +45,9 @@ namespace Sudoku.Windows
 			var dialog = new OpenFileDialog
 			{
 				DefaultExt = "sudoku",
-				Filter = (string)Application.Current.Resources["FilterLoadingPuzzles"],
+				Filter = (string)LangSource["FilterLoadingPuzzles"],
 				Multiselect = false,
-				Title = (string)Application.Current.Resources["TitleLoadingPuzzles"]
+				Title = (string)LangSource["TitleLoadingPuzzles"]
 			};
 
 			if (dialog.ShowDialog() is true)
@@ -64,8 +64,8 @@ namespace Sudoku.Windows
 				AddExtension = true,
 				CheckPathExists = true,
 				DefaultExt = "sudoku",
-				Filter = (string)Application.Current.Resources["FilterSavingPuzzles"],
-				Title = (string)Application.Current.Resources["TitleSavingPuzzles"]
+				Filter = (string)LangSource["FilterSavingPuzzles"],
+				Title = (string)LangSource["TitleSavingPuzzles"]
 			};
 
 			if (dialog.ShowDialog() is true)
@@ -80,9 +80,9 @@ namespace Sudoku.Windows
 			var dialog = new OpenFileDialog
 			{
 				DefaultExt = "sudokus",
-				Filter = (string)Application.Current.Resources["FilterOpeningDatabase"],
+				Filter = (string)LangSource["FilterOpeningDatabase"],
 				Multiselect = false,
-				Title = (string)Application.Current.Resources["TitleOpeningDatabase"]
+				Title = (string)LangSource["TitleOpeningDatabase"]
 			};
 
 			if (dialog.ShowDialog() is true)
@@ -110,8 +110,8 @@ namespace Sudoku.Windows
 				AddExtension = true,
 				CheckPathExists = true,
 				DefaultExt = "scfg",
-				Filter = (string)Application.Current.Resources["FilterBackupingConfigurations"],
-				Title = (string)Application.Current.Resources["TitleBackupingConfigurations"]
+				Filter = (string)LangSource["FilterBackupingConfigurations"],
+				Title = (string)LangSource["TitleBackupingConfigurations"]
 			};
 
 			if (dialog.ShowDialog() is true)
@@ -151,9 +151,9 @@ namespace Sudoku.Windows
 				{
 					AddExtension = true,
 					DefaultExt = "png",
-					Filter = (string)Application.Current.Resources["FilterOpeningPictures"],
+					Filter = (string)LangSource["FilterOpeningPictures"],
 					Multiselect = false,
-					Title = (string)Application.Current.Resources["TitleOpeningPictures"]
+					Title = (string)LangSource["TitleOpeningPictures"]
 				};
 
 				if (dialog.ShowDialog() is true)
@@ -164,7 +164,7 @@ namespace Sudoku.Windows
 						{
 							if (Messagings.AskWhileLoadingPicture() == MessageBoxResult.Yes)
 							{
-								_textBoxInfo.Text = (string)Application.Current.Resources["TextOpeningPictures"];
+								_textBoxInfo.Text = (string)LangSource["TextOpeningPictures"];
 								using (var bitmap = new Bitmap(dialog.FileName))
 								{
 									var grid = (await Task.Run(() => _recognition.Recorgnize(bitmap))).ToMutable();
@@ -617,7 +617,7 @@ namespace Sudoku.Windows
 
 				// Update status.
 				ClearItemSourcesWhenGeneratedOrSolving();
-				_textBoxInfo.Text = (string)Application.Current.Resources["WhileSolving"];
+				_textBoxInfo.Text = (string)LangSource["WhileSolving"];
 				DisableSolvingControls();
 
 				// Run the solver asynchronizedly, during solving you can do other work.
@@ -648,13 +648,13 @@ namespace Sudoku.Windows
 						$"{_analyisResult.SolvingStepsCount} " +
 						$@"{(
 							_analyisResult.SolvingStepsCount == 1
-								? Application.Current.Resources["StepSingular"]
-								: Application.Current.Resources["StepPlural"]
+								? LangSource["StepSingular"]
+								: LangSource["StepPlural"]
 						)}" +
-						$"{Application.Current.Resources["Comma"]}" +
-						$"{Application.Current.Resources["TimeElapsed"]}" +
+						$"{LangSource["Comma"]}" +
+						$"{LangSource["TimeElapsed"]}" +
 						$"{_analyisResult.ElapsedTime:hh':'mm'.'ss'.'fff}" +
-						$"{Application.Current.Resources["Period"]}";
+						$"{LangSource["Period"]}";
 
 					int i = 0;
 					var pathList = new List<ListBoxItem>();
@@ -715,10 +715,10 @@ namespace Sudoku.Windows
 					view.Columns.AddRange(
 						new[]
 						{
-							createGridViewColumn(Application.Current.Resources["TechniqueHeader"], "Technique", .6),
-							createGridViewColumn(Application.Current.Resources["TechniqueCount"], "Count", .1),
-							createGridViewColumn(Application.Current.Resources["TechniqueTotal"], "Total", .15),
-							createGridViewColumn(Application.Current.Resources["TechniqueMax"], "Max", .15)
+							createGridViewColumn(LangSource["TechniqueHeader"], "Technique", .6),
+							createGridViewColumn(LangSource["TechniqueCount"], "Count", .1),
+							createGridViewColumn(LangSource["TechniqueTotal"], "Total", .15),
+							createGridViewColumn(LangSource["TechniqueMax"], "Max", .15)
 						});
 					view.AllowsColumnReorder = false;
 				}
@@ -804,7 +804,7 @@ namespace Sudoku.Windows
 					return;
 				}
 
-				_textBoxInfo.Text = (string)Application.Current.Resources["WhileCalculatingTrueCandidates"];
+				_textBoxInfo.Text = (string)LangSource["WhileCalculatingTrueCandidates"];
 
 				var trueCandidates = await Task.Run(() => new BugChecker(_puzzle).GetAllTrueCandidates(64));
 
@@ -826,7 +826,7 @@ namespace Sudoku.Windows
 				UpdateImageGrid();
 
 				_textBoxInfo.Text =
-					$"{Application.Current.Resources["AllTrueCandidates"]}" +
+					$"{LangSource["AllTrueCandidates"]}" +
 					$"{new CandidateCollection(trueCandidates).ToString()}";
 			}
 		}
@@ -845,7 +845,7 @@ namespace Sudoku.Windows
 					return;
 				}
 
-				_textBoxInfo.Text = (string)Application.Current.Resources["WhileCalculatingBackdoorsLevel0Or1"];
+				_textBoxInfo.Text = (string)LangSource["WhileCalculatingBackdoorsLevel0Or1"];
 
 				var backdoors = new List<Conclusion>();
 				for (int level = 0; level <= 1; level++)
@@ -888,7 +888,7 @@ namespace Sudoku.Windows
 				UpdateImageGrid();
 
 				_textBoxInfo.Text =
-					$"{Application.Current.Resources["AllBackdoorsAtLevel0Or1"]}" +
+					$"{LangSource["AllBackdoorsAtLevel0Or1"]}" +
 					$"{new ConclusionCollection(backdoors).ToString()}";
 			}
 		}

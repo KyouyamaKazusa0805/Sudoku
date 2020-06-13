@@ -33,7 +33,7 @@ namespace Sudoku.Windows
 				}
 
 				_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
-				_textBoxInfo.Text = (string)Application.Current.Resources["WhileFindingAllSteps"];
+				_textBoxInfo.Text = (string)LangSource["WhileFindingAllSteps"];
 				_buttonFindAllSteps.IsEnabled = false;
 				DisableSolvingControls();
 

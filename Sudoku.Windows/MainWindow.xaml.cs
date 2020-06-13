@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -204,7 +203,7 @@ namespace Sudoku.Windows
 			ChangeLanguage(Settings.LanguageCode ??= "en-us");
 
 			// Prevent you opening the second same window.
-			var mutex = new Mutex(true, Application.Current.Resources["SolutionName"] as string, out bool mutexIsNew);
+			var mutex = new Mutex(true, LangSource["SolutionName"] as string, out bool mutexIsNew);
 			if (mutexIsNew)
 			{
 				mutex.ReleaseMutex();
@@ -647,9 +646,7 @@ namespace Sudoku.Windows
 			//_comboBoxDifficulty.ItemsSource = EnumEx.GetValues<DifficultyLevel>();
 			_comboBoxSymmetry.ItemsSource =
 				from field in EnumEx.GetValues<SymmetryType>()
-				select new PrimaryElementTuple<string, SymmetryType>(
-					(string)Application.Current.Resources[field.ToString()],
-					field);
+				select new PrimaryElementTuple<string, SymmetryType>((string)LangSource[field.ToString()], field);
 			_comboBoxSymmetry.SelectedIndex = Settings.GeneratingSymmetryModeComboBoxSelectedIndex;
 			_comboBoxMode.SelectedIndex = Settings.GeneratingModeComboBoxSelectedIndex;
 			SwitchOnGeneratingComboBoxesDisplaying();
@@ -759,7 +756,7 @@ namespace Sudoku.Windows
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void DisableGeneratingControls()
 		{
-			_textBoxInfo.Text = (string)Application.Current.Resources["WhileGenerating"];
+			_textBoxInfo.Text = (string)LangSource["WhileGenerating"];
 			_menuItemFileOpen.IsEnabled = false;
 			_menuItemFileOpenDatabase.IsEnabled = false;
 			_menuItemOptionsSettings.IsEnabled = false;
@@ -974,7 +971,7 @@ namespace Sudoku.Windows
 
 			// Get all possible resource dictionaries.
 			var dictionaries = new List<ResourceDictionary>();
-			var mergedDic = Application.Current.Resources.MergedDictionaries;
+			var mergedDic = LangSource.MergedDictionaries;
 			foreach (var dictionary in mergedDic)
 			{
 				dictionaries.Add(dictionary);
