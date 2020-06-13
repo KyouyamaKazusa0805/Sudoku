@@ -643,10 +643,6 @@ namespace Sudoku.Windows
 
 			_manualSolver = Settings.MainManualSolver;
 
-			//_comboBoxDifficulty.ItemsSource = EnumEx.GetValues<DifficultyLevel>();
-			_comboBoxSymmetry.ItemsSource =
-				from field in EnumEx.GetValues<SymmetryType>()
-				select new PrimaryElementTuple<string, SymmetryType>((string)LangSource[field.ToString()], field);
 			_comboBoxSymmetry.SelectedIndex = Settings.GeneratingSymmetryModeComboBoxSelectedIndex;
 			_comboBoxMode.SelectedIndex = Settings.GeneratingModeComboBoxSelectedIndex;
 			SwitchOnGeneratingComboBoxesDisplaying();

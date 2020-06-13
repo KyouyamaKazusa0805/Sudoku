@@ -254,7 +254,17 @@
 			<Label Content="{DynamicResource _labelSymmetry}"
 				   Name="_labelSymmetry" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 			<ComboBox Name="_comboBoxSymmetry"
-					  SelectionChanged="ComboBoxSymmetry_SelectionChanged"/>
+					  SelectionChanged="ComboBoxSymmetry_SelectionChanged">
+				<ComboBoxItem Content="{DynamicResource None}"/>
+				<ComboBoxItem Content="{DynamicResource Central}"/>
+				<ComboBoxItem Content="{DynamicResource Diagonal}"/>
+				<ComboBoxItem Content="{DynamicResource AntiDiagonal}"/>
+				<ComboBoxItem Content="{DynamicResource XAxis}"/>
+				<ComboBoxItem Content="{DynamicResource YAxis}"/>
+				<ComboBoxItem Content="{DynamicResource AxisBoth}"/>
+				<ComboBoxItem Content="{DynamicResource DiagonalBoth}"/>
+				<ComboBoxItem Content="{DynamicResource All}"/>
+			</ComboBox>
 			<Label Content="{DynamicResource _labelBackdoorFilteringDepth}"
 				   Name="_labelBackdoorFilteringDepth" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 			<ComboBox Name="_comboBoxBackdoorFilteringDepth"
