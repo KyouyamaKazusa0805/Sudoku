@@ -134,7 +134,60 @@
 	<sys:String x:Key="TechniqueCount">数量</sys:String>
 	<sys:String x:Key="TechniqueTotal">当前项总分</sys:String>
 	<sys:String x:Key="TechniqueMax">当前项最高分</sys:String>
-	
+
+	<!-- Messagings -->
+	<sys:String x:Key="CaptionInfo">信息</sys:String>
+	<sys:String x:Key="CaptionWarning">警告</sys:String>
+	<sys:String x:Key="CaptionError">严重错误</sys:String>
+	<sys:String x:Key="OnlyOpenOneProgram">该程序不支持多窗口同时打开。</sys:String>
+	<sys:String x:Key="FunctionIsUnavailable">题目不合法，所以暂不支持使用该功能。</sys:String>
+	<sys:String x:Key="WrongHandling">当前步骤计算错误。请联系作者报告该错误，因为这个错误是因为代码 bug 导致的。</sys:String>
+	<sys:String x:Key="FailedToBackupConfig">由于内部错误，配置文件保存失败。</sys:String>
+	<sys:String x:Key="FailedToLoadPicture">初始化失败。请重启程序以重试。</sys:String>
+	<sys:String x:Key="FailedToLoadGlobalizationFile">载入语言文件失败。请移除配置文件以还原配置，然后重新打开程序。</sys:String>
+	<sys:String x:Key="FailedToLoadPictureDueToNotHavingInitialized">文字识别工具（OCR）无法正常初始化。</sys:String>
+	<sys:String x:Key="NotSupportedForLoadingPicture">你的电脑暂时不支持使用识别功能。</sys:String>
+	<sys:String x:Key="LoadInfo">成功载入</sys:String>
+	<sys:String x:Key="LoadPuzzles">个题目。</sys:String>
+	<sys:String x:Key="FailedToSaveToClipboardDueToAsyncCalling">剪切板暂不可用，因为程序在出题和解题过程之中是无法使用剪切板的。请关闭窗口，或者等待计算结束后才重试。</sys:String>
+	<sys:String x:Key="FailedToLoadPuzzle">当前题目不合法。</sys:String>
+	<sys:String x:Key="FailedToLoadDatabase">文件丢失。载入失败 &gt;_&lt;</sys:String>
+	<sys:String x:Key="FailedToLoadSettings">载入设置失败。</sys:String>
+	<sys:String x:Key="CannotCalculate">识别期间遇到错误。调试信息：</sys:String>
+	<sys:String x:Key="Source">源文件：</sys:String>
+	<sys:String x:Key="Message">错误信息：</sys:String>
+	<sys:String x:Key="FailedToSaveConfig">由于如下异常信息，当前配置文件不能保存：</sys:String>
+	<sys:String x:Key="FailedToSaveToClipboardDueToArgumentNullException">不能将文本保存至剪切板。错误信息：</sys:String>
+	<sys:String x:Key="SukakuCannotUseThisFunction">
+		当前题目不合法，或者它是一个候选数数独。如果不合法，请你检查输入，然后重试；
+		但如果是候选数数独的话，这个功能暂不支持使用，因为候选数数独是不应包含任何提示数和自己填入的数字的。
+	</sys:String>
+	<sys:String x:Key="FailedToPasteText">从剪切板粘贴的题目是不合法的。</sys:String>
+	<sys:String x:Key="FailedToCheckDueToInvaildPuzzle">当前题目不合法。</sys:String>
+	<sys:String x:Key="DoesNotContainBugMultiple">当前盘式不是一个合格的 BUG 局面。</sys:String>
+	<sys:String x:Key="DoesNotContainBackdoor">当前盘式不包括任何第 0 或 1 级的后门，这意味着你无法靠随意猜一个单元格的数字来破解题目。</sys:String>
+	<sys:String x:Key="NotSupportedWhileGeneratingWithFilter">当前功能只用于程序调试。抱歉 &gt;_&lt;</sys:String>
+	<sys:String x:Key="FailedToApplyPuzzle">当前盘面不合法。请你检查输入后重试。</sys:String>
+	<sys:String x:Key="PuzzleAlreadySolved">当前盘面已经被解出。</sys:String>
+	<sys:String x:Key="FailedToSolveWithMessage1">当前盘面无法正常解题，因为解题器的 bug 导致找到了一个错误步骤，它删除掉了题目正确的数字。</sys:String>
+	<sys:String x:Key="FailedToSolveWithMessage2">你需要检查题目或跟作者报告。</sys:String>
+	<sys:String x:Key="FailedToSolveWithMessage3">错误步骤信息：</sys:String>
+	<sys:String x:Key="YouShouldSolveFirst">你需要先解题才可使用这个功能。</sys:String>
+	<sys:String x:Key="SukakuCannotUseGspChecking">当前候选数数独暂不支持该功能的使用。</sys:String>
+	<sys:String x:Key="DoesNotContainGsp">当前盘式并不是一个合格的宇宙法盘面。</sys:String>
+	<sys:String x:Key="CannotCopyStep">由于内部错误，复制步骤失败。请重试。</sys:String>
+	<sys:String x:Key="AskWhileQuitting">你确定需要退出程序吗？</sys:String>
+	<sys:String x:Key="AskWhileLoadingAndCoveringDatabase">你上一次使用程序时用到了题库文件。请问你是否在此次程序运行期间继续载入和使用该题库文件？</sys:String>
+	<sys:String x:Key="AskWhileLoadingPicture1">请保证图片的清晰。</sys:String>
+	<sys:String x:Key="AskWhileLoadingPicture2">
+		由于文字识别工具（OCR）算法的限制，当前程序只能识别提示数信息。
+		所有的自己填入的数字也会被当作提示数，因为 OCR 并不能识别图片上数字的颜色。
+	</sys:String>
+	<sys:String x:Key="AskWhileLoadingPicture3">如果你不确定，请按下“否”（NO）按钮。</sys:String>
+	<sys:String x:Key="AskWhileClearingStack1">所有的撤销和还原步骤全都会清除掉。这将导致当前题目无法继续恢复到其前一个状态。</sys:String>
+	<sys:String x:Key="AskWhileClearingStack2">是否要清空步骤信息？</sys:String>
+	<sys:String x:Key="AskWhileGeneratingWithDatabase">你正在使用题库模式。如果点选“是”（YES）按钮，出题模块将会运行，但你此时的题库使用操作和行为都将会在此刻清除掉。这是一个艰难的抉择，难道不是吗？</sys:String>
+
 	<!-- Separate texts -->
 	<sys:String x:Key="TimeElapsed">耗时：</sys:String>
 	<sys:String x:Key="StepSingular">个步骤</sys:String>

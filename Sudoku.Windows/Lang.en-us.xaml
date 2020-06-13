@@ -135,6 +135,59 @@
 	<sys:String x:Key="TechniqueTotal">Total</sys:String>
 	<sys:String x:Key="TechniqueMax">Max</sys:String>
 	
+	<!-- Messagings -->
+	<sys:String x:Key="CaptionInfo">Info</sys:String>
+	<sys:String x:Key="CaptionWarning">Warning</sys:String>
+	<sys:String x:Key="CaptionError">Error</sys:String>
+	<sys:String x:Key="OnlyOpenOneProgram">This program does not support multiple programs opening at the same time.</sys:String>
+	<sys:String x:Key="FunctionIsUnavailable">The puzzle is invalid, so you cannot use this function.</sys:String>
+	<sys:String x:Key="WrongHandling">The current step is wrong due to wrong calculation. Please contact the author.</sys:String>
+	<sys:String x:Key="FailedToBackupConfig">Configuration file is failed to save due to internal error.</sys:String>
+	<sys:String x:Key="FailedToLoadPicture">Failed to initialize. Please restart the window and try again.</sys:String>
+	<sys:String x:Key="FailedToLoadGlobalizationFile">Failed to load language files. Please remove the configuration files to set default, restart this program and try again.</sys:String>
+	<sys:String x:Key="FailedToLoadPictureDueToNotHavingInitialized">The OCR tool hasn't been initialized yet.</sys:String>
+	<sys:String x:Key="NotSupportedForLoadingPicture">Your machine cannot use image recognition.</sys:String>
+	<sys:String x:Key="LoadInfo">Load</sys:String>
+	<sys:String x:Key="LoadPuzzles">puzzles.</sys:String>
+	<sys:String x:Key="FailedToSaveToClipboardDueToAsyncCalling">Your clipboard is unavailable now, because the program is running for generating or solving. Please close this program or wait for finishing and try later.</sys:String>
+	<sys:String x:Key="FailedToLoadPuzzle">The specified puzzle is invalid.</sys:String>
+	<sys:String x:Key="FailedToLoadDatabase">File is missing... Load failed &gt;_&lt;</sys:String>
+	<sys:String x:Key="FailedToLoadSettings">Failed to load the settings.</sys:String>
+	<sys:String x:Key="CannotCalculate">Cannot calculate.</sys:String>
+	<sys:String x:Key="Source">Source: </sys:String>
+	<sys:String x:Key="Message">Message: </sys:String>
+	<sys:String x:Key="FailedToSaveConfig">The configuration file cannot be saved due to exception throws:</sys:String>
+	<sys:String x:Key="FailedToSaveToClipboardDueToArgumentNullException">Cannot save text to clipboard due to:</sys:String>
+	<sys:String x:Key="SukakuCannotUseThisFunction">
+		The puzzle is invalid or may be a sukaku. If invalid, Please check your input and retry;
+		however if sukaku, this function cannot use because the specified puzzle has no given or modifiable values.
+	</sys:String>
+	<sys:String x:Key="FailedToPasteText">The specified puzzle pasted from clipboard is invalid.</sys:String>
+	<sys:String x:Key="FailedToCheckDueToInvaildPuzzle">The puzzle is invalid.</sys:String>
+	<sys:String x:Key="DoesNotContainBugMultiple">The puzzle is not a valid BUG pattern.</sys:String>
+	<sys:String x:Key="DoesNotContainBackdoor">The puzzle does not have any backdoors whose level is 0 or 1, which means the puzzle can be solved difficultly with brute forces.</sys:String>
+	<sys:String x:Key="NotSupportedWhileGeneratingWithFilter">This function is for debugging use now. Sorry. &gt;_&lt;</sys:String>
+	<sys:String x:Key="FailedToApplyPuzzle">The puzzle is invalid. Please check your input and retry.</sys:String>
+	<sys:String x:Key="PuzzleAlreadySolved">The puzzle has already solved.</sys:String>
+	<sys:String x:Key="FailedToSolveWithMessage1">The puzzle cannot be solved because the solver has found a wrong conclusion to apply or else the puzzle has eliminated the correct value.</sys:String>
+	<sys:String x:Key="FailedToSolveWithMessage2">You should check the puzzle or notify the author.</sys:String>
+	<sys:String x:Key="FailedToSolveWithMessage3">Error technique step: </sys:String>
+	<sys:String x:Key="YouShouldSolveFirst">You should solve the puzzle first.</sys:String>
+	<sys:String x:Key="SukakuCannotUseGspChecking">The sukaku puzzle does not support this function now.</sys:String>
+	<sys:String x:Key="DoesNotContainGsp">The puzzle does not contain any Gurth's symmetrical placement.</sys:String>
+	<sys:String x:Key="CannotCopyStep">Cannot copy due to internal error. Please try later.</sys:String>
+	<sys:String x:Key="AskWhileQuitting">Are you sure to quit?</sys:String>
+	<sys:String x:Key="AskWhileLoadingAndCoveringDatabase">You have used a database at the previous time you use the program. Do you want to load now?</sys:String>
+	<sys:String x:Key="AskWhileLoadingPicture1">Ensure your picture be clear.</sys:String>
+	<sys:String x:Key="AskWhileLoadingPicture2">
+		Due to the limitation of the OCR algorithm, the program can only recognize the puzzle picture with given values.
+		All modifiable values will be treated as given ones because OCR engine cannot recognize the color of the value.
+	</sys:String>
+	<sys:String x:Key="AskWhileLoadingPicture3">If you are not sure, please click NO button.</sys:String>
+	<sys:String x:Key="AskWhileClearingStack1">The steps will be cleared. If so, you cannot undo any steps to previous puzzle status.</sys:String>
+	<sys:String x:Key="AskWhileClearingStack2">Do you want to clear anyway?</sys:String>
+	<sys:String x:Key="AskWhileGeneratingWithDatabase">You are now working on the puzzle database. If you click YES button, the generating will start, but the database history will be cleared. A hard decision, isn't it?</sys:String>
+	
 	<!-- Separate texts -->
 	<sys:String x:Key="TimeElapsed">time elapsed:</sys:String>
 	<sys:String x:Key="StepSingular">step</sys:String>
