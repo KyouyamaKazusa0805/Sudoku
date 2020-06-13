@@ -961,5 +961,30 @@ namespace Sudoku.Windows
 
 			return true;
 		}
+
+		/// <summary>
+		/// Change the language.
+		/// </summary>
+		/// <param name="globalString">The globalization string.</param>
+		private void ChangeLanguage(string globalString)
+		{
+			var dictionaries = new List<ResourceDictionary>();
+			var mergedDic = Application.Current.Resources.MergedDictionaries;
+			foreach (var dictionary in mergedDic)
+			{
+				dictionaries.Add(dictionary);
+			}
+
+			ResourceDictionary? g(string p) => dictionaries.FirstOrDefault(d => d.Source.OriginalString == p);
+			if ((g($"Lang.{globalString}.xaml") ?? g("Lang.en-us.xaml")) is ResourceDictionary resourceDictionary)
+			{
+				mergedDic.Remove(resourceDictionary);
+				mergedDic.Add(resourceDictionary);
+			}
+			else
+			{
+				Messagings.FailedToLoadGlobalizationFile();
+			}
+		}
 	}
 }

@@ -1,0 +1,70 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+	<sys:String x:Key="_menuItemFile">文件</sys:String>
+	<sys:String x:Key="_menuItemFileOpen">打开题目…</sys:String>
+	<sys:String x:Key="_menuItemFileSave">保存题目…</sys:String>
+	<sys:String x:Key="_menuItemFileOpenDatabase">打开题库…</sys:String>
+	<sys:String x:Key="_menuItemBackupConfig">备份配置文件</sys:String>
+	<sys:String x:Key="_menuItemFileLoadPicture">读取题目图片…</sys:String>
+	<sys:String x:Key="_menuItemFileSavePicture">保存图片…</sys:String>
+	<sys:String x:Key="_menuItemFileGetSnapshot">获取题目截屏</sys:String>
+	<sys:String x:Key="_menuItemFileQuitApp">退出程序</sys:String>
+
+	<sys:String x:Key="_menuItemOptions">选项</sys:String>
+	<sys:String x:Key="_menuItemOptionsShowCandidates">显示候选数</sys:String>
+	<sys:String x:Key="_menuItemOptionsSettings">偏好设置…</sys:String>
+
+	<sys:String x:Key="_menuItemLanguages">语言</sys:String>
+	<sys:String x:Key="_menuItemLanguagesChinese">简体中文 (zh-cn)</sys:String>
+	<sys:String x:Key="_menuItemLanguagesEnglish">English (en-us)</sys:String>
+
+	<sys:String x:Key="_menuItemEdit">编辑</sys:String>
+	<sys:String x:Key="_menuItemEditUndo">撤销一步操作</sys:String>
+	<sys:String x:Key="_menuItemEditRedo">还原上一步操作</sys:String>
+	<sys:String x:Key="_menuItemClearStack">清除所有撤销还原步骤</sys:String>
+	<sys:String x:Key="_menuItemEditRecomputeCandidates">手动计算候选数</sys:String>
+	<sys:String x:Key="_menuItemEditCopy">复制盘面文本</sys:String>
+	<sys:String x:Key="_menuItemEditCopyAs">复制其他格式…</sys:String>
+	<sys:String x:Key="_menuItemEditCopyCurrentGrid">复制当前盘式文本</sys:String>
+	<sys:String x:Key="_menuItemEditCopyHodokuLibrary">复制 Hodoku 兼容文本</sys:String>
+	<sys:String x:Key="_menuItemEditCopyPmGrid">复制候选数盘面文本</sys:String>
+	<sys:String x:Key="_menuItemEditCopyAsSukaku">复制候选数数独格式文本</sys:String>
+	<sys:String x:Key="_menuItemEditCopyAsExcel">复制 Excel 专用文本</sys:String>
+	<sys:String x:Key="_menuItemEditPaste">粘贴</sys:String>
+	<sys:String x:Key="_menuItemEditPasteAsSukaku">粘贴为候选数数独</sys:String>
+	<sys:String x:Key="_menuItemEditFix">固定盘面</sys:String>
+	<sys:String x:Key="_menuItemEditUnfix">解除固定盘面</sys:String>
+	<sys:String x:Key="_menuItemEditReset">还原盘面到初盘</sys:String>
+	<sys:String x:Key="_menuItemEditClear">清空盘面到空盘</sys:String>
+
+	<sys:String x:Key="_menuItemGenerate">出题</sys:String>
+	<sys:String x:Key="_menuItemGenerateWithSymmetry">出带对称性的题</sys:String>
+	<sys:String x:Key="_menuItemGenerateHardPattern">出带难题特征的题</sys:String>
+	<sys:String x:Key="_menuItemGenerateWithTechniqueFiltering">出带特有技巧的题</sys:String>
+
+	<sys:String x:Key="_menuItemAnalyze">分析</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeAnalyze">分析此题</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeSolve">显示终盘</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeShowFullHouses">启用技巧 Full House</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeShowLastDigits">启用技巧 Last Digit</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeSeMode">严格处理难度</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeFastSearch">快速解题</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeCheckConclusionValidityAfterSearched">验证每一步的结论</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeCheckGurthSymmetricalPlacement">初盘检测宇宙法</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeOptimizeApplyingOrder">严格化难度系数计算</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeUseCalculationPriority">使用自定义技巧顺序</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeExport">导出分析结果文本…</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeBugN">BUG + n 查找…</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeBackdoor">后门查找…</sys:String>
+
+	<sys:String x:Key="_menuItemViews">视图</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeShowBugN">BUG + n 真数显示！</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeBackdoorView">（0 到 1 级）后门显示！</sys:String>
+	<sys:String x:Key="_menuItemViewsGspView">宇宙法检测显示！</sys:String>
+
+	<sys:String x:Key="_menuItemAbout">关于</sys:String>
+	<sys:String x:Key="_menuItemAboutMe">关于作者…</sys:String>
+	<sys:String x:Key="_menuItemAboutSpecialThanks">特别感谢…</sys:String>
+	<sys:String x:Key="_menuItemAboutImplementedTechniques">该程序已经实现的技巧…</sys:String>
+</ResourceDictionary>

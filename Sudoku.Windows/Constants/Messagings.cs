@@ -42,6 +42,14 @@ namespace Sudoku.Windows.Constants
 			MessageBox.Show("Failed to initialize. Please restart the window and try again.", "Info");
 
 		/// <summary>
+		/// Indicates the message for failed to load globalization files.
+		/// </summary>
+		public static void FailedToLoadGlobalizationFile() =>
+			MessageBox.Show(
+				"Failed to load language files. Please remove the configuration files to set default, " +
+				"restart this program and try again.", "Warning");
+
+		/// <summary>
 		/// Indicates the message for failed to load pictures due to not having initialized.
 		/// </summary>
 		public static void FailedToLoadPictureDueToNotHavingInitialized() =>

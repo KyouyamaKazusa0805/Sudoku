@@ -28,150 +28,201 @@
 		<!-- Row 0 -->
 		<Menu VerticalAlignment="Top" IsMainMenu="True" Grid.Row="0" Grid.ColumnSpan="2">
 			<!-- File... -->
-			<MenuItem Header="File">
-				<MenuItem Header="Open puzzle..." InputGestureText="Ctrl + O" Name="_menuItemFileOpen"
+			<MenuItem Header="{DynamicResource _menuItemFile}">
+				<MenuItem Header="{DynamicResource _menuItemFileOpen}" InputGestureText="Ctrl + O"
+						  Name="_menuItemFileOpen"
 						  Click="MenuItemFileOpen_Click"/>
-				<MenuItem Header="Save puzzle..." InputGestureText="Ctrl + S"
+				<MenuItem Header="{DynamicResource _menuItemFileSave}" InputGestureText="Ctrl + S"
+						  Name="_menuItemFileSave"
 						  Click="MenuItemFileSave_Click"/>
-				<MenuItem Header="Open puzzle database..." Name="_menuItemFileOpenDatabase"
+				<MenuItem Header="{DynamicResource _menuItemFileOpenDatabase}"
+						  Name="_menuItemFileOpenDatabase"
 						  Click="MenuItemFileOpenDatabase_Click"/>
-				<MenuItem Header="Backup configurations" Name="_menuItemBackupConfig"
+				<MenuItem Header="{DynamicResource _menuItemBackupConfig}"
+						  Name="_menuItemBackupConfig"
 						  Click="MenuItemBackupConfig_Click"/>
-				<MenuItem Header="Load picture..." Name="_menuItemFileLoadPicture"
+				<MenuItem Header="{DynamicResource _menuItemFileLoadPicture}"
+						  Name="_menuItemFileLoadPicture"
 						  Click="MenuItemFileLoadPicture_Click"/>
-				<MenuItem Header="Save picture..." Name="_menuItemFileSavePicture"
+				<MenuItem Header="{DynamicResource _menuItemFileSavePicture}"
+						  Name="_menuItemFileSavePicture"
 						  Click="MenuItemFileSavePicture_Click"/>
 				<Separator/>
-				<MenuItem Header="Get Snapshot" InputGestureText="Ctrl + P"
+				<MenuItem Header="{DynamicResource _menuItemFileGetSnapshot}" InputGestureText="Ctrl + P"
+						  Name="_menuItemFileGetSnapshot"
 						  Click="MenuItemFileGetSnapshot_Click"/>
 				<Separator/>
-				<MenuItem Header="Quit app" InputGestureText="Alt + F4" BorderBrush="Red"
-						  BorderThickness="2,2,2,2"
+				<MenuItem Header="{DynamicResource _menuItemFileQuitApp}" InputGestureText="Alt + F4"
+						  Name="_menuItemFileQuitApp" BorderThickness="2,2,2,2" BorderBrush="Red"
 						  Click="MenuItemFileQuit_Click"/>
 			</MenuItem>
 
 			<!-- Options... -->
-			<MenuItem Header="Options">
-				<MenuItem Header="Show candidates" Name="_menuItemOptionsShowCandidates"
-						  IsChecked="True"
+			<MenuItem Header="{DynamicResource _menuItemOptions}">
+				<MenuItem Header="{DynamicResource _menuItemOptionsShowCandidates}"
+						  Name="_menuItemOptionsShowCandidates" IsChecked="True"
 						  Click="MenuItemOptionsShowCandidates_Click"/>
 				<Separator/>
-				<MenuItem Header="Settings..." Name="_menuItemOptionsSettings"
+				<MenuItem Header="{DynamicResource _menuItemOptionsSettings}"
+						  Name="_menuItemOptionsSettings"
 						  Click="MenuItemOptionsSettings_Click"/>
+			</MenuItem>
+			
+			<!-- Languages... -->
+			<MenuItem Header="{DynamicResource _menuItemLanguages}">
+				<MenuItem Header="{DynamicResource _menuItemLanguagesChinese}"
+						  Name="_menuItemLanguagesChinese"
+						  Click="MenuItemLanguagesChinese_Click"/>
+				<MenuItem Header="{DynamicResource _menuItemLanguagesEnglish}"
+						  Name="_menuItemLanguagesEnglish"
+						  Click="MenuItemLanguagesEnglish_Click"/>
 			</MenuItem>
 
 			<!-- Edit... -->
-			<MenuItem Header="Edit">
-				<MenuItem Header="Undo" InputGestureText="Ctrl + Z" Name="_menuItemEditUndo" IsEnabled="False"
+			<MenuItem Header="{DynamicResource _menuItemEdit}">
+				<MenuItem Header="{DynamicResource _menuItemEditUndo}" InputGestureText="Ctrl + Z"
+						  Name="_menuItemEditUndo" IsEnabled="False"
 						  Click="MenuItemEditUndo_Click"/>
-				<MenuItem Header="Redo" InputGestureText="Ctrl + Y" Name="_menuItemEditRedo" IsEnabled="False"
+				<MenuItem Header="{DynamicResource _menuItemEditRedo}" InputGestureText="Ctrl + Y"
+						  Name="_menuItemEditRedo" IsEnabled="False"
 						  Click="MenuItemEditRedo_Click"/>
-				<MenuItem Header="Clear undo &amp; redo steps" Name="_menuItemClearStack"
+				<MenuItem Header="{DynamicResource _menuItemClearStack}"
+						  Name="_menuItemClearStack"
 						  Click="MenuItemClearStack_Click"/>
-				<MenuItem Header="Re-compute candidates manually" InputGestureText="F5"
+				<MenuItem Header="{DynamicResource _menuItemEditRecomputeCandidates}" InputGestureText="F5"
 						  Name="_menuItemEditRecomputeCandidates"
 						  Click="MenuItemEditRecomputeCandidates_Click"/>
 				<Separator/>
-				<MenuItem Header="Copy normal grid" InputGestureText="Ctrl + C"
+				<MenuItem Header="{DynamicResource _menuItemEditCopy}" InputGestureText="Ctrl + C"
+						  Name="_menuItemEditCopy"
 						  Click="MenuItemEditCopy_Click"/>
-				<MenuItem Header="Copy as...">
-					<MenuItem Header="Copy as current grid" InputGestureText="Ctrl + Shift + C"
+				<MenuItem Header="{DynamicResource _menuItemEditCopyAs}">
+					<MenuItem Header="{DynamicResource _menuItemEditCopyCurrentGrid}" InputGestureText="Ctrl + Shift + C"
+							  Name="_menuItemEditCopyCurrentGrid"
 							  Click="MenuItemEditCopyCurrentGrid_Click"/>
-					<MenuItem Header="Copy as hodoku library format"
+					<MenuItem Header="{DynamicResource _menuItemEditCopyHodokuLibrary}"
+							  Name="_menuItemEditCopyHodokuLibrary"
 							  Click="MenuItemEditCopyHodokuLibrary_Click"/>
-					<MenuItem Header="Copy as PM grid"
+					<MenuItem Header="{DynamicResource _menuItemEditCopyPmGrid}"
+							  Name="_menuItemEditCopyPmGrid"
 							  Click="MenuItemEditCopyPmGrid_Click"/>
-					<MenuItem Header="Copy as sukaku" Name="_menuItemEditCopyAsSukaku"
+					<MenuItem Header="{DynamicResource _menuItemEditCopyAsSukaku}"
+							  Name="_menuItemEditCopyAsSukaku"
 							  Click="MenuItemEditCopyAsSukaku_Click"/>
-					<MenuItem Header="Copy as Excel" Name="_menuItemEditCopyAsExcel"
+					<MenuItem Header="{DynamicResource _menuItemEditCopyAsExcel}"
+							  Name="_menuItemEditCopyAsExcel"
 							  Click="MenuItemEditCopyAsExcel_Click"/>
 				</MenuItem>
-				<MenuItem Header="Paste" InputGestureText="Ctrl + V" Name="_menuItemEditPaste"
+				<MenuItem Header="{DynamicResource _menuItemEditPaste}" InputGestureText="Ctrl + V"
+						  Name="_menuItemEditPaste"
 						  Click="MenuItemEditPaste_Click"/>
 				<!--
-				<MenuItem Header="Paste as...">
-					<MenuItem Header="Paste as sukaku" Name="_menuItemEditPasteAsSukaku"
-							  Click="MenuItemEditPasteAsSukaku_Click"/>
-				</MenuItem>
+				<MenuItem Header="{DynamicResource _menuItemEditPasteAsSukaku}"
+						  Name="_menuItemEditPasteAsSukaku"
+						  Click="MenuItemEditPasteAsSukaku_Click"/>
 				-->
 				<Separator/>
-				<MenuItem Header="Fix grid" InputGestureText="Ctrl + `" Name="_menuItemEditFix"
+				<MenuItem Header="{DynamicResource _menuItemEditFix}" InputGestureText="Ctrl + `"
+						  Name="_menuItemEditFix"
 						  Click="MenuItemEditFix_Click"/>
-				<MenuItem Header="Unfix grid" InputGestureText="Ctrl + Shift + `" Name="_menuItemEditUnfix"
+				<MenuItem Header="{DynamicResource _menuItemEditUnfix}" InputGestureText="Ctrl + Shift + `"
+						  Name="_menuItemEditUnfix"
 						  Click="MenuItemEditUnfix_Click"/>
 				<Separator/>
-				<MenuItem Header="Reset grid" Name="_menuItemEditReset" BorderBrush="Red"
-						  BorderThickness="2,2,2,2"
+				<MenuItem Header="{DynamicResource _menuItemEditReset}"
+						  Name="_menuItemEditReset" BorderBrush="Red" BorderThickness="2,2,2,2"
 						  Click="MenuItemEditReset_Click"/>
-				<MenuItem Header="Clear grid" Name="_menuItemEditClear" BorderBrush="Red"
-						  InputGestureText="Ctrl + Shift + N"  BorderThickness="2,2,2,2"
+				<MenuItem Header="{DynamicResource _menuItemEditClear}" InputGestureText="Ctrl + Shift + N"
+						  Name="_menuItemEditClear" BorderBrush="Red" BorderThickness="2,2,2,2"
 						  Click="MenuItemEditClear_Click"/>
 			</MenuItem>
 
 			<!-- Generate... -->
-			<MenuItem Header="Generate">
-				<MenuItem Header="Symmetry pattern" Name="_menuItemGenerateWithSymmetry"
+			<MenuItem Header="{DynamicResource _menuItemGenerate}">
+				<MenuItem Header="{DynamicResource _menuItemGenerateWithSymmetry}"
+						  Name="_menuItemGenerateWithSymmetry"
 						  Click="MenuItemGenerateWithSymmetry_Click"/>
-				<MenuItem Header="Hard pattern" Name="_menuItemGenerateHardPattern"
-						  InputGestureText="Ctrl + H"
+				<MenuItem Header="{DynamicResource _menuItemGenerateHardPattern}" InputGestureText="Ctrl + H"
+						  Name="_menuItemGenerateHardPattern"
 						  Click="MenuItemGenerateHardPattern_Click"/>
 				<!--#region DEBUG -->
-				<MenuItem Header="Technique Filtering..." Name="_menuItemGenerateWithTechniqueFiltering"
+				<MenuItem Header="{DynamicResource _menuItemGenerateWithTechniqueFiltering}"
+						  Name="_menuItemGenerateWithTechniqueFiltering" BorderBrush="Green" BorderThickness="2,2,2,2"
 						  Click="MenuItemGenerateWithTechniqueFiltering_Click"/>
 				<!--#endregion-->
 			</MenuItem>
 
 			<!-- Analyze... -->
-			<MenuItem Header="Analyze">
-				<MenuItem Header="Analyze" Name="_menuItemAnalyzeAnalyze" InputGestureText="F9"
+			<MenuItem Header="{DynamicResource _menuItemAnalyze}">
+				<MenuItem Header="{DynamicResource _menuItemAnalyzeAnalyze}" InputGestureText="F9"
+						  Name="_menuItemAnalyzeAnalyze"
 						  Click="MenuItemAnalyzeAnalyze_Click"/>
-				<MenuItem Header="Solve" Name="_menuItemAnalyzeSolve" InputGestureText="F10"
+				<MenuItem Header="{DynamicResource _menuItemAnalyzeSolve}" InputGestureText="F10"
+						  Name="_menuItemAnalyzeSolve"
 						  Click="MenuItemAnalyzeSolve_Click"/>
 				<Separator/>
-				<MenuItem Header="Show Full Houses" Name="_menuItemAnalyzeShowFullHouses"
+				<MenuItem Header="{DynamicResource _menuItemAnalyzeShowFullHouses}"
+						  Name="_menuItemAnalyzeShowFullHouses"
 						  Click="MenuItemShowFullHouses_Click"/>
-				<MenuItem Header="Show Last Digits" Name="_menuItemAnalyzeShowLastDigits"
+				<MenuItem Header="{DynamicResource _menuItemAnalyzeShowLastDigits}"
+						  Name="_menuItemAnalyzeShowLastDigits"
 						  Click="MenuItemShowLastDigits_Click"/>
 				<Separator/>
-				<MenuItem Header="Analyze difficulty strictly" Name="_menuItemAnalyzeSeMode"
+				<MenuItem Header="{DynamicResource _menuItemAnalyzeSeMode}"
+						  Name="_menuItemAnalyzeSeMode"
 						  Click="MenuItemAnalyzeSeMode_Click"/>
-				<MenuItem Header="Fast search" Name="_menuItemAnalyzeFastSearch"
+				<MenuItem Header="{DynamicResource _menuItemAnalyzeFastSearch}"
+						  Name="_menuItemAnalyzeFastSearch"
 						  Click="MenuItemAnalyzeFastSearch_Click"/>
-				<MenuItem Header="Check validity of each conclusion"
+				<MenuItem Header="{DynamicResource _menuItemAnalyzeCheckConclusionValidityAfterSearched}"
 						  Name="_menuItemAnalyzeCheckConclusionValidityAfterSearched"
+						  BorderBrush="Green" BorderThickness="2,2,2,2"
 						  Click="MenuItemCheckConclusionValidityAfterSearched_Click"/>
-				<MenuItem Header="Check Gurth's Symmetrical Placement"
+				<MenuItem Header="{DynamicResource _menuItemAnalyzeCheckGurthSymmetricalPlacement}"
 						  Name="_menuItemAnalyzeCheckGurthSymmetricalPlacement"
 						  Click="MenuItemCheckGurthSymmetricalPlacement_Click"/>
-				<MenuItem Header="Optimize applying order" Name="_menuItemAnalyzeOptimizeApplyingOrder"
+				<MenuItem Header="{DynamicResource _menuItemAnalyzeOptimizeApplyingOrder}"
+						  Name="_menuItemAnalyzeOptimizeApplyingOrder"
 						  Click="MenuItemOptimizeApplyingOrder_Click"/>
-				<MenuItem Header="Use calculation priority" Name="_menuItemAnalyzeUseCalculationPriority"
+				<MenuItem Header="{DynamicResource _menuItemAnalyzeUseCalculationPriority}"
+						  Name="_menuItemAnalyzeUseCalculationPriority"
 						  Click="MenuItemUseCalculationPriority_Click"/>
 				<Separator/>
-				<MenuItem Header="Export..." Name="_menuItemAnalyzeExport"
+				<MenuItem Header="{DynamicResource _menuItemAnalyzeExport}"
+						  Name="_menuItemAnalyzeExport"
 						  Click="MenuItemExport_Click"/>
 				<Separator/>
-				<MenuItem Header="BUG + n search..." Name="_menuItemAnalyzeBugN"
+				<MenuItem Header="{DynamicResource _menuItemAnalyzeBugN}"
+						  Name="_menuItemAnalyzeBugN"
 						  Click="MenuItemAnalyzeBugN_Click"/>
-				<MenuItem Header="Backdoor search..." Name="_menuItemAnalyzeBackdoor"
+				<MenuItem Header="{DynamicResource _menuItemAnalyzeBackdoor}"
+						  Name="_menuItemAnalyzeBackdoor"
 						  Click="MenuItemAnalyzeBackdoor_Click"/>
 			</MenuItem>
 
-			<MenuItem Header="Views">
-				<MenuItem Header="True candidates view!" Name="_menuItemAnalyzeShowBugN"
+			<MenuItem Header="{DynamicResource _menuItemViews}">
+				<MenuItem Header="{DynamicResource _menuItemAnalyzeShowBugN}"
+						  Name="_menuItemAnalyzeShowBugN"
 						  Click="MenuItemViewsShowBugN_Click"/>
-				<MenuItem Header="Backdoor (level 0 &amp; 1) view!" Name="_menuItemAnalyzeBackdoorView"
+				<MenuItem Header="{DynamicResource _menuItemAnalyzeBackdoorView}"
+						  Name="_menuItemAnalyzeBackdoorView"
 						  Click="MenuItemViewsBackdoorView_Click"/>
-				<MenuItem Header="Gurth's Symmetrical Placement view!" Name="_menuItemViewsGspView"
+				<MenuItem Header="{DynamicResource _menuItemViewsGspView}"
+						  Name="_menuItemViewsGspView"
 						  Click="MenuItemViewsGspView_Click"/>
 			</MenuItem>
 
 			<!-- About... -->
-			<MenuItem Header="About">
-				<MenuItem Header="Me" Click="MenuItemAboutMe_Click"/>
-				<MenuItem Header="Special thanks..." Click="MenuItemAboutSpecialThanks_Click"/>
+			<MenuItem Header="{DynamicResource _menuItemAbout}">
+				<MenuItem Header="{DynamicResource _menuItemAboutMe}"
+						  Name="_menuItemAboutMe"
+						  Click="MenuItemAboutMe_Click"/>
+				<MenuItem Header="{DynamicResource _menuItemAboutSpecialThanks}"
+						  Name="_menuItemAboutSpecialThanks"
+						  Click="MenuItemAboutSpecialThanks_Click"/>
 				<Separator/>
-				<MenuItem Header="Implemented Techniques..." Name="_menuItemAboutImplementedTechniques"
+				<MenuItem Header="{DynamicResource _menuItemAboutImplementedTechniques}"
+						  Name="_menuItemAboutImplementedTechniques"
 						  Click="MenuItemAboutImplementedTechniques_Click"/>
 			</MenuItem>
 		</Menu>

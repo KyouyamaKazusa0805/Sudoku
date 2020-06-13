@@ -239,6 +239,10 @@ namespace Sudoku.Windows
 			UpdateImageGrid();
 		}
 
+		private void MenuItemLanguagesChinese_Click(object sender, RoutedEventArgs e) => ChangeLanguage("zh-cn");
+
+		private void MenuItemLanguagesEnglish_Click(object sender, RoutedEventArgs e) => ChangeLanguage("en-us");
+
 		private void MenuItemEditUndo_Click(object sender, RoutedEventArgs e)
 		{
 			if (_puzzle.HasUndoSteps)

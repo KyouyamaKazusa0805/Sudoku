@@ -1,0 +1,70 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+	<sys:String x:Key="_menuItemFile">File</sys:String>
+	<sys:String x:Key="_menuItemFileOpen">Open puzzle...</sys:String>
+	<sys:String x:Key="_menuItemFileSave">Save puzzle...</sys:String>
+	<sys:String x:Key="_menuItemFileOpenDatabase">Open puzzle database...</sys:String>
+	<sys:String x:Key="_menuItemBackupConfig">Backup configurations</sys:String>
+	<sys:String x:Key="_menuItemFileLoadPicture">Load picture...</sys:String>
+	<sys:String x:Key="_menuItemFileSavePicture">Save picture...</sys:String>
+	<sys:String x:Key="_menuItemFileGetSnapshot">Get snapshot</sys:String>
+	<sys:String x:Key="_menuItemFileQuitApp">Quit App</sys:String>
+	
+	<sys:String x:Key="_menuItemOptions">Options</sys:String>
+	<sys:String x:Key="_menuItemOptionsShowCandidates">Show candidates</sys:String>
+	<sys:String x:Key="_menuItemOptionsSettings">Settings...</sys:String>
+
+	<sys:String x:Key="_menuItemLanguages">Languages</sys:String>
+	<sys:String x:Key="_menuItemLanguagesChinese">简体中文 (zh-cn)</sys:String>
+	<sys:String x:Key="_menuItemLanguagesEnglish">English (en-us)</sys:String>
+
+	<sys:String x:Key="_menuItemEdit">Edit</sys:String>
+	<sys:String x:Key="_menuItemEditUndo">Undo step</sys:String>
+	<sys:String x:Key="_menuItemEditRedo">Redo step</sys:String>
+	<sys:String x:Key="_menuItemClearStack">Clear all undo &amp; redo steps</sys:String>
+	<sys:String x:Key="_menuItemEditRecomputeCandidates">Re-compute candidates manually</sys:String>
+	<sys:String x:Key="_menuItemEditCopy">Copy normal grid</sys:String>
+	<sys:String x:Key="_menuItemEditCopyAs">Copy as...</sys:String>
+	<sys:String x:Key="_menuItemEditCopyCurrentGrid">Copy as the current grid</sys:String>
+	<sys:String x:Key="_menuItemEditCopyHodokuLibrary">Copy as the library format</sys:String>
+	<sys:String x:Key="_menuItemEditCopyPmGrid">Copy as pencil-marked grid</sys:String>
+	<sys:String x:Key="_menuItemEditCopyAsSukaku">Copy as Sukaku</sys:String>
+	<sys:String x:Key="_menuItemEditCopyAsExcel">Copy as Excel format</sys:String>
+	<sys:String x:Key="_menuItemEditPaste">Paste</sys:String>
+	<sys:String x:Key="_menuItemEditPasteAsSukaku">Paste as Sukaku</sys:String>
+	<sys:String x:Key="_menuItemEditFix">Fix grid</sys:String>
+	<sys:String x:Key="_menuItemEditUnfix">Unfix grid</sys:String>
+	<sys:String x:Key="_menuItemEditReset">Reset grid</sys:String>
+	<sys:String x:Key="_menuItemEditClear">Clear grid</sys:String>
+
+	<sys:String x:Key="_menuItemGenerate">Generate</sys:String>
+	<sys:String x:Key="_menuItemGenerateWithSymmetry">Symmetry pattern</sys:String>
+	<sys:String x:Key="_menuItemGenerateHardPattern">Hard pattern</sys:String>
+	<sys:String x:Key="_menuItemGenerateWithTechniqueFiltering">Technique Filtering...</sys:String>
+
+	<sys:String x:Key="_menuItemAnalyze">Analyze</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeAnalyze">Analyze puzzle</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeSolve">Solve puzzle</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeShowFullHouses">Enable Full Houses</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeShowLastDigits">Enable Last Digits</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeSeMode">Analyze difficulty strictly</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeFastSearch">Fast searching</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeCheckConclusionValidityAfterSearched">Check validity of each conclusion</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeCheckGurthSymmetricalPlacement">Check Gurth's Symmetrical Placement</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeOptimizeApplyingOrder">Optimize applying order</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeUseCalculationPriority">Using calculation priority</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeExport">Export analysis result</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeBugN">BUG + n search...</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeBackdoor">Backdoor search...</sys:String>
+
+	<sys:String x:Key="_menuItemViews">Views</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeShowBugN">True candidates view!</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeBackdoorView">Backdoor (level 0 &amp; 1) view!</sys:String>
+	<sys:String x:Key="_menuItemViewsGspView">Gurth's Symmetrical Placement view!</sys:String>
+
+	<sys:String x:Key="_menuItemAbout">About</sys:String>
+	<sys:String x:Key="_menuItemAboutMe">About me...</sys:String>
+	<sys:String x:Key="_menuItemAboutSpecialThanks">Special thanks...</sys:String>
+	<sys:String x:Key="_menuItemAboutImplementedTechniques">Implemented techniques...</sys:String>
+</ResourceDictionary>
