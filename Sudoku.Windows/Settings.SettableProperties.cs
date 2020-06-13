@@ -183,26 +183,26 @@ namespace Sudoku.Windows
 #endif
 
 		/// <summary>
-		/// <para>
-		/// Indicates the current puzzle database used.
-		/// </para>
+		/// <para>Indicates the current puzzle database used.</para>
 		/// <para>The default value is <c><see langword="null"/></c>.</para>
 		/// </summary>
 		public string? CurrentPuzzleDatabase { get; set; } = null;
 
 		/// <summary>
-		/// <para>
-		/// Indicates the background color of the sudoku grid to render.
-		/// </para>
+		/// <para>Indicates the language code string (i.e. globalization string).</para>
+		/// <para>The default value is <c><see langword="null"/></c>, which is equivalent to "<c>en-us</c>".</para>
+		/// </summary>
+		public string? LanguageCode { get; set; } = "en-us";
+
+		/// <summary>
+		/// <para>Indicates the background color of the sudoku grid to render.</para>
 		/// <para>The value is <see cref="Color.White"/> in default case.</para>
 		/// </summary>
 		public Color BackgroundColor { get; set; } = Color.White;
 
 		/// <summary>
-		/// <para>
-		/// Indicates the grid line color of the sudoku grid to render.
-		/// </para>
-		/// <para>The value is <see cref="Color.Black"/></para> in default case.
+		/// <para>Indicates the grid line color of the sudoku grid to render.</para>
+		/// <para>The value is <see cref="Color.Black"/> in default case.</para>
 		/// </summary>
 		public Color GridLineColor { get; set; } = Color.Black;
 

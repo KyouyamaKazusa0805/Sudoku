@@ -197,7 +197,14 @@ namespace Sudoku.Windows
 			// Call the base method.
 			base.OnInitialized(e);
 
-			var mutex = new Mutex(true, SolutionName, out bool mutexIsNew);
+			// Load configurations.
+			LoadConfigIfWorth();
+
+			// Load language configuration.
+			ChangeLanguage(Settings.LanguageCode ??= "en-us");
+
+			// Prevent you opening the second same window.
+			var mutex = new Mutex(true, (string)Application.Current.Resources["SolutionName"], out bool mutexIsNew);
 			if (mutexIsNew)
 			{
 				mutex.ReleaseMutex();
@@ -238,9 +245,6 @@ namespace Sudoku.Windows
 			AddShortCut(Key.C, ModifierKeys.Control | ModifierKeys.Shift, null, MenuItemEditCopyCurrentGrid_Click);
 			AddShortCut(Key.OemTilde, ModifierKeys.Control | ModifierKeys.Shift, _menuItemEditUnfix, MenuItemEditUnfix_Click);
 
-			Title = $"{SolutionName} Ver {SolutionVersion}";
-
-			LoadConfigIfWorth();
 			InitializePointConverterAndLayers();
 			LoadDatabaseIfWorth();
 			UpdateControls();
@@ -968,6 +972,9 @@ namespace Sudoku.Windows
 		/// <param name="globalString">The globalization string.</param>
 		private void ChangeLanguage(string globalString)
 		{
+			Settings.LanguageCode = globalString;
+
+			// Get all possible resource dictionaries.
 			var dictionaries = new List<ResourceDictionary>();
 			var mergedDic = Application.Current.Resources.MergedDictionaries;
 			foreach (var dictionary in mergedDic)
@@ -975,16 +982,16 @@ namespace Sudoku.Windows
 				dictionaries.Add(dictionary);
 			}
 
+			// Get the specified dictionary.
 			ResourceDictionary? g(string p) => dictionaries.FirstOrDefault(d => d.Source.OriginalString == p);
-			if ((g($"Lang.{globalString}.xaml") ?? g("Lang.en-us.xaml")) is ResourceDictionary resourceDictionary)
-			{
-				mergedDic.Remove(resourceDictionary);
-				mergedDic.Add(resourceDictionary);
-			}
-			else
+			if (!((g($"Lang.{globalString}.xaml") ?? g("Lang.en-us.xaml")) is ResourceDictionary resourceDictionary))
 			{
 				Messagings.FailedToLoadGlobalizationFile();
+				return;
 			}
+
+			mergedDic.Remove(resourceDictionary);
+			mergedDic.Add(resourceDictionary);
 		}
 	}
 }

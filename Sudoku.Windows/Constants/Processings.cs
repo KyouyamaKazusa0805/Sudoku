@@ -26,18 +26,5 @@ namespace Sudoku.Windows.Constants
 		/// Gets a new-line string defined for this environment.
 		/// </summary>
 		public static string NewLine => Environment.NewLine;
-
-		/// <summary>
-		/// Indicates the name of this solution.
-		/// </summary>
-		public static string SolutionName =>
-			Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyProductAttribute>() is AssemblyProductAttribute
-				attr ? attr.Product : "Sunnie's Sudoku Solution";
-
-		/// <summary>
-		/// Indicates the version.
-		/// </summary>
-		public static string SolutionVersion =>
-			Assembly.GetExecutingAssembly().GetName().Version.NullableToString("Unknown version");
 	}
 }
