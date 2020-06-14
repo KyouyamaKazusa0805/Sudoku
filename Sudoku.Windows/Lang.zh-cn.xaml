@@ -164,6 +164,15 @@
 
 	<sys:String x:Key="ProgressTitle">处理中…</sys:String>
 
+	<sys:String x:Key="SpecialThanksTitle">鸣谢栏</sys:String>
+	<sys:String x:Key="SpecialThanksInfo">这里陈列所有这个程序使用或参考了的项目和工程。感谢你们！</sys:String>
+	<sys:String x:Key="SpecialThanks1">数独 OCR 程序 (基于 Emgu.CV)</sys:String>
+	<sys:String x:Key="SpecialThanks2">Fsss2 (使用暴力破解算法和逻辑填数技巧的快速数独计算器)</sys:String>
+	<sys:String x:Key="SpecialThanks3">Hodoku (一个数独分析器)</sys:String>
+	<sys:String x:Key="SpecialThanks4">Sudoku Explainer (http://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html，链接无法访问)</sys:String>
+	<sys:String x:Key="SpecialThanks5">扩展 WPF 控件集合 (Xceed)</sys:String>
+	<sys:String x:Key="SpecialThanks6">Color Picker WPF 控件</sys:String>
+
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">向向的数独解决方案</sys:String>
 	<sys:String x:Key="WhileGenerating">出题中……</sys:String>

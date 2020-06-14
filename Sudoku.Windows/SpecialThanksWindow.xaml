@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Special thanks" Height="450" Width="800" ResizeMode="CanMinimize">
+        Title="{DynamicResource SpecialThanksTitle}" Height="450" Width="800" ResizeMode="CanMinimize">
 	<Window.Resources>
 		<Style TargetType="Label">
 			<Setter Property="HorizontalAlignment" Value="Center"/>
@@ -32,40 +32,37 @@
 			<ColumnDefinition/>
 			<ColumnDefinition Width="20*"/>
 		</Grid.ColumnDefinitions>
-		<Label Grid.Row="0" Grid.ColumnSpan="2"
-			   Content="Here displays all open-source programs that the program used or referenced. Thanks you!"/>
+		<Label Grid.Row="0" Grid.ColumnSpan="2" Content="{DynamicResource SpecialThanksInfo}"/>
 		<Label Grid.Row="1" Grid.Column="0" Content="1."/>
 		<TextBlock Grid.Row="1" Grid.Column="1">
 			<Hyperlink NavigateUri="https://github.com/VoBilyk/SudokuSolverOCR" Click="Hyperlink_Click">
-				Sudoku OCR program (based on Emgu.CV)
+				<Run Text="{DynamicResource SpecialThanks1}"/>
 			</Hyperlink>
 		</TextBlock>
 		<Label Grid.Row="2" Grid.Column="0" Content="2."/>
 		<TextBlock Grid.Row="2" Grid.Column="1">
 			<Hyperlink NavigateUri="https://github.com/dobrichev/fsss2" Click="Hyperlink_Click">
-				Fsss2 (The fast sudoku solver using brute force and logical assignment skills)
+				<Run Text="{DynamicResource SpecialThanks2}"/>
 			</Hyperlink>
 		</TextBlock>
 		<Label Grid.Row="3" Grid.Column="0" Content="3."/>
 		<TextBlock Grid.Row="3" Grid.Column="1">
 			<Hyperlink NavigateUri="https://sourceforge.net/projects/hodoku/" Click="Hyperlink_Click">
-				Hodoku (A sudoku analyzer)
+				<Run Text="{DynamicResource SpecialThanks3}"/>
 			</Hyperlink>
 		</TextBlock>
 		<Label Grid.Row="4" Grid.Column="0" Content="4."/>
-		<TextBlock Grid.Row="4" Grid.Column="1">
-			Sudoku Explainer (http://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html, broken link)
-		</TextBlock>
+		<TextBlock Grid.Row="4" Grid.Column="1" Text="{DynamicResource SpecialThanks4}"/>
 		<Label Grid.Row="5" Grid.Column="0" Content="5."/>
 		<TextBlock Grid.Row="5" Grid.Column="1">
 			<Hyperlink NavigateUri="https://github.com/xceedsoftware/wpftoolkit" Click="Hyperlink_Click">
-				Extended WPF controls (Xceed)
+				<Run Text="{DynamicResource SpecialThanks5}"/>
 			</Hyperlink>
 		</TextBlock>
 		<Label Grid.Row="6" Grid.Column="0" Content="6."/>
 		<TextBlock Grid.Row="6" Grid.Column="1">
 			<Hyperlink NavigateUri="https://github.com/drogoganor/ColorPickerWPF" Click="Hyperlink_Click">
-				Color Picker WPF
+				<Run Text="{DynamicResource SpecialThanks6}"/>
 			</Hyperlink>
 		</TextBlock>
 	</Grid>

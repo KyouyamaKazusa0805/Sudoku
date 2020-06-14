@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using System.Windows.Documents;
+using Sudoku.Windows.Constants;
 
 namespace Sudoku.Windows
 {
@@ -24,7 +25,7 @@ namespace Sudoku.Windows
 				}
 				catch (Exception ex)
 				{
-					MessageBox.Show(ex.Message, "Warning");
+					Messagings.ShowExceptionMessage(ex);
 				}
 			}
 		}

@@ -163,6 +163,15 @@
 	<sys:String x:Key="PictureSavingSaveDialogTitle">Save picture...</sys:String>
 
 	<sys:String x:Key="ProgressTitle">Handling...</sys:String>
+
+	<sys:String x:Key="SpecialThanksTitle">Special thanks</sys:String>
+	<sys:String x:Key="SpecialThanksInfo">Here displays all open-source programs that the program used or referenced. Thanks you!</sys:String>
+	<sys:String x:Key="SpecialThanks1">Sudoku OCR program (based on Emgu.CV)</sys:String>
+	<sys:String x:Key="SpecialThanks2">Fsss2 (The fast sudoku solver using brute force and logical assignment skills)</sys:String>
+	<sys:String x:Key="SpecialThanks3">Hodoku (A sudoku analyzer)</sys:String>
+	<sys:String x:Key="SpecialThanks4">Sudoku Explainer (http://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html, broken link)</sys:String>
+	<sys:String x:Key="SpecialThanks5">Extended WPF controls (Xceed)</sys:String>
+	<sys:String x:Key="SpecialThanks6">Color Picker WPF</sys:String>
 	
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">Sunnie's Sudoku Solution</sys:String>
