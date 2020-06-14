@@ -145,7 +145,7 @@ namespace Sudoku.Windows
 									2 => Bmp,
 									3 => Gif,
 									_ => throw Throwings.ImpossibleCase
-								}) ?? throw new NullReferenceException((string)LangSource["PictureSavingNullException"]),
+								}) ?? throw new NullReferenceException("The return value is null."),
 							encoderParameters);
 					}
 					else

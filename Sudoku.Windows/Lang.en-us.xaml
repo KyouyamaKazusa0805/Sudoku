@@ -158,7 +158,6 @@
 	<sys:String x:Key="PictureSavingLabelSize">Size:</sys:String>
 	<sys:String x:Key="PictureSavingButtonSave">Save...</sys:String>
 	<sys:String x:Key="PictureSavingButtonCancel">Cancel</sys:String>
-	<sys:String x:Key="PictureSavingNullException">The return value is null.</sys:String>
 	<sys:String x:Key="PictureSavingFilter">PNG files|*.png|JPG files|*.jpg|BMP files|*.bmp|GIF files|*.gif|WMF files|*.wmf</sys:String>
 	<sys:String x:Key="PictureSavingSaveDialogTitle">Save picture...</sys:String>
 
@@ -174,6 +173,79 @@
 	<sys:String x:Key="SpecialThanks6">Color Picker WPF</sys:String>
 
 	<sys:String x:Key="TechniquesTitle">Implemented techniques</sys:String>
+
+	<sys:String x:Key="SettingsTitle">Settings</sys:String>
+	<sys:String x:Key="SettingsTabBehavior">Behavior</sys:String>
+	<sys:String x:Key="SettingsAskWhileQuitting">Ask while quitting</sys:String>
+	<sys:String x:Key="SettingsEnableGcForcedly">Enable Garbage collection forcedly</sys:String>
+	<sys:String x:Key="SettingsSolveFromTheCurrent">Solve from the current puzzle</sys:String>
+	<sys:String x:Key="SettingsTextFormatPlaceholdersAreZero">Text format placeholders are '0'</sys:String>
+	<sys:String x:Key="SettingsPmCompatible">PM grid compatible</sys:String>
+	<sys:String x:Key="SettingsTabSolving">Solving</sys:String>
+	<sys:String x:Key="SettingsSolvingChains">Chains</sys:String>
+	<sys:String x:Key="SettingsSolvingChainsMaxLength">Max length:</sys:String>
+	<sys:String x:Key="SettingsSolvingChainsCheckCnl">Check continuous nice loops</sys:String>
+	<sys:String x:Key="SettingsSolvingChainsCheckHeadCollision">Check head collision</sys:String>
+	<sys:String x:Key="SettingsSolvingChainsOnlyGatherShortestPath">Only gather shortest path</sys:String>
+	<sys:String x:Key="SettingsSolvingChainsReductDifferentPaths">Reduct different paths</sys:String>
+	<sys:String x:Key="SettingsSolvingAls">Almost Locked Sets</sys:String>
+	<sys:String x:Key="SettingsSolvingAlsAllowOverlapped">Allow overlapped ALSes</sys:String>
+	<sys:String x:Key="SettingsSolvingAlsHighlightRegions">Highlight regions rather than cells</sys:String>
+	<sys:String x:Key="SettingsSolvingAlsAllowLoops">Allow ALS techniques loop eliminations</sys:String>
+	<sys:String x:Key="SettingsSolvingMisc">Miscellaneous</sys:String>
+	<sys:String x:Key="SettingsSolvingMiscBowmanBingoMaxLength">Bowman's bingo max length:</sys:String>
+	<sys:String x:Key="SettingsSolvingMiscAllowAlq">Search Almost Locked Quadruples</sys:String>
+	<sys:String x:Key="SettingsSolvingMiscCheckIncompleteUr">Check incomplete URs</sys:String>
+	<sys:String x:Key="SettingsSolvingMiscWingMaxSize">Max regular wing size:</sys:String>
+	<sys:String x:Key="SettingsSolvingMiscUseExtendedBugSearcher">Use extended BUG searcher</sys:String>
+	<sys:String x:Key="SettingsSolvingMiscSearchUrExtensions">Search UR extensions</sys:String>
+	<sys:String x:Key="SettingsSolvingMiscDeathBlossomMaxPetals">Max petals of death blossom:</sys:String>
+	<sys:String x:Key="SettingsSolvingMiscExocetsCheckAdvancedElims">Check advanced eliminations in exocets</sys:String>
+	<sys:String x:Key="SettingsSolvingFish">Hobiwan's Fish</sys:String>
+	<sys:String x:Key="SettingsSolvingFishMaxSize">Maximum size:</sys:String>
+	<sys:String x:Key="SettingsSolvingFishMaxExofins">Maximum Exo-fins count:</sys:String>
+	<sys:String x:Key="SettingsSolvingFishMaxEndofins">Maximum Endo-fins count:</sys:String>
+	<sys:String x:Key="SettingsSolvingFishCheckTemplates">Check templates</sys:String>
+	<sys:String x:Key="SettingsDrawing">Drawing</sys:String>
+	<sys:String x:Key="SettingsDrawingGridLineWidth">Grid line width:</sys:String>
+	<sys:String x:Key="SettingsDrawingBlockLineWidth">Block line width:</sys:String>
+	<sys:String x:Key="SettingsDrawingValueScale">Value scale:</sys:String>
+	<sys:String x:Key="SettingsDrawingCandidateScale">Candidate scale:</sys:String>
+	<sys:String x:Key="SettingsDrawingGivenFontName">Given font name:</sys:String>
+	<sys:String x:Key="SettingsDrawingModifiableFontName">Modifiable font name:</sys:String>
+	<sys:String x:Key="SettingsDrawingCandidateFontName">Candidate font name:</sys:String>
+	<sys:String x:Key="SettingsDrawingBackColor">Background color:</sys:String>
+	<sys:String x:Key="SettingsDrawingGivenColor">Given color:</sys:String>
+	<sys:String x:Key="SettingsDrawingModifiableColor">Modifiable color:</sys:String>
+	<sys:String x:Key="SettingsDrawingCandidateColor">Candidate color:</sys:String>
+	<sys:String x:Key="SettingsDrawingFocusColor">Focus color:</sys:String>
+	<sys:String x:Key="SettingsDrawingGridLineColor">Grid line color:</sys:String>
+	<sys:String x:Key="SettingsDrawingBlockLineColor">Block line color:</sys:String>
+	<sys:String x:Key="SettingsDrawingChainColor">Chain color:</sys:String>
+	<sys:String x:Key="SettingsDrawingChangeFont">Change font</sys:String>
+	<sys:String x:Key="SettingsPriority">Priority</sys:String>
+	<sys:String x:Key="SettingsPriorityIsEnabled">Is enabled</sys:String>
+	<sys:String x:Key="SettingsPriorityValue">Priority value:</sys:String>
+	<sys:String x:Key="SettingsPalette">Palette</sys:String>
+	<sys:String x:Key="SettingsPaletteChangeColor">Change color</sys:String>
+	<sys:String x:Key="SettingsPalette1">Color1:</sys:String>
+	<sys:String x:Key="SettingsPalette2">Color2:</sys:String>
+	<sys:String x:Key="SettingsPalette3">Color3:</sys:String>
+	<sys:String x:Key="SettingsPalette4">Color4:</sys:String>
+	<sys:String x:Key="SettingsPalette5">Color5:</sys:String>
+	<sys:String x:Key="SettingsPalette6">Color6:</sys:String>
+	<sys:String x:Key="SettingsPalette7">Color7:</sys:String>
+	<sys:String x:Key="SettingsPalette8">Color8:</sys:String>
+	<sys:String x:Key="SettingsPalette9">Color9:</sys:String>
+	<sys:String x:Key="SettingsPalette10">Color10:</sys:String>
+	<sys:String x:Key="SettingsPalette11">Color11:</sys:String>
+	<sys:String x:Key="SettingsPalette12">Color12:</sys:String>
+	<sys:String x:Key="SettingsPalette13">Color13:</sys:String>
+	<sys:String x:Key="SettingsPalette14">Color14:</sys:String>
+	<sys:String x:Key="SettingsPalette15">Color15:</sys:String>
+	<sys:String x:Key="SettingsLabelNote">Note: Some features will come into effect after having restarted the program.</sys:String>
+	<sys:String x:Key="SettingsButtonApply">Apply</sys:String>
+	<sys:String x:Key="SettingsButtonCancel">Cancel</sys:String>
 
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">Sunnie's Sudoku Solution</sys:String>
@@ -221,6 +293,7 @@
 	<sys:String x:Key="Message">Message: </sys:String>
 	<sys:String x:Key="FailedToSaveConfig">The configuration file cannot be saved due to exception throws:</sys:String>
 	<sys:String x:Key="FailedToSaveToClipboardDueToArgumentNullException">Cannot save text to clipboard due to:</sys:String>
+	<sys:String x:Key="CheckInput">Please check your input.</sys:String>
 	<sys:String x:Key="SukakuCannotUseThisFunction">
 		The puzzle is invalid or may be a sukaku. If invalid, Please check your input and retry;
 		however if sukaku, this function cannot use because the specified puzzle has no given or modifiable values.

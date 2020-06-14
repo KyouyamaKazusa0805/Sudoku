@@ -11,9 +11,9 @@ using Sudoku.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
+using Sudoku.Windows.Constants;
 using Sudoku.Windows.Extensions;
 using Sudoku.Windows.Tooling;
-using MessageBox = System.Windows.MessageBox;
 
 namespace Sudoku.Windows
 {
@@ -217,7 +217,7 @@ namespace Sudoku.Windows
 				}
 				else
 				{
-					MessageBox.Show("The value is invalid.", "Info");
+					Messagings.CheckInput();
 				}
 			}
 		}
@@ -235,7 +235,7 @@ namespace Sudoku.Windows
 				}
 				else
 				{
-					MessageBox.Show("The value is invalid.", "Info");
+					Messagings.CheckInput();
 				}
 			}
 		}
@@ -250,7 +250,7 @@ namespace Sudoku.Windows
 				}
 				else
 				{
-					MessageBox.Show("The value is invalid.", "Info");
+					Messagings.CheckInput();
 				}
 			}
 		}
@@ -265,7 +265,7 @@ namespace Sudoku.Windows
 				}
 				else
 				{
-					MessageBox.Show("The value is invalid.", "Info");
+					Messagings.CheckInput();
 				}
 			}
 		}
@@ -456,7 +456,7 @@ namespace Sudoku.Windows
 				}
 				else
 				{
-					MessageBox.Show("The value is invalid.", "Info");
+					Messagings.CheckInput();
 				}
 			}
 		}
@@ -480,7 +480,7 @@ namespace Sudoku.Windows
 				}
 				else
 				{
-					MessageBox.Show("The value is invalid.", "Info");
+					Messagings.CheckInput();
 				}
 			}
 		}
@@ -507,7 +507,7 @@ namespace Sudoku.Windows
 				}
 				else
 				{
-					MessageBox.Show("The value is invalid.", "Info");
+					Messagings.CheckInput();
 				}
 			}
 		}

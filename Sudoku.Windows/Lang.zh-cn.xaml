@@ -158,7 +158,6 @@
 	<sys:String x:Key="PictureSavingLabelSize">大小：</sys:String>
 	<sys:String x:Key="PictureSavingButtonSave">保存…</sys:String>
 	<sys:String x:Key="PictureSavingButtonCancel">取消</sys:String>
-	<sys:String x:Key="PictureSavingNullException">返回值为 null。</sys:String>
 	<sys:String x:Key="PictureSavingFilter">PNG 文件|*.png|JPG 文件|*.jpg|BMP 文件|*.bmp|GIF 文件|*.gif|WMF 文件|*.wmf</sys:String>
 	<sys:String x:Key="PictureSavingSaveDialogTitle">保存图片…</sys:String>
 
@@ -174,6 +173,79 @@
 	<sys:String x:Key="SpecialThanks6">Color Picker WPF 控件</sys:String>
 
 	<sys:String x:Key="TechniquesTitle">已经实现了的技巧</sys:String>
+
+	<sys:String x:Key="SettingsTitle">设置</sys:String>
+	<sys:String x:Key="SettingsTabBehavior">行为</sys:String>
+	<sys:String x:Key="SettingsAskWhileQuitting">退出前询问</sys:String>
+	<sys:String x:Key="SettingsEnableGcForcedly">强制启用垃圾回收器</sys:String>
+	<sys:String x:Key="SettingsSolveFromTheCurrent">从当前盘面起解题</sys:String>
+	<sys:String x:Key="SettingsTextFormatPlaceholdersAreZero">盘面文本用 '0' 字符占位</sys:String>
+	<sys:String x:Key="SettingsPmCompatible">兼容老版本的候选数盘面</sys:String>
+	<sys:String x:Key="SettingsTabSolving">解题</sys:String>
+	<sys:String x:Key="SettingsSolvingChains">链（Chains）</sys:String>
+	<sys:String x:Key="SettingsSolvingChainsMaxLength">最长长度：</sys:String>
+	<sys:String x:Key="SettingsSolvingChainsCheckCnl">检查连续环</sys:String>
+	<sys:String x:Key="SettingsSolvingChainsCheckHeadCollision">检查头尾同候选数</sys:String>
+	<sys:String x:Key="SettingsSolvingChainsOnlyGatherShortestPath">只记录最短路径</sys:String>
+	<sys:String x:Key="SettingsSolvingChainsReductDifferentPaths">削减不同路径的链</sys:String>
+	<sys:String x:Key="SettingsSolvingAls">待定数组（Almost Locked Sets）</sys:String>
+	<sys:String x:Key="SettingsSolvingAlsAllowOverlapped">允许 ALS 重叠</sys:String>
+	<sys:String x:Key="SettingsSolvingAlsHighlightRegions">显示 ALS 时显示区域而不是单元格</sys:String>
+	<sys:String x:Key="SettingsSolvingAlsAllowLoops">允许基本 ALS 技巧的可能环删数</sys:String>
+	<sys:String x:Key="SettingsSolvingMisc">杂项</sys:String>
+	<sys:String x:Key="SettingsSolvingMiscBowmanBingoMaxLength">试数的最长长度：</sys:String>
+	<sys:String x:Key="SettingsSolvingMiscAllowAlq">搜索欠一四数组</sys:String>
+	<sys:String x:Key="SettingsSolvingMiscCheckIncompleteUr">检查残缺唯一矩形</sys:String>
+	<sys:String x:Key="SettingsSolvingMiscWingMaxSize">Wing 的最大规格：</sys:String>
+	<sys:String x:Key="SettingsSolvingMiscUseExtendedBugSearcher">使用拓展后的 BUG 搜索工具</sys:String>
+	<sys:String x:Key="SettingsSolvingMiscSearchUrExtensions">搜索 UR 拓展类型</sys:String>
+	<sys:String x:Key="SettingsSolvingMiscDeathBlossomMaxPetals">死亡绽放的最多花瓣数：</sys:String>
+	<sys:String x:Key="SettingsSolvingMiscExocetsCheckAdvancedElims">检查飞鱼导弹的进阶删数</sys:String>
+	<sys:String x:Key="SettingsSolvingFish">鱼（Hobiwan's Fish）</sys:String>
+	<sys:String x:Key="SettingsSolvingFishMaxSize">最大规格：</sys:String>
+	<sys:String x:Key="SettingsSolvingFishMaxExofins">外鱼鳍最多搜索个数：</sys:String>
+	<sys:String x:Key="SettingsSolvingFishMaxEndofins">内鱼鳍最多搜索个数：</sys:String>
+	<sys:String x:Key="SettingsSolvingFishCheckTemplates">预先检查模板删数</sys:String>
+	<sys:String x:Key="SettingsDrawing">绘图</sys:String>
+	<sys:String x:Key="SettingsDrawingGridLineWidth">格线粗细：</sys:String>
+	<sys:String x:Key="SettingsDrawingBlockLineWidth">宫线粗细：</sys:String>
+	<sys:String x:Key="SettingsDrawingValueScale">确定值绘制的缩放比：</sys:String>
+	<sys:String x:Key="SettingsDrawingCandidateScale">候选数绘制的缩放比：</sys:String>
+	<sys:String x:Key="SettingsDrawingGivenFontName">提示数字体：</sys:String>
+	<sys:String x:Key="SettingsDrawingModifiableFontName">填入数字的字体：</sys:String>
+	<sys:String x:Key="SettingsDrawingCandidateFontName">候选数的字体：</sys:String>
+	<sys:String x:Key="SettingsDrawingBackColor">盘面背景色：</sys:String>
+	<sys:String x:Key="SettingsDrawingGivenColor">提示数颜色：</sys:String>
+	<sys:String x:Key="SettingsDrawingModifiableColor">填入数字的颜色：</sys:String>
+	<sys:String x:Key="SettingsDrawingCandidateColor">候选数颜色：</sys:String>
+	<sys:String x:Key="SettingsDrawingFocusColor">聚焦单元格颜色：</sys:String>
+	<sys:String x:Key="SettingsDrawingGridLineColor">格线颜色：</sys:String>
+	<sys:String x:Key="SettingsDrawingBlockLineColor">宫线颜色：</sys:String>
+	<sys:String x:Key="SettingsDrawingChainColor">链的颜色：</sys:String>
+	<sys:String x:Key="SettingsDrawingChangeFont">修改字体</sys:String>
+	<sys:String x:Key="SettingsPriority">优先级</sys:String>
+	<sys:String x:Key="SettingsPriorityIsEnabled">是否启用</sys:String>
+	<sys:String x:Key="SettingsPriorityValue">优先级数值：</sys:String>
+	<sys:String x:Key="SettingsPalette">调色板</sys:String>
+	<sys:String x:Key="SettingsPaletteChangeColor">修改颜色</sys:String>
+	<sys:String x:Key="SettingsPalette1">第 1 种颜色：</sys:String>
+	<sys:String x:Key="SettingsPalette2">第 2 种颜色：</sys:String>
+	<sys:String x:Key="SettingsPalette3">第 3 种颜色：</sys:String>
+	<sys:String x:Key="SettingsPalette4">第 4 种颜色：</sys:String>
+	<sys:String x:Key="SettingsPalette5">第 5 种颜色：</sys:String>
+	<sys:String x:Key="SettingsPalette6">第 6 种颜色：</sys:String>
+	<sys:String x:Key="SettingsPalette7">第 7 种颜色：</sys:String>
+	<sys:String x:Key="SettingsPalette8">第 8 种颜色：</sys:String>
+	<sys:String x:Key="SettingsPalette9">第 9 种颜色：</sys:String>
+	<sys:String x:Key="SettingsPalette10">第 10 种颜色：</sys:String>
+	<sys:String x:Key="SettingsPalette11">第 11 种颜色：</sys:String>
+	<sys:String x:Key="SettingsPalette12">第 12 种颜色：</sys:String>
+	<sys:String x:Key="SettingsPalette13">第 13 种颜色：</sys:String>
+	<sys:String x:Key="SettingsPalette14">第 14 种颜色：</sys:String>
+	<sys:String x:Key="SettingsPalette15">第 15 种颜色：</sys:String>
+	<sys:String x:Key="SettingsLabelNote">注意：一部分功能需要在重启程序后才生效。</sys:String>
+	<sys:String x:Key="SettingsButtonApply">应用</sys:String>
+	<sys:String x:Key="SettingsButtonCancel">取消</sys:String>
 
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">向向的数独解决方案</sys:String>
@@ -221,6 +293,7 @@
 	<sys:String x:Key="Message">错误信息：</sys:String>
 	<sys:String x:Key="FailedToSaveConfig">由于如下异常信息，当前配置文件不能保存：</sys:String>
 	<sys:String x:Key="FailedToSaveToClipboardDueToArgumentNullException">不能将文本保存至剪切板。错误信息：</sys:String>
+	<sys:String x:Key="CheckInput">请检查你的输入。</sys:String>
 	<sys:String x:Key="SukakuCannotUseThisFunction">
 		当前题目不合法，或者它是一个候选数数独。如果不合法，请你检查输入，然后重试；
 		但如果是候选数数独的话，这个功能暂不支持使用，因为候选数数独是不应包含任何提示数和自己填入的数字的。

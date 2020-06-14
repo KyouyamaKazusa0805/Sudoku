@@ -268,7 +268,7 @@ namespace Sudoku.Windows.Constants
 		/// </summary>
 		public static void CheckInput() =>
 			MessageBox.Show(
-				(string)LangSource["PictureSavingNullException"],
+				(string)LangSource["CheckInput"],
 				(string)LangSource["CaptionInfo"]);
 
 		/// <summary>
