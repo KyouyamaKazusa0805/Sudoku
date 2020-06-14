@@ -8,8 +8,8 @@
     <Grid>
 		<TreeView Name="_treeViewMain">
 			<TreeView.ItemTemplate>
-				<HierarchicalDataTemplate ItemsSource="{Binding Path=Children}">
-					<TextBlock Text="{Binding Path=Content}" VerticalAlignment="Center"/>
+				<HierarchicalDataTemplate ItemsSource="{Binding Children}">
+					<TextBlock Text="{Binding Content}" VerticalAlignment="Center"/>
 				</HierarchicalDataTemplate>
 			</TreeView.ItemTemplate>
 		</TreeView>

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows.Controls;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
+using static Sudoku.Windows.Constants.Processings;
 
 namespace Sudoku.Windows.Tooling
 {
@@ -25,9 +27,11 @@ namespace Sudoku.Windows.Tooling
 			GetAllTechniques();
 		}
 
+
 		/// <summary>
 		/// Get all techniques to display.
 		/// </summary>
+		[SuppressMessage("Style", "IDE0038:Use pattern matching", Justification = "<Pending>")]
 		private void GetAllTechniques()
 		{
 			var selection = from technique in EnumEx.GetValues<TechniqueCode>()
@@ -136,7 +140,7 @@ namespace Sudoku.Windows.Tooling
 			}
 
 			// Now add them to the root node.
-			var root = new TreeNode<string> { Content = "Techniques", Id = 0, ParentId = -1 };
+			var root = new TreeNode<string> { Content = (string)LangSource["Techniques"], Id = 0, ParentId = -1 };
 			root.Children = GetSubnodes(root.ParentId, allNodes);
 			list.Prepend(root);
 

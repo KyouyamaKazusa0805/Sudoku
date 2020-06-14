@@ -342,6 +342,9 @@
 	<sys:String x:Key="DiagonalBoth">同时两种对角线对称</sys:String>
 	<sys:String x:Key="All">全对称</sys:String>
 
+	<!-- Techniques -->
+	<sys:String x:Key="Techniques">技巧</sys:String>
+
 	<!-- Punctuation marks -->
 	<sys:String x:Key="Comma">，</sys:String>
 	<sys:String x:Key="Period">。</sys:String>

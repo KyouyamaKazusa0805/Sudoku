@@ -342,6 +342,9 @@
 	<sys:String x:Key="DiagonalBoth">Both diagonal and anti-diagonal</sys:String>
 	<sys:String x:Key="All">All symmetry types</sys:String>
 	
+	<!-- Techniques -->
+	<sys:String x:Key="Techniques">Techniques</sys:String>
+	
 	<!-- Punctuation marks -->
 	<sys:String x:Key="Comma">, </sys:String>
 	<sys:String x:Key="Period">. </sys:String>
