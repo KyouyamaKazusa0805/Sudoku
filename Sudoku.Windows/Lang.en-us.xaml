@@ -138,6 +138,21 @@
 	<sys:String x:Key="BugMultipleThereAre">There Are</sys:String>
 	<sys:String x:Key="BugMultipleTrueCandidatesSingular">true candidate</sys:String>
 	<sys:String x:Key="BugMultipleTrueCandidatesPlural">true candidates</sys:String>
+
+	<sys:String x:Key="ExportAnalysisResultTitle">Export analysis result...</sys:String>
+	<sys:String x:Key="ExportAnalysisResultLabelInfo">Please select the options to export:</sys:String>
+	<sys:String x:Key="ExportAnalysisResultShowSeparators">Show separators</sys:String>
+	<sys:String x:Key="ExportAnalysisResultShowIndices">Show step indices</sys:String>
+	<sys:String x:Key="ExportAnalysisResultShowLogic">Show logic of each step</sys:String>
+	<sys:String x:Key="ExportAnalysisResultShowBottleneck">Show bottleneck step</sys:String>
+	<sys:String x:Key="ExportAnalysisResultShowDifficulty">Show difficulty rating of each step</sys:String>
+	<sys:String x:Key="ExportAnalysisResultShowStepsAfterBottleneck">Show steps after bottleneck</sys:String>
+	<sys:String x:Key="ExportAnalysisResultShowAttributes">Show attributes of puzzle</sys:String>
+	<sys:String x:Key="ExportAnalysisResultShowMagicCells">Show magic cells</sys:String>
+	<sys:String x:Key="ExportAnalysisResultShowDifficultyDetails">Show difficulty rating details</sys:String>
+	<sys:String x:Key="ExportAnalysisResultShowTechniqueSteps">Show technique steps</sys:String>
+	<sys:String x:Key="ExportAnalysisResultLabelAnalysisResult">Analysis result:</sys:String>
+	<sys:String x:Key="ExportAnalysisResultButtonExport">Export</sys:String>
 	
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">Sunnie's Sudoku Solution</sys:String>
