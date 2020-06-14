@@ -17,11 +17,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Include="Externals\System\PrimaryElementTuple.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>PrimaryElementTuple.tt</DependentUpon>
-	  </None>
+		<None Include="Externals\System\PrimaryElementTuple.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>PrimaryElementTuple.tt</DependentUpon>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -31,22 +31,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="Externals\System\PrimaryElementTuple.tt">
-	    <Generator>TextTemplatingFileGenerator</Generator>
-	    <LastGenOutput>PrimaryElementTuple.cs</LastGenOutput>
-	  </None>
+		<None Update="Externals\System\PrimaryElementTuple.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>PrimaryElementTuple.cs</LastGenOutput>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Externals\System\PrimaryElementTuple.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>PrimaryElementTuple.tt</DependentUpon>
-	  </Compile>
+		<Compile Update="Externals\System\PrimaryElementTuple.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>PrimaryElementTuple.tt</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 </Project>

@@ -30,6 +30,7 @@ namespace Sudoku.Solving.Manual
 		/// The progress used for report the current state. If we don't need, the value should
 		/// be assigned <see langword="null"/>.
 		/// </param>
+		/// <param name="globalizationString">The globalization string.</param>
 		/// <returns>The analysis result.</returns>
 		/// <exception cref="WrongHandlingException">
 		/// Throws when the solver cannot solved due to wrong handling.
@@ -37,7 +38,8 @@ namespace Sudoku.Solving.Manual
 		/// <seealso cref="GridProgressResult"/>
 		private AnalysisResult SolveWithStrictDifficultyRating(
 			IReadOnlyGrid grid, Grid cloneation, List<TechniqueInfo> steps, IReadOnlyGrid solution, bool sukaku,
-			ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
+			ref GridProgressResult progressResult, IProgress<IProgressResult>? progress,
+			string? globalizationString)
 		{
 			var searchers = GetSearchersSeMode(solution);
 			var stepGrids = new Bag<IReadOnlyGrid>();
@@ -113,7 +115,7 @@ namespace Sudoku.Solving.Manual
 
 						if (!(progress is null))
 						{
-							ReportProgress(cloneation, progress, ref progressResult);
+							ReportProgress(cloneation, progress, ref progressResult, globalizationString);
 						}
 
 						goto Label_Restart;
@@ -161,7 +163,7 @@ namespace Sudoku.Solving.Manual
 
 							if (!(progress is null))
 							{
-								ReportProgress(cloneation, progress, ref progressResult);
+								ReportProgress(cloneation, progress, ref progressResult, globalizationString);
 							}
 
 							goto Label_Restart;

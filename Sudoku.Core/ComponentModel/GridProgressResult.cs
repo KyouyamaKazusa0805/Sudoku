@@ -1,4 +1,6 @@
-﻿namespace Sudoku.ComponentModel
+﻿using Sudoku.Windows;
+
+namespace Sudoku.ComponentModel
 {
 	/// <summary>
 	/// Encapsulates a progress result used for report the current state.
@@ -11,9 +13,12 @@
 		/// <param name="currentCandidatesCount">The current point.</param>
 		/// <param name="currentCellsCount">The number of unsolved cells.</param>
 		/// <param name="initialCandidatesCount">The number of unsolved candidates in the initial grid.</param>
-		public GridProgressResult(int currentCandidatesCount, int currentCellsCount, int initialCandidatesCount) =>
-			(CurrentCandidatesCount, CurrentCellsCount, InitialCandidatesCount) =
-			(currentCandidatesCount, currentCellsCount, initialCandidatesCount);
+		/// <param name="globalizationString">The globalization string.</param>
+		public GridProgressResult(
+			int currentCandidatesCount, int currentCellsCount, int initialCandidatesCount,
+			string? globalizationString) =>
+			(CurrentCandidatesCount, CurrentCellsCount, InitialCandidatesCount, GlobalizationString) =
+			(currentCandidatesCount, currentCellsCount, initialCandidatesCount, globalizationString ?? "en-us");
 
 
 		/// <summary>
@@ -30,6 +35,11 @@
 		/// Indicates the number of unsolved candidates in the initial grid.
 		/// </summary>
 		public readonly int InitialCandidatesCount { get; }
+
+		/// <summary>
+		/// The globalization string.
+		/// </summary>
+		public readonly string GlobalizationString { get; }
 
 		/// <summary>
 		/// Indicates the current percentage.
@@ -57,6 +67,7 @@
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override readonly string ToString() =>
-			$"Unsolved cells: {CurrentCellsCount}, candidates: {CurrentCandidatesCount}";
+			$"{Resources.GetValue("UnsolvedCells")}{CurrentCellsCount}" +
+			$"{Resources.GetValue("UnsolvedCandidates")}{CurrentCandidatesCount}";
 	}
 }

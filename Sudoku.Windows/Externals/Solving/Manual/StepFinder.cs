@@ -55,7 +55,9 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <param name="progress">The progress.</param>
-		public IEnumerable<ITechniquesGroupByName> Search(IReadOnlyGrid grid, IProgress<IProgressResult>? progress)
+		/// <param name="globalizationString">The globalization string.</param>
+		public IEnumerable<ITechniquesGroupByName> Search(
+			IReadOnlyGrid grid, IProgress<IProgressResult>? progress, string? globalizationString)
 		{
 			if (grid.HasSolved || !grid.IsValid(out _, out bool? sukaku))
 			{
@@ -128,7 +130,7 @@ namespace Sudoku.Solving.Manual
 
 			TechniqueSearcher.InitializeMaps(grid);
 			var bag = new Bag<TechniqueInfo>();
-			var progressResult = new TechniqueProgressResult(searchers.Length);
+			var progressResult = new TechniqueProgressResult(searchers.Length, globalizationString ?? "en-us");
 			foreach (var searcher in searchers)
 			{
 				if (searcher.HasMarked<TechniqueSearcher, HasBugAttribute>(out _))
@@ -147,6 +149,7 @@ namespace Sudoku.Solving.Manual
 
 				if (!(progress is null))
 				{
+					// TODO: Change them into the specified language.
 					_ = searcher.HasMarked<TechniqueSearcher, TechniqueDisplayAttribute>(out var attributes);
 					progressResult.CurrentTechnique = attributes.First().DisplayName;
 					progressResult.CurrentIndex++;
@@ -159,7 +162,7 @@ namespace Sudoku.Solving.Manual
 			// Group them up.
 			if (!(progress is null))
 			{
-				progressResult.CurrentTechnique = "Summary...";
+				progressResult.CurrentTechnique = Resources.GetValue("Summary");
 				progressResult.CurrentIndex++;
 				progress.Report(progressResult);
 			}

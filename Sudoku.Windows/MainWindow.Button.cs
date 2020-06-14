@@ -40,7 +40,8 @@ namespace Sudoku.Windows
 				var dialog = new ProgressWindow();
 				dialog.Show();
 				var techniqueGroups =
-					await Task.Run(() => new StepFinder(Settings).Search(_puzzle, dialog.DefaultReporting));
+					await Task.Run(
+						() => new StepFinder(Settings).Search(_puzzle, dialog.DefaultReporting, Settings.LanguageCode));
 
 				EnableSolvingControls();
 				SwitchOnGeneratingComboBoxesDisplaying();

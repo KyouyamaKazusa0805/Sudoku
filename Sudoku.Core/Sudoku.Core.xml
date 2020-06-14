@@ -9,13 +9,14 @@
             Encapsulates a progress result used for report the current state.
             </summary>
         </member>
-        <member name="M:Sudoku.ComponentModel.GridProgressResult.#ctor(System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.ComponentModel.GridProgressResult.#ctor(System.Int32,System.Int32,System.Int32,System.String)">
             <summary>
             Initializes an instance with the specified current point and the total point.
             </summary>
             <param name="currentCandidatesCount">The current point.</param>
             <param name="currentCellsCount">The number of unsolved cells.</param>
             <param name="initialCandidatesCount">The number of unsolved candidates in the initial grid.</param>
+            <param name="globalizationString">The globalization string.</param>
         </member>
         <member name="P:Sudoku.ComponentModel.GridProgressResult.CurrentCellsCount">
             <summary>
@@ -30,6 +31,11 @@
         <member name="P:Sudoku.ComponentModel.GridProgressResult.InitialCandidatesCount">
             <summary>
             Indicates the number of unsolved candidates in the initial grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.ComponentModel.GridProgressResult.GlobalizationString">
+            <summary>
+            The globalization string.
             </summary>
         </member>
         <member name="P:Sudoku.ComponentModel.GridProgressResult.Percentage">
@@ -70,6 +76,11 @@
             Indicates the current percentage.
             </summary>
         </member>
+        <member name="P:Sudoku.ComponentModel.IProgressResult.GlobalizationString">
+            <summary>
+            The globalization string.
+            </summary>
+        </member>
         <member name="M:Sudoku.ComponentModel.IProgressResult.ToString">
             <method name="ToString" paramType="__noparam">
 		<summary>Returns a string that represents the current object.</summary>
@@ -81,11 +92,12 @@
             Indicates a technique progress result.
             </summary>
         </member>
-        <member name="M:Sudoku.ComponentModel.TechniqueProgressResult.#ctor(System.Int32)">
+        <member name="M:Sudoku.ComponentModel.TechniqueProgressResult.#ctor(System.Int32,System.String)">
             <summary>
             Initializes an instance with the specified technique count.
             </summary>
             <param name="totalSearchers">The total number of searchers.</param>
+            <param name="globalizationString">The globalization string.</param>
         </member>
         <member name="P:Sudoku.ComponentModel.TechniqueProgressResult.Percentage">
             <summary>
@@ -100,6 +112,11 @@
         <member name="P:Sudoku.ComponentModel.TechniqueProgressResult.CurrentIndex">
             <summary>
             The current index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.ComponentModel.TechniqueProgressResult.GlobalizationString">
+            <summary>
+            The globalization string.
             </summary>
         </member>
         <member name="P:Sudoku.ComponentModel.TechniqueProgressResult.TotalSearchers">
@@ -6571,6 +6588,59 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Windows.Resources">
+            <summary>
+            Indicates the resources used later but not in the namespace <see cref="N:Sudoku.Windows"/>.
+            </summary>
+            <seealso cref="N:Sudoku.Windows"/>
+        </member>
+        <member name="F:Sudoku.Windows.Resources._dicPointer">
+            <summary>
+            Indicates the current source.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Windows.Resources.GlobalizationString">
+            <summary>
+            Indicates the current globalization string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Windows.Resources.ChangeLanguage(System.String)">
+            <summary>
+            To change the current language with the specified globalization string.
+            </summary>
+            <param name="globalizationString">The globalization string.</param>
+        </member>
+        <member name="M:Sudoku.Windows.Resources.GetValue(System.String)">
+            <summary>
+            Get the value with the specified key.
+            </summary>
+            <param name="key">The key.</param>
+            <returns>The value.</returns>
+        </member>
+        <member name="M:Sudoku.Windows.Resources.GetDictionary(System.String)">
+            <summary>
+            Get the dictionary with the specified globalization string.
+            </summary>
+            <param name="globalizationString">The globalization string.</param>
+        </member>
+        <member name="F:Sudoku.Windows.Resources.LangSourceEnUs">
+            <summary>
+            The language source for the globalization string "<c>en-us</c>".
+            </summary>
+            <remarks>
+            Here we use reflection to call and use this field, which cannot be recognized by
+            Roslyn, so we should suppress the complier warning IDE0052.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Windows.Resources.LangSourceZhCn">
+            <summary>
+            The language source for the globalization string "<c>zh-cn</c>".
+            </summary>
+            <remarks>
+            Here we use reflection to call and use this field, which cannot be recognized by
+            Roslyn, so we should suppress the complier warning IDE0052.
+            </remarks>
         </member>
         <member name="T:Sudoku.InternalSettings">
             <summary>

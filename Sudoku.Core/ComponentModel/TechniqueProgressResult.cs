@@ -9,7 +9,9 @@
 		/// Initializes an instance with the specified technique count.
 		/// </summary>
 		/// <param name="totalSearchers">The total number of searchers.</param>
-		public TechniqueProgressResult(int totalSearchers) : this() => TotalSearchers = totalSearchers;
+		/// <param name="globalizationString">The globalization string.</param>
+		public TechniqueProgressResult(int totalSearchers, string globalizationString) : this() =>
+			(TotalSearchers, GlobalizationString) = (totalSearchers, globalizationString);
 
 
 		/// <summary>
@@ -26,6 +28,11 @@
 		/// The current index.
 		/// </summary>
 		public int CurrentIndex { readonly get; set; }
+
+		/// <summary>
+		/// The globalization string.
+		/// </summary>
+		public readonly string GlobalizationString { get; }
 
 		/// <summary>
 		/// The total number of searchers.

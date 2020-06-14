@@ -164,8 +164,8 @@ namespace Sudoku.Solving.Manual
 		/// <param name="stepGrids">The step grids.</param>
 		/// <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		/// <seealso cref="SolveNaively(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, bool, ref GridProgressResult, IProgress{IProgressResult}?)"/>
-		/// <seealso cref="SolveWithStrictDifficultyRating(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, bool, ref GridProgressResult, IProgress{IProgressResult}?)"/>
+		/// <seealso cref="SolveNaively(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, bool, ref GridProgressResult, IProgress{IProgressResult}?, string?)"/>
+		/// <seealso cref="SolveWithStrictDifficultyRating(IReadOnlyGrid, Grid, List{TechniqueInfo}, IReadOnlyGrid, bool, ref GridProgressResult, IProgress{IProgressResult}?, string?)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool RecordTechnique(
 			List<TechniqueInfo> steps, TechniqueInfo step, IReadOnlyGrid grid,
@@ -244,8 +244,10 @@ namespace Sudoku.Solving.Manual
 		/// <param name="cloneation">The cloneation grid.</param>
 		/// <param name="progress">The progress reporter.</param>
 		/// <param name="progressResult">(<see langword="ref"/> parameter) The progress result.</param>
+		/// <param name="globalizationString">The globalization string.</param>
 		private static void ReportProgress(
-			IReadOnlyGrid cloneation, IProgress<IProgressResult> progress, ref GridProgressResult progressResult)
+			IReadOnlyGrid cloneation, IProgress<IProgressResult> progress,
+			ref GridProgressResult progressResult, string? globalizationString)
 		{
 			progressResult.CurrentCandidatesCount = cloneation.CandidatesCount;
 			progressResult.CurrentCellsCount = cloneation.EmptyCellsCount;

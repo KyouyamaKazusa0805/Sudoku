@@ -633,7 +633,7 @@ namespace Sudoku.Windows
 							_puzzle.ClearStack();
 						}
 
-						return _manualSolver.Solve(_puzzle, dialog.DefaultReporting);
+						return _manualSolver.Solve(_puzzle, dialog.DefaultReporting, Settings.LanguageCode);
 					});
 
 				dialog.CloseAnyway();

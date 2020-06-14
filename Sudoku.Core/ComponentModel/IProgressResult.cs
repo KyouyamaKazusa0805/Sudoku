@@ -10,6 +10,11 @@
 		/// </summary>
 		double Percentage { get; }
 
+		/// <summary>
+		/// The globalization string.
+		/// </summary>
+		string GlobalizationString { get; }
+
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		string ToString();

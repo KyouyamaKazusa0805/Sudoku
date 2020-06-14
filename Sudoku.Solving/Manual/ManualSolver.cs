@@ -30,8 +30,12 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		/// <param name="grid">The puzzle.</param>
 		/// <param name="progress">The progress instance to report the state.</param>
+		/// <param name="globalizationString">
+		/// The globalization string. The default value is <see langword="null"/>.
+		/// </param>
 		/// <returns>The analysis result.</returns>
-		public AnalysisResult Solve(IReadOnlyGrid grid, IProgress<IProgressResult>? progress)
+		public AnalysisResult Solve(
+			IReadOnlyGrid grid, IProgress<IProgressResult>? progress, string? globalizationString = null)
 		{
 			if (grid.IsValid(out var solution, out bool? sukaku))
 			{
@@ -41,7 +45,7 @@ namespace Sudoku.Solving.Manual
 				try
 				{
 					GridProgressResult defaultValue = default;
-					var progressResult = new GridProgressResult(candsCount, emptyCellsCount, candsCount);
+					var progressResult = new GridProgressResult(candsCount, emptyCellsCount, candsCount, globalizationString);
 					ref var paramProgressResult = ref progress is null ? ref defaultValue : ref progressResult;
 
 					progress?.Report(progressResult);
@@ -49,10 +53,10 @@ namespace Sudoku.Solving.Manual
 					return AnalyzeDifficultyStrictly
 						? SolveWithStrictDifficultyRating(
 							grid, grid.Clone(), TempList, solution, sukaku.Value,
-							ref paramProgressResult, progress)
+							ref paramProgressResult, progress, globalizationString)
 						: SolveNaively(
 							grid, grid.Clone(), TempList, solution, sukaku.Value,
-							ref paramProgressResult, progress);
+							ref paramProgressResult, progress, globalizationString);
 				}
 				catch (WrongHandlingException ex)
 				{

@@ -28,6 +28,7 @@ using Sudoku.Windows.Extensions;
 using static System.StringSplitOptions;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Windows.Constants.Processings;
+using CoreResources = Sudoku.Windows.Resources;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
 using WPoint = System.Windows.Point;
@@ -960,10 +961,10 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Change the language.
 		/// </summary>
-		/// <param name="globalString">The globalization string.</param>
-		private void ChangeLanguage(string globalString)
+		/// <param name="globalizationString">The globalization string.</param>
+		private void ChangeLanguage(string globalizationString)
 		{
-			Settings.LanguageCode = globalString;
+			Settings.LanguageCode = globalizationString;
 
 			// Get all possible resource dictionaries.
 			var dictionaries = new List<ResourceDictionary>();
@@ -975,7 +976,7 @@ namespace Sudoku.Windows
 
 			// Get the specified dictionary.
 			ResourceDictionary? g(string p) => dictionaries.FirstOrDefault(d => d.Source.OriginalString == p);
-			if (!((g($"Lang.{globalString}.xaml") ?? g("Lang.en-us.xaml")) is ResourceDictionary resourceDictionary))
+			if (!((g($"Lang.{globalizationString}.xaml") ?? g("Lang.en-us.xaml")) is ResourceDictionary resourceDictionary))
 			{
 				Messagings.FailedToLoadGlobalizationFile();
 				return;
@@ -983,6 +984,9 @@ namespace Sudoku.Windows
 
 			mergedDic.Remove(resourceDictionary);
 			mergedDic.Add(resourceDictionary);
+
+			// Then change the language of the library 'Sudoku.Core'.
+			CoreResources.ChangeLanguage(globalizationString);
 		}
 	}
 }
