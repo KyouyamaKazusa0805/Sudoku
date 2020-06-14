@@ -32,6 +32,7 @@ A sudoku handling SDK using brute forces and logical techniques (update graduall
 * Language version: 8.0<br/>语言版本：8.0
 * Framework: .NET Core 3.1<br/>框架：.NET Core 3.1
 * Integrated development environment: Visual Studio 2019 V16.6<br/>集成开发环境：Visual Studio 2019 V16.6
+* Program Language Support: English, Simplified Chinese<br/>程序语言支持：英语、简体中文
 
 
 
