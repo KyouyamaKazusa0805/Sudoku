@@ -113,8 +113,8 @@
 	<sys:String x:Key="_buttonColorReset">重置颜色！</sys:String>
 
 	<sys:String x:Key="AboutMeTitle">关于我</sys:String>
-	<sys:String x:Key="AboutMeLabelName">英文名</sys:String>
-	<sys:String x:Key="AboutMeLabelRealName">Sunnie</sys:String>
+	<sys:String x:Key="AboutMeName">英文名</sys:String>
+	<sys:String x:Key="AboutMeRealName">Sunnie</sys:String>
 	<sys:String x:Key="AboutMeQq">QQ</sys:String>
 	<sys:String x:Key="AboutMeRealQq">747507738</sys:String>
 	<sys:String x:Key="AboutMeGithub">GitHub</sys:String>
@@ -172,6 +172,8 @@
 	<sys:String x:Key="SpecialThanks4">Sudoku Explainer (http://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html，链接无法访问)</sys:String>
 	<sys:String x:Key="SpecialThanks5">扩展 WPF 控件集合 (Xceed)</sys:String>
 	<sys:String x:Key="SpecialThanks6">Color Picker WPF 控件</sys:String>
+
+	<sys:String x:Key="TechniquesTitle">已经实现了的技巧</sys:String>
 
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">向向的数独解决方案</sys:String>

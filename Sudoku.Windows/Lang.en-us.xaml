@@ -172,7 +172,9 @@
 	<sys:String x:Key="SpecialThanks4">Sudoku Explainer (http://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html, broken link)</sys:String>
 	<sys:String x:Key="SpecialThanks5">Extended WPF controls (Xceed)</sys:String>
 	<sys:String x:Key="SpecialThanks6">Color Picker WPF</sys:String>
-	
+
+	<sys:String x:Key="TechniquesTitle">Implemented techniques</sys:String>
+
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">Sunnie's Sudoku Solution</sys:String>
 	<sys:String x:Key="WhileGenerating">Generating...</sys:String>
