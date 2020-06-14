@@ -111,6 +111,14 @@
 	<sys:String x:Key="_labelChooseColorForCandidates">Choose color for candidates:</sys:String>
 	<sys:String x:Key="_labelChooseColorForRegions">Choose color for regions:</sys:String>
 	<sys:String x:Key="_buttonColorReset">Reset!</sys:String>
+
+	<sys:String x:Key="AboutMeTitle">About me</sys:String>
+	<sys:String x:Key="AboutMeLabelName">Name</sys:String>
+	<sys:String x:Key="AboutMeLabelRealName">Sunnie</sys:String>
+	<sys:String x:Key="AboutMeQq">QQ</sys:String>
+	<sys:String x:Key="AboutMeRealQq">747507738</sys:String>
+	<sys:String x:Key="AboutMeGithub">GitHub</sys:String>
+	<sys:String x:Key="AboutMeRealGitHub">https://github.com/Sunnie-Shine</sys:String>
 	
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">Sunnie's Sudoku Solution</sys:String>

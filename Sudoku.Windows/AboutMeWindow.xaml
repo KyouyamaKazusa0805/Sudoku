@@ -4,7 +4,7 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		mc:Ignorable="d"
-		Title="About me" Width="500" Height="120" ResizeMode="NoResize">
+		Title="{DynamicResource AboutMeTitle}" Width="500" Height="120" ResizeMode="NoResize">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="100" />
@@ -15,19 +15,19 @@
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
-		<Label Grid.Row="0" Grid.Column="0" Content="Name" HorizontalAlignment="Center"
+		<Label Grid.Row="0" Grid.Column="0" Content="{DynamicResource AboutMeLabelName}" HorizontalAlignment="Center"
 			   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0"/>
-		<Label Grid.Row="0" Grid.Column="1" Content="Sunnie" HorizontalAlignment="Center"
+		<Label Grid.Row="0" Grid.Column="1" Content="{DynamicResource AboutMeLabelRealName}" HorizontalAlignment="Center"
 			   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0"/>
-		<Label Grid.Row="1" Grid.Column="0" Content="QQ" HorizontalAlignment="Center"
+		<Label Grid.Row="1" Grid.Column="0" Content="{DynamicResource AboutMeQq}" HorizontalAlignment="Center"
 			   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0"/>
-		<Label Grid.Row="1" Grid.Column="1" Content="747507738" HorizontalAlignment="Center"
+		<Label Grid.Row="1" Grid.Column="1" Content="{DynamicResource AboutMeRealQq}" HorizontalAlignment="Center"
 			   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0"/>
-		<Label Grid.Row="2" Grid.Column="0" Content="GitHub" HorizontalAlignment="Center"
+		<Label Grid.Row="2" Grid.Column="0" Content="{DynamicResource AboutMeGithub}" HorizontalAlignment="Center"
 			   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0"/>
 		<TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center"
 				   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0">
-			<Hyperlink NavigateUri="https://github.com/Sunnie-Shine" Click="GitHubLink_Click">
+			<Hyperlink NavigateUri="{DynamicResource ResourceKey={Binding AboutMeRealGitHub}}" Click="GitHubLink_Click">
 				https://github.com/Sunnie-Shine
 			</Hyperlink>
 		</TextBlock>

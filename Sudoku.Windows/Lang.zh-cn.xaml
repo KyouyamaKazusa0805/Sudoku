@@ -112,6 +112,14 @@
 	<sys:String x:Key="_labelChooseColorForRegions">为区域选择颜色：</sys:String>
 	<sys:String x:Key="_buttonColorReset">重置颜色！</sys:String>
 
+	<sys:String x:Key="AboutMeTitle">关于我</sys:String>
+	<sys:String x:Key="AboutMeLabelName">英文名</sys:String>
+	<sys:String x:Key="AboutMeLabelRealName">Sunnie</sys:String>
+	<sys:String x:Key="AboutMeQq">QQ</sys:String>
+	<sys:String x:Key="AboutMeRealQq">747507738</sys:String>
+	<sys:String x:Key="AboutMeGithub">GitHub</sys:String>
+	<sys:String x:Key="AboutMeRealGitHub">https://github.com/Sunnie-Shine</sys:String>
+
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">向向的数独解决方案</sys:String>
 	<sys:String x:Key="WhileGenerating">出题中……</sys:String>
