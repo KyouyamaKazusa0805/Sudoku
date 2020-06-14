@@ -7563,23 +7563,21 @@
             <summary>
             Provides a tuple with a primary element.
             </summary>
-            <typeparam name="T1">The type of value 1.</typeparam>
-            <typeparam name="T2">The type of value 2.</typeparam>
+            <typeparam name="T1"> The type of the value 1.</typeparam>
+            <typeparam name="T2"> The type of the value 2.</typeparam>
         </member>
         <member name="M:System.PrimaryElementTuple`2.#ctor(`0,`1)">
             <summary>
-            Initializes an instance with two values, and the first one
+            Initializes an instance with four values, and the first one
             is the primary key.
             </summary>
-            <param name="v1">The value 1.</param>
-            <param name="v2">The value 2.</param>
         </member>
         <member name="M:System.PrimaryElementTuple`2.#ctor(`0,`1,System.Int32)">
             <summary>
-            Initializes an instance with two values and a primary key.
+            Initializes an instance with four elements and a primary key.
             </summary>
-            <param name="v1">The value 1.</param>
-            <param name="v2">The value 2.</param>
+            <param name="v1"> The value 1.</param>
+            <param name="v2"> The value 2.</param>
             <param name="primaryElementKey">The primary key.</param>
         </member>
         <member name="P:System.PrimaryElementTuple`2.Value1">
@@ -7620,26 +7618,23 @@
             <summary>
             Provides a tuple with a primary element.
             </summary>
-            <typeparam name="T1">The type of value 1.</typeparam>
-            <typeparam name="T2">The type of value 2.</typeparam>
-            <typeparam name="T3">The type of value 3.</typeparam>
+            <typeparam name="T1"> The type of the value 1.</typeparam>
+            <typeparam name="T2"> The type of the value 2.</typeparam>
+            <typeparam name="T3"> The type of the value 3.</typeparam>
         </member>
         <member name="M:System.PrimaryElementTuple`3.#ctor(`0,`1,`2)">
             <summary>
-            Initializes an instance with three values, and the first one
+            Initializes an instance with five values, and the first one
             is the primary key.
             </summary>
-            <param name="v1">The value 1.</param>
-            <param name="v2">The value 2.</param>
-            <param name="v3">The value 3.</param>
         </member>
         <member name="M:System.PrimaryElementTuple`3.#ctor(`0,`1,`2,System.Int32)">
             <summary>
-            Initializes an instance with three values and a primary key.
+            Initializes an instance with five elements and a primary key.
             </summary>
-            <param name="v1">The value 1.</param>
-            <param name="v2">The value 2.</param>
-            <param name="v3">The value 3.</param>
+            <param name="v1"> The value 1.</param>
+            <param name="v2"> The value 2.</param>
+            <param name="v3"> The value 3.</param>
             <param name="primaryElementKey">The primary key.</param>
         </member>
         <member name="P:System.PrimaryElementTuple`3.Value1">
@@ -7686,29 +7681,25 @@
             <summary>
             Provides a tuple with a primary element.
             </summary>
-            <typeparam name="T1">The type of value 1.</typeparam>
-            <typeparam name="T2">The type of value 2.</typeparam>
-            <typeparam name="T3">The type of value 3.</typeparam>
-            <typeparam name="T4">The type of value 4.</typeparam>
+            <typeparam name="T1"> The type of the value 1.</typeparam>
+            <typeparam name="T2"> The type of the value 2.</typeparam>
+            <typeparam name="T3"> The type of the value 3.</typeparam>
+            <typeparam name="T4"> The type of the value 4.</typeparam>
         </member>
         <member name="M:System.PrimaryElementTuple`4.#ctor(`0,`1,`2,`3)">
             <summary>
-            Initializes an instance with three values, and the first one
+            Initializes an instance with six values, and the first one
             is the primary key.
             </summary>
-            <param name="v1">The value 1.</param>
-            <param name="v2">The value 2.</param>
-            <param name="v3">The value 3.</param>
-            <param name="v4">The value 4.</param>
         </member>
         <member name="M:System.PrimaryElementTuple`4.#ctor(`0,`1,`2,`3,System.Int32)">
             <summary>
-            Initializes an instance with three values and a primary key.
+            Initializes an instance with six elements and a primary key.
             </summary>
-            <param name="v1">The value 1.</param>
-            <param name="v2">The value 2.</param>
-            <param name="v3">The value 3.</param>
-            <param name="v4">The value 4.</param>
+            <param name="v1"> The value 1.</param>
+            <param name="v2"> The value 2.</param>
+            <param name="v3"> The value 3.</param>
+            <param name="v4"> The value 4.</param>
             <param name="primaryElementKey">The primary key.</param>
         </member>
         <member name="P:System.PrimaryElementTuple`4.Value1">

@@ -1,0 +1,206 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+using System.Runtime.CompilerServices;
+using Sudoku.Constants;
+using Sudoku.Extensions;
+
+namespace System
+{
+<#
+string[] numbers = { "two", "three", "four", "five", "six", "seven", "eight" };
+const string summaryHeader = "/// <summary>";
+const string summaryTail = "/// </summary>";
+const string name = "PrimaryElementTuple";
+const string inheritDoc = "/// <inheritdoc/>";
+const int last = 4;
+PushIndent("	");
+for (int z = 2; z <= last; z++)
+{
+#>
+<#= summaryHeader #>
+/// Provides a tuple with a primary element.
+<#= summaryTail #>
+<#
+	for (int i = 1; i <= z; i++)
+	{
+#>
+/// <typeparam name="T<#= i #>"> The type of the value <#= i #>.</typeparam>
+<#
+	}
+#>
+public readonly struct <#= name #><<#
+	for (int i = 1; i <= z; i++)
+	{
+#>
+T<#= i #><#
+		if (i != z)
+		{
+#>, <#
+		}
+	}
+#>> : ITuple
+{
+<#
+	PushIndent("	");
+#>
+<#= summaryHeader #>
+/// Initializes an instance with <#= numbers[z] #> values, and the first one
+/// is the primary key.
+<#= summaryTail #>
+public <#= name #>(<#
+	for (int i = 1; i <= z; i++)
+	{
+#>T<#= i #> v<#= i #><#
+		if (i != z)
+		{
+#>, <#
+		}
+	}
+#>) : this(<#
+	for (int i = 1; i <= z; i++)
+	{
+#>v<#= i #>, <#
+	}
+#>1)
+{
+}
+
+<#= summaryHeader #>
+/// Initializes an instance with <#= numbers[z] #> elements and a primary key.
+<#= summaryTail #>
+<#
+	for (int i = 1; i <= z; i++)
+	{
+#>
+/// <param name="v<#= i #>"> The value <#= i #>.</param>
+<#
+	}
+#>
+/// <param name="primaryElementKey">The primary key.</param>
+<#
+#>public <#= name #>(<#
+	for (int i = 1; i <= z; i++)
+	{
+#>T<#= i #> v<#= i #>, <#
+	}
+#>
+int primaryElementKey) =>
+<# PushIndent("	"); #>(<#
+	for (int i = 1; i <= z; i++)
+	{
+#>Value<#= i #>, <#
+	}
+#>PrimaryElementKey) = (
+<#
+	PushIndent("	");
+	for (int i = 1; i <= z; i++)
+	{
+#>v<#= i #>, <#
+	}
+#>
+
+primaryElementKey >= 1 && primaryElementKey <= <#= z #>
+<# PushIndent("	"); #>
+? primaryElementKey
+: throw new ArgumentOutOfRangeException(nameof(primaryElementKey)));
+<#
+	PopIndent();
+	PopIndent();
+	PopIndent();
+#>
+
+
+<#
+	for (int i = 1; i <= z; i++)
+	{
+#>
+<#= summaryHeader #>
+/// Indicates the value <#= i #>.
+<#= summaryTail #>
+public T<#= i #> Value<#= i #> { get; }
+
+<#
+	}
+
+#>
+<#= summaryHeader #>
+/// Indicates the index of the primary value.
+<#= summaryTail #>
+public int PrimaryElementKey { get; }
+
+<#= inheritDoc #>
+int ITuple.Length => <#= z #>;
+
+<#= inheritDoc #>
+object? ITuple.this[int index] =>
+<# PushIndent("	"); #>
+PrimaryElementKey switch
+{
+<# PushIndent("	"); #>
+<#
+	for (int i = 1; i <= z; i++)
+	{
+#>
+<#= i #> => Value<#= i #>,
+<#
+	}
+#>
+_ => throw Throwings.ImpossibleCase
+<# PopIndent(); #>
+};
+<# PopIndent(); #>
+
+
+/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+<#
+	for (int i = 1; i <= z; i++)
+	{
+#>
+/// <param name="v<#= i #>">(<see langword="out"/> parameter) The value <#= i #>.</param>
+<#
+	}
+#>
+public void Deconstruct(<#
+	for (int i = 1; i <= z; i++)
+	{
+#>out T<#= i #> v<#= i #><#
+		if (i != z)
+		{
+#>, <#
+		}
+	}
+#>) => (<#
+	for (int i = 1; i <= z; i++)
+	{
+#>v<#= i #><#
+		if (i != z)
+		{
+#>, <#
+		}
+	}
+#>) = (<#
+	for (int i = 1; i <= z; i++)
+	{
+#>Value<#= i #><#
+		if (i != z)
+		{
+#>, <#
+		}
+	}
+#>);
+
+/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+public override string ToString() => ((ITuple)this)[PrimaryElementKey].NullableToString();
+<# PopIndent(); #>
+}
+<#
+	if (z != last)
+	{
+#>
+
+<#
+	}
+}
+PopIndent();
+#>
+}
