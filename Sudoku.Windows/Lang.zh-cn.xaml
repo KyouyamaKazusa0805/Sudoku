@@ -154,6 +154,14 @@
 	<sys:String x:Key="ExportAnalysisResultLabelAnalysisResult">分析结果：</sys:String>
 	<sys:String x:Key="ExportAnalysisResultButtonExport">导出</sys:String>
 
+	<sys:String x:Key="PictureSavingTitle">保存图片…</sys:String>
+	<sys:String x:Key="PictureSavingLabelSize">大小：</sys:String>
+	<sys:String x:Key="PictureSavingButtonSave">保存…</sys:String>
+	<sys:String x:Key="PictureSavingButtonCancel">取消</sys:String>
+	<sys:String x:Key="PictureSavingNullException">返回值为 null。</sys:String>
+	<sys:String x:Key="PictureSavingFilter">PNG 文件|*.png|JPG 文件|*.jpg|BMP 文件|*.bmp|GIF 文件|*.gif|WMF 文件|*.wmf</sys:String>
+	<sys:String x:Key="PictureSavingSaveDialogTitle">保存图片…</sys:String>
+
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">向向的数独解决方案</sys:String>
 	<sys:String x:Key="WhileGenerating">出题中……</sys:String>

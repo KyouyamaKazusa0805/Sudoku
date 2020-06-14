@@ -8,7 +8,9 @@ using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Layers;
+using Sudoku.Windows.Constants;
 using static System.Drawing.Imaging.ImageFormat;
+using static Sudoku.Windows.Constants.Processings;
 using PointConverter = Sudoku.Drawing.PointConverter;
 
 namespace Sudoku.Windows
@@ -69,7 +71,7 @@ namespace Sudoku.Windows
 			{
 				if (!float.TryParse(_textBoxSize.Text, out size))
 				{
-					MessageBox.Show("Please check your input. The input is invalid.", "Info");
+					Messagings.CheckInput();
 
 					size = default;
 					return !(e.Handled = true);
@@ -84,8 +86,8 @@ namespace Sudoku.Windows
 				{
 					AddExtension = true,
 					DefaultExt = "png",
-					Filter = "PNG files|*.png|JPG files|*.jpg|BMP files|*.bmp|GIF files|*.gif|WMF files|*.wmf",
-					Title = "Save picture..."
+					Filter = (string)LangSource["PictureSavingFilter"],
+					Title = (string)LangSource["PictureSavingSaveDialogTitle"]
 				};
 
 				if (!(saveFileDialog.ShowDialog() is true))
@@ -143,7 +145,7 @@ namespace Sudoku.Windows
 									2 => Bmp,
 									3 => Gif,
 									_ => throw Throwings.ImpossibleCase
-								}) ?? throw new NullReferenceException("The return value is null."),
+								}) ?? throw new NullReferenceException((string)LangSource["PictureSavingNullException"]),
 							encoderParameters);
 					}
 					else
@@ -158,8 +160,7 @@ namespace Sudoku.Windows
 				}
 				catch (Exception ex)
 				{
-					MessageBox.Show($"Failed to save the file because: {ex.Message}.", "Info");
-
+					Messagings.ShowExceptionMessage(ex);
 					return false;
 				}
 				finally

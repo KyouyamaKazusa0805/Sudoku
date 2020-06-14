@@ -264,6 +264,14 @@ namespace Sudoku.Windows.Constants
 				(string)LangSource["CaptionWarning"]);
 
 		/// <summary>
+		/// Indicates the message that warn you to check your input.
+		/// </summary>
+		public static void CheckInput() =>
+			MessageBox.Show(
+				(string)LangSource["PictureSavingNullException"],
+				(string)LangSource["CaptionInfo"]);
+
+		/// <summary>
 		/// Indicates the message while quitting.
 		/// </summary>
 		/// <returns>The <see cref="MessageBoxResult"/>.</returns>

@@ -153,6 +153,14 @@
 	<sys:String x:Key="ExportAnalysisResultShowTechniqueSteps">Show technique steps</sys:String>
 	<sys:String x:Key="ExportAnalysisResultLabelAnalysisResult">Analysis result:</sys:String>
 	<sys:String x:Key="ExportAnalysisResultButtonExport">Export</sys:String>
+
+	<sys:String x:Key="PictureSavingTitle">Saving picture...</sys:String>
+	<sys:String x:Key="PictureSavingLabelSize">Size:</sys:String>
+	<sys:String x:Key="PictureSavingButtonSave">Save...</sys:String>
+	<sys:String x:Key="PictureSavingButtonCancel">Cancel</sys:String>
+	<sys:String x:Key="PictureSavingNullException">The return value is null.</sys:String>
+	<sys:String x:Key="PictureSavingFilter">PNG files|*.png|JPG files|*.jpg|BMP files|*.bmp|GIF files|*.gif|WMF files|*.wmf</sys:String>
+	<sys:String x:Key="PictureSavingSaveDialogTitle">Save picture...</sys:String>
 	
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">Sunnie's Sudoku Solution</sys:String>
