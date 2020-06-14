@@ -127,6 +127,18 @@
 	<sys:String x:Key="BackdoorLabelSearchingDepth">搜索深度：</sys:String>
 	<sys:String x:Key="BackdoorButtonStartSearching">开始搜索</sys:String>
 
+	<sys:String x:Key="BugMultipleTitle">真数搜索…</sys:String>
+	<sys:String x:Key="BugMultipleGrid">盘面：</sys:String>
+	<sys:String x:Key="BugMultipleWhileSearching">正在搜索。当前搜索操作可能比较慢，请稍候。</sys:String>
+	<sys:String x:Key="BugMultipleLabelTrueCandidates">真数 (非 BUG 候选数)：</sys:String>
+	<sys:String x:Key="BugMultipleButtonStartSearching">开始搜索</sys:String>
+	<sys:String x:Key="BugMultipleFailCase">当前盘面不是一个 BUG 局面。</sys:String>
+	<sys:String x:Key="BugMultipleSuccessfulCase">注意，一些盘面可能包含多种情况。</sys:String>
+	<sys:String x:Key="BugMultipleThereIs">一共有</sys:String>
+	<sys:String x:Key="BugMultipleThereAre">一共有</sys:String>
+	<sys:String x:Key="BugMultipleTrueCandidatesSingular">个真数</sys:String>
+	<sys:String x:Key="BugMultipleTrueCandidatesPlural">个真数</sys:String>
+
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">向向的数独解决方案</sys:String>
 	<sys:String x:Key="WhileGenerating">出题中……</sys:String>

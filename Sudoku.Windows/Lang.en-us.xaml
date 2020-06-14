@@ -126,6 +126,18 @@
 	<sys:String x:Key="BackdoorLabelBackdoor">Backdoor:</sys:String>
 	<sys:String x:Key="BackdoorLabelSearchingDepth">Searching depth:</sys:String>
 	<sys:String x:Key="BackdoorButtonStartSearching">Start searching</sys:String>
+
+	<sys:String x:Key="BugMultipleTitle">True candidates searching...</sys:String>
+	<sys:String x:Key="BugMultipleGrid">Grid:</sys:String>
+	<sys:String x:Key="BugMultipleWhileSearching">Searching... The searching should be slow. Please wait.</sys:String>
+	<sys:String x:Key="BugMultipleLabelTrueCandidates">True candidates (Non-BUG candidates):</sys:String>
+	<sys:String x:Key="BugMultipleButtonStartSearching">Start searching</sys:String>
+	<sys:String x:Key="BugMultipleFailCase">This puzzle is not a BUG pattern.</sys:String>
+	<sys:String x:Key="BugMultipleSuccessfulCase">Note that some puzzles may contain multiple cases.</sys:String>
+	<sys:String x:Key="BugMultipleThereIs">There is</sys:String>
+	<sys:String x:Key="BugMultipleThereAre">There Are</sys:String>
+	<sys:String x:Key="BugMultipleTrueCandidatesSingular">true candidate</sys:String>
+	<sys:String x:Key="BugMultipleTrueCandidatesPlural">true candidates</sys:String>
 	
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">Sunnie's Sudoku Solution</sys:String>

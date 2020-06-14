@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Technique 'Bivalue Universal Grave + n' searching..." Height="450" Width="800">
+        Title="{DynamicResource BugMultipleTitle}" Height="450" Width="800">
     <Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition/>
@@ -18,7 +18,7 @@
 				<ColumnDefinition/>
 				<ColumnDefinition/>
 			</Grid.ColumnDefinitions>
-			<Label Content="True candidates (Non-BUG candidates):" HorizontalAlignment="Left"
+			<Label Content="{DynamicResource BugMultipleLabelTrueCandidates}" HorizontalAlignment="Left"
 				   VerticalAlignment="Bottom"/>
 		</Grid>
 		<ListBox Grid.Row="2" Grid.Column="0" Name="_listBoxTrueCandidates"/>
@@ -32,7 +32,8 @@
 			<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
 				   VerticalAlignment="Stretch" Name="_labelStatus"/>
 			<Button Grid.Row="0" Grid.Column="3" Name="_buttonStartSearching"
-					HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Start searching"
+					Content="{DynamicResource BugMultipleButtonStartSearching}"
+					HorizontalAlignment="Right" VerticalAlignment="Bottom"
 					Click="ButtonStartSearching_Click"/>
 		</Grid>
 	</Grid>

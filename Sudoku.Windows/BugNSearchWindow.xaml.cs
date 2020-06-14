@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Solving.Checking;
+using static Sudoku.Windows.Constants.Processings;
 
 namespace Sudoku.Windows
 {
@@ -31,7 +32,7 @@ namespace Sudoku.Windows
 			InitializeComponent();
 
 			_puzzle = puzzle;
-			_labelGrid.Content = $"Grid: {_puzzle:#}";
+			_labelGrid.Content = $"{LangSource["BugMultipleGrid"]}{_puzzle:#}";
 		}
 
 
@@ -43,7 +44,7 @@ namespace Sudoku.Windows
 			async ValueTask internalOperation()
 			{
 				_listBoxTrueCandidates.ClearValue(ItemsControl.ItemsSourceProperty);
-				_labelStatus.Content = "Searching... The searching may be slow. Please wait.";
+				_labelStatus.Content = (string)LangSource["BugMultipleWhileSearching"];
 
 				var list =
 					new List<PrimaryElementTuple<int, string>>(
@@ -56,16 +57,16 @@ namespace Sudoku.Windows
 				int count = list.Count;
 				if (count == 0)
 				{
-					_labelStatus.Content = "This puzzle is not a BUG pattern.";
+					_labelStatus.Content = (string)LangSource["BugMultipleFailCase"];
 				}
 				else
 				{
 					_listBoxTrueCandidates.ItemsSource = list;
-					string isOrAre = count == 1 ? "is" : "are";
 					string singularOrPlural = count == 1 ? string.Empty : "s";
 					_labelStatus.Content =
-						$"There {isOrAre} {count} true candidate{singularOrPlural} in total. " +
-						$"Note that some puzzles may contain multiple cases.";
+						$"{LangSource[count == 1 ? "ThereIs" : "ThereAre"]} " +
+						$"{count} {LangSource[$"BugMultipleTrueCandidates{(count == 1 ? "Singular" : "Plural")}"]}. " +
+						LangSource["BugMultipleSuccessfulCase"];
 				}
 			}
 		}
