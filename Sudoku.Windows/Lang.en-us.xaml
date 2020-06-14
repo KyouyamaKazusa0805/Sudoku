@@ -161,6 +161,8 @@
 	<sys:String x:Key="PictureSavingNullException">The return value is null.</sys:String>
 	<sys:String x:Key="PictureSavingFilter">PNG files|*.png|JPG files|*.jpg|BMP files|*.bmp|GIF files|*.gif|WMF files|*.wmf</sys:String>
 	<sys:String x:Key="PictureSavingSaveDialogTitle">Save picture...</sys:String>
+
+	<sys:String x:Key="ProgressTitle">Handling...</sys:String>
 	
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">Sunnie's Sudoku Solution</sys:String>

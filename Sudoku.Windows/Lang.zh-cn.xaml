@@ -162,6 +162,8 @@
 	<sys:String x:Key="PictureSavingFilter">PNG 文件|*.png|JPG 文件|*.jpg|BMP 文件|*.bmp|GIF 文件|*.gif|WMF 文件|*.wmf</sys:String>
 	<sys:String x:Key="PictureSavingSaveDialogTitle">保存图片…</sys:String>
 
+	<sys:String x:Key="ProgressTitle">处理中…</sys:String>
+
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">向向的数独解决方案</sys:String>
 	<sys:String x:Key="WhileGenerating">出题中……</sys:String>
