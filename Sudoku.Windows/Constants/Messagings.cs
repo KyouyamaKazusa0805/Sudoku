@@ -175,9 +175,9 @@ namespace Sudoku.Windows.Constants
 		/// <summary>
 		/// Indicates the message for failed to check due to invalid puzzle.
 		/// </summary>
-		public static void FailedToCheckDueToInvaildPuzzle() =>
+		public static void FailedToCheckDueToInvalidPuzzle() =>
 			MessageBox.Show(
-				(string)LangSource["FailedToCheckDueToInvaildPuzzle"],
+				(string)LangSource["FailedToCheckDueToInvalidPuzzle"],
 				(string)LangSource["CaptionWarning"]);
 
 		/// <summary>

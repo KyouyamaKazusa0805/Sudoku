@@ -782,7 +782,7 @@ namespace Sudoku.Windows
 		{
 			if (!_puzzle.IsValid(out _))
 			{
-				Messagings.FailedToCheckDueToInvaildPuzzle();
+				Messagings.FailedToCheckDueToInvalidPuzzle();
 				e.Handled = true;
 				return;
 			}
@@ -799,7 +799,7 @@ namespace Sudoku.Windows
 			{
 				if (!_puzzle.IsValid(out _))
 				{
-					Messagings.FailedToCheckDueToInvaildPuzzle();
+					Messagings.FailedToCheckDueToInvalidPuzzle();
 					e.Handled = true;
 					return;
 				}
@@ -840,7 +840,7 @@ namespace Sudoku.Windows
 			{
 				if (!_puzzle.IsValid(out _))
 				{
-					Messagings.FailedToCheckDueToInvaildPuzzle();
+					Messagings.FailedToCheckDueToInvalidPuzzle();
 					e.Handled = true;
 					return;
 				}

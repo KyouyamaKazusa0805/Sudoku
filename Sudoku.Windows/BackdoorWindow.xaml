@@ -4,7 +4,7 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		mc:Ignorable="d"
-		Title="Backdoors searching..." Height="450" Width="800" ResizeMode="CanMinimize">
+		Title="{DynamicResource BackdoorTitle}" Height="450" Width="800" ResizeMode="CanMinimize">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition/>
@@ -18,15 +18,15 @@
 				<ColumnDefinition/>
 				<ColumnDefinition/>
 			</Grid.ColumnDefinitions>
-			<Label Grid.Row="0" Grid.Column="0" Content="Backdoors:" HorizontalAlignment="Left"
-				   VerticalAlignment="Bottom"/>
+			<Label Grid.Row="0" Grid.Column="0" Content="{DynamicResource BackdoorLabelBackdoor}"
+				   HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
 			<Grid Grid.Row="0" Grid.Column="1">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="8*"/>
 					<ColumnDefinition/>
 				</Grid.ColumnDefinitions>
-				<Label Grid.Row="0" Grid.Column="0" Content="Searching depth:" HorizontalAlignment="Right"
-					   VerticalAlignment="Center"/>
+				<Label Grid.Row="0" Grid.Column="0" Content="{DynamicResource BackdoorLabelSearchingDepth}"
+					   HorizontalAlignment="Right" VerticalAlignment="Center"/>
 				<ComboBox Grid.Row="0" Grid.Column="1" SelectedIndex="0" Name="_comboBoxDepth"
 						  IsEditable="False" HorizontalContentAlignment="Center"
 						  VerticalContentAlignment="Center"
@@ -47,8 +47,9 @@
 			<Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch"
 				   VerticalAlignment="Stretch" Name="_labelStatus"/>
 			<Button Grid.Row="0" Grid.Column="1" Name="_buttonStartSearching"
-				HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Start searching"
-				Click="ButtonStartSearching_Click"/>
+					HorizontalAlignment="Right" VerticalAlignment="Bottom"
+					Content="{DynamicResource BackdoorButtonStartSearching}"
+					Click="ButtonStartSearching_Click"/>
 		</Grid>
 	</Grid>
 </Window>

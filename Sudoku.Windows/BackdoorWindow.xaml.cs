@@ -6,6 +6,8 @@ using System.Windows.Controls;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Solving.Checking;
+using Sudoku.Windows.Constants;
+using static Sudoku.Windows.Constants.Processings;
 
 namespace Sudoku.Windows
 {
@@ -35,7 +37,7 @@ namespace Sudoku.Windows
 			InitializeComponent();
 
 			_puzzle = puzzle;
-			_labelGrid.Content = $"Grid: {_puzzle:#}";
+			_labelGrid.Content = $"{LangSource["BackdoorGrid"]}{_puzzle:#}";
 		}
 
 
@@ -47,7 +49,7 @@ namespace Sudoku.Windows
 			async ValueTask internalOperation()
 			{
 				_listBoxBackdoors.ClearValue(ItemsControl.ItemsSourceProperty);
-				_labelStatus.Content = "Searching... The searching should be slow. Please wait.";
+				_labelStatus.Content = (string)LangSource["BackdoorWhileSearching"];
 
 				var collections = await Task.Run(() =>
 				{
@@ -64,9 +66,7 @@ namespace Sudoku.Windows
 				_labelStatus.ClearValue(ContentProperty);
 				if (collections is null)
 				{
-					MessageBox.Show(
-						"The specified grid is invalid. The possible case is that the grid has no or multiple solutions.",
-						"Warning");
+					Messagings.FailedToCheckDueToInvalidPuzzle();
 
 					e.Handled = true;
 					return;

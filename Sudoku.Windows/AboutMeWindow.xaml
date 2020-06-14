@@ -15,9 +15,9 @@
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
-		<Label Grid.Row="0" Grid.Column="0" Content="{DynamicResource AboutMeLabelName}" HorizontalAlignment="Center"
+		<Label Grid.Row="0" Grid.Column="0" Content="{DynamicResource AboutMeName}" HorizontalAlignment="Center"
 			   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0"/>
-		<Label Grid.Row="0" Grid.Column="1" Content="{DynamicResource AboutMeLabelRealName}" HorizontalAlignment="Center"
+		<Label Grid.Row="0" Grid.Column="1" Content="{DynamicResource AboutMeRealName}" HorizontalAlignment="Center"
 			   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0"/>
 		<Label Grid.Row="1" Grid.Column="0" Content="{DynamicResource AboutMeQq}" HorizontalAlignment="Center"
 			   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0"/>

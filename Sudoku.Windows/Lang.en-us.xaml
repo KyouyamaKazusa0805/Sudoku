@@ -113,12 +113,19 @@
 	<sys:String x:Key="_buttonColorReset">Reset!</sys:String>
 
 	<sys:String x:Key="AboutMeTitle">About me</sys:String>
-	<sys:String x:Key="AboutMeLabelName">Name</sys:String>
-	<sys:String x:Key="AboutMeLabelRealName">Sunnie</sys:String>
+	<sys:String x:Key="AboutMeName">Name</sys:String>
+	<sys:String x:Key="AboutMeRealName">Sunnie</sys:String>
 	<sys:String x:Key="AboutMeQq">QQ</sys:String>
 	<sys:String x:Key="AboutMeRealQq">747507738</sys:String>
 	<sys:String x:Key="AboutMeGithub">GitHub</sys:String>
 	<sys:String x:Key="AboutMeRealGitHub">https://github.com/Sunnie-Shine</sys:String>
+
+	<sys:String x:Key="BackdoorTitle">Backdoors searching...</sys:String>
+	<sys:String x:Key="BackdoorGrid">Grid: </sys:String>
+	<sys:String x:Key="BackdoorWhileSearching">Searching... The searching should be slow. Please wait.</sys:String>
+	<sys:String x:Key="BackdoorLabelBackdoor">Backdoor:</sys:String>
+	<sys:String x:Key="BackdoorLabelSearchingDepth">Searching depth:</sys:String>
+	<sys:String x:Key="BackdoorButtonStartSearching">Start searching</sys:String>
 	
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">Sunnie's Sudoku Solution</sys:String>
@@ -171,7 +178,7 @@
 		however if sukaku, this function cannot use because the specified puzzle has no given or modifiable values.
 	</sys:String>
 	<sys:String x:Key="FailedToPasteText">The specified puzzle pasted from clipboard is invalid.</sys:String>
-	<sys:String x:Key="FailedToCheckDueToInvaildPuzzle">The puzzle is invalid.</sys:String>
+	<sys:String x:Key="FailedToCheckDueToInvalidPuzzle">The puzzle is invalid.</sys:String>
 	<sys:String x:Key="DoesNotContainBugMultiple">The puzzle is not a valid BUG pattern.</sys:String>
 	<sys:String x:Key="DoesNotContainBackdoor">The puzzle does not have any backdoors whose level is 0 or 1, which means the puzzle can be solved difficultly with brute forces.</sys:String>
 	<sys:String x:Key="NotSupportedWhileGeneratingWithFilter">This function is for debugging use now. Sorry. &gt;_&lt;</sys:String>

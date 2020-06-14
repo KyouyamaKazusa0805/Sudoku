@@ -120,6 +120,13 @@
 	<sys:String x:Key="AboutMeGithub">GitHub</sys:String>
 	<sys:String x:Key="AboutMeRealGitHub">https://github.com/Sunnie-Shine</sys:String>
 
+	<sys:String x:Key="BackdoorTitle">搜索后门…</sys:String>
+	<sys:String x:Key="BackdoorGrid">盘面：</sys:String>
+	<sys:String x:Key="BackdoorWhileSearching">正在搜索。当前搜索操作可能比较慢，请稍候。</sys:String>
+	<sys:String x:Key="BackdoorLabelBackdoor">后门：</sys:String>
+	<sys:String x:Key="BackdoorLabelSearchingDepth">搜索深度：</sys:String>
+	<sys:String x:Key="BackdoorButtonStartSearching">开始搜索</sys:String>
+
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">向向的数独解决方案</sys:String>
 	<sys:String x:Key="WhileGenerating">出题中……</sys:String>
@@ -171,7 +178,7 @@
 		但如果是候选数数独的话，这个功能暂不支持使用，因为候选数数独是不应包含任何提示数和自己填入的数字的。
 	</sys:String>
 	<sys:String x:Key="FailedToPasteText">从剪切板粘贴的题目是不合法的。</sys:String>
-	<sys:String x:Key="FailedToCheckDueToInvaildPuzzle">当前题目不合法。</sys:String>
+	<sys:String x:Key="FailedToCheckDueToInvalidPuzzle">当前题目不合法。</sys:String>
 	<sys:String x:Key="DoesNotContainBugMultiple">当前盘式不是一个合格的 BUG 局面。</sys:String>
 	<sys:String x:Key="DoesNotContainBackdoor">当前盘式不包括任何第 0 或 1 级的后门，这意味着你无法靠随意猜一个单元格的数字来破解题目。</sys:String>
 	<sys:String x:Key="NotSupportedWhileGeneratingWithFilter">当前功能只用于程序调试。抱歉 &gt;_&lt;</sys:String>
