@@ -11,6 +11,7 @@
 		<Description>This is Sunnie's sudoku solution, you can use this to analyze, generate or solve sudokus.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
 		<ApplicationIcon>Resources\icon-32.ico</ApplicationIcon>
+		<PackageProjectUrl>https://github.com/Sunnie-Shine/Sudoku</PackageProjectUrl>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
