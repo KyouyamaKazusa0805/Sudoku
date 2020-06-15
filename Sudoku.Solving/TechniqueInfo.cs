@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Exocets;
+using Sudoku.Windows;
 
 namespace Sudoku.Solving
 {
@@ -37,7 +37,7 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Indicates the technique name.
 		/// </summary>
-		public virtual string Name => TechniqueDisplayAttribute.GetDisplayName(TechniqueCode) ?? string.Empty;
+		public virtual string Name => Resources.GetValue(TechniqueCode.ToString());
 
 		/// <summary>
 		/// The difficulty or this step.

@@ -107,7 +107,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								regionOffsets: null,
 								links: null)
 						},
-						typeCode: Plus2D,
+						typeCode: arMode ? APlus2D : Plus2D,
 						digit1: d1,
 						digit2: d2,
 						cells: urCells,
@@ -450,7 +450,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								regionOffsets: null,
 								links: null)
 						},
-						typeCode: Plus3X,
+						typeCode: arMode ? APlus3X : Plus3X,
 						digit1: d1,
 						digit2: d2,
 						cells: urCells,
@@ -1239,7 +1239,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											regionOffsets: null,
 											links: null)
 									},
-									typeCode: XyWing,
+									typeCode: arMode ? AXyWing : XyWing,
 									digit1: d1,
 									digit2: d2,
 									cells: urCells,
@@ -1341,7 +1341,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 													regionOffsets: null,
 													links: null)
 											},
-											typeCode: XyzWing,
+											typeCode: arMode ? AXyzWing : XyzWing,
 											digit1: d1,
 											digit2: d2,
 											cells: urCells,
@@ -1445,7 +1445,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 														regionOffsets: null,
 														links: null)
 												},
-												typeCode: WxyzWing,
+												typeCode: arMode ? AWxyzWing : WxyzWing,
 												digit1: d1,
 												digit2: d2,
 												cells: urCells,

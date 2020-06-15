@@ -28,7 +28,19 @@ namespace Sudoku.Solving.Manual
 		/// Indicates the hidden single.
 		/// </summary>
 		[TechniqueDisplay("Hidden Single", Category = "Singles")]
-		HiddenSingle,
+		HiddenSingleRow,
+
+		/// <summary>
+		/// Indicates the hidden single.
+		/// </summary>
+		[TechniqueDisplay("Hidden Single", Category = "Singles")]
+		HiddenSingleColumn,
+
+		/// <summary>
+		/// Indicates the hidden single.
+		/// </summary>
+		[TechniqueDisplay("Hidden Single", Category = "Singles")]
+		HiddenSingleBlock,
 
 		/// <summary>
 		/// Indicates the naked single.
@@ -642,26 +654,62 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Indicates the UVWXYZ-Wing.
 		/// </summary>
-		//[TechniqueDisplay("UVWXYZ-Wing", Category = "Wings>Regular Wings")]
+		[TechniqueDisplay("UVWXYZ-Wing", Category = "Wings>Regular Wings")]
 		UvwxyzWing,
 
 		/// <summary>
 		/// Indicates the TUVWXYZ-Wing.
 		/// </summary>
-		//[TechniqueDisplay("TUVWXYZ-Wing", Category = "Wings>Regular Wings")]
+		[TechniqueDisplay("TUVWXYZ-Wing", Category = "Wings>Regular Wings")]
 		TuvwxyzWing,
 
 		/// <summary>
 		/// Indicates the STUVWXYZ-Wing.
 		/// </summary>
-		//[TechniqueDisplay("STUVWXYZ-Wing", Category = "Wings>Regular Wings")]
+		[TechniqueDisplay("STUVWXYZ-Wing", Category = "Wings>Regular Wings")]
 		StuvwxyzWing,
 
 		/// <summary>
 		/// Indicates the RSTUVWXYZ-Wing.
 		/// </summary>
-		//[TechniqueDisplay("RSTUVWXYZ-Wing", Category = "Wings>Regular Wings")]
+		[TechniqueDisplay("RSTUVWXYZ-Wing", Category = "Wings>Regular Wings")]
 		RstuvwxyzWing,
+
+		/// <summary>
+		/// Indicates the incomplete WXYZ-Wing.
+		/// </summary>
+		[TechniqueDisplay("Incomplete WXYZ-Wing", Category = "Wings>Regular Wings")]
+		IncompleteWxyzWing,
+
+		/// <summary>
+		/// Indicates the incomplete VWXYZ-Wing.
+		/// </summary>
+		[TechniqueDisplay("Incomplete VWXYZ-Wing", Category = "Wings>Regular Wings")]
+		IncompleteVwxyzWing,
+
+		/// <summary>
+		/// Indicates the incomplete UVWXYZ-Wing.
+		/// </summary>
+		[TechniqueDisplay("Incomplete UVWXYZ-Wing", Category = "Wings>Regular Wings")]
+		IncompleteUvwxyzWing,
+
+		/// <summary>
+		/// Indicates the incomplete TUVWXYZ-Wing.
+		/// </summary>
+		[TechniqueDisplay("Incomplete TUVWXYZ-Wing", Category = "Wings>Regular Wings")]
+		IncompleteTuvwxyzWing,
+
+		/// <summary>
+		/// Indicates the incomplete STUVWXYZ-Wing.
+		/// </summary>
+		[TechniqueDisplay("Incomplete STUVWXYZ-Wing", Category = "Wings>Regular Wings")]
+		IncompleteStuvwxyzWing,
+
+		/// <summary>
+		/// Indicates the incomplete RSTUVWXYZ-Wing.
+		/// </summary>
+		[TechniqueDisplay("Incomplete RSTUVWXYZ-Wing", Category = "Wings>Regular Wings")]
+		IncompleteRstuvwxyzWing,
 
 		/// <summary>
 		/// Indicates the W-Wing.
@@ -891,6 +939,72 @@ namespace Sudoku.Solving.Manual
 		UrSdc,
 
 		/// <summary>
+		/// Indicates the AR type 1.
+		/// </summary>
+		[TechniqueDisplay("Avoidable Rectangle Type 1", Category = "Uniqueness>Rectangles")]
+		ArType1,
+
+		/// <summary>
+		/// Indicates the AR type 2.
+		/// </summary>
+		[TechniqueDisplay("Avoidable Rectangle Type 2", Category = "Uniqueness>Rectangles")]
+		ArType2,
+
+		/// <summary>
+		/// Indicates the AR type 3.
+		/// </summary>
+		[TechniqueDisplay("Avoidable Rectangle Type 3", Category = "Uniqueness>Rectangles")]
+		ArType3,
+
+		/// <summary>
+		/// Indicates the AR type 5.
+		/// </summary>
+		[TechniqueDisplay("Avoidable Rectangle Type 5", Category = "Uniqueness>Rectangles")]
+		ArType5,
+
+		/// <summary>
+		/// Indicates the hidden AR.
+		/// </summary>
+		[TechniqueDisplay("Avoidable Unique Rectangle", Category = "Uniqueness>Rectangles")]
+		HiddenAr,
+
+		/// <summary>
+		/// Indicates the AR + 2D.
+		/// </summary>
+		[TechniqueDisplay("Avoidable Rectangle + 2D", Category = "Uniqueness>Rectangles>Extended")]
+		ArPlus2D,
+
+		/// <summary>
+		/// Indicates the AR + 3X.
+		/// </summary>
+		[TechniqueDisplay("Avoidable Rectangle + 3X", Category = "Uniqueness>Rectangles>Extended")]
+		ArPlus3X,
+
+		/// <summary>
+		/// Indicates the AR-XY-Wing.
+		/// </summary>
+		[TechniqueDisplay("Avoidable Rectangle + XY-Wing", Category = "Uniqueness>Rectangles>Extended")]
+		ArXyWing,
+
+		/// <summary>
+		/// Indicates the AR-XYZ-Wing.
+		/// </summary>
+		[TechniqueDisplay("Avoidable Rectangle + XYZ-Wing", Category = "Uniqueness>Rectangles>Extended")]
+		ArXyzWing,
+
+		/// <summary>
+		/// Indicates the AR-WXYZ-Wing.
+		/// </summary>
+		[TechniqueDisplay("Avoidable Rectangle + WXYZ-Wing", Category = "Uniqueness>Rectangles>Extended")]
+		ArWxyzWing,
+
+		/// <summary>
+		/// Indicates the AR sue de coq.
+		/// </summary>
+		//[TechniqueDisplay("Avoidable Rectangle + Sue de Coq", Category = "Uniqueness>Rectangles>Extended")]
+		ArSdc,
+
+		/// <summary>
 		/// Indicates the UL type 1.
 		/// </summary>
 		[TechniqueDisplay("Unique Loop Type 1", Category = "Uniqueness>Loops")]
@@ -1113,10 +1227,22 @@ namespace Sudoku.Solving.Manual
 		XChain,
 
 		/// <summary>
+		/// Indicates the fishy cycle.
+		/// </summary>
+		[TechniqueDisplay("Fishy Cycle", Category = "Chains>Alternating Inference Chains")]
+		FishyCycle,
+
+		/// <summary>
 		/// Indicates the XY-Chain.
 		/// </summary>
 		[TechniqueDisplay("XY-Chain", Category = "Chains>Alternating Inference Chains")]
 		XyChain,
+
+		/// <summary>
+		/// Indicates the XY-Cycle.
+		/// </summary>
+		[TechniqueDisplay("XY-Cycle", Category = "Chains>Alternating Inference Chains")]
+		XyCycle,
 
 		/// <summary>
 		/// Indicates the XY-X-Chain.
@@ -1155,10 +1281,22 @@ namespace Sudoku.Solving.Manual
 		GroupedXChain,
 
 		/// <summary>
+		/// Indicates the grouped fishy cycle.
+		/// </summary>
+		[TechniqueDisplay("Grouped Fishy Cycle", Category = "Chains>Grouped Alternating Inference Chains")]
+		GroupedFishyCycle,
+
+		/// <summary>
 		/// Indicates the grouped XY-Chain.
 		/// </summary>
 		[TechniqueDisplay("Grouped XY-Chain", Category = "Chains>Grouped Alternating Inference Chains")]
 		GroupedXyChain,
+
+		/// <summary>
+		/// Indicates the grouped XY-Cycle.
+		/// </summary>
+		[TechniqueDisplay("Grouped XY-Cycle", Category = "Chains>Grouped Alternating Inference Chains")]
+		GroupedXyCycle,
 
 		/// <summary>
 		/// Indicates the grouped XY-X-Chain.
@@ -1303,12 +1441,6 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		[TechniqueDisplay("Bowman's Bingo", Category = "Last Resorts")]
 		BowmanBingo,
-
-		/// <summary>
-		/// Indicates the CCC.
-		/// </summary>
-		[TechniqueDisplay("Chute Clue Cover", Category = "Last Resorts")]
-		Ccc,
 
 		/// <summary>
 		/// Indicates the brute force.

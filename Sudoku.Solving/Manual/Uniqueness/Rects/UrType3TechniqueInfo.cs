@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			int digit1, int digit2, int[] cells, IReadOnlyList<int> extraDigits,
 			IReadOnlyList<int> extraCells, int region, bool isNaked, bool isAr)
-			: base(conclusions, views, UrTypeCode.Type3, digit1, digit2, cells, isAr) =>
+			: base(conclusions, views, isAr ? UrTypeCode.AType3 : UrTypeCode.Type3, digit1, digit2, cells, isAr) =>
 			(ExtraDigits, ExtraCells, Region, IsNaked) = (extraDigits, extraCells, region, isNaked);
 
 

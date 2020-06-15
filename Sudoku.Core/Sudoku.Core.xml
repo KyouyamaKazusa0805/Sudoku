@@ -5408,7 +5408,17 @@
             Indicates the last digit.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.HiddenSingle">
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.HiddenSingleRow">
+            <summary>
+            Indicates the hidden single.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.HiddenSingleColumn">
+            <summary>
+            Indicates the hidden single.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.HiddenSingleBlock">
             <summary>
             Indicates the hidden single.
             </summary>
@@ -5988,6 +5998,36 @@
             Indicates the RSTUVWXYZ-Wing.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.IncompleteWxyzWing">
+            <summary>
+            Indicates the incomplete WXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.IncompleteVwxyzWing">
+            <summary>
+            Indicates the incomplete VWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.IncompleteUvwxyzWing">
+            <summary>
+            Indicates the incomplete UVWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.IncompleteTuvwxyzWing">
+            <summary>
+            Indicates the incomplete TUVWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.IncompleteStuvwxyzWing">
+            <summary>
+            Indicates the incomplete STUVWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.IncompleteRstuvwxyzWing">
+            <summary>
+            Indicates the incomplete RSTUVWXYZ-Wing.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.WWing">
             <summary>
             Indicates the W-Wing.
@@ -6178,6 +6218,61 @@
             Indicates the UR sue de coq.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.ArType1">
+            <summary>
+            Indicates the AR type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.ArType2">
+            <summary>
+            Indicates the AR type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.ArType3">
+            <summary>
+            Indicates the AR type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.ArType5">
+            <summary>
+            Indicates the AR type 5.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.HiddenAr">
+            <summary>
+            Indicates the hidden AR.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.ArPlus2D">
+            <summary>
+            Indicates the AR + 2D.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.ArPlus3X">
+            <summary>
+            Indicates the AR + 3X.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.ArXyWing">
+            <summary>
+            Indicates the AR-XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.ArXyzWing">
+            <summary>
+            Indicates the AR-XYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.ArWxyzWing">
+            <summary>
+            Indicates the AR-WXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.ArSdc">
+            <summary>
+            Indicates the AR sue de coq.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.UlType1">
             <summary>
             Indicates the UL type 1.
@@ -6363,9 +6458,19 @@
             Indicates the X-Chain.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.FishyCycle">
+            <summary>
+            Indicates the fishy cycle.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.XyChain">
             <summary>
             Indicates the XY-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.XyCycle">
+            <summary>
+            Indicates the XY-Cycle.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.XyXChain">
@@ -6398,9 +6503,19 @@
             Indicates the grouped X-Chain.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedFishyCycle">
+            <summary>
+            Indicates the grouped fishy cycle.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedXyChain">
             <summary>
             Indicates the grouped XY-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedXyCycle">
+            <summary>
+            Indicates the grouped XY-Cycle.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedXyXChain">
@@ -6521,11 +6636,6 @@
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.BowmanBingo">
             <summary>
             Indicates the bowman's bingo.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.Ccc">
-            <summary>
-            Indicates the CCC.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.BruteForce">

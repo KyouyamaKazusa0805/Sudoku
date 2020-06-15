@@ -2,6 +2,7 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Windows;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {
@@ -33,7 +34,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		public IReadOnlyList<int> Candidates { get; }
 
 		/// <inheritdoc/>
-		public override string Name => $"Bivalue Universal Grave + {Candidates.Count}";
+		public override string Name => $"{Resources.GetValue("Bug")} + {Candidates.Count}";
 
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.7M + DifficultyExtra[Candidates.Count - 1];

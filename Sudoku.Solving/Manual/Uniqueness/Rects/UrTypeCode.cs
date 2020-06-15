@@ -249,5 +249,124 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		[Name("Sue de Coq")]
 		[Alias(nameof(TechniqueCode.UrSdc))]
 		Sdc = 27,
+
+		/// <summary>
+		/// Indicates the type 1 (AR + 1).
+		/// </summary>
+		[Name("Type 1")]
+		[Alias(nameof(TechniqueCode.ArType1))]
+		APlus1 = 28,
+
+		/// <summary>
+		/// Indicates the type 1 (AR + 1).
+		/// </summary>
+		[Name("Type 1")]
+		[Alias(nameof(TechniqueCode.ArType1))]
+		AType1 = 28,
+
+		/// <summary>
+		/// Indicates the type 2 (AR + 2x).
+		/// </summary>
+		[Name("Type 2")]
+		[Alias(nameof(TechniqueCode.ArType2))]
+		APlus2x = 29,
+
+		/// <summary>
+		/// Indicates the type 2 (AR + 2x).
+		/// </summary>
+		[Name("Type 2")]
+		[Alias(nameof(TechniqueCode.ArType2))]
+		AType2 = 29,
+
+		/// <summary>
+		/// Indicates the type 3 (AR + 2X).
+		/// </summary>
+		[Name("Type 3")]
+		[Alias(nameof(TechniqueCode.ArType3))]
+		APlus2X = 30,
+
+		/// <summary>
+		/// Indicates the type 3 (AR + 2X).
+		/// </summary>
+		[Name("Type 3")]
+		[Alias(nameof(TechniqueCode.ArType3))]
+		AType3 = 30,
+
+		/// <summary>
+		/// Indicates the type 5 (AR + 2d).
+		/// </summary>
+		[Name("Type 5")]
+		[Alias(nameof(TechniqueCode.ArType5))]
+		APlus2d = 32,
+
+		/// <summary>
+		/// Indicates the type 5 (AR + 3x).
+		/// </summary>
+		[Name("Type 5")]
+		[Alias(nameof(TechniqueCode.ArType5))]
+		APlus3x = 32,
+
+		/// <summary>
+		/// Indicates the type 5 (AR + 2d or AR + 3x).
+		/// </summary>
+		[Name("Type 5")]
+		[Alias(nameof(TechniqueCode.ArType5))]
+		AType5 = 32,
+
+		/// <summary>
+		/// Indicates the hidden AR (AR + 3C / 2SL).
+		/// </summary>
+		[Name("Hidden Unique Rectangle")]
+		[Alias(nameof(TechniqueCode.HiddenAr))]
+		AHidden = 34,
+
+		/// <summary>
+		/// Indicates the hidden AR (AR + 3C / 2SL).
+		/// </summary>
+		[Name("Hidden Unique Rectangle")]
+		[Alias(nameof(TechniqueCode.HiddenAr))]
+		APlus3C2SL = 34,
+
+		/// <summary>
+		/// Indicates the AR + 2D.
+		/// </summary>
+		[Name("+ 2D")]
+		[Alias(nameof(TechniqueCode.ArPlus2D))]
+		APlus2D = 35,
+
+		/// <summary>
+		/// Indicates the AR + 3X.
+		/// </summary>
+		[Name("+ 3X")]
+		[Alias(nameof(TechniqueCode.ArPlus3X))]
+		APlus3X = 38,
+
+		/// <summary>
+		/// Indicates the AR-XY-Wing.
+		/// </summary>
+		[Name("XY-Wing")]
+		[Alias(nameof(TechniqueCode.ArXyWing))]
+		AXyWing = 51,
+
+		/// <summary>
+		/// Indicates the AR-XYZ-Wing.
+		/// </summary>
+		[Name("XYZ-Wing")]
+		[Alias(nameof(TechniqueCode.ArXyzWing))]
+		AXyzWing = 51,
+
+		/// <summary>
+		/// Indicates the AR-WXYZ-Wing.
+		/// </summary>
+		[Name("WXYZ-Wing")]
+		[Alias(nameof(TechniqueCode.ArWxyzWing))]
+		AWxyzWing = 52,
+
+		/// <summary>
+		/// Indicates the AR-SdC.
+		/// </summary>
+		[Name("Sue de Coq")]
+		[Alias(nameof(TechniqueCode.ArSdc))]
+		ASdc = 53,
 	}
 }

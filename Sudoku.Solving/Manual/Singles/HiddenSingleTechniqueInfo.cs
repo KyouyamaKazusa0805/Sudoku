@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -36,15 +37,19 @@ namespace Sudoku.Solving.Manual.Singles
 		public bool EnableAndIsLastDigit { get; }
 
 		/// <inheritdoc/>
-		public override string Name =>
-			EnableAndIsLastDigit ? "Last Digit" : $"Hidden Single (In {GetLabel(RegionOffset)})";
-
-		/// <inheritdoc/>
 		public override decimal Difficulty => EnableAndIsLastDigit ? 1.1M : RegionOffset < 9 ? 1.2M : 1.5M;
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode =>
-			EnableAndIsLastDigit ? TechniqueCode.LastDigit : TechniqueCode.HiddenSingle;
+			EnableAndIsLastDigit
+				? TechniqueCode.LastDigit
+				: GetLabel(RegionOffset) switch
+				{
+					"Row" => TechniqueCode.HiddenSingleRow,
+					"Column" => TechniqueCode.HiddenSingleColumn,
+					"Block" => TechniqueCode.HiddenSingleBlock,
+					_ => throw Throwings.ImpossibleCase
+				};
 
 
 		/// <inheritdoc/>

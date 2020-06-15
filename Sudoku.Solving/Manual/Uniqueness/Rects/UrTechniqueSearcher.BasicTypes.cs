@@ -149,7 +149,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							regionOffsets: null,
 							links: null)
 					},
-					typeCode: isType5 ? Type5 : Type2,
+					typeCode: (arMode, isType5) switch
+					{
+						(true, true) => AType5,
+						(true, false) => AType2,
+						(false, true) => Type5,
+						(false, false) => Type2
+					},
 					digit1: d1,
 					digit2: d2,
 					cells: urCells,
@@ -445,7 +451,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							regionOffsets: null,
 							links: null)
 					},
-					typeCode: Type5,
+					typeCode: arMode ? AType5 : Type5,
 					digit1: d1,
 					digit2: d2,
 					cells: urCells,

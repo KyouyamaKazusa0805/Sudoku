@@ -51,15 +51,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 		/// <inheritdoc/>
 		public override decimal Difficulty =>
-			4.4M + (IsAr ? .1M : 0) + DifficultyExtra[TypeCode - UrTypeCode.XyWing];
+			4.4M + (IsAr ? .1M : 0) + DifficultyExtra[TypeCode - (IsAr ? UrTypeCode.AXyWing : UrTypeCode.XyWing)];
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.VeryHard;
-
-		/// <inheritdoc/>
-		public override string Name =>
-			$"{(IsAr ? "Avoidable" : "Unique")} Rectangle {NameAttribute.GetName(TypeCode)}";
-
 
 		/// <inheritdoc/>
 		protected override string? GetAdditional()

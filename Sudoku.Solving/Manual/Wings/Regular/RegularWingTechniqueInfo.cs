@@ -60,30 +60,6 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		public IReadOnlyList<int> CellOffsets { get; }
 
 		/// <inheritdoc/>
-		public override string Name
-		{
-			get
-			{
-				bool isIncomplete = Size == PivotCellCandidatesCount + 1;
-				switch (Size)
-				{
-					case 3:
-					{
-						return isIncomplete ? "XY-Wing" : "XYZ-Wing";
-					}
-					case int s when s >= 4 && s < 9:
-					{
-						return isIncomplete ? $"Incomplete {RegularWingNames[Size]}" : RegularWingNames[Size];
-					}
-					default:
-					{
-						throw Throwings.ImpossibleCase;
-					}
-				}
-			}
-		}
-
-		/// <inheritdoc/>
 		public override decimal Difficulty
 		{
 			get
@@ -118,17 +94,50 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode =>
-			Size switch
+			InternalName switch
 			{
-				2 => TechniqueCode.XyWing,
-				3 => TechniqueCode.XyzWing,
-				4 => TechniqueCode.WxyzWing,
-				5 => TechniqueCode.VwxyzWing,
-				6 => TechniqueCode.UvwxyzWing,
-				7 => TechniqueCode.TuvwxyzWing,
-				8 => TechniqueCode.RstuvwxyzWing,
+				"XY-Wing" => TechniqueCode.XyWing,
+				"XYZ-Wing" => TechniqueCode.XyzWing,
+				"WXYZ-Wing" => TechniqueCode.WxyzWing,
+				"VWXYZ-Wing" => TechniqueCode.VwxyzWing,
+				"UVWXYZ-Wing" => TechniqueCode.UvwxyzWing,
+				"TUVWXYZ-Wing" => TechniqueCode.TuvwxyzWing,
+				"STUVWXYZ-Wing" => TechniqueCode.StuvwxyzWing,
+				"RSTUVWXYZ-Wing" => TechniqueCode.RstuvwxyzWing,
+				"Incomplete WXYZ-Wing" => TechniqueCode.IncompleteWxyzWing,
+				"Incomplete VWXYZ-Wing" => TechniqueCode.IncompleteVwxyzWing,
+				"Incomplete UVWXYZ-Wing" => TechniqueCode.IncompleteUvwxyzWing,
+				"Incomplete TUVWXYZ-Wing" => TechniqueCode.IncompleteTuvwxyzWing,
+				"Incomplete STUVWXYZ-Wing" => TechniqueCode.IncompleteStuvwxyzWing,
+				"Incomplete RSTUVWXYZ-Wing" => TechniqueCode.IncompleteRstuvwxyzWing,
 				_ => throw Throwings.ImpossibleCase
 			};
+
+		/// <summary>
+		/// Indicates the internal name.
+		/// </summary>
+		private string InternalName
+		{
+			get
+			{
+				bool isIncomplete = Size == PivotCellCandidatesCount + 1;
+				switch (Size)
+				{
+					case 3:
+					{
+						return isIncomplete ? "XY-Wing" : "XYZ-Wing";
+					}
+					case int s when s >= 4 && s < 9:
+					{
+						return isIncomplete ? $"Incomplete {RegularWingNames[Size]}" : RegularWingNames[Size];
+					}
+					default:
+					{
+						throw Throwings.ImpossibleCase;
+					}
+				}
+			}
+		}
 
 
 		/// <inheritdoc/>

@@ -80,20 +80,6 @@ namespace Sudoku.Solving.Manual.Fishes
 		public GridMap EndofinCells { get; }
 
 		/// <inheritdoc/>
-		public override string Name =>
-			$@"{IsSashimi switch
-			{
-				null => string.Empty,
-				true => "Sashimi ",
-				false => "Finned "
-			}}{true switch
-			{
-				_ when IsBasic() => string.Empty,
-				_ when IsFranken() => "Franken ",
-				_ => "Mutant ",
-			}}{FishNames[Size]}";
-
-		/// <inheritdoc/>
 		public override decimal Difficulty =>
 			BasicDiff[Size] + IsSashimi switch
 			{
@@ -119,7 +105,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode =>
-			Name switch
+			InternalName switch
 			{
 				"X-Wing" => TechniqueCode.XWing,
 				"Finned X-Wing" => TechniqueCode.FinnedXWing,
@@ -177,6 +163,22 @@ namespace Sudoku.Solving.Manual.Fishes
 				"Sashimi Mutant Leviathan" => TechniqueCode.SashimiMutantLeviathan,
 				_ => throw new NotSupportedException("The current instance does not support this kind of fish.")
 			};
+
+		/// <summary>
+		/// The internal name.
+		/// </summary>
+		private string InternalName =>
+			$@"{IsSashimi switch
+			{
+				null => string.Empty,
+				true => "Sashimi ",
+				false => "Finned "
+			}}{true switch
+			{
+				_ when IsBasic() => string.Empty,
+				_ when IsFranken() => "Franken ",
+				_ => "Mutant ",
+			}}{FishNames[Size]}";
 
 
 		/// <inheritdoc/>

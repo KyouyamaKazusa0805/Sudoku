@@ -52,15 +52,6 @@ namespace Sudoku.Solving.Manual.Fishes
 		public IReadOnlyList<int>? FinCellOffsets { get; }
 
 		/// <inheritdoc/>
-		public override string Name =>
-			$@"{IsSashimi switch
-			{
-				null => "",
-				true => "Sashimi ",
-				false => "Finned "
-			}}{FishNames[Size]}";
-
-		/// <inheritdoc/>
 		public override decimal Difficulty =>
 			Size switch
 			{
@@ -92,7 +83,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode =>
-			Name switch
+			InternalName switch
 			{
 				"X-Wing" => TechniqueCode.XWing,
 				"Finned X-Wing" => TechniqueCode.FinnedXWing,
@@ -105,6 +96,17 @@ namespace Sudoku.Solving.Manual.Fishes
 				"Sashimi Jellyfish" => TechniqueCode.SashimiJellyfish,
 				_ => throw new NotSupportedException("The current instance does not support this kind of fish.")
 			};
+
+		/// <summary>
+		/// Indicates the internal name.
+		/// </summary>
+		private string InternalName =>
+			$@"{IsSashimi switch
+			{
+				null => "",
+				true => "Sashimi ",
+				false => "Finned "
+			}}{FishNames[Size]}";
 
 
 		/// <inheritdoc/>

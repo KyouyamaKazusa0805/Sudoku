@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public UrType1TechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			int digit1, int digit2, int[] cells, bool isAr)
-			: base(conclusions, views, UrTypeCode.Type1, digit1, digit2, cells, isAr)
+			: base(conclusions, views, isAr ? UrTypeCode.AType1 : UrTypeCode.Type1, digit1, digit2, cells, isAr)
 		{
 		}
 

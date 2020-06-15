@@ -4,6 +4,7 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
+using Sudoku.Windows;
 
 namespace Sudoku.Solving.Manual.Alses.Basic
 {
@@ -37,7 +38,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public IReadOnlyDictionary<int, Als> Alses { get; }
 
 		/// <inheritdoc/>
-		public override string Name => $"Death Blossom ({PetalsCount} Petals)";
+		public override string Name => $"{base.Name} ({PetalsCount} {Resources.GetValue("Petal")})";
 
 		/// <inheritdoc/>
 		public override decimal Difficulty => 8M + PetalsCount * .1M;

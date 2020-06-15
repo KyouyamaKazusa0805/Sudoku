@@ -53,7 +53,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		protected override string GetAdditional()
 		{
-			string xyCellStr = new CellCollection(stackalloc[] { XyCell }).ToString();
+			string xyCellStr = new CellCollection(XyCell).ToString();
 			return $"X = {X + 1}, Y = {Y + 1} and a bi-value cell {xyCellStr}";
 		}
 	}

@@ -54,14 +54,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public bool IsAr { get; }
 
 		/// <inheritdoc/>
-		public override string Name => $"{(IsAr ? "Avoidable" : "Unique")} Rectangle {NameAttribute.GetName(TypeCode)}";
+		public sealed override string Name => base.Name;
 
 		/// <inheritdoc/>
 		public sealed override bool ShowDifficulty => true;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => AliasAttribute.Convert<UrTypeCode, TechniqueCode>(TypeCode)!.Value;
-
+		public sealed override TechniqueCode TechniqueCode =>
+			AliasAttribute.Convert<UrTypeCode, TechniqueCode>(TypeCode)!.Value;
 
 		/// <inheritdoc/>
 		public override string ToString()

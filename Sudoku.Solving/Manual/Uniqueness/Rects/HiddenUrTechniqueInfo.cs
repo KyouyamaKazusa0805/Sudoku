@@ -20,12 +20,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			int digit1, int digit2, int[] cells, IReadOnlyList<ConjugatePair> conjugatePairs,
 			bool isAr)
-			: base(conclusions, views, UrTypeCode.Hidden, digit1, digit2, cells, conjugatePairs, isAr)
+			: base(
+				  conclusions, views, isAr ? UrTypeCode.AHidden : UrTypeCode.Hidden,
+				  digit1, digit2, cells, conjugatePairs, isAr)
 		{
 		}
-
-
-		/// <inheritdoc/>
-		public override string Name => $"Hidden {(IsAr ? "Avoidable" : "Unique")} Rectangle";
 	}
 }

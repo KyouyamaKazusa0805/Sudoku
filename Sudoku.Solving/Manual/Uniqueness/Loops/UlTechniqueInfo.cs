@@ -46,9 +46,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		public abstract int Type { get; }
 
 		/// <inheritdoc/>
-		public sealed override string Name => $"Unique Loop Type {Type}";
-
-		/// <inheritdoc/>
 		public sealed override decimal Difficulty =>
 			Type switch
 			{
@@ -58,6 +55,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				4 => 4.6M,
 				_ => throw Throwings.ImpossibleCase
 			} + DifficultyExtra[Loop.Count >> 1];
+
+		/// <inheritdoc/>
+		public sealed override string Name => base.Name;
 
 		/// <inheritdoc/>
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

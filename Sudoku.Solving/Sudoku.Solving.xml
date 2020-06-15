@@ -2369,9 +2369,6 @@
             Indicates the length of the instance.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
@@ -2396,7 +2393,7 @@
         <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.IsGroupedChain">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.IsGrouped">
             <summary>
             Indicates whether the chain is grouped chain.
             </summary>
@@ -4080,9 +4077,6 @@
             Indicates all endo-fins.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
@@ -4091,6 +4085,11 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.TechniqueCode">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.InternalName">
+            <summary>
+            The internal name.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.HobiwanFishTechniqueInfo.ToString">
             <inheritdoc/>
@@ -4209,9 +4208,6 @@
             Indicates all fin candidates in this fish information instance.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
@@ -4220,6 +4216,11 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.TechniqueCode">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.InternalName">
+            <summary>
+            Indicates the internal name.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueInfo.ToString">
             <inheritdoc/>
@@ -5788,9 +5789,6 @@
             Indicates whether the solver enables last digit technique.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
@@ -6718,10 +6716,10 @@
             Indicates the type.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueInfo.Name">
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueInfo.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueInfo.Name">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlTechniqueInfo.DifficultyLevel">
@@ -7553,9 +7551,6 @@
             <param name="conjugatePairs">The conjugate pairs.</param>
             <param name="isAr">Indicates whether the specified structure is an AR.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XTechniqueInfo">
             <summary>
             Provides a usage of <b>unique rectangle + 2D (or 3X)</b> or
@@ -8088,6 +8083,91 @@
             Indicates the UR-SdC.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus1">
+            <summary>
+            Indicates the type 1 (AR + 1).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.AType1">
+            <summary>
+            Indicates the type 1 (AR + 1).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus2x">
+            <summary>
+            Indicates the type 2 (AR + 2x).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.AType2">
+            <summary>
+            Indicates the type 2 (AR + 2x).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus2X">
+            <summary>
+            Indicates the type 3 (AR + 2X).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.AType3">
+            <summary>
+            Indicates the type 3 (AR + 2X).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus2d">
+            <summary>
+            Indicates the type 5 (AR + 2d).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus3x">
+            <summary>
+            Indicates the type 5 (AR + 3x).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.AType5">
+            <summary>
+            Indicates the type 5 (AR + 2d or AR + 3x).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.AHidden">
+            <summary>
+            Indicates the hidden AR (AR + 3C / 2SL).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus3C2SL">
+            <summary>
+            Indicates the hidden AR (AR + 3C / 2SL).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus2D">
+            <summary>
+            Indicates the AR + 2D.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.APlus3X">
+            <summary>
+            Indicates the AR + 3X.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.AXyWing">
+            <summary>
+            Indicates the AR-XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.AXyzWing">
+            <summary>
+            Indicates the AR-XYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.AWxyzWing">
+            <summary>
+            Indicates the AR-WXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode.ASdc">
+            <summary>
+            Indicates the AR-SdC.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo">
             <summary>
             Provides a usage of <b>unique rectangle</b> (UR) or
@@ -8135,9 +8215,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo.Name">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingTechniqueInfo.GetAdditional">
@@ -8513,9 +8590,6 @@
             Indicates all cell offsets used.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
@@ -8524,6 +8598,11 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.TechniqueCode">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.InternalName">
+            <summary>
+            Indicates the internal name.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingTechniqueInfo.ToString">
             <inheritdoc/>

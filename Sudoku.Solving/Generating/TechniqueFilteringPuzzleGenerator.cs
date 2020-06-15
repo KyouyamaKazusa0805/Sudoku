@@ -14,13 +14,11 @@ namespace Sudoku.Solving.Generating
 		/// </summary>
 		private static readonly TechniqueCodeFilter DefaultFilter =
 			new TechniqueCodeFilter(
-				new[]
-				{
-					LastDigit, FullHouse, HiddenSingle, NakedSingle,
-					NakedPair, NakedPairPlus, HiddenPair, LockedPair,
-					NakedTriple, NakedTriplePlus, HiddenTriple, LockedTriple,
-					NakedQuadruple, NakedQuadruplePlus, HiddenQuadruple,
-				});
+				LastDigit, FullHouse,
+				HiddenSingleRow, HiddenSingleColumn, HiddenSingleBlock, NakedSingle,
+				NakedPair, NakedPairPlus, HiddenPair, LockedPair,
+				NakedTriple, NakedTriplePlus, HiddenTriple, LockedTriple,
+				NakedQuadruple, NakedQuadruplePlus, HiddenQuadruple);
 
 		/// <summary>
 		/// The default manual solver.
