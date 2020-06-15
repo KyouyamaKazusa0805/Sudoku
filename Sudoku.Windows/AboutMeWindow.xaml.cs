@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Documents;
 using Sudoku.Windows.Constants;
+using static Sudoku.Windows.Constants.Processings;
 
 namespace Sudoku.Windows
 {
@@ -17,11 +18,11 @@ namespace Sudoku.Windows
 
 		private void GitHubLink_Click(object sender, RoutedEventArgs e)
 		{
-			if (sender is Hyperlink textBlock)
+			if (sender is Hyperlink)
 			{
 				try
 				{
-					Process.Start(textBlock.NavigateUri.AbsoluteUri);
+					Process.Start(new ProcessStartInfo((string)LangSource["AboutMeRealGitHub"]));
 				}
 				catch (Exception ex)
 				{
