@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// <summary>
 	/// Encapsulates an <b>almost locked sets XY-Wing</b> (ALS-XY-Wing) technique.
 	/// </summary>
-	[TechniqueDisplay("Almost Locked Sets XY-Wing")]
+	[TechniqueDisplay(nameof(TechniqueCode.AlsXyWing))]
 	public sealed class AlsXyWingTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <inheritdoc/>

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
-using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
@@ -12,7 +11,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 	/// <summary>
 	/// Encapsulates a <b>Gurth's symmetrical placement</b> (GSP) technique searcher.
 	/// </summary>
-	[TechniqueDisplay("Gurth's Symmetrical Placement")]
+	[TechniqueDisplay(nameof(TechniqueCode.Gsp))]
 	public sealed class GspTechniqueSearcher : SymmetryTechniqueSearcher
 	{
 		/// <summary>

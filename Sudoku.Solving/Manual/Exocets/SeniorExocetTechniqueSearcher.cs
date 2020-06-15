@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// <summary>
 	/// Encapsulates a <b>senior exocet</b> (SE) technique searcher.
 	/// </summary>
-	[TechniqueDisplay("Senior Exocet")]
+	[TechniqueDisplay(nameof(TechniqueCode.Se))]
 	public sealed class SeniorExocetTechniqueSearcher : ExocetTechniqueSearcher
 	{
 		/// <inheritdoc/>

@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// <summary>
 	/// Encapsulates an <b>almost locked set XZ rule</b> (ALS-XZ) technique searcher.
 	/// </summary>
-	[TechniqueDisplay("Almost Locked Sets XZ Rule")]
+	[TechniqueDisplay(nameof(TechniqueCode.SinglyLinkedAlsXz))]
 	public sealed class AlsXzTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <inheritdoc/>

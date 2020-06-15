@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	/// <summary>
 	/// Encapsulates a <b>uniqueness square</b> (US) technique searcher.
 	/// </summary>
-	[TechniqueDisplay("Unique Square")]
+	[TechniqueDisplay(nameof(TechniqueCode.UsType1))]
 	public sealed partial class UsTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>

@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// <summary>
 	/// Encapsulates a <b>3-dimension sue de coq</b> technique.
 	/// </summary>
-	[TechniqueDisplay("3-Dimension Sue de Coq")]
+	[TechniqueDisplay(nameof(TechniqueCode.Sdc3d))]
 	public sealed class Sdc3dTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <inheritdoc/>

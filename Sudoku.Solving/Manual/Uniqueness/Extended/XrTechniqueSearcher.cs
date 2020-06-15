@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	/// <summary>
 	/// Encapsulates an <b>extended rectangle</b> technique searcher.
 	/// </summary>
-	[TechniqueDisplay("Extended Rectangle")]
+	[TechniqueDisplay(nameof(TechniqueCode.XrType1))]
 	public sealed partial class XrTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>

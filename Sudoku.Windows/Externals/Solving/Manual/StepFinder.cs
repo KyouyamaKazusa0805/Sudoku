@@ -97,29 +97,29 @@ namespace Sudoku.Solving.Manual
 					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.AllowAlsCycles),
 				new DeathBlossomTechniqueSearcher(
 					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.MaxPetalsOfDeathBlossom),
-				//new GroupedAicTechniqueSearcher(
-				//	true, false, false, _settings.MainManualSolver.AicMaximumLength,
-				//	_settings.MainManualSolver.ReductDifferentPathAic,
-				//	_settings.MainManualSolver.OnlySaveShortestPathAic,
-				//	_settings.MainManualSolver.CheckHeadCollision,
-				//	_settings.MainManualSolver.CheckContinuousNiceLoop),
-				//new GroupedAicTechniqueSearcher(
-				//	false, true, false, _settings.MainManualSolver.AicMaximumLength,
-				//	_settings.MainManualSolver.ReductDifferentPathAic,
-				//	_settings.MainManualSolver.OnlySaveShortestPathAic,
-				//	_settings.MainManualSolver.CheckHeadCollision,
-				//	_settings.MainManualSolver.CheckContinuousNiceLoop),
-				//new GroupedAicTechniqueSearcher(
-				//	false, false, true, _settings.MainManualSolver.AicMaximumLength,
-				//	_settings.MainManualSolver.ReductDifferentPathAic,
-				//	_settings.MainManualSolver.OnlySaveShortestPathAic,
-				//	_settings.MainManualSolver.CheckHeadCollision,
-				//	_settings.MainManualSolver.CheckContinuousNiceLoop),
-				//new HobiwanFishTechniqueSearcher(
-				//	_settings.MainManualSolver.HobiwanFishMaximumSize,
-				//	_settings.MainManualSolver.HobiwanFishMaximumExofinsCount,
-				//	_settings.MainManualSolver.HobiwanFishMaximumEndofinsCount,
-				//	_settings.MainManualSolver.HobiwanFishCheckTemplates),
+				new GroupedAicTechniqueSearcher(
+					true, false, false, _settings.MainManualSolver.AicMaximumLength,
+					_settings.MainManualSolver.ReductDifferentPathAic,
+					_settings.MainManualSolver.OnlySaveShortestPathAic,
+					_settings.MainManualSolver.CheckHeadCollision,
+					_settings.MainManualSolver.CheckContinuousNiceLoop),
+				new GroupedAicTechniqueSearcher(
+					false, true, false, _settings.MainManualSolver.AicMaximumLength,
+					_settings.MainManualSolver.ReductDifferentPathAic,
+					_settings.MainManualSolver.OnlySaveShortestPathAic,
+					_settings.MainManualSolver.CheckHeadCollision,
+					_settings.MainManualSolver.CheckContinuousNiceLoop),
+				new GroupedAicTechniqueSearcher(
+					false, false, true, _settings.MainManualSolver.AicMaximumLength,
+					_settings.MainManualSolver.ReductDifferentPathAic,
+					_settings.MainManualSolver.OnlySaveShortestPathAic,
+					_settings.MainManualSolver.CheckHeadCollision,
+					_settings.MainManualSolver.CheckContinuousNiceLoop),
+				new HobiwanFishTechniqueSearcher(
+					_settings.MainManualSolver.HobiwanFishMaximumSize,
+					_settings.MainManualSolver.HobiwanFishMaximumExofinsCount,
+					_settings.MainManualSolver.HobiwanFishMaximumEndofinsCount,
+					_settings.MainManualSolver.HobiwanFishCheckTemplates),
 				new BowmanBingoTechniqueSearcher(solver.BowmanBingoMaximumLength),
 				new PomTechniqueSearcher(),
 				new JuniorExocetTechniqueSearcher(solver.CheckAdvancedInExocet),
@@ -149,9 +149,8 @@ namespace Sudoku.Solving.Manual
 
 				if (!(progress is null))
 				{
-					// TODO: Change them into the specified language.
 					_ = searcher.HasMarked<TechniqueSearcher, TechniqueDisplayAttribute>(out var attributes);
-					progressResult.CurrentTechnique = attributes.First().DisplayName;
+					progressResult.CurrentTechnique = Resources.GetValue($"Progress{attributes.First().DisplayName}");
 					progressResult.CurrentIndex++;
 					progress.Report(progressResult);
 				}

@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <summary>
 	/// Encapsulates a <b>guardian</b> technique searcher.
 	/// </summary>
-	[TechniqueDisplay("Guardian")]
+	[TechniqueDisplay(nameof(TechniqueCode.Guardian))]
 	[HasBug("Recursion is too slow and the handling may be wrong.")]
 	public sealed class GuardianTechniqueSearcher : SdpTechniqueSearcher
 	{

@@ -10,7 +10,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// <summary>
 	/// Encapsulates a <b>pattern overlay method</b> (POM) technique searcher.
 	/// </summary>
-	[TechniqueDisplay("Pattern Overlay")]
+	[TechniqueDisplay(nameof(TechniqueCode.Pom))]
 	public sealed class PomTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <summary>

@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// <summary>
 	/// Encapsulates a <b>Bowman's bingo</b> technique searcher.
 	/// </summary>
-	[TechniqueDisplay("Bowman's Bingo")]
+	[TechniqueDisplay(nameof(TechniqueCode.BowmanBingo))]
 	public sealed class BowmanBingoTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <summary>

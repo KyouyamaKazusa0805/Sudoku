@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// <summary>
 	/// Encapsulates a <b>domino loop</b> technique.
 	/// </summary>
-	[TechniqueDisplay("SK-Loop")]
+	[TechniqueDisplay(nameof(TechniqueCode.SkLoop))]
 	[HighAllocation]
 	public sealed partial class SkLoopTechniqueSearcher : MslsTechniqueSearcher
 	{

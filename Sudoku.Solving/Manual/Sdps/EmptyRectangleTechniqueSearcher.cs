@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <summary>
 	/// Encapsulates an empty rectangle technique searcher.
 	/// </summary>
-	[TechniqueDisplay("Empty Rectangle")]
+	[TechniqueDisplay(nameof(TechniqueCode.EmptyRectangle))]
 	public sealed class EmptyRectangleTechniqueSearcher : SdpTechniqueSearcher
 	{
 		/// <summary>

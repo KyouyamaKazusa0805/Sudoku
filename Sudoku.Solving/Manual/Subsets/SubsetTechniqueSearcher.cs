@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Subsets
 	/// <summary>
 	/// Encapsulates a <b>subset</b> technique searcher.
 	/// </summary>
-	[TechniqueDisplay("Subsets")]
+	[TechniqueDisplay(nameof(TechniqueCode.NakedPair))]
 	public sealed class SubsetTechniqueSearcher : TechniqueSearcher
 	{
 		/// <summary>

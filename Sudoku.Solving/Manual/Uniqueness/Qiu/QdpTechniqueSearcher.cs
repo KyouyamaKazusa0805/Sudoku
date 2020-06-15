@@ -35,7 +35,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// <item><term>B</term><description>Base Line Cells.</description></item>
 	/// </list>
 	/// </summary>
-	[TechniqueDisplay("Qiu's Deadly Pattern")]
+	[TechniqueDisplay(nameof(TechniqueCode.QdpType1))]
 	public sealed partial class QdpTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>

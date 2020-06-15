@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// <summary>
 	/// Encapsulates a <b>template</b> technique searcher.
 	/// </summary>
-	[TechniqueDisplay("Template")]
+	[TechniqueDisplay(nameof(TechniqueCode.TemplateSet))]
 	public sealed class TemplateTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <summary>

@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Singles
 	/// <summary>
 	/// Encapsulates a <b>single</b> technique searcher.
 	/// </summary>
-	[TechniqueDisplay("Singles")]
+	[TechniqueDisplay(nameof(TechniqueCode.NakedSingle))]
 	public sealed class SingleTechniqueSearcher : TechniqueSearcher
 	{
 		/// <summary>

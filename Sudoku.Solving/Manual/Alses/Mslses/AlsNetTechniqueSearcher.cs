@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// the real technique, different with the abstract class <see cref="MslsTechniqueSearcher"/>.
 	/// </summary>
 	/// <seealso cref="MslsTechniqueSearcher"/>
-	[TechniqueDisplay("Multi-sector Locked Sets")]
+	[TechniqueDisplay(nameof(TechniqueCode.Msls))]
 	public sealed partial class AlsNetTechniqueSearcher : MslsTechniqueSearcher
 	{
 		/// <summary>

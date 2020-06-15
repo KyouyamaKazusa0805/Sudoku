@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// <summary>
 	/// Encapsulates a <b>bivalue universal grave</b> (BUG) technique searcher.
 	/// </summary>
-	[TechniqueDisplay("Bivalue Universal Grave")]
+	[TechniqueDisplay(nameof(TechniqueCode.BugType1))]
 	public sealed class BugTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>

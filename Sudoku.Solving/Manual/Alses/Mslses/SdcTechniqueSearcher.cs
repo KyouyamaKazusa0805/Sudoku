@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// Encapsulates a <b>sue de coq</b> (SdC) technique searcher.
 	/// Cannibalistic SdCs can be found also.
 	/// </summary>
-	[TechniqueDisplay("Sue de Coq")]
+	[TechniqueDisplay(nameof(TechniqueCode.Sdc))]
 	public sealed class SdcTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <inheritdoc/>

@@ -14,6 +14,7 @@ using Sudoku.Solving.Manual;
 using Sudoku.Windows.Constants;
 using Sudoku.Windows.Extensions;
 using Sudoku.Windows.Tooling;
+using CoreResources = Sudoku.Windows.Resources;
 
 namespace Sudoku.Windows
 {
@@ -138,7 +139,7 @@ namespace Sudoku.Windows
 					{
 						Content =
 							new PrimaryElementTuple<string, int, Type>(
-								attributes.First().DisplayName,
+								CoreResources.GetValue($"Progress{attributes.First().DisplayName}"),
 								(int)(
 									type.GetProperty(
 										"Priority",

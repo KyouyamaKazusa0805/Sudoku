@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// <summary>
 	/// Encapsulates a <b>locked candidates</b> (LC) technique searcher.
 	/// </summary>
-	[TechniqueDisplay("Locked Candidates")]
+	[TechniqueDisplay(nameof(TechniqueCode.Pointing))]
 	public sealed class LcTechniqueSearcher : IntersectionTechniqueSearcher
 	{
 		/// <summary>
