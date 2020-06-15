@@ -6727,6 +6727,10 @@
             </summary>
             <param name="key">The key.</param>
             <returns>The value.</returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">
+            Throws when the key cannot be found in both the current language dictionary
+            and the default dictionary.
+            </exception>
         </member>
         <member name="M:Sudoku.Windows.Resources.GetDictionary(System.String)">
             <summary>

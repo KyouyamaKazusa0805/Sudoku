@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using static System.Reflection.BindingFlags;
 using SourceDictionary = System.Collections.Generic.IReadOnlyDictionary<string, string>;
@@ -35,7 +36,14 @@ namespace Sudoku.Windows
 		/// </summary>
 		/// <param name="key">The key.</param>
 		/// <returns>The value.</returns>
-		public static string GetValue(string key) => _dicPointer[key];
+		/// <exception cref="KeyNotFoundException">
+		/// Throws when the key cannot be found in both the current language dictionary
+		/// and the default dictionary.
+		/// </exception>
+		public static string GetValue(string key) =>
+			_dicPointer.TryGetValue(key, out string? result) || LangSourceEnUs.TryGetValue(key, out result)
+				? result
+				: throw new KeyNotFoundException();
 
 		/// <summary>
 		/// Get the dictionary with the specified globalization string.
