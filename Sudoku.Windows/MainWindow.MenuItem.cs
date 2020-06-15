@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
+using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
@@ -30,7 +31,6 @@ using DColor = System.Drawing.Color;
 using SudokuGrid = Sudoku.Data.Grid;
 #if SUDOKU_RECOGNIZING
 using System.Drawing;
-using Sudoku.Windows.Constants;
 #endif
 #if DEBUG
 using Sudoku.Solving.Manual;
