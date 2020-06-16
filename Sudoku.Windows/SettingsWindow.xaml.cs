@@ -95,10 +95,10 @@ namespace Sudoku.Windows
 			_numericUpDownMaximumExofinsHobiwanFish.CurrentValue = Settings.MainManualSolver.HobiwanFishMaximumExofinsCount;
 			_numericUpDownMaximumEndofinsHobiwanFish.CurrentValue = Settings.MainManualSolver.HobiwanFishMaximumEndofinsCount;
 			_checkBoxHobiwanFishCheckTemplates.IsChecked = Settings.MainManualSolver.HobiwanFishCheckTemplates;
-			_textBoxGridLineWidth.Text = Settings.GridLineWidth.ToString();
-			_textBoxBlockLineWidth.Text = Settings.BlockLineWidth.ToString();
-			_textBoxValueScale.Text = Settings.ValueScale.ToString();
-			_textBoxCandidateScale.Text = Settings.CandidateScale.ToString();
+			_numericUpDownGridLineWidth.CurrentValue = (decimal)Settings.GridLineWidth;
+			_numericUpDownBlockLineWidth.CurrentValue = (decimal)Settings.BlockLineWidth;
+			_numericUpDownValueScale.CurrentValue = Settings.ValueScale;
+			_numericUpDownCandidateScale.CurrentValue = Settings.CandidateScale;
 			_labelGivenFontName.Content = Settings.GivenFontName;
 			_labelGivenFontName.FontFamily = new FontFamily(Settings.GivenFontName);
 			_labelModifiableFontName.Content = Settings.ModifiableFontName;
@@ -217,57 +217,38 @@ namespace Sudoku.Windows
 
 		private void NumericUpDownMaxPetalsOfDeathBlossom_ValueChanged(object sender, RoutedEventArgs e) =>
 			_assigments += () =>
-			_manualSolver.MaxPetalsOfDeathBlossom = _numericUpDownMaxPetalsOfDeathBlossom.CurrentValue;
+			_manualSolver.MaxPetalsOfDeathBlossom = (int)_numericUpDownMaxPetalsOfDeathBlossom.CurrentValue;
 
 		private void CheckBoxCheckAdvancedInExocet_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxCheckAdvancedInExocet.IsChecked = _manualSolver.CheckAdvancedInExocet ^= true;
 
 		private void NumericUpDownMaximumSizeHobiwanFish_ValueChanged(object sender, RoutedEventArgs e) =>
-			_assigments += () => _manualSolver.HobiwanFishMaximumSize = _numericUpDownMaximumSizeHobiwanFish.CurrentValue;
+			_assigments += () =>
+			_manualSolver.HobiwanFishMaximumSize = (int)_numericUpDownMaximumSizeHobiwanFish.CurrentValue;
 
 		private void NumericUpDownExofinsHobiwanFish_ValueChanged(object sender, RoutedEventArgs e) =>
 			_assigments += () =>
-			_manualSolver.HobiwanFishMaximumExofinsCount = _numericUpDownMaximumExofinsHobiwanFish.CurrentValue;
+			_manualSolver.HobiwanFishMaximumExofinsCount = (int)_numericUpDownMaximumExofinsHobiwanFish.CurrentValue;
 
 		private void NumericUpDownMaximumEndofinsHobiwanFish_ValueChanged(object sender, RoutedEventArgs e) =>
 			_assigments += () =>
-			_manualSolver.HobiwanFishMaximumEndofinsCount = _numericUpDownMaximumEndofinsHobiwanFish.CurrentValue;
+			_manualSolver.HobiwanFishMaximumEndofinsCount = (int)_numericUpDownMaximumEndofinsHobiwanFish.CurrentValue;
 
 		private void CheckBoxHobiwanFishCheckTemplates_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () =>
 			_checkBoxHobiwanFishCheckTemplates.IsChecked = _manualSolver.HobiwanFishCheckTemplates ^= true;
 
-		private void TextBoxGridLineWidth_TextChanged(object sender, TextChangedEventArgs e)
-		{
-			if (sender is TextBox textBox && float.TryParse(textBox.Text, out float value))
-			{
-				_assigments += () => Settings.GridLineWidth = value;
-			}
-		}
+		private void NumericUpDownGridLineWidth_ValueChanged(object sender, RoutedEventArgs e) =>
+			_assigments += () => Settings.GridLineWidth = (float)_numericUpDownGridLineWidth.CurrentValue;
 
-		private void TextBoxBlockLineWidth_TextChanged(object sender, TextChangedEventArgs e)
-		{
-			if (sender is TextBox textBox && float.TryParse(textBox.Text, out float value))
-			{
-				_assigments += () => Settings.BlockLineWidth = value;
-			}
-		}
+		private void NumericUpDownBlockLineWidth_ValueChanged(object sender, RoutedEventArgs e) =>
+			_assigments += () => Settings.BlockLineWidth = (float)_numericUpDownBlockLineWidth.CurrentValue;
 
-		private void TextBoxValueScale_TextChanged(object sender, TextChangedEventArgs e)
-		{
-			if (sender is TextBox textBox && decimal.TryParse(textBox.Text, out decimal value))
-			{
-				_assigments += () => Settings.ValueScale = value;
-			}
-		}
+		private void NumericUpDownValueScale_ValueChanged(object sender, RoutedEventArgs e) =>
+			_assigments += () => Settings.ValueScale = _numericUpDownValueScale.CurrentValue;
 
-		private void TextBoxCandidateScale_TextChanged(object sender, TextChangedEventArgs e)
-		{
-			if (sender is TextBox textBox && decimal.TryParse(textBox.Text, out decimal value))
-			{
-				_assigments += () => Settings.CandidateScale = value;
-			}
-		}
+		private void NumericUpDownCandidateScale_ValueChanged(object sender, RoutedEventArgs e) =>
+			_assigments += () => Settings.CandidateScale = _numericUpDownCandidateScale.CurrentValue;
 
 		private void ButtonGivenFontName_Click(object sender, RoutedEventArgs e)
 		{
@@ -445,7 +426,7 @@ namespace Sudoku.Windows
 		private void ButtonColor15_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 15);
 
 		private void NumericUpDownMaxLength_ValueChanged(object sender, RoutedEventArgs e) =>
-			_assigments += () => _manualSolver.AicMaximumLength = _numericUpDownMaxLength.CurrentValue;
+			_assigments += () => _manualSolver.AicMaximumLength = (int)_numericUpDownMaxLength.CurrentValue;
 
 		private void CheckBoxAllowOverlappingAlses_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxAllowOverlappingAlses.IsChecked = _manualSolver.AllowOverlappingAlses ^= true;
@@ -458,7 +439,8 @@ namespace Sudoku.Windows
 			_assigments += () => _checkBoxAllowAlsCycles.IsChecked = _manualSolver.AllowAlsCycles ^= true;
 
 		private void NumericUpDownBowmanBingoMaxLength_ValueChanged(object sender, RoutedEventArgs e) =>
-			_assigments += () => _manualSolver.BowmanBingoMaximumLength = _numericUpDownBowmanBingoMaxLength.CurrentValue;
+			_assigments += () =>
+			_manualSolver.BowmanBingoMaximumLength = (int)_numericUpDownBowmanBingoMaxLength.CurrentValue;
 
 		private void CheckBoxAllowAlq_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxAllowAlq.IsChecked = _manualSolver.CheckAlmostLockedQuadruple ^= true;
@@ -474,7 +456,7 @@ namespace Sudoku.Windows
 			_checkBoxCheckIncompleteUr.IsChecked = _manualSolver.CheckIncompleteUniquenessPatterns ^= true;
 
 		private void NumericUpDownMaxRegularWingSize_ValueChanged(object sender, RoutedEventArgs e) =>
-			_assigments += () => _manualSolver.CheckRegularWingSize = _numericUpDownMaxRegularWingSize.CurrentValue;
+			_assigments += () => _manualSolver.CheckRegularWingSize = (int)_numericUpDownMaxRegularWingSize.CurrentValue;
 
 		private void CheckBoxOnlyRecordShortestPathAic_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxOnlyRecordShortestPathAic.IsChecked = _manualSolver.OnlySaveShortestPathAic ^= true;
@@ -513,7 +495,8 @@ namespace Sudoku.Windows
 		}
 
 		private void CheckBoxEnableGcForcedly_Click(object sender, RoutedEventArgs e) =>
-			_assigments += () => _checkBoxEnableGcForcedly.IsEnabled = _manualSolver.EnableGarbageCollectionForcedly ^= true;
+			_assigments += () =>
+			_checkBoxEnableGcForcedly.IsEnabled = _manualSolver.EnableGarbageCollectionForcedly ^= true;
 
 		private void ListBoxPriority_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
@@ -522,13 +505,10 @@ namespace Sudoku.Windows
 				&& listBox.SelectedItem is ListBoxItem listBoxItem
 				&& listBoxItem.Content is PrimaryElementTuple<string, int, Type> triplet)
 			{
-				_assigments += () =>
-				{
-					var (_, priority, type) = triplet;
-					_checkBoxIsEnabled.IsChecked = (bool)type.GetProperty("IsEnabled")!.GetValue(null)!;
-					_textBoxPriority.Text = priority.ToString();
-					_checkBoxIsEnabled.IsEnabled = _textBoxPriority.IsReadOnly = !type.HasMarked<AlwaysEnableAttribute>();
-				};
+				var (_, priority, type) = triplet;
+				_checkBoxIsEnabled.IsChecked = (bool)type.GetProperty("IsEnabled")!.GetValue(null)!;
+				_textBoxPriority.Text = priority.ToString();
+				_checkBoxIsEnabled.IsEnabled = _textBoxPriority.IsReadOnly = !type.HasMarked<AlwaysEnableAttribute>();
 			}
 		}
 	}

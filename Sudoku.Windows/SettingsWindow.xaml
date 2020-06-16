@@ -278,40 +278,43 @@
 						<ColumnDefinition/>
 					</Grid.ColumnDefinitions>
 					<Label Grid.Row="0" Grid.Column="0" Content="{DynamicResource SettingsDrawingGridLineWidth}"/>
-					<TextBox Grid.Row="0" Grid.Column="1" Name="_textBoxGridLineWidth"
-							 HorizontalContentAlignment="Center"
-							 VerticalContentAlignment="Center"
-							 TextChanged="TextBoxGridLineWidth_TextChanged"/>
+					<c:NumericUpDown Grid.Row="0" Grid.Column="1"
+									 x:Name="_numericUpDownGridLineWidth"
+									 MinValue="0.1" MaxValue="10" IncreasingUnit="0.1"
+									 ValueChanged="NumericUpDownGridLineWidth_ValueChanged"/>
 					<Label Grid.Row="1" Grid.Column="0" Content="{DynamicResource SettingsDrawingBlockLineWidth}"/>
-					<TextBox Grid.Row="1" Grid.Column="1" Name="_textBoxBlockLineWidth"
-							 HorizontalContentAlignment="Center"
-							 VerticalContentAlignment="Center"
-							 TextChanged="TextBoxBlockLineWidth_TextChanged"/>
+					<c:NumericUpDown Grid.Row="1" Grid.Column="1"
+									 x:Name="_numericUpDownBlockLineWidth"
+									 MinValue="0.1" MaxValue="10" IncreasingUnit="0.1"
+									 ValueChanged="NumericUpDownBlockLineWidth_ValueChanged"/>
 					<Label Grid.Row="2" Grid.Column="0" Content="{DynamicResource SettingsDrawingValueScale}"/>
-					<TextBox Grid.Row="2" Grid.Column="1" Name="_textBoxValueScale"
-							 HorizontalContentAlignment="Center"
-							 VerticalContentAlignment="Center"
-							 TextChanged="TextBoxValueScale_TextChanged"/>
+					<c:NumericUpDown Grid.Row="2" Grid.Column="1"
+									 x:Name="_numericUpDownValueScale"
+									 MinValue="0.1" MaxValue="1" IncreasingUnit="0.1"
+									 ValueChanged="NumericUpDownValueScale_ValueChanged"/>
 					<Label Grid.Row="3" Grid.Column="0" Content="{DynamicResource SettingsDrawingCandidateScale}"/>
-					<TextBox Grid.Row="3" Grid.Column="1" Name="_textBoxCandidateScale"
-							 HorizontalContentAlignment="Center"
-							 VerticalContentAlignment="Center"
-							 TextChanged="TextBoxCandidateScale_TextChanged"/>
+					<c:NumericUpDown Grid.Row="3" Grid.Column="1"
+									 x:Name="_numericUpDownCandidateScale"
+									 MinValue="0.1" MaxValue="1" IncreasingUnit="0.1"
+									 ValueChanged="NumericUpDownCandidateScale_ValueChanged"/>
 					<Label Grid.Row="4" Grid.Column="0" Content="{DynamicResource SettingsDrawingGivenFontName}"/>
 					<Button Grid.Row="4" Grid.Column="1" Content="{DynamicResource SettingsDrawingChangeFont}"
 							Name="_buttonGivenFontName"
 							Click="ButtonGivenFontName_Click"/>
-					<Label Grid.Row="4" Grid.Column="2" Name="_labelGivenFontName"/>
+					<Label Grid.Row="4" Grid.Column="2" Name="_labelGivenFontName"
+						   HorizontalAlignment="Left" VerticalAlignment="Center"/>
 					<Label Grid.Row="5" Grid.Column="0" Content="{DynamicResource SettingsDrawingModifiableFontName}"/>
 					<Button Grid.Row="5" Grid.Column="1" Content="{DynamicResource SettingsDrawingChangeFont}"
 							Name="_buttonModifiableFontName"
 							Click="ButtonModifiableFontName_Click"/>
-					<Label Grid.Row="5" Grid.Column="2" Name="_labelModifiableFontName"/>
+					<Label Grid.Row="5" Grid.Column="2" Name="_labelModifiableFontName"
+						   HorizontalAlignment="Left" VerticalAlignment="Center"/>
 					<Label Grid.Row="6" Grid.Column="0" Content="{DynamicResource SettingsDrawingCandidateFontName}"/>
 					<Button Grid.Row="6" Grid.Column="1" Content="{DynamicResource SettingsDrawingChangeFont}"
 							Name="_buttonCandidateFontName"
 							Click="ButtonCandidateFontName_Click"/>
-					<Label Grid.Row="6" Grid.Column="2" Name="_labelCandidateFontName"/>
+					<Label Grid.Row="6" Grid.Column="2" Name="_labelCandidateFontName"
+						   HorizontalAlignment="Left" VerticalAlignment="Center"/>
 					<Label Grid.Row="7" Grid.Column="0" Content="{DynamicResource SettingsDrawingBackColor}"/>
 					<Button Name="_buttonBackgroundColor" Grid.Row="7" Grid.Column="1"
 							Content="{DynamicResource SettingsPaletteChangeColor}"

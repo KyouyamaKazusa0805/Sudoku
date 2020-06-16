@@ -11,7 +11,7 @@ namespace Sudoku.Windows.Tooling
 		/// <summary>
 		/// Indicates the current value.
 		/// </summary>
-		private int _currentValue;
+		private decimal _currentValue;
 
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
@@ -22,7 +22,7 @@ namespace Sudoku.Windows.Tooling
 		/// Indicates the current value.
 		/// </summary>
 		/// <value>The value to set.</value>
-		public int CurrentValue
+		public decimal CurrentValue
 		{
 			get => _currentValue;
 			set
@@ -41,12 +41,17 @@ namespace Sudoku.Windows.Tooling
 		/// <summary>
 		/// Indicates the minimum value the control supports.
 		/// </summary>
-		public int MinValue { get; set; } = 0;
+		public decimal MinValue { get; set; } = 0;
 
 		/// <summary>
 		/// Indicates the maximum value the control supports.
 		/// </summary>
-		public int MaxValue { get; set; } = 100;
+		public decimal MaxValue { get; set; } = 100M;
+
+		/// <summary>
+		/// Indicates the increasing unit.
+		/// </summary>
+		public decimal IncreasingUnit { get; set; } = 1M;
 
 
 		/// <summary>
@@ -59,7 +64,7 @@ namespace Sudoku.Windows.Tooling
 		{
 			if (sender is TextBox textBox)
 			{
-				if (int.TryParse(textBox.Text, out int value))
+				if (decimal.TryParse(textBox.Text, out decimal value))
 				{
 					CurrentValue = value;
 				}
@@ -71,9 +76,9 @@ namespace Sudoku.Windows.Tooling
 		}
 
 		private void ButtonUp_Click(object sender, RoutedEventArgs e) =>
-			_textBoxInner.Text = (++CurrentValue).ToString();
+			_textBoxInner.Text = (CurrentValue += IncreasingUnit).ToString();
 
 		private void ButtonDown_Click(object sender, RoutedEventArgs e) =>
-			_textBoxInner.Text = (--CurrentValue).ToString();
+			_textBoxInner.Text = (CurrentValue -= IncreasingUnit).ToString();
 	}
 }
