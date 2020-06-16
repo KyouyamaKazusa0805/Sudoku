@@ -395,8 +395,7 @@
 		/// </summary>
 		/// <remarks>
 		/// In fact this value can be 9 at most (i.e. <c>value &gt;&#61; 3
-		/// &amp;&amp; value &lt;&#61; 9</c>) theoretically, however the searching
-		/// is too low so I do not allow them.
+		/// &amp;&amp; value &lt;&#61; 9</c>) theoretically.
 		/// </remarks>
 		public int CheckRegularWingSize { get; set; } = 5;
 

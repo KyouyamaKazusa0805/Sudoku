@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Sudoku.Windows.Tooling.NumericUpDown"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 mc:Ignorable="d"
+			 d:DesignHeight="40" d:DesignWidth="100">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="4*"/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<TextBox Name="_textBoxInner" Text="{Binding CurrentValue}"
+				 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+				 TextChanged="TextBoxInner_TextChanged"/>
+		<Grid Grid.Column="1">
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<Button Name="_buttonUp" Content="&lt;" Click="ButtonUp_Click">
+				<Button.LayoutTransform>
+					<RotateTransform Angle="90"/>
+				</Button.LayoutTransform>
+			</Button>
+			<Button Grid.Row="1" Name="_buttonDown" Content="&gt;" Click="ButtonDown_Click">
+				<Button.LayoutTransform>
+					<RotateTransform Angle="90"/>
+				</Button.LayoutTransform>
+			</Button>
+		</Grid>
+	</Grid>
+</UserControl>

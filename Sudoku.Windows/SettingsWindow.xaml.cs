@@ -28,7 +28,7 @@ namespace Sudoku.Windows
 		/// </summary>
 		private readonly ManualSolver _manualSolver;
 
-
+		
 		/// <summary>
 		/// Initializes an instance with a <see cref="Windows.Settings"/> instance
 		/// and a <see cref="ManualSolver"/> instance.
@@ -74,10 +74,10 @@ namespace Sudoku.Windows
 			_textBoxBowmanBingoMaxLength.Text = Settings.MainManualSolver.BowmanBingoMaximumLength.ToString();
 			_checkBoxAllowAlq.IsChecked = Settings.MainManualSolver.CheckAlmostLockedQuadruple;
 			_checkBoxCheckIncompleteUr.IsChecked = Settings.MainManualSolver.CheckIncompleteUniquenessPatterns;
-			_textBoxMaxRegularWingSize.Text = Settings.MainManualSolver.CheckRegularWingSize.ToString();
+			_numericUpDownMaxRegularWingSize.CurrentValue = Settings.MainManualSolver.CheckRegularWingSize;
 			_checkBoxUseExtendedBugSearcher.IsChecked = Settings.MainManualSolver.UseExtendedBugSearcher;
 			_checkBoxSearchExtendedUniqueRectangle.IsChecked = Settings.MainManualSolver.SearchExtendedUniqueRectangles;
-			_textBoxMaxPetalsOfDeathBlossom.Text = Settings.MainManualSolver.MaxPetalsOfDeathBlossom.ToString();
+			_numericUpDownMaxPetalsOfDeathBlossom.CurrentValue = Settings.MainManualSolver.MaxPetalsOfDeathBlossom;
 			_checkBoxCheckAdvancedInExocet.IsChecked = Settings.MainManualSolver.CheckAdvancedInExocet;
 			_textBoxMaximumSizeHobiwanFish.Text = Settings.MainManualSolver.HobiwanFishMaximumSize.ToString();
 			_textBoxMaximumExofinsHobiwanFish.Text = Settings.MainManualSolver.HobiwanFishMaximumExofinsCount.ToString();
@@ -194,20 +194,8 @@ namespace Sudoku.Windows
 		private void CheckBoxSearchExtendedUniqueRectangle_Click(object sender, RoutedEventArgs e) =>
 			_checkBoxSearchExtendedUniqueRectangle.IsChecked = _manualSolver.SearchExtendedUniqueRectangles ^= true;
 
-		private void TextBoxMaxPetalsOfDeathBlossom_TextChanged(object sender, TextChangedEventArgs e)
-		{
-			if (sender is TextBox textBox && int.TryParse(textBox.Text, out int value))
-			{
-				if (value >= 2 && value <= 9)
-				{
-					_manualSolver.MaxPetalsOfDeathBlossom = value;
-				}
-				else
-				{
-					Messagings.CheckInput();
-				}
-			}
-		}
+		private void NumericUpDownMaxPetalsOfDeathBlossom_ValueChanged(object sender, RoutedEventArgs e) =>
+			_manualSolver.MaxPetalsOfDeathBlossom = _numericUpDownMaxPetalsOfDeathBlossom.CurrentValue;
 
 		private void CheckBoxCheckAdvancedInExocet_Click(object sender, RoutedEventArgs e) =>
 			_checkBoxCheckAdvancedInExocet.IsChecked = _manualSolver.CheckAdvancedInExocet ^= true;
@@ -484,20 +472,8 @@ namespace Sudoku.Windows
 		private void CheckBoxCheckIncompleteUr_Click(object sender, RoutedEventArgs e) =>
 			_checkBoxCheckIncompleteUr.IsChecked = _manualSolver.CheckIncompleteUniquenessPatterns ^= true;
 
-		private void TextBoxMaxRegularWingSize_TextChanged(object sender, TextChangedEventArgs e)
-		{
-			if (sender is TextBox textBox && int.TryParse(textBox.Text, out int value))
-			{
-				if (value >= 3 && value <= 5)
-				{
-					_manualSolver.CheckRegularWingSize = value;
-				}
-				else
-				{
-					Messagings.CheckInput();
-				}
-			}
-		}
+		private void NumericUpDownMaxRegularWingSize_ValueChanged(object sender, RoutedEventArgs e) =>
+			_manualSolver.CheckRegularWingSize = _numericUpDownMaxRegularWingSize.CurrentValue;
 
 		private void CheckBoxOnlyRecordShortestPathAic_Click(object sender, RoutedEventArgs e) =>
 			_checkBoxOnlyRecordShortestPathAic.IsChecked = _manualSolver.OnlySaveShortestPathAic ^= true;

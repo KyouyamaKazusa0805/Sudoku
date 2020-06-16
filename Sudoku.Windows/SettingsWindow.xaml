@@ -3,6 +3,7 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:c="clr-namespace:Sudoku.Windows.Tooling"
 		mc:Ignorable="d"
 		Title="{DynamicResource SettingsTitle}" Height="600" Width="800" ResizeMode="CanMinimize">
 	<Grid>
@@ -178,11 +179,11 @@
 							<Label Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2"
 								   HorizontalAlignment="Left" VerticalAlignment="Center"
 								   Content="{DynamicResource SettingsSolvingMiscWingMaxSize}"/>
-							<TextBox Grid.Row="0" Grid.Column="5"
-									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-									 Name="_textBoxMaxRegularWingSize"
-									 TextChanged="TextBoxMaxRegularWingSize_TextChanged"
-									 PreviewKeyDown="TextBoxMaxRegularWingSize_PreviewKeyDown"/>
+							<c:NumericUpDown Grid.Row="0" Grid.Column="5"
+											 HorizontalAlignment="Center" VerticalAlignment="Center"
+											 x:Name="_numericUpDownMaxRegularWingSize"
+											 MinValue="2" MaxValue="9"
+											 ValueChanged="NumericUpDownMaxRegularWingSize_ValueChanged"/>
 							<CheckBox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3"
 									  HorizontalAlignment="Left" VerticalAlignment="Center"
 									  Name="_checkBoxUseExtendedBugSearcher"
@@ -196,9 +197,10 @@
 							<Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
 								   HorizontalAlignment="Left" VerticalAlignment="Center"
 								   Content="{DynamicResource SettingsSolvingMiscDeathBlossomMaxPetals}"/>
-							<TextBox Grid.Row="3" Grid.Column="2" Name="_textBoxMaxPetalsOfDeathBlossom"
-									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-									 TextChanged="TextBoxMaxPetalsOfDeathBlossom_TextChanged"/>
+							<c:NumericUpDown x:Name="_numericUpDownMaxPetalsOfDeathBlossom"
+											 Grid.Row="3" Grid.Column="2" MinValue="2" MaxValue="9"
+											 HorizontalAlignment="Center" VerticalAlignment="Center"
+											 ValueChanged="NumericUpDownMaxPetalsOfDeathBlossom_ValueChanged"/>
 							<CheckBox Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="3"
 									  Name="_checkBoxCheckAdvancedInExocet"
 									  HorizontalAlignment="Left" VerticalAlignment="Center"
