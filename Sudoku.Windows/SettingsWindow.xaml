@@ -6,6 +6,13 @@
 		xmlns:c="clr-namespace:Sudoku.Windows.Tooling"
 		mc:Ignorable="d"
 		Title="{DynamicResource SettingsTitle}" Height="600" Width="800" ResizeMode="CanMinimize">
+	<Window.Resources>
+		<Style TargetType="c:NumericUpDown">
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="Width" Value="100"/>
+		</Style>
+	</Window.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*"/>
@@ -85,11 +92,9 @@
 							<Label Grid.Row="0" Grid.Column="0"
 								   Content="{DynamicResource SettingsSolvingChainsMaxLength}"
 								   HorizontalAlignment="Right" VerticalAlignment="Center"/>
-							<TextBox Grid.Row="0" Grid.Column="1"
-									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-									 Name="_textBoxMaxLength"
-									 TextChanged="TextBoxMaxLength_TextChanged"
-									 PreviewKeyDown="TextBoxMaxLength_PreviewKeyDown"/>
+							<c:NumericUpDown Grid.Row="0" Grid.Column="1"
+											 MinValue="3" MaxValue="20" x:Name="_numericUpDownMaxLength"
+											 ValueChanged="NumericUpDownMaxLength_ValueChanged"/>
 							<CheckBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
 									  HorizontalAlignment="Left" VerticalAlignment="Center"
 									  Name="_checkBoxCheckLoop"
@@ -161,11 +166,10 @@
 							<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
 								   HorizontalAlignment="Left" VerticalAlignment="Center"
 								   Content="{DynamicResource SettingsSolvingMiscBowmanBingoMaxLength}"/>
-							<TextBox Grid.Row="0" Grid.Column="2"
-									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-									 Name="_textBoxBowmanBingoMaxLength"
-									 TextChanged="TextBoxBowmanBingoMaxLength_TextChanged"
-									 PreviewKeyDown="TextBoxBowmanBingoMaxLength_PreviewKeyDown"/>
+							<c:NumericUpDown Grid.Row="0" Grid.Column="2"
+											 x:Name="_numericUpDownBowmanBingoMaxLength"
+											 MinValue="1" MaxValue="64"
+											 ValueChanged="NumericUpDownBowmanBingoMaxLength_ValueChanged"/>
 							<CheckBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
 									  HorizontalAlignment="Left" VerticalAlignment="Center"
 									  Name="_checkBoxAllowAlq"
@@ -180,7 +184,6 @@
 								   HorizontalAlignment="Left" VerticalAlignment="Center"
 								   Content="{DynamicResource SettingsSolvingMiscWingMaxSize}"/>
 							<c:NumericUpDown Grid.Row="0" Grid.Column="5"
-											 HorizontalAlignment="Center" VerticalAlignment="Center"
 											 x:Name="_numericUpDownMaxRegularWingSize"
 											 MinValue="2" MaxValue="9"
 											 ValueChanged="NumericUpDownMaxRegularWingSize_ValueChanged"/>
@@ -199,7 +202,6 @@
 								   Content="{DynamicResource SettingsSolvingMiscDeathBlossomMaxPetals}"/>
 							<c:NumericUpDown x:Name="_numericUpDownMaxPetalsOfDeathBlossom"
 											 Grid.Row="3" Grid.Column="2" MinValue="2" MaxValue="9"
-											 HorizontalAlignment="Center" VerticalAlignment="Center"
 											 ValueChanged="NumericUpDownMaxPetalsOfDeathBlossom_ValueChanged"/>
 							<CheckBox Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="3"
 									  Name="_checkBoxCheckAdvancedInExocet"
@@ -223,21 +225,24 @@
 							<Label Content="{DynamicResource SettingsSolvingFishMaxSize}"
 								   Grid.Row="0" Grid.Column="0"
 								   HorizontalAlignment="Left" VerticalAlignment="Center"/>
-							<TextBox Name="_textBoxMaximumSizeHobiwanFish" Grid.Row="0" Grid.Column="1"
-									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-									 TextChanged="TextBoxMaximumSizeHobiwanFish_TextChanged"/>
+							<c:NumericUpDown Grid.Row="0" Grid.Column="1"
+											 MinValue="2" MaxValue="7"
+											 x:Name="_numericUpDownMaximumSizeHobiwanFish"
+											 ValueChanged="NumericUpDownMaximumSizeHobiwanFish_ValueChanged"/>
 							<Label Content="{DynamicResource SettingsSolvingFishMaxExofins}"
 								   Grid.Row="0" Grid.Column="2"
 								   HorizontalAlignment="Left" VerticalAlignment="Center"/>
-							<TextBox Name="_textBoxMaximumExofinsHobiwanFish" Grid.Row="0" Grid.Column="3"
-									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-									 TextChanged="TextBoxMaximumExofinsHobiwanFish_TextChanged"/>
+							<c:NumericUpDown Grid.Row="0" Grid.Column="3"
+											 MinValue="0" MaxValue="9"
+											 x:Name="_numericUpDownMaximumExofinsHobiwanFish"
+											 ValueChanged="NumericUpDownExofinsHobiwanFish_ValueChanged"/>
 							<Label Content="{DynamicResource SettingsSolvingFishMaxEndofins}"
 								   Grid.Row="1" Grid.Column="0"
 								   HorizontalAlignment="Left" VerticalAlignment="Center"/>
-							<TextBox Name="_textBoxMaximumEndofinsHobiwanFish" Grid.Row="1" Grid.Column="1"
-									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-									 TextChanged="TextBoxMaximumEndofinsHobiwanFish_TextChanged"/>
+							<c:NumericUpDown Grid.Row="1" Grid.Column="1"
+											 MinValue="0" MaxValue="9"
+											 x:Name="_numericUpDownMaximumEndofinsHobiwanFish"
+											 ValueChanged="NumericUpDownMaximumEndofinsHobiwanFish_ValueChanged"/>
 							<CheckBox Name="_checkBoxHobiwanFishCheckTemplates" Grid.Row="1" Grid.Column="2"
 									  Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"
 									  Content="{DynamicResource SettingsSolvingFishCheckTemplates}"
