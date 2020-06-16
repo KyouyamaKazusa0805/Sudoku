@@ -1,11 +1,3 @@
-> I update the files slower than the past due to the graduation approaching, which brings me much more things.
->
-> 这个作者目前更新文件会比以前更新得慢，因为临近毕业了，就有很多的事情。
->
-> BTW, I have been studying and learning the sudoku algorithm, so some technique searchers contain bugs inevitably perhaps. If you find them, please tell me. Thank you.
->
-> 顺带一提，我目前一直都在学习和研究数独相关的算法，所以一些算法可能难免包含一些程序漏洞。如果你找到了，请你告诉我，万分感谢。
-
 # Sunnie's Sudoku Solution
 
 标题：**向向的数独解决方案 (SSS)**
