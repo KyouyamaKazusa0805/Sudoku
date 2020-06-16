@@ -4,14 +4,12 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
-using Sudoku.Windows.Extensions;
 using Sudoku.Windows.Tooling;
 using static System.Reflection.BindingFlags;
 using CoreResources = Sudoku.Windows.Resources;
@@ -466,33 +464,6 @@ namespace Sudoku.Windows
 
 		private void CheckBoxUseExtendedBugSearcher_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxUseExtendedBugSearcher.IsChecked = _manualSolver.UseExtendedBugSearcher ^= true;
-
-		private void TextBoxBowmanBingoMaxLength_PreviewKeyDown(object sender, KeyEventArgs e)
-		{
-			if (!(sender is TextBox textBox && e.Key.IsDigit() && string.IsNullOrEmpty(textBox.Text)))
-			{
-				e.Handled = true;
-				return;
-			}
-		}
-
-		private void TextBoxMaxRegularWingSize_PreviewKeyDown(object sender, KeyEventArgs e)
-		{
-			if (!(sender is TextBox textBox && e.Key.IsDigit() && string.IsNullOrEmpty(textBox.Text)))
-			{
-				e.Handled = true;
-				return;
-			}
-		}
-
-		private void TextBoxMaxLength_PreviewKeyDown(object sender, KeyEventArgs e)
-		{
-			if (!(sender is TextBox textBox && e.Key.IsDigit() && string.IsNullOrEmpty(textBox.Text)))
-			{
-				e.Handled = true;
-				return;
-			}
-		}
 
 		private void CheckBoxEnableGcForcedly_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () =>
