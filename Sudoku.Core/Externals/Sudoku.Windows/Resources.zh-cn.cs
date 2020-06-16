@@ -237,6 +237,8 @@ namespace Sudoku.Windows
 			["ArType3"] = "可规避矩形类型 3",
 			["ArType5"] = "可规避矩形类型 5",
 			["HiddenAr"] = "隐性可规避矩形",
+			["ArPlus2D"] = "Avoidable Rectangle + 2D",
+			["ArPlus3X"] = "Avoidable Rectangle + 3X",
 			["ArXyWing"] = "可规避矩形 + XY-Wing",
 			["ArXyzWing"] = "可规避矩形 + XYZ-Wing",
 			["ArWxyzWing"] = "可规避矩形 + WXYZ-Wing",

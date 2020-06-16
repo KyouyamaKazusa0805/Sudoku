@@ -37,11 +37,13 @@
 			<Image Name="_imagePreview" Width="700" Height="45"/>
 		</GroupBox>
 		<Grid Grid.Row="3" Grid.ColumnSpan="3">
-			<Button Name="_buttonApply" Content="Apply" Grid.Row="3" Grid.Column="1"
+			<Button Name="_buttonApply" Content="{DynamicResource SettingsButtonApply}" Grid.Row="3" Grid.Column="1"
 					Margin="0,0,70,10" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+					IsDefault="True"
 					Click="ButtonApply_Click"/>
-			<Button Name="_buttonCancel" Content="Cancel" Grid.Row="3" Grid.Column="2"
+			<Button Name="_buttonCancel" Content="{DynamicResource SettingsButtonCancel}" Grid.Row="3" Grid.Column="2"
 					Margin="0,0,10,10" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+					IsCancel="True"
 					Click="ButtonCancel_Click"/>
 		</Grid>
 	</Grid>

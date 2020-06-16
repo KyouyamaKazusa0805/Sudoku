@@ -237,6 +237,8 @@ namespace Sudoku.Windows
 			["ArType3"] = "Avoidable Rectangle Type 3",
 			["ArType5"] = "Avoidable Rectangle Type 5",
 			["HiddenAr"] = "Hidden Avoidable Rectangle",
+			["ArPlus2D"] = "Avoidable Rectangle + 2D",
+			["ArPlus3X"] = "Avoidable Rectangle + 3X",
 			["ArXyWing"] = "Avoidable Rectangle + XY-Wing",
 			["ArXyzWing"] = "Avoidable Rectangle + XYZ-Wing",
 			["ArWxyzWing"] = "Avoidable Rectangle + WXYZ-Wing",

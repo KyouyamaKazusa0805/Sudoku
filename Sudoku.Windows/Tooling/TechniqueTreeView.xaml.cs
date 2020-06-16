@@ -7,6 +7,7 @@ using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
 using static Sudoku.Windows.Constants.Processings;
+using CoreResources = Sudoku.Windows.Resources;
 
 namespace Sudoku.Windows.Tooling
 {
@@ -43,7 +44,7 @@ namespace Sudoku.Windows.Tooling
 							select (
 								_technique: technique,
 								_id: (int)technique,
-								_displayName: TechniqueDisplayAttributeInstance.DisplayName,
+								_displayName: CoreResources.GetValue(technique.ToString()),
 								_category: TechniqueDisplayAttributeInstance.Category);
 
 			var categories = new List<string>((from quadruple in selection select quadruple._category).Distinct());
@@ -124,7 +125,7 @@ namespace Sudoku.Windows.Tooling
 			var allNodes = new List<TreeNode<string>>(list);
 			foreach (var node in list)
 			{
-				foreach (var (technique, techniqueId, displayName, category) in selection)
+				foreach (var (_, techniqueId, displayName, category) in selection)
 				{
 					if (node.Content == category)
 					{
