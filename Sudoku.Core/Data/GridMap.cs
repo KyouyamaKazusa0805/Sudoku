@@ -463,7 +463,7 @@ namespace Sudoku.Data
 		/// Indicates all regions covered. This property is used to check all regions that all cells
 		/// of this instance covered. For examp;le, if the cells are { 0, 1 }, the property
 		/// <see cref="CoveredRegions"/> will return the region 0 (block 1) and region 9 (row 1);
-		/// however, if cells spaned two regions or more (e.g. cells { 0, 1, 27 }), this property will not contain
+		/// however, if cells spanned two regions or more (e.g. cells { 0, 1, 27 }), this property will not contain
 		/// any regions.
 		/// </summary>
 		public readonly IEnumerable<int> CoveredRegions
@@ -481,8 +481,8 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// All regions that the map spaned. This property is used to check all regions that all cells of
-		/// this instance spaned. For example, if the cells are { 0, 1 }, the property
+		/// All regions that the map spanned. This property is used to check all regions that all cells of
+		/// this instance spanned. For example, if the cells are { 0, 1 }, the property
 		/// <see cref="Regions"/> will return the region 0 (block 1), region 9 (row 1), region 18 (column 1)
 		/// and the region 19 (column 2).
 		/// </summary>

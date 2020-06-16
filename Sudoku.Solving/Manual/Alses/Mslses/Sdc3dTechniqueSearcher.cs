@@ -199,7 +199,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 												}
 												if ((mask & rowMask) != 0)
 												{
-													// At least one digit spaned two regions.
+													// At least one digit spanned two regions.
 													continue;
 												}
 												mask = 0;
