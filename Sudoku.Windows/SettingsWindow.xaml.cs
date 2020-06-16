@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
@@ -19,6 +20,12 @@ using CoreResources = Sudoku.Windows.Resources;
 namespace Sudoku.Windows
 {
 	/// <summary>
+	/// Indicates the assignment handler.
+	/// </summary>
+	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+	internal delegate void AssignmentHandler();
+
+	/// <summary>
 	/// Interaction logic for <c>SettingsWindow.xaml</c>.
 	/// </summary>
 	public partial class SettingsWindow : Window
@@ -28,7 +35,13 @@ namespace Sudoku.Windows
 		/// </summary>
 		private readonly ManualSolver _manualSolver;
 
-		
+
+		/// <summary>
+		/// Indicates the handler that finish all assignments.
+		/// </summary>
+		private AssignmentHandler? _assigments;
+
+
 		/// <summary>
 		/// Initializes an instance with a <see cref="Windows.Settings"/> instance
 		/// and a <see cref="ManualSolver"/> instance.
@@ -119,6 +132,17 @@ namespace Sudoku.Windows
 		}
 
 		/// <summary>
+		/// Close the window using the specified <see cref="bool"/> value indicating
+		/// whether the window runs successfully.
+		/// </summary>
+		/// <param name="value">The value.</param>
+		private void CloseWindow(bool value)
+		{
+			DialogResult = value;
+			Close();
+		}
+
+		/// <summary>
 		/// Initialize priority controls.
 		/// </summary>
 		private void InitializePriorityControls()
@@ -167,38 +191,36 @@ namespace Sudoku.Windows
 
 		private void ButtonApply_Click(object sender, RoutedEventArgs e)
 		{
-			DialogResult = true;
+			// Execute all assignments.
+			_assigments?.Invoke();
 
-			Close();
+			CloseWindow(true);
 		}
 
-		private void ButtonCancel_Click(object sender, RoutedEventArgs e)
-		{
-			DialogResult = false;
-
-			Close();
-		}
+		private void ButtonCancel_Click(object sender, RoutedEventArgs e) => CloseWindow(false);
 
 		private void CheckBoxAskWhileQuitting_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxAskWhileQuitting.IsChecked = Settings.AskWhileQuitting ^= true;
+			_assigments += () => _checkBoxAskWhileQuitting.IsChecked = Settings.AskWhileQuitting ^= true;
 
 		private void CheckBoxSolveFromCurrent_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxSolveFromCurrent.IsChecked = Settings.SolveFromCurrent ^= true;
+			_assigments += () => _checkBoxSolveFromCurrent.IsChecked = Settings.SolveFromCurrent ^= true;
 
 		private void CheckBoxTextFormatPlaceholdersAreZero_Click(object sender, RoutedEventArgs e) =>
+			_assigments += () =>
 			_checkBoxTextFormatPlaceholdersAreZero.IsChecked = Settings.TextFormatPlaceholdersAreZero ^= true;
 
 		private void CheckBoxPmGridCompatible_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxPmGridCompatible.IsChecked = Settings.PmGridCompatible ^= true;
+			_assigments += () => _checkBoxPmGridCompatible.IsChecked = Settings.PmGridCompatible ^= true;
 
 		private void CheckBoxSearchExtendedUniqueRectangle_Click(object sender, RoutedEventArgs e) =>
+			_assigments += () =>
 			_checkBoxSearchExtendedUniqueRectangle.IsChecked = _manualSolver.SearchExtendedUniqueRectangles ^= true;
 
 		private void NumericUpDownMaxPetalsOfDeathBlossom_ValueChanged(object sender, RoutedEventArgs e) =>
-			_manualSolver.MaxPetalsOfDeathBlossom = _numericUpDownMaxPetalsOfDeathBlossom.CurrentValue;
+			_assigments += () => _manualSolver.MaxPetalsOfDeathBlossom = _numericUpDownMaxPetalsOfDeathBlossom.CurrentValue;
 
 		private void CheckBoxCheckAdvancedInExocet_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxCheckAdvancedInExocet.IsChecked = _manualSolver.CheckAdvancedInExocet ^= true;
+			_assigments += () => _checkBoxCheckAdvancedInExocet.IsChecked = _manualSolver.CheckAdvancedInExocet ^= true;
 
 		private void TextBoxMaximumSizeHobiwanFish_TextChanged(object sender, TextChangedEventArgs e)
 		{
@@ -206,7 +228,7 @@ namespace Sudoku.Windows
 			{
 				if (value >= 2 && value <= 7)
 				{
-					_manualSolver.HobiwanFishMaximumSize = value;
+					_assigments += () => _manualSolver.HobiwanFishMaximumSize = value;
 				}
 				else
 				{
@@ -221,7 +243,7 @@ namespace Sudoku.Windows
 			{
 				if (value >= 0 && value <= 10)
 				{
-					_manualSolver.HobiwanFishMaximumExofinsCount = value;
+					_assigments += () => _manualSolver.HobiwanFishMaximumExofinsCount = value;
 				}
 				else
 				{
@@ -236,7 +258,7 @@ namespace Sudoku.Windows
 			{
 				if (value >= 0 && value <= 10)
 				{
-					_manualSolver.HobiwanFishMaximumEndofinsCount = value;
+					_assigments += () => _manualSolver.HobiwanFishMaximumEndofinsCount = value;
 				}
 				else
 				{
@@ -246,13 +268,13 @@ namespace Sudoku.Windows
 		}
 
 		private void CheckBoxHobiwanFishCheckTemplates_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxHobiwanFishCheckTemplates.IsChecked = _manualSolver.HobiwanFishCheckTemplates ^= true;
+			_assigments += () => _checkBoxHobiwanFishCheckTemplates.IsChecked = _manualSolver.HobiwanFishCheckTemplates ^= true;
 
 		private void TextBoxGridLineWidth_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			if (sender is TextBox textBox && float.TryParse(textBox.Text, out float value))
 			{
-				Settings.GridLineWidth = value;
+				_assigments += () => Settings.GridLineWidth = value;
 			}
 		}
 
@@ -260,7 +282,7 @@ namespace Sudoku.Windows
 		{
 			if (sender is TextBox textBox && float.TryParse(textBox.Text, out float value))
 			{
-				Settings.BlockLineWidth = value;
+				_assigments += () => Settings.BlockLineWidth = value;
 			}
 		}
 
@@ -268,7 +290,7 @@ namespace Sudoku.Windows
 		{
 			if (sender is TextBox textBox && decimal.TryParse(textBox.Text, out decimal value))
 			{
-				Settings.ValueScale = value;
+				_assigments += () => Settings.ValueScale = value;
 			}
 		}
 
@@ -276,7 +298,7 @@ namespace Sudoku.Windows
 		{
 			if (sender is TextBox textBox && decimal.TryParse(textBox.Text, out decimal value))
 			{
-				Settings.CandidateScale = value;
+				_assigments += () => Settings.CandidateScale = value;
 			}
 		}
 
@@ -285,8 +307,11 @@ namespace Sudoku.Windows
 			var dialog = new FontDialog();
 			if (dialog.ShowDialog() is true)
 			{
-				_labelGivenFontName.FontFamily = new FontFamily(Settings.GivenFontName = dialog.SelectedFont.Name);
-				_labelGivenFontName.Content = dialog.SelectedFont.Name;
+				_assigments += () =>
+				{
+					_labelGivenFontName.FontFamily = new FontFamily(Settings.GivenFontName = dialog.SelectedFont.Name);
+					_labelGivenFontName.Content = dialog.SelectedFont.Name;
+				};
 			}
 		}
 
@@ -295,9 +320,12 @@ namespace Sudoku.Windows
 			var dialog = new FontDialog();
 			if (dialog.ShowDialog() is true)
 			{
-				_labelModifiableFontName.FontFamily = new FontFamily(
-					Settings.ModifiableFontName = dialog.SelectedFont.Name);
-				_labelModifiableFontName.Content = dialog.SelectedFont.Name;
+				_assigments += () =>
+				{
+					_labelModifiableFontName.FontFamily = new FontFamily(
+						Settings.ModifiableFontName = dialog.SelectedFont.Name);
+					_labelModifiableFontName.Content = dialog.SelectedFont.Name;
+				};
 			}
 		}
 
@@ -306,8 +334,12 @@ namespace Sudoku.Windows
 			var dialog = new FontDialog();
 			if (dialog.ShowDialog() is true)
 			{
-				_labelCandidateFontName.FontFamily = new FontFamily(Settings.CandidateFontName = dialog.SelectedFont.Name);
-				_labelCandidateFontName.Content = dialog.SelectedFont.Name;
+				_assigments += () =>
+				{
+					_labelCandidateFontName.FontFamily = new FontFamily(
+						Settings.CandidateFontName = dialog.SelectedFont.Name);
+					_labelCandidateFontName.Content = dialog.SelectedFont.Name;
+				};
 			}
 		}
 
@@ -315,9 +347,12 @@ namespace Sudoku.Windows
 		{
 			if (ColorPicker.ShowDialog(out var color) && !(color is null))
 			{
-				var z = color.Value;
-				Settings.BackgroundColor = z.ToDColor();
-				_buttonBackgroundColor.Background = new SolidColorBrush(z);
+				_assigments += () =>
+				{
+					var z = color.Value;
+					Settings.BackgroundColor = z.ToDColor();
+					_buttonBackgroundColor.Background = new SolidColorBrush(z);
+				};
 			}
 		}
 
@@ -325,9 +360,12 @@ namespace Sudoku.Windows
 		{
 			if (ColorPicker.ShowDialog(out var color) && !(color is null))
 			{
-				var z = color.Value;
-				Settings.GivenColor = z.ToDColor();
-				_buttonGivenColor.Background = new SolidColorBrush(z);
+				_assigments += () =>
+				{
+					var z = color.Value;
+					Settings.GivenColor = z.ToDColor();
+					_buttonGivenColor.Background = new SolidColorBrush(z);
+				};
 			}
 		}
 
@@ -335,9 +373,12 @@ namespace Sudoku.Windows
 		{
 			if (ColorPicker.ShowDialog(out var color) && !(color is null))
 			{
-				var z = color.Value;
-				Settings.ModifiableColor = z.ToDColor();
-				_buttonModifiableColor.Background = new SolidColorBrush(z);
+				_assigments += () =>
+				{
+					var z = color.Value;
+					Settings.ModifiableColor = z.ToDColor();
+					_buttonModifiableColor.Background = new SolidColorBrush(z);
+				};
 			}
 		}
 
@@ -345,9 +386,12 @@ namespace Sudoku.Windows
 		{
 			if (ColorPicker.ShowDialog(out var color) && !(color is null))
 			{
-				var z = color.Value;
-				Settings.CandidateColor = z.ToDColor();
-				_buttonCandidateColor.Background = new SolidColorBrush(z);
+				_assigments += () =>
+				{
+					var z = color.Value;
+					Settings.CandidateColor = z.ToDColor();
+					_buttonCandidateColor.Background = new SolidColorBrush(z);
+				};
 			}
 		}
 
@@ -355,9 +399,12 @@ namespace Sudoku.Windows
 		{
 			if (ColorPicker.ShowDialog(out var color) && !(color is null))
 			{
-				var z = color.Value;
-				Settings.FocusedCellColor = z.ToDColor();
-				_buttonFocusColor.Background = new SolidColorBrush(z);
+				_assigments += () =>
+				{
+					var z = color.Value;
+					Settings.FocusedCellColor = z.ToDColor();
+					_buttonFocusColor.Background = new SolidColorBrush(z);
+				};
 			}
 		}
 
@@ -365,9 +412,12 @@ namespace Sudoku.Windows
 		{
 			if (ColorPicker.ShowDialog(out var color) && !(color is null))
 			{
-				var z = color.Value;
-				Settings.GridLineColor = z.ToDColor();
-				_buttonGridLineColor.Background = new SolidColorBrush(z);
+				_assigments += () =>
+				{
+					var z = color.Value;
+					Settings.GridLineColor = z.ToDColor();
+					_buttonGridLineColor.Background = new SolidColorBrush(z);
+				};
 			}
 		}
 
@@ -375,9 +425,12 @@ namespace Sudoku.Windows
 		{
 			if (ColorPicker.ShowDialog(out var color) && !(color is null))
 			{
-				var z = color.Value;
-				Settings.BlockLineColor = z.ToDColor();
-				_buttonBlockLineColor.Background = new SolidColorBrush(z);
+				_assigments += () =>
+				{
+					var z = color.Value;
+					Settings.BlockLineColor = z.ToDColor();
+					_buttonBlockLineColor.Background = new SolidColorBrush(z);
+				};
 			}
 		}
 
@@ -385,9 +438,12 @@ namespace Sudoku.Windows
 		{
 			if (ColorPicker.ShowDialog(out var color) && !(color is null))
 			{
-				var z = color.Value;
-				Settings.ChainColor = z.ToDColor();
-				_buttonChainColor.Background = new SolidColorBrush(z);
+				_assigments += () =>
+				{
+					var z = color.Value;
+					Settings.ChainColor = z.ToDColor();
+					_buttonChainColor.Background = new SolidColorBrush(z);
+				};
 			}
 		}
 
@@ -427,7 +483,7 @@ namespace Sudoku.Windows
 			{
 				if (value >= 3 && value <= 20)
 				{
-					_manualSolver.AicMaximumLength = value;
+					_assigments += () => _manualSolver.AicMaximumLength = value;
 				}
 				else
 				{
@@ -451,7 +507,7 @@ namespace Sudoku.Windows
 			{
 				if (value >= 1 && value <= 64)
 				{
-					_manualSolver.BowmanBingoMaximumLength = value;
+					_assigments += () => _manualSolver.BowmanBingoMaximumLength = value;
 				}
 				else
 				{
@@ -461,28 +517,29 @@ namespace Sudoku.Windows
 		}
 
 		private void CheckBoxAllowAlq_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxAllowAlq.IsChecked = _manualSolver.CheckAlmostLockedQuadruple ^= true;
+			_assigments += () => _checkBoxAllowAlq.IsChecked = _manualSolver.CheckAlmostLockedQuadruple ^= true;
 
 		private void CheckBoxCheckLoop_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxCheckLoop.IsChecked = _manualSolver.CheckContinuousNiceLoop ^= true;
+			_assigments += () => _checkBoxCheckLoop.IsChecked = _manualSolver.CheckContinuousNiceLoop ^= true;
 
 		private void CheckBoxCheckHeadCollision_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxCheckHeadCollision.IsChecked = _manualSolver.CheckHeadCollision ^= true;
+			_assigments += () => _checkBoxCheckHeadCollision.IsChecked = _manualSolver.CheckHeadCollision ^= true;
 
 		private void CheckBoxCheckIncompleteUr_Click(object sender, RoutedEventArgs e) =>
+			_assigments += () =>
 			_checkBoxCheckIncompleteUr.IsChecked = _manualSolver.CheckIncompleteUniquenessPatterns ^= true;
 
 		private void NumericUpDownMaxRegularWingSize_ValueChanged(object sender, RoutedEventArgs e) =>
-			_manualSolver.CheckRegularWingSize = _numericUpDownMaxRegularWingSize.CurrentValue;
+			_assigments += () => _manualSolver.CheckRegularWingSize = _numericUpDownMaxRegularWingSize.CurrentValue;
 
 		private void CheckBoxOnlyRecordShortestPathAic_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxOnlyRecordShortestPathAic.IsChecked = _manualSolver.OnlySaveShortestPathAic ^= true;
+			_assigments += () => _checkBoxOnlyRecordShortestPathAic.IsChecked = _manualSolver.OnlySaveShortestPathAic ^= true;
 
 		private void CheckBoxReductDifferentPathAic_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxReductDifferentPathAic.IsChecked = _manualSolver.ReductDifferentPathAic ^= true;
+			_assigments += () => _checkBoxReductDifferentPathAic.IsChecked = _manualSolver.ReductDifferentPathAic ^= true;
 
 		private void CheckBoxUseExtendedBugSearcher_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxUseExtendedBugSearcher.IsChecked = _manualSolver.UseExtendedBugSearcher ^= true;
+			_assigments += () => _checkBoxUseExtendedBugSearcher.IsChecked = _manualSolver.UseExtendedBugSearcher ^= true;
 
 		private void TextBoxBowmanBingoMaxLength_PreviewKeyDown(object sender, KeyEventArgs e)
 		{
@@ -512,7 +569,7 @@ namespace Sudoku.Windows
 		}
 
 		private void CheckBoxEnableGcForcedly_Click(object sender, RoutedEventArgs e) =>
-			_checkBoxEnableGcForcedly.IsEnabled = _manualSolver.EnableGarbageCollectionForcedly ^= true;
+			_assigments += () => _checkBoxEnableGcForcedly.IsEnabled = _manualSolver.EnableGarbageCollectionForcedly ^= true;
 
 		private void ListBoxPriority_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
@@ -521,10 +578,13 @@ namespace Sudoku.Windows
 				&& listBox.SelectedItem is ListBoxItem listBoxItem
 				&& listBoxItem.Content is PrimaryElementTuple<string, int, Type> triplet)
 			{
-				var (_, priority, type) = triplet;
-				_checkBoxIsEnabled.IsChecked = (bool)type.GetProperty("IsEnabled")!.GetValue(null)!;
-				_textBoxPriority.Text = priority.ToString();
-				_checkBoxIsEnabled.IsEnabled = _textBoxPriority.IsReadOnly = !type.HasMarked<AlwaysEnableAttribute>();
+				_assigments += () =>
+				{
+					var (_, priority, type) = triplet;
+					_checkBoxIsEnabled.IsChecked = (bool)type.GetProperty("IsEnabled")!.GetValue(null)!;
+					_textBoxPriority.Text = priority.ToString();
+					_checkBoxIsEnabled.IsEnabled = _textBoxPriority.IsReadOnly = !type.HasMarked<AlwaysEnableAttribute>();
+				};
 			}
 		}
 	}
