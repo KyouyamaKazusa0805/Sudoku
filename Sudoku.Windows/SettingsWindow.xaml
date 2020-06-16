@@ -359,14 +359,12 @@
 							<CheckBox Content="{DynamicResource SettingsPriorityIsEnabled}"
 									  Grid.Row="0" Grid.Column="0"
 									  Grid.ColumnSpan="2" Name="_checkBoxIsEnabled"
-									  IsEnabled="False"
 									  HorizontalAlignment="Center" VerticalAlignment="Center"/>
 							<Label Content="{DynamicResource SettingsPriorityValue}"
 								   HorizontalAlignment="Right"
 								   VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
 							<TextBox Grid.Row="1" Grid.Column="1" Name="_textBoxPriority"
-									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-									 IsReadOnly="True"/>
+									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 						</Grid>
 					</GroupBox>
 				</Grid>

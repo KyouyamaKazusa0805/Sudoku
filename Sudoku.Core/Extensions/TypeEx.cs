@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 
 namespace Sudoku.Extensions
@@ -15,36 +13,27 @@ namespace Sudoku.Extensions
 	public static class TypeEx
 	{
 		/// <summary>
-		/// To check whether the specified type has marked the specified attribute.
+		/// Determines whether the current <see cref="Type"/> has marked the specified attribute.
 		/// </summary>
-		/// <typeparam name="TAttribute">The type of the attribute.</typeparam>
+		/// <typeparam name="TAttribute">The type of the attribute to determine.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The type.</param>
-		/// <param name="inherit">
-		/// <see langword="true"/> to search this member's inheritance chain
-		/// to find the attributes; otherwise, <see langword="false"/>.
-		/// This parameter is ignored for properties and events.
-		/// </param>
-		/// <param name="attributes">
-		/// (<see langword="out"/> parameter) All attributes found.
-		/// </param>
-		/// <returns>A <see cref="bool"/> indicating that.</returns>
+		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasMarkedAttribute<TAttribute>(
-			this Type @this, bool inherit, [NotNullWhen(true)] out IEnumerable<TAttribute>? attributes)
-			where TAttribute : Attribute
-		{
-			var temp = @this.GetCustomAttributes(inherit).OfType<TAttribute>();
-			if (temp.Any())
-			{
-				attributes = temp;
-				return true;
-			}
-			else
-			{
-				attributes = null;
-				return false;
-			}
-		}
+		public static bool HasMarked<TAttribute>(this Type @this) where TAttribute : Attribute =>
+			@this.GetCustomAttribute<TAttribute>() is TAttribute;
+
+		/// <summary>
+		/// Determines whether the current <see cref="Type"/> derives from the specified <see cref="Type"/>.
+		/// </summary>
+		/// <typeparam name="T">The type you want to determine.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The type.</param>
+		/// <returns>
+		/// <see langword="true"/> if the current <see cref="Type"/> derives from <typeparamref name="T"/>;
+		/// otherwise, <see langword="false"/>. This method also returns <see langword="false"/> if
+		/// <typeparamref name="T"/> and the current <see cref="Type"/> are equal.
+		/// </returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool IsSubclassOf<T>(this Type @this) where T : class? => @this.IsSubclassOf(typeof(T));
 
 		/// <summary>
 		/// Indicates whether two types are same.

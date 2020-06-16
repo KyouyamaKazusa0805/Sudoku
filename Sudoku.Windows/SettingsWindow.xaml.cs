@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
@@ -14,6 +13,7 @@ using Sudoku.Solving.Manual;
 using Sudoku.Windows.Constants;
 using Sudoku.Windows.Extensions;
 using Sudoku.Windows.Tooling;
+using static System.Reflection.BindingFlags;
 using CoreResources = Sudoku.Windows.Resources;
 
 namespace Sudoku.Windows
@@ -29,7 +29,12 @@ namespace Sudoku.Windows
 		private readonly ManualSolver _manualSolver;
 
 
-		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <summary>
+		/// Initializes an instance with a <see cref="Windows.Settings"/> instance
+		/// and a <see cref="ManualSolver"/> instance.
+		/// </summary>
+		/// <param name="settings">The settings instance.</param>
+		/// <param name="manualSolver">The manual solver.</param>
 		public SettingsWindow(Settings settings, ManualSolver manualSolver)
 		{
 			InitializeComponent();
@@ -116,50 +121,31 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Initialize priority controls.
 		/// </summary>
-		/// <exception cref="SudokuRuntimeException">
-		/// Throws when the technique searcher is not marked <see cref="TechniqueDisplayAttribute"/>.
-		/// </exception>
 		private void InitializePriorityControls()
 		{
-			_listBoxPriority.ClearValue(ItemsControl.ItemsSourceProperty);
-
-			var list = new List<ListBoxItem>();
-			foreach (var type in from type in Assembly.Load("Sudoku.Solving").GetTypes()
-								 where !type.IsAbstract && type.IsSubclassOf(typeof(TechniqueSearcher))
-								 select type)
-			{
-				if (!type.HasMarkedAttribute<TechniqueDisplayAttribute>(false, out var attributes))
+			_listBoxPriority.SetValue(
+				ItemsControl.ItemsSourceProperty,
+				from type in
+					from type in Assembly.Load("Sudoku.Solving").GetTypes()
+					where !type.IsAbstract && type.IsSubclassOf<TechniqueSearcher>()
+						&& type.HasMarked<TechniqueDisplayAttribute>() && !type.HasMarked<HasBugAttribute>()
+					select type
+				let Priority = (int)(type.GetProperty("Priority", Public | Static)!.GetValue(null)!)
+				orderby Priority
+				select new ListBoxItem
 				{
-					throw new SudokuRuntimeException(
-						"The specified searcher does not contain any displaying information.");
-				}
-
-				list.Add(
-					new ListBoxItem
-					{
-						Content =
-							new PrimaryElementTuple<string, int, Type>(
-								CoreResources.GetValue($"Progress{attributes.First().DisplayName}"),
-								(int)(
-									type.GetProperty(
-										"Priority",
-										BindingFlags.Public | BindingFlags.Static
-									)!.GetValue(null)!
-								),
-								type
-							)
-					});
-			}
-
-			list.Sort(
-				(a, b) =>
-					((PrimaryElementTuple<string, int, Type>)a.Content).Value2.CompareTo(
-						((PrimaryElementTuple<string, int, Type>)b.Content).Value2));
-			_listBoxPriority.ItemsSource = list;
+					Content =
+						new PrimaryElementTuple<string, int, Type>(
+							CoreResources.GetValue(
+								$"Progress{type.GetCustomAttribute<TechniqueDisplayAttribute>()!.DisplayName}"),
+							Priority,
+							type)
+				});
 			_listBoxPriority.SelectedIndex = 0;
-			_textBoxPriority.Text = (
-				(PrimaryElementTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content
-			).Value2.ToString();
+			var (_, priority, selectionType) =
+				(PrimaryElementTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
+			_checkBoxIsEnabled.IsEnabled = !selectionType.HasMarked<AlwaysEnableAttribute>();
+			_textBoxPriority.Text = priority.ToString();
 		}
 
 		/// <summary>
@@ -562,6 +548,7 @@ namespace Sudoku.Windows
 				var (_, priority, type) = triplet;
 				_checkBoxIsEnabled.IsChecked = (bool)type.GetProperty("IsEnabled")!.GetValue(null)!;
 				_textBoxPriority.Text = priority.ToString();
+				_checkBoxIsEnabled.IsEnabled = _textBoxPriority.IsReadOnly = !type.HasMarked<AlwaysEnableAttribute>();
 			}
 		}
 	}

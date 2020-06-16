@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
@@ -16,6 +15,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// Encapsulates a <b>Bowman's bingo</b> technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.BowmanBingo))]
+	[AlwaysEnable]
 	public sealed class BowmanBingoTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <summary>
