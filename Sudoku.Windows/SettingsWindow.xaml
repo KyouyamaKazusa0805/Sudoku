@@ -71,8 +71,8 @@
 					<Grid.RowDefinitions>
 						<RowDefinition Height="3*"/>
 						<RowDefinition Height="2*"/>
-						<RowDefinition Height="4*"/>
 						<RowDefinition Height="2*"/>
+						<RowDefinition Height="4*"/>
 					</Grid.RowDefinitions>
 					<GroupBox Grid.Row="0" Grid.Column="0" Header="{DynamicResource SettingsSolvingChains}">
 						<Grid>
@@ -147,7 +147,48 @@
 									  Click="CheckBoxAllowAlsCycles_Click"/>
 						</Grid>
 					</GroupBox>
-					<GroupBox Grid.Row="2" Grid.Column="0" Header="{DynamicResource SettingsSolvingMisc}">
+					<GroupBox Grid.Row="2" Grid.Column="0" Header="{DynamicResource SettingsSolvingFish}">
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+							</Grid.ColumnDefinitions>
+							<Label Content="{DynamicResource SettingsSolvingFishMaxSize}"
+								   Grid.Row="0" Grid.Column="0"
+								   HorizontalAlignment="Left" VerticalAlignment="Center"/>
+							<c:NumericUpDown Grid.Row="0" Grid.Column="2"
+											 MinValue="2" MaxValue="7"
+											 x:Name="_numericUpDownMaximumSizeHobiwanFish"
+											 ValueChanged="NumericUpDownMaximumSizeHobiwanFish_ValueChanged"/>
+							<Label Content="{DynamicResource SettingsSolvingFishMaxExofins}"
+								   Grid.Row="0" Grid.Column="3"
+								   HorizontalAlignment="Left" VerticalAlignment="Center"/>
+							<c:NumericUpDown Grid.Row="0" Grid.Column="5"
+											 MinValue="0" MaxValue="9"
+											 x:Name="_numericUpDownMaximumExofinsHobiwanFish"
+											 ValueChanged="NumericUpDownExofinsHobiwanFish_ValueChanged"/>
+							<Label Content="{DynamicResource SettingsSolvingFishMaxEndofins}"
+								   Grid.Row="1" Grid.Column="0"
+								   HorizontalAlignment="Left" VerticalAlignment="Center"/>
+							<c:NumericUpDown Grid.Row="1" Grid.Column="2"
+											 MinValue="0" MaxValue="9"
+											 x:Name="_numericUpDownMaximumEndofinsHobiwanFish"
+											 ValueChanged="NumericUpDownMaximumEndofinsHobiwanFish_ValueChanged"/>
+							<CheckBox Name="_checkBoxHobiwanFishCheckTemplates" Grid.Row="1" Grid.Column="3"
+									  Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Center"
+									  Content="{DynamicResource SettingsSolvingFishCheckTemplates}"
+									  Click="CheckBoxHobiwanFishCheckTemplates_Click"/>
+						</Grid>
+					</GroupBox>
+					<GroupBox Grid.Row="3" Grid.Column="0" Header="{DynamicResource SettingsSolvingMisc}">
 						<Grid>
 							<Grid.RowDefinitions>
 								<RowDefinition/>
@@ -208,45 +249,6 @@
 									  HorizontalAlignment="Left" VerticalAlignment="Center"
 									  Content="{DynamicResource SettingsSolvingMiscExocetsCheckAdvancedElims}"
 									  Click="CheckBoxCheckAdvancedInExocet_Click"/>
-						</Grid>
-					</GroupBox>
-					<GroupBox Grid.Row="3" Grid.Column="0" Header="{DynamicResource SettingsSolvingFish}">
-						<Grid>
-							<Grid.RowDefinitions>
-								<RowDefinition/>
-								<RowDefinition/>
-							</Grid.RowDefinitions>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-							</Grid.ColumnDefinitions>
-							<Label Content="{DynamicResource SettingsSolvingFishMaxSize}"
-								   Grid.Row="0" Grid.Column="0"
-								   HorizontalAlignment="Left" VerticalAlignment="Center"/>
-							<c:NumericUpDown Grid.Row="0" Grid.Column="1"
-											 MinValue="2" MaxValue="7"
-											 x:Name="_numericUpDownMaximumSizeHobiwanFish"
-											 ValueChanged="NumericUpDownMaximumSizeHobiwanFish_ValueChanged"/>
-							<Label Content="{DynamicResource SettingsSolvingFishMaxExofins}"
-								   Grid.Row="0" Grid.Column="2"
-								   HorizontalAlignment="Left" VerticalAlignment="Center"/>
-							<c:NumericUpDown Grid.Row="0" Grid.Column="3"
-											 MinValue="0" MaxValue="9"
-											 x:Name="_numericUpDownMaximumExofinsHobiwanFish"
-											 ValueChanged="NumericUpDownExofinsHobiwanFish_ValueChanged"/>
-							<Label Content="{DynamicResource SettingsSolvingFishMaxEndofins}"
-								   Grid.Row="1" Grid.Column="0"
-								   HorizontalAlignment="Left" VerticalAlignment="Center"/>
-							<c:NumericUpDown Grid.Row="1" Grid.Column="1"
-											 MinValue="0" MaxValue="9"
-											 x:Name="_numericUpDownMaximumEndofinsHobiwanFish"
-											 ValueChanged="NumericUpDownMaximumEndofinsHobiwanFish_ValueChanged"/>
-							<CheckBox Name="_checkBoxHobiwanFishCheckTemplates" Grid.Row="1" Grid.Column="2"
-									  Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"
-									  Content="{DynamicResource SettingsSolvingFishCheckTemplates}"
-									  Click="CheckBoxHobiwanFishCheckTemplates_Click"/>
 						</Grid>
 					</GroupBox>
 				</Grid>
