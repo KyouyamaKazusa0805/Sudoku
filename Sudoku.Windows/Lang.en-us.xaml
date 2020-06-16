@@ -9,6 +9,7 @@
 	<sys:String x:Key="_menuItemBackupConfig">Backup configurations</sys:String>
 	<sys:String x:Key="_menuItemFileLoadPicture">Load picture...</sys:String>
 	<sys:String x:Key="_menuItemFileSavePicture">Save picture...</sys:String>
+	<sys:String x:Key="_menuItemFileSaveBoth">Save both puzzle and solution two pictures</sys:String>
 	<sys:String x:Key="_menuItemFileGetSnapshot">Get snapshot</sys:String>
 	<sys:String x:Key="_menuItemFileQuitApp">Quit App</sys:String>
 	
@@ -330,6 +331,7 @@
 	<sys:String x:Key="StepPlural">steps</sys:String>
 	<sys:String x:Key="AllTrueCandidates">All true candidate(s):</sys:String>
 	<sys:String x:Key="AllBackdoorsAtLevel0Or1">All backdoor(s) at level 0 or 1:</sys:String>
+	<sys:String x:Key="OutputSolution">Solution</sys:String>
 	
 	<!-- Symmetry enumeration type -->
 	<sys:String x:Key="None">No symmetry</sys:String>

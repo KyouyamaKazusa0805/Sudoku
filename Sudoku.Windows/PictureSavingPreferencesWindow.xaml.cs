@@ -47,7 +47,7 @@ namespace Sudoku.Windows
 			InitializeComponent();
 
 			(_settings, _grid, _oldCollection) = (settings, grid, layerCollection);
-			_textBoxSize.Text = _settings.SavingPictureSize.ToString();
+			_numericUpDownSize.CurrentValue = (decimal)_settings.SavingPictureSize;
 		}
 
 
@@ -62,22 +62,9 @@ namespace Sudoku.Windows
 
 		private void ButtonSave_Click(object sender, RoutedEventArgs e)
 		{
-			if (checkValidity(out float size) && savePicture(size))
+			if (savePicture((float)_numericUpDownSize.CurrentValue))
 			{
 				Close();
-			}
-
-			bool checkValidity(out float size)
-			{
-				if (!float.TryParse(_textBoxSize.Text, out size))
-				{
-					Messagings.CheckInput();
-
-					size = default;
-					return !(e.Handled = true);
-				}
-
-				return true;
 			}
 
 			bool savePicture(float size)

@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
-using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
@@ -31,6 +30,7 @@ using DColor = System.Drawing.Color;
 using SudokuGrid = Sudoku.Data.Grid;
 #if SUDOKU_RECOGNIZING
 using System.Drawing;
+using Sudoku.Data.Extensions;
 #endif
 #if DEBUG
 using Sudoku.Solving.Manual;
@@ -207,6 +207,21 @@ namespace Sudoku.Windows
 			{
 				Messagings.ShowExceptionMessage(ex);
 			}
+		}
+
+		private void MenuItemFileSaveBoth_Click(object sender, RoutedEventArgs e)
+		{
+			// TODO: Implement the details.
+			if (!_puzzle.IsValid(out _))
+			{
+				Messagings.FailedToCheckDueToInvalidPuzzle();
+				e.Handled = true;
+				return;
+			}
+
+			MenuItemFileSavePicture_Click(sender, e);
+			MenuItemAnalyzeSolve_Click(sender, e);
+			MenuItemFileSavePicture_Click(sender, e);
 		}
 
 		private void MenuItemFileQuit_Click(object sender, RoutedEventArgs e) => Close();

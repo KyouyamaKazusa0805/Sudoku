@@ -9,6 +9,7 @@
 	<sys:String x:Key="_menuItemBackupConfig">备份配置文件</sys:String>
 	<sys:String x:Key="_menuItemFileLoadPicture">读取题目图片…</sys:String>
 	<sys:String x:Key="_menuItemFileSavePicture">保存图片…</sys:String>
+	<sys:String x:Key="_menuItemFileSaveBoth">同时保存题目和终盘图片</sys:String>
 	<sys:String x:Key="_menuItemFileGetSnapshot">获取题目截屏</sys:String>
 	<sys:String x:Key="_menuItemFileQuitApp">退出程序</sys:String>
 
@@ -330,6 +331,7 @@
 	<sys:String x:Key="StepPlural">个步骤</sys:String>
 	<sys:String x:Key="AllTrueCandidates">所有真数：</sys:String>
 	<sys:String x:Key="AllBackdoorsAtLevel0Or1">所有后门（第 0 和 1 级）：</sys:String>
+	<sys:String x:Key="OutputSolution">解</sys:String>
 
 	<!-- Symmetry enumeration type -->
 	<sys:String x:Key="None">无对称性</sys:String>
