@@ -22,8 +22,13 @@
 		<Label Content="Size:" Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom"/>
 		<ListBox Name="_listBoxFonts" Grid.Row="1" Grid.Column="0"
 				 SelectionChanged="ListBoxFonts_SelectionChanged"/>
-		<ListBox Name="_listBoxStyle" Grid.Row="1" Grid.Column="1"
-				 SelectionChanged="ListBoxStyle_SelectionChanged"/>
+		<ListBox Name="_listBoxStyle" Grid.Row="1" Grid.Column="1" SelectedIndex="0"
+				 SelectionChanged="ListBoxStyle_SelectionChanged">
+			<ListBoxItem Content="Normal"/>
+			<ListBoxItem Content="Italic"/>
+			<ListBoxItem Content="Bold"/>
+			<ListBoxItem Content="Bold Italic"/>
+		</ListBox>
 		<TextBox Name="_textBoxSize" Grid.Row="1" Grid.Column="2" HorizontalContentAlignment="Center"
 				 VerticalContentAlignment="Center" FontSize="20"
 				 TextChanged="TextBoxSize_TextChanged"
