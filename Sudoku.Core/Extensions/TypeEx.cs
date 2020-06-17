@@ -20,7 +20,7 @@ namespace Sudoku.Extensions
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasMarked<TAttribute>(this Type @this) where TAttribute : Attribute =>
-			@this.GetCustomAttribute<TAttribute>() is TAttribute;
+			!(@this.GetCustomAttribute<TAttribute>() is null);
 
 		/// <summary>
 		/// Determines whether the current <see cref="Type"/> derives from the specified <see cref="Type"/>.

@@ -17,6 +17,6 @@ namespace Sudoku.Extensions
 		/// <typeparam name="TEnum">The type of enumeration type.</typeparam>
 		/// <returns>The fields.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static TEnum[] GetValues<TEnum>() where TEnum : Enum => (TEnum[])Enum.GetValues(typeof(TEnum));
+		public static TEnum[] GetValues<TEnum>() where TEnum : struct, Enum => (TEnum[])Enum.GetValues(typeof(TEnum));
 	}
 }
