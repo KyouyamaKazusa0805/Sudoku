@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using Sudoku.ComponentModel;
 using Sudoku.Data;
-using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual.Uniqueness;
 
@@ -52,7 +52,7 @@ namespace Sudoku.Solving.Manual
 				var searcherListGroup = searchers[i];
 				foreach (var searcher in searcherListGroup)
 				{
-					if (searcher.HasMarked<TechniqueSearcher, HasBugAttribute>(out _))
+					if (searcher.GetType().GetCustomAttribute<HasBugAttribute>() is HasBugAttribute)
 					{
 						// Skip the searcher if the searcher has bugs to fix.
 						continue;
@@ -73,7 +73,7 @@ namespace Sudoku.Solving.Manual
 					}
 
 					if (EnableGarbageCollectionForcedly
-						&& searcher.HasMarked<TechniqueSearcher, HighAllocationAttribute>(out _))
+						&& searcher.GetType().GetCustomAttribute<HighAllocationAttribute>() is HighAllocationAttribute)
 					{
 						GC.Collect();
 					}

@@ -4637,20 +4637,6 @@
             <paramref name="defaultValue"/>.
             </returns>
         </member>
-        <member name="M:Sudoku.Extensions.GenericEx.HasMarked``2(``0,System.Collections.Generic.IEnumerable{``1}@,System.Boolean)">
-            <summary>
-            To check whether the specified instance has marked the specified attribute or not.
-            </summary>
-            <typeparam name="T">
-            The type of the instance. This instance should not be <see langword="null"/>.
-            </typeparam>
-            <typeparam name="TAttribute">The type of the attribute.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
-            <param name="attributes">(<see langword="out"/> parameter) The attribute instances.</param>
-            <param name="inherit">The parameter used for <see cref="M:System.Reflection.MemberInfo.GetCustomAttributes(System.Boolean)"/>.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <seealso cref="M:System.Reflection.MemberInfo.GetCustomAttributes(System.Boolean)"/>
-        </member>
         <member name="T:Sudoku.Extensions.Int16Ex">
             <summary>
             Provides extension methods on <see cref="T:System.Int16"/>.

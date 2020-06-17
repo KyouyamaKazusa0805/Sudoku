@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Sudoku.ComponentModel;
 using Sudoku.Data;
-using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Alses;
@@ -133,7 +133,7 @@ namespace Sudoku.Solving.Manual
 			var progressResult = new TechniqueProgressResult(searchers.Length, globalizationString ?? "en-us");
 			foreach (var searcher in searchers)
 			{
-				if (searcher.HasMarked<TechniqueSearcher, HasBugAttribute>(out _))
+				if (searcher.GetType().GetCustomAttribute<HasBugAttribute>() is HasBugAttribute)
 				{
 					// Skip the searcher if the searcher has bugs to fix.
 					continue;
@@ -149,8 +149,8 @@ namespace Sudoku.Solving.Manual
 
 				if (!(progress is null))
 				{
-					_ = searcher.HasMarked<TechniqueSearcher, TechniqueDisplayAttribute>(out var attributes);
-					progressResult.CurrentTechnique = Resources.GetValue($"Progress{attributes.First().DisplayName}");
+					var attribute = searcher.GetType().GetCustomAttribute<TechniqueDisplayAttribute>()!;
+					progressResult.CurrentTechnique = Resources.GetValue($"Progress{attribute.DisplayName}");
 					progressResult.CurrentIndex++;
 					progress.Report(progressResult);
 				}
