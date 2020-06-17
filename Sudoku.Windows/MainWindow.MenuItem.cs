@@ -326,13 +326,10 @@ namespace Sudoku.Windows
 			}
 		}
 
-		private void MenuItemEditCopyAsSukaku_Click(object sender, RoutedEventArgs e)
-		{
+		private void MenuItemEditCopyAsSukaku_Click(object sender, RoutedEventArgs e) =>
 			InternalCopy(
-				Settings.PmGridCompatible
-					? $"~{(Settings.TextFormatPlaceholdersAreZero ? "0" : ".")}"
-					: $"~@{(Settings.TextFormatPlaceholdersAreZero ? "0" : ".")}");
-		}
+				$"~{(Settings.PmGridCompatible ? string.Empty : "@")}" +
+				$"{(Settings.TextFormatPlaceholdersAreZero ? "0" : ".")}");
 
 		private void MenuItemEditCopyAsExcel_Click(object sender, RoutedEventArgs e) => InternalCopy("%");
 
@@ -506,11 +503,7 @@ namespace Sudoku.Windows
 #if DEBUG
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemGenerateWithTechniqueFiltering_Click(object sender, RoutedEventArgs e)
-#else
-		private void MenuItemGenerateWithTechniqueFiltering_Click(object sender, RoutedEventArgs e)
-#endif
 		{
-#if DEBUG
 			await internalOperation();
 
 			async Task internalOperation()
@@ -527,10 +520,11 @@ namespace Sudoku.Windows
 				ClearItemSourcesWhenGeneratedOrSolving();
 				UpdateImageGrid();
 			}
+		}
 #else
+		private void MenuItemGenerateWithTechniqueFiltering_Click(object sender, RoutedEventArgs e) =>
 			Messagings.NotSupportedWhileGeneratingWithFilter();
 #endif
-		}
 
 		private void MenuItemAnalyzeSolve_Click(object sender, RoutedEventArgs e)
 		{
@@ -560,28 +554,40 @@ namespace Sudoku.Windows
 
 			bool applyNormal()
 			{
-				var oldSb = new StringBuilder(SudokuGrid.EmptyString);
-				for (int cell = 0; cell < 81; cell++)
-				{
-					oldSb[cell] += (char)(_puzzle[cell] + 1);
-				}
-
-				string oldOne = oldSb.ToString();
-				if (new BitwiseSolver().Solve(oldOne, oldSb, 2) != 1)
+				var solutionSb = new StringBuilder();
+				string puzzleStr = _puzzle.ToString("0+");
+				if (new BitwiseSolver().Solve(_puzzle.ToString(), solutionSb, 2) != 1)
 				{
 					return !(e.Handled = true);
 				}
 
 				var newSb = new StringBuilder();
-				for (int cell = 0; cell < 81; cell++)
+				for (int i = 0, cell = 0, length = puzzleStr.Length; i < length; cell++)
 				{
-					if (oldOne[cell] == '0')
+					char c = solutionSb[cell];
+					switch (puzzleStr[i])
 					{
-						newSb.Append("+");
+						case '+':
+						{
+							newSb.Append($"+{c}");
+							i += 2;
+							break;
+						}
+						case '0':
+						{
+							newSb.Append($"+{c}");
+							i++;
+							break;
+						}
+						default:
+						{
+							newSb.Append(c);
+							i++;
+							break;
+						}
 					}
-
-					newSb.Append(oldSb[cell]);
 				}
+
 				Puzzle = new UndoableGrid(SudokuGrid.Parse(newSb.ToString()));
 				UpdateImageGrid();
 				return true;
