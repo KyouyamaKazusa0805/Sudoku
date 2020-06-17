@@ -52,11 +52,9 @@ namespace Sudoku.Solving.Manual
 
 					return AnalyzeDifficultyStrictly
 						? SolveWithStrictDifficultyRating(
-							grid, grid.Clone(), TempList, solution, sukaku.Value,
-							ref paramProgressResult, progress, globalizationString)
+							grid, grid.Clone(), TempList, solution, sukaku.Value, ref paramProgressResult, progress)
 						: SolveNaively(
-							grid, grid.Clone(), TempList, solution, sukaku.Value,
-							ref paramProgressResult, progress, globalizationString);
+							grid, grid.Clone(), TempList, solution, sukaku.Value, ref paramProgressResult, progress);
 				}
 				catch (WrongHandlingException ex)
 				{

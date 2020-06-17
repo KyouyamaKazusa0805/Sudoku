@@ -5036,7 +5036,7 @@
             </param>
             <returns>The analysis result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean,Sudoku.ComponentModel.GridProgressResult@,System.IProgress{Sudoku.ComponentModel.IProgressResult},System.String)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean,Sudoku.ComponentModel.GridProgressResult@,System.IProgress{Sudoku.ComponentModel.IProgressResult})">
             <summary>
             Solve naively.
             </summary>
@@ -5055,14 +5055,13 @@
             The progress used for report the current state. If we don't need, the value should
             be assigned <see langword="null"/>.
             </param>
-            <param name="globalizationString">The globalization string.</param>
             <returns>The analysis result.</returns>
             <exception cref="T:Sudoku.WrongHandlingException">
             Throws when the solver cannot solved due to wrong handling.
             </exception>
             <seealso cref="T:Sudoku.ComponentModel.GridProgressResult"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean,Sudoku.ComponentModel.GridProgressResult@,System.IProgress{Sudoku.ComponentModel.IProgressResult},System.String)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean,Sudoku.ComponentModel.GridProgressResult@,System.IProgress{Sudoku.ComponentModel.IProgressResult})">
             <summary>
             Solve the puzzle with <see cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/> option.
             </summary>
@@ -5081,7 +5080,6 @@
             The progress used for report the current state. If we don't need, the value should
             be assigned <see langword="null"/>.
             </param>
-            <param name="globalizationString">The globalization string.</param>
             <returns>The analysis result.</returns>
             <exception cref="T:Sudoku.WrongHandlingException">
             Throws when the solver cannot solved due to wrong handling.
@@ -5501,8 +5499,8 @@
             <param name="stepGrids">The step grids.</param>
             <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean,Sudoku.ComponentModel.GridProgressResult@,System.IProgress{Sudoku.ComponentModel.IProgressResult},System.String)"/>
-            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean,Sudoku.ComponentModel.GridProgressResult@,System.IProgress{Sudoku.ComponentModel.IProgressResult},System.String)"/>
+            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveNaively(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean,Sudoku.ComponentModel.GridProgressResult@,System.IProgress{Sudoku.ComponentModel.IProgressResult})"/>
+            <seealso cref="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean,Sudoku.ComponentModel.GridProgressResult@,System.IProgress{Sudoku.ComponentModel.IProgressResult})"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.CheckConclusionsValidity(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <summary>
@@ -5512,14 +5510,13 @@
             <param name="conclusions">The conclusions.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.ReportProgress(Sudoku.Data.IReadOnlyGrid,System.IProgress{Sudoku.ComponentModel.IProgressResult},Sudoku.ComponentModel.GridProgressResult@,System.String)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.ReportProgress(Sudoku.Data.IReadOnlyGrid,System.IProgress{Sudoku.ComponentModel.IProgressResult},Sudoku.ComponentModel.GridProgressResult@)">
             <summary>
             To report the progress.
             </summary>
             <param name="cloneation">The cloneation grid.</param>
             <param name="progress">The progress reporter.</param>
             <param name="progressResult">(<see langword="ref"/> parameter) The progress result.</param>
-            <param name="globalizationString">The globalization string.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Sdps.EmptyRectangleTechniqueInfo">
             <summary>
