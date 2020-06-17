@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows.Controls;
 using Sudoku.Extensions;
-using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
 using static Sudoku.Windows.Constants.Processings;
 using CoreResources = Sudoku.Windows.Resources;
@@ -32,20 +30,16 @@ namespace Sudoku.Windows.Tooling
 		/// <summary>
 		/// Get all techniques to display.
 		/// </summary>
-		[SuppressMessage("Style", "IDE0038:Use pattern matching", Justification = "<Pending>")]
 		private void GetAllTechniques()
 		{
 			var selection = from technique in EnumEx.GetValues<TechniqueCode>()
-							let AttributeInstance = Attribute.GetCustomAttribute(
-								typeof(TechniqueCode).GetField(technique.ToString())!,
-								typeof(TechniqueDisplayAttribute))
-							where AttributeInstance is TechniqueDisplayAttribute
-							let TechniqueDisplayAttributeInstance = (TechniqueDisplayAttribute)AttributeInstance
+							let NullableCategory = (string)LangSource[$"Group{technique}"]
+							where !(NullableCategory is null)
 							select (
 								_technique: technique,
 								_id: (int)technique,
 								_displayName: CoreResources.GetValue(technique.ToString()),
-								_category: TechniqueDisplayAttributeInstance.Category);
+								_category: NullableCategory);
 
 			var categories = new List<string>((from quadruple in selection select quadruple._category).Distinct());
 

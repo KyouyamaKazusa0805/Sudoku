@@ -19,6 +19,7 @@ namespace Sudoku.Debugging
 	using System;
 	using System.Diagnostics;
 	using System.Linq;
+	using System.Reflection;
 	using System.Text;
 	using Sudoku.Diagnostics;
 	using Sudoku.Extensions;
@@ -37,44 +38,20 @@ namespace Sudoku.Debugging
 		/// </summary>
 		private static void Main()
 		{
-			foreach (TechniqueCode? code in Enum.GetValues(typeof(TechniqueCode)))
+			var w = new Stopwatch();
+
+			var z = new CodeCounter(Solution.PathRoot, @".+\.cs$");
+
+			w.Start();
+			int codeLines = z.CountCodeLines(out int count);
+			w.Stop();
+
+			foreach (var fileName in z.FileList)
 			{
-				var c = code!.Value;
-				string? d = TechniqueDisplayAttribute.GetDisplayName(c);
-				if (d is null)
-				{
-					var sb = new StringBuilder();
-					string str = c.ToString();
-					for (int i = 0; i < str.Length; i++)
-					{
-						char ch = str[i];
-						if (char.IsUpper(ch) && i != 0)
-						{
-							sb.Append(" ");
-						}
-
-						sb.Append(ch);
-					}
-
-					d = sb.ToString();
-				}
-				Console.WriteLine($@"[""{c}""] = ""{d}"",");
+				WriteLine(fileName);
 			}
 
-			//var w = new Stopwatch();
-
-			//var z = new CodeCounter(Solution.PathRoot, @".+\.cs$");
-
-			//w.Start();
-			//int codeLines = z.CountCodeLines(out int count);
-			//w.Stop();
-
-			//foreach (var fileName in z.FileList)
-			//{
-			//	WriteLine(fileName);
-			//}
-
-			//WriteLine($"Code lines: {codeLines}, found files: {count}, time elapsed: {w.Elapsed:hh':'mm'.'ss'.'fff}");
+			WriteLine($"Code lines: {codeLines}, found files: {count}, time elapsed: {w.Elapsed:hh':'mm'.'ss'.'fff}");
 		}
 	}
 }

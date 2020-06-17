@@ -31,19 +31,6 @@ namespace Sudoku.Solving.Annotations
 		/// </summary>
 		public string DisplayName { get; }
 
-		/// <summary>
-		/// <para>
-		/// Indicates the category of this instance to display.
-		/// This property is used for displaying when need grouping. The value is
-		/// <see langword="null"/> in default case.
-		/// </para>
-		/// <para>
-		/// The category will be displayed like <c>"Fishes&gt;Normal Fishes&gt;Finned"</c>,
-		/// which used '<c>&gt;</c>' character to make a new group or a new sub-group.
-		/// </para>
-		/// </summary>
-		public string? Category { get; set; }
-
 
 		/// <summary>
 		/// Get the display name of the specified enum field.

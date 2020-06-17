@@ -5374,19 +5374,6 @@
             Indicates the display name of this technique.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Annotations.TechniqueDisplayAttribute.Category">
-            <summary>
-            <para>
-            Indicates the category of this instance to display.
-            This property is used for displaying when need grouping. The value is
-            <see langword="null"/> in default case.
-            </para>
-            <para>
-            The category will be displayed like <c>"Fishes&gt;Normal Fishes&gt;Finned"</c>,
-            which used '<c>&gt;</c>' character to make a new group or a new sub-group.
-            </para>
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Annotations.TechniqueDisplayAttribute.GetDisplayName``1(``0)">
             <summary>
             Get the display name of the specified enum field.
@@ -6737,9 +6724,19 @@
             <param name="key">The key.</param>
             <returns>The value.</returns>
             <exception cref="T:System.Collections.Generic.KeyNotFoundException">
-            Throws when the key cannot be found in both the current language dictionary
-            and the default dictionary.
+            Throws when the key cannot be found in neither the current language dictionary
+            nor the default dictionary.
             </exception>
+        </member>
+        <member name="M:Sudoku.Windows.Resources.GetValueWithoutExceptions(System.String)">
+            <summary>
+            Get the value with the specified key, without any exception throws.
+            </summary>
+            <param name="key">The key.</param>
+            <returns>
+            The value. If the key cannot be found in neither the current language dictionary
+            nor the default dictionary, the return value will be <see langword="null"/>.
+            </returns>
         </member>
         <member name="M:Sudoku.Windows.Resources.GetDictionary(System.String)">
             <summary>
