@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
 using Sudoku.ComponentModel;
 using Sudoku.Data;
 using Sudoku.Extensions;
@@ -88,7 +87,7 @@ namespace Sudoku.Solving.Manual
 			{
 				var searcher = searchers[i];
 
-				if (searcher.GetType().GetCustomAttribute<HasBugAttribute>() is HasBugAttribute)
+				if (searcher.GetType().HasMarked<HasBugAttribute>())
 				{
 					// Skip the searcher if the searcher has bugs to fix.
 					continue;
@@ -123,8 +122,7 @@ namespace Sudoku.Solving.Manual
 						// we should turn to the first step finder
 						// to continue solving puzzle.
 						bag.Clear();
-						if (EnableGarbageCollectionForcedly
-							&& searcher.GetType().GetCustomAttribute<HighAllocationAttribute>() is HighAllocationAttribute)
+						if (EnableGarbageCollectionForcedly && searcher.GetType().HasMarked<HighAllocationAttribute>())
 						{
 							GC.Collect();
 						}
@@ -178,7 +176,7 @@ namespace Sudoku.Solving.Manual
 							// to continue solving puzzle.
 							bag.Clear();
 							if (EnableGarbageCollectionForcedly
-								&& searcher.GetType().GetCustomAttribute<HighAllocationAttribute>() is HighAllocationAttribute)
+								&& searcher.GetType().HasMarked<HighAllocationAttribute>())
 							{
 								GC.Collect();
 							}
