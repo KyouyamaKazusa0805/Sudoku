@@ -48,8 +48,8 @@
 	<sys:String x:Key="_menuItemAnalyze">分析</sys:String>
 	<sys:String x:Key="_menuItemAnalyzeAnalyze">分析此题</sys:String>
 	<sys:String x:Key="_menuItemAnalyzeSolve">显示终盘</sys:String>
-	<sys:String x:Key="_menuItemAnalyzeShowFullHouses">启用技巧 Full House</sys:String>
-	<sys:String x:Key="_menuItemAnalyzeShowLastDigits">启用技巧 Last Digit</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeShowFullHouses">启用同区剩余（Full House）技巧</sys:String>
+	<sys:String x:Key="_menuItemAnalyzeShowLastDigits">启用同数剩余（Last Digit）技巧</sys:String>
 	<sys:String x:Key="_menuItemAnalyzeSeMode">严格处理难度</sys:String>
 	<sys:String x:Key="_menuItemAnalyzeFastSearch">快速解题</sys:String>
 	<sys:String x:Key="_menuItemAnalyzeCheckConclusionValidityAfterSearched">验证每一步的结论</sys:String>

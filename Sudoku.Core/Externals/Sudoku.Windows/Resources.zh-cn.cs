@@ -99,8 +99,8 @@ namespace Sudoku.Windows
 			["AnalysisResultBackdoors"] = "后门：",
 
 			// Techniques
-			["FullHouse"] = "Full House",
-			["LastDigit"] = "Last Digit",
+			["FullHouse"] = "同区剩余",
+			["LastDigit"] = "同数剩余",
 			["HiddenSingleRow"] = "行排除",
 			["HiddenSingleColumn"] = "列排除",
 			["HiddenSingleBlock"] = "宫排除",
