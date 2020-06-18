@@ -56,6 +56,10 @@
 						  Name="_menuItemFileGetSnapshot"
 						  Click="MenuItemFileGetSnapshot_Click"/>
 				<Separator/>
+				<MenuItem Header="Load script..."
+						  Name="_menuItemFileLoadScript"
+						  Click="MenuItemFileLoadScript_Click"/>
+				<Separator/>
 				<MenuItem Header="{DynamicResource _menuItemFileQuitApp}" InputGestureText="Alt + F4"
 						  Name="_menuItemFileQuitApp" BorderThickness="2,2,2,2" BorderBrush="Red"
 						  Click="MenuItemFileQuit_Click"/>

@@ -224,6 +224,8 @@ namespace Sudoku.Windows
 			MenuItemFileSavePicture_Click(sender, e);
 		}
 
+		private void MenuItemFileLoadScript_Click(object sender, RoutedEventArgs e) => new ScriptWindow(this).Show();
+
 		private void MenuItemFileQuit_Click(object sender, RoutedEventArgs e) => Close();
 
 		private void MenuItemOptionsShowCandidates_Click(object sender, RoutedEventArgs e)
