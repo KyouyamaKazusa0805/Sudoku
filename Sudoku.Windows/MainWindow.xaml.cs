@@ -959,6 +959,21 @@ namespace Sudoku.Windows
 		}
 
 		/// <summary>
+		/// Transform the grid.
+		/// </summary>
+		/// <param name="transformation">The inner function to process the transformation.</param>
+		private void Transform(Func<IReadOnlyGrid, UndoableGrid> transformation)
+		{
+			if (_puzzle != (SudokuGrid)SudokuGrid.Empty/* && Messagings.AskWhileClearingStack() == MessageBoxResult.Yes*/)
+			{
+				Puzzle = transformation(_puzzle);
+
+				UpdateUndoRedoControls();
+				UpdateImageGrid();
+			}
+		}
+
+		/// <summary>
 		/// Change the language.
 		/// </summary>
 		/// <param name="globalizationString">The globalization string.</param>

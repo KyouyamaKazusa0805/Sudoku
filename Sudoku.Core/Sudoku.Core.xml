@@ -1233,9 +1233,9 @@
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.RotateCounterClockwise(Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Data.Extensions.GridTransformationExtensions.RotateCounterclockwise(Sudoku.Data.IReadOnlyGrid)">
             <summary>
-            Rotate the grid counter-clockwise.
+            Rotate the grid counterclockwise.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The grid.</param>
             <returns>The result.</returns>
@@ -3891,6 +3891,12 @@
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.SetMask(System.Int32,System.Int16)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Stepping.UndoableGrid.SetGrid(Sudoku.Data.Stepping.UndoableGrid)">
+            <summary>
+            Set the specified grid to cover the current grid.
+            </summary>
+            <param name="grid">The grid.</param>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.Redo">
             <inheritdoc/>

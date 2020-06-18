@@ -68,9 +68,9 @@ namespace Sudoku.Data.Extensions
 		public static Grid MirrorLeftRight(this IReadOnlyGrid @this)
 		{
 			var result = @this.Clone();
-			for (int i = 0; i < 4; i++)
+			for (int i = 0; i < 9; i++)
 			{
-				for (int j = 0; j < 9; j++)
+				for (int j = 0; j < 4; j++)
 				{
 					short temp = result.GetMask(i * 9 + j);
 					result.SetMask(i * 9 + j, result.GetMask(i * 9 + (8 - j)));
@@ -89,9 +89,9 @@ namespace Sudoku.Data.Extensions
 		public static Grid MirrorTopBottom(this IReadOnlyGrid @this)
 		{
 			var result = @this.Clone();
-			for (int i = 0; i < 9; i++)
+			for (int i = 0; i < 4; i++)
 			{
-				for (int j = 0; j < 4; j++)
+				for (int j = 0; j < 9; j++)
 				{
 					short temp = result.GetMask(i * 9 + j);
 					result.SetMask(i * 9 + j, result.GetMask((8 - i) * 9 + j));
@@ -171,11 +171,11 @@ namespace Sudoku.Data.Extensions
 		}
 
 		/// <summary>
-		/// Rotate the grid counter-clockwise.
+		/// Rotate the grid counterclockwise.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <returns>The result.</returns>
-		public static Grid RotateCounterClockwise(this IReadOnlyGrid @this)
+		public static Grid RotateCounterclockwise(this IReadOnlyGrid @this)
 		{
 			var result = @this.Clone();
 			for (int i = 0; i < 81; i++)

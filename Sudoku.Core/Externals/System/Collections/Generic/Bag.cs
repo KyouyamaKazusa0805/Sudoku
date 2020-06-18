@@ -24,7 +24,10 @@ namespace System.Collections.Generic
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
-		public Bag() { }
+		public Bag()
+		{
+		}
+
 
 		/// <summary>
 		/// Initializes an instance with an element.
@@ -44,6 +47,7 @@ namespace System.Collections.Generic
 
 
 		/// <inheritdoc/>
+		[NotNull]
 		public T this[int index] => _internalList[index];
 
 

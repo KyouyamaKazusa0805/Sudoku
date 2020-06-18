@@ -811,6 +811,27 @@ namespace Sudoku.Windows
 			new BugNSearchWindow(_puzzle).ShowDialog();
 		}
 
+		private void MenuItemTransformMirrorLeftRight_Click(object sender, RoutedEventArgs e) =>
+			Transform(p => new UndoableGrid(p.MirrorLeftRight()));
+
+		private void MenuItemTransformMirrorTopBotton_Click(object sender, RoutedEventArgs e) =>
+			Transform(p => new UndoableGrid(p.MirrorTopBottom()));
+
+		private void MenuItemTransformMirrorDiagonal_Click(object sender, RoutedEventArgs e) =>
+			Transform(p => new UndoableGrid(p.MirrorDiagonal()));
+
+		private void MenuItemTransformMirrorAntidiagonal_Click(object sender, RoutedEventArgs e) =>
+			Transform(p => new UndoableGrid(p.MirrorAntidiagonal()));
+
+		private void MenuItemTransformRotateClockwise_Click(object sender, RoutedEventArgs e) =>
+			Transform(p => new UndoableGrid(p.RotateClockwise()));
+
+		private void MenuItemTransformRotateCounterclockwise_Click(object sender, RoutedEventArgs e) =>
+			Transform(p => new UndoableGrid(p.RotateCounterclockwise()));
+
+		private void MenuItemTransformRotatePi_Click(object sender, RoutedEventArgs e) =>
+			Transform(p => new UndoableGrid(p.RotatePi()));
+
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private async void MenuItemViewsShowBugN_Click(object sender, RoutedEventArgs e)
 		{

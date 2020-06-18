@@ -120,7 +120,7 @@ namespace Sudoku.Data.Stepping
 			foreach (int cell in map)
 			{
 				ref short mask = ref _masks[cell];
-				mask = (short)((int)CellStatus.Given << 9 | mask & Grid.MaxCandidatesMask);
+				mask = (short)((int)CellStatus.Given << 9 | mask & MaxCandidatesMask);
 			}
 
 			Array.Copy(_masks, _initialMasks, 81);
@@ -142,7 +142,7 @@ namespace Sudoku.Data.Stepping
 			foreach (int cell in map)
 			{
 				ref short mask = ref _masks[cell];
-				mask = (short)((int)CellStatus.Modifiable << 9 | mask & Grid.MaxCandidatesMask);
+				mask = (short)((int)CellStatus.Modifiable << 9 | mask & MaxCandidatesMask);
 			}
 		}
 
@@ -168,6 +168,18 @@ namespace Sudoku.Data.Stepping
 		{
 			_undoStack.Push(new SetMaskStep(offset, GetMask(offset), value));
 			base.SetMask(offset, value);
+		}
+
+		/// <summary>
+		/// Set the specified grid to cover the current grid.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		public void SetGrid(UndoableGrid grid)
+		{
+			for (int cell = 0; cell < 81; cell++)
+			{
+				_masks[cell] = grid._masks[cell];
+			}
 		}
 
 		/// <inheritdoc/>
@@ -216,7 +228,7 @@ namespace Sudoku.Data.Stepping
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override bool Equals(object? obj) => obj is UndoableGrid comparer && Equals(comparer);
+		public override bool Equals(object? obj) => Equals(obj as UndoableGrid);
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

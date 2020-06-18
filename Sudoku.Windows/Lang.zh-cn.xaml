@@ -65,6 +65,15 @@
 	<sys:String x:Key="_menuItemAnalyzeBackdoorView">（0 到 1 级）后门显示！</sys:String>
 	<sys:String x:Key="_menuItemViewsGspView">宇宙法检测显示！</sys:String>
 
+	<sys:String x:Key="_menuItemTransform">变换</sys:String>
+	<sys:String x:Key="_menuItemTransformMirrorLeftRight">左右翻折</sys:String>
+	<sys:String x:Key="_menuItemTransformMirrorTopBotton">上下翻折</sys:String>
+	<sys:String x:Key="_menuItemTransformMirrorDiagonal">捺对角线对折 (转置)</sys:String>
+	<sys:String x:Key="_menuItemTransformMirrorAntidiagonal">撇对角线对折</sys:String>
+	<sys:String x:Key="_menuItemTransformRotateClockwise">顺时针旋转</sys:String>
+	<sys:String x:Key="_menuItemTransformRotateCounterclockwise">逆时针旋转</sys:String>
+	<sys:String x:Key="_menuItemTransformRotatePi">旋转 180°</sys:String>
+
 	<sys:String x:Key="_menuItemAbout">关于</sys:String>
 	<sys:String x:Key="_menuItemAboutMe">关于作者…</sys:String>
 	<sys:String x:Key="_menuItemAboutSpecialThanks">特别感谢…</sys:String>

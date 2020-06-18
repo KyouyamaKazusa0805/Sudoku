@@ -29,8 +29,7 @@ namespace System.Text.RegularExpressions
 		}
 
 		/// <inheritdoc/>
-		protected InvalidRegexStringException(
-			SerializationInfo serializationInfo, StreamingContext streamingContext)
+		protected InvalidRegexStringException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 			: base(serializationInfo, streamingContext)
 		{
 		}

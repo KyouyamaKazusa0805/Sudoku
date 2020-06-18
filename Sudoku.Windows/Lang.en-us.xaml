@@ -65,6 +65,15 @@
 	<sys:String x:Key="_menuItemAnalyzeBackdoorView">Backdoor (level 0 &amp; 1) view!</sys:String>
 	<sys:String x:Key="_menuItemViewsGspView">Gurth's Symmetrical Placement view!</sys:String>
 
+	<sys:String x:Key="_menuItemTransform">Transform</sys:String>
+	<sys:String x:Key="_menuItemTransformMirrorLeftRight">Mirror left &amp; right</sys:String>
+	<sys:String x:Key="_menuItemTransformMirrorTopBotton">Mirror top &amp; bottom</sys:String>
+	<sys:String x:Key="_menuItemTransformMirrorDiagonal">Mirror diagonal (Transpose)</sys:String>
+	<sys:String x:Key="_menuItemTransformMirrorAntidiagonal">Mirror anti-diagonal</sys:String>
+	<sys:String x:Key="_menuItemTransformRotateClockwise">Rotate clockwise</sys:String>
+	<sys:String x:Key="_menuItemTransformRotateCounterclockwise">Rotate counterclockwise</sys:String>
+	<sys:String x:Key="_menuItemTransformRotatePi">Rotate 180°</sys:String>
+
 	<sys:String x:Key="_menuItemAbout">About</sys:String>
 	<sys:String x:Key="_menuItemAboutMe">About me...</sys:String>
 	<sys:String x:Key="_menuItemAboutSpecialThanks">Special thanks...</sys:String>

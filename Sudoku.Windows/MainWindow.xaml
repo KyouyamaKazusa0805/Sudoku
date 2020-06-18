@@ -28,7 +28,7 @@
 		</Grid.ColumnDefinitions>
 		<!-- Row 0 -->
 		<Menu VerticalAlignment="Top" IsMainMenu="True" Grid.Row="0" Grid.ColumnSpan="2">
-			<!-- File... -->
+			<!-- File -->
 			<MenuItem Header="{DynamicResource _menuItemFile}">
 				<MenuItem Header="{DynamicResource _menuItemFileOpen}" InputGestureText="Ctrl + O"
 						  Name="_menuItemFileOpen"
@@ -61,7 +61,7 @@
 						  Click="MenuItemFileQuit_Click"/>
 			</MenuItem>
 
-			<!-- Options... -->
+			<!-- Options -->
 			<MenuItem Header="{DynamicResource _menuItemOptions}">
 				<MenuItem Header="{DynamicResource _menuItemOptionsShowCandidates}"
 						  Name="_menuItemOptionsShowCandidates" IsChecked="True"
@@ -72,7 +72,7 @@
 						  Click="MenuItemOptionsSettings_Click"/>
 			</MenuItem>
 			
-			<!-- Edit... -->
+			<!-- Edit -->
 			<MenuItem Header="{DynamicResource _menuItemEdit}">
 				<MenuItem Header="{DynamicResource _menuItemEditUndo}" InputGestureText="Ctrl + Z"
 						  Name="_menuItemEditUndo" IsEnabled="False"
@@ -129,7 +129,7 @@
 						  Click="MenuItemEditClear_Click"/>
 			</MenuItem>
 
-			<!-- Generate... -->
+			<!-- Generate -->
 			<MenuItem Header="{DynamicResource _menuItemGenerate}">
 				<MenuItem Header="{DynamicResource _menuItemGenerateWithSymmetry}"
 						  Name="_menuItemGenerateWithSymmetry"
@@ -144,7 +144,7 @@
 				<!--#endregion-->
 			</MenuItem>
 
-			<!-- Analyze... -->
+			<!-- Analyze -->
 			<MenuItem Header="{DynamicResource _menuItemAnalyze}">
 				<MenuItem Header="{DynamicResource _menuItemAnalyzeAnalyze}" InputGestureText="F9"
 						  Name="_menuItemAnalyzeAnalyze"
@@ -192,6 +192,7 @@
 						  Click="MenuItemAnalyzeBackdoor_Click"/>
 			</MenuItem>
 
+			<!-- Views -->
 			<MenuItem Header="{DynamicResource _menuItemViews}">
 				<MenuItem Header="{DynamicResource _menuItemAnalyzeShowBugN}"
 						  Name="_menuItemAnalyzeShowBugN"
@@ -204,7 +205,33 @@
 						  Click="MenuItemViewsGspView_Click"/>
 			</MenuItem>
 
-			<!-- Languages... -->
+			<!-- Transform -->
+			<MenuItem Header="{DynamicResource _menuItemTransform}">
+				<MenuItem Header="{DynamicResource _menuItemTransformMirrorLeftRight}"
+						  Name="_menuItemTransformMirrorLeftRight"
+						  Click="MenuItemTransformMirrorLeftRight_Click"/>
+				<MenuItem Header="{DynamicResource _menuItemTransformMirrorTopBotton}"
+						  Name="_menuItemTransformMirrorTopBotton"
+						  Click="MenuItemTransformMirrorTopBotton_Click"/>
+				<MenuItem Header="{DynamicResource _menuItemTransformMirrorDiagonal}"
+						  Name="_menuItemTransformMirrorDiagonal"
+						  Click="MenuItemTransformMirrorDiagonal_Click"/>
+				<MenuItem Header="{DynamicResource _menuItemTransformMirrorAntidiagonal}"
+						  Name="_menuItemTransformMirrorAntidiagonal"
+						  Click="MenuItemTransformMirrorAntidiagonal_Click"/>
+				<Separator/>
+				<MenuItem Header="{DynamicResource _menuItemTransformRotateClockwise}"
+						  Name="_menuItemTransformRotateClockwise"
+						  Click="MenuItemTransformRotateClockwise_Click"/>
+				<MenuItem Header="{DynamicResource _menuItemTransformRotateCounterclockwise}"
+						  Name="_menuItemTransformRotateCounterclockwise"
+						  Click="MenuItemTransformRotateCounterclockwise_Click"/>
+				<MenuItem Header="{DynamicResource _menuItemTransformRotatePi}"
+						  Name="_menuItemTransformRotatePi"
+						  Click="MenuItemTransformRotatePi_Click"/>
+			</MenuItem>
+
+			<!-- Languages -->
 			<MenuItem Header="{DynamicResource _menuItemLanguages}">
 				<MenuItem Header="{DynamicResource _menuItemLanguagesChinese}"
 						  Name="_menuItemLanguagesChinese"
@@ -214,7 +241,7 @@
 						  Click="MenuItemLanguagesEnglish_Click"/>
 			</MenuItem>
 
-			<!-- About... -->
+			<!-- About -->
 			<MenuItem Header="{DynamicResource _menuItemAbout}">
 				<MenuItem Header="{DynamicResource _menuItemAboutMe}"
 						  Name="_menuItemAboutMe"

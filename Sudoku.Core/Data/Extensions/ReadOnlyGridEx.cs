@@ -50,8 +50,7 @@ namespace Sudoku.Data.Extensions
 		public static bool IsBivalueCell(this IReadOnlyGrid @this, int cellOffset, out short mask)
 		{
 			mask = 0;
-			return @this.GetStatus(cellOffset) == Empty
-				&& (mask = @this.GetCandidateMask(cellOffset)).CountSet() == 2;
+			return @this.GetStatus(cellOffset) == Empty && (mask = @this.GetCandidateMask(cellOffset)).CountSet() == 2;
 		}
 
 		/// <summary>
