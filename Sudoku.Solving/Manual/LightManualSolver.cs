@@ -4,6 +4,7 @@ using System.ComponentModel;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Solving.Manual.Singles;
+using Sudoku.Windows;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
 
@@ -18,7 +19,7 @@ namespace Sudoku.Solving.Manual
 	{
 		/// <inheritdoc/>
 		[EditorBrowsable(EditorBrowsableState.Never)]
-		public override string SolverName => "Manual (Light)";
+		public override string SolverName => Resources.GetValue("ManualLight");
 
 
 		/// <inheritdoc/>

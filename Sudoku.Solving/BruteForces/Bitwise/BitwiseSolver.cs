@@ -3,11 +3,12 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using Sudoku.Data;
+using Sudoku.Windows;
 using static System.Runtime.InteropServices.CharSet;
 using static System.Runtime.InteropServices.CallingConvention;
 using static System.Runtime.InteropServices.UnmanagedType;
-using ImmutableString = System.String;
 using CStyleString = System.Text.StringBuilder;
+using ImmutableString = System.String;
 #if TARGET_64BIT
 using native_int = System.Int32;
 #else
@@ -22,7 +23,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 	public sealed class BitwiseSolver : Solver
 	{
 		/// <inheritdoc/>
-		public override string SolverName => "Bitwise";
+		public override string SolverName => Resources.GetValue("Bitwise");
 
 
 		/// <inheritdoc/>

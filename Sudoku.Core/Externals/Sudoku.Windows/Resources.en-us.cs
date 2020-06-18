@@ -16,9 +16,21 @@ namespace Sudoku.Windows
 		[SuppressMessage("CodeQuality", "IDE0052:Remove unread private members", Justification = "<Pending>")]
 		private static readonly SourceDictionary LangSourceEnUs = new Dictionary<string, string>
 		{
+			// Punctuation marks
+			["Ellipsis"] = "......",
+			["Colon"] = ":",
+
 			// GridProgressResult
 			["UnsolvedCells"] = "Unsolved cells: ",
 			["UnsolvedCandidates"] = ", candidates: ",
+
+			// Solver
+			["Manual"] = "Manual",
+			["ManualLight"] = "Manual (Light)",
+			["Backtracking"] = "Backtracking",
+			["Bitwise"] = "Bitwise",
+			["BitwiseSukaku"] = "Bitwise Sukaku",
+			["OneLineLinq"] = "One line LINQ",
 
 			// StepFinder
 			["ProgressAlsWWing"] = "Almost Locked Sets W-Wing",
@@ -66,6 +78,25 @@ namespace Sudoku.Windows
 			["Avoidable"] = "Avoidable ",
 			["Unique"] = "Unique",
 			["Hidden"] = "Hidden ",
+			["AnalysisResultPuzzle"] = "Puzzle: ",
+			["AnalysisResultSolvingTool"] = "Solving tool: ",
+			["AnalysisResultSolvingSteps"] = "Solving steps:",
+			["AnalysisResultBottleneckStep"] = "Bottleneck step:",
+			["AnalysisResultInStep"] = " In step ",
+			["AnalysisResultTechniqueUsed"] = "Technique used:",
+			["AnalysisResultMin"] = "min",
+			["AnalysisResultTotal"] = "total",
+			["AnalysisResultTechniqueUsing"] = "  technique using",
+			["AnalysisResultStepSingular"] = "step",
+			["AnalysisResultStepPlural"] = "steps",
+			["AnalysisResultPuzzleRating"] = "Puzzle rating: ",
+			["AnalysisResultPuzzleSolution"] = "Puzzle solution: ",
+			["AnalysisResultPuzzleHas"] = "Puzzle has ",
+			["AnalysisResultNot"] = "not ",
+			["AnalysisResultBeenSolved"] = "been solved.",
+			["AnalysisResultTimeElapsed"] = "Time elapsed: ",
+			["AnalysisResultAttributes"] = "Attributes:",
+			["AnalysisResultBackdoors"] = "Backdoors:",
 
 			// Techniques
 			["FullHouse"] = "Full House",

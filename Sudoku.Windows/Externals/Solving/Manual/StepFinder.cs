@@ -29,7 +29,7 @@ using Sudoku.Solving.Manual.Uniqueness.Square;
 using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using Sudoku.Windows;
-using ITechniquesGroupByName = System.Linq.IGrouping<string, Sudoku.Solving.TechniqueInfo>;
+using TechniquesGroupedByName = System.Linq.IGrouping<string, Sudoku.Solving.TechniqueInfo>;
 
 namespace Sudoku.Solving.Manual
 {
@@ -57,12 +57,12 @@ namespace Sudoku.Solving.Manual
 		/// <param name="grid">The grid.</param>
 		/// <param name="progress">The progress.</param>
 		/// <param name="globalizationString">The globalization string.</param>
-		public IEnumerable<ITechniquesGroupByName> Search(
+		public IEnumerable<TechniquesGroupedByName> Search(
 			IReadOnlyGrid grid, IProgress<IProgressResult>? progress, string? globalizationString)
 		{
 			if (grid.HasSolved || !grid.IsValid(out _, out bool? sukaku))
 			{
-				return Array.Empty<ITechniquesGroupByName>();
+				return Array.Empty<TechniquesGroupedByName>();
 			}
 
 			var solver = _settings.MainManualSolver;
@@ -150,8 +150,8 @@ namespace Sudoku.Solving.Manual
 
 				if (!(progress is null))
 				{
-					var attribute = searcher.GetType().GetCustomAttribute<TechniqueDisplayAttribute>()!;
-					progressResult.CurrentTechnique = Resources.GetValue($"Progress{attribute.DisplayName}");
+					progressResult.CurrentTechnique = Resources.GetValue(
+						$"Progress{searcher.GetType().GetCustomAttribute<TechniqueDisplayAttribute>()!.DisplayName}");
 					progressResult.CurrentIndex++;
 					progress.Report(progressResult);
 				}

@@ -16,9 +16,21 @@ namespace Sudoku.Windows
 		[SuppressMessage("CodeQuality", "IDE0052:Remove unread private members", Justification = "<Pending>")]
 		private static readonly SourceDictionary LangSourceZhCn = new Dictionary<string, string>
 		{
+			// Punctuation marks
+			["Ellipsis"] = "……",
+			["Colon"] = "：",
+
 			// GridProgressResult
 			["UnsolvedCells"] = "剩余空格总数：",
 			["UnsolvedCandidates"] = "，剩余候选数总数：",
+
+			// Solver
+			["Manual"] = "人工",
+			["ManualLight"] = "人工 (轻量级)",
+			["Backtracking"] = "回溯",
+			["Bitwise"] = "位运算",
+			["BitwiseSukaku"] = "候选数数独位运算",
+			["OneLineLinq"] = "单行 LINQ",
 
 			// StepFinder
 			["ProgressAlsWWing"] = "待定数组-W-Wing",
@@ -66,6 +78,25 @@ namespace Sudoku.Windows
 			["Avoidable"] = "可规避",
 			["Unique"] = "唯一",
 			["Hidden"] = "隐性",
+			["AnalysisResultPuzzle"] = "题目：",
+			["AnalysisResultSolvingTool"] = "解题工具：",
+			["AnalysisResultSolvingSteps"] = "解题步骤：",
+			["AnalysisResultBottleneckStep"] = "卡点步骤：",
+			["AnalysisResultInStep"] = "于步骤编号 ",
+			["AnalysisResultTechniqueUsed"] = "技巧使用情况：",
+			["AnalysisResultMin"] = "最小",
+			["AnalysisResultTotal"] = "最大",
+			["AnalysisResultTechniqueUsing"] = "          技巧使用",
+			["AnalysisResultStepSingular"] = "个步骤",
+			["AnalysisResultStepPlural"] = "个步骤",
+			["AnalysisResultPuzzleRating"] = "题目难度分：",
+			["AnalysisResultPuzzleSolution"] = "终盘：",
+			["AnalysisResultPuzzleHas"] = "题目",
+			["AnalysisResultNot"] = "未",
+			["AnalysisResultBeenSolved"] = "被解出。",
+			["AnalysisResultTimeElapsed"] = "耗时：",
+			["AnalysisResultAttributes"] = "题目特性：",
+			["AnalysisResultBackdoors"] = "后门：",
 
 			// Techniques
 			["FullHouse"] = "Full House",

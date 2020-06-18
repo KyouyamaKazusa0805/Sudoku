@@ -5061,7 +5061,7 @@
             </exception>
             <seealso cref="T:Sudoku.ComponentModel.GridProgressResult"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveWithStrictDifficultyRating(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean,Sudoku.ComponentModel.GridProgressResult@,System.IProgress{Sudoku.ComponentModel.IProgressResult})">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveSeMode(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Grid,System.Collections.Generic.List{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Boolean,Sudoku.ComponentModel.GridProgressResult@,System.IProgress{Sudoku.ComponentModel.IProgressResult})">
             <summary>
             Solve the puzzle with <see cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/> option.
             </summary>

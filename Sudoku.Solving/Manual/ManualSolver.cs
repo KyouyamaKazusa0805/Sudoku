@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Sudoku.ComponentModel;
 using Sudoku.Data;
 using Sudoku.Solving.Checking;
+using Sudoku.Windows;
 
 namespace Sudoku.Solving.Manual
 {
@@ -13,7 +14,7 @@ namespace Sudoku.Solving.Manual
 	public sealed partial class ManualSolver : Solver
 	{
 		/// <inheritdoc/>
-		public override string SolverName => "Manual";
+		public override string SolverName => Resources.GetValue("Manual");
 
 
 		/// <summary>
@@ -45,16 +46,14 @@ namespace Sudoku.Solving.Manual
 				try
 				{
 					GridProgressResult defaultValue = default;
-					var progressResult = new GridProgressResult(candsCount, emptyCellsCount, candsCount, globalizationString);
-					ref var paramProgressResult = ref progress is null ? ref defaultValue : ref progressResult;
+					var defaultPr = new GridProgressResult(candsCount, emptyCellsCount, candsCount, globalizationString);
+					ref var pr = ref progress is null ? ref defaultValue : ref defaultPr;
 
-					progress?.Report(progressResult);
+					progress?.Report(defaultPr);
 
 					return AnalyzeDifficultyStrictly
-						? SolveWithStrictDifficultyRating(
-							grid, grid.Clone(), TempList, solution, sukaku.Value, ref paramProgressResult, progress)
-						: SolveNaively(
-							grid, grid.Clone(), TempList, solution, sukaku.Value, ref paramProgressResult, progress);
+						? SolveSeMode(grid, grid.Clone(), TempList, solution, sukaku.Value, ref pr, progress)
+						: SolveNaively(grid, grid.Clone(), TempList, solution, sukaku.Value, ref pr, progress);
 				}
 				catch (WrongHandlingException ex)
 				{

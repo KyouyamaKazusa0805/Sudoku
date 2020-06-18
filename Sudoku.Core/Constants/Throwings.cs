@@ -27,6 +27,12 @@ namespace Sudoku.Constants
 		public static FormatException FormatError => new FormatException("The specified format is invalid.");
 
 		/// <summary>
+		/// Indicates an exception throwing when the format string contains invalid characters.
+		/// </summary>
+		public static FormatException FormatErrorWithInvalidChars =>
+			throw new FormatException("The specified format is invalid due to with invalid characters.");
+
+		/// <summary>
 		/// Indicates all <see langword="ref struct"/>s cannot
 		/// use any boxing operations.
 		/// </summary>

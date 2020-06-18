@@ -417,6 +417,11 @@
             Indicates an exception throwing when the format string is invalid.
             </summary>
         </member>
+        <member name="P:Sudoku.Constants.Throwings.FormatErrorWithInvalidChars">
+            <summary>
+            Indicates an exception throwing when the format string contains invalid characters.
+            </summary>
+        </member>
         <member name="P:Sudoku.Constants.Throwings.RefStructNotSupported">
             <summary>
             Indicates all <see langword="ref struct"/>s cannot

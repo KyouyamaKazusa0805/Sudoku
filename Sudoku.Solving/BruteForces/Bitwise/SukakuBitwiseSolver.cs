@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using Sudoku.Data;
+using Sudoku.Windows;
 using static System.Runtime.InteropServices.CallingConvention;
 using static System.Runtime.InteropServices.CharSet;
 using static System.Runtime.InteropServices.UnmanagedType;
@@ -22,7 +23,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 	public sealed class SukakuBitwiseSolver : Solver
 	{
 		/// <inheritdoc/>
-		public override string SolverName => "Bitwise Sukaku";
+		public override string SolverName => Resources.GetValue("BitwiseSukaku");
 
 
 		/// <inheritdoc/>

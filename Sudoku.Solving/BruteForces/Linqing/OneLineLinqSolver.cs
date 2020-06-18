@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using Sudoku.Data;
+using Sudoku.Windows;
 using static System.Linq.Enumerable;
 using static System.Math;
 using static System.StringComparison;
@@ -14,7 +15,7 @@ namespace Sudoku.Solving.BruteForces.Linqing
 	public sealed class OneLineLinqSolver : Solver
 	{
 		/// <inheritdoc/>
-		public override string SolverName => "One line LINQ";
+		public override string SolverName => Resources.GetValue("OneLineLinq");
 
 
 		/// <inheritdoc/>
