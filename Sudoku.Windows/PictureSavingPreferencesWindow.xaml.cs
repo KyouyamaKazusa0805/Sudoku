@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Drawing.Text;
 using System.Linq;
 using System.Windows;
 using Microsoft.Win32;
@@ -10,7 +13,10 @@ using Sudoku.Drawing;
 using Sudoku.Drawing.Layers;
 using Sudoku.Windows.Constants;
 using static System.Drawing.Imaging.ImageFormat;
+using static System.Drawing.StringAlignment;
+using static System.IO.Path;
 using static Sudoku.Windows.Constants.Processings;
+using DFontStyle = System.Drawing.FontStyle;
 using PointConverter = Sudoku.Drawing.PointConverter;
 
 namespace Sudoku.Windows
@@ -20,6 +26,11 @@ namespace Sudoku.Windows
 	/// </summary>
 	public partial class PictureSavingPreferencesWindow : Window
 	{
+		/// <summary>
+		/// Indicates whether the text will be drawn on the final bitmap.
+		/// </summary>
+		private readonly bool _addText;
+
 		/// <summary>
 		/// Indicates the settings in main window.
 		/// </summary>
@@ -42,11 +53,11 @@ namespace Sudoku.Windows
 		/// <param name="grid">The grid.</param>
 		/// <param name="settings">The settings.</param>
 		/// <param name="layerCollection">The older layer collection.</param>
-		public PictureSavingPreferencesWindow(Grid grid, Settings settings, LayerCollection layerCollection)
+		public PictureSavingPreferencesWindow(Grid grid, Settings settings, LayerCollection layerCollection, bool addText)
 		{
 			InitializeComponent();
 
-			(_settings, _grid, _oldCollection) = (settings, grid, layerCollection);
+			(_settings, _grid, _oldCollection, _addText) = (settings, grid, layerCollection, addText);
 			_numericUpDownSize.CurrentValue = (decimal)_settings.SavingPictureSize;
 		}
 
@@ -59,15 +70,46 @@ namespace Sudoku.Windows
 		private ImageCodecInfo? GetEncoderInfo(ImageFormat imageFormat) =>
 			ImageCodecInfo.GetImageEncoders().FirstOrDefault(codec => codec.FormatID == imageFormat.Guid);
 
+		/// <summary>
+		/// Draw the extra text.
+		/// </summary>
+		/// <param name="bitmap">(<see langword="ref"/> parameter) The bitmap on which the text is drawn.</param>
+		/// <param name="text">The text that should be drawn on the bitmap.</param>
+		/// <returns>The result map.</returns>
+		[return: NotNullIfNotNull("text")]
+		private Bitmap? DrawText(Bitmap bitmap, string? text)
+		{
+			if (text is null)
+			{
+				return null;
+			}
+
+			const int fontSize = 16;
+			const string fontName = "Times New Roman";
+			var result = new Bitmap(bitmap.Width, bitmap.Height + (fontSize << 1));
+			using var g = Graphics.FromImage(result);
+			using var f = new Font(fontName, fontSize, DFontStyle.Bold);
+			using var sf = new StringFormat { Alignment = Center, LineAlignment = Center };
+			using var b = Brushes.Black;
+			var pt = new PointF(bitmap.Width >> 1, bitmap.Height + (fontSize >> 1));
+			g.TextRenderingHint = TextRenderingHint.AntiAlias;
+			g.SmoothingMode = SmoothingMode.HighQuality;
+			g.CompositingQuality = CompositingQuality.HighQuality;
+			g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+			g.Clear(Color.White);
+			g.DrawImage(bitmap, default(PointF));
+			g.DrawString(text, f, b, pt, sf);
+
+			return result;
+		}
+
 
 		private void ButtonSave_Click(object sender, RoutedEventArgs e)
 		{
-			if (savePicture((float)_numericUpDownSize.CurrentValue))
-			{
-				Close();
-			}
+			s((float)_numericUpDownSize.CurrentValue);
+			Close();
 
-			bool savePicture(float size)
+			bool s(float size)
 			{
 				var saveFileDialog = new SaveFileDialog
 				{
@@ -86,10 +128,8 @@ namespace Sudoku.Windows
 				var layerCollection = new LayerCollection
 				{
 					new BackLayer(pc, _settings.BackgroundColor),
-					new GridLineLayer(
-						pc, _settings.GridLineWidth, _settings.GridLineColor),
-					new BlockLineLayer(
-						pc, _settings.BlockLineWidth, _settings.BlockLineColor),
+					new GridLineLayer(pc, _settings.GridLineWidth, _settings.GridLineColor),
+					new BlockLineLayer(pc, _settings.BlockLineWidth, _settings.BlockLineColor),
 					new ValueLayer(
 						pc, _settings.ValueScale, _settings.CandidateScale,
 						_settings.GivenColor, _settings.ModifiableColor, _settings.CandidateColor,
@@ -119,8 +159,7 @@ namespace Sudoku.Windows
 						// Normal picture formats.
 						layerCollection.IntegrateTo(bitmap);
 
-						var encoderParameters = new EncoderParameters(1);
-						encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 100L);
+						bitmap = _addText ? DrawText(bitmap, GetFileNameWithoutExtension(saveFileDialog.FileName)) : bitmap;
 						bitmap.Save(
 							fileName,
 							GetEncoderInfo(
@@ -133,7 +172,7 @@ namespace Sudoku.Windows
 									3 => Gif,
 									_ => throw Throwings.ImpossibleCase
 								}) ?? throw new NullReferenceException("The return value is null."),
-							encoderParameters);
+							new EncoderParameters(1) { Param = { [0] = new EncoderParameter(Encoder.Quality, 100L) } });
 					}
 					else
 					{

@@ -195,7 +195,7 @@ namespace Sudoku.Windows
 		}
 
 		private void MenuItemFileSavePicture_Click(object sender, RoutedEventArgs e) =>
-			new PictureSavingPreferencesWindow(_puzzle, Settings, _layerCollection).ShowDialog();
+			new PictureSavingPreferencesWindow(_puzzle, Settings, _layerCollection, false).ShowDialog();
 
 		private void MenuItemFileGetSnapshot_Click(object sender, RoutedEventArgs e)
 		{
@@ -211,7 +211,6 @@ namespace Sudoku.Windows
 
 		private void MenuItemFileSaveBoth_Click(object sender, RoutedEventArgs e)
 		{
-			// TODO: Implement the details.
 			if (!_puzzle.IsValid(out _))
 			{
 				Messagings.FailedToCheckDueToInvalidPuzzle();
@@ -219,12 +218,10 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			MenuItemFileSavePicture_Click(sender, e);
+			new PictureSavingPreferencesWindow(_puzzle, Settings, _layerCollection, true).ShowDialog();
 			MenuItemAnalyzeSolve_Click(sender, e);
-			MenuItemFileSavePicture_Click(sender, e);
+			new PictureSavingPreferencesWindow(_puzzle, Settings, _layerCollection, true).ShowDialog();
 		}
-
-		private void MenuItemFileLoadScript_Click(object sender, RoutedEventArgs e) => new ScriptWindow(this).Show();
 
 		private void MenuItemFileQuit_Click(object sender, RoutedEventArgs e) => Close();
 
