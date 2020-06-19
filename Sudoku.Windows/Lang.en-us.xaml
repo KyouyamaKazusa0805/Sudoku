@@ -9,7 +9,7 @@
 	<sys:String x:Key="_menuItemBackupConfig">Backup configurations</sys:String>
 	<sys:String x:Key="_menuItemFileLoadPicture">Load picture...</sys:String>
 	<sys:String x:Key="_menuItemFileSavePicture">Save picture...</sys:String>
-	<sys:String x:Key="_menuItemFileSaveBoth">Save both puzzle and solution two pictures</sys:String>
+	<sys:String x:Key="_menuItemFileSaveBatch">Save both puzzle and its solution</sys:String>
 	<sys:String x:Key="_menuItemFileGetSnapshot">Get snapshot</sys:String>
 	<sys:String x:Key="_menuItemFileQuitApp">Quit App</sys:String>
 	

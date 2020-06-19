@@ -48,9 +48,9 @@
 				<MenuItem Header="{DynamicResource _menuItemFileSavePicture}"
 						  Name="_menuItemFileSavePicture"
 						  Click="MenuItemFileSavePicture_Click"/>
-				<MenuItem Header="{DynamicResource _menuItemFileSaveBoth}"
-						  Name="_menuItemFileSaveBoth"
-						  Click="MenuItemFileSaveBoth_Click"/>
+				<MenuItem Header="{DynamicResource _menuItemFileSaveBatch}"
+						  Name="_menuItemFileSaveBatch"
+						  Click="MenuItemFileSaveBatch_Click"/>
 				<Separator/>
 				<MenuItem Header="{DynamicResource _menuItemFileGetSnapshot}" InputGestureText="Ctrl + P"
 						  Name="_menuItemFileGetSnapshot"

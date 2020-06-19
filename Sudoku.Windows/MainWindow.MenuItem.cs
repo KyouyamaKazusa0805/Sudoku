@@ -209,7 +209,7 @@ namespace Sudoku.Windows
 			}
 		}
 
-		private void MenuItemFileSaveBoth_Click(object sender, RoutedEventArgs e)
+		private void MenuItemFileSaveBatch_Click(object sender, RoutedEventArgs e)
 		{
 			if (!_puzzle.IsValid(out _))
 			{
@@ -218,9 +218,12 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			new PictureSavingPreferencesWindow(_puzzle, Settings, _layerCollection).ShowDialog();
-			MenuItemAnalyzeSolve_Click(sender, e);
-			new PictureSavingPreferencesWindow(_puzzle, Settings, _layerCollection).ShowDialog();
+			// Batch.
+			new PictureSavingPreferencesWindow(_puzzle, Settings, _layerCollection).ShowDialog(); // Save puzzle picture.
+			MenuItemFileSave_Click(sender, e); // Save puzzle text.
+			MenuItemAnalyzeSolve_Click(sender, e); // Solve the puzzle.
+			new PictureSavingPreferencesWindow(_puzzle, Settings, _layerCollection).ShowDialog(); // Save solution picture.
+			MenuItemFileSave_Click(sender, e); // Save solution text.
 		}
 
 		private void MenuItemFileQuit_Click(object sender, RoutedEventArgs e) => Close();
@@ -251,10 +254,6 @@ namespace Sudoku.Windows
 			UpdateControls();
 			UpdateImageGrid();
 		}
-
-		private void MenuItemLanguagesChinese_Click(object sender, RoutedEventArgs e) => ChangeLanguage("zh-cn");
-
-		private void MenuItemLanguagesEnglish_Click(object sender, RoutedEventArgs e) => ChangeLanguage("en-us");
 
 		private void MenuItemEditUndo_Click(object sender, RoutedEventArgs e)
 		{
@@ -989,6 +988,10 @@ namespace Sudoku.Windows
 
 			UpdateImageGrid();
 		}
+
+		private void MenuItemLanguagesChinese_Click(object sender, RoutedEventArgs e) => ChangeLanguage("zh-cn");
+
+		private void MenuItemLanguagesEnglish_Click(object sender, RoutedEventArgs e) => ChangeLanguage("en-us");
 
 		private void MenuItemAboutMe_Click(object sender, RoutedEventArgs e) => new AboutMeWindow().Show();
 

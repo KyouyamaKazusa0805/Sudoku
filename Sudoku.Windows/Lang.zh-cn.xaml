@@ -9,7 +9,7 @@
 	<sys:String x:Key="_menuItemBackupConfig">备份配置文件</sys:String>
 	<sys:String x:Key="_menuItemFileLoadPicture">读取题目图片…</sys:String>
 	<sys:String x:Key="_menuItemFileSavePicture">保存图片…</sys:String>
-	<sys:String x:Key="_menuItemFileSaveBoth">同时保存题目和终盘图片</sys:String>
+	<sys:String x:Key="_menuItemFileSaveBatch">同时保存题目和终盘</sys:String>
 	<sys:String x:Key="_menuItemFileGetSnapshot">获取题目截屏</sys:String>
 	<sys:String x:Key="_menuItemFileQuitApp">退出程序</sys:String>
 
