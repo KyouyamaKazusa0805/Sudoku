@@ -193,7 +193,7 @@ namespace Sudoku.Windows
 							}
 
 							const int fontSize = 20;
-							const string fontName = "Times New Roman";
+							const string fontName = "Microsoft YaHei UI,Consolas,Times New Roman";
 							var result = new Bitmap(bitmap.Width, bitmap.Height + (fontSize << 1));
 							using var g = Graphics.FromImage(result);
 							using var f = new Font(fontName, fontSize, DFontStyle.Bold);
