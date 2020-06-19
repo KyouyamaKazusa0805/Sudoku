@@ -162,25 +162,6 @@ namespace Sudoku.Windows
 					string fileName = saveFileDialog.FileName;
 					if (selectedIndex >= -1 && selectedIndex <= 3)
 					{
-						void s(Bitmap bitmap) =>
-							bitmap.Save(
-								fileName,
-								ImageCodecInfo.GetImageEncoders().FirstOrDefault(
-									c => c.FormatID == (
-										selectedIndex switch
-										{
-											-1 => Png,
-											0 => Png,
-											1 => Jpeg,
-											2 => Bmp,
-											3 => Gif,
-											_ => throw Throwings.ImpossibleCase
-										}).Guid) ?? throw new NullReferenceException("The return value is null."),
-								new EncoderParameters(1)
-								{
-									Param = { [0] = new EncoderParameter(DEncoder.Quality, 100L) }
-								});
-
 						// Normal picture formats.
 						layerCollection.IntegrateTo(bitmap);
 
@@ -208,11 +189,11 @@ namespace Sudoku.Windows
 								resultText, f, Brushes.Black, bitmap.Width >> 1,
 								bitmap.Height + (fontSize >> 1) + 8, sf);
 
-							s(result);
+							SavePicture(result, selectedIndex, fileName);
 						}
 						else
 						{
-							s(bitmap);
+							SavePicture(bitmap, selectedIndex, fileName);
 						}
 					}
 					else
@@ -239,6 +220,22 @@ namespace Sudoku.Windows
 				return true;
 			}
 		}
+
+		private static void SavePicture(Bitmap bitmap, int selectedIndex, string fileName) =>
+			bitmap.Save(
+				fileName,
+				ImageCodecInfo.GetImageEncoders().FirstOrDefault(
+					c => c.FormatID == (
+						selectedIndex switch
+						{
+							-1 => Png,
+							0 => Png,
+							1 => Jpeg,
+							2 => Bmp,
+							3 => Gif,
+							_ => throw Throwings.ImpossibleCase
+						}).Guid) ?? throw new NullReferenceException("The return value is null."),
+				new EncoderParameters(1) { Param = { [0] = new EncoderParameter(DEncoder.Quality, 100L) } });
 
 		private void ButtonCancel_Click(object sender, RoutedEventArgs e) => Close();
 	}

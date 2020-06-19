@@ -736,14 +736,16 @@ namespace Sudoku.Windows
 			_imageUndoIcon.Source =
 				new BitmapImage(
 					new Uri(
-						$@"Resources/ImageIcon-Undo{(
-							(_menuItemEditUndo.IsEnabled = _puzzle.HasUndoSteps) ? string.Empty : "Disable")}.png",
+						$@"Resources/ImageIcon-Undo{
+							((_menuItemEditUndo.IsEnabled = _puzzle.HasUndoSteps) ? string.Empty : "Disable")
+						}.png",
 						UriKind.Relative));
 			_imageRedoIcon.Source =
 				new BitmapImage(
 					new Uri(
-						$@"Resources/ImageIcon-Redo{(
-							(_menuItemEditRedo.IsEnabled = _puzzle.HasRedoSteps) ? string.Empty : "Disable")}.png",
+						$@"Resources/ImageIcon-Redo{
+							((_menuItemEditRedo.IsEnabled = _puzzle.HasRedoSteps) ? string.Empty : "Disable")
+						}.png",
 						UriKind.Relative));
 		}
 
@@ -756,6 +758,9 @@ namespace Sudoku.Windows
 			_textBoxInfo.Text = (string)LangSource["WhileGenerating"];
 			_menuItemFileOpen.IsEnabled = false;
 			_menuItemFileOpenDatabase.IsEnabled = false;
+			_menuItemFileSave.IsEnabled = false;
+			_menuItemFileSavePicture.IsEnabled = false;
+			_menuItemFileSaveBatch.IsEnabled = false;
 			_menuItemOptionsSettings.IsEnabled = false;
 			_menuItemGenerateHardPattern.IsEnabled = false;
 			_menuItemEditPaste.IsEnabled = false;
@@ -798,6 +803,9 @@ namespace Sudoku.Windows
 			_textBoxInfo.ClearValue(TextBox.TextProperty);
 			_menuItemFileOpen.IsEnabled = true;
 			_menuItemFileOpenDatabase.IsEnabled = true;
+			_menuItemFileSave.IsEnabled = true;
+			_menuItemFileSavePicture.IsEnabled = true;
+			_menuItemFileSaveBatch.IsEnabled = true;
 			_menuItemOptionsSettings.IsEnabled = true;
 			_menuItemGenerateHardPattern.IsEnabled = true;
 			_menuItemEditPaste.IsEnabled = true;
@@ -835,6 +843,9 @@ namespace Sudoku.Windows
 		{
 			_menuItemFileOpen.IsEnabled = false;
 			_menuItemFileOpenDatabase.IsEnabled = false;
+			_menuItemFileSave.IsEnabled = false;
+			_menuItemFileSavePicture.IsEnabled = false;
+			_menuItemFileSaveBatch.IsEnabled = false;
 			_menuItemOptionsSettings.IsEnabled = false;
 			_menuItemGenerateHardPattern.IsEnabled = false;
 			_menuItemEditPaste.IsEnabled = false;
@@ -881,6 +892,9 @@ namespace Sudoku.Windows
 			_textBoxInfo.ClearValue(TextBox.TextProperty);
 			_menuItemFileOpen.IsEnabled = true;
 			_menuItemFileOpenDatabase.IsEnabled = true;
+			_menuItemFileSave.IsEnabled = true;
+			_menuItemFileSavePicture.IsEnabled = true;
+			_menuItemFileSaveBatch.IsEnabled = true;
 			_menuItemOptionsSettings.IsEnabled = true;
 			_menuItemGenerateHardPattern.IsEnabled = true;
 			_menuItemEditPaste.IsEnabled = true;
