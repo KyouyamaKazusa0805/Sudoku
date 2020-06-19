@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -62,48 +61,6 @@ namespace Sudoku.Windows
 		}
 
 
-		/// <summary>
-		/// Get the encoder information.
-		/// </summary>
-		/// <param name="imageFormat">The image format.</param>
-		/// <returns>The info.</returns>
-		private ImageCodecInfo? GetEncoderInfo(ImageFormat imageFormat) =>
-			ImageCodecInfo.GetImageEncoders().FirstOrDefault(codec => codec.FormatID == imageFormat.Guid);
-
-		/// <summary>
-		/// Draw the extra text.
-		/// </summary>
-		/// <param name="bitmap">(<see langword="ref"/> parameter) The bitmap on which the text is drawn.</param>
-		/// <param name="text">The text that should be drawn on the bitmap.</param>
-		/// <returns>The result map.</returns>
-		[return: NotNullIfNotNull("text")]
-		private Bitmap? DrawText(Bitmap bitmap, string? text)
-		{
-			if (text is null)
-			{
-				return null;
-			}
-
-			const int fontSize = 16;
-			const string fontName = "Times New Roman";
-			var result = new Bitmap(bitmap.Width, bitmap.Height + (fontSize << 1));
-			using var g = Graphics.FromImage(result);
-			using var f = new Font(fontName, fontSize, DFontStyle.Bold);
-			using var sf = new StringFormat { Alignment = Center, LineAlignment = Center };
-			using var b = Brushes.Black;
-			var pt = new PointF(bitmap.Width >> 1, bitmap.Height + (fontSize >> 1));
-			g.TextRenderingHint = TextRenderingHint.AntiAlias;
-			g.SmoothingMode = SmoothingMode.HighQuality;
-			g.CompositingQuality = CompositingQuality.HighQuality;
-			g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-			g.Clear(Color.White);
-			g.DrawImage(bitmap, default(PointF));
-			g.DrawString(text, f, b, pt, sf);
-
-			return result;
-		}
-
-
 		private void ButtonSave_Click(object sender, RoutedEventArgs e)
 		{
 			s((float)_numericUpDownSize.CurrentValue);
@@ -156,23 +113,49 @@ namespace Sudoku.Windows
 					string fileName = saveFileDialog.FileName;
 					if (selectedIndex >= -1 && selectedIndex <= 3)
 					{
+						void s(Bitmap bitmap) =>
+							bitmap.Save(
+								fileName,
+								ImageCodecInfo.GetImageEncoders().FirstOrDefault(
+									c => c.FormatID == (
+										selectedIndex switch
+										{
+											-1 => Png,
+											0 => Png,
+											1 => Jpeg,
+											2 => Bmp,
+											3 => Gif,
+											_ => throw Throwings.ImpossibleCase
+										}).Guid) ?? throw new NullReferenceException("The return value is null."),
+								new EncoderParameters(1) { Param = { [0] = new EncoderParameter(Encoder.Quality, 100L) } });
+
 						// Normal picture formats.
 						layerCollection.IntegrateTo(bitmap);
 
-						bitmap = _addText ? DrawText(bitmap, GetFileNameWithoutExtension(saveFileDialog.FileName)) : bitmap;
-						bitmap.Save(
-							fileName,
-							GetEncoderInfo(
-								selectedIndex switch
-								{
-									-1 => Png,
-									0 => Png,
-									1 => Jpeg,
-									2 => Bmp,
-									3 => Gif,
-									_ => throw Throwings.ImpossibleCase
-								}) ?? throw new NullReferenceException("The return value is null."),
-							new EncoderParameters(1) { Param = { [0] = new EncoderParameter(Encoder.Quality, 100L) } });
+						if (_addText)
+						{
+							string text = GetFileNameWithoutExtension(saveFileDialog.FileName);
+
+							const int fontSize = 20;
+							const string fontName = "Times New Roman";
+							var result = new Bitmap(bitmap.Width, bitmap.Height + (fontSize << 1));
+							using var g = Graphics.FromImage(result);
+							using var f = new Font(fontName, fontSize, DFontStyle.Bold);
+							using var sf = new StringFormat { Alignment = Center, LineAlignment = Center };
+							g.TextRenderingHint = TextRenderingHint.AntiAlias;
+							g.SmoothingMode = SmoothingMode.HighQuality;
+							g.CompositingQuality = CompositingQuality.HighQuality;
+							g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+							g.Clear(Color.White);
+							g.DrawImage(bitmap, 0, 0);
+							g.DrawString(text, f, Brushes.Black, bitmap.Width >> 1, bitmap.Height + (fontSize >> 1) + 8, sf);
+
+							s(result);
+						}
+						else
+						{
+							s(bitmap);
+						}
 					}
 					else
 					{
