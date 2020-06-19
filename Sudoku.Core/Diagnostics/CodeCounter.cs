@@ -92,16 +92,13 @@ namespace Sudoku.Diagnostics
 		/// <param name="directory">The directory information instance.</param>
 		private void GetAllFilesRecursively(DirectoryInfo directory)
 		{
-			foreach (var fileInfo in
+			FileList.AddRange(
 				from file in directory.GetFiles()
-				where _pattern is null ? true : file.FullName.SatisfyPattern(_pattern)
-				select file)
-			{
-				FileList.Add(fileInfo.FullName);
-			}
+				where _pattern is null || file.FullName.SatisfyPattern(_pattern)
+				select file.FullName);
 
-			var allDirectories = directory.GetDirectories();
-			foreach (var d in allDirectories)
+			// Get all files for each folder recursively.
+			foreach (var d in directory.GetDirectories())
 			{
 				GetAllFilesRecursively(d);
 			}
