@@ -5,6 +5,7 @@ namespace System.Collections
 	/// <summary>
 	/// Encapsulates a tree node.
 	/// </summary>
+	[Obsolete("Please use TreeView`1(T) instead.")]
 	public sealed class TreeNode : IComparable<TreeNode?>
 	{
 		/// <summary>
