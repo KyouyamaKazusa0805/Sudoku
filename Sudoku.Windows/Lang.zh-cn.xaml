@@ -170,12 +170,10 @@
 	<sys:String x:Key="PictureSavingButtonCancel">取消</sys:String>
 	<sys:String x:Key="PictureSavingFilter">PNG 文件|*.png|JPG 文件|*.jpg|BMP 文件|*.bmp|GIF 文件|*.gif|WMF 文件|*.wmf</sys:String>
 	<sys:String x:Key="PictureSavingSaveDialogTitle">保存图片…</sys:String>
-	<sys:String x:Key="PictureSavingFormatHelper">
-		"$f": 文件名。&#13;
-		"$e": 文件拓展名。带有小数点。&#13;
-		"$D": 今天的日期，不带任何分隔符号。例如 20200202。&#13;
-		"$d": 今天的日期，带有连字符号。例如 2020-02-02。
-	</sys:String>
+	<sys:String x:Key="PictureSavingFormatHelper" xml:space="preserve">"$f": 文件名。&#13;
+"$e": 文件拓展名。带有小数点。&#13;
+"$D": 今天的日期，不带任何分隔符号。例如 20200202。&#13;
+"$d": 今天的日期，带有连字符号。例如 2020-02-02。</sys:String>
 	<sys:String x:Key="PictureSavingLabelFormatString">格式化字符串：</sys:String>
 
 	<sys:String x:Key="ProgressTitle">处理中…</sys:String>
