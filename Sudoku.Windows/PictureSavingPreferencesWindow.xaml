@@ -7,7 +7,9 @@
 		Title="{DynamicResource PictureSavingTitle}" Height="180" Width="250" ResizeMode="CanMinimize">
 	<Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="4*"/>
+			<RowDefinition Height="2*"/>
+			<RowDefinition/>
+			<RowDefinition/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
@@ -20,7 +22,17 @@
 		<c:NumericUpDown Grid.Row="0" Grid.Column="1" x:Name="_numericUpDownSize"
 						 MinValue="100" MaxValue="2000" Width="100"
 						 HorizontalAlignment="Center" VerticalAlignment="Center"/>
-		<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1" Grid.ColumnSpan="2">
+		<Label Content="{DynamicResource PictureSavingLabelFormatString}"
+			   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+			   HorizontalAlignment="Left" VerticalAlignment="Bottom" Cursor="Help">
+			<Label.ToolTip>
+				<ToolTip Name="_toolTipFormats" Content="{DynamicResource PictureSavingFormatHelper}"/>
+			</Label.ToolTip>
+		</Label>
+		<TextBox Name="_textBoxFormat" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+				 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+				 FontFamily="Consolas,'Microsoft YaHei UI','Times Now Roman',黑体,宋体"/>
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="3" Grid.ColumnSpan="2">
 			<StackPanel.Resources>
 				<Style TargetType="Button">
 					<Setter Property="Margin" Value="5,5,5,5"/>

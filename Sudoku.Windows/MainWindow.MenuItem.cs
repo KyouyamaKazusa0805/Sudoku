@@ -195,7 +195,7 @@ namespace Sudoku.Windows
 		}
 
 		private void MenuItemFileSavePicture_Click(object sender, RoutedEventArgs e) =>
-			new PictureSavingPreferencesWindow(_puzzle, Settings, _layerCollection, false).ShowDialog();
+			new PictureSavingPreferencesWindow(_puzzle, Settings, _layerCollection).ShowDialog();
 
 		private void MenuItemFileGetSnapshot_Click(object sender, RoutedEventArgs e)
 		{
@@ -218,9 +218,9 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			new PictureSavingPreferencesWindow(_puzzle, Settings, _layerCollection, true).ShowDialog();
+			new PictureSavingPreferencesWindow(_puzzle, Settings, _layerCollection).ShowDialog();
 			MenuItemAnalyzeSolve_Click(sender, e);
-			new PictureSavingPreferencesWindow(_puzzle, Settings, _layerCollection, true).ShowDialog();
+			new PictureSavingPreferencesWindow(_puzzle, Settings, _layerCollection).ShowDialog();
 		}
 
 		private void MenuItemFileQuit_Click(object sender, RoutedEventArgs e) => Close();

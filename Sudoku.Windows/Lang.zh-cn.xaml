@@ -170,6 +170,13 @@
 	<sys:String x:Key="PictureSavingButtonCancel">取消</sys:String>
 	<sys:String x:Key="PictureSavingFilter">PNG 文件|*.png|JPG 文件|*.jpg|BMP 文件|*.bmp|GIF 文件|*.gif|WMF 文件|*.wmf</sys:String>
 	<sys:String x:Key="PictureSavingSaveDialogTitle">保存图片…</sys:String>
+	<sys:String x:Key="PictureSavingFormatHelper">
+		"$f": 文件名。&#13;
+		"$e": 文件拓展名。带有小数点。&#13;
+		"$D": 今天的日期，不带任何分隔符号。例如 20200202。&#13;
+		"$d": 今天的日期，带有连字符号。例如 2020-02-02。
+	</sys:String>
+	<sys:String x:Key="PictureSavingLabelFormatString">格式化字符串：</sys:String>
 
 	<sys:String x:Key="ProgressTitle">处理中…</sys:String>
 
@@ -333,7 +340,8 @@
 	<sys:String x:Key="AskWhileClearingStack1">所有的撤销和还原步骤全都会清除掉。这将导致当前题目无法继续恢复到其前一个状态。</sys:String>
 	<sys:String x:Key="AskWhileClearingStack2">是否要清空步骤信息？</sys:String>
 	<sys:String x:Key="AskWhileGeneratingWithDatabase">你正在使用题库模式。如果点选“是”（YES）按钮，出题模块将会运行，但你此时的题库使用操作和行为都将会在此刻清除掉。这是一个艰难的抉择，难道不是吗？</sys:String>
-
+	<sys:String x:Key="CheckFormatString">格式化字符串不合法。请检查你的输入。</sys:String>
+	
 	<!-- Separate texts -->
 	<sys:String x:Key="TimeElapsed">耗时：</sys:String>
 	<sys:String x:Key="StepSingular">个步骤</sys:String>

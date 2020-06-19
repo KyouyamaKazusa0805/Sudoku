@@ -272,6 +272,14 @@ namespace Sudoku.Windows.Constants
 				(string)LangSource["CaptionInfo"]);
 
 		/// <summary>
+		/// Indicates the message that warn you to check the format string.
+		/// </summary>
+		public static void CheckFormatString() =>
+			MessageBox.Show(
+				(string)LangSource["CheckFormatString"],
+				(string)LangSource["CaptionInfo"]);
+
+		/// <summary>
 		/// Indicates the message while quitting.
 		/// </summary>
 		/// <returns>The <see cref="MessageBoxResult"/>.</returns>

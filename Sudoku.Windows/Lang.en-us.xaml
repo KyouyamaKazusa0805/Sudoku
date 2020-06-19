@@ -170,7 +170,14 @@
 	<sys:String x:Key="PictureSavingButtonCancel">Cancel</sys:String>
 	<sys:String x:Key="PictureSavingFilter">PNG files|*.png|JPG files|*.jpg|BMP files|*.bmp|GIF files|*.gif|WMF files|*.wmf</sys:String>
 	<sys:String x:Key="PictureSavingSaveDialogTitle">Save picture...</sys:String>
-
+	<sys:String x:Key="PictureSavingFormatHelper">
+		"$f": file name.&#13;
+		"$e": file extension.&#13;
+		"$D": today without any symbols, e.g. 20200202.&#13;
+		"$d": today with hyphens, e.g. 2020-02-02.
+	</sys:String>
+	<sys:String x:Key="PictureSavingLabelFormatString">Format string:</sys:String>
+	
 	<sys:String x:Key="ProgressTitle">Handling...</sys:String>
 
 	<sys:String x:Key="SpecialThanksTitle">Special thanks</sys:String>
@@ -333,6 +340,7 @@
 	<sys:String x:Key="AskWhileClearingStack1">The steps will be cleared. If so, you cannot undo any steps to previous puzzle status.</sys:String>
 	<sys:String x:Key="AskWhileClearingStack2">Do you want to clear anyway?</sys:String>
 	<sys:String x:Key="AskWhileGeneratingWithDatabase">You are now working on the puzzle database. If you click YES button, the generating will start, but the database history will be cleared. A hard decision, isn't it?</sys:String>
+	<sys:String x:Key="CheckFormatString">The format is invalid. Please check the format string you input.</sys:String>
 	
 	<!-- Separate texts -->
 	<sys:String x:Key="TimeElapsed">time elapsed:</sys:String>

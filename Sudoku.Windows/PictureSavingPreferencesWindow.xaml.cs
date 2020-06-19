@@ -3,7 +3,9 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Drawing.Text;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows;
 using Microsoft.Win32;
 using Sudoku.Constants;
@@ -13,8 +15,8 @@ using Sudoku.Drawing.Layers;
 using Sudoku.Windows.Constants;
 using static System.Drawing.Imaging.ImageFormat;
 using static System.Drawing.StringAlignment;
-using static System.IO.Path;
 using static Sudoku.Windows.Constants.Processings;
+using DEncoder = System.Drawing.Imaging.Encoder;
 using DFontStyle = System.Drawing.FontStyle;
 using PointConverter = Sudoku.Drawing.PointConverter;
 
@@ -26,9 +28,35 @@ namespace Sudoku.Windows
 	public partial class PictureSavingPreferencesWindow : Window
 	{
 		/// <summary>
-		/// Indicates whether the text will be drawn on the final bitmap.
+		/// <para>
+		/// Indicates the text that should be output. Sometimes this field may contain
+		/// escape characters (such as "<c>$e</c>" means extension).
+		/// </para>
+		/// <para>If you don't want to add extra text, the field will be <see langword="null"/>.</para>
 		/// </summary>
-		private readonly bool _addText;
+		/// <remarks>
+		/// Escape characters use the character <c>$</c> as the header because the symbol
+		/// cannot be used in file names. Supported formats are below:
+		/// <list type="table">
+		/// <item>
+		/// <term><c>$f</c></term>
+		/// <description>The file name.</description>
+		/// </item>
+		/// <item>
+		/// <term><c>$e</c></term>
+		/// <description>The file extension.</description>
+		/// </item>
+		/// <item>
+		/// <term><c>$D</c></term>
+		/// <description>The date without any extra characters. Such as <c>20200202</c>.</description>
+		/// </item>
+		/// <item>
+		/// <term><c>$d</c></term>
+		/// <description>The date with hyphen. Such as <c>2020-02-02</c>.</description>
+		/// </item>
+		/// </list>
+		/// </remarks>
+		private string? _format;
 
 		/// <summary>
 		/// Indicates the settings in main window.
@@ -52,21 +80,42 @@ namespace Sudoku.Windows
 		/// <param name="grid">The grid.</param>
 		/// <param name="settings">The settings.</param>
 		/// <param name="layerCollection">The older layer collection.</param>
-		public PictureSavingPreferencesWindow(Grid grid, Settings settings, LayerCollection layerCollection, bool addText)
+		public PictureSavingPreferencesWindow(Grid grid, Settings settings, LayerCollection layerCollection)
 		{
 			InitializeComponent();
 
-			(_settings, _grid, _oldCollection, _addText) = (settings, grid, layerCollection, addText);
+			(_settings, _grid, _oldCollection) = (settings, grid, layerCollection);
 			_numericUpDownSize.CurrentValue = (decimal)_settings.SavingPictureSize;
+		}
+
+
+		/// <summary>
+		/// Indicates whether the format string is valid.
+		/// </summary>
+		/// <param name="filePath">The file path.</param>
+		/// <param name="text">(<see langword="out"/> parameter) The output text.</param>
+		/// <returns>The <see cref="bool"/> value indicating that.</returns>
+		private bool IsFormatValid(string filePath, out string text)
+		{
+			var sb = new StringBuilder(_format);
+			sb.Replace("$f", Path.GetFileNameWithoutExtension(filePath));
+			sb.Replace("$e", Path.GetExtension(filePath));
+			sb.Replace("$D", $"{DateTime.Now:yyyyMMdd}");
+			sb.Replace("$d", $"{DateTime.Now:yyyy-MM-dd}");
+
+			return !(text = sb.ToString()).Contains('$');
 		}
 
 
 		private void ButtonSave_Click(object sender, RoutedEventArgs e)
 		{
-			s((float)_numericUpDownSize.CurrentValue);
+			string originalString = _textBoxFormat.Text;
+			_format = string.IsNullOrWhiteSpace(originalString) ? null : originalString;
+
+			internalOperation((float)_numericUpDownSize.CurrentValue);
 			Close();
 
-			bool s(float size)
+			bool internalOperation(float size)
 			{
 				var saveFileDialog = new SaveFileDialog
 				{
@@ -127,14 +176,21 @@ namespace Sudoku.Windows
 											3 => Gif,
 											_ => throw Throwings.ImpossibleCase
 										}).Guid) ?? throw new NullReferenceException("The return value is null."),
-								new EncoderParameters(1) { Param = { [0] = new EncoderParameter(Encoder.Quality, 100L) } });
+								new EncoderParameters(1)
+								{
+									Param = { [0] = new EncoderParameter(DEncoder.Quality, 100L) }
+								});
 
 						// Normal picture formats.
 						layerCollection.IntegrateTo(bitmap);
 
-						if (_addText)
+						if (!(_format is null))
 						{
-							string text = GetFileNameWithoutExtension(saveFileDialog.FileName);
+							if (!IsFormatValid(saveFileDialog.FileName, out string resultText))
+							{
+								Messagings.CheckFormatString();
+								return !(e.Handled = true);
+							}
 
 							const int fontSize = 20;
 							const string fontName = "Times New Roman";
@@ -148,7 +204,9 @@ namespace Sudoku.Windows
 							g.InterpolationMode = InterpolationMode.HighQualityBicubic;
 							g.Clear(Color.White);
 							g.DrawImage(bitmap, 0, 0);
-							g.DrawString(text, f, Brushes.Black, bitmap.Width >> 1, bitmap.Height + (fontSize >> 1) + 8, sf);
+							g.DrawString(
+								resultText, f, Brushes.Black, bitmap.Width >> 1,
+								bitmap.Height + (fontSize >> 1) + 8, sf);
 
 							s(result);
 						}
