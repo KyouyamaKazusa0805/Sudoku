@@ -17,7 +17,6 @@ using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
-using Sudoku.Drawing.Layers;
 using Sudoku.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.Bitwise;
@@ -27,7 +26,6 @@ using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Windows.Constants;
 using static Sudoku.Windows.Constants.Processings;
 using AnonymousType = System.Object;
-using DColor = System.Drawing.Color;
 using SudokuGrid = Sudoku.Data.Grid;
 #if SUDOKU_RECOGNIZING
 using System.Drawing;
@@ -195,7 +193,7 @@ namespace Sudoku.Windows
 		}
 
 		private void MenuItemFileSavePicture_Click(object sender, RoutedEventArgs e) =>
-			new PictureSavingPreferencesWindow(_puzzle, Settings, _layerCollection).ShowDialog();
+			new PictureSavingPreferencesWindow(_puzzle, Settings, _currentPainter).ShowDialog();
 
 		private void MenuItemFileGetSnapshot_Click(object sender, RoutedEventArgs e)
 		{
@@ -219,10 +217,10 @@ namespace Sudoku.Windows
 			}
 
 			// Batch.
-			new PictureSavingPreferencesWindow(_puzzle, Settings, _layerCollection).ShowDialog(); // Save puzzle picture.
+			new PictureSavingPreferencesWindow(_puzzle, Settings, _currentPainter).ShowDialog(); // Save puzzle picture.
 			MenuItemFileSave_Click(sender, e); // Save puzzle text.
 			MenuItemAnalyzeSolve_Click(sender, e); // Solve the puzzle.
-			new PictureSavingPreferencesWindow(_puzzle, Settings, _layerCollection).ShowDialog(); // Save solution picture.
+			new PictureSavingPreferencesWindow(_puzzle, Settings, _currentPainter).ShowDialog(); // Save solution picture.
 			MenuItemFileSave_Click(sender, e); // Save solution text.
 		}
 
@@ -230,13 +228,8 @@ namespace Sudoku.Windows
 
 		private void MenuItemOptionsShowCandidates_Click(object sender, RoutedEventArgs e)
 		{
-			_layerCollection.Add(
-				new ValueLayer(
-					_pointConverter, Settings.ValueScale, Settings.CandidateScale,
-					Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
-					Settings.GivenFontName, Settings.ModifiableFontName,
-					Settings.CandidateFontName, _puzzle,
-					Settings.ShowCandidates = _menuItemOptionsShowCandidates.IsChecked ^= true));
+			Settings.ShowCandidates = _menuItemOptionsShowCandidates.IsChecked ^= true;
+			_currentPainter.Grid = _puzzle;
 
 			UpdateImageGrid();
 		}
@@ -387,13 +380,8 @@ namespace Sudoku.Windows
 
 		private void MenuItemEditReset_Click(object sender, RoutedEventArgs e)
 		{
-			_layerCollection.Add(
-				new ValueLayer(
-					_pointConverter, Settings.ValueScale, Settings.CandidateScale,
-					Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
-					Settings.GivenFontName, Settings.ModifiableFontName, Settings.CandidateFontName,
-					_puzzle = new UndoableGrid(_initialPuzzle), Settings.ShowCandidates));
-			_layerCollection.Remove<ViewLayer>();
+			_currentPainter.Grid = _puzzle = new UndoableGrid(_initialPuzzle);
+			_currentPainter.View = null;
 
 			UpdateImageGrid();
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
@@ -856,12 +844,8 @@ namespace Sudoku.Windows
 					return;
 				}
 
-				_layerCollection.Add(
-					new ViewLayer(
-						_pointConverter,
-						new View(new List<(int, int)>(from candidate in trueCandidates select (0, candidate))),
-						null,
-						Settings.PaletteColors, DColor.Empty, DColor.Empty, DColor.Empty));
+				_currentPainter.View = new View(new List<(int, int)>(from candidate in trueCandidates select (0, candidate)));
+				_currentPainter.Conclusions = null;
 
 				UpdateImageGrid();
 
@@ -914,16 +898,13 @@ namespace Sudoku.Windows
 					currentLevel++;
 				}
 
-				_layerCollection.Add(
-					new ViewLayer(
-						_pointConverter,
-						new View(
-							new List<(int, int)>(
-								from conclusion in backdoors
-								where conclusion.ConclusionType == ConclusionType.Assignment
-								select (0, conclusion.CellOffset * 9 + conclusion.Digit))),
-						backdoors,
-						Settings.PaletteColors, Settings.EliminationColor, DColor.Empty, DColor.Empty));
+				_currentPainter.View =
+					new View(
+						new List<(int, int)>(
+							from conclusion in backdoors
+							where conclusion.ConclusionType == ConclusionType.Assignment
+							select (0, conclusion.CellOffset * 9 + conclusion.Digit)));
+				_currentPainter.Conclusions = backdoors;
 
 				UpdateImageGrid();
 
@@ -980,11 +961,8 @@ namespace Sudoku.Windows
 			}
 
 			_textBoxInfo.Text = info.ToString();
-
-			_layerCollection.Add(
-				new ViewLayer(
-					_pointConverter, new View(cellOffsets, null, null, null), info.Conclusions, Settings.PaletteColors,
-					Settings.EliminationColor, Settings.CannibalismColor, Settings.ChainColor));
+			_currentPainter.View = new View(cellOffsets, null, null, null);
+			_currentPainter.Conclusions = info.Conclusions;
 
 			UpdateImageGrid();
 		}

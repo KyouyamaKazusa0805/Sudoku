@@ -1,5 +1,4 @@
 ﻿using System.Windows.Controls;
-using Sudoku.Drawing.Layers;
 
 namespace Sudoku.Windows
 {
@@ -9,7 +8,7 @@ namespace Sudoku.Windows
 		{
 			if (ReferenceEquals(_tabControlInfo.SelectedItem, _tabItemDrawing))
 			{
-				_layerCollection.Remove<ViewLayer>();
+				_currentPainter.View = null;
 
 				UpdateImageGrid();
 			}

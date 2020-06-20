@@ -11,7 +11,6 @@ using Microsoft.Win32;
 using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Drawing;
-using Sudoku.Drawing.Layers;
 using Sudoku.Windows.Constants;
 using static System.Drawing.Imaging.ImageFormat;
 using static System.Drawing.StringAlignment;
@@ -64,9 +63,9 @@ namespace Sudoku.Windows
 		private readonly Settings _settings;
 
 		/// <summary>
-		/// The old collection.
+		/// Indicates the target painter.
 		/// </summary>
-		private readonly LayerCollection _oldCollection;
+		private readonly GridPainter _targetPainter;
 
 		/// <summary>
 		/// Indicates the grid.
@@ -79,12 +78,12 @@ namespace Sudoku.Windows
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <param name="settings">The settings.</param>
-		/// <param name="layerCollection">The older layer collection.</param>
-		public PictureSavingPreferencesWindow(Grid grid, Settings settings, LayerCollection layerCollection)
+		/// <param name="targetPainter">The target painter.</param>
+		public PictureSavingPreferencesWindow(Grid grid, Settings settings, GridPainter targetPainter)
 		{
 			InitializeComponent();
 
-			(_settings, _grid, _oldCollection) = (settings, grid, layerCollection);
+			(_settings, _grid, _targetPainter) = (settings, grid, targetPainter);
 			_numericUpDownSize.CurrentValue = (decimal)_settings.SavingPictureSize;
 		}
 
@@ -130,80 +129,66 @@ namespace Sudoku.Windows
 					return !(e.Handled = true);
 				}
 
-				var pc = new PointConverter(size, size);
-				var layerCollection = new LayerCollection
+				var targetPainter = new GridPainter(new PointConverter(size, size), _settings)
 				{
-					new BackLayer(pc, _settings.BackgroundColor),
-					new GridLineLayer(pc, _settings.GridLineWidth, _settings.GridLineColor),
-					new BlockLineLayer(pc, _settings.BlockLineWidth, _settings.BlockLineColor),
-					new ValueLayer(
-						pc, _settings.ValueScale, _settings.CandidateScale,
-						_settings.GivenColor, _settings.ModifiableColor, _settings.CandidateColor,
-						_settings.GivenFontName, _settings.ModifiableFontName,
-						_settings.CandidateFontName, _grid, _settings.ShowCandidates),
+					Grid = _grid,
+					View = _targetPainter.View, // May be null.
+					CustomView = _targetPainter.CustomView // May be null.
 				};
-
-				if (_oldCollection[typeof(CustomViewLayer)] is CustomViewLayer customViewLayer)
-				{
-					layerCollection.Add(new CustomViewLayer(pc, customViewLayer));
-				}
-
-				if (_oldCollection[typeof(ViewLayer)] is ViewLayer viewLayer)
-				{
-					layerCollection.Add(new ViewLayer(pc, viewLayer));
-				}
 
 				Bitmap? bitmap = null;
 				try
 				{
-					bitmap = new Bitmap((int)size, (int)size);
-
 					int selectedIndex = saveFileDialog.FilterIndex;
 					string fileName = saveFileDialog.FileName;
-					if (selectedIndex >= -1 && selectedIndex <= 3)
+					bitmap = targetPainter.Draw();
+					switch (selectedIndex)
 					{
-						// Normal picture formats.
-						layerCollection.IntegrateTo(bitmap);
-
-						if (!(_format is null))
+						case int v when v >= -1 && v <= 3: // Normal picture formats.
 						{
-							if (!IsFormatValid(saveFileDialog.FileName, out string resultText))
+							if (!(_format is null))
 							{
-								Messagings.CheckFormatString();
-								return !(e.Handled = true);
+								if (!IsFormatValid(saveFileDialog.FileName, out string resultText))
+								{
+									Messagings.CheckFormatString();
+									return !(e.Handled = true);
+								}
+
+								const int fontSize = 20;
+								const string fontName = "Microsoft YaHei UI,Consolas,Times New Roman";
+								var result = new Bitmap(bitmap.Width, bitmap.Height + (fontSize << 1));
+								using var g = Graphics.FromImage(result);
+								using var f = new Font(fontName, fontSize, DFontStyle.Bold);
+								using var sf = new StringFormat { Alignment = Center, LineAlignment = Center };
+								g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
+								g.SmoothingMode = SmoothingMode.HighQuality;
+								g.CompositingQuality = CompositingQuality.HighQuality;
+								g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+								g.Clear(Color.White);
+								g.DrawImage(bitmap, 0, 0);
+								g.DrawString(
+									resultText, f, Brushes.Black, bitmap.Width >> 1,
+									bitmap.Height + (fontSize >> 1) + 8, sf);
+
+								SavePicture(result, selectedIndex, fileName);
+							}
+							else
+							{
+								SavePicture(bitmap, selectedIndex, fileName);
 							}
 
-							const int fontSize = 20;
-							const string fontName = "Microsoft YaHei UI,Consolas,Times New Roman";
-							var result = new Bitmap(bitmap.Width, bitmap.Height + (fontSize << 1));
-							using var g = Graphics.FromImage(result);
-							using var f = new Font(fontName, fontSize, DFontStyle.Bold);
-							using var sf = new StringFormat { Alignment = Center, LineAlignment = Center };
-							g.TextRenderingHint = TextRenderingHint.AntiAlias;
-							g.SmoothingMode = SmoothingMode.HighQuality;
-							g.CompositingQuality = CompositingQuality.HighQuality;
-							g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-							g.Clear(Color.White);
-							g.DrawImage(bitmap, 0, 0);
-							g.DrawString(
-								resultText, f, Brushes.Black, bitmap.Width >> 1,
-								bitmap.Height + (fontSize >> 1) + 8, sf);
-
-							SavePicture(result, selectedIndex, fileName);
+							break;
 						}
-						else
+						case 4: // Windows metafile format (WMF).
 						{
-							SavePicture(bitmap, selectedIndex, fileName);
+							using var g = Graphics.FromImage(bitmap);
+							using var metaFile = new Metafile(fileName, g.GetHdc());
+							using var targetGraphics = Graphics.FromImage(metaFile);
+							targetPainter.Draw(null, targetGraphics);
+							targetGraphics.Save();
+
+							break;
 						}
-					}
-					else
-					{
-						// Windows metafile format (WMF).
-						using var g = Graphics.FromImage(bitmap);
-						using var metaFile = new Metafile(fileName, g.GetHdc());
-						using var targetGraphics = Graphics.FromImage(metaFile);
-						layerCollection.IntegrateTo(targetGraphics);
-						targetGraphics.Save();
 					}
 				}
 				catch (Exception ex)
@@ -236,6 +221,7 @@ namespace Sudoku.Windows
 							_ => throw Throwings.ImpossibleCase
 						}).Guid) ?? throw new NullReferenceException("The return value is null."),
 				new EncoderParameters(1) { Param = { [0] = new EncoderParameter(DEncoder.Quality, 100L) } });
+
 
 		private void ButtonCancel_Click(object sender, RoutedEventArgs e) => Close();
 	}

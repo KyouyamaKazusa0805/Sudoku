@@ -14,7 +14,7 @@ namespace Sudoku.Drawing
 	[DebuggerStepThrough]
 	public sealed class MutableView
 	{
-		/// <include file='../../../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <include file='../../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		/// <remarks>
 		/// The constructor is equivalent to code '<c>new MutableView(null, null, null, null)</c>'.
 		/// </remarks>

@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using Sudoku.Data.Stepping;
-using Sudoku.Drawing.Layers;
 using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Windows.Constants;
@@ -27,17 +26,9 @@ namespace Sudoku.Windows
 			{
 				var (n, s) = pair;
 				var techniqueInfo = _analyisResult!.SolvingSteps![n];
-				_layerCollection.Add(
-					new ValueLayer(
-						_pointConverter, Settings.ValueScale, Settings.CandidateScale,
-						Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
-						Settings.GivenFontName, Settings.ModifiableFontName, Settings.CandidateFontName,
-						_puzzle = new UndoableGrid(_analyisResult.StepGrids![n]),
-						Settings.ShowCandidates));
-				_layerCollection.Add(
-					new ViewLayer(
-						_pointConverter, s.Views[0], techniqueInfo.Conclusions, Settings.PaletteColors,
-						Settings.EliminationColor, Settings.CannibalismColor, Settings.ChainColor));
+				_currentPainter.Grid = _puzzle = new UndoableGrid(_analyisResult.StepGrids![n]);
+				_currentPainter.View = s.Views[0];
+				_currentPainter.Conclusions = techniqueInfo.Conclusions;
 				_textBoxInfo.Text = techniqueInfo.ToFullString();
 
 				UpdateImageGrid();
@@ -53,10 +44,8 @@ namespace Sudoku.Windows
 				var (_, info, isEnabled) = triplet;
 				if (isEnabled)
 				{
-					_layerCollection.Add(
-						new ViewLayer(
-							_pointConverter, info.Views[0], info.Conclusions, Settings.PaletteColors,
-							Settings.EliminationColor, Settings.CannibalismColor, Settings.ChainColor));
+					_currentPainter.View = info.Views[0];
+					_currentPainter.Conclusions = info.Conclusions;
 					_textBoxInfo.Text = info.ToFullString();
 
 					UpdateImageGrid();
@@ -78,13 +67,8 @@ namespace Sudoku.Windows
 					{
 						info.ApplyTo(_puzzle);
 
-						_layerCollection.Remove<ViewLayer>();
-						_layerCollection.Add(
-							new ValueLayer(
-								_pointConverter, Settings.ValueScale, Settings.CandidateScale,
-								Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
-								Settings.GivenFontName, Settings.ModifiableFontName, Settings.CandidateFontName,
-								_puzzle, Settings.ShowCandidates));
+						_currentPainter.View = null;
+						_currentPainter.Grid = _puzzle;
 
 						_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
 						_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);

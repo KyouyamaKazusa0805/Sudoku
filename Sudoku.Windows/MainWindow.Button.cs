@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Checking;
@@ -124,8 +123,7 @@ namespace Sudoku.Windows
 			_currentColor = int.MinValue;
 			_customDrawingMode = -1;
 
-			_view.Clear();
-			_layerCollection.Remove<CustomViewLayer>();
+			_currentPainter.CustomView = null;
 
 			UpdateImageGrid();
 		}

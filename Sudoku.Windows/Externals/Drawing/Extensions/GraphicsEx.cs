@@ -17,8 +17,7 @@ namespace Sudoku.Drawing.Extensions
 		/// Throws when <paramref name="circleRadius"/> is greater than the value in
 		/// <paramref name="rectangle"/>.
 		/// </exception>
-		public static void DrawRoundedRectangle(
-			this Graphics @this, Pen pen, RectangleF rectangle, float circleRadius)
+		public static void DrawRoundedRectangle(this Graphics @this, Pen pen, RectangleF rectangle, float circleRadius)
 		{
 			if (circleRadius > Math.Max(rectangle.Width, rectangle.Height))
 			{
@@ -62,6 +61,7 @@ namespace Sudoku.Drawing.Extensions
 
 			@this.DrawPath(pen, path);
 		}
+
 		/// <summary>
 		/// Fill a rounded rectangle.
 		/// </summary>
@@ -73,8 +73,7 @@ namespace Sudoku.Drawing.Extensions
 		/// Throws when <paramref name="circleRadius"/> is greater than the value in
 		/// <paramref name="rectangle"/>.
 		/// </exception>
-		public static void FillRoundedRectangle(
-			this Graphics @this, Brush brush, RectangleF rectangle, float circleRadius)
+		public static void FillRoundedRectangle(this Graphics @this, Brush brush, RectangleF rectangle, float circleRadius)
 		{
 			if (circleRadius >= Math.Max(rectangle.Width, rectangle.Height))
 			{
