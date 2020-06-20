@@ -38,16 +38,6 @@ namespace Sudoku.Drawing
 
 
 		/// <summary>
-		/// Indicates the width.
-		/// </summary>
-		private readonly int _width;
-
-		/// <summary>
-		/// Indicates the height.
-		/// </summary>
-		private readonly int _height;
-
-		/// <summary>
 		/// Indicates the focused cells.
 		/// </summary>
 		private readonly GridMap? _focusedCells;
@@ -97,10 +87,9 @@ namespace Sudoku.Drawing
 			PointConverter pointConverter, Settings settings, int width, int height, Grid? grid,
 			GridMap? focusedCells, View? view, MutableView? customView, IEnumerable<Conclusion>? conclusions)
 		{
+			(Width, Height) = (width, height);
 			_settings = settings;
 			_pointConverter = pointConverter;
-			_width = width;
-			_height = height;
 			_grid = grid;
 			_focusedCells = focusedCells;
 			_view = view;
@@ -110,11 +99,22 @@ namespace Sudoku.Drawing
 
 
 		/// <summary>
+		/// Indicates the width.
+		/// </summary>
+		public int Width { get; }
+
+		/// <summary>
+		/// Indicates the height.
+		/// </summary>
+		public int Height { get; }
+
+
+		/// <summary>
 		/// To draw the image.
 		/// </summary>
 		public Bitmap Draw()
 		{
-			var result = new Bitmap(_width, _height);
+			var result = new Bitmap(Width, Height);
 			using var g = Graphics.FromImage(result);
 
 			DrawBackground(g);
@@ -229,8 +229,8 @@ namespace Sudoku.Drawing
 
 		private void DrawGridAndBlockLines(Graphics g)
 		{
-			using var pg = new Pen(_settings.GridLineColor, _width);
-			using var pb = new Pen(_settings.BlockLineColor, _width);
+			using var pg = new Pen(_settings.GridLineColor, Width);
+			using var pb = new Pen(_settings.BlockLineColor, Width);
 			var gridPoints = _pointConverter.GridPoints;
 			for (int i = 0; i < 28; i += 3)
 			{
