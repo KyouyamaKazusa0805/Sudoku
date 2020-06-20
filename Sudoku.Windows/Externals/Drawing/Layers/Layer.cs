@@ -10,6 +10,7 @@ namespace Sudoku.Drawing.Layers
 	/// Define a layer for displaying on the form controls.
 	/// </summary>
 	[DebuggerStepThrough]
+	[Obsolete("Use the class 'TargetPainter' instead.", true)]
 	public abstract class Layer : IComparable<Layer?>, IDisposable, IEquatable<Layer?>
 	{
 		/// <summary>

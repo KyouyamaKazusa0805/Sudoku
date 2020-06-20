@@ -14,6 +14,7 @@ namespace Sudoku.Drawing.Layers
 	/// <summary>
 	/// Provides a technique information layer (only shows a view).
 	/// </summary>
+	[Obsolete("Use the class 'TargetPainter' instead.", true)]
 	public sealed class ViewLayer : Layer
 	{
 		/// <summary>

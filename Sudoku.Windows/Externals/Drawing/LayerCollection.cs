@@ -11,6 +11,7 @@ namespace Sudoku.Drawing
 	/// <summary>
 	/// The collection of <see cref="Layer"/>s.
 	/// </summary>
+	[Obsolete("Use the class 'TargetPainter' instead.", true)]
 	public sealed class LayerCollection : IEnumerable<Layer>, IDisposable
 	{
 		/// <summary>

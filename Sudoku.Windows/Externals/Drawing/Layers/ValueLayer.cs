@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
@@ -12,6 +13,7 @@ namespace Sudoku.Drawing.Layers
 	/// Provides a value layer.
 	/// </summary>
 	[DebuggerStepThrough]
+	[Obsolete("Use the class 'TargetPainter' instead.", true)]
 	public sealed class ValueLayer : Layer
 	{
 		/// <summary>

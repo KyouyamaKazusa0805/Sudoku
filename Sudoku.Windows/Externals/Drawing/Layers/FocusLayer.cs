@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using Sudoku.Data;
 using Sudoku.Drawing.Layers;
@@ -10,6 +11,7 @@ namespace Sudoku.Windows.Drawing.Layers
 	/// Provides a focus layer.
 	/// </summary>
 	[DebuggerStepThrough]
+	[Obsolete("Use the class 'TargetPainter' instead.", true)]
 	public sealed class FocusLayer : Layer
 	{
 		/// <summary>

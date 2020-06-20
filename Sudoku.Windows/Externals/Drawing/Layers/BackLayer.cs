@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 
 namespace Sudoku.Drawing.Layers
@@ -7,6 +8,7 @@ namespace Sudoku.Drawing.Layers
 	/// Provides a background layer.
 	/// </summary>
 	[DebuggerStepThrough]
+	[Obsolete("Use the class 'TargetPainter' instead.", true)]
 	public sealed class BackLayer : Layer
 	{
 		/// <summary>

@@ -12,6 +12,7 @@ using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Drawing
 {
+	[Obsolete("Use the class 'TargetPainter' instead.", true)]
 	public sealed class CustomViewLayer : Layer
 	{
 		/// <summary>
