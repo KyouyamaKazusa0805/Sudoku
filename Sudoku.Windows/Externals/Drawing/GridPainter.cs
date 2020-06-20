@@ -18,12 +18,12 @@ using static Sudoku.Data.ConclusionType;
 namespace Sudoku.Drawing
 {
 	/// <summary>
-	/// Indicates the target painter.
+	/// Indicates the grid painter.
 	/// </summary>
 	/// <remarks>
 	/// This data structure is a little bit heavy.
 	/// </remarks>
-	public sealed class TargetPainter
+	public sealed class GridPainter
 	{
 		/// <summary>
 		/// The square root of 2.
@@ -53,7 +53,7 @@ namespace Sudoku.Drawing
 		/// <param name="view">The view.</param>
 		/// <param name="customView">The custom view.</param>
 		/// <param name="conclusions">The conclusions.</param>
-		public TargetPainter(
+		public GridPainter(
 			PointConverter pointConverter, Settings settings, Grid? grid = null, GridMap? focusedCells = null,
 			View? view = null, MutableView? customView = null, IEnumerable<Conclusion>? conclusions = null)
 		{
@@ -131,17 +131,22 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="bitmap">The bitmap result.</param>
 		/// <param name="g">The graphics instance.</param>
+		/// <returns>
+		/// The return value is the same as the parameter <paramref name="bitmap"/> when
+		/// this parameter is not <see langword="null"/>.
+		/// </returns>
 		public Bitmap Draw(Bitmap? bitmap, Graphics g)
 		{
 			bitmap ??= new Bitmap((int)Width, (int)Height);
+			
+			DrawBackground(g);
+			DrawGridAndBlockLines(g);
+
 			g.SmoothingMode = SmoothingMode.AntiAlias;
 			g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
 			g.InterpolationMode = InterpolationMode.HighQualityBicubic;
 			g.CompositingQuality = CompositingQuality.HighQuality;
 			const float offset = 6F;
-
-			DrawBackground(g);
-			DrawGridAndBlockLines(g);
 			DrawViewIfNeed(g, offset);
 			DrawCustomViewIfNeed(g, offset);
 			if (FocusedCells.HasValue) DrawFocusedCells(g, FocusedCells.Value);

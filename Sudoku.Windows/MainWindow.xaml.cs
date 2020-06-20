@@ -132,7 +132,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Indicates the current target painter.
 		/// </summary>
-		private TargetPainter _currentPainter = null!;
+		private GridPainter _currentPainter = null!;
 
 		/// <summary>
 		/// The grid.
@@ -169,7 +169,7 @@ namespace Sudoku.Windows
 		{
 			set
 			{
-				_currentPainter = new TargetPainter(_pointConverter, Settings, _puzzle = value);
+				_currentPainter = new GridPainter(_pointConverter, Settings, _puzzle = value);
 				_initialPuzzle = value.Clone();
 
 				GC.Collect();
@@ -239,6 +239,18 @@ namespace Sudoku.Windows
 			InitializePointConverterAndLayers();
 			LoadDatabaseIfWorth();
 			UpdateControls();
+		}
+
+		/// <inheritdoc/>
+		protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
+		{
+			base.OnRenderSizeChanged(sizeInfo);
+
+			_imageGrid.Height = _imageGrid.Width =
+				Math.Min(_gridMain.ColumnDefinitions[0].ActualWidth, _gridMain.RowDefinitions[0].ActualHeight);
+			_currentPainter.PointConverter = new PointConverter(_imageGrid.RenderSize);
+
+			UpdateImageGrid();
 		}
 
 		/// <inheritdoc/>
@@ -680,7 +692,7 @@ namespace Sudoku.Windows
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void InitializePointConverterAndLayers() =>
 			_currentPainter =
-				new TargetPainter(
+				new GridPainter(
 					_pointConverter = new PointConverter((float)_imageGrid.Width, (float)_imageGrid.Height),
 					Settings)
 				{

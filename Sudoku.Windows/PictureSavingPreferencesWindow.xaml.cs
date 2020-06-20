@@ -65,7 +65,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Indicates the target painter.
 		/// </summary>
-		private readonly TargetPainter _targetPainter;
+		private readonly GridPainter _targetPainter;
 
 		/// <summary>
 		/// Indicates the grid.
@@ -79,7 +79,7 @@ namespace Sudoku.Windows
 		/// <param name="grid">The grid.</param>
 		/// <param name="settings">The settings.</param>
 		/// <param name="targetPainter">The target painter.</param>
-		public PictureSavingPreferencesWindow(Grid grid, Settings settings, TargetPainter targetPainter)
+		public PictureSavingPreferencesWindow(Grid grid, Settings settings, GridPainter targetPainter)
 		{
 			InitializeComponent();
 
@@ -129,7 +129,7 @@ namespace Sudoku.Windows
 					return !(e.Handled = true);
 				}
 
-				var targetPainter = new TargetPainter(new PointConverter(size, size), _settings)
+				var targetPainter = new GridPainter(new PointConverter(size, size), _settings)
 				{
 					Grid = _grid,
 					View = _targetPainter.View, // May be null.

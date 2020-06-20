@@ -4,7 +4,7 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		mc:Ignorable="d" Title="{DynamicResource SolutionName}"
-		Height="800" Width="1200" ResizeMode="CanMinimize">
+		Height="800" Width="1200">
 	<Window.Resources>
 		<Style TargetType="MenuItem">
 			<Setter Property="IsTabStop" Value="False"/>
@@ -14,12 +14,11 @@
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 		</Style>
 	</Window.Resources>
-	<Grid>
+	<Grid Name="_gridWindow">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="20"/>
 			<RowDefinition Height="40"/>
-			<RowDefinition Height="600"/>
-			<RowDefinition Height=".5*"/>
+			<RowDefinition Height="650"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
@@ -71,7 +70,7 @@
 						  Name="_menuItemOptionsSettings"
 						  Click="MenuItemOptionsSettings_Click"/>
 			</MenuItem>
-			
+
 			<!-- Edit -->
 			<MenuItem Header="{DynamicResource _menuItemEdit}">
 				<MenuItem Header="{DynamicResource _menuItemEditUndo}" InputGestureText="Ctrl + Z"
@@ -312,358 +311,375 @@
 		</ToolBar>
 
 		<!-- Row 2 -->
-		<Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-			   Name="_imageGrid" Grid.Row="2" Grid.Column="0" Width="576" Height="576"
-			   MouseLeftButtonDown="ImageGrid_MouseLeftButtonDown"
-			   MouseRightButtonDown="ImageGrid_MouseRightButtonDown"
-			   MouseRightButtonUp="ImageGrid_MouseRightButtonUp"
-			   ContextMenuOpening="ImageGrid_ContextMenuOpening">
-			<Image.ContextMenu>
-				<ContextMenu Name="_imageGridContextMenu">
-					<MenuItem Header="{DynamicResource _menuItemImageGridSet1}"
-							  Name="_menuItemImageGridSet1"
-							  Click="MenuItemImageGridSet1_Click"/>
-					<MenuItem Header="{DynamicResource _menuItemImageGridSet2}"
-							  Name="_menuItemImageGridSet2"
-							  Click="MenuItemImageGridSet2_Click"/>
-					<MenuItem Header="{DynamicResource _menuItemImageGridSet3}"
-							  Name="_menuItemImageGridSet3"
-							  Click="MenuItemImageGridSet3_Click"/>
-					<MenuItem Header="{DynamicResource _menuItemImageGridSet4}"
-							  Name="_menuItemImageGridSet4"
-							  Click="MenuItemImageGridSet4_Click"/>
-					<MenuItem Header="{DynamicResource _menuItemImageGridSet5}"
-							  Name="_menuItemImageGridSet5"
-							  Click="MenuItemImageGridSet5_Click"/>
-					<MenuItem Header="{DynamicResource _menuItemImageGridSet6}"
-							  Name="_menuItemImageGridSet6"
-							  Click="MenuItemImageGridSet6_Click"/>
-					<MenuItem Header="{DynamicResource _menuItemImageGridSet7}"
-							  Name="_menuItemImageGridSet7"
-							  Click="MenuItemImageGridSet7_Click"/>
-					<MenuItem Header="{DynamicResource _menuItemImageGridSet8}"
-							  Name="_menuItemImageGridSet8"
-							  Click="MenuItemImageGridSet8_Click"/>
-					<MenuItem Header="{DynamicResource _menuItemImageGridSet9}"
-							  Name="_menuItemImageGridSet9"
-							  Click="MenuItemImageGridSet9_Click"/>
-					<MenuItem Header="{DynamicResource _menuItemImageGridDelete1}"
-							  Name="_menuItemImageGridDelete1"
-							  Click="MenuItemImageGridDelete1_Click"/>
-					<MenuItem Header="{DynamicResource _menuItemImageGridDelete2}"
-							  Name="_menuItemImageGridDelete2"
-							  Click="MenuItemImageGridDelete2_Click"/>
-					<MenuItem Header="{DynamicResource _menuItemImageGridDelete3}"
-							  Name="_menuItemImageGridDelete3"
-							  Click="MenuItemImageGridDelete3_Click"/>
-					<MenuItem Header="{DynamicResource _menuItemImageGridDelete4}"
-							  Name="_menuItemImageGridDelete4"
-							  Click="MenuItemImageGridDelete4_Click"/>
-					<MenuItem Header="{DynamicResource _menuItemImageGridDelete5}"
-							  Name="_menuItemImageGridDelete5"
-							  Click="MenuItemImageGridDelete5_Click"/>
-					<MenuItem Header="{DynamicResource _menuItemImageGridDelete6}"
-							  Name="_menuItemImageGridDelete6"
-							  Click="MenuItemImageGridDelete6_Click"/>
-					<MenuItem Header="{DynamicResource _menuItemImageGridDelete7}"
-							  Name="_menuItemImageGridDelete7"
-							  Click="MenuItemImageGridDelete7_Click"/>
-					<MenuItem Header="{DynamicResource _menuItemImageGridDelete8}"
-							  Name="_menuItemImageGridDelete8"
-							  Click="MenuItemImageGridDelete8_Click"/>
-					<MenuItem Header="{DynamicResource _menuItemImageGridDelete9}"
-							  Name="_menuItemImageGridDelete9"
-							  Click="MenuItemImageGridDelete9_Click"/>
-				</ContextMenu>
-			</Image.ContextMenu>
-		</Image>
-		<TabControl Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Name="_tabControlInfo"
-					HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsTabStop="False"
-					SelectionChanged="TabControlInfo_SelectionChanged">
-			<!-- Summary -->
-			<TabItem Header="{DynamicResource _tabItemSummary}"
-					 Name="_tabItemSummary">
-				<Grid Background="#FFE5E5E5">
-					<ListView Name="_listViewSummary"/>
-				</Grid>
-			</TabItem>
-
-			<!-- Solution Path -->
-			<TabItem Header="{DynamicResource _tabItemSolutionPath}"
-					 Name="_tabItemSolutionPath">
-				<Grid Background="#FFE5E5E5">
-					<ListBox Name="_listBoxPaths"
-							 SelectionChanged="ListBoxPaths_SelectionChanged">
-						<ListBox.ContextMenu>
-							<ContextMenu>
-								<MenuItem Header="{DynamicResource _contextListBoxPathsCopyCurrentStep}"
-										  Name="_contextListBoxPathsCopyCurrentStep"
-										  Click="ContextListBoxPathsCopyCurrentStep_Click"/>
-								<MenuItem Header="{DynamicResource _contextListBoxPathsCopyAllSteps}"
-										  Name="_contextListBoxPathsCopyAllSteps"
-										  Click="ContextListBoxPathsCopyAllSteps_Click"/>
-							</ContextMenu>
-						</ListBox.ContextMenu>
-					</ListBox>
-				</Grid>
-			</TabItem>
-
-			<!-- All possible steps -->
-			<TabItem Header="{DynamicResource _tabItemAllPossibleSteps}"
-					 Name="_tabItemAllPossibleSteps">
-				<Grid Background="#FFE5E5E5">
-					<Grid.RowDefinitions>
-						<RowDefinition Height="15*"/>
-						<RowDefinition/>
-					</Grid.RowDefinitions>
-					<ListBox Grid.Row="0" Grid.Column="0" Name="_listBoxTechniques"
-							 SelectionChanged="ListBoxTechniques_SelectionChanged">
-						<ListBox.ContextMenu>
-							<ContextMenu>
-								<MenuItem Header="{DynamicResource _contextMenuListBoxTechniquesApply}"
-										  Name="_contextMenuListBoxTechniquesApply"
-										  Click="ContextMenuListBoxTechniquesApply_Click"/>
-							</ContextMenu>
-						</ListBox.ContextMenu>
-					</ListBox>
-					<Button Content="{DynamicResource _buttonFindAllSteps}"
-							Name="_buttonFindAllSteps" Grid.Row="1" Grid.Column="0"
-							Click="ButtonFindAllSteps_Click"/>
-				</Grid>
-			</TabItem>
-
-			<!-- Drawing -->
-			<TabItem Header="{DynamicResource _tabItemDrawing}"
-					 Name="_tabItemDrawing">
-				<Grid Background="#FFE5E5E5">
-					<Grid.RowDefinitions>
-						<RowDefinition/>
-						<RowDefinition/>
-						<RowDefinition/>
-						<RowDefinition Height="3*"/>
-					</Grid.RowDefinitions>
-					<Grid Grid.Row="0">
-						<Grid.RowDefinitions>
-							<RowDefinition/>
-							<RowDefinition/>
-							<RowDefinition/>
-						</Grid.RowDefinitions>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition/>
-							<ColumnDefinition/>
-							<ColumnDefinition/>
-						</Grid.ColumnDefinitions>
-						<Label Content="{DynamicResource _labelChooseColorForCells}"
-							   Name="_labelChooseColorForCells" Grid.Row="0" Grid.ColumnSpan="3"
-							   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-						<Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
-							<Grid.RowDefinitions>
-								<RowDefinition/>
-								<RowDefinition/>
-							</Grid.RowDefinitions>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-							</Grid.ColumnDefinitions>
-							<Button Name="_buttonCellColor1" Grid.Row="0" Grid.Column="0"
-									Click="ButtonCellColor1_Click"/>
-							<Button Name="_buttonCellColor2" Grid.Row="0" Grid.Column="1"
-									Click="ButtonCellColor2_Click"/>
-							<Button Name="_buttonCellColor3" Grid.Row="0" Grid.Column="2"
-									Click="ButtonCellColor3_Click"/>
-							<Button Name="_buttonCellColor4" Grid.Row="0" Grid.Column="3"
-									Click="ButtonCellColor4_Click"/>
-							<Button Name="_buttonCellColor5" Grid.Row="0" Grid.Column="4"
-									Click="ButtonCellColor5_Click"/>
-							<Button Name="_buttonCellColor6" Grid.Row="0" Grid.Column="5"
-									Click="ButtonCellColor6_Click"/>
-							<Button Name="_buttonCellColor7" Grid.Row="0" Grid.Column="6"
-									Click="ButtonCellColor7_Click"/>
-							<Button Name="_buttonCellColor8" Grid.Row="1" Grid.Column="0"
-									Click="ButtonCellColor8_Click"/>
-							<Button Name="_buttonCellColor9" Grid.Row="1" Grid.Column="1"
-									Click="ButtonCellColor9_Click"/>
-							<Button Name="_buttonCellColor10" Grid.Row="1" Grid.Column="2"
-									Click="ButtonCellColor10_Click"/>
-							<Button Name="_buttonCellColor11" Grid.Row="1" Grid.Column="3"
-									Click="ButtonCellColor11_Click"/>
-							<Button Name="_buttonCellColor12" Grid.Row="1" Grid.Column="4"
-									Click="ButtonCellColor12_Click"/>
-							<Button Name="_buttonCellColor13" Grid.Row="1" Grid.Column="5"
-									Click="ButtonCellColor13_Click"/>
-							<Button Name="_buttonCellColor14" Grid.Row="1" Grid.Column="6"
-									Click="ButtonCellColor14_Click"/>
-						</Grid>
-						<Button Content="{DynamicResource _buttonColorReset}"
-								Name="_buttonCellReset" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
-								HorizontalAlignment="Left" Width="50" Height="30" Margin="20,0,0,0"
-								Background="White"
-								Click="ButtonCellReset_Click"/>
-					</Grid>
-					<Grid Grid.Row="1">
-						<Grid.RowDefinitions>
-							<RowDefinition/>
-							<RowDefinition/>
-							<RowDefinition/>
-						</Grid.RowDefinitions>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition/>
-							<ColumnDefinition/>
-							<ColumnDefinition/>
-						</Grid.ColumnDefinitions>
-						<Label Content="{DynamicResource _labelChooseColorForCandidates}"
-							   Name="_labelChooseColorForCandidates" Grid.Row="0" Grid.ColumnSpan="3"
-							   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-						<Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
-							<Grid.RowDefinitions>
-								<RowDefinition/>
-								<RowDefinition/>
-							</Grid.RowDefinitions>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-							</Grid.ColumnDefinitions>
-							<Button Name="_buttonCandidateColor1" Grid.Row="0" Grid.Column="0"
-									Click="ButtonCandidateColor1_Click"/>
-							<Button Name="_buttonCandidateColor2" Grid.Row="0" Grid.Column="1"
-									Click="ButtonCandidateColor2_Click"/>
-							<Button Name="_buttonCandidateColor3" Grid.Row="0" Grid.Column="2"
-									Click="ButtonCandidateColor3_Click"/>
-							<Button Name="_buttonCandidateColor4" Grid.Row="0" Grid.Column="3"
-									Click="ButtonCandidateColor4_Click"/>
-							<Button Name="_buttonCandidateColor5" Grid.Row="0" Grid.Column="4"
-									Click="ButtonCandidateColor5_Click"/>
-							<Button Name="_buttonCandidateColor6" Grid.Row="0" Grid.Column="5"
-									Click="ButtonCandidateColor6_Click"/>
-							<Button Name="_buttonCandidateColor7" Grid.Row="0" Grid.Column="6"
-									Click="ButtonCandidateColor7_Click"/>
-							<Button Name="_buttonCandidateColor8" Grid.Row="1" Grid.Column="0"
-									Click="ButtonCandidateColor8_Click"/>
-							<Button Name="_buttonCandidateColor9" Grid.Row="1" Grid.Column="1"
-									Click="ButtonCandidateColor9_Click"/>
-							<Button Name="_buttonCandidateColor10" Grid.Row="1" Grid.Column="2"
-									Click="ButtonCandidateColor10_Click"/>
-							<Button Name="_buttonCandidateColor11" Grid.Row="1" Grid.Column="3"
-									Click="ButtonCandidateColor11_Click"/>
-							<Button Name="_buttonCandidateColor12" Grid.Row="1" Grid.Column="4"
-									Click="ButtonCandidateColor12_Click"/>
-							<Button Name="_buttonCandidateColor13" Grid.Row="1" Grid.Column="5"
-									Click="ButtonCandidateColor13_Click"/>
-							<Button Name="_buttonCandidateColor14" Grid.Row="1" Grid.Column="6"
-									Click="ButtonCandidateColor14_Click"/>
-						</Grid>
-						<Button Content="{DynamicResource _buttonColorReset}"
-								Name="_buttonCandidateReset" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
-								HorizontalAlignment="Left" Width="50" Height="30" Margin="20,0,0,0"
-								Background="White"
-								Click="ButtonCellReset_Click"/>
-					</Grid>
-					<Grid Grid.Row="2">
-						<Grid.RowDefinitions>
-							<RowDefinition/>
-							<RowDefinition/>
-							<RowDefinition/>
-						</Grid.RowDefinitions>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition/>
-							<ColumnDefinition/>
-							<ColumnDefinition/>
-						</Grid.ColumnDefinitions>
-						<Label Content="{DynamicResource _labelChooseColorForRegions}"
-							   Name="_labelChooseColorForRegions" Grid.Row="0" Grid.ColumnSpan="3"
-							   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-						<Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
-							<Grid.RowDefinitions>
-								<RowDefinition/>
-								<RowDefinition/>
-							</Grid.RowDefinitions>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-							</Grid.ColumnDefinitions>
-							<Button Name="_buttonRegionColor1" Grid.Row="0" Grid.Column="0"
-									Click="ButtonRegionColor1_Click"/>
-							<Button Name="_buttonRegionColor2" Grid.Row="0" Grid.Column="1"
-									Click="ButtonRegionColor2_Click"/>
-							<Button Name="_buttonRegionColor3" Grid.Row="0" Grid.Column="2"
-									Click="ButtonRegionColor3_Click"/>
-							<Button Name="_buttonRegionColor4" Grid.Row="0" Grid.Column="3"
-									Click="ButtonRegionColor4_Click"/>
-							<Button Name="_buttonRegionColor5" Grid.Row="0" Grid.Column="4"
-									Click="ButtonRegionColor5_Click"/>
-							<Button Name="_buttonRegionColor6" Grid.Row="0" Grid.Column="5"
-									Click="ButtonRegionColor6_Click"/>
-							<Button Name="_buttonRegionColor7" Grid.Row="0" Grid.Column="6"
-									Click="ButtonRegionColor7_Click"/>
-							<Button Name="_buttonRegionColor8" Grid.Row="1" Grid.Column="0"
-									Click="ButtonRegionColor8_Click"/>
-							<Button Name="_buttonRegionColor9" Grid.Row="1" Grid.Column="1"
-									Click="ButtonRegionColor9_Click"/>
-							<Button Name="_buttonRegionColor10" Grid.Row="1" Grid.Column="2"
-									Click="ButtonRegionColor10_Click"/>
-							<Button Name="_buttonRegionColor11" Grid.Row="1" Grid.Column="3"
-									Click="ButtonRegionColor11_Click"/>
-							<Button Name="_buttonRegionColor12" Grid.Row="1" Grid.Column="4"
-									Click="ButtonRegionColor12_Click"/>
-							<Button Name="_buttonRegionColor13" Grid.Row="1" Grid.Column="5"
-									Click="ButtonRegionColor13_Click"/>
-							<Button Name="_buttonRegionColor14" Grid.Row="1" Grid.Column="6"
-									Click="ButtonRegionColor14_Click"/>
-						</Grid>
-						<Button Content="{DynamicResource _buttonColorReset}"
-								Name="_buttonRegionReset" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
-								HorizontalAlignment="Left" Width="50" Height="30" Margin="20,0,0,0"
-								Background="White"
-								Click="ButtonCellReset_Click"/>
-					</Grid>
-				</Grid>
-			</TabItem>
-		</TabControl>
-
-		<!-- Row 3 -->
-		<Grid Grid.Row="3" Grid.Column="0">
+		<Grid Grid.Row="2" Grid.ColumnSpan="2"
+			  Name="_gridMain">
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition Height="50"/>
+			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="2*"/>
+				<ColumnDefinition MinWidth="100"/>
+				<ColumnDefinition Width="10"/>
 				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition Width="2*"/>
 			</Grid.ColumnDefinitions>
-			<TextBox Grid.Column="1" Name="_textBoxJumpTo" HorizontalContentAlignment="Center"
-					 VerticalContentAlignment="Center" MaxLength="9" IsEnabled="False"
-					 TextChanged="TextBoxJumpTo_TextChanged"/>
-			<Button Grid.Column="2" Name="_buttonFirst" Content="&lt;&lt;"
-					Click="ButtonFirst_Click" IsEnabled="False"/>
-			<Button Grid.Column="3" Name="_buttonPrev" Content="&lt;"
-					Click="ButtonPrev_Click" IsEnabled="False"/>
-			<Button Grid.Column="4" Name="_buttonNext" Content="&gt;"
-					Click="ButtonNext_Click" IsEnabled="False"/>
-			<Button Grid.Column="5" Name="_buttonLast" Content="&gt;&gt;"
-					Click="ButtonLast_Click" IsEnabled="False"/>
-			<Label Grid.Column="6" Grid.ColumnSpan="2" Name="_labelPuzzleNumber"
-				   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-		</Grid>
+			
+			<!-- Inner row 0 -->
+			<Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+				   Name="_imageGrid" Grid.Row="0" Grid.Column="0" Width="576" Height="576"
+				   MouseLeftButtonDown="ImageGrid_MouseLeftButtonDown"
+				   MouseRightButtonDown="ImageGrid_MouseRightButtonDown"
+				   MouseRightButtonUp="ImageGrid_MouseRightButtonUp"
+				   ContextMenuOpening="ImageGrid_ContextMenuOpening">
+				<Image.ContextMenu>
+					<ContextMenu Name="_imageGridContextMenu">
+						<MenuItem Header="{DynamicResource _menuItemImageGridSet1}"
+								  Name="_menuItemImageGridSet1"
+								  Click="MenuItemImageGridSet1_Click"/>
+						<MenuItem Header="{DynamicResource _menuItemImageGridSet2}"
+								  Name="_menuItemImageGridSet2"
+								  Click="MenuItemImageGridSet2_Click"/>
+						<MenuItem Header="{DynamicResource _menuItemImageGridSet3}"
+								  Name="_menuItemImageGridSet3"
+								  Click="MenuItemImageGridSet3_Click"/>
+						<MenuItem Header="{DynamicResource _menuItemImageGridSet4}"
+								  Name="_menuItemImageGridSet4"
+								  Click="MenuItemImageGridSet4_Click"/>
+						<MenuItem Header="{DynamicResource _menuItemImageGridSet5}"
+								  Name="_menuItemImageGridSet5"
+								  Click="MenuItemImageGridSet5_Click"/>
+						<MenuItem Header="{DynamicResource _menuItemImageGridSet6}"
+								  Name="_menuItemImageGridSet6"
+								  Click="MenuItemImageGridSet6_Click"/>
+						<MenuItem Header="{DynamicResource _menuItemImageGridSet7}"
+								  Name="_menuItemImageGridSet7"
+								  Click="MenuItemImageGridSet7_Click"/>
+						<MenuItem Header="{DynamicResource _menuItemImageGridSet8}"
+								  Name="_menuItemImageGridSet8"
+								  Click="MenuItemImageGridSet8_Click"/>
+						<MenuItem Header="{DynamicResource _menuItemImageGridSet9}"
+								  Name="_menuItemImageGridSet9"
+								  Click="MenuItemImageGridSet9_Click"/>
+						<MenuItem Header="{DynamicResource _menuItemImageGridDelete1}"
+								  Name="_menuItemImageGridDelete1"
+								  Click="MenuItemImageGridDelete1_Click"/>
+						<MenuItem Header="{DynamicResource _menuItemImageGridDelete2}"
+								  Name="_menuItemImageGridDelete2"
+								  Click="MenuItemImageGridDelete2_Click"/>
+						<MenuItem Header="{DynamicResource _menuItemImageGridDelete3}"
+								  Name="_menuItemImageGridDelete3"
+								  Click="MenuItemImageGridDelete3_Click"/>
+						<MenuItem Header="{DynamicResource _menuItemImageGridDelete4}"
+								  Name="_menuItemImageGridDelete4"
+								  Click="MenuItemImageGridDelete4_Click"/>
+						<MenuItem Header="{DynamicResource _menuItemImageGridDelete5}"
+								  Name="_menuItemImageGridDelete5"
+								  Click="MenuItemImageGridDelete5_Click"/>
+						<MenuItem Header="{DynamicResource _menuItemImageGridDelete6}"
+								  Name="_menuItemImageGridDelete6"
+								  Click="MenuItemImageGridDelete6_Click"/>
+						<MenuItem Header="{DynamicResource _menuItemImageGridDelete7}"
+								  Name="_menuItemImageGridDelete7"
+								  Click="MenuItemImageGridDelete7_Click"/>
+						<MenuItem Header="{DynamicResource _menuItemImageGridDelete8}"
+								  Name="_menuItemImageGridDelete8"
+								  Click="MenuItemImageGridDelete8_Click"/>
+						<MenuItem Header="{DynamicResource _menuItemImageGridDelete9}"
+								  Name="_menuItemImageGridDelete9"
+								  Click="MenuItemImageGridDelete9_Click"/>
+					</ContextMenu>
+				</Image.ContextMenu>
+			</Image>
+			<GridSplitter Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch"
+						  Name="_gridSplitterColumn01"
+						  DragDelta="GridSplitterColumn01_DragDelta"/>
+			<TabControl Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Name="_tabControlInfo"
+						HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsTabStop="False"
+						SelectionChanged="TabControlInfo_SelectionChanged">
+				<!-- Summary -->
+				<TabItem Header="{DynamicResource _tabItemSummary}"
+						 Name="_tabItemSummary">
+					<Grid Background="#FFE5E5E5">
+						<ListView Name="_listViewSummary"/>
+					</Grid>
+				</TabItem>
 
-		<!-- Row 4 -->
-		<TextBox Grid.Row="4" Grid.ColumnSpan="2" IsReadOnly="True" Cursor="Arrow"
+				<!-- Solution Path -->
+				<TabItem Header="{DynamicResource _tabItemSolutionPath}"
+						 Name="_tabItemSolutionPath">
+					<Grid Background="#FFE5E5E5">
+						<ListBox Name="_listBoxPaths"
+								 SelectionChanged="ListBoxPaths_SelectionChanged">
+							<ListBox.ContextMenu>
+								<ContextMenu>
+									<MenuItem Header="{DynamicResource _contextListBoxPathsCopyCurrentStep}"
+											  Name="_contextListBoxPathsCopyCurrentStep"
+											  Click="ContextListBoxPathsCopyCurrentStep_Click"/>
+									<MenuItem Header="{DynamicResource _contextListBoxPathsCopyAllSteps}"
+											  Name="_contextListBoxPathsCopyAllSteps"
+											  Click="ContextListBoxPathsCopyAllSteps_Click"/>
+								</ContextMenu>
+							</ListBox.ContextMenu>
+						</ListBox>
+					</Grid>
+				</TabItem>
+
+				<!-- All possible steps -->
+				<TabItem Header="{DynamicResource _tabItemAllPossibleSteps}"
+						 Name="_tabItemAllPossibleSteps">
+					<Grid Background="#FFE5E5E5">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="15*"/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<ListBox Grid.Row="0" Grid.Column="0" Name="_listBoxTechniques"
+								 SelectionChanged="ListBoxTechniques_SelectionChanged">
+							<ListBox.ContextMenu>
+								<ContextMenu>
+									<MenuItem Header="{DynamicResource _contextMenuListBoxTechniquesApply}"
+											  Name="_contextMenuListBoxTechniquesApply"
+											  Click="ContextMenuListBoxTechniquesApply_Click"/>
+								</ContextMenu>
+							</ListBox.ContextMenu>
+						</ListBox>
+						<Button Content="{DynamicResource _buttonFindAllSteps}"
+								Name="_buttonFindAllSteps" Grid.Row="1" Grid.Column="0"
+								Click="ButtonFindAllSteps_Click"/>
+					</Grid>
+				</TabItem>
+
+				<!-- Drawing -->
+				<TabItem Header="{DynamicResource _tabItemDrawing}"
+						 Name="_tabItemDrawing">
+					<Grid Background="#FFE5E5E5">
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition Height="3*"/>
+						</Grid.RowDefinitions>
+						<Grid Grid.Row="0">
+							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+							</Grid.ColumnDefinitions>
+							<Label Content="{DynamicResource _labelChooseColorForCells}"
+								   Name="_labelChooseColorForCells" Grid.Row="0" Grid.ColumnSpan="3"
+								   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							<Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
+								<Grid.RowDefinitions>
+									<RowDefinition/>
+									<RowDefinition/>
+								</Grid.RowDefinitions>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition/>
+									<ColumnDefinition/>
+									<ColumnDefinition/>
+									<ColumnDefinition/>
+									<ColumnDefinition/>
+									<ColumnDefinition/>
+									<ColumnDefinition/>
+								</Grid.ColumnDefinitions>
+								<Button Name="_buttonCellColor1" Grid.Row="0" Grid.Column="0"
+										Click="ButtonCellColor1_Click"/>
+								<Button Name="_buttonCellColor2" Grid.Row="0" Grid.Column="1"
+										Click="ButtonCellColor2_Click"/>
+								<Button Name="_buttonCellColor3" Grid.Row="0" Grid.Column="2"
+										Click="ButtonCellColor3_Click"/>
+								<Button Name="_buttonCellColor4" Grid.Row="0" Grid.Column="3"
+										Click="ButtonCellColor4_Click"/>
+								<Button Name="_buttonCellColor5" Grid.Row="0" Grid.Column="4"
+										Click="ButtonCellColor5_Click"/>
+								<Button Name="_buttonCellColor6" Grid.Row="0" Grid.Column="5"
+										Click="ButtonCellColor6_Click"/>
+								<Button Name="_buttonCellColor7" Grid.Row="0" Grid.Column="6"
+										Click="ButtonCellColor7_Click"/>
+								<Button Name="_buttonCellColor8" Grid.Row="1" Grid.Column="0"
+										Click="ButtonCellColor8_Click"/>
+								<Button Name="_buttonCellColor9" Grid.Row="1" Grid.Column="1"
+										Click="ButtonCellColor9_Click"/>
+								<Button Name="_buttonCellColor10" Grid.Row="1" Grid.Column="2"
+										Click="ButtonCellColor10_Click"/>
+								<Button Name="_buttonCellColor11" Grid.Row="1" Grid.Column="3"
+										Click="ButtonCellColor11_Click"/>
+								<Button Name="_buttonCellColor12" Grid.Row="1" Grid.Column="4"
+										Click="ButtonCellColor12_Click"/>
+								<Button Name="_buttonCellColor13" Grid.Row="1" Grid.Column="5"
+										Click="ButtonCellColor13_Click"/>
+								<Button Name="_buttonCellColor14" Grid.Row="1" Grid.Column="6"
+										Click="ButtonCellColor14_Click"/>
+							</Grid>
+							<Button Content="{DynamicResource _buttonColorReset}"
+									Name="_buttonCellReset" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
+									HorizontalAlignment="Left" Width="50" Height="30" Margin="20,0,0,0"
+									Background="White"
+									Click="ButtonCellReset_Click"/>
+						</Grid>
+						<Grid Grid.Row="1">
+							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+							</Grid.ColumnDefinitions>
+							<Label Content="{DynamicResource _labelChooseColorForCandidates}"
+								   Name="_labelChooseColorForCandidates" Grid.Row="0" Grid.ColumnSpan="3"
+								   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							<Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
+								<Grid.RowDefinitions>
+									<RowDefinition/>
+									<RowDefinition/>
+								</Grid.RowDefinitions>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition/>
+									<ColumnDefinition/>
+									<ColumnDefinition/>
+									<ColumnDefinition/>
+									<ColumnDefinition/>
+									<ColumnDefinition/>
+									<ColumnDefinition/>
+								</Grid.ColumnDefinitions>
+								<Button Name="_buttonCandidateColor1" Grid.Row="0" Grid.Column="0"
+										Click="ButtonCandidateColor1_Click"/>
+								<Button Name="_buttonCandidateColor2" Grid.Row="0" Grid.Column="1"
+										Click="ButtonCandidateColor2_Click"/>
+								<Button Name="_buttonCandidateColor3" Grid.Row="0" Grid.Column="2"
+										Click="ButtonCandidateColor3_Click"/>
+								<Button Name="_buttonCandidateColor4" Grid.Row="0" Grid.Column="3"
+										Click="ButtonCandidateColor4_Click"/>
+								<Button Name="_buttonCandidateColor5" Grid.Row="0" Grid.Column="4"
+										Click="ButtonCandidateColor5_Click"/>
+								<Button Name="_buttonCandidateColor6" Grid.Row="0" Grid.Column="5"
+										Click="ButtonCandidateColor6_Click"/>
+								<Button Name="_buttonCandidateColor7" Grid.Row="0" Grid.Column="6"
+										Click="ButtonCandidateColor7_Click"/>
+								<Button Name="_buttonCandidateColor8" Grid.Row="1" Grid.Column="0"
+										Click="ButtonCandidateColor8_Click"/>
+								<Button Name="_buttonCandidateColor9" Grid.Row="1" Grid.Column="1"
+										Click="ButtonCandidateColor9_Click"/>
+								<Button Name="_buttonCandidateColor10" Grid.Row="1" Grid.Column="2"
+										Click="ButtonCandidateColor10_Click"/>
+								<Button Name="_buttonCandidateColor11" Grid.Row="1" Grid.Column="3"
+										Click="ButtonCandidateColor11_Click"/>
+								<Button Name="_buttonCandidateColor12" Grid.Row="1" Grid.Column="4"
+										Click="ButtonCandidateColor12_Click"/>
+								<Button Name="_buttonCandidateColor13" Grid.Row="1" Grid.Column="5"
+										Click="ButtonCandidateColor13_Click"/>
+								<Button Name="_buttonCandidateColor14" Grid.Row="1" Grid.Column="6"
+										Click="ButtonCandidateColor14_Click"/>
+							</Grid>
+							<Button Content="{DynamicResource _buttonColorReset}"
+									Name="_buttonCandidateReset" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
+									HorizontalAlignment="Left" Width="50" Height="30" Margin="20,0,0,0"
+									Background="White"
+									Click="ButtonCellReset_Click"/>
+						</Grid>
+						<Grid Grid.Row="2">
+							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+							</Grid.ColumnDefinitions>
+							<Label Content="{DynamicResource _labelChooseColorForRegions}"
+								   Name="_labelChooseColorForRegions" Grid.Row="0" Grid.ColumnSpan="3"
+								   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							<Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
+								<Grid.RowDefinitions>
+									<RowDefinition/>
+									<RowDefinition/>
+								</Grid.RowDefinitions>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition/>
+									<ColumnDefinition/>
+									<ColumnDefinition/>
+									<ColumnDefinition/>
+									<ColumnDefinition/>
+									<ColumnDefinition/>
+									<ColumnDefinition/>
+								</Grid.ColumnDefinitions>
+								<Button Name="_buttonRegionColor1" Grid.Row="0" Grid.Column="0"
+										Click="ButtonRegionColor1_Click"/>
+								<Button Name="_buttonRegionColor2" Grid.Row="0" Grid.Column="1"
+										Click="ButtonRegionColor2_Click"/>
+								<Button Name="_buttonRegionColor3" Grid.Row="0" Grid.Column="2"
+										Click="ButtonRegionColor3_Click"/>
+								<Button Name="_buttonRegionColor4" Grid.Row="0" Grid.Column="3"
+										Click="ButtonRegionColor4_Click"/>
+								<Button Name="_buttonRegionColor5" Grid.Row="0" Grid.Column="4"
+										Click="ButtonRegionColor5_Click"/>
+								<Button Name="_buttonRegionColor6" Grid.Row="0" Grid.Column="5"
+										Click="ButtonRegionColor6_Click"/>
+								<Button Name="_buttonRegionColor7" Grid.Row="0" Grid.Column="6"
+										Click="ButtonRegionColor7_Click"/>
+								<Button Name="_buttonRegionColor8" Grid.Row="1" Grid.Column="0"
+										Click="ButtonRegionColor8_Click"/>
+								<Button Name="_buttonRegionColor9" Grid.Row="1" Grid.Column="1"
+										Click="ButtonRegionColor9_Click"/>
+								<Button Name="_buttonRegionColor10" Grid.Row="1" Grid.Column="2"
+										Click="ButtonRegionColor10_Click"/>
+								<Button Name="_buttonRegionColor11" Grid.Row="1" Grid.Column="3"
+										Click="ButtonRegionColor11_Click"/>
+								<Button Name="_buttonRegionColor12" Grid.Row="1" Grid.Column="4"
+										Click="ButtonRegionColor12_Click"/>
+								<Button Name="_buttonRegionColor13" Grid.Row="1" Grid.Column="5"
+										Click="ButtonRegionColor13_Click"/>
+								<Button Name="_buttonRegionColor14" Grid.Row="1" Grid.Column="6"
+										Click="ButtonRegionColor14_Click"/>
+							</Grid>
+							<Button Content="{DynamicResource _buttonColorReset}"
+									Name="_buttonRegionReset" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
+									HorizontalAlignment="Left" Width="50" Height="30" Margin="20,0,0,0"
+									Background="White"
+									Click="ButtonCellReset_Click"/>
+						</Grid>
+					</Grid>
+				</TabItem>
+			</TabControl>
+
+			<!-- Inner row 1 -->
+			<Grid Grid.Row="1" Grid.Column="0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="2*"/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBox Grid.Column="1" Name="_textBoxJumpTo" HorizontalContentAlignment="Center"
+						 VerticalContentAlignment="Center" MaxLength="9" IsEnabled="False"
+						 TextChanged="TextBoxJumpTo_TextChanged"/>
+				<Button Grid.Column="2" Name="_buttonFirst" Content="&lt;&lt;"
+						Click="ButtonFirst_Click" IsEnabled="False"/>
+				<Button Grid.Column="3" Name="_buttonPrev" Content="&lt;"
+						Click="ButtonPrev_Click" IsEnabled="False"/>
+				<Button Grid.Column="4" Name="_buttonNext" Content="&gt;"
+						Click="ButtonNext_Click" IsEnabled="False"/>
+				<Button Grid.Column="5" Name="_buttonLast" Content="&gt;&gt;"
+						Click="ButtonLast_Click" IsEnabled="False"/>
+				<Label Grid.Column="6" Grid.ColumnSpan="2" Name="_labelPuzzleNumber"
+					   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			</Grid>
+		</Grid>
+		
+		<!-- Row 3 -->
+		<TextBox Grid.Row="3" Grid.ColumnSpan="2" IsReadOnly="True" Cursor="Arrow"
 				 TextWrapping="Wrap" Name="_textBoxInfo" IsTabStop="False"/>
 	</Grid>
 </Window>
