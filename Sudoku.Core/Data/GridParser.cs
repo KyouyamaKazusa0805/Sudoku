@@ -59,8 +59,6 @@ namespace Sudoku.Data
 				?? OnParsingSimpleMultilineGrid()
 				?? (CompatibleFirst ? OnParsingPencilMarked(true) : OnParsingPencilMarked(false))
 				?? (CompatibleFirst ? OnParsingPencilMarked(false) : OnParsingPencilMarked(true))
-				?? (CompatibleFirst ? OnParsingSukaku(true) : OnParsingSukaku(false))
-				?? (CompatibleFirst ? OnParsingSukaku(false) : OnParsingSukaku(true))
 				?? OnParsingSusser()
 				?? OnParsingExcel()
 				?? throw Throwings.ParsingError<Grid>(nameof(ParsingValue));
