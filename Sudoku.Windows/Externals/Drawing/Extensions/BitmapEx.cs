@@ -26,7 +26,7 @@ namespace Sudoku.Drawing.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static ImageSource ToImageSource(this Bitmap @this)
 		{
-			var hBitmap = default(IntPtr?);
+			IntPtr? hBitmap = default;
 			try
 			{
 				hBitmap = @this.GetHbitmap();

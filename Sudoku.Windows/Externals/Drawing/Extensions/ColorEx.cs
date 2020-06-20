@@ -35,15 +35,13 @@ namespace Sudoku.Drawing.Extensions
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The color.</param>
 		/// <returns>The target color.</returns>
-		public static DColor ToDColor(this WColor @this) =>
-			DColor.FromArgb(@this.A, @this.R, @this.G, @this.B);
+		public static DColor ToDColor(this WColor @this) => DColor.FromArgb(@this.A, @this.R, @this.G, @this.B);
 
 		/// <summary>
 		/// Convert <see cref="DColor"/> to <see cref="WColor"/>.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The color.</param>
 		/// <returns>The target color.</returns>
-		public static WColor ToWColor(this DColor @this) =>
-			WColor.FromArgb(@this.A, @this.R, @this.G, @this.B);
+		public static WColor ToWColor(this DColor @this) => WColor.FromArgb(@this.A, @this.R, @this.G, @this.B);
 	}
 }
