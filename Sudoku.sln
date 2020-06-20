@@ -7,8 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global Files", "Global File
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		GlobalDocComments.xml = GlobalDocComments.xml
-		Supported grid texts.txt = Supported grid texts.txt
 		README.md = README.md
+		Supported grid texts.txt = Supported grid texts.txt
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Debugging", "Sudoku.Debugging\Sudoku.Debugging.csproj", "{0E1D4D29-4563-4709-ADD9-C80C30F9A010}"
@@ -65,8 +65,8 @@ Global
 		{FCD247BE-77B3-4091-BDB5-1EEB768938B7}.Release|x64.Build.0 = Release|Any CPU
 		{FCD247BE-77B3-4091-BDB5-1EEB768938B7}.Release|x86.ActiveCfg = Release|Any CPU
 		{FCD247BE-77B3-4091-BDB5-1EEB768938B7}.Release|x86.Build.0 = Release|Any CPU
-		{CDB8160F-6FEA-41E8-B1ED-A3FA06EB069A}.Debug|Any CPU.ActiveCfg = Release|Any CPU
-		{CDB8160F-6FEA-41E8-B1ED-A3FA06EB069A}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{CDB8160F-6FEA-41E8-B1ED-A3FA06EB069A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDB8160F-6FEA-41E8-B1ED-A3FA06EB069A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDB8160F-6FEA-41E8-B1ED-A3FA06EB069A}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{CDB8160F-6FEA-41E8-B1ED-A3FA06EB069A}.Debug|x64.Build.0 = Debug|Any CPU
 		{CDB8160F-6FEA-41E8-B1ED-A3FA06EB069A}.Debug|x86.ActiveCfg = Debug|Any CPU

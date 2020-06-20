@@ -3,10 +3,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Sudoku.Constants;
-using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
-using Sudoku.Windows.Drawing.Layers;
 using static System.Math;
 using static System.Reflection.BindingFlags;
 using static Sudoku.Constants.Processings;
@@ -74,11 +72,9 @@ namespace Sudoku.Windows
 								}
 							}
 
-							_layerCollection.Remove<FocusLayer>();
-							_layerCollection.Add(
-								new CustomViewLayer(
-									_pointConverter, _view, null, Settings.PaletteColors,
-									Settings.EliminationColor, Settings.CannibalismColor, Settings.ChainColor));
+							_currentPainter.CustomView = _view;
+							_currentPainter.Conclusions = null;
+							_currentPainter.FocusedCells = null;
 
 							UpdateImageGrid();
 						}
@@ -121,7 +117,7 @@ namespace Sudoku.Windows
 					//}
 				}
 
-				_layerCollection.Add(new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
+				_currentPainter.FocusedCells = _focusedCells;
 
 				UpdateImageGrid();
 			}
@@ -211,11 +207,9 @@ namespace Sudoku.Windows
 								}
 							}
 
-							_layerCollection.Remove<FocusLayer>();
-							_layerCollection.Add(
-								new CustomViewLayer(
-									_pointConverter, _view, null, Settings.PaletteColors,
-									Settings.EliminationColor, Settings.CannibalismColor, Settings.ChainColor));
+							_currentPainter.FocusedCells = null;
+							_currentPainter.CustomView = _view;
+							_currentPainter.Conclusions = null;
 
 							UpdateImageGrid();
 						}
@@ -224,7 +218,7 @@ namespace Sudoku.Windows
 					}
 				}
 
-				_layerCollection.Add(new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
+				_currentPainter.FocusedCells = _focusedCells;
 
 				UpdateImageGrid();
 			}

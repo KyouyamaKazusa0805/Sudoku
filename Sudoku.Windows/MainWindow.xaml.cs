@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -18,12 +17,10 @@ using Sudoku.Data;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
-using Sudoku.Drawing.Layers;
 using Sudoku.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Constants;
-using Sudoku.Windows.Drawing.Layers;
 using Sudoku.Windows.Extensions;
 using static System.StringSplitOptions;
 using static Sudoku.Data.ConclusionType;
@@ -44,11 +41,6 @@ namespace Sudoku.Windows
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		/// <summary>
-		/// Internal layer collection.
-		/// </summary>
-		private readonly LayerCollection _layerCollection = new LayerCollection();
-
 		/// <summary>
 		/// The custom view.
 		/// </summary>
@@ -138,6 +130,11 @@ namespace Sudoku.Windows
 		private AnalysisResult? _analyisResult;
 
 		/// <summary>
+		/// Indicates the current target painter.
+		/// </summary>
+		private TargetPainter _currentPainter = null!;
+
+		/// <summary>
 		/// The grid.
 		/// </summary>
 		private UndoableGrid _puzzle = new UndoableGrid(SudokuGrid.Empty);
@@ -172,13 +169,7 @@ namespace Sudoku.Windows
 		{
 			set
 			{
-				_layerCollection.Add(
-					new ValueLayer(
-						_pointConverter, Settings.ValueScale, Settings.CandidateScale,
-						Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
-						Settings.GivenFontName, Settings.ModifiableFontName,
-						Settings.CandidateFontName, _puzzle = value, Settings.ShowCandidates));
-				_layerCollection.Remove<ViewLayer>();
+				_currentPainter = new TargetPainter(_pointConverter, Settings, _puzzle = value);
 				_initialPuzzle = value.Clone();
 
 				GC.Collect();
@@ -304,18 +295,25 @@ namespace Sudoku.Windows
 					}
 
 					// Input or eliminate a digit.
-					if (Keyboard.Modifiers == ModifierKeys.Shift)
+					switch (Keyboard.Modifiers)
 					{
-						// Eliminate a digit.
-						_puzzle[
-							_pointConverter.GetCellOffset(pt.ToDPointF()),
-							e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1] = true;
-					}
-					else if (Keyboard.Modifiers == ModifierKeys.None)
-					{
-						// Input a digit.
-						_puzzle[_pointConverter.GetCellOffset(pt.ToDPointF())] =
-							e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1;
+						case ModifierKeys.None:
+						{
+							// Input a digit.
+							_puzzle[_pointConverter.GetCellOffset(pt.ToDPointF())] =
+								e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1;
+
+							break;
+						}
+						case ModifierKeys.Shift:
+						{
+							// Eliminate a digit.
+							_puzzle[
+								_pointConverter.GetCellOffset(pt.ToDPointF()),
+								e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1] = true;
+
+							break;
+						}
 					}
 
 					UpdateUndoRedoControls();
@@ -338,7 +336,8 @@ namespace Sudoku.Windows
 							_ => throw Throwings.ImpossibleCase
 						});
 
-					_layerCollection.Add(new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
+					_currentPainter.Grid = _puzzle;
+					_currentPainter.FocusedCells = _focusedCells;
 
 					UpdateImageGrid();
 
@@ -350,7 +349,8 @@ namespace Sudoku.Windows
 					_previewMap = _focusedCells;
 					_focusedCells = _focusedCells.PeerIntersection;
 
-					_layerCollection.Add(new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
+					_currentPainter.Grid = _puzzle;
+					_currentPainter.FocusedCells = _focusedCells;
 
 					UpdateImageGrid();
 
@@ -363,7 +363,8 @@ namespace Sudoku.Windows
 					_focusedCells.Clear();
 					_focusedCells.Add((cell + 3) % 81);
 
-					_layerCollection.Add(new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
+					_currentPainter.Grid = _puzzle;
+					_currentPainter.FocusedCells = _focusedCells;
 
 					UpdateImageGrid();
 
@@ -373,7 +374,8 @@ namespace Sudoku.Windows
 				{
 					// Clear focused cells.
 					_focusedCells.Clear();
-					_layerCollection.Remove<FocusLayer>();
+					_currentPainter.Grid = _puzzle;
+					_currentPainter.FocusedCells = null;
 
 					UpdateImageGrid();
 
@@ -393,7 +395,7 @@ namespace Sudoku.Windows
 			{
 				_focusedCells = _previewMap.Value;
 
-				_layerCollection.Add(new FocusLayer(_pointConverter, _focusedCells, Settings.FocusedCellColor));
+				_currentPainter.FocusedCells = _focusedCells;
 
 				UpdateImageGrid();
 			}
@@ -437,9 +439,7 @@ namespace Sudoku.Windows
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void UpdateImageGrid()
 		{
-			var bitmap = new Bitmap((int)_imageGrid.Width, (int)_imageGrid.Height);
-			_layerCollection.IntegrateTo(bitmap);
-			_imageGrid.Source = bitmap.ToImageSource();
+			_imageGrid.Source = _currentPainter.Draw().ToImageSource();
 
 			GC.Collect();
 		}
@@ -678,21 +678,14 @@ namespace Sudoku.Windows
 		/// Initializes point converter and layer instances.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void InitializePointConverterAndLayers()
-		{
-			_pointConverter = new PointConverter((float)_imageGrid.Width, (float)_imageGrid.Height);
-			_layerCollection.Add(new BackLayer(_pointConverter, Settings.BackgroundColor));
-			_layerCollection.Add(
-				new GridLineLayer(_pointConverter, Settings.GridLineWidth, Settings.GridLineColor));
-			_layerCollection.Add(
-				new BlockLineLayer(_pointConverter, Settings.BlockLineWidth, Settings.BlockLineColor));
-			_layerCollection.Add(
-				new ValueLayer(
-					_pointConverter, Settings.ValueScale, Settings.CandidateScale,
-					Settings.GivenColor, Settings.ModifiableColor, Settings.CandidateColor,
-					Settings.GivenFontName, Settings.ModifiableFontName,
-					Settings.CandidateFontName, _puzzle, Settings.ShowCandidates));
-		}
+		private void InitializePointConverterAndLayers() =>
+			_currentPainter =
+				new TargetPainter(
+					_pointConverter = new PointConverter((float)_imageGrid.Width, (float)_imageGrid.Height),
+					Settings)
+				{
+					Grid = _puzzle
+				};
 
 		/// <summary>
 		/// To load a puzzle with a specified possible puzzle string.
