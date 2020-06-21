@@ -10,6 +10,7 @@ namespace Sudoku.Data
 	/// <remarks>
 	/// This data structure is so heavy...
 	/// </remarks>
+	[Obsolete("Need rewrite.")]
 	public sealed class Inference : IEquatable<Inference?>
 	{
 		/// <summary>
@@ -57,7 +58,7 @@ namespace Sudoku.Data
 		/// Indicates the intersection of the current inference, which is used
 		/// in searching for eliminations in loops or normal AICs.
 		/// </summary>
-		public FullGridMap Intersection
+		public SudokuMap Intersection
 		{
 			get
 			{
@@ -70,7 +71,7 @@ namespace Sudoku.Data
 							case NodeType.Candidate:
 							case NodeType.LockedCandidates:
 							{
-								return FullGridMap.CreateInstance(Start.Candidates.Concat(End.Candidates));
+								return SudokuMap.CreateInstance(Start.Candidates.Concat(End.Candidates));
 							}
 						}
 
@@ -83,7 +84,7 @@ namespace Sudoku.Data
 							case NodeType.Candidate:
 							case NodeType.LockedCandidates:
 							{
-								return FullGridMap.CreateInstance(Start.Candidates.Concat(End.Candidates));
+								return SudokuMap.CreateInstance(Start.Candidates.Concat(End.Candidates));
 							}
 						}
 
@@ -91,7 +92,7 @@ namespace Sudoku.Data
 					}
 				}
 
-				return FullGridMap.Empty;
+				return SudokuMap.Empty.Clone();
 			}
 		}
 
@@ -121,9 +122,11 @@ namespace Sudoku.Data
 		/// (<see langword="out"/> parameter) Indicates the end node type.
 		/// </param>
 		public void Deconstruct(
-			out FullGridMap startMap, out bool startInOn, out NodeType startNodeType,
-			out FullGridMap endMap, out bool endIsOn, out NodeType endNodeType) =>
-			(startMap, startInOn, startNodeType, endMap, endIsOn, endNodeType) = (Start.CandidatesMap, StartIsOn, Start.NodeType, End.CandidatesMap, EndIsOn, End.NodeType);
+			out SudokuMap startMap, out bool startInOn, out NodeType startNodeType,
+			out SudokuMap endMap, out bool endIsOn, out NodeType endNodeType) =>
+			(startMap, startInOn, startNodeType, endMap, endIsOn, endNodeType) = (
+				Start.CandidatesMap.Clone(), StartIsOn, Start.NodeType,
+				End.CandidatesMap.Clone(), EndIsOn, End.NodeType);
 
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is Inference comparer && Equals(comparer);

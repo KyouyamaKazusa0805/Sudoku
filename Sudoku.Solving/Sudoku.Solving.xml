@@ -2631,7 +2631,7 @@
         <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetOnToOffRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,Sudoku.Data.Node,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Inference},System.Collections.Generic.IList{Sudoku.Data.Node},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetOnToOffRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.SudokuMap,Sudoku.Data.Node,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Inference},System.Collections.Generic.IList{Sudoku.Data.Node},System.Int32)">
             <summary>
             Get 'on' nodes to 'off' nodes recursively (Searching for weak links).
             </summary>
@@ -2643,7 +2643,7 @@
             <param name="stack">The stack.</param>
             <param name="length">The last length to search.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetOffToOnRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,Sudoku.Data.Node,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Inference},System.Collections.Generic.IList{Sudoku.Data.Node},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetOffToOnRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.SudokuMap,Sudoku.Data.Node,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Inference},System.Collections.Generic.IList{Sudoku.Data.Node},System.Int32)">
             <summary>
             Get 'off' nodes to 'on' nodes recursively (Searching for strong links).
             </summary>
@@ -2671,7 +2671,7 @@
             <param name="currentDigit">The current digit.</param>
             <returns>All locked candidates nodes.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Collections.Generic.IList{Sudoku.Data.Node})">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.SudokuMap,System.Collections.Generic.IList{Sudoku.Data.Node})">
             <summary>
             Check the elimination, and save the chain into the accumulator
             when the chain is valid and worth.
@@ -2704,11 +2704,11 @@
         <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetAct(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo})">
             <summary>
             Bound with the method
-            <see cref="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Collections.Generic.IList{Sudoku.Data.Node})"/>.
+            <see cref="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.SudokuMap,System.Collections.Generic.IList{Sudoku.Data.Node})"/>.
             </summary>
             <param name="accumulator">The accumulator.</param>
             <returns>The result action.</returns>
-            <seealso cref="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Collections.Generic.IList{Sudoku.Data.Node})"/>
+            <seealso cref="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.SudokuMap,System.Collections.Generic.IList{Sudoku.Data.Node})"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetAllStrongInferences(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap[])">
             <summary>
@@ -2732,14 +2732,14 @@
             <param name="result">The result accumulator.</param>
             <param name="digitDistributions">The digit distributions.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.AddNode(Sudoku.Data.Node,Sudoku.Data.FullGridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.AddNode(Sudoku.Data.Node,Sudoku.Data.SudokuMap)">
             <summary>
             Add the node to the map.
             </summary>
             <param name="node">The node.</param>
             <param name="map">The map.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.RemoveNode(Sudoku.Data.Node,Sudoku.Data.FullGridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.RemoveNode(Sudoku.Data.Node,Sudoku.Data.SudokuMap)">
             <summary>
             Remove the node from the map.
             </summary>
@@ -5000,7 +5000,7 @@
             solved the puzzle successfully.
             </returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LightManualSolver.RecordTechnique(System.Collections.Generic.ICollection{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.TechniqueInfo,Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Solving.Manual.LightManualSolver.SaveTechnique(System.Collections.Generic.ICollection{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.TechniqueInfo,Sudoku.Data.Grid)">
             <summary>
             To record the current technique step.
             </summary>

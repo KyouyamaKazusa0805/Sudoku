@@ -454,7 +454,7 @@ namespace Sudoku.Data
 		/// </code>
 		/// is equivalent to the code
 		/// <code>
-		/// var map = new GridMap(testMap.Offsets, InitializeOption.ProcessPeersWithoutItself);
+		/// var map = new GridMap(testMap, InitializeOption.ProcessPeersWithoutItself);
 		/// </code>
 		/// </example>
 		public readonly GridMap PeerIntersection => new GridMap(Offsets, ProcessPeersWithoutItself);

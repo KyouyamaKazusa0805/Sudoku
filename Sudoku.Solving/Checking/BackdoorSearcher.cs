@@ -89,8 +89,7 @@ namespace Sudoku.Solving.Checking
 		/// <exception cref="InvalidOperationException">
 		/// Throws when the grid is invalid (has no solution or multiple solutions).
 		/// </exception>
-		private static void SearchForBackdoors(
-			IList<IReadOnlyList<Conclusion>> result, IReadOnlyGrid grid, int depth)
+		private static void SearchForBackdoors(IList<IReadOnlyList<Conclusion>> result, IReadOnlyGrid grid, int depth)
 		{
 			if (!grid.IsValid(out var solution))
 			{
@@ -107,7 +106,13 @@ namespace Sudoku.Solving.Checking
 					// All candidates will be marked.
 					for (int c = 0; c < 81; c++)
 					{
-						for (int d = 0, z = solution[c]; d < 9; d++)
+						if (grid.GetStatus(c) != Empty)
+						{
+							continue;
+						}
+
+						int z = solution[c];
+						foreach (int d in grid.GetCandidates(c))
 						{
 							result.Add(new[] { new Conclusion(d == z ? Assignment : Elimination, c, d) });
 						}
@@ -136,12 +141,12 @@ namespace Sudoku.Solving.Checking
 						tempGrid[cell] = -1;
 					}
 				}
-				
+
 				return;
 			}
 
 			// Store all incorrect candidates to prepare for search elimination backdoors.
-			var incorrectCandidates = (
+			int[] incorrectCandidates = (
 				from cell in Enumerable.Range(0, 81)
 				where grid.GetStatus(cell) == Empty
 				let Value = solution[cell]

@@ -490,14 +490,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				}
 			}
 
-			var elimMap = FullGridMap.CreateInstance(candidates);
+			var elimMap = SudokuMap.CreateInstance(candidates);
 			if (elimMap.IsEmpty)
 			{
 				return;
 			}
 
 			var conclusions = new List<Conclusion>();
-			foreach (int candidate in elimMap.Offsets)
+			foreach (int candidate in elimMap)
 			{
 				if (grid.Exists(candidate / 9, candidate % 9) is true)
 				{

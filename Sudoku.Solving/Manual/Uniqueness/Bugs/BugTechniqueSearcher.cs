@@ -375,15 +375,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="accumulator">The result list.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
-		private void CheckMultiple(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
+		private void CheckMultiple(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			if (trueCandidates.Count > 18)
 			{
 				return;
 			}
 
-			var map = FullGridMap.CreateInstance(trueCandidates);
+			var map = SudokuMap.CreateInstance(trueCandidates);
 			if (map.IsEmpty)
 			{
 				return;

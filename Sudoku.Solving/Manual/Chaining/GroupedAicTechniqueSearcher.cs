@@ -32,6 +32,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// </para>
 	/// </remarks>
 	[TechniqueDisplay(nameof(TechniqueCode.Aic))]
+	[Obsolete("Need rewrite.")]
 	public sealed class GroupedAicTechniqueSearcher : ChainTechniqueSearcher
 	{
 		/// <summary>
@@ -179,7 +180,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var candidatesUsed = FullGridMap.Empty;
+			var candidatesUsed = SudokuMap.Empty.Clone();
 			var stack = new List<Node>();
 			var strongInferences = GetAllStrongInferences(grid, CandMaps);
 
@@ -190,8 +191,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				foreach (var (startNode, endNode) in new[] { (start, end), (end, start) })
 				{
 					// Add the start and end node to the used list.
-					AddNode(start, ref candidatesUsed);
-					AddNode(end, ref candidatesUsed);
+					AddNode(start, candidatesUsed);
+					AddNode(end, candidatesUsed);
 					stack.Add(startNode);
 					stack.Add(endNode);
 
@@ -201,8 +202,8 @@ namespace Sudoku.Solving.Manual.Chaining
 						stack, _maxLength - 2);
 
 					// Undo the step to recover the candidate status.
-					RemoveNode(start, ref candidatesUsed);
-					RemoveNode(end, ref candidatesUsed);
+					RemoveNode(start, candidatesUsed);
+					RemoveNode(end, candidatesUsed);
 					stack.RemoveLastElement();
 					stack.RemoveLastElement();
 				}
@@ -220,7 +221,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="stack">The stack.</param>
 		/// <param name="length">The last length to search.</param>
 		private void GetOnToOffRecursively(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, FullGridMap candidatesUsed,
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, SudokuMap candidatesUsed,
 			Node currentNode, IReadOnlyList<Inference> strongInferences,
 			IList<Node> stack, int length)
 		{
@@ -388,7 +389,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="stack">The stack.</param>
 		/// <param name="length">The last length to search.</param>
 		private void GetOffToOnRecursively(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, FullGridMap candidatesUsed,
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, SudokuMap candidatesUsed,
 			Node currentNode, IReadOnlyList<Inference> strongInferences, IList<Node> stack, int length)
 		{
 			if (length < 0)
@@ -480,8 +481,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								continue;
 							}
 
-							var tempMap = (nextNode.CandidatesMap | currentNode.CandidatesMap)
-								.Reduct(currentDigit);
+							var tempMap = (nextNode.CandidatesMap | currentNode.CandidatesMap).Reduce(currentDigit);
 							if (((CandMaps[currentDigit] & RegionMaps[tempMap.CoveredRegions.First()]) - tempMap).IsNotEmpty
 								|| nextNode.FullCovered(currentNode))
 							{
@@ -521,7 +521,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					foreach (int region in new GridMap(currentCells).CoveredRegions)
 					{
 						var map =
-							(RegionMaps[region] & CandMaps[currentDigit]) - currentNode.CandidatesMap.Reduct(currentDigit);
+							(RegionMaps[region] & CandMaps[currentDigit]) - currentNode.CandidatesMap.Reduce(currentDigit);
 						if (map.Count != 1)
 						{
 							continue;
@@ -569,7 +569,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								continue;
 							}
 
-							var tempMap = (nextNode.CandidatesMap | currentNode.CandidatesMap).Reduct(currentDigit);
+							var tempMap = (nextNode.CandidatesMap | currentNode.CandidatesMap).Reduce(currentDigit);
 							if (((CandMaps[currentDigit] & RegionMaps[tempMap.CoveredRegions.First()]) - tempMap).IsNotEmpty
 								|| nextNode == currentNode)
 							{
@@ -665,7 +665,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="candidateList">The candidate list.</param>
 		/// <param name="stack">The stack.</param>
 		private void CheckElimination(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, FullGridMap candidateList,
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, SudokuMap candidateList,
 			IList<Node> stack)
 		{
 			if (_checkContinuousNiceLoop && IsContinuousNiceLoop(stack))
@@ -681,7 +681,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				weakInferences.Add(new Inference(stack[LastIndex], true, stack[0], false));
 
 				// Step 2: Check elimination sets.
-				var eliminationSets = new List<FullGridMap>(
+				var eliminationSets = new List<SudokuMap>(
 					from weakInference in weakInferences
 					select weakInference.Intersection);
 				if (eliminationSets.Count == 0)
@@ -974,7 +974,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						return false;
 					}
 
-					var resultMap = (startNode.CandidatesMap & endNode.CandidatesMap).Reduct(headDigit);
+					var resultMap = (startNode.CandidatesMap & endNode.CandidatesMap).Reduce(headDigit);
 					return resultMap.IsNotEmpty && resultMap.AllSetsAreInOneRegion(out _);
 				}
 				default:
@@ -986,11 +986,11 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		/// <summary>
 		/// Bound with the method
-		/// <see cref="CheckElimination(IBag{TechniqueInfo}, IReadOnlyGrid, FullGridMap, IList{Node})"/>.
+		/// <see cref="CheckElimination(IBag{TechniqueInfo}, IReadOnlyGrid, SudokuMap, IList{Node})"/>.
 		/// </summary>
 		/// <param name="accumulator">The accumulator.</param>
 		/// <returns>The result action.</returns>
-		/// <seealso cref="CheckElimination(IBag{TechniqueInfo}, IReadOnlyGrid, FullGridMap, IList{Node})"/>
+		/// <seealso cref="CheckElimination(IBag{TechniqueInfo}, IReadOnlyGrid, SudokuMap, IList{Node})"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private Action<GroupedAicTechniqueInfo> GetAct(IBag<TechniqueInfo> accumulator)
 		{
@@ -1012,8 +1012,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="grid">The grid.</param>
 		/// <param name="digitDistributions">All digits' distributions.</param>
 		/// <returns>All strong relations.</returns>
-		private IReadOnlyList<Inference> GetAllStrongInferences(
-			IReadOnlyGrid grid, GridMap[] digitDistributions)
+		private IReadOnlyList<Inference> GetAllStrongInferences(IReadOnlyGrid grid, GridMap[] digitDistributions)
 		{
 			var result = new List<Inference>();
 
@@ -1310,7 +1309,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="node">The node.</param>
 		/// <param name="map">The map.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static void AddNode(Node node, ref FullGridMap map)
+		private static void AddNode(Node node, SudokuMap map)
 		{
 			switch (node.NodeType)
 			{
@@ -1333,7 +1332,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="node">The node.</param>
 		/// <param name="map">The map.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static void RemoveNode(Node node, ref FullGridMap map)
+		private static void RemoveNode(Node node, SudokuMap map)
 		{
 			switch (node.NodeType)
 			{
