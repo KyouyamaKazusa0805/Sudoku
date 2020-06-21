@@ -118,6 +118,11 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the total number of all set bits.
 		/// </summary>
+		/// <remarks>
+		/// Here, this property contains a set method (setter), because this
+		/// property has been designed as an instant property in order to get the value
+		/// as fast as possible.
+		/// </remarks>
 		public int Count { get; private set; }
 
 		/// <summary>
