@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using Sudoku.Data.Collections;
+using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 
 namespace Sudoku.Data
@@ -38,7 +40,11 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="another">The another map.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public SudokuMap(SudokuMap another) => _innerArray = (BitArray)another._innerArray.Clone();
+		public SudokuMap(SudokuMap another)
+		{
+			_innerArray = (BitArray)another._innerArray.Clone();
+			Count = another.Count;
+		}
 
 		/// <summary>
 		/// Initializes an instance with the specified candidate and its peers.
@@ -58,7 +64,11 @@ namespace Sudoku.Data
 		/// Indicates whether the map will process itself with <see langword="true"/> value.
 		/// </param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public SudokuMap(int candidate, bool setItself) => _innerArray = AssignBitArray(candidate, setItself);
+		public SudokuMap(int candidate, bool setItself)
+		{
+			_innerArray = AssignBitArray(candidate, setItself);
+			Count = setItself ? 29 : 28;
+		}
 
 		/// <summary>
 		/// Initializes an instance with the specified candidates.
@@ -88,7 +98,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="innerArray">The <see cref="BitArray"/> instance.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private SudokuMap(BitArray innerArray) => _innerArray = innerArray;
+		private SudokuMap(BitArray innerArray) => Count = (_innerArray = innerArray).GetCardinality();
 
 
 		/// <summary>
@@ -96,7 +106,7 @@ namespace Sudoku.Data
 		/// This property is equivalent to code '<c>!this.IsNotEmpty</c>'.
 		/// </summary>
 		/// <seealso cref="IsNotEmpty"/>
-		public bool IsEmpty => _innerArray.Count == 0;
+		public bool IsEmpty => _innerArray.Length == 0;
 
 		/// <summary>
 		/// Indicates whether the map has at least one set bit.
@@ -108,7 +118,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the total number of all set bits.
 		/// </summary>
-		public int Count => _innerArray.Count;
+		public int Count { get; private set; }
 
 		/// <summary>
 		/// Indicates the all bits.
@@ -182,7 +192,16 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="candidate">The candidate offset.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void Add(int candidate) => this[candidate] = true;
+		public void Add(int candidate)
+		{
+			if (this[candidate])
+			{
+				return;
+			}
+
+			this[candidate] = true;
+			Count++;
+		}
 
 		/// <summary>
 		/// Set the specified candidates as <see langword="true"/> value.
@@ -213,7 +232,16 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="candidate">The cell offset.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void Remove(int candidate) => this[candidate] = false;
+		public void Remove(int candidate)
+		{
+			if (!this[candidate])
+			{
+				return;
+			}
+
+			this[candidate] = false;
+			Count--;
+		}
 
 		/// <summary>
 		/// Set the specified candidates as <see langword="false"/> value.
@@ -250,7 +278,11 @@ namespace Sudoku.Data
 		/// Clear all bits.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void Clear() => _innerArray.SetAll(false);
+		public void Clear()
+		{
+			_innerArray.SetAll(false);
+			Count = 0;
+		}
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -308,7 +340,7 @@ namespace Sudoku.Data
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override string ToString() => "...";
+		public override string ToString() => new CandidateCollection(Offsets).ToString();
 
 		/// <summary>
 		/// Get the final <see cref="GridMap"/> to get all cells that the corresponding indices
@@ -374,7 +406,7 @@ namespace Sudoku.Data
 		/// <returns>The result map.</returns>
 		public static SudokuMap CreateInstance(IEnumerable<int> candidates)
 		{
-			var result = new BitArray(729);
+			var result = new BitArray(729, true);
 			foreach (int candidate in candidates)
 			{
 				result.And(AssignBitArray(candidate, false));
@@ -399,17 +431,16 @@ namespace Sudoku.Data
 			};
 
 		/// <summary>
-		/// To assign the <see cref="BitArray"/> which is called <see cref="BitArray(int, bool)"/>.
+		/// To assign the <see cref="BitArray"/> which is used for <see cref="SudokuMap(int, bool)"/>.
 		/// </summary>
 		/// <param name="candidate">The candidate.</param>
 		/// <param name="setItself">The <see cref="bool"/> value.</param>
 		/// <returns>The result array.</returns>
-		/// <seealso cref="BitArray(int, bool)"/>
+		/// <seealso cref="SudokuMap(int, bool)"/>
 		private static BitArray AssignBitArray(int candidate, bool setItself)
 		{
 			var result = new BitArray(729);
-			int cell = candidate / 9;
-			int digit = candidate % 9;
+			int cell = candidate / 9, digit = candidate % 9;
 			foreach (int c in PeerMaps[cell])
 			{
 				result[c * 9 + digit] = true;

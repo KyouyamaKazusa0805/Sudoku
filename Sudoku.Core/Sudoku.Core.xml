@@ -4264,12 +4264,12 @@
         </member>
         <member name="M:Sudoku.Data.SudokuMap.AssignBitArray(System.Int32,System.Boolean)">
             <summary>
-            To assign the <see cref="T:System.Collections.BitArray"/> which is called <see cref="M:System.Collections.BitArray.#ctor(System.Int32,System.Boolean)"/>.
+            To assign the <see cref="T:System.Collections.BitArray"/> which is used for <see cref="M:Sudoku.Data.SudokuMap.#ctor(System.Int32,System.Boolean)"/>.
             </summary>
             <param name="candidate">The candidate.</param>
             <param name="setItself">The <see cref="T:System.Boolean"/> value.</param>
             <returns>The result array.</returns>
-            <seealso cref="M:System.Collections.BitArray.#ctor(System.Int32,System.Boolean)"/>
+            <seealso cref="M:Sudoku.Data.SudokuMap.#ctor(System.Int32,System.Boolean)"/>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.op_Equality(Sudoku.Data.SudokuMap,Sudoku.Data.SudokuMap)">
             <operator name="op_Equality">
@@ -4674,6 +4674,23 @@
             <param name="this">(<see langword="this"/> parameter) The array.</param>
             <param name="comparison">The comparison method.</param>
             <seealso cref="T:System.Comparison`1"/>
+        </member>
+        <member name="T:Sudoku.Extensions.BitArrayEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.BitArray"/>.
+            </summary>
+            <seealso cref="T:System.Collections.BitArray"/>
+        </member>
+        <member name="M:Sudoku.Extensions.BitArrayEx.GetCardinality(System.Collections.BitArray)">
+            <summary>
+            Get the cardinality of the specified <see cref="T:System.Collections.BitArray"/>.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The bit array.</param>
+            <returns>The cardinality value.</returns>
+            <remarks>
+            For more information, please visit
+            <a href="http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetParallel">this link</a>.
+            </remarks>
         </member>
         <member name="T:Sudoku.Extensions.BooleanEx">
             <summary>
