@@ -30,18 +30,21 @@ namespace Sudoku.Data
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public SudokuMap() => _innerArray = new BitArray(729);
 
 		/// <summary>
 		/// Initializes an instance with another map.
 		/// </summary>
 		/// <param name="another">The another map.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public SudokuMap(SudokuMap another) => _innerArray = (BitArray)another._innerArray.Clone();
 
 		/// <summary>
 		/// Initializes an instance with the specified candidate and its peers.
 		/// </summary>
 		/// <param name="candidate">The candidate.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public SudokuMap(int candidate) : this(candidate, true)
 		{
 		}
@@ -54,12 +57,14 @@ namespace Sudoku.Data
 		/// <param name="setItself">
 		/// Indicates whether the map will process itself with <see langword="true"/> value.
 		/// </param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public SudokuMap(int candidate, bool setItself) => _innerArray = AssignBitArray(candidate, setItself);
 
 		/// <summary>
 		/// Initializes an instance with the specified candidates.
 		/// </summary>
 		/// <param name="candidates">The candidates.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public SudokuMap(int[] candidates) : this((IEnumerable<int>)candidates)
 		{
 		}
@@ -68,25 +73,15 @@ namespace Sudoku.Data
 		/// Initializes an instance with the specified candidates.
 		/// </summary>
 		/// <param name="candidates">The candidates.</param>
-		public SudokuMap(ReadOnlySpan<int> candidates) : this()
-		{
-			foreach (int candidate in candidates)
-			{
-				this[candidate] = true;
-			}
-		}
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public SudokuMap(ReadOnlySpan<int> candidates) : this() => AddRange(candidates);
 
 		/// <summary>
 		/// Initializes an instance with the specified candidates.
 		/// </summary>
 		/// <param name="candidates">The candidates.</param>
-		public SudokuMap(IEnumerable<int> candidates) : this()
-		{
-			foreach (int candidate in candidates)
-			{
-				this[candidate] = true;
-			}
-		}
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public SudokuMap(IEnumerable<int> candidates) : this() => AddRange(candidates);
 
 		/// <summary>
 		/// Initializes an instance with the specified <see cref="BitArray"/> instance.
@@ -172,24 +167,15 @@ namespace Sudoku.Data
 		/// <param name="candidate">The candidate offset (index).</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		/// <value>The <see cref="bool"/> value to set.</value>
-		public bool this[int candidate]
-		{
-			get => _innerArray[candidate];
-			set => _innerArray[candidate] = value;
-		}
+		public bool this[int candidate] { get => _innerArray[candidate]; set => _innerArray[candidate] = value; }
 
 
 		/// <summary>
 		/// Set the specified candidates as <see langword="true"/> value.
 		/// </summary>
 		/// <param name="candidates">The candidate offsets.</param>
-		public void AddRange(int[] candidates)
-		{
-			foreach (int candidate in candidates)
-			{
-				Add(candidate);
-			}
-		}
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public void AddRange(int[] candidates) => AddRange((IEnumerable<int>)candidates);
 
 		/// <summary>
 		/// Set the specified candidate as <see langword="true"/> value.
@@ -233,6 +219,7 @@ namespace Sudoku.Data
 		/// Set the specified candidates as <see langword="false"/> value.
 		/// </summary>
 		/// <param name="candidates">The candidate offsets.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void RemoveRange(int[] candidates) => RemoveRange((IEnumerable<int>)candidates);
 
 		/// <summary>
@@ -271,13 +258,7 @@ namespace Sudoku.Data
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool Equals(SudokuMap? other) =>
-			(this is null, other is null) switch
-			{
-				(true, true) => true,
-				(false, false) => Enumerable.Range(0, 729).All(i => this[i] == other![i]),
-				_ => false
-			};
+		public bool Equals(SudokuMap? other) => Equals(this, other);
 
 		/// <summary>
 		/// Indicates whether this map overlaps another one.
@@ -303,6 +284,7 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// Throws when the map cannot find the index.
 		/// </exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public int SetAt(Index index) => Offsets.ElementAt(index.GetOffset(Count));
 
 		/// <summary>
@@ -402,6 +384,21 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
+		/// Check whether two instances are equal.
+		/// </summary>
+		/// <param name="left">The left map.</param>
+		/// <param name="right">The right map.</param>
+		/// <returns>A <see cref="bool"/> value.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private static bool Equals(SudokuMap? left, SudokuMap? right) =>
+			(left is null, right is null) switch
+			{
+				(true, true) => true,
+				(false, false) => Enumerable.Range(0, 729).All(i => left![i] == right![i]),
+				_ => false
+			};
+
+		/// <summary>
 		/// To assign the <see cref="BitArray"/> which is called <see cref="BitArray(int, bool)"/>.
 		/// </summary>
 		/// <param name="candidate">The candidate.</param>
@@ -431,11 +428,11 @@ namespace Sudoku.Data
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator ==(SudokuMap left, SudokuMap right) => left.Equals(right);
+		public static bool operator ==(SudokuMap? left, SudokuMap? right) => Equals(left, right);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator !=(SudokuMap left, SudokuMap right) => !(left == right);
+		public static bool operator !=(SudokuMap? left, SudokuMap? right) => !(left == right);
 
 		/// <summary>
 		/// Get a <see cref="SudokuMap"/> that contains all <paramref name="left"/> candidates

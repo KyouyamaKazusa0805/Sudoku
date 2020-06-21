@@ -4254,6 +4254,14 @@
             <param name="candidates">All candidates.</param>
             <returns>The result map.</returns>
         </member>
+        <member name="M:Sudoku.Data.SudokuMap.Equals(Sudoku.Data.SudokuMap,Sudoku.Data.SudokuMap)">
+            <summary>
+            Check whether two instances are equal.
+            </summary>
+            <param name="left">The left map.</param>
+            <param name="right">The right map.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
         <member name="M:Sudoku.Data.SudokuMap.AssignBitArray(System.Int32,System.Boolean)">
             <summary>
             To assign the <see cref="T:System.Collections.BitArray"/> which is called <see cref="M:System.Collections.BitArray.#ctor(System.Int32,System.Boolean)"/>.
