@@ -4,26 +4,33 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Drawing.Text;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Windows;
 using Microsoft.Win32;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Windows.Constants;
-using static System.Drawing.Imaging.ImageFormat;
 using static System.Drawing.StringAlignment;
 using static Sudoku.Windows.Constants.Processings;
-using DEncoder = System.Drawing.Imaging.Encoder;
 using DFontStyle = System.Drawing.FontStyle;
 using PointConverter = Sudoku.Drawing.PointConverter;
+#if ADVANCED_PICTURE_SAVING
+using System.Linq;
+using Sudoku.Constants;
+using static System.Drawing.Imaging.ImageFormat;
+using DEncoder = System.Drawing.Imaging.Encoder;
+#endif
 
 namespace Sudoku.Windows
 {
 	/// <summary>
 	/// Interaction logic for <c>PictureSavingPreferencesWindow.xaml</c>.
 	/// </summary>
+	/// <remarks>
+	/// The conditional compiling symbol <c>ADVANCED_PICTURE_SAVING</c>
+	/// is disabled now because the code surrounded with the symbol contains the bug
+	/// which makes the quality of the exported picture isn't good enough.
+	/// </remarks>
 	public partial class PictureSavingPreferencesWindow : Window
 	{
 		/// <summary>
@@ -129,12 +136,13 @@ namespace Sudoku.Windows
 					return !(e.Handled = true);
 				}
 
-				var targetPainter = new GridPainter(new PointConverter(size, size), _settings)
-				{
-					Grid = _grid,
-					View = _targetPainter.View, // May be null.
-					CustomView = _targetPainter.CustomView // May be null.
-				};
+				var targetPainter =
+					new GridPainter(new PointConverter(size, size), _settings, conclusions: _targetPainter.Conclusions)
+					{
+						Grid = _grid,
+						View = _targetPainter.View, // May be null.
+						CustomView = _targetPainter.CustomView // May be null.
+					};
 
 				Bitmap? bitmap = null;
 				try
@@ -169,12 +177,19 @@ namespace Sudoku.Windows
 								g.DrawString(
 									resultText, f, Brushes.Black, bitmap.Width >> 1,
 									bitmap.Height + (fontSize >> 1) + 8, sf);
-
+#if ADVANCED_PICTURE_SAVING
 								SavePicture(result, selectedIndex, fileName);
+#else
+								SavePicture(result, fileName);
+#endif
 							}
 							else
 							{
+#if ADVANCED_PICTURE_SAVING
 								SavePicture(bitmap, selectedIndex, fileName);
+#else
+								SavePicture(bitmap, fileName);
+#endif
 							}
 
 							break;
@@ -206,6 +221,7 @@ namespace Sudoku.Windows
 			}
 		}
 
+#if ADVANCED_PICTURE_SAVING
 		private static void SavePicture(Bitmap bitmap, int selectedIndex, string fileName) =>
 			bitmap.Save(
 				fileName,
@@ -221,6 +237,10 @@ namespace Sudoku.Windows
 							_ => throw Throwings.ImpossibleCase
 						}).Guid) ?? throw new NullReferenceException("The return value is null."),
 				new EncoderParameters(1) { Param = { [0] = new EncoderParameter(DEncoder.Quality, 100L) } });
+#else
+		private static void SavePicture(Bitmap bitmap, string fileName) =>
+			bitmap.Save(fileName);
+#endif
 
 
 		private void ButtonCancel_Click(object sender, RoutedEventArgs e) => Close();
