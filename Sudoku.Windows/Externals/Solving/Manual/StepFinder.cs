@@ -10,7 +10,6 @@ using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Alses;
 using Sudoku.Solving.Manual.Alses.Basic;
 using Sudoku.Solving.Manual.Alses.Mslses;
-using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Solving.Manual.Fishes;
 using Sudoku.Solving.Manual.Intersections;
@@ -30,6 +29,9 @@ using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using Sudoku.Windows;
 using TechniquesGroupedByName = System.Linq.IGrouping<string, Sudoku.Solving.TechniqueInfo>;
+#if !DEBUG
+using Sudoku.Solving.Manual.Chaining;
+#endif
 
 namespace Sudoku.Solving.Manual
 {

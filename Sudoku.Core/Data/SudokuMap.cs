@@ -160,7 +160,7 @@ namespace Sudoku.Data
 		{
 			get
 			{
-				if (_innerArray.Count == 0)
+				if (Count == 0)
 				{
 					yield break;
 				}
