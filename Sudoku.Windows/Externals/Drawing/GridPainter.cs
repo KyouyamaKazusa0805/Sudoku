@@ -324,14 +324,14 @@ namespace Sudoku.Drawing
 				var (pt2x, pt2y) = pt2;
 
 				// Draw grouped node regions.
-				if (startNodeType != NodeType.Candidate)
+				if (startNodeType != ChainNodeType.Candidate)
 				{
 					g.FillRoundedRectangle(
 						groupedNodeBrush,
 						PointConverter.GetMouseRectangleOfCandidates(startCandidates),
 						offset);
 				}
-				if (endNodeType != NodeType.Candidate)
+				if (endNodeType != ChainNodeType.Candidate)
 				{
 					g.FillRoundedRectangle(
 						groupedNodeBrush,

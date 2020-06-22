@@ -233,7 +233,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			bool isFullInMap(Node next) => (next.CandidatesMap | candidatesUsed) == candidatesUsed;
 			switch (currentNode.NodeType)
 			{
-				case NodeType.Candidate:
+				case ChainNodeType.Candidate:
 				{
 					int currentCandidate = currentNode[0];
 					int currentCell = currentCandidate / 9, currentDigit = currentCandidate % 9;
@@ -248,7 +248,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						}
 
 						candidatesUsed.Add(nextCandidate);
-						var nextNode = new Node(nextCandidate, NodeType.Candidate);
+						var nextNode = new Node(nextCandidate, ChainNodeType.Candidate);
 						stack.Add(nextNode);
 
 						GetOffToOnRecursively(
@@ -276,7 +276,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							}
 
 							candidatesUsed.Add(nextCandidate);
-							var nextNode = new Node(nextCandidate, NodeType.Candidate);
+							var nextNode = new Node(nextCandidate, ChainNodeType.Candidate);
 							stack.Add(nextNode);
 
 							GetOffToOnRecursively(
@@ -312,7 +312,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 					break;
 				}
-				case NodeType.LockedCandidates:
+				case ChainNodeType.LockedCandidates:
 				{
 					int currentDigit = currentNode[0] % 9;
 					var currentCells = from cand in currentNode.Candidates
@@ -329,7 +329,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						}
 
 						candidatesUsed.Add(nextCandidate);
-						var nextNode = new Node(nextCandidate, NodeType.Candidate);
+						var nextNode = new Node(nextCandidate, ChainNodeType.Candidate);
 						stack.Add(nextNode);
 
 						GetOffToOnRecursively(
@@ -399,7 +399,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			switch (currentNode.NodeType)
 			{
-				case NodeType.Candidate:
+				case ChainNodeType.Candidate:
 				{
 					int currentCandidate = currentNode[0];
 					int currentCell = currentCandidate / 9, currentDigit = currentCandidate % 9;
@@ -427,7 +427,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						}
 
 						candidatesUsed.Add(nextCandidate);
-						var nextNode = new Node(nextCandidate, NodeType.Candidate);
+						var nextNode = new Node(nextCandidate, ChainNodeType.Candidate);
 						stack.Add(nextNode);
 
 						// Now check elimination.
@@ -456,7 +456,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							}
 
 							candidatesUsed.Add(nextCandidate);
-							var nextNode = new Node(nextCandidate, NodeType.Candidate);
+							var nextNode = new Node(nextCandidate, ChainNodeType.Candidate);
 							stack.Add(nextNode);
 
 							// Now check elimination.
@@ -510,7 +510,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 					break;
 				}
-				case NodeType.LockedCandidates:
+				case ChainNodeType.LockedCandidates:
 				{
 					int currentDigit = currentNode[0] % 9;
 					var currentCells = from cand in currentNode.Candidates
@@ -535,7 +535,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						}
 
 						candidatesUsed.Add(nextCandidate);
-						var nextNode = new Node(nextCandidate, NodeType.Candidate);
+						var nextNode = new Node(nextCandidate, ChainNodeType.Candidate);
 						stack.Add(nextNode);
 
 						// Now check elimination.
@@ -619,7 +619,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					continue;
 				}
 
-				result.Add(new Node(from cell in map select cell * 9 + currentDigit, NodeType.LockedCandidates));
+				result.Add(new Node(from cell in map select cell * 9 + currentDigit, ChainNodeType.LockedCandidates));
 			}
 
 			return result;
@@ -650,7 +650,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					continue;
 				}
 
-				result.Add(new Node(from cell in map select cell * 9 + currentDigit, NodeType.LockedCandidates));
+				result.Add(new Node(from cell in map select cell * 9 + currentDigit, ChainNodeType.LockedCandidates));
 			}
 
 			return result;
@@ -716,13 +716,13 @@ namespace Sudoku.Solving.Manual.Chaining
 					nodes.Add(node);
 					switch (node.NodeType)
 					{
-						case NodeType.Candidate:
+						case ChainNodeType.Candidate:
 						{
 							candidateOffsets.Add((isOff, node[0]));
 
 							break;
 						}
-						case NodeType.LockedCandidates:
+						case ChainNodeType.LockedCandidates:
 						{
 							candidateOffsets.AddRange(
 								from candidate in node.Candidates
@@ -821,13 +821,13 @@ namespace Sudoku.Solving.Manual.Chaining
 					nodes.Add(node);
 					switch (node.NodeType)
 					{
-						case NodeType.Candidate:
+						case ChainNodeType.Candidate:
 						{
 							candidateOffsets.Add((@switch ? 1 : 0, node[0]));
 
 							break;
 						}
-						case NodeType.LockedCandidates:
+						case ChainNodeType.LockedCandidates:
 						{
 							candidateOffsets.AddRange(
 								from candidate in node.Candidates select (@switch ? 1 : 0, candidate));
@@ -938,7 +938,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			var endNode = stack[LastIndex];
 			switch ((startNode.NodeType, endNode.NodeType))
 			{
-				case (NodeType.Candidate, NodeType.Candidate):
+				case (ChainNodeType.Candidate, ChainNodeType.Candidate):
 				{
 					if (startNode == endNode)
 					{
@@ -957,9 +957,9 @@ namespace Sudoku.Solving.Manual.Chaining
 					// and the digits are same.
 					return new GridMap(new[] { headCell, tailCell }).AllSetsAreInOneRegion(out _);
 				}
-				case (NodeType.Candidate, NodeType.LockedCandidates):
-				case (NodeType.LockedCandidates, NodeType.Candidate):
-				case (NodeType.LockedCandidates, NodeType.LockedCandidates):
+				case (ChainNodeType.Candidate, ChainNodeType.LockedCandidates):
+				case (ChainNodeType.LockedCandidates, ChainNodeType.Candidate):
+				case (ChainNodeType.LockedCandidates, ChainNodeType.LockedCandidates):
 				{
 					if (startNode == endNode)
 					{
@@ -1031,11 +1031,11 @@ namespace Sudoku.Solving.Manual.Chaining
 						new Inference(
 							new Node(
 								RegionCells[region][pos1] * 9 + digit,
-								NodeType.Candidate),
+								ChainNodeType.Candidate),
 							false,
 							new Node(
 								RegionCells[region][mask.GetNextSet(pos1)] * 9 + digit,
-								NodeType.Candidate),
+								ChainNodeType.Candidate),
 							true));
 				}
 			}
@@ -1053,9 +1053,9 @@ namespace Sudoku.Solving.Manual.Chaining
 					int digit1 = mask.FindFirstSet();
 					result.Add(
 						new Inference(
-							new Node(cell * 9 + digit1, NodeType.Candidate),
+							new Node(cell * 9 + digit1, ChainNodeType.Candidate),
 							false,
-							new Node(cell * 9 + mask.GetNextSet(digit1), NodeType.Candidate),
+							new Node(cell * 9 + mask.GetNextSet(digit1), ChainNodeType.Candidate),
 							true));
 				}
 			}
@@ -1184,11 +1184,11 @@ namespace Sudoku.Solving.Manual.Chaining
 					? new Inference(
 						new Node(
 							from cell in start select cell * 9 + digit,
-							s ? NodeType.Candidate : NodeType.LockedCandidates),
+							s ? ChainNodeType.Candidate : ChainNodeType.LockedCandidates),
 						false,
 						new Node(
 							from cell in end select cell * 9 + digit,
-							e ? NodeType.Candidate : NodeType.LockedCandidates),
+							e ? ChainNodeType.Candidate : ChainNodeType.LockedCandidates),
 						true)
 					: null;
 			}
@@ -1249,11 +1249,11 @@ namespace Sudoku.Solving.Manual.Chaining
 					? new Inference(
 						new Node(
 							from cell in start select cell * 9 + digit,
-							s ? NodeType.Candidate : NodeType.LockedCandidates),
+							s ? ChainNodeType.Candidate : ChainNodeType.LockedCandidates),
 						false,
 						new Node(
 							from cell in end select cell * 9 + digit,
-							e ? NodeType.Candidate : NodeType.LockedCandidates),
+							e ? ChainNodeType.Candidate : ChainNodeType.LockedCandidates),
 						true)
 					: null;
 			}
@@ -1311,12 +1311,12 @@ namespace Sudoku.Solving.Manual.Chaining
 		{
 			switch (node.NodeType)
 			{
-				case NodeType.Candidate:
+				case ChainNodeType.Candidate:
 				{
 					map.Add(node[0]);
 					break;
 				}
-				case NodeType.LockedCandidates:
+				case ChainNodeType.LockedCandidates:
 				{
 					map.AddRange(node.Candidates);
 					break;
@@ -1334,12 +1334,12 @@ namespace Sudoku.Solving.Manual.Chaining
 		{
 			switch (node.NodeType)
 			{
-				case NodeType.Candidate:
+				case ChainNodeType.Candidate:
 				{
 					map.Remove(node[0]);
 					break;
 				}
-				case NodeType.LockedCandidates:
+				case ChainNodeType.LockedCandidates:
 				{
 					map.RemoveRange(node.Candidates);
 					break;

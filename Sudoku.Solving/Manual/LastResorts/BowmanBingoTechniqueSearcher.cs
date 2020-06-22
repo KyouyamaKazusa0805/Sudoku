@@ -7,7 +7,7 @@ using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual.Singles;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Data.NodeType;
+using static Sudoku.Data.ChainNodeType;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {

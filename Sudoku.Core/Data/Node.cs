@@ -17,7 +17,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="candidate">The candidates.</param>
 		/// <param name="nodeType">The type of this node.</param>
-		public Node(int candidate, NodeType nodeType) : this(new SudokuMap { candidate }, nodeType)
+		public Node(int candidate, ChainNodeType nodeType) : this(new SudokuMap { candidate }, nodeType)
 		{
 		}
 
@@ -26,7 +26,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="candidates">The candidates.</param>
 		/// <param name="nodeType">The type of this node.</param>
-		public Node(IEnumerable<int> candidates, NodeType nodeType) : this(new SudokuMap(candidates), nodeType)
+		public Node(IEnumerable<int> candidates, ChainNodeType nodeType) : this(new SudokuMap(candidates), nodeType)
 		{
 		}
 
@@ -35,7 +35,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="candidatesMap">The map of candidates.</param>
 		/// <param name="nodeType">The node type.</param>
-		public Node(SudokuMap candidatesMap, NodeType nodeType) =>
+		public Node(SudokuMap candidatesMap, ChainNodeType nodeType) =>
 			(CandidatesMap, NodeType) = (candidatesMap, nodeType);
 
 
@@ -47,7 +47,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the type of this current node.
 		/// </summary>
-		public NodeType NodeType { get; }
+		public ChainNodeType NodeType { get; }
 
 		/// <summary>
 		/// Indicates all candidates used.
@@ -75,7 +75,7 @@ namespace Sudoku.Data
 		/// <param name="nodeType">
 		/// (<see langword="out"/> parameter) Indicates the node type.
 		/// </param>
-		public void Deconstruct(out SudokuMap map, out NodeType nodeType) =>
+		public void Deconstruct(out SudokuMap map, out ChainNodeType nodeType) =>
 			(map, nodeType) = (CandidatesMap.Clone(), NodeType);
 
 		/// <summary>

@@ -213,7 +213,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private bool IsGrouped() => Nodes.Any(node => node.NodeType != NodeType.Candidate);
+		private bool IsGrouped() => Nodes.Any(node => node.NodeType != ChainNodeType.Candidate);
 
 		/// <summary>
 		/// Indicates whether the chain is X-Chain.

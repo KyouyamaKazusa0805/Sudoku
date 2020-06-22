@@ -64,12 +64,12 @@ namespace Sudoku.Data
 			{
 				switch (Start.NodeType)
 				{
-					case NodeType.Candidate:
+					case ChainNodeType.Candidate:
 					{
 						switch (End.NodeType)
 						{
-							case NodeType.Candidate:
-							case NodeType.LockedCandidates:
+							case ChainNodeType.Candidate:
+							case ChainNodeType.LockedCandidates:
 							{
 								return SudokuMap.CreateInstance(Start.Candidates.Concat(End.Candidates));
 							}
@@ -77,12 +77,12 @@ namespace Sudoku.Data
 
 						break;
 					}
-					case NodeType.LockedCandidates:
+					case ChainNodeType.LockedCandidates:
 					{
 						switch (End.NodeType)
 						{
-							case NodeType.Candidate:
-							case NodeType.LockedCandidates:
+							case ChainNodeType.Candidate:
+							case ChainNodeType.LockedCandidates:
 							{
 								return SudokuMap.CreateInstance(Start.Candidates.Concat(End.Candidates));
 							}
@@ -122,8 +122,8 @@ namespace Sudoku.Data
 		/// (<see langword="out"/> parameter) Indicates the end node type.
 		/// </param>
 		public void Deconstruct(
-			out SudokuMap startMap, out bool startInOn, out NodeType startNodeType,
-			out SudokuMap endMap, out bool endIsOn, out NodeType endNodeType) =>
+			out SudokuMap startMap, out bool startInOn, out ChainNodeType startNodeType,
+			out SudokuMap endMap, out bool endIsOn, out ChainNodeType endNodeType) =>
 			(startMap, startInOn, startNodeType, endMap, endIsOn, endNodeType) = (
 				Start.CandidatesMap.Clone(), StartIsOn, Start.NodeType,
 				End.CandidatesMap.Clone(), EndIsOn, End.NodeType);
