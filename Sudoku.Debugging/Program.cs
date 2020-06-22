@@ -41,13 +41,7 @@ namespace Sudoku.Debugging
 		/// </summary>
 		private static void Main()
 		{
-			Console.WriteLine(
-				new ChainInferenceCollection(
-					new ChainInference(new ChainNode(1, new GridMap { 0 }), new ChainNode(1, new GridMap { 74 }))
-				).ToString()
-			);
-
-#if false
+#if true
 			var w = new Stopwatch();
 			
 			var z = new CodeCounter(Solution.PathRoot, @".+\.cs$");
