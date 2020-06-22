@@ -3,7 +3,6 @@
 	/// <summary>
 	/// Indicates a node type in a chain.
 	/// </summary>
-	[Obsolete("Need rewrite.")]
 	public enum NodeType : byte
 	{
 		/// <summary>
