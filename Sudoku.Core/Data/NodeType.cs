@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Indicates a node type in a chain.
 	/// </summary>
-	public enum ChainNodeType : byte
+	public enum NodeType : byte
 	{
 		/// <summary>
 		/// Indicates a normal candidate.

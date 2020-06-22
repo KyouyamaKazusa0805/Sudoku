@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using Sudoku.Data;
+using Sudoku.Solving.Manual.Chaining;
 
 namespace Sudoku.Drawing
 {

@@ -2317,31 +2317,12 @@
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Chaining.ChainTechniqueInfo">
+        <member name="T:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo">
             <summary>
-            Provides a usage of <b>chain</b> technique.
+            Provides a usage of <b>alternating inference chain</b> (AIC) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.ChainTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Chaining.ChainTechniqueSearcher">
-            <summary>
-            Encapsulates a <b>chain</b> technique searcher.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo">
-            <summary>
-            Provides a usage of (<b>grouped</b>) <b>alternating inference chain</b> (AIC) technique.
-            In fact this searcher can also search for basic AICs.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.LastIndex">
-            <summary>
-            Indicates the last index of a collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Node},System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Chaining.Inference},System.Boolean)">
             <constructor type="TechniqueInfo">
 		<summary>
 			Initializes an instance with the specified information.
@@ -2349,167 +2330,36 @@
 		<param name="conclusions">The conclusions.</param>
 		<param name="views">The views of this solving step.</param>
 	</constructor>
-            <param name="nodes">All nodes.</param>
+            <param name="inferences">The inferences.</param>
             <param name="isContinuousNiceLoop">
-            Indicates whether the structure is a continuous nice loop.
+            A <see cref="T:System.Boolean" /> value indicating whether the structure forms a continuous nice loop.
             </param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.IsContinuousNiceLoop">
+        <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.IsContinuousNiceLoop">
             <summary>
-            Indicates whether the structure is a continuous nice loop.
+            Indicates whether the structure forms a continuous nice loop.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.Nodes">
+        <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.Inferences">
             <summary>
-            Indicates all inferences.
+            Indicates the inferences used.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.Length">
-            <summary>
-            Indicates the length of the instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.DifficultyLevel">
+        <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.TechniqueCode">
+        <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.ToString">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.Equals(Sudoku.Solving.TechniqueInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.Equals(Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.IsGrouped">
+        <member name="T:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher">
             <summary>
-            Indicates whether the chain is grouped chain.
-            </summary>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.IsXChain">
-            <summary>
-            Indicates whether the chain is X-Chain.
-            </summary>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.IsXyChain">
-            <summary>
-            Indicates whether the chain is XY-Chain.
-            </summary>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.IsWWing">
-            <summary>
-            Indicates whether the chain is W-Wing (<c>(x = y) - y = y - (y = x)</c>).
-            </summary>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.IsMWing">
-            <summary>
-            Indicates whether the chain is M-Wing (<c>(x = y) - y = (y - x) = x</c>).
-            </summary>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.IsSplitWing">
-            <summary>
-            Indicates whether the chain is Split-Wing (<c>x = x - (x = y) - y = y</c>).
-            </summary>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.IsHybridWing">
-            <summary>
-            Indicates whether the chain is Hybrid-Wing.
-            This wing has two types:
-            <list type="bullet">
-            <item><c>(x = y) - y = (y - z) = z</c></item>
-            <item><c>(x = y) - (y = z) - z = z</c></item>
-            </list>
-            </summary>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.IsLocalWing">
-            <summary>
-            Indicates whether the chain is Local-Wing (<c>x = (x - z) = (z - y) = y</c>).
-            </summary>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.GroupedPrefix">
-            <summary>
-            Get the grouped prefix.
-            </summary>
-            <returns>The prefix.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.IsHeadCollisionChain">
-            <summary>
-            Indicates whether the chain is discontinuous nice loop whose head and tail
-            is a same node.
-            </summary>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.KeepNodeMinimum(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Node})">
-            <summary>
-            Keep the head node is lower than tail node.
-            </summary>
-            <param name="nodes">The nodes.</param>
-            <returns>The list.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.IsHeadTailSameDigit">
-            <summary>
-            Indicates whether the head and tail node contain the different digit.
-            </summary>
-            <returns>
-            <see langword="true"/> is for same digit; otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.IsHeadTailSameCell">
-            <summary>
-            Indicates whether the head and tail node are in different cells.
-            </summary>
-            <returns>
-            <see langword="true"/> is for same digit; otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.IsHeadTailSame">
-            <summary>
-            Indicates whether the head and tail node are difference values.
-            </summary>
-            <returns>
-            <see langword="true"/> is for same digit; otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.op_Equality(Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo,Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo)">
-            <operator name="op_Equality">
-		<summary>Indicates whether two instances have a same value.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
-	</operator>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo.op_Inequality(Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo,Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo)">
-            <operator name="op_Inequality">
-		<summary>Indicates whether two instances have two different values.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
-	</operator>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher">
-            <summary>
-            Encapsulates a/an (<b>grouped</b>) <b>alternating inference chain</b>
-            (AIC) technique searcher.
+            Encapsulates an <b>alternating inference chain</b> (AIC) technique searcher.
             </summary>
             <remarks>
             <para>
@@ -2523,228 +2373,91 @@
             Note that AIC may be static chains, which means that the searcher may just use
             static analysis is fine, which is different with dynamic chains.
             </para>
+            <para>By the way, the searching method is <b>BFS</b> (breadth-first searching).</para>
             </remarks>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.EmptyArray">
-            <summary>
-            The empty array.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.BlockTable">
-            <summary>
-            The table of blocks.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.IntersectionTable">
-            <summary>
-            The intersection table.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.LastIndex">
-            <summary>
-            Indicates the last index of the collection.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher._searchX">
-            <summary>
-            Indicates whether the searcher will search for X-Chains.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher._searchY">
-            <summary>
-            Indicates whether the searcher will search for Y-Chains.
-            Here Y-Chains means for multi-digit AICs.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher._searchLcNodes">
-            <summary>
-            Indicates whether the searcher will check locked candidates nodes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher._reductDifferentPathAic">
-            <summary>
-            Indicates whether the searcher will reduct same AICs
-            which has same head and tail nodes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher._onlySaveShortestPathAic">
-            <summary>
-            Indicates whether the searcher will store the shortest path only.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher._checkHeadCollision">
-            <summary>
-            Indicates whether the searcher will store the discontinuous nice loop
-            whose head and tail is a same node.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher._checkContinuousNiceLoop">
-            <summary>
-            Indicates whether the searcher will check the chain forms a continuous
-            nice loop.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher._maxLength">
+        <member name="F:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher._maxLength">
             <summary>
             Indicates the maximum length to search.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.#ctor(System.Int32)">
             <summary>
-            Initializes an instance with the specified information.
+            Initializes an instance with the specified length.
             </summary>
-            <param name="searchX">Indicates searching X-Chains or not.</param>
-            <param name="searchY">Indicates searching Y-Chains or not.</param>
-            <param name="searchLockedCandidatesNodes">
-            Indicates whether the searcher will check the locked candidates nodes.
-            </param>
-            <param name="maxLength">
-            Indicates the maximum length of a chain to search.
-            </param>
-            <param name="reductDifferentPathAic">
-            Indicates whether the searcher will reduct same AICs
-            which has same head and tail nodes.
-            </param>
-            <param name="onlySaveShortestPathAic">
-            Indicates whether the searcher will store the shortest path
-            only.
-            </param>
-            <param name="checkHeadCollision">
-            Indicates whether the searcher will store the discontinuous nice loop
-            whose head and tail is a same node.
-            </param>
-            <param name="checkContinuousNiceLoop">
-            Indicates whether the searcher will check the chain forms a continuous
-            nice loop.
-            </param>
+            <param name="maxLength">The max length.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.Priority">
+        <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.Priority">
             <summary>
             Indicates the priority of this technique.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.IsEnabled">
+        <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.IsEnabled">
             <summary>
             Indicates whether the technique is enabled.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetOnToOffRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.SudokuMap,Sudoku.Data.Node,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Inference},System.Collections.Generic.IList{Sudoku.Data.Node},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.GetOffToOn(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Chaining.Inference}[],System.Int32,System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.Inference},Sudoku.Data.SudokuMap,System.Int32)">
             <summary>
-            Get 'on' nodes to 'off' nodes recursively (Searching for weak links).
+            Get off to on (search for strong links).
             </summary>
             <param name="accumulator">The accumulator.</param>
             <param name="grid">The grid.</param>
-            <param name="candidatesUsed">The candidate used.</param>
-            <param name="currentNode">The current node.</param>
-            <param name="strongInferences">The strong inferences.</param>
-            <param name="stack">The stack.</param>
-            <param name="length">The last length to search.</param>
+            <param name="list">The list.</param>
+            <param name="length">The length.</param>
+            <param name="stack">The temporary stack.</param>
+            <param name="fullMap">The map of candidates that currently used.</param>
+            <param name="candidate">The candidate.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetOffToOnRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.SudokuMap,Sudoku.Data.Node,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Inference},System.Collections.Generic.IList{Sudoku.Data.Node},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.GetOnToOff(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Chaining.Inference}[],System.Int32,System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.Inference},Sudoku.Data.SudokuMap,System.Int32)">
             <summary>
-            Get 'off' nodes to 'on' nodes recursively (Searching for strong links).
+            Get on to off (search for weak links).
             </summary>
             <param name="accumulator">The accumulator.</param>
             <param name="grid">The grid.</param>
-            <param name="candidatesUsed">The candidates used.</param>
-            <param name="currentNode">The current node.</param>
-            <param name="strongInferences">All strong inferences.</param>
-            <param name="stack">The stack.</param>
-            <param name="length">The last length to search.</param>
+            <param name="list">The list.</param>
+            <param name="length">The length.</param>
+            <param name="stack">The temporary stack.</param>
+            <param name="fullMap">The map of candidates that currently used.</param>
+            <param name="candidate">The candidate.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetLcNodes(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.CheckEliminations(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.Inference})">
             <summary>
-            Get all locked candidates nodes at current cell and digit.
-            </summary>
-            <param name="currentCell">The current cell.</param>
-            <param name="currentDigit">The current digit.</param>
-            <returns>All locked candidates nodes.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetLcNodes(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
-            <summary>
-            Get all locked candidates nodes at current cells and digit.
-            </summary>
-            <param name="currentCells">The current cells.</param>
-            <param name="currentDigit">The current digit.</param>
-            <returns>All locked candidates nodes.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.SudokuMap,System.Collections.Generic.IList{Sudoku.Data.Node})">
-            <summary>
-            Check the elimination, and save the chain into the accumulator
-            when the chain is valid and worth.
+            Check eliminations.
             </summary>
             <param name="accumulator">The accumulator.</param>
             <param name="grid">The grid.</param>
-            <param name="candidateList">The candidate list.</param>
             <param name="stack">The stack.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.SumUpResult(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueInfo)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.GetStrongRelations(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Chaining.Inference}[],Sudoku.Data.IReadOnlyGrid)">
             <summary>
-            Sum up the result.
+            Get all strong relations at initial.
             </summary>
-            <param name="accumulator">The accumulator list.</param>
-            <param name="resultInfo">The result information instance.</param>
+            <param name="list">The collected strong relations grouped by its cell.</param>
+            <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.IsContinuousNiceLoop(System.Collections.Generic.IList{Sudoku.Data.Node})">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.IsContinuousNiceLoop(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Chaining.Inference})">
             <summary>
-            To check whether the nodes form a loop.
+            Determine whether the chain is a continuous nice loop.
             </summary>
-            <param name="stack">The stack.</param>
+            <param name="stack">The chain stack.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <remarks>
-            If the nodes form a continuous nice loop, the head and tail node should be
-            in a same region, and hold a same digit; or else the head and the tail is in
-            a same cell, but the digits are different; otherwise, the nodes forms a normal
-            AIC.
-            </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetAct(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo})">
+        <member name="T:Sudoku.Solving.Manual.Chaining.ChainTechniqueInfo">
             <summary>
-            Bound with the method
-            <see cref="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.SudokuMap,System.Collections.Generic.IList{Sudoku.Data.Node})"/>.
+            Provides a usage of <b>chain</b> technique.
             </summary>
-            <param name="accumulator">The accumulator.</param>
-            <returns>The result action.</returns>
-            <seealso cref="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.SudokuMap,System.Collections.Generic.IList{Sudoku.Data.Node})"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetAllStrongInferences(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap[])">
-            <summary>
-            Get all strong relations.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digitDistributions">All digits' distributions.</param>
-            <returns>All strong relations.</returns>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+            <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.RecordBlockLcStrongInferences(System.Collections.Generic.IList{Sudoku.Data.Inference},Sudoku.Data.GridMap[])">
+        <member name="T:Sudoku.Solving.Manual.Chaining.ChainTechniqueSearcher">
             <summary>
-            To record all strong inferences in a block.
+            Encapsulates a <b>chain</b> technique searcher.
             </summary>
-            <param name="result">The result accumulator.</param>
-            <param name="digitDistributions">The digit distributions.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.RecordLineLcStrongInferences(System.Collections.Generic.IList{Sudoku.Data.Inference},Sudoku.Data.GridMap[])">
-            <summary>
-            To record all strong inferences in a line.
-            </summary>
-            <param name="result">The result accumulator.</param>
-            <param name="digitDistributions">The digit distributions.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.AddNode(Sudoku.Data.Node,Sudoku.Data.SudokuMap)">
-            <summary>
-            Add the node to the map.
-            </summary>
-            <param name="node">The node.</param>
-            <param name="map">The map.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.RemoveNode(Sudoku.Data.Node,Sudoku.Data.SudokuMap)">
-            <summary>
-            Remove the node from the map.
-            </summary>
-            <param name="node">The node.</param>
-            <param name="map">The map.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations">
             <summary>
@@ -8964,18 +8677,6 @@
 		<param name="right">The right instance.</param>
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
-        </member>
-        <member name="T:Sudoku.Solving.Utils.NodeCollection">
-            <summary>
-            Provides extension methods of node collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Utils.NodeCollection.ToString(System.Collections.Generic.IEnumerable{Sudoku.Data.Node})">
-            <summary>
-            Get a string consists of nodes' text.
-            </summary>
-            <param name="nodes">The nodes.</param>
-            <returns>The string.</returns>
         </member>
     </members>
 </doc>

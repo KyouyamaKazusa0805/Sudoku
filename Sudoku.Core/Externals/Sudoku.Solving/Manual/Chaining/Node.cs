@@ -10,14 +10,34 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Indicates a candidate pair used in chains.
 	/// </summary>
-	public readonly struct ChainNode : IEnumerable<int>, IEquatable<ChainNode>
+	public readonly struct Node : IEnumerable<int>, IEquatable<Node>
 	{
+		/// <summary>
+		/// Initializes an instance with the specified candidate.
+		/// </summary>
+		/// <param name="candidate">The candidate.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public Node(int candidate) : this((byte)(candidate / 9), (byte)(candidate % 9))
+		{
+		}
+
+		/// <summary>
+		/// Initializes an instance with the specified digit and a cell.
+		/// </summary>
+		/// <param name="digit">The digit.</param>
+		/// <param name="cell">A cell.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public Node(byte digit, byte cell) : this(digit, new GridMap { cell })
+		{
+		}
+
 		/// <summary>
 		/// Initializes an instance with the specified digit and the map.
 		/// </summary>
 		/// <param name="digit">The digit.</param>
 		/// <param name="map">The map.</param>
-		public ChainNode(byte digit, GridMap map) => (Digit, Map) = (digit, map);
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public Node(byte digit, GridMap map) => (Digit, Map) = (digit, map);
 
 
 		/// <summary>
@@ -30,19 +50,31 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		public GridMap Map { get; }
 
+		/// <summary>
+		/// Indictaes the candidates map.
+		/// </summary>
+		public SudokuMap CandidatesMap => new SudokuMap(Map, Digit);
+
 
 		/// <include file='../../../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="digit">(<see langword="out"/> parameter) The digit.</param>
 		/// <param name="map">(<see langword="out"/> parameter) The map.</param>
 		public void Deconstruct(out byte digit, out GridMap map) => (digit, map) = (Digit, Map);
 
+		/// <include file='../../../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <param name="digit">(<see langword="out"/> parameter) The digit.</param>
+		/// <param name="map">(<see langword="out"/> parameter) The map.</param>
+		/// <param name="fullMap">(<see langword="out"/> parameter) The candidates map.</param>
+		public void Deconstruct(out byte digit, out GridMap map, out SudokuMap fullMap) =>
+			(digit, map, fullMap) = (Digit, Map, CandidatesMap);
+
 		/// <include file='../../../../../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override bool Equals(object? obj) => obj is ChainNode comparer && Equals(comparer);
+		public override bool Equals(object? obj) => obj is Node comparer && Equals(comparer);
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool Equals(ChainNode other) => Digit == other.Digit && Map == other.Map;
+		public bool Equals(Node other) => Digit == other.Digit && Map == other.Map;
 
 		/// <include file='../../../../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -62,9 +94,9 @@ namespace Sudoku.Solving.Manual.Chaining
 
 
 		/// <include file='../../../../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
-		public static bool operator ==(ChainNode left, ChainNode right) => left.Equals(right);
+		public static bool operator ==(Node left, Node right) => left.Equals(right);
 
 		/// <include file='../../../../../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
-		public static bool operator !=(ChainNode left, ChainNode right) => !(left == right);
+		public static bool operator !=(Node left, Node right) => !(left == right);
 	}
 }

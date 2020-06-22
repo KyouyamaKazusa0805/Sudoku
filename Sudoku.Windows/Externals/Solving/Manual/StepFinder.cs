@@ -102,24 +102,24 @@ namespace Sudoku.Solving.Manual
 					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.MaxPetalsOfDeathBlossom),
 #if !DEBUG
 				// Disable slow techniques while debugging.
-				new GroupedAicTechniqueSearcher(
-					true, false, false, _settings.MainManualSolver.AicMaximumLength,
-					_settings.MainManualSolver.ReductDifferentPathAic,
-					_settings.MainManualSolver.OnlySaveShortestPathAic,
-					_settings.MainManualSolver.CheckHeadCollision,
-					_settings.MainManualSolver.CheckContinuousNiceLoop),
-				new GroupedAicTechniqueSearcher(
-					false, true, false, _settings.MainManualSolver.AicMaximumLength,
-					_settings.MainManualSolver.ReductDifferentPathAic,
-					_settings.MainManualSolver.OnlySaveShortestPathAic,
-					_settings.MainManualSolver.CheckHeadCollision,
-					_settings.MainManualSolver.CheckContinuousNiceLoop),
-				new GroupedAicTechniqueSearcher(
-					false, false, true, _settings.MainManualSolver.AicMaximumLength,
-					_settings.MainManualSolver.ReductDifferentPathAic,
-					_settings.MainManualSolver.OnlySaveShortestPathAic,
-					_settings.MainManualSolver.CheckHeadCollision,
-					_settings.MainManualSolver.CheckContinuousNiceLoop),
+				//new GroupedAicTechniqueSearcher(
+				//	true, false, false, _settings.MainManualSolver.AicMaximumLength,
+				//	_settings.MainManualSolver.ReductDifferentPathAic,
+				//	_settings.MainManualSolver.OnlySaveShortestPathAic,
+				//	_settings.MainManualSolver.CheckHeadCollision,
+				//	_settings.MainManualSolver.CheckContinuousNiceLoop),
+				//new GroupedAicTechniqueSearcher(
+				//	false, true, false, _settings.MainManualSolver.AicMaximumLength,
+				//	_settings.MainManualSolver.ReductDifferentPathAic,
+				//	_settings.MainManualSolver.OnlySaveShortestPathAic,
+				//	_settings.MainManualSolver.CheckHeadCollision,
+				//	_settings.MainManualSolver.CheckContinuousNiceLoop),
+				//new GroupedAicTechniqueSearcher(
+				//	false, false, true, _settings.MainManualSolver.AicMaximumLength,
+				//	_settings.MainManualSolver.ReductDifferentPathAic,
+				//	_settings.MainManualSolver.OnlySaveShortestPathAic,
+				//	_settings.MainManualSolver.CheckHeadCollision,
+				//	_settings.MainManualSolver.CheckContinuousNiceLoop),
 				new HobiwanFishTechniqueSearcher(
 					_settings.MainManualSolver.HobiwanFishMaximumSize,
 					_settings.MainManualSolver.HobiwanFishMaximumExofinsCount,

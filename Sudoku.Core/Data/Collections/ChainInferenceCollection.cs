@@ -17,27 +17,27 @@ namespace Sudoku.Data.Collections
 	{
 		/// <summary>
 		/// The pointer to point <see cref="_collection"/>.
-		/// If the constructor isn't <see cref="ChainInferenceCollection(ChainInference)"/>,
+		/// If the constructor isn't <see cref="ChainInferenceCollection(Inference)"/>,
 		/// the field is keep the value <see cref="IntPtr.Zero"/>.
 		/// </summary>
 		/// <seealso cref="_collection"/>
-		/// <seealso cref="ChainInferenceCollection(ChainInference)"/>
+		/// <seealso cref="ChainInferenceCollection(Inference)"/>
 		/// <seealso cref="IntPtr.Zero"/>
 		private readonly IntPtr _ptr;
 
 		/// <summary>
 		/// The internal collection.
 		/// </summary>
-		private readonly Span<ChainInference> _collection;
+		private readonly Span<Inference> _collection;
 
 
 		/// <summary>
 		/// Initializes an instance with one inference.
 		/// </summary>
 		/// <param name="chainInference">The chain inference.</param>
-		public unsafe ChainInferenceCollection(ChainInference chainInference)
+		public unsafe ChainInferenceCollection(Inference chainInference)
 		{
-			var tempSpan = new Span<ChainInference>((_ptr = Marshal.AllocHGlobal(sizeof(ChainInference))).ToPointer(), 1);
+			var tempSpan = new Span<Inference>((_ptr = Marshal.AllocHGlobal(sizeof(Inference))).ToPointer(), 1);
 			tempSpan[0] = chainInference;
 			_collection = tempSpan;
 		}
@@ -46,13 +46,13 @@ namespace Sudoku.Data.Collections
 		/// Initializes an instance with the specified collection.
 		/// </summary>
 		/// <param name="collection">The collection.</param>
-		public ChainInferenceCollection(Span<ChainInference> collection) : this() => _collection = collection;
+		public ChainInferenceCollection(Span<Inference> collection) : this() => _collection = collection;
 
 		/// <summary>
 		/// Initializes an instance with the specified collection.
 		/// </summary>
 		/// <param name="collection">The collection.</param>
-		public ChainInferenceCollection(IEnumerable<ChainInference> collection) : this() =>
+		public ChainInferenceCollection(IEnumerable<Inference> collection) : this() =>
 			_collection = collection.ToArray().AsSpan();
 
 		/// <summary>

@@ -7,6 +7,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
+using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Windows;
 using static System.Drawing.Drawing2D.DashStyle;
 using static System.Drawing.FontStyle;
@@ -310,7 +311,7 @@ namespace Sudoku.Drawing
 			using var groupedNodeBrush = new SolidBrush(Color.FromArgb(64, Color.Yellow));
 			foreach (var inference in links)
 			{
-				var ((startCandidates, startNodeType), (endCandidates, endNodeType)) = inference;
+				var ((startDigit, startMap, startFullMap), (endDigit, endMap, endFullMap)) = inference;
 				pen.DashStyle = true switch
 				{
 					_ when inference.IsStrong => Solid,
@@ -318,24 +319,24 @@ namespace Sudoku.Drawing
 					_ => Dash
 				};
 
-				var pt1 = PointConverter.GetMouseCenterOfCandidates(startCandidates);
-				var pt2 = PointConverter.GetMouseCenterOfCandidates(endCandidates);
+				var pt1 = PointConverter.GetMouseCenterOfCandidates(startFullMap);
+				var pt2 = PointConverter.GetMouseCenterOfCandidates(endFullMap);
 				var (pt1x, pt1y) = pt1;
 				var (pt2x, pt2y) = pt2;
 
 				// Draw grouped node regions.
-				if (startNodeType != ChainNodeType.Candidate)
+				if (startMap.Count != 1)
 				{
 					g.FillRoundedRectangle(
 						groupedNodeBrush,
-						PointConverter.GetMouseRectangleOfCandidates(startCandidates),
+						PointConverter.GetMouseRectangleOfCandidates(startFullMap),
 						offset);
 				}
-				if (endNodeType != ChainNodeType.Candidate)
+				if (endMap.Count != 1)
 				{
 					g.FillRoundedRectangle(
 						groupedNodeBrush,
-						PointConverter.GetMouseRectangleOfCandidates(endCandidates),
+						PointConverter.GetMouseRectangleOfCandidates(endFullMap),
 						offset);
 				}
 

@@ -4,10 +4,10 @@ using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
+using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.Singles;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
-using static Sudoku.Data.ChainNodeType;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {
@@ -166,7 +166,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			{
 				var (_, c1) = _tempConclusions[i];
 				var (_, c2) = _tempConclusions[i + 1];
-				result.Add(new Inference(new Node(c1, Candidate), true, new Node(c2, Candidate), true));
+				result.Add(new Inference(new Node(c1), true, new Node(c2), true));
 			}
 
 			return result;
