@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sudoku.Data
+﻿namespace Sudoku.Data
 {
 	/// <summary>
 	/// Indicates a node type in a chain.
