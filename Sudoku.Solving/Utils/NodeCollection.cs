@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using Sudoku.Data;
@@ -10,6 +11,7 @@ namespace Sudoku.Solving.Utils
 	/// Provides extension methods of node collection.
 	/// </summary>
 	[DebuggerStepThrough]
+	[Obsolete("Need re-write or create a new data structure.")]
 	public static class NodeCollection
 	{
 		/// <summary>
