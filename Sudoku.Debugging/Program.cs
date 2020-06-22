@@ -43,18 +43,18 @@ namespace Sudoku.Debugging
 		{
 #if true
 			var w = new Stopwatch();
-			
+
 			var z = new CodeCounter(Solution.PathRoot, @".+\.cs$");
-			
+
 			w.Start();
 			int codeLines = z.CountCodeLines(out int count);
 			w.Stop();
-			
+
 			foreach (var fileName in z.FileList)
 			{
 				WriteLine(fileName);
 			}
-			
+
 			WriteLine($"Code lines: {codeLines}, found files: {count}, time elapsed: {w.Elapsed:hh':'mm'.'ss'.'fff}");
 #endif
 		}
