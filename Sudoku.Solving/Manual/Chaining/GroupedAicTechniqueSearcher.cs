@@ -1010,8 +1010,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="grid">The grid.</param>
 		/// <param name="digitDistributions">All digits' distributions.</param>
 		/// <returns>All strong relations.</returns>
-		private IReadOnlyList<Inference> GetAllStrongInferences(
-			IReadOnlyGrid grid, GridMap[] digitDistributions)
+		private IReadOnlyList<Inference> GetAllStrongInferences(IReadOnlyGrid grid, GridMap[] digitDistributions)
 		{
 			var result = new List<Inference>();
 

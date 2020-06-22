@@ -112,7 +112,7 @@ namespace Sudoku.Solving.Manual.Singles
 							resultCell = cell;
 							if (++count > 1)
 							{
-								flag.Flip();
+								flag = false;
 								break;
 							}
 						}

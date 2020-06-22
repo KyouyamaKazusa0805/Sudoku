@@ -124,7 +124,9 @@ namespace Sudoku.Data
 		public void Deconstruct(
 			out SudokuMap startMap, out bool startInOn, out NodeType startNodeType,
 			out SudokuMap endMap, out bool endIsOn, out NodeType endNodeType) =>
-			(startMap, startInOn, startNodeType, endMap, endIsOn, endNodeType) = (Start.CandidatesMap, StartIsOn, Start.NodeType, End.CandidatesMap, EndIsOn, End.NodeType);
+			(startMap, startInOn, startNodeType, endMap, endIsOn, endNodeType) = (
+				Start.CandidatesMap.Clone(), StartIsOn, Start.NodeType,
+				End.CandidatesMap.Clone(), EndIsOn, End.NodeType);
 
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is Inference comparer && Equals(comparer);

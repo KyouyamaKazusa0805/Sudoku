@@ -19,7 +19,7 @@ namespace Sudoku.Data
 	/// <see cref="GridMap"/> instead of this data structure as much as possible.
 	/// </remarks>
 	[DebuggerStepThrough]
-	[Obsolete("Use 'SudokuMap' instead.", true)]
+	[Obsolete("Please use 'SudokuMap' instead.", true)]
 	public struct FullGridMap : IEquatable<FullGridMap>, IEnumerable<int>
 	{
 		/// <summary>
@@ -483,13 +483,11 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="map">The instance to negate.</param>
 		/// <returns>The negative result.</returns>
-		public static FullGridMap operator ~(FullGridMap map)
-		{
-			return new FullGridMap(
+		public static FullGridMap operator ~(FullGridMap map) =>
+			new FullGridMap(
 				~map._line1, ~map._line2, ~map._line3,
 				~map._line4, ~map._line5, ~map._line6,
 				~map._line7, ~map._line8, ~map._line9);
-		}
 
 		/// <summary>
 		/// Get a <see cref="FullGridMap"/> that contains all <paramref name="left"/> cells
@@ -506,13 +504,11 @@ namespace Sudoku.Data
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
 		/// <returns>The intersection result.</returns>
-		public static FullGridMap operator &(FullGridMap left, FullGridMap right)
-		{
-			return new FullGridMap(
+		public static FullGridMap operator &(FullGridMap left, FullGridMap right) =>
+			new FullGridMap(
 				left._line1 & right._line1, left._line2 & right._line2, left._line3 & right._line3,
 				left._line4 & right._line4, left._line5 & right._line5, left._line6 & right._line6,
 				left._line7 & right._line7, left._line8 & right._line8, left._line9 & right._line9);
-		}
 
 		/// <summary>
 		/// Union two <see cref="FullGridMap"/>s.
@@ -520,13 +516,11 @@ namespace Sudoku.Data
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
 		/// <returns>The union result.</returns>
-		public static FullGridMap operator |(FullGridMap left, FullGridMap right)
-		{
-			return new FullGridMap(
+		public static FullGridMap operator |(FullGridMap left, FullGridMap right) =>
+			new FullGridMap(
 				left._line1 | right._line1, left._line2 | right._line2, left._line3 | right._line3,
 				left._line4 | right._line4, left._line5 | right._line5, left._line6 | right._line6,
 				left._line7 | right._line7, left._line8 | right._line8, left._line9 | right._line9);
-		}
 
 		/// <summary>
 		/// Symmetrical except two <see cref="FullGridMap"/>s.
@@ -534,12 +528,10 @@ namespace Sudoku.Data
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
 		/// <returns>The result.</returns>
-		public static FullGridMap operator ^(FullGridMap left, FullGridMap right)
-		{
-			return new FullGridMap(
+		public static FullGridMap operator ^(FullGridMap left, FullGridMap right) =>
+			new FullGridMap(
 				left._line1 ^ right._line1, left._line2 ^ right._line2, left._line3 ^ right._line3,
 				left._line4 ^ right._line4, left._line5 ^ right._line5, left._line6 ^ right._line6,
 				left._line7 ^ right._line7, left._line8 ^ right._line8, left._line9 ^ right._line9);
-		}
 	}
 }

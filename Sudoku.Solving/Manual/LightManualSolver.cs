@@ -57,7 +57,7 @@ namespace Sudoku.Solving.Manual
 
 				foreach (var step in bag)
 				{
-					if (RecordTechnique(steps, step, cloneation))
+					if (SaveTechnique(steps, step, cloneation))
 					{
 						return true;
 					}
@@ -76,7 +76,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="step">The current step.</param>
 		/// <param name="cloneation">The cloneation of the grid.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		private bool RecordTechnique(ICollection<TechniqueInfo> steps, TechniqueInfo step, Grid cloneation)
+		private bool SaveTechnique(ICollection<TechniqueInfo> steps, TechniqueInfo step, Grid cloneation)
 		{
 			foreach (var conclusion in step.Conclusions)
 			{

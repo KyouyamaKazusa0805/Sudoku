@@ -450,16 +450,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					continue;
 				}
 
-				var candidateOffsets = new List<(int, int)>(from c in trueCandidates select (0, c));
 				var cellOffsets = new List<(int, int)> { (0, cell) };
+				var candidateOffsets = new List<(int, int)>(from c in trueCandidates select (0, c));
 				accumulator.Add(
 					new BugXzTechniqueInfo(
 						conclusions,
 						views: new[]
 						{
 							new View(
-								candidateOffsets,
 								cellOffsets,
+								candidateOffsets,
 								regionOffsets: null,
 								links: null)
 						},

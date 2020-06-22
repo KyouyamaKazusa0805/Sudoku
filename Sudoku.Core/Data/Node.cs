@@ -76,7 +76,7 @@ namespace Sudoku.Data
 		/// (<see langword="out"/> parameter) Indicates the node type.
 		/// </param>
 		public void Deconstruct(out SudokuMap map, out NodeType nodeType) =>
-			(map, nodeType) = (CandidatesMap, NodeType);
+			(map, nodeType) = (CandidatesMap.Clone(), NodeType);
 
 		/// <summary>
 		/// Checks whether all candidates used in this instance is collide with
