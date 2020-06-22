@@ -115,7 +115,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				return;
 			}
 
-			var inferences = list[candidate / 9];
+			byte cell = (byte)(candidate / 9), digit = (byte)(candidate % 9);
+			var inferences = list[cell];
 			if (inferences is null)
 			{
 				// Failed to search.
@@ -125,15 +126,21 @@ namespace Sudoku.Solving.Manual.Chaining
 			// Iterate on each inference.
 			foreach (var inference in inferences)
 			{
-				var (_, (endDigit, endMap)) = inference;
+				var ((startDigit, startMap), (endDigit, endMap)) = inference;
 				int currentCandidate = endMap.SetAt(0) * 9 + endDigit;
+				bool start = startMap[cell] && digit == startDigit, end = endMap[cell] && digit == endDigit;
+				if (!start && !end)
+				{
+					continue;
+				}
+
 				if (fullMap[currentCandidate])
 				{
 					continue;
 				}
 
 				fullMap.Add(currentCandidate);
-				stack.Add(inference);
+				stack.Add(start ? inference : new Inference(inference.End, inference.Start));
 
 				// Because of the formed chain, we should check eliminations first.
 				CheckEliminations(accumulator, grid, stack);
@@ -182,7 +189,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 
 				fullMap.Add(currentCandidate);
-				stack.Add(new Inference(new Node(candidate), new Node(currentCandidate)));
+				stack.Add(new Inference(new Node(candidate), true, new Node(currentCandidate), false));
 
 				GetOffToOn(accumulator, grid, list, length - 1, stack, fullMap, currentCandidate);
 
@@ -200,7 +207,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 
 				fullMap.Add(currentCandidate);
-				stack.Add(new Inference(new Node(candidate), new Node(currentCandidate)));
+				stack.Add(new Inference(new Node(candidate), true, new Node(currentCandidate), false));
 
 				GetOffToOn(accumulator, grid, list, length - 1, stack, fullMap, currentCandidate);
 

@@ -121,14 +121,14 @@ namespace Sudoku.Data
 		/// This property is equivalent to code '<c>!this.IsNotEmpty</c>'.
 		/// </summary>
 		/// <seealso cref="IsNotEmpty"/>
-		public bool IsEmpty => _innerArray.Length == 0;
+		public bool IsEmpty => Count == 0;
 
 		/// <summary>
 		/// Indicates whether the map has at least one set bit.
 		/// This property is equivalent to code '<c>!this.IsEmpty</c>'.
 		/// </summary>
 		/// <seealso cref="IsEmpty"/>
-		public bool IsNotEmpty => _innerArray.Count != 0;
+		public bool IsNotEmpty => Count != 0;
 
 		/// <summary>
 		/// Indicates the total number of all set bits.
