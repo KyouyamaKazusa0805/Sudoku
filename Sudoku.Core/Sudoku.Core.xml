@@ -756,10 +756,26 @@
             Provides a collection that contains the chain inferences.
             </summary>
         </member>
+        <member name="F:Sudoku.Data.Collections.ChainInferenceCollection._ptr">
+            <summary>
+            The pointer to point <see cref="F:Sudoku.Data.Collections.ChainInferenceCollection._collection"/>.
+            If the constructor isn't <see cref="M:Sudoku.Data.Collections.ChainInferenceCollection.#ctor(Sudoku.Solving.Manual.Chaining.ChainInference)"/>,
+            the field is keep the value <see cref="F:System.IntPtr.Zero"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Data.Collections.ChainInferenceCollection._collection"/>
+            <seealso cref="M:Sudoku.Data.Collections.ChainInferenceCollection.#ctor(Sudoku.Solving.Manual.Chaining.ChainInference)"/>
+            <seealso cref="F:System.IntPtr.Zero"/>
+        </member>
         <member name="F:Sudoku.Data.Collections.ChainInferenceCollection._collection">
             <summary>
             The internal collection.
             </summary>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ChainInferenceCollection.#ctor(Sudoku.Solving.Manual.Chaining.ChainInference)">
+            <summary>
+            Initializes an instance with one specified inference.
+            </summary>
+            <param name="chainInference">The chain inference.</param>
         </member>
         <member name="M:Sudoku.Data.Collections.ChainInferenceCollection.#ctor(System.Span{Sudoku.Solving.Manual.Chaining.ChainInference})">
             <summary>
@@ -772,6 +788,11 @@
             Initializes an instance with the specified collection.
             </summary>
             <param name="collection">The collection.</param>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ChainInferenceCollection.Dispose">
+            <summary>
+            To dispose this instance (frees the unmanaged memory).
+            </summary>
         </member>
         <member name="M:Sudoku.Data.Collections.ChainInferenceCollection.Equals(System.Object)">
             <method name="Equals" paramType="object">
@@ -5831,6 +5852,22 @@
             <summary>
             Encapsulates a chain inference.
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainInference.#ctor(Sudoku.Solving.Manual.Chaining.ChainNode,Sudoku.Solving.Manual.Chaining.ChainNode)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="start">The start node.</param>
+            <param name="end">The end node.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainInference.#ctor(Sudoku.Solving.Manual.Chaining.ChainNode,System.Boolean,Sudoku.Solving.Manual.Chaining.ChainNode,System.Boolean)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="start">The start node.</param>
+            <param name="startIsOn">Indicates whether the start node is on.</param>
+            <param name="end">The end node.</param>
+            <param name="endIsOn">Indicates whether the end node is on.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.ChainInference.#ctor(Sudoku.Solving.Manual.Chaining.ChainNode,System.Boolean,Sudoku.Solving.Manual.Chaining.ChainNode,System.Boolean,Sudoku.Data.ChainNodeType)">
             <summary>

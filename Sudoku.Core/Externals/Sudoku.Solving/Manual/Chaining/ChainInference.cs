@@ -1,4 +1,5 @@
-﻿using Sudoku.Data;
+﻿using System.Runtime.CompilerServices;
+using Sudoku.Data;
 using Sudoku.Data.Collections;
 
 namespace Sudoku.Solving.Manual.Chaining
@@ -12,10 +13,34 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Initializes an instance with the specified information.
 		/// </summary>
 		/// <param name="start">The start node.</param>
+		/// <param name="end">The end node.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public ChainInference(ChainNode start, ChainNode end) : this(start, false, end, true, ChainNodeType.Candidate)
+		{
+		}
+
+		/// <summary>
+		/// Initializes an instance with the specified information.
+		/// </summary>
+		/// <param name="start">The start node.</param>
+		/// <param name="startIsOn">Indicates whether the start node is on.</param>
+		/// <param name="end">The end node.</param>
+		/// <param name="endIsOn">Indicates whether the end node is on.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public ChainInference(ChainNode start, bool startIsOn, ChainNode end, bool endIsOn)
+			: this(start, startIsOn, end, endIsOn, ChainNodeType.Candidate)
+		{
+		}
+
+		/// <summary>
+		/// Initializes an instance with the specified information.
+		/// </summary>
+		/// <param name="start">The start node.</param>
 		/// <param name="startIsOn">Indicates whether the start node is on.</param>
 		/// <param name="end">The end node.</param>
 		/// <param name="endIsOn">Indicates whether the end node is on.</param>
 		/// <param name="nodeType">The node type.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public ChainInference(ChainNode start, bool startIsOn, ChainNode end, bool endIsOn, ChainNodeType nodeType) =>
 			(Start, StartIsOn, End, EndIsOn, NodeType) = (start, startIsOn, end, endIsOn, nodeType);
 
@@ -77,6 +102,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			(start, startIsOn, end, endIsOn, nodeType) = (Start, StartIsOn, End, EndIsOn, NodeType);
 
 		/// <include file='../../../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override string ToString()
 		{
 			var ((d1, map1), b1, (d2, map2), b2) = this;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using Sudoku.Constants;
 using Sudoku.Extensions;
@@ -16,23 +17,56 @@ namespace Sudoku.Data.Collections
 	public readonly ref struct ConclusionCollection
 	{
 		/// <summary>
+		/// The pointer to point <see cref="_collection"/>.
+		/// If the constructor isn't <see cref="ConclusionCollection(Conclusion)"/>,
+		/// the field is keep the value <see cref="IntPtr.Zero"/>.
+		/// </summary>
+		/// <seealso cref="_collection"/>
+		/// <seealso cref="ConclusionCollection(Conclusion)"/>
+		/// <seealso cref="IntPtr.Zero"/>
+		private readonly IntPtr _ptr;
+
+		/// <summary>
 		/// The internal collection.
 		/// </summary>
 		private readonly Span<Conclusion> _collection;
 
 
 		/// <summary>
-		/// Initializes an instance with the specified collection.
+		/// Initializes an instance with one conclusion.
 		/// </summary>
-		/// <param name="collection">The collection.</param>
-		public ConclusionCollection(Span<Conclusion> collection) => _collection = collection;
+		/// <param name="conclusion">The conclusion.</param>
+		public unsafe ConclusionCollection(Conclusion conclusion)
+		{
+			var tempSpan = new Span<Conclusion>((_ptr = Marshal.AllocHGlobal(sizeof(Conclusion))).ToPointer(), 1);
+			tempSpan[0] = conclusion;
+			_collection = tempSpan;
+		}
 
 		/// <summary>
 		/// Initializes an instance with the specified collection.
 		/// </summary>
 		/// <param name="collection">The collection.</param>
-		public ConclusionCollection(IEnumerable<Conclusion> collection) => _collection = collection.ToArray().AsSpan();
+		public ConclusionCollection(Span<Conclusion> collection) : this() => _collection = collection;
 
+		/// <summary>
+		/// Initializes an instance with the specified collection.
+		/// </summary>
+		/// <param name="collection">The collection.</param>
+		public ConclusionCollection(IEnumerable<Conclusion> collection) : this() =>
+			_collection = collection.ToArray().AsSpan();
+
+
+		/// <summary>
+		/// To dispose this instance (frees the unmanaged memory).
+		/// </summary>
+		public void Dispose()
+		{
+			if (_ptr != IntPtr.Zero)
+			{
+				Marshal.FreeHGlobal(_ptr);
+			}
+		}
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>

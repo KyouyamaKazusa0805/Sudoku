@@ -21,10 +21,13 @@ namespace Sudoku.Debugging
 	using System.Linq;
 	using System.Reflection;
 	using System.Text;
+	using Sudoku.Data;
+	using Sudoku.Data.Collections;
 	using Sudoku.Diagnostics;
 	using Sudoku.Extensions;
 	using Sudoku.Solving.Annotations;
 	using Sudoku.Solving.Manual;
+	using Sudoku.Solving.Manual.Chaining;
 	using static System.Console;
 
 	/// <summary>
@@ -38,20 +41,28 @@ namespace Sudoku.Debugging
 		/// </summary>
 		private static void Main()
 		{
+			Console.WriteLine(
+				new ChainInferenceCollection(
+					new ChainInference(new ChainNode(1, new GridMap { 0 }), new ChainNode(1, new GridMap { 74 }))
+				).ToString()
+			);
+
+#if false
 			var w = new Stopwatch();
-
+			
 			var z = new CodeCounter(Solution.PathRoot, @".+\.cs$");
-
+			
 			w.Start();
 			int codeLines = z.CountCodeLines(out int count);
 			w.Stop();
-
+			
 			foreach (var fileName in z.FileList)
 			{
 				WriteLine(fileName);
 			}
-
+			
 			WriteLine($"Code lines: {codeLines}, found files: {count}, time elapsed: {w.Elapsed:hh':'mm'.'ss'.'fff}");
+#endif
 		}
 	}
 }
