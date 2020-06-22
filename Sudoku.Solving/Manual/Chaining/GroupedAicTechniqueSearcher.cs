@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// </para>
 	/// </remarks>
 	[TechniqueDisplay(nameof(TechniqueCode.Aic))]
-	[Obsolete("Need rewrite.")]
+	[Obsolete("Need re-write or create a new data structure.")]
 	public sealed class GroupedAicTechniqueSearcher : ChainTechniqueSearcher
 	{
 		/// <summary>
@@ -665,8 +665,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="candidateList">The candidate list.</param>
 		/// <param name="stack">The stack.</param>
 		private void CheckElimination(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, SudokuMap candidateList,
-			IList<Node> stack)
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, SudokuMap candidateList, IList<Node> stack)
 		{
 			if (_checkContinuousNiceLoop && IsContinuousNiceLoop(stack))
 			{
@@ -682,8 +681,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 				// Step 2: Check elimination sets.
 				var eliminationSets = new List<SudokuMap>(
-					from weakInference in weakInferences
-					select weakInference.Intersection);
+					from weakInference in weakInferences select weakInference.Intersection);
 				if (eliminationSets.Count == 0)
 				{
 					return;
