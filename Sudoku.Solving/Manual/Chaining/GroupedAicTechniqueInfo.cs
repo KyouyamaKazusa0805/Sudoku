@@ -16,6 +16,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// Provides a usage of (<b>grouped</b>) <b>alternating inference chain</b> (AIC) technique.
 	/// In fact this searcher can also search for basic AICs.
 	/// </summary>
+	[Obsolete("Need re-write or create a new data structure.")]
 	public sealed class GroupedAicTechniqueInfo : ChainTechniqueInfo
 	{
 		/// <summary>

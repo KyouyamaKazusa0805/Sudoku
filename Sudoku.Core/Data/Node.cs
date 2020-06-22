@@ -9,6 +9,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Provides an elementary unit in a chain.
 	/// </summary>
+	[Obsolete("Need re-write or create a new data structure.")]
 	public sealed class Node : IComparable<Node?>, IEquatable<Node?>
 	{
 		/// <summary>

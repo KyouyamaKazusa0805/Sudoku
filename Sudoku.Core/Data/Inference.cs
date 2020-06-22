@@ -10,6 +10,7 @@ namespace Sudoku.Data
 	/// <remarks>
 	/// This data structure is so heavy...
 	/// </remarks>
+	[Obsolete("Need re-write or create a new data structure.")]
 	public sealed class Inference : IEquatable<Inference?>
 	{
 		/// <summary>

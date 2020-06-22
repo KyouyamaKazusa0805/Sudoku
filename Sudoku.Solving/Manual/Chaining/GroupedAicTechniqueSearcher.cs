@@ -32,6 +32,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// </para>
 	/// </remarks>
 	[TechniqueDisplay(nameof(TechniqueCode.Aic))]
+	[Obsolete("Need re-write or create a new data structure.")]
 	public sealed class GroupedAicTechniqueSearcher : ChainTechniqueSearcher
 	{
 		/// <summary>
