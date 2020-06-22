@@ -19,6 +19,7 @@ namespace Sudoku.Data
 	/// <see cref="GridMap"/> instead of this data structure as much as possible.
 	/// </remarks>
 	[DebuggerStepThrough]
+	[Obsolete("Use 'SudokuMap' instead.", true)]
 	public struct FullGridMap : IEquatable<FullGridMap>, IEnumerable<int>
 	{
 		/// <summary>

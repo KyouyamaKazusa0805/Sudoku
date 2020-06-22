@@ -17,7 +17,7 @@ namespace Sudoku.Data.Collections
 		/// <summary>
 		/// The inner map.
 		/// </summary>
-		private readonly FullGridMap _map;
+		private readonly SudokuMap _map;
 
 
 		/// <summary>
@@ -65,8 +65,7 @@ namespace Sudoku.Data.Collections
 			{
 				sb
 					.Append(new CellCollection(from candidate in digitGroup select candidate / 9).ToString())
-					.Append($"({digitGroup.Key + 1})")
-					.Append(separator);
+					.Append($"({digitGroup.Key + 1}){separator}");
 			}
 
 			return sb.RemoveFromEnd(separator.Length).ToString();

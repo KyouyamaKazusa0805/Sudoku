@@ -187,8 +187,8 @@ namespace Sudoku.Solving.Manual.Chaining
 					return false;
 				}
 
-				var thisMap = FullGridMap.Empty;
-				var otherMap = FullGridMap.Empty;
+				var thisMap = SudokuMap.Empty.Clone();
+				var otherMap = SudokuMap.Empty.Clone();
 				for (int i = 0; i < Length; i++)
 				{
 					thisMap.AddRange(Nodes[i].Candidates);

@@ -16,7 +16,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="candidate">The candidates.</param>
 		/// <param name="nodeType">The type of this node.</param>
-		public Node(int candidate, NodeType nodeType) : this(new FullGridMap(stackalloc[] { candidate }), nodeType)
+		public Node(int candidate, NodeType nodeType) : this(new SudokuMap { candidate }, nodeType)
 		{
 		}
 
@@ -25,7 +25,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="candidates">The candidates.</param>
 		/// <param name="nodeType">The type of this node.</param>
-		public Node(IEnumerable<int> candidates, NodeType nodeType) : this(new FullGridMap(candidates), nodeType)
+		public Node(IEnumerable<int> candidates, NodeType nodeType) : this(new SudokuMap(candidates), nodeType)
 		{
 		}
 
@@ -34,14 +34,14 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="candidatesMap">The map of candidates.</param>
 		/// <param name="nodeType">The node type.</param>
-		public Node(FullGridMap candidatesMap, NodeType nodeType) =>
+		public Node(SudokuMap candidatesMap, NodeType nodeType) =>
 			(CandidatesMap, NodeType) = (candidatesMap, nodeType);
 
 
 		/// <summary>
 		/// Indicates all candidates used in this node.
 		/// </summary>
-		public FullGridMap CandidatesMap { get; }
+		public SudokuMap CandidatesMap { get; }
 
 		/// <summary>
 		/// Indicates the type of this current node.
@@ -51,7 +51,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates all candidates used.
 		/// </summary>
-		public IEnumerable<int> Candidates => CandidatesMap.Offsets;
+		public IEnumerable<int> Candidates => CandidatesMap;
 
 
 		/// <summary>
@@ -74,7 +74,7 @@ namespace Sudoku.Data
 		/// <param name="nodeType">
 		/// (<see langword="out"/> parameter) Indicates the node type.
 		/// </param>
-		public void Deconstruct(out FullGridMap map, out NodeType nodeType) =>
+		public void Deconstruct(out SudokuMap map, out NodeType nodeType) =>
 			(map, nodeType) = (CandidatesMap, NodeType);
 
 		/// <summary>
@@ -133,7 +133,7 @@ namespace Sudoku.Data
 			const string separator = ", ";
 			var sb = new StringBuilder();
 			foreach (var candidateGroupByDigit in
-				from candidate in from cand in CandidatesMap.Offsets orderby cand select cand
+				from candidate in from cand in CandidatesMap orderby cand select cand
 				group candidate by candidate % 9)
 			{
 				int digit = candidateGroupByDigit.Key;
@@ -193,7 +193,7 @@ namespace Sudoku.Data
 		/// <param name="left">The left map.</param>
 		/// <param name="right">The right map.</param>
 		/// <returns>All candidates that satisfied the condition.</returns>
-		public static FullGridMap operator &(Node left, Node right) => left.CandidatesMap & right.CandidatesMap;
+		public static SudokuMap operator &(Node left, Node right) => left.CandidatesMap & right.CandidatesMap;
 
 		/// <summary>
 		/// Get all candidates from <paramref name="left"/> and <paramref name="right"/>
@@ -202,7 +202,7 @@ namespace Sudoku.Data
 		/// <param name="left">The left map.</param>
 		/// <param name="right">The right map.</param>
 		/// <returns>All candidates.</returns>
-		public static FullGridMap operator |(Node left, Node right) => left.CandidatesMap | right.CandidatesMap;
+		public static SudokuMap operator |(Node left, Node right) => left.CandidatesMap | right.CandidatesMap;
 
 		/// <summary>
 		/// Get all candidates that satisfy the formula <c>(a - b) | (b - a)</c>.
@@ -210,7 +210,7 @@ namespace Sudoku.Data
 		/// <param name="left">The left map.</param>
 		/// <param name="right">The right map.</param>
 		/// <returns>All candidates.</returns>
-		public static FullGridMap operator ^(Node left, Node right) => left.CandidatesMap ^ right.CandidatesMap;
+		public static SudokuMap operator ^(Node left, Node right) => left.CandidatesMap ^ right.CandidatesMap;
 
 		/// <summary>
 		/// Get all candidates that is in the <paramref name="left"/> map but not in
@@ -219,6 +219,6 @@ namespace Sudoku.Data
 		/// <param name="left">The left map.</param>
 		/// <param name="right">The right map.</param>
 		/// <returns>All candidates.</returns>
-		public static FullGridMap operator -(Node left, Node right) => left.CandidatesMap - right.CandidatesMap;
+		public static SudokuMap operator -(Node left, Node right) => left.CandidatesMap - right.CandidatesMap;
 	}
 }

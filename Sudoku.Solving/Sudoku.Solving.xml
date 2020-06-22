@@ -2317,6 +2317,79 @@
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Chaining.CandidatePair">
+            <summary>
+            Indicates a candidate pair used in chains.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.CandidatePair.#ctor(System.Byte,Sudoku.Data.GridMap)">
+            <summary>
+            Initializes an instance with the specified digit and the map.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="map">The map.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.CandidatePair.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.CandidatePair.Map">
+            <summary>
+            The map of all cells used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.CandidatePair.Equals(System.Object)">
+            <method name="Equals" paramType="object">
+		<summary>
+			Determines whether the specified object is equal to the current object.
+		</summary>
+		<param name="obj">The object to compare with the current object.</param>
+		<returns>
+			<see langword="true" /> if the specified object is equal to the
+			current object; otherwise, <see langword="false" />.
+		</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.CandidatePair.Equals(Sudoku.Solving.Manual.Chaining.CandidatePair)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.CandidatePair.GetHashCode">
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.CandidatePair.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.CandidatePair.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.CandidatePair.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.CandidatePair.op_Equality(Sudoku.Solving.Manual.Chaining.CandidatePair,Sudoku.Solving.Manual.Chaining.CandidatePair)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.CandidatePair.op_Inequality(Sudoku.Solving.Manual.Chaining.CandidatePair,Sudoku.Solving.Manual.Chaining.CandidatePair)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.ChainTechniqueInfo">
             <summary>
             Provides a usage of <b>chain</b> technique.
@@ -2631,7 +2704,7 @@
         <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetOnToOffRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,Sudoku.Data.Node,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Inference},System.Collections.Generic.IList{Sudoku.Data.Node},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetOnToOffRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.SudokuMap,Sudoku.Data.Node,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Inference},System.Collections.Generic.IList{Sudoku.Data.Node},System.Int32)">
             <summary>
             Get 'on' nodes to 'off' nodes recursively (Searching for weak links).
             </summary>
@@ -2643,7 +2716,7 @@
             <param name="stack">The stack.</param>
             <param name="length">The last length to search.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetOffToOnRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,Sudoku.Data.Node,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Inference},System.Collections.Generic.IList{Sudoku.Data.Node},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetOffToOnRecursively(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.SudokuMap,Sudoku.Data.Node,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Inference},System.Collections.Generic.IList{Sudoku.Data.Node},System.Int32)">
             <summary>
             Get 'off' nodes to 'on' nodes recursively (Searching for strong links).
             </summary>
@@ -2671,7 +2744,7 @@
             <param name="currentDigit">The current digit.</param>
             <returns>All locked candidates nodes.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Collections.Generic.IList{Sudoku.Data.Node})">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.SudokuMap,System.Collections.Generic.IList{Sudoku.Data.Node})">
             <summary>
             Check the elimination, and save the chain into the accumulator
             when the chain is valid and worth.
@@ -2704,11 +2777,11 @@
         <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetAct(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo})">
             <summary>
             Bound with the method
-            <see cref="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Collections.Generic.IList{Sudoku.Data.Node})"/>.
+            <see cref="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.SudokuMap,System.Collections.Generic.IList{Sudoku.Data.Node})"/>.
             </summary>
             <param name="accumulator">The accumulator.</param>
             <returns>The result action.</returns>
-            <seealso cref="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.FullGridMap,System.Collections.Generic.IList{Sudoku.Data.Node})"/>
+            <seealso cref="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.CheckElimination(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,Sudoku.Data.SudokuMap,System.Collections.Generic.IList{Sudoku.Data.Node})"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.GetAllStrongInferences(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap[])">
             <summary>
@@ -2732,14 +2805,14 @@
             <param name="result">The result accumulator.</param>
             <param name="digitDistributions">The digit distributions.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.AddNode(Sudoku.Data.Node,Sudoku.Data.FullGridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.AddNode(Sudoku.Data.Node,Sudoku.Data.SudokuMap)">
             <summary>
             Add the node to the map.
             </summary>
             <param name="node">The node.</param>
             <param name="map">The map.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.RemoveNode(Sudoku.Data.Node,Sudoku.Data.FullGridMap@)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.GroupedAicTechniqueSearcher.RemoveNode(Sudoku.Data.Node,Sudoku.Data.SudokuMap)">
             <summary>
             Remove the node from the map.
             </summary>
