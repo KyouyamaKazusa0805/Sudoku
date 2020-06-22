@@ -311,7 +311,7 @@ namespace Sudoku.Drawing
 			using var groupedNodeBrush = new SolidBrush(Color.FromArgb(64, Color.Yellow));
 			foreach (var inference in links)
 			{
-				var ((startDigit, startMap, startFullMap), (endDigit, endMap, endFullMap)) = inference;
+				var ((_, startMap, startFullMap), (_, endMap, endFullMap)) = inference;
 				pen.DashStyle = true switch
 				{
 					_ when inference.IsStrong => Solid,

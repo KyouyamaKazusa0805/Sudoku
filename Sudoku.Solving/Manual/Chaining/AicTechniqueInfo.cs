@@ -33,10 +33,10 @@ namespace Sudoku.Solving.Manual.Chaining
 		public IReadOnlyList<Inference> Inferences { get; }
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => throw new NotImplementedException();
+		public override decimal Difficulty => 4.5M;
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => throw new NotImplementedException();
+		public override TechniqueCode TechniqueCode => TechniqueCode.Aic;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		/// <param name="candidate">The candidate.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Node(int candidate) : this((byte)(candidate / 9), (byte)(candidate % 9))
+		public Node(int candidate) : this((byte)(candidate % 9), (byte)(candidate / 9))
 		{
 		}
 

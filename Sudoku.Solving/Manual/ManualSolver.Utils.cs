@@ -65,6 +65,7 @@ namespace Sudoku.Solving.Manual
 				new AlsWWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
 				new DeathBlossomTechniqueSearcher(
 					AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, MaxPetalsOfDeathBlossom),
+				new AicTechniqueSearcher(AicMaximumLength),
 				//new GroupedAicTechniqueSearcher(
 				//	true, false, false, AicMaximumLength, ReductDifferentPathAic,
 				//	OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
@@ -122,6 +123,7 @@ namespace Sudoku.Solving.Manual
 					new AlsXyWingTechniqueSearcher(
 						AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
 					new AlsWWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
+					new AicTechniqueSearcher(AicMaximumLength),
 					//new GroupedAicTechniqueSearcher(
 					//	true, false, false, AicMaximumLength, ReductDifferentPathAic,
 					//	OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),

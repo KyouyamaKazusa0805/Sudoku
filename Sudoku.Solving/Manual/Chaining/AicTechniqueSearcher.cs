@@ -48,7 +48,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Indicates the priority of this technique.
 		/// </summary>
-		public static int Priority { get; set; } = 55;
+		public static int Priority { get; set; } = 50;
 
 		/// <summary>
 		/// Indicates whether the technique is enabled.
