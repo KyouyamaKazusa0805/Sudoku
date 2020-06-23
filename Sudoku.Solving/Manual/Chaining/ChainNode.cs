@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Sudoku.Data.Collections;
 
@@ -9,18 +11,32 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Indicates the normal node in the AICs.
 	/// </summary>
-	public struct ChainNode : IDisposable, IEnumerable<ChainNode>, IEquatable<ChainNode>
+	/// <remarks>
+	/// This data structure may be like a tree, but this structre is the reversal of the trees.
+	/// In other words, the property stores its predecessors (please see the property
+	/// <see cref="Predecessors"/>) rather than its children.
+	/// </remarks>
+	/// <seealso cref="Predecessors"/>
+	public unsafe struct ChainNode : IDisposable, IEnumerable<ChainNode>, IEquatable<ChainNode>
 	{
+		/// <summary>
+		/// The safe <see cref="IntPtr"/> handle pointing to the property <see cref="Predecessors"/>.
+		/// </summary>
+		/// <seealso cref="Predecessors"/>
+		private readonly IntPtr _handle;
+		
+
 		/// <summary>
 		/// Initializes an instance with the specified cell, digit and a <see cref="bool"/> value.
 		/// </summary>
 		/// <param name="cell">The cell.</param>
 		/// <param name="digit">The digit.</param>
 		/// <param name="isOn">A <see cref="bool"/> value indicating whether the specified node is on.</param>
-		public unsafe ChainNode(int cell, int digit, bool isOn)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public ChainNode(int cell, int digit, bool isOn)
 		{
 			(Cell, Digit, IsOn, PredecessorsCount) = (cell, digit, isOn, 0);
-			Predecessors = (ChainNode**)(PredecessorsPtr = Marshal.AllocHGlobal(sizeof(ChainNode*) * 7)).ToPointer();
+			Predecessors = (ChainNode**)(_handle = Marshal.AllocHGlobal(sizeof(ChainNode*) * 7)).ToPointer();
 		}
 
 		/// <summary>
@@ -31,7 +47,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="digit">The digit.</param>
 		/// <param name="isOn">A <see cref="bool"/> value indicating whether the specified node is on.</param>
 		/// <param name="predecessor">The predecessor pointer.</param>
-		public unsafe ChainNode(int cell, int digit, bool isOn, ChainNode* predecessor) : this(cell, digit, isOn) =>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public ChainNode(int cell, int digit, bool isOn, ChainNode* predecessor) : this(cell, digit, isOn) =>
 			AddPredecessor(predecessor);
 
 
@@ -56,30 +73,63 @@ namespace Sudoku.Solving.Manual.Chaining
 		public readonly bool IsOn { get; }
 
 		/// <summary>
-		/// The safe <see cref="IntPtr"/> to point to the property <see cref="Predecessors"/>.
-		/// </summary>
-		/// <seealso cref="Predecessors"/>
-		public readonly IntPtr PredecessorsPtr { get; }
-
-		/// <summary>
 		/// The raw pointer of all predecessors (An array of 7 elements at most).
 		/// </summary>
-		public readonly unsafe ChainNode** Predecessors { get; }
+		/// <remarks>
+		/// This property is an array of <see cref="ChainNode"/>*, i.e. a <see cref="ChainNode"/>*[].
+		/// </remarks>
+		public readonly ChainNode** Predecessors { get; }
 
 
 		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly void Dispose()
 		{
-			if (PredecessorsPtr != IntPtr.Zero)
+			if (_handle != IntPtr.Zero)
 			{
-				Marshal.FreeHGlobal(PredecessorsPtr);
+				Marshal.FreeHGlobal(_handle);
 			}
 		}
 
+		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <param name="cell">(<see langword="out"/> parameter) The cell.</param>
+		/// <param name="digit">(<see langword="out"/> parameter) The digit.</param>
+		public readonly void Deconstruct(out int cell, out int digit) => (cell, digit) = (Cell, Digit);
+
+		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <param name="cell">(<see langword="out"/> parameter) The cell.</param>
+		/// <param name="digit">(<see langword="out"/> parameter) The digit.</param>
+		/// <param name="isOn">(<see langword="out"/> parameter) A <see cref="bool"/> value.</param>
+		public readonly void Deconstruct(out int cell, out int digit, out bool isOn) =>
+			(cell, digit, isOn) = (Cell, Digit, IsOn);
+
+		/// <summary>
+		/// To determine whether the node is the parent of the specified node.
+		/// </summary>
+		/// <param name="node">The node.</param>
+		/// <param name="ptr">(<see langword="out"/> parent) The </param>
+		/// <returns></returns>
+		public readonly bool IsParentOf(ChainNode node, [NotNullWhen(true)] out ChainNode* ptr)
+		{
+			for (var p = &node; p->PredecessorsCount != 0; p = p->Predecessors[0])
+			{
+				if (this == *p)
+				{
+					ptr = p;
+					return true;
+				}
+			}
+
+			ptr = null;
+			return false;
+		}
+
 		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly bool Equals(object? obj) => obj is ChainNode comparer && Equals(comparer);
 
 		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly bool Equals(ChainNode other) => (Cell, Digit, IsOn) == (other.Cell, other.Digit, other.IsOn);
 
 		/// <summary>
@@ -87,12 +137,15 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		/// <param name="other">Another node.</param>
 		/// <returns>The <see cref="bool"/> result.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly bool Similar(ChainNode other) => (Cell, Digit) == (other.Cell, other.Digit);
 
 		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
-		public override readonly int GetHashCode() => ((Cell * 9 + Digit) << 17) ^ PredecessorsPtr.GetHashCode();
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public override readonly int GetHashCode() => ((Cell * 9 + Digit) << 17) ^ _handle.GetHashCode();
 
 		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly string ToString() =>
 			$"{(IsOn ? string.Empty : "!")}{new CandidateCollection(Cell * 9 + Digit).ToString()}";
 
@@ -100,7 +153,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Add the predecessor.
 		/// </summary>
 		/// <param name="nodePtr">The predecessor node pointer.</param>
-		public unsafe void AddPredecessor(ChainNode* nodePtr) => Predecessors[PredecessorsCount++] = nodePtr;
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public void AddPredecessor(ChainNode* nodePtr) => Predecessors[PredecessorsCount++] = nodePtr;
 
 
 		/// <summary>
@@ -108,12 +162,13 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		/// <returns>The default and valid instance.</returns>
 		/// <remarks>
-		/// This method is provided to replace the default construcutor <see cref="ChainNode()"/>.
+		/// This method is provided to avoid calling the default construcutor <see cref="ChainNode()"/>.
 		/// </remarks>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static ChainNode CreateInstance() => new ChainNode(default, default, default);
 
 		/// <inheritdoc/>
-		public readonly unsafe IEnumerator<ChainNode> GetEnumerator()
+		public readonly IEnumerator<ChainNode> GetEnumerator()
 		{
 			var list = new List<ChainNode>(PredecessorsCount);
 			int index = 0;
@@ -126,13 +181,16 @@ namespace Sudoku.Solving.Manual.Chaining
 		}
 
 		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 
 		/// <include file='../../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==(ChainNode left, ChainNode right) => left.Equals(right);
 
 		/// <include file='../../../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=(ChainNode left, ChainNode right) => !(left == right);
 	}
 }
