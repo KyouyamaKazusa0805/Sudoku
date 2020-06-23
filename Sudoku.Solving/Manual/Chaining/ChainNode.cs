@@ -9,7 +9,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Indicates the normal node in the AICs.
 	/// </summary>
-	public unsafe struct ChainNode : IDisposable, IEnumerable<ChainNode>, IEquatable<ChainNode>
+	public struct ChainNode : IDisposable, IEnumerable<ChainNode>, IEquatable<ChainNode>
 	{
 		/// <summary>
 		/// Initializes an instance with the specified cell, digit and a <see cref="bool"/> value.
@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="cell">The cell.</param>
 		/// <param name="digit">The digit.</param>
 		/// <param name="isOn">A <see cref="bool"/> value indicating whether the specified node is on.</param>
-		public ChainNode(int cell, int digit, bool isOn)
+		public unsafe ChainNode(int cell, int digit, bool isOn)
 		{
 			(Cell, Digit, IsOn, PredecessorsCount) = (cell, digit, isOn, 0);
 			Predecessors = (ChainNode**)(PredecessorsPtr = Marshal.AllocHGlobal(sizeof(ChainNode*) * 7)).ToPointer();
@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="digit">The digit.</param>
 		/// <param name="isOn">A <see cref="bool"/> value indicating whether the specified node is on.</param>
 		/// <param name="predecessor">The predecessor pointer.</param>
-		public ChainNode(int cell, int digit, bool isOn, ChainNode* predecessor) : this(cell, digit, isOn) =>
+		public unsafe ChainNode(int cell, int digit, bool isOn, ChainNode* predecessor) : this(cell, digit, isOn) =>
 			AddPredecessor(predecessor);
 
 
@@ -64,7 +64,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// The raw pointer of all predecessors (An array of 7 elements at most).
 		/// </summary>
-		public readonly ChainNode** Predecessors { get; }
+		public readonly unsafe ChainNode** Predecessors { get; }
 
 
 		/// <inheritdoc/>
@@ -100,7 +100,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Add the predecessor.
 		/// </summary>
 		/// <param name="nodePtr">The predecessor node pointer.</param>
-		public void AddPredecessor(ChainNode* nodePtr) => Predecessors[PredecessorsCount++] = nodePtr;
+		public unsafe void AddPredecessor(ChainNode* nodePtr) => Predecessors[PredecessorsCount++] = nodePtr;
 
 
 		/// <summary>
@@ -113,7 +113,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		public static ChainNode CreateInstance() => new ChainNode(default, default, default);
 
 		/// <inheritdoc/>
-		public readonly IEnumerator<ChainNode> GetEnumerator()
+		public readonly unsafe IEnumerator<ChainNode> GetEnumerator()
 		{
 			var list = new List<ChainNode>(PredecessorsCount);
 			int index = 0;
