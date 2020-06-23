@@ -63,6 +63,11 @@ namespace Sudoku.Solving.Manual.Chaining
 		public Node End { get; }
 
 		/// <summary>
+		/// Indicates the reverse case.
+		/// </summary>
+		public Inference Reverse => new Inference(End, Start);
+
+		/// <summary>
 		/// Indicates the elimination set.
 		/// </summary>
 		public SudokuMap? EliminationSet

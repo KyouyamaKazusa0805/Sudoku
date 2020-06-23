@@ -5619,6 +5619,11 @@
             Indicates the end node.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.Inference.Reverse">
+            <summary>
+            Indicates the reverse case.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.Inference.EliminationSet">
             <summary>
             Indicates the elimination set.
