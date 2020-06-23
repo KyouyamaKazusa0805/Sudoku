@@ -5589,16 +5589,6 @@
             <param name="end">The end node.</param>
             <param name="endIsOn">Indicates whether the end node is on.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Inference.#ctor(Sudoku.Solving.Manual.Chaining.Node,System.Boolean,Sudoku.Solving.Manual.Chaining.Node,System.Boolean,Sudoku.Data.NodeType)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="start">The start node.</param>
-            <param name="startIsOn">Indicates whether the start node is on.</param>
-            <param name="end">The end node.</param>
-            <param name="endIsOn">Indicates whether the end node is on.</param>
-            <param name="nodeType">The node type.</param>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.Inference.StartIsOn">
             <summary>
             Indicates whether the start node is on.
@@ -5629,11 +5619,6 @@
             Indicates the end node.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.Inference.NodeType">
-            <summary>
-            Indicates the node type.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.Inference.EliminationSet">
             <summary>
             Indicates the elimination set.
@@ -5646,14 +5631,6 @@
             <param name="start">(<see langword="out" /> parameter) The start node.</param>
             <param name="end">(<see langword="out" /> parameter) The end node.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Inference.Deconstruct(Sudoku.Solving.Manual.Chaining.Node@,Sudoku.Solving.Manual.Chaining.Node@,Sudoku.Data.NodeType@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
-            <param name="start">(<see langword="out" /> parameter) The start node.</param>
-            <param name="end">(<see langword="out" /> parameter) The end node.</param>
-            <param name="nodeType">(<see langword="out" /> parameter) The node type.</param>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.Inference.Deconstruct(Sudoku.Solving.Manual.Chaining.Node@,System.Boolean@,Sudoku.Solving.Manual.Chaining.Node@,System.Boolean@)">
             <method name="Deconstruct">
 		<summary>Deconstruct this instance.</summary>
@@ -5662,16 +5639,6 @@
             <param name="startIsOn">(<see langword="out" /> parameter) Whether the start node is on.</param>
             <param name="end">(<see langword="out" /> parameter) The end node.</param>
             <param name="endIsOn">(<see langword="out" /> parameter) Whether the end node is on.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Inference.Deconstruct(Sudoku.Solving.Manual.Chaining.Node@,System.Boolean@,Sudoku.Solving.Manual.Chaining.Node@,System.Boolean@,Sudoku.Data.NodeType@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
-            <param name="start">(<see langword="out" /> parameter) The start node.</param>
-            <param name="startIsOn">(<see langword="out" /> parameter) Whether the start node is on.</param>
-            <param name="end">(<see langword="out" /> parameter) The end node.</param>
-            <param name="endIsOn">(<see langword="out" /> parameter) Whether the end node is on.</param>
-            <param name="nodeType">(<see langword="out" /> parameter) The node type.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.Inference.ToString">
             <method name="ToString" paramType="__noparam">
@@ -5704,9 +5671,22 @@
             <param name="digit">The digit.</param>
             <param name="map">The map.</param>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.Node.#ctor(System.Byte,Sudoku.Data.GridMap,Sudoku.Data.NodeType)">
+            <summary>
+            Initializes an instance with the specified digit, the map and the node type.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="map">The map.</param>
+            <param name="nodeType">The node type.</param>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.Node.Digit">
             <summary>
             Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.Node.NodeType">
+            <summary>
+            Indicates the node type.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.Node.Map">
@@ -5733,6 +5713,15 @@
             <param name="digit">(<see langword="out" /> parameter) The digit.</param>
             <param name="map">(<see langword="out" /> parameter) The map.</param>
             <param name="fullMap">(<see langword="out" /> parameter) The candidates map.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.Node.Deconstruct(System.Byte@,Sudoku.Data.GridMap@,Sudoku.Data.SudokuMap@,Sudoku.Data.NodeType@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="digit">(<see langword="out" /> parameter) The digit.</param>
+            <param name="map">(<see langword="out" /> parameter) The map.</param>
+            <param name="fullMap">(<see langword="out" /> parameter) The candidates map.</param>
+            <param name="nodeType">(<see langword="out" /> parameter) The node type.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.Node.Equals(System.Object)">
             <method name="Equals" paramType="object">

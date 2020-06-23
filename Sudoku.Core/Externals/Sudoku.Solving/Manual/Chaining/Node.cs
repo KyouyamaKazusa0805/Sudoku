@@ -37,13 +37,29 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="digit">The digit.</param>
 		/// <param name="map">The map.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Node(byte digit, GridMap map) => (Digit, Map) = (digit, map);
+		public Node(byte digit, GridMap map) : this(digit, map, NodeType.Candidate)
+		{
+		}
+
+		/// <summary>
+		/// Initializes an instance with the specified digit, the map and the node type.
+		/// </summary>
+		/// <param name="digit">The digit.</param>
+		/// <param name="map">The map.</param>
+		/// <param name="nodeType">The node type.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public Node(byte digit, GridMap map, NodeType nodeType) => (Digit, Map, NodeType) = (digit, map, nodeType);
 
 
 		/// <summary>
 		/// Indicates the digit used.
 		/// </summary>
 		public byte Digit { get; }
+
+		/// <summary>
+		/// Indicates the node type.
+		/// </summary>
+		public NodeType NodeType { get; }
 
 		/// <summary>
 		/// The map of all cells used.
@@ -68,17 +84,25 @@ namespace Sudoku.Solving.Manual.Chaining
 		public void Deconstruct(out byte digit, out GridMap map, out SudokuMap fullMap) =>
 			(digit, map, fullMap) = (Digit, Map, CandidatesMap);
 
+		/// <include file='../../../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <param name="digit">(<see langword="out"/> parameter) The digit.</param>
+		/// <param name="map">(<see langword="out"/> parameter) The map.</param>
+		/// <param name="fullMap">(<see langword="out"/> parameter) The candidates map.</param>
+		/// <param name="nodeType">(<see langword="out"/> parameter) The node type.</param>
+		public void Deconstruct(out byte digit, out GridMap map, out SudokuMap fullMap, out NodeType nodeType) =>
+			(digit, map, fullMap, nodeType) = (Digit, Map, CandidatesMap, NodeType);
+
 		/// <include file='../../../../../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override bool Equals(object? obj) => obj is Node comparer && Equals(comparer);
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool Equals(Node other) => Digit == other.Digit && Map == other.Map;
+		public bool Equals(Node other) => Digit == other.Digit && Map == other.Map && NodeType == other.NodeType;
 
 		/// <include file='../../../../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override int GetHashCode() => HashCode.Combine(Digit, Map);
+		public override int GetHashCode() => HashCode.Combine(Digit, Map, NodeType);
 
 		/// <include file='../../../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="start">The start node.</param>
 		/// <param name="end">The end node.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Inference(Node start, Node end) : this(start, false, end, true, NodeType.Candidate)
+		public Inference(Node start, Node end) : this(start, false, end, true)
 		{
 		}
 
@@ -28,22 +28,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="end">The end node.</param>
 		/// <param name="endIsOn">Indicates whether the end node is on.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Inference(Node start, bool startIsOn, Node end, bool endIsOn)
-			: this(start, startIsOn, end, endIsOn, NodeType.Candidate)
-		{
-		}
-
-		/// <summary>
-		/// Initializes an instance with the specified information.
-		/// </summary>
-		/// <param name="start">The start node.</param>
-		/// <param name="startIsOn">Indicates whether the start node is on.</param>
-		/// <param name="end">The end node.</param>
-		/// <param name="endIsOn">Indicates whether the end node is on.</param>
-		/// <param name="nodeType">The node type.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Inference(Node start, bool startIsOn, Node end, bool endIsOn, NodeType nodeType) =>
-			(Start, StartIsOn, End, EndIsOn, NodeType) = (start, startIsOn, end, endIsOn, nodeType);
+		public Inference(Node start, bool startIsOn, Node end, bool endIsOn) =>
+			(Start, StartIsOn, End, EndIsOn) = (start, startIsOn, end, endIsOn);
 
 
 		/// <summary>
@@ -75,11 +61,6 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Indicates the end node.
 		/// </summary>
 		public Node End { get; }
-
-		/// <summary>
-		/// Indicates the node type.
-		/// </summary>
-		public NodeType NodeType { get; }
 
 		/// <summary>
 		/// Indicates the elimination set.
@@ -124,28 +105,11 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		/// <include file='../../../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="start">(<see langword="out"/> parameter) The start node.</param>
-		/// <param name="end">(<see langword="out"/> parameter) The end node.</param>
-		/// <param name="nodeType">(<see langword="out"/> parameter) The node type.</param>
-		public void Deconstruct(out Node start, out Node end, out NodeType nodeType) =>
-			(start, end, nodeType) = (Start, End, NodeType);
-
-		/// <include file='../../../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
-		/// <param name="start">(<see langword="out"/> parameter) The start node.</param>
 		/// <param name="startIsOn">(<see langword="out"/> parameter) Whether the start node is on.</param>
 		/// <param name="end">(<see langword="out"/> parameter) The end node.</param>
 		/// <param name="endIsOn">(<see langword="out"/> parameter) Whether the end node is on.</param>
 		public void Deconstruct(out Node start, out bool startIsOn, out Node end, out bool endIsOn) =>
 			(start, startIsOn, end, endIsOn) = (Start, StartIsOn, End, EndIsOn);
-
-		/// <include file='../../../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
-		/// <param name="start">(<see langword="out"/> parameter) The start node.</param>
-		/// <param name="startIsOn">(<see langword="out"/> parameter) Whether the start node is on.</param>
-		/// <param name="end">(<see langword="out"/> parameter) The end node.</param>
-		/// <param name="endIsOn">(<see langword="out"/> parameter) Whether the end node is on.</param>
-		/// <param name="nodeType">(<see langword="out"/> parameter) The node type.</param>
-		public void Deconstruct(
-			out Node start, out bool startIsOn, out Node end, out bool endIsOn, out NodeType nodeType) =>
-			(start, startIsOn, end, endIsOn, nodeType) = (Start, StartIsOn, End, EndIsOn, NodeType);
 
 		/// <include file='../../../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
