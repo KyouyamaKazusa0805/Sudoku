@@ -2400,51 +2400,142 @@
         <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.GetOffToOn(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Chaining.Inference}[],System.Int32,System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.Inference},Sudoku.Data.SudokuMap,System.Int32)">
+        <member name="T:Sudoku.Solving.Manual.Chaining.ChainNode">
             <summary>
-            Get off to on (search for strong links).
+            Indicates the normal node in the AICs.
             </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="list">The list.</param>
-            <param name="length">The length.</param>
-            <param name="stack">The temporary stack.</param>
-            <param name="fullMap">The map of candidates that currently used.</param>
-            <param name="candidate">The candidate.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.GetOnToOff(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Chaining.Inference}[],System.Int32,System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.Inference},Sudoku.Data.SudokuMap,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.#ctor(System.Int32,System.Int32,System.Boolean)">
             <summary>
-            Get on to off (search for weak links).
+            Initializes an instance with the specified cell, digit and a <see cref="T:System.Boolean"/> value.
             </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="list">The list.</param>
-            <param name="length">The length.</param>
-            <param name="stack">The temporary stack.</param>
-            <param name="fullMap">The map of candidates that currently used.</param>
-            <param name="candidate">The candidate.</param>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <param name="isOn">A <see cref="T:System.Boolean"/> value indicating whether the specified node is on.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.CheckEliminations(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.Inference})">
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.#ctor(System.Int32,System.Int32,System.Boolean,Sudoku.Solving.Manual.Chaining.ChainNode*)">
             <summary>
-            Check eliminations.
+            Initializes an instance with the specified cell, digit, a <see cref="T:System.Boolean"/> value
+            and a pointer.
             </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="stack">The stack.</param>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <param name="isOn">A <see cref="T:System.Boolean"/> value indicating whether the specified node is on.</param>
+            <param name="predecessor">The predecessor pointer.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.GetStrongRelations(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Chaining.Inference}[],Sudoku.Data.IReadOnlyGrid)">
+        <member name="P:Sudoku.Solving.Manual.Chaining.ChainNode.Digit">
             <summary>
-            Get all strong relations at initial.
+            The digit.
             </summary>
-            <param name="list">The collected strong relations grouped by its cell.</param>
-            <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.IsContinuousNiceLoop(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Chaining.Inference})">
+        <member name="P:Sudoku.Solving.Manual.Chaining.ChainNode.Cell">
             <summary>
-            Determine whether the chain is a continuous nice loop.
+            The cell.
             </summary>
-            <param name="stack">The chain stack.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.ChainNode.PredecessorsCount">
+            <summary>
+            The number of all predecessors recorded in the node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.ChainNode.IsOn">
+            <summary>
+            Indicates whether the specified node is on.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.ChainNode.PredecessorsPtr">
+            <summary>
+            The safe <see cref="T:System.IntPtr"/> to point to the property <see cref="P:Sudoku.Solving.Manual.Chaining.ChainNode.Predecessors"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.Chaining.ChainNode.Predecessors"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.ChainNode.Predecessors">
+            <summary>
+            The raw pointer of all predecessors (An array of 7 elements at most).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.Equals(System.Object)">
+            <method name="Equals" paramType="object">
+		<summary>
+			Determines whether the specified object is equal to the current object.
+		</summary>
+		<param name="obj">The object to compare with the current object.</param>
+		<returns>
+			<see langword="true" /> if the specified object is equal to the
+			current object; otherwise, <see langword="false" />.
+		</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.Equals(Sudoku.Solving.Manual.Chaining.ChainNode)">
+            <method name="Equals" paramType="__any">
+		<summary>
+			Determine whether the current instance contains the same information with
+			hat from the specified parameter.
+		</summary>
+		<param name="other">The other instance to determine.</param>
+		<returns>A <see cref="T:System.Boolean" /> value indicating that.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.Similar(Sudoku.Solving.Manual.Chaining.ChainNode)">
+            <summary>
+            To determine whether the current instance is similar with another node.
+            </summary>
+            <param name="other">Another node.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.GetHashCode">
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.AddPredecessor(Sudoku.Solving.Manual.Chaining.ChainNode*)">
+            <summary>
+            Add the predecessor.
+            </summary>
+            <param name="nodePtr">The predecessor node pointer.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.CreateInstance">
+            <summary>
+            The default constructor of this struct.
+            </summary>
+            <returns>The default and valid instance.</returns>
+            <remarks>
+            This method is provided to replace the default construcutor <see cref="M:Sudoku.Solving.Manual.Chaining.ChainNode.#ctor"/>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.op_Equality(Sudoku.Solving.Manual.Chaining.ChainNode,Sudoku.Solving.Manual.Chaining.ChainNode)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.op_Inequality(Sudoku.Solving.Manual.Chaining.ChainNode,Sudoku.Solving.Manual.Chaining.ChainNode)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.ChainTechniqueInfo">
             <summary>

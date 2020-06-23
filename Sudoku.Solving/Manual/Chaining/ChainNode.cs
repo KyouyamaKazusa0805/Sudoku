@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Sudoku.Data.Collections;
 
@@ -7,7 +9,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Indicates the normal node in the AICs.
 	/// </summary>
-	public unsafe struct ChainNode : IDisposable, IEquatable<ChainNode>
+	public unsafe struct ChainNode : IDisposable, IEnumerable<ChainNode>, IEquatable<ChainNode>
 	{
 		/// <summary>
 		/// Initializes an instance with the specified cell, digit and a <see cref="bool"/> value.
@@ -109,6 +111,22 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// This method is provided to replace the default construcutor <see cref="ChainNode()"/>.
 		/// </remarks>
 		public static ChainNode CreateInstance() => new ChainNode(default, default, default);
+
+		/// <inheritdoc/>
+		public readonly IEnumerator<ChainNode> GetEnumerator()
+		{
+			var list = new List<ChainNode>(PredecessorsCount);
+			int index = 0;
+			for (var ptr = *Predecessors; index < PredecessorsCount; ptr++, index++)
+			{
+				list.Add(*ptr);
+			}
+
+			return list.GetEnumerator();
+		}
+
+		/// <inheritdoc/>
+		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 
 		/// <include file='../../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
