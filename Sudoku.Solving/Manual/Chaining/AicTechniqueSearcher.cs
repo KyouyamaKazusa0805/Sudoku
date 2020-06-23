@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -39,14 +38,24 @@ namespace Sudoku.Solving.Manual.Chaining
 		private readonly int _maxLength;
 
 		/// <summary>
-		/// Indicates whether the X-Chain is enabled.
+		/// The cache of nice loops.
 		/// </summary>
-		private readonly bool _isXEnabled;
+		private readonly GridMap[] _nl = new GridMap[1000];
 
 		/// <summary>
-		/// Indicates whether the Y-Chain is enabled.
+		/// The cache of alternating inference chains.
 		/// </summary>
-		private readonly bool _isYEnabled;
+		private readonly GridMap[] _aic = new GridMap[1000];
+
+		/// <summary>
+		/// The current number of nice loops.
+		/// </summary>
+		private int _nlcnt;
+
+		/// <summary>
+		/// The current number of alternating inference chains.
+		/// </summary>
+		private int _aiccnt;
 
 
 		/// <summary>
@@ -70,11 +79,45 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <inheritdoc/>
 		public override unsafe void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
+			var candMaps = (GridMap[])CandMaps.Clone();
+			GetAll(accumulator, grid, true, false, candMaps);
+			GetAll(accumulator, grid, false, true, candMaps);
+			GetAll(accumulator, grid, true, true, candMaps);
+		}
 
+		private bool GetAll(
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isXEnabled, bool isYEnabled, GridMap[] maps)
+		{
+			foreach (byte cell in EmptyMap)
+			{
+				if (isYEnabled && !isXEnabled && !BivalueMap[cell])
+				{
+					continue;
+				}
+
+				foreach (byte digit in grid.GetCandidates(cell))
+				{
+					using var p = new ChainNode(cell, digit, true);
+					if (GetUnaryChain(accumulator, grid, p, maps, isXEnabled, isYEnabled))
+					{
+						return true;
+					}
+
+					using var q = new ChainNode(cell, digit, false);
+					if (GetUnaryChain(accumulator, grid, q, maps, isXEnabled, isYEnabled))
+					{
+						return true;
+					}
+				}
+			}
+
+			return false;
 		}
 
 
-		private unsafe void GetUnaryChain(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, ChainNode src, GridMap[] maps, int aa = 0)
+		private unsafe bool GetUnaryChain(
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, ChainNode src, GridMap[] maps,
+			bool isXEnabled, bool isYEnabled)
 		{
 			using Table toOn = Table.Empty, toOff = Table.Empty, makeOn = Table.Empty, makeOff = Table.Empty;
 			int tempOn = 0, tempOff = 0;
@@ -100,7 +143,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					tempOn--;
 					var onP = &toOn.Nodes[--parent];
 
-					GetOnToOff(onP, makeOff, grid, maps);
+					GetOnToOff(onP, makeOff, grid, maps, isYEnabled);
 
 					for (int i = 1; i <= makeOff.Count; i++)
 					{
@@ -114,7 +157,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							bool isContinuous;
 							if (!haveShortestPath)
 							{
-								if (!srcIsOn && !haveShortestPath && (aa == 0 || IsNotHave(&offNode)))
+								if (!srcIsOn && !haveShortestPath && CacheDoesNotContainLoop(&offNode))
 								{
 									isContinuous = true;
 									// TODO: Make hint.
@@ -127,7 +170,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							}
 						}
 
-						if (toOff.Contains(offNode, out _))
+						if (!toOff.Contains(offNode, out _))
 						{
 							toOff.Add(offNode);
 							tempOff--;
@@ -139,30 +182,77 @@ namespace Sudoku.Solving.Manual.Chaining
 				parent = toOff.Count;
 				while (tempOff != 0)
 				{
+					tempOff--;
+					var offP = &toOff.Nodes[--parent];
 
+					GetOffToOn(offP, toOff, makeOn, grid, maps, isXEnabled, isYEnabled);
+
+					for (int i = 1; i < makeOn.Count; i++)
+					{
+						using var pOn = *makeOn.Remove();
+						var (tempCell, tempDigit) = pOn;
+						if (length > 3 && pOn != *offP->Predecessors[0])
+						{
+							var nodeToCheck = &pOn;
+							bool haveShortestPath = CheckShortestPath(nodeToCheck);
+							if (!haveShortestPath)
+							{
+								bool isContinuous;
+								if (srcIsOn && pOn.Similar(src) && CacheDoesNotContainLoop(&pOn))
+								{
+									isContinuous = true;
+									// TODO: Make hint.
+								}
+								else
+								if (pOn.Similar(src) && !srcIsOn
+									|| tempCell == srcCell && tempDigit != srcDigit && srcIsOn)
+								{
+									// Discontinuous nice loop.
+								}
+								else
+								if (tempCell != srcCell && tempDigit == srcDigit && !srcIsOn && !toOn.Contains(pOn, out _)
+									&& CacheDoesNotContainAic(&pOn))
+								{
+									// Alternating Inference Chain Type 1.
+								}
+								else
+								if (tempCell != srcCell && tempDigit != srcDigit && !srcIsOn
+									&& new GridMap { tempCell, srcCell }.AllSetsAreInOneRegion(out _)
+									&& ((1 << srcDigit) & grid.GetCandidateMask(tempCell)) != 0
+									|| ((1 << tempDigit) & grid.GetCandidateMask(srcCell)) != 0
+									&& CacheDoesNotContainAic(&pOn))
+								{
+									// XY-X-Chain, XY-Chain or X-Chain.
+
+								}
+							}
+						}
+					}
 				}
 			}
 
 			src.Dispose();
 		}
 
-		private unsafe void GetOffToOn(ChainNode* pOff, Table toOff, Table outTable, IReadOnlyGrid grid, GridMap[] maps)
+		private unsafe void GetOffToOn(
+			ChainNode* pOff, Table toOff, Table outTable, IReadOnlyGrid grid, GridMap[] maps,
+			bool isXEnabled, bool isYEnabled)
 		{
 			var alreadyMap = GridMap.Empty;
 			var (rootCell, rootDigit) = *pOff;
-			if (_isYEnabled && BivalueMap[rootCell])
+			if (isYEnabled && BivalueMap[rootCell])
 			{
 				short mask = grid.GetCandidateMask(rootCell);
-				int digit = mask.SetAt(0);
+				byte digit = (byte)mask.SetAt(0);
 				if (digit == rootDigit)
 				{
-					digit = mask.GetNextSet(digit);
+					digit = (byte)mask.GetNextSet(digit);
 				}
 
 				outTable.Add(new ChainNode(rootCell, digit, true, pOff));
 			}
 
-			if (_isXEnabled)
+			if (isXEnabled)
 			{
 				for (var label = Block; label < UpperLimit; label++)
 				{
@@ -173,10 +263,10 @@ namespace Sudoku.Solving.Manual.Chaining
 						continue;
 					}
 
-					int cell = tempMap.SetAt(0);
+					byte cell = (byte)tempMap.SetAt(0);
 					if (cell == rootCell)
 					{
-						cell = tempMap.SetAt(1);
+						cell = (byte)tempMap.SetAt(1);
 					}
 
 					if (alreadyMap[cell])
@@ -190,15 +280,16 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 		}
 
-		private unsafe void GetOnToOff(ChainNode* pOn, Table outTable, IReadOnlyGrid grid, GridMap[] maps)
+		private unsafe void GetOnToOff(
+			ChainNode* pOn, Table outTable, IReadOnlyGrid grid, GridMap[] maps, bool isYEnabled)
 		{
 			var (rootCell, rootDigit) = *pOn;
-			if (_isYEnabled)
+			if (isYEnabled)
 			{
 				short mask = (short)(grid.GetCandidateMask(rootCell) & ~(1 << rootDigit));
 				if (mask != 0)
 				{
-					foreach (int digit in mask.GetAllSets())
+					foreach (byte digit in mask.GetAllSets())
 					{
 						outTable.Add(new ChainNode(rootCell, digit, false, pOn));
 					}
@@ -208,11 +299,88 @@ namespace Sudoku.Solving.Manual.Chaining
 			var tempMap = maps[rootDigit] & PeerMaps[rootCell];
 			if (tempMap.IsNotEmpty)
 			{
-				foreach (int cell in tempMap)
+				foreach (byte cell in tempMap)
 				{
 					outTable.Add(new ChainNode(cell, rootDigit, false, pOn));
 				}
 			}
+		}
+
+		private unsafe void GatherHint(ChainNode endPoint, GridMap[] maps, bool isContinuous, IReadOnlyGrid grid)
+		{
+			var nodes = new List<Node>();
+
+			var forwardPtr = &endPoint;
+			for (var ptr = forwardPtr; ptr->PredecessorsCount != 0; ptr = ptr->Predecessors[0])
+			{
+				nodes.Add(new Node(ptr->Cell, ptr->Digit));
+			}
+
+
+		}
+
+		private unsafe bool CacheDoesNotContainLoop(ChainNode* endPoint)
+		{
+			var tempMap = new GridMap { endPoint->Cell };
+			for (var p = endPoint->Predecessors[0]; p->PredecessorsCount != 0; p = p->Predecessors[0])
+			{
+				tempMap.Add(p->Cell);
+			}
+
+			if (tempMap.AllSetsAreInOneRegion(out _))
+			{
+				return false;
+			}
+			for (int i = 0; i < _nlcnt; i++)
+			{
+				if (_nl[i] == tempMap)
+				{
+					return false;
+				}
+			}
+
+			if (_nlcnt < _nl.Length)
+			{
+				_nl[++_nlcnt] = tempMap;
+			}
+			else
+			{
+				throw new SudokuRuntimeException("The number of found loops is greater than the maximum value.");
+			}
+
+			return true;
+		}
+
+		private unsafe bool CacheDoesNotContainAic(ChainNode* endPoint)
+		{
+			var tempMap = new GridMap { endPoint->Cell };
+			for (var p = endPoint->Predecessors[0]; p->PredecessorsCount != 0; p = p->Predecessors[0])
+			{
+				tempMap.Add(p->Cell);
+			}
+
+			if (tempMap.AllSetsAreInOneRegion(out _))
+			{
+				return false;
+			}
+			for (int i = 0; i < _aiccnt; i++)
+			{
+				if (_aic[i] == tempMap)
+				{
+					return false;
+				}
+			}
+
+			if (_aiccnt < _aic.Length)
+			{
+				_aic[++_aiccnt] = tempMap;
+			}
+			else
+			{
+				throw new SudokuRuntimeException("The number of found loops is greater than the maximum value.");
+			}
+
+			return true;
 		}
 
 

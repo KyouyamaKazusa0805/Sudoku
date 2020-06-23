@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="digit">The digit.</param>
 		/// <param name="isOn">A <see cref="bool"/> value indicating whether the specified node is on.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public ChainNode(int cell, int digit, bool isOn)
+		public ChainNode(byte cell, byte digit, bool isOn)
 		{
 			(Cell, Digit, IsOn, PredecessorsCount) = (cell, digit, isOn, 0);
 			Predecessors = (ChainNode**)(_handle = Marshal.AllocHGlobal(sizeof(ChainNode*) * 7)).ToPointer();
@@ -48,19 +48,19 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="isOn">A <see cref="bool"/> value indicating whether the specified node is on.</param>
 		/// <param name="predecessor">The predecessor pointer.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public ChainNode(int cell, int digit, bool isOn, ChainNode* predecessor) : this(cell, digit, isOn) =>
+		public ChainNode(byte cell, byte digit, bool isOn, ChainNode* predecessor) : this(cell, digit, isOn) =>
 			AddPredecessor(predecessor);
 
 
 		/// <summary>
 		/// The digit.
 		/// </summary>
-		public readonly int Digit { get; }
+		public readonly byte Digit { get; }
 
 		/// <summary>
 		/// The cell.
 		/// </summary>
-		public readonly int Cell { get; }
+		public readonly byte Cell { get; }
 
 		/// <summary>
 		/// The number of all predecessors recorded in the node.
@@ -94,13 +94,13 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="cell">(<see langword="out"/> parameter) The cell.</param>
 		/// <param name="digit">(<see langword="out"/> parameter) The digit.</param>
-		public readonly void Deconstruct(out int cell, out int digit) => (cell, digit) = (Cell, Digit);
+		public readonly void Deconstruct(out byte cell, out byte digit) => (cell, digit) = (Cell, Digit);
 
 		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="cell">(<see langword="out"/> parameter) The cell.</param>
 		/// <param name="digit">(<see langword="out"/> parameter) The digit.</param>
 		/// <param name="isOn">(<see langword="out"/> parameter) A <see cref="bool"/> value.</param>
-		public readonly void Deconstruct(out int cell, out int digit, out bool isOn) =>
+		public readonly void Deconstruct(out byte cell, out byte digit, out bool isOn) =>
 			(cell, digit, isOn) = (Cell, Digit, IsOn);
 
 		/// <summary>
