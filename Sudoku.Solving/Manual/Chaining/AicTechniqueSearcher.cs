@@ -25,19 +25,6 @@ namespace Sudoku.Solving.Manual.Chaining
 	public sealed class AicTechniqueSearcher : ChainTechniqueSearcher
 	{
 		/// <summary>
-		/// Indicates the maximum length to search.
-		/// </summary>
-		private readonly int _maxLength;
-
-
-		/// <summary>
-		/// Initializes an instance with the specified length.
-		/// </summary>
-		/// <param name="maxLength">The max length.</param>
-		public AicTechniqueSearcher(int maxLength) => _maxLength = maxLength;
-
-
-		/// <summary>
 		/// Indicates the priority of this technique.
 		/// </summary>
 		public static int Priority { get; set; } = 50;
@@ -49,7 +36,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 
 		/// <inheritdoc/>
-		public override unsafe void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 		}
 	}

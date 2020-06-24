@@ -9,7 +9,6 @@ using Sudoku.Data.Extensions;
 using Sudoku.Solving.Manual.Alses;
 using Sudoku.Solving.Manual.Alses.Basic;
 using Sudoku.Solving.Manual.Alses.Mslses;
-using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Solving.Manual.Fishes;
 using Sudoku.Solving.Manual.Intersections;
@@ -65,16 +64,6 @@ namespace Sudoku.Solving.Manual
 				new AlsWWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
 				new DeathBlossomTechniqueSearcher(
 					AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, MaxPetalsOfDeathBlossom),
-				new AicTechniqueSearcher(AicMaximumLength),
-				//new GroupedAicTechniqueSearcher(
-				//	true, false, false, AicMaximumLength, ReductDifferentPathAic,
-				//	OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
-				//new GroupedAicTechniqueSearcher(
-				//	false, true, false, AicMaximumLength, ReductDifferentPathAic,
-				//	OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
-				//new GroupedAicTechniqueSearcher(
-				//	false, false, true, AicMaximumLength, ReductDifferentPathAic,
-				//	OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
 				new HobiwanFishTechniqueSearcher(
 					HobiwanFishMaximumSize, HobiwanFishMaximumExofinsCount,
 					HobiwanFishMaximumEndofinsCount, HobiwanFishCheckTemplates),
@@ -123,16 +112,6 @@ namespace Sudoku.Solving.Manual
 					new AlsXyWingTechniqueSearcher(
 						AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
 					new AlsWWingTechniqueSearcher(AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, AllowAlsCycles),
-					new AicTechniqueSearcher(AicMaximumLength),
-					//new GroupedAicTechniqueSearcher(
-					//	true, false, false, AicMaximumLength, ReductDifferentPathAic,
-					//	OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
-					//new GroupedAicTechniqueSearcher(
-					//	false, true, false, AicMaximumLength, ReductDifferentPathAic,
-					//	OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
-					//new GroupedAicTechniqueSearcher(
-					//	false, false, true, AicMaximumLength, ReductDifferentPathAic,
-					//	OnlySaveShortestPathAic, CheckHeadCollision, CheckContinuousNiceLoop),
 				},
 				new TechniqueSearcher[]
 				{
