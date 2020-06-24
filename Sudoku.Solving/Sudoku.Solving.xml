@@ -2404,8 +2404,20 @@
             <summary>
             Indicates the normal node in the AICs.
             </summary>
+            <remarks>
+            This data structure may be like a tree, but this structre is the reversal of the trees.
+            In other words, the property stores its predecessors (please see the property
+            <see cref="P:Sudoku.Solving.Manual.Chaining.ChainNode.Predecessors"/>) rather than its children.
+            </remarks>
+            <seealso cref="P:Sudoku.Solving.Manual.Chaining.ChainNode.Predecessors"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.#ctor(System.Int32,System.Int32,System.Boolean)">
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainNode._handle">
+            <summary>
+            The safe <see cref="T:System.IntPtr"/> handle pointing to the property <see cref="P:Sudoku.Solving.Manual.Chaining.ChainNode.Predecessors"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.Chaining.ChainNode.Predecessors"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.#ctor(System.Byte,System.Byte,System.Boolean)">
             <summary>
             Initializes an instance with the specified cell, digit and a <see cref="T:System.Boolean"/> value.
             </summary>
@@ -2413,7 +2425,7 @@
             <param name="digit">The digit.</param>
             <param name="isOn">A <see cref="T:System.Boolean"/> value indicating whether the specified node is on.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.#ctor(System.Int32,System.Int32,System.Boolean,Sudoku.Solving.Manual.Chaining.ChainNode*)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.#ctor(System.Byte,System.Byte,System.Boolean,Sudoku.Solving.Manual.Chaining.ChainNode*)">
             <summary>
             Initializes an instance with the specified cell, digit, a <see cref="T:System.Boolean"/> value
             and a pointer.
@@ -2443,19 +2455,39 @@
             Indicates whether the specified node is on.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.ChainNode.PredecessorsPtr">
-            <summary>
-            The safe <see cref="T:System.IntPtr"/> to point to the property <see cref="P:Sudoku.Solving.Manual.Chaining.ChainNode.Predecessors"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Solving.Manual.Chaining.ChainNode.Predecessors"/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.ChainNode.Predecessors">
             <summary>
             The raw pointer of all predecessors (An array of 7 elements at most).
             </summary>
+            <remarks>
+            This property is an array of <see cref="T:Sudoku.Solving.Manual.Chaining.ChainNode"/>*, i.e. a <see cref="T:Sudoku.Solving.Manual.Chaining.ChainNode"/>*[].
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.Dispose">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.Deconstruct(System.Byte@,System.Byte@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="cell">(<see langword="out" /> parameter) The cell.</param>
+            <param name="digit">(<see langword="out" /> parameter) The digit.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.Deconstruct(System.Byte@,System.Byte@,System.Boolean@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="cell">(<see langword="out" /> parameter) The cell.</param>
+            <param name="digit">(<see langword="out" /> parameter) The digit.</param>
+            <param name="isOn">(<see langword="out" /> parameter) A <see cref="T:System.Boolean" /> value.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.IsParentOf(Sudoku.Solving.Manual.Chaining.ChainNode,Sudoku.Solving.Manual.Chaining.ChainNode*@)">
+            <summary>
+            To determine whether the node is the parent of the specified node.
+            </summary>
+            <param name="node">The node.</param>
+            <param name="ptr">(<see langword="out"/> parent) The </param>
+            <returns></returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.Equals(System.Object)">
             <method name="Equals" paramType="object">
@@ -2512,7 +2544,7 @@
             </summary>
             <returns>The default and valid instance.</returns>
             <remarks>
-            This method is provided to replace the default construcutor <see cref="M:Sudoku.Solving.Manual.Chaining.ChainNode.#ctor"/>.
+            This method is provided to avoid calling the default construcutor <see cref="M:Sudoku.Solving.Manual.Chaining.ChainNode.#ctor"/>.
             </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.ChainNode.GetEnumerator">
@@ -2549,6 +2581,75 @@
             <summary>
             Encapsulates a <b>chain</b> technique searcher.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Chaining.Table">
+            <summary>
+            Provides a table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.Table.Empty">
+            <summary>
+            The empty table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.Table._handle">
+            <summary>
+            The handle pointing to the property <see cref="P:Sudoku.Solving.Manual.Chaining.Table.Nodes"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.Table.Count">
+            <summary>
+            The number of nodes in this list.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.Table.Nodes">
+            <summary>
+            The nodes used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.Table.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.Table.Add(Sudoku.Solving.Manual.Chaining.ChainNode)">
+            <summary>
+            Add a node into the list.
+            </summary>
+            <param name="node">The node.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.Table.Remove">
+            <summary>
+            Removes a node from the list, and returns the pointer.
+            </summary>
+            <returns>The pointer.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.Table.Contains(System.Int32,System.Int32,Sudoku.Solving.Manual.Chaining.ChainNode*@)">
+            <summary>
+            To check whether the list contains the specified node.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <param name="result">(<see langword="out"/> parameter) The result.</param>
+            <returns>The <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.Table.Contains(Sudoku.Solving.Manual.Chaining.ChainNode,Sudoku.Solving.Manual.Chaining.ChainNode*@)">
+            <summary>
+            To check whether the list contains the specified node.
+            </summary>
+            <param name="node">The node.</param>
+            <param name="result">(<see langword="out"/> parameter) The result.</param>
+            <returns>The <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.Table.CreateInstance">
+            <summary>
+            Creates an empty and valid instance.
+            </summary>
+            <returns>The instance.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.Table.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.Table.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations">
             <summary>
