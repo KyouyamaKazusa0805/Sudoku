@@ -80,6 +80,21 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
+		/// Initializes an instance with the specified <see cref="GridMap"/> and the number
+		/// representing.
+		/// </summary>
+		/// <param name="map">The map.</param>
+		/// <param name="digit">The digit.</param>
+		public SudokuMap(GridMap map, int digit) : this()
+		{
+			foreach (int cell in map)
+			{
+				this[cell * 9 + digit] = true;
+				Count++;
+			}
+		}
+
+		/// <summary>
 		/// Initializes an instance with the specified candidates.
 		/// </summary>
 		/// <param name="candidates">The candidates.</param>
@@ -106,14 +121,14 @@ namespace Sudoku.Data
 		/// This property is equivalent to code '<c>!this.IsNotEmpty</c>'.
 		/// </summary>
 		/// <seealso cref="IsNotEmpty"/>
-		public bool IsEmpty => _innerArray.Length == 0;
+		public bool IsEmpty => Count == 0;
 
 		/// <summary>
 		/// Indicates whether the map has at least one set bit.
 		/// This property is equivalent to code '<c>!this.IsEmpty</c>'.
 		/// </summary>
 		/// <seealso cref="IsEmpty"/>
-		public bool IsNotEmpty => _innerArray.Count != 0;
+		public bool IsNotEmpty => Count != 0;
 
 		/// <summary>
 		/// Indicates the total number of all set bits.
@@ -478,8 +493,14 @@ namespace Sudoku.Data
 		/// <param name="right">The right instance.</param>
 		/// <returns>The result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static SudokuMap operator -(SudokuMap left, SudokuMap right) =>
-			new SudokuMap(((BitArray)left._innerArray.Clone()).And(right._innerArray).Not());
+		public static SudokuMap operator -(SudokuMap? left, SudokuMap? right) =>
+			(left is null, right is null) switch
+			{
+				(true, true) => new SudokuMap(),
+				(false, false) => new SudokuMap(((BitArray)left!._innerArray.Clone()).And(right!._innerArray).Not()),
+				(true, false) => new SudokuMap(),
+				(false, true) => left!
+			};
 
 		/// <summary>
 		/// Get all candidates that two <see cref="SudokuMap"/>s both contain.
@@ -488,8 +509,13 @@ namespace Sudoku.Data
 		/// <param name="right">The right instance.</param>
 		/// <returns>The intersection result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static SudokuMap operator &(SudokuMap left, SudokuMap right) =>
-			new SudokuMap(((BitArray)left._innerArray.Clone()).And(right._innerArray));
+		public static SudokuMap operator &(SudokuMap? left, SudokuMap? right) =>
+			(left is null, right is null) switch
+			{
+				(true, true) => new SudokuMap(),
+				(false, false) => new SudokuMap(((BitArray)left!._innerArray.Clone()).And(right!._innerArray)),
+				_ => new SudokuMap(),
+			};
 
 		/// <summary>
 		/// Get all candidates from two <see cref="SudokuMap"/>s.
@@ -498,8 +524,13 @@ namespace Sudoku.Data
 		/// <param name="right">The right instance.</param>
 		/// <returns>The union result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static SudokuMap operator |(SudokuMap left, SudokuMap right) =>
-			new SudokuMap(((BitArray)left._innerArray.Clone()).Or(right._innerArray));
+		public static SudokuMap operator |(SudokuMap? left, SudokuMap? right) =>
+			(left is null, right is null) switch
+			{
+				(true, true) => new SudokuMap(),
+				(false, false) => new SudokuMap(((BitArray)left!._innerArray.Clone()).Or(right!._innerArray)),
+				_ => (left ?? right)!
+			};
 
 		/// <summary>
 		/// Get all candidates that only appears once in two <see cref="SudokuMap"/>s.
@@ -508,8 +539,13 @@ namespace Sudoku.Data
 		/// <param name="right">The right instance.</param>
 		/// <returns>The symmetrical difference result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static SudokuMap operator ^(SudokuMap left, SudokuMap right) =>
-			new SudokuMap(((BitArray)left._innerArray.Clone()).Xor(right._innerArray));
+		public static SudokuMap operator ^(SudokuMap? left, SudokuMap? right) =>
+			(left is null, right is null) switch
+			{
+				(true, true) => new SudokuMap(),
+				(false, false) => new SudokuMap(((BitArray)left!._innerArray.Clone()).Xor(right!._innerArray)),
+				_ => (left ?? right)!
+			};
 
 		/// <summary>
 		/// Reverse status for all candidates, which means all <see langword="true"/> bits
@@ -519,8 +555,10 @@ namespace Sudoku.Data
 		/// <param name="map">The instance to negate.</param>
 		/// <returns>The negative result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static SudokuMap operator ~(SudokuMap map) =>
-			new SudokuMap(((BitArray)map._innerArray.Clone()).Not());
+		public static SudokuMap operator ~(SudokuMap? map) =>
+			map is null
+				? new SudokuMap(new BitArray(729, true))
+				: new SudokuMap(((BitArray)map._innerArray.Clone()).Not());
 
 
 		/// <summary>
