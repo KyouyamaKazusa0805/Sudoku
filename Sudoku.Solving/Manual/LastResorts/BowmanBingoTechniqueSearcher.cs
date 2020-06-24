@@ -4,7 +4,6 @@ using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
-using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.Singles;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
@@ -159,14 +158,14 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// Get links.
 		/// </summary>
 		/// <returns>The links.</returns>
-		private IReadOnlyList<Inference> GetLinks()
+		private IReadOnlyList<Link> GetLinks()
 		{
-			var result = new List<Inference>();
+			var result = new List<Link>();
 			for (int i = 0, count = _tempConclusions.Count; i < count - 1; i++)
 			{
 				var (_, c1) = _tempConclusions[i];
 				var (_, c2) = _tempConclusions[i + 1];
-				result.Add(new Inference(new Node(c1), true, new Node(c2), true));
+				result.Add(new Link(c1, c2, LinkType.Default));
 			}
 
 			return result;

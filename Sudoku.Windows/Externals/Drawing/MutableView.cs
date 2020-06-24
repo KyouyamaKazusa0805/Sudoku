@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Sudoku.Solving.Manual.Chaining;
+using Sudoku.Data;
 
 namespace Sudoku.Drawing
 {
@@ -37,7 +37,7 @@ namespace Sudoku.Drawing
 		/// <param name="links">The list of links.</param>
 		public MutableView(
 			ICollection<(int, int)> cellOffsets, ICollection<(int, int)> candidateOffsets,
-			ICollection<(int, int)> regionOffsets, ICollection<Inference> links) =>
+			ICollection<(int, int)> regionOffsets, ICollection<Link> links) =>
 			(CellOffsets, CandidateOffsets, RegionOffsets, Links) = (cellOffsets, candidateOffsets, regionOffsets, links);
 
 
@@ -59,7 +59,7 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// The links.
 		/// </summary>
-		public ICollection<Inference> Links { get; } = new List<Inference>();
+		public ICollection<Link> Links { get; } = new List<Link>();
 
 
 		/// <summary>
@@ -87,7 +87,7 @@ namespace Sudoku.Drawing
 		/// Add the link into the list.
 		/// </summary>
 		/// <param name="inference">The link.</param>
-		public void AddLink(Inference inference) => Links.Add(inference);
+		public void AddLink(Link inference) => Links.Add(inference);
 
 		/// <summary>
 		/// Remove the cell from the list.
@@ -113,7 +113,7 @@ namespace Sudoku.Drawing
 		/// Remove the link from the list.
 		/// </summary>
 		/// <param name="inference">The link.</param>
-		public void RemoveLink(Inference inference) => Links.Remove(inference);
+		public void RemoveLink(Link inference) => Links.Remove(inference);
 
 		/// <summary>
 		/// Clear all elements.
@@ -152,6 +152,6 @@ namespace Sudoku.Drawing
 		/// </summary>
 		/// <param name="cell">The link.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		public bool ContainsLink(Inference inference) => Links.Contains(inference);
+		public bool ContainsLink(Link inference) => Links.Contains(inference);
 	}
 }

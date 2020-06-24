@@ -751,103 +751,6 @@
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
         </member>
-        <member name="T:Sudoku.Data.Collections.ChainInferenceCollection">
-            <summary>
-            Provides a collection that contains the chain inferences.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Collections.ChainInferenceCollection._ptr">
-            <summary>
-            The pointer to point <see cref="F:Sudoku.Data.Collections.ChainInferenceCollection._collection"/>.
-            If the constructor isn't <see cref="M:Sudoku.Data.Collections.ChainInferenceCollection.#ctor(Sudoku.Solving.Manual.Chaining.Inference)"/>,
-            the field is keep the value <see cref="F:System.IntPtr.Zero"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Data.Collections.ChainInferenceCollection._collection"/>
-            <seealso cref="M:Sudoku.Data.Collections.ChainInferenceCollection.#ctor(Sudoku.Solving.Manual.Chaining.Inference)"/>
-            <seealso cref="F:System.IntPtr.Zero"/>
-        </member>
-        <member name="F:Sudoku.Data.Collections.ChainInferenceCollection._collection">
-            <summary>
-            The internal collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ChainInferenceCollection.#ctor(Sudoku.Solving.Manual.Chaining.Inference)">
-            <summary>
-            Initializes an instance with one inference.
-            </summary>
-            <param name="chainInference">The chain inference.</param>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ChainInferenceCollection.#ctor(System.Span{Sudoku.Solving.Manual.Chaining.Inference})">
-            <summary>
-            Initializes an instance with the specified collection.
-            </summary>
-            <param name="collection">The collection.</param>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ChainInferenceCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Chaining.Inference})">
-            <summary>
-            Initializes an instance with the specified collection.
-            </summary>
-            <param name="collection">The collection.</param>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ChainInferenceCollection.Dispose">
-            <summary>
-            To dispose this instance (frees the unmanaged memory).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ChainInferenceCollection.Equals(System.Object)">
-            <method name="Equals" paramType="object">
-		<summary>
-			Determines whether the specified object is equal to the current object.
-		</summary>
-		<param name="obj">The object to compare with the current object.</param>
-		<returns>
-			<see langword="true" /> if the specified object is equal to the
-			current object; otherwise, <see langword="false" />.
-		</returns>
-	</method>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ChainInferenceCollection.Equals(Sudoku.Data.Collections.ChainInferenceCollection)">
-            <method name="Equals" paramType="__any">
-		<summary>
-			Determine whether the current instance contains the same information with
-			hat from the specified parameter.
-		</summary>
-		<param name="other">The other instance to determine.</param>
-		<returns>A <see cref="T:System.Boolean" /> value indicating that.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ChainInferenceCollection.GetHashCode">
-            <method name="GetHashCode">
-		<summary>
-			Serves as the default hash function.
-		</summary>
-		<returns>The hash code.</returns>
-	</method>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ChainInferenceCollection.ToString">
-            <method name="ToString" paramType="__noparam">
-		<summary>Returns a string that represents the current object.</summary>
-		<returns>A string that represents the current object.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ChainInferenceCollection.op_Equality(Sudoku.Data.Collections.ChainInferenceCollection,Sudoku.Data.Collections.ChainInferenceCollection)">
-            <operator name="op_Equality">
-		<summary>Indicates whether two instances have a same value.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
-	</operator>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ChainInferenceCollection.op_Inequality(Sudoku.Data.Collections.ChainInferenceCollection,Sudoku.Data.Collections.ChainInferenceCollection)">
-            <operator name="op_Inequality">
-		<summary>Indicates whether two instances have two different values.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
-	</operator>
-        </member>
         <member name="T:Sudoku.Data.Collections.ConclusionCollection">
             <summary>
             Provides a collection that contains the conclusions.
@@ -1059,6 +962,103 @@
 	</operator>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.op_Inequality(Sudoku.Data.Collections.DigitCollection,Sudoku.Data.Collections.DigitCollection)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="T:Sudoku.Data.Collections.LinkCollection">
+            <summary>
+            Provides a collection that contains the chain links.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Collections.LinkCollection._ptr">
+            <summary>
+            The pointer to point <see cref="F:Sudoku.Data.Collections.LinkCollection._collection"/>.
+            If the constructor isn't <see cref="M:Sudoku.Data.Collections.LinkCollection.#ctor(Sudoku.Data.Link)"/>,
+            the field is keep the value <see cref="F:System.IntPtr.Zero"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Data.Collections.LinkCollection._collection"/>
+            <seealso cref="M:Sudoku.Data.Collections.LinkCollection.#ctor(Sudoku.Data.Link)"/>
+            <seealso cref="F:System.IntPtr.Zero"/>
+        </member>
+        <member name="F:Sudoku.Data.Collections.LinkCollection._collection">
+            <summary>
+            The internal collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Collections.LinkCollection.#ctor(Sudoku.Data.Link)">
+            <summary>
+            Initializes an instance with one link.
+            </summary>
+            <param name="link">The chain link.</param>
+        </member>
+        <member name="M:Sudoku.Data.Collections.LinkCollection.#ctor(System.Span{Sudoku.Data.Link})">
+            <summary>
+            Initializes an instance with the specified collection.
+            </summary>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="M:Sudoku.Data.Collections.LinkCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Data.Link})">
+            <summary>
+            Initializes an instance with the specified collection.
+            </summary>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="M:Sudoku.Data.Collections.LinkCollection.Dispose">
+            <summary>
+            To dispose this link (frees the unmanaged memory).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Collections.LinkCollection.Equals(System.Object)">
+            <method name="Equals" paramType="object">
+		<summary>
+			Determines whether the specified object is equal to the current object.
+		</summary>
+		<param name="obj">The object to compare with the current object.</param>
+		<returns>
+			<see langword="true" /> if the specified object is equal to the
+			current object; otherwise, <see langword="false" />.
+		</returns>
+	</method>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.Collections.LinkCollection.Equals(Sudoku.Data.Collections.LinkCollection)">
+            <method name="Equals" paramType="__any">
+		<summary>
+			Determine whether the current instance contains the same information with
+			hat from the specified parameter.
+		</summary>
+		<param name="other">The other instance to determine.</param>
+		<returns>A <see cref="T:System.Boolean" /> value indicating that.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Data.Collections.LinkCollection.GetHashCode">
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.Collections.LinkCollection.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Data.Collections.LinkCollection.op_Equality(Sudoku.Data.Collections.LinkCollection,Sudoku.Data.Collections.LinkCollection)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Data.Collections.LinkCollection.op_Inequality(Sudoku.Data.Collections.LinkCollection,Sudoku.Data.Collections.LinkCollection)">
             <operator name="op_Inequality">
 		<summary>Indicates whether two instances have two different values.</summary>
 		<param name="left">The left instance.</param>
@@ -3366,30 +3366,66 @@
         <member name="M:Sudoku.Data.IReadOnlyGrid.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Data.NodeType">
+        <member name="T:Sudoku.Data.Link">
             <summary>
-            Indicates a node type in a chain.
+            Encapsulates a link used for drawing.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.NodeType.Candidate">
+        <member name="M:Sudoku.Data.Link.#ctor(System.Int32,System.Int32,Sudoku.Data.LinkType)">
             <summary>
-            Indicates a normal candidate.
+            Initializes an instance with the specified start and endcandidate, and a link type.
+            </summary>
+            <param name="startCandidate">The start candidate.</param>
+            <param name="endCandidate">The end candidate.</param>
+            <param name="linkType">The link type.</param>
+        </member>
+        <member name="P:Sudoku.Data.Link.StartCandidate">
+            <summary>
+            The start candidate.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.NodeType.LockedCandidates">
+        <member name="P:Sudoku.Data.Link.EndCandidate">
             <summary>
-            Indicates a locked candidates node, which contains at least two cells
-            in a same box-row or box-column and contains the same digit.
+            The end candidate.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.NodeType.AlmostLockedSets">
+        <member name="P:Sudoku.Data.Link.LinkType">
             <summary>
-            Indicates an ALS node.
+            The link type.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.NodeType.AlmostUniqueRectangle">
+        <member name="M:Sudoku.Data.Link.Deconstruct(System.Int32@,System.Int32@,Sudoku.Data.LinkType@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="startCandidate">(<see langword="out" /> parameter) The start candidate.</param>
+            <param name="endCandidate">(<see langword="out" /> parameter) The end candidate.</param>
+            <param name="linkType">(<see langword="out" /> parameter) The link type.</param>
+        </member>
+        <member name="M:Sudoku.Data.Link.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="T:Sudoku.Data.LinkType">
             <summary>
-            Indicates an AUR node.
+            Indicates a link type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.LinkType.Default">
+            <summary>
+            Indicates the default link (<c>off</c> -&gt; <c>off</c> or <c>on</c> -&gt; <c>on</c>).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.LinkType.Weak">
+            <summary>
+            Indicates the weak link (<c>on</c> -&gt; <c>off</c>).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.LinkType.Strong">
+            <summary>
+            Indicates the strong link (<c>off</c> -&gt; <c>on</c>).
             </summary>
         </member>
         <member name="T:Sudoku.Data.Stepping.AntiEliminationStep">
@@ -4403,7 +4439,7 @@
             The list of pairs of identifier and candidate offset.
             </param>
         </member>
-        <member name="M:Sudoku.Drawing.View.#ctor(System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Chaining.Inference})">
+        <member name="M:Sudoku.Drawing.View.#ctor(System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link})">
             <summary>
             Initializes an instance with information.
             </summary>
@@ -5567,217 +5603,6 @@
             <returns>
             The display name. Return <see langword="null"/> when the field does not mark this attribute.
             </returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Chaining.Inference">
-            <summary>
-            Encapsulates a chain inference.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Inference.#ctor(Sudoku.Solving.Manual.Chaining.Node,Sudoku.Solving.Manual.Chaining.Node)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="start">The start node.</param>
-            <param name="end">The end node.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Inference.#ctor(Sudoku.Solving.Manual.Chaining.Node,System.Boolean,Sudoku.Solving.Manual.Chaining.Node,System.Boolean)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="start">The start node.</param>
-            <param name="startIsOn">Indicates whether the start node is on.</param>
-            <param name="end">The end node.</param>
-            <param name="endIsOn">Indicates whether the end node is on.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.Inference.StartIsOn">
-            <summary>
-            Indicates whether the start node is on.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.Inference.EndIsOn">
-            <summary>
-            Indicates whether the end node is on.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.Inference.IsStrong">
-            <summary>
-            Indicates whether the specified inference is a strong link.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.Inference.IsWeak">
-            <summary>
-            Indicates whether the specified inference is a weak inference.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.Inference.Start">
-            <summary>
-            Indicates the start node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.Inference.End">
-            <summary>
-            Indicates the end node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.Inference.Reverse">
-            <summary>
-            Indicates the reverse case.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.Inference.EliminationSet">
-            <summary>
-            Indicates the elimination set.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Inference.Deconstruct(Sudoku.Solving.Manual.Chaining.Node@,Sudoku.Solving.Manual.Chaining.Node@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
-            <param name="start">(<see langword="out" /> parameter) The start node.</param>
-            <param name="end">(<see langword="out" /> parameter) The end node.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Inference.Deconstruct(Sudoku.Solving.Manual.Chaining.Node@,System.Boolean@,Sudoku.Solving.Manual.Chaining.Node@,System.Boolean@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
-            <param name="start">(<see langword="out" /> parameter) The start node.</param>
-            <param name="startIsOn">(<see langword="out" /> parameter) Whether the start node is on.</param>
-            <param name="end">(<see langword="out" /> parameter) The end node.</param>
-            <param name="endIsOn">(<see langword="out" /> parameter) Whether the end node is on.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Inference.ToString">
-            <method name="ToString" paramType="__noparam">
-		<summary>Returns a string that represents the current object.</summary>
-		<returns>A string that represents the current object.</returns>
-	</method>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Chaining.Node">
-            <summary>
-            Indicates a candidate pair used in chains.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Node.#ctor(System.Int32)">
-            <summary>
-            Initializes an instance with the specified candidate.
-            </summary>
-            <param name="candidate">The candidate.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Node.#ctor(System.Byte,System.Byte)">
-            <summary>
-            Initializes an instance with the specified digit and a cell.
-            </summary>
-            <param name="digit">The digit.</param>
-            <param name="cell">A cell.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Node.#ctor(System.Byte,Sudoku.Data.GridMap)">
-            <summary>
-            Initializes an instance with the specified digit and the map.
-            </summary>
-            <param name="digit">The digit.</param>
-            <param name="map">The map.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Node.#ctor(System.Byte,Sudoku.Data.GridMap,Sudoku.Data.NodeType)">
-            <summary>
-            Initializes an instance with the specified digit, the map and the node type.
-            </summary>
-            <param name="digit">The digit.</param>
-            <param name="map">The map.</param>
-            <param name="nodeType">The node type.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.Node.Digit">
-            <summary>
-            Indicates the digit used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.Node.NodeType">
-            <summary>
-            Indicates the node type.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.Node.Map">
-            <summary>
-            The map of all cells used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.Node.CandidatesMap">
-            <summary>
-            Indictaes the candidates map.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Node.Deconstruct(System.Byte@,Sudoku.Data.GridMap@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
-            <param name="digit">(<see langword="out" /> parameter) The digit.</param>
-            <param name="map">(<see langword="out" /> parameter) The map.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Node.Deconstruct(System.Byte@,Sudoku.Data.GridMap@,Sudoku.Data.SudokuMap@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
-            <param name="digit">(<see langword="out" /> parameter) The digit.</param>
-            <param name="map">(<see langword="out" /> parameter) The map.</param>
-            <param name="fullMap">(<see langword="out" /> parameter) The candidates map.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Node.Deconstruct(System.Byte@,Sudoku.Data.GridMap@,Sudoku.Data.SudokuMap@,Sudoku.Data.NodeType@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
-            <param name="digit">(<see langword="out" /> parameter) The digit.</param>
-            <param name="map">(<see langword="out" /> parameter) The map.</param>
-            <param name="fullMap">(<see langword="out" /> parameter) The candidates map.</param>
-            <param name="nodeType">(<see langword="out" /> parameter) The node type.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Node.Equals(System.Object)">
-            <method name="Equals" paramType="object">
-		<summary>
-			Determines whether the specified object is equal to the current object.
-		</summary>
-		<param name="obj">The object to compare with the current object.</param>
-		<returns>
-			<see langword="true" /> if the specified object is equal to the
-			current object; otherwise, <see langword="false" />.
-		</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Node.Equals(Sudoku.Solving.Manual.Chaining.Node)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Node.GetHashCode">
-            <method name="GetHashCode">
-		<summary>
-			Serves as the default hash function.
-		</summary>
-		<returns>The hash code.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Node.ToString">
-            <method name="ToString" paramType="__noparam">
-		<summary>Returns a string that represents the current object.</summary>
-		<returns>A string that represents the current object.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Node.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Node.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Node.op_Equality(Sudoku.Solving.Manual.Chaining.Node,Sudoku.Solving.Manual.Chaining.Node)">
-            <operator name="op_Equality">
-		<summary>Indicates whether two instances have a same value.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
-	</operator>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.Node.op_Inequality(Sudoku.Solving.Manual.Chaining.Node,Sudoku.Solving.Manual.Chaining.Node)">
-            <operator name="op_Inequality">
-		<summary>Indicates whether two instances have two different values.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
-	</operator>
         </member>
         <member name="T:Sudoku.Solving.Manual.TechniqueCode">
             <summary>

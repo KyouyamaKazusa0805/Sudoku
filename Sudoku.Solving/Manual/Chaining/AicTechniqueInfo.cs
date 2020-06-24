@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </param>
 		public AicTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
-			IReadOnlyList<Inference> inferences, bool isContinuousNiceLoop)
+			IReadOnlyList<Link> inferences, bool isContinuousNiceLoop)
 			: base(conclusions, views) => (Inferences, IsContinuousNiceLoop) = (inferences, isContinuousNiceLoop);
 
 
@@ -29,7 +29,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Indicates the inferences used.
 		/// </summary>
-		public IReadOnlyList<Inference> Inferences { get; }
+		public IReadOnlyList<Link> Inferences { get; }
 
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.5M;
@@ -44,7 +44,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string chainStr = new ChainInferenceCollection(Inferences).ToString();
+			string chainStr = new LinkCollection(Inferences).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {chainStr} => {elimStr}";
 		}

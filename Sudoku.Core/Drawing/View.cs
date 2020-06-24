@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using Sudoku.Solving.Manual.Chaining;
+using Sudoku.Data;
 
 namespace Sudoku.Drawing
 {
@@ -43,7 +43,7 @@ namespace Sudoku.Drawing
 		/// <param name="links">The list of links.</param>
 		public View(
 			IReadOnlyList<(int, int)>? cellOffsets, IReadOnlyList<(int, int)>? candidateOffsets,
-			IReadOnlyList<(int, int)>? regionOffsets, IReadOnlyList<Inference>? links) =>
+			IReadOnlyList<(int, int)>? regionOffsets, IReadOnlyList<Link>? links) =>
 			(CellOffsets, CandidateOffsets, RegionOffsets, Links) = (cellOffsets, candidateOffsets, regionOffsets, links);
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
@@ -86,6 +86,6 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// All link masks.
 		/// </summary>
-		public IReadOnlyList<Inference>? Links { get; }
+		public IReadOnlyList<Link>? Links { get; }
 	}
 }

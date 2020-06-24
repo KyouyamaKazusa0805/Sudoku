@@ -7,7 +7,6 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
-using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Windows;
 using static System.Drawing.Drawing2D.DashStyle;
 using static System.Drawing.FontStyle;
@@ -288,14 +287,14 @@ namespace Sudoku.Drawing
 			}
 		}
 
-		private void DrawLinks(Graphics g, IEnumerable<Inference> links, float offset)
+		private void DrawLinks(Graphics g, IEnumerable<Link> links, float offset)
 		{
 			// Gather all points used.
 			var points = new HashSet<PointF>();
-			foreach (var inference in links)
+			foreach (var (startCand, endCand, _) in links)
 			{
-				points.Add(PointConverter.GetMouseCenterOfCandidates(inference.Start.CandidatesMap));
-				points.Add(PointConverter.GetMouseCenterOfCandidates(inference.End.CandidatesMap));
+				points.Add(PointConverter.GetMouseCenterOfCandidates(new SudokuMap { startCand }));
+				points.Add(PointConverter.GetMouseCenterOfCandidates(new SudokuMap { endCand }));
 			}
 
 			if (!(Conclusions is null))
@@ -308,37 +307,42 @@ namespace Sudoku.Drawing
 			// Iterate on each inference to draw the links and grouped nodes (if so).
 			var (cw, ch) = PointConverter.CandidateSize;
 			using var pen = new Pen(Settings.ChainColor, 2F) { CustomEndCap = new AdjustableArrowCap(cw / 4F, ch / 3F) };
-			using var groupedNodeBrush = new SolidBrush(Color.FromArgb(64, Color.Yellow));
-			foreach (var inference in links)
+			#region Obsolete code
+			//using var groupedNodeBrush = new SolidBrush(Color.FromArgb(64, Color.Yellow));
+			#endregion
+			foreach (var link in links)
 			{
-				var ((_, startMap, startFullMap), (_, endMap, endFullMap)) = inference;
-				pen.DashStyle = true switch
+				var (start, end, type) = link;
+				pen.DashStyle = type switch
 				{
-					_ when inference.IsStrong => Solid,
-					_ when inference.IsWeak => Dot,
+					LinkType.Strong => Solid,
+					LinkType.Weak => Dot,
+					LinkType.Default => Dash,
 					_ => Dash
 				};
 
-				var pt1 = PointConverter.GetMouseCenterOfCandidates(startFullMap);
-				var pt2 = PointConverter.GetMouseCenterOfCandidates(endFullMap);
+				var pt1 = PointConverter.GetMouseCenterOfCandidates(new SudokuMap { start });
+				var pt2 = PointConverter.GetMouseCenterOfCandidates(new SudokuMap { end });
 				var (pt1x, pt1y) = pt1;
 				var (pt2x, pt2y) = pt2;
 
+				#region Obsolete code
 				// Draw grouped node regions.
-				if (startMap.Count != 1)
-				{
-					g.FillRoundedRectangle(
-						groupedNodeBrush,
-						PointConverter.GetMouseRectangleOfCandidates(startFullMap),
-						offset);
-				}
-				if (endMap.Count != 1)
-				{
-					g.FillRoundedRectangle(
-						groupedNodeBrush,
-						PointConverter.GetMouseRectangleOfCandidates(endFullMap),
-						offset);
-				}
+				//if (startMap.Count != 1)
+				//{
+				//	g.FillRoundedRectangle(
+				//		groupedNodeBrush,
+				//		PointConverter.GetMouseRectangleOfCandidates(startFullMap),
+				//		offset);
+				//}
+				//if (endMap.Count != 1)
+				//{
+				//	g.FillRoundedRectangle(
+				//		groupedNodeBrush,
+				//		PointConverter.GetMouseRectangleOfCandidates(endFullMap),
+				//		offset);
+				//}
+				#endregion
 
 				// If the distance of two points is lower than the one of two adjacent candidates,
 				// the link will be emitted to draw because of too narrow.

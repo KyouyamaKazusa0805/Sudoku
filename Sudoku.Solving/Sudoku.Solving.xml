@@ -2322,7 +2322,7 @@
             Provides a usage of <b>alternating inference chain</b> (AIC) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Chaining.Inference},System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},System.Boolean)">
             <constructor type="TechniqueInfo">
 		<summary>
 			Initializes an instance with the specified information.
