@@ -28,12 +28,11 @@ namespace System.Collections.Generic
 		{
 		}
 
-
 		/// <summary>
 		/// Initializes an instance with an element.
 		/// </summary>
 		/// <param name="element">An element.</param>
-		public Bag(T element) => Add(element);
+		public Bag([NotNull] T element) => Add(element);
 
 		/// <summary>
 		/// Initializes an instance with the specified elements.
