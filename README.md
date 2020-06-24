@@ -65,6 +65,7 @@ Please check [this file](https://github.com/Sunnie-Shine/Sudoku/blob/master/ref/
 This whole solution consists of several folders below:<br/>这个解决方案由如下文件夹构成：
 
 * [`Sudoku.Core`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Core): The main data structure implementation of the sudoku elementary.<br/>对数独基本元素的主要数据结构的实现。
+* [`Sudoku.Drawing`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Drawing): The project that can be used for drawing and rendering sudoku grids.<br/>这个项目用于绘制和渲染数独盘面。
 * [`Sudoku.Solving`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Solving): The generating and solving project.<br/>解题和题目生成的项目。
 * [`Sudoku.Windows`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Windows): The WPF project, containing UI forms and controls.<br/>WPF 项目，包含 UI 界面和控件。
 * [`Sudoku.Debugging`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Debugging): The project that can be used while debugging only.<br/>这个项目仅用于调试代码时。
