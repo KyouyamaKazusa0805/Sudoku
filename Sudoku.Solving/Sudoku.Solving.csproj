@@ -23,6 +23,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+		<ProjectReference Include="..\Sudoku.Drawing\Sudoku.Drawing.csproj" />
 	</ItemGroup>
 
 </Project>

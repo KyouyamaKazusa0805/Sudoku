@@ -4380,120 +4380,6 @@
             The root path of this whole solution.
             </summary>
         </member>
-        <member name="T:Sudoku.Drawing.Extensions.BitmapEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Drawing.Bitmap"/>.
-            </summary>
-            <remarks>
-            Some methods of this file is copied by the <see cref="N:Emgu.CV"/>'s
-            <a href="https://github.com/emgucv/emgucv/blob/6ee487ad2709d1258cc014103deab2719b026303/Emgu.CV.NativeImage/BitmapExtension.cs">
-            site
-            </a>.
-            </remarks>
-            <seealso cref="T:System.Drawing.Bitmap"/>
-        </member>
-        <member name="M:Sudoku.Drawing.Extensions.BitmapEx.CorectOrientation(System.Drawing.Bitmap)">
-            <summary>
-            Co-rect orientation.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The bitmap.</param>
-        </member>
-        <member name="M:Sudoku.Drawing.Extensions.BitmapEx.ToImage``2(System.Drawing.Bitmap)">
-            <summary>
-            Create an <c>Image&lt;TColor, TDepth&gt;</c> from <see cref="T:System.Drawing.Bitmap"/>.
-            </summary>
-            <seealso cref="T:System.Drawing.Bitmap"/>
-        </member>
-        <member name="M:Sudoku.Drawing.Extensions.BitmapEx.ColorPaletteToLookupTable(System.Drawing.Imaging.ColorPalette,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@)">
-            <summary>
-            Convert the color palette to four lookup tables.
-            </summary>
-            <param name="palette">The color palette to transform.</param>
-            <param name="bTable">Lookup table for the B channel.</param>
-            <param name="gTable">Lookup table for the G channel.</param>
-            <param name="rTable">Lookup table for the R channel.</param>
-            <param name="aTable">Lookup table for the A channel.</param>
-        </member>
-        <member name="M:Sudoku.Drawing.Extensions.BitmapEx.CopyFromBitmap``2(Emgu.CV.Image{``0,``1},System.Drawing.Bitmap)">
-            <summary>
-            Utility function for converting <see cref="T:System.Drawing.Bitmap"/> to <see cref="T:System.Drawing.Image"/>.
-            </summary>
-            <param name="bmp">the bitmap to copy data from.</param>
-            <param name="image">The image to copy data to.</param>
-        </member>
-        <member name="T:Sudoku.Drawing.View">
-            <summary>
-            Encapsulates a view when displaying the information on forms.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Drawing.View.DefaultViews">
-            <summary>
-            Provides a new default view list for initialization.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Drawing.View.#ctor(System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}})">
-            <summary>
-            Initializes an instance with the specified highlighted candidate offsets.
-            </summary>
-            <param name="candidateOffsets">
-            The list of pairs of identifier and candidate offset.
-            </param>
-        </member>
-        <member name="M:Sudoku.Drawing.View.#ctor(System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link})">
-            <summary>
-            Initializes an instance with information.
-            </summary>
-            <param name="cellOffsets">
-            The list of pairs of identifier and cell offset.
-            </param>
-            <param name="candidateOffsets">
-            The list of pairs of identifier and candidate offset.
-            </param>
-            <param name="regionOffsets">
-            The list of pairs of identifier and region offset.
-            </param>
-            <param name="links">The list of links.</param>
-        </member>
-        <member name="M:Sudoku.Drawing.View.#ctor">
-            <defaultConstructor>
-		<summary>Create an instance with default initialization.</summary>
-	</defaultConstructor>
-        </member>
-        <member name="P:Sudoku.Drawing.View.CellOffsets">
-            <summary>
-            All cell offsets.
-            </summary>
-            <remarks>
-            This property is a list of pairs of identifier and cell offsets,
-            where the identifier is an <see cref="T:System.Int32"/> value that can tell
-            all cell offsets' colors.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Drawing.View.CandidateOffsets">
-            <summary>
-            All candidate offsets.
-            </summary>
-            <remarks>
-            This property is a list of pairs of identifier and candidate offsets,
-            where the identifier is an <see cref="T:System.Int32"/> value that can tell
-            all cell offsets' colors.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Drawing.View.RegionOffsets">
-            <summary>
-            All region offsets.
-            </summary>
-            <remarks>
-            This property is a list of pairs of identifier and region offsets,
-            where the identifier is an <see cref="T:System.Int32"/> value that can tell
-            all cell offsets' colors.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Drawing.View.Links">
-            <summary>
-            All link masks.
-            </summary>
-        </member>
         <member name="T:Sudoku.Extensions.ArrayEx">
             <summary>
             Provides extension methods on <see cref="T:System.Array"/>.
@@ -5539,6 +5425,47 @@
             <typeparam name="T1">The type 1.</typeparam>
             <typeparam name="T2">The type 2.</typeparam>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="T:Sudoku.Drawing.Extensions.BitmapEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Drawing.Bitmap"/>.
+            </summary>
+            <remarks>
+            Some methods of this file is copied by the <see cref="N:Emgu.CV"/>'s
+            <a href="https://github.com/emgucv/emgucv/blob/6ee487ad2709d1258cc014103deab2719b026303/Emgu.CV.NativeImage/BitmapExtension.cs">
+            site
+            </a>.
+            </remarks>
+            <seealso cref="T:System.Drawing.Bitmap"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.BitmapEx.CorectOrientation(System.Drawing.Bitmap)">
+            <summary>
+            Co-rect orientation.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The bitmap.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.BitmapEx.ToImage``2(System.Drawing.Bitmap)">
+            <summary>
+            Create an <c>Image&lt;TColor, TDepth&gt;</c> from <see cref="T:System.Drawing.Bitmap"/>.
+            </summary>
+            <seealso cref="T:System.Drawing.Bitmap"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.BitmapEx.ColorPaletteToLookupTable(System.Drawing.Imaging.ColorPalette,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@)">
+            <summary>
+            Convert the color palette to four lookup tables.
+            </summary>
+            <param name="palette">The color palette to transform.</param>
+            <param name="bTable">Lookup table for the B channel.</param>
+            <param name="gTable">Lookup table for the G channel.</param>
+            <param name="rTable">Lookup table for the R channel.</param>
+            <param name="aTable">Lookup table for the A channel.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.BitmapEx.CopyFromBitmap``2(Emgu.CV.Image{``0,``1},System.Drawing.Bitmap)">
+            <summary>
+            Utility function for converting <see cref="T:System.Drawing.Bitmap"/> to <see cref="T:System.Drawing.Image"/>.
+            </summary>
+            <param name="bmp">the bitmap to copy data from.</param>
+            <param name="image">The image to copy data to.</param>
         </member>
         <member name="T:Sudoku.Solving.Annotations.AliasAttribute">
             <summary>

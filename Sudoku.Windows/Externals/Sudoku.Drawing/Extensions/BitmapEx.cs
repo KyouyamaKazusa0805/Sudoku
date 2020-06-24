@@ -51,7 +51,7 @@ namespace Sudoku.Drawing.Extensions
 		/// </summary>
 		/// <param name="hObject">The handle of the object.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
-		[DllImport("gdi32.dll")]
+		[method: DllImport("gdi32.dll")]
 		[return: MarshalAs(UnmanagedType.Bool)]
 		private static extern bool DeleteObject([In] IntPtr hObject);
 	}

@@ -1,0 +1,293 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Drawing</name>
+    </assembly>
+    <members>
+        <member name="M:Sudoku.Drawing.Extensions.GraphicsEx.DrawRoundedRectangle(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.RectangleF,System.Single)">
+            <summary>
+            Draw a rounded rectangle.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The graphics.</param>
+            <param name="pen">The pen.</param>
+            <param name="rectangle">The rectangle to draw.</param>
+            <param name="circleRadius">The radius of each vertex.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when <paramref name="circleRadius"/> is greater than the value in
+            <paramref name="rectangle"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.GraphicsEx.FillRoundedRectangle(System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.RectangleF,System.Single)">
+            <summary>
+            Fill a rounded rectangle.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The graphics.</param>
+            <param name="brush">The brush.</param>
+            <param name="rectangle">The rectangle to fill.</param>
+            <param name="circleRadius">The radius of each vertex.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when <paramref name="circleRadius"/> is greater than the value in
+            <paramref name="rectangle"/>.
+            </exception>
+        </member>
+        <member name="T:Sudoku.Drawing.Extensions.RectangleEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Drawing.Rectangle"/> and <see cref="T:System.Drawing.RectangleF"/>.
+            </summary>
+            <seealso cref="T:System.Drawing.Rectangle"/>
+            <seealso cref="T:System.Drawing.RectangleF"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.RectangleEx.CreateInstance(System.Drawing.Point,System.Drawing.Point)">
+            <summary>
+            Create an instance with two points.
+            </summary>
+            <param name="leftUp">The left up point.</param>
+            <param name="rightDown">The right down point.</param>
+            <returns>The rectangle.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.RectangleEx.CreateInstance(System.Drawing.PointF,System.Drawing.PointF)">
+            <summary>
+            Create an instance with two points.
+            </summary>
+            <param name="leftUp">The left up point.</param>
+            <param name="rightDown">The right down point.</param>
+            <returns>The rectangle.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.RectangleEx.Zoom(System.Drawing.RectangleF,System.Single)">
+            <summary>
+            Zoom in or out the rectangle by the specified offset.
+            If the offset is positive, the rectangle will be larger; otherwise, smaller.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The rectangle.</param>
+            <param name="offset">The offset to zoom in or out.</param>
+            <returns>The new rectangle.</returns>
+        </member>
+        <member name="T:Sudoku.Drawing.Extensions.SizeEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Drawing.Size"/> and <see cref="T:System.Drawing.SizeF"/>.
+            </summary>
+            <seealso cref="T:System.Drawing.Size"/>
+            <seealso cref="T:System.Drawing.SizeF"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.SizeEx.Deconstruct(System.Drawing.Size,System.Int32@,System.Int32@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="this">(<see langword="this" /> parameter) The size instance.</param>
+            <param name="width">(<see langword="out" /> parameter) The width.</param>
+            <param name="height">(<see langword="out" /> parameter) The height.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.Extensions.SizeEx.Deconstruct(System.Drawing.SizeF,System.Single@,System.Single@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="this">(<see langword="this" /> parameter) The size instance.</param>
+            <param name="width">(<see langword="out" /> parameter) The width.</param>
+            <param name="height">(<see langword="out" /> parameter) The height.</param>
+        </member>
+        <member name="T:Sudoku.Drawing.MutableView">
+            <summary>
+            Encapsulates a view when displaying the information on forms.
+            Different with <see cref="T:Sudoku.Drawing.View"/>, this data structure can add and remove the items
+            in the current collection.
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.View"/>
+        </member>
+        <member name="M:Sudoku.Drawing.MutableView.#ctor">
+            <!-- Failed to insert some or all of included XML --><include file="../../../GlobalDocComments.xml" path="comments/defaultConstructor" />
+            <remarks>
+            The constructor is equivalent to code '<c>new MutableView(null, null, null, null)</c>'.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Drawing.MutableView.#ctor(System.Collections.Generic.ICollection{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.ICollection{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.ICollection{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.ICollection{Sudoku.Data.Link})">
+            <summary>
+            Initializes an instance with information.
+            </summary>
+            <param name="cellOffsets">
+            The list of pairs of identifier and cell offset.
+            </param>
+            <param name="candidateOffsets">
+            The list of pairs of identifier and candidate offset.
+            </param>
+            <param name="regionOffsets">
+            The list of pairs of identifier and region offset.
+            </param>
+            <param name="links">The list of links.</param>
+        </member>
+        <member name="P:Sudoku.Drawing.MutableView.CellOffsets">
+            <summary>
+            The cell offsets.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.MutableView.CandidateOffsets">
+            <summary>
+            The candidate offsets.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.MutableView.RegionOffsets">
+            <summary>
+            The region offsets.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.MutableView.Links">
+            <summary>
+            The links.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.MutableView.AddCell(System.Int32,System.Int32)">
+            <summary>
+            Add the cell into the list.
+            </summary>
+            <param name="id">The color ID.</param>
+            <param name="cell">The cell.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.MutableView.AddCandidate(System.Int32,System.Int32)">
+            <summary>
+            Add the candidate into the list.
+            </summary>
+            <param name="id">The color ID.</param>
+            <param name="candidate">The cell.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.MutableView.AddRegion(System.Int32,System.Int32)">
+            <summary>
+            Add the region into the list.
+            </summary>
+            <param name="id">The color ID.</param>
+            <param name="region">The region.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.MutableView.AddLink(Sudoku.Data.Link)">
+            <summary>
+            Add the link into the list.
+            </summary>
+            <param name="inference">The link.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.MutableView.RemoveCell(System.Int32)">
+            <summary>
+            Remove the cell from the list.
+            </summary>
+            <param name="cell">The cell.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.MutableView.RemoveCandidate(System.Int32)">
+            <summary>
+            Remove the candidate from the list.
+            </summary>
+            <param name="candidate">The candidate.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.MutableView.RemoveRegion(System.Int32)">
+            <summary>
+            Remove the region from the list.
+            </summary>
+            <param name="region">The region.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.MutableView.RemoveLink(Sudoku.Data.Link)">
+            <summary>
+            Remove the link from the list.
+            </summary>
+            <param name="inference">The link.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.MutableView.Clear">
+            <summary>
+            Clear all elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.MutableView.ContainsCell(System.Int32)">
+            <summary>
+            Indicates whether the specified list contains the cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.MutableView.ContainsCandidate(System.Int32)">
+            <summary>
+            Indicates whether the specified list contains the candidate.
+            </summary>
+            <param name="candidate">The candidate.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.MutableView.ContainsRegion(System.Int32)">
+            <summary>
+            Indicates whether the specified list contains the region.
+            </summary>
+            <param name="cell">The region.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.MutableView.ContainsLink(Sudoku.Data.Link)">
+            <summary>
+            Indicates whether the specified list contains the link.
+            </summary>
+            <param name="cell">The link.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="T:Sudoku.Drawing.View">
+            <summary>
+            Encapsulates a view when displaying the information on forms.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.View.DefaultViews">
+            <summary>
+            Provides a new default view list for initialization.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.View.#ctor(System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}})">
+            <summary>
+            Initializes an instance with the specified highlighted candidate offsets.
+            </summary>
+            <param name="candidateOffsets">
+            The list of pairs of identifier and candidate offset.
+            </param>
+        </member>
+        <member name="M:Sudoku.Drawing.View.#ctor(System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link})">
+            <summary>
+            Initializes an instance with information.
+            </summary>
+            <param name="cellOffsets">
+            The list of pairs of identifier and cell offset.
+            </param>
+            <param name="candidateOffsets">
+            The list of pairs of identifier and candidate offset.
+            </param>
+            <param name="regionOffsets">
+            The list of pairs of identifier and region offset.
+            </param>
+            <param name="links">The list of links.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.View.#ctor">
+            <!-- Failed to insert some or all of included XML --><include file="../../GlobalDocComments.xml" path="comments/defaultConstructor" />
+        </member>
+        <member name="P:Sudoku.Drawing.View.CellOffsets">
+            <summary>
+            All cell offsets.
+            </summary>
+            <remarks>
+            This property is a list of pairs of identifier and cell offsets,
+            where the identifier is an <see cref="T:System.Int32"/> value that can tell
+            all cell offsets' colors.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Drawing.View.CandidateOffsets">
+            <summary>
+            All candidate offsets.
+            </summary>
+            <remarks>
+            This property is a list of pairs of identifier and candidate offsets,
+            where the identifier is an <see cref="T:System.Int32"/> value that can tell
+            all cell offsets' colors.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Drawing.View.RegionOffsets">
+            <summary>
+            All region offsets.
+            </summary>
+            <remarks>
+            This property is a list of pairs of identifier and region offsets,
+            where the identifier is an <see cref="T:System.Int32"/> value that can tell
+            all cell offsets' colors.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Drawing.View.Links">
+            <summary>
+            All link masks.
+            </summary>
+        </member>
+    </members>
+</doc>
