@@ -498,6 +498,13 @@ namespace Sudoku.Solving.Manual.Chaining
 		}
 
 		/// <summary>
+		/// Get the links through the specified view.
+		/// </summary>
+		/// <param name="viewNumber">The view number.</param>
+		/// <returns>The links.</returns>
+		public abstract ICollection<Link> GetLinks(int viewNumber);
+
+		/// <summary>
 		/// Get the cause region label with the cause.
 		/// </summary>
 		/// <param name="cause">The cause.</param>

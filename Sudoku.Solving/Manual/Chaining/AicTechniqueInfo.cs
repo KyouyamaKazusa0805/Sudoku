@@ -111,7 +111,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		/// <param name="viewNumber">The view number.</param>
 		/// <returns>The links.</returns>
-		public ICollection<Link> GetLinks(int viewNumber) =>
+		public override ICollection<Link> GetLinks(int viewNumber) =>
 			ViewCount >= FlatViewCount ? GetNestedLinks(viewNumber) : GetLinks(Target);
 
 		/// <inheritdoc/>
