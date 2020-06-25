@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <para>By the way, the searching method is <b>BFS</b> (breadth-first searching).</para>
 	/// </remarks>
 	[TechniqueDisplay(nameof(TechniqueCode.Aic))]
-	public sealed class AicTechniqueSearcher : ChainTechniqueSearcher
+	public sealed class AicTechniqueSearcher : ChainingTechniqueSearcher
 	{
 		/// <summary>
 		/// Indicates the priority of this technique.

@@ -8,7 +8,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Provides a usage of <b>alternating inference chain</b> (AIC) technique.
 	/// </summary>
-	public sealed class AicTechniqueInfo : ChainTechniqueInfo
+	public sealed class AicTechniqueInfo : ChainingTechniqueInfo
 	{
 		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="inferences">The inferences.</param>
