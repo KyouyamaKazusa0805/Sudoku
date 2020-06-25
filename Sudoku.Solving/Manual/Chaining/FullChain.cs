@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CS0660 // Type defines operator == or operator != but does not override Object.Equals(object o)
+
+using System;
 using System.Collections.Generic;
 using Sudoku.Extensions;
 
@@ -23,16 +25,13 @@ namespace Sudoku.Solving.Manual.Chaining
 
 
 		/// <inheritdoc/>
-		public override bool Equals(object? obj) => obj is FullChain comparer && Equals(comparer);
-
-		/// <inheritdoc/>
 		public bool Equals(FullChain? other) => Equals(this, other);
 
 		/// <inheritdoc/>
 		public override int GetHashCode()
 		{
 			var result = new HashCode();
-			foreach (var target in Chain.GetChainsTargets())
+			foreach (var target in Chain.ChainsTargets)
 			{
 				foreach (var p in Chain.GetChain(target))
 				{
@@ -68,8 +67,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		{
 			// Some returned collections may not be lists and may not implement equals correctly.
 			// Wrap the content in an array list.
-			var thisTargets = new List<Node>(@this.Chain.GetChainsTagets());
-			var otherTargets = new List<Node>(other.Chain.GetChainsTargets());
+			var thisTargets = new List<Node>(@this.Chain.ChainsTargets);
+			var otherTargets = new List<Node>(other.Chain.ChainsTargets);
 			if (!thisTargets.CollectionEquals(otherTargets))
 			{
 				return false;

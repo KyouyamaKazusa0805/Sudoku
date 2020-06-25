@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Text;
 using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Solving.Manual.Chaining.Node.Cause;
@@ -48,7 +51,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		protected readonly bool _isDynamic;
 
 		/// <summary>
-		/// Indicates the level.
+		/// Indicates the dynamic level.
 		/// </summary>
 		protected readonly int _level;
 
@@ -56,44 +59,20 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="isX">Indicates whether the chain is a X-Chain.</param>
 		/// <param name="isY">Indicates whether the chain is a Y-Chain.</param>
+		/// <param name="isNishio">Indicates whether the chain is nishio.</param>
+		/// <param name="isMultiple">Indicates whether the chain is multiple.</param>
+		/// <param name="isDynamic">Indicates whether the chain is dynamic.</param>
+		/// <param name="level">The dynamic level.</param>
 		protected ChainingTechniqueInfo(
-			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, bool isX, bool isY)
-			: base(conclusions, views) => (_isX, _isY) = (isX, isY);
+			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, bool isX, bool isY,
+			bool isNishio, bool isMultiple, bool isDynamic, int level) : base(conclusions, views) =>
+			(_isX, _isY, _isNishio, _isMultiple, _isDynamic, _level) = (isX, isY, isNishio, isMultiple, isDynamic, level);
 
 
 		/// <summary>
 		/// The flat complexity.
 		/// </summary>
 		public abstract int FlatComplexity { get; }
-
-		/// <summary>
-		/// Indicates the nested complexity.
-		/// </summary>
-		protected int NestedComplexity
-		{
-			get
-			{
-				int result = 0;
-				var processed = new HashSet<FullChain>();
-				foreach (var target in ChainsTargets)
-				{
-					foreach (var p in GetChain(target))
-					{
-						if (!(p.NestedChain is null))
-						{
-							var f = new FullChain(p.NestedChain);
-							if (!processed.Contains(f))
-							{
-								result += p.NestedChain.NestedComplexity;
-								processed.Add(f);
-							}
-						}
-					}
-				}
-
-				return result;
-			}
-		}
 
 		/// <summary>
 		/// The sort key.
@@ -145,6 +124,58 @@ namespace Sudoku.Solving.Manual.Chaining
 		public int ViewCount => FlatViewCount + NestedViewCount;
 
 		/// <summary>
+		/// Get the difficulty for the length.
+		/// </summary>
+		/// <returns>The length.</returns>
+		protected decimal LengthDifficulty
+		{
+			get
+			{
+				decimal result = 0;
+				int ceil = 4;
+				int length = Complexity - 2;
+				bool isOdd = false;
+				while (length > ceil)
+				{
+					result += .1M;
+					ceil = isOdd ? (ceil + 4) / 3 : (ceil + 3) / 2;
+					isOdd.Flip();
+				}
+
+				return result;
+			}
+		}
+
+		/// <summary>
+		/// Indicates the nested complexity.
+		/// </summary>
+		protected int NestedComplexity
+		{
+			get
+			{
+				int result = 0;
+				var processed = new HashSet<FullChain>();
+				foreach (var target in ChainsTargets)
+				{
+					foreach (var p in GetChain(target))
+					{
+						if (!(p.NestedChain is null))
+						{
+							var f = new FullChain(p.NestedChain);
+							if (!processed.Contains(f))
+							{
+								result += p.NestedChain.NestedComplexity;
+								processed.Add(f);
+							}
+						}
+					}
+				}
+
+				return result;
+			}
+		}
+
+		/// <summary>
 		/// Indicates the flat view count.
 		/// </summary>
 		protected abstract int FlatViewCount { get; }
@@ -179,16 +210,6 @@ namespace Sudoku.Solving.Manual.Chaining
 		}
 
 		/// <summary>
-		/// The result.
-		/// </summary>
-		protected abstract Node? Result { get; }
-
-		/// <summary>
-		/// The chains targets.
-		/// </summary>
-		protected abstract ICollection<Node> ChainsTargets { get; }
-
-		/// <summary>
 		/// Indicates the name prefix.
 		/// </summary>
 		protected string NamePrefix =>
@@ -210,13 +231,24 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		protected string? CommonName => !_isDynamic && !_isMultiple ? _isX ? "X-Chain" : "Y-Chain" : null;
 
+		/// <summary>
+		/// The result.
+		/// </summary>
+		protected abstract Node? Result { get; }
+
+		/// <summary>
+		/// The chains targets.
+		/// </summary>
+		protected internal abstract ICollection<Node> ChainsTargets { get; }
+
 
 		/// <summary>
 		/// Get the chain using the specified target.
 		/// </summary>
 		/// <param name="target">The target node.</param>
 		/// <returns>The chain.</returns>
-		public static ICollection<Node> GetChain(Node target)
+		[SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Pending>")]
+		public ICollection<Node> GetChain(Node target)
 		{
 			var result = new List<Node>();
 			var done = new HashSet<Node>();
@@ -239,7 +271,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			return result;
 		}
-
+		
 		private (ChainingTechniqueInfo _chain, int _viewNumber)? GetNestedChain(int nestedViewNumber)
 		{
 			var processed = new HashSet<FullChain>();
@@ -328,7 +360,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="state">The current state.</param>
 		/// <param name="skipTarget">A <see cref="bool"/> value indicating whether should skip the target.</param>
 		/// <returns>The map of all candidates.</returns>
-		protected static SudokuMap GetColorNodes(Node target, bool state, bool skipTarget)
+		protected SudokuMap GetColorNodes(Node target, bool state, bool skipTarget)
 		{
 			var result = new SudokuMap();
 			foreach (var p in GetChain(target))
@@ -359,12 +391,36 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		/// <param name="nestedViewNumber">The current nested view number.</param>
 		/// <returns>The map.</returns>
-		protected SudokuMap GetNestedRedNodes(int nestedViewNumber)
+		protected SudokuMap GetNestedOrangeNodes(int nestedViewNumber)
 		{
 			nestedViewNumber -= FlatViewCount;
 			var (info, value) = GetNestedChain(nestedViewNumber)!.Value;
-			return info.GetRedNodes(value);
+			return info.GetOrangeNodes(value);
 		}
+
+		/// <summary>
+		/// Get all green nodes in the specified view.
+		/// </summary>
+		/// <param name="nestedViewNumber">The view number.</param>
+		/// <returns>The map.</returns>
+		protected virtual SudokuMap GetGreenNodes(int nestedViewNumber) =>
+			new SudokuMap(
+				from pair in Views[nestedViewNumber].CandidateOffsets ?? Array.Empty<(int, int)>()
+				let Candidate = pair._candidateOffset
+				where Candidate == 0
+				select Candidate);
+
+		/// <summary>
+		/// Get all orange nodes in the specified view.
+		/// </summary>
+		/// <param name="nestedViewNumber">The view number.</param>
+		/// <returns>The map.</returns>
+		protected virtual SudokuMap GetOrangeNodes(int nestedViewNumber) =>
+			new SudokuMap(
+				from pair in Views[nestedViewNumber].CandidateOffsets ?? Array.Empty<(int, int)>()
+				let Candidate = pair._candidateOffset
+				where Candidate == 1
+				select Candidate);
 
 		/// <summary>
 		/// Get all blue nodes (it doesn't exist in the current view, but can exist in other views).
@@ -423,7 +479,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		/// <param name="target">The target node.</param>
 		/// <returns>All links.</returns>
-		protected static ICollection<Link> GetLinks(Node target)
+		protected ICollection<Link> GetLinks(Node target)
 		{
 			var result = new List<Link>();
 			foreach (var p in GetChain(target))
@@ -441,29 +497,19 @@ namespace Sudoku.Solving.Manual.Chaining
 			return result;
 		}
 
-
-		private static RegionLabel? GetCauseRegion(Node.Cause cause)
-		{
-			switch (cause)
+		/// <summary>
+		/// Get the cause region label with the cause.
+		/// </summary>
+		/// <param name="cause">The cause.</param>
+		/// <returns>The cause region label.</returns>
+		private static RegionLabel? GetCauseRegion(Node.Cause cause) =>
+			cause switch
 			{
-				case HiddenSingleRow:
-				{
-					return Row;
-				}
-				case HiddenSingleColumn:
-				{
-					return Column;
-				}
-				case HiddenSingleBlock:
-				{
-					return Block;
-				}
-				default:
-				{
-					return null;
-				}
-			}
-		}
+				HiddenSingleRow => Row,
+				HiddenSingleColumn => Column,
+				HiddenSingleBlock => Block,
+				_ => null
+			};
 
 		/// <summary>
 		/// Get rule parents.
@@ -533,14 +579,8 @@ namespace Sudoku.Solving.Manual.Chaining
 							}
 							else // Hidden single.
 							{
-								var map = RegionMaps[
-									GetCauseRegion(cause.Value) switch
-									{
-										Block => GetRegion(cell, Block),
-										Column => GetRegion(cell, Column),
-										_ => GetRegion(cell, Row),
-									}];
-								foreach (int currentCell in map)
+								foreach (int currentCell in
+									RegionMaps[GetRegion(cell, GetCauseRegion(cause.Value)!.Value)])
 								{
 									int digit = p.Candidate % 9;
 									if (currentGrid.Exists(currentCell, digit) is true
