@@ -8126,25 +8126,19 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
+            <remarks>
+            In fact, <c>Hybrid-Wing</c>s, <c>Local-Wing</c>s, <c>Split-Wing</c>s and <c>M-Wing</c>s can
+            be found in another searcher. However, these wings are not elementary and necessary techniques
+            so we does not need to list them.
+            </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.TakeAllWWings(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.GetAllWWings(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <summary>
             Search for all W-Wings.
             </summary>
             <param name="result">The result accumulator.</param>
             <param name="grid">The grid.</param>
             <returns>All technique information instances.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.SearchWWingByRegions(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},System.Int32[],System.Int32,System.Int32,System.Int32,Sudoku.Data.GridMap)">
-            <summary>
-            Searches W-Wing technique by region.
-            </summary>
-            <param name="result">The result.</param>
-            <param name="digits">The digits.</param>
-            <param name="region">The region.</param>
-            <param name="c1">Cell 1.</param>
-            <param name="c2">Cell 2.</param>
-            <param name="intersection">The intersection.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Wings.Irregular.WWingTechniqueInfo">
             <summary>

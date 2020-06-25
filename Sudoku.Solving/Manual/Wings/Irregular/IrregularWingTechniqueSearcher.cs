@@ -28,15 +28,12 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
-		{
-			// Finally search all irregular wings.
-			// Hybrid-Wings, Local-Wings, Split-Wings and M-Wings can
-			// be found in another searcher.
-			// These wings are not elementary and necessary techniques
-			// so we does not need to list them.
-			TakeAllWWings(accumulator, grid);
-		}
+		/// <remarks>
+		/// In fact, <c>Hybrid-Wing</c>s, <c>Local-Wing</c>s, <c>Split-Wing</c>s and <c>M-Wing</c>s can
+		/// be found in another searcher. However, these wings are not elementary and necessary techniques
+		/// so we does not need to list them.
+		/// </remarks>
+		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid) => GetAllWWings(accumulator, grid);
 
 		/// <summary>
 		/// Search for all W-Wings.
@@ -44,7 +41,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
 		/// <returns>All technique information instances.</returns>
-		public static void TakeAllWWings(IBag<TechniqueInfo> result, IReadOnlyGrid grid)
+		public static void GetAllWWings(IBag<TechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			if (BivalueMap.Count < 2)
 			{
@@ -77,89 +74,73 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 					for (int region = 9; region < 27; region++)
 					{
 						if (region < 18 && (GetRegion(c1, Row) == region || GetRegion(c2, Row) == region)
-							|| region >= 18 && (
-							GetRegion(c1, Column) == region || GetRegion(c2, Column) == region))
+							|| region >= 18 && (GetRegion(c1, Column) == region || GetRegion(c2, Column) == region))
 						{
 							continue;
 						}
 
-						SearchWWingByRegions(result, digits, region, c1, c2, intersection);
+						for (int i = 0; i < 2; i++)
+						{
+							int digit = digits[i];
+							var map = RegionMaps[region] & CandMaps[digit];
+							if (map.Count != 2)
+							{
+								continue;
+							}
+
+							short mask = map.GetSubviewMask(region);
+							int pos1 = mask.FindFirstSet(), pos2 = mask.GetNextSet(pos1);
+							int bridgeStart = RegionCells[region][pos1], bridgeEnd = RegionCells[region][pos2];
+							if (c1 == bridgeStart || c2 == bridgeStart || c1 == bridgeEnd || c2 == bridgeEnd)
+							{
+								continue;
+							}
+
+							static bool c(int c1, int c2) => (PeerMaps[c1] & PeerMaps[c2]).AllSetsAreInOneRegion(out _);
+							if (!(c(bridgeStart, c1) && c(bridgeEnd, c2)) && !(c(bridgeStart, c2) && c(bridgeEnd, c1)))
+							{
+								continue;
+							}
+
+							// W-Wing found.
+							var conclusions = new List<Conclusion>();
+							int elimDigit = i == 0 ? digits[1] : digits[0];
+							var elimMap = intersection & CandMaps[elimDigit];
+							if (elimMap.IsEmpty)
+							{
+								continue;
+							}
+
+							foreach (int offset in elimMap)
+							{
+								conclusions.Add(new Conclusion(Elimination, offset, elimDigit));
+							}
+
+							result.Add(
+								new WWingTechniqueInfo(
+									conclusions,
+									views: new[]
+									{
+										new View(
+											cellOffsets: null,
+											candidateOffsets: new[]
+											{
+												(1, c1 * 9 + elimDigit),
+												(0, c1 * 9 + digit),
+												(0, bridgeStart * 9 + digit),
+												(0, bridgeEnd * 9 + digit),
+												(0, c2 * 9 + digit),
+												(1, c2 * 9 + elimDigit)
+											},
+											regionOffsets: new[] { (0, region) },
+											links: null)
+									},
+									startCellOffset: c1,
+									endCellOffset: c2,
+									conjugatePair: new ConjugatePair(bridgeStart, bridgeEnd, digit)));
+						}
 					}
 				}
-			}
-		}
-
-		/// <summary>
-		/// Searches W-Wing technique by region.
-		/// </summary>
-		/// <param name="result">The result.</param>
-		/// <param name="digits">The digits.</param>
-		/// <param name="region">The region.</param>
-		/// <param name="c1">Cell 1.</param>
-		/// <param name="c2">Cell 2.</param>
-		/// <param name="intersection">The intersection.</param>
-		private static void SearchWWingByRegions(
-			IBag<TechniqueInfo> result, int[] digits, int region, int c1, int c2, GridMap intersection)
-		{
-			for (int i = 0; i < 2; i++)
-			{
-				int digit = digits[i];
-				var map = RegionMaps[region] & CandMaps[digit];
-				if (map.Count != 2)
-				{
-					continue;
-				}
-
-				short mask = map.GetSubviewMask(region);
-				int pos1 = mask.FindFirstSet(), pos2 = mask.GetNextSet(pos1);
-				int bridgeStart = RegionCells[region][pos1], bridgeEnd = RegionCells[region][pos2];
-				if (c1 == bridgeStart || c2 == bridgeStart || c1 == bridgeEnd || c2 == bridgeEnd)
-				{
-					continue;
-				}
-
-				static bool c(int c1, int c2) => (PeerMaps[c1] & PeerMaps[c2]).AllSetsAreInOneRegion(out _);
-				if (!(c(bridgeStart, c1) && c(bridgeEnd, c2)) && !(c(bridgeStart, c2) && c(bridgeEnd, c1)))
-				{
-					continue;
-				}
-
-				// W-Wing found.
-				var conclusions = new List<Conclusion>();
-				int elimDigit = i == 0 ? digits[1] : digits[0];
-				var elimMap = intersection & CandMaps[elimDigit];
-				if (elimMap.IsEmpty)
-				{
-					continue;
-				}
-
-				foreach (int offset in elimMap)
-				{
-					conclusions.Add(new Conclusion(Elimination, offset, elimDigit));
-				}
-
-				result.Add(
-					new WWingTechniqueInfo(
-						conclusions,
-						views: new[]
-						{
-							new View(
-								cellOffsets: null,
-								candidateOffsets: new List<(int, int)>
-								{
-									(1, c1 * 9 + elimDigit),
-									(0, c1 * 9 + digit),
-									(0, bridgeStart * 9 + digit),
-									(0, bridgeEnd * 9 + digit),
-									(0, c2 * 9 + digit),
-									(1, c2 * 9 + elimDigit)
-								},
-								regionOffsets: new[] { (0, region) },
-								links: null)
-						},
-						startCellOffset: c1,
-						endCellOffset: c2,
-						conjugatePair: new ConjugatePair(bridgeStart, bridgeEnd, digit)));
 			}
 		}
 	}
