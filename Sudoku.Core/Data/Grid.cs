@@ -350,31 +350,7 @@ namespace Sudoku.Data
 		public override bool Equals(object? obj) => Equals(obj as Grid);
 
 		/// <inheritdoc/>
-		public bool Equals(Grid? other)
-		{
-			bool a = this is null, b = other is null;
-			if (a && b)
-			{
-				return true;
-			}
-			else if (a ^ b)
-			{
-				return false;
-			}
-			else
-			{
-				// Both not null.
-				for (int i = 0; i < 81; i++)
-				{
-					if (_masks[i] != other!._masks[i])
-					{
-						return false;
-					}
-				}
-
-				return true;
-			}
-		}
+		public bool Equals(Grid? other) => Equals(this, other);
 
 		/// <inheritdoc/>
 		public override int GetHashCode()
@@ -648,6 +624,38 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
+		/// To determine whether two grids are equal.
+		/// </summary>
+		/// <param name="left">The left grid.</param>
+		/// <param name="right">The right grid.</param>
+		/// <returns>A <see cref="bool"/> value.</returns>
+		private static bool Equals(Grid? left, Grid? right)
+		{
+			bool a = left is null, b = right is null;
+			if (a && b)
+			{
+				return true;
+			}
+			else if (a ^ b)
+			{
+				return false;
+			}
+			else
+			{
+				// Both not null.
+				for (int i = 0; i < 81; i++)
+				{
+					if (left!._masks[i] != right!._masks[i])
+					{
+						return false;
+					}
+				}
+
+				return true;
+			}
+		}
+
+		/// <summary>
 		/// To check the format string, delegated from the method
 		/// <see cref="ToString(string, IFormatProvider)"/>.
 		/// </summary>
@@ -731,9 +739,9 @@ namespace Sudoku.Data
 
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
-		public static bool operator ==(Grid left, Grid right) => left.Equals(right);
+		public static bool operator ==(Grid? left, Grid? right) => Equals(left, right);
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
-		public static bool operator !=(Grid left, Grid right) => !(left == right);
+		public static bool operator !=(Grid? left, Grid? right) => !(left == right);
 	}
 }

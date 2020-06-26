@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="nodeCause">The node cause.</param>
 		/// <param name="explanation">The explanation.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Node(int candidate, bool isOn, Cause nodeCause, string explanation) : this(candidate, isOn) =>
+		public Node(int candidate, bool isOn, Cause? nodeCause, string? explanation) : this(candidate, isOn) =>
 			(NodeCause, Explanation) = (nodeCause, explanation);
 
 		/// <summary>
@@ -45,7 +45,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="nestedChain">The nested chain.</param>
 		/// <param name="explanation">The explanation.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Node(int candidate, bool isOn, Cause nodeCause, ChainingTechniqueInfo nestedChain, string explanation)
+		public Node(int candidate, bool isOn, Cause? nodeCause, ChainingTechniqueInfo nestedChain, string? explanation)
 			: this(candidate, isOn, nodeCause, explanation) => NestedChain = nestedChain;
 
 		/// <summary>
@@ -58,7 +58,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="parent">The parent node.</param>
 		/// <param name="explanation">Teh explanation.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Node(int candidate, bool isOn, Cause nodeCause, Node parent, string explanation)
+		public Node(int candidate, bool isOn, Cause? nodeCause, Node parent, string? explanation)
 			: this(candidate, isOn, nodeCause, explanation) => Parents.Add(parent);
 
 

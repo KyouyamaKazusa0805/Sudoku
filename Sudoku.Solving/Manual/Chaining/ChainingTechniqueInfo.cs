@@ -11,6 +11,7 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
+using static Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher;
 using static Sudoku.Solving.Manual.Chaining.Node.Cause;
 
 namespace Sudoku.Solving.Manual.Chaining
@@ -640,22 +641,6 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			return ancestors.Count;
 		}
-
-		/// <summary>
-		/// Get nested suffix using the specified level.
-		/// </summary>
-		/// <param name="level">The level.</param>
-		/// <returns>The suffix.</returns>
-		protected string GetNestedSuffix(int level) =>
-			level switch
-			{
-				1 => " (+)",
-				2 => " (+ Forcing Chains)",
-				3 => " (+ Multiple Forcing Chains)",
-				4 => " (+ Dynamic Forcing Chains)",
-				_ when level >= 5 => $" (+ Dynamic Forcing Chains{GetNestedSuffix(level - 3)})",
-				_ => string.Empty
-			};
 
 		/// <summary>
 		/// Add the chain item.
