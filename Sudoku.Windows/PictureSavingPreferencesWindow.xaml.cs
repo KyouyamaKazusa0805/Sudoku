@@ -116,7 +116,8 @@ namespace Sudoku.Windows
 		private void ButtonSave_Click(object sender, RoutedEventArgs e)
 		{
 			string originalString = _textBoxFormat.Text;
-			_format = string.IsNullOrWhiteSpace(originalString) ? null : originalString;
+			_settings.OutputPictureFormatText = _format =
+				string.IsNullOrWhiteSpace(originalString) ? null : originalString;
 
 			internalOperation((float)_numericUpDownSize.CurrentValue);
 			Close();

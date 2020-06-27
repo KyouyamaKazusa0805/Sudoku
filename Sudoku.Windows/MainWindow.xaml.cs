@@ -248,6 +248,7 @@ namespace Sudoku.Windows
 
 			_imageGrid.Height = _imageGrid.Width =
 				Math.Min(_gridMain.ColumnDefinitions[0].ActualWidth, _gridMain.RowDefinitions[0].ActualHeight);
+			Settings.GridSize = _gridMain.ColumnDefinitions[0].ActualWidth;
 			_currentPainter.PointConverter = new PointConverter(_imageGrid.RenderSize);
 
 			UpdateImageGrid();
@@ -655,6 +656,8 @@ namespace Sudoku.Windows
 			_buttonRegionColor14.Background = new SolidColorBrush(Settings.Color14.ToWColor());
 
 			_manualSolver = Settings.MainManualSolver;
+
+			_gridMain.ColumnDefinitions[0].Width = new GridLength(Settings.GridSize);
 
 			_comboBoxSymmetry.SelectedIndex = Settings.GeneratingSymmetryModeComboBoxSelectedIndex;
 			_comboBoxMode.SelectedIndex = Settings.GeneratingModeComboBoxSelectedIndex;

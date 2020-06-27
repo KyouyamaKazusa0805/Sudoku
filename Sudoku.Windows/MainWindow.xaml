@@ -311,8 +311,7 @@
 		</ToolBar>
 
 		<!-- Row 2 -->
-		<Grid Grid.Row="2" Grid.ColumnSpan="2"
-			  Name="_gridMain">
+		<Grid Grid.Row="2" Grid.ColumnSpan="2" Name="_gridMain">
 			<Grid.RowDefinitions>
 				<RowDefinition/>
 				<RowDefinition Height="50"/>

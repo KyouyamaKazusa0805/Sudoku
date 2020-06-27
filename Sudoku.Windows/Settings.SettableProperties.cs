@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
@@ -6,6 +7,7 @@ using static Sudoku.Solving.DifficultyLevel;
 
 namespace Sudoku.Windows
 {
+	[SuppressMessage("Usage", "CA2235:Mark all non-serializable fields", Justification = "<Pending>")]
 	partial class Settings
 	{
 		/// <summary>
@@ -90,6 +92,12 @@ namespace Sudoku.Windows
 		/// <para>The default value is <c>800F</c>.</para>
 		/// </summary>
 		public float SavingPictureSize { get; set; } = 800F;
+
+		/// <summary>
+		/// <para>Indicates the size for the sudoku grid control.</para>
+		/// <para>The default value is <c>600D</c>.</para>
+		/// </summary>
+		public double GridSize { get; set; } = 600D;
 
 		/// <summary>
 		/// <para>
@@ -193,6 +201,12 @@ namespace Sudoku.Windows
 		/// <para>The default value is <c><see langword="null"/></c>, which is equivalent to "<c>en-us</c>".</para>
 		/// </summary>
 		public string? LanguageCode { get; set; } = "en-us";
+
+		/// <summary>
+		/// <para>Indicates the format text while saving picture.</para>
+		/// <para>The default value is <see langword="null"/>.</para>
+		/// </summary>
+		public string? OutputPictureFormatText { get; set; } = null;
 
 		/// <summary>
 		/// <para>Indicates the background color of the sudoku grid to render.</para>
