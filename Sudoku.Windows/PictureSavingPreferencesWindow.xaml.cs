@@ -104,12 +104,27 @@ namespace Sudoku.Windows
 		/// <returns>The <see cref="bool"/> value indicating that.</returns>
 		private bool IsFormatValid(string filePath, out string text)
 		{
-			var sb = new StringBuilder(_format);
-			sb.Replace("$f", Path.GetFileNameWithoutExtension(filePath));
-			sb.Replace("$e", Path.GetExtension(filePath));
-			sb.Replace("$D", $"{DateTime.Now:yyyyMMdd}");
-			sb.Replace("$d", $"{DateTime.Now:yyyy-MM-dd}");
+			var today = DateTime.Today;
+#if AUTHOR_RESERVED
+			var thisThursday = today.AddDays(1 - (int)today.DayOfWeek) + TimeSpan.FromDays(3);
+#endif
 
+			var dic = new (string _escape, string _replacement)[]
+			{
+				("$f", Path.GetFileNameWithoutExtension(filePath)),
+				("$e", Path.GetExtension(filePath)),
+				("$D", $"{today:yyyyMMdd}"),
+				("$d", $"{today:yyyy-MM-dd}"),
+#if AUTHOR_RESERVED
+				("!D", $"{thisThursday:yyyyMMdd}"),
+#endif
+			};
+
+			var sb = new StringBuilder(_format);
+			foreach (var (escape, replacement) in dic)
+			{
+				sb.Replace(escape, replacement);
+			}
 			return !(text = sb.ToString()).Contains('$');
 		}
 
