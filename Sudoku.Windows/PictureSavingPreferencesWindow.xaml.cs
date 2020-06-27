@@ -92,6 +92,7 @@ namespace Sudoku.Windows
 
 			(_settings, _grid, _targetPainter) = (settings, grid, targetPainter);
 			_numericUpDownSize.CurrentValue = (decimal)_settings.SavingPictureSize;
+			_textBoxFormat.Text = _settings.OutputPictureFormatText;
 		}
 
 
