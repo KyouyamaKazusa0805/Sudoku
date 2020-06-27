@@ -2083,6 +2083,14 @@
             <param name="gridValues">The array of grid values.</param>
             <returns>The result instance.</returns>
         </member>
+        <member name="M:Sudoku.Data.Grid.Equals(Sudoku.Data.Grid,Sudoku.Data.Grid)">
+            <summary>
+            To determine whether two grids are equal.
+            </summary>
+            <param name="left">The left grid.</param>
+            <param name="right">The right grid.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
         <member name="M:Sudoku.Data.Grid.CheckFormatString(System.String)">
             <summary>
             To check the format string, delegated from the method
@@ -4635,6 +4643,15 @@
             <param name="this">(<see langword="this"/> parameter) The list.</param>
             <param name="item">The item to add.</param>
         </member>
+        <member name="M:Sudoku.Extensions.CollectionEx.CollectionEquals``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``0})">
+            <summary>
+            Check whether two <see cref="T:System.Collections.Generic.ICollection`1"/>s are equal.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The collection.</param>
+            <param name="other">Another collection.</param>
+            <returns>The <see cref="T:System.Boolean"/> value.</returns>
+        </member>
         <member name="T:Sudoku.Extensions.DictionaryEx">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.Generic.IDictionary`2"/>
@@ -4756,6 +4773,41 @@
             If the current object is <see langword="null"/>, this value will be
             <paramref name="defaultValue"/>.
             </returns>
+        </member>
+        <member name="T:Sudoku.Extensions.HashSetEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.HashSet`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.HashSet`1"/>
+        </member>
+        <member name="M:Sudoku.Extensions.HashSetEx.Insert``1(System.Collections.Generic.HashSet{``0},System.Int32,``0)">
+            <summary>
+            Insert the specified item into the current list at the specified index.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="index">The index.</param>
+            <param name="item">The item.</param>
+        </member>
+        <member name="M:Sudoku.Extensions.HashSetEx.Get``1(System.Collections.Generic.HashSet{``0},System.Int32)">
+            <summary>
+            Get the value at the specified index.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="index">The index.</param>
+            <returns>The element.</returns>
+            <exception cref="T:System.IndexOutOfRangeException">
+            Throws when <paramref name="index"/> is greater than the total length of the list.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Extensions.HashSetEx.RemoveAt``1(System.Collections.Generic.HashSet{``0},System.Int32)">
+            <summary>
+            Remove the element at the specified index.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="index">The index.</param>
         </member>
         <member name="T:Sudoku.Extensions.Int16Ex">
             <summary>

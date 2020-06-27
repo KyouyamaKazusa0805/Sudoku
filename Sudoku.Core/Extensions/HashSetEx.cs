@@ -53,5 +53,25 @@ namespace Sudoku.Extensions
 
 			throw new IndexOutOfRangeException();
 		}
+
+		/// <summary>
+		/// Remove the element at the specified index.
+		/// </summary>
+		/// <typeparam name="T">The type of each element.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="index">The index.</param>
+		[return: NotNull]
+		public static T RemoveAt<T>(this HashSet<T> @this, int index)
+			where T : notnull
+		{
+			var list = new List<T>(@this);
+			var result = list[index];
+			list.RemoveAt(index);
+
+			@this.Clear();
+			@this.AddRange(list);
+
+			return result;
+		}
 	}
 }

@@ -2317,90 +2317,59 @@
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo">
-            <summary>
-            Provides a usage of <b>alternating inference chain</b> (AIC) technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},System.Boolean)">
-            <constructor type="TechniqueInfo">
-		<summary>
-			Initializes an instance with the specified information.
-		</summary>
-		<param name="conclusions">The conclusions.</param>
-		<param name="views">The views of this solving step.</param>
-	</constructor>
-            <param name="inferences">The inferences.</param>
-            <param name="isContinuousNiceLoop">
-            A <see cref="T:System.Boolean" /> value indicating whether the structure forms a continuous nice loop.
-            </param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.IsContinuousNiceLoop">
-            <summary>
-            Indicates whether the structure forms a continuous nice loop.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.Inferences">
-            <summary>
-            Indicates the inferences used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.TechniqueCode">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher">
-            <summary>
-            Encapsulates an <b>alternating inference chain</b> (AIC) technique searcher.
-            </summary>
-            <remarks>
-            <para>
-            This technique searcher may use the basic searching way to find all AICs and
-            grouped AICs. For example, this searcher will try to search for all strong
-            inferences firstly, and then search a weak inference that the candidate is
-            in the same region or cell with a node in the strong inference in order to
-            link them.
-            </para>
-            <para>
-            Note that AIC may be static chains, which means that the searcher may just use
-            static analysis is fine, which is different with dynamic chains.
-            </para>
-            <para>By the way, the searching method is <b>BFS</b> (breadth-first searching).</para>
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.Priority">
-            <summary>
-            Indicates the priority of this technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.IsEnabled">
-            <summary>
-            Indicates whether the technique is enabled.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Chaining.ChainTechniqueInfo">
+        <member name="T:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo">
             <summary>
             Provides a usage of <b>chain</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.ChainTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Chaining.ChainTechniqueSearcher">
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo.Equals(Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher">
             <summary>
             Encapsulates a <b>chain</b> technique searcher.
             </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher._withNishio">
+            <summary>
+            Indicats whether the searcher will search for nishio forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher._withMultiple">
+            <summary>
+            Indicating whether the searcher will search for multiple forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher._withDynamic">
+            <summary>
+            Indicating whether the searcher will search for dynamic forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher._level">
+            <summary>
+            The dynamic level. <c>0</c> is for no dynamic.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="withNishio">
+            A <see cref="T:System.Boolean"/> value indicating whether the searcher will search for nishio forcing chains.
+            </param>
+            <param name="withMultiple">
+            A <see cref="T:System.Boolean"/> value indicating whether the searcher will search for multiple forcing chains.
+            </param>
+            <param name="withDynamic">
+            A <see cref="T:System.Boolean"/> value indicating whether the searcher will search for dynamic forcing chains.
+            </param>
+            <param name="level">The dynamic level. <c>0</c> is for no dynamic.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations">
             <summary>
