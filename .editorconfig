@@ -365,5 +365,8 @@ dotnet_diagnostic.CS8769.severity = error
 # CA1031: Do not catch general exception types
 dotnet_diagnostic.CA1031.severity = none
 
+# CA1810: Initialize reference type static fields inline
+dotnet_diagnostic.CA1810.severity = none
+
 # CA1819: Properties should not return arrays
 dotnet_diagnostic.CA1819.severity = none

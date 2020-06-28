@@ -3402,6 +3402,13 @@
             The link type.
             </summary>
         </member>
+        <member name="M:Sudoku.Data.Link.Deconstruct(System.Int32@,System.Int32@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="startCandidate">(<see langword="out" /> parameter) The start candidate.</param>
+            <param name="endCandidate">(<see langword="out" /> parameter) The end candidate.</param>
+        </member>
         <member name="M:Sudoku.Data.Link.Deconstruct(System.Int32@,System.Int32@,Sudoku.Data.LinkType@)">
             <method name="Deconstruct">
 		<summary>Deconstruct this instance.</summary>
@@ -3410,11 +3417,60 @@
             <param name="endCandidate">(<see langword="out" /> parameter) The end candidate.</param>
             <param name="linkType">(<see langword="out" /> parameter) The link type.</param>
         </member>
+        <member name="M:Sudoku.Data.Link.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,Sudoku.Data.LinkType@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="startCell">(<see langword="out" /> parameter) The start cell.</param>
+            <param name="startDigit">(<see langword="out" /> parameter) The start digit.</param>
+            <param name="endCell">(<see langword="out" /> parameter) The end cell.</param>
+            <param name="endDigit">(<see langword="out" /> parameter) The end digit.</param>
+            <param name="linkType">(<see langword="out" /> parameter) The link type.</param>
+        </member>
         <member name="M:Sudoku.Data.Link.ToString">
             <method name="ToString" paramType="__noparam">
 		<summary>Returns a string that represents the current object.</summary>
 		<returns>A string that represents the current object.</returns>
 	</method>
+        </member>
+        <member name="M:Sudoku.Data.Link.Equals(System.Object)">
+            <method name="Equals" paramType="object">
+		<summary>
+			Determines whether the specified object is equal to the current object.
+		</summary>
+		<param name="obj">The object to compare with the current object.</param>
+		<returns>
+			<see langword="true" /> if the specified object is equal to the
+			current object; otherwise, <see langword="false" />.
+		</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Data.Link.Equals(Sudoku.Data.Link)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Link.GetHashCode">
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Data.Link.op_Equality(Sudoku.Data.Link,Sudoku.Data.Link)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Data.Link.op_Inequality(Sudoku.Data.Link,Sudoku.Data.Link)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="T:Sudoku.Data.LinkType">
             <summary>

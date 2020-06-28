@@ -6,7 +6,7 @@ namespace Sudoku.Constants
 	/// <summary>
 	/// Provides operations for throwing exceptions.
 	/// </summary>
-	public static class Throwings
+	internal static class Throwings
 	{
 		/// <summary>
 		/// <para>
