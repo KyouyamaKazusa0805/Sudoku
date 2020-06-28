@@ -7423,14 +7423,6 @@
             Provides all algorithm processing methods.
             </summary>
         </member>
-        <member name="M:System.Algorithms.GetCombinationsOfArray(System.Int32[],System.Int32)">
-            <summary>
-            Get all combinations with the specified number of the values to take.
-            </summary>
-            <param name="array">The array.</param>
-            <param name="count">The number you want to take.</param>
-            <returns>All combinations.</returns>
-        </member>
         <member name="M:System.Algorithms.Swap``1(``0@,``0@)">
             <summary>
             To swap the two variables.
@@ -7464,17 +7456,6 @@
             </summary>
             <param name="array">(<see langword="params"/> parameter) The array.</param>
             <returns>The most minimal value.</returns>
-        </member>
-        <member name="M:System.Algorithms.GetCombinationRecursively``1(System.Collections.Generic.List{``0[]}@,``0[],System.Int32,System.Int32,System.Int32[],System.Int32)">
-            <summary>
-            Get all combinations for an array recursively.
-            </summary>
-            <param name="list">The result list.</param>
-            <param name="t">The base array.</param>
-            <param name="n">Auxiliary variable.</param>
-            <param name="m">Auxiliary variable.</param>
-            <param name="b">Auxiliary variable.</param>
-            <param name="c">Auxiliary variable.</param>
         </member>
         <member name="T:System.Collections.Generic.Dlx">
             <summary>
