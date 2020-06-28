@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
@@ -11,26 +12,6 @@ namespace Sudoku.Extensions
 	[DebuggerStepThrough]
 	public static class ArrayEx
 	{
-		/// <summary>
-		/// Determine whether the specified array contains the specified element.
-		/// </summary>
-		/// <typeparam name="T">The type of the element.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The array.</param>
-		/// <param name="element">The element.</param>
-		/// <returns>The <see cref="bool"/> value indicating that.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool Contains<T>(this T[] @this, T element) => @this.IndexOf(element) != -1;
-
-		/// <summary>
-		/// The extension instance method for <see cref="Array.IndexOf{T}(T[], T)"/>.
-		/// </summary>
-		/// <typeparam name="T">The type of the element.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The array.</param>
-		/// <param name="element">The element.</param>
-		/// <returns>The <see cref="bool"/> value indicating that.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int IndexOf<T>(this T[] @this, T element) => Array.IndexOf(@this, element);
-
 		/// <summary>
 		/// Sorts the elements in an entire <typeparamref name="T"/>[] using the default
 		/// <see cref="IComparable{T}"/> generic interface implementation of each element
@@ -51,5 +32,56 @@ namespace Sudoku.Extensions
 		/// <seealso cref="Comparison{T}"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Sort<T>(this T[] @this, Comparison<T> comparison) => Array.Sort(@this, comparison);
+
+		/// <summary>
+		/// Get all combinations with the specified number of the values to take.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The array.</param>
+		/// <param name="count">The number of elements you want to take.</param>
+		/// <returns>All combinations.</returns>
+		public static IEnumerable<T[]> GetCombinations<T>(this T[] @this, int count)
+		{
+			if (count == 0)
+			{
+				return Array.Empty<T[]>();
+			}
+
+			var result = new List<T[]>();
+			GetCombinationsRecursively(ref result, @this, @this.Length, count, count, new int[count]);
+
+			return result;
+		}
+
+		/// <summary>
+		/// Get all combinations for an array recursively.
+		/// </summary>
+		/// <param name="resultList">The result list.</param>
+		/// <param name="array">The base array.</param>
+		/// <param name="last">The number of the last elements will be checked.</param>
+		/// <param name="count">The number of the elements.</param>
+		/// <param name="m">Auxiliary variable.</param>
+		/// <param name="b">Auxiliary variable.</param>
+		private static void GetCombinationsRecursively<T>(
+			ref List<T[]> resultList, T[] array, int last, int count, int m, int[] b)
+		{
+			for (int i = last; i >= m; i--)
+			{
+				b[m - 1] = i - 1;
+				if (m > 1)
+				{
+					GetCombinationsRecursively(ref resultList, array, i - 1, count, m - 1, b);
+				}
+				else
+				{
+					var temp = new T[count];
+					for (int j = 0; j < b.Length; j++)
+					{
+						temp[j] = array[b[j]];
+					}
+
+					resultList.Add(temp);
+				}
+			}
+		}
 	}
 }

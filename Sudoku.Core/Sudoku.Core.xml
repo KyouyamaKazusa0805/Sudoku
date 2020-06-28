@@ -4450,24 +4450,6 @@
             </summary>
             <seealso cref="T:System.Array"/>
         </member>
-        <member name="M:Sudoku.Extensions.ArrayEx.Contains``1(``0[],``0)">
-            <summary>
-            Determine whether the specified array contains the specified element.
-            </summary>
-            <typeparam name="T">The type of the element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The array.</param>
-            <param name="element">The element.</param>
-            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Extensions.ArrayEx.IndexOf``1(``0[],``0)">
-            <summary>
-            The extension instance method for <see cref="M:System.Array.IndexOf``1(``0[],``0)"/>.
-            </summary>
-            <typeparam name="T">The type of the element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The array.</param>
-            <param name="element">The element.</param>
-            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
         <member name="M:Sudoku.Extensions.ArrayEx.Sort``1(``0[])">
             <summary>
             Sorts the elements in an entire <typeparamref name="T"/>[] using the default
@@ -4486,6 +4468,25 @@
             <param name="this">(<see langword="this"/> parameter) The array.</param>
             <param name="comparison">The comparison method.</param>
             <seealso cref="T:System.Comparison`1"/>
+        </member>
+        <member name="M:Sudoku.Extensions.ArrayEx.GetCombinations``1(``0[],System.Int32)">
+            <summary>
+            Get all combinations with the specified number of the values to take.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The array.</param>
+            <param name="count">The number of elements you want to take.</param>
+            <returns>All combinations.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.ArrayEx.GetCombinationsRecursively``1(System.Collections.Generic.List{``0[]}@,``0[],System.Int32,System.Int32,System.Int32,System.Int32[])">
+            <summary>
+            Get all combinations for an array recursively.
+            </summary>
+            <param name="resultList">The result list.</param>
+            <param name="array">The base array.</param>
+            <param name="last">The number of the last elements will be checked.</param>
+            <param name="count">The number of the elements.</param>
+            <param name="m">Auxiliary variable.</param>
+            <param name="b">Auxiliary variable.</param>
         </member>
         <member name="T:Sudoku.Extensions.BitArrayEx">
             <summary>
@@ -4829,41 +4830,6 @@
             If the current object is <see langword="null"/>, this value will be
             <paramref name="defaultValue"/>.
             </returns>
-        </member>
-        <member name="T:Sudoku.Extensions.HashSetEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.Generic.HashSet`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.HashSet`1"/>
-        </member>
-        <member name="M:Sudoku.Extensions.HashSetEx.Insert``1(System.Collections.Generic.HashSet{``0},System.Int32,``0)">
-            <summary>
-            Insert the specified item into the current list at the specified index.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
-            <param name="index">The index.</param>
-            <param name="item">The item.</param>
-        </member>
-        <member name="M:Sudoku.Extensions.HashSetEx.Get``1(System.Collections.Generic.HashSet{``0},System.Int32)">
-            <summary>
-            Get the value at the specified index.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
-            <param name="index">The index.</param>
-            <returns>The element.</returns>
-            <exception cref="T:System.IndexOutOfRangeException">
-            Throws when <paramref name="index"/> is greater than the total length of the list.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Extensions.HashSetEx.RemoveAt``1(System.Collections.Generic.HashSet{``0},System.Int32)">
-            <summary>
-            Remove the element at the specified index.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
-            <param name="index">The index.</param>
         </member>
         <member name="T:Sudoku.Extensions.Int16Ex">
             <summary>
@@ -5314,9 +5280,9 @@
             <remarks>
             The extension method is used in order to avoid implicit conversion from
             <see cref="T:System.Char"/> to <see cref="T:System.Int32"/>. If you want to append everything,
-            please use the method <see cref="M:Sudoku.Extensions.StringBuilderEx.AppendLine(System.Text.StringBuilder,System.Object)"/>.
+            please use the method <see cref="M:Sudoku.Extensions.StringBuilderEx.AppendLine``1(System.Text.StringBuilder,``0)"/>.
             </remarks>
-            <seealso cref="M:Sudoku.Extensions.StringBuilderEx.AppendLine(System.Text.StringBuilder,System.Object)"/>
+            <seealso cref="M:Sudoku.Extensions.StringBuilderEx.AppendLine``1(System.Text.StringBuilder,``0)"/>
         </member>
         <member name="M:Sudoku.Extensions.StringBuilderEx.AppendLine(System.Text.StringBuilder,System.Object)">
             <summary>
@@ -5329,6 +5295,22 @@
             The <see cref="T:System.String"/> representation of an object you want to append.
             </param>
             <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Extensions.StringBuilderEx.AppendLine``1(System.Text.StringBuilder,``0)">
+            <summary>
+            Append a <see cref="T:System.String"/> representation of an object
+            to the end of the specified string builder instance,
+            and then append a <see cref="P:System.Environment.NewLine"/>.
+            </summary>
+            <typeparam name="T">The type of the instance to add.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="obj">
+            The <see cref="T:System.String"/> representation of an object you want to append.
+            </param>
+            <returns>The reference of the current instance.</returns>
+            <remarks>
+            This method can solve the problem of boxing and unboxing.
+            </remarks>
         </member>
         <member name="M:Sudoku.Extensions.StringBuilderEx.NullableAppend(System.Text.StringBuilder,System.String)">
             <summary>

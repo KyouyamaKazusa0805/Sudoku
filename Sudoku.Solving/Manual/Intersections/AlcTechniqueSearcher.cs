@@ -4,7 +4,6 @@ using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
-using static System.Algorithms;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
 
@@ -87,7 +86,7 @@ namespace Sudoku.Solving.Manual.Intersections
 			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int size, int baseSet, int coverSet,
 			GridMap a, GridMap b, GridMap c)
 		{
-			foreach (int[] cells in GetCombinationsOfArray((a & EmptyMap).ToArray(), size - 1))
+			foreach (int[] cells in (a & EmptyMap).ToArray().GetCombinations(size - 1))
 			{
 				short mask = 0;
 				foreach (int cell in cells)

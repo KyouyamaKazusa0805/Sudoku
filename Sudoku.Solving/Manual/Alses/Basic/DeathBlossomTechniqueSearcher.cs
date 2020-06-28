@@ -309,7 +309,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				int[] emptyCellsArray = tempEmptyCells.ToArray();
 				for (int i = 1; i < emptyCellsArray.Length; i++)
 				{
-					foreach (int[] cells in Algorithms.GetCombinationsOfArray(emptyCellsArray, i))
+					foreach (int[] cells in emptyCellsArray.GetCombinations(i))
 					{
 						if ((new GridMap(cells) | emptyMap) != emptyMap)
 						{

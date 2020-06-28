@@ -113,7 +113,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 				var globalElimMap = conclusionList[digit];
 				int mask = candMap.RowMask << 9 | candMap.ColumnMask << 18 | (int)candMap.BlockMask;
-				var baseSetsList = GetCombinationsOfArray(mask.GetAllSets().ToArray(), size);
+				var baseSetsList = mask.GetAllSets().ToArray().GetCombinations(size);
 
 				// Iterate on each combination.
 				foreach (int[] baseSets in baseSetsList)
@@ -182,10 +182,10 @@ namespace Sudoku.Solving.Manual.Fishes
 						internalSize++)
 					{
 						foreach (int[] comb in
-							GetCombinationsOfArray(coverCombinationsContainElim.ToArray(), internalSize))
+							coverCombinationsContainElim.ToArray().GetCombinations(internalSize))
 						{
 							foreach (int[] comb2 in
-								GetCombinationsOfArray(coverCombinationsDoNotContainElim.ToArray(), size - internalSize))
+								coverCombinationsDoNotContainElim.ToArray().GetCombinations(size - internalSize))
 							{
 								var coverRegionMap = new RegionMap(comb) | new RegionMap(comb2);
 								var coverSets = coverRegionMap.ToArray();

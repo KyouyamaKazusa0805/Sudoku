@@ -6,7 +6,6 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
-using static System.Algorithms;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.ConclusionType;
@@ -305,7 +304,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				int[] otherCells = ((RegionMaps[region] & EmptyMap) - loop).ToArray();
 				for (int size = otherDigitsMask.CountSet() - 1, count = otherCells.Length; size < count; size++)
 				{
-					foreach (int[] cells in GetCombinationsOfArray(otherCells, size))
+					foreach (int[] cells in otherCells.GetCombinations(size))
 					{
 						short mask = 0;
 						foreach (int cell in cells)

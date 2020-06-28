@@ -5,7 +5,6 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
-using static System.Algorithms;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
 
@@ -116,7 +115,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				// Iterate on each combination.
 				for (int size = 2, count = pairMask.CountSet(); size < count; size++)
 				{
-					foreach (int[] digits in GetCombinationsOfArray(pairMask.GetAllSets().ToArray(), size))
+					foreach (int[] digits in pairMask.GetAllSets().ToArray().GetCombinations(size))
 					{
 						// Step 2: To determine whether the digits in pair cells
 						// will only appears in square cells.
@@ -297,7 +296,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				int[] allCells = allCellsMap.ToArray();
 				for (int size = otherDigitsMask.CountSet() - 1; size < allCells.Length; size++)
 				{
-					foreach (int[] cells in GetCombinationsOfArray(allCells, size))
+					foreach (int[] cells in allCells.GetCombinations(size))
 					{
 						short mask = 0;
 						foreach (int cell in cells)

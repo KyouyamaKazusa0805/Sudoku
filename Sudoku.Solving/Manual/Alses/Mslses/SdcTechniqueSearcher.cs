@@ -4,7 +4,6 @@ using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
-using static System.Algorithms;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
 
@@ -108,7 +107,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						for (int i = 1; i < blockMap.Count; i++)
 						{
 							// Iterate on each combination in block.
-							foreach (int[] selectedCellsInBlock in GetCombinationsOfArray(blockMap.ToArray(), i))
+							foreach (int[] selectedCellsInBlock in blockMap.ToArray().GetCombinations(i))
 							{
 								short blockMask = 0;
 								var currentBlockMap = new GridMap(selectedCellsInBlock);
@@ -131,7 +130,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 								for (int j = 1; j <= 9 - i - currentInterMap.Count && j <= lineMap.Count; j++)
 								{
 									// Iterate on each combination in line.
-									foreach (int[] selectedCellsInLine in GetCombinationsOfArray(lineMap.ToArray(), j))
+									foreach (int[] selectedCellsInLine in lineMap.ToArray().GetCombinations(j))
 									{
 										short lineMask = 0;
 										var currentLineMap = new GridMap(selectedCellsInLine);

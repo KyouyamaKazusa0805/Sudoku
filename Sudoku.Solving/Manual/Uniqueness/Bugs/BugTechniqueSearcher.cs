@@ -7,7 +7,6 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Checking;
-using static System.Algorithms;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
@@ -181,7 +180,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				int[] otherCells = otherCellsMap.ToArray();
 				for (int size = 1, length = otherCells.Length; size < length; size++)
 				{
-					foreach (int[] cells in GetCombinationsOfArray(otherCells, size))
+					foreach (int[] cells in otherCells.GetCombinations(size))
 					{
 						short mask = digitsMask;
 						foreach (int cell in cells)

@@ -5,7 +5,6 @@ using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
-using static System.Algorithms;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Solving.Constants.Processings;
@@ -77,7 +76,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			}
 
 			// Iterate on each combination.
-			foreach (int[] digits in GetCombinationsOfArray(orMask.GetAllSets().ToArray(), pattern.IsHeptagon ? 3 : 4))
+			foreach (int[] digits in orMask.GetAllSets().ToArray().GetCombinations(pattern.IsHeptagon ? 3 : 4))
 			{
 				short tempMask = 0;
 				foreach (int digit in digits)
@@ -139,7 +138,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			}
 
 			// Iterate on each combination.
-			foreach (int[] digits in GetCombinationsOfArray(orMask.GetAllSets().ToArray(), pattern.IsHeptagon ? 3 : 4))
+			foreach (int[] digits in orMask.GetAllSets().ToArray().GetCombinations(pattern.IsHeptagon ? 3 : 4))
 			{
 				short tempMask = 0;
 				foreach (int digit in digits)
@@ -192,8 +191,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				short currentMask = BitwiseOrMasks(grid, currentMap);
 				short otherMask = BitwiseOrMasks(grid, otherCellsMap);
 
-				foreach (int[] digits in
-					GetCombinationsOfArray(orMask.GetAllSets().ToArray(), pattern.IsHeptagon ? 3 : 4))
+				foreach (int[] digits in orMask.GetAllSets().ToArray().GetCombinations(pattern.IsHeptagon ? 3 : 4))
 				{
 					short tempMask = 0;
 					foreach (int digit in digits)
@@ -211,7 +209,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					short otherDigitsMask = (short)(orMask & ~tempMask);
 					for (int size = otherDigitsMask.CountSet() - 1; size < iterationCellsMap.Count; size++)
 					{
-						foreach (int[] combination in GetCombinationsOfArray(iterationCells, size))
+						foreach (int[] combination in iterationCells.GetCombinations(size))
 						{
 							short comparer = 0;
 							foreach (int cell in combination)
@@ -308,8 +306,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				// Iterate on each possible digit combination.
 				// For example, if values are { 1, 2, 3 }, then all combinations taken 2 values
 				// are { 1, 2 }, { 2, 3 } and { 1, 3 }.
-				foreach (int[] digits in
-					GetCombinationsOfArray(orMask.GetAllSets().ToArray(), pattern.IsHeptagon ? 3 : 4))
+				foreach (int[] digits in orMask.GetAllSets().ToArray().GetCombinations(pattern.IsHeptagon ? 3 : 4))
 				{
 					short tempMask = 0;
 					foreach (int digit in digits)
@@ -325,7 +322,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					// Only one digit should be eliminated, and other digits should form a "conjugate region".
 					// In a so-called conjugate region, the digits can only appear in these cells in this region.
 					foreach (int[] combination in
-						GetCombinationsOfArray((tempMask & orMask).GetAllSets().ToArray(), currentMap.Count - 1))
+						(tempMask & orMask).GetAllSets().ToArray().GetCombinations(currentMap.Count - 1))
 					{
 						short combinationMask = 0;
 						var combinationMap = GridMap.Empty;

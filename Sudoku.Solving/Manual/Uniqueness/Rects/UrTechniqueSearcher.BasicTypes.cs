@@ -4,7 +4,6 @@ using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using static System.Algorithms;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.CellStatus;
@@ -201,7 +200,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				var iterationMap = (RegionMaps[region] & EmptyMap) - otherCellsMap;
 				for (int size = otherDigitsMask.CountSet() - 1; size < iterationMap.Count; size++)
 				{
-					foreach (int[] iteratedCells in GetCombinationsOfArray(iterationMap.ToArray(), size))
+					foreach (int[] iteratedCells in iterationMap.ToArray().GetCombinations(size))
 					{
 						short tempMask = 0;
 						foreach (int cell in iteratedCells)

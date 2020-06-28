@@ -4,7 +4,6 @@ using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
-using static System.Algorithms;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
 
@@ -214,7 +213,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 				int[] otherCells = ((RegionMaps[region] & EmptyMap) - allCellsMap).ToArray();
 				for (int size = 1; size < otherCells.Length; size++)
 				{
-					foreach (int[] cells in GetCombinationsOfArray(otherCells, size))
+					foreach (int[] cells in otherCells.GetCombinations(size))
 					{
 						short mask = 0;
 						foreach (int cell in cells)

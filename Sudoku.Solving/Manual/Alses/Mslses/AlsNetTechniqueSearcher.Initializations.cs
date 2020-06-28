@@ -1,7 +1,7 @@
 ﻿using Sudoku.Data;
+using Sudoku.Extensions;
 using System.Collections.Generic;
 using static Sudoku.Constants.Processings;
-using static System.Algorithms;
 
 namespace Sudoku.Solving.Manual.Alses.Mslses
 {
@@ -16,6 +16,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		/// <include file='../../../../GlobalDocComments.xml' path='comments/staticConstructor'/>
 		static AlsNetTechniqueSearcher()
 		{
+			const int a = ~7, b = ~56, c = ~448;
 			int[,] sizeList =
 			{
 				{ 3, 3 }, { 3, 4 }, { 4, 3 },
@@ -27,7 +28,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 			for (int i = 0; i < sizeList.Length >> 1; i++)
 			{
 				int rows = sizeList[i, 0], columns = sizeList[i, 1];
-				foreach (int[] rowList in GetCombinationsOfArray(z, rows))
+				foreach (int[] rowList in z.GetCombinations(rows))
 				{
 					short rowMask = 0;
 					var rowMap = GridMap.Empty;
@@ -37,12 +38,12 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						rowMap |= RegionMaps[row + 9];
 					}
 
-					if ((rowMask & ~7) == 0 || (rowMask & ~56) == 0 || (rowMask & ~448) == 0)
+					if ((rowMask & a) == 0 || (rowMask & b) == 0 || (rowMask & c) == 0)
 					{
 						continue;
 					}
 
-					foreach (int[] columnList in GetCombinationsOfArray(z, columns))
+					foreach (int[] columnList in z.GetCombinations(columns))
 					{
 						short columnMask = 0;
 						var columnMap = GridMap.Empty;
@@ -52,7 +53,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 							columnMap |= RegionMaps[column + 18];
 						}
 
-						if ((columnMask & ~7) == 0 || (columnMask & ~56) == 0 || (columnMask & ~448) == 0)
+						if ((columnMask & a) == 0 || (columnMask & b) == 0 || (columnMask & c) == 0)
 						{
 							continue;
 						}

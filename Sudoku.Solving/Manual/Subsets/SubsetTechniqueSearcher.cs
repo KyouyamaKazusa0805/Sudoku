@@ -4,7 +4,6 @@ using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
-using static System.Algorithms;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
 
@@ -42,7 +41,7 @@ namespace Sudoku.Solving.Manual.Subsets
 					}
 
 					// Iterate on each combination.
-					foreach (int[] cells in GetCombinationsOfArray(currentEmptyMap.ToArray(), size))
+					foreach (int[] cells in currentEmptyMap.ToArray().GetCombinations(size))
 					{
 						short mask = 0;
 						foreach (int cell in cells)
@@ -120,7 +119,7 @@ namespace Sudoku.Solving.Manual.Subsets
 					{
 						mask &= (short)~(1 << grid[cell]);
 					}
-					foreach (int[] digits in GetCombinationsOfArray(mask.GetAllSets().ToArray(), size))
+					foreach (int[] digits in mask.GetAllSets().ToArray().GetCombinations(size))
 					{
 						short tempMask = mask;
 						var map = GridMap.Empty;

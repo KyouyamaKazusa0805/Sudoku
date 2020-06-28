@@ -118,7 +118,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						// Iterate on the number of the cells that should be selected in block.
 						for (int i = 0; i < blockMap.Count; i++)
 						{
-							foreach (int[] selectedBlockCells in GetCombinationsOfArray(blockMap.ToArray(), i))
+							foreach (int[] selectedBlockCells in blockMap.ToArray().GetCombinations(i))
 							{
 								short blockMask = 0;
 								var currentBlockMap = new GridMap(selectedBlockCells);
@@ -139,7 +139,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 								for (int j = 1; j < Min(9 - i - currentBlockMap.Count, rowMap.Count, columnMap.Count); j++)
 								{
-									foreach (int[] selectedRowCells in GetCombinationsOfArray(rowMap.ToArray(), j))
+									foreach (int[] selectedRowCells in rowMap.ToArray().GetCombinations(j))
 									{
 										short rowMask = 0;
 										var currentRowMap = new GridMap(selectedRowCells);
@@ -163,8 +163,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 												rowMap.Count, columnMap.Count);
 											k++)
 										{
-											foreach (int[] selectedColumnCells in
-												GetCombinationsOfArray(columnMap.ToArray(), k))
+											foreach (int[] selectedColumnCells in columnMap.ToArray().GetCombinations(k))
 											{
 												short columnMask = 0;
 												var currentColumnMap = new GridMap(selectedColumnCells);
