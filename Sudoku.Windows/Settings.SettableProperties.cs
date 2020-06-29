@@ -26,7 +26,7 @@ namespace Sudoku.Windows
 		/// and <see langword="true"/> in release environment.
 		/// </para>
 		/// </summary>
-#if DEBUG
+#if AUTHOR_RESERVED
 		public bool AskWhileQuitting { get; set; } = false;
 #else
 		public bool AskWhileQuitting { get; set; } = true;
@@ -65,7 +65,7 @@ namespace Sudoku.Windows
 		/// <see langword="false"/> in release environment.
 		/// </para>
 		/// </summary>
-#if DEBUG
+#if AUTHOR_RESERVED
 		public bool PmGridCompatible { get; set; } = true;
 #else
 		public bool PmGridCompatible { get; set; } = false;
@@ -154,7 +154,7 @@ namespace Sudoku.Windows
 		/// <c>"Arial"</c> in release environment.
 		/// </para>
 		/// </summary>
-#if DEBUG
+#if AUTHOR_RESERVED
 		public string GivenFontName { get; set; } = "Fira Code";
 #else
 		public string GivenFontName { get; set; } = "Arial";
@@ -169,7 +169,7 @@ namespace Sudoku.Windows
 		/// <c>"Arial"</c> in release environment.
 		/// </para>
 		/// </summary>
-#if DEBUG
+#if AUTHOR_RESERVED
 		public string ModifiableFontName { get; set; } = "Fira Code";
 #else
 		public string ModifiableFontName { get; set; } = "Arial";
@@ -184,7 +184,7 @@ namespace Sudoku.Windows
 		/// <c>"Arial"</c> in release environment.
 		/// </para>
 		/// </summary>
-#if DEBUG
+#if AUTHOR_RESERVED
 		public string CandidateFontName { get; set; } = "Fira Code";
 #else
 		public string CandidateFontName { get; set; } = "Arial";

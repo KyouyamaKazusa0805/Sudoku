@@ -60,7 +60,7 @@
 		/// and <see langword="false"/> in release environment.
 		/// </para>
 		/// </summary>
-#if DEBUG
+#if AUTHOR_RESERVED
 		public bool CheckAlmostLockedQuadruple { get; set; } = true;
 #else
 		public bool CheckAlmostLockedQuadruple { get; set; } = false;
@@ -142,7 +142,7 @@
 		/// and <see langword="false"/> in release environment.
 		/// </para>
 		/// </summary>
-#if DEBUG
+#if AUTHOR_RESERVED
 		public bool CheckIncompleteUniquenessPatterns { get; set; } = true;
 #else
 		public bool CheckIncompleteUniquenessPatterns { get; set; } = false;
@@ -158,7 +158,7 @@
 		/// and <see langword="false"/> in release environment.
 		/// </para>
 		/// </summary>
-#if DEBUG
+#if AUTHOR_RESERVED
 		public bool SearchExtendedUniqueRectangles { get; set; } = true;
 #else
 		public bool SearchExtendedUniqueRectangles { get; set; } = false;
@@ -322,7 +322,7 @@
 		/// and <see langword="false"/> in release environment.
 		/// </para>
 		/// </summary>
-#if DEBUG
+#if AUTHOR_RESERVED
 		public bool UseExtendedBugSearcher { get; set; } = true;
 #else
 		public bool UseExtendedBugSearcher { get; set; } = false;
