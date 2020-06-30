@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public override string Name => $"{base.Name} ({PetalsCount} {Resources.GetValue("Petal")})";
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 8M + PetalsCount * .1M;
+		public override decimal Difficulty => 8.0M + PetalsCount * .1M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;

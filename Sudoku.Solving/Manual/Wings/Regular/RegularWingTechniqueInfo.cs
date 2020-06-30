@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <summary>
 		/// The difficulty rating.
 		/// </summary>
-		private static readonly decimal[] DifficultyRating = { 0, 0, 0, 0, 4.6M, 4.8M, 5.1M, 5.4M, 5.7M, 6M };
+		private static readonly decimal[] DifficultyRating = { 0, 0, 0, 0, 4.6M, 4.8M, 5.1M, 5.4M, 5.7M, 6.0M };
 
 
 		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>

@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.Subsets
 			Size switch
 			{
 				2 => 3.4M,
-				3 => 4M,
+				3 => 4.0M,
 				4 => 5.4M,
 				_ => throw Throwings.ImpossibleCase
 			};

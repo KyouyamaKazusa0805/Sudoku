@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public IReadOnlyList<Conclusion> ContradictionSeries { get; }
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 8M + GetExtraDifficultyByLength(ContradictionSeries.Count);
+		public override decimal Difficulty => 8.0M + GetExtraDifficultyByLength(ContradictionSeries.Count);
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;

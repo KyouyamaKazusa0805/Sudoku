@@ -35,7 +35,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		public override bool ShowDifficulty => false;
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 7M;
+		public override decimal Difficulty => 7.0M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.VeryHard;

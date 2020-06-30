@@ -92,7 +92,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		public GridMap IntersectionCells { get; }
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 5M + (IsolatedDigitsMask != 0 ? .1M : 0) + (IsCannibalistic ? .2M : 0);
+		public override decimal Difficulty => 5.0M + (IsolatedDigitsMask != 0 ? .1M : 0) + (IsCannibalistic ? .2M : 0);
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

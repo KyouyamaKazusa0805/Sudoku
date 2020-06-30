@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public int Digit => Conclusions[0].Digit;
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 9M;
+		public override decimal Difficulty => 9.0M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;

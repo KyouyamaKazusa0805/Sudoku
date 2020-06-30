@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <summary>
 		/// The basic difficulty rating table.
 		/// </summary>
-		private static readonly decimal[] BasicDiff = { 0, 0, 3.2M, 3.8M, 5.2M, 6M, 6M, 6.6M, 7M };
+		private static readonly decimal[] BasicDiff = { 0, 0, 3.2M, 3.8M, 5.2M, 6.0M, 6.0M, 6.6M, 7.0M };
 
 		/// <summary>
 		/// The finned difficulty rating table.

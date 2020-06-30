@@ -44,16 +44,16 @@ namespace Sudoku.Solving.Manual.Subsets
 		public override decimal Difficulty =>
 			Size switch
 			{
-				2 => 3M,
+				2 => 3.0M,
 				3 => 3.6M,
-				4 => 5M,
+				4 => 5.0M,
 				_ => throw Throwings.ImpossibleCase
 			} + IsLocked switch
 			{
 				null => 0,
 				true => Size switch
 				{
-					2 => -1M,
+					2 => -1.0M,
 					3 => -1.1M,
 					_ => throw Throwings.ImpossibleCase
 				},

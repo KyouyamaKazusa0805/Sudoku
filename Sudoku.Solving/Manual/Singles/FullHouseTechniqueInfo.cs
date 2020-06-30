@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 1M;
+		public override decimal Difficulty => 1.0M;
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode => TechniqueCode.FullHouse;

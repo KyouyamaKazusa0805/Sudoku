@@ -36,7 +36,7 @@ namespace Sudoku.Solving.Manual.Sdps
 			TechniqueCode switch
 			{
 				TechniqueCode.TurbotFish => 4.2M,
-				TechniqueCode.Skyscraper => 4M,
+				TechniqueCode.Skyscraper => 4.0M,
 				TechniqueCode.TwoStringKite => 4.1M,
 				_ => throw new NotSupportedException("The specified value is invalid.")
 			};

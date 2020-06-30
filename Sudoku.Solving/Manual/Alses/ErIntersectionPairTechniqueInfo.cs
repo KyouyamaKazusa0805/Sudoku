@@ -48,7 +48,7 @@ namespace Sudoku.Solving.Manual.Alses
 		public int Digit2 { get; }
 
 		/// <inheritdoc/>
-		public override decimal Difficulty => 6M;
+		public override decimal Difficulty => 6.0M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
