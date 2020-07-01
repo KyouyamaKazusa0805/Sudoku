@@ -2317,6 +2317,18 @@
 		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
 	</operator>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher">
+            <summary>
+            Encapsulates an <b>alternating inference chain</b> (AIC) technique searcher.
+            </summary>
+            <remarks>
+            I want to use BFS (breadth-first searching) to search for chains, which can avoid
+            the redundant backtracking.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo">
             <summary>
             Provides a usage of <b>chain</b> technique.
@@ -2332,44 +2344,6 @@
             <summary>
             Encapsulates a <b>chain</b> technique searcher.
             </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher._withNishio">
-            <summary>
-            Indicats whether the searcher will search for nishio forcing chains.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher._withMultiple">
-            <summary>
-            Indicating whether the searcher will search for multiple forcing chains.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher._withDynamic">
-            <summary>
-            Indicating whether the searcher will search for dynamic forcing chains.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher._level">
-            <summary>
-            The dynamic level. <c>0</c> is for no dynamic.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Int32)">
-            <summary>
-            Initializes an instance with the specified information.
-            </summary>
-            <param name="withNishio">
-            A <see cref="T:System.Boolean"/> value indicating whether the searcher will search for nishio forcing chains.
-            </param>
-            <param name="withMultiple">
-            A <see cref="T:System.Boolean"/> value indicating whether the searcher will search for multiple forcing chains.
-            </param>
-            <param name="withDynamic">
-            A <see cref="T:System.Boolean"/> value indicating whether the searcher will search for dynamic forcing chains.
-            </param>
-            <param name="level">The dynamic level. <c>0</c> is for no dynamic.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations">
             <summary>
