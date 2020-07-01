@@ -30,18 +30,10 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		/// <inheritdoc/>
 		/// <remarks>
 		/// In fact, <c>Hybrid-Wing</c>s, <c>Local-Wing</c>s, <c>Split-Wing</c>s and <c>M-Wing</c>s can
-		/// be found in another searcher. However, these wings are not elementary and necessary techniques
+		/// be found in another searcher. In addition, these wings are not elementary and necessary techniques
 		/// so we does not need to list them.
 		/// </remarks>
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid) => GetAllWWings(accumulator, grid);
-
-		/// <summary>
-		/// Search for all W-Wings.
-		/// </summary>
-		/// <param name="result">The result accumulator.</param>
-		/// <param name="grid">The grid.</param>
-		/// <returns>All technique information instances.</returns>
-		public static void GetAllWWings(IBag<TechniqueInfo> result, IReadOnlyGrid grid)
+		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			if (BivalueMap.Count < 2)
 			{
@@ -103,7 +95,6 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 							}
 
 							// W-Wing found.
-							var conclusions = new List<Conclusion>();
 							int elimDigit = i == 0 ? digits[1] : digits[0];
 							var elimMap = intersection & CandMaps[elimDigit];
 							if (elimMap.IsEmpty)
@@ -111,12 +102,13 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 								continue;
 							}
 
+							var conclusions = new List<Conclusion>();
 							foreach (int offset in elimMap)
 							{
 								conclusions.Add(new Conclusion(Elimination, offset, elimDigit));
 							}
 
-							result.Add(
+							accumulator.Add(
 								new WWingTechniqueInfo(
 									conclusions,
 									views: new[]

@@ -8071,17 +8071,9 @@
             <inheritdoc/>
             <remarks>
             In fact, <c>Hybrid-Wing</c>s, <c>Local-Wing</c>s, <c>Split-Wing</c>s and <c>M-Wing</c>s can
-            be found in another searcher. However, these wings are not elementary and necessary techniques
+            be found in another searcher. In addition, these wings are not elementary and necessary techniques
             so we does not need to list them.
             </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingTechniqueSearcher.GetAllWWings(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            Search for all W-Wings.
-            </summary>
-            <param name="result">The result accumulator.</param>
-            <param name="grid">The grid.</param>
-            <returns>All technique information instances.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Wings.Irregular.WWingTechniqueInfo">
             <summary>
