@@ -191,9 +191,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				}
 			}
 
-			// Sort if worth.
+			// Sort and remove duplicate instances if worth.
 			if (tempList.Count != 0)
 			{
+				tempList = tempList.Distinct().ToList();
 				tempList.Sort();
 				accumulator.AddRange(tempList);
 			}
