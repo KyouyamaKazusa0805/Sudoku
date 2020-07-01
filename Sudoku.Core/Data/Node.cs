@@ -8,27 +8,47 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a chain node.
 	/// </summary>
-	public unsafe struct Node : IEquatable<Node>
+	public unsafe struct Node : IDisposable, IEquatable<Node>
 	{
 		/// <summary>
 		/// Indicates the cell used. In the default case, the AIC contains only one cell and the digit (which
 		/// combine to a candidate).
 		/// </summary>
-		private readonly int _cell;
+		private int _cell;
 
 
+		/// <summary>
+		/// Initializes an instance with the specified digit, cell and a <see cref="bool"/> value.
+		/// </summary>
+		/// <param name="digit">The digit.</param>
+		/// <param name="cell">The cell.</param>
+		/// <param name="isOn">A <see cref="bool"/> value indicating whether the node is on.</param>
 		public Node(int digit, int cell, bool isOn) : this()
 		{
 			(Digit, Cells, IsOn) = (digit, new GridMap { cell }, isOn);
 			_cell = cell;
 		}
 
+		/// <summary>
+		/// Initializes an instance with the specified digit, cells and a <see cref="bool"/> value.
+		/// </summary>
+		/// <param name="digit">The digit.</param>
+		/// <param name="cells">The cells.</param>
+		/// <param name="isOn">A <see cref="bool"/> value indicating whether the node is on.</param>
 		public Node(int digit, GridMap cells, bool isOn) : this()
 		{
 			(Digit, Cells, IsOn) = (digit, cells, isOn);
 			_cell = cells.Count == 1 ? cells.SetAt(0) : -1;
 		}
 
+		/// <summary>
+		/// Initializes an instance with the specified digit, the cell, a <see cref="bool"/> value
+		/// and the parent node pointer (The pointer pointing to a parent node rather than a list of parent nodes).
+		/// </summary>
+		/// <param name="digit">The digit.</param>
+		/// <param name="cell">The cell.</param>
+		/// <param name="isOn">A <see cref="bool"/> value indicating whether the specified node is on.</param>
+		/// <param name="parent">The parent node pointer.</param>
 		public Node(int digit, int cell, bool isOn, Node* parent) : this(digit, cell, isOn)
 		{
 			Alloc();
@@ -39,7 +59,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the digit.
 		/// </summary>
-		public int Digit { get; }
+		public readonly int Digit { get; }
 
 		/// <summary>
 		/// Indicates the number of parents.
@@ -69,6 +89,18 @@ namespace Sudoku.Data
 
 
 		/// <summary>
+		/// Get the parent node with the specified index.
+		/// </summary>
+		/// <param name="index">The index.</param>
+		/// <returns>The pointer pointing to the node.</returns>
+		/// <exception cref="ArgumentOutOfRangeException">
+		/// Throws when the index is out of the range.
+		/// </exception>
+		public readonly Node* this[int index] =>
+			index < 0 || index > ParentsCount ? throw new ArgumentOutOfRangeException(nameof(index)) : Parents[index];
+
+
+		/// <summary>
 		/// Add a node into the list.
 		/// </summary>
 		/// <param name="nodePtr">The node pointer.</param>
@@ -80,6 +112,10 @@ namespace Sudoku.Data
 			}
 
 			Parents[ParentsCount++] = nodePtr;
+			if (ParentsCount != 1)
+			{
+				_cell = -1;
+			}
 		}
 
 		/// <summary>
@@ -100,18 +136,20 @@ namespace Sudoku.Data
 			}
 		}
 
+		/// <inheritdoc/>
+		public readonly void Dispose() => Free();
+
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
-		public override bool Equals(object? obj) => obj is Node comparer && Equals(comparer);
+		public override readonly bool Equals(object? obj) => obj is Node comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(Node other) => Handle == other.Handle;
+		public readonly bool Equals(Node other) => Handle == other.Handle;
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
-		public override int GetHashCode() => Handle.GetHashCode();
+		public override readonly int GetHashCode() => Handle.GetHashCode();
 
-		///// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
-		//public override string ToString() =>
-		//	$"Candidate: {new CandidateCollection(Candidate).ToString()}, Parents pointer: {(int)Parents}";
+		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		public override readonly string ToString() => $"{new CellCollection(Cells).ToString()}({Digit + 1})";
 
 		/// <summary>
 		/// Allocate the memory.
@@ -123,7 +161,7 @@ namespace Sudoku.Data
 		/// Free the memory.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void Free() => Marshal.FreeHGlobal(Handle);
+		private readonly void Free() => Marshal.FreeHGlobal(Handle);
 
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>

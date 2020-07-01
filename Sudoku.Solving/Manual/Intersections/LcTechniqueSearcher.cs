@@ -38,10 +38,7 @@ namespace Sudoku.Solving.Manual.Intersections
 					continue;
 				}
 
-				short m1 = BitwiseOrMasks(grid, a);
-				short m2 = BitwiseOrMasks(grid, b);
-				short m3 = BitwiseOrMasks(grid, c);
-				short m = (short)(m3 & (m1 ^ m2));
+				short m = (short)(BitwiseOrMasks(grid, c) & (BitwiseOrMasks(grid, a) ^ BitwiseOrMasks(grid, b)));
 				if (m == 0)
 				{
 					continue;

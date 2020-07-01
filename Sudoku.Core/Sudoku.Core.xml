@@ -3503,6 +3503,32 @@
             combine to a candidate).
             </summary>
         </member>
+        <member name="M:Sudoku.Data.Node.#ctor(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Initializes an instance with the specified digit, cell and a <see cref="T:System.Boolean"/> value.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="cell">The cell.</param>
+            <param name="isOn">A <see cref="T:System.Boolean"/> value indicating whether the node is on.</param>
+        </member>
+        <member name="M:Sudoku.Data.Node.#ctor(System.Int32,Sudoku.Data.GridMap,System.Boolean)">
+            <summary>
+            Initializes an instance with the specified digit, cells and a <see cref="T:System.Boolean"/> value.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="cells">The cells.</param>
+            <param name="isOn">A <see cref="T:System.Boolean"/> value indicating whether the node is on.</param>
+        </member>
+        <member name="M:Sudoku.Data.Node.#ctor(System.Int32,System.Int32,System.Boolean,Sudoku.Data.Node*)">
+            <summary>
+            Initializes an instance with the specified digit, the cell, a <see cref="T:System.Boolean"/> value
+            and the parent node pointer (The pointer pointing to a parent node rather than a list of parent nodes).
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="cell">The cell.</param>
+            <param name="isOn">A <see cref="T:System.Boolean"/> value indicating whether the specified node is on.</param>
+            <param name="parent">The parent node pointer.</param>
+        </member>
         <member name="P:Sudoku.Data.Node.Digit">
             <summary>
             Indicates the digit.
@@ -3534,6 +3560,16 @@
             The parents.
             </summary>
         </member>
+        <member name="P:Sudoku.Data.Node.Item(System.Int32)">
+            <summary>
+            Get the parent node with the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The pointer pointing to the node.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the index is out of the range.
+            </exception>
+        </member>
         <member name="M:Sudoku.Data.Node.AddParent(Sudoku.Data.Node*)">
             <summary>
             Add a node into the list.
@@ -3544,6 +3580,9 @@
             <summary>
             Clear all parent nodes.
             </summary>
+        </member>
+        <member name="M:Sudoku.Data.Node.Dispose">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Node.Equals(System.Object)">
             <method name="Equals" paramType="object">
@@ -3566,6 +3605,12 @@
 			Serves as the default hash function.
 		</summary>
 		<returns>The hash code.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Data.Node.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
 	</method>
         </member>
         <member name="M:Sudoku.Data.Node.Alloc">
