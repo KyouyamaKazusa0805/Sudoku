@@ -26,6 +26,13 @@
 			Indicates the conclusions.
 		</summary>
 	</property>
+
+	<property name="IMaps">
+		<remarks>
+			This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
+			not use this field on <see cref="SingleTechniqueSearcher"/> instance.
+		</remarks>
+	</property>
 	
 	<!-- Methods -->
 	<method name="Add" type="IEliminations">

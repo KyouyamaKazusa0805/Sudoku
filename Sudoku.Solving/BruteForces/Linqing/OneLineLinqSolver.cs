@@ -58,20 +58,20 @@ namespace Sudoku.Solving.BruteForces.Linqing
 			var result = new List<string> { puzzle };
 			while (result.Count > 0 && indexOf(result[0]) != -1)
 			{
-				result = new List<string>(
+				result = (
 					from solution in result
 					let Index = indexOf(solution)
 					let Column = Index % 9
 					let Block = Index - Index % 27 + Column - Index % 3
 					from value in values
-					where !(
+					where (
 						from i in Range(0, 9)
 						let InRow = solution[Index - Column + i] == value
 						let InColumn = solution[Column + i * 9] == value
 						let InBlock = solution[Block + i % 3 + (int)Floor(i / 3F) * 9] == value
 						where InRow || InColumn || InBlock
-						select i).Any()
-					select $"{solution.Substring(0, Index)}{value}{solution.Substring(Index + 1)}");
+						select i).None()
+					select $"{solution.Substring(0, Index)}{value}{solution.Substring(Index + 1)}").ToList();
 			}
 
 			return result;

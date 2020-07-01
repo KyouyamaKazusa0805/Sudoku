@@ -457,6 +457,16 @@
             <param name="paramName">The name of format string parameter.</param>
             <returns>The exception.</returns>
         </member>
+        <member name="T:Sudoku.Constants.Values">
+            <summary>
+            The values used in the whole solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.Values.BooleanValues">
+            <summary>
+            The two <see cref="T:System.Boolean"/> values used in traversing.
+            </summary>
+        </member>
         <member name="T:Sudoku.Data.BitCombinationGenerator">
             <summary>
             Encapsulates a bit combination generator.

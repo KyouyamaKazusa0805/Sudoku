@@ -6,6 +6,7 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.Values;
 using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Fishes
@@ -32,7 +33,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		{
 			for (int size = 2; size <= 4; size++)
 			{
-				foreach (bool searchRow in stackalloc[] { false, true })
+				foreach (bool searchRow in BooleanValues)
 				{
 					AccumulateAllBySize(accumulator, grid, size, searchRow);
 				}

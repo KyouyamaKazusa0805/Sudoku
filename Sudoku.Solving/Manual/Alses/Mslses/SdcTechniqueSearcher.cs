@@ -5,6 +5,7 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.Values;
 using static Sudoku.Data.ConclusionType;
 
 namespace Sudoku.Solving.Manual.Alses.Mslses
@@ -50,7 +51,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 			}
 
 			var list = new List<GridMap>(4);
-			foreach (bool cannibalMode in stackalloc[] { false, true })
+			foreach (bool cannibalMode in BooleanValues)
 			{
 				foreach (var ((baseSet, coverSet), (a, b, c)) in IntersectionMaps)
 				{

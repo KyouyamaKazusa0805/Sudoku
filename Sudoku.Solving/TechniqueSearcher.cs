@@ -21,50 +21,36 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// The empty cells map.
 		/// </summary>
-		/// <remarks>
-		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d
-		/// better</b> not use this field on <see cref="SingleTechniqueSearcher"/> instance.
-		/// </remarks>
+		/// <include file='SolvingDocComments.xml' path='comments/property[@name="IMaps"]'/>
 		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
 		internal static GridMap EmptyMap { get; set; }
 
 		/// <summary>
 		/// The bi-value cells map.
 		/// </summary>
-		/// <remarks>
-		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d
-		/// better</b> not use this field on <see cref="SingleTechniqueSearcher"/> instance.
-		/// </remarks>
+		/// <include file='SolvingDocComments.xml' path='comments/property[@name="IMaps"]'/>
 		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
 		internal static GridMap BivalueMap { get; set; }
 
 		/// <summary>
 		/// The candidate maps.
 		/// </summary>
-		/// <remarks>
-		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d
-		/// better</b> not use this field on <see cref="SingleTechniqueSearcher"/> instance.
-		/// </remarks>
+		/// <include file='SolvingDocComments.xml' path='comments/property[@name="IMaps"]'/>
 		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
 		internal static GridMap[] CandMaps { get; set; }
 
 		/// <summary>
 		/// The digit maps.
 		/// </summary>
-		/// <remarks>
-		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d
-		/// better</b> not use this field on <see cref="SingleTechniqueSearcher"/> instance.
-		/// </remarks>
+		/// <include file='SolvingDocComments.xml' path='comments/property[@name="IMaps"]'/>
 		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
 		internal static GridMap[] DigitMaps { get; set; }
 
 		/// <summary>
 		/// The value maps.
 		/// </summary>
-		/// <remarks>
-		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d
-		/// better</b> not use this field on <see cref="SingleTechniqueSearcher"/> instance.
-		/// </remarks>
+		/// <include file='SolvingDocComments.xml' path='comments/property[@name="IMaps"]'/>
+		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
 		internal static GridMap[] ValueMaps { get; set; }
 
 
