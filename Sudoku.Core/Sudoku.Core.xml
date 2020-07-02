@@ -3549,6 +3549,11 @@
             Indicates the number of parents.
             </summary>
         </member>
+        <member name="P:Sudoku.Data.Node.AncestorsCount">
+            <summary>
+            Get the total number of the ancestors.
+            </summary>
+        </member>
         <member name="P:Sudoku.Data.Node.IsOn">
             <summary>
             Indicates whether the specified node is on.

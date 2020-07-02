@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Sudoku.Data.Collections;
@@ -65,6 +66,34 @@ namespace Sudoku.Data
 		/// Indicates the number of parents.
 		/// </summary>
 		public int ParentsCount { readonly get; private set; }
+
+		/// <summary>
+		/// Get the total number of the ancestors.
+		/// </summary>
+		public int AncestorsCount
+		{
+			get
+			{
+				var ancestors = new List<Node>();
+				for (List<Node> todo = new List<Node> { this }, next; todo.Count != 0; todo = next)
+				{
+					next = new List<Node>();
+					foreach (var p in todo)
+					{
+						if (!ancestors.Contains(p))
+						{
+							ancestors.Add(p);
+							for (int i = 0; i < p.ParentsCount; i++)
+							{
+								next.Add(*p.Parents[i]);
+							}
+						}
+					}
+				}
+
+				return ancestors.Count;
+			}
+		}
 
 		/// <summary>
 		/// Indicates whether the specified node is on.

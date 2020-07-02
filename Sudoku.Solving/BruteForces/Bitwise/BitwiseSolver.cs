@@ -21,6 +21,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 	/// Provides a solver using bitwise method.
 	/// </summary>
 	[SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Pending>")]
+	[SuppressMessage("Globalization", "CA2101:Specify marshaling for P/Invoke string arguments", Justification = "<Pending>")]
 	public sealed class BitwiseSolver : Solver
 	{
 		/// <inheritdoc/>
@@ -182,8 +183,8 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <returns>The solution count of the puzzle.</returns>
 		[DllImport("Sudoku.BitwiseSolver (x86).dll", EntryPoint = "Solve", CallingConvention = StdCall, CharSet = Ansi)]
 		private static extern native_int Solve32(
-			[MarshalAs(LPWStr)] ImmutableString puzzle,
-			[MarshalAs(LPWStr)] CStyleString? solution,
+			[MarshalAs(LPStr)] ImmutableString puzzle,
+			[MarshalAs(LPStr)] CStyleString? solution,
 #if TARGET_64BIT
 			[MarshalAs(I4)]
 #else
@@ -203,8 +204,8 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 		/// <returns>The solution count of the puzzle.</returns>
 		[DllImport("Sudoku.BitwiseSolver (x64).dll", EntryPoint = "Solve", CallingConvention = StdCall, CharSet = Ansi)]
 		private static extern native_int Solve64(
-			[MarshalAs(LPWStr)] ImmutableString puzzle,
-			[MarshalAs(LPWStr)] CStyleString? solution,
+			[MarshalAs(LPStr)] ImmutableString puzzle,
+			[MarshalAs(LPStr)] CStyleString? solution,
 #if TARGET_64BIT
 			[MarshalAs(I4)]
 #else

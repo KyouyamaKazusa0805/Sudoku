@@ -21,6 +21,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 	/// Provides a sukaku solver using bitwise method.
 	/// </summary>
 	[SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Pending>")]
+	[SuppressMessage("Globalization", "CA2101:Specify marshaling for P/Invoke string arguments", Justification = "<Pending>")]
 	public sealed class SukakuBitwiseSolver : Solver
 	{
 		/// <inheritdoc/>
