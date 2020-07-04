@@ -1,0 +1,242 @@
+﻿using System.Linq;
+using Sudoku.Extensions;
+
+namespace System.Collections.Generic
+{
+	/// <summary>
+	/// Indicates a set.
+	/// </summary>
+	/// <typeparam name="T">The type of the element.</typeparam>
+	public sealed class Set<T> : IEnumerable<T>, IEquatable<Set<T>?>, ISet<T> where T : notnull, IEquatable<T>
+	{
+		/// <summary>
+		/// The inner list.
+		/// </summary>
+		private readonly IList<T> _list;
+
+
+		/// <include file='../../../../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		public Set() => _list = new List<T>();
+
+
+		/// <summary>
+		/// The number of elements.
+		/// </summary>
+		public int Count => _list.Count;
+
+		/// <inheritdoc/>
+		bool ICollection<T>.IsReadOnly => false;
+
+
+		/// <inheritdoc/>
+		public void Clear() => _list.Clear();
+
+		/// <inheritdoc/>
+		public void CopyTo(T[] array, int arrayIndex) => _list.CopyTo(array, arrayIndex);
+
+		/// <summary>
+		/// Add an element into the set.
+		/// </summary>
+		/// <param name="item">The item.</param>
+		public bool Add(T item)
+		{
+			if (_list.Contains(item))
+			{
+				return false;
+			}
+
+			_list.Add(item);
+			return true;
+		}
+
+		/// <summary>
+		/// Remove an element out of the list.
+		/// </summary>
+		/// <returns>The element.</returns>
+		public T Remove()
+		{
+			var result = _list[^1];
+			_list.RemoveLastElement();
+			return result;
+		}
+
+		/// <inheritdoc/>
+		public override bool Equals(object? obj) => obj is Set<T> comparer && Equals(comparer);
+
+		/// <inheritdoc/>
+		public bool Equals(Set<T>? other) => SetEquals(this, other);
+
+		/// <inheritdoc/>
+		public bool Contains(T item) => _list.Contains(item);
+		
+		/// <inheritdoc/>
+		public bool Remove(T item) => _list.Remove(item);
+
+		/// <inheritdoc/>
+		public override int GetHashCode()
+		{
+			var hashCode = new HashCode();
+			foreach (var element in _list)
+			{
+				hashCode.Add(element);
+			}
+
+			return hashCode.ToHashCode();
+		}
+
+		/// <inheritdoc/>
+		public void ExceptWith(IEnumerable<T> other)
+		{
+			foreach (var element in new List<T>(_list)) // Should not use lonely '_list'.
+			{
+				if (other.Contains(element))
+				{
+					_list.Remove(element);
+				}
+			}
+		}
+
+		/// <inheritdoc/>
+		public void IntersectWith(IEnumerable<T> other)
+		{
+			foreach (var element in new List<T>(_list)) // Should not use lonely '_list'.
+			{
+				if (!other.Contains(element))
+				{
+					_list.Remove(element);
+				}
+			}
+		}
+
+		/// <inheritdoc/>
+		public bool IsProperSubsetOf(IEnumerable<T> other) => IsSubsetOf(other) && other.Count() != Count;
+
+		/// <inheritdoc/>
+		public bool IsProperSupersetOf(IEnumerable<T> other) => IsSupersetOf(other) && other.Count() != Count;
+
+		/// <inheritdoc/>
+		public bool IsSubsetOf(IEnumerable<T> other)
+		{
+			foreach (var element in _list)
+			{
+				if (!other.Contains(element))
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		/// <inheritdoc/>
+		public bool IsSupersetOf(IEnumerable<T> other)
+		{
+			foreach (var element in other)
+			{
+				if (!Contains(element))
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		/// <inheritdoc/>
+		public bool Overlaps(IEnumerable<T> other) => other.Any(element => _list.Contains(element));
+
+		/// <inheritdoc/>
+		public bool SetEquals(IEnumerable<T> other) => other.All(element => _list.Contains(element));
+
+		/// <inheritdoc/>
+		public void SymmetricExceptWith(IEnumerable<T> other)
+		{
+			var elements = _list.Except(other).Union(other.Except(_list));
+			_list.Clear();
+			_list.AddRange(elements);
+		}
+
+		/// <inheritdoc/>
+		public void UnionWith(IEnumerable<T> other)
+		{
+			foreach (var element in other)
+			{
+				_list.AddIfDoesNotContain(element);
+			}
+		}
+
+		/// <inheritdoc/>
+		public IEnumerator<T> GetEnumerator() => _list.GetEnumerator();
+
+		/// <inheritdoc/>
+		void ICollection<T>.Add(T item) => Add(item);
+
+		/// <inheritdoc/>
+		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+
+		private static bool InternalEquals(Set<T>? left, Set<T>? right) =>
+			(left is null, right is null) switch
+			{
+				(true, true) => true,
+				(false, false) => SetEquals(left, right),
+				_ => false
+			};
+
+		private static bool SetEquals(Set<T>? left, Set<T>? right)
+		{
+			switch ((left is null, right is null))
+			{
+				case (true, true):
+				{
+					return true;
+				}
+				case (false, false):
+				{
+					foreach (var element in left!._list)
+					{
+						if (!right!._list.Contains(element))
+						{
+							return false;
+						}
+					}
+
+					return true;
+				}
+				default:
+				{
+					return false;
+				}
+			}
+		}
+
+
+		public static bool operator ==(Set<T>? left, Set<T>? right) => InternalEquals(left, right);
+
+		public static bool operator !=(Set<T>? left, Set<T>? right) => !(left == right);
+
+		public static Set<T> operator &(Set<T> left, IEnumerable<T> right)
+		{
+			left.IntersectWith(right);
+			return left;
+		}
+
+		public static Set<T> operator |(Set<T> left, IEnumerable<T> right)
+		{
+			left.UnionWith(right);
+			return left;
+		}
+
+		public static Set<T> operator ^(Set<T> left, IEnumerable<T> right)
+		{
+			left.SymmetricExceptWith(right);
+			return left;
+		}
+		
+		public static Set<T> operator -(Set<T> left, IEnumerable<T> right)
+		{
+			left.ExceptWith(right);
+			return left;
+		}
+	}
+}

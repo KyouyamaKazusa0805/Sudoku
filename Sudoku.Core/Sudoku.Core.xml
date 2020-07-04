@@ -3594,9 +3594,7 @@
             </summary>
             <param name="index">The index.</param>
             <returns>The pointer pointing to the node.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the index is out of the range.
-            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the index is out of the range.</exception>
         </member>
         <member name="M:Sudoku.Data.Node.AddParent(Sudoku.Data.Node*)">
             <summary>
@@ -7965,6 +7963,102 @@
             Adds a series of elements to the <see cref="T:System.Collections.Generic.IBag`1"/>.
             </summary>
             <param name="items">The elements to add.</param>
+        </member>
+        <member name="T:System.Collections.Generic.Set`1">
+            <summary>
+            Indicates a set.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+        </member>
+        <member name="F:System.Collections.Generic.Set`1._list">
+            <summary>
+            The inner list.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.#ctor">
+            <defaultConstructor>
+		<summary>Create an instance with default initialization.</summary>
+	</defaultConstructor>
+        </member>
+        <member name="P:System.Collections.Generic.Set`1.Count">
+            <summary>
+            The number of elements.
+            </summary>
+        </member>
+        <member name="P:System.Collections.Generic.Set`1.System#Collections#Generic#ICollection{T}#IsReadOnly">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.Clear">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.CopyTo(`0[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.Add(`0)">
+            <summary>
+            Add an element into the set.
+            </summary>
+            <param name="item">The item.</param>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.Remove">
+            <summary>
+            Remove an element out of the list.
+            </summary>
+            <returns>The element.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.Equals(System.Collections.Generic.Set{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.Contains(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.Remove(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.Overlaps(System.Collections.Generic.IEnumerable{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.SetEquals(System.Collections.Generic.IEnumerable{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.UnionWith(System.Collections.Generic.IEnumerable{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.System#Collections#Generic#ICollection{T}#Add(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
         </member>
         <member name="T:System.Collections.Generic.TreeNode`1">
             <summary>

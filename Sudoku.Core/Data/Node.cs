@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Sudoku.Data.Collections;
@@ -180,9 +181,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="index">The index.</param>
 		/// <returns>The pointer pointing to the node.</returns>
-		/// <exception cref="ArgumentOutOfRangeException">
-		/// Throws when the index is out of the range.
-		/// </exception>
+		/// <exception cref="ArgumentOutOfRangeException">Throws when the index is out of the range.</exception>
 		public readonly Node* this[int index] =>
 			index < 0 || index > ParentsCount ? throw new ArgumentOutOfRangeException(nameof(index)) : Parents[index];
 
@@ -198,8 +197,8 @@ namespace Sudoku.Data
 				Alloc();
 			}
 
-			Parents[ParentsCount++] = nodePtr;
-			if (ParentsCount != 1)
+			Parents[ParentsCount] = nodePtr;
+			if (++ParentsCount != 1)
 			{
 				_cell = -1;
 			}
@@ -221,6 +220,8 @@ namespace Sudoku.Data
 			{
 				Parents[i] = null;
 			}
+
+			_cell = -1;
 		}
 
 		/// <inheritdoc/>
@@ -242,7 +243,7 @@ namespace Sudoku.Data
 			var pTest = node;
 			while (pTest.ParentsCount != 0)
 			{
-				pTest = *pTest[0];
+				pTest = *pTest.Parents[0];
 				if (pTest == this)
 				{
 					return true;
@@ -256,7 +257,26 @@ namespace Sudoku.Data
 		public override readonly int GetHashCode() => Handle.GetHashCode();
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
-		public override readonly string ToString() => $"{new CellCollection(Cells).ToString()}({Digit + 1})";
+		public override readonly string ToString()
+		{
+			if (ParentsCount == 0)
+			{
+				return $"Candidates: {new CellCollection(Cells).ToString()}({Digit + 1})";
+			}
+			else
+			{
+				var nodes = new SudokuMap();
+				for (int i = 0; i < ParentsCount; i++)
+				{
+					var node = *Parents[i];
+					nodes.AddRange(from cell in node.Cells select cell * 9 + node.Digit);
+				}
+
+				string cells = new CellCollection(Cells).ToString();
+				string parents = new CandidateCollection(nodes).ToString();
+				return $"Candidates: {cells}({Digit + 1}), Parents: {parents}";
+			}
+		}
 
 		/// <summary>
 		/// Allocate the memory.

@@ -116,8 +116,8 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			var loops = new List<Node>();
 			var chains = new List<Node>();
-			var onToOn = new HashSet<Node> { pOn };
-			var onToOff = new HashSet<Node>();
+			var onToOn = new Set<Node> { pOn };
+			var onToOff = new Set<Node>();
 			DoLoops(grid, onToOn, onToOff, xEnabled, yEnabled, loops, pOn);
 
 			if (xEnabled)
@@ -125,14 +125,14 @@ namespace Sudoku.Solving.Manual.Chaining
 				// Y-Chains don't exist (length must be both odd and even).
 
 				// AICs with off implication.
-				onToOn = new HashSet<Node> { pOn };
-				onToOff = new HashSet<Node>();
+				onToOn = new Set<Node> { pOn };
+				onToOff = new Set<Node>();
 				DoAic(grid, onToOn, onToOff, yEnabled, chains, pOn);
 
 				// AICs with on implication.
 				var pOff = new Node(pOn.Digit, pOn._cell, false);
-				onToOn = new HashSet<Node>();
-				onToOff = new HashSet<Node> { pOff };
+				onToOn = new Set<Node>();
+				onToOff = new Set<Node> { pOff };
 				DoAic(grid, onToOn, onToOff, yEnabled, chains, pOff);
 			}
 
@@ -164,8 +164,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				cells.Add(p->_cell);
 			}
 
-			var cancelFore = new HashSet<Node>();
-			var cancelBack = new HashSet<Node>();
+			var cancelFore = new Set<Node>();
+			var cancelBack = new Set<Node>();
 			for (var p = &destOn; p->ParentsCount != 0; p = p->Parents[0])
 			{
 				foreach (int cell in PeerMaps[p->_cell])
@@ -177,7 +177,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 			}
 
-			cancelFore.IntersectWith(cancelBack);
+			cancelFore &= cancelBack;
 			var conclusions = new List<Conclusion>();
 			foreach (var node in cancelFore)
 			{
@@ -244,7 +244,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				var o = org.Value;
 				var rev = new Node(o.Digit, o._cell, !o.IsOn);
 				result.Prepend(rev);
-				org = o.ParentsCount != 0 ? (Node?)*o.Parents[0] : null;
+				org = o.ParentsCount != 0 ? *o.Parents[0] : (Node?)null;
 			}
 
 			Node? prev = null;
@@ -263,7 +263,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		private unsafe ISet<Node> GetOnToOff(IReadOnlyGrid grid, Node p, bool yEnabled)
 		{
-			var result = new HashSet<Node>();
+			var result = new Set<Node>();
 
 			if (yEnabled)
 			{
@@ -297,7 +297,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		private unsafe ISet<Node> GetOffToOn(
 			IReadOnlyGrid grid, Node p, ISet<Node> offNodes, bool xEnabled, bool yEnabled)
 		{
-			var result = new HashSet<Node>();
+			var result = new Set<Node>();
 			if (yEnabled)
 			{
 				// First rule: If there's only two candidates in this cell, the other one gets on.
@@ -384,8 +384,8 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				while (pendingOn.Count != 0)
 				{
-					var p = pendingOn[0];
-					pendingOn.RemoveAt(0);
+					var p = pendingOn[^1];
+					pendingOn.RemoveLastElement();
 
 					var makeOff = GetOnToOff(grid, p, yEnabled);
 					foreach (var pOff in makeOff)
@@ -397,7 +397,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							chains.AddIfDoesNotContain(pOff);
 						}
 
-						if (p.IsParentOf(pOff) && !onToOff.Contains(pOff))
+						if (pOff.IsParentOf(p) && !onToOff.Contains(pOff))
 						{
 							// Not processed yet.
 							pendingOff.Add(pOff);
@@ -408,8 +408,9 @@ namespace Sudoku.Solving.Manual.Chaining
 
 				while (pendingOff.Count != 0)
 				{
-					var p = pendingOff[0];
-					pendingOff.RemoveAt(0);
+					var p = pendingOff[^1];
+					pendingOff.RemoveLastElement();
+
 					var makeOn = GetOffToOn(grid, p, onToOff, true, yEnabled);
 					foreach (var pOn in makeOn)
 					{
@@ -443,14 +444,14 @@ namespace Sudoku.Solving.Manual.Chaining
 				length++;
 				while (pendingOn.Count != 0)
 				{
-					var p = pendingOn[0];
-					pendingOn.RemoveAt(0);
+					var p = pendingOn[^1];
+					pendingOn.RemoveLastElement();
 
 					var makeOff = GetOnToOff(grid, p, yEnabled);
 					foreach (var pOff in makeOff)
 					{
 						// Not processed yet.
-						pendingOff.Add(pOff);
+						pendingOff.AddIfDoesNotContain(pOff);
 						onToOff.Add(pOff);
 					}
 				}
@@ -458,8 +459,9 @@ namespace Sudoku.Solving.Manual.Chaining
 				length++;
 				while (pendingOff.Count != 0)
 				{
-					var p = pendingOff[0];
-					pendingOff.RemoveAt(0);
+					var p = pendingOff[^1];
+					pendingOff.RemoveLastElement();
+
 					var makeOn = GetOffToOn(grid, p, onToOff, xEnabled, yEnabled);
 					foreach (var pOn in makeOn)
 					{
@@ -472,7 +474,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						if (!onToOn.Contains(pOn))
 						{
 							// Not processed yet.
-							pendingOn.Add(pOn);
+							pendingOn.AddIfDoesNotContain(pOn);
 							onToOn.Add(pOn);
 						}
 					}
