@@ -10,6 +10,7 @@ using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Alses;
 using Sudoku.Solving.Manual.Alses.Basic;
 using Sudoku.Solving.Manual.Alses.Mslses;
+using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Solving.Manual.Fishes;
 using Sudoku.Solving.Manual.Intersections;
@@ -92,6 +93,7 @@ namespace Sudoku.Solving.Manual
 				new GuardianTechniqueSearcher(),
 				new BugTechniqueSearcher(solver.UseExtendedBugSearcher),
 				new ErIntersectionPairTechniqueSearcher(),
+				new AicTechniqueSearcher(),
 				new AlsXzTechniqueSearcher(
 					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.AllowAlsCycles),
 				new AlsXyWingTechniqueSearcher(

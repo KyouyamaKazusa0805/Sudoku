@@ -3564,15 +3564,28 @@
             Indicates the cells.
             </summary>
         </member>
+        <member name="P:Sudoku.Data.Node.Root">
+            <summary>
+            Indicates the root.
+            </summary>
+            <remarks>
+            This property can only find the first root.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Data.Node.Parents">
+            <summary>
+            The parents.
+            </summary>
+        </member>
         <member name="P:Sudoku.Data.Node.Handle">
             <summary>
             Indicates the handle of the property <see cref="P:Sudoku.Data.Node.Parents"/>.
             </summary>
             <seealso cref="P:Sudoku.Data.Node.Parents"/>
         </member>
-        <member name="P:Sudoku.Data.Node.Parents">
+        <member name="P:Sudoku.Data.Node.Chain">
             <summary>
-            The parents.
+            The chain nodes.
             </summary>
         </member>
         <member name="P:Sudoku.Data.Node.Item(System.Int32)">
@@ -3613,6 +3626,13 @@
         </member>
         <member name="M:Sudoku.Data.Node.Equals(Sudoku.Data.Node)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Node.IsParentOf(Sudoku.Data.Node)">
+            <summary>
+            Determine whether the node is the parent of the specified node.
+            </summary>
+            <param name="node">The node.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Data.Node.GetHashCode">
             <method name="GetHashCode">
@@ -6853,6 +6873,11 @@
             Indicates the X-Chain.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.YChain">
+            <summary>
+            Indicates the Y-Chain.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.FishyCycle">
             <summary>
             Indicates the fishy cycle.
@@ -6936,6 +6961,21 @@
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.GroupedAic">
             <summary>
             Indicates the grouped AIC.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.NishioFc">
+            <summary>
+            Indicates the nishio FCs.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.MultipleFc">
+            <summary>
+            Indicates the multiple FCs.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.DynamicFc">
+            <summary>
+            Indicates the dynamic FCs.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.Erip">

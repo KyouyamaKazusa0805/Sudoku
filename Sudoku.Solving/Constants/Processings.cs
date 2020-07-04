@@ -1,5 +1,7 @@
-﻿using Sudoku.Data;
+﻿using System.Collections.Generic;
+using Sudoku.Data;
 using Sudoku.Extensions;
+using static Sudoku.Data.LinkType;
 
 namespace Sudoku.Solving.Constants
 {
@@ -88,6 +90,72 @@ namespace Sudoku.Solving.Constants
 			//}
 			//return added;
 			#endregion
+		}
+
+		/// <summary>
+		/// Get highlight candidate offsets through the specified target node.
+		/// </summary>
+		/// <param name="target">The target node.</param>
+		/// <returns>The candidate offsets.</returns>
+		public static unsafe IReadOnlyList<(int, int)> GetCandidateOffsets(Node target)
+		{
+			var map = new bool?[729];
+			var result = new List<(int, int)>();
+			foreach (var p in target.Chain)
+			{
+				if (p.ParentsCount <= 6)
+				{
+					// Add candidate offsets from all parents of p to p.
+					for (int i = 0; i < p.ParentsCount; i++)
+					{
+						var pr = *p.Parents[i];
+						map[pr.Cells.Count == 1 ? pr._cell : pr.Cells.SetAt(0)] = pr.IsOn;
+					}
+				}
+			}
+
+			for (int i = 0; i < 729; i++)
+			{
+				bool? value = map[i];
+				if (value.HasValue)
+				{
+					result.Add((i, value.Value ? 1 : 0));
+				}
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// Get the links through the specified target node.
+		/// </summary>
+		/// <returns>The link.</returns>
+		public static unsafe IReadOnlyList<Link> GetLinks(Node target)
+		{
+			var result = new List<Link>();
+			foreach (var p in target.Chain)
+			{
+				if (p.ParentsCount <= 6)
+				{
+					// Add links from all parents of p to p.
+					for (int i = 0; i < p.ParentsCount; i++)
+					{
+						var pr = *p.Parents[i];
+						result.Add(
+							new Link(
+								startCandidate: pr.Cells.Count == 1 ? pr._cell : pr.Cells.SetAt(0),
+								endCandidate: p.Cells.Count == 1 ? p._cell : p.Cells.SetAt(0),
+								linkType: (p.IsOn, pr.IsOn) switch
+								{
+									(false, true) => Strong,
+									(true, false) => Weak,
+									_ => Default
+								}));
+					}
+				}
+			}
+
+			return result;
 		}
 	}
 }

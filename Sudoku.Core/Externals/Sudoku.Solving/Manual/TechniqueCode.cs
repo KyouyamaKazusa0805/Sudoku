@@ -1227,6 +1227,12 @@ namespace Sudoku.Solving.Manual
 		XChain,
 
 		/// <summary>
+		/// Indicates the Y-Chain.
+		/// </summary>
+		[TechniqueDisplay("Y-Chain")]
+		YChain,
+
+		/// <summary>
 		/// Indicates the fishy cycle.
 		/// </summary>
 		[TechniqueDisplay("Fishy Cycle")]
@@ -1327,6 +1333,24 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		[TechniqueDisplay("Grouped Alternating Inference Chain")]
 		GroupedAic,
+
+		/// <summary>
+		/// Indicates the nishio FCs.
+		/// </summary>
+		[TechniqueDisplay("Nishio Forcing Chains")]
+		NishioFc,
+
+		/// <summary>
+		/// Indicates the multiple FCs.
+		/// </summary>
+		[TechniqueDisplay("Multiple Forcing Chains")]
+		MultipleFc,
+
+		/// <summary>
+		/// Indicates the dynamic FCs.
+		/// </summary>
+		[TechniqueDisplay("Dynamic Forcing Chains")]
+		DynamicFc,
 
 		/// <summary>
 		/// Indicates the ERIP.
