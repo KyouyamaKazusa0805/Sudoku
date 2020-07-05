@@ -48,17 +48,23 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override string Name => Resources.GetValue(TechniqueCode.ToString());
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode =>
-			(Target.Chain[^2].Digit == Target.Digit) switch
+		public override TechniqueCode TechniqueCode
+		{
+			get
 			{
-				true => TechniqueCode.Aic,
-				false => Conclusions.Count switch
+				var chain = Target.Chain;
+				return (chain[^2].Digit == chain[1].Digit) switch
 				{
-					1 => TechniqueCode.DiscontinuousNiceLoop,
-					2 => TechniqueCode.XyXChain,
-					_ => throw Throwings.ImpossibleCase
-				}
-			};
+					true => TechniqueCode.Aic,
+					false => Conclusions.Count switch
+					{
+						1 => TechniqueCode.DiscontinuousNiceLoop,
+						2 => TechniqueCode.XyXChain,
+						_ => throw Throwings.ImpossibleCase
+					}
+				};
+			}
+		}
 
 
 		/// <inheritdoc/>

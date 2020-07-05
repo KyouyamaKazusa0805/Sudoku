@@ -126,7 +126,7 @@ namespace Sudoku.Solving.Constants
 
 			foreach (var (cell, isOn) in map)
 			{
-				result.Add((isOn ? 1 : 0, cell));
+				result.Add((isOn ? 0 : 1, cell));
 			}
 
 			return result;

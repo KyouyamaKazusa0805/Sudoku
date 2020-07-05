@@ -410,7 +410,7 @@ namespace Sudoku.Data
 		/// <returns>The result map.</returns>
 		public static SudokuMap CreateInstance(ReadOnlySpan<int> candidates)
 		{
-			var result = new BitArray(729);
+			var result = new BitArray(729, true);
 			foreach (int candidate in candidates)
 			{
 				result.And(AssignBitArray(candidate, false));

@@ -208,18 +208,31 @@ namespace Sudoku.Solving.Manual.Chaining
 			var conclusions = new List<Conclusion>();
 			if (!target.IsOn)
 			{
-				conclusions.Add(new Conclusion(Elimination, target._cell, target.Digit));
-			}
-			else
-			{
-				foreach (int digit in grid.GetCandidates(target._cell))
+				// Get eliminations as an AIC.
+				var startNode = target.Chain[1];
+				int startCandidate = startNode._cell * 9 + startNode.Digit;
+				var endNode = target.Chain[^2];
+				int endCandidate = endNode._cell * 9 + endNode.Digit;
+				var elimMap = SudokuMap.CreateInstance(stackalloc[] { startCandidate, endCandidate });
+				if (elimMap.IsEmpty)
 				{
-					if (digit != target.Digit)
+					return null;
+				}
+
+				foreach (int candidate in elimMap)
+				{
+					if (grid.Exists(candidate / 9, candidate % 9) is true)
 					{
-						conclusions.Add(new Conclusion(Elimination, target._cell, digit));
+						conclusions.Add(new Conclusion(Elimination, candidate));
 					}
 				}
+
+				//conclusions.Add(new Conclusion(Elimination, startCandidate));
 			}
+			//else
+			//{
+			//	conclusions.Add(new Conclusion(Assignment, target._cell, target.Digit));
+			//}
 
 			return conclusions.Count == 0
 				? null
@@ -308,38 +321,6 @@ namespace Sudoku.Solving.Manual.Chaining
 			return result;
 		}
 
-		//private void AddHiddenParentsOfRegion(Node p, int region, ISet<Node> offNodes)
-		//{
-		//	foreach (int cell in CandMaps[p.Digit] & RegionMaps[region])
-		//	{
-		//		var parent = new Node(cell, p.Digit, false);
-		//		if (offNodes.Contains(parent))
-		//		{
-		//			p.AddParent(parent);
-		//		}
-		//		else
-		//		{
-		//			throw new SudokuRuntimeException("The specified parent cannot found.");
-		//		}
-		//	}
-		//}
-
-		//private void AddHiddenParentsOfCell(Node p, IReadOnlyGrid grid, ISet<Node> offNodes)
-		//{
-		//	foreach (int digit in grid.GetCandidates(p._cell))
-		//	{
-		//		var parent = new Node(p._cell, digit, false);
-		//		if (offNodes.Contains(parent))
-		//		{
-		//			p.AddParent(parent);
-		//		}
-		//		else
-		//		{
-		//			throw new SudokuRuntimeException("The specified parent cannot found.");
-		//		}
-		//	}
-		//}
-
 		private void DoAic(
 			IReadOnlyGrid grid, ISet<Node> onToOn, ISet<Node> onToOff, bool yEnabled,
 			IList<Node> chains, Node source)
@@ -364,7 +345,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							chains.AddIfDoesNotContain(pOff);
 						}
 
-						if (/*pOff.IsParentOf(p) && */!onToOff.Contains(pOff))
+						if (!onToOff.Contains(pOff))
 						{
 							// Not processed yet.
 							pendingOff.Add(pOff);
