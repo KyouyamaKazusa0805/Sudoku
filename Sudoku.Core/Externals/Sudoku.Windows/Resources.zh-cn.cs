@@ -311,6 +311,7 @@ namespace Sudoku.Windows
 			["EmptyRectangle"] = "空矩形",
 			["Guardian"] = "守护者",
 			["XChain"] = "同数链",
+			["YChain"] = "同区链",
 			["FishyCycle"] = "同数环",
 			["XyChain"] = "双值格链",
 			["XyCycle"] = "双值格环",

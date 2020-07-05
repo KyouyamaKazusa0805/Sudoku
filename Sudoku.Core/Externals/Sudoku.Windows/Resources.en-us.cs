@@ -311,6 +311,7 @@ namespace Sudoku.Windows
 			["EmptyRectangle"] = "Empty Rectangle",
 			["Guardian"] = "Guardian",
 			["XChain"] = "X-Chain",
+			["YChain"] = "Y-Chain",
 			["FishyCycle"] = "Fishy Cycle",
 			["XyChain"] = "XY-Chain",
 			["XyCycle"] = "XY-Cycle",

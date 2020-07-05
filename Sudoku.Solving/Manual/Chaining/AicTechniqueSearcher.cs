@@ -271,7 +271,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			return result;
 		}
 
-		private ISet<Node> GetOffToOn(IReadOnlyGrid grid, Node p, ISet<Node> offNodes, bool xEnabled, bool yEnabled)
+		private ISet<Node> GetOffToOn(IReadOnlyGrid grid, Node p, bool xEnabled, bool yEnabled)
 		{
 			var result = new Set<Node>();
 			if (yEnabled)
@@ -364,7 +364,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							chains.AddIfDoesNotContain(pOff);
 						}
 
-						if (pOff.IsParentOf(p) && !onToOff.Contains(pOff))
+						if (/*pOff.IsParentOf(p) && */!onToOff.Contains(pOff))
 						{
 							// Not processed yet.
 							pendingOff.Add(pOff);
@@ -378,7 +378,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					var p = pendingOff[^1];
 					pendingOff.RemoveLastElement();
 
-					var makeOn = GetOffToOn(grid, p, onToOff, true, yEnabled);
+					var makeOn = GetOffToOn(grid, p, true, yEnabled);
 					foreach (var pOn in makeOn)
 					{
 						var pOff = new Node(pOn._cell, pOn.Digit, false);
@@ -430,7 +430,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					var p = pendingOff[^1];
 					pendingOff.RemoveLastElement();
 
-					var makeOn = GetOffToOn(grid, p, onToOff, xEnabled, yEnabled);
+					var makeOn = GetOffToOn(grid, p, xEnabled, yEnabled);
 					foreach (var pOn in makeOn)
 					{
 						if (length >= 4 && pOn == source)

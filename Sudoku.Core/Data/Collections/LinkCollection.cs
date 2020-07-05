@@ -95,24 +95,17 @@ namespace Sudoku.Data.Collections
 				}
 				default:
 				{
-					var inferences = _collection.ToArray();
-					int start = inferences[0].StartCandidate, startCell = start / 9, digit = start % 9;
-					var sb = new StringBuilder(new CellCollection(startCell).ToString());
-					for (int i = 0, length = inferences.Length; i < length; i++)
+					var links = _collection.ToArray();
+					var sb = new StringBuilder();
+					for (int i = 0, length = links.Length; i < length; i++)
 					{
-						var (_, end, type) = inferences[i];
-						int endCell = end / 9, endDigit = end % 9;
-						if (digit != endDigit)
-						{
-							sb.Append($"({digit + 1})");
-						}
-
-						sb.NullableAppend(NameAttribute.GetName(type)).Append(new CellCollection(endCell).ToString());
-
-						digit = endDigit; // Replacement.
+						var (start, _, type) = links[i];
+						sb
+							.Append(new CandidateCollection(start).ToString())
+							.Append(NameAttribute.GetName(type));
 					}
 
-					return sb.Append($"({inferences[^1].EndCandidate % 9 + 1})").ToString();
+					return sb.Append(new CandidateCollection(links[^1].EndCandidate).ToString()).ToString();
 				}
 			}
 		}

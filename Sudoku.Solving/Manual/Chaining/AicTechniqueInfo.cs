@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Windows;
 using static Sudoku.Solving.Annotations.TechniqueDisplayAttribute;
 using static Sudoku.Solving.Constants.Processings;
 
@@ -43,14 +45,20 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override int FlatComplexity => Target.AncestorsCount;
 
 		/// <inheritdoc/>
-		public override string Name =>
-			GetDisplayName(
-				(XEnabled && YEnabled, YEnabled) switch
+		public override string Name => Resources.GetValue(TechniqueCode.ToString());
+
+		/// <inheritdoc/>
+		public override TechniqueCode TechniqueCode =>
+			(Target.Chain[^2].Digit == Target.Digit) switch
+			{
+				true => TechniqueCode.Aic,
+				false => Conclusions.Count switch
 				{
-					(true, _) => TechniqueCode.Aic,
-					(_, true) => TechniqueCode.YChain,
-					_ => TechniqueCode.XChain
-				})!;
+					1 => TechniqueCode.DiscontinuousNiceLoop,
+					2 => TechniqueCode.XyXChain,
+					_ => throw Throwings.ImpossibleCase
+				}
+			};
 
 
 		/// <inheritdoc/>

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Diagnostics;
+using System.Linq;
 using Sudoku.Extensions;
 
 namespace System.Collections.Generic
@@ -7,6 +8,7 @@ namespace System.Collections.Generic
 	/// Indicates a set which contains the different elements.
 	/// </summary>
 	/// <typeparam name="T">The type of the element.</typeparam>
+	[DebuggerStepThrough]
 	public sealed class Set<T> : IEnumerable<T>, IEquatable<Set<T>?>, ISet<T>
 		where T : notnull, IEquatable<T>
 	{

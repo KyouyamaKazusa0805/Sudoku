@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using Sudoku.Data.Collections;
 
 namespace Sudoku.Data
@@ -10,7 +9,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a chain node.
 	/// </summary>
-	public unsafe struct Node : IDisposable, IEquatable<Node>
+	public struct Node : IEquatable<Node>
 	{
 		/// <summary>
 		/// Indicates the cell used. In the default case, the AIC contains only one cell and the digit (which
@@ -51,11 +50,7 @@ namespace Sudoku.Data
 		/// <param name="digit">The digit.</param>
 		/// <param name="isOn">A <see cref="bool"/> value indicating whether the specified node is on.</param>
 		/// <param name="parent">The parent node.</param>
-		public Node(int cell, int digit, bool isOn, Node parent) : this(cell, digit, isOn)
-		{
-			Alloc();
-			AddParent(parent);
-		}
+		public Node(int cell, int digit, bool isOn, Node parent) : this(cell, digit, isOn) => AddParent(parent);
 
 
 		/// <summary>
@@ -86,7 +81,7 @@ namespace Sudoku.Data
 							ancestors.Add(p);
 							for (int i = 0; i < p.ParentsCount; i++)
 							{
-								next.Add(p.Parents[i]);
+								next.Add(p[i]);
 							}
 						}
 					}
@@ -124,7 +119,7 @@ namespace Sudoku.Data
 				var p = this;
 				while (p.ParentsCount != 0)
 				{
-					p = p.Parents[0];
+					p = p[0];
 				}
 
 				return p;
@@ -132,47 +127,9 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Gets the start node of its reverse loop.
-		/// </summary>
-		public Node ReverseLoopNode
-		{
-			get
-			{
-				var result = new List<Node>();
-				var org = new Node?(this);
-				while (org.HasValue)
-				{
-					var o = org.Value;
-					var rev = new Node(o._cell, o.Digit, !o.IsOn);
-					result.Prepend(rev);
-					org = o.ParentsCount != 0 ? o[0] : (Node?)null;
-				}
-
-				Node? prev = null;
-				foreach (var rev in result)
-				{
-					if (prev.HasValue)
-					{
-						prev.Value.AddParent(rev);
-					}
-
-					prev = rev;
-				}
-
-				return result[0];
-			}
-		}
-
-		/// <summary>
 		/// The parents.
 		/// </summary>
-		public Node* Parents { readonly get; private set; }
-
-		/// <summary>
-		/// Indicates the handle of the property <see cref="Parents"/>.
-		/// </summary>
-		/// <seealso cref="Parents"/>
-		public IntPtr Handle { readonly get; private set; }
+		public Node[] Parents { readonly get; private set; }
 
 		/// <summary>
 		/// The chain nodes.
@@ -182,7 +139,7 @@ namespace Sudoku.Data
 			get
 			{
 				var result = new List<Node>();
-				var done = new HashSet<Node>();
+				var done = new Set<Node>();
 				var todo = new List<Node> { this };
 				while (todo.Count != 0)
 				{
@@ -195,7 +152,7 @@ namespace Sudoku.Data
 							result.Add(p);
 							for (int i = 0; i < p.ParentsCount; i++)
 							{
-								next.Add(p.Parents[i]);
+								next.Add(p[i]);
 							}
 						}
 					}
@@ -222,12 +179,7 @@ namespace Sudoku.Data
 		/// <param name="node">The node.</param>
 		public void AddParent(Node node)
 		{
-			if (Handle == IntPtr.Zero)
-			{
-				Alloc();
-			}
-
-			Parents[ParentsCount] = node;
+			(Parents ??= new Node[7])[ParentsCount] = node;
 			if (++ParentsCount != 1)
 			{
 				_cell = -1;
@@ -239,23 +191,9 @@ namespace Sudoku.Data
 		/// </summary>
 		public void ClearParents()
 		{
-			if (Handle == IntPtr.Zero)
-			{
-				// No parents.
-				return;
-			}
-
 			ParentsCount = 0;
-			//for (int i = 0; i < 6; i++)
-			//{
-			//	Parents[i] = default;
-			//}
-
 			_cell = -1;
 		}
-
-		/// <inheritdoc/>
-		public readonly void Dispose() => Free();
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
 		public override readonly bool Equals(object? obj) => obj is Node comparer && Equals(comparer);
@@ -273,7 +211,7 @@ namespace Sudoku.Data
 			var pTest = node;
 			while (pTest.ParentsCount != 0)
 			{
-				pTest = pTest.Parents[0];
+				pTest = pTest[0];
 				if (pTest == this)
 				{
 					return true;
@@ -284,7 +222,16 @@ namespace Sudoku.Data
 		}
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
-		public override readonly int GetHashCode() => Handle.GetHashCode();
+		public override readonly int GetHashCode()
+		{
+			var hashCode = new HashCode();
+			foreach (var parent in Parents)
+			{
+				hashCode.Add(parent);
+			}
+
+			return hashCode.ToHashCode();
+		}
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override readonly string ToString()
@@ -307,18 +254,6 @@ namespace Sudoku.Data
 				return $"Candidates: {cells}({Digit + 1}), Parents: {parents}";
 			}
 		}
-
-		/// <summary>
-		/// Allocate the memory.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void Alloc() => Parents = (Node*)(Handle = Marshal.AllocHGlobal(sizeof(Node) * 6)).ToPointer();
-
-		/// <summary>
-		/// Free the memory.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private readonly void Free() => Marshal.FreeHGlobal(Handle);
 
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>

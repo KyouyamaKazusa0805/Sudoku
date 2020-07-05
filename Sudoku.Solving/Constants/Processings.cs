@@ -99,28 +99,34 @@ namespace Sudoku.Solving.Constants
 		/// <returns>The candidate offsets.</returns>
 		public static IReadOnlyList<(int, int)> GetCandidateOffsets(Node target)
 		{
-			bool?[] map = new bool?[729];
 			var result = new List<(int, int)>();
-			foreach (var p in target.Chain)
+			var map = new HashSet<(int, bool)>();
+			var chain = target.Chain;
+			for (int i = 0, count = chain.Count; i < count; i++)
 			{
-				if (p.ParentsCount <= 6)
+				var p = chain[i];
+				if (p.ParentsCount != 0)
 				{
-					// Add candidate offsets from all parents of p to p.
-					for (int i = 0; i < p.ParentsCount; i++)
+					var pr = p.Parents[0];
+					var linkType = (pr.IsOn, p.IsOn) switch
 					{
-						var pr = p[i];
-						map[pr.Cells.Count == 1 ? pr._cell : pr.Cells.SetAt(0)] = pr.IsOn;
+						(false, true) => Strong,
+						(true, false) => Weak,
+						_ => Default
+					};
+					if (linkType == Weak && (i == 0 || i == count - 1))
+					{
+						// Because of forcing chain, the first and last node will not be drawn.
+						continue;
 					}
+
+					map.Add(((p.Cells.Count == 1 ? p._cell : p.Cells.SetAt(0)) * 9 + p.Digit, p.IsOn));
 				}
 			}
 
-			for (int i = 0; i < 729; i++)
+			foreach (var (cell, isOn) in map)
 			{
-				bool? value = map[i];
-				if (value.HasValue)
-				{
-					result.Add((i, value.Value ? 1 : 0));
-				}
+				result.Add((isOn ? 1 : 0, cell));
 			}
 
 			return result;
@@ -133,25 +139,29 @@ namespace Sudoku.Solving.Constants
 		public static IReadOnlyList<Link> GetLinks(Node target)
 		{
 			var result = new List<Link>();
-			foreach (var p in target.Chain)
+			var chain = target.Chain;
+			for (int i = 1, count = chain.Count; i < count; i++)
 			{
-				if (p.ParentsCount <= 6)
+				var p = chain[i];
+				if (p.ParentsCount != 0)
 				{
-					// Add links from all parents of p to p.
-					for (int i = 0; i < p.ParentsCount; i++)
+					var pr = p[0];
+					var linkType = (pr.IsOn, p.IsOn) switch
 					{
-						var pr = p[i];
-						result.Add(
-							new Link(
-								startCandidate: pr.Cells.Count == 1 ? pr._cell : pr.Cells.SetAt(0),
-								endCandidate: p.Cells.Count == 1 ? p._cell : p.Cells.SetAt(0),
-								linkType: (p.IsOn, pr.IsOn) switch
-								{
-									(false, true) => Strong,
-									(true, false) => Weak,
-									_ => Default
-								}));
+						(false, true) => Strong,
+						(true, false) => Weak,
+						_ => Default
+					};
+					if (linkType == Weak && i == count - 2)
+					{
+						continue;
 					}
+
+					result.Add(
+						new Link(
+							startCandidate: (p.Cells.Count == 1 ? p._cell : p.Cells.SetAt(0)) * 9 + p.Digit,
+							endCandidate: (pr.Cells.Count == 1 ? pr._cell : pr.Cells.SetAt(0)) * 9 + pr.Digit,
+							linkType));
 				}
 			}
 

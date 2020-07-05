@@ -3572,21 +3572,10 @@
             This property can only find the first root.
             </remarks>
         </member>
-        <member name="P:Sudoku.Data.Node.ReverseLoopNode">
-            <summary>
-            Gets the start node of its reverse loop.
-            </summary>
-        </member>
         <member name="P:Sudoku.Data.Node.Parents">
             <summary>
             The parents.
             </summary>
-        </member>
-        <member name="P:Sudoku.Data.Node.Handle">
-            <summary>
-            Indicates the handle of the property <see cref="P:Sudoku.Data.Node.Parents"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Data.Node.Parents"/>
         </member>
         <member name="P:Sudoku.Data.Node.Chain">
             <summary>
@@ -3610,9 +3599,6 @@
             <summary>
             Clear all parent nodes.
             </summary>
-        </member>
-        <member name="M:Sudoku.Data.Node.Dispose">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Node.Equals(System.Object)">
             <method name="Equals" paramType="object">
@@ -3649,16 +3635,6 @@
 		<summary>Returns a string that represents the current object.</summary>
 		<returns>A string that represents the current object.</returns>
 	</method>
-        </member>
-        <member name="M:Sudoku.Data.Node.Alloc">
-            <summary>
-            Allocate the memory.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Node.Free">
-            <summary>
-            Free the memory.
-            </summary>
         </member>
         <member name="M:Sudoku.Data.Node.op_Equality(Sudoku.Data.Node,Sudoku.Data.Node)">
             <operator name="op_Equality">

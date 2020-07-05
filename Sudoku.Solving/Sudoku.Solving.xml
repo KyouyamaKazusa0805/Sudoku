@@ -2364,6 +2364,9 @@
         <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.Name">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.ToString">
             <inheritdoc/>
         </member>

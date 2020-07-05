@@ -81,7 +81,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				(true, _, _, _, _) => 9.5M + .5M * (Level - 2),
 				(_, true, _, _, _) => 8.5M + .5M * Level,
 				(_, _, true, _, _) => 7.5M,
-				(_, _, _, true, _) => 8M,
+				(_, _, _, true, _) => 8.0M,
 				(_, _, _, _, true) => 8.5M,
 				_ => throw Throwings.ImpossibleCase
 			};
