@@ -90,16 +90,6 @@
 
 		/// <summary>
 		/// <para>
-		/// Indicates whether the solver will check the chain finally forms a
-		/// continuous nice loop. If so, the structure may eliminate more candidates
-		/// than those of normal AICs.
-		/// </para>
-		/// <para>The value is <see langword="true"/> in default case.</para>
-		/// </summary>
-		public bool CheckContinuousNiceLoop { get; set; } = true;
-
-		/// <summary>
-		/// <para>
 		/// Indicates whether the solver should check Gurth's symmetrical placement
 		/// at the initial grid.
 		/// </para>
@@ -118,20 +108,6 @@
 		/// </summary>
 		/// <seealso cref="AnalyzeDifficultyStrictly"/>
 		public bool CheckGurthSymmetricalPlacement { get; set; } = false;
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether the solver will check head collision in searching for
-		/// AICs.
-		/// </para>
-		/// <para>
-		/// If the value is <see langword="true"/>, the searcher will search for
-		/// AICs whose head nodes are same as tail nodes. In this case, the AIC
-		/// will raise a conclusion that the head node is absolutely true.
-		/// </para>
-		/// <para>The value is <see langword="true"/> in default case.</para>
-		/// </summary>
-		public bool CheckHeadCollision { get; set; } = true;
 
 		/// <summary>
 		/// <para>
@@ -252,18 +228,6 @@
 		public bool OnlyRecordTemplateDelete { get; set; } = true;
 
 		/// <summary>
-		/// <para>
-		/// Indicates whether the searcher will save the shortest path in AICs only.
-		/// </para>
-		/// <para>
-		/// The value is <see langword="false"/> in default case. If the value
-		/// is <see langword="true"/>, the searcher will check all chains had stored
-		/// in the list and get the shortest one, but the speed is slow.
-		/// </para>
-		/// </summary>
-		public bool OnlySaveShortestPathAic { get; set; } = false;
-
-		/// <summary>
 		/// <para>Indicates whether the solver will optimizes the applying order.</para>
 		/// <para>
 		/// When the value is <see langword="true"/>, the result to apply to
@@ -279,21 +243,6 @@
 		/// </summary>
 		/// <seealso cref="AnalyzeDifficultyStrictly"/>
 		public bool OptimizedApplyingOrder { get; set; } = false;
-
-		/// <summary>
-		/// <para>
-		/// Indicates whether the solver will record only one AIC
-		/// when searched AICs that contain same head node and tail node,
-		/// but different path.
-		/// </para>
-		/// <para>
-		/// The value is <see langword="true"/> in default case. If the value
-		/// is <see langword="true"/>, the solver will save only one chain with
-		/// the condition above, but the length of the chain may not be the shortest
-		/// one.
-		/// </para>
-		/// </summary>
-		public bool ReductDifferentPathAic { get; set; } = true;
 
 		/// <summary>
 		/// <para>
@@ -376,14 +325,6 @@
 		/// </para>
 		/// </summary>
 		public int BowmanBingoMaximumLength { get; set; } = 32;
-
-		/// <summary>
-		/// <para>
-		/// Indicates the maximum length of a chain to search.
-		/// </para>
-		/// <para>The value is <c>10</c> in default case.</para>
-		/// </summary>
-		public int AicMaximumLength { get; set; } = 10;
 
 		/// <summary>
 		/// <para>

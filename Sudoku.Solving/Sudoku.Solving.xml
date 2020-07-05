@@ -5039,16 +5039,6 @@
             </summary>
             <seealso cref="T:Sudoku.WrongHandlingException"/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckContinuousNiceLoop">
-            <summary>
-            <para>
-            Indicates whether the solver will check the chain finally forms a
-            continuous nice loop. If so, the structure may eliminate more candidates
-            than those of normal AICs.
-            </para>
-            <para>The value is <see langword="true"/> in default case.</para>
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckGurthSymmetricalPlacement">
             <summary>
             <para>
@@ -5069,20 +5059,6 @@
             </para>
             </summary>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckHeadCollision">
-            <summary>
-            <para>
-            Indicates whether the solver will check head collision in searching for
-            AICs.
-            </para>
-            <para>
-            If the value is <see langword="true"/>, the searcher will search for
-            AICs whose head nodes are same as tail nodes. In this case, the AIC
-            will raise a conclusion that the head node is absolutely true.
-            </para>
-            <para>The value is <see langword="true"/> in default case.</para>
-            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckIncompleteUniquenessPatterns">
             <summary>
@@ -5194,18 +5170,6 @@
             <para>The value is <see langword="true"/> in default case.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.OnlySaveShortestPathAic">
-            <summary>
-            <para>
-            Indicates whether the searcher will save the shortest path in AICs only.
-            </para>
-            <para>
-            The value is <see langword="false"/> in default case. If the value
-            is <see langword="true"/>, the searcher will check all chains had stored
-            in the list and get the shortest one, but the speed is slow.
-            </para>
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder">
             <summary>
             <para>Indicates whether the solver will optimizes the applying order.</para>
@@ -5222,21 +5186,6 @@
             </para>
             </summary>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.ReductDifferentPathAic">
-            <summary>
-            <para>
-            Indicates whether the solver will record only one AIC
-            when searched AICs that contain same head node and tail node,
-            but different path.
-            </para>
-            <para>
-            The value is <see langword="true"/> in default case. If the value
-            is <see langword="true"/>, the solver will save only one chain with
-            the condition above, but the length of the chain may not be the shortest
-            one.
-            </para>
-            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.UseCalculationPriority">
             <summary>
@@ -5314,14 +5263,6 @@
             However, each unique solution has more than 17 hints (given digits),
             which means you cannot set this value more than <c>64</c> (81 - 17 = 64).
             </para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.AicMaximumLength">
-            <summary>
-            <para>
-            Indicates the maximum length of a chain to search.
-            </para>
-            <para>The value is <c>10</c> in default case.</para>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckRegularWingSize">

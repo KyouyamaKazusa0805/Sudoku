@@ -73,11 +73,6 @@ namespace Sudoku.Windows
 			_checkBoxSolveFromCurrent.IsChecked = Settings.SolveFromCurrent;
 			_checkBoxTextFormatPlaceholdersAreZero.IsChecked = Settings.TextFormatPlaceholdersAreZero;
 			_checkBoxPmGridCompatible.IsChecked = Settings.PmGridCompatible;
-			_numericUpDownMaxLength.CurrentValue = Settings.MainManualSolver.AicMaximumLength;
-			_checkBoxCheckLoop.IsChecked = Settings.MainManualSolver.CheckContinuousNiceLoop;
-			_checkBoxCheckHeadCollision.IsChecked = Settings.MainManualSolver.CheckHeadCollision;
-			_checkBoxOnlyRecordShortestPathAic.IsChecked = Settings.MainManualSolver.OnlySaveShortestPathAic;
-			_checkBoxReductDifferentPathAic.IsChecked = Settings.MainManualSolver.ReductDifferentPathAic;
 			_checkBoxAllowOverlappingAlses.IsChecked = Settings.MainManualSolver.AllowOverlappingAlses;
 			_checkBoxHighlightRegions.IsChecked = Settings.MainManualSolver.AlsHighlightRegionInsteadOfCell;
 			_checkBoxAllowAlsCycles.IsChecked = Settings.MainManualSolver.AllowAlsCycles;
@@ -423,9 +418,6 @@ namespace Sudoku.Windows
 
 		private void ButtonColor15_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 15);
 
-		private void NumericUpDownMaxLength_ValueChanged(object sender, RoutedEventArgs e) =>
-			_assigments += () => _manualSolver.AicMaximumLength = (int)_numericUpDownMaxLength.CurrentValue;
-
 		private void CheckBoxAllowOverlappingAlses_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxAllowOverlappingAlses.IsChecked = _manualSolver.AllowOverlappingAlses ^= true;
 
@@ -443,24 +435,12 @@ namespace Sudoku.Windows
 		private void CheckBoxAllowAlq_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxAllowAlq.IsChecked = _manualSolver.CheckAlmostLockedQuadruple ^= true;
 
-		private void CheckBoxCheckLoop_Click(object sender, RoutedEventArgs e) =>
-			_assigments += () => _checkBoxCheckLoop.IsChecked = _manualSolver.CheckContinuousNiceLoop ^= true;
-
-		private void CheckBoxCheckHeadCollision_Click(object sender, RoutedEventArgs e) =>
-			_assigments += () => _checkBoxCheckHeadCollision.IsChecked = _manualSolver.CheckHeadCollision ^= true;
-
 		private void CheckBoxCheckIncompleteUr_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () =>
 			_checkBoxCheckIncompleteUr.IsChecked = _manualSolver.CheckIncompleteUniquenessPatterns ^= true;
 
 		private void NumericUpDownMaxRegularWingSize_ValueChanged(object sender, RoutedEventArgs e) =>
 			_assigments += () => _manualSolver.CheckRegularWingSize = (int)_numericUpDownMaxRegularWingSize.CurrentValue;
-
-		private void CheckBoxOnlyRecordShortestPathAic_Click(object sender, RoutedEventArgs e) =>
-			_assigments += () => _checkBoxOnlyRecordShortestPathAic.IsChecked = _manualSolver.OnlySaveShortestPathAic ^= true;
-
-		private void CheckBoxReductDifferentPathAic_Click(object sender, RoutedEventArgs e) =>
-			_assigments += () => _checkBoxReductDifferentPathAic.IsChecked = _manualSolver.ReductDifferentPathAic ^= true;
 
 		private void CheckBoxUseExtendedBugSearcher_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxUseExtendedBugSearcher.IsChecked = _manualSolver.UseExtendedBugSearcher ^= true;

@@ -69,55 +69,11 @@
 			<TabItem Header="{DynamicResource SettingsTabSolving}">
 				<Grid Background="#FFE5E5E5">
 					<Grid.RowDefinitions>
-						<RowDefinition Height="3*"/>
 						<RowDefinition Height="2*"/>
 						<RowDefinition Height="2*"/>
-						<RowDefinition Height="4*"/>
+						<RowDefinition Height="7*"/>
 					</Grid.RowDefinitions>
-					<GroupBox Grid.Row="0" Grid.Column="0" Header="{DynamicResource SettingsSolvingChains}">
-						<Grid>
-							<Grid.RowDefinitions>
-								<RowDefinition/>
-								<RowDefinition/>
-								<RowDefinition/>
-							</Grid.RowDefinitions>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-							</Grid.ColumnDefinitions>
-							<Label Grid.Row="0" Grid.Column="0"
-								   Content="{DynamicResource SettingsSolvingChainsMaxLength}"
-								   HorizontalAlignment="Right" VerticalAlignment="Center"/>
-							<c:NumericUpDown Grid.Row="0" Grid.Column="1"
-											 MinValue="3" MaxValue="20" x:Name="_numericUpDownMaxLength"
-											 ValueChanged="NumericUpDownMaxLength_ValueChanged"/>
-							<CheckBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
-									  HorizontalAlignment="Left" VerticalAlignment="Center"
-									  Name="_checkBoxCheckLoop"
-									  Content="{DynamicResource SettingsSolvingChainsCheckCnl}"
-									  Click="CheckBoxCheckLoop_Click"/>
-							<CheckBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
-									  HorizontalAlignment="Left" VerticalAlignment="Center"
-									  Name="_checkBoxCheckHeadCollision"
-									  Content="{DynamicResource SettingsSolvingChainsCheckHeadCollision}"
-									  Click="CheckBoxCheckHeadCollision_Click"/>
-							<CheckBox Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3"
-									  HorizontalAlignment="Left" VerticalAlignment="Center"
-									  Name="_checkBoxOnlyRecordShortestPathAic"
-									  Content="{DynamicResource SettingsSolvingChainsOnlyGatherShortestPath}"
-									  Click="CheckBoxOnlyRecordShortestPathAic_Click"/>
-							<CheckBox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3"
-									  HorizontalAlignment="Left" VerticalAlignment="Center"
-									  Name="_checkBoxReductDifferentPathAic"
-									  Content="{DynamicResource SettingsSolvingChainsReductDifferentPaths}"
-									  Click="CheckBoxReductDifferentPathAic_Click"/>
-						</Grid>
-					</GroupBox>
-					<GroupBox Grid.Row="1" Grid.Column="0" Header="{DynamicResource SettingsSolvingAls}">
+					<GroupBox Grid.Row="0" Grid.Column="0" Header="{DynamicResource SettingsSolvingAls}">
 						<Grid>
 							<Grid.RowDefinitions>
 								<RowDefinition/>
@@ -147,7 +103,7 @@
 									  Click="CheckBoxAllowAlsCycles_Click"/>
 						</Grid>
 					</GroupBox>
-					<GroupBox Grid.Row="2" Grid.Column="0" Header="{DynamicResource SettingsSolvingFish}">
+					<GroupBox Grid.Row="1" Grid.Column="0" Header="{DynamicResource SettingsSolvingFish}">
 						<Grid>
 							<Grid.RowDefinitions>
 								<RowDefinition/>
@@ -188,9 +144,12 @@
 									  Click="CheckBoxHobiwanFishCheckTemplates_Click"/>
 						</Grid>
 					</GroupBox>
-					<GroupBox Grid.Row="3" Grid.Column="0" Header="{DynamicResource SettingsSolvingMisc}">
+					<GroupBox Grid.Row="2" Grid.Column="0" Header="{DynamicResource SettingsSolvingMisc}">
 						<Grid>
 							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
 								<RowDefinition/>
 								<RowDefinition/>
 								<RowDefinition/>
