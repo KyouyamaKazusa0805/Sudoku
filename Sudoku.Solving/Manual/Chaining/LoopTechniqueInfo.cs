@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		/// <inheritdoc/>
 		public override decimal Difficulty =>
-			(XEnabled && YEnabled ? 7.0M : 6.5M) + GetExtraDifficultyByLength(FlatComplexity - 2);
+			(XEnabled && YEnabled ? 5.0M : 4.5M) + GetExtraDifficultyByLength(FlatComplexity - 2);
 
 		/// <inheritdoc/>
 		public override string Name => Resources.GetValue(TechniqueCode.ToString());

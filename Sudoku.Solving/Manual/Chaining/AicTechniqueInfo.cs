@@ -4,7 +4,6 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Windows;
-using static Sudoku.Solving.Annotations.TechniqueDisplayAttribute;
 using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Chaining
@@ -30,15 +29,16 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		/// <inheritdoc/>
 		public override decimal Difficulty =>
-			(XEnabled && YEnabled ? 7.0M : 6.6M) + GetExtraDifficultyByLength(FlatComplexity - 2);
+			(XEnabled && YEnabled ? 5.0M : 4.6M) + GetExtraDifficultyByLength(FlatComplexity - 2);
 
 		/// <inheritdoc/>
 		public override int SortKey =>
-			(XEnabled, YEnabled) switch
+			TechniqueCode switch
 			{
-				(true, true) => 4,
-				(false, true) => 3,
-				_ => 2
+				TechniqueCode.Aic => 2,
+				TechniqueCode.XyXChain => 3,
+				TechniqueCode.DiscontinuousNiceLoop => 4,
+				_ => throw Throwings.ImpossibleCase
 			};
 
 		/// <inheritdoc/>
