@@ -2492,9 +2492,6 @@
             The length difficulty.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo.Difficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo.Complexity">
             <summary>
             The total complexity.

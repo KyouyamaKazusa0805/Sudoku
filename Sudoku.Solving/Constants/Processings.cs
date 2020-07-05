@@ -70,7 +70,7 @@ namespace Sudoku.Solving.Constants
 			for (bool isOdd = false; length > ceil; isOdd.Flip())
 			{
 				added += .1M;
-				ceil = isOdd ? (ceil << 2) / 3 : ceil * 3 >> 1;
+				ceil = isOdd ? ceil * 4 / 3 : ceil * 3 / 2;
 			}
 			return added;
 
@@ -97,9 +97,9 @@ namespace Sudoku.Solving.Constants
 		/// </summary>
 		/// <param name="target">The target node.</param>
 		/// <returns>The candidate offsets.</returns>
-		public static unsafe IReadOnlyList<(int, int)> GetCandidateOffsets(Node target)
+		public static IReadOnlyList<(int, int)> GetCandidateOffsets(Node target)
 		{
-			var map = new bool?[729];
+			bool?[] map = new bool?[729];
 			var result = new List<(int, int)>();
 			foreach (var p in target.Chain)
 			{
@@ -108,7 +108,7 @@ namespace Sudoku.Solving.Constants
 					// Add candidate offsets from all parents of p to p.
 					for (int i = 0; i < p.ParentsCount; i++)
 					{
-						var pr = *p.Parents[i];
+						var pr = p[i];
 						map[pr.Cells.Count == 1 ? pr._cell : pr.Cells.SetAt(0)] = pr.IsOn;
 					}
 				}
@@ -130,7 +130,7 @@ namespace Sudoku.Solving.Constants
 		/// Get the links through the specified target node.
 		/// </summary>
 		/// <returns>The link.</returns>
-		public static unsafe IReadOnlyList<Link> GetLinks(Node target)
+		public static IReadOnlyList<Link> GetLinks(Node target)
 		{
 			var result = new List<Link>();
 			foreach (var p in target.Chain)
@@ -140,7 +140,7 @@ namespace Sudoku.Solving.Constants
 					// Add links from all parents of p to p.
 					for (int i = 0; i < p.ParentsCount; i++)
 					{
-						var pr = *p.Parents[i];
+						var pr = p[i];
 						result.Add(
 							new Link(
 								startCandidate: pr.Cells.Count == 1 ? pr._cell : pr.Cells.SetAt(0),

@@ -3517,27 +3517,27 @@
             <summary>
             Initializes an instance with the specified digit, cell and a <see cref="T:System.Boolean"/> value.
             </summary>
-            <param name="digit">The digit.</param>
             <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
             <param name="isOn">A <see cref="T:System.Boolean"/> value indicating whether the node is on.</param>
         </member>
-        <member name="M:Sudoku.Data.Node.#ctor(System.Int32,Sudoku.Data.GridMap,System.Boolean)">
+        <member name="M:Sudoku.Data.Node.#ctor(Sudoku.Data.GridMap,System.Int32,System.Boolean)">
             <summary>
             Initializes an instance with the specified digit, cells and a <see cref="T:System.Boolean"/> value.
             </summary>
-            <param name="digit">The digit.</param>
             <param name="cells">The cells.</param>
+            <param name="digit">The digit.</param>
             <param name="isOn">A <see cref="T:System.Boolean"/> value indicating whether the node is on.</param>
         </member>
-        <member name="M:Sudoku.Data.Node.#ctor(System.Int32,System.Int32,System.Boolean,Sudoku.Data.Node*)">
+        <member name="M:Sudoku.Data.Node.#ctor(System.Int32,System.Int32,System.Boolean,Sudoku.Data.Node)">
             <summary>
             Initializes an instance with the specified digit, the cell, a <see cref="T:System.Boolean"/> value
-            and the parent node pointer (The pointer pointing to a parent node rather than a list of parent nodes).
+            and the parent node.
             </summary>
-            <param name="digit">The digit.</param>
             <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
             <param name="isOn">A <see cref="T:System.Boolean"/> value indicating whether the specified node is on.</param>
-            <param name="parent">The parent node pointer.</param>
+            <param name="parent">The parent node.</param>
         </member>
         <member name="P:Sudoku.Data.Node.Digit">
             <summary>
@@ -3572,6 +3572,11 @@
             This property can only find the first root.
             </remarks>
         </member>
+        <member name="P:Sudoku.Data.Node.ReverseLoopNode">
+            <summary>
+            Gets the start node of its reverse loop.
+            </summary>
+        </member>
         <member name="P:Sudoku.Data.Node.Parents">
             <summary>
             The parents.
@@ -3593,14 +3598,13 @@
             Get the parent node with the specified index.
             </summary>
             <param name="index">The index.</param>
-            <returns>The pointer pointing to the node.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the index is out of the range.</exception>
+            <returns>The parent node.</returns>
         </member>
-        <member name="M:Sudoku.Data.Node.AddParent(Sudoku.Data.Node*)">
+        <member name="M:Sudoku.Data.Node.AddParent(Sudoku.Data.Node)">
             <summary>
             Add a node into the list.
             </summary>
-            <param name="nodePtr">The node pointer.</param>
+            <param name="node">The node.</param>
         </member>
         <member name="M:Sudoku.Data.Node.ClearParents">
             <summary>
@@ -7966,7 +7970,7 @@
         </member>
         <member name="T:System.Collections.Generic.Set`1">
             <summary>
-            Indicates a set.
+            Indicates a set which contains the different elements.
             </summary>
             <typeparam name="T">The type of the element.</typeparam>
         </member>
@@ -8051,6 +8055,9 @@
         <member name="M:System.Collections.Generic.Set`1.UnionWith(System.Collections.Generic.IEnumerable{`0})">
             <inheritdoc/>
         </member>
+        <member name="M:System.Collections.Generic.Set`1.ToString">
+            <inheritdoc/>
+        </member>
         <member name="M:System.Collections.Generic.Set`1.GetEnumerator">
             <inheritdoc/>
         </member>
@@ -8059,6 +8066,78 @@
         </member>
         <member name="M:System.Collections.Generic.Set`1.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.InternalEquals(System.Collections.Generic.Set{`0},System.Collections.Generic.Set{`0})">
+            <summary>
+            The internal equality determination.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.SetEquals(System.Collections.Generic.Set{`0},System.Collections.Generic.Set{`0})">
+            <summary>
+            Determine whether two <see cref="T:System.Collections.Generic.Set`1"/>s contain the same elements.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.op_Equality(System.Collections.Generic.Set{`0},System.Collections.Generic.Set{`0})">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.op_Inequality(System.Collections.Generic.Set{`0},System.Collections.Generic.Set{`0})">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.op_BitwiseAnd(System.Collections.Generic.Set{`0},System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Calls the method <see cref="M:System.Collections.Generic.Set`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})"/>, and returns the
+            reference of the <paramref name="left"/> parameter.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The intersection result.</returns>
+            <seealso cref="M:System.Collections.Generic.Set`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})"/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.op_BitwiseOr(System.Collections.Generic.Set{`0},System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Calls the method <see cref="M:System.Collections.Generic.Set`1.UnionWith(System.Collections.Generic.IEnumerable{`0})"/>, and returns the
+            reference of the <paramref name="left"/> parameter.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The union result.</returns>
+            <seealso cref="M:System.Collections.Generic.Set`1.UnionWith(System.Collections.Generic.IEnumerable{`0})"/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.op_ExclusiveOr(System.Collections.Generic.Set{`0},System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Calls the method <see cref="M:System.Collections.Generic.Set`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})"/>, and returns the
+            reference of the <paramref name="left"/> parameter.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The symmetric exception result.</returns>
+            <seealso cref="M:System.Collections.Generic.Set`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})"/>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.op_Subtraction(System.Collections.Generic.Set{`0},System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Calls the method <see cref="M:System.Collections.Generic.Set`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})"/>, and returns the
+            reference of the <paramref name="left"/> parameter.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The exception result.</returns>
+            <seealso cref="M:System.Collections.Generic.Set`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})"/>
         </member>
         <member name="T:System.Collections.Generic.TreeNode`1">
             <summary>

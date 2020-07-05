@@ -106,9 +106,6 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 		}
 
-		/// <inheritdoc/>
-		public override decimal Difficulty => throw new NotImplementedException();
-
 		/// <summary>
 		/// The total complexity.
 		/// </summary>

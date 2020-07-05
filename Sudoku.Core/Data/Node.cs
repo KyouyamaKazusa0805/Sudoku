@@ -22,10 +22,10 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Initializes an instance with the specified digit, cell and a <see cref="bool"/> value.
 		/// </summary>
-		/// <param name="digit">The digit.</param>
 		/// <param name="cell">The cell.</param>
+		/// <param name="digit">The digit.</param>
 		/// <param name="isOn">A <see cref="bool"/> value indicating whether the node is on.</param>
-		public Node(int digit, int cell, bool isOn) : this()
+		public Node(int cell, int digit, bool isOn) : this()
 		{
 			(Digit, Cells, IsOn) = (digit, new GridMap { cell }, isOn);
 			_cell = cell;
@@ -34,10 +34,10 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Initializes an instance with the specified digit, cells and a <see cref="bool"/> value.
 		/// </summary>
-		/// <param name="digit">The digit.</param>
 		/// <param name="cells">The cells.</param>
+		/// <param name="digit">The digit.</param>
 		/// <param name="isOn">A <see cref="bool"/> value indicating whether the node is on.</param>
-		public Node(int digit, GridMap cells, bool isOn) : this()
+		public Node(GridMap cells, int digit, bool isOn) : this()
 		{
 			(Digit, Cells, IsOn) = (digit, cells, isOn);
 			_cell = cells.Count == 1 ? cells.SetAt(0) : -1;
@@ -45,13 +45,13 @@ namespace Sudoku.Data
 
 		/// <summary>
 		/// Initializes an instance with the specified digit, the cell, a <see cref="bool"/> value
-		/// and the parent node pointer (The pointer pointing to a parent node rather than a list of parent nodes).
+		/// and the parent node.
 		/// </summary>
-		/// <param name="digit">The digit.</param>
 		/// <param name="cell">The cell.</param>
+		/// <param name="digit">The digit.</param>
 		/// <param name="isOn">A <see cref="bool"/> value indicating whether the specified node is on.</param>
-		/// <param name="parent">The parent node pointer.</param>
-		public Node(int digit, int cell, bool isOn, Node* parent) : this(digit, cell, isOn)
+		/// <param name="parent">The parent node.</param>
+		public Node(int cell, int digit, bool isOn, Node parent) : this(cell, digit, isOn)
 		{
 			Alloc();
 			AddParent(parent);
@@ -86,7 +86,7 @@ namespace Sudoku.Data
 							ancestors.Add(p);
 							for (int i = 0; i < p.ParentsCount; i++)
 							{
-								next.Add(*p.Parents[i]);
+								next.Add(p.Parents[i]);
 							}
 						}
 					}
@@ -124,7 +124,7 @@ namespace Sudoku.Data
 				var p = this;
 				while (p.ParentsCount != 0)
 				{
-					p = *p.Parents[0];
+					p = p.Parents[0];
 				}
 
 				return p;
@@ -132,9 +132,41 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
+		/// Gets the start node of its reverse loop.
+		/// </summary>
+		public Node ReverseLoopNode
+		{
+			get
+			{
+				var result = new List<Node>();
+				var org = new Node?(this);
+				while (org.HasValue)
+				{
+					var o = org.Value;
+					var rev = new Node(o._cell, o.Digit, !o.IsOn);
+					result.Prepend(rev);
+					org = o.ParentsCount != 0 ? o[0] : (Node?)null;
+				}
+
+				Node? prev = null;
+				foreach (var rev in result)
+				{
+					if (prev.HasValue)
+					{
+						prev.Value.AddParent(rev);
+					}
+
+					prev = rev;
+				}
+
+				return result[0];
+			}
+		}
+
+		/// <summary>
 		/// The parents.
 		/// </summary>
-		public Node** Parents { readonly get; private set; }
+		public Node* Parents { readonly get; private set; }
 
 		/// <summary>
 		/// Indicates the handle of the property <see cref="Parents"/>.
@@ -163,7 +195,7 @@ namespace Sudoku.Data
 							result.Add(p);
 							for (int i = 0; i < p.ParentsCount; i++)
 							{
-								next.Add(*p.Parents[i]);
+								next.Add(p.Parents[i]);
 							}
 						}
 					}
@@ -180,24 +212,22 @@ namespace Sudoku.Data
 		/// Get the parent node with the specified index.
 		/// </summary>
 		/// <param name="index">The index.</param>
-		/// <returns>The pointer pointing to the node.</returns>
-		/// <exception cref="ArgumentOutOfRangeException">Throws when the index is out of the range.</exception>
-		public readonly Node* this[int index] =>
-			index < 0 || index > ParentsCount ? throw new ArgumentOutOfRangeException(nameof(index)) : Parents[index];
+		/// <returns>The parent node.</returns>
+		public readonly Node this[int index] => Parents[index];
 
 
 		/// <summary>
 		/// Add a node into the list.
 		/// </summary>
-		/// <param name="nodePtr">The node pointer.</param>
-		public void AddParent(Node* nodePtr)
+		/// <param name="node">The node.</param>
+		public void AddParent(Node node)
 		{
 			if (Handle == IntPtr.Zero)
 			{
 				Alloc();
 			}
 
-			Parents[ParentsCount] = nodePtr;
+			Parents[ParentsCount] = node;
 			if (++ParentsCount != 1)
 			{
 				_cell = -1;
@@ -216,10 +246,10 @@ namespace Sudoku.Data
 			}
 
 			ParentsCount = 0;
-			for (int i = 0; i < 6; i++)
-			{
-				Parents[i] = null;
-			}
+			//for (int i = 0; i < 6; i++)
+			//{
+			//	Parents[i] = default;
+			//}
 
 			_cell = -1;
 		}
@@ -243,7 +273,7 @@ namespace Sudoku.Data
 			var pTest = node;
 			while (pTest.ParentsCount != 0)
 			{
-				pTest = *pTest.Parents[0];
+				pTest = pTest.Parents[0];
 				if (pTest == this)
 				{
 					return true;
@@ -268,7 +298,7 @@ namespace Sudoku.Data
 				var nodes = new SudokuMap();
 				for (int i = 0; i < ParentsCount; i++)
 				{
-					var node = *Parents[i];
+					var node = Parents[i];
 					nodes.AddRange(from cell in node.Cells select cell * 9 + node.Digit);
 				}
 
@@ -282,7 +312,7 @@ namespace Sudoku.Data
 		/// Allocate the memory.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void Alloc() => Parents = (Node**)(Handle = Marshal.AllocHGlobal(sizeof(Node*) * 6)).ToPointer();
+		private void Alloc() => Parents = (Node*)(Handle = Marshal.AllocHGlobal(sizeof(Node) * 6)).ToPointer();
 
 		/// <summary>
 		/// Free the memory.

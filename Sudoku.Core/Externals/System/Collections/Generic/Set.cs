@@ -4,10 +4,11 @@ using Sudoku.Extensions;
 namespace System.Collections.Generic
 {
 	/// <summary>
-	/// Indicates a set.
+	/// Indicates a set which contains the different elements.
 	/// </summary>
 	/// <typeparam name="T">The type of the element.</typeparam>
-	public sealed class Set<T> : IEnumerable<T>, IEquatable<Set<T>?>, ISet<T> where T : notnull, IEquatable<T>
+	public sealed class Set<T> : IEnumerable<T>, IEquatable<Set<T>?>, ISet<T>
+		where T : notnull, IEquatable<T>
 	{
 		/// <summary>
 		/// The inner list.
@@ -166,6 +167,9 @@ namespace System.Collections.Generic
 		}
 
 		/// <inheritdoc/>
+		public override string ToString() => $"Set (Count = {Count})";
+
+		/// <inheritdoc/>
 		public IEnumerator<T> GetEnumerator() => _list.GetEnumerator();
 
 		/// <inheritdoc/>
@@ -175,6 +179,12 @@ namespace System.Collections.Generic
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 
+		/// <summary>
+		/// The internal equality determination.
+		/// </summary>
+		/// <param name="left">The left.</param>
+		/// <param name="right">The right.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
 		private static bool InternalEquals(Set<T>? left, Set<T>? right) =>
 			(left is null, right is null) switch
 			{
@@ -183,6 +193,12 @@ namespace System.Collections.Generic
 				_ => false
 			};
 
+		/// <summary>
+		/// Determine whether two <see cref="Set{T}"/>s contain the same elements.
+		/// </summary>
+		/// <param name="left">The left.</param>
+		/// <param name="right">The right.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
 		private static bool SetEquals(Set<T>? left, Set<T>? right)
 		{
 			switch ((left is null, right is null))
@@ -211,28 +227,62 @@ namespace System.Collections.Generic
 		}
 
 
+		/// <include file='../../../../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(Set<T>? left, Set<T>? right) => InternalEquals(left, right);
 
+		/// <include file='../../../../../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(Set<T>? left, Set<T>? right) => !(left == right);
 
+		/// <summary>
+		/// Calls the method <see cref="IntersectWith(IEnumerable{T})"/>, and returns the
+		/// reference of the <paramref name="left"/> parameter.
+		/// </summary>
+		/// <param name="left">The left.</param>
+		/// <param name="right">The right.</param>
+		/// <returns>The intersection result.</returns>
+		/// <seealso cref="IntersectWith(IEnumerable{T})"/>
 		public static Set<T> operator &(Set<T> left, IEnumerable<T> right)
 		{
 			left.IntersectWith(right);
 			return left;
 		}
 
+		/// <summary>
+		/// Calls the method <see cref="UnionWith(IEnumerable{T})"/>, and returns the
+		/// reference of the <paramref name="left"/> parameter.
+		/// </summary>
+		/// <param name="left">The left.</param>
+		/// <param name="right">The right.</param>
+		/// <returns>The union result.</returns>
+		/// <seealso cref="UnionWith(IEnumerable{T})"/>
 		public static Set<T> operator |(Set<T> left, IEnumerable<T> right)
 		{
 			left.UnionWith(right);
 			return left;
 		}
 
+		/// <summary>
+		/// Calls the method <see cref="SymmetricExceptWith(IEnumerable{T})"/>, and returns the
+		/// reference of the <paramref name="left"/> parameter.
+		/// </summary>
+		/// <param name="left">The left.</param>
+		/// <param name="right">The right.</param>
+		/// <returns>The symmetric exception result.</returns>
+		/// <seealso cref="SymmetricExceptWith(IEnumerable{T})"/>
 		public static Set<T> operator ^(Set<T> left, IEnumerable<T> right)
 		{
 			left.SymmetricExceptWith(right);
 			return left;
 		}
-		
+
+		/// <summary>
+		/// Calls the method <see cref="ExceptWith(IEnumerable{T})"/>, and returns the
+		/// reference of the <paramref name="left"/> parameter.
+		/// </summary>
+		/// <param name="left">The left.</param>
+		/// <param name="right">The right.</param>
+		/// <returns>The exception result.</returns>
+		/// <seealso cref="ExceptWith(IEnumerable{T})"/>
 		public static Set<T> operator -(Set<T> left, IEnumerable<T> right)
 		{
 			left.ExceptWith(right);

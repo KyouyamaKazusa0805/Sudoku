@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -41,6 +40,11 @@ namespace Sudoku.Solving.Manual.Chaining
 			GetAll(tempAccumulator, grid, true, false);
 			GetAll(tempAccumulator, grid, false, true);
 			GetAll(tempAccumulator, grid, true, true);
+
+			if (tempAccumulator.Count == 0)
+			{
+				return;
+			}
 
 			tempAccumulator.Sort((i1, i2) =>
 			{
@@ -86,7 +90,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					// Iterate on all candidates that aren't alone.
 					foreach (int digit in mask.GetAllSets())
 					{
-						var pOn = new Node(digit, cell, true);
+						var pOn = new Node(cell, digit, true);
 						DoUnaryChaining(accumulator, grid, pOn, xEnabled, yEnabled);
 					}
 				}
@@ -130,7 +134,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				DoAic(grid, onToOn, onToOff, yEnabled, chains, pOn);
 
 				// AICs with on implication.
-				var pOff = new Node(pOn.Digit, pOn._cell, false);
+				var pOff = new Node(pOn._cell, pOn.Digit, false);
 				onToOn = new Set<Node>();
 				onToOff = new Set<Node> { pOff };
 				DoAic(grid, onToOn, onToOff, yEnabled, chains, pOff);
@@ -138,8 +142,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			foreach (var destOn in loops)
 			{
-				var destOff = GetReversedLoop(destOn);
-				var result = CreateLoopHint(grid, destOn, destOff, xEnabled, yEnabled);
+				var result = CreateLoopHint(grid, destOn, xEnabled, yEnabled);
 				if (!(result is null))
 				{
 					accumulator.Add(result);
@@ -155,24 +158,23 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 		}
 
-		private unsafe ChainingTechniqueInfo? CreateLoopHint(
-			IReadOnlyGrid grid, Node destOn, Node destOff, bool xEnabled, bool yEnabled)
+		private ChainingTechniqueInfo? CreateLoopHint(IReadOnlyGrid grid, Node destOn, bool xEnabled, bool yEnabled)
 		{
 			var cells = GridMap.Empty;
-			for (var p = &destOn; p->ParentsCount != 0; p = p->Parents[0])
+			for (var p = destOn; p.ParentsCount != 0; p = p[0])
 			{
-				cells.Add(p->_cell);
+				cells.Add(p._cell);
 			}
 
 			var cancelFore = new Set<Node>();
 			var cancelBack = new Set<Node>();
-			for (var p = &destOn; p->ParentsCount != 0; p = p->Parents[0])
+			for (var p = destOn; p.ParentsCount != 0; p = p[0])
 			{
-				foreach (int cell in PeerMaps[p->_cell])
+				foreach (int cell in PeerMaps[p._cell])
 				{
-					if (!cells[cell] && grid.Exists(cell, p->Digit) is true)
+					if (!cells[cell] && grid.Exists(cell, p.Digit) is true)
 					{
-						(p->IsOn ? ref cancelFore : ref cancelBack).Add(new Node(p->Digit, cell, false));
+						(p.IsOn ? ref cancelFore : ref cancelBack).Add(new Node(cell, p.Digit, false));
 					}
 				}
 			}
@@ -236,32 +238,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					target);
 		}
 
-		private unsafe Node GetReversedLoop(Node destOn)
-		{
-			var result = new List<Node>();
-			for (Node? org = destOn; org.HasValue;)
-			{
-				var o = org.Value;
-				var rev = new Node(o.Digit, o._cell, !o.IsOn);
-				result.Prepend(rev);
-				org = o.ParentsCount != 0 ? *o.Parents[0] : (Node?)null;
-			}
-
-			Node? prev = null;
-			foreach (var rev in result)
-			{
-				if (prev.HasValue)
-				{
-					prev.Value.AddParent(&rev);
-				}
-
-				prev = rev;
-			}
-
-			return result[0];
-		}
-
-		private unsafe ISet<Node> GetOnToOff(IReadOnlyGrid grid, Node p, bool yEnabled)
+		private ISet<Node> GetOnToOff(IReadOnlyGrid grid, Node p, bool yEnabled)
 		{
 			var result = new Set<Node>();
 
@@ -270,9 +247,9 @@ namespace Sudoku.Solving.Manual.Chaining
 				// First rule: Other candidates for this cell get off.
 				for (int digit = 0; digit < 9; digit++)
 				{
-					if (digit != p.Digit && grid.Exists(p._cell, p.Digit) is true)
+					if (digit != p.Digit && grid.Exists(p._cell, digit) is true)
 					{
-						result.Add(new Node(p.Digit, p._cell, false, &p));
+						result.Add(new Node(p._cell, digit, false, p));
 					}
 				}
 			}
@@ -286,7 +263,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					int cell = RegionCells[region][pos];
 					if (cell != p._cell && grid.Exists(cell, p.Digit) is true)
 					{
-						result.Add(new Node(p.Digit, cell, false, &p));
+						result.Add(new Node(cell, p.Digit, false, p));
 					}
 				}
 			}
@@ -294,8 +271,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			return result;
 		}
 
-		private unsafe ISet<Node> GetOffToOn(
-			IReadOnlyGrid grid, Node p, ISet<Node> offNodes, bool xEnabled, bool yEnabled)
+		private ISet<Node> GetOffToOn(IReadOnlyGrid grid, Node p, ISet<Node> offNodes, bool xEnabled, bool yEnabled)
 		{
 			var result = new Set<Node>();
 			if (yEnabled)
@@ -303,16 +279,13 @@ namespace Sudoku.Solving.Manual.Chaining
 				// First rule: If there's only two candidates in this cell, the other one gets on.
 				if (BivalueMap[p._cell])
 				{
-					short mask = grid.GetCandidateMask(p._cell);
-					int otherDigit = mask.FindFirstSet();
-					if (otherDigit == p.Digit)
+					short mask = (short)(grid.GetCandidateMask(p._cell) & ~(1 << p.Digit));
+					if (mask.IsPowerOfTwo())
 					{
-						otherDigit = mask.GetNextSet(otherDigit);
+						var pOn = new Node(p._cell, mask.FindFirstSet(), true, p);
+						//AddHiddenParentsOfCell(pOn, grid, offNodes);
+						result.Add(pOn);
 					}
-
-					var pOn = new Node(otherDigit, p._cell, true, &p);
-					AddHiddenParentsOfCell(pOn, grid, offNodes);
-					result.Add(pOn);
 				}
 			}
 
@@ -322,17 +295,11 @@ namespace Sudoku.Solving.Manual.Chaining
 				for (var label = Block; label < UpperLimit; label++)
 				{
 					int region = GetRegion(p._cell, label);
-					var cells = CandMaps[p.Digit] & RegionMaps[region];
-					if (cells.Count == 2)
+					var cells = (CandMaps[p.Digit] & RegionMaps[region]) - p._cell;
+					if (cells.Count == 1)
 					{
-						int otherPos = cells.SetAt(0);
-						if (otherPos == p._cell)
-						{
-							otherPos = cells.SetAt(1);
-						}
-
-						var pOn = new Node(p.Digit, otherPos, true, &p);
-						AddHiddenParentsOfRegion(pOn, region, offNodes);
+						var pOn = new Node(cells.SetAt(0), p.Digit, true, p);
+						//AddHiddenParentsOfRegion(pOn, region, offNodes);
 						result.Add(pOn);
 					}
 				}
@@ -341,37 +308,37 @@ namespace Sudoku.Solving.Manual.Chaining
 			return result;
 		}
 
-		private unsafe void AddHiddenParentsOfRegion(Node p, int region, ISet<Node> offNodes)
-		{
-			foreach (int cell in CandMaps[p.Digit] & RegionMaps[region])
-			{
-				var parent = new Node(p.Digit, cell, false);
-				if (offNodes.Contains(parent))
-				{
-					p.AddParent(&parent);
-				}
-				else
-				{
-					throw new SudokuRuntimeException("The specified parent cannot found.");
-				}
-			}
-		}
+		//private void AddHiddenParentsOfRegion(Node p, int region, ISet<Node> offNodes)
+		//{
+		//	foreach (int cell in CandMaps[p.Digit] & RegionMaps[region])
+		//	{
+		//		var parent = new Node(cell, p.Digit, false);
+		//		if (offNodes.Contains(parent))
+		//		{
+		//			p.AddParent(parent);
+		//		}
+		//		else
+		//		{
+		//			throw new SudokuRuntimeException("The specified parent cannot found.");
+		//		}
+		//	}
+		//}
 
-		private unsafe void AddHiddenParentsOfCell(Node p, IReadOnlyGrid grid, ISet<Node> offNodes)
-		{
-			foreach (int digit in grid.GetCandidates(p._cell))
-			{
-				var parent = new Node(digit, p._cell, false);
-				if (offNodes.Contains(parent))
-				{
-					p.AddParent(&parent);
-				}
-				else
-				{
-					throw new SudokuRuntimeException("The specified parent cannot found.");
-				}
-			}
-		}
+		//private void AddHiddenParentsOfCell(Node p, IReadOnlyGrid grid, ISet<Node> offNodes)
+		//{
+		//	foreach (int digit in grid.GetCandidates(p._cell))
+		//	{
+		//		var parent = new Node(p._cell, digit, false);
+		//		if (offNodes.Contains(parent))
+		//		{
+		//			p.AddParent(parent);
+		//		}
+		//		else
+		//		{
+		//			throw new SudokuRuntimeException("The specified parent cannot found.");
+		//		}
+		//	}
+		//}
 
 		private void DoAic(
 			IReadOnlyGrid grid, ISet<Node> onToOn, ISet<Node> onToOff, bool yEnabled,
@@ -390,7 +357,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					var makeOff = GetOnToOff(grid, p, yEnabled);
 					foreach (var pOff in makeOff)
 					{
-						var pOn = new Node(pOff.Digit, pOff._cell, true);
+						var pOn = new Node(pOff._cell, pOff.Digit, true);
 						if (source == pOn)
 						{
 							// Loopy contradiction (AIC) found.
@@ -414,7 +381,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					var makeOn = GetOffToOn(grid, p, onToOff, true, yEnabled);
 					foreach (var pOn in makeOn)
 					{
-						var pOff = new Node(pOn.Digit, pOn._cell, false);
+						var pOff = new Node(pOn._cell, pOn.Digit, false);
 						if (source == pOff)
 						{
 							// Loopy contradiction (AIC) found.
@@ -439,7 +406,8 @@ namespace Sudoku.Solving.Manual.Chaining
 			var pendingOn = new List<Node>(onToOn);
 			var pendingOff = new List<Node>(onToOff);
 
-			for (int length = 0; pendingOn.Count != 0 || pendingOff.Count != 0;)
+			int length = 0;
+			while (pendingOn.Count != 0 || pendingOff.Count != 0)
 			{
 				length++;
 				while (pendingOn.Count != 0)
