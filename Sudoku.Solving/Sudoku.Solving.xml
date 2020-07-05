@@ -880,6 +880,8 @@
             <summary>
             Get the links through the specified target node.
             </summary>
+            <param name="target">The target node.</param>
+            <param name="isLoop">Indicates whether the current chain is a loop.</param>
             <returns>The link.</returns>
         </member>
         <member name="T:Sudoku.Solving.DifficultyLevel">

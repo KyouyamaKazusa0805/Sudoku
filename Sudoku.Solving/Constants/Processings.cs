@@ -107,14 +107,14 @@ namespace Sudoku.Solving.Constants
 				var p = chain[i];
 				if (p.ParentsCount != 0)
 				{
-					var pr = p.Parents[0];
+					var pr = p[0];
 					var linkType = (pr.IsOn, p.IsOn) switch
 					{
 						(false, true) => Strong,
 						(true, false) => Weak,
 						_ => Default
 					};
-					if (linkType == Weak && (i == 0 || i == count - 1))
+					if (linkType == Weak && i == 0)
 					{
 						// Because of forcing chain, the first and last node will not be drawn.
 						continue;
@@ -135,46 +135,31 @@ namespace Sudoku.Solving.Constants
 		/// <summary>
 		/// Get the links through the specified target node.
 		/// </summary>
+		/// <param name="target">The target node.</param>
+		/// <param name="isLoop">Indicates whether the current chain is a loop.</param>
 		/// <returns>The link.</returns>
-		public static IReadOnlyList<Link> GetLinks(Node target, bool isLoop)
+		public static IReadOnlyList<Link> GetLinks(Node target, bool isLoop = false)
 		{
 			var result = new List<Link>();
 			var chain = target.Chain;
-			for (int i = 1, count = chain.Count; i < count; i++)
+			for (int i = isLoop ? 0 : 1; i < chain.Count - (isLoop ? 0 : 2); i++)
 			{
 				var p = chain[i];
-				if (p.ParentsCount != 0)
+				for (int j = 0; j < p.ParentsCount; j++)
 				{
-					var pr = p[0];
-					var linkType = (pr.IsOn, p.IsOn) switch
-					{
-						(false, true) => Strong,
-						(true, false) => Weak,
-						_ => Default
-					};
-					if (linkType == Weak && i == count - 2)
-					{
-						continue;
-					}
-
+					var pr = p[j];
 					result.Add(
 						new Link(
 							startCandidate: (p.Cells.Count == 1 ? p._cell : p.Cells.SetAt(0)) * 9 + p.Digit,
 							endCandidate: (pr.Cells.Count == 1 ? pr._cell : pr.Cells.SetAt(0)) * 9 + pr.Digit,
-							linkType));
+							linkType: (pr.IsOn, p.IsOn) switch
+							{
+								(false, true) => Strong,
+								(true, false) => Weak,
+								_ => Default
+							}));
 				}
 			}
-
-			//if (isLoop)
-			//{
-			//	var startNode = chain[1];
-			//	var endNode = chain[^1][0];
-			//	result.Add(
-			//		new Link(
-			//			(startNode.Cells.Count == 1 ? startNode._cell : startNode.Cells.SetAt(0)) * 9 + startNode.Digit,
-			//			(endNode.Cells.Count == 1 ? endNode._cell : endNode.Cells.SetAt(0)) * 9 + endNode.Digit,
-			//			Weak));
-			//}
 
 			return result;
 		}

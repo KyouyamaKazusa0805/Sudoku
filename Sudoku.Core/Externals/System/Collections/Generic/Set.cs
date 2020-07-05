@@ -21,6 +21,18 @@ namespace System.Collections.Generic
 		/// <include file='../../../../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public Set() => _list = new List<T>();
 
+		/// <summary>
+		/// Add a series of elements.
+		/// </summary>
+		/// <param name="elements">The elements.</param>
+		public Set(IEnumerable<T> elements) : this()
+		{
+			foreach (var element in elements)
+			{
+				Add(element);
+			}
+		}
+
 
 		/// <summary>
 		/// The number of elements.

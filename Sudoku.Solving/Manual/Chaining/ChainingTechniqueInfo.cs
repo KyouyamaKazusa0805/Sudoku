@@ -194,13 +194,13 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override int GetHashCode()
 		{
 			// Same conclusions hold same hash code.
-			var result = new HashCode();
+			int result = 0xC0DE;
 			foreach (var conclusion in Conclusions)
 			{
-				result.Add(conclusion);
+				result ^= 0xDECADE | conclusion.GetHashCode();
 			}
 
-			return result.ToHashCode();
+			return result;
 		}
 
 		/// <summary>

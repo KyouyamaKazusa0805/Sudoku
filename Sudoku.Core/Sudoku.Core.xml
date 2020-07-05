@@ -3588,6 +3588,10 @@
             </summary>
             <param name="index">The index.</param>
             <returns>The parent node.</returns>
+            <exception cref="T:System.NullReferenceException">
+            Throws when the <see cref="P:Sudoku.Data.Node.Parents"/> is currently <see langword="null"/>.
+            </exception>
+            <seealso cref="P:Sudoku.Data.Node.Parents"/>
         </member>
         <member name="M:Sudoku.Data.Node.AddParent(Sudoku.Data.Node)">
             <summary>
@@ -7959,6 +7963,12 @@
             <defaultConstructor>
 		<summary>Create an instance with default initialization.</summary>
 	</defaultConstructor>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Add a series of elements.
+            </summary>
+            <param name="elements">The elements.</param>
         </member>
         <member name="P:System.Collections.Generic.Set`1.Count">
             <summary>

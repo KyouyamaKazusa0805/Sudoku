@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -47,7 +46,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				return;
 			}
 
-			var list = new List<ChainingTechniqueInfo>(tempAccumulator.Distinct());
+			var list = new List<ChainingTechniqueInfo>(new Set<ChainingTechniqueInfo>(tempAccumulator));
 			list.Sort((i1, i2) =>
 			{
 				decimal d1 = i1.Difficulty, d2 = i2.Difficulty;
@@ -142,14 +141,14 @@ namespace Sudoku.Solving.Manual.Chaining
 				DoAic(grid, onToOn, onToOff, yEnabled, chains, pOff);
 			}
 
-			//foreach (var destOn in loops)
-			//{
-			//	var result = CreateLoopHint(grid, destOn, xEnabled, yEnabled);
-			//	if (!(result is null))
-			//	{
-			//		accumulator.Add(result);
-			//	}
-			//}
+			foreach (var destOn in loops)
+			{
+				var result = CreateLoopHint(grid, destOn, xEnabled, yEnabled);
+				if (!(result is null))
+				{
+					accumulator.Add(result);
+				}
+			}
 			foreach (var target in chains)
 			{
 				var result = CreateAicHint(grid, target, xEnabled, yEnabled);
@@ -163,7 +162,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		private ChainingTechniqueInfo? CreateLoopHint(IReadOnlyGrid grid, Node destOn, bool xEnabled, bool yEnabled)
 		{
 			var conclusions = new List<Conclusion>();
-			foreach (var (start, end, type) in GetLinks(destOn, true))
+			var links = GetLinks(destOn, true);
+			foreach (var (start, end, type) in links)
 			{
 				if (type == LinkType.Weak)
 				{
@@ -193,7 +193,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							cellOffsets: null,
 							candidateOffsets: GetCandidateOffsets(destOn),
 							regionOffsets: null,
-							links: GetLinks(destOn, true))
+							links)
 					},
 					xEnabled,
 					yEnabled,
@@ -241,7 +241,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							cellOffsets: null,
 							candidateOffsets: GetCandidateOffsets(target),
 							regionOffsets: null,
-							links: GetLinks(target, false))
+							links: GetLinks(target))
 					},
 					xEnabled,
 					yEnabled,

@@ -129,7 +129,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// The parents.
 		/// </summary>
-		public Node[] Parents { readonly get; private set; }
+		public Node[]? Parents { readonly get; private set; }
 
 		/// <summary>
 		/// The chain nodes.
@@ -170,7 +170,11 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="index">The index.</param>
 		/// <returns>The parent node.</returns>
-		public readonly Node this[int index] => Parents[index];
+		/// <exception cref="NullReferenceException">
+		/// Throws when the <see cref="Parents"/> is currently <see langword="null"/>.
+		/// </exception>
+		/// <seealso cref="Parents"/>
+		public readonly Node this[int index] => Parents?[index] ?? throw new NullReferenceException();
 
 
 		/// <summary>
@@ -224,6 +228,11 @@ namespace Sudoku.Data
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		public override readonly int GetHashCode()
 		{
+			if (Parents is null)
+			{
+				return 0;
+			}
+
 			var hashCode = new HashCode();
 			foreach (var parent in Parents)
 			{
@@ -245,7 +254,7 @@ namespace Sudoku.Data
 				var nodes = new SudokuMap();
 				for (int i = 0; i < ParentsCount; i++)
 				{
-					var node = Parents[i];
+					var node = Parents![i];
 					nodes.AddRange(from cell in node.Cells select cell * 9 + node.Digit);
 				}
 
