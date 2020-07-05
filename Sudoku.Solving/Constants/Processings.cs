@@ -136,7 +136,7 @@ namespace Sudoku.Solving.Constants
 		/// Get the links through the specified target node.
 		/// </summary>
 		/// <returns>The link.</returns>
-		public static IReadOnlyList<Link> GetLinks(Node target)
+		public static IReadOnlyList<Link> GetLinks(Node target, bool isLoop)
 		{
 			var result = new List<Link>();
 			var chain = target.Chain;
@@ -164,6 +164,17 @@ namespace Sudoku.Solving.Constants
 							linkType));
 				}
 			}
+
+			//if (isLoop)
+			//{
+			//	var startNode = chain[1];
+			//	var endNode = chain[^1][0];
+			//	result.Add(
+			//		new Link(
+			//			(startNode.Cells.Count == 1 ? startNode._cell : startNode.Cells.SetAt(0)) * 9 + startNode.Digit,
+			//			(endNode.Cells.Count == 1 ? endNode._cell : endNode.Cells.SetAt(0)) * 9 + endNode.Digit,
+			//			Weak));
+			//}
 
 			return result;
 		}

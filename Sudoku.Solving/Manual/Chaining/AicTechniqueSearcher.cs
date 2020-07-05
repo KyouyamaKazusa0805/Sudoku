@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
@@ -46,7 +47,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				return;
 			}
 
-			tempAccumulator.Sort((i1, i2) =>
+			var list = new List<ChainingTechniqueInfo>(tempAccumulator.Distinct());
+			list.Sort((i1, i2) =>
 			{
 				decimal d1 = i1.Difficulty, d2 = i2.Difficulty;
 				if (d1 < d2)
@@ -65,7 +67,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 			});
 
-			accumulator.AddRange(tempAccumulator);
+			accumulator.AddRange(list);
 		}
 
 
@@ -140,14 +142,14 @@ namespace Sudoku.Solving.Manual.Chaining
 				DoAic(grid, onToOn, onToOff, yEnabled, chains, pOff);
 			}
 
-			foreach (var destOn in loops)
-			{
-				var result = CreateLoopHint(grid, destOn, xEnabled, yEnabled);
-				if (!(result is null))
-				{
-					accumulator.Add(result);
-				}
-			}
+			//foreach (var destOn in loops)
+			//{
+			//	var result = CreateLoopHint(grid, destOn, xEnabled, yEnabled);
+			//	if (!(result is null))
+			//	{
+			//		accumulator.Add(result);
+			//	}
+			//}
 			foreach (var target in chains)
 			{
 				var result = CreateAicHint(grid, target, xEnabled, yEnabled);
@@ -160,30 +162,25 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		private ChainingTechniqueInfo? CreateLoopHint(IReadOnlyGrid grid, Node destOn, bool xEnabled, bool yEnabled)
 		{
-			var cells = GridMap.Empty;
-			for (var p = destOn; p.ParentsCount != 0; p = p[0])
+			var conclusions = new List<Conclusion>();
+			foreach (var (start, end, type) in GetLinks(destOn, true))
 			{
-				cells.Add(p._cell);
-			}
-
-			var cancelFore = new Set<Node>();
-			var cancelBack = new Set<Node>();
-			for (var p = destOn; p.ParentsCount != 0; p = p[0])
-			{
-				foreach (int cell in PeerMaps[p._cell])
+				if (type == LinkType.Weak)
 				{
-					if (!cells[cell] && grid.Exists(cell, p.Digit) is true)
+					var elimMap = SudokuMap.CreateInstance(stackalloc[] { start, end });
+					if (elimMap.IsEmpty)
 					{
-						(p.IsOn ? ref cancelFore : ref cancelBack).Add(new Node(cell, p.Digit, false));
+						continue;
+					}
+
+					foreach (int candidate in elimMap)
+					{
+						if (grid.Exists(candidate / 9, candidate % 9) is true)
+						{
+							conclusions.Add(new Conclusion(Elimination, candidate));
+						}
 					}
 				}
-			}
-
-			cancelFore &= cancelBack;
-			var conclusions = new List<Conclusion>();
-			foreach (var node in cancelFore)
-			{
-				conclusions.Add(new Conclusion(Elimination, node._cell, node.Digit));
 			}
 
 			return conclusions.Count == 0
@@ -196,7 +193,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							cellOffsets: null,
 							candidateOffsets: GetCandidateOffsets(destOn),
 							regionOffsets: null,
-							links: GetLinks(destOn))
+							links: GetLinks(destOn, true))
 					},
 					xEnabled,
 					yEnabled,
@@ -244,7 +241,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							cellOffsets: null,
 							candidateOffsets: GetCandidateOffsets(target),
 							regionOffsets: null,
-							links: GetLinks(target))
+							links: GetLinks(target, false))
 					},
 					xEnabled,
 					yEnabled,

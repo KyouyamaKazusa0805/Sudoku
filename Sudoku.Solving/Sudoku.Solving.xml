@@ -876,7 +876,7 @@
             <param name="target">The target node.</param>
             <returns>The candidate offsets.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Constants.Processings.GetLinks(Sudoku.Data.Node)">
+        <member name="M:Sudoku.Solving.Constants.Processings.GetLinks(Sudoku.Data.Node,System.Boolean)">
             <summary>
             Get the links through the specified target node.
             </summary>
@@ -2600,6 +2600,9 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.LoopTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.LoopTechniqueInfo.Name">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.LoopTechniqueInfo.TechniqueCode">
