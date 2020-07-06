@@ -19,6 +19,12 @@ namespace Sudoku.Data
 
 
 		/// <summary>
+		/// The parent nodes.
+		/// </summary>
+		private Node[]? _parents;
+
+
+		/// <summary>
 		/// Initializes an instance with the specified digit, cell and a <see cref="bool"/> value.
 		/// </summary>
 		/// <param name="cell">The cell.</param>
@@ -127,11 +133,6 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// The parents.
-		/// </summary>
-		public Node[]? Parents { readonly get; private set; }
-
-		/// <summary>
 		/// The chain nodes.
 		/// </summary>
 		public readonly IReadOnlyList<Node> Chain
@@ -171,17 +172,17 @@ namespace Sudoku.Data
 		/// <param name="index">The index.</param>
 		/// <returns>The parent node.</returns>
 		/// <exception cref="NullReferenceException">
-		/// Throws when the <see cref="Parents"/> is currently <see langword="null"/>.
+		/// Throws when the <see cref="_parents"/> is currently <see langword="null"/>.
 		/// </exception>
-		/// <seealso cref="Parents"/>
-		public readonly Node this[int index] => Parents?[index] ?? throw new NullReferenceException();
+		/// <seealso cref="_parents"/>
+		public readonly Node this[int index] => _parents?[index] ?? throw new NullReferenceException();
 
 
 		/// <summary>
 		/// Add a node into the list.
 		/// </summary>
 		/// <param name="node">The node.</param>
-		public void AddParent(Node node) => (Parents ??= new Node[7])[ParentsCount] = node;
+		public void AddParent(Node node) => (_parents ??= new Node[7])[ParentsCount] = node;
 
 		/// <summary>
 		/// Clear all parent nodes.
@@ -217,13 +218,13 @@ namespace Sudoku.Data
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		public override readonly int GetHashCode()
 		{
-			if (Parents is null)
+			if (_parents is null)
 			{
 				return 0;
 			}
 
 			var hashCode = new HashCode();
-			foreach (var parent in Parents)
+			foreach (var parent in _parents)
 			{
 				hashCode.Add(parent);
 			}
@@ -243,7 +244,7 @@ namespace Sudoku.Data
 				var nodes = new SudokuMap();
 				for (int i = 0; i < ParentsCount; i++)
 				{
-					var node = Parents![i];
+					var node = _parents![i];
 					nodes.AddRange(from cell in node.Cells select cell * 9 + node.Digit);
 				}
 
