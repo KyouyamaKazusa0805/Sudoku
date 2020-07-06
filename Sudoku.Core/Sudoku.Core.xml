@@ -7984,6 +7984,17 @@
         <member name="M:System.Collections.Generic.Set`1.CopyTo(`0[],System.Int32)">
             <inheritdoc/>
         </member>
+        <member name="M:System.Collections.Generic.Set`1.Sort">
+            <summary>
+            Sort the list.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.Sort(System.Comparison{`0})">
+            <summary>
+            Sort the list with the specified comparsion.
+            </summary>
+            <param name="comparison">The comparsion.</param>
+        </member>
         <member name="M:System.Collections.Generic.Set`1.Add(`0)">
             <summary>
             Add an element into the set.

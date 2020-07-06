@@ -2455,25 +2455,6 @@
             </returns>
             <seealso cref="T:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.GetOnToOff(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Node,System.Boolean)">
-            <summary>
-            Get all available weak links.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="p">The current node.</param>
-            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
-            <returns>All possible weak links.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.GetOffToOn(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Node,System.Boolean,System.Boolean)">
-            <summary>
-            Get all available strong links.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="p">The current node.</param>
-            <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
-            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
-            <returns>All possible strong links.</returns>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.DoAic(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.ISet{Sudoku.Data.Node},System.Collections.Generic.ISet{Sudoku.Data.Node},System.Boolean,System.Collections.Generic.IList{Sudoku.Data.Node},Sudoku.Data.Node)">
             <summary>
             Simulate the passing strong and weak links in AICs.
@@ -2653,6 +2634,25 @@
             <summary>
             Encapsulates a <b>chain</b> technique searcher.
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher.GetOnToOff(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Node,System.Boolean)">
+            <summary>
+            Get all available weak links.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="p">The current node.</param>
+            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+            <returns>All possible weak links.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher.GetOffToOn(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Node,System.Boolean,System.Boolean)">
+            <summary>
+            Get all available strong links.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="p">The current node.</param>
+            <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
+            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+            <returns>All possible strong links.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.LoopTechniqueInfo">
             <summary>
