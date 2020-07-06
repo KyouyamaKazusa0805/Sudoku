@@ -178,7 +178,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		private ChainingTechniqueInfo? CreateLoopHint(IReadOnlyGrid grid, Node destOn, bool xEnabled, bool yEnabled)
 		{
 			var conclusions = new List<Conclusion>();
-			var links = GetLinks(destOn, true);
+			var links = GetLinks(destOn, true); //! Maybe wrong when adding grouped nodes.
 			foreach (var (start, end, type) in links)
 			{
 				if (type == LinkType.Weak)
