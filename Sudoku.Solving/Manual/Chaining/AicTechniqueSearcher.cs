@@ -159,6 +159,18 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 		}
 
+		/// <summary>
+		/// Create a loop hint (i.e. a <see cref="LoopTechniqueInfo"/>).
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="destOn">The start node.</param>
+		/// <param name="xEnabled">Indicates whether X-Chains are enabled.</param>
+		/// <param name="yEnabled">Indicates whether Y-Chains are enabled.</param>
+		/// <returns>
+		/// If the number of conclusions are not zero (in other words, if worth), the information
+		/// will be returned; otherwise, <see langword="null"/>.
+		/// </returns>
+		/// <seealso cref="LoopTechniqueInfo"/>
 		private ChainingTechniqueInfo? CreateLoopHint(IReadOnlyGrid grid, Node destOn, bool xEnabled, bool yEnabled)
 		{
 			var conclusions = new List<Conclusion>();
@@ -200,6 +212,18 @@ namespace Sudoku.Solving.Manual.Chaining
 					target: destOn);
 		}
 
+		/// <summary>
+		/// Create an AIC hint (i.e. a <see cref="AicTechniqueInfo"/>).
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="target">The elimination node (which is used for searching the whole chain).</param>
+		/// <param name="xEnabled">Indicates whether X-Chains are enabled.</param>
+		/// <param name="yEnabled">Indicates whether Y-Chains are enabled.</param>
+		/// <returns>
+		/// If the number of conclusions are not zero (in other words, if worth), the information
+		/// will be returned; otherwise, <see langword="null"/>.
+		/// </returns>
+		/// <seealso cref="AicTechniqueInfo"/>
 		private ChainingTechniqueInfo? CreateAicHint(IReadOnlyGrid grid, Node target, bool xEnabled, bool yEnabled)
 		{
 			var conclusions = new List<Conclusion>();
@@ -248,6 +272,13 @@ namespace Sudoku.Solving.Manual.Chaining
 					target);
 		}
 
+		/// <summary>
+		/// Get all available weak links.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="p">The current node.</param>
+		/// <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+		/// <returns>All possible weak links.</returns>
 		private ISet<Node> GetOnToOff(IReadOnlyGrid grid, Node p, bool yEnabled)
 		{
 			var result = new Set<Node>();
@@ -281,6 +312,14 @@ namespace Sudoku.Solving.Manual.Chaining
 			return result;
 		}
 
+		/// <summary>
+		/// Get all available strong links.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="p">The current node.</param>
+		/// <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
+		/// <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+		/// <returns>All possible strong links.</returns>
 		private ISet<Node> GetOffToOn(IReadOnlyGrid grid, Node p, bool xEnabled, bool yEnabled)
 		{
 			var result = new Set<Node>();
@@ -318,6 +357,15 @@ namespace Sudoku.Solving.Manual.Chaining
 			return result;
 		}
 
+		/// <summary>
+		/// Simulate the passing strong and weak links in AICs.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="onToOn">The nodes that the end candidates are currently on.</param>
+		/// <param name="onToOff">The nodes the end candidates are currently off.</param>
+		/// <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+		/// <param name="chains">The chain nodes.</param>
+		/// <param name="source">The source node.</param>
 		private void DoAic(
 			IReadOnlyGrid grid, ISet<Node> onToOn, ISet<Node> onToOff, bool yEnabled,
 			IList<Node> chains, Node source)
@@ -377,6 +425,16 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 		}
 
+		/// <summary>
+		/// Simulate the passing strong and weak links in CNLs.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="onToOn">The nodes that the end candidates are currently on.</param>
+		/// <param name="onToOff">The nodes the end candidates are currently off.</param>
+		/// <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
+		/// <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+		/// <param name="loops">The loop nodes.</param>
+		/// <param name="source">The source node.</param>
 		private void DoLoops(
 			IReadOnlyGrid grid, ISet<Node> onToOn, ISet<Node> onToOff, bool xEnabled, bool yEnabled,
 			IList<Node> loops, Node source)

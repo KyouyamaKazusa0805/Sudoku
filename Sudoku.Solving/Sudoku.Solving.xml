@@ -2427,6 +2427,76 @@
             Indicates whether the strong links in cells are enabled to search for.
             </param>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.CreateLoopHint(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Node,System.Boolean,System.Boolean)">
+            <summary>
+            Create a loop hint (i.e. a <see cref="T:Sudoku.Solving.Manual.Chaining.LoopTechniqueInfo"/>).
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="destOn">The start node.</param>
+            <param name="xEnabled">Indicates whether X-Chains are enabled.</param>
+            <param name="yEnabled">Indicates whether Y-Chains are enabled.</param>
+            <returns>
+            If the number of conclusions are not zero (in other words, if worth), the information
+            will be returned; otherwise, <see langword="null"/>.
+            </returns>
+            <seealso cref="T:Sudoku.Solving.Manual.Chaining.LoopTechniqueInfo"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.CreateAicHint(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Node,System.Boolean,System.Boolean)">
+            <summary>
+            Create an AIC hint (i.e. a <see cref="T:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo"/>).
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="target">The elimination node (which is used for searching the whole chain).</param>
+            <param name="xEnabled">Indicates whether X-Chains are enabled.</param>
+            <param name="yEnabled">Indicates whether Y-Chains are enabled.</param>
+            <returns>
+            If the number of conclusions are not zero (in other words, if worth), the information
+            will be returned; otherwise, <see langword="null"/>.
+            </returns>
+            <seealso cref="T:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.GetOnToOff(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Node,System.Boolean)">
+            <summary>
+            Get all available weak links.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="p">The current node.</param>
+            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+            <returns>All possible weak links.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.GetOffToOn(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.Node,System.Boolean,System.Boolean)">
+            <summary>
+            Get all available strong links.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="p">The current node.</param>
+            <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
+            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+            <returns>All possible strong links.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.DoAic(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.ISet{Sudoku.Data.Node},System.Collections.Generic.ISet{Sudoku.Data.Node},System.Boolean,System.Collections.Generic.IList{Sudoku.Data.Node},Sudoku.Data.Node)">
+            <summary>
+            Simulate the passing strong and weak links in AICs.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="onToOn">The nodes that the end candidates are currently on.</param>
+            <param name="onToOff">The nodes the end candidates are currently off.</param>
+            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+            <param name="chains">The chain nodes.</param>
+            <param name="source">The source node.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueSearcher.DoLoops(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.ISet{Sudoku.Data.Node},System.Collections.Generic.ISet{Sudoku.Data.Node},System.Boolean,System.Boolean,System.Collections.Generic.IList{Sudoku.Data.Node},Sudoku.Data.Node)">
+            <summary>
+            Simulate the passing strong and weak links in CNLs.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="onToOn">The nodes that the end candidates are currently on.</param>
+            <param name="onToOff">The nodes the end candidates are currently off.</param>
+            <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
+            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+            <param name="loops">The loop nodes.</param>
+            <param name="source">The source node.</param>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo">
             <summary>
             Provides a usage of <b>chain</b> technique.
