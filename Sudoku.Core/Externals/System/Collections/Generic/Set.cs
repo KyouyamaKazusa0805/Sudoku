@@ -50,6 +50,17 @@ namespace System.Collections.Generic
 		public void CopyTo(T[] array, int arrayIndex) => _list.CopyTo(array, arrayIndex);
 
 		/// <summary>
+		/// Sort the list.
+		/// </summary>
+		public void Sort() => ((List<T>)_list).Sort();
+
+		/// <summary>
+		/// Sort the list with the specified comparsion.
+		/// </summary>
+		/// <param name="comparison">The comparsion.</param>
+		public void Sort(Comparison<T> comparison) => ((List<T>)_list).Sort(comparison);
+
+		/// <summary>
 		/// Add an element into the set.
 		/// </summary>
 		/// <param name="item">The item.</param>

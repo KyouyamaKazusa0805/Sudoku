@@ -46,8 +46,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				return;
 			}
 
-			var list = new List<ChainingTechniqueInfo>(new Set<ChainingTechniqueInfo>(tempAccumulator));
-			list.Sort((i1, i2) =>
+			var set = new Set<ChainingTechniqueInfo>(tempAccumulator);
+			set.Sort((i1, i2) =>
 			{
 				decimal d1 = i1.Difficulty, d2 = i2.Difficulty;
 				if (d1 < d2)
@@ -66,7 +66,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 			});
 
-			accumulator.AddRange(list);
+			accumulator.AddRange(set);
 		}
 
 
