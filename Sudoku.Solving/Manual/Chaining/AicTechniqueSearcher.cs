@@ -143,6 +143,12 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			foreach (var destOn in loops)
 			{
+				if ((destOn.Chain.Count & 1) == 1)
+				{
+					// Odd length.
+					continue;
+				}
+
 				var result = CreateLoopHint(grid, destOn, xEnabled, yEnabled);
 				if (!(result is null))
 				{
