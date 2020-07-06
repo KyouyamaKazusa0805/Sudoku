@@ -176,6 +176,27 @@ namespace Sudoku.Solving.Manual.Chaining
 			};
 
 		/// <summary>
+		/// Indicates whether the specified chain is an XY-Chain.
+		/// </summary>
+		protected bool IsXyChain
+		{
+			get
+			{
+				var links = Views[0].Links!;
+				for (int i = 0; i < links.Count; i += 2)
+				{
+					var link = links[i];
+					if (link.StartCandidate / 9 != link.EndCandidate / 9)
+					{
+						return false;
+					}
+				}
+
+				return true;
+			}
+		}
+
+		/// <summary>
 		/// The nested suffix.
 		/// </summary>
 		private string NestedSuffix => GetNestedSuffix(Level);

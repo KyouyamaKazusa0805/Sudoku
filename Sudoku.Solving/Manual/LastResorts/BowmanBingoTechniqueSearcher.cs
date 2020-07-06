@@ -48,7 +48,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <summary>
 		/// Indicates whether the technique is enabled.
 		/// </summary>
-		public static bool IsEnabled { get; set; } = false;
+		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

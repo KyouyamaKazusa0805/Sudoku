@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -34,15 +35,20 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override string Name => Resources.GetValue(TechniqueCode.ToString());
 
 		/// <inheritdoc/>
-		public override TechniqueCode TechniqueCode => TechniqueCode.ContinuousNiceLoop;
+		public override TechniqueCode TechniqueCode =>
+			IsXyChain switch
+			{
+				true => TechniqueCode.XyCycle,
+				_ => TechniqueCode.ContinuousNiceLoop
+			};
 
 		/// <inheritdoc/>
 		public override int SortKey =>
-			(XEnabled, YEnabled) switch
+			TechniqueCode switch
 			{
-				(true, true) => 4,
-				(false, true) => 3,
-				_ => 2
+				TechniqueCode.XyCycle => 1,
+				TechniqueCode.ContinuousNiceLoop => 2,
+				_ => throw Throwings.ImpossibleCase
 			};
 
 		/// <inheritdoc/>
