@@ -35,9 +35,10 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override int SortKey =>
 			TechniqueCode switch
 			{
-				TechniqueCode.Aic => 2,
-				TechniqueCode.XyXChain => 3,
-				TechniqueCode.DiscontinuousNiceLoop => 4,
+				TechniqueCode.XyChain => 1,
+				TechniqueCode.XyXChain => 2,
+				TechniqueCode.DiscontinuousNiceLoop => 3,
+				TechniqueCode.Aic => 4,
 				_ => throw Throwings.ImpossibleCase
 			};
 
@@ -55,7 +56,11 @@ namespace Sudoku.Solving.Manual.Chaining
 				var chain = Target.Chain;
 				return (chain[^2].Digit == chain[1].Digit) switch
 				{
-					true => TechniqueCode.Aic,
+					true => IsXyChain switch
+					{
+						true => TechniqueCode.XyChain,
+						_ => TechniqueCode.Aic
+					},
 					false => Conclusions.Count switch
 					{
 						1 => TechniqueCode.DiscontinuousNiceLoop,
@@ -63,6 +68,27 @@ namespace Sudoku.Solving.Manual.Chaining
 						_ => throw Throwings.ImpossibleCase
 					}
 				};
+			}
+		}
+
+		/// <summary>
+		/// Indicates whether the specified chain is an XY-Chain.
+		/// </summary>
+		private bool IsXyChain
+		{
+			get
+			{
+				var links = Views[0].Links!;
+				for (int i = 0; i < links.Count; i += 2)
+				{
+					var link = links[i];
+					if (link.StartCandidate / 9 != link.EndCandidate / 9)
+					{
+						return false;
+					}
+				}
+
+				return true;
 			}
 		}
 

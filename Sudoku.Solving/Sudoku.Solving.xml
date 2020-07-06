@@ -2369,6 +2369,11 @@
         <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.IsXyChain">
+            <summary>
+            Indicates whether the specified chain is an XY-Chain.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.ToString">
             <inheritdoc/>
         </member>

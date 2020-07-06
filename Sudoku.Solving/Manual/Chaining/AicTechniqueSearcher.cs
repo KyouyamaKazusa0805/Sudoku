@@ -366,7 +366,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							chains.AddIfDoesNotContain(pOn);
 						}
 
-						if (!onToOn.Contains(pOn))
+						if (!pOff.IsParentOf(p) && !onToOn.Contains(pOn))
 						{
 							// Not processed yet.
 							pendingOn.Add(pOn);
