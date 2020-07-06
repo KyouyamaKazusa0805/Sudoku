@@ -15,7 +15,7 @@ namespace Sudoku.Data
 		/// Indicates the cell used. In the default case, the AIC contains only one cell and the digit (which
 		/// combine to a candidate).
 		/// </summary>
-		internal int _cell;
+		internal readonly int _cell;
 
 
 		/// <summary>
@@ -181,23 +181,12 @@ namespace Sudoku.Data
 		/// Add a node into the list.
 		/// </summary>
 		/// <param name="node">The node.</param>
-		public void AddParent(Node node)
-		{
-			(Parents ??= new Node[7])[ParentsCount] = node;
-			if (++ParentsCount != 1)
-			{
-				_cell = -1;
-			}
-		}
+		public void AddParent(Node node) => (Parents ??= new Node[7])[ParentsCount] = node;
 
 		/// <summary>
 		/// Clear all parent nodes.
 		/// </summary>
-		public void ClearParents()
-		{
-			ParentsCount = 0;
-			_cell = -1;
-		}
+		public void ClearParents() => ParentsCount = 0;
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
 		public override readonly bool Equals(object? obj) => obj is Node comparer && Equals(comparer);

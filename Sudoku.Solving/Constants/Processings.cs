@@ -116,7 +116,7 @@ namespace Sudoku.Solving.Constants
 					};
 					if (linkType == Weak && i == 0)
 					{
-						// Because of forcing chain, the first and last node will not be drawn.
+						// Because of forcing chain, the first node will not be drawn.
 						continue;
 					}
 
