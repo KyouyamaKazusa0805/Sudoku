@@ -27,10 +27,10 @@ namespace Sudoku.Solving.Manual.Chaining
 		//private readonly int _level;
 
 
-		/// <summary>
-		/// The temporary grid for handling dynamic and multiple forcing chains.
-		/// </summary>
-		private Grid _tempGrid = null!;
+		///// <summary>
+		///// The temporary grid for handling dynamic and multiple forcing chains.
+		///// </summary>
+		//private Grid _tempGrid = null!;
 
 
 		/// <summary>
@@ -272,7 +272,7 @@ namespace Sudoku.Solving.Manual.Chaining
 								var other = new Node(otherCell, digit, true);
 								Set<Node> otherToOn = new Set<Node> { other }, otherToOff = new Set<Node>();
 
-								DoChaining(ref grid, otherToOn, otherToOff);
+								DoChaining(grid, otherToOn, otherToOff);
 
 								posToOn.Add(otherCell, otherToOn);
 								posToOff.Add(otherCell, otherToOff);
@@ -303,9 +303,9 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 		}
 
-		private Node[]? DoChaining(ref IReadOnlyGrid grid, ISet<Node> toOn, ISet<Node> toOff)
+		private Node[]? DoChaining(IReadOnlyGrid grid, ISet<Node> toOn, ISet<Node> toOff)
 		{
-			_tempGrid = grid.Clone();
+			//_tempGrid = grid.Clone();
 
 			var pendingOn = new Set<Node>(toOn);
 			var pendingOff = new Set<Node>(toOff);
@@ -374,7 +374,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 
 			// Recover.
-			grid = _tempGrid;
+			//grid = _tempGrid;
 
 			return null;
 		}

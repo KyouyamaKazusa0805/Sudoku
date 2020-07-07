@@ -2707,11 +2707,6 @@
             Indicates the information.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher._tempGrid">
-            <summary>
-            The temporary grid for handling dynamic and multiple forcing chains.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.#ctor(System.Boolean,System.Boolean)">
             <summary>
             Initializes an instance with the specified information.
