@@ -182,7 +182,7 @@ namespace Sudoku.Data
 		/// Add a node into the list.
 		/// </summary>
 		/// <param name="node">The node.</param>
-		public void AddParent(Node node) => (_parents ??= new Node[7])[ParentsCount] = node;
+		public void AddParent(Node node) => (_parents ??= new Node[7])[ParentsCount++] = node;
 
 		/// <summary>
 		/// Clear all parent nodes.

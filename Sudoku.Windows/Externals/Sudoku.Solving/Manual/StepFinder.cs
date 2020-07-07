@@ -110,6 +110,8 @@ namespace Sudoku.Solving.Manual
 					_settings.MainManualSolver.HobiwanFishMaximumEndofinsCount,
 					_settings.MainManualSolver.HobiwanFishCheckTemplates),
 #endif
+				//new FcTechniqueSearcher(true, false),
+				new FcTechniqueSearcher(false, true),
 				new BowmanBingoTechniqueSearcher(solver.BowmanBingoMaximumLength),
 				new PomTechniqueSearcher(),
 				new JuniorExocetTechniqueSearcher(solver.CheckAdvancedInExocet),

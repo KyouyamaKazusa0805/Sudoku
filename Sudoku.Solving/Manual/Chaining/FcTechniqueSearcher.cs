@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
+using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
+using static Sudoku.Data.ConclusionType;
+using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -101,8 +104,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				if (count > 2)
 				{
 					// Prepare storage and accumulator for cell eliminations.
-					var valueToOn = new SudokuMap();
-					var valueToOff = new SudokuMap();
+					var valueToOn = new Dictionary<int, Set<Node>>();
+					var valueToOff = new Dictionary<int, Set<Node>>();
 					Set<Node>? cellToOn = null, cellToOff = null;
 
 					// Iterate on all candidates that aren't alone.
@@ -116,21 +119,15 @@ namespace Sudoku.Solving.Manual.Chaining
 						//bool doDouble = count >= 3 && !_nishio && _dynamic, doContradiction = _dynamic || _nishio;
 						//DoBinaryChaining(accumulator, grid, pOn, pOff, onToOn, onToOff, doDouble, doContradiction);
 
-						if (_nishio)
+						if (!_nishio)
 						{
 							// Do region chaining.
 							DoRegionChaining(accumulator, grid, cell, digit, onToOn, onToOff);
 						}
 
 						// Collect results for cell chaining.
-						foreach (var node in onToOn)
-						{
-							valueToOn.Add(node._cell * 9 + digit);
-						}
-						foreach (var node in onToOff)
-						{
-							valueToOff.Add(node._cell * 9 + digit);
-						}
+						valueToOn.Add(digit, onToOn);
+						valueToOff.Add(digit, onToOff);
 						if (cellToOn is null || cellToOff is null)
 						{
 							cellToOn = new Set<Node>(onToOn);
@@ -143,7 +140,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						}
 					}
 
-					if (_nishio)
+					if (!_nishio)
 					{
 						// Do cell eliminations.
 						if (count == 2 || _multiple)
@@ -152,7 +149,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							{
 								foreach (var p in cellToOn)
 								{
-									var hint = CreateCellEliminationHint(cell, p, valueToOn);
+									var hint = CreateCellEliminationHint(grid, cell, p, valueToOn);
 									if (!(hint is null))
 									{
 										accumulator.Add(hint);
@@ -163,7 +160,7 @@ namespace Sudoku.Solving.Manual.Chaining
 							{
 								foreach (var p in cellToOff)
 								{
-									var hint = CreateCellEliminationHint(cell, p, valueToOff);
+									var hint = CreateCellEliminationHint(grid, cell, p, valueToOff);
 									if (!(hint is null))
 									{
 										accumulator.Add(hint);
@@ -243,7 +240,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		private void DoRegionChaining(
 			IBag<ChainingTechniqueInfo> accumulator, IReadOnlyGrid grid, int cell, int digit,
-			ISet<Node> onToOn, ISet<Node> onToOff)
+			Set<Node> onToOn, Set<Node> onToOff)
 		{
 			for (var label = Block; label <= Column; label++)
 			{
@@ -256,7 +253,8 @@ namespace Sudoku.Solving.Manual.Chaining
 					// Determine whether we meet this region for the first time.
 					if (firstCell == cell)
 					{
-						SudokuMap posToOn = new SudokuMap(), posToOff = new SudokuMap();
+						var posToOn = new Dictionary<int, Set<Node>>();
+						var posToOff = new Dictionary<int, Set<Node>>();
 						Set<Node> regionToOn = new Set<Node>(), regionToOff = new Set<Node>();
 
 						// Iterate on node positions within the region.
@@ -264,14 +262,8 @@ namespace Sudoku.Solving.Manual.Chaining
 						{
 							if (otherCell == cell)
 							{
-								foreach (var node in onToOn)
-								{
-									posToOn.Add(otherCell * 9 + node.Digit);
-								}
-								foreach (var node in onToOff)
-								{
-									posToOff.Add(otherCell * 9 + node.Digit);
-								}
+								posToOn.Add(otherCell, onToOn);
+								posToOff.Add(otherCell, onToOff);
 								regionToOn |= onToOn;
 								regionToOff |= onToOff;
 							}
@@ -279,16 +271,11 @@ namespace Sudoku.Solving.Manual.Chaining
 							{
 								var other = new Node(otherCell, digit, true);
 								Set<Node> otherToOn = new Set<Node> { other }, otherToOff = new Set<Node>();
-								DoChaining(ref grid, otherToOn, otherToOff);
-								foreach (var node in otherToOn)
-								{
-									posToOn.Add(otherCell * 9 + node.Digit);
-								}
-								foreach (var node in otherToOff)
-								{
-									posToOff.Add(otherCell * 9 + node.Digit);
-								}
 
+								DoChaining(ref grid, otherToOn, otherToOff);
+
+								posToOn.Add(otherCell, otherToOn);
+								posToOff.Add(otherCell, otherToOff);
 								regionToOn &= otherToOn;
 								regionToOff &= otherToOff;
 							}
@@ -319,91 +306,203 @@ namespace Sudoku.Solving.Manual.Chaining
 		private Node[]? DoChaining(ref IReadOnlyGrid grid, ISet<Node> toOn, ISet<Node> toOff)
 		{
 			_tempGrid = grid.Clone();
-			try
+
+			var pendingOn = new Set<Node>(toOn);
+			var pendingOff = new Set<Node>(toOff);
+			while (pendingOn.Count != 0 || pendingOff.Count != 0)
 			{
-				var pendingOn = new Set<Node>(toOn);
-				var pendingOff = new Set<Node>(toOff);
-				while (pendingOn.Count != 0 || pendingOff.Count != 0)
+				if (pendingOn.Count != 0)
 				{
-					if (pendingOn.Count != 0)
-					{
-						var p = pendingOn.Remove();
+					var p = pendingOn.Remove();
 
-						var makeOff = GetOnToOff(grid, p, !_nishio);
-						foreach (var pOff in makeOff)
+					var makeOff = GetOnToOff(grid, p, !_nishio);
+					foreach (var pOff in makeOff)
+					{
+						var pOn = new Node(pOff._cell, pOff.Digit, true); // Conjugate
+						if (toOn.Contains(pOn))
 						{
-							var pOn = new Node(pOff._cell, pOff.Digit, true); // Conjugate
-							if (toOn.Contains(pOn))
-							{
-								// Contradiction found.
-								return new[] { pOn, pOff }; // Cannot be both on and off at the same time.
-							}
-							else if (!toOff.Contains(pOff))
-							{
-								// Not processed yet.
-								toOff.Add(pOff);
-								pendingOff.Add(pOff);
-							}
+							// Contradiction found.
+							return new[] { pOn, pOff }; // Cannot be both on and off at the same time.
+						}
+						else if (!toOff.Contains(pOff))
+						{
+							// Not processed yet.
+							toOff.Add(pOff);
+							pendingOff.Add(pOff);
 						}
 					}
-					else
-					{
-						var p = pendingOff.Remove();
+				}
+				else
+				{
+					var p = pendingOff.Remove();
 
-						var makeOn = GetOffToOn(grid, p/*, _tempGrid, toOff*/, !_nishio, true);
-						//if (_dynamic)
-						//{
-						//	p.Off(grid);
-						//}
-
-						foreach (var pOn in makeOn)
-						{
-							var pOff = new Node(pOn._cell, pOn.Digit, false); // Conjugate.
-							if (toOff.Contains(pOff))
-							{
-								// Contradiction found.
-								return new[] { pOn, pOff }; // Cannot be both on and off at the same time.
-							}
-							else if (!toOn.Contains(pOn))
-							{
-								// Not processed yet.
-								toOn.Add(pOn);
-								pendingOn.Add(pOn);
-							}
-						}
-					}
-
-					//if (pendingOn.Count != 0 && pendingOff.Count != 0 && _level > 0)
+					var makeOn = GetOffToOn(grid, p/*, _tempGrid, toOff*/, !_nishio, true);
+					//if (_dynamic)
 					//{
-					//	foreach (var pOff in GetAdvanceedNodes(grid, _tempGrid, toOff))
-					//	{
-					//		if (!toOff.Contains(pOff))
-					//		{
-					//			// Not processed yet.
-					//			toOff.Add(pOff);
-					//			pendingOff.Add(pOff);
-					//		}
-					//	}
+					//	p.Off(grid);
 					//}
+
+					foreach (var pOn in makeOn)
+					{
+						var pOff = new Node(pOn._cell, pOn.Digit, false); // Conjugate.
+						if (toOff.Contains(pOff))
+						{
+							// Contradiction found.
+							return new[] { pOn, pOff }; // Cannot be both on and off at the same time.
+						}
+						else if (!toOn.Contains(pOn))
+						{
+							// Not processed yet.
+							toOn.Add(pOn);
+							pendingOn.Add(pOn);
+						}
+					}
 				}
 
-				return null;
+				//if (pendingOn.Count != 0 && pendingOff.Count != 0 && _level > 0)
+				//{
+				//	foreach (var pOff in GetAdvanceedNodes(grid, _tempGrid, toOff))
+				//	{
+				//		if (!toOff.Contains(pOff))
+				//		{
+				//			// Not processed yet.
+				//			toOff.Add(pOff);
+				//			pendingOff.Add(pOff);
+				//		}
+				//	}
+				//}
 			}
-			//catch (SudokuRuntimeException)
-			//{
-			//}
-			finally
+
+			// Recover.
+			grid = _tempGrid;
+
+			return null;
+		}
+
+		//private ChainingTechniqueInfo? CreateChainingOnHint(
+		//	Node destOn, Node destOff, Node source, Node target, bool isAbsurd) =>
+		//	new BinaryChainingTechniqueInfo(
+		//		conclusions: new List<Conclusion> { new Conclusion(Assignment, target._cell, target.Digit) },
+		//		views: new[]
+		//		{
+		//			new View(
+		//				cellOffsets: null,
+		//				candidateOffsets: null,
+		//				regionOffsets: null,
+		//				links: null)
+		//		},
+		//		source,
+		//		destOn,
+		//		destOff,
+		//		isAbsurd,
+		//		isNishio: _nishio);
+
+		//private ChainingTechniqueInfo? CreateChainingOffHint(
+		//	Node destOn, Node destOff, Node source, Node target, bool isAbsurd) =>
+		//	new BinaryChainingTechniqueInfo(
+		//		conclusions: new List<Conclusion> { new Conclusion(Elimination, target._cell, target.Digit) },
+		//		views: new[]
+		//		{
+		//			new View(
+		//				cellOffsets: null,
+		//				candidateOffsets: null,
+		//				regionOffsets: null,
+		//				links: null)
+		//		},
+		//		source,
+		//		destOn,
+		//		destOff,
+		//		isAbsurd,
+		//		isNishio: _nishio);
+
+		private ChainingTechniqueInfo? CreateCellEliminationHint(
+			IReadOnlyGrid grid, int sourceCell, Node target, IReadOnlyDictionary<int, Set<Node>> outcomes)
+		{
+			// Build removable nodes.
+			var conclusions = new List<Conclusion>
 			{
-				grid = _tempGrid;
+				new Conclusion(target.IsOn ? Assignment : Elimination, target._cell, target.Digit)
+			};
+
+			// Build chains.
+			var chains = new Dictionary<int, Node>();
+			foreach (int digit in grid.GetCandidates(sourceCell))
+			{
+				//var valueTarget = outcomes[digit][target];
+				//chains.Add(digit, valueTarget);
+				chains.Add(digit, target);
 			}
+
+			var candidateOffsets = new List<(int, int)>();
+			foreach (var node in chains.Values)
+			{
+				candidateOffsets.AddRange(GetCandidateOffsets(node));
+			}
+
+			var links = new List<Link>();
+			foreach (var node in chains.Values)
+			{
+				links.AddRange(GetLinks(node));
+			}
+
+			return new CellChainingTechniqueInfo(
+				conclusions,
+				views: new[]
+				{
+					new View(
+						cellOffsets: new[] { (0, sourceCell) },
+						candidateOffsets,
+						regionOffsets: null,
+						links)
+				},
+				sourceCell,
+				chains);
 		}
 
-		private ChainingTechniqueInfo? CreateCellEliminationHint(int cell, Node p, SudokuMap valueToOn)
+		private ChainingTechniqueInfo? CreateRegionEliminationHint(
+			int region, int digit, Node target, IDictionary<int, Set<Node>> outcomes)
 		{
-		}
+			// Build removable nodes.
+			var conclusions = new List<Conclusion>
+			{
+				new Conclusion(target.IsOn ? Assignment : Elimination, target._cell, target.Digit)
+			};
 
-		private ChainingTechniqueInfo? CreateRegionEliminationHint(int region, int digit, Node p, SudokuMap posToOn)
-		{
+			// Build chains.
+			var chains = new Dictionary<int, Node>();
+			var map = RegionMaps[region] & CandMaps[digit];
+			foreach (int cell in map)
+			{
+				//var posTarget = outcomes[cell][target];
+				//chains.Add(cell, posTarget);
+				chains.Add(cell, target);
+			}
+
+			var candidateOffsets = new List<(int, int)>();
+			foreach (var node in chains.Values)
+			{
+				candidateOffsets.AddRange(GetCandidateOffsets(node));
+			}
+
+			var links = new List<Link>();
+			foreach (var node in chains.Values)
+			{
+				links.AddRange(GetLinks(node));
+			}
+
+			return new RegionChainingTechniqueInfo(
+				conclusions,
+				views: new[]
+				{
+					new View(
+						cellOffsets: null,
+						candidateOffsets,
+						regionOffsets: new[] { (0, region) },
+						links)
+				},
+				region,
+				digit,
+				chains);
 		}
 	}
 }

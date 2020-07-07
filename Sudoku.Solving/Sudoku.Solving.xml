@@ -2473,6 +2473,44 @@
             <param name="loops">The loop nodes.</param>
             <param name="source">The source node.</param>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Chaining.CellChainingTechniqueInfo">
+            <summary>
+            Provides a usage of <b>cell forcing chains</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.CellChainingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Data.Node})">
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
+            <param name="sourceCell">The source cell.</param>
+            <param name="chains">All branches.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.CellChainingTechniqueInfo.SourceCell">
+            <summary>
+            Indicates the source cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.CellChainingTechniqueInfo.Chains">
+            <summary>
+            Indicates the branches.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.CellChainingTechniqueInfo.SortKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.CellChainingTechniqueInfo.FlatComplexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.CellChainingTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.CellChainingTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo">
             <summary>
             Provides a usage of <b>chain</b> technique.
@@ -2654,6 +2692,53 @@
             <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
             <returns>All possible strong links.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher">
+            <summary>
+            Encapsulates an <b>forcing chains</b> (<b>FCs</b>) technique searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher._nishio">
+            <summary>
+            Indicates the information.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher._multiple">
+            <summary>
+            Indicates the information.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher._tempGrid">
+            <summary>
+            The temporary grid for handling dynamic and multiple forcing chains.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            Initializes an instance with the specified information.
+            </summary>
+            <param name="nishio">Indicates whether the current searcher searches nishio forcing chains.</param>
+            <param name="multiple">Indicates whether the current searcher searches multiple forcing chains.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.Priority">
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.GetAll(System.Collections.Generic.IBag{Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Search for chains of each type.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">Thr grid.</param>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.LoopTechniqueInfo">
             <summary>
             Provides a usage of <b>(grouped) continuous nice loop</b> technique.
@@ -2692,6 +2777,50 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.LoopTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Chaining.RegionChainingTechniqueInfo">
+            <summary>
+            Provides a usage of <b>region forcing chains</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.RegionChainingTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Data.Node})">
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
+            <param name="region">The region.</param>
+            <param name="digit">The digit.</param>
+            <param name="chains">All branches.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.RegionChainingTechniqueInfo.Region">
+            <summary>
+            Indicates the region.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.RegionChainingTechniqueInfo.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.RegionChainingTechniqueInfo.Chains">
+            <summary>
+            Indicates all branches.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.RegionChainingTechniqueInfo.SortKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.RegionChainingTechniqueInfo.FlatComplexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.RegionChainingTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.RegionChainingTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.Eliminations.BibiPatternEliminations">

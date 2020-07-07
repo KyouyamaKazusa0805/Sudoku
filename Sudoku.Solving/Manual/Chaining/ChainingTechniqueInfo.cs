@@ -148,7 +148,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			TechniqueCode switch
 			{
 				TechniqueCode.DynamicFc => "Dynamic ",
-				TechniqueCode.NishioFc => "Nishio, ",
+				TechniqueCode.NishioFc => "Nishio ",
 				TechniqueCode.MultipleFc => "Multiple ",
 				_ => base.Name
 			};
@@ -156,7 +156,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// The suffix.
 		/// </summary>
-		public string Suffix => Level == 0 ? " Chains" : $" Chains{NestedSuffix}";
+		public string Suffix => Level == 0 ? " Forcing Chains" : $" Forcing Chains{NestedSuffix}";
 
 		/// <inheritdoc/>
 		public override string Name => $"{Prefix}{Suffix}";
