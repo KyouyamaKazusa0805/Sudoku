@@ -7666,9 +7666,23 @@
         </member>
         <member name="M:System.Collections.Generic.Set`1.Remove">
             <summary>
-            Remove an element out of the list.
+            Remove the last element out of the list.
             </summary>
-            <returns>The element.</returns>
+            <returns>The element removed.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.RemoveAt(System.Int32)">
+            <summary>
+            Remove the element at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The element removed.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.RemoveAt(System.Index)">
+            <summary>
+            Remove the element at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The element removed.</returns>
         </member>
         <member name="M:System.Collections.Generic.Set`1.Equals(System.Object)">
             <inheritdoc/>

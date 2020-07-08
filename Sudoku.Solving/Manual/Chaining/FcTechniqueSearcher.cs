@@ -122,13 +122,14 @@ namespace Sudoku.Solving.Manual.Chaining
 						if (!_nishio)
 						{
 							// Do region chaining.
+							onToOn.Add(pOn);
 							DoRegionChaining(accumulator, grid, cell, digit, onToOn, onToOff);
 						}
 
 						// Collect results for cell chaining.
 						valueToOn.Add(digit, onToOn);
 						valueToOff.Add(digit, onToOff);
-						if (cellToOn is null || cellToOff is null)
+						if (cellToOn is null/* || cellToOff is null*/)
 						{
 							cellToOn = new Set<Node>(onToOn);
 							cellToOff = new Set<Node>(onToOff);
@@ -136,7 +137,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						else
 						{
 							cellToOn &= onToOn;
-							cellToOff &= onToOff;
+							cellToOff = cellToOff! & onToOff;
 						}
 					}
 
@@ -175,9 +176,9 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		//private void DoBinaryChaining(
 		//	IBag<ChainingTechniqueInfo> accumulator, IReadOnlyGrid grid, Node pOn, Node pOff,
-		//	ISet<Node> onToOn, ISet<Node> onToOff)
+		//	ISet<Node> onToOn, ISet<Node> onToOff, bool doDouble, bool doContradiction)
 		//{
-		//	Node[] absurdNodes;
+		//	Node[]? absurdNodes;
 		//	Set<Node> offToOn = new Set<Node>(), offToOff = new Set<Node>();
 		//
 		//	// Circular forcing chains (hypothesis implying its negation)
@@ -185,7 +186,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		//
 		//	// Test o is currectly on.
 		//	onToOn.Add(pOn);
-		//	absurdNodes = DoChaining(ref grid, onToOn, onToOff);
+		//	absurdNodes = DoChaining(grid, onToOn, onToOff);
 		//	if (doContradiction && !(absurdNodes is null))
 		//	{
 		//		// 'p' cannot hold its value, otherwise it would lead to a contradiction.
@@ -248,10 +249,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				var worthMap = CandMaps[digit] & RegionMaps[region];
 				if (worthMap.Count == 2 || _multiple && worthMap.Count > 2)
 				{
-					int firstCell = worthMap.SetAt(0);
-
 					// Determine whether we meet this region for the first time.
-					if (firstCell == cell)
+					if (worthMap.SetAt(0) == cell)
 					{
 						var posToOn = new Dictionary<int, Set<Node>>();
 						var posToOff = new Dictionary<int, Set<Node>>();

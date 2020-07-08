@@ -2508,6 +2508,9 @@
         <member name="P:Sudoku.Solving.Manual.Chaining.CellChainingTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.CellChainingTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.CellChainingTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
@@ -2813,6 +2816,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.RegionChainingTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.RegionChainingTechniqueInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.RegionChainingTechniqueInfo.ToString">

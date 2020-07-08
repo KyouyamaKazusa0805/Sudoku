@@ -58,6 +58,9 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <inheritdoc/>
 		public override decimal Difficulty => BaseDifficulty + LengthDifficulty;
 
+		/// <inheritdoc/>
+		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
+
 
 		/// <inheritdoc/>
 		public override string ToString()

@@ -76,13 +76,32 @@ namespace System.Collections.Generic
 		}
 
 		/// <summary>
-		/// Remove an element out of the list.
+		/// Remove the last element out of the list.
 		/// </summary>
-		/// <returns>The element.</returns>
-		public T Remove()
+		/// <returns>The element removed.</returns>
+		public T Remove() => RemoveAt(^1);
+
+		/// <summary>
+		/// Remove the element at the specified index.
+		/// </summary>
+		/// <param name="index">The index.</param>
+		/// <returns>The element removed.</returns>
+		public T RemoveAt(int index)
 		{
-			var result = _list[^1];
-			_list.RemoveLastElement();
+			var result = _list[index];
+			_list.RemoveAt(index);
+			return result;
+		}
+
+		/// <summary>
+		/// Remove the element at the specified index.
+		/// </summary>
+		/// <param name="index">The index.</param>
+		/// <returns>The element removed.</returns>
+		public T RemoveAt(Index index)
+		{
+			var result = _list[index];
+			_list.RemoveAt(index);
 			return result;
 		}
 

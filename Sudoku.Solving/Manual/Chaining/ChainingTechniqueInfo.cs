@@ -156,7 +156,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// The suffix.
 		/// </summary>
-		public string Suffix => Level == 0 ? " Forcing Chains" : $" Forcing Chains{NestedSuffix}";
+		public string Suffix => Level == 0 ? "Forcing Chains" : $"Forcing Chains{NestedSuffix}";
 
 		/// <inheritdoc/>
 		public override string Name => $"{Prefix}{Suffix}";
