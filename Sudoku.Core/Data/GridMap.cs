@@ -806,13 +806,7 @@ namespace Sudoku.Data
 		/// <param name="cell">The cell to remove.</param>
 		/// <returns>The map after adding.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static GridMap operator +(int cell, GridMap map)
-		{
-			var result = map;
-			result.Add(cell);
-
-			return result;
-		}
+		public static GridMap operator +(int cell, GridMap map) => map + cell;
 
 		/// <summary>
 		/// Remove a cell from the specified map.
