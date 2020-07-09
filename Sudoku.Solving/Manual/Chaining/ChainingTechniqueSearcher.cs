@@ -36,7 +36,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 
 			// Second rule: Other positions for this digit get off.
-			for (var label = Block; label < UpperLimit; label++)
+			for (var label = Block; label <= Column; label++)
 			{
 				int region = GetRegion(p.Cell, label);
 				for (int pos = 0; pos < 9; pos++)
@@ -81,7 +81,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			if (xEnabled)
 			{
 				// Second rule: If there's only two positions for this candidate, the other ont gets on.
-				for (var label = Block; label < UpperLimit; label++)
+				for (var label = Block; label <= Column; label++)
 				{
 					int region = GetRegion(p.Cell, label);
 					var cells = (CandMaps[p.Digit] & RegionMaps[region]) - p.Cell;

@@ -315,11 +315,6 @@
             Indicates the region label.
             </summary>
         </member>
-        <member name="F:Sudoku.Constants.RegionLabel.LowerLimit">
-            <summary>
-            Indicates the lower limit.
-            </summary>
-        </member>
         <member name="F:Sudoku.Constants.RegionLabel.Block">
             <summary>
             Indicates the block.
@@ -333,11 +328,6 @@
         <member name="F:Sudoku.Constants.RegionLabel.Column">
             <summary>
             Indicates the column.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegionLabel.UpperLimit">
-            <summary>
-            Indicates the upper limit.
             </summary>
         </member>
         <member name="T:Sudoku.Constants.RegularExpressions">

@@ -49,7 +49,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				loops.Clear();
 				tempLoop.Clear();
 
-				f(d1, d2, cell, LowerLimit, default, 2);
+				f(d1, d2, cell, (RegionLabel)(-1), default, 2);
 
 				if (loops.Count == 0)
 				{

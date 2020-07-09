@@ -57,7 +57,7 @@ namespace Sudoku.Solving.Manual.Sdps
 					tempGuardians.Clear();
 					var loop = GridMap.Empty;
 
-					f(cell, LowerLimit, -1);
+					f(cell, (RegionLabel)(-1), -1);
 
 					void f(int cell, RegionLabel lastLabel, int lastRegion)
 					{
