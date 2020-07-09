@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -36,7 +35,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override string Name => Resources.GetValue(TechniqueCode.ToString());
 
 		/// <inheritdoc/>
-		public override int SortKey => 5;
+		public override int SortKey => (int)ChainingTypeCode.CellFc;
 
 		/// <inheritdoc/>
 		public override int FlatComplexity

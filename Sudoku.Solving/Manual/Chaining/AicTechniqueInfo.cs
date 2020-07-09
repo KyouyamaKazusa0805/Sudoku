@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
@@ -32,15 +33,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			(XEnabled && YEnabled ? 5.0M : 4.6M) + GetExtraDifficultyByLength(FlatComplexity - 2);
 
 		/// <inheritdoc/>
-		public override int SortKey =>
-			TechniqueCode switch
-			{
-				TechniqueCode.XyChain => 1,
-				TechniqueCode.XyXChain => 2,
-				TechniqueCode.DiscontinuousNiceLoop => 3,
-				TechniqueCode.Aic => 4,
-				_ => throw Throwings.ImpossibleCase
-			};
+		public override int SortKey => (int)Enum.Parse<ChainingTypeCode>(TechniqueCode.ToString());
 
 		/// <inheritdoc/>
 		public override int FlatComplexity => Target.AncestorsCount;

@@ -2702,6 +2702,51 @@
             <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
             <returns>All possible strong links.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Chaining.ChainingTypeCode">
+            <summary>
+            Indicates a type code for a chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.XyChain">
+            <summary>
+            Indicates the XY-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.XyCycle">
+            <summary>
+            Indicates the XY-Cycle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.ContinuousNiceLoop">
+            <summary>
+            Indicates the continuous nice loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.XyXChain">
+            <summary>
+            Indicates the XY-X-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.DiscontinuousNiceLoop">
+            <summary>
+            Indicates the discontinuous nice loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.Aic">
+            <summary>
+            Indicates the alternating inference chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.CellFc">
+            <summary>
+            Indicates the cell forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.RegionFc">
+            <summary>
+            Indictaes the region forcing chains.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher">
             <summary>
             Encapsulates an <b>forcing chains</b> (<b>FCs</b>) technique searcher.

@@ -365,6 +365,9 @@ dotnet_diagnostic.CS8769.severity = error
 dotnet_diagnostic.CS8777.severity = error
 
 
+# CA1027: Mark enums with FlagsAttribute
+dotnet_diagnostic.CA1027.severity = silent
+
 # CA1031: Do not catch general exception types
 dotnet_diagnostic.CA1031.severity = none
 
