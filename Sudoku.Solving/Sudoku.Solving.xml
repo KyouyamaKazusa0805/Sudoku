@@ -881,7 +881,10 @@
             Get the links through the specified target node.
             </summary>
             <param name="target">The target node.</param>
-            <param name="isLoop">Indicates whether the current chain is a loop.</param>
+            <param name="showAllLinks">
+            Indicates whether the current chain will display all chains (even contains the weak links
+            from the elimination node). The default value is <see langword="false"/>.
+            </param>
             <returns>The link.</returns>
         </member>
         <member name="T:Sudoku.Solving.DifficultyLevel">
@@ -2499,6 +2502,9 @@
             Indicates the branches.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.CellChainingTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.CellChainingTechniqueInfo.SortKey">
             <inheritdoc/>
         </member>
@@ -2710,12 +2716,10 @@
             Indicates the information.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.#ctor(System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.#ctor">
             <summary>
             Initializes an instance with the specified information.
             </summary>
-            <param name="nishio">Indicates whether the current searcher searches nishio forcing chains.</param>
-            <param name="multiple">Indicates whether the current searcher searches multiple forcing chains.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher.Priority">
             <summary>
@@ -2808,6 +2812,9 @@
             <summary>
             Indicates all branches.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.RegionChainingTechniqueInfo.Name">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.RegionChainingTechniqueInfo.SortKey">
             <inheritdoc/>

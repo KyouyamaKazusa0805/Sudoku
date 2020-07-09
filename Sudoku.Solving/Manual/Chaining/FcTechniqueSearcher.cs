@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Encapsulates an <b>forcing chains</b> (<b>FCs</b>) technique searcher.
 	/// </summary>
-	[TechniqueDisplay(nameof(TechniqueCode.MultipleFc))]
+	[TechniqueDisplay(nameof(TechniqueCode.RegionFc))]
 	public sealed class FcTechniqueSearcher : ChainingTechniqueSearcher
 	{
 		/// <summary>
@@ -36,12 +36,17 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Initializes an instance with the specified information.
 		/// </summary>
-		/// <param name="nishio">Indicates whether the current searcher searches nishio forcing chains.</param>
-		/// <param name="multiple">Indicates whether the current searcher searches multiple forcing chains.</param>
+		public FcTechniqueSearcher() => _multiple = true;
+
+		///// <summary>
+		///// Initializes an instance with the specified information.
+		///// </summary>
+		///// <param name="nishio">Indicates whether the current searcher searches nishio forcing chains.</param>
+		///// <param name="multiple">Indicates whether the current searcher searches multiple forcing chains.</param>
 		///// <param name="dynamic">Indicates whether the current searcher searches dynamic forcing chains.</param>
 		///// <param name="level">Indicates the level of the dynamic searching.</param>
-		public FcTechniqueSearcher(bool nishio, bool multiple/*, bool dynamic, int level*/) =>
-			(_nishio, _multiple/*, _dynamic, _level*/) = (nishio, multiple/*, dynamic, level*/);
+		//public FcTechniqueSearcher(bool nishio, bool multiple, bool dynamic, int level) =>
+		//	(_nishio, _multiple, _dynamic, _level) = (nishio, multiple, dynamic, level);
 
 
 		/// <summary>
@@ -123,6 +128,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						{
 							// Do region chaining.
 							onToOn.Add(pOn);
+							DoChaining(grid, onToOn, onToOff);
 							DoRegionChaining(accumulator, grid, cell, digit, onToOn, onToOff);
 						}
 
@@ -427,9 +433,9 @@ namespace Sudoku.Solving.Manual.Chaining
 			var chains = new Dictionary<int, Node>();
 			foreach (int digit in grid.GetCandidates(sourceCell))
 			{
-				//var valueTarget = outcomes[digit][target];
-				//chains.Add(digit, valueTarget);
-				chains.Add(digit, target);
+				// Get the node that contains the same cell, digit and isOn property.
+				var valueTarget = outcomes[digit][target];
+				chains.Add(digit, valueTarget);
 			}
 
 			var candidateOffsets = new List<(int, int)>();
@@ -437,11 +443,15 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				candidateOffsets.AddRange(GetCandidateOffsets(node));
 			}
+			foreach (int digit in grid.GetCandidates(sourceCell))
+			{
+				candidateOffsets.Add((2, sourceCell * 9 + digit));
+			}
 
 			var links = new List<Link>();
 			foreach (var node in chains.Values)
 			{
-				links.AddRange(GetLinks(node));
+				links.AddRange(GetLinks(node, true));
 			}
 
 			return new CellChainingTechniqueInfo(
@@ -472,9 +482,9 @@ namespace Sudoku.Solving.Manual.Chaining
 			var map = RegionMaps[region] & CandMaps[digit];
 			foreach (int cell in map)
 			{
-				//var posTarget = outcomes[cell][target];
-				//chains.Add(cell, posTarget);
-				chains.Add(cell, target);
+				// Get the node that contains the same cell, digit and isOn property.
+				var posTarget = outcomes[cell][target];
+				chains.Add(cell, posTarget);
 			}
 
 			var candidateOffsets = new List<(int, int)>();
@@ -482,11 +492,15 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				candidateOffsets.AddRange(GetCandidateOffsets(node));
 			}
+			foreach (int cell in RegionMaps[region] & CandMaps[digit])
+			{
+				candidateOffsets.Add((2, cell * 9 + digit));
+			}
 
 			var links = new List<Link>();
 			foreach (var node in chains.Values)
 			{
-				links.AddRange(GetLinks(node));
+				links.AddRange(GetLinks(node, true));
 			}
 
 			return new RegionChainingTechniqueInfo(

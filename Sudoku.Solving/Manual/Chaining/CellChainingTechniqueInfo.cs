@@ -3,6 +3,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Windows;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -30,6 +31,9 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Indicates the branches.
 		/// </summary>
 		public IReadOnlyDictionary<int, Node> Chains { get; }
+
+		/// <inheritdoc/>
+		public override string Name => Resources.GetValue(TechniqueCode.ToString());
 
 		/// <inheritdoc/>
 		public override int SortKey => 5;
@@ -60,9 +64,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override string ToString()
 		{
 			string srcCellStr = new CellCollection(SourceCell).ToString();
-			var destNode = Chains.Values.First();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: {srcCellStr} --> {destNode} {(destNode.IsOn ? "on" : "off")} => {elimStr}";
+			return $"{Name}: It can be proved using chains that all digits are false from {srcCellStr} => {elimStr}";
 		}
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Sudoku.Extensions;
 
@@ -41,6 +42,15 @@ namespace System.Collections.Generic
 
 		/// <inheritdoc/>
 		bool ICollection<T>.IsReadOnly => false;
+
+
+		/// <summary>
+		/// Get the first element that is equal to the specified parameter.
+		/// </summary>
+		/// <param name="element">The element.</param>
+		/// <returns>The first element to satisfy the condition.</returns>
+		[MaybeNull]
+		public T this[T element] => _list.FirstOrDefault(e => e.Equals(element));
 
 
 		/// <inheritdoc/>

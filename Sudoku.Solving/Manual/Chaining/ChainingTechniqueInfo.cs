@@ -149,7 +149,8 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				TechniqueCode.DynamicFc => "Dynamic ",
 				TechniqueCode.NishioFc => "Nishio ",
-				TechniqueCode.MultipleFc => "Multiple ",
+				TechniqueCode.RegionFc => "Region ",
+				TechniqueCode.CellFc => "Cell ",
 				_ => base.Name
 			};
 
@@ -170,7 +171,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				(true, _, _, _) => TechniqueCode.DynamicFc,
 				(_, true, _, _) => TechniqueCode.NishioFc,
-				(_, _, true, _) => TechniqueCode.MultipleFc,
+				(_, _, true, _) => SortKey == 5 ? TechniqueCode.CellFc : TechniqueCode.RegionFc,
 				(_, _, _, true) => TechniqueCode.DynamicFc,
 				_ => TechniqueCode.Aic
 			};
@@ -235,7 +236,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				0 => string.Empty,
 				1 => " (+)",
 				2 => $" (+ {GetDisplayName(TechniqueCode.Aic)})",
-				3 => $" (+ {GetDisplayName(TechniqueCode.MultipleFc)})",
+				3 => $" (+ Multiple Forcing Chains)",
 				4 => $" (+ {GetDisplayName(TechniqueCode.DynamicFc)})",
 				_ => $" (+ {GetDisplayName(TechniqueCode.DynamicFc)}{GetNestedSuffix(level - 3)})"
 			};

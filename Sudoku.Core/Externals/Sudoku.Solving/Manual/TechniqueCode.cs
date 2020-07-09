@@ -1341,10 +1341,16 @@ namespace Sudoku.Solving.Manual
 		NishioFc,
 
 		/// <summary>
-		/// Indicates the multiple FCs.
+		/// Indicates the region FCs.
 		/// </summary>
-		[TechniqueDisplay("Multiple Forcing Chains")]
-		MultipleFc,
+		[TechniqueDisplay("Region Forcing Chains")]
+		RegionFc,
+
+		/// <summary>
+		/// Indicates the cell FCs.
+		/// </summary>
+		[TechniqueDisplay("Cell Forcing Chains")]
+		CellFc,
 
 		/// <summary>
 		/// Indicates the dynamic FCs.

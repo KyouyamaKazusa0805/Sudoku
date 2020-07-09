@@ -136,13 +136,16 @@ namespace Sudoku.Solving.Constants
 		/// Get the links through the specified target node.
 		/// </summary>
 		/// <param name="target">The target node.</param>
-		/// <param name="isLoop">Indicates whether the current chain is a loop.</param>
+		/// <param name="showAllLinks">
+		/// Indicates whether the current chain will display all chains (even contains the weak links
+		/// from the elimination node). The default value is <see langword="false"/>.
+		/// </param>
 		/// <returns>The link.</returns>
-		public static IReadOnlyList<Link> GetLinks(Node target, bool isLoop = false)
+		public static IReadOnlyList<Link> GetLinks(Node target, bool showAllLinks = false)
 		{
 			var result = new List<Link>();
 			var chain = target.Chain;
-			for (int i = isLoop ? 0 : 1; i < chain.Count - (isLoop ? 0 : 2); i++)
+			for (int i = showAllLinks ? 0 : 1; i < chain.Count - (showAllLinks ? 0 : 2); i++)
 			{
 				var p = chain[i];
 				for (int j = 0; j < p.ParentsCount; j++)

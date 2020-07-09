@@ -3,6 +3,7 @@ using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Windows;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -38,6 +39,9 @@ namespace Sudoku.Solving.Manual.Chaining
 		public IReadOnlyDictionary<int, Node> Chains { get; }
 
 		/// <inheritdoc/>
+		public override string Name => Resources.GetValue(TechniqueCode.ToString());
+
+		/// <inheritdoc/>
 		public override int SortKey => 6;
 
 		/// <inheritdoc/>
@@ -67,8 +71,9 @@ namespace Sudoku.Solving.Manual.Chaining
 		{
 			string regionStr = new RegionCollection(Region).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			var destNode = Chains.Values.First();
-			return $"{Name}: {Digit + 1} in {regionStr} --> {destNode} {(destNode.IsOn ? "on" : "off")} => {elimStr}";
+			return
+				$"{Name}: It can be proved using chains that digit {Digit + 1} from {regionStr} are false" +
+				$" => {elimStr}";
 		}
 	}
 }

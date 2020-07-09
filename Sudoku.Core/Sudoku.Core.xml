@@ -6613,9 +6613,14 @@
             Indicates the nishio FCs.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.TechniqueCode.MultipleFc">
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.RegionFc">
             <summary>
-            Indicates the multiple FCs.
+            Indicates the region FCs.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.CellFc">
+            <summary>
+            Indicates the cell FCs.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.DynamicFc">
@@ -7640,6 +7645,13 @@
         </member>
         <member name="P:System.Collections.Generic.Set`1.System#Collections#Generic#ICollection{T}#IsReadOnly">
             <inheritdoc/>
+        </member>
+        <member name="P:System.Collections.Generic.Set`1.Item(`0)">
+            <summary>
+            Get the first element that is equal to the specified parameter.
+            </summary>
+            <param name="element">The element.</param>
+            <returns>The first element to satisfy the condition.</returns>
         </member>
         <member name="M:System.Collections.Generic.Set`1.Clear">
             <inheritdoc/>
