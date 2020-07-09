@@ -120,7 +120,7 @@ namespace Sudoku.Solving.Constants
 						continue;
 					}
 
-					map.Add(((p.Cells.Count == 1 ? p._cell : p.Cells.SetAt(0)) * 9 + p.Digit, p.IsOn));
+					map.Add((p.Cell * 9 + p.Digit, p.IsOn));
 				}
 			}
 
@@ -138,7 +138,8 @@ namespace Sudoku.Solving.Constants
 		/// <param name="target">The target node.</param>
 		/// <param name="showAllLinks">
 		/// Indicates whether the current chain will display all chains (even contains the weak links
-		/// from the elimination node). The default value is <see langword="false"/>.
+		/// from the elimination node). The default value is <see langword="false"/>. If you want to
+		/// draw the AIC, the elimination weak links don't need drawing.
 		/// </param>
 		/// <returns>The link.</returns>
 		public static IReadOnlyList<Link> GetLinks(Node target, bool showAllLinks = false)
@@ -153,8 +154,8 @@ namespace Sudoku.Solving.Constants
 					var pr = p[j];
 					result.Add(
 						new Link(
-							startCandidate: (p.Cells.Count == 1 ? p._cell : p.Cells.SetAt(0)) * 9 + p.Digit,
-							endCandidate: (pr.Cells.Count == 1 ? pr._cell : pr.Cells.SetAt(0)) * 9 + pr.Digit,
+							startCandidate: p.Cell * 9 + p.Digit,
+							endCandidate: pr.Cell * 9 + pr.Digit,
 							linkType: (pr.IsOn, p.IsOn) switch
 							{
 								(false, true) => Strong,

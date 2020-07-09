@@ -28,9 +28,9 @@ namespace Sudoku.Solving.Manual.Chaining
 				// First rule: Other candidates for this cell get off.
 				for (int digit = 0; digit < 9; digit++)
 				{
-					if (digit != p.Digit && grid.Exists(p._cell, digit) is true)
+					if (digit != p.Digit && grid.Exists(p.Cell, digit) is true)
 					{
-						result.Add(new Node(p._cell, digit, false, p));
+						result.Add(new Node(p.Cell, digit, false, p));
 					}
 				}
 			}
@@ -38,11 +38,11 @@ namespace Sudoku.Solving.Manual.Chaining
 			// Second rule: Other positions for this digit get off.
 			for (var label = Block; label < UpperLimit; label++)
 			{
-				int region = GetRegion(p._cell, label);
+				int region = GetRegion(p.Cell, label);
 				for (int pos = 0; pos < 9; pos++)
 				{
 					int cell = RegionCells[region][pos];
-					if (cell != p._cell && grid.Exists(cell, p.Digit) is true)
+					if (cell != p.Cell && grid.Exists(cell, p.Digit) is true)
 					{
 						result.Add(new Node(cell, p.Digit, false, p));
 					}
@@ -66,12 +66,12 @@ namespace Sudoku.Solving.Manual.Chaining
 			if (yEnabled)
 			{
 				// First rule: If there's only two candidates in this cell, the other one gets on.
-				if (BivalueMap[p._cell])
+				if (BivalueMap[p.Cell])
 				{
-					short mask = (short)(grid.GetCandidateMask(p._cell) & ~(1 << p.Digit));
+					short mask = (short)(grid.GetCandidateMask(p.Cell) & ~(1 << p.Digit));
 					if (mask.IsPowerOfTwo())
 					{
-						var pOn = new Node(p._cell, mask.FindFirstSet(), true, p);
+						var pOn = new Node(p.Cell, mask.FindFirstSet(), true, p);
 						//AddHiddenParentsOfCell(pOn, grid, offNodes);
 						result.Add(pOn);
 					}
@@ -83,8 +83,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				// Second rule: If there's only two positions for this candidate, the other ont gets on.
 				for (var label = Block; label < UpperLimit; label++)
 				{
-					int region = GetRegion(p._cell, label);
-					var cells = (CandMaps[p.Digit] & RegionMaps[region]) - p._cell;
+					int region = GetRegion(p.Cell, label);
+					var cells = (CandMaps[p.Digit] & RegionMaps[region]) - p.Cell;
 					if (cells.Count == 1)
 					{
 						var pOn = new Node(cells.SetAt(0), p.Digit, true, p);

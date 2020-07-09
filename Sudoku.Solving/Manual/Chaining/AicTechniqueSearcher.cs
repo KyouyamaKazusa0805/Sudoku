@@ -111,7 +111,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		private void DoUnaryChaining(
 			IBag<ChainingTechniqueInfo> accumulator, IReadOnlyGrid grid, Node pOn, bool xEnabled, bool yEnabled)
 		{
-			if (grid.GetCandidateMask(pOn._cell).CountSet() > 2 && !xEnabled)
+			if (grid.GetCandidateMask(pOn.Cell).CountSet() > 2 && !xEnabled)
 			{
 				// Y-Chains can only start with the bivalue cell.
 				return;
@@ -133,7 +133,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				DoAic(grid, onToOn, onToOff, yEnabled, chains, pOn);
 
 				// AICs with on implication.
-				var pOff = new Node(pOn._cell, pOn.Digit, false);
+				var pOff = new Node(pOn.Cell, pOn.Digit, false);
 				onToOn = new Set<Node>();
 				onToOff = new Set<Node> { pOff };
 				DoAic(grid, onToOn, onToOff, yEnabled, chains, pOff);
@@ -235,9 +235,9 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				// Get eliminations as an AIC.
 				var startNode = target.Chain[1];
-				int startCandidate = startNode._cell * 9 + startNode.Digit;
+				int startCandidate = startNode.Cell * 9 + startNode.Digit;
 				var endNode = target.Chain[^2];
-				int endCandidate = endNode._cell * 9 + endNode.Digit;
+				int endCandidate = endNode.Cell * 9 + endNode.Digit;
 				var elimMap = SudokuMap.CreateInstance(stackalloc[] { startCandidate, endCandidate });
 				if (elimMap.IsEmpty)
 				{
@@ -302,7 +302,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					var makeOff = GetOnToOff(grid, p, yEnabled);
 					foreach (var pOff in makeOff)
 					{
-						var pOn = new Node(pOff._cell, pOff.Digit, true);
+						var pOn = new Node(pOff.Cell, pOff.Digit, true);
 						if (source == pOn)
 						{
 							// Loopy contradiction (AIC) found.
@@ -326,7 +326,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					var makeOn = GetOffToOn(grid, p, true, yEnabled);
 					foreach (var pOn in makeOn)
 					{
-						var pOff = new Node(pOn._cell, pOn.Digit, false);
+						var pOff = new Node(pOn.Cell, pOn.Digit, false);
 						if (source == pOff)
 						{
 							// Loopy contradiction (AIC) found.

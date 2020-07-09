@@ -323,7 +323,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					var makeOff = GetOnToOff(grid, p, !_nishio);
 					foreach (var pOff in makeOff)
 					{
-						var pOn = new Node(pOff._cell, pOff.Digit, true); // Conjugate
+						var pOn = new Node(pOff.Cell, pOff.Digit, true); // Conjugate
 						if (toOn.Contains(pOn))
 						{
 							// Contradiction found.
@@ -349,7 +349,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 					foreach (var pOn in makeOn)
 					{
-						var pOff = new Node(pOn._cell, pOn.Digit, false); // Conjugate.
+						var pOff = new Node(pOn.Cell, pOn.Digit, false); // Conjugate.
 						if (toOff.Contains(pOff))
 						{
 							// Contradiction found.
@@ -426,7 +426,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			// Build removable nodes.
 			var conclusions = new List<Conclusion>
 			{
-				new Conclusion(target.IsOn ? Assignment : Elimination, target._cell, target.Digit)
+				new Conclusion(target.IsOn ? Assignment : Elimination, target.Cell, target.Digit)
 			};
 
 			// Build chains.
@@ -474,7 +474,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			// Build removable nodes.
 			var conclusions = new List<Conclusion>
 			{
-				new Conclusion(target.IsOn ? Assignment : Elimination, target._cell, target.Digit)
+				new Conclusion(target.IsOn ? Assignment : Elimination, target.Cell, target.Digit)
 			};
 
 			// Build chains.

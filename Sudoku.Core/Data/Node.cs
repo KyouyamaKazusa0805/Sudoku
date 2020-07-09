@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data.Collections;
 
@@ -11,13 +10,6 @@ namespace Sudoku.Data
 	/// </summary>
 	public struct Node : IEquatable<Node>
 	{
-		/// <summary>
-		/// Indicates the cell used. In the default case, the AIC contains only one cell and the digit (which
-		/// combine to a candidate).
-		/// </summary>
-		internal readonly int _cell;
-
-
 		/// <summary>
 		/// The parent nodes.
 		/// </summary>
@@ -30,23 +22,7 @@ namespace Sudoku.Data
 		/// <param name="cell">The cell.</param>
 		/// <param name="digit">The digit.</param>
 		/// <param name="isOn">A <see cref="bool"/> value indicating whether the node is on.</param>
-		public Node(int cell, int digit, bool isOn) : this()
-		{
-			(Digit, Cells, IsOn) = (digit, new GridMap { cell }, isOn);
-			_cell = cell;
-		}
-
-		/// <summary>
-		/// Initializes an instance with the specified digit, cells and a <see cref="bool"/> value.
-		/// </summary>
-		/// <param name="cells">The cells.</param>
-		/// <param name="digit">The digit.</param>
-		/// <param name="isOn">A <see cref="bool"/> value indicating whether the node is on.</param>
-		public Node(GridMap cells, int digit, bool isOn) : this()
-		{
-			(Digit, Cells, IsOn) = (digit, cells, isOn);
-			_cell = cells.Count == 1 ? cells.SetAt(0) : -1;
-		}
+		public Node(int cell, int digit, bool isOn) : this() => (Digit, Cell, IsOn) = (digit, cell, isOn);
 
 		/// <summary>
 		/// Initializes an instance with the specified digit, the cell, a <see cref="bool"/> value
@@ -58,6 +34,12 @@ namespace Sudoku.Data
 		/// <param name="parent">The parent node.</param>
 		public Node(int cell, int digit, bool isOn, Node parent) : this(cell, digit, isOn) => AddParent(parent);
 
+
+		/// <summary>
+		/// Indicates the cell used. In the default case, the AIC contains only one cell and the digit (which
+		/// combine to a candidate).
+		/// </summary>
+		public readonly int Cell { get; }
 
 		/// <summary>
 		/// Indicates the digit.
@@ -101,11 +83,6 @@ namespace Sudoku.Data
 		/// Indicates whether the specified node is on.
 		/// </summary>
 		public readonly bool IsOn { get; }
-
-		/// <summary>
-		/// Indicates the cells.
-		/// </summary>
-		public readonly GridMap Cells { get; }
 
 		/// <summary>
 		/// Indicates the root.
@@ -193,7 +170,7 @@ namespace Sudoku.Data
 		public override readonly bool Equals(object? obj) => obj is Node comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public readonly bool Equals(Node other) => Cells == other.Cells && Digit == other.Digit && IsOn == other.IsOn;
+		public readonly bool Equals(Node other) => Cell == other.Cell && Digit == other.Digit && IsOn == other.IsOn;
 
 		/// <summary>
 		/// Determine whether the node is the parent of the specified node.
@@ -237,7 +214,7 @@ namespace Sudoku.Data
 		{
 			if (ParentsCount == 0)
 			{
-				return $"Candidates: {new CellCollection(Cells).ToString()}({Digit + 1})";
+				return $"Candidates: {new CellCollection(Cell).ToString()}({Digit + 1})";
 			}
 			else
 			{
@@ -245,12 +222,12 @@ namespace Sudoku.Data
 				for (int i = 0; i < ParentsCount; i++)
 				{
 					var node = _parents![i];
-					nodes.AddRange(from cell in node.Cells select cell * 9 + node.Digit);
+					nodes.Add(node.Cell * 9 + node.Digit);
 				}
 
-				string cells = new CellCollection(Cells).ToString();
+				string cell = new CellCollection(Cell).ToString();
 				string parents = new CandidateCollection(nodes).ToString();
-				return $"Candidates: {cells}({Digit + 1}), Parents: {parents}";
+				return $"Candidate: {cell}({Digit + 1}), Parent(s): {parents}";
 			}
 		}
 

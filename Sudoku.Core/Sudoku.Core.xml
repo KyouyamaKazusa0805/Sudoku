@@ -3170,12 +3170,6 @@
             Encapsulates a chain node.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Node._cell">
-            <summary>
-            Indicates the cell used. In the default case, the AIC contains only one cell and the digit (which
-            combine to a candidate).
-            </summary>
-        </member>
         <member name="F:Sudoku.Data.Node._parents">
             <summary>
             The parent nodes.
@@ -3189,14 +3183,6 @@
             <param name="digit">The digit.</param>
             <param name="isOn">A <see cref="T:System.Boolean"/> value indicating whether the node is on.</param>
         </member>
-        <member name="M:Sudoku.Data.Node.#ctor(Sudoku.Data.GridMap,System.Int32,System.Boolean)">
-            <summary>
-            Initializes an instance with the specified digit, cells and a <see cref="T:System.Boolean"/> value.
-            </summary>
-            <param name="cells">The cells.</param>
-            <param name="digit">The digit.</param>
-            <param name="isOn">A <see cref="T:System.Boolean"/> value indicating whether the node is on.</param>
-        </member>
         <member name="M:Sudoku.Data.Node.#ctor(System.Int32,System.Int32,System.Boolean,Sudoku.Data.Node)">
             <summary>
             Initializes an instance with the specified digit, the cell, a <see cref="T:System.Boolean"/> value
@@ -3206,6 +3192,12 @@
             <param name="digit">The digit.</param>
             <param name="isOn">A <see cref="T:System.Boolean"/> value indicating whether the specified node is on.</param>
             <param name="parent">The parent node.</param>
+        </member>
+        <member name="P:Sudoku.Data.Node.Cell">
+            <summary>
+            Indicates the cell used. In the default case, the AIC contains only one cell and the digit (which
+            combine to a candidate).
+            </summary>
         </member>
         <member name="P:Sudoku.Data.Node.Digit">
             <summary>
@@ -3225,11 +3217,6 @@
         <member name="P:Sudoku.Data.Node.IsOn">
             <summary>
             Indicates whether the specified node is on.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Node.Cells">
-            <summary>
-            Indicates the cells.
             </summary>
         </member>
         <member name="P:Sudoku.Data.Node.Root">

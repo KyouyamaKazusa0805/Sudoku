@@ -883,7 +883,8 @@
             <param name="target">The target node.</param>
             <param name="showAllLinks">
             Indicates whether the current chain will display all chains (even contains the weak links
-            from the elimination node). The default value is <see langword="false"/>.
+            from the elimination node). The default value is <see langword="false"/>. If you want to
+            draw the AIC, the elimination weak links don't need drawing.
             </param>
             <returns>The link.</returns>
         </member>
