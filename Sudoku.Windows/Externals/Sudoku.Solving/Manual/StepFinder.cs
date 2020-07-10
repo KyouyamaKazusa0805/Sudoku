@@ -30,9 +30,6 @@ using Sudoku.Solving.Manual.Wings.Irregular;
 using Sudoku.Solving.Manual.Wings.Regular;
 using Sudoku.Windows;
 using TechniquesGroupedByName = System.Linq.IGrouping<string, Sudoku.Solving.TechniqueInfo>;
-#if !DEBUG
-using Sudoku.Solving.Manual.Chaining;
-#endif
 
 namespace Sudoku.Solving.Manual
 {
