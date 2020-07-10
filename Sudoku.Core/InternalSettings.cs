@@ -11,57 +11,57 @@ namespace Sudoku
 		/// <summary>
 		/// Indicates the maximum size.
 		/// </summary>
-		public static readonly int MaxSize = 2000;
+		public const int MaxSize = 2000;
 
 		/// <summary>
 		/// Indicates the R-size.
 		/// </summary>
-		public static readonly int RSize = 360;
+		public const int RSize = 360;
 
 		/// <summary>
 		/// Indicates the minimum threshold.
 		/// </summary>
-		public static readonly int ThresholdMin = 50;
+		public const int ThresholdMin = 50;
 
 		/// <summary>
 		/// Indicates the maximum threshold.
 		/// </summary>
-		public static readonly int ThresholdMax = 100;
+		public const int ThresholdMax = 100;
 
 		/// <summary>
 		/// Indicates the L2Gradient.
 		/// </summary>
-		public static readonly bool L2Gradient = true;
+		public const bool L2Gradient = true;
 
 		/// <summary>
 		/// Indicates the font.
 		/// </summary>
-		public static readonly FontFace Font = FontFace.HersheyPlain;
+		public const FontFace Font = FontFace.HersheyPlain;
 
 		/// <summary>
 		/// Indicates the font size.
 		/// </summary>
-		public static readonly int FontSize = 3;
+		public const int FontSize = 3;
 
 		/// <summary>
 		/// Indicates the font size pr.
 		/// </summary>
-		public static readonly int FontSizePr = 1;
+		public const int FontSizePr = 1;
 
 		/// <summary>
 		/// Indicates the ChainApprox.
 		/// </summary>
-		public static readonly ChainApproxMethod ChainApprox = ChainApproxMethod.ChainApproxNone;
+		public const ChainApproxMethod ChainApprox = ChainApproxMethod.ChainApproxNone;
 
 		/// <summary>
 		/// Indicates the ThOcrMin.
 		/// </summary>
-		public static readonly int ThOcrMin = 120;
+		public const int ThOcrMin = 120;
 
 		/// <summary>
 		/// Indicates the ThOcrMax.
 		/// </summary>
-		public static readonly int ThOcrMax = 255;
+		public const int ThOcrMax = 255;
 	}
 }
 #endif
