@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Core", "Sudoku.Core\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Windows", "Sudoku.Windows\Sudoku.Windows.csproj", "{CDB8160F-6FEA-41E8-B1ED-A3FA06EB069A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Drawing", "Sudoku.Drawing\Sudoku.Drawing.csproj", "{74CBD8C6-E2D7-46F4-B18E-CE2708E7D6A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Drawing", "Sudoku.Drawing\Sudoku.Drawing.csproj", "{74CBD8C6-E2D7-46F4-B18E-CE2708E7D6A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
