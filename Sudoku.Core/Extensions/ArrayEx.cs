@@ -34,12 +34,12 @@ namespace Sudoku.Extensions
 		public static void Sort<T>(this T[] @this, Comparison<T> comparison) => Array.Sort(@this, comparison);
 
 		/// <summary>
-		/// Get all combinations with the specified number of the values to take.
+		/// Get all subsets from the specified number of the values to take.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The array.</param>
 		/// <param name="count">The number of elements you want to take.</param>
-		/// <returns>All combinations.</returns>
-		public static IEnumerable<T[]> GetCombinations<T>(this T[] @this, int count)
+		/// <returns>All subsets.</returns>
+		public static IEnumerable<T[]> GetSubsets<T>(this T[] @this, int count)
 		{
 			if (count == 0)
 			{

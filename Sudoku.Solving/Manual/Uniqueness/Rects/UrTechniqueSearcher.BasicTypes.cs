@@ -200,7 +200,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				var iterationMap = (RegionMaps[region] & EmptyMap) - otherCellsMap;
 				for (int size = otherDigitsMask.CountSet() - 1; size < iterationMap.Count; size++)
 				{
-					foreach (int[] iteratedCells in iterationMap.ToArray().GetCombinations(size))
+					foreach (int[] iteratedCells in iterationMap.ToArray().GetSubsets(size))
 					{
 						short tempMask = 0;
 						foreach (int cell in iteratedCells)

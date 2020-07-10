@@ -4273,13 +4273,13 @@
             <param name="comparison">The comparison method.</param>
             <seealso cref="T:System.Comparison`1"/>
         </member>
-        <member name="M:Sudoku.Extensions.ArrayEx.GetCombinations``1(``0[],System.Int32)">
+        <member name="M:Sudoku.Extensions.ArrayEx.GetSubsets``1(``0[],System.Int32)">
             <summary>
-            Get all combinations with the specified number of the values to take.
+            Get all subsets from the specified number of the values to take.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The array.</param>
             <param name="count">The number of elements you want to take.</param>
-            <returns>All combinations.</returns>
+            <returns>All subsets.</returns>
         </member>
         <member name="M:Sudoku.Extensions.ArrayEx.GetCombinationsRecursively``1(System.Collections.Generic.List{``0[]}@,``0[],System.Int32,System.Int32,System.Int32,System.Int32[])">
             <summary>

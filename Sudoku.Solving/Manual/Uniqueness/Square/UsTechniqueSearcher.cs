@@ -62,7 +62,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				return;
 			}
 
-			foreach (int[] digits in mask.GetAllSets().ToArray().GetCombinations(4))
+			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
 			{
 				short digitsMask = 0;
 				foreach (int digit in digits)
@@ -117,7 +117,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				return;
 			}
 
-			foreach (int[] digits in mask.GetAllSets().ToArray().GetCombinations(4))
+			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
 			{
 				short digitsMask = 0;
 				foreach (int digit in digits)
@@ -163,7 +163,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 
 		private void CheckType3(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask)
 		{
-			foreach (int[] digits in mask.GetAllSets().ToArray().GetCombinations(4))
+			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
 			{
 				short digitsMask = 0;
 				foreach (int digit in digits)
@@ -187,7 +187,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 					int[] allCells = ((RegionMaps[region] & EmptyMap) - pattern).ToArray();
 					for (int size = extraDigitsMask.CountSet() - 1, count = allCells.Length; size < count; size++)
 					{
-						foreach (int[] cells in allCells.GetCombinations(size))
+						foreach (int[] cells in allCells.GetSubsets(size))
 						{
 							short tempMask = 0;
 							foreach (int cell in cells)
@@ -253,7 +253,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 
 		private void CheckType4(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask)
 		{
-			foreach (int[] digits in mask.GetAllSets().ToArray().GetCombinations(4))
+			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
 			{
 				short digitsMask = 0;
 				foreach (int digit in digits)

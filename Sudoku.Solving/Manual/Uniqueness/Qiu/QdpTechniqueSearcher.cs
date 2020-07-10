@@ -74,33 +74,51 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				int appearedParts = 0;
 				for (int j = 0, region = isRow ? 18 : 9; j < 9; j++, region++)
 				{
-					var tempMap = baseLine & RegionMaps[region];
-					if (tempMap.IsEmpty)
+					var regionMap = RegionMaps[region];
+					var tempMap = baseLine & regionMap;
+					if (tempMap.IsNotEmpty)
 					{
-						continue;
+						f(tempMap);
+					}
+					else
+					{
+						// Don't forget to record the square cells.
+						var squareMap = square & regionMap;
+						if (squareMap.IsNotEmpty)
+						{
+							f(squareMap);
+						}
+						else
+						{
+							continue;
+						}
 					}
 
-					bool flag = false;
-					int c1 = tempMap.SetAt(0), c2 = tempMap.SetAt(1);
-					if (!EmptyMap[c1])
+					void f(GridMap map)
 					{
-						int d1 = grid[c1];
-						distinctionMask ^= (short)(1 << d1);
-						appearedDigitsMask |= (short)(1 << d1);
+						bool flag = false;
+						int c1 = map.SetAt(0), c2 = map.SetAt(1);
+						if (!EmptyMap[c1])
+						{
+							int d1 = grid[c1];
+							distinctionMask ^= (short)(1 << d1);
+							appearedDigitsMask |= (short)(1 << d1);
 
-						flag = true;
+							flag = true;
+						}
+						if (!EmptyMap[c2])
+						{
+							int d2 = grid[c2];
+							distinctionMask ^= (short)(1 << d2);
+							appearedDigitsMask |= (short)(1 << d2);
+
+							flag = true;
+						}
+
+						appearedParts += flag ? 1 : 0;
 					}
-					if (!EmptyMap[c2])
-					{
-						int d2 = grid[c2];
-						distinctionMask ^= (short)(1 << d2);
-						appearedDigitsMask |= (short)(1 << d2);
-
-						flag = true;
-					}
-
-					appearedParts += flag ? 1 : 0;
 				}
+
 				if (!distinctionMask.IsPowerOfTwo() || appearedParts != appearedDigitsMask.CountSet())
 				{
 					continue;
@@ -115,7 +133,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				// Iterate on each combination.
 				for (int size = 2, count = pairMask.CountSet(); size < count; size++)
 				{
-					foreach (int[] digits in pairMask.GetAllSets().ToArray().GetCombinations(size))
+					foreach (int[] digits in pairMask.GetAllSets().ToArray().GetSubsets(size))
 					{
 						// Step 2: To determine whether the digits in pair cells
 						// will only appears in square cells.
@@ -296,7 +314,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				int[] allCells = allCellsMap.ToArray();
 				for (int size = otherDigitsMask.CountSet() - 1; size < allCells.Length; size++)
 				{
-					foreach (int[] cells in allCells.GetCombinations(size))
+					foreach (int[] cells in allCells.GetSubsets(size))
 					{
 						short mask = 0;
 						foreach (int cell in cells)

@@ -203,7 +203,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				list.AddRange(emptyCells);
 				for (int size = 2; size <= emptyCells.Length - 1; size++)
 				{
-					foreach (int[] cells in list.ToArray().GetCombinations(size))
+					foreach (int[] cells in list.ToArray().GetSubsets(size))
 					{
 						var map = new GridMap(cells);
 						if (map.BlockMask.CountSet() == 1 && region >= 9)

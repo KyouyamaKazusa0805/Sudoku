@@ -304,7 +304,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				int[] otherCells = ((RegionMaps[region] & EmptyMap) - loop).ToArray();
 				for (int size = otherDigitsMask.CountSet() - 1, count = otherCells.Length; size < count; size++)
 				{
-					foreach (int[] cells in otherCells.GetCombinations(size))
+					foreach (int[] cells in otherCells.GetSubsets(size))
 					{
 						short mask = 0;
 						foreach (int cell in cells)

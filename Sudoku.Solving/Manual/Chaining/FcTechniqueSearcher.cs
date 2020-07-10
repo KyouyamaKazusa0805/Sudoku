@@ -121,14 +121,18 @@ namespace Sudoku.Solving.Manual.Chaining
 						var pOff = new Node(cell, digit, false);
 						var onToOn = new Set<Node>();
 						var onToOff = new Set<Node>();
-						//bool doDouble = count >= 3 && !_nishio && _dynamic, doContradiction = _dynamic || _nishio;
-						//DoBinaryChaining(accumulator, grid, pOn, pOff, onToOn, onToOff, doDouble, doContradiction);
+#if DYNAMIC_CHAINING
+						bool doDouble = count >= 3 && !_nishio && _dynamic, doContradiction = _dynamic || _nishio;
+						DoBinaryChaining(accumulator, grid, pOn, pOff, onToOn, onToOff, doDouble, doContradiction);
+#endif
 
 						if (!_nishio)
 						{
 							// Do region chaining.
+#if !DYNAMIC_CHAINING
 							onToOn.Add(pOn);
 							DoChaining(grid, onToOn, onToOff);
+#endif
 							DoRegionChaining(accumulator, grid, cell, digit, onToOn, onToOff);
 						}
 

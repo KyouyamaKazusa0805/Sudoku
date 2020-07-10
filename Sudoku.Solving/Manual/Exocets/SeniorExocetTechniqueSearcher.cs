@@ -93,7 +93,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					continue;
 				}
 				int borT = isRow ? b1 / 9 / 3 : b1 % 9 / 3; // Base or target (B or T).
-				foreach (int[] combination in tempTarget.ToArray().GetCombinations(2))
+				foreach (int[] combination in tempTarget.ToArray().GetSubsets(2))
 				{
 					if (isRow
 						? combination[0] / 9 / 3 == borT && combination[1] / 9 / 3 == borT
@@ -393,7 +393,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			int digit, GridMap baseElimMap, GridMap tempCrossline, int[] extraRegionsMask)
 		{
 			int region = default, p;
-			foreach (int[] combination in tempCrossline.ToArray().GetCombinations(3))
+			foreach (int[] combination in tempCrossline.ToArray().GetSubsets(3))
 			{
 				var (a, b, c) = (combination[0], combination[1], combination[2]);
 				int r1 = GetRegion(a, Row), c1 = GetRegion(a, Column);
@@ -444,7 +444,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			{
 				bool flag = false;
 				var baseElimsMap = (baseCellsMap & digitMaps[digit]).PeerIntersection;
-				foreach (int[] combination in (tempCrossline & digitMaps[digit]).ToArray().GetCombinations(3))
+				foreach (int[] combination in (tempCrossline & digitMaps[digit]).ToArray().GetSubsets(3))
 				{
 					var (a, b, c) = (combination[0], combination[1], combination[2]);
 					int r1 = GetRegion(a, Row);

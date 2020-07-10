@@ -180,7 +180,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				int[] otherCells = otherCellsMap.ToArray();
 				for (int size = 1, length = otherCells.Length; size < length; size++)
 				{
-					foreach (int[] cells in otherCells.GetCombinations(size))
+					foreach (int[] cells in otherCells.GetSubsets(size))
 					{
 						short mask = digitsMask;
 						foreach (int cell in cells)

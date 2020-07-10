@@ -86,7 +86,7 @@ namespace Sudoku.Solving.Manual.Intersections
 			IBag<TechniqueInfo> result, IReadOnlyGrid grid, int size, int baseSet, int coverSet,
 			GridMap a, GridMap b, GridMap c)
 		{
-			foreach (int[] cells in (a & EmptyMap).ToArray().GetCombinations(size - 1))
+			foreach (int[] cells in (a & EmptyMap).ToArray().GetSubsets(size - 1))
 			{
 				short mask = 0;
 				foreach (int cell in cells)

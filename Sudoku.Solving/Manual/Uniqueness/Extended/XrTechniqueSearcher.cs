@@ -213,7 +213,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 				int[] otherCells = ((RegionMaps[region] & EmptyMap) - allCellsMap).ToArray();
 				for (int size = 1; size < otherCells.Length; size++)
 				{
-					foreach (int[] cells in otherCells.GetCombinations(size))
+					foreach (int[] cells in otherCells.GetSubsets(size))
 					{
 						short mask = 0;
 						foreach (int cell in cells)

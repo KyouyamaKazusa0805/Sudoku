@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 			for (int i = 0; i < sizeList.Length >> 1; i++)
 			{
 				int rows = sizeList[i, 0], columns = sizeList[i, 1];
-				foreach (int[] rowList in z.GetCombinations(rows))
+				foreach (int[] rowList in z.GetSubsets(rows))
 				{
 					short rowMask = 0;
 					var rowMap = GridMap.Empty;
@@ -43,7 +43,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						continue;
 					}
 
-					foreach (int[] columnList in z.GetCombinations(columns))
+					foreach (int[] columnList in z.GetSubsets(columns))
 					{
 						short columnMask = 0;
 						var columnMap = GridMap.Empty;

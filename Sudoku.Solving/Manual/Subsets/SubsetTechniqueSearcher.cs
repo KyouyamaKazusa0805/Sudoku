@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual.Subsets
 					}
 
 					// Iterate on each combination.
-					foreach (int[] cells in currentEmptyMap.ToArray().GetCombinations(size))
+					foreach (int[] cells in currentEmptyMap.ToArray().GetSubsets(size))
 					{
 						short mask = 0;
 						foreach (int cell in cells)
@@ -119,7 +119,7 @@ namespace Sudoku.Solving.Manual.Subsets
 					{
 						mask &= (short)~(1 << grid[cell]);
 					}
-					foreach (int[] digits in mask.GetAllSets().ToArray().GetCombinations(size))
+					foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(size))
 					{
 						short tempMask = mask;
 						var map = GridMap.Empty;
