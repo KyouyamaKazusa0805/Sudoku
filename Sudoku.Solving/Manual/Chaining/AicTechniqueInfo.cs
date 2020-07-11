@@ -58,7 +58,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					{
 						1 => TechniqueCode.DiscontinuousNiceLoop,
 						2 => TechniqueCode.XyXChain,
-						_ => throw Throwings.ImpossibleCase
+						_ => TechniqueCode.Aic
 					}
 				};
 			}

@@ -6375,6 +6375,11 @@
             Indicates the BUG + n.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.TechniqueCode.BugMultipleFc">
+            <summary>
+            Indicates the BUG + n with forcing chains.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.TechniqueCode.BugXz">
             <summary>
             Indicates the BUG-XZ.

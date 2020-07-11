@@ -7,10 +7,12 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Checking;
+using Sudoku.Solving.Manual.Chaining;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Data.GridMap.InitializationOption;
+using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {
@@ -90,6 +92,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						{
 							CheckMultiple(accumulator, grid, trueCandidates);
 							CheckXz(accumulator, grid, trueCandidates);
+							CheckMultipleWithForcingChains(accumulator, grid, trueCandidates);
 						}
 
 						CheckType3Naked(accumulator, grid, trueCandidates);
@@ -410,6 +413,73 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		}
 
 		/// <summary>
+		/// Check BUG + n with forcing chains.
+		/// </summary>
+		/// <param name="accumulator">The result list.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="trueCandidates">All true candidates.</param>
+		private void CheckMultipleWithForcingChains(
+			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
+		{
+			var tempAccumulator = new List<BugMultipleWithFcTechniqueInfo>();
+
+			// Prepare storage and accumulator for cell eliminations.
+			var valueToOn = new Dictionary<int, Set<Node>>();
+			var valueToOff = new Dictionary<int, Set<Node>>();
+			Set<Node>? cellToOn = null, cellToOff = null;
+			foreach (int candidate in trueCandidates)
+			{
+				int cell = candidate / 9, digit = candidate % 9;
+				var onToOn = new Set<Node>();
+				var onToOff = new Set<Node>();
+
+				onToOn.Add(new Node(cell, digit, true));
+				DoChaining(grid, onToOn, onToOff);
+
+				// Collect results for cell chaining.
+				valueToOn.Add(candidate, onToOn);
+				valueToOff.Add(candidate, onToOff);
+				if (cellToOn is null/* || cellToOff is null*/)
+				{
+					cellToOn = new Set<Node>(onToOn);
+					cellToOff = new Set<Node>(onToOff);
+				}
+				else
+				{
+					cellToOn &= onToOn;
+					cellToOff = cellToOff! & onToOff;
+				}
+			}
+
+			// Do cell eliminations.
+			if (!(cellToOn is null))
+			{
+				foreach (var p in cellToOn)
+				{
+					var hint = CreateEliminationHint(trueCandidates, p, valueToOn);
+					if (!(hint is null))
+					{
+						tempAccumulator.Add(hint);
+					}
+				}
+			}
+			if (!(cellToOff is null))
+			{
+				foreach (var p in cellToOff)
+				{
+					var hint = CreateEliminationHint(trueCandidates, p, valueToOff);
+					if (!(hint is null))
+					{
+						tempAccumulator.Add(hint);
+					}
+				}
+			}
+
+			tempAccumulator.Sort((i1, i2) => i1.Complexity.CompareTo(i2.Complexity));
+			accumulator.AddRange(tempAccumulator);
+		}
+
+		/// <summary>
 		/// Check BUG-XZ.
 		/// </summary>
 		/// <param name="accumulator">The result list.</param>
@@ -592,6 +662,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			return result;
 		}
 
+
 		/// <summary>
 		/// Check whether all candidates in the list has same digit value.
 		/// </summary>
@@ -616,6 +687,126 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			}
 
 			return true;
+		}
+
+		/// <summary>
+		/// Do chaining. This method is only called by
+		/// <see cref="CheckMultipleWithForcingChains(IBag{TechniqueInfo}, IReadOnlyGrid, IReadOnlyList{int})"/>.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="toOn">All nodes to on.</param>
+		/// <param name="toOff">All nodes to off.</param>
+		/// <returns>The result nodes.</returns>
+		/// <seealso cref="CheckMultipleWithForcingChains(IBag{TechniqueInfo}, IReadOnlyGrid, IReadOnlyList{int})"/>
+		private static Node[]? DoChaining(IReadOnlyGrid grid, ISet<Node> toOn, ISet<Node> toOff)
+		{
+			var pendingOn = new Set<Node>(toOn);
+			var pendingOff = new Set<Node>(toOff);
+			while (pendingOn.Count != 0 || pendingOff.Count != 0)
+			{
+				if (pendingOn.Count != 0)
+				{
+					var p = pendingOn.Remove();
+
+					var makeOff = ChainingTechniqueSearcher.GetOnToOff(grid, p, true);
+					foreach (var pOff in makeOff)
+					{
+						var pOn = new Node(pOff.Cell, pOff.Digit, true); // Conjugate
+						if (toOn.Contains(pOn))
+						{
+							// Contradiction found.
+							return new[] { pOn, pOff }; // Cannot be both on and off at the same time.
+						}
+						else if (!toOff.Contains(pOff))
+						{
+							// Not processed yet.
+							toOff.Add(pOff);
+							pendingOff.Add(pOff);
+						}
+					}
+				}
+				else
+				{
+					var p = pendingOff.Remove();
+
+					var makeOn = ChainingTechniqueSearcher.GetOffToOn(grid, p, true, true);
+
+					foreach (var pOn in makeOn)
+					{
+						var pOff = new Node(pOn.Cell, pOn.Digit, false); // Conjugate.
+						if (toOff.Contains(pOff))
+						{
+							// Contradiction found.
+							return new[] { pOn, pOff }; // Cannot be both on and off at the same time.
+						}
+						else if (!toOn.Contains(pOn))
+						{
+							// Not processed yet.
+							toOn.Add(pOn);
+							pendingOn.Add(pOn);
+						}
+					}
+				}
+			}
+
+			return null;
+		}
+
+		/// <summary>
+		/// Create the elimination hint. This method is only called by
+		/// <see cref="CheckMultipleWithForcingChains(IBag{TechniqueInfo}, IReadOnlyGrid, IReadOnlyList{int})"/>.
+		/// </summary>
+		/// <param name="trueCandidates">The true candidates.</param>
+		/// <param name="target">The target node.</param>
+		/// <param name="outcomes">All outcomes.</param>
+		/// <returns>The result information instance.</returns>
+		/// <seealso cref="CheckMultipleWithForcingChains(IBag{TechniqueInfo}, IReadOnlyGrid, IReadOnlyList{int})"/>
+		private static BugMultipleWithFcTechniqueInfo? CreateEliminationHint(
+			IReadOnlyList<int> trueCandidates, Node target, IReadOnlyDictionary<int, Set<Node>> outcomes)
+		{
+			// Build removable nodes.
+			var conclusions = new List<Conclusion>
+			{
+				new Conclusion(target.IsOn ? Assignment : Elimination, target.Cell, target.Digit)
+			};
+
+			// Build chains.
+			var chains = new Dictionary<int, Node>();
+			foreach (int candidate in trueCandidates)
+			{
+				// Get the node that contains the same cell, digit and isOn property.
+				var valueTarget = outcomes[candidate][target];
+				chains.Add(candidate, valueTarget);
+			}
+
+			var candidateOffsets = new List<(int, int)>();
+			foreach (var node in chains.Values)
+			{
+				candidateOffsets.AddRange(GetCandidateOffsets(node));
+			}
+			foreach (int candidate in trueCandidates)
+			{
+				candidateOffsets.Add((2, candidate));
+			}
+
+			var links = new List<Link>();
+			foreach (var node in chains.Values)
+			{
+				links.AddRange(GetLinks(node, true));
+			}
+
+			return new BugMultipleWithFcTechniqueInfo(
+				conclusions,
+				views: new[]
+				{
+					new View(
+						cellOffsets: null,
+						candidateOffsets,
+						regionOffsets: null,
+						links)
+				},
+				candidates: trueCandidates,
+				chains);
 		}
 	}
 }

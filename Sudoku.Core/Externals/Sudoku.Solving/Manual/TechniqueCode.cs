@@ -1083,6 +1083,12 @@ namespace Sudoku.Solving.Manual
 		BugMultiple,
 
 		/// <summary>
+		/// Indicates the BUG + n with forcing chains.
+		/// </summary>
+		[TechniqueDisplay("Bivalue Universal Grave + n (+)")]
+		BugMultipleFc,
+
+		/// <summary>
 		/// Indicates the BUG-XZ.
 		/// </summary>
 		[TechniqueDisplay("Bivalue Universal Grave XZ Rule")]

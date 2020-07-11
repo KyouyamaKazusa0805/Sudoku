@@ -290,6 +290,7 @@ namespace Sudoku.Windows
 			["BugType3"] = "全双值格致死解法类型 3",
 			["BugType4"] = "全双值格致死解法类型 4",
 			["BugMultiple"] = "全双值格致死解法 + n",
+			["BugMultipleFc"] = "全双值格致死解法 + n (+)",
 			["BugXz"] = "全双值格致死解法-双强链法则",
 			["BugXyzWing"] = "全双值格致死解法-XYZ-Wing",
 			["BdpType1"] = "探长致命结构类型 1",

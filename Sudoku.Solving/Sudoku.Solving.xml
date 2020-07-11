@@ -6216,6 +6216,62 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueInfo">
+            <summary>
+            Provides a usage of <b>BUG + n with forcing chains</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Data.Node})">
+            <constructor type="TechniqueInfo">
+		<summary>
+			Initializes an instance with the specified information.
+		</summary>
+		<param name="conclusions">The conclusions.</param>
+		<param name="views">The views of this solving step.</param>
+	</constructor>
+            <param name="candidates">All candidates.</param>
+            <param name="chains">The sub-chains.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueInfo.Candidates">
+            <summary>
+            The true candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueInfo.Chains">
+            <summary>
+            All sub-chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueInfo.CountDifficulty">
+            <summary>
+            The difficulty for the number of true candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueInfo.LengthDifficulty">
+            <summary>
+            The length difficluty.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueInfo.Complexity">
+            <summary>
+            The total length of all sub-chains gathered.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcTechniqueInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher">
             <summary>
             Encapsulates a <b>bivalue universal grave</b> (BUG) technique searcher.
@@ -6281,6 +6337,14 @@
             <param name="grid">The grid.</param>
             <param name="trueCandidates">All true candidates.</param>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckMultipleWithForcingChains(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Check BUG + n with forcing chains.
+            </summary>
+            <param name="accumulator">The result list.</param>
+            <param name="grid">The grid.</param>
+            <param name="trueCandidates">All true candidates.</param>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckXz(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Check BUG-XZ.
@@ -6302,6 +6366,28 @@
             </summary>
             <param name="list">The list of all true candidates.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.DoChaining(Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.ISet{Sudoku.Data.Node},System.Collections.Generic.ISet{Sudoku.Data.Node})">
+            <summary>
+            Do chaining. This method is only called by
+            <see cref="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckMultipleWithForcingChains(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})"/>.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="toOn">All nodes to on.</param>
+            <param name="toOff">All nodes to off.</param>
+            <returns>The result nodes.</returns>
+            <seealso cref="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckMultipleWithForcingChains(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CreateEliminationHint(System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.Node,System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Collections.Generic.Set{Sudoku.Data.Node}})">
+            <summary>
+            Create the elimination hint. This method is only called by
+            <see cref="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckMultipleWithForcingChains(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})"/>.
+            </summary>
+            <param name="trueCandidates">The true candidates.</param>
+            <param name="target">The target node.</param>
+            <param name="outcomes">All outcomes.</param>
+            <returns>The result information instance.</returns>
+            <seealso cref="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckMultipleWithForcingChains(System.Collections.Generic.IBag{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid,System.Collections.Generic.IReadOnlyList{System.Int32})"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType1TechniqueInfo">
             <summary>

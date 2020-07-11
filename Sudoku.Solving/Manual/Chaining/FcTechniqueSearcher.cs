@@ -116,12 +116,12 @@ namespace Sudoku.Solving.Manual.Chaining
 					// Iterate on all candidates that aren't alone.
 					foreach (int digit in mask.GetAllSets())
 					{
-						// Do binary chaining (same candidate either on or off).
 						var pOn = new Node(cell, digit, true);
 						var pOff = new Node(cell, digit, false);
 						var onToOn = new Set<Node>();
 						var onToOff = new Set<Node>();
 #if DYNAMIC_CHAINING
+						// Do binary chaining (same candidate either on or off).
 						bool doDouble = count >= 3 && !_nishio && _dynamic, doContradiction = _dynamic || _nishio;
 						DoBinaryChaining(accumulator, grid, pOn, pOff, onToOn, onToOff, doDouble, doContradiction);
 #endif

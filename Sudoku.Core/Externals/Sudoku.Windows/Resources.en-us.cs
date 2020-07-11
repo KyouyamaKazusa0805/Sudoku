@@ -290,6 +290,7 @@ namespace Sudoku.Windows
 			["BugType3"] = "Bivalue Universal Grave Type 3",
 			["BugType4"] = "Bivalue Universal Grave Type 4",
 			["BugMultiple"] = "Bivalue Universal Grave + n",
+			["BugMultipleFc"] = "Bivalue Universal Grave + n (+)",
 			["BugXz"] = "Bivalue Universal Grave XZ Rule",
 			["BugXyzWing"] = "Bug Xyz Wing",
 			["BdpType1"] = "Borescoper's Deadly Pattern Type 1",
