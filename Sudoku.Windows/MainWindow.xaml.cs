@@ -26,6 +26,7 @@ using static System.StringSplitOptions;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Windows.Constants.Processings;
 using CoreResources = Sudoku.Windows.Resources;
+using DSizeF = System.Drawing.SizeF;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
 using WPoint = System.Windows.Point;
@@ -300,10 +301,9 @@ namespace Sudoku.Windows
 			{
 				case var key when key.IsDigit():
 				{
-					var pt = Mouse.GetPosition(_imageGrid);
-					if (IsPointOutOfRange(_imageGrid, pt))
+					int cell = _pointConverter.GetCellOffset(Mouse.GetPosition(_imageGrid).ToDPointF());
+					if (cell == -1)
 					{
-						e.Handled = true;
 						return;
 					}
 
@@ -313,17 +313,14 @@ namespace Sudoku.Windows
 						case ModifierKeys.None:
 						{
 							// Input a digit.
-							_puzzle[_pointConverter.GetCellOffset(pt.ToDPointF())] =
-								e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1;
+							_puzzle[cell] = e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1;
 
 							break;
 						}
 						case ModifierKeys.Shift:
 						{
 							// Eliminate a digit.
-							_puzzle[
-								_pointConverter.GetCellOffset(pt.ToDPointF()),
-								e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1] = true;
+							_puzzle[cell, e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1] = true;
 
 							break;
 						}
@@ -732,10 +729,10 @@ namespace Sudoku.Windows
 		/// <param name="point">The point.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private bool IsPointOutOfRange(FrameworkElement control, WPoint point)
+		private bool IsPointOutOfRange(DSizeF control, WPoint point)
 		{
 			var (x, y) = point;
-			return x < 0 || x > control.Width || y < 0 || y > control.Height;
+			return y < 0 || y > control.Width || x < 0 || x > control.Height;
 		}
 
 		/// <summary>

@@ -100,13 +100,25 @@ namespace Sudoku.Drawing
 		/// Get the focus cell offset via a mouse point.
 		/// </summary>
 		/// <param name="point">The mouse point.</param>
-		/// <returns>The cell offset.</returns>
+		/// <returns>The cell offset. Returns -1 when the current point is invalid.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public int GetCellOffset(PointF point)
 		{
 			var (x, y) = point;
+			if (x < Offset || x > ControlSize.Width + Offset || y < Offset || y > ControlSize.Height + Offset)
+			{
+				// Invalid case.
+				return -1;
+			}
+
+			// TODO: Edge cells cannot be calculated correctly with this formula.
 			var (cw, ch) = CellSize;
-			return (int)((y - Offset) / ch) * 9 + (int)((x - Offset) / cw);
+			int result = (int)((y - Offset) / (ch + 1)) * 9 + (int)((x - Offset) / (cw + 1));
+			if (result < 0 || result >= 81)
+			{
+				return -1;
+			}
+			return result;
 		}
 
 		/// <summary>
