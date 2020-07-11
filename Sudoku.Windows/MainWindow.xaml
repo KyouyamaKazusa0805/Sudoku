@@ -265,10 +265,6 @@
 			<Image Source="Resources\ImageIcon-Generate.png" Name="_imageGeneratingIcon"
 				   Cursor="Hand"
 				   MouseLeftButtonDown="ImageGeneratingIcon_MouseLeftButtonDown"/>
-			<!--
-			<Label Content="Difficulty:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-			<ComboBox Name="_comboBoxDifficulty" SelectedIndex="0"/>
-			-->
 			<Label Content="{DynamicResource _labelMode}"
 				   HorizontalAlignment="Left" VerticalAlignment="Center"/>
 			<ComboBox Name="_comboBoxMode"
@@ -303,6 +299,17 @@
 				<ComboBoxItem Content="{DynamicResource _comboBoxItemBackdoorFilteringDepth1}"/>
 				<ComboBoxItem Content="{DynamicResource _comboBoxItemBackdoorFilteringDepth2}"/>
 				<ComboBoxItem Content="{DynamicResource _comboBoxItemBackdoorFilteringDepth3}"/>
+			</ComboBox>
+			<Label Content="{DynamicResource _labelDifficulty}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+			<ComboBox Name="_comboBoxDifficulty" HorizontalAlignment="Center" VerticalAlignment="Center"
+					  SelectedIndex="0"
+					  SelectionChanged="ComboBoxDifficulty_SelectionChanged">
+				<ComboBoxItem Content="{DynamicResource _comboBoxItemDifficulty0}"/>
+				<ComboBoxItem Content="{DynamicResource _comboBoxItemDifficulty1}"/>
+				<ComboBoxItem Content="{DynamicResource _comboBoxItemDifficulty2}"/>
+				<ComboBoxItem Content="{DynamicResource _comboBoxItemDifficulty3}"/>
+				<ComboBoxItem Content="{DynamicResource _comboBoxItemDifficulty4}"/>
+				<ComboBoxItem Content="{DynamicResource _comboBoxItemDifficulty5}"/>
 			</ComboBox>
 			<Separator/>
 			<Image Source="Resources\Solve.png" Name="_imageSolve"

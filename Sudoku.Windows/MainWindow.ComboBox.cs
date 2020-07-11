@@ -35,5 +35,14 @@ namespace Sudoku.Windows
 				Settings.GeneratingBackdoorSelectedIndex = comboBox.SelectedIndex;
 			}
 		}
+
+		private void ComboBoxDifficulty_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			// When initializing, 'Settings' may be null.
+			if (sender is ComboBox comboBox && !(Settings is null))
+			{
+				Settings.GeneratingDifficultyLevelSelectedIndex = comboBox.SelectedIndex;
+			}
+		}
 	}
 }

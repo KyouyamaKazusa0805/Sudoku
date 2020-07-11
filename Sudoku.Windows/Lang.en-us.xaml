@@ -89,6 +89,13 @@
 	<sys:String x:Key="_comboBoxItemBackdoorFilteringDepth1">1</sys:String>
 	<sys:String x:Key="_comboBoxItemBackdoorFilteringDepth2">2</sys:String>
 	<sys:String x:Key="_comboBoxItemBackdoorFilteringDepth3">3</sys:String>
+	<sys:String x:Key="_labelDifficulty">Difficulty:</sys:String>
+	<sys:String x:Key="_comboBoxItemDifficulty0">Disabled</sys:String>
+	<sys:String x:Key="_comboBoxItemDifficulty1">Easy</sys:String>
+	<sys:String x:Key="_comboBoxItemDifficulty2">Moderate</sys:String>
+	<sys:String x:Key="_comboBoxItemDifficulty3">Hard</sys:String>
+	<sys:String x:Key="_comboBoxItemDifficulty4">Fiendish</sys:String>
+	<sys:String x:Key="_comboBoxItemDifficulty5">Nightmare</sys:String>
 
 	<sys:String x:Key="_menuItemImageGridSet1">Set 1</sys:String>
 	<sys:String x:Key="_menuItemImageGridSet2">Set 2</sys:String>

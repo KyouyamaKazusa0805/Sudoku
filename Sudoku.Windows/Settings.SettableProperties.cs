@@ -117,6 +117,14 @@ namespace Sudoku.Windows
 
 		/// <summary>
 		/// <para>
+		/// Indicates which item you selected the difficulty level combo box.
+		/// </para>
+		/// <para>The default value is <c>0</c>.</para>
+		/// </summary>
+		public int GeneratingDifficultyLevelSelectedIndex { get; set; } = 0;
+
+		/// <summary>
+		/// <para>
 		/// Indicates the combo box of backdoor depth you selected.
 		/// </para>
 		/// <para>The default value is <c>0</c>.</para>
@@ -364,7 +372,7 @@ namespace Sudoku.Windows
 				[Hard] = (Color.Black, Color.FromArgb(255, 255, 100)),
 				//[VeryHard] = (Color.Black, Color.FromArgb(255, 255, 100)),
 				[Fiendish] = (Color.Black, Color.FromArgb(255, 150, 80)),
-				[Diabolical] = (Color.Black, Color.FromArgb(255, 150, 80)),
+				//[Diabolical] = (Color.Black, Color.FromArgb(255, 150, 80)),
 				//[Crazy] = (Color.Black, Color.FromArgb(255, 100, 100)),
 				[Nightmare] = (Color.Black, Color.FromArgb(255, 100, 100)),
 				//[BeyondNightmare] = (Color.Black, Color.FromArgb(255, 100, 100)),

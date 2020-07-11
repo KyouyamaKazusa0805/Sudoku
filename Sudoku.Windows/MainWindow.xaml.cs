@@ -661,6 +661,7 @@ namespace Sudoku.Windows
 
 			_comboBoxSymmetry.SelectedIndex = Settings.GeneratingSymmetryModeComboBoxSelectedIndex;
 			_comboBoxMode.SelectedIndex = Settings.GeneratingModeComboBoxSelectedIndex;
+			_comboBoxDifficulty.SelectedIndex = Settings.GeneratingDifficultyLevelSelectedIndex;
 			SwitchOnGeneratingComboBoxesDisplaying();
 
 			UpdateImageGrid();
@@ -678,12 +679,14 @@ namespace Sudoku.Windows
 				{
 					_comboBoxSymmetry.IsEnabled = true;
 					_comboBoxBackdoorFilteringDepth.IsEnabled = false;
+					_comboBoxDifficulty.IsEnabled = false;
 					break;
 				}
 				case 1:
 				{
 					_comboBoxSymmetry.IsEnabled = false;
 					_comboBoxBackdoorFilteringDepth.IsEnabled = true;
+					_comboBoxDifficulty.IsEnabled = true;
 					break;
 				}
 			}
@@ -794,6 +797,7 @@ namespace Sudoku.Windows
 			_comboBoxSymmetry.IsEnabled = false;
 			_comboBoxMode.IsEnabled = false;
 			_comboBoxBackdoorFilteringDepth.IsEnabled = false;
+			_comboBoxDifficulty.IsEnabled = false;
 
 			UpdateDatabaseControls(false, false, false, false);
 			_textBoxJumpTo.IsEnabled = false;
@@ -839,6 +843,7 @@ namespace Sudoku.Windows
 			_comboBoxMode.IsEnabled = true;
 			_comboBoxSymmetry.IsEnabled = true;
 			_comboBoxBackdoorFilteringDepth.IsEnabled = true;
+			_comboBoxDifficulty.IsEnabled = true;
 
 			UpdateUndoRedoControls();
 		}
@@ -887,6 +892,7 @@ namespace Sudoku.Windows
 			_comboBoxSymmetry.IsEnabled = false;
 			_comboBoxMode.IsEnabled = false;
 			_comboBoxBackdoorFilteringDepth.IsEnabled = false;
+			_comboBoxDifficulty.IsEnabled = false;
 
 			UpdateUndoRedoControls();
 		}
@@ -936,6 +942,7 @@ namespace Sudoku.Windows
 			_comboBoxMode.IsEnabled = true;
 			_comboBoxSymmetry.IsEnabled = true;
 			_comboBoxBackdoorFilteringDepth.IsEnabled = true;
+			_comboBoxDifficulty.IsEnabled = true;
 
 			UpdateUndoRedoControls();
 		}

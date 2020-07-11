@@ -84,11 +84,18 @@
 	<sys:String x:Key="_comboBoxItemHardMode">带难题特征的题</sys:String>
 	<sys:String x:Key="_labelSymmetry">对称性：</sys:String>
 	<sys:String x:Key="_labelBackdoorFilteringDepth">后门筛选深度：</sys:String>
-	<sys:String x:Key="_comboBoxItemBackdoorFilteringDepthMinus1">-1 (禁用该筛选)</sys:String>
+	<sys:String x:Key="_comboBoxItemBackdoorFilteringDepthMinus1">禁用该筛选</sys:String>
 	<sys:String x:Key="_comboBoxItemBackdoorFilteringDepth0">0</sys:String>
 	<sys:String x:Key="_comboBoxItemBackdoorFilteringDepth1">1</sys:String>
 	<sys:String x:Key="_comboBoxItemBackdoorFilteringDepth2">2</sys:String>
 	<sys:String x:Key="_comboBoxItemBackdoorFilteringDepth3">3</sys:String>
+	<sys:String x:Key="_labelDifficulty">难度：</sys:String>
+	<sys:String x:Key="_comboBoxItemDifficulty0">禁用该筛选</sys:String>
+	<sys:String x:Key="_comboBoxItemDifficulty1">容易（出数类技巧）</sys:String>
+	<sys:String x:Key="_comboBoxItemDifficulty2">中等（区块数组类技巧）</sys:String>
+	<sys:String x:Key="_comboBoxItemDifficulty3">困难（短链类技巧）</sys:String>
+	<sys:String x:Key="_comboBoxItemDifficulty4">极难（过渡类技巧）</sys:String>
+	<sys:String x:Key="_comboBoxItemDifficulty5">地狱（强制链和复杂链）</sys:String>
 
 	<sys:String x:Key="_menuItemImageGridSet1">填入 1</sys:String>
 	<sys:String x:Key="_menuItemImageGridSet2">填入 2</sys:String>

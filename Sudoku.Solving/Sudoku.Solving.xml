@@ -744,6 +744,13 @@
             <param name="this">(<see langword="this"/> parameter) The puzzle.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.DifficultyLevel(Sudoku.Data.IReadOnlyGrid)">
+            <summary>
+            Get the difficulty level of this puzzle.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The puzzle.</param>
+            <returns>The difficulty level.</returns>
+        </member>
         <member name="T:Sudoku.Solving.ConjugatePair">
             <summary>
             Encapsulates a conjugate pair.
@@ -898,11 +905,6 @@
             Indicates the difficulty level is unknown.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.DifficultyLevel.VeryEasy">
-            <summary>
-            Indicates the difficulty is very easy.
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.DifficultyLevel.Easy">
             <summary>
             Indicates the difficulty is easy.
@@ -913,19 +915,9 @@
             Indicates the difficulty is moderate.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.DifficultyLevel.Advanced">
-            <summary>
-            Indicates the difficulty is advanced.
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.DifficultyLevel.Hard">
             <summary>
             Indicates the difficulty is hard.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.DifficultyLevel.VeryHard">
-            <summary>
-            Indicates the difficulty is very hard.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.DifficultyLevel.Fiendish">
@@ -933,24 +925,9 @@
             Indicates the difficulty is fiendish.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.DifficultyLevel.Diabolical">
-            <summary>
-            Indicates the difficulty is diabolical.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.DifficultyLevel.Crazy">
-            <summary>
-            Indicates the difficulty is crazy.
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.DifficultyLevel.Nightmare">
             <summary>
             Indicates the difficulty is nightmare.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.DifficultyLevel.BeyondNightmare">
-            <summary>
-            Indicates the difficulty is beyond nightmare.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.DifficultyLevel.LastResort">
@@ -1037,7 +1014,7 @@
         <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.CreatePattern(System.Int32[])">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.Generate(System.Int32)">
+        <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.Generate(System.Int32,Sudoku.Solving.DifficultyLevel)">
             <summary>
             To generate a sudoku grid with a backdoor filter depth.
             </summary>
@@ -1045,6 +1022,7 @@
             The backdoor filter depth. When the value is -1, the generator will not check
             any backdoors.
             </param>
+            <param name="difficultyLevel">The difficulty level.</param>
             <returns>The grid.</returns>
         </member>
         <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.RecreatePattern(System.Int32[])">

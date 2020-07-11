@@ -68,8 +68,9 @@ namespace Sudoku.Solving.Generating
 		/// The backdoor filter depth. When the value is -1, the generator will not check
 		/// any backdoors.
 		/// </param>
+		/// <param name="difficultyLevel">The difficulty level.</param>
 		/// <returns>The grid.</returns>
-		public IReadOnlyGrid Generate(int backdoorFilterDepth)
+		public IReadOnlyGrid Generate(int backdoorFilterDepth, DifficultyLevel difficultyLevel = DifficultyLevel.Unknown)
 		{
 			var puzzle = new StringBuilder() { Length = 81 };
 			var solution = new StringBuilder() { Length = 81 };
@@ -102,9 +103,12 @@ namespace Sudoku.Solving.Generating
 					if (FastSolver.CheckValidity(valueOf(solution), out _))
 					{
 						var grid = Grid.Parse(valueOf(solution));
-						if (backdoorFilterDepth != -1
+						if ((
+							backdoorFilterDepth != -1
 							&& !BackdoorSearcher.SearchForBackdoors(grid, backdoorFilterDepth).Any()
 							|| backdoorFilterDepth == -1)
+							&& difficultyLevel != DifficultyLevel.Unknown && grid.DifficultyLevel() == difficultyLevel
+							|| difficultyLevel == DifficultyLevel.Unknown)
 						{
 							return grid;
 						}
