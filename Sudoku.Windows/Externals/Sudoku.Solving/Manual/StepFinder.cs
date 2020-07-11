@@ -121,12 +121,6 @@ namespace Sudoku.Solving.Manual
 			var progressResult = new TechniqueProgressResult(searchers.Length, globalizationString ?? "en-us");
 			foreach (var searcher in searchers)
 			{
-				if (searcher.GetType().HasMarked<HasBugAttribute>())
-				{
-					// Skip the searcher if the searcher has bugs to fix.
-					continue;
-				}
-
 				if (sukaku is true && searcher is UniquenessTechniqueSearcher)
 				{
 					// Sukaku mode cannot use them.

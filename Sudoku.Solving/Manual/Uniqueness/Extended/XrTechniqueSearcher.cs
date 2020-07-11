@@ -226,7 +226,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							continue;
 						}
 
-						var elimMap = (RegionMaps[region] & EmptyMap) - allCellsMap - new GridMap(cells);
+						var elimMap = (RegionMaps[region] & EmptyMap) - allCellsMap - cells;
 						if (elimMap.IsEmpty)
 						{
 							continue;

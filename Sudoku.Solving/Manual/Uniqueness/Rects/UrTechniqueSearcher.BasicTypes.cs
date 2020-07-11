@@ -216,7 +216,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						var conclusions = new List<Conclusion>();
 						foreach (int digit in tempMask.GetAllSets())
 						{
-							foreach (int cell in (iterationMap - new GridMap(iteratedCells)) & CandMaps[digit])
+							foreach (int cell in (iterationMap - iteratedCells) & CandMaps[digit])
 							{
 								conclusions.Add(new Conclusion(Elimination, cell, digit));
 							}

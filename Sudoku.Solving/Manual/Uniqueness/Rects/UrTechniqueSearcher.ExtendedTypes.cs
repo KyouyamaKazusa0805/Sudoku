@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			short xyMask = (short)(o ^ comparer);
 			int x = xyMask.FindFirstSet();
 			int y = xyMask.GetNextSet(x);
-			var inter = new GridMap(otherCells, ProcessPeersWithoutItself) - new GridMap(urCells);
+			var inter = new GridMap(otherCells, ProcessPeersWithoutItself) - urCells;
 			foreach (int possibleXyCell in inter)
 			{
 				if (grid.GetCandidateMask(possibleXyCell) != xyMask)
@@ -385,7 +385,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			short xyMask = (short)(mask ^ comparer);
 			int x = xyMask.FindFirstSet();
 			int y = xyMask.GetNextSet(x);
-			var inter = otherCellsMap.PeerIntersection - new GridMap(urCells);
+			var inter = otherCellsMap.PeerIntersection - urCells;
 			foreach (int possibleXyCell in inter)
 			{
 				if (grid.GetCandidateMask(possibleXyCell) != xyMask)

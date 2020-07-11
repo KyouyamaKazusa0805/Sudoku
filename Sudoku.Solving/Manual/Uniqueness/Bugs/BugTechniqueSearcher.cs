@@ -195,7 +195,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 							continue;
 						}
 
-						var elimMap = (regionMap - new GridMap(cells) - map) & EmptyMap;
+						var elimMap = (regionMap - cells - map) & EmptyMap;
 						if (elimMap.IsEmpty)
 						{
 							continue;

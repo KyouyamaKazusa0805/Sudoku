@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing;
@@ -311,7 +310,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 				{
 					foreach (int[] cells in emptyCellsArray.GetSubsets(i))
 					{
-						if ((new GridMap(cells) | emptyMap) != emptyMap)
+						if ((cells | emptyMap) != emptyMap)
 						{
 							continue;
 						}

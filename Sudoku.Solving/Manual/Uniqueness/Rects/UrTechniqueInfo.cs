@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="digit2">The digit 2.</param>
 		/// <param name="cells">All cells.</param>
 		/// <param name="isAr">Indicates whether the structure is an AR.</param>
-		public UrTechniqueInfo(
+		protected UrTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views,
 			UrTypeCode typeCode, int digit1, int digit2, int[] cells, bool isAr) : base(conclusions, views) =>
 			(Digit1, Digit2, Cells, IsAr, TypeCode) = (digit1, digit2, cells, isAr, typeCode);
@@ -86,7 +86,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		int IComparable<UrTechniqueInfo>.CompareTo(UrTechniqueInfo other) =>
 			Math.Sign(TypeCode.CompareTo(other.TypeCode)) switch
 			{
-				0 => new GridMap(Cells).CompareTo(new GridMap(other.Cells)) switch
+				0 => new GridMap(Cells).CompareTo(other.Cells) switch
 				{
 					0 => Math.Sign((Digit1 * 9 + Digit2).CompareTo(other.Digit1 * 9 + other.Digit2)) switch
 					{

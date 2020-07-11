@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
 
@@ -16,7 +16,6 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// Encapsulates a <b>domino loop</b> technique.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.SkLoop))]
-	[HighAllocation]
 	public sealed partial class SkLoopTechniqueSearcher : MslsTechniqueSearcher
 	{
 		/// <summary>
@@ -115,17 +114,17 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 						continue;
 					}
 
-					linkRegion[0] = GetRegion(cells[0], RegionLabel.Row);
-					linkRegion[1] = GetRegion(cells[2], RegionLabel.Block);
-					linkRegion[2] = GetRegion(cells[4], RegionLabel.Column);
-					linkRegion[3] = GetRegion(cells[6], RegionLabel.Block);
-					linkRegion[4] = GetRegion(cells[8], RegionLabel.Row);
-					linkRegion[5] = GetRegion(cells[10], RegionLabel.Block);
-					linkRegion[6] = GetRegion(cells[12], RegionLabel.Column);
-					linkRegion[7] = GetRegion(cells[14], RegionLabel.Block);
+					linkRegion[0] = GetRegion(cells[0], Row);
+					linkRegion[1] = GetRegion(cells[2], Block);
+					linkRegion[2] = GetRegion(cells[4], Column);
+					linkRegion[3] = GetRegion(cells[6], Block);
+					linkRegion[4] = GetRegion(cells[8], Row);
+					linkRegion[5] = GetRegion(cells[10], Block);
+					linkRegion[6] = GetRegion(cells[12], Column);
+					linkRegion[7] = GetRegion(cells[14], Block);
 
 					var conclusions = new List<Conclusion>();
-					var map = new GridMap(cells) & EmptyMap;
+					var map = cells & EmptyMap;
 					for (k = 0; k < 8; k++)
 					{
 						var elimMap = (RegionMaps[linkRegion[k]] & EmptyMap) - map;
@@ -167,13 +166,8 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 							foreach (int digit in cands.GetAllSets())
 							{
-								candidateOffsets.Add((
-									true switch
-									{
-										_ when (k & 3) == 0 => 1,
-										_ when (k & 1) == 1 => 2,
-										_ => 0
-									}, cell * 9 + digit));
+								candidateOffsets.Add(
+									((k & 3, k & 1) switch { (0, _) => 1, (1, _) => 2, _ => 0 }, cell * 9 + digit));
 							}
 						}
 					}

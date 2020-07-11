@@ -48,7 +48,7 @@ namespace Sudoku.Drawing
 
 		/// <include file='../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private View() : this(null, null, null, null)
+		private View()
 		{
 		}
 

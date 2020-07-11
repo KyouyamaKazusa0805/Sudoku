@@ -550,6 +550,7 @@ namespace Sudoku.Data
 		/// </returns>
 		public bool this[int offset]
 		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			readonly get => ((stackalloc[] { _low, _high }[offset / Shifting] >> offset % Shifting) & 1) != 0;
 			set
 			{

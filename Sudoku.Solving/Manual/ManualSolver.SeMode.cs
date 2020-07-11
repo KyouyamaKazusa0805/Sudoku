@@ -52,12 +52,6 @@ namespace Sudoku.Solving.Manual
 				var searcherListGroup = searchers[i];
 				foreach (var searcher in searcherListGroup)
 				{
-					if (searcher.GetType().HasMarked<HasBugAttribute>())
-					{
-						// Skip the searcher if the searcher has bugs to fix.
-						continue;
-					}
-
 					if (sukaku is true && searcher is UniquenessTechniqueSearcher)
 					{
 						// Sukaku mode cannot use them.

@@ -317,7 +317,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							continue;
 						}
 
-						var elimMap = (RegionMaps[region] & EmptyMap) - new GridMap(cells) - loop;
+						var elimMap = (RegionMaps[region] & EmptyMap) - cells - loop;
 						if (elimMap.IsEmpty)
 						{
 							continue;

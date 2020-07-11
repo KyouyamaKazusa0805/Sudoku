@@ -56,18 +56,9 @@ namespace Sudoku.Recognitions
 					// Recognize digit from cell.
 					int recognition =
 						RecognizeCellNumber(field.GetSubRect(new Rectangle(o + w * x, o + w * y, w - o * 2, w - o * 2)));
-					switch (recognition)
+					if (recognition == 0)
 					{
-						case 0:
-						{
-							continue;
-						}
-						//case -1:
-						//{
-						//	throw new RecognizingException(
-						//		$"Recognition error. Cannot fill the cell r{x + 1}c{y + 1} because the current value " +
-						//		$"is not a valid number.");
-						//}
+						continue;
 					}
 
 					int cell = x * 9 + y, digit = recognition - 1;

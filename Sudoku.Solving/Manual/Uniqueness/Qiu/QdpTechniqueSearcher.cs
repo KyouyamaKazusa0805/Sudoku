@@ -330,7 +330,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						var conclusions = new List<Conclusion>();
 						foreach (int digit in mask.GetAllSets())
 						{
-							foreach (int cell in allCellsMap - new GridMap(cells) & CandMaps[digit])
+							foreach (int cell in allCellsMap - cells & CandMaps[digit])
 							{
 								conclusions.Add(new Conclusion(Elimination, cell, digit));
 							}

@@ -144,7 +144,7 @@ namespace Sudoku.Windows
 				from type in
 					from type in Assembly.Load("Sudoku.Solving").GetTypes()
 					where !type.IsAbstract && type.IsSubclassOf<TechniqueSearcher>()
-						&& type.HasMarked<TechniqueDisplayAttribute>() && !type.HasMarked<HasBugAttribute>()
+						&& type.HasMarked<TechniqueDisplayAttribute>()
 					select type
 				let Priority = (int)(type.GetProperty("Priority", Public | Static)!.GetValue(null)!)
 				orderby Priority

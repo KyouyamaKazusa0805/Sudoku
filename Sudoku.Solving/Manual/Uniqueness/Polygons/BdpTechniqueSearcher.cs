@@ -280,7 +280,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 									},
 									map: map,
 									digitsMask: tempMask,
-									extraCellsMap: new GridMap(combination),
+									extraCellsMap: combination,
 									extraDigitsMask: otherDigitsMask));
 						}
 					}

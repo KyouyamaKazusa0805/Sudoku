@@ -61,7 +61,7 @@ namespace System.Linq
 			}
 
 			int count = 0;
-			var enumerator = @this.GetEnumerator();
+			using var enumerator = @this.GetEnumerator();
 			while (enumerator.MoveNext())
 			{
 				if (++count >= 2)
@@ -71,21 +71,6 @@ namespace System.Linq
 			}
 
 			return true;
-
-			#region Obsolete code
-			// We can use 'Enumerable.Single(this IEnumerable<T>)' to get the first element
-			// if and only if the collection contains only one element; otherwise, throw an exception.
-			// In order to prevent throwing any exceptions, we may not use these codes.
-			//try
-			//{
-			//	@this.Single();
-			//	return true;
-			//}
-			//catch (Exception)
-			//{
-			//	return false;
-			//}
-			#endregion
 		}
 	}
 }
