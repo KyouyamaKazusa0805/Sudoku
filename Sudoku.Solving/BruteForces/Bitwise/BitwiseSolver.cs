@@ -186,11 +186,10 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 			[MarshalAs(LPStr)] ImmutableString puzzle,
 			[MarshalAs(LPStr)] CStyleString? solution,
 #if TARGET_64BIT
-			[MarshalAs(I4)]
+			[MarshalAs(I4)] native_int limit);
 #else
-			[MarshalAs(I2)]
+			[MarshalAs(I2)] native_int limit);
 #endif
-			native_int limit);
 
 		/// <summary>
 		/// The core function of solving the puzzle based on x64 platform.
@@ -207,10 +206,9 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 			[MarshalAs(LPStr)] ImmutableString puzzle,
 			[MarshalAs(LPStr)] CStyleString? solution,
 #if TARGET_64BIT
-			[MarshalAs(I4)]
+			[MarshalAs(I4)] native_int limit);
 #else
-			[MarshalAs(I2)]
+			[MarshalAs(I2)] native_int limit);
 #endif
-			native_int limit);
 	}
 }
