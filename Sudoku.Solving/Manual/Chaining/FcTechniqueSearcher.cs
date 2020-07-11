@@ -14,6 +14,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// Encapsulates an <b>forcing chains</b> (<b>FCs</b>) technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.RegionFc))]
+	[SearcherProperty(80)]
 	public sealed class FcTechniqueSearcher : ChainingTechniqueSearcher
 	{
 		/// <summary>
@@ -47,17 +48,6 @@ namespace Sudoku.Solving.Manual.Chaining
 		///// <param name="level">Indicates the level of the dynamic searching.</param>
 		//public FcTechniqueSearcher(bool nishio, bool multiple, bool dynamic, int level) =>
 		//	(_nishio, _multiple, _dynamic, _level) = (nishio, multiple, dynamic, level);
-
-
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 80;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

@@ -14,19 +14,9 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// Encapsulates a <b>locked candidates</b> (LC) technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.Pointing))]
+	[SearcherProperty(26)]
 	public sealed class LcTechniqueSearcher : IntersectionTechniqueSearcher
 	{
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 26;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
-
-
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{

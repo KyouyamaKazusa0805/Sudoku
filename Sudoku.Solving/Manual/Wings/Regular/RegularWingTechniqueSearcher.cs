@@ -14,6 +14,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 	/// Encapsulates a <b>regular wing</b> technique solver.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.XyWing))]
+	[SearcherProperty(42)]
 	public sealed class RegularWingTechniqueSearcher : WingTechniqueSearcher
 	{
 		/// <summary>
@@ -27,17 +28,6 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// </summary>
 		/// <param name="size">The size.</param>
 		public RegularWingTechniqueSearcher(int size) => _size = size;
-
-
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 42;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

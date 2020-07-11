@@ -13,6 +13,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// Encapsulates a <b>template</b> technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.TemplateSet))]
+	[SearcherProperty(80, IsEnabled = false)]
 	public sealed class TemplateTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <summary>
@@ -28,17 +29,6 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// Indicates whether the technique searcher checks template deletes only.
 		/// </param>
 		public TemplateTechniqueSearcher(bool templateDeleteOnly) => _templateDeleteOnly = templateDeleteOnly;
-
-
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 80;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = false;
 
 
 		/// <inheritdoc/>

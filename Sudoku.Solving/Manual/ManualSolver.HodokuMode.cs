@@ -70,10 +70,9 @@ namespace Sudoku.Solving.Manual
 			// Start searching.
 			var searchers = GetSearchersHodokuMode(solution);
 
-			static T g<T>(TechniqueSearcher s, string p) => (T)s.GetType().GetProperty(p)!.GetValue(null)!;
 			if (UseCalculationPriority)
 			{
-				searchers.Sort((a, b) => g<int>(a, "Priority").CompareTo(g<int>(b, "Priority")));
+				searchers.Sort((a, b) => a.SearcherProperties!.Priority.CompareTo(b.SearcherProperties!.Priority));
 			}
 
 			var stepGrids = new Bag<IReadOnlyGrid>();
@@ -86,7 +85,13 @@ namespace Sudoku.Solving.Manual
 			for (int i = 0, length = searchers.Length; i < length; i++)
 			{
 				var searcher = searchers[i];
-				if (sukaku is true && searcher is UniquenessTechniqueSearcher || !g<bool>(searcher, "IsEnabled"))
+				if (sukaku && searcher is UniquenessTechniqueSearcher)
+				{
+					continue;
+				}
+
+				var searcherAttribute = searcher.SearcherProperties!;
+				if (!searcherAttribute.IsEnabled)
 				{
 					continue;
 				}

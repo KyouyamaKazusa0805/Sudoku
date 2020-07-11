@@ -13,6 +13,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// Encapsulates an empty rectangle technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.EmptyRectangle))]
+	[SearcherProperty(46)]
 	public sealed class EmptyRectangleTechniqueSearcher : SdpTechniqueSearcher
 	{
 		/// <summary>
@@ -31,17 +32,6 @@ namespace Sudoku.Solving.Manual.Sdps
 			{ 9, 10, 11, 12, 13, 14, 18, 19, 20, 24, 25, 26 },
 			{ 9, 10, 11, 12, 13, 14, 18, 19, 20, 21, 22, 23 }
 		};
-
-
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 46;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

@@ -14,6 +14,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// Encapsulates an <b>almost locked sets W-Wing</b> (ALS-W-Wing) technique.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.AlsWWing))]
+	[SearcherProperty(62)]
 	public sealed class AlsWWingTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <inheritdoc/>
@@ -21,17 +22,6 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			: base(allowOverlapping, alsShowRegions, allowAlsCycles)
 		{
 		}
-
-
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 62;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

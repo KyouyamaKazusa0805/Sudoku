@@ -14,19 +14,9 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 	/// Encapsulates an <b>irregular wing</b> technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.WWing))]
+	[SearcherProperty(44)]
 	public sealed class IrregularWingTechniqueSearcher : TechniqueSearcher
 	{
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 44;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
-
-
 		/// <inheritdoc/>
 		/// <remarks>
 		/// In fact, <c>Hybrid-Wing</c>s, <c>Local-Wing</c>s, <c>Split-Wing</c>s and <c>M-Wing</c>s can

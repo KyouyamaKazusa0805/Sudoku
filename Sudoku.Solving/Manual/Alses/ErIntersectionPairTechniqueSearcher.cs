@@ -15,19 +15,9 @@ namespace Sudoku.Solving.Manual.Alses
 	/// Encapsulates an <b>empty rectangle intersection pair</b> technique.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.Erip))]
+	[SearcherProperty(60)]
 	public sealed class ErIntersectionPairTechniqueSearcher : AlsTechniqueSearcher
 	{
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 60;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
-
-
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{

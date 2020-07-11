@@ -6,6 +6,8 @@ using System.Linq;
 using System.Reflection;
 using Sudoku.Constants;
 using Sudoku.Data;
+using Sudoku.Extensions;
+using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Singles;
 
@@ -18,6 +20,20 @@ namespace Sudoku.Solving
 	/// <seealso cref="ManualSolver"/>
 	public abstract class TechniqueSearcher : IComparable<TechniqueSearcher>, IEquatable<TechniqueSearcher>
 	{
+		/// <summary>
+		/// Get the searcher properties of type <see cref="SearcherPropertyAttribute"/>.
+		/// </summary>
+		/// <seealso cref="SearcherPropertyAttribute"/>
+		public SearcherPropertyAttribute? SearcherProperties
+		{
+			get
+			{
+				var type = GetType();
+				return type.IsAbstract ? null : type.GetCustomAttribute<SearcherPropertyAttribute>();
+			}
+		}
+
+
 		/// <summary>
 		/// The empty cells map.
 		/// </summary>

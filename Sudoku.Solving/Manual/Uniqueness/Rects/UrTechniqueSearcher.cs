@@ -16,6 +16,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <b>avoidable rectangle</b> (AR) technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.UrType1))]
+	[SearcherProperty(45)]
 	public sealed partial class UrTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>
@@ -41,17 +42,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="searchExtended">A <see cref="bool"/> value indicating that.</param>
 		public UrTechniqueSearcher(bool allowIncomplete, bool searchExtended) =>
 			(_allowIncompleteUr, _searchExtended) = (allowIncomplete, searchExtended);
-
-
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 45;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

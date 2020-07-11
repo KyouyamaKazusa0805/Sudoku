@@ -18,19 +18,9 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// the redundant backtracking.
 	/// </remarks>
 	[TechniqueDisplay(nameof(TechniqueCode.Aic))]
+	[SearcherProperty(46)]
 	public sealed class AicTechniqueSearcher : ChainingTechniqueSearcher
 	{
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 46;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
-
-
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{

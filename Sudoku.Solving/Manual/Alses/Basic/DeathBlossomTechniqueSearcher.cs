@@ -15,6 +15,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.DeathBlossom))]
 	[HighAllocation]
+	[SearcherProperty(80)]
 	public sealed class DeathBlossomTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <summary>
@@ -37,17 +38,6 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// </param>
 		public DeathBlossomTechniqueSearcher(bool allowOverlapping, bool alsShowRegions, int maxPetals)
 			: base(allowOverlapping, alsShowRegions, true) => _maxPetals = maxPetals;
-
-
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 80;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

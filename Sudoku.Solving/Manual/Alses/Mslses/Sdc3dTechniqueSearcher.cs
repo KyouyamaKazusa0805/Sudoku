@@ -15,6 +15,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// Encapsulates a <b>3-dimension sue de coq</b> technique.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.Sdc3d))]
+	[SearcherProperty(55)]
 	public sealed class Sdc3dTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <inheritdoc/>
@@ -26,17 +27,6 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 			: base(allowOverlapping, alsShowRegions, allowAlsCycles)
 		{
 		}
-
-
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 55;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

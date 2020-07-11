@@ -13,19 +13,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	/// Encapsulates an <b>extended rectangle</b> technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.XrType1))]
+	[SearcherProperty(46)]
 	public sealed partial class XrTechniqueSearcher : UniquenessTechniqueSearcher
 	{
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 46;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
-
-
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{

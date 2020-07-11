@@ -12,19 +12,9 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// Encapsulates a two strong links technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.TurbotFish))]
+	[SearcherProperty(40)]
 	public sealed class TwoStrongLinksTechniqueSearcher : SdpTechniqueSearcher
 	{
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 40;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
-
-
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{

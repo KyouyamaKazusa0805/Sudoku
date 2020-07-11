@@ -15,6 +15,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// Cannibalistic SdCs can be found also.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.Sdc))]
+	[SearcherProperty(50)]
 	public sealed class SdcTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <inheritdoc/>
@@ -26,17 +27,6 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 			: base(allowOverlapping, alsShowRegions, allowAlsCycles)
 		{
 		}
-
-
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 50;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

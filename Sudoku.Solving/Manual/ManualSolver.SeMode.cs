@@ -60,7 +60,7 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
-					if (!(bool)searcher.GetType().GetProperty("IsEnabled")!.GetValue(null)!)
+					if (!searcher.SearcherProperties!.IsEnabled)
 					{
 						// Skip the technique when the static property 'IsEnabled' is set false.
 						continue;

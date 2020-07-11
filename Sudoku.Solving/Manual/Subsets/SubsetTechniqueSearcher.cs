@@ -13,19 +13,9 @@ namespace Sudoku.Solving.Manual.Subsets
 	/// Encapsulates a <b>subset</b> technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.NakedPair))]
+	[SearcherProperty(30)]
 	public sealed class SubsetTechniqueSearcher : TechniqueSearcher
 	{
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 30;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
-
-
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{

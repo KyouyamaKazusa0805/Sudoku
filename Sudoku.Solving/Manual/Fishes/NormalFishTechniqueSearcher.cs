@@ -15,19 +15,9 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// Encapsulates a <b>normal fish</b> technique searcher. Fins can also be found.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.XWing))]
+	[SearcherProperty(32)]
 	public sealed class NormalFishTechniqueSearcher : FishTechniqueSearcher
 	{
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 32;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
-
-
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{

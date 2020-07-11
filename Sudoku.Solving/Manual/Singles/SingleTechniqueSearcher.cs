@@ -14,6 +14,7 @@ namespace Sudoku.Solving.Manual.Singles
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.NakedSingle))]
 	[AlwaysEnable]
+	[SearcherProperty(10)]
 	public sealed class SingleTechniqueSearcher : TechniqueSearcher
 	{
 		/// <summary>
@@ -33,17 +34,6 @@ namespace Sudoku.Solving.Manual.Singles
 		/// </param>
 		public SingleTechniqueSearcher(bool enableFullHouse, bool enableLastDigit) =>
 			(_enableFullHouse, _enableLastDigit) = (enableFullHouse, enableLastDigit);
-
-
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 10;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

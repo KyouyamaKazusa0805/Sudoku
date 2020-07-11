@@ -14,6 +14,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// Encapsulates an <b>almost locked set XZ rule</b> (ALS-XZ) technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.SinglyLinkedAlsXz))]
+	[SearcherProperty(55)]
 	public sealed class AlsXzTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <inheritdoc/>
@@ -21,17 +22,6 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 			: base(allowOverlapping, alsShowRegions, allowAlsCycles)
 		{
 		}
-
-
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 55;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

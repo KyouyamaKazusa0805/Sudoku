@@ -15,6 +15,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.BowmanBingo))]
 	[AlwaysEnable]
+	[SearcherProperty(80)]
 	public sealed class BowmanBingoTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <summary>
@@ -38,17 +39,6 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// </summary>
 		/// <param name="length">The length.</param>
 		public BowmanBingoTechniqueSearcher(int length) => _length = length;
-
-
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 80;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

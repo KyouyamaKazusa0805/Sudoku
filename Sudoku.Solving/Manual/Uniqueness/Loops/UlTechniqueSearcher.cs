@@ -17,19 +17,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// In fact the unique loop can also search for URs.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.UlType1))]
+	[SearcherProperty(46)]
 	public sealed class UlTechniqueSearcher : UniquenessTechniqueSearcher
 	{
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 46;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
-
-
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{

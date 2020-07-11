@@ -13,23 +13,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	/// Encapsulates a <b>uniqueness square</b> (US) technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.UsType1))]
+	[SearcherProperty(53)]
 	public sealed partial class UsTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>
 		/// Indicates the patterns.
 		/// </summary>
 		private static readonly GridMap[] Patterns = new GridMap[162];
-
-
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 53;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

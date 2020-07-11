@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using Sudoku.ComponentModel;
 using Sudoku.Data;
-using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Alses;
@@ -121,6 +120,11 @@ namespace Sudoku.Solving.Manual
 			var progressResult = new TechniqueProgressResult(searchers.Length, globalizationString ?? "en-us");
 			foreach (var searcher in searchers)
 			{
+				if (!searcher.SearcherProperties!.IsEnabled)
+				{
+					continue;
+				}
+
 				if (sukaku is true && searcher is UniquenessTechniqueSearcher)
 				{
 					// Sukaku mode cannot use them.

@@ -15,6 +15,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// Encapsulates a <b>Borescoper's deadly pattern</b> technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.BdpType1))]
+	[SearcherProperty(53)]
 	public sealed partial class BdpTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <summary>
@@ -24,17 +25,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// All possible heptagons and octagons are in here.
 		/// </remarks>
 		private static readonly Pattern[] Patterns = new Pattern[14580];
-
-
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 53;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

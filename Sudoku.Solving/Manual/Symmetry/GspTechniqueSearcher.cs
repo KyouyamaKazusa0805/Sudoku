@@ -12,19 +12,9 @@ namespace Sudoku.Solving.Manual.Symmetry
 	/// Encapsulates a <b>Gurth's symmetrical placement</b> (GSP) technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.Gsp))]
+	[SearcherProperty(default)]
 	public sealed class GspTechniqueSearcher : SymmetryTechniqueSearcher
 	{
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 0;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
-
-
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{

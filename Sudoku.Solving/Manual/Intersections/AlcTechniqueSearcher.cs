@@ -13,6 +13,7 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// Encapsulates an <b>almost locked candidates</b> (ALC) technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.AlmostLockedPair))]
+	[SearcherProperty(45)]
 	public sealed class AlcTechniqueSearcher : IntersectionTechniqueSearcher
 	{
 		/// <summary>
@@ -28,17 +29,6 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// Indicates whether the searcher should check almost locked quadruple.
 		/// </param>
 		public AlcTechniqueSearcher(bool checkAlq) => _checkAlq = checkAlq;
-
-
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 45;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

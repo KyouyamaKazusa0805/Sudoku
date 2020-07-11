@@ -15,19 +15,9 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// Encapsulates a <b>guardian</b> technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.Guardian))]
+	[SearcherProperty(55, IsEnabled = false, DisabledReason = DisabledReason.HasBugs)]
 	public sealed class GuardianTechniqueSearcher : SdpTechniqueSearcher
 	{
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 55;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = false;
-
-
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{

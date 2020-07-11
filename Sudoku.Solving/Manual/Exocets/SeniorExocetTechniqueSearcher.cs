@@ -18,23 +18,13 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// Encapsulates a <b>senior exocet</b> (SE) technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.Se))]
+	[SearcherProperty(96)]
 	public sealed class SeniorExocetTechniqueSearcher : ExocetTechniqueSearcher
 	{
 		/// <inheritdoc/>
 		public SeniorExocetTechniqueSearcher(bool checkAdvanced) : base(checkAdvanced)
 		{
 		}
-
-
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 96;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>

@@ -16,19 +16,9 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// Encapsulates a <b>domino loop</b> technique.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.SkLoop))]
+	[SearcherProperty(96)]
 	public sealed partial class SkLoopTechniqueSearcher : MslsTechniqueSearcher
 	{
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 96;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
-
-
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{

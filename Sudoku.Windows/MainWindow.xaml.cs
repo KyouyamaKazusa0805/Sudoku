@@ -723,19 +723,6 @@ namespace Sudoku.Windows
 		}
 
 		/// <summary>
-		/// To check whether the specified point is out of range of a control.
-		/// </summary>
-		/// <param name="control">The control.</param>
-		/// <param name="point">The point.</param>
-		/// <returns>A <see cref="bool"/> value.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private bool IsPointOutOfRange(DSizeF control, WPoint point)
-		{
-			var (x, y) = point;
-			return y < 0 || y > control.Width || x < 0 || x > control.Height;
-		}
-
-		/// <summary>
 		/// Update undo and redo controls.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
