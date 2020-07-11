@@ -73,13 +73,7 @@ namespace Sudoku.Solving.Manual.Fishes
 			};
 
 		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel =>
-			IsSashimi switch
-			{
-				null => DifficultyLevel.Hard,
-				true => DifficultyLevel.VeryHard,
-				false => Size < 3 ? DifficultyLevel.Hard : DifficultyLevel.VeryHard
-			};
+		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode =>

@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving
+﻿using System;
+
+namespace Sudoku.Solving
 {
 	/// <summary>
 	/// Provides a difficulty kind for a puzzle.
@@ -13,6 +15,7 @@
 		/// <summary>
 		/// Indicates the difficulty is very easy.
 		/// </summary>
+		[Obsolete("This field will be removed in future.", true)]
 		VeryEasy,
 
 		/// <summary>
@@ -28,6 +31,7 @@
 		/// <summary>
 		/// Indicates the difficulty is advanced.
 		/// </summary>
+		[Obsolete("This field will be removed in future.", true)]
 		Advanced,
 
 		/// <summary>
@@ -38,6 +42,7 @@
 		/// <summary>
 		/// Indicates the difficulty is very hard.
 		/// </summary>
+		[Obsolete("This field will be removed in future.", true)]
 		VeryHard,
 
 		/// <summary>
@@ -53,6 +58,7 @@
 		/// <summary>
 		/// Indicates the difficulty is crazy.
 		/// </summary>
+		[Obsolete("This field will be removed in future.", true)]
 		Crazy,
 
 		/// <summary>
@@ -63,6 +69,7 @@
 		/// <summary>
 		/// Indicates the difficulty is beyond nightmare.
 		/// </summary>
+		[Obsolete("This field will be removed in future.", true)]
 		BeyondNightmare,
 
 		/// <summary>

@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Sdps
 			};
 
 		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel => DifficultyLevel.VeryHard;
+		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode =>

@@ -357,17 +357,17 @@ namespace Sudoku.Windows
 			new Dictionary<DifficultyLevel, (Color, Color)>
 			{
 				[Unknown] = (Color.Black, Color.Gray),
-				[VeryEasy] = (Color.Black, Color.FromArgb(204, 204, 255)),
+				//[VeryEasy] = (Color.Black, Color.FromArgb(204, 204, 255)),
 				[Easy] = (Color.Black, Color.FromArgb(204, 204, 255)),
 				[Moderate] = (Color.Black, Color.FromArgb(100, 255, 100)),
-				[Advanced] = (Color.Black, Color.FromArgb(100, 255, 100)),
+				//[Advanced] = (Color.Black, Color.FromArgb(100, 255, 100)),
 				[Hard] = (Color.Black, Color.FromArgb(255, 255, 100)),
-				[VeryHard] = (Color.Black, Color.FromArgb(255, 255, 100)),
+				//[VeryHard] = (Color.Black, Color.FromArgb(255, 255, 100)),
 				[Fiendish] = (Color.Black, Color.FromArgb(255, 150, 80)),
 				[Diabolical] = (Color.Black, Color.FromArgb(255, 150, 80)),
-				[Crazy] = (Color.Black, Color.FromArgb(255, 100, 100)),
+				//[Crazy] = (Color.Black, Color.FromArgb(255, 100, 100)),
 				[Nightmare] = (Color.Black, Color.FromArgb(255, 100, 100)),
-				[BeyondNightmare] = (Color.Black, Color.FromArgb(255, 100, 100)),
+				//[BeyondNightmare] = (Color.Black, Color.FromArgb(255, 100, 100)),
 				[LastResort] = (Color.Black, Color.FromArgb(255, 100, 100))
 			};
 

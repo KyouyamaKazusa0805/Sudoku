@@ -100,7 +100,7 @@ namespace Sudoku.Solving.Manual.Fishes
 				2 => DifficultyLevel.Fiendish,
 				3 => DifficultyLevel.Fiendish,
 				4 => DifficultyLevel.Fiendish,
-				_ => DifficultyLevel.Crazy,
+				_ => DifficultyLevel.Nightmare,
 			};
 
 		/// <inheritdoc/>

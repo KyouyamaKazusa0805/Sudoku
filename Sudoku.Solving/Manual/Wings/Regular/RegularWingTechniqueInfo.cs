@@ -87,8 +87,8 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		public override DifficultyLevel DifficultyLevel =>
 			Size switch
 			{
-				_ when Size >= 3 && Size < 4 => DifficultyLevel.Hard,
-				_ when Size >= 4 && Size < 9 => DifficultyLevel.VeryHard,
+				_ when Size >= 3 && Size <= 4 => DifficultyLevel.Hard,
+				_ when Size > 4 && Size < 9 => DifficultyLevel.Fiendish,
 				_ => throw new NotSupportedException($"{nameof(Size)} isn't in a valid range.")
 			};
 

@@ -11,7 +11,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	{
 		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="pattern">The pattern.</param>
-		public QdpTechniqueInfo(
+		protected QdpTechniqueInfo(
 			IReadOnlyList<Conclusion> conclusions, IReadOnlyList<View> views, Pattern pattern)
 			: base(conclusions, views) => Pattern = pattern;
 
@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		public sealed override string Name => base.Name;
 
 		/// <inheritdoc/>
-		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.VeryHard;
+		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 
 		/// <inheritdoc/>

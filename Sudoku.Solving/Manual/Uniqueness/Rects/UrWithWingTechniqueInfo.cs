@@ -54,7 +54,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			4.4M + (IsAr ? .1M : 0) + DifficultyExtra[TypeCode - (IsAr ? UrTypeCode.AXyWing : UrTypeCode.XyWing)];
 
 		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel => DifficultyLevel.VeryHard;
+		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>
 		protected override string? GetAdditional()
