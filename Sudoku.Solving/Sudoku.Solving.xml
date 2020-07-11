@@ -355,6 +355,45 @@
             after finished. 
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Annotations.SearcherPropertyAttribute">
+            <summary>
+            Marks this attribute to a technique searcher to indicate the property of the settings while searching.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Annotations.SearcherPropertyAttribute.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance with the specified priority.
+            Larger the value, later the searcher used.
+            </summary>
+            <param name="priority">The priority value.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Annotations.SearcherPropertyAttribute.IsEnabled">
+            <summary>
+            Indicates whether the technique is enabled. The default value is <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Annotations.SearcherPropertyAttribute.HasBug">
+            <summary>
+            Indicates whether the current searcher has bug to fix. The default value is <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Annotations.SearcherPropertyAttribute.Priority">
+            <summary>
+            Indicates the priority of this technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Annotations.SearcherPropertyAttribute.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="isEnabled">
+            (<see langword="out" /> parameter) Indicates whether the current searcher is enabled.
+            </param>
+            <param name="hasBug">
+            (<see langword="out" /> parameter) Indicates whether the current searcher has bug while searching.
+            </param>
+            <param name="priority">(<see langword="out" /> parameter) The priority of the searcher.</param>
+        </member>
         <member name="T:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver">
             <summary>
             Provides a solver using backtracking method.
