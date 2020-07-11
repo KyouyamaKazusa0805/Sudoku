@@ -11,7 +11,6 @@ using Sudoku.Solving;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Tooling;
-using static System.Reflection.BindingFlags;
 using CoreResources = Sudoku.Windows.Resources;
 
 namespace Sudoku.Windows
@@ -146,7 +145,9 @@ namespace Sudoku.Windows
 					where !type.IsAbstract && type.IsSubclassOf<TechniqueSearcher>()
 						&& type.HasMarked<TechniqueDisplayAttribute>()
 					select type
-				let Priority = (int)(type.GetProperty("Priority", Public | Static)!.GetValue(null)!)
+				let AttributeInstance = type.GetCustomAttribute<SearcherPropertyAttribute>()
+				where !(AttributeInstance is null)
+				let Priority = AttributeInstance.Priority
 				orderby Priority
 				select new ListBoxItem
 				{
@@ -457,7 +458,7 @@ namespace Sudoku.Windows
 				&& listBoxItem.Content is PrimaryElementTuple<string, int, Type> triplet)
 			{
 				var (_, priority, type) = triplet;
-				_checkBoxIsEnabled.IsChecked = (bool)type.GetProperty("IsEnabled")!.GetValue(null)!;
+				_checkBoxIsEnabled.IsChecked = type.GetCustomAttribute<SearcherPropertyAttribute>()!.IsEnabled;
 				_textBoxPriority.Text = priority.ToString();
 				_checkBoxIsEnabled.IsEnabled = _textBoxPriority.IsReadOnly = !type.HasMarked<AlwaysEnableAttribute>();
 			}
