@@ -1,0 +1,13 @@
+v0.1.0.0
+
+v0.0.65534.0
+Add Filtering for difficulty level.
+Add BUG + n with forcing chains.
+Add Chains/Loops/Forcing chains.
+Add Translation for full houses & last digit.
+Add Translation for techniques and categories
+Remove Ths preferences for chains
+Fix Throw unexpected exception while clicking outside the grid.
+Fix Report no-solution although wrong digits removed.
+Fix Bug while saving pictures.
+Fix Configuration saved successfully although clicked cancel button.
