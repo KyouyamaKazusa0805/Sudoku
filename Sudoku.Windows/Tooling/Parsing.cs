@@ -33,8 +33,13 @@ namespace Sudoku.Windows.Tooling
 			var match = regex.Match(s);
 			if (match.Success)
 			{
-				var captures = match.Captures;
-				return int.Parse(captures[0].Value) * 9 + int.Parse(captures[1].Value);
+				var groups = match.Groups;
+				if (groups.Count == 3)
+				{
+					return int.Parse(groups[1].Value) * 9 + int.Parse(groups[2].Value);
+				}
+
+				return -1;
 			}
 
 			// Unknown case.
@@ -66,8 +71,13 @@ namespace Sudoku.Windows.Tooling
 			var match = regex.Match(s);
 			if (match.Success)
 			{
-				var captures = match.Captures;
-				return int.Parse(captures[0].Value) * 81 + int.Parse(captures[1].Value) * 9 + int.Parse(captures[2].Value);
+				var groups = match.Groups;
+				if (groups.Count == 4)
+				{
+					return (int.Parse(groups[1].Value) + 1) * 81 + (int.Parse(groups[2].Value) + 1) * 9 + int.Parse(groups[3].Value) + 1;
+				}
+
+				return -1;
 			}
 
 			// Unknown case.

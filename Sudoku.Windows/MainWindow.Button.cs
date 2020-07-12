@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Sudoku.Constants;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Constants;
+using Sudoku.Windows.Tooling;
+using static System.Text.RegularExpressions.RegexOptions;
+using static Sudoku.Data.ConclusionType;
 using static Sudoku.Windows.Constants.Processings;
 
 namespace Sudoku.Windows
@@ -60,11 +65,7 @@ namespace Sudoku.Windows
 				}
 
 				// Filtering.
-				//string filter = _textBoxPathFilter.Text;
-				//if (string.IsNullOrWhiteSpace(filter))
-				//{
-				//
-				//}
+				var f = p(_textBoxPathFilter.Text);
 
 				// The boolean value stands for whether the technique is enabled.
 				foreach (var techniqueGroup in techniqueGroups)
@@ -73,22 +74,84 @@ namespace Sudoku.Windows
 					foreach (var info in techniqueGroup)
 					{
 						var (fore, back) = Settings.DiffColors[info.DifficultyLevel];
-						list.Add(
-							new ListBoxItem
-							{
-								Content =
-									new PrimaryElementTuple<string, TechniqueInfo, bool>(
-										info.ToSimpleString(), info, true),
-								BorderThickness = default,
-								Foreground = new SolidColorBrush(fore.ToWColor()),
-								Background = new SolidColorBrush(back.ToWColor()),
-							});
+						if (f?.Invoke(info) ?? true)
+						{
+							list.Add(
+								new ListBoxItem
+								{
+									Content =
+										new PrimaryElementTuple<string, TechniqueInfo, bool>(
+											info.ToSimpleString(), info, true),
+									BorderThickness = default,
+									Foreground = new SolidColorBrush(fore.ToWColor()),
+									Background = new SolidColorBrush(back.ToWColor()),
+								});
+						}
 					}
 				}
 
 				dialog?.CloseAnyway();
 
 				_listBoxTechniques.ItemsSource = list;
+			}
+
+			// Parse the filter.
+			Predicate<TechniqueInfo>? p(string? s)
+			{
+				if (string.IsNullOrWhiteSpace(s))
+				{
+					return null;
+				}
+
+				// Pattern 1: Elimination contains candidate.
+				var match = Regex.Match(s, $@"elimination\s+contains\s+({RegularExpressions.Candidate})", IgnoreCase);
+				if (match.Success)
+				{
+					int candidate = match.Groups[0].Value.AsCandidate();
+					return info =>
+						info.Conclusions.Any(
+							c =>
+							{
+								var (type, cell, digit) = c;
+								return cell * 9 + digit == candidate && type == Elimination;
+							}); ;
+				}
+
+				// Pattern 2: Assignment is candidate.
+				match = Regex.Match(s, $@"assignment\s+is\s+({RegularExpressions.Candidate})", IgnoreCase);
+				if (match.Success)
+				{
+					int candidate = match.Groups[0].Value.AsCandidate();
+					return info =>
+					{
+						if (info.Conclusions.Count == 1)
+						{
+							var (type, cell, digit) = info.Conclusions[0];
+							return cell * 9 + digit == candidate && type == Assignment;
+						}
+
+						return false;
+					};
+				}
+
+				// Pattern 3: Elimination is candidate.
+				match = Regex.Match(s, $@"elimination\s+is\s+({RegularExpressions.Candidate})", IgnoreCase);
+				if (match.Success)
+				{
+					int candidate = match.Groups[0].Value.AsCandidate();
+					return info =>
+					{
+						if (info.Conclusions.Count == 1)
+						{
+							var (type, cell, digit) = info.Conclusions[0];
+							return cell * 9 + digit == candidate && type == Elimination;
+						}
+
+						return false;
+					};
+				}
+
+				return null;
 			}
 		}
 
