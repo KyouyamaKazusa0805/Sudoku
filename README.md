@@ -122,9 +122,9 @@ Here display all conditional compilation symbols in this solution.
 
 标题：**教程**
 
-Here you can enter the [main page](https://sunnie-shine.github.io/Sudoku/TutorialMainPage).
+Here you can enter the [main page](https://sunnie-shine.github.io/Sudoku/TutorialMainPage). This tutorial is on-line and gradual-updating.
 
-请点击[这里](https://sunnie-shine.github.io/Sudoku/TutorialMainPage)进入主界面。
+请点击[这里](https://sunnie-shine.github.io/Sudoku/TutorialMainPage)进入主界面。这个教程是线上且逐渐更新的。
 
 
 
