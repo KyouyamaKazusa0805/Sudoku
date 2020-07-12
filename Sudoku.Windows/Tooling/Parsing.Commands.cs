@@ -93,5 +93,17 @@ namespace Sudoku.Windows.Tooling
 
 			return null;
 		}
+
+		private static Predicate<TechniqueInfo>? Parse_TechniqueUsesRegion(string s)
+		{
+			var match = Regex.Match(s, $@"technique\s+uses\s+({RegularExpressions.Region})", IgnoreCase);
+			if (match.Success)
+			{
+				int region = AsRegion(match.Groups[1].Value);
+				return i => i.Views.Any(v => v.RegionOffsets?.Any(p => p._regionOffset == region) ?? false);
+			}
+
+			return null;
+		}
 	}
 }

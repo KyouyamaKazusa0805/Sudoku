@@ -385,6 +385,11 @@
             Indicates a cell string.
             </summary>
         </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.Region">
+            <summary>
+            Indicates the region string.
+            </summary>
+        </member>
         <member name="F:Sudoku.Constants.RegularExpressions.Candidate">
             <summary>
             Indicates a candidate string.

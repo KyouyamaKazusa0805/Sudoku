@@ -53,12 +53,17 @@
 		/// <summary>
 		/// Indicates a cell string.
 		/// </summary>
-		public const string Cell = @"[Rr](\d)[Cc](\d)";
+		public const string Cell = @"[Rr]([1-9])[Cc]([1-9])";
+
+		/// <summary>
+		/// Indicates the region string.
+		/// </summary>
+		public const string Region = @"([Rr][1-9]|[Cc][1-9]|[Bb][1-9])";
 
 		/// <summary>
 		/// Indicates a candidate string.
 		/// </summary>
-		public const string Candidate = @"[Rr](\d)[Cc](\d)\((\d)\)";
+		public const string Candidate = @"[Rr]([1-9])[Cc]([1-9])\(([1-9])\)";
 
 		/// <summary>
 		/// Indicates the regular expression to match a digit.

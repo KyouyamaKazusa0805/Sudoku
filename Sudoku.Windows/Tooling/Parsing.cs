@@ -16,11 +16,12 @@ namespace Sudoku.Windows.Tooling
 		/// <param name="s">The string.</param>
 		/// <returns>The predicate.</returns>
 		public static Predicate<TechniqueInfo>? ToCondition(string? s) =>
-			string.IsNullOrWhiteSpace(s) 
+			string.IsNullOrWhiteSpace(s)
 				? _ => true
 				: Parse_EliminationContainsCandidate(s)
 					?? Parse_AssignmentIsCandidats(s)
 					?? Parse_EliminationIsCandidate(s)
+					?? Parse_TechniqueUsesRegion(s)
 					?? Parse_TechniqueUsesCandidate(s)
 					?? Parse_TechniqueUsesCell(s);
 
@@ -90,7 +91,53 @@ namespace Sudoku.Windows.Tooling
 				var groups = match.Groups;
 				if (groups.Count == 4)
 				{
-					return (int.Parse(groups[1].Value) - 1) * 81 + (int.Parse(groups[2].Value) - 1) * 9 + int.Parse(groups[3].Value) - 1;
+					return (int.Parse(groups[1].Value) - 1) * 81
+						+ (int.Parse(groups[2].Value) - 1) * 9
+						+ int.Parse(groups[3].Value) - 1;
+				}
+
+				return -1;
+			}
+
+			// Unknown case.
+			return -1;
+		}
+
+		/// <summary>
+		/// Parse a string as a region.
+		/// </summary>
+		/// <param name="this">The string.</param>
+		/// <returns>The region value (between 0 and 26).</returns>
+		private static int AsRegion(string @this)
+		{
+			// Null or empty or write space.
+			if (string.IsNullOrWhiteSpace(@this))
+			{
+				return -1;
+			}
+
+			// Value 0..27.
+			if (byte.TryParse(@this, out byte value) && value >= 0 && value < 27)
+			{
+				return value;
+			}
+
+			// Rx, rx, Cx, cx, Bx or bx.
+			var regex = new Regex(RegularExpressions.Region);
+			string s = @this.Trim();
+			var match = regex.Match(s);
+			if (match.Success)
+			{
+				string str = match.Value;
+				if (str.Length == 2)
+				{
+					return str[0] switch
+					{
+						'b' => str[1] - '1',
+						'r' => 9 + str[1] - '1',
+						'c' => 18 + str[1] - '1',
+						_ => throw Throwings.ImpossibleCase
+					};
 				}
 
 				return -1;
