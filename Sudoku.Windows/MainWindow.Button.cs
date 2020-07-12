@@ -33,6 +33,16 @@ namespace Sudoku.Windows
 					return;
 				}
 
+				// Filtering.
+				var f = Parsing.ToCondition(_textBoxPathFilter.Text);
+				if (f is null)
+				{
+					Messagings.InvalidFilter();
+
+					e.Handled = true;
+					return;
+				}
+
 				IEnumerable<IGrouping<string, TechniqueInfo>> techniqueGroups;
 				ProgressWindow? dialog = null;
 				var list = new List<ListBoxItem>();
@@ -60,9 +70,6 @@ namespace Sudoku.Windows
 					techniqueGroups = _cacheAllSteps;
 				}
 
-				// Filtering.
-				var f = Parsing.ToCondition(_textBoxPathFilter.Text);
-
 				// The boolean value stands for whether the technique is enabled.
 				foreach (var techniqueGroup in techniqueGroups)
 				{
@@ -70,7 +77,7 @@ namespace Sudoku.Windows
 					foreach (var info in techniqueGroup)
 					{
 						var (fore, back) = Settings.DiffColors[info.DifficultyLevel];
-						if (f?.Invoke(info) ?? true)
+						if (f(info))
 						{
 							list.Add(
 								new ListBoxItem

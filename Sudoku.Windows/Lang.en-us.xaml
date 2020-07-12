@@ -346,6 +346,7 @@
 	<sys:String x:Key="AskWhileClearingStack2">Do you want to clear anyway?</sys:String>
 	<sys:String x:Key="AskWhileGeneratingWithDatabase">You are now working on the puzzle database. If you click YES button, the generating will start, but the database history will be cleared. A hard decision, isn't it?</sys:String>
 	<sys:String x:Key="CheckFormatString">The format is invalid. Please check the format string you input.</sys:String>
+	<sys:String x:Key="InvalidFilter">The filter is invalid. Please re-confirm your input and try again.</sys:String>
 	
 	<!-- Separate texts -->
 	<sys:String x:Key="TimeElapsed">time elapsed:</sys:String>

@@ -279,6 +279,11 @@ namespace Sudoku.Windows.Constants
 				(string)LangSource["CheckFormatString"],
 				(string)LangSource["CaptionInfo"]);
 
+		public static void InvalidFilter() =>
+			MessageBox.Show(
+				(string)LangSource["InvalidFilter"],
+				(string)LangSource["CaptionInfo"]);
+
 		/// <summary>
 		/// Indicates the message while quitting.
 		/// </summary>
