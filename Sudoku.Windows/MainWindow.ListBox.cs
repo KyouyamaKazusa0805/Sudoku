@@ -24,6 +24,8 @@ namespace Sudoku.Windows
 			if (sender is ListBox b && b.SelectedItem is ListBoxItem listBoxItem
 				&& listBoxItem.Content is PrimaryElementTuple<int, TechniqueInfo> pair)
 			{
+				_cacheAllSteps = null;
+
 				var (n, s) = pair;
 				var techniqueInfo = _analyisResult!.SolvingSteps![n];
 				_currentPainter.Grid = _puzzle = new UndoableGrid(_analyisResult.StepGrids![n]);

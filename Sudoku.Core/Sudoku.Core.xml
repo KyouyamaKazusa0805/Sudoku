@@ -380,6 +380,16 @@
             Indicates the candidate list unit in the PM grid.
             </summary>
         </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.Cell">
+            <summary>
+            Indicates a cell string.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.Candidate">
+            <summary>
+            Indicates a candidate string.
+            </summary>
+        </member>
         <member name="F:Sudoku.Constants.RegularExpressions.Digit">
             <summary>
             Indicates the regular expression to match a digit.

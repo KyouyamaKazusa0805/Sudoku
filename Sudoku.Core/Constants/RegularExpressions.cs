@@ -51,6 +51,16 @@
 		public const string PmGridCandidatesUnit = @"\d*[\-\+]?\d+";
 
 		/// <summary>
+		/// Indicates a cell string.
+		/// </summary>
+		public const string Cell = @"[Rr](\d)[Cc](\d)";
+
+		/// <summary>
+		/// Indicates a candidate string.
+		/// </summary>
+		public const string Candidate = @"[Rr](\d)[Cc](\d)\((\d)\)";
+
+		/// <summary>
 		/// Indicates the regular expression to match a digit.
 		/// </summary>
 		public const string Digit = @"\d";

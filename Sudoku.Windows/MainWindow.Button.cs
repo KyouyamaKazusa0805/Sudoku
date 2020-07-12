@@ -34,6 +34,7 @@ namespace Sudoku.Windows
 
 				IEnumerable<IGrouping<string, TechniqueInfo>> techniqueGroups;
 				ProgressWindow? dialog = null;
+				var list = new List<ListBoxItem>();
 				if (_cacheAllSteps is null)
 				{
 					_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
@@ -58,8 +59,14 @@ namespace Sudoku.Windows
 					techniqueGroups = _cacheAllSteps;
 				}
 
+				// Filtering.
+				//string filter = _textBoxPathFilter.Text;
+				//if (string.IsNullOrWhiteSpace(filter))
+				//{
+				//
+				//}
+
 				// The boolean value stands for whether the technique is enabled.
-				var list = new List<ListBoxItem>();
 				foreach (var techniqueGroup in techniqueGroups)
 				{
 					string name = techniqueGroup.Key;
