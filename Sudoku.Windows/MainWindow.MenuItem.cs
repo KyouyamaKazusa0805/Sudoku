@@ -620,7 +620,6 @@ namespace Sudoku.Windows
 
 					if (new BitwiseSolver().Solve(sb.ToString(), null, 2) != 1)
 					{
-						
 						return !(e.Handled = true);
 					}
 				}
@@ -637,14 +636,19 @@ namespace Sudoku.Windows
 				_analyisResult =
 					await Task.Run(() =>
 					{
-						if (!Settings.SolveFromCurrent)
+						_puzzle.Fix();
+
+						if (!Settings.SolveFromCurrent && !sukakuMode)
 						{
-							_puzzle.Reset();
-							_puzzle.ClearStack();
+							_puzzle.RecomputeCandidates();
 						}
+
+						_puzzle.ClearStack();
 
 						return _manualSolver.Solve(_puzzle, dialog.DefaultReporting, Settings.LanguageCode);
 					});
+
+				UpdateImageGrid();
 
 				dialog.CloseAnyway();
 
@@ -657,9 +661,7 @@ namespace Sudoku.Windows
 					_textBoxInfo.Text =
 						$"{_analyisResult.SolvingStepsCount} " +
 						$@"{(
-							_analyisResult.SolvingStepsCount == 1
-								? LangSource["StepSingular"]
-								: LangSource["StepPlural"]
+							_analyisResult.SolvingStepsCount == 1 ? LangSource["StepSingular"] : LangSource["StepPlural"]
 						)}" +
 						$"{LangSource["Comma"]}" +
 						$"{LangSource["TimeElapsed"]}" +

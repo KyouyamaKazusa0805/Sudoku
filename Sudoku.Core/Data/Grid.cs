@@ -189,36 +189,14 @@ namespace Sudoku.Data
 		/// <inheritdoc/>
 		public virtual int this[int offset]
 		{
-			get
-			{
-				switch (GetStatus(offset))
+			get =>
+				GetStatus(offset) switch
 				{
-					case CellStatus.Empty:
-					{
-						// Empty cells does not have a fixed value.
-						return -1;
-					}
-					case CellStatus.Modifiable:
-					case CellStatus.Given:
-					{
-						short mask = _masks[offset];
-						for (int i = 0; i < 9; i++, mask >>= 1)
-						{
-							if ((mask & 1) == 0)
-							{
-								return i;
-							}
-						}
-
-						// Modifiables and givens contain no fixed digit? What the hell?
-						return -1;
-					}
-					default:
-					{
-						throw Throwings.ImpossibleCase;
-					}
-				}
-			}
+					CellStatus.Empty => -1,
+					CellStatus.Modifiable => (~_masks[offset]).FindFirstSet(),
+					CellStatus.Given => (~_masks[offset]).FindFirstSet(),
+					_ => throw Throwings.ImpossibleCase
+				};
 			set
 			{
 				switch (value)
@@ -227,7 +205,8 @@ namespace Sudoku.Data
 					{
 						// If 'value' is -1, we should reset the grid.
 						// Note that reset candidates may not trigger the event.
-						Reset();
+						_masks[offset] = (short)CellStatus.Empty << 9;
+						RecomputeCandidates();
 
 						break;
 					}
@@ -344,6 +323,30 @@ namespace Sudoku.Data
 			mask = value;
 
 			ValueChanged.Invoke(this, new ValueChangedEventArgs(offset, copy, mask, -1));
+		}
+
+		/// <summary>
+		/// Re-compute candidates.
+		/// </summary>
+		public void RecomputeCandidates()
+		{
+			for (int i = 0; i < 81; i++)
+			{
+				if (GetStatus(i) == CellStatus.Empty)
+				{
+					short mask = 0;
+					foreach (int cell in PeerMaps[i])
+					{
+						int digit = this[cell];
+						if (digit != -1)
+						{
+							mask |= (short)(1 << digit);
+						}
+					}
+
+					_masks[i] = (short)((int)CellStatus.Empty << 9 | mask);
+				}
+			}
 		}
 
 		/// <inheritdoc/>

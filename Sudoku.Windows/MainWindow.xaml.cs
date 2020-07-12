@@ -23,6 +23,7 @@ using Sudoku.Solving.Manual;
 using Sudoku.Windows.Constants;
 using Sudoku.Windows.Extensions;
 using static System.StringSplitOptions;
+using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Windows.Constants.Processings;
 using CoreResources = Sudoku.Windows.Resources;
@@ -311,20 +312,37 @@ namespace Sudoku.Windows
 						return;
 					}
 
-					// Input or eliminate a digit.
+					if (_puzzle.GetStatus(cell) == CellStatus.Given)
+					{
+						return;
+					}
+
+					int digit = e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1;
 					switch (Keyboard.Modifiers)
 					{
 						case ModifierKeys.None:
 						{
 							// Input a digit.
-							_puzzle[cell] = e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1;
+							// Input or eliminate a digit.
+							if (digit != -1 && PeerMaps[cell].Any(c => _puzzle[c] == digit))
+							{
+								// Input is invalid. We cannot let you fill this cell with this digit.
+								return;
+							}
+
+							_puzzle[cell] = digit;
+							if (digit != -1 && _puzzle.GetStatus(cell) == CellStatus.Modifiable)
+							{
+								// This cell can be modified with other digits.
+								_puzzle.RecomputeCandidates();
+							}
 
 							break;
 						}
 						case ModifierKeys.Shift:
 						{
 							// Eliminate a digit.
-							_puzzle[cell, e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1] = true;
+							_puzzle[cell, digit] = true;
 
 							break;
 						}

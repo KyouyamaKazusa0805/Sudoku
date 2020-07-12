@@ -1619,6 +1619,11 @@
             <param name="offset">The cell offset you want to change.</param>
             <param name="value">The cell mask you want to set.</param>
         </member>
+        <member name="M:Sudoku.Data.Grid.RecomputeCandidates">
+            <summary>
+            Re-compute candidates.
+            </summary>
+        </member>
         <member name="M:Sudoku.Data.Grid.Equals(System.Object)">
             <inheritdoc/>
         </member>

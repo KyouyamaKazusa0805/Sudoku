@@ -73,14 +73,12 @@ namespace Sudoku.Data.Stepping
 			set
 			{
 				var map = GridMap.Empty;
-				foreach (int cell in Peers[offset])
+				foreach (int cell in PeerMaps[offset])
 				{
-					if (cell == offset || GetStatus(cell) != CellStatus.Empty)
+					if (GetStatus(cell) == CellStatus.Empty)
 					{
-						continue;
+						map.Add(cell);
 					}
-
-					map.Add(cell);
 				}
 				_undoStack.Push(new AssignmentStep(value, offset, _masks[offset], map));
 
