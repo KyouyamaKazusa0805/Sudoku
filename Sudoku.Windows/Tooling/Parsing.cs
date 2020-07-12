@@ -1,19 +1,35 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using Sudoku.Constants;
+using Sudoku.Solving;
 
 namespace Sudoku.Windows.Tooling
 {
 	/// <summary>
 	/// Provides a parsing way.
 	/// </summary>
-	internal static class Parsing
+	internal static partial class Parsing
 	{
+		/// <summary>
+		/// Parse the string as a condition.
+		/// </summary>
+		/// <param name="s">The string.</param>
+		/// <returns>The predicate.</returns>
+		public static Predicate<TechniqueInfo>? ToCondition(string? s) =>
+			string.IsNullOrWhiteSpace(s) 
+				? _ => true
+				: Parse_EliminationContainsCandidate(s)
+					?? Parse_AssignmentIsCandidats(s)
+					?? Parse_EliminationIsCandidate(s)
+					?? Parse_TechniqueUsesCandidate(s)
+					?? Parse_TechniqueUsesCell(s);
+
 		/// <summary>
 		/// Parse a string as a coordinate.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The string.</param>
+		/// <param name="this">The string.</param>
 		/// <returns>The coordinate value (between 0 and 80).</returns>
-		public static int AsCoordinate(this string? @this)
+		private static int AsCell(string? @this)
 		{
 			// Null or empty or write space.
 			if (string.IsNullOrWhiteSpace(@this))
@@ -36,7 +52,7 @@ namespace Sudoku.Windows.Tooling
 				var groups = match.Groups;
 				if (groups.Count == 3)
 				{
-					return int.Parse(groups[1].Value) * 9 + int.Parse(groups[2].Value);
+					return (int.Parse(groups[1].Value) - 1) * 9 + int.Parse(groups[2].Value) - 1;
 				}
 
 				return -1;
@@ -49,9 +65,9 @@ namespace Sudoku.Windows.Tooling
 		/// <summary>
 		/// Parse a string as a candidate.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The string.</param>
+		/// <param name="this">The string.</param>
 		/// <returns>The coordinate value (between 0 and 728).</returns>
-		public static int AsCandidate(this string? @this)
+		private static int AsCandidate(string? @this)
 		{
 			// Null or empty or write space.
 			if (string.IsNullOrWhiteSpace(@this))
@@ -74,7 +90,7 @@ namespace Sudoku.Windows.Tooling
 				var groups = match.Groups;
 				if (groups.Count == 4)
 				{
-					return (int.Parse(groups[1].Value) + 1) * 81 + (int.Parse(groups[2].Value) + 1) * 9 + int.Parse(groups[3].Value) + 1;
+					return (int.Parse(groups[1].Value) - 1) * 81 + (int.Parse(groups[2].Value) - 1) * 9 + int.Parse(groups[3].Value) - 1;
 				}
 
 				return -1;
