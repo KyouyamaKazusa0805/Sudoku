@@ -13,8 +13,7 @@ namespace Sudoku.Solving.Manual.Singles
 	/// Encapsulates a <b>single</b> technique searcher.
 	/// </summary>
 	[TechniqueDisplay(nameof(TechniqueCode.NakedSingle))]
-	[AlwaysEnable]
-	[SearcherProperty(10)]
+	[SearcherProperty(10, IsReadOnly = true)]
 	public sealed class SingleTechniqueSearcher : TechniqueSearcher
 	{
 		/// <summary>

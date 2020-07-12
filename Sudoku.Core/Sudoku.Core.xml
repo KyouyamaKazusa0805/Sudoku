@@ -5386,11 +5386,6 @@
             <param name="enumField">The enum field.</param>
             <returns>The result. Return <see langword="null"/> when the conversion is failed.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Annotations.AlwaysEnableAttribute">
-            <summary>
-            To mark this on a technique searcher to make the technique always enable.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Annotations.TechniqueDisplayAttribute">
             <summary>
             <para>

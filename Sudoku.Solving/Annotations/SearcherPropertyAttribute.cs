@@ -22,9 +22,14 @@ namespace Sudoku.Solving.Annotations
 		public bool IsEnabled { get; set; } = true;
 
 		/// <summary>
+		/// Indicates whether the property is read-only, which cannot be modified.
+		/// </summary>
+		public bool IsReadOnly { get; set; } = false;
+
+		/// <summary>
 		/// Indicates the priority of this technique.
 		/// </summary>
-		public int Priority { get; }
+		public int Priority { get; set; }
 
 		/// <summary>
 		/// Indicates whether the current searcher has bug to fix. The default value is <see langword="false"/>.
@@ -36,27 +41,15 @@ namespace Sudoku.Solving.Annotations
 		/// <param name="isEnabled">
 		/// (<see langword="out"/> parameter) Indicates whether the current searcher is enabled.
 		/// </param>
+		/// <param name="isReadOnly">
+		/// (<see langword="out"/> parameter) Indicates whether the current searcher is read-only.
+		/// </param>
 		/// <param name="disabledReason">
 		/// (<see langword="out"/> parameter) Indicates why the searcher is disabled.
 		/// </param>
 		/// <param name="priority">(<see langword="out"/> parameter) The priority of the searcher.</param>
-		public void Deconstruct(out bool isEnabled, out int priority, out DisabledReason disabledReason) =>
-			(isEnabled, priority, disabledReason) = (IsEnabled, Priority, DisabledReason);
-	}
-
-	/// <summary>
-	/// Indicates a reason why the searcher is disabled.
-	/// </summary>
-	public enum DisabledReason : byte
-	{
-		/// <summary>
-		/// Indicates the searcher searches for last resorts, which don't need to show.
-		/// </summary>
-		LastResort,
-
-		/// <summary>
-		/// Indicates the searcher has bugs while searching.
-		/// </summary>
-		HasBugs,
+		public void Deconstruct(
+			out bool isEnabled, out bool isReadOnly, out int priority, out DisabledReason disabledReason) =>
+			(isEnabled, isReadOnly, priority, disabledReason) = (IsEnabled, IsReadOnly, Priority, DisabledReason);
 	}
 }

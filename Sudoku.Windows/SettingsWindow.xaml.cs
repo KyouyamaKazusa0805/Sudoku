@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
@@ -12,6 +11,7 @@ using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Tooling;
 using CoreResources = Sudoku.Windows.Resources;
+using Triplet = System.PrimaryElementTuple<string, int, System.Type>;
 
 namespace Sudoku.Windows
 {
@@ -152,16 +152,15 @@ namespace Sudoku.Windows
 				select new ListBoxItem
 				{
 					Content =
-						new PrimaryElementTuple<string, int, Type>(
+						new Triplet(
 							CoreResources.GetValue(
 								$"Progress{type.GetCustomAttribute<TechniqueDisplayAttribute>()!.DisplayName}"),
 							Priority,
 							type)
 				});
 			_listBoxPriority.SelectedIndex = 0;
-			var (_, priority, selectionType) =
-				(PrimaryElementTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
-			_checkBoxIsEnabled.IsEnabled = !selectionType.HasMarked<AlwaysEnableAttribute>();
+			var (_, priority, selectionType) = (Triplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
+			_checkBoxIsEnabled.IsEnabled = !selectionType.GetCustomAttribute<SearcherPropertyAttribute>()!.IsReadOnly;
 			_textBoxPriority.Text = priority.ToString();
 		}
 
@@ -173,7 +172,7 @@ namespace Sudoku.Windows
 		/// <param name="colorIndex">The index.</param>
 		private void HandleColor(object sender, Settings settings, int colorIndex)
 		{
-			if (sender is Button button && ColorPicker.ShowDialog(out var color) && !(color is null))
+			if (sender is Button button && ColorPicker.ShowDialog(out var color) && color.HasValue)
 			{
 				var target = color.Value.ToDColor();
 				typeof(Settings).GetProperty($"Color{colorIndex}")!.SetValue(settings, target);
@@ -455,12 +454,34 @@ namespace Sudoku.Windows
 			if (sender is ListBox listBox
 				&& listBox.SelectedIndex != -1
 				&& listBox.SelectedItem is ListBoxItem listBoxItem
-				&& listBoxItem.Content is PrimaryElementTuple<string, int, Type> triplet)
+				&& listBoxItem.Content is Triplet triplet)
 			{
 				var (_, priority, type) = triplet;
-				_checkBoxIsEnabled.IsChecked = type.GetCustomAttribute<SearcherPropertyAttribute>()!.IsEnabled;
+				var (isEnabled, isReadOnly, _, _) = type.GetCustomAttribute<SearcherPropertyAttribute>()!;
+				_checkBoxIsEnabled.IsChecked = isEnabled;
+				_checkBoxIsEnabled.IsEnabled = !isReadOnly;
 				_textBoxPriority.Text = priority.ToString();
-				_checkBoxIsEnabled.IsEnabled = _textBoxPriority.IsReadOnly = !type.HasMarked<AlwaysEnableAttribute>();
+				_textBoxPriority.IsReadOnly = isReadOnly;
+			}
+		}
+
+		private void CheckBoxIsEnabled_Click(object sender, RoutedEventArgs e)
+		{
+			if (sender is CheckBox checkBox)
+			{
+				var type = ((Triplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Value3;
+				var attr = type.GetCustomAttribute<SearcherPropertyAttribute>()!;
+				attr.IsEnabled = checkBox.IsChecked ?? default;
+			}
+		}
+
+		private void TextBoxPriority_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			if (sender is TextBox textBox && int.TryParse(textBox.Text, out int value))
+			{
+				var type = ((Triplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Value3;
+				var attr = type.GetCustomAttribute<SearcherPropertyAttribute>()!;
+				attr.Priority = value;
 			}
 		}
 	}

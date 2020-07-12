@@ -330,12 +330,14 @@
 							<CheckBox Content="{DynamicResource SettingsPriorityIsEnabled}"
 									  Grid.Row="0" Grid.Column="0"
 									  Grid.ColumnSpan="2" Name="_checkBoxIsEnabled"
-									  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+									  HorizontalAlignment="Center" VerticalAlignment="Center"
+									  Click="CheckBoxIsEnabled_Click"/>
 							<Label Content="{DynamicResource SettingsPriorityValue}"
 								   HorizontalAlignment="Right"
 								   VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
 							<TextBox Grid.Row="1" Grid.Column="1" Name="_textBoxPriority"
-									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+									 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+									 TextChanged="TextBoxPriority_TextChanged"/>
 						</Grid>
 					</GroupBox>
 				</Grid>
