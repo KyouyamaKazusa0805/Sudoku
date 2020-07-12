@@ -26,7 +26,6 @@ using static System.StringSplitOptions;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Windows.Constants.Processings;
 using CoreResources = Sudoku.Windows.Resources;
-using DSizeF = System.Drawing.SizeF;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
 using WPoint = System.Windows.Point;
@@ -155,6 +154,11 @@ namespace Sudoku.Windows
 		/// The initial grid.
 		/// </summary>
 		private IReadOnlyGrid _initialPuzzle = null!;
+
+		/// <summary>
+		/// The steps searched. This field stores the previous group that searched before.
+		/// </summary>
+		private IEnumerable<IGrouping<string, TechniqueInfo>>? _cacheAllSteps;
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
@@ -750,6 +754,8 @@ namespace Sudoku.Windows
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void DisableGeneratingControls()
 		{
+			_cacheAllSteps = null;
+
 			_textBoxInfo.Text = (string)LangSource["WhileGenerating"];
 			_menuItemFileOpen.IsEnabled = false;
 			_menuItemFileOpenDatabase.IsEnabled = false;
@@ -838,6 +844,8 @@ namespace Sudoku.Windows
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void DisableSolvingControls()
 		{
+			_cacheAllSteps = null;
+
 			_menuItemFileOpen.IsEnabled = false;
 			_menuItemFileOpenDatabase.IsEnabled = false;
 			_menuItemFileSave.IsEnabled = false;

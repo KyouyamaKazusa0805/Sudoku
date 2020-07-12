@@ -417,6 +417,9 @@
             </param>
             <param name="priority">(<see langword="out" /> parameter) The priority of the searcher.</param>
         </member>
+        <member name="M:Sudoku.Solving.Annotations.SearcherPropertyAttribute.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.BruteForces.Backtracking.BacktrackingSolver">
             <summary>
             Provides a solver using backtracking method.

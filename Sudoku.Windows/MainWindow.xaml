@@ -402,16 +402,14 @@
 						HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsTabStop="False"
 						SelectionChanged="TabControlInfo_SelectionChanged">
 				<!-- Summary -->
-				<TabItem Header="{DynamicResource _tabItemSummary}"
-						 Name="_tabItemSummary">
+				<TabItem Header="{DynamicResource _tabItemSummary}" Name="_tabItemSummary">
 					<Grid Background="#FFE5E5E5">
 						<ListView Name="_listViewSummary"/>
 					</Grid>
 				</TabItem>
 
 				<!-- Solution Path -->
-				<TabItem Header="{DynamicResource _tabItemSolutionPath}"
-						 Name="_tabItemSolutionPath">
+				<TabItem Header="{DynamicResource _tabItemSolutionPath}" Name="_tabItemSolutionPath">
 					<Grid Background="#FFE5E5E5">
 						<ListBox Name="_listBoxPaths"
 								 SelectionChanged="ListBoxPaths_SelectionChanged">
@@ -430,14 +428,14 @@
 				</TabItem>
 
 				<!-- All possible steps -->
-				<TabItem Header="{DynamicResource _tabItemAllPossibleSteps}"
-						 Name="_tabItemAllPossibleSteps">
+				<TabItem Header="{DynamicResource _tabItemAllPossibleSteps}" Name="_tabItemAllPossibleSteps">
 					<Grid Background="#FFE5E5E5">
 						<Grid.RowDefinitions>
-							<RowDefinition Height="15*"/>
+							<RowDefinition Height="14*"/>
+							<RowDefinition/>
 							<RowDefinition/>
 						</Grid.RowDefinitions>
-						<ListBox Grid.Row="0" Grid.Column="0" Name="_listBoxTechniques"
+						<ListBox Grid.Row="0" Name="_listBoxTechniques"
 								 SelectionChanged="ListBoxTechniques_SelectionChanged">
 							<ListBox.ContextMenu>
 								<ContextMenu>
@@ -447,15 +445,16 @@
 								</ContextMenu>
 							</ListBox.ContextMenu>
 						</ListBox>
+						<TextBox Name="_textBoxPathFilter" Grid.Row="1" HorizontalContentAlignment="Left"
+								 VerticalContentAlignment="Center" FontFamily="Consolas" FontSize="16"/>
 						<Button Content="{DynamicResource _buttonFindAllSteps}"
-								Name="_buttonFindAllSteps" Grid.Row="1" Grid.Column="0"
+								Name="_buttonFindAllSteps" Grid.Row="2"
 								Click="ButtonFindAllSteps_Click"/>
 					</Grid>
 				</TabItem>
 
 				<!-- Drawing -->
-				<TabItem Header="{DynamicResource _tabItemDrawing}"
-						 Name="_tabItemDrawing">
+				<TabItem Header="{DynamicResource _tabItemDrawing}" Name="_tabItemDrawing">
 					<Grid Background="#FFE5E5E5">
 						<Grid.RowDefinitions>
 							<RowDefinition/>

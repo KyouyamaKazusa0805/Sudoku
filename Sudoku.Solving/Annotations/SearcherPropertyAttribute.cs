@@ -51,5 +51,13 @@ namespace Sudoku.Solving.Annotations
 		public void Deconstruct(
 			out bool isEnabled, out bool isReadOnly, out int priority, out DisabledReason disabledReason) =>
 			(isEnabled, isReadOnly, priority, disabledReason) = (IsEnabled, IsReadOnly, Priority, DisabledReason);
+
+
+		/// <inheritdoc/>
+		public override string ToString()
+		{
+			var (a, b, c, d) = this;
+			return (a, b, c, d).ToString();
+		}
 	}
 }

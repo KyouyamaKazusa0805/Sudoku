@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,21 +32,31 @@ namespace Sudoku.Windows
 					return;
 				}
 
-				_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
-				_textBoxInfo.Text = (string)LangSource["WhileFindingAllSteps"];
-				_buttonFindAllSteps.IsEnabled = false;
-				DisableSolvingControls();
+				IEnumerable<IGrouping<string, TechniqueInfo>> techniqueGroups;
+				ProgressWindow? dialog = null;
+				if (_cacheAllSteps is null)
+				{
+					_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+					_textBoxInfo.Text = (string)LangSource["WhileFindingAllSteps"];
+					_buttonFindAllSteps.IsEnabled = false;
+					DisableSolvingControls();
 
-				var dialog = new ProgressWindow();
-				dialog.Show();
-				var techniqueGroups =
-					await Task.Run(
-						() => new StepFinder(Settings).Search(_puzzle, dialog.DefaultReporting, Settings.LanguageCode));
+					dialog = new ProgressWindow();
+					dialog.Show();
+					IEnumerable<IGrouping<string, TechniqueInfo>> s() =>
+						new StepFinder(Settings).Search(_puzzle, dialog.DefaultReporting, Settings.LanguageCode);
+					_cacheAllSteps = await Task.Run(s);
+					techniqueGroups = _cacheAllSteps;
 
-				EnableSolvingControls();
-				SwitchOnGeneratingComboBoxesDisplaying();
-				_buttonFindAllSteps.IsEnabled = true;
-				_textBoxInfo.ClearValue(TextBox.TextProperty);
+					EnableSolvingControls();
+					SwitchOnGeneratingComboBoxesDisplaying();
+					_buttonFindAllSteps.IsEnabled = true;
+					_textBoxInfo.ClearValue(TextBox.TextProperty);
+				}
+				else
+				{
+					techniqueGroups = _cacheAllSteps;
+				}
 
 				// The boolean value stands for whether the technique is enabled.
 				var list = new List<ListBoxItem>();
@@ -68,7 +79,7 @@ namespace Sudoku.Windows
 					}
 				}
 
-				dialog.CloseAnyway();
+				dialog?.CloseAnyway();
 
 				_listBoxTechniques.ItemsSource = list;
 			}

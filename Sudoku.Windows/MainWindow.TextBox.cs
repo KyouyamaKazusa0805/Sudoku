@@ -1,4 +1,6 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Input;
+using Sudoku.Solving.Manual;
 using static Sudoku.Windows.Constants.Processings;
 
 namespace Sudoku.Windows
