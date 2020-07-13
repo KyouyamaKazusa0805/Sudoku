@@ -667,7 +667,9 @@ namespace Sudoku.Windows
 							{
 								Foreground = new SolidColorBrush(fore.ToWColor()),
 								Background = new SolidColorBrush(back.ToWColor()),
-								Content = new PrimaryElementTuple<int, TechniqueInfo>(i++, step, 2),
+								Content =
+									new PrimaryElementTuple<string, int, TechniqueInfo>(
+										$"(#{i + 1}, {step.Difficulty}) {step.ToSimpleString()}", i++, step),
 								BorderThickness = default
 							});
 					}
@@ -978,8 +980,12 @@ namespace Sudoku.Windows
 			if (sender is MenuItem)
 			{
 				try
-				{
-					Clipboard.SetText(_listBoxPaths.SelectedItem.ToString());
+				{ 
+					if (_listBoxPaths.SelectedItem is ListBoxItem listBoxItem
+						&& listBoxItem.Content is PrimaryElementTuple<string, int, TechniqueInfo> triplet)
+					{
+						Clipboard.SetText(triplet.Value3.ToFullString());
+					}
 				}
 				catch
 				{
@@ -988,12 +994,17 @@ namespace Sudoku.Windows
 			}
 		}
 
+		[SuppressMessage("Style", "IDE0038:Use pattern matching", Justification = "<Pending>")]
 		private void ContextListBoxPathsCopyAllSteps_Click(object sender, RoutedEventArgs e)
 		{
 			if (sender is MenuItem)
 			{
 				var sb = new StringBuilder();
-				foreach (string step in from object item in _listBoxPaths.Items select item.ToString())
+				foreach (string step in
+					from ListBoxItem item in _listBoxPaths.Items
+					let Content = item.Content
+					where Content is PrimaryElementTuple<string, int, TechniqueInfo>
+					select ((PrimaryElementTuple<string, int, TechniqueInfo>)Content).Value3.ToFullString())
 				{
 					sb.AppendLine(step);
 				}

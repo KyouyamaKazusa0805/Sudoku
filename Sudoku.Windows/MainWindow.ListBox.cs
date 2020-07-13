@@ -19,11 +19,11 @@ namespace Sudoku.Windows
 			}
 
 			if (sender is ListBox b && b.SelectedItem is ListBoxItem listBoxItem
-				&& listBoxItem.Content is PrimaryElementTuple<int, TechniqueInfo> pair)
+				&& listBoxItem.Content is PrimaryElementTuple<string, int, TechniqueInfo> triplet)
 			{
-				_cacheAllSteps = null;
+				_cacheAllSteps = null; // Remove older steps cache while updating paths.
 
-				var (n, s) = pair;
+				var (_, n, s) = triplet;
 				var techniqueInfo = _analyisResult!.SolvingSteps![n];
 				_currentPainter.Grid = _puzzle = new UndoableGrid(_analyisResult.StepGrids![n]);
 				_currentPainter.View = s.Views[0];
