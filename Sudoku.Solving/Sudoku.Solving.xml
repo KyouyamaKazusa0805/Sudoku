@@ -2305,6 +2305,11 @@
         <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.TechniqueCode">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.IsXChain">
+            <summary>
+            Indicates whether the specified chain is an X-Chain.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.AicTechniqueInfo.ToString">
             <inheritdoc/>
         </member>
@@ -2735,6 +2740,11 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.LoopTechniqueInfo.FlatComplexity">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.LoopTechniqueInfo.IsXCycle">
+            <summary>
+            Indicates whether the specified cycle is an X-Cycle.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.LoopTechniqueInfo.ToString">
             <inheritdoc/>

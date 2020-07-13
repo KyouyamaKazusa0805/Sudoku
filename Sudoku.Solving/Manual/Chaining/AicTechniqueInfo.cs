@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -47,22 +46,31 @@ namespace Sudoku.Solving.Manual.Chaining
 			get
 			{
 				var chain = Target.Chain;
-				return (chain[^2].Digit == chain[1].Digit) switch
+				return IsXChain switch
 				{
-					true => IsXyChain switch
+					true => TechniqueCode.XChain,
+					_ => (chain[^2].Digit == chain[1].Digit) switch
 					{
-						true => TechniqueCode.XyChain,
-						_ => TechniqueCode.Aic
-					},
-					false => Conclusions.Count switch
-					{
-						1 => TechniqueCode.DiscontinuousNiceLoop,
-						2 => TechniqueCode.XyXChain,
-						_ => TechniqueCode.Aic
+						true => IsXyChain switch
+						{
+							true => TechniqueCode.XyChain,
+							_ => TechniqueCode.Aic
+						},
+						false => Conclusions.Count switch
+						{
+							1 => TechniqueCode.DiscontinuousNiceLoop,
+							2 => TechniqueCode.XyXChain,
+							_ => TechniqueCode.Aic
+						}
 					}
 				};
 			}
 		}
+
+		/// <summary>
+		/// Indicates whether the specified chain is an X-Chain.
+		/// </summary>
+		private bool IsXChain => /*Target.Chain.Select(n => n.Digit).Distinct().Count() == 1;*/XEnabled && !YEnabled;
 
 
 		/// <inheritdoc/>

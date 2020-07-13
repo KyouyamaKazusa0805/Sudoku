@@ -36,10 +36,14 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		/// <inheritdoc/>
 		public override TechniqueCode TechniqueCode =>
-			IsXyChain switch
+			IsXCycle switch
 			{
-				true => TechniqueCode.XyCycle,
-				_ => TechniqueCode.ContinuousNiceLoop
+				true => TechniqueCode.FishyCycle,
+				_ => IsXyChain switch
+				{
+					true => TechniqueCode.XyCycle,
+					_ => TechniqueCode.ContinuousNiceLoop
+				}
 			};
 
 		/// <inheritdoc/>
@@ -53,6 +57,11 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		/// <inheritdoc/>
 		public override int FlatComplexity => Target.AncestorsCount;
+
+		/// <summary>
+		/// Indicates whether the specified cycle is an X-Cycle.
+		/// </summary>
+		private bool IsXCycle => XEnabled && !YEnabled;
 
 
 		/// <inheritdoc/>
