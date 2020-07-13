@@ -44,17 +44,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <inheritdoc/>
 		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			IReadOnlyList<int> trueCandidates;
-			if (_extended)
-			{
-				var checker = new BugChecker(grid);
-				trueCandidates = checker.TrueCandidates;
-			}
-			else
-			{
-				trueCandidates = GetTrueCandidatesSimply(grid);
-			}
-
+			var trueCandidates = _extended ? new BugChecker(grid).TrueCandidates : GetTrueCandidatesSimply(grid);
 			switch (trueCandidates.Count)
 			{
 				case 0:
