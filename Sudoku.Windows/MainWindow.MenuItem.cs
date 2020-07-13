@@ -333,7 +333,8 @@ namespace Sudoku.Windows
 
 				_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
 				_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
-				_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+				//_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+				_treeViewTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 			}
 		}
 
@@ -356,7 +357,8 @@ namespace Sudoku.Windows
 
 				_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
 				_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
-				_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+				//_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+				_treeViewTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 			}
 		}
 
@@ -453,17 +455,17 @@ namespace Sudoku.Windows
 
 					DisableGeneratingControls();
 
+					// Here two variables cannot be moved into the lambda expression
+					// because the lambda expression will be executed in asynchornized way.
+					int index = _comboBoxBackdoorFilteringDepth.SelectedIndex;
+					Settings.GeneratingDifficultyLevelSelectedIndex = _comboBoxDifficulty.SelectedIndex;
+
 					Puzzle =
 						new UndoableGrid(
 							await Task.Run(
 								() => new HardPatternPuzzleGenerator().Generate(
-									_comboBoxBackdoorFilteringDepth.SelectedIndex - 1,
-									(DifficultyLevel)(
-										Settings.GeneratingDifficultyLevelSelectedIndex = _comboBoxDifficulty.SelectedIndex
-									)
-								)
-							)
-						);
+									index - 1,
+									(DifficultyLevel)Settings.GeneratingDifficultyLevelSelectedIndex)));
 
 					EnableGeneratingControls();
 					SwitchOnGeneratingComboBoxesDisplaying();

@@ -46,7 +46,7 @@ namespace Sudoku.Windows
 		/// The custom view.
 		/// </summary>
 		private readonly MutableView _view = new MutableView();
-
+		
 
 		/// <summary>
 		/// The current custom drawing mode. The values are:
@@ -969,7 +969,7 @@ namespace Sudoku.Windows
 		{
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
 			_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
-			_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+			_treeViewTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 
 			SwitchOnTabItemWhenGeneratedOrSolving();
 		}

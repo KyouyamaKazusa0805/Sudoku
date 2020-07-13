@@ -435,16 +435,21 @@
 							<RowDefinition/>
 							<RowDefinition/>
 						</Grid.RowDefinitions>
-						<ListBox Grid.Row="0" Name="_listBoxTechniques"
-								 SelectionChanged="ListBoxTechniques_SelectionChanged">
-							<ListBox.ContextMenu>
-								<ContextMenu>
+						<TreeView Grid.Row="0" Name="_treeViewTechniques"
+								  SelectedItemChanged="TreeViewTechniques_SelectedItemChanged">
+							<TreeView.ItemTemplate>
+								<HierarchicalDataTemplate ItemsSource="{Binding Children}">
+									<TextBlock Text="{Binding Content.Header}" VerticalAlignment="Center"/>
+								</HierarchicalDataTemplate>
+							</TreeView.ItemTemplate>
+							<TreeView.ContextMenu>
+								<ContextMenu Name="_contextMenuTechniques">
 									<MenuItem Header="{DynamicResource _contextMenuListBoxTechniquesApply}"
 											  Name="_contextMenuListBoxTechniquesApply"
-											  Click="ContextMenuListBoxTechniquesApply_Click"/>
+											  Click="ContextMenuTechniquesApply_Click"/>
 								</ContextMenu>
-							</ListBox.ContextMenu>
-						</ListBox>
+							</TreeView.ContextMenu>
+						</TreeView>
 						<TextBox Name="_textBoxPathFilter" Grid.Row="1" HorizontalContentAlignment="Left"
 								 VerticalContentAlignment="Center" FontFamily="Consolas" FontSize="16"/>
 						<Button Content="{DynamicResource _buttonFindAllSteps}"

@@ -5,8 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using Sudoku.Drawing.Extensions;
+using Sudoku.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
@@ -48,7 +47,7 @@ namespace Sudoku.Windows
 				var list = new List<ListBoxItem>();
 				if (_cacheAllSteps is null)
 				{
-					_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+					_treeViewTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 					_textBoxInfo.Text = (string)LangSource["WhileFindingAllSteps"];
 					_buttonFindAllSteps.IsEnabled = false;
 					DisableSolvingControls();
@@ -71,31 +70,31 @@ namespace Sudoku.Windows
 				}
 
 				// The boolean value stands for whether the technique is enabled.
+				var roots =
+					new List<TreeNode<TreeViewItem>>(
+						from name in from techniqueGroup in techniqueGroups select techniqueGroup.Key
+						select new TreeNode<TreeViewItem> { Content = new TreeViewItem { Header = name } });
 				foreach (var techniqueGroup in techniqueGroups)
 				{
 					string name = techniqueGroup.Key;
-					foreach (var info in techniqueGroup)
-					{
-						var (fore, back) = Settings.DiffColors[info.DifficultyLevel];
-						if (f(info))
+					var node = roots.First(n => (string)n.Content!.Header == name);
+					node.Children.AddRange(
+						from info in techniqueGroup
+						where f(info)
+						select new TreeNode<TreeViewItem>
 						{
-							list.Add(
-								new ListBoxItem
+							Content =
+								new TreeViewItem
 								{
-									Content =
+									Header =
 										new PrimaryElementTuple<string, TechniqueInfo, bool>(
 											info.ToSimpleString(), info, true),
-									BorderThickness = default,
-									Foreground = new SolidColorBrush(fore.ToWColor()),
-									Background = new SolidColorBrush(back.ToWColor()),
-								});
-						}
-					}
+								}
+						});
 				}
+				_treeViewTechniques.ItemsSource = roots;
 
 				dialog?.CloseAnyway();
-
-				_listBoxTechniques.ItemsSource = list;
 			}
 		}
 

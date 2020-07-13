@@ -19,6 +19,11 @@ namespace System.Collections.Generic
 		public int ParentId { get; set; }
 
 		/// <summary>
+		/// Indicates whether the current node is the left node.
+		/// </summary>
+		public bool IsLeaf => (Children?.Count ?? 0) == 0;
+
+		/// <summary>
 		/// Indicates the content.
 		/// </summary>
 		[MaybeNull]
@@ -40,7 +45,6 @@ namespace System.Collections.Generic
 			};
 
 		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{{Id = {Id}, ParentId = {ParentId}, Content = {Content}, ChildrenCount = {Children.Count}}}";
+		public override string ToString() => (Id, ParentId, Content, ChildrenCount: Children.Count).ToString();
 	}
 }
