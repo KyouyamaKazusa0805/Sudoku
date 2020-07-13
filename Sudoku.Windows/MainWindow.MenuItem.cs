@@ -413,28 +413,6 @@ namespace Sudoku.Windows
 
 			async Task internalOperation()
 			{
-				#region Obsolete code
-				//if (_comboBoxDifficulty.SelectedIndex == 0)
-				//{
-				//	MessageBox.Show(
-				//		"We may not allow you to generate the puzzle whose difficulty is unknown.", "Warning");
-				//
-				//	e.Handled = true;
-				//	return;
-				//}
-				//
-				//if (_comboBoxDifficulty.SelectedIndex >= 5
-				//	&& MessageBox.Show(
-				//		"You selected a difficulty that generate a puzzle will be too slow " +
-				//		"and you may not cancel the operation when generating. " +
-				//		"Would you like to generate anyway?", "Info", MessageBoxButton.YesNo
-				//	) != MessageBoxResult.Yes)
-				//{
-				//	e.Handled = true;
-				//	return;
-				//}
-				#endregion
-
 				if (_database is null || Messagings.AskWhileGeneratingWithDatabase() == MessageBoxResult.Yes)
 				{
 					// Disable relative database controls.
@@ -475,11 +453,17 @@ namespace Sudoku.Windows
 
 					DisableGeneratingControls();
 
-					int depth = _comboBoxBackdoorFilteringDepth.SelectedIndex;
-					Puzzle = new UndoableGrid(
-						await Task.Run(
-							() => new HardPatternPuzzleGenerator().Generate(
-								depth - 1, (DifficultyLevel)Settings.GeneratingDifficultyLevelSelectedIndex)));
+					Puzzle =
+						new UndoableGrid(
+							await Task.Run(
+								() => new HardPatternPuzzleGenerator().Generate(
+									_comboBoxBackdoorFilteringDepth.SelectedIndex - 1,
+									(DifficultyLevel)(
+										Settings.GeneratingDifficultyLevelSelectedIndex = _comboBoxDifficulty.SelectedIndex
+									)
+								)
+							)
+						);
 
 					EnableGeneratingControls();
 					SwitchOnGeneratingComboBoxesDisplaying();
