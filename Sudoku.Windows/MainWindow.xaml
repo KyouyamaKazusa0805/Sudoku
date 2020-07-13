@@ -267,7 +267,7 @@
 				   MouseLeftButtonDown="ImageGeneratingIcon_MouseLeftButtonDown"/>
 			<Label Content="{DynamicResource _labelMode}"
 				   HorizontalAlignment="Left" VerticalAlignment="Center"/>
-			<ComboBox Name="_comboBoxMode"
+			<ComboBox Name="_comboBoxMode" Focusable="False"
 					  SelectionChanged="ComboBoxMode_SelectionChanged">
 				<ComboBoxItem Content="{DynamicResource _comboBoxItemSymmetryMode}"
 							  Name="_comboBoxItemSymmetryMode"/>
@@ -276,7 +276,7 @@
 			</ComboBox>
 			<Label Content="{DynamicResource _labelSymmetry}"
 				   Name="_labelSymmetry" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-			<ComboBox Name="_comboBoxSymmetry"
+			<ComboBox Name="_comboBoxSymmetry" Focusable="False"
 					  SelectionChanged="ComboBoxSymmetry_SelectionChanged">
 				<ComboBoxItem Content="{DynamicResource None}"/>
 				<ComboBoxItem Content="{DynamicResource Central}"/>
@@ -290,7 +290,7 @@
 			</ComboBox>
 			<Label Content="{DynamicResource _labelBackdoorFilteringDepth}"
 				   Name="_labelBackdoorFilteringDepth" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-			<ComboBox Name="_comboBoxBackdoorFilteringDepth"
+			<ComboBox Name="_comboBoxBackdoorFilteringDepth" Focusable="False"
 					  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
 					  SelectedIndex="0"
 					  SelectionChanged="ComboBoxBackdoorFilteringDepth_SelectionChanged">
@@ -302,7 +302,7 @@
 			</ComboBox>
 			<Label Content="{DynamicResource _labelDifficulty}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 			<ComboBox Name="_comboBoxDifficulty" HorizontalAlignment="Center" VerticalAlignment="Center"
-					  SelectedIndex="0"
+					  SelectedIndex="0" Focusable="False"
 					  SelectionChanged="ComboBoxDifficulty_SelectionChanged">
 				<ComboBoxItem Content="{DynamicResource _comboBoxItemDifficulty0}"/>
 				<ComboBoxItem Content="{DynamicResource _comboBoxItemDifficulty1}"/>
@@ -396,9 +396,9 @@
 				</Image.ContextMenu>
 			</Image>
 			<GridSplitter Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch"
-						  Name="_gridSplitterColumn01"
+						  Name="_gridSplitterColumn01" Focusable="False"
 						  DragDelta="GridSplitterColumn01_DragDelta"/>
-			<TabControl Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Name="_tabControlInfo"
+			<TabControl Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Name="_tabControlInfo" Focusable="False"
 						HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsTabStop="False"
 						SelectionChanged="TabControlInfo_SelectionChanged">
 				<!-- Summary -->

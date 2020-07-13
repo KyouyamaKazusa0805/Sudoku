@@ -135,8 +135,9 @@ namespace Sudoku.Solving.Manual
 
 				if (!(progress is null))
 				{
-					progressResult.CurrentTechnique = Resources.GetValue(
-						$"Progress{searcher.GetType().GetCustomAttribute<TechniqueDisplayAttribute>()!.DisplayName}");
+					progressResult.CurrentTechnique =
+						Resources.GetValue(
+							$"Progress{searcher.GetType().GetCustomAttribute<TechniqueDisplayAttribute>()!.DisplayName}");
 					progressResult.CurrentIndex++;
 					progress.Report(progressResult);
 				}

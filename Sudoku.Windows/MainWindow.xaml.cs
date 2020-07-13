@@ -806,6 +806,7 @@ namespace Sudoku.Windows
 			_comboBoxMode.IsEnabled = false;
 			_comboBoxBackdoorFilteringDepth.IsEnabled = false;
 			_comboBoxDifficulty.IsEnabled = false;
+			_textBoxPathFilter.IsEnabled = false;
 
 			UpdateDatabaseControls(false, false, false, false);
 			_textBoxJumpTo.IsEnabled = false;
@@ -852,6 +853,7 @@ namespace Sudoku.Windows
 			_comboBoxSymmetry.IsEnabled = true;
 			_comboBoxBackdoorFilteringDepth.IsEnabled = true;
 			_comboBoxDifficulty.IsEnabled = true;
+			_textBoxPathFilter.IsEnabled = true;
 
 			UpdateUndoRedoControls();
 		}
@@ -903,6 +905,7 @@ namespace Sudoku.Windows
 			_comboBoxMode.IsEnabled = false;
 			_comboBoxBackdoorFilteringDepth.IsEnabled = false;
 			_comboBoxDifficulty.IsEnabled = false;
+			_textBoxPathFilter.IsEnabled = false;
 
 			UpdateUndoRedoControls();
 		}
@@ -953,6 +956,7 @@ namespace Sudoku.Windows
 			_comboBoxSymmetry.IsEnabled = true;
 			_comboBoxBackdoorFilteringDepth.IsEnabled = true;
 			_comboBoxDifficulty.IsEnabled = true;
+			_textBoxPathFilter.IsEnabled = true;
 
 			UpdateUndoRedoControls();
 		}
