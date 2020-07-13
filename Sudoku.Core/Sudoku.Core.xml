@@ -1574,7 +1574,13 @@
         <member name="P:Sudoku.Data.Grid.CandidatesCount">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Data.Grid.EmptyCellsCount">
+        <member name="P:Sudoku.Data.Grid.GivensCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.Grid.ModifiablesCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.Grid.EmptiesCount">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Grid.Item(System.Int32)">
@@ -2930,9 +2936,19 @@
             Indicates the number of total candidates.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.IReadOnlyGrid.EmptyCellsCount">
+        <member name="P:Sudoku.Data.IReadOnlyGrid.GivensCount">
             <summary>
-            Indicates the current number of the empty cells.
+            Indicates the total number of given cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IReadOnlyGrid.ModifiablesCount">
+            <summary>
+            Indicates the total number of modifiable cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IReadOnlyGrid.EmptiesCount">
+            <summary>
+            Indicates the total number of empty cells.
             </summary>
         </member>
         <member name="P:Sudoku.Data.IReadOnlyGrid.Item(System.Int32)">

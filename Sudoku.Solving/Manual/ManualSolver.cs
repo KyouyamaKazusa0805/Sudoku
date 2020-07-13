@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual
 			if (grid.IsValid(out var solution, out bool? sukaku))
 			{
 				// Solve the puzzle.
-				int emptyCellsCount = grid.EmptyCellsCount;
+				int emptyCellsCount = grid.EmptiesCount;
 				int candsCount = grid.CandidatesCount;
 				try
 				{

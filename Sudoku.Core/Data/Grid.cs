@@ -168,20 +168,44 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc/>
-		public int EmptyCellsCount
+		public int GivensCount => Triplet._c;
+
+		/// <inheritdoc/>
+		public int ModifiablesCount => Triplet._b;
+
+		/// <inheritdoc/>
+		public int EmptiesCount => Triplet._a;
+
+
+		private (int _a, int _b, int _c) Triplet
 		{
 			get
 			{
-				int count = 0;
+				int a, b, c;
+				a = b = c = 0;
 				for (int i = 0; i < 81; i++)
 				{
-					if (GetStatus(i) == CellStatus.Empty)
+					switch (GetStatus(i))
 					{
-						count++;
+						case CellStatus.Empty:
+						{
+							a++;
+							break;
+						}
+						case CellStatus.Modifiable:
+						{
+							b++;
+							break;
+						}
+						case CellStatus.Given:
+						{
+							c++;
+							break;
+						}
 					}
 				}
 
-				return count;
+				return (a, b, c);
 			}
 		}
 

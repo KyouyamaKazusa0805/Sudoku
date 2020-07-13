@@ -232,7 +232,7 @@ namespace Sudoku.Solving.Manual
 			ref GridProgressResult progressResult)
 		{
 			progressResult.CurrentCandidatesCount = cloneation.CandidatesCount;
-			progressResult.CurrentCellsCount = cloneation.EmptyCellsCount;
+			progressResult.CurrentCellsCount = cloneation.EmptiesCount;
 			progress.Report(progressResult);
 		}
 	}

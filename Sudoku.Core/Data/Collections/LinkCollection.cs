@@ -6,7 +6,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using Sudoku.Constants;
-using Sudoku.Extensions;
 
 namespace Sudoku.Data.Collections
 {
@@ -104,8 +103,32 @@ namespace Sudoku.Data.Collections
 							.Append(new CandidateCollection(start).ToString())
 							.Append(NameAttribute.GetName(type));
 					}
+					sb.Append(new CandidateCollection(links[^1].EndCandidate).ToString());
 
-					return sb.Append(new CandidateCollection(links[^1].EndCandidate).ToString()).ToString();
+					// Remove redundant digit labels:
+					// r1c1(1) == r1c2(1) --> r1c1 == r1c2(1).
+					var list = new List<(int _pos, char _value)>();
+					for (int i = 0; i < sb.Length; i++)
+					{
+						if (sb[i] == '(')
+						{
+							list.Add((i, sb[i + 1]));
+							i += 2;
+						}
+					}
+
+					char digit = list[^1]._value;
+					for (int i = list.Count - 1; i >= 1; i--)
+					{
+						if (list[i - 1]._value == digit)
+						{
+							sb.Remove(list[i - 1]._pos, 3);
+						}
+
+						digit = list[i - 1]._value;
+					}
+
+					return sb.ToString();
 				}
 			}
 		}

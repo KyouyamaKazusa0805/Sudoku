@@ -622,11 +622,14 @@ namespace Sudoku.Windows
 				_analyisResult =
 					await Task.Run(() =>
 					{
-						_puzzle.Fix();
+						if (_puzzle.GivensCount == 0)
+						{
+							_puzzle.Fix();
+						}
 
 						if (!Settings.SolveFromCurrent && !sukakuMode)
 						{
-							_puzzle.RecomputeCandidates();
+							_puzzle.Reset();
 						}
 
 						_puzzle.ClearStack();

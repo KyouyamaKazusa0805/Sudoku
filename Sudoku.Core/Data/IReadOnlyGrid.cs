@@ -23,9 +23,19 @@ namespace Sudoku.Data
 		int CandidatesCount { get; }
 
 		/// <summary>
-		/// Indicates the current number of the empty cells.
+		/// Indicates the total number of given cells.
 		/// </summary>
-		int EmptyCellsCount { get; }
+		int GivensCount { get; }
+
+		/// <summary>
+		/// Indicates the total number of modifiable cells.
+		/// </summary>
+		int ModifiablesCount { get; }
+
+		/// <summary>
+		/// Indicates the total number of empty cells.
+		/// </summary>
+		int EmptiesCount { get; }
 
 
 		/// <summary>
