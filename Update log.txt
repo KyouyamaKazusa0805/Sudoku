@@ -1,5 +1,6 @@
 v0.1.0.0
 Fix The bug that the difficulty cannot be changed.
+Fix The bug that copied incorrect string from the path information.
 Change All found steps from list boxes to tree-view items.
 Simplify The chain notation.
 
