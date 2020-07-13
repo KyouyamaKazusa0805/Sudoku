@@ -24,16 +24,18 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-	  <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
 	</PropertyGroup>
 
-	<!--<ItemGroup>
+	<!--
+	<ItemGroup>
 		<None Remove="Resources\ColorPalette.png" />
 		<None Remove="Resources\ColorSample.png" />
-	</ItemGroup>-->
+	</ItemGroup>
+	-->
 
 	<ItemGroup>
-		<PackageReference Include="WriteableBitmapEx" Version="1.6.5" />
+		<PackageReference Include="WriteableBitmapEx" Version="1.6.7" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -73,10 +75,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Include="Resources\ImageIcon-Generate.png">
-	    <Pack>True</Pack>
-	    <PackagePath></PackagePath>
-	  </None>
+		<None Include="Resources\ImageIcon-Generate.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
 	</ItemGroup>
 
 </Project>
