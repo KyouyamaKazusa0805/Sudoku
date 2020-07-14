@@ -2,7 +2,13 @@
 
 标题：**用户手册**
 
+Website: [Click me](https://github.com/Sunnie-Shine/Sudoku)
 
+网站：[点击此处访问](https://github.com/Sunnie-Shine/Sudoku)
+
+## Hotkeys
+
+标题：**快捷键**
 
 | Key<br/>按键                                        | Meaning<br/>意义                                             |
 | --------------------------------------------------- | ------------------------------------------------------------ |
