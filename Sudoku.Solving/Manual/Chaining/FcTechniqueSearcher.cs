@@ -17,21 +17,27 @@ namespace Sudoku.Solving.Manual.Chaining
 	[SearcherProperty(80)]
 	public sealed class FcTechniqueSearcher : ChainingTechniqueSearcher
 	{
+#if DYNAMIC_CHAINING
 		/// <summary>
 		/// Indicates the information.
 		/// </summary>
-		private readonly bool _nishio, _multiple/*, _dynamic*/;
+		private readonly bool _nishio, _multiple, _dynamic;
 
-		///// <summary>
-		///// Indicates the level of the dynamic searching.
-		///// </summary>
-		//private readonly int _level;
+		/// <summary>
+		/// Indicates the level of the dynamic searching.
+		/// </summary>
+		private readonly int _level;
 
-
-		///// <summary>
-		///// The temporary grid for handling dynamic and multiple forcing chains.
-		///// </summary>
-		//private Grid _tempGrid = null!;
+		/// <summary>
+		/// The temporary grid for handling dynamic and multiple forcing chains.
+		/// </summary>
+		private Grid _tempGrid = null!;
+#else
+		/// <summary>
+		/// Indicates the information.
+		/// </summary>
+		private readonly bool _multiple;
+#endif
 
 
 		/// <summary>
@@ -39,15 +45,17 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		public FcTechniqueSearcher() => _multiple = true;
 
-		///// <summary>
-		///// Initializes an instance with the specified information.
-		///// </summary>
-		///// <param name="nishio">Indicates whether the current searcher searches nishio forcing chains.</param>
-		///// <param name="multiple">Indicates whether the current searcher searches multiple forcing chains.</param>
-		///// <param name="dynamic">Indicates whether the current searcher searches dynamic forcing chains.</param>
-		///// <param name="level">Indicates the level of the dynamic searching.</param>
-		//public FcTechniqueSearcher(bool nishio, bool multiple, bool dynamic, int level) =>
-		//	(_nishio, _multiple, _dynamic, _level) = (nishio, multiple, dynamic, level);
+#if DYNAMIC_CHAINING
+		/// <summary>
+		/// Initializes an instance with the specified information.
+		/// </summary>
+		/// <param name="nishio">Indicates whether the current searcher searches nishio forcing chains.</param>
+		/// <param name="multiple">Indicates whether the current searcher searches multiple forcing chains.</param>
+		/// <param name="dynamic">Indicates whether the current searcher searches dynamic forcing chains.</param>
+		/// <param name="level">Indicates the level of the dynamic searching.</param>
+		public FcTechniqueSearcher(bool nishio, bool multiple, bool dynamic, int level) =>
+			(_nishio, _multiple, _dynamic, _level) = (nishio, multiple, dynamic, level);
+#endif
 
 
 		/// <inheritdoc/>
@@ -116,7 +124,11 @@ namespace Sudoku.Solving.Manual.Chaining
 						DoBinaryChaining(accumulator, grid, pOn, pOff, onToOn, onToOff, doDouble, doContradiction);
 #endif
 
+#if DYNAMIC_CHAINING
 						if (!_nishio)
+#else
+						if (true)
+#endif
 						{
 							// Do region chaining.
 #if !DYNAMIC_CHAINING
@@ -141,7 +153,11 @@ namespace Sudoku.Solving.Manual.Chaining
 						}
 					}
 
+#if DYNAMIC_CHAINING
 					if (!_nishio)
+#else
+					if (true)
+#endif
 					{
 						// Do cell eliminations.
 						if (count == 2 || _multiple)
@@ -174,70 +190,72 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 		}
 
-		//private void DoBinaryChaining(
-		//	IBag<ChainingTechniqueInfo> accumulator, IReadOnlyGrid grid, Node pOn, Node pOff,
-		//	ISet<Node> onToOn, ISet<Node> onToOff, bool doDouble, bool doContradiction)
-		//{
-		//	Node[]? absurdNodes;
-		//	Set<Node> offToOn = new Set<Node>(), offToOff = new Set<Node>();
-		//
-		//	// Circular forcing chains (hypothesis implying its negation)
-		//	// are already covered by cell forcing chains, and are therefore not checked for.
-		//
-		//	// Test o is currectly on.
-		//	onToOn.Add(pOn);
-		//	absurdNodes = DoChaining(grid, onToOn, onToOff);
-		//	if (doContradiction && !(absurdNodes is null))
-		//	{
-		//		// 'p' cannot hold its value, otherwise it would lead to a contradiction.
-		//		var hint = CreateChainingOffHint(absurdNodes[0], absurdNodes[1], pOn, pOn, true);
-		//		if (!(hint is null))
-		//		{
-		//			accumulator.Add(hint);
-		//		}
-		//	}
-		//
-		//	// Test p is currently off.
-		//	offToOff.Add(pOff);
-		//	if (doContradiction && !(absurdNodes is null))
-		//	{
-		//		// 'p' must hold its value otherwise it would lead to a contradiction.
-		//		var hint = CreateChainingOnHint(absurdNodes[0], absurdNodes[1], pOff, pOff, true);
-		//		if (!(hint is null))
-		//		{
-		//			accumulator.Add(hint);
-		//		}
-		//	}
-		//
-		//	if (doDouble)
-		//	{
-		//		// Check nodes that must be on in both case.
-		//		foreach (var pFromOn in onToOn)
-		//		{
-		//			if (offToOn.Contains(pFromOn))
-		//			{
-		//				var hint = CreateChainingOnHint(pFromOn, pOn, pFromOn, false);
-		//				if (!(hint is null))
-		//				{
-		//					accumulator.Add(hint);
-		//				}
-		//			}
-		//		}
-		//
-		//		// Check nodes that must be off in both case.
-		//		foreach (var pFromOn in onToOff)
-		//		{
-		//			if (offToOff.Contains(pFromOn))
-		//			{
-		//				var hint = CreateChainingOffHint(pFromOn, pFromOn, pOff, pFromOn, false);
-		//				if (!(hint is null))
-		//				{
-		//					accumulator.Add(hint);
-		//				}
-		//			}
-		//		}
-		//	}
-		//}
+#if DYNAMIC_CHAINING
+		private void DoBinaryChaining(
+			IBag<ChainingTechniqueInfo> accumulator, IReadOnlyGrid grid, Node pOn, Node pOff,
+			ISet<Node> onToOn, ISet<Node> onToOff, bool doDouble, bool doContradiction)
+		{
+			Node[]? absurdNodes;
+			Set<Node> offToOn = new Set<Node>(), offToOff = new Set<Node>();
+
+			// Circular forcing chains (hypothesis implying its negation)
+			// are already covered by cell forcing chains, and are therefore not checked for.
+
+			// Test o is currectly on.
+			onToOn.Add(pOn);
+			absurdNodes = DoChaining(grid, onToOn, onToOff);
+			if (doContradiction && !(absurdNodes is null))
+			{
+				// 'p' cannot hold its value, otherwise it would lead to a contradiction.
+				var hint = CreateChainingOffHint(absurdNodes[0], absurdNodes[1], pOn, pOn, true);
+				if (!(hint is null))
+				{
+					accumulator.Add(hint);
+				}
+			}
+
+			// Test p is currently off.
+			offToOff.Add(pOff);
+			if (doContradiction && !(absurdNodes is null))
+			{
+				// 'p' must hold its value otherwise it would lead to a contradiction.
+				var hint = CreateChainingOnHint(absurdNodes[0], absurdNodes[1], pOff, pOff, true);
+				if (!(hint is null))
+				{
+					accumulator.Add(hint);
+				}
+			}
+
+			if (doDouble)
+			{
+				// Check nodes that must be on in both case.
+				foreach (var pFromOn in onToOn)
+				{
+					if (offToOn.Contains(pFromOn))
+					{
+						var hint = CreateChainingOnHint(pFromOn, pOn, pFromOn, false);
+						if (!(hint is null))
+						{
+							accumulator.Add(hint);
+						}
+					}
+				}
+
+				// Check nodes that must be off in both case.
+				foreach (var pFromOn in onToOff)
+				{
+					if (offToOff.Contains(pFromOn))
+					{
+						var hint = CreateChainingOffHint(pFromOn, pFromOn, pOff, pFromOn, false);
+						if (!(hint is null))
+						{
+							accumulator.Add(hint);
+						}
+					}
+				}
+			}
+		}
+#endif
 
 		private void DoRegionChaining(
 			IBag<ChainingTechniqueInfo> accumulator, IReadOnlyGrid grid, int cell, int digit,
@@ -314,7 +332,14 @@ namespace Sudoku.Solving.Manual.Chaining
 				{
 					var p = pendingOn.Remove();
 
-					var makeOff = GetOnToOff(grid, p, !_nishio);
+					var makeOff = GetOnToOff(
+						grid,
+						p,
+#if DYNAMIC_CHAINING
+						!_nishio);
+#else
+						true);
+#endif
 					foreach (var pOff in makeOff)
 					{
 						var pOn = new Node(pOff.Cell, pOff.Digit, true); // Conjugate
@@ -335,11 +360,21 @@ namespace Sudoku.Solving.Manual.Chaining
 				{
 					var p = pendingOff.Remove();
 
-					var makeOn = GetOffToOn(grid, p/*, _tempGrid, toOff*/, !_nishio, true);
-					//if (_dynamic)
-					//{
-					//	p.Off(grid);
-					//}
+					var makeOn = GetOffToOn(
+						grid,
+						p,
+#if DYNAMIC_CHAINING
+						!_nishio,
+#else
+						true,
+#endif
+						true);
+#if DYNAMIC_CHAINING
+					if (_dynamic)
+					{
+						p.Off(grid);
+					}
+#endif
 
 					foreach (var pOn in makeOn)
 					{
@@ -358,18 +393,20 @@ namespace Sudoku.Solving.Manual.Chaining
 					}
 				}
 
-				//if (pendingOn.Count != 0 && pendingOff.Count != 0 && _level > 0)
-				//{
-				//	foreach (var pOff in GetAdvanceedNodes(grid, _tempGrid, toOff))
-				//	{
-				//		if (!toOff.Contains(pOff))
-				//		{
-				//			// Not processed yet.
-				//			toOff.Add(pOff);
-				//			pendingOff.Add(pOff);
-				//		}
-				//	}
-				//}
+#if DYNAMIC_CHAINING
+				if (pendingOn.Count != 0 && pendingOff.Count != 0 && _level > 0)
+				{
+					foreach (var pOff in GetAdvanceedNodes(grid, _tempGrid, toOff))
+					{
+						if (!toOff.Contains(pOff))
+						{
+							// Not processed yet.
+							toOff.Add(pOff);
+							pendingOff.Add(pOff);
+						}
+					}
+				}
+#endif
 			}
 
 			// Recover.
@@ -378,41 +415,43 @@ namespace Sudoku.Solving.Manual.Chaining
 			return null;
 		}
 
-		//private ChainingTechniqueInfo? CreateChainingOnHint(
-		//	Node destOn, Node destOff, Node source, Node target, bool isAbsurd) =>
-		//	new BinaryChainingTechniqueInfo(
-		//		conclusions: new List<Conclusion> { new Conclusion(Assignment, target._cell, target.Digit) },
-		//		views: new[]
-		//		{
-		//			new View(
-		//				cellOffsets: null,
-		//				candidateOffsets: null,
-		//				regionOffsets: null,
-		//				links: null)
-		//		},
-		//		source,
-		//		destOn,
-		//		destOff,
-		//		isAbsurd,
-		//		isNishio: _nishio);
+#if DYNAMIC_CHAINING
+		private ChainingTechniqueInfo? CreateChainingOnHint(
+			Node destOn, Node destOff, Node source, Node target, bool isAbsurd) =>
+			new BinaryChainingTechniqueInfo(
+				conclusions: new List<Conclusion> { new Conclusion(Assignment, target._cell, target.Digit) },
+				views: new[]
+				{
+							new View(
+								cellOffsets: null,
+								candidateOffsets: null,
+								regionOffsets: null,
+								links: null)
+				},
+				source,
+				destOn,
+				destOff,
+				isAbsurd,
+				isNishio: _nishio);
 
-		//private ChainingTechniqueInfo? CreateChainingOffHint(
-		//	Node destOn, Node destOff, Node source, Node target, bool isAbsurd) =>
-		//	new BinaryChainingTechniqueInfo(
-		//		conclusions: new List<Conclusion> { new Conclusion(Elimination, target._cell, target.Digit) },
-		//		views: new[]
-		//		{
-		//			new View(
-		//				cellOffsets: null,
-		//				candidateOffsets: null,
-		//				regionOffsets: null,
-		//				links: null)
-		//		},
-		//		source,
-		//		destOn,
-		//		destOff,
-		//		isAbsurd,
-		//		isNishio: _nishio);
+		private ChainingTechniqueInfo? CreateChainingOffHint(
+			Node destOn, Node destOff, Node source, Node target, bool isAbsurd) =>
+			new BinaryChainingTechniqueInfo(
+				conclusions: new List<Conclusion> { new Conclusion(Elimination, target._cell, target.Digit) },
+				views: new[]
+				{
+					new View(
+						cellOffsets: null,
+						candidateOffsets: null,
+						regionOffsets: null,
+						links: null)
+				},
+				source,
+				destOn,
+				destOff,
+				isAbsurd,
+				isNishio: _nishio);
+#endif
 
 		private ChainingTechniqueInfo? CreateCellEliminationHint(
 			IReadOnlyGrid grid, int sourceCell, Node target, IReadOnlyDictionary<int, Set<Node>> outcomes)

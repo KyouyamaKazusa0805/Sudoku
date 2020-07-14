@@ -6,9 +6,19 @@
 	public enum ChainingTypeCode : byte
 	{
 		/// <summary>
+		/// Indicates the X-Chain.
+		/// </summary>
+		XChain = 1,
+
+		/// <summary>
+		/// Indicates the X-Cycle (Fishy Cycle).
+		/// </summary>
+		FishyCycle,
+
+		/// <summary>
 		/// Indicates the XY-Chain.
 		/// </summary>
-		XyChain = 1,
+		XyChain,
 
 		/// <summary>
 		/// Indicates the XY-Cycle.

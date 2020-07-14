@@ -2634,6 +2634,16 @@
             Indicates a type code for a chain.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.XChain">
+            <summary>
+            Indicates the X-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.FishyCycle">
+            <summary>
+            Indicates the X-Cycle (Fishy Cycle).
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.XyChain">
             <summary>
             Indicates the XY-Chain.
@@ -2682,11 +2692,6 @@
         <member name="T:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher">
             <summary>
             Encapsulates an <b>forcing chains</b> (<b>FCs</b>) technique searcher.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher._nishio">
-            <summary>
-            Indicates the information.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher._multiple">
