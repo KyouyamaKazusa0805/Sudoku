@@ -62,46 +62,6 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Initializes an instance with the specified cell offset
-		/// with an initialize option.
-		/// </summary>
-		/// <param name="offset">The cell offset.</param>
-		/// <param name="initializeOption">
-		/// Indicates the behavior of the initialization.
-		/// </param>
-		/// <exception cref="ArgumentException">
-		/// Throws when the specified initialize option is invalid.
-		/// </exception>
-		public GridMap(int offset, InitializationOption initializeOption) : this()
-		{
-			switch (initializeOption)
-			{
-				case Ordinary:
-				{
-					Add(offset);
-
-					break;
-				}
-				case ProcessPeersAlso:
-				case ProcessPeersWithoutItself:
-				{
-					this = PeerMaps[offset];
-
-					if (initializeOption == ProcessPeersAlso)
-					{
-						Add(offset);
-					}
-
-					break;
-				}
-				default:
-				{
-					throw new ArgumentException("The specified option does not exist.");
-				}
-			}
-		}
-
-		/// <summary>
 		/// Same behavior of the constructor as <see cref="GridMap(IEnumerable{int})"/>.
 		/// </summary>
 		/// <param name="offsets">All offsets.</param>
@@ -335,7 +295,11 @@ namespace Sudoku.Data
 		/// var map = new GridMap(offset) { [offset] = false };
 		/// </code>
 		/// </param>
-		private GridMap(int offset, bool setItself) : this((IEnumerable<int>)Peers[offset]) => this[offset] = setItself;
+		private GridMap(int offset, bool setItself)
+		{
+			this = PeerMaps[offset];
+			this[offset] = setItself;
+		}
 
 		/// <summary>
 		/// Initializes an instance with two binary values.

@@ -2026,19 +2026,6 @@
             </summary>
             <param name="offset">The cell offset.</param>
         </member>
-        <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32,Sudoku.Data.GridMap.InitializationOption)">
-            <summary>
-            Initializes an instance with the specified cell offset
-            with an initialize option.
-            </summary>
-            <param name="offset">The cell offset.</param>
-            <param name="initializeOption">
-            Indicates the behavior of the initialization.
-            </param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the specified initialize option is invalid.
-            </exception>
-        </member>
         <member name="M:Sudoku.Data.GridMap.#ctor(System.Int32[])">
             <summary>
             Same behavior of the constructor as <see cref="M:Sudoku.Data.GridMap.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>.
