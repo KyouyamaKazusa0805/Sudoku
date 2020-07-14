@@ -112,8 +112,8 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Remove the link from the list.
 		/// </summary>
-		/// <param name="inference">The link.</param>
-		public void RemoveLink(Link inference) => Links.Remove(inference);
+		/// <param name="link">The link.</param>
+		public void RemoveLink(Link link) => Links.Remove(link);
 
 		/// <summary>
 		/// Clear all elements.

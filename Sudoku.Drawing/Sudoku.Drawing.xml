@@ -183,7 +183,7 @@
             <summary>
             Remove the link from the list.
             </summary>
-            <param name="inference">The link.</param>
+            <param name="link">The link.</param>
         </member>
         <member name="M:Sudoku.Drawing.MutableView.Clear">
             <summary>
