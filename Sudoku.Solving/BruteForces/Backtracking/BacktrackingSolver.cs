@@ -37,28 +37,28 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 				stopwatch.Stop();
 
 				return new AnalysisResult(
-					puzzle: grid,
 					solverName: SolverName,
-					hasSolved: true,
+					puzzle: grid,
 					solution: Grid.CreateInstance(result ?? throw new NoSolutionException(grid)),
+					hasSolved: true,
 					elapsedTime: stopwatch.Elapsed,
-					solvingList: null,
-					additional: null,
-					stepGrids: null);
+					steps: null,
+					stepGrids: null,
+					additional: null);
 			}
 			catch (Exception ex)
 			{
 				stopwatch.Stop();
 
 				return new AnalysisResult(
-					puzzle: grid,
 					solverName: SolverName,
-					hasSolved: false,
+					puzzle: grid,
 					solution: null,
+					hasSolved: false,
 					elapsedTime: stopwatch.Elapsed,
-					solvingList: null,
-					additional: ex.Message,
-					stepGrids: null);
+					steps: null,
+					stepGrids: null,
+					additional: ex.Message);
 			}
 		}
 

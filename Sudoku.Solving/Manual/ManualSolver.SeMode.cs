@@ -171,14 +171,14 @@ namespace Sudoku.Solving.Manual
 			// :(
 			stopwatch.Stop();
 			return new AnalysisResult(
-				puzzle: grid,
 				solverName: SolverName,
-				hasSolved: false,
+				puzzle: grid,
 				solution: null,
+				hasSolved: false,
 				elapsedTime: stopwatch.Elapsed,
-				solvingList: steps,
-				additional: null,
-				stepGrids);
+				steps: steps,
+				stepGrids: stepGrids,
+				additional: null);
 		}
 	}
 }

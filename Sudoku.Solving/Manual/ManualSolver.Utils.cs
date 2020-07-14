@@ -180,14 +180,14 @@ namespace Sudoku.Solving.Manual
 				if (cloneation.HasSolved)
 				{
 					result = new AnalysisResult(
-						puzzle: grid,
 						solverName: SolverName,
-						hasSolved: true,
+						puzzle: grid,
 						solution: cloneation,
+						hasSolved: true,
 						elapsedTime: stopwatch.Elapsed,
-						solvingList: steps,
-						additional: null,
-						stepGrids);
+						steps: steps,
+						stepGrids: stepGrids,
+						additional: null);
 					return true;
 				}
 			}

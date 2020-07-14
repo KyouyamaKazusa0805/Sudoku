@@ -46,14 +46,14 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 					0 => throw new NoSolutionException(grid),
 					1 =>
 						new AnalysisResult(
-							puzzle: grid,
 							solverName: SolverName,
-							hasSolved: true,
+							puzzle: grid,
 							solution: Grid.Parse(sb.ToString()),
+							hasSolved: true,
 							elapsedTime: stopwatch.Elapsed,
-							solvingList: null,
-							additional: null,
-							stepGrids: null),
+							steps: null,
+							stepGrids: null,
+							additional: null),
 					_ => throw new MultipleSolutionsException(grid)
 				};
 			}
@@ -70,28 +70,28 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						0 => throw new NoSolutionException(grid),
 						1 =>
 							new AnalysisResult(
-								puzzle: grid,
 								solverName: SolverName,
-								hasSolved: true,
+								puzzle: grid,
 								solution: Grid.Parse(sb.ToString()),
+								hasSolved: true,
 								elapsedTime: stopwatch.Elapsed,
-								solvingList: null,
-								additional: null,
-								stepGrids: null),
+								steps: null,
+								stepGrids: null,
+								additional: null),
 						_ => throw new MultipleSolutionsException(grid)
 					};
 				}
 				catch (Exception ex2)
 				{
 					return new AnalysisResult(
-						puzzle: grid,
 						solverName: SolverName,
-						hasSolved: false,
+						puzzle: grid,
 						solution: null,
+						hasSolved: false,
 						elapsedTime: stopwatch.Elapsed,
-						solvingList: null,
-						additional: $"{ex1.Message}{Environment.NewLine}{ex2.Message}",
-						stepGrids: null);
+						steps: null,
+						stepGrids: null,
+						additional: $"{ex1.Message}{Environment.NewLine}{ex2.Message}");
 				}
 			}
 		}

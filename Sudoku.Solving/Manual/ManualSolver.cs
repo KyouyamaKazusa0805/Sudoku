@@ -58,27 +58,27 @@ namespace Sudoku.Solving.Manual
 				catch (WrongHandlingException ex)
 				{
 					return new AnalysisResult(
-						puzzle: grid,
 						solverName: SolverName,
-						hasSolved: false,
+						puzzle: grid,
 						solution: null,
+						hasSolved: false,
 						elapsedTime: TimeSpan.Zero,
-						solvingList: null,
-						additional: ex.Message,
-						stepGrids: null);
+						steps: null,
+						stepGrids: null,
+						additional: ex.Message);
 				}
 			}
 			else
 			{
 				return new AnalysisResult(
-					puzzle: grid,
 					solverName: SolverName,
-					hasSolved: false,
+					puzzle: grid,
 					solution: null,
+					hasSolved: false,
 					elapsedTime: TimeSpan.Zero,
-					solvingList: null,
-					additional: "The puzzle does not have a unique solution (multiple solutions or no solution).",
-					stepGrids: null);
+					steps: null,
+					stepGrids: null,
+					additional: "The puzzle does not have a unique solution (multiple solutions or no solution).");
 			}
 		}
 	}

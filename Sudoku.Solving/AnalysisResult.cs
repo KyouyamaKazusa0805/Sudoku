@@ -16,19 +16,20 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Initializes an instance with some information.
 		/// </summary>
-		/// <param name="puzzle">The puzzle.</param>
 		/// <param name="solverName">The name of the solver.</param>
-		/// <param name="hasSolved">Indicates whether the puzzle has been solved.</param>
+		/// <param name="puzzle">The puzzle.</param>
 		/// <param name="solution">The solution grid.</param>
+		/// <param name="hasSolved">Indicates whether the puzzle has been solved.</param>
 		/// <param name="elapsedTime">The elapsed time while solving.</param>
-		/// <param name="solvingList">All steps produced in solving.</param>
-		/// <param name="additional">The additional message.</param>
+		/// <param name="steps">All steps produced in solving.</param>
 		/// <param name="stepGrids">All intermediate grids.</param>
+		/// <param name="additional">The additional message.</param>
 		public AnalysisResult(
-			IReadOnlyGrid puzzle, string solverName, bool hasSolved, IReadOnlyGrid? solution,
-			TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? solvingList, string? additional,
-			IReadOnlyList<IReadOnlyGrid>? stepGrids) =>
-			(Puzzle, SolverName, HasSolved, Solution, SolvingSteps, ElapsedTime, Additional, StepGrids) = (puzzle, solverName, hasSolved, solution, solvingList, elapsedTime, additional, stepGrids);
+			string solverName, IReadOnlyGrid puzzle, IReadOnlyGrid? solution, bool hasSolved,
+			TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? steps, IReadOnlyList<IReadOnlyGrid>? stepGrids,
+			string? additional) =>
+			(Puzzle, SolverName, HasSolved, Solution, SolvingSteps, ElapsedTime, Additional, StepGrids) = (
+				puzzle, solverName, hasSolved, solution, steps, elapsedTime, additional, stepGrids);
 
 
 		/// <summary>
@@ -52,7 +53,7 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
 		public decimal MaxDifficulty =>
-			SolvingSteps is null || SolvingSteps.None()
+			SolvingSteps?.None() ?? true
 				? 20M
 				: SolvingSteps.Max(info => info.ShowDifficulty ? info.Difficulty : 0);
 

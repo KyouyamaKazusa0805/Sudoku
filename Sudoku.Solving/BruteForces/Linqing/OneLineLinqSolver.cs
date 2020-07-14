@@ -32,14 +32,14 @@ namespace Sudoku.Solving.BruteForces.Linqing
 				0 => throw new NoSolutionException(grid),
 				1 =>
 					new AnalysisResult(
-						puzzle: grid,
 						solverName: SolverName,
-						hasSolved: true,
+						puzzle: grid,
 						solution: Grid.Parse(results[0]),
+						hasSolved: true,
 						elapsedTime: stopwatch.Elapsed,
-						solvingList: null,
-						additional: null,
-						stepGrids: null),
+						steps: null,
+						stepGrids: null,
+						additional: null),
 				_ => throw new MultipleSolutionsException(grid)
 			};
 		}
