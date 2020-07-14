@@ -6,7 +6,9 @@ using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual.Singles;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
+using static Sudoku.Data.LinkType;
 
 namespace Sudoku.Solving.Manual.LastResorts
 {
@@ -58,7 +60,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 					if (IsValidGrid(grid, cell))
 					{
-						TakeAllRecursively(tempAccumulator, tempGrid, startCandidate, _length - 1);
+						GetAllRecursively(tempAccumulator, tempGrid, startCandidate, _length - 1);
 					}
 					else
 					{
@@ -95,17 +97,14 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <param name="grid">The grid.</param>
 		/// <param name="startCandidate">The start candidate.</param>
 		/// <param name="length">The length.</param>
-		private void TakeAllRecursively(IList<BowmanBingoTechniqueInfo> result, Grid grid, int startCandidate, int length)
+		private void GetAllRecursively(IList<BowmanBingoTechniqueInfo> result, Grid grid, int startCandidate, int length)
 		{
-			if (length == 0)
+			if (length == 0 || !(_searcher.GetOne(grid) is SingleTechniqueInfo singleInfo))
 			{
-				return;
-			}
-
-			if (!(_searcher.GetOne(grid) is SingleTechniqueInfo singleInfo))
-			{
-				// The searcher cannot find any steps next.
-				// which means that this case (grid[cell] = digit)
+				// Two cases we don't need to go on.
+				// Case 1: the variable 'length' is 0.
+				// Case 2: The searcher cannot get any new steps, which means the expression
+				// always returns the value null. Therefore, this case (grid[cell] = digit)
 				// is a bad try.
 				return;
 			}
@@ -120,7 +119,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			if (IsValidGrid(grid, c))
 			{
 				// Sounds good.
-				TakeAllRecursively(result, grid, startCandidate, length - 1);
+				GetAllRecursively(result, grid, startCandidate, length - 1);
 			}
 			else
 			{
@@ -157,7 +156,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			{
 				var (_, c1) = _tempConclusions[i];
 				var (_, c2) = _tempConclusions[i + 1];
-				result.Add(new Link(c1, c2, LinkType.Default));
+				result.Add(new Link(c1, c2, Default));
 			}
 
 			return result;
@@ -210,8 +209,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				c =>
 				{
 					var status = grid.GetStatus(c);
-					return (status != CellStatus.Empty && grid[c] != grid[cell] || status == CellStatus.Empty)
-						&& grid.GetCandidateMask(c) != 0;
+					return (status != Empty && grid[c] != grid[cell] || status == Empty) && grid.GetCandidateMask(c) != 0;
 				});
 	}
 }
