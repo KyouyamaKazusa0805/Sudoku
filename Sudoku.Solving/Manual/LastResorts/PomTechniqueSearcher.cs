@@ -98,8 +98,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 							for (int i5 = 0; i5 < 9; i5++)
 							{
-								if (i5 == i1 || i5 == i2 || i5 == i3
-									|| i5 / 3 == i4 / 3) continue;
+								if (i5 == i1 || i5 == i2 || i5 == i3 || i5 / 3 == i4 / 3) continue;
 
 								for (int i6 = 0; i6 < 9; i6++)
 								{

@@ -6,6 +6,7 @@ using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
+using static Sudoku.Solving.Constants.Processings;
 
 namespace Sudoku.Solving.Manual.Intersections
 {
@@ -78,12 +79,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		{
 			foreach (int[] cells in (a & EmptyMap).ToArray().GetSubsets(size - 1))
 			{
-				short mask = 0;
-				foreach (int cell in cells)
-				{
-					mask |= grid.GetCandidateMask(cell);
-				}
-
+				short mask = BitwiseOrMasks(grid, cells);
 				if (mask.CountSet() != size)
 				{
 					continue;

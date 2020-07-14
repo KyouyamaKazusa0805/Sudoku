@@ -17,6 +17,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// the terminal grid (I mean, the answer grid).
 	/// </remarks>
 	[TechniqueDisplay(nameof(TechniqueCode.BruteForce))]
+	[SearcherProperty(200)]
 	public sealed class BruteForceTechniqueSearcher : LastResortTechniqueSearcher
 	{
 		/// <summary>
@@ -24,15 +25,15 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// </summary>
 		private static readonly int[] TryAndErrorOrder =
 		{
-			40, 41, 50, 49, 48, 39, 30, 31, 32,
-			33, 42, 51, 60, 59, 58, 57, 56, 47,
-			38, 29, 20, 21, 22, 23, 24, 25, 34,
-			43, 52, 61, 70, 69, 68, 67, 66, 65,
-			64, 55, 46, 37, 28, 19, 10, 11, 12,
-			13, 14, 15, 16, 17, 26, 35, 44, 53,
-			62, 71, 80, 79, 78, 77, 76, 75, 74,
-			73, 72, 63, 54, 45, 36, 27, 18, 9,
-			0, 1, 2, 3, 4, 5, 6, 7, 8
+			64, 63, 62, 61, 60, 59, 58, 57, 56,
+			65, 36, 35, 34, 33, 32, 31, 30, 55,
+			66, 37, 16, 15, 14, 13, 12, 29, 54,
+			67, 38, 17,  4,  3,  2, 11, 28, 53,
+			68, 39, 18,  5,  0,  1, 10, 27, 52,
+			69, 40, 19,  6,  7,  8,  9, 26, 51,
+			70, 41, 20, 21, 22, 23, 24, 25, 50,
+			71, 42, 43, 44, 45, 46, 47, 48, 49,
+			72, 73, 74, 75, 76, 77, 78, 79, 80
 		};
 
 
@@ -49,17 +50,6 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// </summary>
 		/// <param name="solution">The solution.</param>
 		public BruteForceTechniqueSearcher(IReadOnlyGrid solution) => _solution = solution;
-
-
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public static int Priority { get; set; } = 200;
-
-		/// <summary>
-		/// Indicates whether the technique is enabled.
-		/// </summary>
-		public static bool IsEnabled { get; set; } = true;
 
 
 		/// <inheritdoc/>
