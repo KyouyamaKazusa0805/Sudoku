@@ -116,7 +116,7 @@ namespace Sudoku.Solving.Manual
 			};
 
 			TechniqueSearcher.InitializeMaps(grid);
-			var bag = new Bag<TechniqueInfo>();
+			var bag = new List<TechniqueInfo>();
 			var progressResult = new TechniqueProgressResult(searchers.Length, globalizationString ?? "en-us");
 			foreach (var searcher in searchers)
 			{

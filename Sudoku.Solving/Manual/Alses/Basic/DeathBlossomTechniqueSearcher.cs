@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			short[] checkedCandidates = new short[81];
 			int[,] death = new int[729, 1000];

@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 		/// <inheritdoc/>
 		[SuppressMessage("", "IDE0004")]
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			var rccs = new List<(Als _left, Als _right, short _mask)>();
 			var alses = Als.GetAllAlses(grid).ToArray();

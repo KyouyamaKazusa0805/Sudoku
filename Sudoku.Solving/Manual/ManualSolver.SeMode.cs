@@ -40,8 +40,8 @@ namespace Sudoku.Solving.Manual
 			ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)
 		{
 			var searchers = GetSearchersSeMode(solution);
-			var stepGrids = new Bag<IReadOnlyGrid>();
-			var bag = new Bag<TechniqueInfo>();
+			var stepGrids = new List<IReadOnlyGrid>();
+			var bag = new List<TechniqueInfo>();
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
 

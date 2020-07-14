@@ -22,9 +22,9 @@ namespace Sudoku.Solving.Manual.Chaining
 	public sealed class AicTechniqueSearcher : ChainingTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var tempAccumulator = new Bag<ChainingTechniqueInfo>();
+			var tempAccumulator = new List<ChainingTechniqueInfo>();
 			GetAll(tempAccumulator, grid, true, false);
 			GetAll(tempAccumulator, grid, false, true);
 			GetAll(tempAccumulator, grid, true, true);
@@ -69,7 +69,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="yEnabled">
 		/// Indicates whether the strong links in cells are enabled to search for.
 		/// </param>
-		private void GetAll(IBag<ChainingTechniqueInfo> accumulator, IReadOnlyGrid grid, bool xEnabled, bool yEnabled)
+		private void GetAll(IList<ChainingTechniqueInfo> accumulator, IReadOnlyGrid grid, bool xEnabled, bool yEnabled)
 		{
 			foreach (int cell in EmptyMap)
 			{
@@ -99,7 +99,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Indicates whether the strong links in cells are enabled to search for.
 		/// </param>
 		private void DoUnaryChaining(
-			IBag<ChainingTechniqueInfo> accumulator, IReadOnlyGrid grid, Node pOn, bool xEnabled, bool yEnabled)
+			IList<ChainingTechniqueInfo> accumulator, IReadOnlyGrid grid, Node pOn, bool xEnabled, bool yEnabled)
 		{
 			if (grid.GetCandidateMask(pOn.Cell).CountSet() > 2 && !xEnabled)
 			{

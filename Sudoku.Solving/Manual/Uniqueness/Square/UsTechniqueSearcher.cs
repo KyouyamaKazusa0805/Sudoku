@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			foreach (var pattern in Patterns)
 			{
@@ -45,7 +45,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			}
 		}
 
-		private void CheckType1(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask)
+		private void CheckType1(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask)
 		{
 			if (mask.CountSet() != 5)
 			{
@@ -100,7 +100,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			}
 		}
 
-		private void CheckType2(IBag<TechniqueInfo> accumulator, GridMap pattern, short mask)
+		private void CheckType2(IList<TechniqueInfo> accumulator, GridMap pattern, short mask)
 		{
 			if (mask.CountSet() != 5)
 			{
@@ -151,7 +151,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			}
 		}
 
-		private void CheckType3(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask)
+		private void CheckType3(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask)
 		{
 			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
 			{
@@ -241,7 +241,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			}
 		}
 
-		private void CheckType4(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask)
+		private void CheckType4(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, GridMap pattern, short mask)
 		{
 			foreach (int[] digits in mask.GetAllSets().ToArray().GetSubsets(4))
 			{

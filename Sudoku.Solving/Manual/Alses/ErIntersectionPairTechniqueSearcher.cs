@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Alses
 	public sealed class ErIntersectionPairTechniqueSearcher : AlsTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			int[] bivalueCells = BivalueMap.ToArray();
 			for (int i = 0, length = bivalueCells.Length; i < length - 1; i++)

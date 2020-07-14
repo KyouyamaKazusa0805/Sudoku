@@ -75,8 +75,8 @@ namespace Sudoku.Solving.Manual
 				searchers.Sort((a, b) => a.SearcherProperties!.Priority.CompareTo(b.SearcherProperties!.Priority));
 			}
 
-			var stepGrids = new Bag<IReadOnlyGrid>();
-			var bag = new Bag<TechniqueInfo>();
+			var stepGrids = new List<IReadOnlyGrid>();
+			var bag = new List<TechniqueInfo>();
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
 

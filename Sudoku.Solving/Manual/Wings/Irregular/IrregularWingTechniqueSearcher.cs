@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		/// be found in another searcher. In addition, these wings are not elementary and necessary techniques
 		/// so we does not need to list them.
 		/// </remarks>
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			if (BivalueMap.Count < 2)
 			{

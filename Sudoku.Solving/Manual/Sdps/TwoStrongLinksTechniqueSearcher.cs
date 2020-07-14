@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	public sealed class TwoStrongLinksTechniqueSearcher : SdpTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			for (int digit = 0; digit < 9; digit++)
 			{

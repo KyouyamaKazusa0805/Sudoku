@@ -77,7 +77,7 @@ namespace Sudoku.Solving
 		/// <returns>A technique information.</returns>
 		public TechniqueInfo? GetOne(IReadOnlyGrid grid)
 		{
-			var bag = new Bag<TechniqueInfo>();
+			var bag = new List<TechniqueInfo>();
 			GetAll(bag, grid);
 			return bag.FirstOrDefault();
 		}
@@ -87,7 +87,7 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <param name="accumulator">The accumulator to store technique information.</param>
 		/// <param name="grid">The grid to search for techniques.</param>
-		public abstract void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid);
+		public abstract void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid);
 
 		/// <inheritdoc/>
 		public virtual int CompareTo(TechniqueSearcher other) => GetPriority(this).CompareTo(GetPriority(other));

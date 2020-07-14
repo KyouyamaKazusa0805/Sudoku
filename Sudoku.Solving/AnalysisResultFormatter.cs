@@ -9,7 +9,7 @@ using Sudoku.Data;
 using Sudoku.Extensions;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Singles;
-using Sudoku.Windows;
+using static Sudoku.Windows.Resources;
 
 namespace Sudoku.Solving
 {
@@ -74,22 +74,22 @@ namespace Sudoku.Solving
 			bool showTechniqueSteps = c('l');
 
 			// Get all information.
-			var (solverName, hasSolved) = Result;
-			var (total, max, pearl, diamond) = Result;
-			var (puzzle, _, elapsed, solution, _, stepsCount, steps, additional) = Result;
+			var (
+				solverName, hasSolved, total, max, pearl, diamond,
+				puzzle, solution, elapsed, stepsCount, steps, _, additional) = Result;
 
 			// Print header.
-			var sb = new StringBuilder()
-				.AppendLine($"{Resources.GetValue("AnalysisResultPuzzle")}{puzzle:#}")
-				.AppendLine($"{Resources.GetValue("AnalysisResultSolvingTool")}{solverName}");
+			var sb =
+				new StringBuilder()
+					.AppendLine($"{GetValue("AnalysisResultPuzzle")}{puzzle:#}")
+					.AppendLine($"{GetValue("AnalysisResultSolvingTool")}{solverName}");
 
 			// Print solving steps (if worth).
 			var bottleneckData = GetBottleneckData();
-			string separator = $"{new string('-', 10)}{Environment.NewLine}";
-			void a() => sb.Append(showSeparator ? separator : string.Empty);
+			void a() => sb.Append(showSeparator ? $"{new string('-', 10)}{Environment.NewLine}" : string.Empty);
 			if (!(steps is null) && steps.Count != 0 && showTechniqueSteps)
 			{
-				sb.AppendLine(Resources.GetValue("AnalysisResultSolvingSteps"));
+				sb.AppendLine(GetValue("AnalysisResultSolvingSteps"));
 				if (!(bottleneckData is null))
 				{
 					var (bIndex, bInfo) = bottleneckData.Value;
@@ -97,7 +97,7 @@ namespace Sudoku.Solving
 					{
 						if (i > bIndex && showStepsAfterBottleneck)
 						{
-							sb.AppendLine(Resources.GetValue("Ellipsis"));
+							sb.AppendLine(GetValue("Ellipsis"));
 							break;
 						}
 
@@ -119,11 +119,10 @@ namespace Sudoku.Solving
 						a();
 
 						sb.AppendLine(
-							$"{Resources.GetValue("AnalysisResultBottleneckStep")}" +
+							$"{GetValue("AnalysisResultBottleneckStep")}" +
 							$@"{(
-								showStepNum ?
-									$"{Resources.GetValue("AnalysisResultInStep")}{bIndex + 1}" +
-									$"{Resources.GetValue("Colon")}"
+								showStepNum
+									? $"{GetValue("AnalysisResultInStep")}{bIndex + 1}{GetValue("Colon")}"
 									: string.Empty
 							)}" +
 							$" {bInfo}");
@@ -137,13 +136,12 @@ namespace Sudoku.Solving
 			var solvingStepsGrouped = GetSolvingStepsGrouped();
 			if (!(solvingStepsGrouped is null) && solvingStepsGrouped.Count() != 0)
 			{
-				sb.AppendLine(Resources.GetValue("AnalysisResultTechniqueUsed"));
+				sb.AppendLine(GetValue("AnalysisResultTechniqueUsed"));
 				if (showTechniqueDetail)
 				{
 					sb.AppendLine(
-						$"{Resources.GetValue("AnalysisResultMin"),6}, " +
-						$"{Resources.GetValue("AnalysisResultTotal"),6}" +
-						Resources.GetValue("AnalysisResultTechniqueUsing"));
+						$"{GetValue("AnalysisResultMin"),6}, {GetValue("AnalysisResultTotal"),6}" +
+						GetValue("AnalysisResultTechniqueUsing"));
 				}
 
 				foreach (var solvingStepsGroup in solvingStepsGrouped)
@@ -171,9 +169,7 @@ namespace Sudoku.Solving
 				sb.AppendLine(
 					$"{stepsCount,3} " +
 					$@"{(
-						stepsCount == 1
-							? Resources.GetValue("AnalysisResultStepSingular")
-							: Resources.GetValue("AnalysisResultStepPlural")
+						stepsCount == 1 ? GetValue("AnalysisResultStepSingular") : GetValue("AnalysisResultStepPlural")
 					)}");
 
 				a();
@@ -182,21 +178,21 @@ namespace Sudoku.Solving
 			// Print detail data.
 			//sb.AppendLine($"Total solving steps count: {stepsCount}");
 			//sb.AppendLine($"Difficulty total: {total}");
-			sb.AppendLine($"{Resources.GetValue("AnalysisResultPuzzleRating")}{max:0.0}/{pearl:0.0}/{diamond:0.0}");
+			sb.AppendLine($"{GetValue("AnalysisResultPuzzleRating")}{max:0.0}/{pearl:0.0}/{diamond:0.0}");
 
 			// Print the solution (if not null).
 			if (!(solution is null))
 			{
-				sb.AppendLine($"{Resources.GetValue("AnalysisResultPuzzleSolution")}{solution:!}");
+				sb.AppendLine($"{GetValue("AnalysisResultPuzzleSolution")}{solution:!}");
 			}
 
 			// Print the elapsed time.
 			sb
 				.AppendLine(
-					$"{Resources.GetValue("AnalysisResultPuzzleHas")}" +
-					$"{(hasSolved ? string.Empty : Resources.GetValue("AnalysisResultNot"))}" +
-					Resources.GetValue("AnalysisResultBeenSolved"))
-				.AppendLine($"{Resources.GetValue("AnalysisResultTimeElapsed")}{elapsed:hh':'mm'.'ss'.'fff}");
+					$"{GetValue("AnalysisResultPuzzleHas")}" +
+					$"{(hasSolved ? string.Empty : GetValue("AnalysisResultNot"))}" +
+					GetValue("AnalysisResultBeenSolved"))
+				.AppendLine($"{GetValue("AnalysisResultTimeElapsed")}{elapsed:hh':'mm'.'ss'.'fff}");
 			a();
 
 			// Print attributes (if worth).
@@ -204,7 +200,7 @@ namespace Sudoku.Solving
 			// only one parameter and its type is 'IReadOnlyGrid'.
 			if (showAttributes)
 			{
-				sb.AppendLine(Resources.GetValue("AnalysisResultAttributes"));
+				sb.AppendLine(GetValue("AnalysisResultAttributes"));
 
 				static bool m(ParameterInfo[] p, MethodInfo m) =>
 					p.Length == 1
@@ -225,7 +221,7 @@ namespace Sudoku.Solving
 			// Print backdoors (if worth).
 			if (showBackdoors)
 			{
-				sb.AppendLine(Resources.GetValue("AnalysisResultBackdoors"));
+				sb.AppendLine(GetValue("AnalysisResultBackdoors"));
 				var searcher = new BackdoorSearcher();
 				foreach (var assignment in searcher.SearchForBackdoorsExact(puzzle, 0))
 				{

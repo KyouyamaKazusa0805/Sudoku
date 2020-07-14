@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			var trueCandidates = _extended ? new BugChecker(grid).TrueCandidates : GetTrueCandidatesSimply(grid);
 			switch (trueCandidates.Count)
@@ -89,7 +89,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// </summary>
 		/// <param name="accumulator">The result list.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
-		private void CheckType2(IBag<TechniqueInfo> accumulator, IReadOnlyList<int> trueCandidates)
+		private void CheckType2(IList<TechniqueInfo> accumulator, IReadOnlyList<int> trueCandidates)
 		{
 			var selection = from cand in trueCandidates select cand / 9;
 			var map = new GridMap(selection, ProcessPeersWithoutItself);
@@ -133,7 +133,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
 		private void CheckType3Naked(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
+			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			// Check whether all true candidates lie on a same region.
 			var map = new GridMap(from c in trueCandidates group c by c / 9 into z select z.Key);
@@ -236,7 +236,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="accumulator">The result.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
-		private void CheckType4(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
+		private void CheckType4(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			// Conjugate pairs should lie on two cells.
 			var candsGroupByCell = from cand in trueCandidates group cand by cand / 9;
@@ -356,7 +356,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="accumulator">The result list.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
-		private void CheckMultiple(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
+		private void CheckMultiple(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			if (trueCandidates.Count > 18)
 			{
@@ -399,7 +399,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
 		private void CheckMultipleWithForcingChains(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
+			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			var tempAccumulator = new List<BugMultipleWithFcTechniqueInfo>();
 
@@ -465,7 +465,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="accumulator">The result list.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
-		private void CheckXz(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
+		private void CheckXz(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			if (trueCandidates.Count > 2)
 			{
@@ -671,13 +671,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 		/// <summary>
 		/// Do chaining. This method is only called by
-		/// <see cref="CheckMultipleWithForcingChains(IBag{TechniqueInfo}, IReadOnlyGrid, IReadOnlyList{int})"/>.
+		/// <see cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, IReadOnlyGrid, IReadOnlyList{int})"/>.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <param name="toOn">All nodes to on.</param>
 		/// <param name="toOff">All nodes to off.</param>
 		/// <returns>The result nodes.</returns>
-		/// <seealso cref="CheckMultipleWithForcingChains(IBag{TechniqueInfo}, IReadOnlyGrid, IReadOnlyList{int})"/>
+		/// <seealso cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, IReadOnlyGrid, IReadOnlyList{int})"/>
 		private static Node[]? DoChaining(IReadOnlyGrid grid, ISet<Node> toOn, ISet<Node> toOff)
 		{
 			var pendingOn = new Set<Node>(toOn);
@@ -734,13 +734,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 		/// <summary>
 		/// Create the elimination hint. This method is only called by
-		/// <see cref="CheckMultipleWithForcingChains(IBag{TechniqueInfo}, IReadOnlyGrid, IReadOnlyList{int})"/>.
+		/// <see cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, IReadOnlyGrid, IReadOnlyList{int})"/>.
 		/// </summary>
 		/// <param name="trueCandidates">The true candidates.</param>
 		/// <param name="target">The target node.</param>
 		/// <param name="outcomes">All outcomes.</param>
 		/// <returns>The result information instance.</returns>
-		/// <seealso cref="CheckMultipleWithForcingChains(IBag{TechniqueInfo}, IReadOnlyGrid, IReadOnlyList{int})"/>
+		/// <seealso cref="CheckMultipleWithForcingChains(IList{TechniqueInfo}, IReadOnlyGrid, IReadOnlyList{int})"/>
 		private static BugMultipleWithFcTechniqueInfo? CreateEliminationHint(
 			IReadOnlyList<int> trueCandidates, Node target, IReadOnlyDictionary<int, Set<Node>> outcomes)
 		{

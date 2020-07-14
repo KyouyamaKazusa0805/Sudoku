@@ -152,7 +152,7 @@ namespace Sudoku.Solving.Manual
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool RecordTechnique(
 			List<TechniqueInfo> steps, TechniqueInfo step, IReadOnlyGrid grid,
-			Grid cloneation, Stopwatch stopwatch, IBag<IReadOnlyGrid> stepGrids,
+			Grid cloneation, Stopwatch stopwatch, List<IReadOnlyGrid> stepGrids,
 			[NotNullWhen(true)] out AnalysisResult? result)
 		{
 			bool needAdd = false;

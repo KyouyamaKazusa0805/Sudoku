@@ -29,9 +29,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 		/// <summary>
 		/// The so-called conjugate region. If you do not know what is a "conjugate region",
-		/// please read the comments in the method <see cref="BdpTechniqueSearcher.CheckType4(IBag{TechniqueInfo}, IReadOnlyGrid, Pattern, short, short, short, GridMap)"/> for more details.
+		/// please read the comments in the method <see cref="BdpTechniqueSearcher.CheckType4(IList{TechniqueInfo}, IReadOnlyGrid, Pattern, short, short, short, GridMap)"/> for more details.
 		/// </summary>
-		/// <seealso cref="BdpTechniqueSearcher.CheckType4(IBag{TechniqueInfo}, IReadOnlyGrid, Pattern, short, short, short, GridMap)"/>
+		/// <seealso cref="BdpTechniqueSearcher.CheckType4(IList{TechniqueInfo}, IReadOnlyGrid, Pattern, short, short, short, GridMap)"/>
 		public GridMap ConjugateRegion { get; }
 
 		/// <inheritdoc/>

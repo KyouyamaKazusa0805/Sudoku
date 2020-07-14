@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	public sealed partial class AlsNetTechniqueSearcher : MslsTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			var linkForEachRegion = (Span<short>)stackalloc short[27];
 			var linkForEachDigit = (Span<GridMap>)stackalloc GridMap[9];

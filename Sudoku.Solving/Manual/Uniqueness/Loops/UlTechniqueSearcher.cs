@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	public sealed class UlTechniqueSearcher : UniquenessTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			if (BivalueMap.Count < 6)
 			{
@@ -157,7 +157,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="loop">The loop.</param>
 		/// <param name="extraCellsMap">The extra cells map.</param>
 		private void CheckType1(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, int d1, int d2,
+			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, int d1, int d2,
 			GridMap loop, GridMap extraCellsMap)
 		{
 			int extraCell = extraCellsMap.SetAt(0);
@@ -202,7 +202,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="extraCellsMap">The extra cells map.</param>
 		/// <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
 		private void CheckType2(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, int d1, int d2,
+			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, int d1, int d2,
 			GridMap loop, GridMap extraCellsMap, short comparer)
 		{
 			short mask = 0;
@@ -260,7 +260,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="extraCellsMap">The extra cells map.</param>
 		/// <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
 		private void CheckType3(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, int d1, int d2,
+			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, int d1, int d2,
 			GridMap loop, GridMap extraCellsMap, short comparer)
 		{
 			if (!extraCellsMap.AllSetsAreInOneRegion(out _)
@@ -375,7 +375,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="extraCellsMap">The extra cells map.</param>
 		/// <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
 		private void CheckType4(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, int d1, int d2,
+			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, int d1, int d2,
 			GridMap loop, GridMap extraCellsMap, short comparer)
 		{
 			if (!extraCellsMap.AllSetsAreInOneRegion(out _))

@@ -41,9 +41,9 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var tempAccumulator = new Bag<BowmanBingoTechniqueInfo>();
+			var tempAccumulator = new List<BowmanBingoTechniqueInfo>();
 			var tempGrid = grid.Clone();
 			for (int digit = 0; digit < 9; digit++)
 			{
@@ -95,7 +95,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <param name="grid">The grid.</param>
 		/// <param name="startCandidate">The start candidate.</param>
 		/// <param name="length">The length.</param>
-		private void TakeAllRecursively(IBag<BowmanBingoTechniqueInfo> result, Grid grid, int startCandidate, int length)
+		private void TakeAllRecursively(IList<BowmanBingoTechniqueInfo> result, Grid grid, int startCandidate, int length)
 		{
 			if (length == 0)
 			{

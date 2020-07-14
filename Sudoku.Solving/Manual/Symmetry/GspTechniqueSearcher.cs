@@ -4,7 +4,7 @@ using Sudoku.Drawing;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
-using Action = System.Action<System.Collections.Generic.IBag<Sudoku.Solving.TechniqueInfo>, Sudoku.Data.IReadOnlyGrid>;
+using Action = System.Action<System.Collections.Generic.IList<Sudoku.Solving.TechniqueInfo>, Sudoku.Data.IReadOnlyGrid>;
 
 namespace Sudoku.Solving.Manual.Symmetry
 {
@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 	public sealed class GspTechniqueSearcher : SymmetryTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			// To verify all kinds of symmetry.
 			// Note that Gurth's symmetrical placement does not have X-axis and Y-axis type.
@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
-		private void CheckDiagonal(IBag<TechniqueInfo> result, IReadOnlyGrid grid)
+		private void CheckDiagonal(IList<TechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			bool diagonalHasEmptyCell = false;
 			for (int i = 0; i < 9; i++)
@@ -156,7 +156,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
-		private void CheckAntiDiagonal(IBag<TechniqueInfo> result, IReadOnlyGrid grid)
+		private void CheckAntiDiagonal(IList<TechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			bool antiDiagonalHasEmptyCell = false;
 			for (int i = 0; i < 9; i++)
@@ -281,7 +281,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
 		/// <param name="grid">The grid.</param>
-		private static void CheckCentral(IBag<TechniqueInfo> result, IReadOnlyGrid grid)
+		private static void CheckCentral(IList<TechniqueInfo> result, IReadOnlyGrid grid)
 		{
 			if (grid.GetStatus(40) != Empty)
 			{

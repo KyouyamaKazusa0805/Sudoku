@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			List<GridMap> rbList = new List<GridMap>(3), cbList = new List<GridMap>(3);
 			foreach (int pivot in EmptyMap)

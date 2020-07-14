@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Intersections
 	public sealed class LcTechniqueSearcher : IntersectionTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			var r = (Span<int>)stackalloc int[2];
 			foreach (var ((baseSet, coverSet), (a, b, c)) in IntersectionMaps)

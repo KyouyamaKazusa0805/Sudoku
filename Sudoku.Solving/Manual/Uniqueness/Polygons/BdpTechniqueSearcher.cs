@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			if (EmptyMap.Count < 7)
 			{
@@ -56,7 +56,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		}
 
 		private void CheckType1(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
+			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, GridMap map)
 		{
 			short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
@@ -118,7 +118,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		}
 
 		private void CheckType2(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
+			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, GridMap map)
 		{
 			short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
@@ -170,7 +170,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		}
 
 		private void CheckType3(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
+			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, GridMap map)
 		{
 			short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
@@ -280,7 +280,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 		[SuppressMessage("", "IDE0004:Remove redundant cast")]
 		private void CheckType4(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
+			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, GridMap map)
 		{
 			// The type 4 may be complex and terrible to process.

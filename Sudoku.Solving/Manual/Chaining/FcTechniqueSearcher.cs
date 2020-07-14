@@ -59,9 +59,9 @@ namespace Sudoku.Solving.Manual.Chaining
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var tempAccumulator = new Bag<ChainingTechniqueInfo>();
+			var tempAccumulator = new List<ChainingTechniqueInfo>();
 			GetAll(tempAccumulator, grid);
 
 			if (tempAccumulator.Count == 0)
@@ -97,7 +97,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		/// <param name="accumulator">The accumulator.</param>
 		/// <param name="grid">Thr grid.</param>
-		private void GetAll(IBag<ChainingTechniqueInfo> accumulator, IReadOnlyGrid grid)
+		private void GetAll(IList<ChainingTechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			// Iterate on all empty cells.
 			foreach (int cell in EmptyMap)
@@ -192,7 +192,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 #if DYNAMIC_CHAINING
 		private void DoBinaryChaining(
-			IBag<ChainingTechniqueInfo> accumulator, IReadOnlyGrid grid, Node pOn, Node pOff,
+			IList<ChainingTechniqueInfo> accumulator, IReadOnlyGrid grid, Node pOn, Node pOff,
 			ISet<Node> onToOn, ISet<Node> onToOff, bool doDouble, bool doContradiction)
 		{
 			Node[]? absurdNodes;
@@ -258,7 +258,7 @@ namespace Sudoku.Solving.Manual.Chaining
 #endif
 
 		private void DoRegionChaining(
-			IBag<ChainingTechniqueInfo> accumulator, IReadOnlyGrid grid, int cell, int digit,
+			IList<ChainingTechniqueInfo> accumulator, IReadOnlyGrid grid, int cell, int digit,
 			Set<Node> onToOn, Set<Node> onToOff)
 		{
 			for (var label = Block; label <= Column; label++)

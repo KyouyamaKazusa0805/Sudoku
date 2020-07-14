@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Subsets
 	public sealed class SubsetTechniqueSearcher : TechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			for (int size = 2; size <= 4; size++)
 			{

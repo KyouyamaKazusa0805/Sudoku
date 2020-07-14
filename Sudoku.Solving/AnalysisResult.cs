@@ -27,7 +27,7 @@ namespace Sudoku.Solving
 		public AnalysisResult(
 			IReadOnlyGrid puzzle, string solverName, bool hasSolved, IReadOnlyGrid? solution,
 			TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? solvingList, string? additional,
-			IBag<IReadOnlyGrid>? stepGrids) =>
+			IReadOnlyList<IReadOnlyGrid>? stepGrids) =>
 			(Puzzle, SolverName, HasSolved, Solution, SolvingSteps, ElapsedTime, Additional, StepGrids) = (puzzle, solverName, hasSolved, solution, solvingList, elapsedTime, additional, stepGrids);
 
 
@@ -174,17 +174,6 @@ namespace Sudoku.Solving
 		}
 
 		/// <summary>
-		/// Indicates the initial puzzle.
-		/// </summary>
-		public IReadOnlyGrid Puzzle { get; }
-
-		/// <summary>
-		/// Indicates the solution grid. If and only if the puzzle
-		/// is not solved, this value will be <see langword="null"/>.
-		/// </summary>
-		public IReadOnlyGrid? Solution { get; }
-
-		/// <summary>
 		/// Indicates the bottle neck during the whole grid solving.
 		/// </summary>
 		public TechniqueInfo? Bottleneck
@@ -212,9 +201,15 @@ namespace Sudoku.Solving
 		}
 
 		/// <summary>
-		/// Indicates the intermediate grids while solving.
+		/// Indicates the initial puzzle.
 		/// </summary>
-		public IBag<IReadOnlyGrid>? StepGrids { get; }
+		public IReadOnlyGrid Puzzle { get; }
+
+		/// <summary>
+		/// Indicates the solution grid. If and only if the puzzle
+		/// is not solved, this value will be <see langword="null"/>.
+		/// </summary>
+		public IReadOnlyGrid? Solution { get; }
 
 		/// <summary>
 		/// Indicates the solving steps during solving. If the puzzle is not
@@ -222,6 +217,11 @@ namespace Sudoku.Solving
 		/// the puzzle is solved by other solvers, this value will be <see langword="null"/>.
 		/// </summary>
 		public IReadOnlyList<TechniqueInfo>? SolvingSteps { get; }
+
+		/// <summary>
+		/// Indicates the intermediate grids while solving.
+		/// </summary>
+		public IReadOnlyList<IReadOnlyGrid>? StepGrids { get; }
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
@@ -286,64 +286,42 @@ namespace Sudoku.Solving
 			(puzzle, hasSolved, elapsedTime, solution, difficultyLevel) = (Puzzle, HasSolved, ElapsedTime, Solution, DifficultyLevel);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
-		/// <param name="puzzle">
-		/// (<see langword="out"/> parameter) The initial puzzle.
-		/// </param>
+		/// <param name="solverName">(<see langword="out"/> parameter) The solver name.</param>
 		/// <param name="hasSolved">
-		/// (<see langword="out"/> parameter) Indicates whether the grid has been solved.
+		/// (<see langword="out"/> parameter) Indicates whether the solver has solved the puzzle.
 		/// </param>
-		/// <param name="solution">
-		/// (<see langword="out"/> parameter) The solution.
-		/// </param>
-		/// <param name="difficultyLevel">
-		/// (<see langword="out"/> parameter) The difficulty level.
-		/// </param>
-		/// <param name="bottleneck">
-		/// (<see langword="out"/> parameter) The bottleneck.
-		/// </param>
-		/// <param name="solvingSteps">
-		/// (<see langword="out"/> parameter) All steps.
-		/// </param>
-		/// <param name="stepGrids">
-		/// (<see langword="out"/> parameter) All intermediate grids.
-		/// </param>
+		/// <param name="total">(<see langword="out"/> parameter) The total difficulty.</param>
+		/// <param name="max">(<see langword="out"/> parameter) The maximum difficulty of all steps.</param>
+		/// <param name="pearl">(<see langword="out"/> parameter) The pearl difficulty of the puzzle.</param>
+		/// <param name="diamond">(<see langword="out"/> parameter) The diamond difficulty of the puzzle.</param>
+		/// <param name="puzzle">(<see langword="out"/> parameter) The puzzle.</param>
+		/// <param name="solution">(<see langword="out"/> parameter) The solution.</param>
+		/// <param name="elasped">(<see langword="out"/> parameter) The time elapsed.</param>
+		/// <param name="stepCount">(<see langword="out"/> parameter) The number of all steps.</param>
+		/// <param name="steps">(<see langword="out"/> parameter) The steps.</param>
+		/// <param name="stepGrids">(<see langword="out"/> parameter) The grids corresponding to the steps.</param>
+		/// <param name="additional">(<see langword="out"/> parameter) The additional message.</param>
 		public void Deconstruct(
-			out IReadOnlyGrid puzzle, out bool hasSolved, out IReadOnlyGrid? solution,
-			out DifficultyLevel difficultyLevel, out TechniqueInfo? bottleneck,
-			out IReadOnlyList<TechniqueInfo>? solvingSteps, out IBag<IReadOnlyGrid>? stepGrids) =>
-			(puzzle, hasSolved, solution, difficultyLevel, bottleneck, solvingSteps, stepGrids) = (Puzzle, HasSolved, Solution, DifficultyLevel, Bottleneck, SolvingSteps, StepGrids);
+			out string solverName, out bool hasSolved, out decimal total, out decimal max, out decimal pearl,
+			out decimal diamond, out IReadOnlyGrid puzzle, out IReadOnlyGrid? solution, out TimeSpan elasped,
+			out int stepCount, out IReadOnlyList<TechniqueInfo>? steps, out IReadOnlyList<IReadOnlyGrid>? stepGrids,
+			out string? additional)
+		{
+			solverName = SolverName;
+			hasSolved = HasSolved;
+			total = TotalDifficulty;
+			max = MaxDifficulty;
+			pearl = PearlDifficulty;
+			diamond = DiamondDifficulty;
+			puzzle = Puzzle;
+			solution = Solution;
+			elasped = ElapsedTime;
+			stepCount = SolvingStepsCount;
+			steps = SolvingSteps;
+			stepGrids = StepGrids;
+			additional = Additional;
+		}
 
-		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
-		/// <param name="puzzle">
-		/// (<see langword="out"/> parameter) The initial puzzle.
-		/// </param>
-		/// <param name="hasSolved">
-		/// (<see langword="out"/> parameter) Indicates whether the puzzle has solved.
-		/// </param>
-		/// <param name="elapsedTime">
-		/// (<see langword="out"/> parameter) The elapsed time during solving.
-		/// </param>
-		/// <param name="solution">
-		/// (<see langword="out"/> parameter) The solution.
-		/// </param>
-		/// <param name="difficultyLevel">
-		/// (<see langword="out"/> parameter) The difficulty level.
-		/// </param>
-		/// <param name="solvingStepsCount">
-		/// (<see langword="out"/> parameter) The number of solving steps recorded.
-		/// </param>
-		/// <param name="solvingSteps">
-		/// (<see langword="out"/> parameter) All solving steps.
-		/// </param>
-		/// <param name="additionalMessage">
-		/// (<see langword="out"/> parameter) The additional message.
-		/// </param>
-		public void Deconstruct(
-			out IReadOnlyGrid puzzle, out bool hasSolved, out TimeSpan elapsedTime,
-			out IReadOnlyGrid? solution, out DifficultyLevel difficultyLevel,
-			out int solvingStepsCount, out IReadOnlyList<TechniqueInfo>? solvingSteps,
-			out string? additionalMessage) =>
-			(puzzle, hasSolved, elapsedTime, solution, difficultyLevel, solvingStepsCount, solvingSteps, additionalMessage) = (Puzzle, HasSolved, ElapsedTime, Solution, DifficultyLevel, SolvingStepsCount, SolvingSteps, Additional);
 
 		/// <summary>
 		/// <para>Returns an enumerator that iterates through the collection.</para>

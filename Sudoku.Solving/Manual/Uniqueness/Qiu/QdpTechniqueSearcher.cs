@@ -45,7 +45,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 
 
 		/// <inheritdoc/>
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			for (int i = 0, length = Patterns.Length; i < length; i++)
 			{
@@ -175,7 +175,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		}
 
 		private void CheckType1(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow, GridMap pair, GridMap square,
+			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow, GridMap pair, GridMap square,
 			GridMap baseLine, Pattern pattern, short comparer, short otherDigitsMask)
 		{
 			if (!otherDigitsMask.IsPowerOfTwo())
@@ -237,7 +237,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		}
 
 		private void CheckType2(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow, GridMap pair, GridMap square,
+			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow, GridMap pair, GridMap square,
 			GridMap baseLine, Pattern pattern, short comparer, short otherDigitsMask)
 		{
 			if (!otherDigitsMask.IsPowerOfTwo())
@@ -295,7 +295,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		}
 
 		private void CheckType3(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow, GridMap pair, GridMap square,
+			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow, GridMap pair, GridMap square,
 			GridMap baseLine, Pattern pattern, short comparer, short otherDigitsMask)
 		{
 			foreach (int region in pair.CoveredRegions)
@@ -377,7 +377,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		}
 
 		private void CheckType4(
-			IBag<TechniqueInfo> accumulator, bool isRow, GridMap pair, GridMap square,
+			IList<TechniqueInfo> accumulator, bool isRow, GridMap pair, GridMap square,
 			GridMap baseLine, Pattern pattern, short comparer)
 		{
 			foreach (int region in pair.CoveredRegions)
@@ -452,7 +452,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		}
 
 		private void CheckLockedType(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow, GridMap pair, GridMap square,
+			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, bool isRow, GridMap pair, GridMap square,
 			GridMap baseLine, Pattern pattern, short comparer)
 		{
 			// Firstly, we should check the cells in the block that the square cells lying on.

@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Fishes
 	public sealed class NormalFishTechniqueSearcher : FishTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			for (int size = 2; size <= 4; size++)
 			{
@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// </param>
 		/// <returns>The result.</returns>
 		private static void AccumulateAllBySize(
-			IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid, int size, bool searchRow)
+			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, int size, bool searchRow)
 		{
 			int baseSetStart = searchRow ? 9 : 18;
 			int coverSetStart = searchRow ? 18 : 9;

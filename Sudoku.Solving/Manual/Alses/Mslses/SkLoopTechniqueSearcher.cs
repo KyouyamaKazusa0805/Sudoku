@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	public sealed partial class SkLoopTechniqueSearcher : MslsTechniqueSearcher
 	{
 		/// <inheritdoc/>
-		public override void GetAll(IBag<TechniqueInfo> accumulator, IReadOnlyGrid grid)
+		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
 			var pairs = (Span<short>)stackalloc short[8];
 			var tempLink = (Span<short>)stackalloc short[8];

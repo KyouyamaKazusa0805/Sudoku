@@ -46,7 +46,7 @@ namespace Sudoku.Solving.Manual
 
 			var steps = new List<TechniqueInfo>();
 			var searcher = new SingleTechniqueSearcher(false, false);
-			var bag = new Bag<TechniqueInfo>();
+			var bag = new List<TechniqueInfo>();
 			while (!cloneation.HasSolved)
 			{
 				searcher.GetAll(bag, cloneation);
