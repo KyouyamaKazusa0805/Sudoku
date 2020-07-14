@@ -185,8 +185,8 @@ namespace Sudoku.Solving.Manual
 						solution: cloneation,
 						hasSolved: true,
 						elapsedTime: stopwatch.Elapsed,
-						steps: steps,
-						stepGrids: stepGrids,
+						steps,
+						stepGrids,
 						additional: null);
 					return true;
 				}
