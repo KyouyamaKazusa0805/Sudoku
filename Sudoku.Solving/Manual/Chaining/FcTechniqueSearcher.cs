@@ -322,7 +322,9 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		private Node[]? DoChaining(IReadOnlyGrid grid, ISet<Node> toOn, ISet<Node> toOff)
 		{
-			//_tempGrid = grid.Clone();
+#if DYNAMIC_CHAINING
+			_tempGrid = grid.Clone();
+#endif
 
 			var pendingOn = new Set<Node>(toOn);
 			var pendingOff = new Set<Node>(toOff);
@@ -409,8 +411,10 @@ namespace Sudoku.Solving.Manual.Chaining
 #endif
 			}
 
+#if DYNAMIC_CHAINING
 			// Recover.
-			//grid = _tempGrid;
+			grid = _tempGrid;
+#endif
 
 			return null;
 		}
