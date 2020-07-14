@@ -76,6 +76,11 @@ namespace Sudoku.Windows
 		private int _customDrawingMode = -1;
 
 		/// <summary>
+		/// The current view index.
+		/// </summary>
+		private int _currentViewIndex = -1;
+
+		/// <summary>
 		/// Indicates the current color chosen (used in coloring mode).
 		/// See <see cref="Settings.PaletteColors"/> for more. If the value is
 		/// <see cref="int.MinValue"/>, the current color is unavailable.
@@ -129,6 +134,11 @@ namespace Sudoku.Windows
 		/// Indicates the analysis result after solving of the current grid.
 		/// </summary>
 		private AnalysisResult? _analyisResult;
+
+		/// <summary>
+		/// The current technique information.
+		/// </summary>
+		private TechniqueInfo? _currentTechniqueInfo;
 
 		/// <summary>
 		/// Indicates the current target painter.
@@ -353,6 +363,26 @@ namespace Sudoku.Windows
 
 					break;
 				}
+				case var key when key == Key.OemMinus || key == Key.OemPlus:
+				{
+					// Get the previous view or the next view.
+					if (_currentViewIndex == -1 || _currentTechniqueInfo is null)
+					{
+						return;
+					}
+
+					int nextIndex = key == Key.OemMinus ? _currentViewIndex - 1 : _currentViewIndex + 1;
+					if (nextIndex < 0 || nextIndex >= _currentTechniqueInfo.Views.Count)
+					{
+						return;
+					}
+
+					_currentPainter.View = _currentTechniqueInfo.Views[_currentViewIndex = nextIndex];
+
+					UpdateImageGrid();
+
+					break;
+				}
 				case var key when key.IsArrow() && _focusedCells.Count == 1:
 				{
 					// Move the focused cell.
@@ -407,6 +437,9 @@ namespace Sudoku.Windows
 					// Clear focused cells.
 					_focusedCells.Clear();
 					_currentPainter.Grid = _puzzle;
+					_currentViewIndex = -1;
+					_currentTechniqueInfo = null;
+					_currentPainter.View = null;
 					_currentPainter.FocusedCells = null;
 
 					UpdateImageGrid();

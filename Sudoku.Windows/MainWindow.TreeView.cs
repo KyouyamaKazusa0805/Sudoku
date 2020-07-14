@@ -18,7 +18,8 @@ namespace Sudoku.Windows
 				var (_, info, isEnabled) = triplet;
 				if (isEnabled)
 				{
-					_currentPainter.View = info.Views[0];
+					_currentTechniqueInfo = info;
+					_currentPainter.View = info.Views[_currentViewIndex = 0];
 					_currentPainter.Conclusions = info.Conclusions;
 					_textBoxInfo.Text = info.ToFullString();
 

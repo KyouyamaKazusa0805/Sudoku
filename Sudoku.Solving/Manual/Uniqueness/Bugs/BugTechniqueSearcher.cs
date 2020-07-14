@@ -637,34 +637,22 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				chains.Add(candidate, valueTarget);
 			}
 
-			var candidateOffsets = new List<(int, int)>();
-			foreach (var node in chains.Values)
+			// Get views.
+			var views = new List<View>();
+			var globalCandidates = new List<(int, int)>();
+			var globalLinks = new List<Link>();
+			foreach (var (candidate, node) in chains)
 			{
-				candidateOffsets.AddRange(GetCandidateOffsets(node));
-			}
-			foreach (int candidate in trueCandidates)
-			{
-				candidateOffsets.Add((2, candidate));
-			}
-
-			var links = new List<Link>();
-			foreach (var node in chains.Values)
-			{
-				links.AddRange(GetLinks(node, true));
+				var candidateOffsets = new List<(int, int)>(GetCandidateOffsets(node)) { (2, candidate) };
+				var links = new List<Link>(GetLinks(node, true));
+				views.Add(new View(null, candidateOffsets, null, links));
+				globalCandidates.AddRange(candidateOffsets);
+				globalLinks.AddRange(links);
 			}
 
-			return new BugMultipleWithFcTechniqueInfo(
-				conclusions,
-				views: new[]
-				{
-					new View(
-						cellOffsets: null,
-						candidateOffsets,
-						regionOffsets: null,
-						links)
-				},
-				candidates: trueCandidates,
-				chains);
+			views.Insert(0, new View(null, globalCandidates, null, globalLinks));
+
+			return new BugMultipleWithFcTechniqueInfo(conclusions, views, candidates: trueCandidates, chains);
 		}
 	}
 }

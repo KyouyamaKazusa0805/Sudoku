@@ -25,8 +25,9 @@ namespace Sudoku.Windows
 
 				var (_, n, s) = triplet;
 				var techniqueInfo = _analyisResult!.SolvingSteps![n];
+				_currentTechniqueInfo = techniqueInfo;
 				_currentPainter.Grid = _puzzle = new UndoableGrid(_analyisResult.StepGrids![n]);
-				_currentPainter.View = s.Views[0];
+				_currentPainter.View = s.Views[_currentViewIndex = 0];
 				_currentPainter.Conclusions = techniqueInfo.Conclusions;
 				_textBoxInfo.Text = techniqueInfo.ToFullString();
 

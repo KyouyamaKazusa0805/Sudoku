@@ -426,11 +426,11 @@ namespace Sudoku.Solving.Manual.Chaining
 				conclusions: new List<Conclusion> { new Conclusion(Assignment, target._cell, target.Digit) },
 				views: new[]
 				{
-							new View(
-								cellOffsets: null,
-								candidateOffsets: null,
-								regionOffsets: null,
-								links: null)
+					new View(
+						cellOffsets: null,
+						candidateOffsets: _,
+						regionOffsets: null,
+						links: _)
 				},
 				source,
 				destOn,
@@ -446,9 +446,9 @@ namespace Sudoku.Solving.Manual.Chaining
 				{
 					new View(
 						cellOffsets: null,
-						candidateOffsets: null,
+						candidateOffsets: _,
 						regionOffsets: null,
-						links: null)
+						links: _)
 				},
 				source,
 				destOn,
@@ -475,34 +475,23 @@ namespace Sudoku.Solving.Manual.Chaining
 				chains.Add(digit, valueTarget);
 			}
 
-			var candidateOffsets = new List<(int, int)>();
-			foreach (var node in chains.Values)
+			// Get views.
+			var views = new List<View>();
+			var globalCandidates = new List<(int, int)>();
+			var globalLinks = new List<Link>();
+			foreach (var (digit, node) in chains)
 			{
-				candidateOffsets.AddRange(GetCandidateOffsets(node));
-			}
-			foreach (int digit in grid.GetCandidates(sourceCell))
-			{
-				candidateOffsets.Add((2, sourceCell * 9 + digit));
-			}
-
-			var links = new List<Link>();
-			foreach (var node in chains.Values)
-			{
-				links.AddRange(GetLinks(node, true));
+				var candidateOffsets = new List<(int, int)>(GetCandidateOffsets(node)) { (2, sourceCell * 9 + digit) };
+				var links = GetLinks(node, true);
+				views.Add(new View(new[] { (0, sourceCell) }, candidateOffsets, null, links));
+				globalCandidates.AddRange(candidateOffsets);
+				globalLinks.AddRange(links);
 			}
 
-			return new CellChainingTechniqueInfo(
-				conclusions,
-				views: new[]
-				{
-					new View(
-						cellOffsets: new[] { (0, sourceCell) },
-						candidateOffsets,
-						regionOffsets: null,
-						links)
-				},
-				sourceCell,
-				chains);
+			// Insert the global view at head.
+			views.Insert(0, new View(new[] { (0, sourceCell) }, globalCandidates, null, globalLinks));
+
+			return new CellChainingTechniqueInfo(conclusions, views, sourceCell, chains);
 		}
 
 		private ChainingTechniqueInfo? CreateRegionEliminationHint(
@@ -524,35 +513,22 @@ namespace Sudoku.Solving.Manual.Chaining
 				chains.Add(cell, posTarget);
 			}
 
-			var candidateOffsets = new List<(int, int)>();
-			foreach (var node in chains.Values)
+			// Get views.
+			var views = new List<View>();
+			var globalCandidates = new List<(int, int)>();
+			var globalLinks = new List<Link>();
+			foreach (var (cell, node) in chains)
 			{
-				candidateOffsets.AddRange(GetCandidateOffsets(node));
-			}
-			foreach (int cell in RegionMaps[region] & CandMaps[digit])
-			{
-				candidateOffsets.Add((2, cell * 9 + digit));
-			}
-
-			var links = new List<Link>();
-			foreach (var node in chains.Values)
-			{
-				links.AddRange(GetLinks(node, true));
+				var candidateOffsets = new List<(int, int)>(GetCandidateOffsets(node)) { (2, cell * 9 + digit) };
+				var links = GetLinks(node, true);
+				views.Add(new View(null, candidateOffsets, new[] { (0, region) }, links));
+				globalCandidates.AddRange(candidateOffsets);
+				globalLinks.AddRange(links);
 			}
 
-			return new RegionChainingTechniqueInfo(
-				conclusions,
-				views: new[]
-				{
-					new View(
-						cellOffsets: null,
-						candidateOffsets,
-						regionOffsets: new[] { (0, region) },
-						links)
-				},
-				region,
-				digit,
-				chains);
+			views.Insert(0, new View(null, globalCandidates, new[] { (0, region) }, globalLinks));
+
+			return new RegionChainingTechniqueInfo(conclusions, views, region, digit, chains);
 		}
 	}
 }
