@@ -6085,13 +6085,6 @@
             <param name="grid">The grid.</param>
             <param name="trueCandidates">All true candidates.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.GetTrueCandidatesSimply(Sudoku.Data.IReadOnlyGrid)">
-            <summary>
-            To get true candidates (but simple mode).
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>All true candidates searched.</returns>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugTechniqueSearcher.CheckSingleDigit(System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Check whether all candidates in the list has same digit value.

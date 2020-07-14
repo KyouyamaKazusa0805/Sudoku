@@ -92,21 +92,5 @@ namespace Sudoku.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool CollectionEquals<T>(this ICollection<T> @this, ICollection<T> other) where T : notnull =>
 			@this.Count == other.Count && @this.All(element => other.Contains(element));
-		#region Obsolete code
-		//if (@this.Count != other.Count)
-		//{
-		//	return false;
-		//}
-		//
-		//foreach (var element in @this)
-		//{
-		//	if (!other.Contains(element))
-		//	{
-		//		return false;
-		//	}
-		//}
-		//
-		//return true;
-		#endregion
 	}
 }

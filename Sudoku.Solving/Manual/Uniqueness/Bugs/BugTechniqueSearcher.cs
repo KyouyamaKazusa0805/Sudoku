@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -9,7 +8,6 @@ using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Chaining;
 using static Sudoku.Constants.Processings;
-using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Data.GridMap.InitializationOption;
 using static Sudoku.Solving.Constants.Processings;
@@ -44,7 +42,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
-			var trueCandidates = _extended ? new BugChecker(grid).TrueCandidates : GetTrueCandidatesSimply(grid);
+			var trueCandidates = new BugChecker(grid).TrueCandidates;
 			switch (trueCandidates.Count)
 			{
 				case 0:
@@ -72,11 +70,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						{
 							CheckMultiple(accumulator, grid, trueCandidates);
 							CheckXz(accumulator, grid, trueCandidates);
-							CheckMultipleWithForcingChains(accumulator, grid, trueCandidates);
 						}
 
 						CheckType3Naked(accumulator, grid, trueCandidates);
 						CheckType4(accumulator, grid, trueCandidates);
+
+						if (_extended)
+						{
+							CheckMultipleWithForcingChains(accumulator, grid, trueCandidates);
+						}
 					}
 
 					break;
@@ -516,130 +518,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						cells: new[] { c1, c2 },
 						extraCell: cell));
 			}
-		}
-
-		/// <summary>
-		/// To get true candidates (but simple mode).
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <returns>All true candidates searched.</returns>
-		private IReadOnlyList<int> GetTrueCandidatesSimply(IReadOnlyGrid grid)
-		{
-			var tempGrid = grid.Clone();
-			var bugCells = new List<int>();
-			var bugValues = new Dictionary<int, short>();
-			short allBugValues = 0;
-			GridMap commonCells = default;
-			int t = 0;
-			for (int region = 0; region < 27; region++)
-			{
-				for (int digit = 0; digit < 9; digit++)
-				{
-					// Possible positions of a value in a region.
-					short positions = (RegionMaps[region] & CandMaps[digit]).GetSubviewMask(region);
-					int cardinality = positions.CountSet();
-					if (cardinality != 0 && cardinality != 2)
-					{
-						// The value does not have zero or two positions
-						// in the region.
-						// Look for BUG cells.
-						var newBugCells = new List<int>();
-						foreach (int i in positions.GetAllSets())
-						{
-							int cell = RegionCells[region][i];
-							int cellCardinality = tempGrid.GetCandidateMask(cell).CountSet();
-							if (cellCardinality >= 3)
-							{
-								newBugCells.Add(cell);
-							}
-						}
-
-						// If there're two or more positions falling in a BUG cell,
-						// we cannot decide which one is the BUGgy one. Just do
-						// nothing because another region will capture the correct
-						// cell.
-						if (newBugCells.Count == 1)
-						{
-							// A new BUG cell has been found (BUG value == 'value').
-							int cell = newBugCells[0];
-							bugCells.AddIfDoesNotContain(cell);
-							bugValues.AddIfKeyDoesNotContain(cell, (short)0);
-							short mask = (short)(1 << digit);
-							bugValues[cell] |= mask;
-							allBugValues |= mask;
-							tempGrid[cell, digit] = true;
-
-							if (t++ == 0)
-							{
-								commonCells = new GridMap(cell);
-							}
-							else
-							{
-								commonCells &= new GridMap(cell);
-							}
-
-							foreach (int bugCell in bugCells)
-							{
-								commonCells.Remove(bugCell);
-							}
-
-							if (bugCells.Count > 1 && allBugValues.CountSet() > 1 && commonCells.IsEmpty)
-							{
-								// None of type 1, 2 or 3.
-								return Array.Empty<int>();
-							}
-						}
-
-						if (newBugCells.Count == 0)
-						{
-							// A value appear more than twice, but no cell has more
-							// than two values, which means that the specified pattern
-							// is not a BUG pattern.
-							return Array.Empty<int>();
-						}
-					}
-				}
-			}
-
-			// When BUG values have been removed, all remaining empty cells must
-			// have exactly two potential values. Now check it.
-			for (int cell = 0; cell < 81; cell++)
-			{
-				if (tempGrid.GetStatus(cell) == Empty
-					&& tempGrid.GetCandidateMask(cell).CountSet() != 2)
-				{
-					// Not a BUG.
-					return Array.Empty<int>();
-				}
-			}
-
-			// When BUG values have been removed, all remaining candidates must have
-			// two positions in each region.
-			for (int region = 0; region < 27; region++)
-			{
-				for (int digit = 0; digit < 9; digit++)
-				{
-					short mask = (RegionMaps[region] & CandMaps[digit]).GetSubviewMask(region);
-					int count = mask.CountSet();
-					if (count != 0 && count != 2)
-					{
-						// Not a BUG.
-						return Array.Empty<int>();
-					}
-				}
-			}
-
-			// Record the result.
-			var result = new List<int>();
-			foreach (var (cell, digitsMask) in bugValues)
-			{
-				foreach (int digit in digitsMask.GetAllSets())
-				{
-					result.Add(cell * 9 + digit);
-				}
-			}
-
-			return result;
 		}
 
 
