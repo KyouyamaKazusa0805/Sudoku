@@ -79,7 +79,7 @@ namespace Sudoku.Solving
 			int v = Digit + 1;
 			string fromCell = new CellCollection(From).ToString();
 			string toCell = new CellCollection(To).ToString();
-			return $"{fromCell}=={toCell}({v})";
+			return $"{fromCell} == {toCell}({v})";
 		}
 
 
