@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			(XEnabled && YEnabled ? 5.0M : 4.6M) + GetExtraDifficultyByLength(FlatComplexity - 2);
 
 		/// <inheritdoc/>
-		public override int SortKey => (int)Enum.Parse<ChainingTypeCode>(TechniqueCode.ToString());
+		public override ChainingTypeCode SortKey => Enum.Parse<ChainingTypeCode>(TechniqueCode.ToString());
 
 		/// <inheritdoc/>
 		public override int FlatComplexity => Target.AncestorsCount;

@@ -44,5 +44,10 @@
 		/// Indictaes the region forcing chains.
 		/// </summary>
 		RegionFc,
+
+		/// <summary>
+		/// Indicates the binary forcing chains.
+		/// </summary>
+		BinaryFc,
 	}
 }

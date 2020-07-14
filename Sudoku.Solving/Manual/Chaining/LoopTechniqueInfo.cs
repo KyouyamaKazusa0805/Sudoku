@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Sudoku.Constants;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -47,13 +47,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			};
 
 		/// <inheritdoc/>
-		public override int SortKey =>
-			TechniqueCode switch
-			{
-				TechniqueCode.XyCycle => 1,
-				TechniqueCode.ContinuousNiceLoop => 2,
-				_ => throw Throwings.ImpossibleCase
-			};
+		public override ChainingTypeCode SortKey => Enum.Parse<ChainingTypeCode>(TechniqueCode.ToString());
 
 		/// <inheritdoc/>
 		public override int FlatComplexity => Target.AncestorsCount;

@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override string Name => Resources.GetValue(TechniqueCode.ToString());
 
 		/// <inheritdoc/>
-		public override int SortKey => (int)ChainingTypeCode.RegionFc;
+		public override ChainingTypeCode SortKey => ChainingTypeCode.RegionFc;
 
 		/// <inheritdoc/>
 		public override int FlatComplexity

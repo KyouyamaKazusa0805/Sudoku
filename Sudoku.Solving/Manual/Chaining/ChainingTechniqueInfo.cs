@@ -62,7 +62,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// The sort key.
 		/// </summary>
-		public abstract int SortKey { get; }
+		public abstract ChainingTypeCode SortKey { get; }
 
 		/// <summary>
 		/// The flat complexity.
@@ -171,7 +171,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				(true, _, _, _) => TechniqueCode.DynamicFc,
 				(_, true, _, _) => TechniqueCode.NishioFc,
-				(_, _, true, _) => SortKey == 5 ? TechniqueCode.CellFc : TechniqueCode.RegionFc,
+				(_, _, true, _) => SortKey == ChainingTypeCode.CellFc ? TechniqueCode.CellFc : TechniqueCode.RegionFc,
 				(_, _, _, true) => TechniqueCode.DynamicFc,
 				_ => TechniqueCode.Aic
 			};

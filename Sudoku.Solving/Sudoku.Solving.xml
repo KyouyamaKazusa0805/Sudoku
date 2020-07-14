@@ -2674,6 +2674,11 @@
             Indictaes the region forcing chains.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Chaining.ChainingTypeCode.BinaryFc">
+            <summary>
+            Indicates the binary forcing chains.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.FcTechniqueSearcher">
             <summary>
             Encapsulates an <b>forcing chains</b> (<b>FCs</b>) technique searcher.
