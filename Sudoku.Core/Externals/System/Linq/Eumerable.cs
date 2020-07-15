@@ -20,7 +20,7 @@ namespace System.Linq
 		/// <summary>
 		/// Get the element whose selection is the minimal one.
 		/// </summary>
-		/// <typeparam name="TElement">The element type.</typeparam>
+		/// <typeparam name="TNotNull">The element type.</typeparam>
 		/// <typeparam name="TComparable">The comparing type.</typeparam>
 		/// <param name="this">The elements to search the minimal one.</param>
 		/// <param name="selector">The selector.</param>
@@ -30,30 +30,27 @@ namespace System.Linq
 		/// is decided in the element type.
 		/// </returns>
 		[return: MaybeNull]
-		public static TElement GetElementByMinSelector<TElement, TComparable>(
-			this IEnumerable<TElement> @this, Func<TElement, IComparable<TComparable>> selector)
-			where TElement : notnull =>
+		public static TNotNull GetElementByMinSelector<TNotNull, TComparable>(
+			this IEnumerable<TNotNull> @this, Func<TNotNull, IComparable<TComparable>> selector)
+			where TNotNull : notnull =>
 			(from element in @this orderby selector(element) select element).FirstOrDefault();
 
 		/// <summary>
 		/// Check whether the specified collection is empty (no elements in it).
 		/// </summary>
-		/// <typeparam name="TElement">
-		/// The type of the element. Although the list is empty maybe, the type is needed in syntax.
-		/// </typeparam>
+		/// <typeparam name="T">The type of the element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool None<TElement>(this IEnumerable<TElement> @this) => !@this.Any();
+		public static bool None<T>(this IEnumerable<T> @this) => !@this.Any();
 
 		/// <summary>
 		/// Check whether the specified list has only one element.
 		/// </summary>
-		/// <typeparam name="TElement">The type of the element.</typeparam>
+		/// <typeparam name="TNotNull">The type of the element.</typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		public static bool HasOnlyOneElement<TElement>(this IEnumerable<TElement> @this)
-			where TElement : notnull
+		public static bool HasOnlyOneElement<TNotNull>(this IEnumerable<TNotNull> @this) where TNotNull : notnull
 		{
 			if (@this.None())
 			{

@@ -7529,11 +7529,72 @@
             Indicates its children nodes.
             </summary>
         </member>
+        <member name="M:System.Collections.Generic.TreeNode`1.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.TreeNode`1.Equals(System.Collections.Generic.TreeNode{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.TreeNode`1.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="M:System.Collections.Generic.TreeNode`1.CompareTo(System.Collections.Generic.TreeNode{`0})">
             <inheritdoc/>
         </member>
         <member name="M:System.Collections.Generic.TreeNode`1.ToString">
             <inheritdoc/>
+        </member>
+        <member name="M:System.Collections.Generic.TreeNode`1.op_Equality(System.Collections.Generic.TreeNode{`0},System.Collections.Generic.TreeNode{`0})">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:System.Collections.Generic.TreeNode`1.op_Inequality(System.Collections.Generic.TreeNode{`0},System.Collections.Generic.TreeNode{`0})">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:System.Collections.Generic.TreeNode`1.op_GreaterThan(System.Collections.Generic.TreeNode{`0},System.Collections.Generic.TreeNode{`0})">
+            <operator name="op_GreaterThan">
+		<summary>Indicates whether the left value is greater than the right value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:System.Collections.Generic.TreeNode`1.op_GreaterThanOrEqual(System.Collections.Generic.TreeNode{`0},System.Collections.Generic.TreeNode{`0})">
+            <operator name="op_GreaterThanOrEqual">
+		<summary>
+			Indicates whether the left value is greater than or equals to the right value.
+		</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:System.Collections.Generic.TreeNode`1.op_LessThan(System.Collections.Generic.TreeNode{`0},System.Collections.Generic.TreeNode{`0})">
+            <operator name="op_LessThan">
+		<summary>Indicates whether the left value is less than the right value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:System.Collections.Generic.TreeNode`1.op_LessThanOrEqual(System.Collections.Generic.TreeNode{`0},System.Collections.Generic.TreeNode{`0})">
+            <operator name="op_LessThanOrEqual">
+		<summary>
+			Indicates whether the left value is less than or equals to the right value.
+		</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="T:System.Collections.TreeNode">
             <summary>
@@ -7609,7 +7670,7 @@
             <summary>
             Get the element whose selection is the minimal one.
             </summary>
-            <typeparam name="TElement">The element type.</typeparam>
+            <typeparam name="TNotNull">The element type.</typeparam>
             <typeparam name="TComparable">The comparing type.</typeparam>
             <param name="this">The elements to search the minimal one.</param>
             <param name="selector">The selector.</param>
@@ -7623,9 +7684,7 @@
             <summary>
             Check whether the specified collection is empty (no elements in it).
             </summary>
-            <typeparam name="TElement">
-            The type of the element. Although the list is empty maybe, the type is needed in syntax.
-            </typeparam>
+            <typeparam name="T">The type of the element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The list.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
@@ -7633,7 +7692,7 @@
             <summary>
             Check whether the specified list has only one element.
             </summary>
-            <typeparam name="TElement">The type of the element.</typeparam>
+            <typeparam name="TNotNull">The type of the element.</typeparam>
             <param name="this">(<see langword="this"/> parameter) The list.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>

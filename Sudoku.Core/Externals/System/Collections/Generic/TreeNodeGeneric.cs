@@ -6,7 +6,7 @@ namespace System.Collections.Generic
 	/// Encapsulates a tree node.
 	/// </summary>
 	/// <typeparam name="T">The type of the element.</typeparam>
-	public sealed class TreeNode<T> : IComparable<TreeNode<T>?>
+	public sealed class TreeNode<T> : IComparable<TreeNode<T>?>, IEquatable<TreeNode<T>?> where T : new()
 	{
 		/// <summary>
 		/// Indicates the current ID.
@@ -36,15 +36,47 @@ namespace System.Collections.Generic
 
 
 		/// <inheritdoc/>
-		public int CompareTo(TreeNode<T>? other) =>
-			(this is null, other is null) switch
-			{
-				(true, true) => 0,
-				(false, false) => Id.CompareTo(other!.Id),
-				_ => this is null ? -1 : 1
-			};
+		public override bool Equals(object? obj) => CompareTo(obj as TreeNode<T>) == 0;
+
+		/// <inheritdoc/>
+		public bool Equals(TreeNode<T>? other) => CompareTo(other) == 0;
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => HashCode.Combine(Id, ParentId, IsLeaf, Content ?? new T());
+
+		/// <inheritdoc/>
+		public int CompareTo(TreeNode<T>? other) => InternalCompare(this, other);
 
 		/// <inheritdoc/>
 		public override string ToString() => (Id, ParentId, Content, ChildrenCount: Children.Count).ToString();
+
+
+
+		private static int InternalCompare(TreeNode<T>? left, TreeNode<T>? right) =>
+			(left is null, right is null) switch
+			{
+				(true, true) => 0,
+				(false, false) => left!.Id.CompareTo(right!.Id),
+				_ => left is null ? -1 : 1
+			};
+
+
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		public static bool operator ==(TreeNode<T>? left, TreeNode<T>? right) => InternalCompare(left, right) == 0;
+
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		public static bool operator !=(TreeNode<T>? left, TreeNode<T>? right) => !(left == right);
+
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThan"]'/>
+		public static bool operator >(TreeNode<T>? left, TreeNode<T>? right) => InternalCompare(left, right) > 0;
+
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThanOrEqual"]'/>
+		public static bool operator >=(TreeNode<T>? left, TreeNode<T>? right) => InternalCompare(left, right) >= 0;
+
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_LessThan"]'/>
+		public static bool operator <(TreeNode<T>? left, TreeNode<T>? right) => InternalCompare(left, right) < 0;
+
+		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_LessThanOrEqual"]'/>
+		public static bool operator <=(TreeNode<T>? left, TreeNode<T>? right) => InternalCompare(left, right) <= 0;
 	}
 }
