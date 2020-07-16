@@ -71,6 +71,7 @@ namespace Sudoku.Windows
 			["ProgressUsType1"] = "Unique Square",
 			["ProgressWWing"] = "Irregular Wing",
 			["ProgressXyWing"] = "Regular Wing",
+			["ProgressBugMultipleFc"] = "Bivalue Universal Grave with Forcing Chains",
 			["Summary"] = "Summary...",
 
 			// Separate words

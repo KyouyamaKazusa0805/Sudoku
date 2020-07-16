@@ -71,6 +71,7 @@ namespace Sudoku.Windows
 			["ProgressUsType1"] = "唯一矩阵",
 			["ProgressWWing"] = "不规则 Wing",
 			["ProgressXyWing"] = "规则 Wing",
+			["ProgressBugMultipleFc"] = "全双值格致死解法 + 强制链",
 			["Summary"] = "正在统计中…",
 
 			// Separate words
