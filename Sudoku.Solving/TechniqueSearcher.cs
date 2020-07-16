@@ -1,15 +1,13 @@
-﻿#nullable disable warnings
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Singles;
+using static System.Reflection.BindingFlags;
 
 namespace Sudoku.Solving
 {
@@ -18,7 +16,7 @@ namespace Sudoku.Solving
 	/// <see cref="ManualSolver"/>.
 	/// </summary>
 	/// <seealso cref="ManualSolver"/>
-	public abstract class TechniqueSearcher : IComparable<TechniqueSearcher>, IEquatable<TechniqueSearcher>
+	public abstract class TechniqueSearcher : IComparable<TechniqueSearcher?>, IEquatable<TechniqueSearcher?>
 	{
 		/// <summary>
 		/// Get the searcher properties of type <see cref="SearcherPropertyAttribute"/>.
@@ -53,21 +51,21 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <include file='SolvingDocComments.xml' path='comments/property[@name="IMaps"]'/>
 		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
-		internal static GridMap[] CandMaps { get; set; }
+		internal static GridMap[] CandMaps { get; set; } = null!;
 
 		/// <summary>
 		/// The digit maps.
 		/// </summary>
 		/// <include file='SolvingDocComments.xml' path='comments/property[@name="IMaps"]'/>
 		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
-		internal static GridMap[] DigitMaps { get; set; }
+		internal static GridMap[] DigitMaps { get; set; } = null!;
 
 		/// <summary>
 		/// The value maps.
 		/// </summary>
 		/// <include file='SolvingDocComments.xml' path='comments/property[@name="IMaps"]'/>
 		/// <seealso cref="InitializeMaps(IReadOnlyGrid)"/>
-		internal static GridMap[] ValueMaps { get; set; }
+		internal static GridMap[] ValueMaps { get; set; } = null!;
 
 
 		/// <summary>
@@ -90,13 +88,14 @@ namespace Sudoku.Solving
 		public abstract void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid);
 
 		/// <inheritdoc/>
-		public virtual int CompareTo(TechniqueSearcher other) => GetPriority(this).CompareTo(GetPriority(other));
+		public virtual int CompareTo(TechniqueSearcher? other) =>
+			GetPriority(this).CompareTo(other is null ? int.MaxValue : GetPriority(other));
 
 		/// <inheritdoc/>
 		public sealed override int GetHashCode() => GetPriority(this) * 17 + 0xDEAD & 0xC0DE;
 
 		/// <inheritdoc/>
-		public virtual bool Equals(TechniqueSearcher other) => GetPriority(this) == GetPriority(other);
+		public virtual bool Equals(TechniqueSearcher? other) => InternalEquals(this, other);
 
 		/// <inheritdoc/>
 		public sealed override bool Equals(object? obj) => obj is TechniqueSearcher comparer && Equals(comparer);
@@ -121,14 +120,28 @@ namespace Sudoku.Solving
 		/// This method uses reflection to get the specified value.
 		/// </remarks>
 		private static int GetPriority(TechniqueSearcher instance) =>
-			(int)instance.GetType().GetProperty("Priority", BindingFlags.Static)!.GetValue(null)!;
+			(int)instance.GetType().GetProperty("Priority", Static)!.GetValue(null)!;
+
+		/// <summary>
+		/// Internal equals method.
+		/// </summary>
+		/// <param name="left">The left comparer.</param>
+		/// <param name="right">The right comparer.</param>
+		/// <returns>A <see cref="bool"/> value.</returns>
+		private static bool InternalEquals(TechniqueSearcher? left, TechniqueSearcher? right) =>
+			(left is null, right is null) switch
+			{
+				(true, true) => true,
+				(false, false) => GetPriority(left!) == GetPriority(right!),
+				_ => false
+			};
 
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
-		public static bool operator ==(TechniqueSearcher left, TechniqueSearcher right) => left.Equals(right);
+		public static bool operator ==(TechniqueSearcher? left, TechniqueSearcher? right) => InternalEquals(left, right);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
-		public static bool operator !=(TechniqueSearcher left, TechniqueSearcher right) => !(left == right);
+		public static bool operator !=(TechniqueSearcher? left, TechniqueSearcher? right) => !(left == right);
 
 		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThan"]'/>
 		public static bool operator >(TechniqueSearcher left, TechniqueSearcher right) => left.CompareTo(right) > 0;

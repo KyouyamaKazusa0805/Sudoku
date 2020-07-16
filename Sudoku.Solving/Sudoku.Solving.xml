@@ -8728,6 +8728,14 @@
             This method uses reflection to get the specified value.
             </remarks>
         </member>
+        <member name="M:Sudoku.Solving.TechniqueSearcher.InternalEquals(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
+            <summary>
+            Internal equals method.
+            </summary>
+            <param name="left">The left comparer.</param>
+            <param name="right">The right comparer.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
         <member name="M:Sudoku.Solving.TechniqueSearcher.op_Equality(Sudoku.Solving.TechniqueSearcher,Sudoku.Solving.TechniqueSearcher)">
             <operator name="op_Equality">
 		<summary>Indicates whether two instances have a same value.</summary>
