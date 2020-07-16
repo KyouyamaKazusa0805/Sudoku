@@ -570,7 +570,6 @@ namespace Sudoku.Windows
 		}
 
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-		[SuppressMessage("", "IDE0050")]
 		private async void MenuItemAnalyzeAnalyze_Click(object sender, RoutedEventArgs e)
 		{
 			if (!await internalOperation(false) && !await internalOperation(true))
@@ -840,7 +839,7 @@ namespace Sudoku.Windows
 					return;
 				}
 
-				_currentPainter.View = new View(new List<(int, int)>(from candidate in trueCandidates select (0, candidate)));
+				_currentPainter.View = new View((from candidate in trueCandidates select (0, candidate)).ToArray());
 				_currentPainter.Conclusions = null;
 
 				UpdateImageGrid();
