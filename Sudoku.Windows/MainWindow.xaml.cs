@@ -435,12 +435,7 @@ namespace Sudoku.Windows
 				case Key.Escape:
 				{
 					// Clear focused cells.
-					_focusedCells.Clear();
-					_currentPainter.Grid = _puzzle;
-					_currentViewIndex = -1;
-					_currentTechniqueInfo = null;
-					_currentPainter.View = null;
-					_currentPainter.FocusedCells = null;
+					ClearViews();
 
 					UpdateImageGrid();
 
@@ -464,6 +459,23 @@ namespace Sudoku.Windows
 
 				UpdateImageGrid();
 			}
+		}
+
+		/// <summary>
+		/// Clear the current views (<see cref="View"/> and <see cref="MutableView"/>).
+		/// </summary>
+		/// <seealso cref="View"/>
+		/// <seealso cref="MutableView"/>
+		private void ClearViews()
+		{
+			_focusedCells.Clear();
+			_currentPainter.Grid = _puzzle;
+			_currentViewIndex = -1;
+			_currentTechniqueInfo = null;
+			_currentPainter.Conclusions = null;
+			_currentPainter.CustomView = null;
+			_currentPainter.View = null;
+			_currentPainter.FocusedCells = null;
 		}
 
 		/// <summary>

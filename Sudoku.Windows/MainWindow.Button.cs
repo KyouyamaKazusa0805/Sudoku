@@ -70,15 +70,13 @@ namespace Sudoku.Windows
 				}
 
 				// The boolean value stands for whether the technique is enabled.
-				var roots =
-					new List<TreeNode<TreeViewItem>>(
-						from name in from techniqueGroup in techniqueGroups select techniqueGroup.Key
-						select new TreeNode<TreeViewItem> { Content = new TreeViewItem { Header = name } });
+				var roots = (
+					from name in from techniqueGroup in techniqueGroups select techniqueGroup.Key
+					select new TreeNode<TreeViewItem> { Content = new TreeViewItem { Header = name } }).ToList();
 				foreach (var techniqueGroup in techniqueGroups)
 				{
 					string name = techniqueGroup.Key;
-					var node = roots.First(n => (string)n.Content!.Header == name);
-					node.Children.AddRange(
+					roots.First(n => (string)n.Content!.Header == name).Children.AddRange(
 						from info in techniqueGroup
 						where f(info)
 						select new TreeNode<TreeViewItem>

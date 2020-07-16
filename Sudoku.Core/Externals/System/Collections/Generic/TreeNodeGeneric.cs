@@ -6,7 +6,7 @@ namespace System.Collections.Generic
 	/// Encapsulates a tree node.
 	/// </summary>
 	/// <typeparam name="T">The type of the element.</typeparam>
-	public sealed class TreeNode<T> : IComparable<TreeNode<T>?>, IEquatable<TreeNode<T>?> where T : new()
+	public sealed class TreeNode<T> : IComparable<TreeNode<T>?>, IEquatable<TreeNode<T>?>
 	{
 		/// <summary>
 		/// Indicates the current ID.
@@ -42,7 +42,17 @@ namespace System.Collections.Generic
 		public bool Equals(TreeNode<T>? other) => CompareTo(other) == 0;
 
 		/// <inheritdoc/>
-		public override int GetHashCode() => HashCode.Combine(Id, ParentId, IsLeaf, Content ?? new T());
+		public override int GetHashCode()
+		{
+			if (!(Content is null))
+			{
+				return HashCode.Combine(Id, ParentId, IsLeaf, Content);
+			}
+			else
+			{
+				return HashCode.Combine(Id, ParentId, IsLeaf);
+			}
+		}
 
 		/// <inheritdoc/>
 		public int CompareTo(TreeNode<T>? other) => InternalCompare(this, other);
