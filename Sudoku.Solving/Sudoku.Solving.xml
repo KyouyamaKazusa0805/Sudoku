@@ -1684,9 +1684,6 @@
             Indicates all ALSes used sorted by digit.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueInfo.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Basic.DeathBlossomTechniqueInfo.Difficulty">
             <inheritdoc/>
         </member>
@@ -2598,6 +2595,13 @@
             <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
             <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
             <returns>All possible strong links.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingTechniqueSearcher.SortInfo(System.Collections.Generic.IEnumerable{Sudoku.Solving.Manual.Chaining.ChainingTechniqueInfo})">
+            <summary>
+            Remove duplicate information instances and sort them.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <returns>The result list.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.ChainingTypeCode">
             <summary>

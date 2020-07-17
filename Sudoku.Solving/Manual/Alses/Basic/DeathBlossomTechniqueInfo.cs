@@ -4,7 +4,6 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
-using Sudoku.Windows;
 
 namespace Sudoku.Solving.Manual.Alses.Basic
 {
@@ -38,9 +37,6 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public IReadOnlyDictionary<int, Als> Alses { get; }
 
 		/// <inheritdoc/>
-		public override string Name => $"{base.Name} ({PetalsCount} {Resources.GetValue("Petal")})";
-
-		/// <inheritdoc/>
 		public override decimal Difficulty => 8.0M + PetalsCount * .1M;
 
 		/// <inheritdoc/>
@@ -53,15 +49,15 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string pivotStr = new CellCollection(stackalloc[] { Pivot }).ToString();
+			string pivotStr = new CellCollection(Pivot).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: Cell {pivotStr} - {g()} => {elimStr}";
+			return $"{Name}: Cell {pivotStr} - {g(this)} => {elimStr}";
 
-			string g()
+			static string g(DeathBlossomTechniqueInfo @this)
 			{
 				const string separator = ", ";
 				var sb = new StringBuilder();
-				foreach (var (digit, als) in Alses)
+				foreach (var (digit, als) in @this.Alses)
 				{
 					sb.Append($"{digit + 1} - {als}{separator}");
 				}

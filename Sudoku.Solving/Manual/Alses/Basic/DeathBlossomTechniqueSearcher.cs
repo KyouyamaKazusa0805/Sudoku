@@ -43,6 +43,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <inheritdoc/>
 		public override void GetAll(IList<TechniqueInfo> accumulator, IReadOnlyGrid grid)
 		{
+			var tempAccumulator = new List<DeathBlossomTechniqueInfo>();
 			short[] checkedCandidates = new short[81];
 			int[,] death = new int[729, 1000];
 			var alsList = PreprocessAndRecordAlses(grid, EmptyMap);
@@ -201,7 +202,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 						}
 
 						// Add item.
-						accumulator.Add(
+						tempAccumulator.Add(
 							new DeathBlossomTechniqueInfo(
 								conclusions,
 								views: new[]
@@ -224,6 +225,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 					}
 				}
 			}
+
+			accumulator.AddRange(from info in tempAccumulator orderby info.PetalsCount orderby info.Pivot select info);
 		}
 
 		/// <summary>

@@ -2,6 +2,7 @@
 using Sudoku.Data.Extensions;
 using Sudoku.Extensions;
 using System.Collections.Generic;
+using System.Linq;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Constants.RegionLabel;
 
@@ -96,5 +97,17 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			return result;
 		}
+
+		/// <summary>
+		/// Remove duplicate information instances and sort them.
+		/// </summary>
+		/// <param name="accumulator">The accumulator.</param>
+		/// <returns>The result list.</returns>
+		protected static IQueryable<ChainingTechniqueInfo> SortInfo(IEnumerable<ChainingTechniqueInfo> accumulator) => (
+			from info in new Set<ChainingTechniqueInfo>(accumulator)
+			orderby info.Difficulty
+			orderby info.Complexity
+			orderby info.SortKey
+			select info).AsQueryable();
 	}
 }

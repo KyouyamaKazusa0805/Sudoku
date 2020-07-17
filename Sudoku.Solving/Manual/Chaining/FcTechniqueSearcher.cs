@@ -69,27 +69,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				return;
 			}
 
-			var set = new Set<ChainingTechniqueInfo>(tempAccumulator);
-			set.Sort((i1, i2) =>
-			{
-				decimal d1 = i1.Difficulty, d2 = i2.Difficulty;
-				if (d1 < d2)
-				{
-					return -1;
-				}
-				else if (d1 > d2)
-				{
-					return 1;
-				}
-				else
-				{
-					int l1 = i1.Complexity;
-					int l2 = i2.Complexity;
-					return l1 == l2 ? i1.SortKey - i2.SortKey : l1 - l2;
-				}
-			});
-
-			accumulator.AddRange(set);
+			accumulator.AddRange(SortInfo(tempAccumulator));
 		}
 
 		/// <summary>

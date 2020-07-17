@@ -87,7 +87,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 				}
 			}
 
-			accumulator.AddRange(from info in tempAccumulator orderby info.ContradictionSeries.Count select info);
+			accumulator.AddRange(
+				from info in tempAccumulator
+				orderby info.ContradictionSeries.Count
+				let Conclusion = info.ContradictionSeries[0]
+				let Candidate = Conclusion.CellOffset * 9 + Conclusion.Digit
+				orderby Candidate
+				select info);
 		}
 
 		/// <summary>
