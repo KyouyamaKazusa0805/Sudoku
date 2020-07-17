@@ -21,10 +21,23 @@ namespace Sudoku.Extensions
 		/// </typeparam>
 		/// <param name="this">(<see langword="this"/> parameter) The collection.</param>
 		/// <param name="values">
+		/// (<see langword="params"/> parameter) The values you want to add to the end of the collection.
+		/// </param>
+		public static void AddRange<T>(this ICollection<T> @this, params T[] values) where T : notnull =>
+			@this.AddRange((IEnumerable<T>)values);
+
+		/// <summary>
+		/// Adds the elements of the specified collection to the end of the
+		/// <see cref="ICollection{T}"/>.
+		/// </summary>
+		/// <typeparam name="T">
+		/// The type of each element. Should be not <see langword="null"/>.
+		/// </typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The collection.</param>
+		/// <param name="values">
 		/// The values you want to add to the end of the collection.
 		/// </param>
-		public static void AddRange<T>(this ICollection<T> @this, IEnumerable<T> values)
-			where T : notnull
+		public static void AddRange<T>(this ICollection<T> @this, IEnumerable<T> values) where T : notnull
 		{
 			foreach (var value in values)
 			{
@@ -73,8 +86,7 @@ namespace Sudoku.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
 		/// <param name="item">The item to add.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void AddIfDoesNotContain<T>(this ICollection<T> @this, T item)
-			where T : notnull
+		public static void AddIfDoesNotContain<T>(this ICollection<T> @this, T item) where T : notnull
 		{
 			if (!@this.Contains(item))
 			{

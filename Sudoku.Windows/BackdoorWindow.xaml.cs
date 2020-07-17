@@ -46,7 +46,7 @@ namespace Sudoku.Windows
 		{
 			await internalOperation();
 
-			async ValueTask internalOperation()
+			async Task internalOperation()
 			{
 				_listBoxBackdoors.ClearValue(ItemsControl.ItemsSourceProperty);
 				_labelStatus.Content = (string)LangSource["BackdoorWhileSearching"];

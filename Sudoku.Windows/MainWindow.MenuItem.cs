@@ -702,26 +702,16 @@ namespace Sudoku.Windows
 						collection.Add(new { Technique = name, Count = count, Total = total, Max = maximum });
 					}
 
-					collection.Add(
-						new
-						{
-							Technique = default(string?),
-							Count = summaryCount,
-							Total = summary,
-							Max = summaryMax
-						});
+					collection.Add(new DifficultyInfo(null, summaryCount, summary, summaryMax));
 
 					GridView view;
 					_listViewSummary.ItemsSource = collection;
 					_listViewSummary.View = view = new GridView();
 					view.Columns.AddRange(
-						new[]
-						{
-							createGridViewColumn(LangSource["TechniqueHeader"], "Technique", .6),
-							createGridViewColumn(LangSource["TechniqueCount"], "Count", .1),
-							createGridViewColumn(LangSource["TechniqueTotal"], "Total", .15),
-							createGridViewColumn(LangSource["TechniqueMax"], "Max", .15)
-						});
+						createGridViewColumn(LangSource["TechniqueHeader"], nameof(DifficultyInfo.Technique), .6),
+						createGridViewColumn(LangSource["TechniqueCount"], nameof(DifficultyInfo.Count), .1),
+						createGridViewColumn(LangSource["TechniqueTotal"], nameof(DifficultyInfo.Total), .15),
+						createGridViewColumn(LangSource["TechniqueMax"], nameof(DifficultyInfo.Max), .15));
 					view.AllowsColumnReorder = false;
 				}
 				else
@@ -818,7 +808,7 @@ namespace Sudoku.Windows
 		{
 			await internalOperation();
 
-			async ValueTask internalOperation()
+			async Task internalOperation()
 			{
 				if (!_puzzle.IsValid(out _))
 				{
@@ -845,8 +835,7 @@ namespace Sudoku.Windows
 				UpdateImageGrid();
 
 				_textBoxInfo.Text =
-					$"{LangSource["AllTrueCandidates"]}" +
-					$"{new CandidateCollection(trueCandidates).ToString()}";
+					$"{LangSource["AllTrueCandidates"]}{new CandidateCollection(trueCandidates).ToString()}";
 			}
 		}
 
@@ -855,7 +844,7 @@ namespace Sudoku.Windows
 		{
 			await internalOperation();
 
-			async ValueTask internalOperation()
+			async Task internalOperation()
 			{
 				if (!_puzzle.IsValid(out _))
 				{

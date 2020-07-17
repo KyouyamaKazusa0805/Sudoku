@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
@@ -41,27 +40,26 @@ namespace Sudoku.Windows
 		{
 			await internalOperation();
 
-			async ValueTask internalOperation()
+			async Task internalOperation()
 			{
 				_listBoxTrueCandidates.ClearValue(ItemsControl.ItemsSourceProperty);
 				_labelStatus.Content = (string)LangSource["BugMultipleWhileSearching"];
 
-				var list =
-					new List<PrimaryElementTuple<int, string>>(
-						from candidate in await Task.Run(() => new BugChecker(_puzzle).GetAllTrueCandidates(64))
-						orderby candidate
-						select new PrimaryElementTuple<int, string>(
-							candidate, new CandidateCollection(candidate).ToString(), 2));
+				var array = (
+					from candidate in await Task.Run(() => new BugChecker(_puzzle).GetAllTrueCandidates(64))
+					orderby candidate
+					let Str = new CandidateCollection(candidate).ToString()
+					select new PrimaryElementTuple<int, string>(candidate, Str, 2)).ToArray();
 
 				_labelStatus.ClearValue(ContentProperty);
-				int count = list.Count;
+				int count = array.Length;
 				if (count == 0)
 				{
 					_labelStatus.Content = (string)LangSource["BugMultipleFailCase"];
 				}
 				else
 				{
-					_listBoxTrueCandidates.ItemsSource = list;
+					_listBoxTrueCandidates.ItemsSource = array;
 					string singularOrPlural = count == 1 ? string.Empty : "s";
 					_labelStatus.Content =
 						$"{LangSource[count == 1 ? "ThereIs" : "ThereAre"]} " +

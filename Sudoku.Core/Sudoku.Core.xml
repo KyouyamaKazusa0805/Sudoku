@@ -4486,6 +4486,19 @@
             </summary>
             <seealso cref="T:System.Collections.Generic.ICollection`1"/>
         </member>
+        <member name="M:Sudoku.Extensions.CollectionEx.AddRange``1(System.Collections.Generic.ICollection{``0},``0[])">
+            <summary>
+            Adds the elements of the specified collection to the end of the
+            <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <typeparam name="T">
+            The type of each element. Should be not <see langword="null"/>.
+            </typeparam>
+            <param name="this">(<see langword="this"/> parameter) The collection.</param>
+            <param name="values">
+            (<see langword="params"/> parameter) The values you want to add to the end of the collection.
+            </param>
+        </member>
         <member name="M:Sudoku.Extensions.CollectionEx.AddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
             <summary>
             Adds the elements of the specified collection to the end of the
