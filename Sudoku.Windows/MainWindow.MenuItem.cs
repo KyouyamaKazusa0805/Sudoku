@@ -25,7 +25,6 @@ using Sudoku.Solving.Generating;
 using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Windows.Constants;
 using static Sudoku.Windows.Constants.Processings;
-using AnonymousType = System.Object;
 using SudokuGrid = Sudoku.Data.Grid;
 #if SUDOKU_RECOGNIZING
 using System.Drawing;
@@ -679,7 +678,7 @@ namespace Sudoku.Windows
 					// even if fields are public.
 					// Therefore, here may use anonymous type is okay, but using value tuples
 					// is bad.
-					var collection = new List<AnonymousType>();
+					var collection = new List<DifficultyInfo>();
 					decimal summary = 0, summaryMax = 0;
 					int summaryCount = 0;
 					foreach (var techniqueGroup in
@@ -699,7 +698,7 @@ namespace Sudoku.Windows
 							summaryMax = Math.Max(step.Difficulty, maximum);
 						}
 
-						collection.Add(new { Technique = name, Count = count, Total = total, Max = maximum });
+						collection.Add(new DifficultyInfo(name, count, total, maximum));
 					}
 
 					collection.Add(new DifficultyInfo(null, summaryCount, summary, summaryMax));
