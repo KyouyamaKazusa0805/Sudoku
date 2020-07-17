@@ -332,8 +332,8 @@ namespace Sudoku.Windows
 
 				_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
 				_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
-				//_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
-				_treeViewTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+				_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+				//_treeViewTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 			}
 		}
 
@@ -356,8 +356,8 @@ namespace Sudoku.Windows
 
 				_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
 				_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
-				//_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
-				_treeViewTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+				_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+				//_treeViewTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 			}
 		}
 
@@ -961,104 +961,5 @@ namespace Sudoku.Windows
 
 		private void MenuItemAboutImplementedTechniques_Click(object sender, RoutedEventArgs e) =>
 			new TechniquesWindow().Show();
-
-		private void ContextListBoxPathsCopyCurrentStep_Click(object sender, RoutedEventArgs e)
-		{
-			if (sender is MenuItem)
-			{
-				try
-				{ 
-					if (_listBoxPaths.SelectedItem is ListBoxItem listBoxItem
-						&& listBoxItem.Content is PrimaryElementTuple<string, int, TechniqueInfo> triplet)
-					{
-						Clipboard.SetText(triplet.Value3.ToFullString());
-					}
-				}
-				catch
-				{
-					Messagings.CannotCopyStep();
-				}
-			}
-		}
-
-		[SuppressMessage("Style", "IDE0038:Use pattern matching", Justification = "<Pending>")]
-		private void ContextListBoxPathsCopyAllSteps_Click(object sender, RoutedEventArgs e)
-		{
-			if (sender is MenuItem)
-			{
-				var sb = new StringBuilder();
-				foreach (string step in
-					from ListBoxItem item in _listBoxPaths.Items
-					let Content = item.Content
-					where Content is PrimaryElementTuple<string, int, TechniqueInfo>
-					select ((PrimaryElementTuple<string, int, TechniqueInfo>)Content).Value3.ToFullString())
-				{
-					sb.AppendLine(step);
-				}
-
-				try
-				{
-					Clipboard.SetText(sb.ToString());
-				}
-				catch
-				{
-					Messagings.CannotCopyStep();
-				}
-			}
-		}
-
-		private void MenuItemImageGridSet1_Click(object sender, RoutedEventArgs e) =>
-			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 0);
-
-		private void MenuItemImageGridSet2_Click(object sender, RoutedEventArgs e) =>
-			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 1);
-
-		private void MenuItemImageGridSet3_Click(object sender, RoutedEventArgs e) =>
-			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 2);
-
-		private void MenuItemImageGridSet4_Click(object sender, RoutedEventArgs e) =>
-			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 3);
-
-		private void MenuItemImageGridSet5_Click(object sender, RoutedEventArgs e) =>
-			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 4);
-
-		private void MenuItemImageGridSet6_Click(object sender, RoutedEventArgs e) =>
-			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 5);
-
-		private void MenuItemImageGridSet7_Click(object sender, RoutedEventArgs e) =>
-			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 6);
-
-		private void MenuItemImageGridSet8_Click(object sender, RoutedEventArgs e) =>
-			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 7);
-
-		private void MenuItemImageGridSet9_Click(object sender, RoutedEventArgs e) =>
-			SetADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 8);
-
-		private void MenuItemImageGridDelete1_Click(object sender, RoutedEventArgs e) =>
-			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 0);
-
-		private void MenuItemImageGridDelete2_Click(object sender, RoutedEventArgs e) =>
-			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 1);
-
-		private void MenuItemImageGridDelete3_Click(object sender, RoutedEventArgs e) =>
-			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 2);
-
-		private void MenuItemImageGridDelete4_Click(object sender, RoutedEventArgs e) =>
-			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 3);
-
-		private void MenuItemImageGridDelete5_Click(object sender, RoutedEventArgs e) =>
-			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 4);
-
-		private void MenuItemImageGridDelete6_Click(object sender, RoutedEventArgs e) =>
-			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 5);
-
-		private void MenuItemImageGridDelete7_Click(object sender, RoutedEventArgs e) =>
-			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 6);
-
-		private void MenuItemImageGridDelete8_Click(object sender, RoutedEventArgs e) =>
-			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 7);
-
-		private void MenuItemImageGridDelete9_Click(object sender, RoutedEventArgs e) =>
-			DeleteADigit(_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF()), 8);
 	}
 }

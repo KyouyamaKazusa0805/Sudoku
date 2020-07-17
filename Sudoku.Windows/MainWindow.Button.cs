@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Media;
+using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.Checking;
@@ -12,6 +15,7 @@ using Sudoku.Solving.Manual;
 using Sudoku.Windows.Constants;
 using Sudoku.Windows.Tooling;
 using static Sudoku.Windows.Constants.Processings;
+using Triplet = System.PrimaryElementTuple<string, Sudoku.Solving.TechniqueInfo, bool>;
 
 namespace Sudoku.Windows
 {
@@ -47,7 +51,8 @@ namespace Sudoku.Windows
 				var list = new List<ListBoxItem>();
 				if (_cacheAllSteps is null)
 				{
-					_treeViewTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+					_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+					//_treeViewTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 					_textBoxInfo.Text = (string)LangSource["WhileFindingAllSteps"];
 					_buttonFindAllSteps.IsEnabled = false;
 					DisableSolvingControls();
@@ -70,27 +75,29 @@ namespace Sudoku.Windows
 				}
 
 				// The boolean value stands for whether the technique is enabled.
-				var roots = (
-					from name in from techniqueGroup in techniqueGroups select techniqueGroup.Key
-					select new TreeNode<TreeViewItem> { Content = new TreeViewItem { Header = name } }).ToList();
+				var collection = new ObservableCollection<ListBoxItem>();
 				foreach (var techniqueGroup in techniqueGroups)
 				{
 					string name = techniqueGroup.Key;
-					roots.First(n => (string)n.Content!.Header == name).Children.AddRange(
+					collection.AddRange(
 						from info in techniqueGroup
 						where f(info)
-						select new TreeNode<TreeViewItem>
+						let Pair = Settings.DiffColors[info.DifficultyLevel]
+						select new ListBoxItem
 						{
-							Content =
-								new TreeViewItem
-								{
-									Header =
-										new PrimaryElementTuple<string, TechniqueInfo, bool>(
-											info.ToSimpleString(), info, true),
-								}
+							Content = new Triplet(info.ToSimpleString(), info, true),
+							Foreground = new SolidColorBrush(Pair._foreground.ToWColor()),
+							Background = new SolidColorBrush(Pair._background.ToWColor()),
+							BorderThickness = default
 						});
 				}
-				_treeViewTechniques.ItemsSource = roots;
+
+				// Group them by its name.
+				var srcView = new ListCollectionView(collection);
+				srcView.GroupDescriptions.Add(
+					new PropertyGroupDescription(
+						$"{nameof(Content)}.{nameof(Triplet.Value2)}.{nameof(TechniqueInfo.Name)}"));
+				_listBoxTechniques.ItemsSource = srcView;
 
 				dialog?.CloseAnyway();
 			}

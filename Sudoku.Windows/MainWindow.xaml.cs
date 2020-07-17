@@ -1014,7 +1014,7 @@ namespace Sudoku.Windows
 		{
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
 			_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
-			_treeViewTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+			_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 
 			SwitchOnTabItemWhenGeneratedOrSolving();
 		}

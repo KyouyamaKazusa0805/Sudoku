@@ -34,5 +34,27 @@ namespace Sudoku.Windows
 				UpdateImageGrid();
 			}
 		}
+
+		private void ListBoxTechniques_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (sender is ListBox listBox && listBox.SelectedItem is ListBoxItem node
+				&& node.Content is PrimaryElementTuple<string, TechniqueInfo, bool> triplet)
+			{
+				if (triplet.Value3)
+				{
+					var info = triplet.Value2;
+					_currentTechniqueInfo = info;
+					_currentPainter.View = info.Views[_currentViewIndex = 0];
+					_currentPainter.Conclusions = info.Conclusions;
+					_textBoxInfo.Text = info.ToFullString();
+
+					UpdateImageGrid();
+				}
+			}
+			else
+			{
+				_contextMenuTechniques = null;
+			}
+		}
 	}
 }
