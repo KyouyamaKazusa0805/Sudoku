@@ -1,5 +1,6 @@
 v0.1.0.0
-Add the filter for the all steps searched.
+Add Filters for the all steps searched.
+Add Direct fish view.
 Fix The bug that the difficulty cannot be changed.
 Fix The bug that copied incorrect string from the path information.
 Fix The bug that crushed when the width of the tab control is 0 or below 0.
