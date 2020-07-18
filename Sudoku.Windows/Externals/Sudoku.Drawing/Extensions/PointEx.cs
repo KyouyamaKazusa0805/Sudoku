@@ -63,5 +63,12 @@ namespace Sudoku.Drawing.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The point to truncate.</param>
 		/// <returns>The result.</returns>
 		public static WPoint Truncate(this WPoint @this) => new WPoint((int)@this.X, (int)@this.Y);
+
+		/// <summary>
+		/// To truncate the point.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The point to truncate.</param>
+		/// <returns>The result.</returns>
+		public static DPoint Truncate(this DPointF @this) => new DPoint((int)@this.X, (int)@this.Y);
 	}
 }

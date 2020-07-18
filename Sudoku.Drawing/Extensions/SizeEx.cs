@@ -24,5 +24,12 @@ namespace Sudoku.Drawing.Extensions
 		/// <param name="height">(<see langword="out"/> parameter) The height.</param>
 		public static void Deconstruct(this SizeF @this, out float width, out float height) =>
 			(width, height) = (@this.Width, @this.Height);
+
+		/// <summary>
+		/// To truncate the size.
+		/// </summary>
+		/// <param name="this">(<see langword="this"/> parameter) The size.</param>
+		/// <returns>The result.</returns>
+		public static Size Truncate(this SizeF @this) => new Size((int)@this.Width, (int)@this.Height);
 	}
 }

@@ -85,6 +85,13 @@
             <param name="width">(<see langword="out" /> parameter) The width.</param>
             <param name="height">(<see langword="out" /> parameter) The height.</param>
         </member>
+        <member name="M:Sudoku.Drawing.Extensions.SizeEx.Truncate(System.Drawing.SizeF)">
+            <summary>
+            To truncate the size.
+            </summary>
+            <param name="this">(<see langword="this"/> parameter) The size.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="T:Sudoku.Drawing.MutableView">
             <summary>
             Encapsulates a view when displaying the information on forms.

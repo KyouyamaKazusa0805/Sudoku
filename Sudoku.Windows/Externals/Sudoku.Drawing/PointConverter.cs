@@ -22,7 +22,12 @@ namespace Sudoku.Drawing
 		/// Indicates the width of the gap between the picture box outline
 		/// and the sudoku grid outline.
 		/// </summary>
-		public const int Offset = 10;
+		private const int Offset = 10;
+
+		/// <summary>
+		/// I don't know why the constant exists.
+		/// </summary>
+		private const int WhatTheHellOffset = 6;
 
 
 		/// <summary>
@@ -71,11 +76,6 @@ namespace Sudoku.Drawing
 		public PointF[,] GridPoints { get; private set; } = null!;
 
 		/// <summary>
-		/// Indicates the panel size.
-		/// </summary>
-		public SizeF PanelSize { get; private set; }
-
-		/// <summary>
 		/// Indicates the control size.
 		/// </summary>
 		public SizeF ControlSize { get; private set; }
@@ -104,21 +104,18 @@ namespace Sudoku.Drawing
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public int GetCellOffset(PointF point)
 		{
-			var (x, y) = point;
-			if (x < Offset || x > ControlSize.Width + Offset || y < Offset || y > ControlSize.Height + Offset)
+			var (x, y) = point.Truncate();
+			x -= Offset + WhatTheHellOffset;
+			y -= Offset + WhatTheHellOffset;
+			if (x < 0 || x > GridSize.Width || y < 0 || y > GridSize.Height)
 			{
 				// Invalid case.
 				return -1;
 			}
 
-			// TODO: Edge cells cannot be calculated correctly with this formula.
-			var (cw, ch) = CellSize;
-			int result = (int)((y - Offset) / (ch + 1)) * 9 + (int)((x - Offset) / (cw + 1));
-			if (result < 0 || result >= 81)
-			{
-				return -1;
-			}
-			return result;
+			var (cw, ch) = CellSize.Truncate();
+			int result = y / ch * 9 + x / cw;
+			return result < 0 || result >= 81 ? -1 : result;
 		}
 
 		/// <summary>
