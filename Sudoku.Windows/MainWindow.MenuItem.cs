@@ -7,8 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using Sudoku.Data;
@@ -16,8 +14,6 @@ using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
-using Sudoku.Drawing.Extensions;
-using Sudoku.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Solving.Checking;
@@ -333,7 +329,6 @@ namespace Sudoku.Windows
 				_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
 				_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
 				_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
-				//_treeViewTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 			}
 		}
 
@@ -357,7 +352,6 @@ namespace Sudoku.Windows
 				_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
 				_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
 				_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
-				//_treeViewTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
 			}
 		}
 
@@ -403,6 +397,7 @@ namespace Sudoku.Windows
 		private void MenuItemEditClear_Click(object sender, RoutedEventArgs e)
 		{
 			Puzzle = new UndoableGrid(SudokuGrid.Empty);
+			_analyisResult = null;
 
 			UpdateImageGrid();
 		}
@@ -642,92 +637,10 @@ namespace Sudoku.Windows
 				// Solved. Now update the technique summary.
 				EnableSolvingControls();
 				SwitchOnGeneratingComboBoxesDisplaying();
-
-				if (_analyisResult.HasSolved)
-				{
-					_textBoxInfo.Text =
-						$"{_analyisResult.SolvingStepsCount} " +
-						$@"{(
-							_analyisResult.SolvingStepsCount == 1 ? LangSource["StepSingular"] : LangSource["StepPlural"]
-						)}" +
-						$"{LangSource["Comma"]}" +
-						$"{LangSource["TimeElapsed"]}" +
-						$"{_analyisResult.ElapsedTime:hh':'mm'.'ss'.'fff}" +
-						$"{LangSource["Period"]}";
-
-					int i = 0;
-					var pathList = new List<ListBoxItem>();
-					foreach (var step in _analyisResult.SolvingSteps!)
-					{
-						var (fore, back) = Settings.DiffColors[step.DifficultyLevel];
-						pathList.Add(
-							new ListBoxItem
-							{
-								Foreground = new SolidColorBrush(fore.ToWColor()),
-								Background = new SolidColorBrush(back.ToWColor()),
-								Content =
-									new PrimaryElementTuple<string, int, TechniqueInfo>(
-										$"(#{i + 1}, {step.Difficulty}) {step.ToSimpleString()}", i++, step),
-								BorderThickness = default
-							});
-					}
-					_listBoxPaths.ItemsSource = pathList;
-
-					// Gather the information.
-					// GridView should list the instance with each property, not fields,
-					// even if fields are public.
-					// Therefore, here may use anonymous type is okay, but using value tuples
-					// is bad.
-					var collection = new List<DifficultyInfo>();
-					decimal summary = 0, summaryMax = 0;
-					int summaryCount = 0;
-					foreach (var techniqueGroup in
-						from solvingStep in _analyisResult.SolvingSteps!
-						orderby solvingStep.Difficulty
-						group solvingStep by solvingStep.Name)
-					{
-						string name = techniqueGroup.Key;
-						int count = techniqueGroup.Count();
-						decimal total = 0, maximum = 0;
-						foreach (var step in techniqueGroup)
-						{
-							summary += step.Difficulty;
-							summaryCount++;
-							total += step.Difficulty;
-							maximum = Math.Max(step.Difficulty, maximum);
-							summaryMax = Math.Max(step.Difficulty, maximum);
-						}
-
-						collection.Add(new DifficultyInfo(name, count, total, maximum));
-					}
-
-					collection.Add(new DifficultyInfo(null, summaryCount, summary, summaryMax));
-
-					GridView view;
-					_listViewSummary.ItemsSource = collection;
-					_listViewSummary.View = view = new GridView();
-					view.Columns.AddRange(
-						createGridViewColumn(LangSource["TechniqueHeader"], nameof(DifficultyInfo.Technique), .6),
-						createGridViewColumn(LangSource["TechniqueCount"], nameof(DifficultyInfo.Count), .1),
-						createGridViewColumn(LangSource["TechniqueTotal"], nameof(DifficultyInfo.Total), .15),
-						createGridViewColumn(LangSource["TechniqueMax"], nameof(DifficultyInfo.Max), .15));
-					view.AllowsColumnReorder = false;
-				}
-				else
-				{
-					Messagings.FailedToSolveWithMessage(_analyisResult);
-				}
+				DisplayDifficultyInfoAfterAnalyzed();
 
 				return true;
 			}
-
-			GridViewColumn createGridViewColumn(object header, string name, double widthScale) =>
-				new GridViewColumn
-				{
-					Header = header,
-					DisplayMemberBinding = new Binding(name),
-					Width = _tabControlInfo.ActualWidth * widthScale - 4,
-				};
 		}
 
 		private void MenuItemAnalyzeSeMode_Click(object sender, RoutedEventArgs e) =>

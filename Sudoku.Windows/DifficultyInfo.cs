@@ -4,7 +4,7 @@
 	/// Indicates the difficulty information used for gather the technique information of a puzzle.
 	/// </summary>
 	/// <remarks>
-	/// <i>This <see langword="class"/> will be replaced with the <see langword="record"/> after using .NET 5.</i>
+	/// This <see langword="class"/> will be replaced with the <see langword="record"/> after using .NET 5.
 	/// </remarks>
 	public sealed class DifficultyInfo
 	{

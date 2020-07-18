@@ -30,11 +30,48 @@ namespace Sudoku.Windows.Tooling
 		private readonly Brush _brush = new SolidBrush(Color.Black);
 
 
+		/// <summary>
+		/// Indicates whether the specified instance has been already disposed.
+		/// </summary>
+		private bool _isDisposed;
+
+
 		public FontDialog() => InitializeComponent();
+
+
+		/// <summary>
+		/// The finalizer of this class.
+		/// </summary>
+		~FontDialog() => Dispose(disposing: false);
 
 
 		public Font SelectedFont { get; private set; } = null!;
 
+
+		/// <inheritdoc/>
+		public void Dispose()
+		{
+			// Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+			Dispose(disposing: true);
+			GC.SuppressFinalize(this);
+		}
+
+		/// <inheritdoc/>
+		protected virtual void Dispose(bool disposing)
+		{
+			if (!_isDisposed)
+			{
+				if (disposing)
+				{
+					// Dispose managed state (managed objects).
+					_brush.Dispose();
+				}
+
+				// Free unmanaged resources (unmanaged objects) and override finalizer.
+				// Set large fields to null.
+				_isDisposed = true;
+			}
+		}
 
 		protected override void OnInitialized(EventArgs e)
 		{
@@ -140,8 +177,5 @@ namespace Sudoku.Windows.Tooling
 				}
 			}
 		}
-
-		/// <inheritdoc/>
-		public void Dispose() => _brush.Dispose();
 	}
 }

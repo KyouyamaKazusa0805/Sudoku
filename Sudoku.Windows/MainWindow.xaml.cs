@@ -18,8 +18,6 @@ using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
-using Sudoku.Solving;
-using Sudoku.Solving.Manual;
 using Sudoku.Windows.Constants;
 using Sudoku.Windows.Extensions;
 using static System.StringSplitOptions;
@@ -27,9 +25,13 @@ using static Sudoku.Constants.Processings;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Windows.Constants.Processings;
 using CoreResources = Sudoku.Windows.Resources;
+using K = System.Windows.Input.Key;
+using M = System.Windows.Input.ModifierKeys;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
-using WPoint = System.Windows.Point;
+using Sudoku.Solving;
+using System.Windows.Data;
+using Sudoku.Data.Extensions;
 #if SUDOKU_RECOGNIZING
 using System.Diagnostics;
 using Sudoku.Recognitions;
@@ -42,136 +44,6 @@ namespace Sudoku.Windows
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		/// <summary>
-		/// The custom view.
-		/// </summary>
-		private readonly MutableView _view = new MutableView();
-		
-
-		/// <summary>
-		/// The current custom drawing mode. The values are:
-		/// <list type="table">
-		/// <item>
-		/// <term>-1</term>
-		/// <description>None selected.</description>
-		/// </item>
-		/// <item>
-		/// <term>0</term>
-		/// <description>Drawing cells.</description>
-		/// </item>
-		/// <item>
-		/// <term>1</term>
-		/// <description>Drawing candidates.</description>
-		/// </item>
-		/// <item>
-		/// <term>2</term>
-		/// <description>Drawing regions.</description>
-		/// </item>
-		/// <item>
-		/// <term>3</term>
-		/// <description>Drawing links.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		private int _customDrawingMode = -1;
-
-		/// <summary>
-		/// The current view index.
-		/// </summary>
-		private int _currentViewIndex = -1;
-
-		/// <summary>
-		/// Indicates the current color chosen (used in coloring mode).
-		/// See <see cref="Settings.PaletteColors"/> for more. If the value is
-		/// <see cref="int.MinValue"/>, the current color is unavailable.
-		/// </summary>
-		/// <seealso cref="Settings.PaletteColors"/>
-		/// <seealso cref="int.MinValue"/>
-		private int _currentColor = int.MinValue;
-
-		/// <summary>
-		/// Indicates the database of puzzles used current.
-		/// </summary>
-		private string? _database;
-
-		/// <summary>
-		/// Indicates the puzzles text loaded.
-		/// </summary>
-		private string[]? _puzzlesText;
-
-		/// <summary>
-		/// Indicates the current right click position, which is used for
-		/// check the cell (set and delete a candidate from a grid using context menu).
-		/// </summary>
-		private WPoint _currentRightClickPos;
-
-		/// <summary>
-		/// The map of selected cells while drawing regions.
-		/// </summary>
-		private GridMap _selectedCellsWhileDrawingRegions = GridMap.Empty;
-
-		/// <summary>
-		/// Indicates all focused cells.
-		/// </summary>
-		private GridMap _focusedCells = GridMap.Empty;
-
-		/// <summary>
-		/// The preview map. This field is only used for
-		/// <see cref="OnKeyDown(KeyEventArgs)"/> and <see cref="OnKeyUp(KeyEventArgs)"/>.
-		/// </summary>
-		/// <seealso cref="OnKeyDown(KeyEventArgs)"/>
-		/// <seealso cref="OnKeyUp(KeyEventArgs)"/>
-		private GridMap? _previewMap;
-
-#if SUDOKU_RECOGNIZING
-		/// <summary>
-		/// Indicates an recognition instance.
-		/// </summary>
-		private RecognitionServiceProvider? _recognition;
-#endif
-
-		/// <summary>
-		/// Indicates the analysis result after solving of the current grid.
-		/// </summary>
-		private AnalysisResult? _analyisResult;
-
-		/// <summary>
-		/// The current technique information.
-		/// </summary>
-		private TechniqueInfo? _currentTechniqueInfo;
-
-		/// <summary>
-		/// Indicates the current target painter.
-		/// </summary>
-		private GridPainter _currentPainter = null!;
-
-		/// <summary>
-		/// The grid.
-		/// </summary>
-		private UndoableGrid _puzzle = new UndoableGrid(SudokuGrid.Empty);
-
-		/// <summary>
-		/// Indicates the internal manual solver.
-		/// This field is mutable.
-		/// </summary>
-		private ManualSolver _manualSolver = null!;
-
-		/// <summary>
-		/// The point converter.
-		/// </summary>
-		private PointConverter _pointConverter = null!;
-
-		/// <summary>
-		/// The initial grid.
-		/// </summary>
-		private IReadOnlyGrid _initialPuzzle = null!;
-
-		/// <summary>
-		/// The steps searched. This field stores the previous group that searched before.
-		/// </summary>
-		private IEnumerable<IGrouping<string, TechniqueInfo>>? _cacheAllSteps;
-
-
 		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public MainWindow() => InitializeComponent();
 
@@ -235,22 +107,7 @@ namespace Sudoku.Windows
 #endif
 
 			// Define shortcuts.
-			AddShortCut(Key.C, ModifierKeys.Control, null, MenuItemEditCopy_Click);
-			AddShortCut(Key.H, ModifierKeys.Control, _menuItemGenerateHardPattern, MenuItemGenerateHardPattern_Click);
-			AddShortCut(Key.O, ModifierKeys.Control, _menuItemFileOpen, MenuItemFileOpen_Click);
-			AddShortCut(Key.P, ModifierKeys.Control, null, MenuItemFileGetSnapshot_Click);
-			AddShortCut(Key.S, ModifierKeys.Control, null, MenuItemFileSave_Click);
-			AddShortCut(Key.V, ModifierKeys.Control, _menuItemEditPaste, MenuItemEditPaste_Click);
-			AddShortCut(Key.Y, ModifierKeys.Control, _menuItemEditRedo, MenuItemEditRedo_Click);
-			AddShortCut(Key.Z, ModifierKeys.Control, _menuItemEditUndo, MenuItemEditUndo_Click);
-			AddShortCut(Key.F5, ModifierKeys.Control, _menuItemEditRecomputeCandidates, MenuItemEditRecomputeCandidates_Click);
-			AddShortCut(Key.OemTilde, ModifierKeys.Control, _menuItemEditFix, MenuItemEditFix_Click);
-			AddShortCut(Key.F9, ModifierKeys.None, _menuItemAnalyzeAnalyze, MenuItemAnalyzeAnalyze_Click);
-			AddShortCut(Key.F10, ModifierKeys.None, _menuItemAnalyzeSolve, MenuItemAnalyzeSolve_Click);
-			AddShortCut(Key.F4, ModifierKeys.Alt, null, MenuItemFileQuit_Click);
-			AddShortCut(Key.N, ModifierKeys.Control | ModifierKeys.Shift, _menuItemEditClear, MenuItemEditClear_Click);
-			AddShortCut(Key.C, ModifierKeys.Control | ModifierKeys.Shift, null, MenuItemEditCopyCurrentGrid_Click);
-			AddShortCut(Key.OemTilde, ModifierKeys.Control | ModifierKeys.Shift, _menuItemEditUnfix, MenuItemEditUnfix_Click);
+			AddShortCuts();
 
 			InitializePointConverterAndLayers();
 			LoadDatabaseIfWorth();
@@ -327,10 +184,10 @@ namespace Sudoku.Windows
 						return;
 					}
 
-					int digit = e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1;
+					int digit = e.Key.IsDigitUpsideAlphabets() ? e.Key - K.D1 : e.Key - K.NumPad1;
 					switch (Keyboard.Modifiers)
 					{
-						case ModifierKeys.None:
+						case M.None:
 						{
 							// Input a digit.
 							// Input or eliminate a digit.
@@ -349,7 +206,7 @@ namespace Sudoku.Windows
 
 							break;
 						}
-						case ModifierKeys.Shift:
+						case M.Shift:
 						{
 							// Eliminate a digit.
 							_puzzle[cell, digit] = true;
@@ -363,7 +220,7 @@ namespace Sudoku.Windows
 
 					break;
 				}
-				case var key when key == Key.OemMinus || key == Key.OemPlus:
+				case var key when key == K.OemMinus || key == K.OemPlus:
 				{
 					// Get the previous view or the next view.
 					if (_currentViewIndex == -1 || _currentTechniqueInfo is null)
@@ -371,7 +228,7 @@ namespace Sudoku.Windows
 						return;
 					}
 
-					int nextIndex = key == Key.OemMinus ? _currentViewIndex - 1 : _currentViewIndex + 1;
+					int nextIndex = key == K.OemMinus ? _currentViewIndex - 1 : _currentViewIndex + 1;
 					if (nextIndex < 0 || nextIndex >= _currentTechniqueInfo.Views.Count)
 					{
 						return;
@@ -391,10 +248,10 @@ namespace Sudoku.Windows
 					_focusedCells.Add(
 						e.Key switch
 						{
-							Key.Up => cell - 9 < 0 ? cell + 72 : cell - 9,
-							Key.Down => cell + 9 >= 81 ? cell - 72 : cell + 9,
-							Key.Left => cell - 1 < 0 ? cell + 8 : cell - 1,
-							Key.Right => (cell + 1) % 81,
+							K.Up => cell - 9 < 0 ? cell + 72 : cell - 9,
+							K.Down => cell + 9 >= 81 ? cell - 72 : cell + 9,
+							K.Left => cell - 1 < 0 ? cell + 8 : cell - 1,
+							K.Right => (cell + 1) % 81,
 							_ => throw Throwings.ImpossibleCase
 						});
 
@@ -405,7 +262,7 @@ namespace Sudoku.Windows
 
 					break;
 				}
-				case Key.Space:
+				case K.Space:
 				{
 					// View the intersection.
 					_previewMap = _focusedCells;
@@ -418,7 +275,7 @@ namespace Sudoku.Windows
 
 					break;
 				}
-				case Key.Tab:
+				case K.Tab:
 				{
 					// Move to next box row.
 					int cell = _focusedCells.IsEmpty ? 0 : _focusedCells.SetAt(0);
@@ -432,7 +289,7 @@ namespace Sudoku.Windows
 
 					break;
 				}
-				case Key.Escape:
+				case K.Escape:
 				{
 					// Clear focused cells.
 					ClearViews();
@@ -451,7 +308,7 @@ namespace Sudoku.Windows
 		{
 			base.OnKeyUp(e);
 
-			if (!(_previewMap is null) && e.Key == Key.Space)
+			if (!(_previewMap is null) && e.Key == K.Space)
 			{
 				_focusedCells = _previewMap.Value;
 
@@ -459,6 +316,29 @@ namespace Sudoku.Windows
 
 				UpdateImageGrid();
 			}
+		}
+
+		/// <summary>
+		/// Add short cuts while initializing.
+		/// </summary>
+		private void AddShortCuts()
+		{
+			AddShortCut(K.C, M.Control, null, MenuItemEditCopy_Click);
+			AddShortCut(K.H, M.Control, _menuItemGenerateHardPattern, MenuItemGenerateHardPattern_Click);
+			AddShortCut(K.O, M.Control, _menuItemFileOpen, MenuItemFileOpen_Click);
+			AddShortCut(K.P, M.Control, null, MenuItemFileGetSnapshot_Click);
+			AddShortCut(K.S, M.Control, null, MenuItemFileSave_Click);
+			AddShortCut(K.V, M.Control, _menuItemEditPaste, MenuItemEditPaste_Click);
+			AddShortCut(K.Y, M.Control, _menuItemEditRedo, MenuItemEditRedo_Click);
+			AddShortCut(K.Z, M.Control, _menuItemEditUndo, MenuItemEditUndo_Click);
+			AddShortCut(K.F5, M.Control, _menuItemEditRecomputeCandidates, MenuItemEditRecomputeCandidates_Click);
+			AddShortCut(K.OemTilde, M.Control, _menuItemEditFix, MenuItemEditFix_Click);
+			AddShortCut(K.F9, M.None, _menuItemAnalyzeAnalyze, MenuItemAnalyzeAnalyze_Click);
+			AddShortCut(K.F10, M.None, _menuItemAnalyzeSolve, MenuItemAnalyzeSolve_Click);
+			AddShortCut(K.F4, M.Alt, null, MenuItemFileQuit_Click);
+			AddShortCut(K.N, M.Control | M.Shift, _menuItemEditClear, MenuItemEditClear_Click);
+			AddShortCut(K.C, M.Control | M.Shift, null, MenuItemEditCopyCurrentGrid_Click);
+			AddShortCut(K.OemTilde, M.Control | M.Shift, _menuItemEditUnfix, MenuItemEditUnfix_Click);
 		}
 
 		/// <summary>
@@ -616,15 +496,20 @@ namespace Sudoku.Windows
 		/// <param name="executed">The execution.</param>
 		/// <seealso cref="UIElement.IsEnabled"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void AddShortCut(
-			Key key, ModifierKeys modifierKeys, UIElement? matchControl, ExecutedRoutedEventHandler executed)
+		private void AddShortCut(K key, M modifierKeys, UIElement? matchControl, ExecutedRoutedEventHandler executed)
 		{
-			var routedCommand = new RoutedCommand();
-			routedCommand.InputGestures.Add(new KeyGesture(key, modifierKeys));
+			var command = new RoutedCommand();
+			command.InputGestures.Add(new KeyGesture(key, modifierKeys));
 			CommandBindings.Add(
 				new CommandBinding(
-					routedCommand,
-					(sender, e) => { if (matchControl?.IsEnabled ?? true) executed(sender, e); }));
+					command,
+					executed: (sender, e) =>
+					{
+						if (matchControl?.IsEnabled ?? true)
+						{
+							executed(sender, e);
+						}
+					}));
 		}
 
 		/// <summary>
@@ -817,6 +702,7 @@ namespace Sudoku.Windows
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void DisableGeneratingControls()
 		{
+			_analyisResult = null;
 			_cacheAllSteps = null;
 
 			_textBoxInfo.Text = (string)LangSource["WhileGenerating"];
@@ -1049,38 +935,13 @@ namespace Sudoku.Windows
 			UpdateImageGrid();
 		}
 
-
-		/// <summary>
-		/// To check the validity of all conclusions.
-		/// </summary>
-		/// <param name="solution">The solution.</param>
-		/// <param name="conclusions">The conclusions.</param>
-		/// <returns>A <see cref="bool"/> indicating that.</returns>
-		private static bool CheckConclusionsValidity(IReadOnlyGrid solution, IEnumerable<Conclusion> conclusions)
-		{
-			foreach (var (t, c, d) in conclusions)
-			{
-				int digit = solution[c];
-				switch (t)
-				{
-					case Assignment when digit != d:
-					case Elimination when digit == d:
-					{
-						return false;
-					}
-				}
-			}
-
-			return true;
-		}
-
 		/// <summary>
 		/// Transform the grid.
 		/// </summary>
 		/// <param name="transformation">The inner function to process the transformation.</param>
 		private void Transform(Func<IReadOnlyGrid, UndoableGrid> transformation)
 		{
-			if (_puzzle != (SudokuGrid)SudokuGrid.Empty/* && Messagings.AskWhileClearingStack() == MessageBoxResult.Yes*/)
+			if (_puzzle != SudokuGrid.Empty.ToMutable()/* && Messagings.AskWhileClearingStack() == MessageBoxResult.Yes*/)
 			{
 				Puzzle = transformation(_puzzle);
 
@@ -1118,6 +979,133 @@ namespace Sudoku.Windows
 
 			// Then change the language of the library 'Sudoku.Core'.
 			CoreResources.ChangeLanguage(globalizationString);
+		}
+
+		/// <summary>
+		/// Display difficulty information after analyzed a puzzle.
+		/// </summary>
+		private void DisplayDifficultyInfoAfterAnalyzed()
+		{
+			if (_tabControlInfo.ActualWidth <= 50 || _tabControlInfo.ActualHeight <= 50)
+			{
+				return;
+			}
+
+			if (_analyisResult is null)
+			{
+				return;
+			}
+
+			if (_analyisResult.HasSolved)
+			{
+				_textBoxInfo.Text =
+					$"{_analyisResult.SolvingStepsCount} " +
+					$@"{(
+						_analyisResult.SolvingStepsCount == 1 ? LangSource["StepSingular"] : LangSource["StepPlural"]
+					)}" +
+					$"{LangSource["Comma"]}" +
+					$"{LangSource["TimeElapsed"]}" +
+					$"{_analyisResult.ElapsedTime:hh':'mm'.'ss'.'fff}" +
+					$"{LangSource["Period"]}";
+
+				int i = 0;
+				var pathList = new List<ListBoxItem>();
+				foreach (var step in _analyisResult.SolvingSteps!)
+				{
+					var (fore, back) = Settings.DiffColors[step.DifficultyLevel];
+					pathList.Add(
+						new ListBoxItem
+						{
+							Foreground = new SolidColorBrush(fore.ToWColor()),
+							Background = new SolidColorBrush(back.ToWColor()),
+							Content =
+								new PrimaryElementTuple<string, int, TechniqueInfo>(
+									$"(#{i + 1}, {step.Difficulty}) {step.ToSimpleString()}", i++, step),
+							BorderThickness = default
+						});
+				}
+				_listBoxPaths.ItemsSource = pathList;
+
+				// Gather the information.
+				// GridView should list the instance with each property, not fields,
+				// even if fields are public.
+				// Therefore, here may use anonymous type is okay, but using value tuples
+				// is bad.
+				var collection = new List<DifficultyInfo>();
+				decimal summary = 0, summaryMax = 0;
+				int summaryCount = 0;
+				foreach (var techniqueGroup in
+					from solvingStep in _analyisResult.SolvingSteps!
+					orderby solvingStep.Difficulty
+					group solvingStep by solvingStep.Name)
+				{
+					string name = techniqueGroup.Key;
+					int count = techniqueGroup.Count();
+					decimal total = 0, maximum = 0;
+					foreach (var step in techniqueGroup)
+					{
+						summary += step.Difficulty;
+						summaryCount++;
+						total += step.Difficulty;
+						maximum = Math.Max(step.Difficulty, maximum);
+						summaryMax = Math.Max(step.Difficulty, maximum);
+					}
+
+					collection.Add(new DifficultyInfo(name, count, total, maximum));
+				}
+
+				collection.Add(new DifficultyInfo(null, summaryCount, summary, summaryMax));
+
+				GridView view;
+				_listViewSummary.ItemsSource = collection;
+				_listViewSummary.View = view = new GridView();
+				view.Columns.AddRange(
+					createGridViewColumn(LangSource["TechniqueHeader"], nameof(DifficultyInfo.Technique), .6),
+					createGridViewColumn(LangSource["TechniqueCount"], nameof(DifficultyInfo.Count), .1),
+					createGridViewColumn(LangSource["TechniqueTotal"], nameof(DifficultyInfo.Total), .15),
+					createGridViewColumn(LangSource["TechniqueMax"], nameof(DifficultyInfo.Max), .15));
+				view.AllowsColumnReorder = false;
+
+				GridViewColumn createGridViewColumn(object header, string name, double widthScale) =>
+					new GridViewColumn
+					{
+						Header = header,
+						DisplayMemberBinding = new Binding(name),
+						Width = _tabControlInfo.ActualWidth * widthScale - 4,
+					};
+			}
+			else
+			{
+				Messagings.FailedToSolveWithMessage(_analyisResult);
+			}
+		}
+
+
+		private void Window_SizeChanged(object sender, SizeChangedEventArgs e) => DisplayDifficultyInfoAfterAnalyzed();
+
+
+		/// <summary>
+		/// To check the validity of all conclusions.
+		/// </summary>
+		/// <param name="solution">The solution.</param>
+		/// <param name="conclusions">The conclusions.</param>
+		/// <returns>A <see cref="bool"/> indicating that.</returns>
+		private static bool CheckConclusionsValidity(IReadOnlyGrid solution, IEnumerable<Conclusion> conclusions)
+		{
+			foreach (var (t, c, d) in conclusions)
+			{
+				int digit = solution[c];
+				switch (t)
+				{
+					case Assignment when digit != d:
+					case Elimination when digit == d:
+					{
+						return false;
+					}
+				}
+			}
+
+			return true;
 		}
 	}
 }

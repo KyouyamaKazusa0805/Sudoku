@@ -15,5 +15,11 @@ namespace Sudoku.Windows
 
 			UpdateImageGrid();
 		}
+
+		private void GridSplitterColumn01_DragCompleted(object sender, DragCompletedEventArgs e)
+		{
+			DisplayDifficultyInfoAfterAnalyzed();
+			UpdateImageGrid();
+		}
 	}
 }

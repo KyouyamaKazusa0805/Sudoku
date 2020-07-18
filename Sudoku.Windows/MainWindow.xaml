@@ -4,7 +4,7 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		mc:Ignorable="d" Title="{DynamicResource SolutionName}"
-		Height="800" Width="1200">
+		Height="800" Width="1200" SizeChanged="Window_SizeChanged">
 	<Window.Resources>
 		<Style TargetType="MenuItem">
 			<Setter Property="IsTabStop" Value="False"/>
@@ -397,7 +397,8 @@
 			</Image>
 			<GridSplitter Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch"
 						  Name="_gridSplitterColumn01" Focusable="False"
-						  DragDelta="GridSplitterColumn01_DragDelta"/>
+						  DragDelta="GridSplitterColumn01_DragDelta"
+						  DragCompleted="GridSplitterColumn01_DragCompleted"/>
 			<TabControl Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Name="_tabControlInfo" Focusable="False"
 						HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsTabStop="False"
 						SelectionChanged="TabControlInfo_SelectionChanged">
