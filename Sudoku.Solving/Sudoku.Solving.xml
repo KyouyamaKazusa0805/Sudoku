@@ -4252,6 +4252,18 @@
             </param>
             <returns>The result.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher.GetDirectView(Sudoku.Data.IReadOnlyGrid,System.Int32,System.ReadOnlySpan{System.Int32},System.ReadOnlySpan{System.Int32},System.Boolean,Sudoku.Data.GridMap)">
+            <summary>
+            Get the direct fish view with the specified grid and the base sets.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="baseSets">The base sets.</param>
+            <param name="coverSets">The cover sets.</param>
+            <param name="searchRow">Indicates whether the current searcher searches row.</param>
+            <param name="finCellsMap">The fins map.</param>
+            <returns>The view.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishTechniqueSearcher.GetGridMap(Sudoku.Data.GridMap@,System.ReadOnlySpan{System.Int32},Sudoku.Data.GridMap)">
             <summary>
             Record all cells in the all regions to a <see cref="T:Sudoku.Data.GridMap"/> instance.

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Extensions;
 using Sudoku.Solving.Annotations;
 using static Sudoku.Constants.Processings;
+using static Sudoku.Constants.RegionLabel;
 using static Sudoku.Constants.Values;
 using static Sudoku.Data.ConclusionType;
 
@@ -219,7 +221,9 @@ namespace Sudoku.Solving.Manual.Fishes
 															(0, bs1), (0, bs2),
 															(1, cs1), (1, cs2)
 														},
-														links: null)
+														links: null),
+													GetDirectView(
+														grid, digit, baseSets2, coverSets2, searchRow, finCellsMap)
 												},
 												digit,
 												baseSets: baseSets2.ToArray(),
@@ -395,7 +399,10 @@ namespace Sudoku.Solving.Manual.Fishes
 																		(0, bs1), (0, bs2), (0, bs3),
 																		(1, cs1), (1, cs2), (1, cs3)
 																	},
-																	links: null)
+																	links: null),
+																GetDirectView(
+																	grid, digit, baseSets3,
+																	coverSets3, searchRow, finCellsMap)
 															},
 															digit,
 															baseSets: baseSets3.ToArray(),
@@ -588,7 +595,10 @@ namespace Sudoku.Solving.Manual.Fishes
 																				(1, cs1), (1, cs2),
 																				(1, cs3), (1, cs4)
 																			},
-																			links: null)
+																			links: null),
+																		GetDirectView(
+																			grid, digit, baseSets4,
+																			coverSets4, searchRow, finCellsMap)
 																	},
 																	digit,
 																	baseSets: baseSets4.ToArray(),
@@ -607,6 +617,82 @@ namespace Sudoku.Solving.Manual.Fishes
 					}
 				}
 			}
+		}
+
+		/// <summary>
+		/// Get the direct fish view with the specified grid and the base sets.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="digit">The digit.</param>
+		/// <param name="baseSets">The base sets.</param>
+		/// <param name="coverSets">The cover sets.</param>
+		/// <param name="searchRow">Indicates whether the current searcher searches row.</param>
+		/// <param name="finCellsMap">The fins map.</param>
+		/// <returns>The view.</returns>
+		private static View GetDirectView(
+			IReadOnlyGrid grid, int digit, ReadOnlySpan<int> baseSets, ReadOnlySpan<int> coverSets,
+			bool searchRow, GridMap finCellsMap)
+		{
+			// Get the highlight cells (necessary).
+			var cellOffsets = new List<(int, int)>();
+			var candidateOffsets = finCellsMap.IsEmpty ? null : new List<(int, int)>();
+			foreach (int baseSet in baseSets)
+			{
+				foreach (int cell in RegionMaps[baseSet])
+				{
+					switch (grid.Exists(cell, digit))
+					{
+						case true when finCellsMap[cell]:
+						{
+							cellOffsets.Add((1, cell));
+							break;
+						}
+						case false:
+						case null:
+						{
+							if (ValueMaps[digit].Any(c => RegionMaps[GetRegion(c, searchRow ? Column : Row)][cell]))
+							{
+								continue;
+							}
+
+							var baseMap = GridMap.Empty;
+							foreach (int b in baseSets)
+							{
+								baseMap |= RegionMaps[b];
+							}
+							var coverMap = GridMap.Empty;
+							foreach (int c in coverSets)
+							{
+								coverMap |= RegionMaps[c];
+							}
+							baseMap &= coverMap;
+							if (baseMap[cell])
+							{
+								continue;
+							}
+
+							cellOffsets.Add((0, cell));
+							break;
+						}
+						//default:
+						//{
+						//	// Don't forget this case.
+						//	continue;
+						//}
+					}
+				}
+			}
+			foreach (int cell in ValueMaps[digit])
+			{
+				cellOffsets.Add((2, cell));
+			}
+
+			foreach (int cell in finCellsMap)
+			{
+				candidateOffsets!.Add((1, cell * 9 + digit));
+			}
+
+			return new View(cellOffsets, candidateOffsets, null, null);
 		}
 
 		/// <summary>
