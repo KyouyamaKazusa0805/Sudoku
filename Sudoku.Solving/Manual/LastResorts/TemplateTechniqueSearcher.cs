@@ -80,10 +80,9 @@ namespace Sudoku.Solving.Manual.LastResorts
 						conclusions,
 						views: new[]
 						{
-							new View(
-								new List<(int, int)>(
-									from conclusion in conclusions
-									select (0, conclusion.CellOffset * 9 + conclusion.Digit)))
+							new View((
+								from conclusion in conclusions
+								select (0, conclusion.CellOffset * 9 + conclusion.Digit)).ToArray())
 						},
 						isTemplateDeletion: false));
 			}

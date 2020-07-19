@@ -60,7 +60,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 					if (IsValidGrid(grid, cell))
 					{
-						GetAllRecursively(tempAccumulator, tempGrid, startCandidate, _length - 1);
+						GetAll(tempAccumulator, tempGrid, startCandidate, _length - 1);
 					}
 					else
 					{
@@ -71,10 +71,9 @@ namespace Sudoku.Solving.Manual.LastResorts
 								{
 									new View(
 										cellOffsets: null,
-										candidateOffsets:
-											new List<(int, int)>(
-												from conclusion in _tempConclusions
-												select (0, conclusion.CellOffset * 9 + conclusion.Digit)),
+										candidateOffsets: (
+											from conclusion in _tempConclusions
+											select (0, conclusion.CellOffset * 9 + conclusion.Digit)).ToArray(),
 										regionOffsets: null,
 										links: GetLinks())
 								},
@@ -91,8 +90,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				from info in tempAccumulator
 				orderby info.ContradictionSeries.Count
 				let Conclusion = info.ContradictionSeries[0]
-				let Candidate = Conclusion.CellOffset * 9 + Conclusion.Digit
-				orderby Candidate
+				orderby Conclusion.CellOffset * 9 + Conclusion.Digit
 				select info);
 		}
 
@@ -103,7 +101,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <param name="grid">The grid.</param>
 		/// <param name="startCandidate">The start candidate.</param>
 		/// <param name="length">The length.</param>
-		private void GetAllRecursively(IList<BowmanBingoTechniqueInfo> result, Grid grid, int startCandidate, int length)
+		private void GetAll(IList<BowmanBingoTechniqueInfo> result, Grid grid, int startCandidate, int length)
 		{
 			if (length == 0 || !(_searcher.GetOne(grid) is SingleTechniqueInfo singleInfo))
 			{
@@ -125,7 +123,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 			if (IsValidGrid(grid, c))
 			{
 				// Sounds good.
-				GetAllRecursively(result, grid, startCandidate, length - 1);
+				GetAll(result, grid, startCandidate, length - 1);
 			}
 			else
 			{

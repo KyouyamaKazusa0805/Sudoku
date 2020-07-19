@@ -4661,7 +4661,7 @@
         <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.TechniqueInfo},Sudoku.Data.IReadOnlyGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.GetAllRecursively(System.Collections.Generic.IList{Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueInfo},Sudoku.Data.Grid,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.LastResorts.BowmanBingoTechniqueInfo},Sudoku.Data.Grid,System.Int32,System.Int32)">
             <summary>
             Take all information recursively.
             </summary>

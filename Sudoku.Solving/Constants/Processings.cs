@@ -124,9 +124,9 @@ namespace Sudoku.Solving.Constants
 				}
 			}
 
-			foreach (var (cell, isOn) in map)
+			foreach (var (candidate, isOn) in map)
 			{
-				result.Add((isOn ? 0 : 1, cell));
+				result.Add((isOn ? 0 : 1, candidate));
 			}
 
 			return result;
