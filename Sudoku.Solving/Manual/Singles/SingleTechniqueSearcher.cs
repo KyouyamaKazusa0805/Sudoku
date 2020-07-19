@@ -64,7 +64,7 @@ namespace Sudoku.Solving.Manual.Singles
 							}
 						}
 					}
-					if (!flag || count != 1)
+					if (!flag || count == 0)
 					{
 						continue;
 					}
@@ -106,7 +106,7 @@ namespace Sudoku.Solving.Manual.Singles
 							}
 						}
 					}
-					if (!flag || count != 1)
+					if (!flag || count == 0)
 					{
 						continue;
 					}
@@ -148,18 +148,21 @@ namespace Sudoku.Solving.Manual.Singles
 			}
 
 			// Search for naked singles.
-			foreach (int cell in EmptyMap)
+			for (int cell = 0; cell < 81; cell++)
 			{
-				short mask = grid.GetCandidateMask(cell);
-				if (mask.IsPowerOfTwo())
+				if (grid.GetStatus(cell) == CellStatus.Empty)
 				{
-					int digit = mask.FindFirstSet();
-					accumulator.Add(
-						new NakedSingleTechniqueInfo(
-							conclusions: new[] { new Conclusion(Assignment, cell, digit) },
-							views: new[] { new View(new[] { (0, cell * 9 + digit) }) },
-							cellOffset: cell,
-							digit));
+					short mask = grid.GetCandidateMask(cell);
+					if (mask.IsPowerOfTwo())
+					{
+						int digit = mask.FindFirstSet();
+						accumulator.Add(
+							new NakedSingleTechniqueInfo(
+								conclusions: new[] { new Conclusion(Assignment, cell, digit) },
+								views: new[] { new View(new[] { (0, cell * 9 + digit) }) },
+								cellOffset: cell,
+								digit));
+					}
 				}
 			}
 		}
