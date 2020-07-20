@@ -87,6 +87,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="solution">The solution used for brute forces.</param>
 		/// <returns>The searchers.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[Obsolete("Because of some unstable techniques, please use the another field instead.")]
 		private TechniqueSearcher[][] GetSearchersSeMode(IReadOnlyGrid solution) =>
 			new TechniqueSearcher[][]
 			{

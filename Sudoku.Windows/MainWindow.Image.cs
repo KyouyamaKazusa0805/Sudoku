@@ -160,8 +160,8 @@ namespace Sudoku.Windows
 		{
 			if (sender is Image image && _customDrawingMode != -1)
 			{
-				int getCell() => _pointConverter.GetCellOffset(e.GetPosition(image).ToDPointF());
-				_selectedCellsWhileDrawingRegions.Add(getCell());
+				int cell = _pointConverter.GetCellOffset(e.GetPosition(image).ToDPointF());
+				_selectedCellsWhileDrawingRegions.Add(cell);
 
 				switch (Keyboard.Modifiers)
 				{
@@ -170,7 +170,7 @@ namespace Sudoku.Windows
 						if (_currentColor == int.MinValue)
 						{
 							_focusedCells.Clear();
-							_focusedCells.Add(getCell());
+							_focusedCells.Add(cell);
 						}
 						else
 						{
