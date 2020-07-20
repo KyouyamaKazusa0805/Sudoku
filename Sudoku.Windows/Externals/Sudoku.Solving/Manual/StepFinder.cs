@@ -98,14 +98,11 @@ namespace Sudoku.Solving.Manual
 					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.AllowAlsCycles),
 				new DeathBlossomTechniqueSearcher(
 					solver.AllowOverlappingAlses, solver.AlsHighlightRegionInsteadOfCell, solver.MaxPetalsOfDeathBlossom),
-#if !DEBUG
-				// Disable slow techniques while debugging.
 				new HobiwanFishTechniqueSearcher(
 					_settings.MainManualSolver.HobiwanFishMaximumSize,
 					_settings.MainManualSolver.HobiwanFishMaximumExofinsCount,
 					_settings.MainManualSolver.HobiwanFishMaximumEndofinsCount,
 					_settings.MainManualSolver.HobiwanFishCheckTemplates),
-#endif
 				new FcTechniqueSearcher(),
 				new BowmanBingoTechniqueSearcher(solver.BowmanBingoMaximumLength),
 				new PomTechniqueSearcher(),

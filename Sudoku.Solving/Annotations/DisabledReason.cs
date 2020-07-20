@@ -19,5 +19,16 @@
 		/// Indicates the searcher has bugs while searching.
 		/// </summary>
 		HasBugs,
+
+		/// <summary>
+		/// Indicates the searcher runs so slowly that the author himself cannot stand to use it.
+		/// </summary>
+		TooSlow,
+
+		/// <summary>
+		/// Indicates the searcher can get correct <see cref="TechniqueInfo"/>s, but the difference
+		/// of the difficulty among them are too big.
+		/// </summary>
+		Unstable,
 	}
 }

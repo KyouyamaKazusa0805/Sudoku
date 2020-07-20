@@ -120,7 +120,7 @@ namespace Sudoku.Solving.Manual
 				new TechniqueSearcher[]
 				{
 					new FcTechniqueSearcher(),
-					//new BugMultipleWithFcTechniqueSearcher(), // Unstable.
+					new BugMultipleWithFcTechniqueSearcher(),
 					new BowmanBingoTechniqueSearcher(BowmanBingoMaximumLength),
 					new DeathBlossomTechniqueSearcher(
 						AllowOverlappingAlses, AlsHighlightRegionInsteadOfCell, MaxPetalsOfDeathBlossom),
