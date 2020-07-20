@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		public Als(short digitMask, GridMap map, GridMap possibleEliminationSet)
 		{
 			(DigitsMask, Map, IsBivalueCell, PossibleEliminationSet) = (digitMask, map, map.Count == 1, possibleEliminationSet);
-			_ = Map.AllSetsAreInOneRegion(out int region);
+			Map.AllSetsAreInOneRegion(out int region);
 			Region = region;
 		}
 
