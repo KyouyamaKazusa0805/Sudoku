@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using Sudoku.ComponentModel;
 using Sudoku.Data;
-using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Alses;
 using Sudoku.Solving.Manual.Alses.Basic;
@@ -132,9 +130,7 @@ namespace Sudoku.Solving.Manual
 
 				if (!(progress is null))
 				{
-					progressResult.CurrentTechnique =
-						Resources.GetValue(
-							$"Progress{searcher.GetType().GetCustomAttribute<TechniqueDisplayAttribute>()!.DisplayName}");
+					progressResult.CurrentTechnique = Resources.GetValue($"Progress{searcher.DisplayName}");
 					progressResult.CurrentIndex++;
 					progress.Report(progressResult);
 				}

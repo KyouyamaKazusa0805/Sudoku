@@ -60,9 +60,9 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
-					if (!searcher.SearcherProperties!.IsEnabled)
+					var (isEnabled, _, _, disabledReason) = searcher.SearcherProperties!;
+					if (!isEnabled && disabledReason != DisabledReason.TooSlow)
 					{
-						// Skip the technique when the static property 'IsEnabled' is set false.
 						continue;
 					}
 

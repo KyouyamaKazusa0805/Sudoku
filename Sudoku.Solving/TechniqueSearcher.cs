@@ -19,6 +19,19 @@ namespace Sudoku.Solving
 	public abstract class TechniqueSearcher : IComparable<TechniqueSearcher?>, IEquatable<TechniqueSearcher?>
 	{
 		/// <summary>
+		/// Get the display name of the type <see cref="TechniqueDisplayAttribute"/>.
+		/// </summary>
+		/// <seealso cref="TechniqueDisplayAttribute"/>
+		public string? DisplayName
+		{
+			get
+			{
+				var type = GetType();
+				return type.IsAbstract ? null : type.GetCustomAttribute<TechniqueDisplayAttribute>()?.DisplayName;
+			}
+		}
+
+		/// <summary>
 		/// Get the searcher properties of type <see cref="SearcherPropertyAttribute"/>.
 		/// </summary>
 		/// <seealso cref="SearcherPropertyAttribute"/>

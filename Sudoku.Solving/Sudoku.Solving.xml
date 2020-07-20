@@ -8644,6 +8644,12 @@
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
         </member>
+        <member name="P:Sudoku.Solving.TechniqueSearcher.DisplayName">
+            <summary>
+            Get the display name of the type <see cref="T:Sudoku.Solving.Annotations.TechniqueDisplayAttribute"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Annotations.TechniqueDisplayAttribute"/>
+        </member>
         <member name="P:Sudoku.Solving.TechniqueSearcher.SearcherProperties">
             <summary>
             Get the searcher properties of type <see cref="T:Sudoku.Solving.Annotations.SearcherPropertyAttribute"/>.

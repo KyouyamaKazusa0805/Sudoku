@@ -90,8 +90,8 @@ namespace Sudoku.Solving.Manual
 					continue;
 				}
 
-				var searcherAttribute = searcher.SearcherProperties!;
-				if (!searcherAttribute.IsEnabled)
+				var (isEnabled, _, _, disabledReason) = searcher.SearcherProperties!;
+				if (!isEnabled && disabledReason != DisabledReason.TooSlow)
 				{
 					continue;
 				}
