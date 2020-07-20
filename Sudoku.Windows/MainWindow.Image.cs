@@ -183,11 +183,11 @@ namespace Sudoku.Windows
 									int r1 = GetRegion(first, Row), r2 = GetRegion(second, Row);
 									int c1 = GetRegion(first, Column), c2 = GetRegion(second, Column);
 									int b1 = GetRegion(first, Block), b2 = GetRegion(second, Block);
-									int region = true switch
+									int region = (r1 == r2, c1 == c2, b1 == b2) switch
 									{
-										_ when r1 == r2 => r1,
-										_ when c1 == c2 => c1,
-										_ when b1 == b2 => b1,
+										(true, _, _) => r1,
+										(_, true, _) => c1,
+										(_, _, true) => b1,
 										_ => -1
 									};
 									if (region != -1)
@@ -230,15 +230,20 @@ namespace Sudoku.Windows
 		private void ImageRedoIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
 			MenuItemEditRedo_Click(sender, e);
 
-		private void ImageGeneratingIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
-			((Action<object, RoutedEventArgs>)(
-				_comboBoxMode.SelectedIndex switch
+		private void ImageGeneratingIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+#pragma warning disable IDE0007
+			Action<object, RoutedEventArgs>
+#pragma warning restore IDE0007
+				a = _comboBoxMode.SelectedIndex switch
 				{
 					0 => (sender, e) => MenuItemGenerateWithSymmetry_Click(sender, e),
 					1 => (sender, e) => MenuItemGenerateHardPattern_Click(sender, e),
 					_ => throw Throwings.ImpossibleCase
-				})
-			)(sender, e);
+				};
+
+			a(sender, e);
+		}
 
 		private void ImageSolve_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
 			MenuItemAnalyzeAnalyze_Click(sender, e);

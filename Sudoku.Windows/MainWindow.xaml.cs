@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Sudoku.Constants;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
+using Sudoku.Solving;
 using Sudoku.Windows.Constants;
 using Sudoku.Windows.Extensions;
 using static System.StringSplitOptions;
@@ -29,9 +31,6 @@ using K = System.Windows.Input.Key;
 using M = System.Windows.Input.ModifierKeys;
 using PointConverter = Sudoku.Drawing.PointConverter;
 using SudokuGrid = Sudoku.Data.Grid;
-using Sudoku.Solving;
-using System.Windows.Data;
-using Sudoku.Data.Extensions;
 #if SUDOKU_RECOGNIZING
 using System.Diagnostics;
 using Sudoku.Recognitions;
@@ -52,6 +51,8 @@ namespace Sudoku.Windows
 		/// Indicates the puzzle, which is equivalent to <see cref="_puzzle"/>,
 		/// but add the auto-update value layer.
 		/// </summary>
+		/// <remarks>This property is an set-only method in fact.</remarks>
+		/// <value>The new grid.</value>
 		/// <seealso cref="_puzzle"/>
 		private UndoableGrid Puzzle
 		{
@@ -393,7 +394,6 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Repaint the <see cref="_imageGrid"/> to show the newer grid image.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void UpdateImageGrid()
 		{
 			_imageGrid.Source = _currentPainter.Draw().ToImageSource();
@@ -421,7 +421,6 @@ namespace Sudoku.Windows
 		/// <see cref="UIElement.IsEnabled"/> of <see cref="_buttonLast"/> at once.
 		/// </param>
 		/// <seealso cref="UIElement.IsEnabled"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void UpdateDatabaseControls(bool first, bool prev, bool next, bool last)
 		{
 			_buttonFirst.IsEnabled = first;
@@ -433,7 +432,6 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Save configurations if worth.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void LoadConfigIfWorth(string path = "configurations.scfg")
 		{
 			Settings = new Settings();
@@ -463,7 +461,6 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Save configurations.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void SaveConfig(string path = "configurations.scfg")
 		{
 			FileStream? fs = null;
@@ -495,7 +492,6 @@ namespace Sudoku.Windows
 		/// </param>
 		/// <param name="executed">The execution.</param>
 		/// <seealso cref="UIElement.IsEnabled"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void AddShortCut(K key, M modifierKeys, UIElement? matchControl, ExecutedRoutedEventHandler executed)
 		{
 			var command = new RoutedCommand();
@@ -516,7 +512,6 @@ namespace Sudoku.Windows
 		/// The internal copy method to process the operation of copying value to clipboard.
 		/// </summary>
 		/// <param name="format">The grid format.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void InternalCopy(string format)
 		{
 			try
@@ -540,7 +535,6 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// To update the control status.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void UpdateControls()
 		{
 #if !SUDOKU_RECOGNIZING
@@ -619,7 +613,6 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Switch on displaying view of generating combo boxes.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void SwitchOnGeneratingComboBoxesDisplaying()
 		{
 			switch (Settings.GeneratingModeComboBoxSelectedIndex)
@@ -644,7 +637,6 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Initializes point converter and layer instances.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void InitializePointConverterAndLayers() =>
 			_currentPainter =
 				new GridPainter(
@@ -658,7 +650,6 @@ namespace Sudoku.Windows
 		/// To load a puzzle with a specified possible puzzle string.
 		/// </summary>
 		/// <param name="puzzleStr">The puzzle string.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void LoadPuzzle(string puzzleStr)
 		{
 			try
@@ -677,7 +668,6 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Update undo and redo controls.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void UpdateUndoRedoControls()
 		{
 			_imageUndoIcon.Source =
@@ -699,7 +689,6 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Disable generating controls.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void DisableGeneratingControls()
 		{
 			_analyisResult = null;
@@ -749,7 +738,6 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Enable generating controls.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void EnableGeneratingControls()
 		{
 			_textBoxInfo.ClearValue(TextBox.TextProperty);
@@ -792,7 +780,6 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Disable solving controls.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void DisableSolvingControls()
 		{
 			_cacheAllSteps = null;
@@ -844,7 +831,6 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Enable solving controls.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void EnableSolvingControls()
 		{
 			_textBoxInfo.ClearValue(TextBox.TextProperty);
@@ -895,7 +881,6 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Clear item sources when generated.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void ClearItemSourcesWhenGeneratedOrSolving()
 		{
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
@@ -908,13 +893,11 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Switch <see cref="TabItem"/>s when generated or solving.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void SwitchOnTabItemWhenGeneratedOrSolving() => _tabControlInfo.SelectedIndex = 0;
 
 		/// <summary>
 		/// Set a digit.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void SetADigit(int cell, int digit)
 		{
 			_puzzle[cell] = digit;
@@ -926,7 +909,6 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Delete a digit.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void DeleteADigit(int cell, int digit)
 		{
 			_puzzle[cell, digit] = true;
