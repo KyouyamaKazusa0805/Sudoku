@@ -152,6 +152,7 @@ namespace Sudoku.Windows
 			_currentColor = int.MinValue;
 			_customDrawingMode = -1;
 
+			_view.Clear();
 			_currentPainter.CustomView = null;
 
 			UpdateImageGrid();

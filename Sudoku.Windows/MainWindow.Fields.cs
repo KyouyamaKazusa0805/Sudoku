@@ -16,6 +16,13 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// The custom view.
 		/// </summary>
+		/// <remarks>
+		/// This field is used for the methods <see cref="ImageGrid_MouseLeftButtonDown"/>,
+		/// <see cref="ImageGrid_MouseRightButtonUp"/> and <see cref="ButtonCellReset_Click"/>.
+		/// </remarks>
+		/// <seealso cref="ImageGrid_MouseLeftButtonDown"/>
+		/// <seealso cref="ImageGrid_MouseRightButtonUp"/>
+		/// <seealso cref="ButtonCellReset_Click"/>
 		private readonly MutableView _view = new MutableView();
 
 
