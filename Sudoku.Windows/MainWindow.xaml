@@ -365,6 +365,7 @@
 						<MenuItem Header="{DynamicResource _menuItemImageGridSet9}"
 								  Name="_menuItemImageGridSet9"
 								  Click="MenuItemImageGridSet9_Click"/>
+						<Separator/>
 						<MenuItem Header="{DynamicResource _menuItemImageGridDelete1}"
 								  Name="_menuItemImageGridDelete1"
 								  Click="MenuItemImageGridDelete1_Click"/>

@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Sudoku.Constants;
+using Sudoku.Data;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
 using static System.Math;
@@ -125,34 +126,38 @@ namespace Sudoku.Windows
 
 		private void ImageGrid_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			_selectedCellsWhileDrawingRegions.Add(
-				_pointConverter.GetCellOffset((_currentRightClickPos = e.GetPosition(_imageGrid)).ToDPointF()));
+			int cell = _pointConverter.GetCellOffset((_currentRightClickPos = e.GetPosition(_imageGrid)).ToDPointF());
+			_selectedCellsWhileDrawingRegions.Add(cell);
 
-			if (_imageGridContextMenu.IsOpen)
+			// Disable all menu items.
+			for (int i = 0; i < 9; i++)
 			{
-				// Disable all menu items.
-				for (int i = 0; i < 9; i++)
-				{
-					((MenuItem)
-						GetType().GetField($"_menuItemImageGridSet{i + 1}", NonPublic | Instance)!.GetValue(this)!
-					).IsEnabled = false;
-					((MenuItem)
-						GetType().GetField($"_menuItemImageGridDelete{i + 1}", NonPublic | Instance)!.GetValue(this)!
-					).IsEnabled = false;
-				}
+				((MenuItem)
+					GetType().GetField($"_menuItemImageGridSet{i + 1}", NonPublic | Instance)!.GetValue(this)!
+				).Visibility = Visibility.Collapsed;
+				((MenuItem)
+					GetType().GetField($"_menuItemImageGridDelete{i + 1}", NonPublic | Instance)!.GetValue(this)!
+				).Visibility = Visibility.Collapsed;
+			}
 
-				// Then enable some of them.
-				foreach (int i in
-					_puzzle.GetCandidateMask(
-						_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF())).GetAllSets())
-				{
-					((MenuItem)
-						GetType().GetField($"_menuItemImageGridSet{i + 1}", NonPublic | Instance)!.GetValue(this)!
-					).IsEnabled = true;
-					((MenuItem)
-						GetType().GetField($"_menuItemImageGridDelete{i + 1}", NonPublic | Instance)!.GetValue(this)!
-					).IsEnabled = true;
-				}
+			// Check whether the specified cell is not empty.
+			if (_puzzle.GetStatus(cell) != CellStatus.Empty)
+			{
+				e.Handled = true;
+				return;
+			}
+
+			// Then enable some of them.
+			foreach (int i in
+				_puzzle.GetCandidateMask(
+					_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF())).GetAllSets())
+			{
+				((MenuItem)
+					GetType().GetField($"_menuItemImageGridSet{i + 1}", NonPublic | Instance)!.GetValue(this)!
+				).Visibility = Visibility.Visible;
+				((MenuItem)
+					GetType().GetField($"_menuItemImageGridDelete{i + 1}", NonPublic | Instance)!.GetValue(this)!
+				).Visibility = Visibility.Visible;
 			}
 		}
 
