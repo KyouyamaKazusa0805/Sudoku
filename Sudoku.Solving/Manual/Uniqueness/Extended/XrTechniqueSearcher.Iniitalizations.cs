@@ -88,7 +88,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 						3));
 				}
 			}
-			
+
 			// Fat type. e.g.
 			// ab | . ac . | bc
 			// ab | . ac . | bc

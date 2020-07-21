@@ -51,9 +51,9 @@ namespace Sudoku.Solving.Manual.Alses
 					}
 
 					// Check the block that two cells both see.
-					var intersectionMap = new GridMap(stackalloc[] { c1, c2 }, ProcessPeersWithoutItself);
+					var interMap = new GridMap(stackalloc[] { c1, c2 }, ProcessPeersWithoutItself);
 					var unionMap = new GridMap(c1) | new GridMap(c2);
-					foreach (int interCell in intersectionMap)
+					foreach (int interCell in interMap)
 					{
 						int block = GetRegion(interCell, Block);
 						var regionMap = RegionMaps[block];
@@ -64,12 +64,11 @@ namespace Sudoku.Solving.Manual.Alses
 						}
 
 						// Check whether two digits are both in the same empty rectangle.
-						int inter1 = intersectionMap.SetAt(0);
-						int inter2 = intersectionMap.SetAt(1);
+						int inter1 = interMap.SetAt(0);
+						int inter2 = interMap.SetAt(1);
 						int b1 = GetRegion(inter1, Block);
 						int b2 = GetRegion(inter2, Block);
-						var erMap =
-							(unionMap & RegionMaps[b1] - intersectionMap) | (unionMap & RegionMaps[b2] - intersectionMap);
+						var erMap = (unionMap & RegionMaps[b1] - interMap) | (unionMap & RegionMaps[b2] - interMap);
 						var erCellsMap = regionMap & erMap;
 						short m = 0;
 						foreach (int cell in erCellsMap)
@@ -83,7 +82,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 						// Check eliminations.
 						var conclusions = new List<Conclusion>();
-						int z = (intersectionMap & regionMap).SetAt(0);
+						int z = (interMap & regionMap).SetAt(0);
 						var c1Map = RegionMaps[new GridMap { z, c1 }.CoveredLine];
 						var c2Map = RegionMaps[new GridMap { z, c2 }.CoveredLine];
 						foreach (int elimCell in new GridMap(c1Map | c2Map) { [c1] = false, [c2] = false } - erMap)
