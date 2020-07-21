@@ -69,7 +69,6 @@ This whole solution consists of several folders below:<br/>这个解决方案由
 * [`Sudoku.Solving`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Solving): The generating and solving project.<br/>解题和题目生成的项目。
 * [`Sudoku.Windows`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Windows): The WPF project, containing UI forms and controls.<br/>WPF 项目，包含 UI 界面和控件。
 * [`Sudoku.Debugging`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Debugging): The project that can be used while debugging only.<br/>这个项目仅用于调试代码时。
-* [`docs`](https://github.com/Sunnie-Shine/Sudoku/tree/master/docs): The folder storing tutorial pages.<br/>教程文档文件夹。
 * [`old`](https://github.com/Sunnie-Shine/Sudoku/tree/master/old): The old projects that implemented by me or external codes.<br/>以前的由我自己实现的项目，或者是属于外部代码。
 * [`ref`](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref): The profiles for sudoku for references.<br/>数独相关参考资料。
 * [`pic`](https://github.com/Sunnie-Shine/Sudoku/tree/master/pic): The pictures.<br/>图片。
