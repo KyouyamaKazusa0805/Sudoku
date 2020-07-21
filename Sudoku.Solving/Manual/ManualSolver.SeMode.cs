@@ -35,6 +35,7 @@ namespace Sudoku.Solving.Manual
 		/// Throws when the solver cannot solved due to wrong handling.
 		/// </exception>
 		/// <seealso cref="GridProgressResult"/>
+		[Obsolete]
 		private AnalysisResult SolveSeMode(
 			IReadOnlyGrid grid, Grid cloneation, List<TechniqueInfo> steps, IReadOnlyGrid solution, bool sukaku,
 			ref GridProgressResult progressResult, IProgress<IProgressResult>? progress)

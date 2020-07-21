@@ -51,9 +51,11 @@ namespace Sudoku.Solving.Manual
 
 					progress?.Report(defaultPr);
 
+#pragma warning disable CS0612
 					return AnalyzeDifficultyStrictly
 						? SolveSeMode(grid, grid.Clone(), TempList, solution, sukaku.Value, ref pr, progress)
 						: SolveNaively(grid, grid.Clone(), TempList, solution, sukaku.Value, ref pr, progress);
+#pragma warning restore CS0612
 				}
 				catch (WrongHandlingException ex)
 				{
