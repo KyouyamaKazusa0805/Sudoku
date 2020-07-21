@@ -36,7 +36,7 @@ namespace Sudoku.Data
 		/// This field should not be used to process cell status comparison.
 		/// </remarks>
 		/// <seealso cref="Grid.GetStatus(int)"/>
-		[EditorBrowsable(EditorBrowsableState.Advanced)]
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		All = Empty | Modifiable | Given
 	}
 }
