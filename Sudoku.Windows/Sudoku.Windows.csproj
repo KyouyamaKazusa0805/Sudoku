@@ -27,13 +27,6 @@
 		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
 	</PropertyGroup>
 
-	<!--
-	<ItemGroup>
-		<None Remove="Resources\ColorPalette.png" />
-		<None Remove="Resources\ColorSample.png" />
-	</ItemGroup>
-	-->
-
 	<ItemGroup>
 		<PackageReference Include="WriteableBitmapEx" Version="1.6.7" />
 	</ItemGroup>
