@@ -57,7 +57,7 @@ namespace Sudoku.Solving.Manual
 							ReportProgress(cloneation, progress, ref progressResult);
 						}
 
-						goto Label_Searching;
+						goto Searching;
 					}
 					else
 					{
@@ -66,7 +66,7 @@ namespace Sudoku.Solving.Manual
 				}
 			}
 
-		Label_Searching:
+		Searching:
 			// Start searching.
 			var searchers = GetSearchersHodokuMode(solution);
 
@@ -80,7 +80,7 @@ namespace Sudoku.Solving.Manual
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
 
-		Label_Restart:
+		Restart:
 			TechniqueSearcher.InitializeMaps(cloneation);
 			for (int i = 0, length = searchers.Length; i < length; i++)
 			{
@@ -130,7 +130,7 @@ namespace Sudoku.Solving.Manual
 							ReportProgress(cloneation, progress, ref progressResult);
 						}
 
-						goto Label_Restart;
+						goto Restart;
 					}
 					else
 					{
@@ -184,7 +184,7 @@ namespace Sudoku.Solving.Manual
 								ReportProgress(cloneation, progress, ref progressResult);
 							}
 
-							goto Label_Restart;
+							goto Restart;
 						}
 					}
 					else

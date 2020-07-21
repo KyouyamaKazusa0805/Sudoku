@@ -67,7 +67,7 @@ namespace Sudoku.Solving.Manual.Sdps
 								if (new GridMap { cell1, cell2 }.AllSetsAreInOneRegion(out sameRegion))
 								{
 									(c1Index, c2Index, headIndex, tailIndex) = (i, j, i == 0 ? 1 : 0, j == 0 ? 1 : 0);
-									goto Label_Checking;
+									goto Checking;
 								}
 							}
 						}
@@ -75,7 +75,7 @@ namespace Sudoku.Solving.Manual.Sdps
 						// Not same block.
 						continue;
 
-					Label_Checking:
+					Checking:
 						// Two strong link found.
 						// Record all eliminations.
 						int head, tail;
@@ -92,7 +92,6 @@ namespace Sudoku.Solving.Manual.Sdps
 						{
 							conclusions.Add(new Conclusion(Elimination, cell, digit));
 						}
-
 						if (conclusions.Count == 0)
 						{
 							continue;
@@ -105,14 +104,14 @@ namespace Sudoku.Solving.Manual.Sdps
 								{
 									new View(
 										cellOffsets: null,
-										candidateOffsets: new List<(int, int)>
+										candidateOffsets: new[]
 										{
 											(0, cells1[c1Index] * 9 + digit),
 											(0, cells2[c2Index] * 9 + digit),
 											(0, head * 9 + digit),
 											(0, tail * 9 + digit)
 										},
-										regionOffsets: new List<(int, int)>
+										regionOffsets: new[]
 										{
 											(0, r1),
 											(0, r2),

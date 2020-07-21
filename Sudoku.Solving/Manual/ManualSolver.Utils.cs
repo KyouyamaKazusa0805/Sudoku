@@ -168,12 +168,12 @@ namespace Sudoku.Solving.Manual
 					{
 						needAdd = true;
 
-						goto Label_Determine;
+						goto FinalCheck;
 					}
 				}
 			}
 
-		Label_Determine:
+		FinalCheck:
 			if (needAdd)
 			{
 				stepGrids.Add(cloneation.Clone());

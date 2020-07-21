@@ -187,14 +187,8 @@ namespace Sudoku.Solving.Manual.Fishes
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string baseSets = new RegionCollection(BaseSets).ToString();
 			string coverSets = new RegionCollection(CoverSets).ToString();
-			string exo =
-				ExofinCells.IsEmpty
-					? string.Empty
-					: $"f{new CellCollection(ExofinCells).ToString()} ";
-			string endo =
-				EndofinCells.IsEmpty
-				? string.Empty
-				: $"ef{new CellCollection(EndofinCells).ToString()} ";
+			string exo = ExofinCells.IsEmpty ? string.Empty : $"f{new CellCollection(ExofinCells).ToString()} ";
+			string endo = EndofinCells.IsEmpty ? string.Empty : $"ef{new CellCollection(EndofinCells).ToString()} ";
 			return $@"{Name}: {Digit + 1} in {baseSets}\{coverSets} {exo}{endo}=> {elimStr}";
 		}
 
@@ -227,7 +221,7 @@ namespace Sudoku.Solving.Manual.Fishes
 					int bs2 = BaseSets[j];
 					if (bs1 / 9 == 0 || bs2 / 9 == 0)
 					{
-						goto Label_RowColumnCheck;
+						goto RowColumnCheck;
 					}
 				}
 			}
@@ -239,14 +233,14 @@ namespace Sudoku.Solving.Manual.Fishes
 					int cs2 = CoverSets[j];
 					if (cs1 / 9 == 0 || cs2 / 9 == 0)
 					{
-						goto Label_RowColumnCheck;
+						goto RowColumnCheck;
 					}
 				}
 			}
 
 			return false;
 
-		Label_RowColumnCheck:
+		RowColumnCheck:
 			for (int i = 0, count = BaseSets.Count; i < count - 1; i++)
 			{
 				for (int j = i + 1; j < count; j++)

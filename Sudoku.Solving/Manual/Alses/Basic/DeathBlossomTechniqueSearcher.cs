@@ -150,12 +150,12 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 									if (alsesUsed[i].Map.Overlaps(alsesUsed[j].Map))
 									{
 										overlap = true;
-										goto Label_Determine;
+										goto LastCheck;
 									}
 								}
 							}
 
-						Label_Determine:
+						LastCheck:
 							if (overlap)
 							{
 								continue;

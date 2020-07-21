@@ -282,13 +282,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 								{
 									d2 = digit;
 
-									goto Label_Z;
+									goto Z;
 								}
 							}
 						}
 					}
 
-				Label_Z:
+				Z:
 					short comparer = (short)(1 << d1 | 1 << d2);
 					short otherDigitsMask = (short)(digitsMask & ~comparer);
 					var conclusions = new List<Conclusion>();

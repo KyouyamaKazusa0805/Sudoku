@@ -120,7 +120,7 @@ namespace Sudoku.Solving.Manual.Fishes
 									var finCellsMap = GridMap.Empty;
 									if (finAndBodyCount == 2) // size == 2
 									{
-										goto Label_CheckWhetherTheNumberOfIntersectionCellsIsNotZero;
+										goto CheckWhetherTheNumberOfIntersectionCellsIsNotZero;
 									}
 
 									// Confirm all fin cells.
@@ -160,7 +160,7 @@ namespace Sudoku.Solving.Manual.Fishes
 										elimMap &= PeerMaps[finCell];
 									}
 
-								Label_CheckWhetherTheNumberOfIntersectionCellsIsNotZero:
+								CheckWhetherTheNumberOfIntersectionCellsIsNotZero:
 									// Check whether the number of intersection cells is not 0.
 									if (elimMap.IsNotEmpty)
 									{
@@ -297,7 +297,7 @@ namespace Sudoku.Solving.Manual.Fishes
 												var finCellsMap = GridMap.Empty;
 												if (finAndBodyCount == 3) // size == 3
 												{
-													goto Label_CheckWhetherTheNumberOfIntersectionCellsIsNotZero;
+													goto CheckWhetherTheNumberOfIntersectionCellsIsNotZero;
 												}
 
 												// Confirm all fin cells.
@@ -338,7 +338,7 @@ namespace Sudoku.Solving.Manual.Fishes
 													elimMap &= PeerMaps[finCell];
 												}
 
-											Label_CheckWhetherTheNumberOfIntersectionCellsIsNotZero:
+											CheckWhetherTheNumberOfIntersectionCellsIsNotZero:
 												// Check whether the number of intersection cells is not 0.
 												if (elimMap.IsNotEmpty)
 												{
@@ -485,7 +485,7 @@ namespace Sudoku.Solving.Manual.Fishes
 														var finCellsMap = GridMap.Empty;
 														if (finAndBodyCount == 4) // size == 4
 														{
-															goto Label_CheckWhetherTheNumberOfIntersectionCellsIsNotZero;
+															goto CheckWhetherTheNumberOfIntersectionCellsIsNotZero;
 														}
 
 														// Get the fin mask.
@@ -529,7 +529,7 @@ namespace Sudoku.Solving.Manual.Fishes
 															elimMap &= PeerMaps[finCell];
 														}
 
-													Label_CheckWhetherTheNumberOfIntersectionCellsIsNotZero:
+													CheckWhetherTheNumberOfIntersectionCellsIsNotZero:
 														// Check whether the number of intersection cells is not 0.
 														if (elimMap.IsNotEmpty)
 														{

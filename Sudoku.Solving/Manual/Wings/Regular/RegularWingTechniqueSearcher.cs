@@ -69,12 +69,12 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 								if (grid.GetMask(cells[i]) == grid.GetMask(cells[j]))
 								{
 									flag = true;
-									goto Label_Determine;
+									goto Determine;
 								}
 							}
 						}
 
-					Label_Determine:
+					Determine:
 						if (flag)
 						{
 							continue;
