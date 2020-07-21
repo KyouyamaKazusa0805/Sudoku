@@ -189,8 +189,7 @@ namespace Sudoku.Solving.Manual
 						hasSolved: true,
 						elapsedTime: stopwatch.Elapsed,
 						steps,
-						stepGrids,
-						additional: null);
+						stepGrids);
 					return true;
 				}
 			}

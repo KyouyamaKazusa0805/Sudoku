@@ -203,9 +203,8 @@ namespace Sudoku.Solving.Manual
 				solution: null,
 				hasSolved: false,
 				elapsedTime: stopwatch.Elapsed,
-				steps: steps,
-				stepGrids: stepGrids,
-				additional: null);
+				steps,
+				stepGrids);
 		}
 	}
 }

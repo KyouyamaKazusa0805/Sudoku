@@ -43,8 +43,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 					hasSolved: true,
 					elapsedTime: stopwatch.Elapsed,
 					steps: null,
-					stepGrids: null,
-					additional: null);
+					stepGrids: null);
 			}
 			catch (Exception ex)
 			{

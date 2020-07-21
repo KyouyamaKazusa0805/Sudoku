@@ -23,6 +23,23 @@ namespace Sudoku.Solving
 		/// <param name="elapsedTime">The elapsed time while solving.</param>
 		/// <param name="steps">All steps produced in solving.</param>
 		/// <param name="stepGrids">All intermediate grids.</param>
+		public AnalysisResult(
+			string solverName, IReadOnlyGrid puzzle, IReadOnlyGrid? solution, bool hasSolved,
+			TimeSpan elapsedTime, IReadOnlyList<TechniqueInfo>? steps, IReadOnlyList<IReadOnlyGrid>? stepGrids)
+			: this(solverName, puzzle, solution, hasSolved, elapsedTime, steps, stepGrids, null)
+		{
+		}
+
+		/// <summary>
+		/// Initializes an instance with some information.
+		/// </summary>
+		/// <param name="solverName">The name of the solver.</param>
+		/// <param name="puzzle">The puzzle.</param>
+		/// <param name="solution">The solution grid.</param>
+		/// <param name="hasSolved">Indicates whether the puzzle has been solved.</param>
+		/// <param name="elapsedTime">The elapsed time while solving.</param>
+		/// <param name="steps">All steps produced in solving.</param>
+		/// <param name="stepGrids">All intermediate grids.</param>
 		/// <param name="additional">The additional message.</param>
 		public AnalysisResult(
 			string solverName, IReadOnlyGrid puzzle, IReadOnlyGrid? solution, bool hasSolved,
