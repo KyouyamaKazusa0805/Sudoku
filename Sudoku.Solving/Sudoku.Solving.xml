@@ -9,6 +9,17 @@
             Provides an analysis result after a puzzle solved.
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.#ctor(System.String,Sudoku.Data.IReadOnlyGrid,Sudoku.Data.IReadOnlyGrid,System.Boolean,System.TimeSpan,System.String)">
+            <summary>
+            Initializes an instance with some information.
+            </summary>
+            <param name="solverName">The name of the solver.</param>
+            <param name="puzzle">The puzzle.</param>
+            <param name="solution">The solution grid.</param>
+            <param name="hasSolved">Indicates whether the puzzle has been solved.</param>
+            <param name="elapsedTime">The elapsed time while solving.</param>
+            <param name="additional">The additional message.</param>
+        </member>
         <member name="M:Sudoku.Solving.AnalysisResult.#ctor(System.String,Sudoku.Data.IReadOnlyGrid,Sudoku.Data.IReadOnlyGrid,System.Boolean,System.TimeSpan,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.TechniqueInfo},System.Collections.Generic.IReadOnlyList{Sudoku.Data.IReadOnlyGrid})">
             <summary>
             Initializes an instance with some information.

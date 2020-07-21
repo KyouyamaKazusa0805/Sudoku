@@ -65,8 +65,6 @@ namespace Sudoku.Solving.Manual
 						solution: null,
 						hasSolved: false,
 						elapsedTime: TimeSpan.Zero,
-						steps: null,
-						stepGrids: null,
 						additional: ex.Message);
 				}
 			}
@@ -78,8 +76,6 @@ namespace Sudoku.Solving.Manual
 					solution: null,
 					hasSolved: false,
 					elapsedTime: TimeSpan.Zero,
-					steps: null,
-					stepGrids: null,
 					additional: "The puzzle does not have a unique solution (multiple solutions or no solution).");
 			}
 		}

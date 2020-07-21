@@ -42,8 +42,7 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 					solution: Grid.CreateInstance(result ?? throw new NoSolutionException(grid)),
 					hasSolved: true,
 					elapsedTime: stopwatch.Elapsed,
-					steps: null,
-					stepGrids: null);
+					additional: null);
 			}
 			catch (Exception ex)
 			{
@@ -55,8 +54,6 @@ namespace Sudoku.Solving.BruteForces.Backtracking
 					solution: null,
 					hasSolved: false,
 					elapsedTime: stopwatch.Elapsed,
-					steps: null,
-					stepGrids: null,
 					additional: ex.Message);
 			}
 		}

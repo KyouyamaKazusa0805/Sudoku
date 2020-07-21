@@ -51,8 +51,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 							solution: Grid.Parse(sb.ToString()),
 							hasSolved: true,
 							elapsedTime: stopwatch.Elapsed,
-							steps: null,
-							stepGrids: null),
+							additional: null),
 					_ => throw new MultipleSolutionsException(grid)
 				};
 			}
@@ -74,8 +73,7 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 								solution: Grid.Parse(sb.ToString()),
 								hasSolved: true,
 								elapsedTime: stopwatch.Elapsed,
-								steps: null,
-								stepGrids: null),
+								additional: null),
 						_ => throw new MultipleSolutionsException(grid)
 					};
 				}
@@ -87,8 +85,6 @@ namespace Sudoku.Solving.BruteForces.Bitwise
 						solution: null,
 						hasSolved: false,
 						elapsedTime: stopwatch.Elapsed,
-						steps: null,
-						stepGrids: null,
 						additional: $"{ex1.Message}{Environment.NewLine}{ex2.Message}");
 				}
 			}
