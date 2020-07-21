@@ -1,10 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using Sudoku.Constants;
 using Sudoku.Data;
-using Sudoku.Extensions;
 using static Sudoku.Data.SymmetryType;
+using Enum = Sudoku.Extensions.EnumEx;
 
 namespace Sudoku.Solving.Generating
 {
@@ -37,7 +38,7 @@ namespace Sudoku.Solving.Generating
 			GenerateAnswerGrid(puzzle, solution);
 
 			// Now we remove some digits from the grid.
-			var allTypes = from st in EnumEx.GetValues<SymmetryType>()
+			var allTypes = from st in Enum.GetValues<SymmetryType>()
 						   where st != None && symmetricalType.HasFlag(st)
 						   select st;
 			int count = allTypes.Count();
@@ -73,14 +74,8 @@ namespace Sudoku.Solving.Generating
 						AntiDiagonal => new[] { r * 9 + c, (8 - c) * 9 + 8 - r },
 						XAxis => new[] { r * 9 + c, (8 - r) * 9 + c },
 						YAxis => new[] { r * 9 + c, r * 9 + 8 - c },
-						DiagonalBoth => new[]
-						{
-							r * 9 + c, c * 9 + r, (8 - c) * 9 + 8 - r, (8 - r) * 9 + 8 - c
-						},
-						AxisBoth => new[]
-						{
-							r * 9 + c, (8 - r) * 9 + c, r * 9 + 8 - c, (8 - r) * 9 + 8 - c
-						},
+						DiagonalBoth => new[] { r * 9 + c, c * 9 + r, (8 - c) * 9 + 8 - r, (8 - r) * 9 + 8 - c },
+						AxisBoth => new[] { r * 9 + c, (8 - r) * 9 + c, r * 9 + 8 - c, (8 - r) * 9 + 8 - c },
 						All => new[]
 						{
 							r * 9 + c, r * 9 + (8 - c), (8 - r) * 9 + c, (8 - r) * 9 + (8 - c),
@@ -101,9 +96,8 @@ namespace Sudoku.Solving.Generating
 		}
 
 		/// <inheritdoc/>
-		/// <exception cref="NotImplementedException">
-		/// Throws always.
-		/// </exception>
+		/// <exception cref="NotImplementedException">Always throws.</exception>
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		protected override void CreatePattern(int[] pattern) => throw new NotImplementedException();
 	}
 }

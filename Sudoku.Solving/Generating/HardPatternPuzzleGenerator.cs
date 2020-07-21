@@ -25,7 +25,6 @@ namespace Sudoku.Solving.Generating
 		/// <inheritdoc/>
 		protected sealed override void CreatePattern(int[] pattern)
 		{
-			//[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			static double rnd() => Rng.NextDouble();
 			int[] box = { 0, 6, 54, 60, 3, 27, 33, 57, 30 };
 			int[,] t = { { 0, 1, 2 }, { 0, 2, 1 }, { 1, 0, 2 }, { 1, 2, 0 }, { 2, 0, 1 }, { 2, 1, 0 } };

@@ -973,9 +973,7 @@
         </member>
         <member name="M:Sudoku.Solving.Generating.BasicPuzzleGenerator.CreatePattern(System.Int32[])">
             <inheritdoc/>
-            <exception cref="T:System.NotImplementedException">
-            Throws always.
-            </exception>
+            <exception cref="T:System.NotImplementedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.Solving.Generating.DiggingPuzzleGenerator">
             <summary>
@@ -4791,7 +4789,7 @@
             solved the puzzle successfully.
             </returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LightManualSolver.SaveTechnique(System.Collections.Generic.ICollection{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.TechniqueInfo,Sudoku.Data.Grid)">
+        <member name="M:Sudoku.Solving.Manual.LightManualSolver.SaveStep(System.Collections.Generic.ICollection{Sudoku.Solving.TechniqueInfo},Sudoku.Solving.TechniqueInfo,Sudoku.Data.Grid)">
             <summary>
             To record the current technique step.
             </summary>
