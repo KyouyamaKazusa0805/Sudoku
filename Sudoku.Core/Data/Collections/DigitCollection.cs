@@ -68,7 +68,7 @@ namespace Sudoku.Data.Collections
 		[DoesNotReturn]
 		public override bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
 
-		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
 		public bool Equals(DigitCollection other) => _mask == other._mask;
 
 		/// <summary>
@@ -78,7 +78,7 @@ namespace Sudoku.Data.Collections
 		/// <returns>A <see cref="bool"/> value.</returns>
 		public bool Contains(int digit) => (_mask >> digit & 1) != 0;
 
-		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[DoesNotReturn]
@@ -87,7 +87,7 @@ namespace Sudoku.Data.Collections
 		/// <inheritdoc/>
 		public override string ToString() => ToString(", ");
 
-		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
 		public string ToString(string? format)
 		{
 			if (_mask == 0)
@@ -127,10 +127,10 @@ namespace Sudoku.Data.Collections
 		public static DigitCollection operator ~(DigitCollection collection) =>
 			new DigitCollection((short)~collection._mask);
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(DigitCollection left, DigitCollection right) => left.Equals(right);
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(DigitCollection left, DigitCollection right) => !(left == right);
 	}
 }

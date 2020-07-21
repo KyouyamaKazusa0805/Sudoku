@@ -64,22 +64,22 @@ namespace Sudoku.Data.Collections
 			}
 		}
 
-		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[DoesNotReturn]
 		public override bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
 
-		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
 		public bool Equals(LinkCollection other) => _collection == other._collection;
 
-		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[DoesNotReturn]
 		public override int GetHashCode() => throw Throwings.RefStructNotSupported;
 
-		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString()
 		{
 			switch (_collection.Length)
@@ -134,10 +134,10 @@ namespace Sudoku.Data.Collections
 		}
 
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(LinkCollection left, LinkCollection right) => left.Equals(right);
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(LinkCollection left, LinkCollection right) => !(left == right);
 	}
 }

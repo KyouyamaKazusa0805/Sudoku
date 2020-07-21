@@ -14,7 +14,7 @@ namespace Sudoku.Windows.Tooling
 		protected bool _updatingValues = false;
 
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <include file='...\GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public ColorComponentSlider() => InitializeComponent();
 
 

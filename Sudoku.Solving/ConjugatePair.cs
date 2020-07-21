@@ -73,7 +73,7 @@ namespace Sudoku.Solving
 		/// <inheritdoc/>
 		public override int GetHashCode() => Map.GetHashCode() ^ Digit;
 
-		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString()
 		{
 			int v = Digit + 1;
@@ -83,10 +83,10 @@ namespace Sudoku.Solving
 		}
 
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(ConjugatePair left, ConjugatePair right) => left.Equals(right);
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(ConjugatePair left, ConjugatePair right) => !(left == right);
 	}
 }

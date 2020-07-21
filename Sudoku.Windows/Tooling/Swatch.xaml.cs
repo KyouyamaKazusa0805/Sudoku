@@ -12,7 +12,7 @@ namespace Sudoku.Windows.Tooling
 	/// </summary>
 	public partial class Swatch : UserControl
 	{
-		/// <include file='../../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <include file='...\GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public Swatch() => InitializeComponent();
 
 

@@ -66,13 +66,13 @@ namespace Sudoku.Solving
 		public IReadOnlyList<View> Views { get; }
 
 
-		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
 		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
 		public void Deconstruct(out string name, out decimal difficulty) =>
 			(name, difficulty) = (Name, Difficulty);
 
-		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
 		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
 		/// <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
@@ -80,7 +80,7 @@ namespace Sudoku.Solving
 			out string name, out decimal difficulty, out DifficultyLevel difficultyLevel) =>
 			(name, difficulty, difficultyLevel) = (Name, Difficulty, DifficultyLevel);
 
-		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
 		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
 		/// <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
@@ -90,7 +90,7 @@ namespace Sudoku.Solving
 			out IReadOnlyList<Conclusion> conclusions) =>
 			(name, difficulty, difficultyLevel, conclusions) = (Name, Difficulty, DifficultyLevel, Conclusions);
 
-		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
 		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
 		/// <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
@@ -154,10 +154,10 @@ namespace Sudoku.Solving
 		public virtual string ToFullString() => ToString();
 
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(TechniqueInfo left, TechniqueInfo right) => left.Equals(right);
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(TechniqueInfo left, TechniqueInfo right) => !(left == right);
 	}
 }

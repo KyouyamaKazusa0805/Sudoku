@@ -166,7 +166,7 @@ namespace Sudoku.Data
 		/// </summary>
 		public void ClearParents() => ParentsCount = 0;
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
 		public override readonly bool Equals(object? obj) => obj is Node comparer && Equals(comparer);
 
 		/// <inheritdoc/>
@@ -192,7 +192,7 @@ namespace Sudoku.Data
 			return false;
 		}
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		public override readonly int GetHashCode()
 		{
 			if (_parents is null)
@@ -209,7 +209,7 @@ namespace Sudoku.Data
 			return hashCode.ToHashCode();
 		}
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override readonly string ToString()
 		{
 			if (ParentsCount == 0)
@@ -232,11 +232,11 @@ namespace Sudoku.Data
 		}
 
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==(Node left, Node right) => left.Equals(right);
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=(Node left, Node right) => !(left == right);
 	}

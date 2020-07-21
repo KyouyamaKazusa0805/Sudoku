@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		private static readonly IReadOnlyList<GridMap> Patterns;
 
 
-		/// <include file='../../../../GlobalDocComments.xml' path='comments/staticConstructor'/>
+		/// <include file='....\GlobalDocComments.xml' path='comments/staticConstructor'/>
 		static AlsNetTechniqueSearcher()
 		{
 			const int a = ~7, b = ~56, c = ~448;

@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		};
 
 
-		/// <include file='../../../../GlobalDocComments.xml' path='comments/staticConstructor'/>
+		/// <include file='....\GlobalDocComments.xml' path='comments/staticConstructor'/>
 		static UsTechniqueSearcher()
 		{
 			int length = ChuteIterator.Length / 3;

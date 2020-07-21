@@ -128,7 +128,7 @@ namespace Sudoku.Constants
 			}
 		}
 
-		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
 		/// <param name="empty">(<see langword="out"/> parameter) The map of all empty cells.</param>
 		/// <param name="bivalue">(<see langword="out"/> parameter) The map of all bi-value cells.</param>

@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		private static readonly GridMap[] RegionMaps;
 
 
-		/// <include file='../../../../GlobalDocComments.xml' path='comments/staticConstructor'/>
+		/// <include file='....\GlobalDocComments.xml' path='comments/staticConstructor'/>
 		static SkLoopTechniqueSearcher()
 		{
 			// Initialize for region maps.

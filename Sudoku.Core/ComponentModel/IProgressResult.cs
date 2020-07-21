@@ -16,7 +16,7 @@
 		string GlobalizationString { get; }
 
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		string ToString();
 	}
 }

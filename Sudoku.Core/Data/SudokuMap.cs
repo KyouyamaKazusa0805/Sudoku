@@ -31,7 +31,7 @@ namespace Sudoku.Data
 		private readonly BitArray _innerArray;
 
 
-		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public SudokuMap() => _innerArray = new BitArray(729);
 
@@ -477,11 +477,11 @@ namespace Sudoku.Data
 		}
 
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==(SudokuMap? left, SudokuMap? right) => Equals(left, right);
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=(SudokuMap? left, SudokuMap? right) => !(left == right);
 

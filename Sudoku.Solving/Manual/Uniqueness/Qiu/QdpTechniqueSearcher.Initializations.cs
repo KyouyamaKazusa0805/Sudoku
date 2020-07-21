@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		};
 
 
-		/// <include file='../../../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <include file='....\GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		static QdpTechniqueSearcher()
 		{
 			for (int i = 0, n = 0, length = BaseLineIterator.Length; i < length >> 1; i++)

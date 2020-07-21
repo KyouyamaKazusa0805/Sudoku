@@ -14,7 +14,7 @@ namespace Sudoku.Windows.Tooling
 	/// </summary>
 	public partial class TechniqueTreeView : UserControl
 	{
-		/// <include file='../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public TechniqueTreeView() => InitializeComponent();
 
 

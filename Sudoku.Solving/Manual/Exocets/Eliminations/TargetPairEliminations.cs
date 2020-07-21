@@ -53,7 +53,7 @@ namespace Sudoku.Solving.Manual.Exocets.Eliminations
 			(Conclusions ?? Array.Empty<Conclusion>()).GetEnumerator();
 
 
-		/// <include file='../../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='....\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override readonly string? ToString() =>
 			Conclusions is null ? null : $"  * Target pair eliminations: {new ConclusionCollection(Conclusions).ToString()}";
 

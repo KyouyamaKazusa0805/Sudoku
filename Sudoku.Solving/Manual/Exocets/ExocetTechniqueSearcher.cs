@@ -117,7 +117,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		protected ExocetTechniqueSearcher(bool checkAdvanced) => _checkAdvanced = checkAdvanced;
 
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/staticConstructor'/>
+		/// <include file='...\GlobalDocComments.xml' path='comments/staticConstructor'/>
 		static ExocetTechniqueSearcher()
 		{
 			var t = (Span<int>)stackalloc int[3];

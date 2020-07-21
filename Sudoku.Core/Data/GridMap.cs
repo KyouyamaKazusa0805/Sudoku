@@ -540,17 +540,17 @@ namespace Sudoku.Data
 		}
 
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="high">(<see langword="out"/> parameter) Higher 40 bits.</param>
 		/// <param name="low">(<see langword="out"/> parameter) Lower 41 bits.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly void Deconstruct(out long high, out long low) => (high, low) = (_high, _low);
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly bool Equals(object? obj) => obj is GridMap comparer && Equals(comparer);
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly bool Equals(GridMap other) => _high == other._high && _low == other._low;
 
@@ -630,11 +630,11 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly IEnumerator<int> GetEnumerator() => Offsets.GetEnumerator();
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly int GetHashCode() => GetType().GetHashCode() ^ (int)((_low ^ _high) & int.MaxValue);
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override readonly string ToString()
 		{
 			var sb = new StringBuilder();
@@ -711,27 +711,27 @@ namespace Sudoku.Data
 		}
 
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==(GridMap left, GridMap right) => left.Equals(right);
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=(GridMap left, GridMap right) => !(left == right);
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThan"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThan"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator >(GridMap left, GridMap right) => left.CompareTo(right) > 0;
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThanOrEqual"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThanOrEqual"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator >=(GridMap left, GridMap right) => left.CompareTo(right) >= 0;
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_LessThan"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_LessThan"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator <(GridMap left, GridMap right) => left.CompareTo(right) < 0;
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_LessThanOrEqual"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_LessThanOrEqual"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator <=(GridMap left, GridMap right) => left.CompareTo(right) <= 0;
 

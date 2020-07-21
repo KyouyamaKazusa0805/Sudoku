@@ -19,7 +19,7 @@ namespace System.Collections.Generic
 		private readonly IList<T> _list;
 
 
-		/// <include file='../../../../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <include file='.....\GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public Set() => _list = new List<T>();
 
 		/// <summary>
@@ -281,10 +281,10 @@ namespace System.Collections.Generic
 		}
 
 
-		/// <include file='../../../../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='.....\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(Set<T>? left, Set<T>? right) => InternalEquals(left, right);
 
-		/// <include file='../../../../../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='.....\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(Set<T>? left, Set<T>? right) => !(left == right);
 
 		/// <summary>

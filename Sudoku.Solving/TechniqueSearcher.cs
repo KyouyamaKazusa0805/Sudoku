@@ -150,22 +150,22 @@ namespace Sudoku.Solving
 			};
 
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(TechniqueSearcher? left, TechniqueSearcher? right) => InternalEquals(left, right);
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(TechniqueSearcher? left, TechniqueSearcher? right) => !(left == right);
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThan"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThan"]'/>
 		public static bool operator >(TechniqueSearcher left, TechniqueSearcher right) => left.CompareTo(right) > 0;
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThanOrEqual"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThanOrEqual"]'/>
 		public static bool operator >=(TechniqueSearcher left, TechniqueSearcher right) => left.CompareTo(right) >= 0;
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_LessThan"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_LessThan"]'/>
 		public static bool operator <(TechniqueSearcher left, TechniqueSearcher right) => left.CompareTo(right) < 0;
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_LessThanOrEqual"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_LessThanOrEqual"]'/>
 		public static bool operator <=(TechniqueSearcher left, TechniqueSearcher right) => left.CompareTo(right) <= 0;
 	}
 }

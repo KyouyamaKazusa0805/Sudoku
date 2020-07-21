@@ -90,7 +90,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		public GridMap MirrorR2 { get; }
 
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='...\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="baseCellsMap">(<see langword="out"/> parameter) The base cells.</param>
 		/// <param name="targetCellsMap">(<see langword="out"/> parameter) The target cells.</param>
 		/// <param name="crosslineMap">(<see langword="out"/> parameter) The cross-line cells.</param>
@@ -100,7 +100,7 @@ namespace Sudoku.Solving.Manual.Exocets
 				new GridMap { TargetQ1, TargetQ2, TargetR1, TargetR2 },
 				CrossLine);
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='...\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="base1">(<see langword="out"/> parameter) The base cell 1.</param>
 		/// <param name="base2">(<see langword="out"/> parameter) The base cell 2.</param>
 		/// <param name="tq1">(<see langword="out"/> parameter) The target Q1 cell.</param>
@@ -111,7 +111,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			out int base1, out int base2, out int tq1, out int tq2, out int tr1, out int tr2) =>
 			(base1, base2, tq1, tq2, tr1, tr2) = (Base1, Base2, TargetQ1, TargetQ2, TargetR1, TargetR2);
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='...\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="base1">(<see langword="out"/> parameter) The base cell 1.</param>
 		/// <param name="base2">(<see langword="out"/> parameter) The base cell 2.</param>
 		/// <param name="tq1">(<see langword="out"/> parameter) The target Q1 cell.</param>
@@ -143,7 +143,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			&& MirrorR1 == other.MirrorR1 && MirrorR2 == other.MirrorR2
 			&& CrossLine == other.CrossLine;
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <include file='...\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		public override int GetHashCode()
 		{
 			var hashCode = new HashCode();
@@ -161,7 +161,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			return hashCode.ToHashCode();
 		}
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='...\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString()
 		{
 			string baseCells = new CellCollection(stackalloc[] { Base1, Base2 }).ToString();
@@ -170,10 +170,10 @@ namespace Sudoku.Solving.Manual.Exocets
 		}
 
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='...\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(Pattern left, Pattern right) => left.Equals(right);
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='...\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(Pattern left, Pattern right) => !(left == right);
 	}
 }

@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Annotations
 		public DisabledReason DisabledReason { get; set; } = DisabledReason.LastResort;
 
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="isEnabled">
 		/// (<see langword="out"/> parameter) Indicates whether the current searcher is enabled.
 		/// </param>

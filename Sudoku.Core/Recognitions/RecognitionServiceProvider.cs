@@ -18,7 +18,7 @@ namespace Sudoku.Recognitions
 		private readonly InternalServiceProvider _recognizingServiceProvider;
 
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public RecognitionServiceProvider()
 		{
 			_recognizingServiceProvider = new InternalServiceProvider();

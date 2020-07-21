@@ -89,23 +89,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		public GridMap Map => Pair1Map | Pair2Map | CenterCellsMap;
 
 
-		/// <include file='../../../../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
+		/// <include file='....\GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
 		public override bool Equals(object? obj) => obj is Pattern comparer && Equals(comparer);
 
 		/// <inheritdoc/>
 		public bool Equals(Pattern other) => _mask == other._mask;
 
-		/// <include file='../../../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <include file='....\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		public override int GetHashCode() => (int)_mask;
 
-		/// <include file='../../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='....\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString() => $"{new CellCollection(Map).ToString()}";
 
 
-		/// <include file='../../../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='....\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(Pattern left, Pattern right) => left.Equals(right);
 
-		/// <include file='../../../../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='....\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(Pattern left, Pattern right) => !(left == right);
 	}
 }

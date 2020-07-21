@@ -83,11 +83,11 @@ namespace Sudoku.Solving.Manual.Fishes
 		[DoesNotReturn]
 		public override readonly bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
+		/// <include file='...\GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly bool Equals(RegionMap other) => Mask == other.Mask;
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <include file='...\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override int GetHashCode() => Mask;
 
@@ -98,7 +98,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly int[] ToArray() => Mask.GetAllSets().ToArray();
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='...\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly string ToString() => new RegionCollection(Regions).ToString();
 
@@ -136,11 +136,11 @@ namespace Sudoku.Solving.Manual.Fishes
 		public void Remove(int region) => Mask &= ~(1 << region);
 
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='...\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==(RegionMap left, RegionMap right) => left.Equals(right);
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='...\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=(RegionMap left, RegionMap right) => !(left == right);
 

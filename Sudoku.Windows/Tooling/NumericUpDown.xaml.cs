@@ -14,7 +14,7 @@ namespace Sudoku.Windows.Tooling
 		private decimal _currentValue;
 
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public NumericUpDown() => InitializeComponent();
 
 

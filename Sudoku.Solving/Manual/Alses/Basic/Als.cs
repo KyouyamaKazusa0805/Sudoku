@@ -83,14 +83,14 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		}
 
 
-		/// <include file='../../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='....\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="region">(<see langword="out"/> parameter) The region.</param>
 		/// <param name="digitsMask">(<see langword="out"/> parameter) The digits mask.</param>
 		/// <param name="map">(<see langword="out"/> parameter) The map.</param>
 		public void Deconstruct(out int region, out short digitsMask, out GridMap map) =>
 			(region, digitsMask, map) = (Region, DigitsMask, Map);
 
-		/// <include file='../../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='....\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="isBivalueCell">
 		/// (<see langword="out"/> parameter) Indicates whether the specified ALS is bi-value.
 		/// </param>
@@ -131,7 +131,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		/// <inheritdoc/>
 		public bool Equals(Als other) => DigitsMask == other.DigitsMask && Map == other.Map;
 
-		/// <include file='../../../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <include file='....\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		/// <remarks>
 		/// If you want to determine the equality of two instance, I recommend you
 		/// <b>should</b> use method <see cref="Equals(Als)"/> instead of this method.
@@ -237,10 +237,10 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 		}
 
 
-		/// <include file='../../../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='....\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(Als left, Als right) => left.Equals(right);
 
-		/// <include file='../../../../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='....\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(Als left, Als right) => !(left == right);
 	}
 }

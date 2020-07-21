@@ -34,20 +34,20 @@ namespace Sudoku.Data
 		public LinkType LinkType { get; }
 
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="startCandidate">(<see langword="out"/> parameter) The start candidate.</param>
 		/// <param name="endCandidate">(<see langword="out"/> parameter) The end candidate.</param>
 		public void Deconstruct(out int startCandidate, out int endCandidate) =>
 			(startCandidate, endCandidate) = (StartCandidate, EndCandidate);
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="startCandidate">(<see langword="out"/> parameter) The start candidate.</param>
 		/// <param name="endCandidate">(<see langword="out"/> parameter) The end candidate.</param>
 		/// <param name="linkType">(<see langword="out"/> parameter) The link type.</param>
 		public void Deconstruct(out int startCandidate, out int endCandidate, out LinkType linkType) =>
 			(startCandidate, endCandidate, linkType) = (StartCandidate, EndCandidate, LinkType);
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="startCell">(<see langword="out"/> parameter) The start cell.</param>
 		/// <param name="startDigit">(<see langword="out"/> parameter) The start digit.</param>
 		/// <param name="endCell">(<see langword="out"/> parameter) The end cell.</param>
@@ -58,7 +58,7 @@ namespace Sudoku.Data
 			(startCell, startDigit, endCell, endDigit, linkType) = (
 				StartCandidate / 9, StartCandidate % 9, EndCandidate / 9, EndCandidate % 9, LinkType);
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString()
 		{
 			string startStr = new CandidateCollection(StartCandidate).ToString();
@@ -67,7 +67,7 @@ namespace Sudoku.Data
 			return $"{startStr}{linkStr}{endStr}";
 		}
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
 		public override bool Equals(object? obj) => obj is Link comparer && Equals(comparer);
 
 		/// <inheritdoc/>
@@ -79,14 +79,14 @@ namespace Sudoku.Data
 				|| ((int)c << 20 | b << 10 | a) == ((int)f << 20 | e << 10 | d);
 		}
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		public override int GetHashCode() => (int)LinkType << 20 | StartCandidate << 10 | EndCandidate;
 
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(Link left, Link right) => left.Equals(right);
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(Link left, Link right) => !(left == right);
 	}
 }

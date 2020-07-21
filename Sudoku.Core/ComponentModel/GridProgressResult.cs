@@ -48,13 +48,13 @@ namespace Sudoku.ComponentModel
 			(double)(InitialCandidatesCount - CurrentCandidatesCount) / InitialCandidatesCount * 100;
 
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="current">(<see langword="out"/> parameter) The number of unsolved candidates.</param>
 		/// <param name="unsolvedCells">(<see langword="out"/> parameter) The number of unsolved cells.</param>
 		public readonly void Deconstruct(out int current, out int unsolvedCells) =>
 			(current, unsolvedCells) = (CurrentCandidatesCount, CurrentCellsCount);
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="currentCandidatesCount">(<see langword="out"/> parameter) The number of unsolved candidates.</param>
 		/// <param name="currentCellsCount">(<see langword="out"/> parameter) The number of unsolved cells.</param>
 		/// <param name="initialCandidatesCount">
@@ -65,7 +65,7 @@ namespace Sudoku.ComponentModel
 			(currentCandidatesCount, currentCellsCount, initialCandidatesCount) =
 			(CurrentCandidatesCount, CurrentCellsCount, InitialCandidatesCount);
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override readonly string ToString() =>
 			$"{Resources.GetValue("UnsolvedCells")}{CurrentCellsCount}" +
 			$"{Resources.GetValue("UnsolvedCandidates")}{CurrentCandidatesCount}";

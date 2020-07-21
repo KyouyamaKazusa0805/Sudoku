@@ -55,7 +55,7 @@ namespace Sudoku.Windows.Tooling
 		private bool _isSettingValues = false;
 
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <include file='...\GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public ColorPickerControl() => InitializeComponent();
 
 

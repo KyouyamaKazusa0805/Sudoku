@@ -32,7 +32,7 @@ namespace Sudoku.Windows.Tooling
 		protected const int NumColorsSecondSwatch = 112;
 
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <include file='...\GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public ColorPalette()
 		{
 			BuiltInColors = new List<ColorSwatchItem>();

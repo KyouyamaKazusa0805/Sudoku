@@ -64,16 +64,16 @@ namespace Sudoku.Data.Collections
 		[DoesNotReturn]
 		public override bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
 
-		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="__any"]'/>
 		public bool Equals(CellCollection other) => _map == other._map;
 
-		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[DoesNotReturn]
 		public override int GetHashCode() => throw Throwings.RefStructNotSupported;
 
-		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString()
 		{
 			if (Count == 0)
@@ -160,10 +160,10 @@ namespace Sudoku.Data.Collections
 		public IEnumerator<int> GetEnumerator() => _map.GetEnumerator();
 
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(CellCollection left, CellCollection right) => left.Equals(right);
 
-		/// <include file='../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(CellCollection left, CellCollection right) => !(left == right);
 	}
 }

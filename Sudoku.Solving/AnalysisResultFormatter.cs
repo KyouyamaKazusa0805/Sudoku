@@ -35,7 +35,7 @@ namespace Sudoku.Solving
 		/// <inheritdoc/>
 		public override string ToString() => ToString(null, null);
 
-		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
 		public string ToString(string format) => ToString(format, null);
 
 		/// <inheritdoc/>

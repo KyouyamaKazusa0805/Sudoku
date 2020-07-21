@@ -70,17 +70,13 @@
             <seealso cref="T:System.Drawing.SizeF"/>
         </member>
         <member name="M:Sudoku.Drawing.Extensions.SizeEx.Deconstruct(System.Drawing.Size,System.Int32@,System.Int32@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
+            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="this">(<see langword="this" /> parameter) The size instance.</param>
             <param name="width">(<see langword="out" /> parameter) The width.</param>
             <param name="height">(<see langword="out" /> parameter) The height.</param>
         </member>
         <member name="M:Sudoku.Drawing.Extensions.SizeEx.Deconstruct(System.Drawing.SizeF,System.Single@,System.Single@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
+            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="this">(<see langword="this" /> parameter) The size instance.</param>
             <param name="width">(<see langword="out" /> parameter) The width.</param>
             <param name="height">(<see langword="out" /> parameter) The height.</param>
@@ -101,7 +97,7 @@
             <seealso cref="T:Sudoku.Drawing.View"/>
         </member>
         <member name="M:Sudoku.Drawing.MutableView.#ctor">
-            <!-- Failed to insert some or all of included XML --><include file="../../../GlobalDocComments.xml" path="comments/defaultConstructor" />
+            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/defaultConstructor" />
             <remarks>
             The constructor is equivalent to code '<c>new MutableView(null, null, null, null)</c>'.
             </remarks>
@@ -259,7 +255,9 @@
             <param name="links">The list of links.</param>
         </member>
         <member name="M:Sudoku.Drawing.View.#ctor">
-            <!-- Failed to insert some or all of included XML --><include file="../../GlobalDocComments.xml" path="comments/defaultConstructor" />
+            <defaultConstructor>
+		<summary>Create an instance with default initialization.</summary>
+	</defaultConstructor>
         </member>
         <member name="P:Sudoku.Drawing.View.CellOffsets">
             <summary>

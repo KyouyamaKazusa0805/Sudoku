@@ -151,7 +151,7 @@ _ => throw Throwings.ImpossibleCase
 <# PopIndent(); #>
 
 
-/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+/// <include file='...\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 <#
 	for (int i = 1; i <= z; i++)
 	{
@@ -189,7 +189,7 @@ public void Deconstruct(<#
 	}
 #>);
 
-/// <include file='../../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+/// <include file='...\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 public override string ToString() => ((ITuple)this)[PrimaryElementKey].NullableToString();
 <# PopIndent(); #>
 }

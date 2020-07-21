@@ -11,7 +11,7 @@ namespace Sudoku.Windows
 	/// </summary>
 	public partial class SpecialThanksWindow : Window
 	{
-		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public SpecialThanksWindow() => InitializeComponent();
 
 

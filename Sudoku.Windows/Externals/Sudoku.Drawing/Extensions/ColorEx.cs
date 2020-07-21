@@ -12,7 +12,7 @@ namespace Sudoku.Drawing.Extensions
 	[DebuggerStepThrough]
 	public static class ColorEx
 	{
-		/// <include file='../../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='....\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="this">(<see langword="this"/> parameter) The color.</param>
 		/// <param name="a">(<see langword="out"/> parameter) The alpha value.</param>
 		/// <param name="r">(<see langword="out"/> parameter) The red value.</param>
@@ -21,7 +21,7 @@ namespace Sudoku.Drawing.Extensions
 		public static void Deconstruct(this DColor @this, out int a, out int r, out int g, out int b) =>
 			(a, r, g, b) = (@this.A, @this.R, @this.G, @this.B);
 
-		/// <include file='../../../../GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='....\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="this">(<see langword="this"/> parameter) The color.</param>
 		/// <param name="a">(<see langword="out"/> parameter) The alpha value.</param>
 		/// <param name="r">(<see langword="out"/> parameter) The red value.</param>

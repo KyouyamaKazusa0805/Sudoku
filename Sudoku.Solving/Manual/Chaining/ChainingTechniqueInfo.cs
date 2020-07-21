@@ -257,11 +257,11 @@ namespace Sudoku.Solving.Manual.Chaining
 			};
 
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='...\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(ChainingTechniqueInfo? left, ChainingTechniqueInfo? right) =>
 			InternalEquals(left, right);
 
-		/// <include file='../../../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='...\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(ChainingTechniqueInfo? left, ChainingTechniqueInfo? right) => !(left == right);
 	}
 }

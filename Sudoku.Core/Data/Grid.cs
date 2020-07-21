@@ -111,7 +111,7 @@ namespace Sudoku.Data
 			ValueChanged += OnValueChanged;
 		}
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		private Grid()
 		{
 			// 512 is equivalent to value '0b001_000_000_000', where the higher 3 bits
@@ -425,7 +425,7 @@ namespace Sudoku.Data
 		public string ToString(GridOutputOptions gridOutputOption) =>
 			GridFormatFactory.Create(gridOutputOption).ToString(this);
 
-		/// <include file='../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
 		public string ToString(string format) => ToString(format, null);
 
 		/// <inheritdoc/>
@@ -765,10 +765,10 @@ namespace Sudoku.Data
 		}
 
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(Grid? left, Grid? right) => Equals(left, right);
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(Grid? left, Grid? right) => !(left == right);
 	}
 }

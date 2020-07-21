@@ -67,13 +67,13 @@ namespace Sudoku.Data
 		[DoesNotReturn]
 		public override readonly bool Equals(object? obj) => throw Throwings.RefStructNotSupported;
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[DoesNotReturn]
 		public override readonly int GetHashCode() => throw Throwings.RefStructNotSupported;
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		/// <exception cref="NotSupportedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[DoesNotReturn]

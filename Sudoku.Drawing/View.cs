@@ -46,7 +46,7 @@ namespace Sudoku.Drawing
 			IReadOnlyList<(int, int)>? regionOffsets, IReadOnlyList<Link>? links) =>
 			(CellOffsets, CandidateOffsets, RegionOffsets, Links) = (cellOffsets, candidateOffsets, regionOffsets, links);
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private View()
 		{

@@ -21,7 +21,7 @@ namespace Sudoku.Windows.Tooling
 		protected readonly int _widthMin = 342;
 
 
-		/// <include file='../../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public ColorPicker() => InitializeComponent();
 
 

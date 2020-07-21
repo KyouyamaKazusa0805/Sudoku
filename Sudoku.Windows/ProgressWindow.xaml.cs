@@ -29,7 +29,7 @@ namespace Sudoku.Windows
 		private bool _closeValue = false;
 
 
-		/// <include file='../GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		/// <include file='.\GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public ProgressWindow() => InitializeComponent();
 
 

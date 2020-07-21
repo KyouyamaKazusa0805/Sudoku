@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		};
 
 
-		/// <include file='../../../../GlobalDocComments.xml' path='comments/staticConstructor'/>
+		/// <include file='....\GlobalDocComments.xml' path='comments/staticConstructor'/>
 		static BdpTechniqueSearcher()
 		{
 			int count = 0;

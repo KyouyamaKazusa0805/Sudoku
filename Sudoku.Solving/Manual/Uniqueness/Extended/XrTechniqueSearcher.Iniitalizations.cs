@@ -53,7 +53,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		private static readonly IReadOnlyList<(GridMap, IReadOnlyList<(int, int)>, int)> Combinations;
 
 
-		/// <include file='../../../../GlobalDocComments.xml' path='comments/staticConstructor'/>
+		/// <include file='....\GlobalDocComments.xml' path='comments/staticConstructor'/>
 		static XrTechniqueSearcher()
 		{
 			var combinations = new List<(GridMap, IReadOnlyList<(int, int)>, int)>();
