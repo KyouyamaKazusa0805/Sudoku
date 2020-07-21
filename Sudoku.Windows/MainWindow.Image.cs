@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -130,14 +131,11 @@ namespace Sudoku.Windows
 			_selectedCellsWhileDrawingRegions.Add(cell);
 
 			// Disable all menu items.
+			var flags = NonPublic | Instance;
 			for (int i = 0; i < 9; i++)
 			{
-				((MenuItem)
-					GetType().GetField($"_menuItemImageGridSet{i + 1}", NonPublic | Instance)!.GetValue(this)!
-				).Visibility = Visibility.Collapsed;
-				((MenuItem)
-					GetType().GetField($"_menuItemImageGridDelete{i + 1}", NonPublic | Instance)!.GetValue(this)!
-				).Visibility = Visibility.Collapsed;
+				s(this, flags, i).Visibility = Visibility.Collapsed;
+				d(this, flags, i).Visibility = Visibility.Collapsed;
 			}
 
 			// Check whether the specified cell is not empty.
@@ -152,13 +150,14 @@ namespace Sudoku.Windows
 				_puzzle.GetCandidateMask(
 					_pointConverter.GetCellOffset(_currentRightClickPos.ToDPointF())).GetAllSets())
 			{
-				((MenuItem)
-					GetType().GetField($"_menuItemImageGridSet{i + 1}", NonPublic | Instance)!.GetValue(this)!
-				).Visibility = Visibility.Visible;
-				((MenuItem)
-					GetType().GetField($"_menuItemImageGridDelete{i + 1}", NonPublic | Instance)!.GetValue(this)!
-				).Visibility = Visibility.Visible;
+				s(this, flags, i).Visibility = Visibility.Visible;
+				d(this, flags, i).Visibility = Visibility.Visible;
 			}
+
+			static MenuItem s(MainWindow @this, BindingFlags flags, int i) =>
+				(MenuItem)@this.GetType().GetField($"_menuItemImageGridSet{i + 1}", flags)!.GetValue(@this)!;
+			static MenuItem d(MainWindow @this, BindingFlags flags, int i) =>
+				(MenuItem)@this.GetType().GetField($"_menuItemImageGridDelete{i + 1}", flags)!.GetValue(@this)!;
 		}
 
 		private void ImageGrid_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
