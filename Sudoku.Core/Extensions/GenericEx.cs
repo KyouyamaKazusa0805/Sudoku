@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 
 namespace Sudoku.Extensions
@@ -22,7 +23,7 @@ namespace Sudoku.Extensions
 		/// <see cref="string.Empty"/>.
 		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static string NullableToString<T>([MaybeNull] this T @this) => @this.NullableToString(string.Empty);
+		public static string NullableToString<T>(this T @this) => @this.NullableToString(string.Empty);
 
 		/// <summary>
 		/// Returns a <see cref="string"/> that represents the current object
@@ -39,7 +40,7 @@ namespace Sudoku.Extensions
 		/// <paramref name="defaultValue"/>.
 		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static string NullableToString<T>([MaybeNull] this T @this, string defaultValue) =>
+		public static string NullableToString<T>(this T @this, string defaultValue) =>
 			@this?.ToString() ?? defaultValue;
 	}
 }
