@@ -2,7 +2,7 @@
 {
 	/// <summary>
 	/// Supports cloning, which creates a new instance of a class with the same value
-	/// as an existing instance. Different than <see cref="ICloneable"/>, the cloneation
+	/// as an existing instance. Different with <see cref="ICloneable"/>, the cloneation
 	/// has the same type with this existing instance.
 	/// </summary>
 	/// <typeparam name="T">
