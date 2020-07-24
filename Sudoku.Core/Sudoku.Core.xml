@@ -66,6 +66,31 @@
 		<returns>A string that represents the current object.</returns>
 	</method>
         </member>
+        <member name="M:Sudoku.ComponentModel.GridProgressResult.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.ComponentModel.GridProgressResult.Equals(Sudoku.ComponentModel.GridProgressResult)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.ComponentModel.GridProgressResult.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.ComponentModel.GridProgressResult.op_Equality(Sudoku.ComponentModel.GridProgressResult,Sudoku.ComponentModel.GridProgressResult)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.ComponentModel.GridProgressResult.op_Inequality(Sudoku.ComponentModel.GridProgressResult,Sudoku.ComponentModel.GridProgressResult)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
         <member name="T:Sudoku.ComponentModel.IProgressResult">
             <summary>
             Encapsulates and provides with a progress result instance.

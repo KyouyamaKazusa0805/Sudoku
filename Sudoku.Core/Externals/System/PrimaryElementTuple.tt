@@ -1,5 +1,7 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ output extension=".cs" #>
+#pragma warning disable CA1815
+
 using System.Runtime.CompilerServices;
 using Sudoku.Constants;
 using Sudoku.Extensions;

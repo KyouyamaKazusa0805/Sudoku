@@ -1,11 +1,12 @@
-﻿using Sudoku.Windows;
+﻿using System;
+using Sudoku.Windows;
 
 namespace Sudoku.ComponentModel
 {
 	/// <summary>
 	/// Encapsulates a progress result used for report the current state.
 	/// </summary>
-	public struct GridProgressResult : IProgressResult
+	public struct GridProgressResult : IEquatable<GridProgressResult>, IProgressResult
 	{
 		/// <summary>
 		/// Initializes an instance with the specified current point and the total point.
@@ -69,5 +70,24 @@ namespace Sudoku.ComponentModel
 		public override readonly string ToString() =>
 			$"{Resources.GetValue("UnsolvedCells")}{CurrentCellsCount}" +
 			$"{Resources.GetValue("UnsolvedCandidates")}{CurrentCandidatesCount}";
+
+		/// <inheritdoc/>
+		public override readonly bool Equals(object? obj) => obj is GridProgressResult comparer && Equals(comparer);
+
+		/// <inheritdoc/>
+		public readonly bool Equals(GridProgressResult other) =>
+			CurrentCellsCount == other.CurrentCellsCount && CurrentCandidatesCount == other.CurrentCandidatesCount
+			&& InitialCandidatesCount == other.InitialCandidatesCount && GlobalizationString == other.GlobalizationString;
+
+		/// <inheritdoc/>
+		public override readonly int GetHashCode() =>
+			(CurrentCellsCount * 729 + CurrentCandidatesCount) ^ InitialCandidatesCount ^ GlobalizationString.GetHashCode();
+
+
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		public static bool operator ==(GridProgressResult left, GridProgressResult right) => left.Equals(right);
+
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		public static bool operator !=(GridProgressResult left, GridProgressResult right) => !(left == right);
 	}
 }
