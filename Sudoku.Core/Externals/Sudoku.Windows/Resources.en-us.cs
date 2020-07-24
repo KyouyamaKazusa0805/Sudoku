@@ -82,6 +82,7 @@ namespace Sudoku.Windows
 			["Avoidable"] = "Avoidable ",
 			["Unique"] = "Unique",
 			["Hidden"] = "Hidden ",
+			["Category"] = "Category: ",
 			["AnalysisResultPuzzle"] = "Puzzle: ",
 			["AnalysisResultSolvingTool"] = "Solving tool: ",
 			["AnalysisResultSolvingSteps"] = "Solving steps:",
