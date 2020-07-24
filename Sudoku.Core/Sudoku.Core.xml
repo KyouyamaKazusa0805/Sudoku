@@ -4367,13 +4367,6 @@
             </summary>
             <param name="this">(<see langword="this ref"/> parameter) The value.</param>
         </member>
-        <member name="M:Sudoku.Extensions.BooleanEx.ToInt32(System.Boolean)">
-            <summary>
-            Get the equivalent <see cref="T:System.Int32"/> value of the current <see cref="T:System.Boolean"/>.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The current value.</param>
-            <returns>The result.</returns>
-        </member>
         <member name="T:Sudoku.Extensions.ByteEx">
             <summary>
             Provides extension methods on <see cref="T:System.Byte"/>.
@@ -6869,66 +6862,6 @@
             Roslyn, so we should suppress the complier warning IDE0052.
             </remarks>
         </member>
-        <member name="T:Sudoku.InternalSettings">
-            <summary>
-            Define the internal settings.
-            </summary>
-        </member>
-        <member name="F:Sudoku.InternalSettings.MaxSize">
-            <summary>
-            Indicates the maximum size.
-            </summary>
-        </member>
-        <member name="F:Sudoku.InternalSettings.RSize">
-            <summary>
-            Indicates the R-size.
-            </summary>
-        </member>
-        <member name="F:Sudoku.InternalSettings.ThresholdMin">
-            <summary>
-            Indicates the minimum threshold.
-            </summary>
-        </member>
-        <member name="F:Sudoku.InternalSettings.ThresholdMax">
-            <summary>
-            Indicates the maximum threshold.
-            </summary>
-        </member>
-        <member name="F:Sudoku.InternalSettings.L2Gradient">
-            <summary>
-            Indicates the L2Gradient.
-            </summary>
-        </member>
-        <member name="F:Sudoku.InternalSettings.Font">
-            <summary>
-            Indicates the font.
-            </summary>
-        </member>
-        <member name="F:Sudoku.InternalSettings.FontSize">
-            <summary>
-            Indicates the font size.
-            </summary>
-        </member>
-        <member name="F:Sudoku.InternalSettings.FontSizePr">
-            <summary>
-            Indicates the font size pr.
-            </summary>
-        </member>
-        <member name="F:Sudoku.InternalSettings.ChainApprox">
-            <summary>
-            Indicates the ChainApprox.
-            </summary>
-        </member>
-        <member name="F:Sudoku.InternalSettings.ThOcrMin">
-            <summary>
-            Indicates the ThOcrMin.
-            </summary>
-        </member>
-        <member name="F:Sudoku.InternalSettings.ThOcrMax">
-            <summary>
-            Indicates the ThOcrMax.
-            </summary>
-        </member>
         <member name="T:Sudoku.MultipleSolutionsException">
             <summary>
             Represents an error that the puzzle has multiple solutions while solving.
@@ -7171,6 +7104,66 @@
             <param name="dir">The directory to find.</param>
             <param name="lang">The language.</param>
             <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.Recognitions.InternalSettings">
+            <summary>
+            Define the internal settings.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognitions.InternalSettings.MaxSize">
+            <summary>
+            Indicates the maximum size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognitions.InternalSettings.RSize">
+            <summary>
+            Indicates the R-size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognitions.InternalSettings.ThresholdMin">
+            <summary>
+            Indicates the minimum threshold.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognitions.InternalSettings.ThresholdMax">
+            <summary>
+            Indicates the maximum threshold.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognitions.InternalSettings.L2Gradient">
+            <summary>
+            Indicates the L2Gradient.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognitions.InternalSettings.Font">
+            <summary>
+            Indicates the font.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognitions.InternalSettings.FontSize">
+            <summary>
+            Indicates the font size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognitions.InternalSettings.FontSizePr">
+            <summary>
+            Indicates the font size pr.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognitions.InternalSettings.ChainApprox">
+            <summary>
+            Indicates the ChainApprox.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognitions.InternalSettings.ThOcrMin">
+            <summary>
+            Indicates the ThOcrMin.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognitions.InternalSettings.ThOcrMax">
+            <summary>
+            Indicates the ThOcrMax.
+            </summary>
         </member>
         <member name="T:Sudoku.Recognitions.RecognitionServiceProvider">
             <summary>

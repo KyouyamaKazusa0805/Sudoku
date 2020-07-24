@@ -7,7 +7,7 @@ using Emgu.CV.Structure;
 using Emgu.CV.Util;
 using Sudoku.Drawing.Extensions;
 using static System.Math;
-using static Sudoku.InternalSettings;
+using static Sudoku.Recognitions.InternalSettings;
 using Field = Emgu.CV.Image<Emgu.CV.Structure.Bgr, byte>;
 
 namespace Sudoku.Recognitions
@@ -134,11 +134,7 @@ namespace Sudoku.Recognitions
 				resultField,
 				CvInvoke.GetPerspectiveTransform(
 					field,
-					new[]
-					{
-						new PointF(0, 0), new PointF(RSize, 0),
-						new PointF(0, RSize), new PointF(RSize, RSize)
-					}),
+					new[] { new PointF(0, 0), new PointF(RSize, 0), new PointF(0, RSize), new PointF(RSize, RSize) }),
 				new Size(RSize, RSize));
 
 			return resultField;

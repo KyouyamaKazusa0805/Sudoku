@@ -1,7 +1,7 @@
 ﻿#if SUDOKU_RECOGNIZING
 using Emgu.CV.CvEnum;
 
-namespace Sudoku
+namespace Sudoku.Recognitions
 {
 	/// <summary>
 	/// Define the internal settings.
