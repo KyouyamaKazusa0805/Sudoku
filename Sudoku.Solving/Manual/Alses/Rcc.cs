@@ -44,7 +44,7 @@ namespace Sudoku.Solving.Manual.Alses
 		public int CommonRegion { get; }
 
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="als1">(<see langword="out"/> parameter) The ALS 1.</param>
 		/// <param name="als2">(<see langword="out"/> parameter) The ALS 2.</param>
 		/// <param name="commonDigit">
@@ -65,11 +65,11 @@ namespace Sudoku.Solving.Manual.Alses
 			&& CommonRegion == other.CommonRegion
 			&& (Als1 == other.Als1 && Als2 == other.Als2 || Als1 == other.Als2 && Als2 == other.Als1);
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		public override int GetHashCode() =>
 			Als1.GetHashCode() ^ Als2.GetHashCode() ^ CommonDigit ^ CommonRegion;
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString() => $"{CommonDigit + 1} in {Als1} & {Als2}";
 
 
@@ -175,10 +175,10 @@ namespace Sudoku.Solving.Manual.Alses
 		}
 
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(Rcc left, Rcc right) => left.Equals(right);
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(Rcc left, Rcc right) => !(left == right);
 	}
 }

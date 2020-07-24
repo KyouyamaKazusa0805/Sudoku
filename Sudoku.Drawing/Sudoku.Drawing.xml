@@ -70,13 +70,17 @@
             <seealso cref="T:System.Drawing.SizeF"/>
         </member>
         <member name="M:Sudoku.Drawing.Extensions.SizeEx.Deconstruct(System.Drawing.Size,System.Int32@,System.Int32@)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
             <param name="this">(<see langword="this" /> parameter) The size instance.</param>
             <param name="width">(<see langword="out" /> parameter) The width.</param>
             <param name="height">(<see langword="out" /> parameter) The height.</param>
         </member>
         <member name="M:Sudoku.Drawing.Extensions.SizeEx.Deconstruct(System.Drawing.SizeF,System.Single@,System.Single@)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
             <param name="this">(<see langword="this" /> parameter) The size instance.</param>
             <param name="width">(<see langword="out" /> parameter) The width.</param>
             <param name="height">(<see langword="out" /> parameter) The height.</param>

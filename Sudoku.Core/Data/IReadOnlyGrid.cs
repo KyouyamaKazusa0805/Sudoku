@@ -69,10 +69,10 @@ namespace Sudoku.Data
 		bool this[int cell, int digit] { get; }
 
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Equals" and @paramType="object"]'/>
 		bool Equals(object? obj);
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		int GetHashCode();
 
 		/// <summary>
@@ -108,7 +108,7 @@ namespace Sudoku.Data
 		/// </remarks>
 		short GetCandidateMask(int cell);
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
 		string ToString(string format);
 
 		/// <summary>

@@ -77,13 +77,13 @@ namespace Sudoku.Data
 			}
 		}
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="conclusionType">(<see langword="out"/> parameter) The type of this conclusion.</param>
 		/// <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
 		public void Deconstruct(out ConclusionType conclusionType, out int candidate) =>
 			(conclusionType, candidate) = (ConclusionType, CellOffset * 9 + Digit);
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="conclusionType">(<see langword="out"/> parameter) The type of this conclusion.</param>
 		/// <param name="cell">(<see langword="out"/> parameter) The cell.</param>
 		/// <param name="digit">(<see langword="out"/> parameter) The digit.</param>
@@ -106,7 +106,7 @@ namespace Sudoku.Data
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((int)ConclusionType + 1) * (CellOffset * 9 + Digit);
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		/// <exception cref="InvalidOperationException">
 		/// Throws when the current conclusion type is invalid (neither <see cref="ConclusionType.Assignment"/>
 		/// nor <see cref="ConclusionType.Elimination"/>.
@@ -121,10 +121,10 @@ namespace Sudoku.Data
 			}} {Digit + 1}";
 
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(Conclusion left, Conclusion right) => left.Equals(right);
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(Conclusion left, Conclusion right) => !(left == right);
 	}
 }

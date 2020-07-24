@@ -425,7 +425,7 @@ namespace Sudoku.Data
 		public string ToString(GridOutputOptions gridOutputOption) =>
 			GridFormatFactory.Create(gridOutputOption).ToString(this);
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
 		public string ToString(string format) => ToString(format, null);
 
 		/// <inheritdoc/>

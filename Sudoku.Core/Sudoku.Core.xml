@@ -227,7 +227,9 @@
             <returns>The cells.</returns>
         </member>
         <member name="M:Sudoku.Constants.Processings.Deconstruct(Sudoku.Data.IReadOnlyGrid,Sudoku.Data.GridMap@,Sudoku.Data.GridMap@,Sudoku.Data.GridMap[]@,Sudoku.Data.GridMap[]@,Sudoku.Data.GridMap[]@)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
             <param name="this">(<see langword="this" /> parameter) The grid.</param>
             <param name="empty">(<see langword="out" /> parameter) The map of all empty cells.</param>
             <param name="bivalue">(<see langword="out" /> parameter) The map of all bi-value cells.</param>
@@ -285,7 +287,11 @@
             <returns>The map.</returns>
         </member>
         <member name="M:Sudoku.Constants.Processings.#cctor">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/staticConstructor" />
+            <staticConstructor>
+		<summary>The static constructor of this class.</summary>
+	</staticConstructor><staticConstructor aimTo="struct">
+		<summary>The static constructor of this struct.</summary>
+	</staticConstructor>
             <remarks>
             The initialization order between static constructor and static fields
             may be annoying, so I use static constructor.
@@ -609,24 +615,58 @@
             <param name="candidates">The candidates.</param>
         </member>
         <member name="M:Sudoku.Data.Collections.CandidateCollection.Equals(System.Object)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;Equals&quot; and @paramType=&quot;object&quot;]" />
+            <method name="Equals" paramType="object">
+		<summary>
+			Determines whether the specified object is equal to the current object.
+		</summary>
+		<param name="obj">The object to compare with the current object.</param>
+		<returns>
+			<see langword="true" /> if the specified object is equal to the
+			current object; otherwise, <see langword="false" />.
+		</returns>
+	</method>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Data.Collections.CandidateCollection.Equals(Sudoku.Data.Collections.CandidateCollection)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;Equals&quot; and @paramType=&quot;__any&quot;]" />
+            <method name="Equals" paramType="__any">
+		<summary>
+			Determine whether the current instance contains the same information with
+			hat from the specified parameter.
+		</summary>
+		<param name="other">The other instance to determine.</param>
+		<returns>A <see cref="T:System.Boolean" /> value indicating that.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Data.Collections.CandidateCollection.GetHashCode">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;GetHashCode&quot;]" />
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Data.Collections.CandidateCollection.ToString">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Data.Collections.CandidateCollection.op_Equality(Sudoku.Data.Collections.CandidateCollection,Sudoku.Data.Collections.CandidateCollection)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Data.Collections.CandidateCollection.op_Inequality(Sudoku.Data.Collections.CandidateCollection,Sudoku.Data.Collections.CandidateCollection)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="T:Sudoku.Data.Collections.CellCollection">
             <summary>
@@ -680,14 +720,29 @@
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Data.Collections.CellCollection.Equals(Sudoku.Data.Collections.CellCollection)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;Equals&quot; and @paramType=&quot;__any&quot;]" />
+            <method name="Equals" paramType="__any">
+		<summary>
+			Determine whether the current instance contains the same information with
+			hat from the specified parameter.
+		</summary>
+		<param name="other">The other instance to determine.</param>
+		<returns>A <see cref="T:System.Boolean" /> value indicating that.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Data.Collections.CellCollection.GetHashCode">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;GetHashCode&quot;]" />
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Data.Collections.CellCollection.ToString">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Data.Collections.CellCollection.GetEnumerator">
             <summary>
@@ -696,10 +751,20 @@
             <returns>The enumerator.</returns>
         </member>
         <member name="M:Sudoku.Data.Collections.CellCollection.op_Equality(Sudoku.Data.Collections.CellCollection,Sudoku.Data.Collections.CellCollection)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Data.Collections.CellCollection.op_Inequality(Sudoku.Data.Collections.CellCollection,Sudoku.Data.Collections.CellCollection)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="T:Sudoku.Data.Collections.ConclusionCollection">
             <summary>
@@ -745,18 +810,42 @@
             </summary>
         </member>
         <member name="M:Sudoku.Data.Collections.ConclusionCollection.Equals(System.Object)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;Equals&quot; and @paramType=&quot;object&quot;]" />
+            <method name="Equals" paramType="object">
+		<summary>
+			Determines whether the specified object is equal to the current object.
+		</summary>
+		<param name="obj">The object to compare with the current object.</param>
+		<returns>
+			<see langword="true" /> if the specified object is equal to the
+			current object; otherwise, <see langword="false" />.
+		</returns>
+	</method>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Data.Collections.ConclusionCollection.Equals(Sudoku.Data.Collections.ConclusionCollection)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;Equals&quot; and @paramType=&quot;__any&quot;]" />
+            <method name="Equals" paramType="__any">
+		<summary>
+			Determine whether the current instance contains the same information with
+			hat from the specified parameter.
+		</summary>
+		<param name="other">The other instance to determine.</param>
+		<returns>A <see cref="T:System.Boolean" /> value indicating that.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Data.Collections.ConclusionCollection.GetHashCode">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;GetHashCode&quot;]" />
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Data.Collections.ConclusionCollection.ToString">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Data.Collections.ConclusionCollection.ToString(System.Boolean,System.String)">
             <summary>
@@ -767,10 +856,20 @@
             <returns>The string result.</returns>
         </member>
         <member name="M:Sudoku.Data.Collections.ConclusionCollection.op_Equality(Sudoku.Data.Collections.ConclusionCollection,Sudoku.Data.Collections.ConclusionCollection)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Data.Collections.ConclusionCollection.op_Inequality(Sudoku.Data.Collections.ConclusionCollection,Sudoku.Data.Collections.ConclusionCollection)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="T:Sudoku.Data.Collections.DigitCollection">
             <summary>
@@ -816,7 +915,14 @@
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.Equals(Sudoku.Data.Collections.DigitCollection)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;Equals&quot; and @paramType=&quot;__any&quot;]" />
+            <method name="Equals" paramType="__any">
+		<summary>
+			Determine whether the current instance contains the same information with
+			hat from the specified parameter.
+		</summary>
+		<param name="other">The other instance to determine.</param>
+		<returns>A <see cref="T:System.Boolean" /> value indicating that.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.Contains(System.Int32)">
             <summary>
@@ -826,14 +932,26 @@
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.GetHashCode">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;GetHashCode&quot;]" />
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.ToString">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.ToString(System.String)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;string&quot;]" />
+            <method name="ToString" paramType="string">
+		<summary>
+			Returns a string that represents the current object with the
+			specified format string.
+		</summary>
+		<param name="format">The format.</param>
+		<returns>The string result.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.GetEnumerator">
             <summary>
@@ -851,10 +969,20 @@
             <returns>The negative result.</returns>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.op_Equality(Sudoku.Data.Collections.DigitCollection,Sudoku.Data.Collections.DigitCollection)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.op_Inequality(Sudoku.Data.Collections.DigitCollection,Sudoku.Data.Collections.DigitCollection)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="T:Sudoku.Data.Collections.LinkCollection">
             <summary>
@@ -900,24 +1028,58 @@
             </summary>
         </member>
         <member name="M:Sudoku.Data.Collections.LinkCollection.Equals(System.Object)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;Equals&quot; and @paramType=&quot;object&quot;]" />
+            <method name="Equals" paramType="object">
+		<summary>
+			Determines whether the specified object is equal to the current object.
+		</summary>
+		<param name="obj">The object to compare with the current object.</param>
+		<returns>
+			<see langword="true" /> if the specified object is equal to the
+			current object; otherwise, <see langword="false" />.
+		</returns>
+	</method>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Data.Collections.LinkCollection.Equals(Sudoku.Data.Collections.LinkCollection)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;Equals&quot; and @paramType=&quot;__any&quot;]" />
+            <method name="Equals" paramType="__any">
+		<summary>
+			Determine whether the current instance contains the same information with
+			hat from the specified parameter.
+		</summary>
+		<param name="other">The other instance to determine.</param>
+		<returns>A <see cref="T:System.Boolean" /> value indicating that.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Data.Collections.LinkCollection.GetHashCode">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;GetHashCode&quot;]" />
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Data.Collections.LinkCollection.ToString">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Data.Collections.LinkCollection.op_Equality(Sudoku.Data.Collections.LinkCollection,Sudoku.Data.Collections.LinkCollection)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Data.Collections.LinkCollection.op_Inequality(Sudoku.Data.Collections.LinkCollection,Sudoku.Data.Collections.LinkCollection)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="T:Sudoku.Data.Collections.RegionCollection">
             <summary>
@@ -965,14 +1127,29 @@
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Data.Collections.RegionCollection.Equals(Sudoku.Data.Collections.RegionCollection)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;Equals&quot; and @paramType=&quot;__any&quot;]" />
+            <method name="Equals" paramType="__any">
+		<summary>
+			Determine whether the current instance contains the same information with
+			hat from the specified parameter.
+		</summary>
+		<param name="other">The other instance to determine.</param>
+		<returns>A <see cref="T:System.Boolean" /> value indicating that.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Data.Collections.RegionCollection.GetHashCode">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;GetHashCode&quot;]" />
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Data.Collections.RegionCollection.ToString">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Data.Collections.RegionCollection.ToSimpleString">
             <summary>
@@ -994,10 +1171,20 @@
             <returns>The label.</returns>
         </member>
         <member name="M:Sudoku.Data.Collections.RegionCollection.op_Equality(Sudoku.Data.Collections.RegionCollection,Sudoku.Data.Collections.RegionCollection)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Data.Collections.RegionCollection.op_Inequality(Sudoku.Data.Collections.RegionCollection,Sudoku.Data.Collections.RegionCollection)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="T:Sudoku.Data.Conclusion">
             <summary>
@@ -1048,12 +1235,16 @@
             </exception>
         </member>
         <member name="M:Sudoku.Data.Conclusion.Deconstruct(Sudoku.Data.ConclusionType@,System.Int32@)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
             <param name="conclusionType">(<see langword="out" /> parameter) The type of this conclusion.</param>
             <param name="candidate">(<see langword="out" /> parameter) The candidate.</param>
         </member>
         <member name="M:Sudoku.Data.Conclusion.Deconstruct(Sudoku.Data.ConclusionType@,System.Int32@,System.Int32@)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
             <param name="conclusionType">(<see langword="out" /> parameter) The type of this conclusion.</param>
             <param name="cell">(<see langword="out" /> parameter) The cell.</param>
             <param name="digit">(<see langword="out" /> parameter) The digit.</param>
@@ -1075,7 +1266,10 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Conclusion.ToString">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
             <exception cref="T:System.InvalidOperationException">
             Throws when the current conclusion type is invalid (neither <see cref="F:Sudoku.Data.ConclusionType.Assignment" />
             nor <see cref="F:Sudoku.Data.ConclusionType.Elimination" />.
@@ -1083,10 +1277,20 @@
             <seealso cref="P:Sudoku.Data.Conclusion.ConclusionType" />
         </member>
         <member name="M:Sudoku.Data.Conclusion.op_Equality(Sudoku.Data.Conclusion,Sudoku.Data.Conclusion)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Data.Conclusion.op_Inequality(Sudoku.Data.Conclusion,Sudoku.Data.Conclusion)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="T:Sudoku.Data.ConclusionType">
             <summary>
@@ -1455,7 +1659,14 @@
             <returns>The string.</returns>
         </member>
         <member name="M:Sudoku.Data.Grid.ToString(System.String)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;string&quot;]" />
+            <method name="ToString" paramType="string">
+		<summary>
+			Returns a string that represents the current object with the
+			specified format string.
+		</summary>
+		<param name="format">The format.</param>
+		<returns>The string result.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Data.Grid.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
@@ -2169,22 +2380,56 @@
             <param name="offsets">The cells to add.</param>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_Equality(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_Inequality(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_GreaterThan(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_GreaterThan&quot;]" />
+            <operator name="op_GreaterThan">
+		<summary>Indicates whether the left value is greater than the right value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_GreaterThanOrEqual(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_GreaterThanOrEqual&quot;]" />
+            <operator name="op_GreaterThanOrEqual">
+		<summary>
+			Indicates whether the left value is greater than or equals to the right value.
+		</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_LessThan(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_LessThan&quot;]" />
+            <operator name="op_LessThan">
+		<summary>Indicates whether the left value is less than the right value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_LessThanOrEqual(Sudoku.Data.GridMap,Sudoku.Data.GridMap)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_LessThanOrEqual&quot;]" />
+            <operator name="op_LessThanOrEqual">
+		<summary>
+			Indicates whether the left value is less than or equals to the right value.
+		</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Data.GridMap.op_OnesComplement(Sudoku.Data.GridMap)">
             <summary>
@@ -2724,10 +2969,24 @@
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Data.IReadOnlyGrid.Equals(System.Object)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;Equals&quot; and @paramType=&quot;object&quot;]" />
+            <method name="Equals" paramType="object">
+		<summary>
+			Determines whether the specified object is equal to the current object.
+		</summary>
+		<param name="obj">The object to compare with the current object.</param>
+		<returns>
+			<see langword="true" /> if the specified object is equal to the
+			current object; otherwise, <see langword="false" />.
+		</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Data.IReadOnlyGrid.GetHashCode">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;GetHashCode&quot;]" />
+            <method name="GetHashCode">
+		<summary>
+			Serves as the default hash function.
+		</summary>
+		<returns>The hash code.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Data.IReadOnlyGrid.ToArray">
             <summary>
@@ -2763,7 +3022,14 @@
             </remarks>
         </member>
         <member name="M:Sudoku.Data.IReadOnlyGrid.ToString(System.String)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;string&quot;]" />
+            <method name="ToString" paramType="string">
+		<summary>
+			Returns a string that represents the current object with the
+			specified format string.
+		</summary>
+		<param name="format">The format.</param>
+		<returns>The string result.</returns>
+	</method>
         </member>
         <member name="M:Sudoku.Data.IReadOnlyGrid.GetStatus(System.Int32)">
             <summary>
@@ -3404,22 +3670,52 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Equality(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.Stepping.UndoableGrid)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Equality(Sudoku.Data.Grid,Sudoku.Data.Stepping.UndoableGrid)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Equality(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.Grid)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Inequality(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.Stepping.UndoableGrid)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Inequality(Sudoku.Data.Grid,Sudoku.Data.Stepping.UndoableGrid)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Data.Stepping.UndoableGrid.op_Inequality(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.Grid)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="T:Sudoku.Data.Stepping.UnfixStep">
             <summary>
@@ -3463,7 +3759,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.#ctor">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/defaultConstructor" />
+            <defaultConstructor>
+		<summary>Create an instance with default initialization.</summary>
+	</defaultConstructor>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.#ctor(Sudoku.Data.SudokuMap)">
             <summary>
@@ -3727,10 +4025,20 @@
             <seealso cref="M:Sudoku.Data.SudokuMap.#ctor(System.Int32,System.Boolean)"/>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.op_Equality(Sudoku.Data.SudokuMap,Sudoku.Data.SudokuMap)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.op_Inequality(Sudoku.Data.SudokuMap,Sudoku.Data.SudokuMap)">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:Sudoku.Data.SudokuMap.op_Subtraction(Sudoku.Data.SudokuMap,Sudoku.Data.SudokuMap)">
             <summary>
@@ -7238,22 +7546,56 @@
             <inheritdoc/>
         </member>
         <member name="M:System.Collections.Generic.TreeNode`1.op_Equality(System.Collections.Generic.TreeNode{`0},System.Collections.Generic.TreeNode{`0})">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:System.Collections.Generic.TreeNode`1.op_Inequality(System.Collections.Generic.TreeNode{`0},System.Collections.Generic.TreeNode{`0})">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:System.Collections.Generic.TreeNode`1.op_GreaterThan(System.Collections.Generic.TreeNode{`0},System.Collections.Generic.TreeNode{`0})">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_GreaterThan&quot;]" />
+            <operator name="op_GreaterThan">
+		<summary>Indicates whether the left value is greater than the right value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:System.Collections.Generic.TreeNode`1.op_GreaterThanOrEqual(System.Collections.Generic.TreeNode{`0},System.Collections.Generic.TreeNode{`0})">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_GreaterThanOrEqual&quot;]" />
+            <operator name="op_GreaterThanOrEqual">
+		<summary>
+			Indicates whether the left value is greater than or equals to the right value.
+		</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:System.Collections.Generic.TreeNode`1.op_LessThan(System.Collections.Generic.TreeNode{`0},System.Collections.Generic.TreeNode{`0})">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_LessThan&quot;]" />
+            <operator name="op_LessThan">
+		<summary>Indicates whether the left value is less than the right value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="M:System.Collections.Generic.TreeNode`1.op_LessThanOrEqual(System.Collections.Generic.TreeNode{`0},System.Collections.Generic.TreeNode{`0})">
-            <!-- Failed to insert some or all of included XML --><include file=".\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_LessThanOrEqual&quot;]" />
+            <operator name="op_LessThanOrEqual">
+		<summary>
+			Indicates whether the left value is less than or equals to the right value.
+		</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
         </member>
         <member name="T:System.ICloneable`1">
             <summary>

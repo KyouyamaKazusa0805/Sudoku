@@ -258,7 +258,7 @@ namespace Sudoku.Solving
 		public IReadOnlyList<IReadOnlyGrid>? StepGrids { get; }
 
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="solverName">
 		/// (<see langword="out"/> parameter) The solver's name.
 		/// </param>
@@ -268,7 +268,7 @@ namespace Sudoku.Solving
 		public void Deconstruct(out string solverName, out bool hasSolved) =>
 			(solverName, hasSolved) = (SolverName, HasSolved);
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="hasSolved">
 		/// (<see langword="out"/> parameter) Indicates whether the puzzle has been solved.
 		/// </param>
@@ -282,7 +282,7 @@ namespace Sudoku.Solving
 			out bool hasSolved, out int solvingStepsCount, out IReadOnlyList<TechniqueInfo>? solvingSteps) =>
 			(hasSolved, solvingStepsCount, solvingSteps) = (HasSolved, SolvingStepsCount, SolvingSteps);
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="total">
 		/// (<see langword="out"/> parameter) The total difficulty.
 		/// </param>
@@ -298,7 +298,7 @@ namespace Sudoku.Solving
 		public void Deconstruct(out decimal? total, out decimal max, out decimal? pearl, out decimal? diamond) =>
 			(total, max, pearl, diamond) = (TotalDifficulty, MaxDifficulty, PearlDifficulty, DiamondDifficulty);
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="puzzle">
 		/// (<see langword="out"/> parameter) The initial puzzle.
 		/// </param>
@@ -319,7 +319,7 @@ namespace Sudoku.Solving
 			out IReadOnlyGrid? solution, out DifficultyLevel difficultyLevel) =>
 			(puzzle, hasSolved, elapsedTime, solution, difficultyLevel) = (Puzzle, HasSolved, ElapsedTime, Solution, DifficultyLevel);
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="solverName">(<see langword="out"/> parameter) The solver name.</param>
 		/// <param name="hasSolved">
 		/// (<see langword="out"/> parameter) Indicates whether the solver has solved the puzzle.
@@ -370,7 +370,7 @@ namespace Sudoku.Solving
 		/// <inheritdoc/>
 		public override string ToString() => ToString(null, null);
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="string"]'/>
 		public string ToString(string format) => ToString(format, null);
 
 		/// <inheritdoc/>

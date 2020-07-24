@@ -135,7 +135,7 @@ namespace Sudoku.Solving.Manual.Alses
 		}
 
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="region">(<see langword="out"/> parameter) The region.</param>
 		/// <param name="relativePos">
 		/// (<see langword="out"/> parameter) The relative positions.
@@ -148,7 +148,7 @@ namespace Sudoku.Solving.Manual.Alses
 			out int region, out IEnumerable<int> relativePos, out IEnumerable<int> digits, out GridMap map) =>
 			(region, relativePos, digits, map) = (Region, RelativePos, Digits, Map);
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="Deconstruct"]'/>
 		/// <param name="region">(<see langword="out"/> parameter) The region.</param>
 		/// <param name="digitsMask">
 		/// (<see langword="out"/> parameter) The mask of all digits used.
@@ -202,10 +202,10 @@ namespace Sudoku.Solving.Manual.Alses
 			return result.IsNotEmpty;
 		}
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="GetHashCode"]'/>
 		public override int GetHashCode() => _mask;
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString()
 		{
 			return IsBivalueCellAls
@@ -312,10 +312,10 @@ namespace Sudoku.Solving.Manual.Alses
 		}
 
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(Als left, Als right) => left.Equals(right);
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(Als left, Als right) => !(left == right);
 	}
 }

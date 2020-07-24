@@ -71,22 +71,22 @@ namespace System.Collections.Generic
 			};
 
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		public static bool operator ==(TreeNode<T>? left, TreeNode<T>? right) => InternalCompare(left, right) == 0;
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		public static bool operator !=(TreeNode<T>? left, TreeNode<T>? right) => !(left == right);
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThan"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThan"]'/>
 		public static bool operator >(TreeNode<T>? left, TreeNode<T>? right) => InternalCompare(left, right) > 0;
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThanOrEqual"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThanOrEqual"]'/>
 		public static bool operator >=(TreeNode<T>? left, TreeNode<T>? right) => InternalCompare(left, right) >= 0;
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_LessThan"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_LessThan"]'/>
 		public static bool operator <(TreeNode<T>? left, TreeNode<T>? right) => InternalCompare(left, right) < 0;
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_LessThanOrEqual"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_LessThanOrEqual"]'/>
 		public static bool operator <=(TreeNode<T>? left, TreeNode<T>? right) => InternalCompare(left, right) <= 0;
 	}
 }

@@ -6,7 +6,7 @@ namespace Sudoku.Constants
 {
 	partial class Processings
 	{
-		/// <include file='.\GlobalDocComments.xml' path='comments/staticConstructor'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/staticConstructor'/>
 		/// <remarks>
 		/// The initialization order between static constructor and static fields
 		/// may be annoying, so I use static constructor.

@@ -711,27 +711,27 @@ namespace Sudoku.Data
 		}
 
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==(GridMap left, GridMap right) => left.Equals(right);
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Inequality"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=(GridMap left, GridMap right) => !(left == right);
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThan"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThan"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator >(GridMap left, GridMap right) => left.CompareTo(right) > 0;
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThanOrEqual"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_GreaterThanOrEqual"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator >=(GridMap left, GridMap right) => left.CompareTo(right) >= 0;
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_LessThan"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_LessThan"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator <(GridMap left, GridMap right) => left.CompareTo(right) < 0;
 
-		/// <include file='.\GlobalDocComments.xml' path='comments/operator[@name="op_LessThanOrEqual"]'/>
+		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_LessThanOrEqual"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator <=(GridMap left, GridMap right) => left.CompareTo(right) <= 0;
 
