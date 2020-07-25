@@ -11,9 +11,9 @@
             <ColumnDefinition Width="300" MinWidth="100"/>
         </Grid.ColumnDefinitions>
         <CheckBox Grid.Column="0" Click="CheckBox_Click"/>
-        <TextBlock Grid.Column="1" Name="_textBlockName" Text="{Binding TechniqueName,Mode=TwoWay}"
-                   HorizontalAlignment="Stretch"/>
+        <TextBlock Grid.Column="1" Name="_textBlockName" Text="{Binding Content,Mode=TwoWay}"
+				   HorizontalAlignment="Stretch"/>
         <TextBlock Grid.Column="2" Name="_textBlockNamespace" Text="{Binding Comment,Mode=TwoWay}"
-                   HorizontalAlignment="Stretch"/>
+				   HorizontalAlignment="Stretch"/>
     </Grid>
 </UserControl>

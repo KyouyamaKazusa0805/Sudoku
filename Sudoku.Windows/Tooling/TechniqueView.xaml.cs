@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Controls;
 using Sudoku.Extensions;
 using Sudoku.Solving.Manual;
@@ -19,22 +21,42 @@ namespace Sudoku.Windows.Tooling
 			InitializeTechniqueBoxes();
 		}
 
+
 		/// <summary>
 		/// Initializes the techniques, and stores them into the list.
 		/// </summary>
-		private void InitializeTechniqueBoxes() =>
-			_listTechniques.ItemsSource =
-				from pair in
-					from technique in EnumEx.GetValues<TechniqueCode>()
-					let NullableCategory = LangSource[$"Group{technique}"] as string
-					where !(NullableCategory is null)
-					select (
-						_techniqueName: CoreResources.GetValue(technique.ToString()),
-						_category: NullableCategory)
-				select new TechniqueBox
+		private void InitializeTechniqueBoxes()
+		{
+			var list = new List<TechniqueBox>();
+			foreach (var (techniqueName, technique, category) in
+				from technique in EnumEx.GetValues<TechniqueCode>()
+				let NullableCategory = LangSource[$"Group{technique}"] as string
+				where !(NullableCategory is null)
+				select (
+					_techniqueName: CoreResources.GetValue(technique.ToString()),
+					_technique: technique,
+					_category: NullableCategory))
+			{
+				var box = new TechniqueBox
 				{
-					TechniqueName = pair._techniqueName,
-					Comment = $"{LangSource["Category"]}{pair._category}"
+					Content = techniqueName,
+					Comment = $"{LangSource["Category"]}{category}"
 				};
+
+				box.CheckingChanged += TechniqueBox_CheckingChanged;
+
+				list.Add(box);
+			}
+
+			_listTechniques.ItemsSource = list;
+		}
+
+		private void TechniqueBox_CheckingChanged(object? sender, EventArgs e)
+		{
+			if (sender is TechniqueBox box)
+			{
+
+			}
+		}
 	}
 }

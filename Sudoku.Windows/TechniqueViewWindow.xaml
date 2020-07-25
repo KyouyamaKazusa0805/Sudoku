@@ -5,8 +5,9 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:c="clr-namespace:Sudoku.Windows.Tooling"
 		mc:Ignorable="d"
-		Title="{DynamicResource TechniqueViewWindowTitle}" Height="450" Width="800" MinWidth="520">
+		Title="{DynamicResource TechniqueViewWindowTitle}" Height="450" Width="800" MinWidth="520"
+        Closing="Window_Closing">
     <Grid>
-        <c:TechniqueView/>
+        <c:TechniqueView x:Name="_techniqueList"/>
     </Grid>
 </Window>

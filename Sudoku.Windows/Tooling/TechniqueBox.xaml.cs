@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Sudoku.Windows.Tooling
@@ -13,14 +14,9 @@ namespace Sudoku.Windows.Tooling
 
 
 		/// <summary>
-		/// Indicates whether the specified control shows <see cref="CheckBox"/>.
-		/// </summary>
-		public bool ShowCheckBox { get; set; }
-
-		/// <summary>
 		/// Indicates the name of the technique.
 		/// </summary>
-		public string TechniqueName { get; set; } = string.Empty;
+		public new object? Content { get; set; }
 
 		/// <summary>
 		/// Indicates the comment.
@@ -34,7 +30,7 @@ namespace Sudoku.Windows.Tooling
 		public event EventHandler? CheckingChanged;
 
 
-		private void CheckBox_Click(object sender, System.Windows.RoutedEventArgs e) =>
+		private void CheckBox_Click(object sender, RoutedEventArgs e) =>
 			CheckingChanged?.Invoke(sender, EventArgs.Empty);
 	}
 }

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 
 namespace Sudoku.Windows
 {
@@ -9,5 +10,11 @@ namespace Sudoku.Windows
 	{
 		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public TechniqueViewWindow() => InitializeComponent();
+
+
+		private void Window_Closing(object sender, CancelEventArgs e)
+		{
+
+		}
 	}
 }

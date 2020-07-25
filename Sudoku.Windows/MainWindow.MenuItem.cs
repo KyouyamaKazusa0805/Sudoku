@@ -469,7 +469,7 @@ namespace Sudoku.Windows
 			}
 		}
 
-#if DEBUG
+#if false
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 		private /*async*/ void MenuItemGenerateWithTechniqueFiltering_Click(object sender, RoutedEventArgs e)
 		{
