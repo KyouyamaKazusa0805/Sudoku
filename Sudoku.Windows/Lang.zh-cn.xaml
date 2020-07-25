@@ -269,7 +269,9 @@
 	<sys:String x:Key="SettingsButtonApply">应用</sys:String>
 	<sys:String x:Key="SettingsButtonCancel">取消</sys:String>
 
-	<!-- Dynamic values -->
+    <sys:String x:Key="TechniqueViewWindowTitle">选择技巧</sys:String>
+
+    <!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">向向的数独解决方案</sys:String>
 	<sys:String x:Key="WhileGenerating">出题中……</sys:String>
 	<sys:String x:Key="WhileFindingAllSteps">分析器解题过程较慢，请稍候。</sys:String>

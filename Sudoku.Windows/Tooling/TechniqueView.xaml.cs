@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows.Controls;
 using Sudoku.Extensions;
 using Sudoku.Solving.Manual;
@@ -17,18 +16,17 @@ namespace Sudoku.Windows.Tooling
 		public TechniqueView()
 		{
 			InitializeComponent();
-			InitializeTechniques();
+			InitializeTechniqueBoxes();
 		}
-
 
 		/// <summary>
 		/// Initializes the techniques, and stores them into the list.
 		/// </summary>
-		private void InitializeTechniques() =>
+		private void InitializeTechniqueBoxes() =>
 			_listTechniques.ItemsSource =
 				from pair in
 					from technique in EnumEx.GetValues<TechniqueCode>()
-					let NullableCategory = (string)LangSource[$"Group{technique}"]
+					let NullableCategory = LangSource[$"Group{technique}"] as string
 					where !(NullableCategory is null)
 					select (
 						_techniqueName: CoreResources.GetValue(technique.ToString()),

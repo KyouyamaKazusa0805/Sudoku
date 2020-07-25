@@ -269,6 +269,8 @@
 	<sys:String x:Key="SettingsButtonApply">Apply</sys:String>
 	<sys:String x:Key="SettingsButtonCancel">Cancel</sys:String>
 
+    <sys:String x:Key="TechniqueViewWindowTitle">Choose the techniques</sys:String>
+
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">Sunnie's Sudoku Solution</sys:String>
 	<sys:String x:Key="WhileGenerating">Generating...</sys:String>

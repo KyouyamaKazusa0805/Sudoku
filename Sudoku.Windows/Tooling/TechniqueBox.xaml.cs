@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 
 namespace Sudoku.Windows.Tooling
 {
@@ -25,5 +26,15 @@ namespace Sudoku.Windows.Tooling
 		/// Indicates the comment.
 		/// </summary>
 		public string Comment { get; set; } = string.Empty;
+
+
+		/// <summary>
+		/// Indicates whether the check box changed the status.
+		/// </summary>
+		public event EventHandler? CheckingChanged;
+
+
+		private void CheckBox_Click(object sender, System.Windows.RoutedEventArgs e) =>
+			CheckingChanged?.Invoke(sender, EventArgs.Empty);
 	}
 }

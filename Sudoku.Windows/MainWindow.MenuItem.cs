@@ -471,23 +471,25 @@ namespace Sudoku.Windows
 
 #if DEBUG
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-		private async void MenuItemGenerateWithTechniqueFiltering_Click(object sender, RoutedEventArgs e)
+		private /*async*/ void MenuItemGenerateWithTechniqueFiltering_Click(object sender, RoutedEventArgs e)
 		{
-			await internalOperation();
+			/*await*/ internalOperation();
 
-			async Task internalOperation()
+			/*async Task*/ void internalOperation()
 			{
-				DisableGeneratingControls();
+				//DisableGeneratingControls();
 
-				Puzzle = new UndoableGrid(
-					await Task.Run(() =>
-						new TechniqueFilteringPuzzleGenerator().Generate(
-							new TechniqueCodeFilter { TechniqueCode.AlmostLockedPair })));
+				new TechniqueViewWindow().Show();
 
-				EnableGeneratingControls();
-				SwitchOnGeneratingComboBoxesDisplaying();
-				ClearItemSourcesWhenGeneratedOrSolving();
-				UpdateImageGrid();
+				//Puzzle = new UndoableGrid(
+				//	await Task.Run(() =>
+				//		new TechniqueFilteringPuzzleGenerator().Generate(
+				//			new TechniqueCodeFilter { TechniqueCode.AlmostLockedPair })));
+
+				//EnableGeneratingControls();
+				//SwitchOnGeneratingComboBoxesDisplaying();
+				//ClearItemSourcesWhenGeneratedOrSolving();
+				//UpdateImageGrid();
 			}
 		}
 #else
