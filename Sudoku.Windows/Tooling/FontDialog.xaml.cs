@@ -6,15 +6,15 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Sudoku.Drawing.Extensions;
-using static System.Windows.Input.Key;
 using static System.Drawing.StringAlignment;
 using static System.Drawing.Text.TextRenderingHint;
+using static System.Windows.Input.Key;
 using DFontStyle = System.Drawing.FontStyle;
 
 namespace Sudoku.Windows.Tooling
 {
 	/// <summary>
-	/// Interaction logic for FontDialog.xaml
+	/// Interaction logic for <c>FontDialog.xaml</c>.
 	/// </summary>
 	public partial class FontDialog : Window, IDisposable
 	{
