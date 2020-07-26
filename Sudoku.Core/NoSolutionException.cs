@@ -25,8 +25,7 @@ namespace Sudoku
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <param name="message">The error message.</param>
-		public NoSolutionException(IReadOnlyGrid grid, string message)
-			: base(message) => Grid = grid;
+		public NoSolutionException(IReadOnlyGrid grid, string message) : base(message) => Grid = grid;
 
 		/// <summary>
 		/// Initializes an instance with a grid, an error message and an inner exception.
@@ -44,8 +43,7 @@ namespace Sudoku
 		/// <param name="grid">The grid.</param>
 		/// <param name="info">The streaming information.</param>
 		/// <param name="context">The streaming context.</param>
-		protected NoSolutionException(
-			IReadOnlyGrid grid, SerializationInfo info, StreamingContext context)
+		protected NoSolutionException(IReadOnlyGrid grid, SerializationInfo info, StreamingContext context)
 			: base(info, context) => Grid = grid;
 
 
