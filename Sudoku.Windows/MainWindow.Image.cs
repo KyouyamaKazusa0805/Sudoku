@@ -138,6 +138,13 @@ namespace Sudoku.Windows
 				d(this, flags, i).Visibility = Visibility.Collapsed;
 			}
 
+			// Check whether the cell is invalid.
+			if (cell == -1)
+			{
+				e.Handled = true;
+				return;
+			}
+
 			// Check whether the specified cell is not empty.
 			if (_puzzle.GetStatus(cell) != CellStatus.Empty)
 			{
