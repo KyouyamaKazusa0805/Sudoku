@@ -25,7 +25,7 @@ namespace Sudoku.Windows.Constants
 		/// Gets a new-line string defined for this environment.
 		/// </summary>
 		public static string NewLine => Environment.NewLine;
-		
+
 		/// <summary>
 		/// The language source dictionary.
 		/// </summary>
