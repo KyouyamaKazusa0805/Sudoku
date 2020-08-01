@@ -297,6 +297,8 @@ namespace Sudoku.Windows
 
 					UpdateImageGrid();
 
+					_textBoxInfo.ClearValue(TextBox.TextProperty);
+
 					break;
 				}
 			}
