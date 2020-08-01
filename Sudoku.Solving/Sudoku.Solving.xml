@@ -1071,6 +1071,17 @@
             <param name="difficultyLevel">The difficulty level.</param>
             <returns>The grid.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.GenerateAsync(System.Int32,Sudoku.Solving.DifficultyLevel)">
+            <summary>
+            To generate a sudoku grid with a backdoor filter depth asynchronizedly.
+            </summary>
+            <param name="backdoorFilterDepth">
+            The backdoor filter depth. When the value is -1, the generator will not check
+            any backdoors.
+            </param>
+            <param name="difficultyLevel">The difficulty level.</param>
+            <returns>The task.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.RecreatePattern(System.Int32[])">
             <summary>
             To re-create the pattern.

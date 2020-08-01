@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Extensions;
 using Sudoku.Solving.Checking;
@@ -117,6 +118,19 @@ namespace Sudoku.Solving.Generating
 				}
 			}
 		}
+
+		/// <summary>
+		/// To generate a sudoku grid with a backdoor filter depth asynchronizedly.
+		/// </summary>
+		/// <param name="backdoorFilterDepth">
+		/// The backdoor filter depth. When the value is -1, the generator will not check
+		/// any backdoors.
+		/// </param>
+		/// <param name="difficultyLevel">The difficulty level.</param>
+		/// <returns>The task.</returns>
+		public async Task<IReadOnlyGrid> GenerateAsync(
+			int backdoorFilterDepth, DifficultyLevel difficultyLevel = DifficultyLevel.Unknown) =>
+			await Task.Run(() => Generate(backdoorFilterDepth, difficultyLevel));
 
 
 		/// <summary>

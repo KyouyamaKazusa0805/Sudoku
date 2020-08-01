@@ -453,10 +453,9 @@ namespace Sudoku.Windows
 
 					Puzzle =
 						new UndoableGrid(
-							await Task.Run(
-								() => new HardPatternPuzzleGenerator().Generate(
-									index - 1,
-									(DifficultyLevel)Settings.GeneratingDifficultyLevelSelectedIndex)));
+							await new HardPatternPuzzleGenerator().GenerateAsync(
+								index - 1,
+								(DifficultyLevel)Settings.GeneratingDifficultyLevelSelectedIndex));
 
 					EnableGeneratingControls();
 					SwitchOnGeneratingComboBoxesDisplaying();
