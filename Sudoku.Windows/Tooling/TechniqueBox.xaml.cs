@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using Sudoku.Solving.Manual;
 
 namespace Sudoku.Windows.Tooling
 {
@@ -14,14 +15,19 @@ namespace Sudoku.Windows.Tooling
 
 
 		/// <summary>
-		/// Indicates the name of the technique.
+		/// Indicates whether the specified box is selected.
 		/// </summary>
-		public new object? Content { get; set; }
+		public bool IsSelected { get; set; }
 
 		/// <summary>
-		/// Indicates the comment.
+		/// Indicates the gategory.
 		/// </summary>
-		public string Comment { get; set; } = string.Empty;
+		public string Category { get; set; } = string.Empty;
+
+		/// <summary>
+		/// Indicates the technique.
+		/// </summary>
+		public PrimaryElementTuple<string, TechniqueCode> Technique { get; set; }
 
 
 		/// <summary>

@@ -23,12 +23,18 @@ namespace Sudoku.Windows.Tooling
 
 
 		/// <summary>
+		/// Indictaes the chosen techniques.
+		/// </summary>
+		public TechniqueCodeFilter ChosenTechniques { get; } = new TechniqueCodeFilter();
+
+
+		/// <summary>
 		/// Initializes the techniques, and stores them into the list.
 		/// </summary>
 		private void InitializeTechniqueBoxes()
 		{
 			var list = new List<TechniqueBox>();
-			foreach (var (techniqueName, technique, category) in
+			foreach (var (name, technique, category) in
 				from technique in EnumEx.GetValues<TechniqueCode>()
 				let NullableCategory = LangSource[$"Group{technique}"] as string
 				where !(NullableCategory is null)
@@ -39,24 +45,29 @@ namespace Sudoku.Windows.Tooling
 			{
 				var box = new TechniqueBox
 				{
-					Content = techniqueName,
-					Comment = $"{LangSource["Category"]}{category}"
+					Technique = new PrimaryElementTuple<string, TechniqueCode>(name, technique),
+					Category = $"{LangSource["Category"]}{category}"
 				};
 
-				box.CheckingChanged += TechniqueBox_CheckingChanged;
+				box.CheckingChanged += (sender, _) =>
+				{
+					if (sender is CheckBox box && box.Content is PrimaryElementTuple<string, TechniqueCode> pair)
+					{
+						Action<TechniqueCode> f = box.IsChecked switch
+						{
+							true => ChosenTechniques.Add,
+							false => ChosenTechniques.Remove,
+							_ => (_) => { }
+						};
+
+						f(pair.Value2);
+					}
+				};
 
 				list.Add(box);
 			}
 
 			_listTechniques.ItemsSource = list;
-		}
-
-		private void TechniqueBox_CheckingChanged(object? sender, EventArgs e)
-		{
-			if (sender is TechniqueBox box)
-			{
-
-			}
 		}
 	}
 }

@@ -270,6 +270,8 @@
 	<sys:String x:Key="SettingsButtonCancel">Cancel</sys:String>
 
     <sys:String x:Key="TechniqueViewWindowTitle">Choose the techniques</sys:String>
+	<sys:String x:Key="TechniqueViewWindowButtonSelect">Select</sys:String>
+	<sys:String x:Key="TechniqueViewWindowButtonCancel">Cancel</sys:String>
 
 	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">Sunnie's Sudoku Solution</sys:String>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Sudoku.Data;
 
 namespace Sudoku.Solving.Generating
@@ -19,5 +20,11 @@ namespace Sudoku.Solving.Generating
 		/// </summary>
 		/// <returns>The puzzle.</returns>
 		public abstract IReadOnlyGrid Generate();
+
+		/// <summary>
+		/// Generates a puzzle asynchronizedly.
+		/// </summary>
+		/// <returns>The task.</returns>
+		public async Task<IReadOnlyGrid> GenerateAsync() => await Task.Run(Generate);
 	}
 }

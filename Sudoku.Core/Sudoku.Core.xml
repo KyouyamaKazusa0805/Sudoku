@@ -4605,6 +4605,13 @@
             <typeparam name="TEnum">The type of enumeration type.</typeparam>
             <returns>The fields.</returns>
         </member>
+        <member name="M:Sudoku.Extensions.EnumEx.LengthOf``1">
+            <summary>
+            Get the total length of the specified enumeration type (how many fields there are).
+            </summary>
+            <typeparam name="TEnum">The type of the enmeration.</typeparam>
+            <returns>The <see cref="T:System.Int32"/> number indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Extensions.FormatProviderEx">
             <summary>
             Provides extension methods on <see cref="T:System.IFormatProvider"/>.
@@ -6749,6 +6756,11 @@
             The internal list.
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.#ctor">
+            <defaultConstructor>
+		<summary>Create an instance with default initialization.</summary>
+	</defaultConstructor>
+        </member>
         <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.#ctor(Sudoku.Solving.Manual.TechniqueCode[])">
             <summary>
             Initializes an instance with the specified technique codes.
@@ -6760,6 +6772,11 @@
             Initializes an instance with the specified bit array.
             </summary>
             <param name="bitArray">The bit array.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.TechniqueCodeFilter.Count">
+            <summary>
+            The total number of techniques.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.TechniqueCodeFilter.Add(Sudoku.Solving.Manual.TechniqueCode)">
             <summary>

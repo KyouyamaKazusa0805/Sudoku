@@ -136,11 +136,9 @@
 				<MenuItem Header="{DynamicResource _menuItemGenerateHardPattern}" InputGestureText="Ctrl + H"
 						  Name="_menuItemGenerateHardPattern"
 						  Click="MenuItemGenerateHardPattern_Click"/>
-				<!--#region DEBUG -->
 				<MenuItem Header="{DynamicResource _menuItemGenerateWithTechniqueFiltering}"
-						  Name="_menuItemGenerateWithTechniqueFiltering" BorderBrush="Green" BorderThickness="2,2,2,2"
+						  Name="_menuItemGenerateWithTechniqueFiltering"
 						  Click="MenuItemGenerateWithTechniqueFiltering_Click"/>
-				<!--#endregion-->
 			</MenuItem>
 
 			<!-- Analyze -->

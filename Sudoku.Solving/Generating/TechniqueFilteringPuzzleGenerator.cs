@@ -1,4 +1,6 @@
-﻿using Sudoku.Data;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using Sudoku.Data;
 using Sudoku.Solving.Manual;
 using static Sudoku.Solving.Manual.TechniqueCode;
 
@@ -38,21 +40,28 @@ namespace Sudoku.Solving.Generating
 		/// the process will use the default filter.
 		/// </param>
 		/// <returns>The puzzle.</returns>
-		public IReadOnlyGrid Generate(TechniqueCodeFilter techniqueCodeFilter)
+		public IReadOnlyGrid Generate(TechniqueCodeFilter? techniqueCodeFilter)
 		{
 			techniqueCodeFilter ??= DefaultFilter;
 			while (true)
 			{
 				var puzzle = base.Generate();
-				var analysisResult = ManualSolver.Solve(puzzle);
-				foreach (var step in analysisResult)
+				if (ManualSolver.Solve(puzzle).Any(step => techniqueCodeFilter.Contains(step.TechniqueCode)))
 				{
-					if (techniqueCodeFilter.Contains(step.TechniqueCode))
-					{
-						return puzzle;
-					}
+					return puzzle;
 				}
 			}
 		}
+
+		/// <summary>
+		/// To generate a puzzle that contains the specified technique code asynchronizedly.
+		/// </summary>
+		/// <param name="techniqueCodeFilter">
+		/// The technique codes to filter. If the parameter is <see langword="null"/>,
+		/// the process will use the default filter.
+		/// </param>
+		/// <returns>The task.</returns>
+		public async Task<IReadOnlyGrid> GenerateAsync(TechniqueCodeFilter? techniqueCodeFilter) =>
+			await Task.Run(() => Generate(techniqueCodeFilter));
 	}
 }

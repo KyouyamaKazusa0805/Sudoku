@@ -269,9 +269,11 @@
 	<sys:String x:Key="SettingsButtonApply">应用</sys:String>
 	<sys:String x:Key="SettingsButtonCancel">取消</sys:String>
 
-    <sys:String x:Key="TechniqueViewWindowTitle">选择技巧</sys:String>
+	<sys:String x:Key="TechniqueViewWindowTitle">选择技巧</sys:String>
+	<sys:String x:Key="TechniqueViewWindowButtonSelect">选择</sys:String>
+	<sys:String x:Key="TechniqueViewWindowButtonCancel">取消</sys:String>
 
-    <!-- Dynamic values -->
+	<!-- Dynamic values -->
 	<sys:String x:Key="SolutionName">向向的数独解决方案</sys:String>
 	<sys:String x:Key="WhileGenerating">出题中……</sys:String>
 	<sys:String x:Key="WhileFindingAllSteps">分析器解题过程较慢，请稍候。</sys:String>
@@ -349,7 +351,7 @@
 	<sys:String x:Key="AskWhileGeneratingWithDatabase">你正在使用题库模式。如果点选“是”（YES）按钮，出题模块将会运行，但你此时的题库使用操作和行为都将会在此刻清除掉。这是一个艰难的抉择，难道不是吗？</sys:String>
 	<sys:String x:Key="CheckFormatString">格式化字符串不合法。请检查你的输入。</sys:String>
 	<sys:String x:Key="InvalidFilter">输入的筛选器不合法，请检查你的输入后重试。</sys:String>
-	
+
 	<!-- Separate texts -->
 	<sys:String x:Key="TimeElapsed">耗时：</sys:String>
 	<sys:String x:Key="StepSingular">个步骤</sys:String>

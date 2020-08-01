@@ -25,9 +25,6 @@ using SudokuGrid = Sudoku.Data.Grid;
 #if SUDOKU_RECOGNIZING
 using System.Drawing;
 #endif
-#if DEBUG
-using Sudoku.Solving.Manual;
-#endif
 
 namespace Sudoku.Windows
 {
@@ -469,33 +466,35 @@ namespace Sudoku.Windows
 			}
 		}
 
-#if false
 		[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-		private /*async*/ void MenuItemGenerateWithTechniqueFiltering_Click(object sender, RoutedEventArgs e)
+		private async void MenuItemGenerateWithTechniqueFiltering_Click(object sender, RoutedEventArgs e)
 		{
-			/*await*/ internalOperation();
+			await internalOperation();
 
-			/*async Task*/ void internalOperation()
+			async Task internalOperation()
 			{
-				//DisableGeneratingControls();
+				DisableGeneratingControls();
 
-				new TechniqueViewWindow().Show();
+				var window = new TechniqueViewWindow();
+				if (window.ShowDialog() is true)
+				{
+					var filter = window.ChosenTechniques;
+					if (filter.Count == 0)
+					{
+						e.Handled = true;
+						goto Last;
+					}
 
-				//Puzzle = new UndoableGrid(
-				//	await Task.Run(() =>
-				//		new TechniqueFilteringPuzzleGenerator().Generate(
-				//			new TechniqueCodeFilter { TechniqueCode.AlmostLockedPair })));
+					Puzzle = new UndoableGrid(await new TechniqueFilteringPuzzleGenerator().GenerateAsync(filter));
+				}
 
-				//EnableGeneratingControls();
-				//SwitchOnGeneratingComboBoxesDisplaying();
-				//ClearItemSourcesWhenGeneratedOrSolving();
-				//UpdateImageGrid();
+			Last:
+				EnableGeneratingControls();
+				SwitchOnGeneratingComboBoxesDisplaying();
+				ClearItemSourcesWhenGeneratedOrSolving();
+				UpdateImageGrid();
 			}
 		}
-#else
-		private void MenuItemGenerateWithTechniqueFiltering_Click(object sender, RoutedEventArgs e) =>
-			Messagings.NotSupportedWhileGeneratingWithFilter();
-#endif
 
 		private void MenuItemAnalyzeSolve_Click(object sender, RoutedEventArgs e)
 		{

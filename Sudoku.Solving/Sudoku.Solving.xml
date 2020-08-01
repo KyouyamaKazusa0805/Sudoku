@@ -1093,6 +1093,12 @@
             </summary>
             <returns>The puzzle.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Generating.PuzzleGenerator.GenerateAsync">
+            <summary>
+            Generates a puzzle asynchronizedly.
+            </summary>
+            <returns>The task.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Generating.TechniqueFilteringPuzzleGenerator">
             <summary>
             Provides a puzzle generator with the technique filter.
@@ -1120,6 +1126,16 @@
             the process will use the default filter.
             </param>
             <returns>The puzzle.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Generating.TechniqueFilteringPuzzleGenerator.GenerateAsync(Sudoku.Solving.Manual.TechniqueCodeFilter)">
+            <summary>
+            To generate a puzzle that contains the specified technique code asynchronizedly.
+            </summary>
+            <param name="techniqueCodeFilter">
+            The technique codes to filter. If the parameter is <see langword="null"/>,
+            the process will use the default filter.
+            </param>
+            <returns>The task.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Als">
             <summary>

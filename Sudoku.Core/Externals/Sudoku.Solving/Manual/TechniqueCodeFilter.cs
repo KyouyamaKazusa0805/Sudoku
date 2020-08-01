@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sudoku.Extensions;
 
 namespace Sudoku.Solving.Manual
 {
@@ -12,18 +13,29 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// The internal list.
 		/// </summary>
-		private readonly BitArray _internalList = new BitArray(typeof(TechniqueCode).GetFields().Length);
+		private readonly BitArray _internalList = new BitArray(EnumEx.LengthOf<TechniqueCode>());
 
+
+		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
+		public TechniqueCodeFilter()
+		{
+		}
 
 		/// <summary>
 		/// Initializes an instance with the specified technique codes.
 		/// </summary>
 		/// <param name="techniqueCodes">(<see langword="params"/> parameter) The technique codes.</param>
-		public TechniqueCodeFilter(params TechniqueCode[] techniqueCodes)
+		public TechniqueCodeFilter(params TechniqueCode[]? techniqueCodes)
 		{
+			if (techniqueCodes is null)
+			{
+				return;
+			}
+
 			foreach (var techniqueCode in techniqueCodes)
 			{
 				_internalList[(int)techniqueCode] = true;
+				Count++;
 			}
 		}
 
@@ -31,14 +43,31 @@ namespace Sudoku.Solving.Manual
 		/// Initializes an instance with the specified bit array.
 		/// </summary>
 		/// <param name="bitArray">The bit array.</param>
-		private TechniqueCodeFilter(BitArray bitArray) => _internalList = bitArray;
+		private TechniqueCodeFilter(BitArray bitArray)
+		{
+			_internalList = bitArray;
+			Count = bitArray.GetCardinality();
+		}
+
+
+		/// <summary>
+		/// The total number of techniques.
+		/// </summary>
+		public int Count { get; private set; }
 
 
 		/// <summary>
 		/// To add a technique code.
 		/// </summary>
 		/// <param name="techniqueCode">The technique code.</param>
-		public void Add(TechniqueCode techniqueCode) => _internalList[(int)techniqueCode] = true;
+		public void Add(TechniqueCode techniqueCode)
+		{
+			if (!_internalList[(int)techniqueCode])
+			{
+				_internalList[(int)techniqueCode] = true;
+				Count++;
+			}
+		}
 
 		/// <summary>
 		/// Add a serial of technique codes to this list.
@@ -56,7 +85,14 @@ namespace Sudoku.Solving.Manual
 		/// To remove a technique code.
 		/// </summary>
 		/// <param name="techniqueCode">The technique code.</param>
-		public void Remove(TechniqueCode techniqueCode) => _internalList[(int)techniqueCode] = false;
+		public void Remove(TechniqueCode techniqueCode)
+		{
+			if (_internalList[(int)techniqueCode])
+			{
+				_internalList[(int)techniqueCode] = false;
+				Count--;
+			}
+		}
 
 		/// <summary>
 		/// To determine whether the specified filter contains the technique.

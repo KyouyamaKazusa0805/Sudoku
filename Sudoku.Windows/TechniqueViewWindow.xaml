@@ -5,9 +5,21 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:c="clr-namespace:Sudoku.Windows.Tooling"
 		mc:Ignorable="d"
-		Title="{DynamicResource TechniqueViewWindowTitle}" Height="450" Width="800" MinWidth="520"
-        Closing="Window_Closing">
-    <Grid>
-        <c:TechniqueView x:Name="_techniqueList"/>
-    </Grid>
+		Title="{DynamicResource TechniqueViewWindowTitle}" Height="450" Width="800" MinWidth="520">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="10*"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<c:TechniqueView Grid.Row="0" x:Name="_techniqueList"/>
+		<DockPanel Grid.Row="1" FlowDirection="RightToLeft" HorizontalAlignment="Right" VerticalAlignment="Center">
+			<Button Name="_buttonSelect" Content="{DynamicResource TechniqueViewWindowButtonSelect}"
+					Click="ButtonSelect_Click"/>
+			<Button Name="_buttonCancel" Content="{DynamicResource TechniqueViewWindowButtonCancel}"
+					Click="ButtonCancel_Click"/>
+		</DockPanel>
+	</Grid>
 </Window>

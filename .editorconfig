@@ -1,7 +1,6 @@
-﻿# C# files
+﻿# C# and XAML files
 
-[*.cs]
-
+[*.{cs,xaml}]
 
 #### Core EditorConfig Options ####
 

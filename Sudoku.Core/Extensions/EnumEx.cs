@@ -18,5 +18,13 @@ namespace Sudoku.Extensions
 		/// <returns>The fields.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static TEnum[] GetValues<TEnum>() where TEnum : struct, Enum => (TEnum[])Enum.GetValues(typeof(TEnum));
+
+		/// <summary>
+		/// Get the total length of the specified enumeration type (how many fields there are).
+		/// </summary>
+		/// <typeparam name="TEnum">The type of the enmeration.</typeparam>
+		/// <returns>The <see cref="int"/> number indicating that.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static int LengthOf<TEnum>() where TEnum : struct, Enum => typeof(TEnum).GetFields().Length;
 	}
 }
