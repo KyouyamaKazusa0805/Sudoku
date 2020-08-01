@@ -7349,7 +7349,7 @@
             </summary>
         </member>
         <member name="M:System.Collections.Generic.Set`1.#ctor">
-            <!-- Failed to insert some or all of included XML --><include file=".....\GlobalDocComments.xml" path="comments/defaultConstructor" />
+            <!--未能插入某些或全部所包含的 XML --><include file=".....\GlobalDocComments.xml" path="comments/defaultConstructor" />
         </member>
         <member name="M:System.Collections.Generic.Set`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
             <summary>
@@ -7489,10 +7489,10 @@
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:System.Collections.Generic.Set`1.op_Equality(System.Collections.Generic.Set{`0},System.Collections.Generic.Set{`0})">
-            <!-- Failed to insert some or all of included XML --><include file=".....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file=".....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
         </member>
         <member name="M:System.Collections.Generic.Set`1.op_Inequality(System.Collections.Generic.Set{`0},System.Collections.Generic.Set{`0})">
-            <!-- Failed to insert some or all of included XML --><include file=".....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file=".....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
         </member>
         <member name="M:System.Collections.Generic.Set`1.op_BitwiseAnd(System.Collections.Generic.Set{`0},System.Collections.Generic.IEnumerable{`0})">
             <summary>
@@ -7744,12 +7744,12 @@
             <inheritdoc/>
         </member>
         <member name="M:System.PrimaryElementTuple`2.Deconstruct(`0@,`1@)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="v1">(<see langword="out" /> parameter) The value 1.</param>
             <param name="v2">(<see langword="out" /> parameter) The value 2.</param>
         </member>
         <member name="M:System.PrimaryElementTuple`2.ToString">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
         </member>
         <member name="T:System.PrimaryElementTuple`3">
             <summary>
@@ -7801,13 +7801,13 @@
             <inheritdoc/>
         </member>
         <member name="M:System.PrimaryElementTuple`3.Deconstruct(`0@,`1@,`2@)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="v1">(<see langword="out" /> parameter) The value 1.</param>
             <param name="v2">(<see langword="out" /> parameter) The value 2.</param>
             <param name="v3">(<see langword="out" /> parameter) The value 3.</param>
         </member>
         <member name="M:System.PrimaryElementTuple`3.ToString">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
         </member>
         <member name="T:System.PrimaryElementTuple`4">
             <summary>
@@ -7866,14 +7866,14 @@
             <inheritdoc/>
         </member>
         <member name="M:System.PrimaryElementTuple`4.Deconstruct(`0@,`1@,`2@,`3@)">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="v1">(<see langword="out" /> parameter) The value 1.</param>
             <param name="v2">(<see langword="out" /> parameter) The value 2.</param>
             <param name="v3">(<see langword="out" /> parameter) The value 3.</param>
             <param name="v4">(<see langword="out" /> parameter) The value 4.</param>
         </member>
         <member name="M:System.PrimaryElementTuple`4.ToString">
-            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
         </member>
         <member name="T:System.Text.RegularExpressions.InvalidRegexStringException">
             <summary>

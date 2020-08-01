@@ -476,25 +476,24 @@ namespace Sudoku.Data
 
 				long value;
 				int i;
-				if (_low == 0)
+				if (_low != 0)
 				{
-					goto GetHigh;
-				}
-
-				for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
-				{
-					if ((value & 1) != 0)
+					for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
 					{
-						yield return i;
+						if ((value & 1) != 0)
+						{
+							yield return i;
+						}
 					}
 				}
-
-			GetHigh:
-				for (value = _high, i = Shifting; i < 81; i++, value >>= 1)
+				if (_high != 0)
 				{
-					if ((value & 1) != 0)
+					for (value = _high, i = Shifting; i < 81; i++, value >>= 1)
 					{
-						yield return i;
+						if ((value & 1) != 0)
+						{
+							yield return i;
+						}
 					}
 				}
 			}

@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Drawing.Text;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Extensions;
 using Sudoku.Windows;
 using static System.Drawing.Drawing2D.DashStyle;
+using static System.Drawing.Drawing2D.InterpolationMode;
 using static System.Drawing.FontStyle;
 using static System.Drawing.StringAlignment;
+using static System.Drawing.Text.TextRenderingHint;
 using static System.Math;
 using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.ConclusionType;
@@ -138,13 +139,13 @@ namespace Sudoku.Drawing
 		public Bitmap Draw(Bitmap? bitmap, Graphics g)
 		{
 			bitmap ??= new Bitmap((int)Width, (int)Height);
-			
+
 			DrawBackground(g);
 			DrawGridAndBlockLines(g);
 
 			g.SmoothingMode = SmoothingMode.AntiAlias;
-			g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
-			g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+			g.TextRenderingHint = ClearTypeGridFit;
+			g.InterpolationMode = HighQualityBicubic;
 			g.CompositingQuality = CompositingQuality.HighQuality;
 			const float offset = 6F;
 			DrawViewIfNeed(g, offset);
