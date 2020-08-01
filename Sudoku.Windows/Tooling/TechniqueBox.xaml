@@ -11,7 +11,6 @@
 			<ColumnDefinition Width="300" MinWidth="100"/>
 		</Grid.ColumnDefinitions>
 		<CheckBox Grid.Column="0" Name="_checkBoxMain" Click="CheckBox_Click"
-				  IsChecked="{Binding IsSelected,Mode=TwoWay}"
 				  Content="{Binding Technique}"/>
 		<TextBlock Grid.Column="1" Name="_textBlockName" Text="{Binding Technique}"
 				   HorizontalAlignment="Stretch"/>

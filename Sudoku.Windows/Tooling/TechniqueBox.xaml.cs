@@ -15,11 +15,6 @@ namespace Sudoku.Windows.Tooling
 
 
 		/// <summary>
-		/// Indicates whether the specified box is selected.
-		/// </summary>
-		public bool IsSelected { get; set; }
-
-		/// <summary>
 		/// Indicates the gategory.
 		/// </summary>
 		public string Category { get; set; } = string.Empty;
