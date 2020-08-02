@@ -1151,7 +1151,7 @@
         <member name="M:Sudoku.Solving.Generating.TechniqueFilteringPuzzleGenerator.Generate">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Generating.TechniqueFilteringPuzzleGenerator.Generate(Sudoku.Solving.Manual.TechniqueCodeFilter)">
+        <member name="M:Sudoku.Solving.Generating.TechniqueFilteringPuzzleGenerator.Generate(Sudoku.Solving.Manual.TechniqueCodeFilter,System.IProgress{Sudoku.Models.IProgressResult},System.String)">
             <summary>
             To generate a puzzle that contains the specified technique code.
             </summary>
@@ -1159,9 +1159,11 @@
             The technique codes to filter. If the parameter is <see langword="null"/>,
             the process will use the default filter.
             </param>
+            <param name="progress">The progress.</param>
+            <param name="globalizationString">The globalization string.</param>
             <returns>The puzzle.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Generating.TechniqueFilteringPuzzleGenerator.GenerateAsync(Sudoku.Solving.Manual.TechniqueCodeFilter)">
+        <member name="M:Sudoku.Solving.Generating.TechniqueFilteringPuzzleGenerator.GenerateAsync(Sudoku.Solving.Manual.TechniqueCodeFilter,System.IProgress{Sudoku.Models.IProgressResult},System.String)">
             <summary>
             To generate a puzzle that contains the specified technique code asynchronizedly.
             </summary>
@@ -1169,6 +1171,8 @@
             The technique codes to filter. If the parameter is <see langword="null"/>,
             the process will use the default filter.
             </param>
+            <param name="progress">The progress.</param>
+            <param name="globalizationString">The globalization string.</param>
             <returns>The task.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Als">

@@ -72,6 +72,12 @@ namespace Sudoku.Solving.Generating
 						}
 					}
 
+					if (!(progress is null))
+					{
+						progressResult.GeneratingTrial++;
+						progress.Report(progressResult);
+					}
+
 					if (FastSolver.CheckValidity(valueOf(solution), out _))
 					{
 						var grid = Grid.Parse(valueOf(solution));
@@ -87,11 +93,6 @@ namespace Sudoku.Solving.Generating
 					}
 
 					RecreatePattern(holeCells);
-					if (!(progress is null))
-					{
-						progressResult.GeneratingTrial++;
-						progress.Report(progressResult);
-					}
 				}
 			}
 		}

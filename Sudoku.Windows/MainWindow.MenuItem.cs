@@ -423,7 +423,8 @@ namespace Sudoku.Windows
 					var symmetry = (SymmetryType)(1 << _comboBoxSymmetry.SelectedIndex + 1);
 					//var diff = (DifficultyLevel)_comboBoxDifficulty.SelectedItem;
 					Puzzle = new UndoableGrid(
-						await new BasicPuzzleGenerator().GenerateAsync(33, symmetry, dialog.DefaultReporting));
+						await new BasicPuzzleGenerator().GenerateAsync(
+							33, symmetry, dialog.DefaultReporting, Settings.LanguageCode));
 
 					dialog.CloseAnyway();
 
@@ -465,7 +466,8 @@ namespace Sudoku.Windows
 							await new HardPatternPuzzleGenerator().GenerateAsync(
 								index - 1,
 								dialog.DefaultReporting,
-								(DifficultyLevel)Settings.GeneratingDifficultyLevelSelectedIndex));
+								(DifficultyLevel)Settings.GeneratingDifficultyLevelSelectedIndex,
+								Settings.LanguageCode));
 
 					dialog.CloseAnyway();
 
@@ -486,6 +488,9 @@ namespace Sudoku.Windows
 			{
 				DisableGeneratingControls();
 
+				var dialog = new ProgressWindow();
+				dialog.Show();
+
 				var window = new TechniqueViewWindow();
 				if (window.ShowDialog() is true)
 				{
@@ -496,10 +501,14 @@ namespace Sudoku.Windows
 						goto Last;
 					}
 
-					Puzzle = new UndoableGrid(await new TechniqueFilteringPuzzleGenerator().GenerateAsync(filter));
+					Puzzle = new UndoableGrid(
+						await new TechniqueFilteringPuzzleGenerator().GenerateAsync(
+							filter, dialog.DefaultReporting, Settings.LanguageCode));
 				}
 
 			Last:
+				dialog.CloseAnyway();
+
 				EnableGeneratingControls();
 				SwitchOnGeneratingComboBoxesDisplaying();
 				ClearItemSourcesWhenGeneratedOrSolving();

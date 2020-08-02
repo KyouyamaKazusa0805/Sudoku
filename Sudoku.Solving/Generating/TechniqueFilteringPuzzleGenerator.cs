@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Sudoku.Data;
+using Sudoku.Models;
 using Sudoku.Solving.Manual;
 using static Sudoku.Solving.Manual.TechniqueCode;
 
@@ -29,7 +31,7 @@ namespace Sudoku.Solving.Generating
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyGrid Generate() => Generate(DefaultFilter);
+		public override IReadOnlyGrid Generate() => Generate(DefaultFilter, null, null);
 
 
 		/// <summary>
@@ -39,13 +41,22 @@ namespace Sudoku.Solving.Generating
 		/// The technique codes to filter. If the parameter is <see langword="null"/>,
 		/// the process will use the default filter.
 		/// </param>
+		/// <param name="progress">The progress.</param>
+		/// <param name="globalizationString">The globalization string.</param>
 		/// <returns>The puzzle.</returns>
-		public IReadOnlyGrid Generate(TechniqueCodeFilter? techniqueCodeFilter)
+		public IReadOnlyGrid Generate(
+			TechniqueCodeFilter? techniqueCodeFilter, IProgress<IProgressResult>? progress,
+			string? globalizationString = null)
 		{
+			PuzzleGeneratingProgressResult defaultValue = default;
+			var pr = new PuzzleGeneratingProgressResult(0, globalizationString ?? "en-us");
+			ref var progressResult = ref progress is null ? ref defaultValue : ref pr;
+			progress?.Report(progressResult);
+
 			techniqueCodeFilter ??= DefaultFilter;
 			while (true)
 			{
-				var puzzle = base.Generate();
+				var puzzle = Generate(-1, progress, globalizationString: globalizationString);
 				if (ManualSolver.Solve(puzzle).Any(step => techniqueCodeFilter.Contains(step.TechniqueCode)))
 				{
 					return puzzle;
@@ -60,8 +71,12 @@ namespace Sudoku.Solving.Generating
 		/// The technique codes to filter. If the parameter is <see langword="null"/>,
 		/// the process will use the default filter.
 		/// </param>
+		/// <param name="progress">The progress.</param>
+		/// <param name="globalizationString">The globalization string.</param>
 		/// <returns>The task.</returns>
-		public async Task<IReadOnlyGrid> GenerateAsync(TechniqueCodeFilter? techniqueCodeFilter) =>
-			await Task.Run(() => Generate(techniqueCodeFilter));
+		public async Task<IReadOnlyGrid> GenerateAsync(
+			TechniqueCodeFilter? techniqueCodeFilter, IProgress<IProgressResult>? progress,
+			string? globalizationString = null) =>
+			await Task.Run(() => Generate(techniqueCodeFilter, progress, globalizationString));
 	}
 }
