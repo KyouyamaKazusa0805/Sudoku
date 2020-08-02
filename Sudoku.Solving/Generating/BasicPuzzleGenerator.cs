@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Sudoku.Constants;
 using Sudoku.Data;
+using Sudoku.Extensions;
+using Sudoku.Models;
 using static Sudoku.Data.SymmetryType;
-using Enum = Sudoku.Extensions.EnumEx;
 
 namespace Sudoku.Solving.Generating
 {
@@ -17,7 +18,7 @@ namespace Sudoku.Solving.Generating
 	public sealed class BasicPuzzleGenerator : DiggingPuzzleGenerator
 	{
 		/// <inheritdoc/>
-		public override IReadOnlyGrid Generate() => Generate(28, Central);
+		public override IReadOnlyGrid Generate() => Generate(28, Central, null);
 
 		/// <summary>
 		/// Generate a puzzle with the specified information.
@@ -30,16 +31,23 @@ namespace Sudoku.Solving.Generating
 		/// which means that the solver will generate anti-diagonal type or
 		/// diagonal type puzzles.
 		/// </param>
+		/// <param name="progress">The progress.</param>
+		/// <param name="globalizationString">The globalization string.</param>
 		/// <returns>The grid.</returns>
 		/// <seealso cref="SymmetryType"/>
-		public IReadOnlyGrid Generate(int max, SymmetryType symmetricalType)
+		public IReadOnlyGrid Generate(
+			int max, SymmetryType symmetricalType, IProgress<IProgressResult>? progress,
+			string? globalizationString = null)
 		{
+			PuzzleGeneratingProgressResult defaultValue = default;
+			var pr = new PuzzleGeneratingProgressResult(default, globalizationString ?? "en-us");
+			ref var progressResult = ref progress is null ? ref defaultValue : ref pr;
 			var puzzle = new StringBuilder(Grid.EmptyString);
 			var solution = new StringBuilder(Grid.EmptyString);
 			GenerateAnswerGrid(puzzle, solution);
 
 			// Now we remove some digits from the grid.
-			var allTypes = from st in Enum.GetValues<SymmetryType>()
+			var allTypes = from st in EnumEx.GetValues<SymmetryType>()
 						   where st != None && symmetricalType.HasFlag(st)
 						   select st;
 			int count = allTypes.Count();
@@ -92,6 +100,12 @@ namespace Sudoku.Solving.Generating
 						tempMap.Add(tCell);
 					}
 				} while (81 - totalMap.Count > max);
+
+				if (!(progress is null))
+				{
+					progressResult.GeneratingTrial++;
+					progress.Report(progressResult);
+				}
 			} while (!FastSolver.CheckValidity(result = solution.ToString(), out _));
 
 			return Grid.Parse(result);
@@ -108,10 +122,14 @@ namespace Sudoku.Solving.Generating
 		/// which means that the solver will generate anti-diagonal type or
 		/// diagonal type puzzles.
 		/// </param>
+		/// <param name="progress">The progress.</param>
+		/// <param name="globalzationString">The globalization string.</param>
 		/// <returns>The task.</returns>
 		/// <seealso cref="SymmetryType"/>
-		public async Task<IReadOnlyGrid> GenerateAsync(int max, SymmetryType symmetricalType) =>
-			await Task.Run(() => Generate(max, symmetricalType));
+		public async Task<IReadOnlyGrid> GenerateAsync(
+			int max, SymmetryType symmetricalType, IProgress<IProgressResult> progress,
+			string? globalzationString = null) =>
+			await Task.Run(() => Generate(max, symmetricalType, progress, globalzationString));
 
 		/// <inheritdoc/>
 		/// <exception cref="NotImplementedException">Always throws.</exception>

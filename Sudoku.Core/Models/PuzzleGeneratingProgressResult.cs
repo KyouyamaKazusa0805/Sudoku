@@ -19,10 +19,10 @@ namespace Sudoku.Models
 		/// <summary>
 		/// Indicates how many trials of the specified generator generates.
 		/// </summary>
-		public int GeneratingTrial { get; }
+		public int GeneratingTrial { readonly get; set; }
 
 		/// <inheritdoc/>
-		public double Percentage => 0;
+		public readonly double Percentage => 0;
 
 		/// <inheritdoc/>
 		public readonly string GlobalizationString { get; }
