@@ -454,6 +454,9 @@ namespace Sudoku.Windows
 
 					// Here two variables cannot be moved into the lambda expression
 					// because the lambda expression will be executed in asynchornized way.
+					var dialog = new ProgressWindow();
+					dialog.Show();
+
 					int index = _comboBoxBackdoorFilteringDepth.SelectedIndex;
 					Settings.GeneratingDifficultyLevelSelectedIndex = _comboBoxDifficulty.SelectedIndex;
 
@@ -461,7 +464,10 @@ namespace Sudoku.Windows
 						new UndoableGrid(
 							await new HardPatternPuzzleGenerator().GenerateAsync(
 								index - 1,
+								dialog.DefaultReporting,
 								(DifficultyLevel)Settings.GeneratingDifficultyLevelSelectedIndex));
+
+					dialog.CloseAnyway();
 
 					EnableGeneratingControls();
 					SwitchOnGeneratingComboBoxesDisplaying();

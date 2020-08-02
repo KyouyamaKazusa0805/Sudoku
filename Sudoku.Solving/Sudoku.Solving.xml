@@ -1076,10 +1076,7 @@
         <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.Generate">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.CreatePattern(System.Int32[])">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.Generate(System.Int32,Sudoku.Solving.DifficultyLevel)">
+        <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.Generate(System.Int32,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Solving.DifficultyLevel,System.String)">
             <summary>
             To generate a sudoku grid with a backdoor filter depth.
             </summary>
@@ -1087,10 +1084,12 @@
             The backdoor filter depth. When the value is -1, the generator will not check
             any backdoors.
             </param>
+            <param name="progress">The progress.</param>
             <param name="difficultyLevel">The difficulty level.</param>
+            <param name="globalizationString">The globalization string.</param>
             <returns>The grid.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.GenerateAsync(System.Int32,Sudoku.Solving.DifficultyLevel)">
+        <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.GenerateAsync(System.Int32,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Solving.DifficultyLevel,System.String)">
             <summary>
             To generate a sudoku grid with a backdoor filter depth asynchronizedly.
             </summary>
@@ -1098,8 +1097,13 @@
             The backdoor filter depth. When the value is -1, the generator will not check
             any backdoors.
             </param>
+            <param name="progress">The progress.</param>
             <param name="difficultyLevel">The difficulty level.</param>
+            <param name="globalizationString">The globalization string.</param>
             <returns>The task.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.CreatePattern(System.Int32[])">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Generating.HardPatternPuzzleGenerator.RecreatePattern(System.Int32[])">
             <summary>

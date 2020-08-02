@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sudoku.Data;
 using Sudoku.Extensions;
+using Sudoku.Models;
 using Sudoku.Solving.Checking;
 using static System.Algorithms;
 
@@ -21,45 +22,7 @@ namespace Sudoku.Solving.Generating
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyGrid Generate() => Generate(-1);
-
-		/// <inheritdoc/>
-		protected sealed override void CreatePattern(int[] pattern)
-		{
-			static double rnd() => Rng.NextDouble();
-			int[] box = { 0, 6, 54, 60, 3, 27, 33, 57, 30 };
-			int[,] t = { { 0, 1, 2 }, { 0, 2, 1 }, { 1, 0, 2 }, { 1, 2, 0 }, { 2, 0, 1 }, { 2, 1, 0 } };
-
-			int a = 54, b = 0;
-			for (int i = 0; i < 9; i++)
-			{
-				int n = (int)(rnd() * 6);
-				for (int j = 0; j < 3; j++)
-				{
-					for (int k = 0; k < 3; k++)
-					{
-						pattern[(k == t[n, j] ? ref a : ref b)++] = box[i] + j * 9 + k;
-					}
-				}
-			}
-
-			for (int i = 23; i >= 0; i--)
-			{
-				Swap(ref pattern[i], ref pattern[(int)((i + 1) * rnd())]);
-			}
-			for (int i = 47; i >= 24; i--)
-			{
-				Swap(ref pattern[i], ref pattern[24 + (int)((i - 23) * rnd())]);
-			}
-			for (int i = 53; i >= 48; i--)
-			{
-				Swap(ref pattern[i], ref pattern[48 + (int)((i - 47) * rnd())]);
-			}
-			for (int i = 80; i >= 54; i--)
-			{
-				Swap(ref pattern[i], ref pattern[54 + (int)(27 * rnd())]);
-			}
-		}
+		public override IReadOnlyGrid Generate() => Generate(-1, null, DifficultyLevel.Unknown, null);
 
 		/// <summary>
 		/// To generate a sudoku grid with a backdoor filter depth.
@@ -68,10 +31,19 @@ namespace Sudoku.Solving.Generating
 		/// The backdoor filter depth. When the value is -1, the generator will not check
 		/// any backdoors.
 		/// </param>
+		/// <param name="progress">The progress.</param>
 		/// <param name="difficultyLevel">The difficulty level.</param>
+		/// <param name="globalizationString">The globalization string.</param>
 		/// <returns>The grid.</returns>
-		public IReadOnlyGrid Generate(int backdoorFilterDepth, DifficultyLevel difficultyLevel = DifficultyLevel.Unknown)
+		public IReadOnlyGrid Generate(
+			int backdoorFilterDepth, IProgress<IProgressResult>? progress,
+			DifficultyLevel difficultyLevel = DifficultyLevel.Unknown, string? globalizationString = null)
 		{
+			PuzzleGeneratingProgressResult defaultValue = default;
+			var pr = new PuzzleGeneratingProgressResult(0, globalizationString ?? "en-us");
+			ref var progressResult = ref progress is null ? ref defaultValue : ref pr;
+			progress?.Report(defaultValue);
+
 			var puzzle = new StringBuilder() { Length = 81 };
 			var solution = new StringBuilder() { Length = 81 };
 			var emptyGridStr = new StringBuilder(Grid.EmptyString);
@@ -115,6 +87,11 @@ namespace Sudoku.Solving.Generating
 					}
 
 					RecreatePattern(holeCells);
+					if (!(progress is null))
+					{
+						progressResult.GeneratingTrial++;
+						progress.Report(progressResult);
+					}
 				}
 			}
 		}
@@ -126,11 +103,52 @@ namespace Sudoku.Solving.Generating
 		/// The backdoor filter depth. When the value is -1, the generator will not check
 		/// any backdoors.
 		/// </param>
+		/// <param name="progress">The progress.</param>
 		/// <param name="difficultyLevel">The difficulty level.</param>
+		/// <param name="globalizationString">The globalization string.</param>
 		/// <returns>The task.</returns>
 		public async Task<IReadOnlyGrid> GenerateAsync(
-			int backdoorFilterDepth, DifficultyLevel difficultyLevel = DifficultyLevel.Unknown) =>
-			await Task.Run(() => Generate(backdoorFilterDepth, difficultyLevel));
+			int backdoorFilterDepth, IProgress<IProgressResult>? progress,
+			DifficultyLevel difficultyLevel = DifficultyLevel.Unknown, string? globalizationString = null) =>
+			await Task.Run(() => Generate(backdoorFilterDepth, progress, difficultyLevel, globalizationString));
+
+		/// <inheritdoc/>
+		protected sealed override void CreatePattern(int[] pattern)
+		{
+			static double rnd() => Rng.NextDouble();
+			int[] box = { 0, 6, 54, 60, 3, 27, 33, 57, 30 };
+			int[,] t = { { 0, 1, 2 }, { 0, 2, 1 }, { 1, 0, 2 }, { 1, 2, 0 }, { 2, 0, 1 }, { 2, 1, 0 } };
+
+			int a = 54, b = 0;
+			for (int i = 0; i < 9; i++)
+			{
+				int n = (int)(rnd() * 6);
+				for (int j = 0; j < 3; j++)
+				{
+					for (int k = 0; k < 3; k++)
+					{
+						pattern[(k == t[n, j] ? ref a : ref b)++] = box[i] + j * 9 + k;
+					}
+				}
+			}
+
+			for (int i = 23; i >= 0; i--)
+			{
+				Swap(ref pattern[i], ref pattern[(int)((i + 1) * rnd())]);
+			}
+			for (int i = 47; i >= 24; i--)
+			{
+				Swap(ref pattern[i], ref pattern[24 + (int)((i - 23) * rnd())]);
+			}
+			for (int i = 53; i >= 48; i--)
+			{
+				Swap(ref pattern[i], ref pattern[48 + (int)((i - 47) * rnd())]);
+			}
+			for (int i = 80; i >= 54; i--)
+			{
+				Swap(ref pattern[i], ref pattern[54 + (int)(27 * rnd())]);
+			}
+		}
 
 
 		/// <summary>

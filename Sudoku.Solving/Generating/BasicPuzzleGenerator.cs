@@ -42,6 +42,8 @@ namespace Sudoku.Solving.Generating
 			PuzzleGeneratingProgressResult defaultValue = default;
 			var pr = new PuzzleGeneratingProgressResult(default, globalizationString ?? "en-us");
 			ref var progressResult = ref progress is null ? ref defaultValue : ref pr;
+			progress?.Report(defaultValue);
+
 			var puzzle = new StringBuilder(Grid.EmptyString);
 			var solution = new StringBuilder(Grid.EmptyString);
 			GenerateAnswerGrid(puzzle, solution);
