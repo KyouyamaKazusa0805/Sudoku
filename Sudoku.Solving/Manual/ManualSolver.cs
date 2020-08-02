@@ -48,7 +48,6 @@ namespace Sudoku.Solving.Manual
 					GridProgressResult defaultValue = default;
 					var defaultPr = new GridProgressResult(candsCount, emptyCellsCount, candsCount, globalizationString);
 					ref var pr = ref progress is null ? ref defaultValue : ref defaultPr;
-
 					progress?.Report(defaultPr);
 
 #pragma warning disable CS0612
