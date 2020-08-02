@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
-using Sudoku.ComponentModel;
+using Sudoku.Models;
 
 namespace Sudoku.Windows
 {

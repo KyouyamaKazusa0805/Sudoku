@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Sudoku.ComponentModel;
 using Sudoku.Data;
 using Sudoku.Extensions;
+using Sudoku.Models;
 using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Solving.Manual.Uniqueness;

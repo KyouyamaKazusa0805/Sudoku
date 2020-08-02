@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Sudoku.ComponentModel;
 using Sudoku.Data;
+using Sudoku.Models;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Alses;
 using Sudoku.Solving.Manual.Alses.Basic;

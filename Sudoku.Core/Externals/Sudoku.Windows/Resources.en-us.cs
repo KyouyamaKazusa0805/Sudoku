@@ -73,6 +73,8 @@ namespace Sudoku.Windows
 			["ProgressXyWing"] = "Regular Wing",
 			["ProgressBugMultipleFc"] = "Bivalue Universal Grave with Forcing Chains",
 			["Summary"] = "Summary...",
+			["GeneratingProgressSingular"] = "1 time tried",
+			["GeneratingProgressPlural"] = "times tried",
 
 			// Separate words
 			["Petal"] = "Petals",

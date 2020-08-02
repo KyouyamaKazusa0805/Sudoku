@@ -1,7 +1,7 @@
 ﻿using System;
 using Sudoku.Windows;
 
-namespace Sudoku.ComponentModel
+namespace Sudoku.Models
 {
 	/// <summary>
 	/// Encapsulates a progress result used for report the current state.
@@ -81,7 +81,7 @@ namespace Sudoku.ComponentModel
 
 		/// <inheritdoc/>
 		public override readonly int GetHashCode() =>
-			(CurrentCellsCount * 729 + CurrentCandidatesCount) ^ InitialCandidatesCount ^ GlobalizationString.GetHashCode();
+			CurrentCellsCount * 729 + CurrentCandidatesCount ^ InitialCandidatesCount ^ GlobalizationString.GetHashCode();
 
 
 		/// <include file='..\GlobalDocComments.xml' path='comments/operator[@name="op_Equality"]'/>

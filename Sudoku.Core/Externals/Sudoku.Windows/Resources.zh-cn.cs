@@ -73,6 +73,8 @@ namespace Sudoku.Windows
 			["ProgressXyWing"] = "规则 Wing",
 			["ProgressBugMultipleFc"] = "全双值格致死解法 + 强制链",
 			["Summary"] = "正在统计中…",
+			["GeneratingProgressSingular"] = "1 次盘面尝试",
+			["GeneratingProgressPlural"] = "次盘面尝试",
 
 			// Separate words
 			["Petal"] = "个花瓣",

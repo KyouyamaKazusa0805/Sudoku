@@ -4,157 +4,6 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.ComponentModel.GridProgressResult">
-            <summary>
-            Encapsulates a progress result used for report the current state.
-            </summary>
-        </member>
-        <member name="M:Sudoku.ComponentModel.GridProgressResult.#ctor(System.Int32,System.Int32,System.Int32,System.String)">
-            <summary>
-            Initializes an instance with the specified current point and the total point.
-            </summary>
-            <param name="currentCandidatesCount">The current point.</param>
-            <param name="currentCellsCount">The number of unsolved cells.</param>
-            <param name="initialCandidatesCount">The number of unsolved candidates in the initial grid.</param>
-            <param name="globalizationString">The globalization string.</param>
-        </member>
-        <member name="P:Sudoku.ComponentModel.GridProgressResult.CurrentCellsCount">
-            <summary>
-            Indicates the number of unsolved cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.ComponentModel.GridProgressResult.CurrentCandidatesCount">
-            <summary>
-            Indicates the number of unsolved candidates.
-            </summary>
-        </member>
-        <member name="P:Sudoku.ComponentModel.GridProgressResult.InitialCandidatesCount">
-            <summary>
-            Indicates the number of unsolved candidates in the initial grid.
-            </summary>
-        </member>
-        <member name="P:Sudoku.ComponentModel.GridProgressResult.GlobalizationString">
-            <summary>
-            The globalization string.
-            </summary>
-        </member>
-        <member name="P:Sudoku.ComponentModel.GridProgressResult.Percentage">
-            <summary>
-            Indicates the current percentage.
-            </summary>
-        </member>
-        <member name="M:Sudoku.ComponentModel.GridProgressResult.Deconstruct(System.Int32@,System.Int32@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
-            <param name="current">(<see langword="out" /> parameter) The number of unsolved candidates.</param>
-            <param name="unsolvedCells">(<see langword="out" /> parameter) The number of unsolved cells.</param>
-        </member>
-        <member name="M:Sudoku.ComponentModel.GridProgressResult.Deconstruct(System.Int32@,System.Int32@,System.Int32@)">
-            <method name="Deconstruct">
-		<summary>Deconstruct this instance.</summary>
-	</method>
-            <param name="currentCandidatesCount">(<see langword="out" /> parameter) The number of unsolved candidates.</param>
-            <param name="currentCellsCount">(<see langword="out" /> parameter) The number of unsolved cells.</param>
-            <param name="initialCandidatesCount">
-            (<see langword="out" /> parameter) The number of unsolved candidates in the initial grid.
-            </param>
-        </member>
-        <member name="M:Sudoku.ComponentModel.GridProgressResult.ToString">
-            <method name="ToString" paramType="__noparam">
-		<summary>Returns a string that represents the current object.</summary>
-		<returns>A string that represents the current object.</returns>
-	</method>
-        </member>
-        <member name="M:Sudoku.ComponentModel.GridProgressResult.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.ComponentModel.GridProgressResult.Equals(Sudoku.ComponentModel.GridProgressResult)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.ComponentModel.GridProgressResult.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.ComponentModel.GridProgressResult.op_Equality(Sudoku.ComponentModel.GridProgressResult,Sudoku.ComponentModel.GridProgressResult)">
-            <operator name="op_Equality">
-		<summary>Indicates whether two instances have a same value.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
-	</operator>
-        </member>
-        <member name="M:Sudoku.ComponentModel.GridProgressResult.op_Inequality(Sudoku.ComponentModel.GridProgressResult,Sudoku.ComponentModel.GridProgressResult)">
-            <operator name="op_Inequality">
-		<summary>Indicates whether two instances have two different values.</summary>
-		<param name="left">The left instance.</param>
-		<param name="right">The right instance.</param>
-		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
-	</operator>
-        </member>
-        <member name="T:Sudoku.ComponentModel.IProgressResult">
-            <summary>
-            Encapsulates and provides with a progress result instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.ComponentModel.IProgressResult.Percentage">
-            <summary>
-            Indicates the current percentage.
-            </summary>
-        </member>
-        <member name="P:Sudoku.ComponentModel.IProgressResult.GlobalizationString">
-            <summary>
-            The globalization string.
-            </summary>
-        </member>
-        <member name="M:Sudoku.ComponentModel.IProgressResult.ToString">
-            <method name="ToString" paramType="__noparam">
-		<summary>Returns a string that represents the current object.</summary>
-		<returns>A string that represents the current object.</returns>
-	</method>
-        </member>
-        <member name="T:Sudoku.ComponentModel.TechniqueProgressResult">
-            <summary>
-            Indicates a technique progress result.
-            </summary>
-        </member>
-        <member name="M:Sudoku.ComponentModel.TechniqueProgressResult.#ctor(System.Int32,System.String)">
-            <summary>
-            Initializes an instance with the specified technique count.
-            </summary>
-            <param name="totalSearchers">The total number of searchers.</param>
-            <param name="globalizationString">The globalization string.</param>
-        </member>
-        <member name="P:Sudoku.ComponentModel.TechniqueProgressResult.Percentage">
-            <summary>
-            Indicates the current percentage finished.
-            </summary>
-        </member>
-        <member name="P:Sudoku.ComponentModel.TechniqueProgressResult.CurrentTechnique">
-            <summary>
-            Indicates the current technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.ComponentModel.TechniqueProgressResult.CurrentIndex">
-            <summary>
-            The current index.
-            </summary>
-        </member>
-        <member name="P:Sudoku.ComponentModel.TechniqueProgressResult.GlobalizationString">
-            <summary>
-            The globalization string.
-            </summary>
-        </member>
-        <member name="P:Sudoku.ComponentModel.TechniqueProgressResult.TotalSearchers">
-            <summary>
-            The total number of searchers.
-            </summary>
-        </member>
-        <member name="M:Sudoku.ComponentModel.TechniqueProgressResult.ToString">
-            <method name="ToString" paramType="__noparam">
-		<summary>Returns a string that represents the current object.</summary>
-		<returns>A string that represents the current object.</returns>
-	</method>
-        </member>
         <member name="T:Sudoku.Constants.Processings">
             <summary>
             The tables for grid processing. All fields will be initialized in
@@ -6879,6 +6728,186 @@
             Roslyn, so we should suppress the complier warning IDE0052.
             </remarks>
         </member>
+        <member name="T:Sudoku.Models.GridProgressResult">
+            <summary>
+            Encapsulates a progress result used for report the current state.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Models.GridProgressResult.#ctor(System.Int32,System.Int32,System.Int32,System.String)">
+            <summary>
+            Initializes an instance with the specified current point and the total point.
+            </summary>
+            <param name="currentCandidatesCount">The current point.</param>
+            <param name="currentCellsCount">The number of unsolved cells.</param>
+            <param name="initialCandidatesCount">The number of unsolved candidates in the initial grid.</param>
+            <param name="globalizationString">The globalization string.</param>
+        </member>
+        <member name="P:Sudoku.Models.GridProgressResult.CurrentCellsCount">
+            <summary>
+            Indicates the number of unsolved cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Models.GridProgressResult.CurrentCandidatesCount">
+            <summary>
+            Indicates the number of unsolved candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Models.GridProgressResult.InitialCandidatesCount">
+            <summary>
+            Indicates the number of unsolved candidates in the initial grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Models.GridProgressResult.GlobalizationString">
+            <summary>
+            The globalization string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Models.GridProgressResult.Percentage">
+            <summary>
+            Indicates the current percentage.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Models.GridProgressResult.Deconstruct(System.Int32@,System.Int32@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="current">(<see langword="out" /> parameter) The number of unsolved candidates.</param>
+            <param name="unsolvedCells">(<see langword="out" /> parameter) The number of unsolved cells.</param>
+        </member>
+        <member name="M:Sudoku.Models.GridProgressResult.Deconstruct(System.Int32@,System.Int32@,System.Int32@)">
+            <method name="Deconstruct">
+		<summary>Deconstruct this instance.</summary>
+	</method>
+            <param name="currentCandidatesCount">(<see langword="out" /> parameter) The number of unsolved candidates.</param>
+            <param name="currentCellsCount">(<see langword="out" /> parameter) The number of unsolved cells.</param>
+            <param name="initialCandidatesCount">
+            (<see langword="out" /> parameter) The number of unsolved candidates in the initial grid.
+            </param>
+        </member>
+        <member name="M:Sudoku.Models.GridProgressResult.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="M:Sudoku.Models.GridProgressResult.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Models.GridProgressResult.Equals(Sudoku.Models.GridProgressResult)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Models.GridProgressResult.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Models.GridProgressResult.op_Equality(Sudoku.Models.GridProgressResult,Sudoku.Models.GridProgressResult)">
+            <operator name="op_Equality">
+		<summary>Indicates whether two instances have a same value.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="M:Sudoku.Models.GridProgressResult.op_Inequality(Sudoku.Models.GridProgressResult,Sudoku.Models.GridProgressResult)">
+            <operator name="op_Inequality">
+		<summary>Indicates whether two instances have two different values.</summary>
+		<param name="left">The left instance.</param>
+		<param name="right">The right instance.</param>
+		<returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+	</operator>
+        </member>
+        <member name="T:Sudoku.Models.IProgressResult">
+            <summary>
+            Encapsulates and provides with a progress result instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Models.IProgressResult.Percentage">
+            <summary>
+            Indicates the current percentage.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Models.IProgressResult.GlobalizationString">
+            <summary>
+            The globalization string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Models.IProgressResult.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="T:Sudoku.Models.PuzzleGeneratingProgressResult">
+            <summary>
+            Indicates a puzzle generating progress result.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Models.PuzzleGeneratingProgressResult.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes an instance with the specified trial times and globalization string.
+            </summary>
+            <param name="generatingTrial">The number of the trial times.</param>
+            <param name="globalizationString">The globalization string.</param>
+        </member>
+        <member name="P:Sudoku.Models.PuzzleGeneratingProgressResult.GeneratingTrial">
+            <summary>
+            Indicates how many trials of the specified generator generates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Models.PuzzleGeneratingProgressResult.Percentage">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Models.PuzzleGeneratingProgressResult.GlobalizationString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Models.PuzzleGeneratingProgressResult.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
+        <member name="T:Sudoku.Models.TechniqueProgressResult">
+            <summary>
+            Indicates a technique progress result.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Models.TechniqueProgressResult.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes an instance with the specified technique count.
+            </summary>
+            <param name="totalSearchers">The total number of searchers.</param>
+            <param name="globalizationString">The globalization string.</param>
+        </member>
+        <member name="P:Sudoku.Models.TechniqueProgressResult.Percentage">
+            <summary>
+            Indicates the current percentage finished.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Models.TechniqueProgressResult.CurrentTechnique">
+            <summary>
+            Indicates the current technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Models.TechniqueProgressResult.CurrentIndex">
+            <summary>
+            The current index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Models.TechniqueProgressResult.GlobalizationString">
+            <summary>
+            The globalization string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Models.TechniqueProgressResult.TotalSearchers">
+            <summary>
+            The total number of searchers.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Models.TechniqueProgressResult.ToString">
+            <method name="ToString" paramType="__noparam">
+		<summary>Returns a string that represents the current object.</summary>
+		<returns>A string that represents the current object.</returns>
+	</method>
+        </member>
         <member name="T:Sudoku.MultipleSolutionsException">
             <summary>
             Represents an error that the puzzle has multiple solutions while solving.
@@ -7349,7 +7378,7 @@
             </summary>
         </member>
         <member name="M:System.Collections.Generic.Set`1.#ctor">
-            <!--未能插入某些或全部所包含的 XML --><include file=".....\GlobalDocComments.xml" path="comments/defaultConstructor" />
+            <!-- Failed to insert some or all of included XML --><include file=".....\GlobalDocComments.xml" path="comments/defaultConstructor" />
         </member>
         <member name="M:System.Collections.Generic.Set`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
             <summary>
@@ -7489,10 +7518,10 @@
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:System.Collections.Generic.Set`1.op_Equality(System.Collections.Generic.Set{`0},System.Collections.Generic.Set{`0})">
-            <!--未能插入某些或全部所包含的 XML --><include file=".....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
+            <!-- Failed to insert some or all of included XML --><include file=".....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Equality&quot;]" />
         </member>
         <member name="M:System.Collections.Generic.Set`1.op_Inequality(System.Collections.Generic.Set{`0},System.Collections.Generic.Set{`0})">
-            <!--未能插入某些或全部所包含的 XML --><include file=".....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
+            <!-- Failed to insert some or all of included XML --><include file=".....\GlobalDocComments.xml" path="comments/operator[@name=&quot;op_Inequality&quot;]" />
         </member>
         <member name="M:System.Collections.Generic.Set`1.op_BitwiseAnd(System.Collections.Generic.Set{`0},System.Collections.Generic.IEnumerable{`0})">
             <summary>
@@ -7744,12 +7773,12 @@
             <inheritdoc/>
         </member>
         <member name="M:System.PrimaryElementTuple`2.Deconstruct(`0@,`1@)">
-            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="v1">(<see langword="out" /> parameter) The value 1.</param>
             <param name="v2">(<see langword="out" /> parameter) The value 2.</param>
         </member>
         <member name="M:System.PrimaryElementTuple`2.ToString">
-            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
         </member>
         <member name="T:System.PrimaryElementTuple`3">
             <summary>
@@ -7801,13 +7830,13 @@
             <inheritdoc/>
         </member>
         <member name="M:System.PrimaryElementTuple`3.Deconstruct(`0@,`1@,`2@)">
-            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="v1">(<see langword="out" /> parameter) The value 1.</param>
             <param name="v2">(<see langword="out" /> parameter) The value 2.</param>
             <param name="v3">(<see langword="out" /> parameter) The value 3.</param>
         </member>
         <member name="M:System.PrimaryElementTuple`3.ToString">
-            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
         </member>
         <member name="T:System.PrimaryElementTuple`4">
             <summary>
@@ -7866,14 +7895,14 @@
             <inheritdoc/>
         </member>
         <member name="M:System.PrimaryElementTuple`4.Deconstruct(`0@,`1@,`2@,`3@)">
-            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
+            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;Deconstruct&quot;]" />
             <param name="v1">(<see langword="out" /> parameter) The value 1.</param>
             <param name="v2">(<see langword="out" /> parameter) The value 2.</param>
             <param name="v3">(<see langword="out" /> parameter) The value 3.</param>
             <param name="v4">(<see langword="out" /> parameter) The value 4.</param>
         </member>
         <member name="M:System.PrimaryElementTuple`4.ToString">
-            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
+            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/method[@name=&quot;ToString&quot; and @paramType=&quot;__noparam&quot;]" />
         </member>
         <member name="T:System.Text.RegularExpressions.InvalidRegexStringException">
             <summary>

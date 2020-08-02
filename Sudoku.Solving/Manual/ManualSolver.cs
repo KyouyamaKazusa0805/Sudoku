@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Sudoku.ComponentModel;
 using Sudoku.Data;
+using Sudoku.Models;
 using Sudoku.Solving.Checking;
 using Sudoku.Windows;
 

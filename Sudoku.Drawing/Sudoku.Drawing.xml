@@ -101,7 +101,7 @@
             <seealso cref="T:Sudoku.Drawing.View"/>
         </member>
         <member name="M:Sudoku.Drawing.MutableView.#ctor">
-            <!--未能插入某些或全部所包含的 XML --><include file="...\GlobalDocComments.xml" path="comments/defaultConstructor" />
+            <!-- Failed to insert some or all of included XML --><include file="...\GlobalDocComments.xml" path="comments/defaultConstructor" />
             <remarks>
             The constructor is equivalent to code '<c>new MutableView(null, null, null, null)</c>'.
             </remarks>

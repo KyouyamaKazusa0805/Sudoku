@@ -1,4 +1,4 @@
-﻿namespace Sudoku.ComponentModel
+﻿namespace Sudoku.Models
 {
 	/// <summary>
 	/// Indicates a technique progress result.
