@@ -30,6 +30,7 @@ using CoreResources = Sudoku.Windows.Resources;
 using K = System.Windows.Input.Key;
 using M = System.Windows.Input.ModifierKeys;
 using PointConverter = Sudoku.Drawing.PointConverter;
+using R = System.Windows.MessageBoxResult;
 using SudokuGrid = Sudoku.Data.Grid;
 #if SUDOKU_RECOGNIZING
 using System.Diagnostics;
@@ -45,30 +46,6 @@ namespace Sudoku.Windows
 	{
 		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>
 		public MainWindow() => InitializeComponent();
-
-
-		/// <summary>
-		/// Indicates the puzzle, which is equivalent to <see cref="_puzzle"/>,
-		/// but add the auto-update value layer.
-		/// </summary>
-		/// <remarks>This property is an set-only method in fact.</remarks>
-		/// <value>The new grid.</value>
-		/// <seealso cref="_puzzle"/>
-		private UndoableGrid Puzzle
-		{
-			set
-			{
-				_currentPainter = new GridPainter(_pointConverter, Settings, _puzzle = value);
-				_initialPuzzle = value.Clone();
-
-				GC.Collect();
-			}
-		}
-
-		/// <summary>
-		/// Indicates the settings used.
-		/// </summary>
-		public Settings Settings { get; private set; } = null!;
 
 
 		/// <inheritdoc/>
@@ -132,7 +109,7 @@ namespace Sudoku.Windows
 		protected override void OnClosing(CancelEventArgs e)
 		{
 			// Ask when worth.
-			if (Settings.AskWhileQuitting && Messagings.AskWhileQuitting() == MessageBoxResult.No)
+			if (Settings.AskWhileQuitting && Messagings.AskWhileQuitting() == R.No)
 			{
 				e.Cancel = true;
 				return;
@@ -366,8 +343,7 @@ namespace Sudoku.Windows
 		/// </summary>
 		private void LoadDatabaseIfWorth()
 		{
-			if (Settings.CurrentPuzzleDatabase is null
-				|| Messagings.AskWhileLoadingAndCoveringDatabase() != MessageBoxResult.Yes)
+			if (Settings.CurrentPuzzleDatabase is null || Messagings.AskWhileLoadingAndCoveringDatabase() != R.Yes)
 			{
 				return;
 			}
@@ -434,6 +410,9 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Save configurations if worth.
 		/// </summary>
+		/// <param name="path">
+		/// The path of the configuration file. The default value is <c>"configurations.scfg"</c>.
+		/// </param>
 		private void LoadConfigIfWorth(string path = "configurations.scfg")
 		{
 			Settings = new Settings();
@@ -501,13 +480,7 @@ namespace Sudoku.Windows
 			CommandBindings.Add(
 				new CommandBinding(
 					command,
-					executed: (sender, e) =>
-					{
-						if (matchControl?.IsEnabled ?? true)
-						{
-							executed(sender, e);
-						}
-					}));
+					(sender, e) => ((matchControl?.IsEnabled ?? true) ? executed : null)?.Invoke(sender, e)));
 		}
 
 		/// <summary>
@@ -518,20 +491,23 @@ namespace Sudoku.Windows
 		{
 			try
 			{
+#if true
 				Clipboard.SetDataObject(_puzzle.ToString(format));
-				#region Obsolete code
+#else
 				// This may throw exceptions being called while solving and generating puzzles.
-				//Clipboard.SetText(_puzzle.ToString(format));
-				#endregion
+				Clipboard.SetText(_puzzle.ToString(format));
+#endif
 			}
 			catch (ArgumentNullException ex)
 			{
 				Messagings.FailedToSaveToClipboardDueToArgumentNullException(ex);
 			}
+#if true
 			catch (COMException ex) when (ex.HResult == unchecked((int)2147746256))
 			{
 				Messagings.FailedToSaveToClipboardDueToAsyncCalling();
 			}
+#endif
 		}
 
 		/// <summary>
@@ -541,10 +517,6 @@ namespace Sudoku.Windows
 		{
 #if !SUDOKU_RECOGNIZING
 			_menuItemFileLoadPicture.IsEnabled = false;
-#endif
-
-#if !DEBUG
-			_menuItemGenerateWithTechniqueFiltering.IsEnabled = false;
 #endif
 
 			_menuItemOptionsShowCandidates.IsChecked = Settings.ShowCandidates;
@@ -642,8 +614,7 @@ namespace Sudoku.Windows
 		private void InitializePointConverterAndLayers() =>
 			_currentPainter =
 				new GridPainter(
-					_pointConverter = new PointConverter((float)_imageGrid.Width, (float)_imageGrid.Height),
-					Settings)
+					_pointConverter = new PointConverter((float)_imageGrid.Width, (float)_imageGrid.Height), Settings)
 				{
 					Grid = _puzzle
 				};
