@@ -73,8 +73,10 @@ namespace Sudoku.Windows
 			{
 				try
 				{
-					if (_listBoxPaths.SelectedItem is ListBoxItem listBoxItem
-						&& listBoxItem.Content is PrimaryElementTuple<string, int, TechniqueInfo> triplet)
+					if (_listBoxPaths.SelectedItem is ListBoxItem
+					{
+						Content: PrimaryElementTuple<string, int, TechniqueInfo> triplet
+					})
 					{
 						Clipboard.SetText(triplet.Value3.ToFullString());
 					}
@@ -114,10 +116,10 @@ namespace Sudoku.Windows
 
 		private void ContextMenuTechniquesApply_Click(object sender, RoutedEventArgs e)
 		{
-			if (sender is MenuItem
-				&& _listBoxTechniques.SelectedItem is ListBoxItem node
-				&& node.Content is PrimaryElementTuple<string, TechniqueInfo, bool> triplet
-				&& triplet is { Value3: true })
+			if (sender is MenuItem && _listBoxTechniques.SelectedItem is ListBoxItem
+			{
+				Content: PrimaryElementTuple<string, TechniqueInfo, bool> { Value3: true } triplet
+			})
 			{
 				var info = triplet.Value2;
 				if (!Settings.MainManualSolver.CheckConclusionValidityAfterSearched

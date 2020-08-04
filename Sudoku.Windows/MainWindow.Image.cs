@@ -243,13 +243,11 @@ namespace Sudoku.Windows
 
 		private void ImageGeneratingIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
-#pragma warning disable IDE0007
 			Action<object, RoutedEventArgs>
-#pragma warning restore IDE0007
 				a = _comboBoxMode.SelectedIndex switch
 				{
-					0 => (sender, e) => MenuItemGenerateWithSymmetry_Click(sender, e),
-					1 => (sender, e) => MenuItemGenerateHardPattern_Click(sender, e),
+					0 => MenuItemGenerateWithSymmetry_Click,
+					1 => MenuItemGenerateHardPattern_Click,
 					_ => throw Throwings.ImpossibleCase
 				};
 

@@ -18,8 +18,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			if (sender is ListBox b && b.SelectedItem is ListBoxItem listBoxItem
-				&& listBoxItem.Content is PrimaryElementTuple<string, int, TechniqueInfo> triplet)
+			if (sender is ListBox { SelectedItem: ListBoxItem { Content: PrimaryElementTuple<string, int, TechniqueInfo> triplet } })
 			{
 				_cacheAllSteps = null; // Remove older steps cache while updating paths.
 
@@ -37,8 +36,7 @@ namespace Sudoku.Windows
 
 		private void ListBoxTechniques_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			if (sender is ListBox listBox && listBox.SelectedItem is ListBoxItem node
-				&& node.Content is PrimaryElementTuple<string, TechniqueInfo, bool> triplet)
+			if (sender is ListBox { SelectedItem: ListBoxItem { Content: PrimaryElementTuple<string, TechniqueInfo, bool> triplet } })
 			{
 				if (triplet.Value3)
 				{
