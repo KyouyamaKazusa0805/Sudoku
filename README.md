@@ -28,7 +28,7 @@ A sudoku handling SDK using brute forces and logical techniques (update graduall
 * Language version: 8.0<br/>语言版本：8.0
 * Framework: .NET Core 3.1<br/>框架：.NET Core 3.1
 * Integrated development environment: Visual Studio 2019 V16.6<br/>集成开发环境：Visual Studio 2019 V16.6
-* Program Language Support: English, Simplified Chinese<br/>程序语言支持：英语、简体中文
+* Language Support: English, Simplified Chinese<br/>语言支持：英语、简体中文
 
 
 
@@ -49,6 +49,10 @@ Clone this repo, and you can take all codes!
 ```bash
 git clone https://github.com/Sunnie-Shine/Sudoku.git
 ```
+
+Of course, you can also download the zip file.
+
+当然，你也可以下载 zip 文件。
 
 
 
@@ -101,9 +105,7 @@ The program supports technique below at present:
 * Last Resorts: Pattern Overlay Method, Template, Bowman's Bingo, Brute Force<br/>爆破技巧：图案叠加删减、模板、人工试数、计算机试数
 * Other techniques: Gurth's Symmetrical Placement<br/>其它技巧：宇宙法
 
-> AR does not contain type 4 or 6.
->
-> 可规避矩形不含有类型 4 和 6。
+
 
 ## Conditional Compilation Symbol
 
@@ -112,6 +114,10 @@ The program supports technique below at present:
 Here display all conditional compilation symbols in this solution.
 
 这里罗列本解决方案里用到的条件编译符号。
+
+> Some of them are unnecessary for you perhaps, you can remove them.
+>
+> 其中的一些对你可能没有必要，所以你可以移除它们。
 
 * `DEBUG`: Indicates the current environment is for debugging. Some features rely on this symbol such as the default values for some instances in settings.<br/>表示当前是调试环境。一些特性会依赖于这个符号，诸如部分设置项的默认数值。
 * `TARGET_64BIT`: Indicates your computer is 32 bits or 64 bits. If 64, please add `TARGET_64BIT` into the project [`Sudoku.Solving`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Solving); otherwise, do nothing. This conditional compilation symbol is used in calling C/C++ functions in dynamic link library (DLL).<br/>指示系统是多少位的。当你的电脑是 64 位的时候，请在 [`Sudoku.Solving`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Solving) 项目里添加 `TARGET_64BIT` 条件编译符号；否则就不管。这个条件编译符号用于调用位于动态链接库里的 C/C++ 函数。<br/>At present (C# 8) the syntax does not support the native integers, so this symbol will still exist a period of time.<br/>到目前为止（C# 8），语法都没有支持“适合机器的整型类型”，所以这个编译符号仍会存在一段时间。
@@ -125,7 +131,7 @@ Here display all conditional compilation symbols in this solution.
 
 标题：**作者**
 
-Sunnie, from Chengdu, is an original undergraduate.
+Sunnie, from the city of pandas, is an original undergraduate.
 
 小向，来自成都的一名普通大学生。
 
