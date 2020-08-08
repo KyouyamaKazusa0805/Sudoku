@@ -18,8 +18,7 @@ namespace Sudoku.Windows.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The key.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsDigit(this Key @this) =>
-			@this >= D0 && @this <= D9 || @this >= NumPad0 && @this <= NumPad9;
+		public static bool IsDigit(this Key @this) => @this is >= D0 and <= D9 or >= NumPad0 and <= NumPad9;
 
 		/// <summary>
 		/// Check whether the specified key is a digit key in number pad.
@@ -27,7 +26,7 @@ namespace Sudoku.Windows.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The key.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsNumPadDigit(this Key @this) => @this >= NumPad0 && @this <= NumPad9;
+		public static bool IsNumPadDigit(this Key @this) => @this is >= NumPad0 and <= NumPad9;
 
 		/// <summary>
 		/// Check whether the specified key is a digit key above those alphabets
@@ -36,7 +35,7 @@ namespace Sudoku.Windows.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The key.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsDigitUpsideAlphabets(this Key @this) => @this >= D0 && @this <= D9;
+		public static bool IsDigitUpsideAlphabets(this Key @this) => @this is >= D0 and <= D9;
 
 		/// <summary>
 		/// Check whether the specified key is a letter.
@@ -44,7 +43,7 @@ namespace Sudoku.Windows.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The key.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsAlphabet(this Key @this) => @this >= A && @this <= Z;
+		public static bool IsAlphabet(this Key @this) => @this is >= A and <= Z;
 
 		/// <summary>
 		/// Check whether the specified key is a arrow key (up, down, left or right).
@@ -52,7 +51,6 @@ namespace Sudoku.Windows.Extensions
 		/// <param name="this">(<see langword="this"/> parameter) The key.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsArrow(this Key @this) =>
-			@this == Up || @this == Down || @this == Left || @this == Right;
+		public static bool IsArrow(this Key @this) => @this is Up or Down or Left or Right;
 	}
 }
