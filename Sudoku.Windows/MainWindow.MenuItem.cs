@@ -319,7 +319,7 @@ namespace Sudoku.Windows
 		private void MenuItemEditPaste_Click(object sender, RoutedEventArgs e)
 		{
 			string puzzleStr = Clipboard.GetText();
-			if (!(puzzleStr is null))
+			if (puzzleStr is not null)
 			{
 				LoadPuzzle(puzzleStr);
 
@@ -332,7 +332,7 @@ namespace Sudoku.Windows
 		private void MenuItemEditPasteAsSukaku_Click(object sender, RoutedEventArgs e)
 		{
 			string puzzleStr = Clipboard.GetText();
-			if (!(puzzleStr is null))
+			if (puzzleStr is not null)
 			{
 				try
 				{
@@ -840,7 +840,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			if (!(new GspTechniqueSearcher().GetOne(_puzzle) is GspTechniqueInfo info))
+			if (new GspTechniqueSearcher().GetOne(_puzzle) is not GspTechniqueInfo info)
 			{
 				Messagings.DoesNotContainGsp();
 				e.Handled = true;

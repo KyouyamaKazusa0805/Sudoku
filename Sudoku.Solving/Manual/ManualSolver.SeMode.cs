@@ -109,7 +109,7 @@ namespace Sudoku.Solving.Manual
 						// to continue solving puzzle.
 						bag.Clear();
 
-						if (!(progress is null))
+						if (progress is not null)
 						{
 							ReportProgress(cloneation, progress, ref progressResult);
 						}
@@ -157,7 +157,7 @@ namespace Sudoku.Solving.Manual
 							// to continue solving puzzle.
 							bag.Clear();
 
-							if (!(progress is null))
+							if (progress is not null)
 							{
 								ReportProgress(cloneation, progress, ref progressResult);
 							}

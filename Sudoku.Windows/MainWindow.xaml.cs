@@ -288,7 +288,7 @@ namespace Sudoku.Windows
 		{
 			base.OnKeyUp(e);
 
-			if (!(_previewMap is null) && e.Key == K.Space)
+			if (_previewMap is not null && e.Key == K.Space)
 			{
 				_focusedCells = _previewMap.Value;
 
@@ -923,7 +923,8 @@ namespace Sudoku.Windows
 
 			// Get the specified dictionary.
 			ResourceDictionary? g(string p) => dictionaries.FirstOrDefault(d => d.Source.OriginalString == p);
-			if (!((g($"Lang.{globalizationString}.xaml") ?? g("Lang.en-us.xaml")) is ResourceDictionary resourceDictionary))
+			if ((g($"Lang.{globalizationString}.xaml") ?? g("Lang.en-us.xaml")) is
+				not ResourceDictionary resourceDictionary)
 			{
 				Messagings.FailedToLoadGlobalizationFile();
 				return;

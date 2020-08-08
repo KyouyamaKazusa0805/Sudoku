@@ -70,23 +70,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			}
 
 			// Do cell eliminations.
-			if (!(cellToOn is null))
+			if (cellToOn is not null)
 			{
 				foreach (var p in cellToOn)
 				{
 					var hint = CreateEliminationHint(trueCandidates, p, valueToOn);
-					if (!(hint is null))
+					if (hint is not null)
 					{
 						tempAccumulator.Add(hint);
 					}
 				}
 			}
-			if (!(cellToOff is null))
+			if (cellToOff is not null)
 			{
 				foreach (var p in cellToOff)
 				{
 					var hint = CreateEliminationHint(trueCandidates, p, valueToOff);
-					if (!(hint is null))
+					if (hint is not null)
 					{
 						tempAccumulator.Add(hint);
 					}

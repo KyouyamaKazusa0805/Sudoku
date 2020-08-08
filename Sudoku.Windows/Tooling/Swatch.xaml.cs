@@ -41,7 +41,7 @@ namespace Sudoku.Windows.Tooling
 
 		private void Border_MouseDown(object sender, MouseButtonEventArgs e)
 		{
-			if (!(sender is Border border))
+			if (sender is not Border border)
 			{
 				e.Handled = true;
 				return;
@@ -57,7 +57,7 @@ namespace Sudoku.Windows.Tooling
 					data.HexString = CurrentColor.ToHexString();
 				}
 
-				if (!(ColorPickerControl is null))
+				if (ColorPickerControl is not null)
 				{
 					ColorPickerControl.CustomColorsChanged();
 				}

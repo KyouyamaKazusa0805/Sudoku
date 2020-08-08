@@ -27,7 +27,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <summary>
 		/// The singles searcher.
 		/// </summary>
-		private readonly SingleTechniqueSearcher _searcher = new SingleTechniqueSearcher(true, true);
+		private readonly SingleTechniqueSearcher _searcher = new(true, true);
 
 		/// <summary>
 		/// All temporary conclusions.
@@ -103,7 +103,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <param name="length">The length.</param>
 		private void GetAll(IList<BowmanBingoTechniqueInfo> result, Grid grid, int startCandidate, int length)
 		{
-			if (length == 0 || !(_searcher.GetOne(grid) is SingleTechniqueInfo singleInfo))
+			if (length == 0 || _searcher.GetOne(grid) is not SingleTechniqueInfo singleInfo)
 			{
 				// Two cases we don't need to go on.
 				// Case 1: the variable 'length' is 0.

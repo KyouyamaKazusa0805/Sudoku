@@ -92,7 +92,7 @@ namespace Sudoku.Data
 		{
 			string[] matches = ParsingValue.MatchAll(RegularExpressions.DigitOrEmptyCell);
 			int length = matches.Length;
-			if (length != 81 && length != 85)
+			if (length is not (81 or 85))
 			{
 				// Subtle grid outline will bring 2 '.'s on first line of the grid.
 				return null;
@@ -118,7 +118,7 @@ namespace Sudoku.Data
 					case 2:
 					{
 						char match = currentMatch[1];
-						if (match == '.' || match == '0')
+						if (match is '.' or '0')
 						{
 							// '+0' or '+.'? Invalid combination.
 							return null;
@@ -236,7 +236,7 @@ namespace Sudoku.Data
 					if (length == 3)
 					{
 						char c = s[1];
-						if (c >= '1' && c <= '9')
+						if (c is >= '1' and <= '9')
 						{
 							result[offset] = c - '1';
 							result.SetStatus(offset, Given);
@@ -259,7 +259,7 @@ namespace Sudoku.Data
 					if (length == 3)
 					{
 						char c = s[1];
-						if (c >= '1' && c <= '9')
+						if (c is >= '1' and <= '9')
 						{
 							result[offset] = c - '1';
 							result.SetStatus(offset, Modifiable);
@@ -315,7 +315,7 @@ namespace Sudoku.Data
 
 			// Remove all '\r' and '\n'-s.
 			var sb = new StringBuilder();
-			foreach (char c in from c in match where c != '\r' && c != '\n' select c)
+			foreach (char c in from c in match where c is not ('\r' or '\n') select c)
 			{
 				sb.Append(c);
 			}
@@ -349,7 +349,7 @@ namespace Sudoku.Data
 					if (i < length - 1)
 					{
 						char nextChar = match[i + 1];
-						if (nextChar >= '1' && nextChar <= '9')
+						if (nextChar is >= '1' and <= '9')
 						{
 							// Set value.
 							// Note that the subtracter is character '1', not '0'.
@@ -376,13 +376,13 @@ namespace Sudoku.Data
 						return null;
 					}
 				}
-				else if (c == '.' || c == '0')
+				else if (c is '.' or '0')
 				{
 					// A placeholder.
 					// Do nothing but only move 1 step forward.
 					i++;
 				}
-				else if (c >= '1' && c <= '9')
+				else if (c is >= '1' and <= '9')
 				{
 					// Is a digit character.
 					// Digits are representing given values in the grid.
@@ -446,7 +446,7 @@ namespace Sudoku.Data
 						return null;
 					}
 
-					if (c == '0' || c == '.')
+					if (c is '0' or '.')
 					{
 						result[i / 9, i % 9] = true;
 					}

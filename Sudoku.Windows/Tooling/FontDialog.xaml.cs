@@ -119,7 +119,7 @@ namespace Sudoku.Windows.Tooling
 		private void ListBoxStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			// While initializing, 'SelectedFont' is null.
-			if (sender is ListBox listBox && !(SelectedFont is null))
+			if (sender is ListBox listBox && SelectedFont is not null)
 			{
 				SelectedFont = new Font(SelectedFont, (DFontStyle)listBox.SelectedIndex);
 
@@ -130,7 +130,7 @@ namespace Sudoku.Windows.Tooling
 		private void ListBoxFonts_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			// While initializing, 'SelectedFont' is null.
-			if (sender is ListBox listBox && !(SelectedFont is null))
+			if (sender is ListBox listBox && SelectedFont is not null)
 			{
 				SelectedFont = new Font(listBox.SelectedItem.ToString(), SelectedFont.Size, SelectedFont.Style);
 

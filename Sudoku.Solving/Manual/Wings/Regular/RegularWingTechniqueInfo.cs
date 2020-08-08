@@ -65,21 +65,12 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			get
 			{
 				bool isIncomplete = Size == PivotCellCandidatesCount + 1;
-				switch (Size)
+				return Size switch
 				{
-					case 3:
-					{
-						return isIncomplete ? 4.2M : 4.4M;
-					}
-					case int s when s >= 4 && s < 9:
-					{
-						return isIncomplete ? DifficultyRating[Size] + .1M : DifficultyRating[Size];
-					}
-					default:
-					{
-						throw Throwings.ImpossibleCase;
-					}
-				}
+					3 => isIncomplete ? 4.2M : 4.4M,
+					>= 4 and < 9 => isIncomplete ? DifficultyRating[Size] + .1M : DifficultyRating[Size],
+					_ => throw Throwings.ImpossibleCase
+				};
 			}
 		}
 
@@ -87,8 +78,8 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		public override DifficultyLevel DifficultyLevel =>
 			Size switch
 			{
-				_ when Size >= 3 && Size <= 4 => DifficultyLevel.Hard,
-				_ when Size > 4 && Size < 9 => DifficultyLevel.Fiendish,
+				>= 3 and <= 4 => DifficultyLevel.Hard,
+				> 4 and < 9 => DifficultyLevel.Fiendish,
 				_ => throw new NotSupportedException($"{nameof(Size)} isn't in a valid range.")
 			};
 
@@ -121,21 +112,12 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			get
 			{
 				bool isIncomplete = Size == PivotCellCandidatesCount + 1;
-				switch (Size)
+				return Size switch
 				{
-					case 3:
-					{
-						return isIncomplete ? "XY-Wing" : "XYZ-Wing";
-					}
-					case int s when s >= 4 && s < 9:
-					{
-						return isIncomplete ? $"Incomplete {RegularWingNames[Size]}" : RegularWingNames[Size];
-					}
-					default:
-					{
-						throw Throwings.ImpossibleCase;
-					}
-				}
+					3 => isIncomplete ? "XY-Wing" : "XYZ-Wing",
+					>= 4 and < 9 => isIncomplete ? $"Incomplete {RegularWingNames[Size]}" : RegularWingNames[Size],
+					_ => throw Throwings.ImpossibleCase
+				};
 			}
 		}
 

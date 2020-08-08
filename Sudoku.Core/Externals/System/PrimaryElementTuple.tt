@@ -101,7 +101,7 @@ int primaryElementKey) =>
 	}
 #>
 
-primaryElementKey >= 1 && primaryElementKey <= <#= z #>
+primaryElementKey is >= 1 and <= <#= z #>
 <# PushIndent("	"); #>
 ? primaryElementKey
 : throw new ArgumentOutOfRangeException(nameof(primaryElementKey)));

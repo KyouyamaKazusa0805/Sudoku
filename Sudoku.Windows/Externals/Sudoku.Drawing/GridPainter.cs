@@ -151,7 +151,7 @@ namespace Sudoku.Drawing
 			DrawViewIfNeed(g, offset);
 			DrawCustomViewIfNeed(g, offset);
 			if (FocusedCells.HasValue) DrawFocusedCells(g, FocusedCells.Value);
-			if (!(Grid is null)) DrawValue(g, Grid);
+			if (Grid is not null) DrawValue(g, Grid);
 
 			return bitmap;
 		}
@@ -210,26 +210,26 @@ namespace Sudoku.Drawing
 
 		private void DrawCustomViewIfNeed(Graphics g, float offset)
 		{
-			if (!(CustomView is null))
+			if (CustomView is not null)
 			{
-				if (!(CustomView.CellOffsets is null)) DrawCells(g, CustomView.CellOffsets);
-				if (!(CustomView.CandidateOffsets is null)) DrawCandidates(g, CustomView.CandidateOffsets, offset);
-				if (!(CustomView.RegionOffsets is null)) DrawRegions(g, CustomView.RegionOffsets, offset);
-				if (!(CustomView.Links is null)) DrawLinks(g, CustomView.Links, offset);
+				if (CustomView.CellOffsets is not null) DrawCells(g, CustomView.CellOffsets);
+				if (CustomView.CandidateOffsets is not null) DrawCandidates(g, CustomView.CandidateOffsets, offset);
+				if (CustomView.RegionOffsets is not null) DrawRegions(g, CustomView.RegionOffsets, offset);
+				if (CustomView.Links is not null) DrawLinks(g, CustomView.Links, offset);
 			}
 		}
 
 		private void DrawViewIfNeed(Graphics g, float offset)
 		{
-			if (!(View is null))
+			if (View is not null)
 			{
-				if (!(View.CellOffsets is null)) DrawCells(g, View.CellOffsets);
-				if (!(View.CandidateOffsets is null)) DrawCandidates(g, View.CandidateOffsets, offset);
-				if (!(View.RegionOffsets is null)) DrawRegions(g, View.RegionOffsets, offset);
-				if (!(View.Links is null)) DrawLinks(g, View.Links, offset);
+				if (View.CellOffsets is not null) DrawCells(g, View.CellOffsets);
+				if (View.CandidateOffsets is not null) DrawCandidates(g, View.CandidateOffsets, offset);
+				if (View.RegionOffsets is not null) DrawRegions(g, View.RegionOffsets, offset);
+				if (View.Links is not null) DrawLinks(g, View.Links, offset);
 			}
 
-			if (!(Conclusions is null)) DrawEliminations(g, Conclusions, offset);
+			if (Conclusions is not null) DrawEliminations(g, Conclusions, offset);
 		}
 
 		private void DrawFocusedCells(Graphics g, GridMap focusedCells)
@@ -298,7 +298,7 @@ namespace Sudoku.Drawing
 				points.Add(PointConverter.GetMouseCenterOfCandidates(new SudokuMap { endCand }));
 			}
 
-			if (!(Conclusions is null))
+			if (Conclusions is not null)
 			{
 				points.AddRange(
 					from conclusion in Conclusions

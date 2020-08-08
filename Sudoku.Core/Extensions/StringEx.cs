@@ -160,7 +160,7 @@ namespace Sudoku.Extensions
 			var result = new List<string>();
 			foreach (Match? match in Regex.Matches(@this, pattern, regexOption)) // Do not use 'var' ('var' is 'object?').
 			{
-				if (!(match is null))
+				if (match is not null)
 				{
 					result.Add(match.Value);
 				}

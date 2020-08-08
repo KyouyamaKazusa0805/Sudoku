@@ -30,7 +30,7 @@ namespace Sudoku.Recognitions
 		/// <summary>
 		/// Indicates whether the current recognizer has already initialized.
 		/// </summary>
-		public bool Initialized => !(_ocr is null);
+		public bool Initialized => _ocr is not null;
 
 
 		/// <inheritdoc/>

@@ -115,7 +115,7 @@ namespace Sudoku.Drawing
 
 			var (cw, ch) = CellSize.Truncate();
 			int result = y / ch * 9 + x / cw;
-			return result < 0 || result >= 81 ? -1 : result;
+			return result is < 0 or >= 81 ? -1 : result;
 		}
 
 		/// <summary>
@@ -203,18 +203,18 @@ namespace Sudoku.Drawing
 		/// </exception>
 		public RectangleF GetMousePointRectangleForRegion(int region)
 		{
-			if (region >= 0 && region < 9)
+			if (region is >= 0 and < 9)
 			{
 				return RectangleEx.CreateInstance(
 					GridPoints[region % 3 * 9, region / 3 * 9],
 					GridPoints[region % 3 * 9 + 9, region / 3 * 9 + 9]);
 			}
-			else if (region >= 9 && region < 18)
+			else if (region is >= 9 and < 18)
 			{
 				region -= 9;
 				return RectangleEx.CreateInstance(GridPoints[0, region * 3], GridPoints[27, region * 3 + 3]);
 			}
-			else if (region >= 18 && region < 27)
+			else if (region is >= 18 and < 27)
 			{
 				region -= 18;
 				return RectangleEx.CreateInstance(GridPoints[region * 3, 0], GridPoints[region * 3 + 3, 27]);

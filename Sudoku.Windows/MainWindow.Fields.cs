@@ -23,7 +23,7 @@ namespace Sudoku.Windows
 		/// <seealso cref="ImageGrid_MouseLeftButtonDown"/>
 		/// <seealso cref="ImageGrid_MouseRightButtonUp"/>
 		/// <seealso cref="ButtonCellReset_Click"/>
-		private readonly MutableView _view = new MutableView();
+		private readonly MutableView _view = new();
 
 
 		/// <summary>
@@ -135,7 +135,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// The grid.
 		/// </summary>
-		private UndoableGrid _puzzle = new UndoableGrid(SudokuGrid.Empty);
+		private UndoableGrid _puzzle = new(SudokuGrid.Empty);
 
 		/// <summary>
 		/// Indicates the internal manual solver.

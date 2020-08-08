@@ -39,7 +39,7 @@ namespace Sudoku.Windows.Tooling
 			}
 
 			// Value 0..81.
-			if (byte.TryParse(@this, out byte value) && value >= 0 && value < 81)
+			if (byte.TryParse(@this, out byte value) && value is >= 0 and < 81)
 			{
 				return value;
 			}
@@ -77,7 +77,7 @@ namespace Sudoku.Windows.Tooling
 			}
 
 			// Value 0..729.
-			if (short.TryParse(@this, out short value) && value >= 0 && value < 729)
+			if (short.TryParse(@this, out short value) && value is >= 0 and < 729)
 			{
 				return value;
 			}
@@ -117,7 +117,7 @@ namespace Sudoku.Windows.Tooling
 			}
 
 			// Value 0..27.
-			if (byte.TryParse(@this, out byte value) && value >= 0 && value < 27)
+			if (byte.TryParse(@this, out byte value) && value is >= 0 and < 27)
 			{
 				return value;
 			}

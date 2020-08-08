@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Checking
 		/// </exception>
 		public IEnumerable<IReadOnlyList<Conclusion>> SearchForBackdoors(IReadOnlyGrid grid, int depth)
 		{
-			if (depth < 0 || depth > 3)
+			if (depth is < 0 or > 3)
 			{
 				return Array.Empty<IReadOnlyList<Conclusion>>();
 			}
@@ -69,7 +69,7 @@ namespace Sudoku.Solving.Checking
 		/// <returns>All backdoors.</returns>
 		public IEnumerable<IReadOnlyList<Conclusion>> SearchForBackdoorsExact(IReadOnlyGrid grid, int depth)
 		{
-			if (depth < 0 || depth > 3)
+			if (depth is < 0 or > 3)
 			{
 				return Array.Empty<IReadOnlyList<Conclusion>>();
 			}

@@ -370,9 +370,9 @@ namespace Sudoku.Data
 							[
 								i switch
 								{
-									_ when i >= 1 && i < 4 => i - 1,
-									_ when i >= 5 && i < 8 => i - 2,
-									_ when i >= 9 && i < 12 => i - 3,
+									>= 1 and < 4 => i - 1,
+									>= 5 and < 8 => i - 2,
+									>= 9 and < 12 => i - 3,
 									_ => throw Throwings.ImpossibleCaseWithMessage("On the border.")
 								}
 							], '|', '|', maxLengths, sb);

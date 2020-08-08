@@ -34,7 +34,7 @@ namespace Sudoku.Windows.Tooling
 		{
 			var selection = from technique in EnumEx.GetValues<TechniqueCode>()
 							let NullableCategory = (string)LangSource[$"Group{technique}"]
-							where !(NullableCategory is null)
+							where NullableCategory is not null
 							select (
 								_technique: technique,
 								_id: (int)technique,

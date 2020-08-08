@@ -56,24 +56,31 @@ namespace Sudoku.Data.Stepping
 		/// <inheritdoc/>
 		public override void DoStepTo(UndoableGrid grid)
 		{
-			if (Digit >= 0 && Digit < 9)
+			switch (Digit)
 			{
-				grid._masks[Cell] = (short)((short)CellStatus.Modifiable << 9 | Grid.MaxCandidatesMask & ~(1 << Digit));
-				foreach (int cell in Peers[Cell])
+				case -1:
 				{
-					if (grid.GetStatus(cell) != CellStatus.Empty)
+					if (grid.GetStatus(Cell) == CellStatus.Modifiable)
 					{
-						continue;
+						Array.Copy(grid._initialMasks, grid._masks, 81);
 					}
 
-					grid._masks[cell] |= (short)(1 << Digit);
+					break;
 				}
-			}
-			else if (Digit == -1)
-			{
-				if (grid.GetStatus(Cell) == CellStatus.Modifiable)
+				case >= 0 and < 9:
 				{
-					Array.Copy(grid._initialMasks, grid._masks, 81);
+					grid._masks[Cell] = (short)((short)CellStatus.Modifiable << 9 | Grid.MaxCandidatesMask & ~(1 << Digit));
+					foreach (int cell in Peers[Cell])
+					{
+						if (grid.GetStatus(cell) != CellStatus.Empty)
+						{
+							continue;
+						}
+
+						grid._masks[cell] |= (short)(1 << Digit);
+					}
+
+					break;
 				}
 			}
 		}

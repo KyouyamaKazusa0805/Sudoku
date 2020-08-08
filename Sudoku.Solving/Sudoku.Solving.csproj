@@ -7,6 +7,7 @@
 		<Description>Provides all solving operations for a sudoku grid.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
 		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+		<LangVersion>preview</LangVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

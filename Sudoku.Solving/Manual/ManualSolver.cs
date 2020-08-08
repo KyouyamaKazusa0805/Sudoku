@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Indicates the list that used as a cache.
 		/// </summary>
-		private static List<TechniqueInfo> TempList => new List<TechniqueInfo>();
+		private static List<TechniqueInfo> TempList => new();
 
 
 		/// <inheritdoc/>

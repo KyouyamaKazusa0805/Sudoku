@@ -6,6 +6,7 @@
 		<Authors>Sunnie</Authors>
 		<Description>The drawing operation library.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2020</Copyright>
+		<LangVersion>preview</LangVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

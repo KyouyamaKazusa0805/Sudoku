@@ -37,7 +37,7 @@ namespace Sudoku.Windows.Tooling
 			foreach (var (name, technique, category) in
 				from technique in EnumEx.GetValues<TechniqueCode>()
 				let NullableCategory = LangSource[$"Group{technique}"] as string
-				where !(NullableCategory is null)
+				where NullableCategory is not null
 				select (
 					_techniqueName: CoreResources.GetValue(technique.ToString()),
 					_technique: technique,

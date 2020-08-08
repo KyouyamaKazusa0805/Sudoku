@@ -19,12 +19,12 @@ namespace Sudoku.Data.Stepping
 		/// <summary>
 		/// The undo stack.
 		/// </summary>
-		private readonly Stack<Step> _undoStack = new Stack<Step>();
+		private readonly Stack<Step> _undoStack = new();
 
 		/// <summary>
 		/// The redo stack.
 		/// </summary>
-		private readonly Stack<Step> _redoStack = new Stack<Step>();
+		private readonly Stack<Step> _redoStack = new();
 
 
 		/// <inheritdoc/>

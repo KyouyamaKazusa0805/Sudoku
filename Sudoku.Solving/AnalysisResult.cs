@@ -192,7 +192,7 @@ namespace Sudoku.Solving
 			get
 			{
 				var maxLevel = DifficultyLevel.Unknown;
-				if (HasSolved && !(SolvingSteps is null))
+				if (HasSolved && SolvingSteps is not null)
 				{
 					foreach (var step in SolvingSteps)
 					{

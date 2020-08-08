@@ -62,7 +62,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		{
 			const string separator = ", ";
 			string endoTargetStr = $"endo-target: {new CellCollection(EndoTargetCell).ToString()}";
-			if (!(ExtraRegionsMask is null))
+			if (ExtraRegionsMask is not null)
 			{
 				var sb = new StringBuilder();
 				int count = 0;

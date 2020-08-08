@@ -45,14 +45,14 @@ namespace Sudoku.Solving.Manual
 			{
 				var symmetrySearcher = new GspTechniqueSearcher();
 				var tempStep = symmetrySearcher.GetOne(cloneation);
-				if (!(tempStep is null))
+				if (tempStep is not null)
 				{
 					if (CheckConclusionsValidity(solution, tempStep.Conclusions))
 					{
 						tempStep.ApplyTo(cloneation);
 						steps.Add(tempStep);
 
-						if (!(progress is null))
+						if (progress is not null)
 						{
 							ReportProgress(cloneation, progress, ref progressResult);
 						}
@@ -125,7 +125,7 @@ namespace Sudoku.Solving.Manual
 							GC.Collect();
 						}
 
-						if (!(progress is null))
+						if (progress is not null)
 						{
 							ReportProgress(cloneation, progress, ref progressResult);
 						}
@@ -167,30 +167,25 @@ namespace Sudoku.Solving.Manual
 							stopwatch.Stop();
 							return result;
 						}
-						else
+
+						// The puzzle has not been finished,
+						// we should turn to the first step finder
+						// to continue solving puzzle.
+						bag.Clear();
+						if (EnableGarbageCollectionForcedly && searcher.GetType().HasMarked<HighAllocationAttribute>())
 						{
-							// The puzzle has not been finished,
-							// we should turn to the first step finder
-							// to continue solving puzzle.
-							bag.Clear();
-							if (EnableGarbageCollectionForcedly
-								&& searcher.GetType().HasMarked<HighAllocationAttribute>())
-							{
-								GC.Collect();
-							}
-
-							if (!(progress is null))
-							{
-								ReportProgress(cloneation, progress, ref progressResult);
-							}
-
-							goto Restart;
+							GC.Collect();
 						}
+
+						if (progress is not null)
+						{
+							ReportProgress(cloneation, progress, ref progressResult);
+						}
+
+						goto Restart;
 					}
-					else
-					{
-						throw new WrongHandlingException(grid, $"The specified step is wrong: {step}.");
-					}
+
+					throw new WrongHandlingException(grid, $"The specified step is wrong: {step}.");
 				}
 			}
 

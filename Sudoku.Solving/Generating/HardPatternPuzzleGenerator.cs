@@ -72,7 +72,7 @@ namespace Sudoku.Solving.Generating
 						}
 					}
 
-					if (!(progress is null))
+					if (progress is not null)
 					{
 						progressResult.GeneratingTrial++;
 						progress.Report(progressResult);

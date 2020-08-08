@@ -58,13 +58,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					int[,] pair1 = new int[6, 2], pair2 = new int[6, 2];
 					(int incre1, int incre2) = i switch
 					{
-						0 => (9, 1), 1 => (9, 1), 2 => (9, 1), 3 => (9, 1),
-						4 => (9, 2), 5 => (9, 2),
-						6 => (18, 1), 7 => (18, 1),
+						0 => (9, 1),
+						1 => (9, 1),
+						2 => (9, 1),
+						3 => (9, 1),
+						4 => (9, 2),
+						5 => (9, 2),
+						6 => (18, 1),
+						7 => (18, 1),
 						8 => (18, 2),
 						_ => throw Throwings.ImpossibleCase
 					};
-					if (region1 >= 9 && region1 < 18)
+					if (region1 is >= 9 and < 18)
 					{
 						// 'region1' is a row and 'region2' is a column.
 						r(block, region1, pair1, incre1, j);
@@ -116,13 +121,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				int[,] pair1 = new int[6, 2], pair2 = new int[6, 2];
 				(int incre1, int incre2) = i switch
 				{
-					0 => (9, 1), 1 => (9, 1), 2 => (9, 1), 3 => (9, 1),
-					4 => (9, 2), 5 => (9, 2),
-					6 => (18, 1), 7 => (18, 1),
+					0 => (9, 1),
+					1 => (9, 1),
+					2 => (9, 1),
+					3 => (9, 1),
+					4 => (9, 2),
+					5 => (9, 2),
+					6 => (18, 1),
+					7 => (18, 1),
 					8 => (18, 2),
 					_ => throw Throwings.ImpossibleCase
 				};
-				if (region1 >= 9 && region1 < 18)
+				if (region1 is >= 9 and < 18)
 				{
 					// 'region1' is a row and 'region2' is a column.
 					r(block, region1, pair1, incre1, 0);
@@ -171,8 +181,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					(pair[cur, 0], pair[cur, 1]) = index switch
 					{
 						0 => (cell, cell + increment),
-						1 => region >= 18 && region < 27 ? (cell - increment, cell) : (cell, cell + increment),
-						2 => region >= 9 && region < 18 ? (cell - increment, cell) : (cell, cell + increment),
+						1 => region is >= 18 and < 27 ? (cell - increment, cell) : (cell, cell + increment),
+						2 => region is >= 9 and < 18 ? (cell - increment, cell) : (cell, cell + increment),
 						3 => (cell - increment, cell),
 						_ => throw Throwings.ImpossibleCase
 					};

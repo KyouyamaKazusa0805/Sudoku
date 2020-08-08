@@ -213,14 +213,13 @@ namespace Sudoku.Data
 		/// <inheritdoc/>
 		public virtual int this[int offset]
 		{
-			get =>
-				GetStatus(offset) switch
-				{
-					CellStatus.Empty => -1,
-					CellStatus.Modifiable => (~_masks[offset]).FindFirstSet(),
-					CellStatus.Given => (~_masks[offset]).FindFirstSet(),
-					_ => throw Throwings.ImpossibleCase
-				};
+			get => GetStatus(offset) switch
+			{
+				CellStatus.Empty => -1,
+				CellStatus.Modifiable => (~_masks[offset]).FindFirstSet(),
+				CellStatus.Given => (~_masks[offset]).FindFirstSet(),
+				_ => throw Throwings.ImpossibleCase
+			};
 			set
 			{
 				switch (value)
@@ -234,7 +233,7 @@ namespace Sudoku.Data
 
 						break;
 					}
-					case int v when v >= 0 && v < 9:
+					case >= 0 and < 9:
 					{
 						ref short result = ref _masks[offset];
 						short copy = result;
@@ -436,7 +435,7 @@ namespace Sudoku.Data
 				return result;
 			}
 
-			if (!(format is null))
+			if (format is not null)
 			{
 				// Format checking.
 				CheckFormatString(format);

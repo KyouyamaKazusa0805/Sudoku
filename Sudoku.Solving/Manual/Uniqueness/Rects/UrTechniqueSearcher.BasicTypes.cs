@@ -478,7 +478,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			{
 				foreach (var (region1, region2) in stackalloc[] { (r1, r2), (c1, c2) })
 				{
-					gather(region1 >= 9 && region1 < 18, digit, region1, region2);
+					gather(region1 is >= 9 and < 18, digit, region1, region2);
 				}
 			}
 

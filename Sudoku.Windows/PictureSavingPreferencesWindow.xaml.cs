@@ -171,7 +171,7 @@ namespace Sudoku.Windows
 					{
 						case int v when v >= -1 && v <= 3: // Normal picture formats.
 						{
-							if (!(_format is null))
+							if (_format is not null)
 							{
 								if (!IsFormatValid(saveFileDialog.FileName, out string resultText))
 								{

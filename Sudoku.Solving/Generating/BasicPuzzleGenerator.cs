@@ -103,7 +103,7 @@ namespace Sudoku.Solving.Generating
 					}
 				} while (81 - totalMap.Count > max);
 
-				if (!(progress is null))
+				if (progress is not null)
 				{
 					progressResult.GeneratingTrial++;
 					progress.Report(progressResult);

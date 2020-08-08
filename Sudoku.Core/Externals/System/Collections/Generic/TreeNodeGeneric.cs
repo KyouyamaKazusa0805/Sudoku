@@ -44,7 +44,7 @@ namespace System.Collections.Generic
 		/// <inheritdoc/>
 		public override int GetHashCode()
 		{
-			if (!(Content is null))
+			if (Content is not null)
 			{
 				return HashCode.Combine(Id, ParentId, IsLeaf, Content);
 			}

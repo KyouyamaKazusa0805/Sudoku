@@ -38,7 +38,7 @@ namespace Sudoku.Drawing.Extensions
 			}
 			finally
 			{
-				if (!(hBitmap is null))
+				if (hBitmap is not null)
 				{
 					// Note that 'hBitmap' should be release.
 					DeleteObject(hBitmap.Value);

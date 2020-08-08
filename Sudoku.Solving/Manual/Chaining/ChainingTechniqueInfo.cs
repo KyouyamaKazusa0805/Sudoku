@@ -125,7 +125,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				//{
 				//	foreach (var p in ChainingTechniqueSearcher.GetChain(target))
 				//	{
-				//		if (!(p.NestedChain is null))
+				//		if (p.NestedChain is not null)
 				//		{
 				//			var f = new FullChain(p.NestedChain);
 				//			if (!processed.Contains(f))

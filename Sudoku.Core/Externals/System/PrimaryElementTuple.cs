@@ -30,7 +30,7 @@ namespace System
 		public PrimaryElementTuple(T1 v1, T2 v2, int primaryElementKey) =>
 			(Value1, Value2, PrimaryElementKey) = (
 				v1, v2, 
-				primaryElementKey >= 1 && primaryElementKey <= 2
+				primaryElementKey is >= 1 and <= 2
 					? primaryElementKey
 					: throw new ArgumentOutOfRangeException(nameof(primaryElementKey)));
 		
@@ -98,7 +98,7 @@ namespace System
 		public PrimaryElementTuple(T1 v1, T2 v2, T3 v3, int primaryElementKey) =>
 			(Value1, Value2, Value3, PrimaryElementKey) = (
 				v1, v2, v3, 
-				primaryElementKey >= 1 && primaryElementKey <= 3
+				primaryElementKey is >= 1 and <= 3
 					? primaryElementKey
 					: throw new ArgumentOutOfRangeException(nameof(primaryElementKey)));
 		
@@ -175,7 +175,7 @@ namespace System
 		public PrimaryElementTuple(T1 v1, T2 v2, T3 v3, T4 v4, int primaryElementKey) =>
 			(Value1, Value2, Value3, Value4, PrimaryElementKey) = (
 				v1, v2, v3, v4, 
-				primaryElementKey >= 1 && primaryElementKey <= 4
+				primaryElementKey is >= 1 and <= 4
 					? primaryElementKey
 					: throw new ArgumentOutOfRangeException(nameof(primaryElementKey)));
 		

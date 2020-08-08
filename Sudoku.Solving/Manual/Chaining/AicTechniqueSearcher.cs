@@ -117,7 +117,7 @@ namespace Sudoku.Solving.Manual.Chaining
 				}
 
 				var result = CreateLoopHint(grid, destOn, xEnabled, yEnabled);
-				if (!(result is null))
+				if (result is not null)
 				{
 					accumulator.Add(result);
 				}
@@ -125,7 +125,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			foreach (var target in chains)
 			{
 				var result = CreateAicHint(grid, target, xEnabled, yEnabled);
-				if (!(result is null))
+				if (result is not null)
 				{
 					accumulator.Add(result);
 				}

@@ -142,23 +142,23 @@ namespace Sudoku.Solving.Manual.Chaining
 						// Do cell eliminations.
 						if (count == 2 || _multiple)
 						{
-							if (!(cellToOn is null))
+							if (cellToOn is not null)
 							{
 								foreach (var p in cellToOn)
 								{
 									var hint = CreateCellEliminationHint(grid, cell, p, valueToOn);
-									if (!(hint is null))
+									if (hint is not null)
 									{
 										accumulator.Add(hint);
 									}
 								}
 							}
-							if (!(cellToOff is null))
+							if (cellToOff is not null)
 							{
 								foreach (var p in cellToOff)
 								{
 									var hint = CreateCellEliminationHint(grid, cell, p, valueToOff);
-									if (!(hint is null))
+									if (hint is not null)
 									{
 										accumulator.Add(hint);
 									}
@@ -184,11 +184,11 @@ namespace Sudoku.Solving.Manual.Chaining
 			// Test o is currectly on.
 			onToOn.Add(pOn);
 			absurdNodes = DoChaining(grid, onToOn, onToOff);
-			if (doContradiction && !(absurdNodes is null))
+			if (doContradiction && absurdNodes is not null)
 			{
 				// 'p' cannot hold its value, otherwise it would lead to a contradiction.
 				var hint = CreateChainingOffHint(absurdNodes[0], absurdNodes[1], pOn, pOn, true);
-				if (!(hint is null))
+				if (hint is not null)
 				{
 					accumulator.Add(hint);
 				}
@@ -196,11 +196,11 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			// Test p is currently off.
 			offToOff.Add(pOff);
-			if (doContradiction && !(absurdNodes is null))
+			if (doContradiction && absurdNodes is not null)
 			{
 				// 'p' must hold its value otherwise it would lead to a contradiction.
 				var hint = CreateChainingOnHint(absurdNodes[0], absurdNodes[1], pOff, pOff, true);
-				if (!(hint is null))
+				if (hint is not null)
 				{
 					accumulator.Add(hint);
 				}
@@ -214,7 +214,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					if (offToOn.Contains(pFromOn))
 					{
 						var hint = CreateChainingOnHint(pFromOn, pOn, pFromOn, false);
-						if (!(hint is null))
+						if (hint is not null)
 						{
 							accumulator.Add(hint);
 						}
@@ -227,7 +227,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					if (offToOff.Contains(pFromOn))
 					{
 						var hint = CreateChainingOffHint(pFromOn, pFromOn, pOff, pFromOn, false);
-						if (!(hint is null))
+						if (hint is not null)
 						{
 							accumulator.Add(hint);
 						}
@@ -282,7 +282,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						foreach (var p in regionToOn)
 						{
 							var hint = CreateRegionEliminationHint(region, digit, p, posToOn);
-							if (!(hint is null))
+							if (hint is not null)
 							{
 								accumulator.Add(hint);
 							}
@@ -290,7 +290,7 @@ namespace Sudoku.Solving.Manual.Chaining
 						foreach (var p in regionToOff)
 						{
 							var hint = CreateRegionEliminationHint(region, digit, p, posToOff);
-							if (!(hint is null))
+							if (hint is not null)
 							{
 								accumulator.Add(hint);
 							}

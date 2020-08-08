@@ -110,7 +110,7 @@ namespace Sudoku.Windows.Tooling
 				instance._colorPicker.LoadDefaultCustomPalette();
 			}
 
-			if (!(customPreviewEventHandler is null))
+			if (customPreviewEventHandler is not null)
 			{
 				instance._colorPicker.PickingColor += customPreviewEventHandler;
 			}

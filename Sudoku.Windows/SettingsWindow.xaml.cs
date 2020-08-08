@@ -146,7 +146,7 @@ namespace Sudoku.Windows
 						&& type.HasMarked<TechniqueDisplayAttribute>()
 					select type
 				let AttributeInstance = type.GetCustomAttribute<SearcherPropertyAttribute>()
-				where !(AttributeInstance is null)
+				where AttributeInstance is not null
 				let Priority = AttributeInstance.Priority
 				orderby Priority
 				select new ListBoxItem
@@ -286,7 +286,7 @@ namespace Sudoku.Windows
 
 		private void ButtonBackgroundColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color) && !(color is null))
+			if (ColorPicker.ShowDialog(out var color) && color is not null)
 			{
 				_assigments += () =>
 				{
@@ -299,7 +299,7 @@ namespace Sudoku.Windows
 
 		private void ButtonGivenColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color) && !(color is null))
+			if (ColorPicker.ShowDialog(out var color) && color is not null)
 			{
 				_assigments += () =>
 				{
@@ -312,7 +312,7 @@ namespace Sudoku.Windows
 
 		private void ButtonModifiableColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color) && !(color is null))
+			if (ColorPicker.ShowDialog(out var color) && color is not null)
 			{
 				_assigments += () =>
 				{
@@ -325,7 +325,7 @@ namespace Sudoku.Windows
 
 		private void ButtonCandidateColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color) && !(color is null))
+			if (ColorPicker.ShowDialog(out var color) && color is not null)
 			{
 				_assigments += () =>
 				{
@@ -338,7 +338,7 @@ namespace Sudoku.Windows
 
 		private void ButtonFocusColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color) && !(color is null))
+			if (ColorPicker.ShowDialog(out var color) && color is not null)
 			{
 				_assigments += () =>
 				{
@@ -351,7 +351,7 @@ namespace Sudoku.Windows
 
 		private void ButtonGridLineColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color) && !(color is null))
+			if (ColorPicker.ShowDialog(out var color) && color is not null)
 			{
 				_assigments += () =>
 				{
@@ -364,7 +364,7 @@ namespace Sudoku.Windows
 
 		private void ButtonBlockLineColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color) && !(color is null))
+			if (ColorPicker.ShowDialog(out var color) && color is not null)
 			{
 				_assigments += () =>
 				{
@@ -377,7 +377,7 @@ namespace Sudoku.Windows
 
 		private void ButtonChainColor_Click(object sender, RoutedEventArgs e)
 		{
-			if (ColorPicker.ShowDialog(out var color) && !(color is null))
+			if (ColorPicker.ShowDialog(out var color) && color is not null)
 			{
 				_assigments += () =>
 				{

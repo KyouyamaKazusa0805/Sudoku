@@ -87,10 +87,10 @@ namespace Sudoku.Solving
 			// Print solving steps (if worth).
 			var bottleneckData = GetBottleneckData();
 			void a() => sb.Append(showSeparator ? $"{new string('-', 10)}{Environment.NewLine}" : string.Empty);
-			if (!(steps is null) && steps.Count != 0 && showTechniqueSteps)
+			if (steps is not null && steps.Count != 0 && showTechniqueSteps)
 			{
 				sb.AppendLine(GetValue("AnalysisResultSolvingSteps"));
-				if (!(bottleneckData is null))
+				if (bottleneckData is not null)
 				{
 					var (bIndex, bInfo) = bottleneckData.Value;
 					for (int i = 0; i < steps.Count; i++)
@@ -134,7 +134,7 @@ namespace Sudoku.Solving
 
 			// Print solving step statistics (if worth).
 			var solvingStepsGrouped = GetSolvingStepsGrouped();
-			if (!(solvingStepsGrouped is null) && solvingStepsGrouped.Count() != 0)
+			if (solvingStepsGrouped is not null && solvingStepsGrouped.Count() != 0)
 			{
 				sb.AppendLine(GetValue("AnalysisResultTechniqueUsed"));
 				if (showTechniqueDetail)
@@ -181,7 +181,7 @@ namespace Sudoku.Solving
 			sb.AppendLine($"{GetValue("AnalysisResultPuzzleRating")}{max:0.0}/{pearl:0.0}/{diamond:0.0}");
 
 			// Print the solution (if not null).
-			if (!(solution is null))
+			if (solution is not null)
 			{
 				sb.AppendLine($"{GetValue("AnalysisResultPuzzleSolution")}{solution:!}");
 			}
@@ -231,7 +231,7 @@ namespace Sudoku.Solving
 			}
 
 			// Print the additional information (if worth).
-			if (!(additional is null))
+			if (additional is not null)
 			{
 				sb.AppendLine(additional);
 			}

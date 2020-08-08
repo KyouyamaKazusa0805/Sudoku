@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// The internal list.
 		/// </summary>
-		private readonly BitArray _internalList = new BitArray(EnumEx.LengthOf<TechniqueCode>());
+		private readonly BitArray _internalList = new(EnumEx.LengthOf<TechniqueCode>());
 
 
 		/// <include file='..\GlobalDocComments.xml' path='comments/defaultConstructor'/>

@@ -273,7 +273,7 @@ namespace Sudoku.Windows.Tooling
 		{
 			if (!_isSettingValues)
 			{
-				var (a, _, g, b) = Color.GetValueOrDefault(); 
+				var (a, _, g, b) = Color.GetValueOrDefault();
 				SetColor(WColor.FromArgb(a, (byte)value, g, b));
 			}
 		}
@@ -346,7 +346,7 @@ namespace Sudoku.Windows.Tooling
 						"pack://application:,,,/Sudoku.Windows;component/Resources/ColorSample.png",
 						UriKind.RelativeOrAbsolute));
 			float sliderHue = (float)_pickerHueSlider.Value;
-			if (sliderHue <= 0 || sliderHue >= 360F)
+			if (sliderHue is <= 0 or >= 360F)
 			{
 				// No hue change just return.
 				_sampleImage2.Source = img;

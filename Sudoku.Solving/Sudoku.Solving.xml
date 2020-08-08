@@ -493,7 +493,7 @@
             </param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve(System.String,System.Text.StringBuilder,System.Int32)">
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve(System.String,System.Text.StringBuilder,System.IntPtr)">
             <summary>
             The inner solver.
             </summary>
@@ -504,7 +504,7 @@
             <param name="limit">The limit.</param>
             <returns>The number of all solutions.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve32(System.String,System.Text.StringBuilder,System.Int32)">
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve32(System.String,System.Text.StringBuilder,System.IntPtr)">
             <summary>
             The core function of solving the puzzle based on x86 platform.
             </summary>
@@ -516,7 +516,7 @@
             </param>
             <returns>The solution count of the puzzle.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve64(System.String,System.Text.StringBuilder,System.Int32)">
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.BitwiseSolver.Solve64(System.String,System.Text.StringBuilder,System.IntPtr)">
             <summary>
             The core function of solving the puzzle based on x64 platform.
             </summary>
@@ -559,7 +559,7 @@
             </param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.Solve(System.String,System.Text.StringBuilder,System.Int32)">
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.Solve(System.String,System.Text.StringBuilder,System.IntPtr)">
             <summary>
             The inner solver.
             </summary>
@@ -570,7 +570,7 @@
             <param name="limit">The limit.</param>
             <returns>The number of all solutions.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.Solve32(System.String,System.Text.StringBuilder,System.Int32)">
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.Solve32(System.String,System.Text.StringBuilder,System.IntPtr)">
             <summary>
             The core function of solving the puzzle based on x86 platform.
             </summary>
@@ -582,7 +582,7 @@
             </param>
             <returns>The solution count of the puzzle.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.Solve64(System.String,System.Text.StringBuilder,System.Int32)">
+        <member name="M:Sudoku.Solving.BruteForces.Bitwise.SukakuBitwiseSolver.Solve64(System.String,System.Text.StringBuilder,System.IntPtr)">
             <summary>
             The core function of solving the puzzle based on x64 platform.
             </summary>

@@ -219,11 +219,11 @@ namespace Sudoku.Data.Extensions
 		/// </exception>
 		public static Grid SwapTwoRegions(this IReadOnlyGrid @this, int region1, int region2)
 		{
-			if (region1 < 0 || region1 >= 18)
+			if (region1 is < 0 or >= 18)
 			{
 				throw new ArgumentException("The specified argument is out of valid range.", nameof(region1));
 			}
-			if (region2 < 0 || region2 >= 18)
+			if (region2 is < 0 or >= 18)
 			{
 				throw new ArgumentException("The specified argument is out of valid range.", nameof(region2));
 			}
