@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using Sudoku.Data.Stepping;
 using Sudoku.Solving;
+using Triplet = System.PrimaryElementTuple<string, int, Sudoku.Solving.TechniqueInfo>;
 
 namespace Sudoku.Windows
 {
@@ -18,7 +19,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			if (sender is ListBox { SelectedItem: ListBoxItem { Content: PrimaryElementTuple<string, int, TechniqueInfo> triplet } })
+			if (sender is ListBox { SelectedItem: ListBoxItem { Content: Triplet triplet } })
 			{
 				_cacheAllSteps = null; // Remove older steps cache while updating paths.
 
