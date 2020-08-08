@@ -86,9 +86,7 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
 		public decimal MaxDifficulty =>
-			SolvingSteps?.None() ?? true
-				? 20M
-				: SolvingSteps.Max(info => info.ShowDifficulty ? info.Difficulty : 0);
+			SolvingSteps?.None() ?? true ? 20M : SolvingSteps.Max(info => info.ShowDifficulty ? info.Difficulty : 0);
 
 		/// <summary>
 		/// <para>Indicates the total difficulty rating of the puzzle.</para>
