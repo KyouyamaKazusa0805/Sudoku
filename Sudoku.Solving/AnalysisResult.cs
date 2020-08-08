@@ -220,7 +220,7 @@ namespace Sudoku.Solving
 				for (int i = SolvingSteps.Count - 1; i >= 0; i--)
 				{
 					var step = SolvingSteps[i];
-					if (!(step is SingleTechniqueInfo) && step.ShowDifficulty)
+					if (step is not SingleTechniqueInfo && step.ShowDifficulty)
 					{
 						return step;
 					}
