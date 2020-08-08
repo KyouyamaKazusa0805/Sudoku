@@ -9,6 +9,7 @@ namespace Sudoku.Windows
 
 namespace System.Runtime.CompilerServices
 {
+#warning This class need removing after release C# 9.
 	public class IsExternalInit
 	{
 	}
