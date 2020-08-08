@@ -1,5 +1,19 @@
-﻿namespace Sudoku.Windows
+﻿#if CSHARP_9_PREVIEW
+namespace Sudoku.Windows
 {
+	/// <summary>
+	/// Indicates the difficulty information used for gather the technique information of a puzzle.
+	/// </summary>
+	public sealed record DifficultyInfo(string? Technique, int Count, decimal Total, decimal Max);
+}
+
+namespace System.Runtime.CompilerServices
+{
+	public class IsExternalInit
+	{
+	}
+}
+#else
 	/// <summary>
 	/// Indicates the difficulty information used for gather the technique information of a puzzle.
 	/// </summary>
@@ -39,4 +53,4 @@
 		/// </summary>
 		public decimal Max { get; }
 	}
-}
+#endif

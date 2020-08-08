@@ -20,7 +20,7 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<Optimize>false</Optimize>
-		<DefineConstants>DEBUG;SUDOKU_RECOGNIZING; TARGET_64BIT; AUTHOR_RESERVED</DefineConstants>
+		<DefineConstants>DEBUG;SUDOKU_RECOGNIZING; TARGET_64BIT; AUTHOR_RESERVED; CSHARP_9_PREVIEW</DefineConstants>
 		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
 	</PropertyGroup>
 
