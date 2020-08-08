@@ -8,6 +8,7 @@ using Sudoku.Drawing.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Windows.Constants;
+using Triplet = System.PrimaryElementTuple<string, int, Sudoku.Solving.TechniqueInfo>;
 
 namespace Sudoku.Windows
 {
@@ -73,10 +74,7 @@ namespace Sudoku.Windows
 			{
 				try
 				{
-					if (_listBoxPaths.SelectedItem is ListBoxItem
-					{
-						Content: PrimaryElementTuple<string, int, TechniqueInfo> triplet
-					})
+					if (_listBoxPaths.SelectedItem is ListBoxItem { Content: Triplet triplet })
 					{
 						Clipboard.SetText(triplet.Value3.ToFullString());
 					}
@@ -96,9 +94,9 @@ namespace Sudoku.Windows
 				var sb = new StringBuilder();
 				foreach (string step in
 					from ListBoxItem item in _listBoxPaths.Items
-					let Content = item.Content
-					where Content is PrimaryElementTuple<string, int, TechniqueInfo>
-					select ((PrimaryElementTuple<string, int, TechniqueInfo>)Content).Value3.ToFullString())
+					let Content = item.Content is Triplet content ? (Triplet?)content : null
+					where Content.HasValue
+					select Content.Value.Value3.ToFullString())
 				{
 					sb.AppendLine(step);
 				}

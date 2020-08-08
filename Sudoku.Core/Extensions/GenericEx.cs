@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 namespace Sudoku.Extensions
@@ -9,6 +10,28 @@ namespace Sudoku.Extensions
 	[DebuggerStepThrough]
 	public static class GenericEx
 	{
+		/// <summary>
+		/// Try to cast the specified value to the specified type.
+		/// </summary>
+		/// <typeparam name="T">The type of the object.</typeparam>
+		/// <typeparam name="TStruct">The target type.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <param name="result">(<see langword="out"/> parameter) The result.</param>
+		/// <returns>Indicates whether the specified cast is successful.</returns>
+		public static bool TryCast<T, TStruct>(this T @this, [NotNullWhen(true)] out TStruct result) where TStruct : struct
+		{
+			if (@this is TStruct v)
+			{
+				result = v;
+				return true;
+			}
+			else
+			{
+				result = default;
+				return false;
+			}
+		}
+
 		/// <summary>
 		/// Returns a <see cref="string"/> that represents the current object
 		/// though the object is <see langword="null"/>. This method will never throw.

@@ -71,7 +71,7 @@ namespace System
 		/// <include file='...\GlobalDocComments.xml' path='comments/method[@name="ToString" and @paramType="__noparam"]'/>
 		public override string ToString() => ((ITuple)this)[PrimaryElementKey].NullableToString();
 	}
-	
+
 	/// <summary>
 	/// Provides a tuple with a primary element.
 	/// </summary>
