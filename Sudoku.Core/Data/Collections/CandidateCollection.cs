@@ -26,7 +26,7 @@ namespace Sudoku.Data.Collections
 		/// <param name="candidate">The candidates.</param>
 		public CandidateCollection(int candidate)
 		{
-			_map = SudokuMap.Empty.Clone();
+			_map = new();
 			_map.Add(candidate);
 		}
 
@@ -36,7 +36,7 @@ namespace Sudoku.Data.Collections
 		/// <param name="candidates">The candidates.</param>
 		public CandidateCollection(ReadOnlySpan<int> candidates)
 		{
-			_map = SudokuMap.Empty.Clone();
+			_map = new();
 			_map.AddRange(candidates);
 		}
 
@@ -46,7 +46,7 @@ namespace Sudoku.Data.Collections
 		/// <param name="candidates">The candidates.</param>
 		public CandidateCollection(IEnumerable<int> candidates)
 		{
-			_map = SudokuMap.Empty.Clone();
+			_map = new();
 			_map.AddRange(candidates);
 		}
 

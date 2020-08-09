@@ -27,7 +27,7 @@ namespace Sudoku.Solving.Generating
 		/// <summary>
 		/// The default manual solver.
 		/// </summary>
-		private static readonly ManualSolver ManualSolver = new ManualSolver();
+		private static readonly ManualSolver ManualSolver = new();
 
 
 		/// <inheritdoc/>

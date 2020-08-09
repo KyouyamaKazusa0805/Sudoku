@@ -20,7 +20,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the empty grid string.
 		/// </summary>
-		public static readonly string EmptyString = new string('0', 81);
+		public static readonly string EmptyString = new('0', 81);
 
 		/// <summary>
 		/// Indicates an empty grid, where all values are zero.

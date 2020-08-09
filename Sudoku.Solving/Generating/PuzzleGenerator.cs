@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Generating
 		/// <summary>
 		/// The random number generator.
 		/// </summary>
-		protected static readonly Random Rng = new Random();
+		protected static readonly Random Rng = new();
 
 
 		/// <summary>

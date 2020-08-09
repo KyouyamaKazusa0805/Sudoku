@@ -13,7 +13,7 @@ namespace Sudoku.Windows
 		/// To provides a default setting instance.
 		/// </summary>
 		[NonSerialized]
-		public static readonly Settings DefaultSetting = new Settings();
+		public static readonly Settings DefaultSetting = new();
 
 
 		/// <summary>

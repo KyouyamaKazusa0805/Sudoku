@@ -22,7 +22,7 @@ namespace Sudoku.Data
 		/// </para>
 		/// </summary>
 		/// <seealso cref="SudokuMap()"/>
-		public static readonly SudokuMap Empty = new SudokuMap();
+		public static readonly SudokuMap Empty = new();
 
 
 		/// <summary>

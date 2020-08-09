@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// The temporary test solver used in this searcher.
 		/// </summary>
-		private static readonly LightManualSolver TestSolver = new LightManualSolver();
+		private static readonly LightManualSolver TestSolver = new();
 
 
 		/// <summary>

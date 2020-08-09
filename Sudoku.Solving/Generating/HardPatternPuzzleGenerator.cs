@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Generating
 		/// <summary>
 		/// The backdoor searcher.
 		/// </summary>
-		private static readonly BackdoorSearcher BackdoorSearcher = new BackdoorSearcher();
+		private static readonly BackdoorSearcher BackdoorSearcher = new();
 
 
 		/// <inheritdoc/>
