@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
@@ -14,6 +15,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// Provides a usage of <b>unique rectangle</b> (UR) or
 	/// <b>avoidable rectangle</b> (AR) technique.
 	/// </summary>
+	[SuppressMessage("Design", "CA1036:Override methods on comparable types", Justification = "<Pending>")]
 	public abstract class UrTechniqueInfo : UniquenessTechniqueInfo, IComparable<UrTechniqueInfo>
 	{
 		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
