@@ -729,6 +729,14 @@
             <param name="maximumEmptyCells">The maximum number of the empty cells.</param>
             <returns>All true candidates.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Checking.BugChecker.GetAllTrueCandidatesAsync(System.Int32)">
+            <summary>
+            Get all true candidates when the number of empty cells
+            is below than the argument asynchronizedly.
+            </summary>
+            <param name="maximumEmptyCells">The maximum number of the empty cells.</param>
+            <returns>The task to get all true candidates.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Checking.BugChecker.GetAllTrueCandidates">
             <summary>
             Get all true candidates.

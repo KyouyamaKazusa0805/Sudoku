@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Sudoku.Constants;
 using Sudoku.Data;
 using Sudoku.Extensions;
@@ -222,6 +223,16 @@ namespace Sudoku.Solving.Checking
 
 			return result;
 		}
+
+		/// <summary>
+		/// Get all true candidates when the number of empty cells
+		/// is below than the argument asynchronizedly.
+		/// </summary>
+		/// <param name="maximumEmptyCells">The maximum number of the empty cells.</param>
+		/// <returns>The task to get all true candidates.</returns>
+		public async Task<IReadOnlyList<int>> GetAllTrueCandidatesAsync(int maximumEmptyCells) =>
+			await Task.Run(() => GetAllTrueCandidates(maximumEmptyCells));
+
 
 		/// <summary>
 		/// Get all true candidates.

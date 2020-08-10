@@ -753,7 +753,7 @@ namespace Sudoku.Windows
 
 				_textBoxInfo.Text = (string)LangSource["WhileCalculatingTrueCandidates"];
 
-				var trueCandidates = await Task.Run(() => new BugChecker(_puzzle).GetAllTrueCandidates(64));
+				var trueCandidates = await new BugChecker(_puzzle).GetAllTrueCandidatesAsync(64);
 
 				_textBoxInfo.ClearValue(TextBox.TextProperty);
 				if (trueCandidates.Count == 0)
