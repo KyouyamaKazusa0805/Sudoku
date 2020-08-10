@@ -156,7 +156,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						}
 
 						int elimCell = new GridMap(otherCellsMap) { [sameRegionCell] = false }.SetAt(0);
-						if (!(grid.Exists(sameRegionCell, digit) is true))
+						if (grid.Exists(sameRegionCell, digit) is not true)
 						{
 							continue;
 						}
@@ -277,7 +277,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						}
 
 						int elimCell = new GridMap(otherCellsMap) { [sameRegionCell] = false }.SetAt(0);
-						if (!(grid.Exists(sameRegionCell, digit) is true))
+						if (grid.Exists(sameRegionCell, digit) is not true)
 						{
 							continue;
 						}

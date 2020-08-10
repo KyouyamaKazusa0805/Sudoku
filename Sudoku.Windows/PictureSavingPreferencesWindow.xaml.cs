@@ -148,7 +148,7 @@ namespace Sudoku.Windows
 					Title = (string)LangSource["PictureSavingSaveDialogTitle"]
 				};
 
-				if (!(saveFileDialog.ShowDialog() is true))
+				if (saveFileDialog.ShowDialog() is not true)
 				{
 					return !(e.Handled = true);
 				}

@@ -20,6 +20,7 @@ using Sudoku.Solving.Checking;
 using Sudoku.Solving.Generating;
 using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Windows.Constants;
+using static System.StringSplitOptions;
 using static Sudoku.Windows.Constants.Processings;
 using SudokuGrid = Sudoku.Data.Grid;
 #if SUDOKU_RECOGNIZING
@@ -78,7 +79,7 @@ namespace Sudoku.Windows
 			if (dialog.ShowDialog() is true)
 			{
 				using var sr = new StreamReader(Settings.CurrentPuzzleDatabase = _database = dialog.FileName);
-				_puzzlesText = sr.ReadToEnd().Split(Splitter, StringSplitOptions.RemoveEmptyEntries);
+				_puzzlesText = sr.ReadToEnd().Split(Splitter, RemoveEmptyEntries);
 
 				Messagings.LoadDatabase(_puzzlesText.Length);
 
@@ -229,7 +230,7 @@ namespace Sudoku.Windows
 		private void MenuItemOptionsSettings_Click(object sender, RoutedEventArgs e)
 		{
 			var settingsWindow = new SettingsWindow(Settings, _manualSolver);
-			if (!(settingsWindow.ShowDialog() is true))
+			if (settingsWindow.ShowDialog() is not true)
 			{
 				e.Handled = true;
 				return;
@@ -791,8 +792,7 @@ namespace Sudoku.Windows
 				var backdoors = new List<Conclusion>();
 				for (int level = 0; level <= 1; level++)
 				{
-					foreach (var backdoor in
-						await Task.Run(() => new BackdoorSearcher().SearchForBackdoorsExact(_puzzle, level)))
+					foreach (var backdoor in await new BackdoorSearcher().SearchForBackdoorsExactAsync(_puzzle, level))
 					{
 						backdoors.AddRange(backdoor);
 					}

@@ -653,6 +653,17 @@
             </param>
             <returns>All backdoors.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchForBackdoorsExactAsync(Sudoku.Data.IReadOnlyGrid,System.Int32)">
+            <summary>
+            Search all backdoors whose depth is exactly same as the argument asynchronizedly.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="depth">
+            The depth you want to search for. The depth value must be between 0 and 3.
+            where value 0 is for searching for assignments.
+            </param>
+            <returns>The task to calculate all conclusions.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchForBackdoors(System.Collections.Generic.IList{System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion}},Sudoku.Data.IReadOnlyGrid,System.Int32)">
             <summary>
             To find all backdoors in a sudoku grid.

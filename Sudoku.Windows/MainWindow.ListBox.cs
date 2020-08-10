@@ -1,8 +1,7 @@
-﻿using System;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using Sudoku.Data.Stepping;
-using Sudoku.Solving;
-using Triplet = System.PrimaryElementTuple<string, int, Sudoku.Solving.TechniqueInfo>;
+using DrawingFlagTriplet = System.PrimaryElementTuple<string, Sudoku.Solving.TechniqueInfo, bool>;
+using InfoTriplet = System.PrimaryElementTuple<string, int, Sudoku.Solving.TechniqueInfo>;
 
 namespace Sudoku.Windows
 {
@@ -19,7 +18,7 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			if (sender is ListBox { SelectedItem: ListBoxItem { Content: Triplet triplet } })
+			if (sender is ListBox { SelectedItem: ListBoxItem { Content: InfoTriplet triplet } })
 			{
 				_cacheAllSteps = null; // Remove older steps cache while updating paths.
 
@@ -37,7 +36,7 @@ namespace Sudoku.Windows
 
 		private void ListBoxTechniques_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			if (sender is ListBox { SelectedItem: ListBoxItem { Content: PrimaryElementTuple<string, TechniqueInfo, bool> triplet } })
+			if (sender is ListBox { SelectedItem: ListBoxItem { Content: DrawingFlagTriplet triplet } })
 			{
 				if (triplet.Value3)
 				{

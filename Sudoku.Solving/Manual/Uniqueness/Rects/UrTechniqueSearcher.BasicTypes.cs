@@ -591,7 +591,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 				// Hidden UR found. Now check eliminations.
 				int elimDigit = (comparer ^ (1 << digit)).FindFirstSet();
-				if (!(grid.Exists(abzCell, elimDigit) is true))
+				if (grid.Exists(abzCell, elimDigit) is not true)
 				{
 					continue;
 				}
