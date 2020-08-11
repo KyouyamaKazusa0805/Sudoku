@@ -76,6 +76,7 @@ This whole solution consists of several folders below:<br/>这个解决方案由
 * [`Sudoku.Drawing`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Drawing): The project that can be used for drawing and rendering sudoku grids.<br/>这个项目用于绘制和渲染数独盘面。
 * [`Sudoku.Solving`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Solving): The generating and solving project.<br/>解题和题目生成的项目。
 * [`Sudoku.Windows`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Windows): The WPF project, containing UI forms and controls.<br/>WPF 项目，包含 UI 界面和控件。
+* [`Sudoku.Bot`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Bot): The project for QQ bot for sudoku. If you think that using this project is unnecessary, just delete it!<br/>数独 QQ 机器人项目。如果你不想用这个项目，删掉就行！
 * [`Sudoku.Debugging`](https://github.com/Sunnie-Shine/Sudoku/tree/master/Sudoku.Debugging): The project that can be used while debugging only.<br/>这个项目仅用于调试代码时。
 * [`old`](https://github.com/Sunnie-Shine/Sudoku/tree/master/old): The old projects that implemented by me or external codes.<br/>以前的由我自己实现的项目，或者是属于外部代码。
 * [`ref`](https://github.com/Sunnie-Shine/Sudoku/tree/master/ref): The profiles for sudoku for references.<br/>数独相关参考资料。
