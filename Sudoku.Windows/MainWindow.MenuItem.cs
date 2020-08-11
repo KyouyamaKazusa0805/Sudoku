@@ -816,11 +816,10 @@ namespace Sudoku.Windows
 				}
 
 				_currentPainter.View =
-					new View(
-						new List<(int, int)>(
-							from conclusion in backdoors
-							where conclusion.ConclusionType == ConclusionType.Assignment
-							select (0, conclusion.CellOffset * 9 + conclusion.Digit)));
+					new View((
+						from conclusion in backdoors
+						where conclusion.ConclusionType == ConclusionType.Assignment
+						select (0, conclusion.CellOffset * 9 + conclusion.Digit)).ToArray());
 				_currentPainter.Conclusions = backdoors;
 
 				UpdateImageGrid();
