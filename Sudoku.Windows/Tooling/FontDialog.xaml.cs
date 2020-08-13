@@ -77,7 +77,7 @@ namespace Sudoku.Windows.Tooling
 		{
 			base.OnInitialized(e);
 
-			_listBoxFonts.ItemsSource = from font in new InstalledFontCollection().Families select font.Name;
+			_listBoxFonts.ItemsSource = from Font in new InstalledFontCollection().Families select Font.Name;
 			_listBoxFonts.SelectedIndex = 0;
 
 			SelectedFont = new Font(_listBoxFonts.Items[0].ToString(), (float)FontSize, DFontStyle.Regular);

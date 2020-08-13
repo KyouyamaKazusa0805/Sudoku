@@ -161,12 +161,12 @@ namespace Sudoku.Solving.Checking
 
 			// Store all incorrect candidates to prepare for search elimination backdoors.
 			int[] incorrectCandidates = (
-				from cell in Enumerable.Range(0, 81)
-				where grid.GetStatus(cell) == Empty
-				let Value = solution[cell]
-				from digit in Enumerable.Range(0, 9)
-				where !grid[cell, digit] && Value != digit
-				select cell * 9 + digit).ToArray();
+				from Cell in Enumerable.Range(0, 81)
+				where grid.GetStatus(Cell) == Empty
+				let Value = solution[Cell]
+				from Digit in Enumerable.Range(0, 9)
+				where !grid[Cell, Digit] && Value != Digit
+				select Cell * 9 + Digit).ToArray();
 
 			// Search backdoors (Eliminations).
 			for (int i1 = 0, count = incorrectCandidates.Length; i1 < count + 1 - depth; i1++)

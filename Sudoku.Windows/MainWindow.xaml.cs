@@ -991,9 +991,9 @@ namespace Sudoku.Windows
 				decimal summary = 0, summaryMax = 0;
 				int summaryCount = 0;
 				foreach (var techniqueGroup in
-					from solvingStep in _analyisResult.SolvingSteps!
-					orderby solvingStep.Difficulty
-					group solvingStep by solvingStep.Name)
+					from SolvingStep in _analyisResult.SolvingSteps!
+					orderby SolvingStep.Difficulty
+					group SolvingStep by SolvingStep.Name)
 				{
 					string name = techniqueGroup.Key;
 					int count = techniqueGroup.Count();

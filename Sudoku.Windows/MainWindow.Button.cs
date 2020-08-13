@@ -81,12 +81,12 @@ namespace Sudoku.Windows
 				{
 					string name = techniqueGroup.Key;
 					collection.AddRange(
-						from info in techniqueGroup
-						where f(info)
-						let Pair = Settings.DiffColors[info.DifficultyLevel]
+						from Info in techniqueGroup
+						where f(Info)
+						let Pair = Settings.DiffColors[Info.DifficultyLevel]
 						select new ListBoxItem
 						{
-							Content = new Triplet(info.ToSimpleString(), info, true),
+							Content = new Triplet(Info.ToSimpleString(), Info, true),
 							Foreground = new SolidColorBrush(Pair._foreground.ToWColor()),
 							Background = new SolidColorBrush(Pair._background.ToWColor()),
 							BorderThickness = default

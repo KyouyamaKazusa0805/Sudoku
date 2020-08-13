@@ -79,7 +79,8 @@ namespace Sudoku.Diagnostics
 
 					result += temp;
 					count++;
-				} catch { }
+				}
+				catch { }
 			}
 
 			filesCount = count;
@@ -93,9 +94,9 @@ namespace Sudoku.Diagnostics
 		private void GetAllFilesRecursively(DirectoryInfo directory)
 		{
 			FileList.AddRange(
-				from file in directory.GetFiles()
-				where _pattern is null || file.FullName.SatisfyPattern(_pattern)
-				select file.FullName);
+				from File in directory.GetFiles()
+				where _pattern is null || File.FullName.SatisfyPattern(_pattern)
+				select File.FullName);
 
 			// Get all files for each folder recursively.
 			foreach (var d in directory.GetDirectories())

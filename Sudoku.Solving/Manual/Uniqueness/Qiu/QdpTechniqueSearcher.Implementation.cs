@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				conclusions.Add(new Conclusion(Elimination, elimCell, digit));
 			}
 
-			var cellOffsets = new List<(int, int)>(from cell in square | pair select (0, cell));
+			var cellOffsets = (from Cell in square | pair select (0, Cell)).ToList();
 			var candidateOffsets = new List<(int, int)>();
 			foreach (int digit in comparer.GetAllSets())
 			{
@@ -63,10 +63,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						new View(
 							cellOffsets,
 							candidateOffsets,
-							regionOffsets:
-								new List<(int, int)>(
-									from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
-									select (0, pos + (isRow ? 9 : 18))),
+							regionOffsets: (
+								from Pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
+								select (0, Pos + (isRow ? 9 : 18))).ToList(),
 							links: null)
 					},
 					pattern,
@@ -96,7 +95,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				conclusions.Add(new Conclusion(Elimination, cell, extraDigit));
 			}
 
-			var cellOffsets = new List<(int, int)>(from cell in square | pair select (0, cell));
+			var cellOffsets = (from Cell in square | pair select (0, Cell)).ToList();
 			var candidateOffsets = new List<(int, int)>();
 			foreach (int digit in comparer.GetAllSets())
 			{
@@ -121,10 +120,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						new View(
 							cellOffsets,
 							candidateOffsets,
-							regionOffsets:
-								new List<(int, int)>(
-									from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
-									select (0, pos + (isRow ? 9 : 18))),
+							regionOffsets: (
+								from Pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
+								select (0, Pos +(isRow ? 9 : 18))).ToList(),
 							links: null)
 					},
 					pattern,
@@ -167,7 +165,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 							continue;
 						}
 
-						var cellOffsets = new List<(int, int)>(from cell in square | pair select (0, cell));
+						var cellOffsets = (from Cell in square | pair select (0, Cell)).ToList();
 						var candidateOffsets = new List<(int, int)>();
 						foreach (int digit in comparer.GetAllSets())
 						{
@@ -199,10 +197,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 									new View(
 										cellOffsets,
 										candidateOffsets,
-										regionOffsets:
-											new List<(int, int)>(
-												from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
-												select (0, pos + (isRow ? 9 : 18))),
+										regionOffsets: (
+											from Pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
+											select (0, Pos + (isRow ? 9 : 18))).ToList(),
 										links: null)
 								},
 								pattern,
@@ -254,7 +251,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						conclusions.Add(new Conclusion(Elimination, cell, elimDigit));
 					}
 
-					var cellOffsets = new List<(int, int)>(from cell in square | pair select (0, cell));
+					var cellOffsets = (from Cell in square | pair select (0, Cell)).ToList();
 					var candidateOffsets = new List<(int, int)>();
 					foreach (int d in comparer.GetAllSets())
 					{
@@ -276,10 +273,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 								new View(
 									cellOffsets,
 									candidateOffsets,
-									regionOffsets:
-										new List<(int, int)>(
-											from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
-											select (0, pos + (isRow ? 9 : 18))),
+									regionOffsets: (
+										from Pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
+										select (0, Pos + (isRow ? 9 : 18))).ToList(),
 									links: null)
 							},
 							pattern,
@@ -353,7 +349,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				return;
 			}
 
-			var cellOffsets = new List<(int, int)>(from cell in square | pair select (0, cell));
+			var cellOffsets = (from Cell in square | pair select (0, Cell)).ToList();
 			var candidateOffsets = new List<(int, int)>();
 			foreach (int d in comparer.GetAllSets())
 			{
@@ -384,8 +380,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 							candidateOffsets,
 							regionOffsets:
 								new List<(int, int)>(
-									from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
-									select (0, pos + (isRow ? 9 : 18))),
+									from Pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
+									select (0, Pos + (isRow ? 9 : 18))),
 							links: null)
 					},
 					pattern,

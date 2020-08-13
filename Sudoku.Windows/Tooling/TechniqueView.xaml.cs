@@ -35,12 +35,12 @@ namespace Sudoku.Windows.Tooling
 		{
 			var list = new List<TechniqueBox>();
 			foreach (var (name, technique, category) in
-				from technique in EnumEx.GetValues<TechniqueCode>()
-				let NullableCategory = LangSource[$"Group{technique}"] as string
+				from Technique in EnumEx.GetValues<TechniqueCode>()
+				let NullableCategory = LangSource[$"Group{Technique}"] as string
 				where NullableCategory is not null
 				select (
-					_techniqueName: CoreResources.GetValue(technique.ToString()),
-					_technique: technique,
+					_techniqueName: CoreResources.GetValue(Technique.ToString()),
+					_technique: Technique,
 					_category: NullableCategory))
 			{
 				var box = new TechniqueBox

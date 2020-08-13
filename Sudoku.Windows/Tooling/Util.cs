@@ -22,23 +22,23 @@ namespace Sudoku.Windows.Tooling
 		/// <summary>
 		/// Color HLS to RGB.
 		/// </summary>
-		/// <param name="H">The H value.</param>
-		/// <param name="L">The L value.</param>
-		/// <param name="S">The S value.</param>
+		/// <param name="h">The H value.</param>
+		/// <param name="l">The L value.</param>
+		/// <param name="s">The S value.</param>
 		/// <returns></returns>
 		[DllImport("shlwapi.dll")]
-		public static extern int ColorHLSToRGB(int H, int L, int S);
+		public static extern int ColorHLSToRGB(int h, int l, int s);
 
 		/// <summary>
 		/// Get a new color from the specified H, S and L values.
 		/// </summary>
-		/// <param name="H">The H value.</param>
-		/// <param name="S">The S value.</param>
-		/// <param name="L">The L value.</param>
+		/// <param name="h">The H value.</param>
+		/// <param name="s">The S value.</param>
+		/// <param name="l">The L value.</param>
 		/// <returns>The <see cref="WColor"/>.</returns>
-		public static WColor ColorFromHSL(int H, int S, int L)
+		public static WColor ColorFromHSL(int h, int s, int l)
 		{
-			byte[] bytes = BitConverter.GetBytes(ColorHLSToRGB(H, L, S));
+			byte[] bytes = BitConverter.GetBytes(ColorHLSToRGB(h, l, s));
 			return WColor.FromArgb(255, bytes[0], bytes[1], bytes[2]);
 		}
 
@@ -115,7 +115,7 @@ namespace Sudoku.Windows.Tooling
 		/// <returns>The <see cref="WColor"/>.</returns>
 		public static WColor FromAhsb(int alpha, float hue, float saturation, float brightness)
 		{
-			if (0 > alpha || 255 < alpha)
+			if (alpha is < 0 or > 255)
 			{
 				throw new ArgumentOutOfRangeException(nameof(alpha), alpha, "Value must be within a range of 0 - 255.");
 			}
@@ -143,13 +143,13 @@ namespace Sudoku.Windows.Tooling
 			float fMax, fMid, fMin;
 			if (brightness > .5)
 			{
-				fMax = brightness - (brightness * saturation) + saturation;
-				fMin = brightness + (brightness * saturation) - saturation;
+				fMax = brightness - brightness * saturation + saturation;
+				fMin = brightness + brightness * saturation - saturation;
 			}
 			else
 			{
-				fMax = brightness + (brightness * saturation);
-				fMin = brightness - (brightness * saturation);
+				fMax = brightness + brightness * saturation;
+				fMin = brightness - brightness * saturation;
 			}
 
 			int iSextant = (int)Math.Floor(hue / 60F);
@@ -177,11 +177,10 @@ namespace Sudoku.Windows.Tooling
 		/// Get all colors especially used for HTML.
 		/// </summary>
 		/// <returns>All colors.</returns>
-		public static IReadOnlyList<WColor> GetWebColors() =>
-			new List<WColor>(
-				from property in typeof(DColor).GetProperties(Public | Static)
-				where property.PropertyType == typeof(DColor)
-				select DColor.FromName(property.Name).ToWColor());
+		public static IReadOnlyList<WColor> GetWebColors() => (
+			from Property in typeof(DColor).GetProperties(Public | Static)
+			where Property.PropertyType == typeof(DColor)
+			select DColor.FromName(Property.Name).ToWColor()).ToArray();
 
 		/// <summary>
 		/// Serialize the specified instance to the specified file.

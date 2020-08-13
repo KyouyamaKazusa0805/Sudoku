@@ -46,10 +46,10 @@ namespace Sudoku.Windows
 				_labelStatus.Content = (string)LangSource["BugMultipleWhileSearching"];
 
 				var array = (
-					from candidate in await Task.Run(() => new BugChecker(_puzzle).GetAllTrueCandidates(64))
-					orderby candidate
-					let Str = new CandidateCollection(candidate).ToString()
-					select new PrimaryElementTuple<int, string>(candidate, Str, 2)).ToArray();
+					from Candidate in await new BugChecker(_puzzle).GetAllTrueCandidatesAsync(64)
+					orderby Candidate
+					let Str = new CandidateCollection(Candidate).ToString()
+					select new PrimaryElementTuple<int, string>(Candidate, Str, 2)).ToArray();
 
 				_labelStatus.ClearValue(ContentProperty);
 				int count = array.Length;

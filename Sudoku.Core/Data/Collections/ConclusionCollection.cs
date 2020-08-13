@@ -122,15 +122,15 @@ namespace Sudoku.Data.Collections
 								return 0;
 							});
 
-						var selection = from conc in concs group conc by conc.ConclusionType;
+						var selection = from Conc in concs group Conc by Conc.ConclusionType;
 						bool hasOnlyOneType = selection.HasOnlyOneElement();
 						foreach (var typeGroup in selection)
 						{
 							string op = typeGroup.Key == Assignment ? " = " : " <> ";
-							foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
+							foreach (var digitGroup in from Conc in typeGroup group Conc by Conc.Digit)
 							{
 								sb
-									.Append(new CellCollection(from conc in digitGroup select conc.CellOffset).ToString())
+									.Append(new CellCollection(from Conc in digitGroup select Conc.CellOffset).ToString())
 									.Append(op)
 									.Append(digitGroup.Key + 1)
 									.Append(separator);

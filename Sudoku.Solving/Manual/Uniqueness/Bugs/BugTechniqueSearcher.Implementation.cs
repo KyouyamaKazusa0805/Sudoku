@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <param name="trueCandidates">All true candidates.</param>
 		partial void CheckType2(IList<TechniqueInfo> accumulator, IReadOnlyList<int> trueCandidates)
 		{
-			var selection = from cand in trueCandidates select cand / 9;
+			var selection = from Cand in trueCandidates select Cand / 9;
 			var map = new GridMap(selection, ProcessPeersWithoutItself);
 			if (map.IsEmpty)
 			{
@@ -64,7 +64,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			// Check whether all true candidates lie on a same region.
-			var map = new GridMap(from c in trueCandidates group c by c / 9 into z select z.Key);
+			var map = new GridMap(from C in trueCandidates group C by C / 9 into z select z.Key);
 			if (!map.AllSetsAreInOneRegion(out _))
 			{
 				return;
@@ -168,7 +168,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			IList<TechniqueInfo> accumulator, IReadOnlyGrid grid, IReadOnlyList<int> trueCandidates)
 		{
 			// Conjugate pairs should lie on two cells.
-			var candsGroupByCell = from cand in trueCandidates group cand by cand / 9;
+			var candsGroupByCell = from Cand in trueCandidates group Cand by Cand / 9;
 			if (candsGroupByCell.Count() != 2)
 			{
 				return;
@@ -264,7 +264,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 								new View(
 									cellOffsets: null,
 									candidateOffsets:
-										new List<(int, int)>(from cand in trueCandidates select (0, cand))
+										new List<(int, int)>(from Cand in trueCandidates select (0, Cand))
 										{
 											(1, c1 * 9 + conjuagtePairDigit),
 											(1, c2 * 9 + conjuagtePairDigit)
@@ -318,7 +318,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			accumulator.Add(
 				new BugMultipleTechniqueInfo(
 					conclusions,
-					views: new[] { new View(new List<(int, int)>(from cand in trueCandidates select (0, cand))) },
+					views: new[] { new View((from Cand in trueCandidates select (0, Cand)).ToList()) },
 					candidates: trueCandidates));
 		}
 
@@ -364,7 +364,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				}
 
 				var cellOffsets = new List<(int, int)> { (0, cell) };
-				var candidateOffsets = new List<(int, int)>(from c in trueCandidates select (0, c));
+				var candidateOffsets = (from C in trueCandidates select (0, C)).ToList();
 				accumulator.Add(
 					new BugXzTechniqueInfo(
 						conclusions,

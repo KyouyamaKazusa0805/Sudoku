@@ -147,7 +147,7 @@ namespace Sudoku.Solving.Manual
 			}
 
 			// Return the result.
-			return from step in bag group step by step.Name;
+			return from Step in bag group Step by Step.Name;
 		}
 	}
 }

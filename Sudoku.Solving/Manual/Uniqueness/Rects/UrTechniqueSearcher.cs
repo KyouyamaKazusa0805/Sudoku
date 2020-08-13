@@ -296,7 +296,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <returns>The list of highlight cells.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static IReadOnlyList<(int, int)> GetHighlightCells(int[] urCells) =>
-			new List<(int, int)>(from cell in urCells select (0, cell));
+			new List<(int, int)>(from Cell in urCells select (0, Cell));
 
 
 		#region Partial method statements

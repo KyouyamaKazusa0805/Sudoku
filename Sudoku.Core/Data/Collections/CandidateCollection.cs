@@ -73,10 +73,10 @@ namespace Sudoku.Data.Collections
 			var sb = new StringBuilder();
 
 			int[] candidates = _map.ToArray();
-			foreach (var digitGroup in from candidate in candidates group candidate by candidate % 9)
+			foreach (var digitGroup in from Candidate in candidates group Candidate by Candidate % 9)
 			{
 				sb
-					.Append(new CellCollection(from candidate in digitGroup select candidate / 9).ToString())
+					.Append(new CellCollection(from Candidate in digitGroup select Candidate / 9).ToString())
 					.Append($"({digitGroup.Key + 1}){separator}");
 			}
 

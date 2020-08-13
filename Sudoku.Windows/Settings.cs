@@ -22,7 +22,7 @@ namespace Sudoku.Windows
 		/// <param name="newSetting">The new settings instance.</param>
 		public void CoverBy(Settings newSetting)
 		{
-			foreach (var property in from property in GetType().GetProperties() where property.CanWrite select property)
+			foreach (var property in from Property in GetType().GetProperties() where Property.CanWrite select Property)
 			{
 				property.SetValue(this, property.GetValue(newSetting));
 			}

@@ -73,7 +73,7 @@ namespace Sudoku.Windows
 				}
 
 				_listBoxBackdoors.ItemsSource =
-					from collection in collections select new ConclusionCollection(collection).ToString();
+					from Collection in collections select new ConclusionCollection(Collection).ToString();
 			}
 		}
 

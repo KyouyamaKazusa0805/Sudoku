@@ -119,8 +119,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 
 							// Record highlight cell and candidate offsets.
 							var cellOffsets = new List<(int, int)>();
-							cellOffsets.AddRange(from cell in map1 select (-1, cell));
-							cellOffsets.AddRange(from cell in map2 select (-2, cell));
+							cellOffsets.AddRange(from Cell in map1 select (-1, Cell));
+							cellOffsets.AddRange(from Cell in map2 select (-2, Cell));
 
 							var candidateOffsets = new List<(int, int)>
 							{

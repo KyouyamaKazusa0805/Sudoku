@@ -315,7 +315,7 @@ namespace Sudoku.Data
 
 			// Remove all '\r' and '\n'-s.
 			var sb = new StringBuilder();
-			foreach (char c in from c in match where c is not ('\r' or '\n') select c)
+			foreach (char c in from EachChar in match where EachChar is not ('\r' or '\n') select EachChar)
 			{
 				sb.Append(c);
 			}

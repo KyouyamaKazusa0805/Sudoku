@@ -192,7 +192,7 @@ namespace Sudoku.Solving
 					$"{GetValue("AnalysisResultPuzzleHas")}" +
 					$"{(hasSolved ? string.Empty : GetValue("AnalysisResultNot"))}" +
 					GetValue("AnalysisResultBeenSolved"))
-				.AppendLine($"{GetValue("AnalysisResultTimeElapsed")}{elapsed:hh':'mm'.'ss'.'fff}");
+				.AppendLine($"{GetValue("AnalysisResultTimeElapsed")}{elapsed:hh\\:mm\\.ss\\.fff}");
 			a();
 
 			// Print attributes (if worth).
@@ -205,10 +205,10 @@ namespace Sudoku.Solving
 				static bool m(ParameterInfo[] p, MethodInfo m) =>
 					p.Length == 1 && p[0].ParameterType == typeof(IReadOnlyGrid) && m.ReturnType == typeof(bool);
 				foreach (var methodInfo in
-					from methodInfo in typeof(PuzzleAttributeChecker).GetMethods()
-					let Params = methodInfo.GetParameters()
-					where m(Params, methodInfo)
-					select methodInfo)
+					from MethodInfo in typeof(PuzzleAttributeChecker).GetMethods()
+					let Params = MethodInfo.GetParameters()
+					where m(Params, MethodInfo)
+					select MethodInfo)
 				{
 					bool attributeResult = (bool)methodInfo.Invoke(null, new[] { puzzle })!;
 					sb.AppendLine($"    {methodInfo.Name}: {attributeResult}");
@@ -249,7 +249,7 @@ namespace Sudoku.Solving
 			var solvingSteps = Result.SolvingSteps;
 			return solvingSteps is null
 				? null
-				: from solvingStep in solvingSteps orderby solvingStep.Difficulty group solvingStep by solvingStep.Name;
+				: from SolvingStep in solvingSteps orderby SolvingStep.Difficulty group SolvingStep by SolvingStep.Name;
 		}
 
 		/// <summary>

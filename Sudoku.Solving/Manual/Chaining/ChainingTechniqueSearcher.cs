@@ -104,10 +104,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="accumulator">The accumulator.</param>
 		/// <returns>The result list.</returns>
 		protected static IQueryable<ChainingTechniqueInfo> SortInfo(IEnumerable<ChainingTechniqueInfo> accumulator) => (
-			from info in new Set<ChainingTechniqueInfo>(accumulator)
-			orderby info.Difficulty
-			orderby info.Complexity
-			orderby info.SortKey
-			select info).AsQueryable();
+			from Info in new Set<ChainingTechniqueInfo>(accumulator)
+			orderby Info.Difficulty, Info.Complexity, Info.SortKey
+			select Info).AsQueryable();
 	}
 }

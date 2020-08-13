@@ -203,9 +203,9 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 											// Record highlight candidates and cells.
 											var cellOffsets = new List<(int, int)>();
-											cellOffsets.AddRange(from cell in currentBlockMap select (0, cell));
-											cellOffsets.AddRange(from cell in currentLineMap select (1, cell));
-											cellOffsets.AddRange(from cell in currentInterMap select (2, cell));
+											cellOffsets.AddRange(from Cell in currentBlockMap select (0, Cell));
+											cellOffsets.AddRange(from Cell in currentLineMap select (1, Cell));
+											cellOffsets.AddRange(from Cell in currentInterMap select (2, Cell));
 
 											var candidateOffsets = new List<(int, int)>();
 											foreach (int cell in currentBlockMap)

@@ -57,19 +57,19 @@ namespace Sudoku.Solving.BruteForces.Linqing
 			while (result.Count > 0 && indexOf(result[0]) != -1)
 			{
 				result = (
-					from solution in result
-					let Index = indexOf(solution)
+					from Solution in result
+					let Index = indexOf(Solution)
 					let Column = Index % 9
 					let Block = Index - Index % 27 + Column - Index % 3
-					from value in values
+					from Value in values
 					where (
-						from i in Range(0, 9)
-						let InRow = solution[Index - Column + i] == value
-						let InColumn = solution[Column + i * 9] == value
-						let InBlock = solution[Block + i % 3 + (int)Floor(i / 3F) * 9] == value
+						from I in Range(0, 9)
+						let InRow = Solution[Index - Column + I] == Value
+						let InColumn = Solution[Column + I * 9] == Value
+						let InBlock = Solution[Block + I % 3 + (int)Floor(I / 3F) * 9] == Value
 						where InRow || InColumn || InBlock
-						select i).None()
-					select $"{solution.Substring(0, Index)}{value}{solution.Substring(Index + 1)}").ToList();
+						select I).None()
+					select $"{Solution.Substring(0, Index)}{Value}{Solution.Substring(Index + 1)}").ToList();
 			}
 
 			return result;
