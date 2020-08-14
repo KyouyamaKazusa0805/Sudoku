@@ -249,10 +249,10 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="right">The right one.</param>
 		/// <returns>The <see cref="bool"/> result.</returns>
 		private static bool InternalEquals(ChainingTechniqueInfo? left, ChainingTechniqueInfo? right) =>
-			(left is null, right is null) switch
+			(left, right) switch
 			{
-				(true, true) => true,
-				(false, false) => left!.GetHashCode() == right!.GetHashCode(),
+				(null, null) => true,
+				(not null, not null) => left!.GetHashCode() == right!.GetHashCode(),
 				_ => false
 			};
 

@@ -448,13 +448,8 @@ namespace Sudoku.Data
 			{
 				":" => formatter.ToString(this).Match(RegularExpressions.ExtendedSusserEliminations).NullableToString(),
 				"!" => formatter.ToString(this).ToString().Replace("+", string.Empty),
-				".!" => formatter.ToString(this).ToString().Replace("+", string.Empty),
-				"!." => formatter.ToString(this).ToString().Replace("+", string.Empty),
-				"0!" => formatter.ToString(this).ToString().Replace("+", string.Empty),
-				"!0" => formatter.ToString(this).ToString().Replace("+", string.Empty),
-				".!:" => formatter.ToString(this).ToString().Replace("+", string.Empty),
-				"!.:" => formatter.ToString(this).ToString().Replace("+", string.Empty),
-				"0!:" => formatter.ToString(this).ToString().Replace("+", string.Empty),
+				".!" or "!." or "0!" or "!0" => formatter.ToString(this).ToString().Replace("+", string.Empty),
+				".!:" or "!.:" or "0!:" => formatter.ToString(this).ToString().Replace("+", string.Empty),
 				_ => formatter.ToString(this)
 			};
 		}
@@ -657,27 +652,29 @@ namespace Sudoku.Data
 		/// <returns>A <see cref="bool"/> value.</returns>
 		private static bool Equals(Grid? left, Grid? right)
 		{
-			bool a = left is null, b = right is null;
-			if (a && b)
+			switch ((left, right))
 			{
-				return true;
-			}
-			else if (a ^ b)
-			{
-				return false;
-			}
-			else
-			{
-				// Both not null.
-				for (int i = 0; i < 81; i++)
+				case (null, null):
 				{
-					if (left!._masks[i] != right!._masks[i])
-					{
-						return false;
-					}
+					return true;
 				}
+				case (not null, not null):
+				{
+					// Both not null.
+					for (int i = 0; i < 81; i++)
+					{
+						if (left!._masks[i] != right!._masks[i])
+						{
+							return false;
+						}
+					}
 
-				return true;
+					return true;
+				}
+				default:
+				{
+					return false;
+				}
 			}
 		}
 

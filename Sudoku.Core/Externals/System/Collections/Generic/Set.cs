@@ -240,10 +240,10 @@ namespace System.Collections.Generic
 		/// <param name="right">The right.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
 		private static bool InternalEquals(Set<T>? left, Set<T>? right) =>
-			(left is null, right is null) switch
+			(left, right) switch
 			{
-				(true, true) => true,
-				(false, false) => SetEquals(left, right),
+				(null, null) => true,
+				(not null, not null) => SetEquals(left, right),
 				_ => false
 			};
 

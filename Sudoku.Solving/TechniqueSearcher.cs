@@ -142,10 +142,10 @@ namespace Sudoku.Solving
 		/// <param name="right">The right comparer.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		private static bool InternalEquals(TechniqueSearcher? left, TechniqueSearcher? right) =>
-			(left is null, right is null) switch
+			(left, right) switch
 			{
-				(true, true) => true,
-				(false, false) => GetPriority(left!) == GetPriority(right!),
+				(null, null) => true,
+				(not null, not null) => GetPriority(left!) == GetPriority(right!),
 				_ => false
 			};
 
