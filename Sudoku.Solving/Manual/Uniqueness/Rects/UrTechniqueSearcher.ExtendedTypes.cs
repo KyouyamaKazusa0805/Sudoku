@@ -9,6 +9,7 @@ using static Sudoku.Data.CellStatus;
 using static Sudoku.Data.GridMap.InitializationOption;
 using static Sudoku.Data.ConclusionType;
 using static Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode;
+using System;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
@@ -177,7 +178,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						{
 							if (urCell == corner1 || urCell == corner2)
 							{
-								if (new GridMap { urCell, sameRegionCell }.CoveredRegions.Any(r => r == region))
+								if (new GridMap { urCell, sameRegionCell }.CoveredRegions.Contains(region))
 								{
 									foreach (int d in grid.GetCandidates(urCell))
 									{
@@ -989,12 +990,22 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			IList<UrTechniqueInfo> accumulator, IReadOnlyGrid grid, int[] urCells, bool arMode,
 			short comparer, int d1, int d2, int corner1, int corner2, GridMap otherCellsMap)
 		{
+			// Subtype 1:
 			//   ↓ corner1, corner2
 			// (abx)-----(aby)
 			//        a    |
 			//             | a
 			//        b    |
 			//  abz ----- abw
+			//
+			// Subtype 2:
+			//   ↓ corner1, corner2
+			// (abx)-----(aby)
+			//   |    a    |
+			//   | b       | a
+			//   |         |
+			//  abz       abw
+			var innerMaps = (Span<GridMap>)stackalloc GridMap[2];
 			var link1Map = new GridMap { corner1, corner2 };
 			foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
 			{
@@ -1003,94 +1014,101 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					continue;
 				}
 
-				int abwCell = GetDiagonalCell(urCells, corner1);
-				int abzCell = new GridMap(otherCellsMap) { [abwCell] = false }.SetAt(0);
-				foreach (var (head, begin, end, extra) in stackalloc[] { (corner2, corner1, abzCell, abwCell), (corner1, corner2, abwCell, abzCell) })
+				int end = GetDiagonalCell(urCells, corner1);
+				int extra = new GridMap(otherCellsMap) { [end] = false }.SetAt(0);
+				foreach (var (abx, aby, abw, abz) in
+					stackalloc[] { (corner2, corner1, extra, end), (corner1, corner2, end, extra) })
 				{
-					var link2Map = new GridMap { begin, end };
+					var link2Map = new GridMap { aby, abw };
 					if (!IsConjugatePair(a, link2Map, link2Map.CoveredLine))
 					{
 						continue;
 					}
 
-					var link3Map = new GridMap { end, extra };
-					if (!IsConjugatePair(b, link3Map, link3Map.CoveredLine))
+					GridMap link3Map1 = new GridMap { abw, abz }, link3Map2 = new GridMap { abx, abz };
+					innerMaps[0] = link3Map1;
+					innerMaps[1] = link3Map2;
+					for (int i = 0; i < 2; i++)
 					{
-						continue;
-					}
+						var linkMap = innerMaps[i];
+						if (!IsConjugatePair(b, link3Map1, link3Map1.CoveredLine))
+						{
+							continue;
+						}
 
-					var conclusions = new List<Conclusion>();
-					if (grid.Exists(begin, b) is true)
-					{
-						conclusions.Add(new Conclusion(Elimination, begin, b));
-					}
-					if (conclusions.Count == 0)
-					{
-						continue;
-					}
+						var conclusions = new List<Conclusion>();
+						if (grid.Exists(aby, b) is true)
+						{
+							conclusions.Add(new Conclusion(Elimination, aby, b));
+						}
+						if (conclusions.Count == 0)
+						{
+							continue;
+						}
 
-					var candidateOffsets = new List<(int, int)>();
-					foreach (int d in grid.GetCandidates(head))
-					{
-						if (d == d1 || d == d2)
+						var candidateOffsets = new List<(int, int)>();
+						foreach (int d in grid.GetCandidates(abx))
 						{
-							candidateOffsets.Add((d == a ? 1 : 0, head * 9 + d));
-						}
-					}
-					foreach (int d in grid.GetCandidates(extra))
-					{
-						if (d == d1 || d == d2)
-						{
-							candidateOffsets.Add((d == b ? 1 : 0, extra * 9 + d));
-						}
-					}
-					foreach (int d in grid.GetCandidates(begin))
-					{
-						if ((d == d1 || d == d2) && d != b)
-						{
-							candidateOffsets.Add((1, begin * 9 + d));
-						}
-					}
-					foreach (int d in grid.GetCandidates(end))
-					{
-						if (d == d1 || d == d2)
-						{
-							candidateOffsets.Add((1, end * 9 + d));
-						}
-					}
-					if (!_allowIncompleteUr && candidateOffsets.Count != 7)
-					{
-						continue;
-					}
-
-					var conjugatePairs = new[]
-					{
-						new ConjugatePair(head, begin, a),
-						new ConjugatePair(begin, end, a),
-						new ConjugatePair(end, extra, b)
-					};
-					accumulator.Add(
-						new UrPlusTechniqueInfo(
-							conclusions,
-							views: new[]
+							if (d == d1 || d == d2)
 							{
-								new View(
-									cellOffsets: arMode ? GetHighlightCells(urCells) : null,
-									candidateOffsets,
-									regionOffsets: new[]
-									{
-										(0, conjugatePairs[0].Line),
-										(0, conjugatePairs[1].Line),
-										(1, conjugatePairs[2].Line)
-									},
-									links: null)
-							},
-							typeCode: Plus4C3SL,
-							digit1: d1,
-							digit2: d2,
-							cells: urCells,
-							conjugatePairs,
-							isAr: arMode));
+								candidateOffsets.Add((i == 0 ? d == a ? 1 : 0 : 1, abx * 9 + d));
+							}
+						}
+						foreach (int d in grid.GetCandidates(abz))
+						{
+							if (d == d1 || d == d2)
+							{
+								candidateOffsets.Add((d == b ? 1 : 0, abz * 9 + d));
+							}
+						}
+						foreach (int d in grid.GetCandidates(aby))
+						{
+							if ((d == d1 || d == d2) && d != b)
+							{
+								candidateOffsets.Add((1, aby * 9 + d));
+							}
+						}
+						foreach (int d in grid.GetCandidates(abw))
+						{
+							if (d == d1 || d == d2)
+							{
+								candidateOffsets.Add((1, abw * 9 + d));
+							}
+						}
+						if (!_allowIncompleteUr && candidateOffsets.Count != 7)
+						{
+							continue;
+						}
+
+						var conjugatePairs = new[]
+						{
+							new ConjugatePair(abx, aby, a),
+							new ConjugatePair(aby, abw, a),
+							new ConjugatePair(linkMap.SetAt(0), linkMap.SetAt(1), b)
+						};
+						accumulator.Add(
+							new UrPlusTechniqueInfo(
+								conclusions,
+								views: new[]
+								{
+									new View(
+										cellOffsets: arMode ? GetHighlightCells(urCells) : null,
+										candidateOffsets,
+										regionOffsets: new[]
+										{
+											(0, conjugatePairs[0].Line),
+											(0, conjugatePairs[1].Line),
+											(1, conjugatePairs[2].Line)
+										},
+										links: null)
+								},
+								typeCode: Plus4C3SL,
+								digit1: d1,
+								digit2: d2,
+								cells: urCells,
+								conjugatePairs,
+								isAr: arMode));
+					}
 				}
 			}
 		}
