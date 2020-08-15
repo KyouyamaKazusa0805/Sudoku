@@ -9,6 +9,7 @@ Change All found steps from list boxes to tree-view items.
 Change The foreground color for each steps in paths.
 Simplify The chain notation.
 Support the multi-view changing & displaying.
+Fix The bug missing some instances in UR+4C/3SL.
 
 v0.0.65534.0
 Add Filtering for difficulty level.
