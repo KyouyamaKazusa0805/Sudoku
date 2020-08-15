@@ -107,7 +107,7 @@ namespace Sudoku.Data
 					case 1:
 					{
 						char match = currentMatch[0];
-						if (match != '.' && match != '0')
+						if (match is not ('.' or '0'))
 						{
 							result[i] = match - '1';
 							result.SetStatus(i, Given);
@@ -411,13 +411,11 @@ namespace Sudoku.Data
 			// If we have met the colon sign ':', this loop would not be executed.
 			if (match.Match(RegularExpressions.ExtendedSusserEliminations) is string elimMatch)
 			{
-				string[] eliminationBlocks = elimMatch.MatchAll(RegularExpressions.ThreeDigitsCandidate);
-				foreach (string eliminationBlock in eliminationBlocks)
+				string[] elimBlocks = elimMatch.MatchAll(RegularExpressions.ThreeDigitsCandidate);
+				foreach (string elimBlock in elimBlocks)
 				{
 					// Set the candidate true value to eliminate the candidate.
-					result[
-						offset: (eliminationBlock[1] - '1') * 9 + eliminationBlock[2] - '1',
-						digit: eliminationBlock[0] - '1'] = true;
+					result[(elimBlock[1] - '1') * 9 + elimBlock[2] - '1', elimBlock[0] - '1'] = true;
 				}
 			}
 
@@ -441,7 +439,7 @@ namespace Sudoku.Data
 				for (int i = 0; i < 729; i++)
 				{
 					char c = ParsingValue[i];
-					if (!c.IsDigit() && c != '.')
+					if (c is not (>= '0' and <= '9' or '.'))
 					{
 						return null;
 					}

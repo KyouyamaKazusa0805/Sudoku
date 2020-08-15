@@ -4334,19 +4334,6 @@
 		</param>
 	</method>
         </member>
-        <member name="T:Sudoku.Extensions.CharEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Char"/>.
-            </summary>
-            <seealso cref="T:System.Char"/>
-        </member>
-        <member name="M:Sudoku.Extensions.CharEx.IsDigit(System.Char)">
-            <summary>
-            To determine whether the specified character is a digit character.
-            </summary>
-            <param name="this">(<see langword="this"/> parameter) The character.</param>
-            <returns>The <see cref="T:System.Boolean"/> value.</returns>
-        </member>
         <member name="T:Sudoku.Extensions.CollectionEx">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.Generic.ICollection`1"/>.

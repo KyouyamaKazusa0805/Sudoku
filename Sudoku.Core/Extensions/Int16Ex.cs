@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 namespace Sudoku.Extensions
@@ -74,12 +75,13 @@ namespace Sudoku.Extensions
 
 		/// <include file='CoreDocComments.xml' path='comments/method[@name="ReverseBits"]'/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[SuppressMessage("", "IDE0055")]
 		public static void ReverseBits(this ref short @this)
 		{
 			@this = (short)(@this >> 1 & 0x5555 | (@this & 0x5555) << 1);
 			@this = (short)(@this >> 2 & 0x3333 | (@this & 0x3333) << 2);
 			@this = (short)(@this >> 4 & 0x0F0F | (@this & 0x0F0F) << 4);
-			@this = (short)(@this >> 8 | @this << 8);
+			@this = (short)(@this >> 8          |  @this           << 8);
 		}
 	}
 }
