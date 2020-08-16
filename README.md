@@ -132,7 +132,7 @@ Here display all conditional compilation symbols in this solution.
 
 标题：**作者**
 
-Sunnie, from the city of pandas, is an original undergraduate.
+Sunnie, from Chengdu, is an original undergraduate.
 
 小向，来自成都的一名普通大学生。
 
