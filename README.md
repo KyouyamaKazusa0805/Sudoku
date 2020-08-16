@@ -1,10 +1,10 @@
-# Sunnie's Sudoku Solution
-
-标题：**向向的数独解决方案 (SSS)**
-
 > I have no time to update the project recently... If you find some bugs, please raise a issue or tell me directly. Thx!
 >
 > 我最近没有时间更新项目……如果你找到了 bug，请提 issue 或者直接告诉我。感谢！
+
+# Sunnie's Sudoku Solution
+
+标题：**向向的数独解决方案 (SSS)**
 
 A sudoku handling SDK using brute forces and logical techniques (update gradually). Now this solution supports generating puzzles, solving puzzles (with logical & illogical techniques) and some attribute checking (for example, to determine whether the specified grid is a minimal puzzle, which will become multiple solutions when any a digit is missing).
 
