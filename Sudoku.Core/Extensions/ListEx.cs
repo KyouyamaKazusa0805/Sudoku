@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace Sudoku.Extensions
@@ -36,5 +37,18 @@ namespace Sudoku.Extensions
 		/// <param name="index">The index to remove.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void RemoveAt<T>(this IList<T> @this, Index index) => @this.RemoveAt(index.GetOffset(@this.Count));
+
+		/// <summary>
+		/// Remove duplicate element in the list.
+		/// </summary>
+		/// <typeparam name="T">The type of each element.</typeparam>
+		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void Distinct<T>(this IList<T> @this) where T : notnull
+		{
+			var tempList = Enumerable.Distinct(@this);
+			@this.Clear();
+			@this.AddRange(tempList);
+		}
 	}
 }

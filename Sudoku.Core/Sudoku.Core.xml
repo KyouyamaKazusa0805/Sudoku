@@ -4911,6 +4911,13 @@
             <param name="this">(<see langword="this"/> parameter) The list.</param>
             <param name="index">The index to remove.</param>
         </member>
+        <member name="M:Sudoku.Extensions.ListEx.Distinct``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            Remove duplicate element in the list.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">(<see langword="this"/> parameter) The list.</param>
+        </member>
         <member name="T:Sudoku.Extensions.SingleEx">
             <summary>
             Provides extension methods on <see cref="T:System.Single"/>.

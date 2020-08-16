@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
@@ -6,10 +7,9 @@ using Sudoku.Drawing;
 using Sudoku.Extensions;
 using static Sudoku.Constants.Processings;
 using static Sudoku.Data.CellStatus;
-using static Sudoku.Data.GridMap.InitializationOption;
 using static Sudoku.Data.ConclusionType;
+using static Sudoku.Data.GridMap.InitializationOption;
 using static Sudoku.Solving.Manual.Uniqueness.Rects.UrTypeCode;
-using System;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
