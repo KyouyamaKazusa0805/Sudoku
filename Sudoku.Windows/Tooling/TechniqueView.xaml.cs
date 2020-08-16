@@ -45,13 +45,13 @@ namespace Sudoku.Windows.Tooling
 			{
 				var box = new TechniqueBox
 				{
-					Technique = new PrimaryElementTuple<string, TechniqueCode>(name, technique),
+					Technique = new PriorKeyedTuple<string, TechniqueCode>(name, technique),
 					Category = $"{LangSource["Category"]}{category}"
 				};
 
 				box.CheckingChanged += (sender, _) =>
 				{
-					if (sender is CheckBox { Content: PrimaryElementTuple<string, TechniqueCode> pair } box)
+					if (sender is CheckBox { Content: PriorKeyedTuple<string, TechniqueCode> pair } box)
 					{
 						Action<TechniqueCode> f = box.IsChecked switch
 						{
@@ -60,7 +60,7 @@ namespace Sudoku.Windows.Tooling
 							_ => (_) => { }
 						};
 
-						f(pair.Value2);
+						f(pair.Item2);
 					}
 				};
 

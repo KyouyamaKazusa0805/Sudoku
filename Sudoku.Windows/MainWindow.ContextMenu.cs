@@ -8,7 +8,6 @@ using Sudoku.Drawing.Extensions;
 using Sudoku.Solving;
 using Sudoku.Solving.BruteForces.Bitwise;
 using Sudoku.Windows.Constants;
-using Triplet = System.PrimaryElementTuple<string, int, Sudoku.Solving.TechniqueInfo>;
 
 namespace Sudoku.Windows
 {
@@ -74,9 +73,12 @@ namespace Sudoku.Windows
 			{
 				try
 				{
-					if (_listBoxPaths.SelectedItem is ListBoxItem { Content: Triplet triplet })
+					if (_listBoxPaths.SelectedItem is ListBoxItem
 					{
-						Clipboard.SetText(triplet.Value3.ToFullString());
+						Content: PriorKeyedTuple<string, int, TechniqueInfo> triplet
+					})
+					{
+						Clipboard.SetText(triplet.Item3.ToFullString());
 					}
 				}
 				catch
@@ -94,9 +96,9 @@ namespace Sudoku.Windows
 				var sb = new StringBuilder();
 				foreach (string step in
 					from ListBoxItem item in _listBoxPaths.Items
-					let Content = item.Content is Triplet content ? (Triplet?)content : null
-					where Content.HasValue
-					select Content.Value.Value3.ToFullString())
+					let Content = item.Content as PriorKeyedTuple<string, int, TechniqueInfo>
+					where Content is not null
+					select Content.Item3.ToFullString())
 				{
 					sb.AppendLine(step);
 				}
@@ -116,10 +118,10 @@ namespace Sudoku.Windows
 		{
 			if (sender is MenuItem && _listBoxTechniques.SelectedItem is ListBoxItem
 			{
-				Content: PrimaryElementTuple<string, TechniqueInfo, bool> { Value3: true } triplet
+				Content: PriorKeyedTuple<string, TechniqueInfo, bool> { Item3: true } triplet
 			})
 			{
-				var info = triplet.Value2;
+				var info = triplet.Item2;
 				if (!Settings.MainManualSolver.CheckConclusionValidityAfterSearched
 					|| CheckConclusionsValidity(new BitwiseSolver().Solve(_puzzle).Solution!, info.Conclusions))
 				{

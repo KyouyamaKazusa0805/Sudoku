@@ -975,7 +975,7 @@ namespace Sudoku.Windows
 							Foreground = new SolidColorBrush(fore.ToWColor()),
 							Background = new SolidColorBrush(back.ToWColor()),
 							Content =
-								new PrimaryElementTuple<string, int, TechniqueInfo>(
+								new PriorKeyedTuple<string, int, TechniqueInfo>(
 									$"(#{i + 1}, {step.Difficulty}) {step.ToSimpleString()}", i++, step),
 							BorderThickness = default
 						});

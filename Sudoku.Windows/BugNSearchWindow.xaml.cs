@@ -49,7 +49,7 @@ namespace Sudoku.Windows
 					from Candidate in await new BugChecker(_puzzle).GetAllTrueCandidatesAsync(64)
 					orderby Candidate
 					let Str = new CandidateCollection(Candidate).ToString()
-					select new PrimaryElementTuple<int, string>(Candidate, Str, 2)).ToArray();
+					select new PriorKeyedTuple<int, string>(Candidate, Str, 2)).ToArray();
 
 				_labelStatus.ClearValue(ContentProperty);
 				int count = array.Length;

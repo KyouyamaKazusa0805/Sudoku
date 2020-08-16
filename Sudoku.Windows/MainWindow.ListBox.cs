@@ -1,7 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 using Sudoku.Data.Stepping;
-using DrawingFlagTriplet = System.PrimaryElementTuple<string, Sudoku.Solving.TechniqueInfo, bool>;
-using InfoTriplet = System.PrimaryElementTuple<string, int, Sudoku.Solving.TechniqueInfo>;
+using Sudoku.Solving;
 
 namespace Sudoku.Windows
 {
@@ -18,11 +18,14 @@ namespace Sudoku.Windows
 				return;
 			}
 
-			if (sender is ListBox { SelectedItem: ListBoxItem { Content: InfoTriplet triplet } })
+			if (sender is ListBox
+			{
+				SelectedItem: ListBoxItem { Content: PriorKeyedTuple<string, int, TechniqueInfo> triplet }
+			})
 			{
 				_cacheAllSteps = null; // Remove older steps cache while updating paths.
 
-				var (_, n, s) = triplet;
+				var (_, n, s, _) = triplet;
 				var techniqueInfo = _analyisResult!.SolvingSteps![n];
 				_currentTechniqueInfo = techniqueInfo;
 				_currentPainter.Grid = _puzzle = new UndoableGrid(_analyisResult.StepGrids![n]);
@@ -36,11 +39,14 @@ namespace Sudoku.Windows
 
 		private void ListBoxTechniques_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			if (sender is ListBox { SelectedItem: ListBoxItem { Content: DrawingFlagTriplet triplet } })
+			if (sender is ListBox
 			{
-				if (triplet.Value3)
+				SelectedItem: ListBoxItem { Content: PriorKeyedTuple<string, TechniqueInfo, bool> triplet }
+			})
+			{
+				if (triplet.Item3)
 				{
-					var info = triplet.Value2;
+					var info = triplet.Item2;
 					_currentTechniqueInfo = info;
 					_currentPainter.View = info.Views[_currentViewIndex = 0];
 					_currentPainter.Conclusions = info.Conclusions;

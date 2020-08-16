@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
@@ -11,7 +12,6 @@ using Sudoku.Solving.Annotations;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Tooling;
 using CoreResources = Sudoku.Windows.Resources;
-using Triplet = System.PrimaryElementTuple<string, int, System.Type>;
 
 namespace Sudoku.Windows
 {
@@ -152,14 +152,14 @@ namespace Sudoku.Windows
 				select new ListBoxItem
 				{
 					Content =
-						new Triplet(
+						new PriorKeyedTuple<string, int, Type>(
 							CoreResources.GetValue(
 								$"Progress{Type.GetCustomAttribute<TechniqueDisplayAttribute>()!.DisplayName}"),
 							Priority,
 							Type)
 				});
 			_listBoxPriority.SelectedIndex = 0;
-			var (_, priority, selectionType) = (Triplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
+			var (_, priority, selectionType, _) = (PriorKeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content;
 			_checkBoxIsEnabled.IsEnabled = !selectionType.GetCustomAttribute<SearcherPropertyAttribute>()!.IsReadOnly;
 			_textBoxPriority.Text = priority.ToString();
 		}
@@ -451,12 +451,13 @@ namespace Sudoku.Windows
 
 		private void ListBoxPriority_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			if (sender is ListBox listBox
-				&& listBox.SelectedIndex != -1
-				&& listBox.SelectedItem is ListBoxItem listBoxItem
-				&& listBoxItem.Content is Triplet triplet)
+			if (sender is ListBox
 			{
-				var (_, priority, type) = triplet;
+				SelectedIndex: not -1,
+				SelectedItem: ListBoxItem { Content: PriorKeyedTuple<string, int, Type> triplet } listBoxItem
+			} listBox)
+			{
+				var (_, priority, type, _) = triplet;
 				var (isEnabled, isReadOnly, _, _) = type.GetCustomAttribute<SearcherPropertyAttribute>()!;
 				_checkBoxIsEnabled.IsChecked = isEnabled;
 				_checkBoxIsEnabled.IsEnabled = !isReadOnly;
@@ -469,7 +470,7 @@ namespace Sudoku.Windows
 		{
 			if (sender is CheckBox checkBox)
 			{
-				var type = ((Triplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Value3;
+				var type = ((PriorKeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3;
 				var attr = type.GetCustomAttribute<SearcherPropertyAttribute>()!;
 				attr.IsEnabled = checkBox.IsChecked ?? default;
 			}
@@ -479,7 +480,7 @@ namespace Sudoku.Windows
 		{
 			if (sender is TextBox textBox && int.TryParse(textBox.Text, out int value))
 			{
-				var type = ((Triplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Value3;
+				var type = ((PriorKeyedTuple<string, int, Type>)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3;
 				var attr = type.GetCustomAttribute<SearcherPropertyAttribute>()!;
 				attr.Priority = value;
 			}

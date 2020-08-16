@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -15,8 +16,7 @@ using Sudoku.Solving.Manual;
 using Sudoku.Windows.Constants;
 using Sudoku.Windows.Tooling;
 using static Sudoku.Windows.Constants.Processings;
-using Triplet = System.PrimaryElementTuple<string, Sudoku.Solving.TechniqueInfo, bool>;
-using InfoGroupedByName = System.Linq.IGrouping<string, Sudoku.Solving.TechniqueInfo>;
+using TechniqueGroupedByName = System.Linq.IGrouping<string, Sudoku.Solving.TechniqueInfo>;
 
 namespace Sudoku.Windows
 {
@@ -47,7 +47,7 @@ namespace Sudoku.Windows
 					return;
 				}
 
-				IEnumerable<InfoGroupedByName> techniqueGroups;
+				IEnumerable<TechniqueGroupedByName> techniqueGroups;
 				ProgressWindow? dialog = null;
 				var list = new List<ListBoxItem>();
 				if (_cacheAllSteps is null)
@@ -60,7 +60,7 @@ namespace Sudoku.Windows
 
 					dialog = new ProgressWindow();
 					dialog.Show();
-					IEnumerable<InfoGroupedByName> s() =>
+					IEnumerable<TechniqueGroupedByName> s() =>
 						new StepFinder(Settings).Search(_puzzle, dialog.DefaultReporting, Settings.LanguageCode);
 					_cacheAllSteps = await Task.Run(s);
 					techniqueGroups = _cacheAllSteps;
@@ -86,7 +86,7 @@ namespace Sudoku.Windows
 						let Pair = Settings.DiffColors[Info.DifficultyLevel]
 						select new ListBoxItem
 						{
-							Content = new Triplet(Info.ToSimpleString(), Info, true),
+							Content = new PriorKeyedTuple<string, TechniqueInfo, bool>(Info.ToSimpleString(), Info, true),
 							Foreground = new SolidColorBrush(Pair._foreground.ToWColor()),
 							Background = new SolidColorBrush(Pair._background.ToWColor()),
 							BorderThickness = default
@@ -97,7 +97,9 @@ namespace Sudoku.Windows
 				var srcView = new ListCollectionView(collection);
 				srcView.GroupDescriptions.Add(
 					new PropertyGroupDescription(
-						$"{nameof(Content)}.{nameof(Triplet.Value2)}.{nameof(TechniqueInfo.Name)}"));
+						$"{nameof(Content)}." +
+						$"{nameof(PriorKeyedTuple<string, TechniqueInfo, bool>.Item2)}." +
+						nameof(TechniqueInfo.Name)));
 				_listBoxTechniques.ItemsSource = srcView;
 
 				dialog?.CloseAnyway();
