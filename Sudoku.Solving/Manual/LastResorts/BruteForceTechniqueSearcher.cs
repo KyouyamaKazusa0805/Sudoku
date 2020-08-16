@@ -57,16 +57,14 @@ namespace Sudoku.Solving.Manual.LastResorts
 		{
 			foreach (int offset in TryAndErrorOrder)
 			{
-				if (grid.GetStatus(offset) != Empty)
+				if (grid.GetStatus(offset) == Empty)
 				{
-					continue;
+					int cand = offset * 9 + _solution[offset];
+					accumulator.Add(
+						new BruteForceTechniqueInfo(
+							conclusions: new[] { new Conclusion(Assignment, cand) },
+							views: new[] { new View(new[] { (0, cand) }) }));
 				}
-
-				int cand = offset * 9 + _solution[offset];
-				accumulator.Add(
-					new BruteForceTechniqueInfo(
-						conclusions: new[] { new Conclusion(Assignment, cand) },
-						views: new[] { new View(new[] { (0, cand) }) }));
 			}
 		}
 	}

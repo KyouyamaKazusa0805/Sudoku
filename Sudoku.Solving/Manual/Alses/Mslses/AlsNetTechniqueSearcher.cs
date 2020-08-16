@@ -139,13 +139,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 									continue;
 								}
 
-								candidateOffsets.Add((
-									true switch
-									{
-										_ when region < 9 => 2,
-										_ when region < 18 => 0,
-										_ => 1
-									}, cell * 9 + cand));
+								candidateOffsets.Add((region switch { < 9 => 2, < 18 => 0, _ => 1 }, cell * 9 + cand));
 							}
 						}
 					}
@@ -153,14 +147,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 					accumulator.Add(
 						new AlsNetTechniqueInfo(
 							conclusions,
-							views: new[]
-							{
-								new View(
-									cellOffsets: null,
-									candidateOffsets,
-									regionOffsets: null,
-									links: null)
-							},
+							views: new[] { new View(candidateOffsets) },
 							cells: map));
 				}
 			}

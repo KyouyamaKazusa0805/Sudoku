@@ -279,7 +279,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 																		_alsShowRegions ? candidateOffsets : null,
 																	regionOffsets:
 																		_alsShowRegions
-																			? new (int, int)[] { (0, r), (1, c), (2, b) }
+																			? new[] { (0, r), (1, c), (2, b) }
 																			: null,
 																	links: null)
 															},

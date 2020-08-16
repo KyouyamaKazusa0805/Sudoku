@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Sudoku.Data;
@@ -7,6 +8,7 @@ using Sudoku.Extensions;
 using Sudoku.Models;
 using Sudoku.Solving.Checking;
 using static System.Algorithms;
+using static Sudoku.Solving.DifficultyLevel;
 
 namespace Sudoku.Solving.Generating
 {
@@ -22,7 +24,7 @@ namespace Sudoku.Solving.Generating
 
 
 		/// <inheritdoc/>
-		public override IReadOnlyGrid Generate() => Generate(-1, null, DifficultyLevel.Unknown, null);
+		public override IReadOnlyGrid Generate() => Generate(-1, null, Unknown, null);
 
 		/// <summary>
 		/// To generate a sudoku grid with a backdoor filter depth.
@@ -37,7 +39,7 @@ namespace Sudoku.Solving.Generating
 		/// <returns>The grid.</returns>
 		public IReadOnlyGrid Generate(
 			int backdoorFilterDepth, IProgress<IProgressResult>? progress,
-			DifficultyLevel difficultyLevel = DifficultyLevel.Unknown, string? globalizationString = null)
+			DifficultyLevel difficultyLevel = Unknown, string? globalizationString = null)
 		{
 			PuzzleGeneratingProgressResult defaultValue = default;
 			var pr = new PuzzleGeneratingProgressResult(0, globalizationString ?? "en-us");
@@ -85,8 +87,8 @@ namespace Sudoku.Solving.Generating
 							backdoorFilterDepth != -1
 							&& !BackdoorSearcher.SearchForBackdoors(grid, backdoorFilterDepth).Any()
 							|| backdoorFilterDepth == -1)
-							&& difficultyLevel != DifficultyLevel.Unknown && grid.DifficultyLevel() == difficultyLevel
-							|| difficultyLevel == DifficultyLevel.Unknown)
+							&& difficultyLevel != Unknown && grid.DifficultyLevel() == difficultyLevel
+							|| difficultyLevel == Unknown)
 						{
 							return grid;
 						}
@@ -110,13 +112,14 @@ namespace Sudoku.Solving.Generating
 		/// <returns>The task.</returns>
 		public async Task<IReadOnlyGrid> GenerateAsync(
 			int backdoorFilterDepth, IProgress<IProgressResult>? progress,
-			DifficultyLevel difficultyLevel = DifficultyLevel.Unknown, string? globalizationString = null) =>
+			DifficultyLevel difficultyLevel = Unknown, string? globalizationString = null) =>
 			await Task.Run(() => Generate(backdoorFilterDepth, progress, difficultyLevel, globalizationString));
 
 		/// <inheritdoc/>
 		protected sealed override void CreatePattern(int[] pattern)
 		{
-			static double rnd() => Rng.NextDouble();
+			[MethodImpl(MethodImplOptions.AggressiveInlining)] static double rnd() => Rng.NextDouble();
+
 			int[] box = { 0, 6, 54, 60, 3, 27, 33, 57, 30 };
 			int[,] t = { { 0, 1, 2 }, { 0, 2, 1 }, { 1, 0, 2 }, { 1, 2, 0 }, { 2, 0, 1 }, { 2, 1, 0 } };
 
@@ -158,8 +161,7 @@ namespace Sudoku.Solving.Generating
 		/// <param name="pattern">The pattern array.</param>
 		private static void RecreatePattern(int[] pattern)
 		{
-			//[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static double rnd() => Rng.NextDouble();
+			[MethodImpl(MethodImplOptions.AggressiveInlining)] static double rnd() => Rng.NextDouble();
 
 			for (int i = 23; i >= 0; i--)
 			{

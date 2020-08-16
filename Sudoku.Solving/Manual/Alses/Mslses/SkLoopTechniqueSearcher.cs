@@ -156,8 +156,7 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 
 							foreach (int digit in cands.GetAllSets())
 							{
-								candidateOffsets.Add(
-									((k & 3, k & 1) switch { (0, _) => 1, (1, _) => 2, _ => 0 }, cell * 9 + digit));
+								candidateOffsets.Add(((k & 3) switch { 0 => 1, 1 => 2, _ => 0 }, cell * 9 + digit));
 							}
 						}
 					}

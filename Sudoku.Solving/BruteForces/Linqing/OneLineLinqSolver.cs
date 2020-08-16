@@ -30,14 +30,15 @@ namespace Sudoku.Solving.BruteForces.Linqing
 			return results.Count switch
 			{
 				0 => throw new NoSolutionException(grid),
-				1 =>
-					new AnalysisResult(
-						solverName: SolverName,
-						puzzle: grid,
-						solution: Grid.Parse(results[0]),
-						hasSolved: true,
-						elapsedTime: stopwatch.Elapsed,
-						additional: null),
+				1 => new AnalysisResult
+				(
+					solverName: SolverName,
+					puzzle: grid,
+					solution: Grid.Parse(results[0]),
+					hasSolved: true,
+					elapsedTime: stopwatch.Elapsed,
+					additional: null
+				),
 				_ => throw new MultipleSolutionsException(grid)
 			};
 		}

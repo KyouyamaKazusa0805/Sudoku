@@ -85,10 +85,10 @@ namespace Sudoku.Solving.Manual.Subsets
 								cellOffsets: cells,
 								digits: mask.GetAllSets().ToArray(),
 								isLocked:
-									true switch
+									flagMask switch
 									{
 										_ when flagMask == mask => true,
-										_ when flagMask != 0 => false,
+										not 0 => false,
 										_ => null
 									}));
 					}

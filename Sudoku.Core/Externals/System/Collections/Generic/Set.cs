@@ -10,8 +10,7 @@ namespace System.Collections.Generic
 	/// </summary>
 	/// <typeparam name="T">The type of the element.</typeparam>
 	[DebuggerStepThrough]
-	public sealed class Set<T> : IEnumerable<T>, IEquatable<Set<T>?>, ISet<T>
-		where T : notnull, IEquatable<T>
+	public sealed class Set<T> : IEnumerable<T>, IEquatable<Set<T>?>, ISet<T> where T : notnull, IEquatable<T>
 	{
 		/// <summary>
 		/// The inner list.
@@ -123,7 +122,7 @@ namespace System.Collections.Generic
 
 		/// <inheritdoc/>
 		public bool Contains(T item) => _list.Contains(item);
-		
+
 		/// <inheritdoc/>
 		public bool Remove(T item) => _list.Remove(item);
 

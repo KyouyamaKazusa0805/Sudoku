@@ -43,8 +43,8 @@ namespace Sudoku.Solving.Annotations
 		public static string? GetDisplayName<TEnum>(TEnum enumField)
 			where TEnum : Enum =>
 			typeof(TEnum).GetField(enumField.ToString()) is FieldInfo fieldInfo
-			&& fieldInfo.GetCustomAttribute<TechniqueDisplayAttribute>() is TechniqueDisplayAttribute attribute
-				? attribute.DisplayName
+			&& fieldInfo.GetCustomAttribute<TechniqueDisplayAttribute>() is not null and { DisplayName: string result }
+				? result
 				: null;
 	}
 }

@@ -14,10 +14,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <summary>
 		/// The difficulty extra.
 		/// </summary>
-		protected static readonly decimal[] DifficultyExtra =
-		{
-			0, 0, 0, 0, .1M, 0, .2M, 0, .3M, 0, .4M, 0, .5M, 0, .6M
-		};
+		protected static readonly decimal[] DifficultyExtra = { 0, 0, 0, 0, .1M, 0, .2M, 0, .3M, 0, .4M, 0, .5M, 0, .6M };
 
 		/// <include file='SolvingDocComments.xml' path='comments/constructor[@type="TechniqueInfo"]'/>
 		/// <param name="cells">All cells.</param>

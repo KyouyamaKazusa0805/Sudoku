@@ -61,12 +61,11 @@ namespace System.Collections.Generic
 		public override string ToString() => (Id, ParentId, Content, ChildrenCount: Children.Count).ToString();
 
 
-
 		private static int InternalCompare(TreeNode<T>? left, TreeNode<T>? right) =>
-			(left is null, right is null) switch
+			(left, right) switch
 			{
-				(true, true) => 0,
-				(false, false) => left!.Id.CompareTo(right!.Id),
+				(null, null) => 0,
+				(not null, not null) => left!.Id.CompareTo(right!.Id),
 				_ => left is null ? -1 : 1
 			};
 

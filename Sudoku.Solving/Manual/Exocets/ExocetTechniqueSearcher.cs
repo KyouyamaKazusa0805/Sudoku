@@ -138,8 +138,8 @@ namespace Sudoku.Solving.Manual.Exocets
 							int index = 6, x = i / 3 % 3;
 							int m = (m = i < 9 ? b1 % 9 + b2 % 9 : b1 / 9 + b2 / 9) switch
 							{
-								_ when m < 4 => 3 - m,
-								_ when m < 13 => 12 - m,
+								< 4 => 3 - m,
+								< 13 => 12 - m,
 								_ => 21 - m
 							};
 							(t[0], t[1], t[2]) = i < 9 ? (m, tq1 % 9, tr1 % 9) : (m, tq1 / 9, tr1 / 9);

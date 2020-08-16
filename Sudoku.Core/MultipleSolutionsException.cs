@@ -44,8 +44,7 @@ namespace Sudoku
 		/// <param name="grid">The grid.</param>
 		/// <param name="info">The streaming information.</param>
 		/// <param name="context">The streaming context.</param>
-		protected MultipleSolutionsException(
-			IReadOnlyGrid grid, SerializationInfo info, StreamingContext context)
+		protected MultipleSolutionsException(IReadOnlyGrid grid, SerializationInfo info, StreamingContext context)
 			: base(info, context) => Grid = grid;
 
 

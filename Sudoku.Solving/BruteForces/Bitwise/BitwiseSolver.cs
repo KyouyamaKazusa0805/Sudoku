@@ -2,12 +2,12 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
+using System.Text;
 using Sudoku.Data;
 using Sudoku.Windows;
-using static System.Runtime.InteropServices.CharSet;
 using static System.Runtime.InteropServices.CallingConvention;
+using static System.Runtime.InteropServices.CharSet;
 using static System.Runtime.InteropServices.UnmanagedType;
-using System.Text;
 
 namespace Sudoku.Solving.BruteForces.Bitwise
 {
