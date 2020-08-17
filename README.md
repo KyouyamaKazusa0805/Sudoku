@@ -1,4 +1,4 @@
-> I have no time to update the project recently... If you find some bugs, please raise a issue or tell me directly. Thx!
+> I have no time to update the project recently... If you find any bugs, please raise a issue or tell me directly. Thx!
 >
 > 我最近没有时间更新项目……如果你找到了 bug，请提 issue 或者直接告诉我。感谢！
 
