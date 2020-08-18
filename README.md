@@ -14,9 +14,9 @@ A sudoku handling SDK using brute forces and logical techniques (update graduall
 >
 > 这个窗体可能看起来跟 Hodoku 差不多，因为我并不知道什么样子是一个漂亮的界面。使用 Hodoku 仅仅是为了参考。
 >
-> In addition, several little bugs will be fixed later such as `TextBox`es cannot give an error for incorrect input.
+> In addition, several little bugs will be fixed later.
 >
-> 另外，一些比较细小的 bug 会在后续修复，比如文本框不会对错误的输入文本产生错误提示信息。
+> 另外，一些比较细小的 bug 会在后续修复。
 
 
 
